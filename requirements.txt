@@ -1,0 +1,15 @@
+numpy
+psutil
+toolz
+matplotlib
+dill
+pandas
+partd
+bokeh
+scipy
+ipywidgets
+ipynb
+xarray
+rise
+voila
+
