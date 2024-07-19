@@ -13,3 +13,6 @@ dependencies:
   - scipy
   - ipywidgets
   - voila
+  - bqplot
+  - ipympl
+  - ipyvolume
