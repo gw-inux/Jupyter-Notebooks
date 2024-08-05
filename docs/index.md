@@ -1,8 +1,8 @@
 ---
 layout: default
 title: gw-inux Jupyter Notebooks
-nav_order: 1
-has_children: false
+nav_order: 2
+has_children: true
 permalink: /
 ---
 
