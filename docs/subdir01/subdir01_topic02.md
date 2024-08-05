@@ -1,7 +1,7 @@
 ---
 layout: default
 title: SubDir01 - Topic02
-parent: SubDir01
+parent: Introductions to SubDir01
 nav_order: 2
 math: mathjax3
 ---
