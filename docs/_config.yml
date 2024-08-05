@@ -1,0 +1,8 @@
+
+remote_theme: gw-inux/just-the-docs
+#logo: "logo_here.png"
+title: GW-iNUX Jupyter Notebooks
+description: Jupyter Notebooks as Interactive Learning Material for Hydrogeology
+baseurl: "/Jupyter-Notebooks" # the subpath of your site, e.g. /blog
+url: "https://gw-inux.github.io" # the base hostname & protocol for your site, e.g. http://example.com
+#markdown: CommonMarkGhPages #kramdown 
