@@ -1,15 +1,8 @@
 # Jupyter Notebooks as interactive educational ressources for the Groundwater Project
 
-|Content|Type|Access| QR|
-|-------|----|------|---|
-|Well catchment| Notebook with explanations| BADGE | QR |
+|Content|Type|Preview|Access| QR |
+|-------|----|-------|------| ---|
+|Well catchment| Notebook with explanations| Preview FIG | [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/gw-inux/Jupyter-Notebooks/HEAD?urlpath=voila%2Frender%2FGW_Project%2FWell_Catchment_FIG.ipynb) | QR |
 
 
-
-
-| Month    | Savings |
-| -------- | ------- |
-| January  | $250    |
-| February | $80     |
-| March    | $420    |
 
