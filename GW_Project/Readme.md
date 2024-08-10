@@ -1,5 +1,7 @@
 # Jupyter Notebooks as interactive educational ressources for the Groundwater Project
 
+Following, there is an overview about the notebooks in this repository. You can access and excute them with the link or by using the QR code on your mobile device.
+
 |Content|Type|Preview|Access (via MyBinder and Voila)| QR for access |
 |-------|----|-------|------| ---|
 |Well_Catchment.IPYNB: Calculation of the catchment area of an production well| Notebook with explanations|![Preview figure](https://github.com/gw-inux/Jupyter-Notebooks/blob/main/GW_Project/FIGS/PRE/PRE_GWP01.png?raw=true)|[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/gw-inux/Jupyter-Notebooks/HEAD?urlpath=voila%2Frender%2FGW_Project%2FWell_Catchment.ipynb)|![QR](https://github.com/gw-inux/Jupyter-Notebooks/blob/main/GW_Project/FIGS/QR/QR_GWP01.png?raw=true)|
