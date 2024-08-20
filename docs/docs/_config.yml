@@ -1,0 +1,8 @@
+title: iNUX Jupyter Notebooks
+description: A starter template for a Jeykll site using the Just the Docs theme!
+theme: just-the-docs
+
+url: https://gw-inux.github.io/Jupyter-Notebooks/
+
+aux_links:
+  Template Repository: https://github.com/gw-inux/Jupyter-Notebooks
