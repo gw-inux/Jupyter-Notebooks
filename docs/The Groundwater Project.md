@@ -1,25 +1,26 @@
 ---
 title: The Groundwater Project
 layout: home
-nav_order: 2
+nav_order: 1
+parent: Courses and Projects
 has_children: false
 ---
 
 # The Groundwater Project
 
-A collection of Jupyter Notebooks for the Groundwater Project.
-
 **Jupyter Notebooks as interactive educational resources for the Groundwater Project**
 
-The following is an overview of (initial) notebooks that are suitable for the Groundwater Project. The Jupyter Notebooks are part of the general collection of Jupyter Notebooks in the iNUX GitHub Repository. You can access and execute them through the MyBinder service with the provided link or by using the QR code on your mobile device. Using these links will render all Notebooks as (user-friendly) Voila-Dashboards, i.e., the underlying Python Code is not visible.
+_A collection of Jupyter Notebooks for the Groundwater Project._
+
+The following is an overview of (initial) notebooks that are suitable for the Groundwater Project. The Jupyter Notebooks are part of the general collection of Jupyter Notebooks in the iNUX GitHub Repository. You can access and execute them online with your browser through the MyBinder service with the provided link or by using the QR code on your mobile device. Using these links will render all Notebooks as (user-friendly) Voila-Dashboards, i.e., the underlying Python Code is not visible. Alternatively, you can download the Jupyter Notebooks from the GitHub repository (specified in Origin* within the table) and execute them locally through a suitable Jupyter Notebook installation (e.g., Anaconda).
 
 
 
-_Table legend / Abbreviations:_
+**_Table legend / Abbreviations:_**
 
-\* _01 - Water cycle_; _02 - Basic hydrology_; _03 Soil physics_; _04 Basic hydrogeology_; _05 Applied hydrogeology_; _06 Groundwater modeling_
+**Origin*: ** _01 - Water cycle_; _02 - Basic hydrology_; _03 Soil physics_; _04 Basic hydrogeology_; _05 Applied hydrogeology_; _06 Groundwater modeling_
 
-** Notebook...  **A)** with explanations; **B)** just figure; **C)** as a workbook 
+**Type\**:** Notebook...  **A)** with explanations; **B)** just figure; **C)** as a workbook 
 
 |Content|Origin*|Type**|Preview|Access (via MyBinder and Voila)| QR for access |
 |-------|----|-------|------| --- | --- |
