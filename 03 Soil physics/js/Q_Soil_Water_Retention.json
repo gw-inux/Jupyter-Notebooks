@@ -1,0 +1,23 @@
+[
+    {
+        "question": "What happens with the suction pressure when soil moisture decreases?",
+        "type": "multiple_choice",
+        "answers": [
+          {
+              "answer": "Suction pressure remains unaffected",
+              "correct": false,
+              "feedback": "Wrong. Have a look at the retention curve plot."
+          },
+          {
+              "answer": "Suction pressure decreases",
+              "correct": false,
+              "feedback": "Wrong. Have a look at the retention curve plot."
+          },
+          {
+              "answer": "Suction pressure increases",
+              "correct": true,
+              "feedback": "Right!"
+          }
+        ]
+    },
+]
