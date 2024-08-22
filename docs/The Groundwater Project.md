@@ -18,7 +18,7 @@ The following is an overview of (initial) notebooks that are suitable for the Gr
 
 **_Table legend / Abbreviations:_**
 
-**Origin*: ** (Repository) _01 - Water cycle_; _02 - Basic hydrology_; _03 Soil physics_; _04 Basic hydrogeology_; _05 Applied hydrogeology_; _06 Groundwater modeling_
+**Origin*:** (Repository) _01 - Water cycle_; _02 - Basic hydrology_; _03 Soil physics_; _04 Basic hydrogeology_; _05 Applied hydrogeology_; _06 Groundwater modeling_
 
 **Type\**:** Notebook...  **A)** with explanations; **B)** just figure; **C)** as a workbook 
 
