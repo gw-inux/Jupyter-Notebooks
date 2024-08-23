@@ -12,7 +12,7 @@ has_children: false
 
 _A collection of Jupyter Notebooks for the Groundwater Project._
 
-![GWP_Logo](.\assets\images\gwp\GWP_logo.png)
+![GWP_Logo](./assets/images/gwp/GWP_logo.png)
 
 The following is an overview of (initial) notebooks that are suitable for the Groundwater Project. The Jupyter Notebooks are part of the general collection of Jupyter Notebooks in the iNUX GitHub Repository. You can access and execute them online with your browser through the MyBinder service with the provided link or by using the QR code on your mobile device. Using these links will render all Notebooks as (user-friendly) Voila-Dashboards, i.e., the underlying Python Code is not visible. Alternatively, you can download the Jupyter Notebooks from the GitHub repository (specified in Origin* within the table) and execute them locally through a suitable Jupyter Notebook installation (e.g., Anaconda).
 
