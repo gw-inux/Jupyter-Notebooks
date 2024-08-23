@@ -15,4 +15,4 @@ Alternatively, you can access and process the Jupyter Notebooks **online** by, f
 
 _**Please be aware** that accessing and executing the Jupyter Notebooks through the **MyBinder Service can take some time to start** the server. Usually, the first start takes longer because MyBinder needs to set up a server with a specific installation for you. Subsequent starts (in the following minutes) should be faster. Sometimes, when accessing the Jupyter Notebook as Voila-Dashboard, it can be useful to reload the page in case the process seems to be stuck. [Some more information here](https://discourse.jupyter.org/t/how-to-reduce-mybinder-org-repository-startup-time/4956)_ 
 
-Further contributions are very welcome (e.g., using the [Incoming](https://github.com/gw-inux/Jupyter-Notebooks/tree/main/99%20INCOMING)) section in the repository).
+Further contributions are very welcome (e.g., using the [Incoming](https://github.com/gw-inux/Jupyter-Notebooks/tree/main/99%20INCOMING) section in the repository).
