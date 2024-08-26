@@ -14,7 +14,18 @@ _A collection of Jupyter Notebooks for the Groundwater Project._
 
 ![GWP_Logo](./assets/images/gwp/GWP_logo.png)
 
-The following is an overview of (initial) notebooks that are suitable for the Groundwater Project. The Jupyter Notebooks are part of the general collection of Jupyter Notebooks in the iNUX GitHub Repository. You can access and execute them online with your browser through the MyBinder service with the provided link or by using the QR code on your mobile device. Using these links will render all Notebooks as (user-friendly) Voila-Dashboards, i.e., the underlying Python Code is not visible. Alternatively, you can download the Jupyter Notebooks from the GitHub repository (specified in Origin* within the table) and execute them locally through a suitable Jupyter Notebook installation (e.g., Anaconda).
+The following is an overview of (initial) notebooks that are suitable for the Groundwater Project. The Jupyter Notebooks are part of the general collection of Jupyter Notebooks in the iNUX GitHub Repository.
+
+You can **access and execute them online** with your browser through the MyBinder service with the provided link or by using the QR code on your mobile device. These links will render all Notebooks as (user-friendly) Voila Dashboards, i.e., the underlying Python Code is invisible.
+
+ _Alternatively,_ you can access the whole repository of notebooks online with [this link to MyBinder](https://mybinder.org/v2/gh/gw-inux/Jupyter-Notebooks/HEAD?urlpath=notebooks%2F) (eventually, the start takes some minutes - please be patient). Then, browse through the collection of notebooks and execute them. _If you are new to Jupyter Notebooks,_ it is suggested to have a look at [00_Getting_started.ipynb](https://mybinder.org/v2/gh/gw-inux/Jupyter-Notebooks/HEAD?urlpath=notebooks%2F00_Getting_started.ipynb).
+
+Alternatively, you can download the Jupyter Notebooks from the GitHub repository (specified in Origin* within the table) and **execute them locally** through a suitable Jupyter Notebook installation (e.g., Anaconda). With a properly installed Anaconda, just
+
+* open the command window with `CMD`.
+* Browse to your local folder on your computer that contains the Jupyter Notebooks.
+* Start your local Jupyter interpreter (hub) by typing `Jupyter Notebook` in your command window.
+* Subsequently, your browser should open, and you will be ready to execute the notebooks.
 
 
 
