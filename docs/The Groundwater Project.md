@@ -18,7 +18,7 @@ The following is an overview of (initial) notebooks that are suitable for the Gr
 
 You can **access and execute them online** with your browser through the MyBinder service with the provided link or by using the QR code on your mobile device. These links will render all Notebooks as (user-friendly) Voila Dashboards, i.e., the underlying Python Code is invisible.
 
- _Alternatively,_ you can access the whole repository of notebooks online with [this link to MyBinder](https://mybinder.org/v2/gh/gw-inux/Jupyter-Notebooks/HEAD?urlpath=notebooks%2F) (eventually, the start takes some minutes - please be patient). Then, browse through the collection of notebooks and execute them. _If you are new to Jupyter Notebooks,_ it is suggested to have a look at [00_Getting_started.ipynb](https://mybinder.org/v2/gh/gw-inux/Jupyter-Notebooks/HEAD?urlpath=notebooks%2F00_Getting_started.ipynb).
+ _Alternatively,_ you can access the whole repository of notebooks online with [this link to MyBinder](https://mybinder.org/v2/gh/gw-inux/Jupyter-Notebooks/HEAD?urlpath=notebooks%2F) (eventually, the start takes some minutes—please be patient). Then, browse through the collection of notebooks and execute them. If you are new to Jupyter Notebooks, it is suggested that you have a look at [00_Getting_started.ipynb](https://mybinder.org/v2/gh/gw-inux/Jupyter-Notebooks/HEAD?urlpath=notebooks%2F00_Getting_started.ipynb).
 
 Alternatively, you can download the Jupyter Notebooks from the GitHub repository (specified in Origin* within the table) and **execute them locally** through a suitable Jupyter Notebook installation (e.g., Anaconda). With a properly installed Anaconda, just
 
