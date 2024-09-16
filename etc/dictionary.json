@@ -1,0 +1,8 @@
+{
+  "Druckpotential":"Head",
+  "Berechnetes Druckpotential":"Calculated Head",
+  "Beobachtetes Druckpotential":"Observed Head",
+  "GWN":"Recharge",
+  "Lineare Regression":"Linear Regression",
+  "Potentialhöhe für die 1D ungespannte Grundwasserströmung":"Head for 1D unconfined flow"
+}
