@@ -31,7 +31,7 @@ Alternatively, you can download the Jupyter Notebooks from the GitHub repository
 
 **_Table legend / Abbreviations:_**
 
-**Origin*: ** (Repository) [_01 - Water cycle_](https://github.com/gw-inux/Jupyter-Notebooks/tree/main/01%20Water%20cycle); _02 - Basic hydrology_; [_03 Soil physics_](https://github.com/gw-inux/Jupyter-Notebooks/tree/main/03%20Soil%20physics); [_04 Basic hydrogeology_](https://github.com/gw-inux/Jupyter-Notebooks/tree/main/04%20Basic%20hydrogeology); [_05 Applied hydrogeology_](https://github.com/gw-inux/Jupyter-Notebooks/tree/main/05%20Applied%20hydrogeology); [_06 Groundwater modeling_](https://github.com/gw-inux/Jupyter-Notebooks/tree/main/06%20Groundwater%20modeling)
+**Origin*: ** (Repository) [_01 - Water cycle_](https://github.com/gw-inux/Jupyter-Notebooks/tree/main/01_Water_cycle); _02 - Basic hydrology_; [_03 Soil physics_](https://github.com/gw-inux/Jupyter-Notebooks/tree/main/03_Soil_physics); [_04 Basic hydrogeology_](https://github.com/gw-inux/Jupyter-Notebooks/tree/main/04_Basic_hydrogeology); [_05 Applied hydrogeology_](https://github.com/gw-inux/Jupyter-Notebooks/tree/main/05_Applied_hydrogeology); [_06 Groundwater modeling_](https://github.com/gw-inux/Jupyter-Notebooks/tree/main/06_Groundwater_modeling)
 
 **Type\**:** Notebook...  **A)** with explanations; **B)** just figure; **C)** as a workbook 
 
