@@ -1,7 +1,7 @@
 # Jupyter-Notebooks
 This repository provide Jupyter Notebooks for learning and teaching groundwater hydrology and hydrogeology.
 
-You can run and access the notebooks online through the [MyBinder Service](https://mybinder.org/v2/gh/gw-inux/Jupyter-Notebooks/HEAD?urlpath=tree)
+You can [run and access the notebooks online through the MyBinder Service](https://mybinder.org/v2/gh/gw-inux/Jupyter-Notebooks/HEAD?urlpath=tree)
 
 Further information about the Jupyter Notebooks and example use cases are available on [The iNUX Jupyter Notebooks page](https://gw-inux.github.io/Jupyter-Notebooks/)
 
