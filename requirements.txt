@@ -1,9 +1,7 @@
 numpy
 psutil
 matplotlib
-dill
 pandas
-partd
 scipy
 ipywidgets
 ipynb
