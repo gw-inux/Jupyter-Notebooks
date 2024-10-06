@@ -16,3 +16,4 @@ dependencies:
   - bqplot
   - ipympl
   - ipyvolume
+  - streamlit
