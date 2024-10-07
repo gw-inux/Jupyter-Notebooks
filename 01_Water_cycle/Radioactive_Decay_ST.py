@@ -3,14 +3,42 @@ import matplotlib.pyplot as plt
 import pandas as pd 
 import streamlit as st
 
+st.title('Mass balance for a decay chain')
+
+st.subheader('***Decay of Species A to B and species B to C***')
+
+st.write('The app demonstrate the mass balance for a decay chain')
+
+st.header('Example: Radioactive Decay')
+
+st.write('This illustrative example is not completely related to basic hydrogeology (although coupled decay processes are of some importance for contaminant transport in aquifers). The facts:')
+
+st.markdown('+ Decay chain:')
+st.latex(r''' A \to B \to C''')                                                                
+st.markdown('+ 30% of substance *A* and 20% of substance *B*  decay each year.')
+st.markdown('+ decay rate of *A* = production rate of *B* = 0.3 a^-1 x M_A')
+st.markdown('+ decay rate of *B* = production rate of *C* = 0.2 a^-1 x M_B')
+st.markdown('+ mass budgets for *A*, *B*, and *C*:')                             
+st.latex(r''' \Delta M_A = 0.3 a^{-1} \cdot M_A  \cdot \Delta t''')
+st.latex(r''' \Delta M_B = 0.3 a^{-1} \cdot M_A  \cdot \Delta t - 0.2 a^{-1} \cdot M_B  \cdot \Delta t ''')
+st.latex(r''' \Delta M_C = 0.2 a^{-1} \cdot M_B  \cdot \Delta t''')
+  	
+st.markdown('+ Similar equations hold for quantitative descriptions of some chemical reactions which correspond to the type A -> B -> C')
+
+st.subheader('Interactive plot of decay species A -> B and species B -> C')
 #decay code
 # Input value - you can modify here
+
+columns = st.columns((1,1), gap = 'large')
+
+with columns[0]:
+    A_0=st.slider('Initial mass A_0 [kg]:',0,1000,0,10)
+    B_0=st.slider('Initial mass B_0 [kg]:',0,1000,0,10)
+    C_0=st.slider('Initial mass C_0 [kg]:',0,1000,0,10)
     
-A_0=st.slider('A_0:',0,1000,0,10)
-B_0=st.slider('B_0:',0,1000,0,10)
-C_0=st.slider('C_0:',0,1000,0,10)
-R_A=st.slider('R_A:',0.0,1.0,0.000,0.001)
-R_B=st.slider('R_B:',0.0,1.0,0.000,0.001)
+with columns[1]:
+    R_A=st.slider('Decay rate of A - R_A [1/a]:',0.0,1.0,0.000,0.001)
+    R_B=st.slider('Decay rate of A - R_B [1/a]:',0.0,1.0,0.000,0.001)
 
 n_simulation = 101 # this number denotes how many discrete values (times) are computed - similar to the number of cells / rows in an Excel-sheet
 
@@ -34,14 +62,11 @@ for i in range(0,n_simulation-1):
     summ = A[i]+B[i]+C[i]  
 
 # Output of results
-d = {"Mass_A": A, "Mass_B": B, "Mass_C": C, "Total Mass": summ}
-df = pd.DataFrame(d) # Generating result table
-label = ["Mass A (g)", "Mass B (g)", "Mass C (g)"]
+label = ["mass A (kg)", "mass B (kg)", "mass C (kg)"]
+
 fig = plt.figure(figsize=(9,6))
 plt.plot(time, A, time, B, time, C, linewidth=3);  # plotting the results
-plt.xlabel("Time [Time Unit]"); plt.ylabel("Mass [g]") # placing axis labels
+plt.xlabel("Time [years]"); plt.ylabel("Mass [kg]") # placing axis labels
 plt.legend(label, loc=0);plt.grid(); plt.xlim([0,n_simulation-1]); plt.ylim(bottom=0) # legends, grids, x,y limits
 
 st.pyplot(fig)
-
-df.round(2) #display result table with 2 decimal places 
