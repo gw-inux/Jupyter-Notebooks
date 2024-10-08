@@ -32,7 +32,7 @@ with columns[0]:
     fc = st.slider(f'**Equilibrium infiltration capacity (cm/hr)**:',0,50,5,1)
     f0 = st.slider(f'**Initial infiltration capacity (cm/hr)**:',0,50,7,1)
 with columns[1]:
-    k = st.slider(f'**Rate of infiltration capacity decrease (1/hr)**',0.000001,0.01,0.01,0.00001)
+    k = st.slider(f'**Rate of infiltration capacity decrease (1/hr)**',0.000001,0.01,0.01,0.00001,format="%e")
     x_point = st.slider(f'**Point (x-axis) for result output**:',0,86400,0,10)
     
 tmax = 86400

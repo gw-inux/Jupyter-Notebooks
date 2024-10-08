@@ -13,14 +13,14 @@ columns = st.columns((1,1), gap = 'large')
 
 with columns[0]:
     y_scale = st.slider('Scaling y-axis', 0,20,3,1)
-    hl=st.slider('LEFT defined head', 0,100,16,1)
-    hr=st.slider('RIGHT defined head', 0,100,18,1)
+    hl=st.slider('LEFT defined head', 120,180,150,1)
+    hr=st.slider('RIGHT defined head', 120,180,152,1)
     L= st.slider('Length', 0,7000,2500,10)
 
 
 with columns[1]:
     R=st.slider('Recharge in mm/a', -500,500,0,10)
-    K=st.slider('Hydraulic conductivity in m/s', min_value=0.000001, step=0.000001, max_value=0.05, value=0.0000045, format="%e", )
+    K=st.slider('Hydraulic conductivity in m/s', min_value=0.000001, step=0.000001, max_value=0.05, value=0.0000045, format="%e" )
     
 x = np.arange(0, L,L/1000)
 R=R/1000/365.25/86400
