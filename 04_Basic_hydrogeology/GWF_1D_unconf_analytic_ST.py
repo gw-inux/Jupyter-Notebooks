@@ -13,8 +13,8 @@ columns = st.columns((1,1), gap = 'large')
 
 with columns[0]:
     y_scale = st.slider('Scaling y-axis', 0,20,3,1)
-    hl=st.slider('LEFT defined head', 0,300,150,1)
-    hr=st.slider('RIGHT defined head', 0,300,152,1)
+    hl=st.slider('LEFT defined head', 0,100,16,1)
+    hr=st.slider('RIGHT defined head', 0,100,18,1)
     L= st.slider('Length', 0,7000,2500,10)
 
 
