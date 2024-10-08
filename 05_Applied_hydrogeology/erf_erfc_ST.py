@@ -9,11 +9,14 @@ x = np.arange(-3, 3, 0.01)
 s1 = erf(x)
 s2 = erfc(x)
 
-x_print = st.slider('Select the value for printout', -3.0,3.0,0.0,0.01)
+columns = st.columns((6,90,1))
+with columns[1]:
+    x_print = st.slider(f'**Select the value of x for printout**', -3.0,3.0,0.0,0.01)
+    
 s1_print = erf(x_print)
 s2_print = erfc(x_print)
 
-st.subheader('Plot of erf/erfc')
+st.subheader('erf(x)/erfc(x)')
 
 # Plot figure
 fig = plt.figure(figsize=(12,7))

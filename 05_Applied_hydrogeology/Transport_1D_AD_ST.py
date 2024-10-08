@@ -58,7 +58,11 @@ def BC(PE,r_time, r_dur):
     return BC
 
 st.title('1D Transport with advection and dispersion')
-#l  = st.slider('Lenght',1,100,15,1)
+
+st.write('The plot shows the solute concentration at an observation point in a user-defined distance from the source. Transport is considered for a 1D system with steady groundwater flow. Solutes are added by an finite pulse with a concentration of 0.1 g per cubicmeter.')
+"---"
+columns = st.columns((1,1), gap = 'large')
+
 #t1 = st.slider('Time max',60,86400,1800,60)
 #c0 = st.slider('Mass input conc.',0.01,5.0,0.1,0.01)
 #m  = st.slider('Mass input',0.0,1000.0,10.0,1.0)
@@ -68,13 +72,17 @@ t1 = 1800
 c0 = 0.1
 m = 10.0
 Q= 0.2
-n  = st.slider('n',0.02,0.6,0.2,0.001)       
-a  = st.slider('alpha',0.001,10.0,0.01,0.002)
-plot_A    = st.toggle('Advection', True)
-plot_AD   = st.toggle('Dispersion', False)
-plot_DATA = st.toggle('Measured data',False)
 
-
+with columns[0]:
+    l  = st.slider(f'**Distance of observation from source (m)**',1,100,15,1)
+    plot_A    = st.toggle('Advection', True)
+    plot_AD   = st.toggle('Dispersion', False)
+    plot_DATA = st.toggle('Measured data',False) 
+    
+with columns[1]:
+    n  = st.slider(f'**Porosity (dimensionless)**',0.02,0.6,0.2,0.001)       
+    a  = st.slider(f'**Longitudinal dispersivity (m)**',0.001,10.0,0.01,0.002)
+"---"
 # Data for plotting
 t0 = 1       #Startzeit
 dt = 2      #Zeitdiskretisierung
@@ -126,9 +134,9 @@ c_obs = [1e-3, 5e-2, 8.5e-2, 9.7e-2, 9.9e-2, 9e-2, 5e-2, 1.5e-2, 2e-3, 5e-4]
 #PLOT FIGURE
 fig = plt.figure(figsize=(9,6))
 ax = fig.add_subplot(1, 1, 1)
-ax.set_title('Advection-dispersion transport', fontsize=14)
-ax.set_xlabel ('Time', fontsize=14)
-ax.set_ylabel ('Concentration', fontsize=14)
+ax.set_title('1D solute transport with advection-dispersion', fontsize=14)
+ax.set_xlabel ('Time (s)', fontsize=14)
+ax.set_ylabel ('Concentration (g)', fontsize=14)
 #ax.set(xlabel='Zeit', ylabel='Konzentration', title='A-D transport', fontsize=14)
       
 # PLOT HERE

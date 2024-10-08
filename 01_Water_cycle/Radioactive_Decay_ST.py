@@ -24,7 +24,7 @@ st.latex(r''' \Delta M_B = 0.3 a^{-1} \cdot M_A  \cdot \Delta t - 0.2 a^{-1} \cd
 st.latex(r''' \Delta M_C = 0.2 a^{-1} \cdot M_B  \cdot \Delta t''')
   	
 st.markdown('+ Similar equations hold for quantitative descriptions of some chemical reactions which correspond to the type A -> B -> C')
-
+"---"
 st.subheader('Interactive plot of decay species A -> B and species B -> C')
 #decay code
 # Input value - you can modify here
@@ -32,13 +32,13 @@ st.subheader('Interactive plot of decay species A -> B and species B -> C')
 columns = st.columns((1,1), gap = 'large')
 
 with columns[0]:
-    A_0=st.slider('Initial mass A_0 [kg]:',0,1000,0,10)
-    B_0=st.slider('Initial mass B_0 [kg]:',0,1000,0,10)
-    C_0=st.slider('Initial mass C_0 [kg]:',0,1000,0,10)
+    A_0=st.slider(f'**Initial mass _A_0_ [kg]**:',0,1000,0,10)
+    B_0=st.slider(f'**Initial mass _B_0_ [kg]:**',0,1000,0,10)
+    C_0=st.slider(f'**Initial mass _C_0_ [kg]:**',0,1000,0,10)
     
 with columns[1]:
-    R_A=st.slider('Decay rate of A - R_A [1/a]:',0.0,1.0,0.000,0.001)
-    R_B=st.slider('Decay rate of A - R_B [1/a]:',0.0,1.0,0.000,0.001)
+    R_A=st.slider(f'**Decay rate of A - _R_A_ [1/a]**:',0.0,1.0,0.000,0.001)
+    R_B=st.slider(f'**Decay rate of A - _R_B_ [1/a]**:',0.0,1.0,0.000,0.001)
 
 n_simulation = 101 # this number denotes how many discrete values (times) are computed - similar to the number of cells / rows in an Excel-sheet
 
