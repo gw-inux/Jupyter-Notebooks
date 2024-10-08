@@ -20,7 +20,7 @@ with columns[0]:
 
 with columns[1]:
     R=st.slider('Recharge in mm/a', -500,500,0,10)
-    K=st.slider('Hydraulic conductivity in m/s', min_value=0.000001, step=0.000001, max_value=0.05, value=0.0000045, format="%e" )
+    K=st.slider('Hydraulic conductivity in m/s', 0.000001,0.05,0.0001,0.000001,format="%e" )
     
 x = np.arange(0, L,L/1000)
 R=R/1000/365.25/86400
