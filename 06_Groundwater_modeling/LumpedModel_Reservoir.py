@@ -57,7 +57,7 @@ log_max3 = 3.0  # S / Corresponds to 10^0 = 1
 columns = st.columns((1,1), gap = 'large')
 
 with columns[0]:
-    h_i = st.slider(f'**Initial head**', 10,150,0,1)
+    h_i = st.slider(f'**Initial head**', 0,150,10,1)
     R_slider_value=st.slider('(log of) Recharge', log_min3,log_max3,-1.0,0.01,format="%4.2f" )
     # Convert the slider value to the logarithmic scale
     R = 10 ** R_slider_value
