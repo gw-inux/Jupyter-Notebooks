@@ -161,7 +161,7 @@ st.write("Transmissivity T = ","% 10.2E"% T, " m^2/s")
 st.write("Storativity    S = ","% 10.2E"% S, "[-]")
 st.write(' ')
 st.write('Distance from the well (in ): %8.2f' %r)
-st.write("Time since pumping start (in s): %3i", %x_point)
+st.write("Time since pumping start (in s): %3i" %x_point)
 st.write('Drawdown at this distance and time (in m):  %5.2f' %y_point)
 
 
