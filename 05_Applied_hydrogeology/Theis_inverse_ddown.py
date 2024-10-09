@@ -141,7 +141,9 @@ ax.plot(um_inv[:num_times], w_um[:num_times],'ro')
 plt.yscale("log")
 plt.xscale("log")
 plt.axis([1,1E5,1E-2,1E+2])
-ax.set(xlabel='1/u', ylabel='w(u)',title='Theis drawdown')
+plt.xlabel(r'1/u', fontsize=14)
+plt.ylabel(r'w(u)', fontsize=14)
+plt.title('Theis drawdown', fontsize=16)
 ax.grid(which="both")
 plt.legend(('well function','measured'))
 
@@ -150,7 +152,7 @@ plt.plot(t2, s, linewidth=3., color='r', label=r'Drawdown prediction')
 plt.xlim(1, max_t)
 plt.ylim(max_s, 0)
 plt.plot(x_point,y_point, marker='o', color='b',linestyle ='None', label='drawdown output') 
-plt.xlabel(r'Time in sec', fontsize=14)
+plt.xlabel(r'Time in s', fontsize=14)
 plt.ylabel(r'Drawdown in m', fontsize=14)
 plt.title('Drawdown prediction with Theis', fontsize=16)
 plt.legend()
@@ -159,13 +161,13 @@ plt.grid(True)
 st.pyplot(fig)
 
 columns2 = st.columns((1,1), gap = 'large')
-with columns[0]:
+with columns2[0]:
     st.write("**Parameter estimation**")
     st.write("Transmissivity T = ","% 10.2E"% T, " m^2/s")
     st.write("Storativity    S = ","% 10.2E"% S, "[-]")
     st.write("Distance of measurement from the well (in m): %3i" %r)
 
-with columns[1]:
+with columns2[1]:
     st.write("**Prediction**")
     st.write("Distance of prediction from the well (in m): %3i" %r)
     st.write("Time since pumping start (in s): %3i" %x_point)
