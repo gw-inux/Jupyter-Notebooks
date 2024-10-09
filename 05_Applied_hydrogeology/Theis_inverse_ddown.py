@@ -169,7 +169,7 @@ with columns2[0]:
 
 with columns2[1]:
     st.write("**Prediction**")
-    st.write("Distance of prediction from the well (in m): %3i" %r)
+    st.write("Distance of prediction from the well (in m): %3i" %r_pred)
     st.write("Time since pumping start (in s): %3i" %x_point)
     st.write("Predicted drawdown at this distance and time (in m):  %5.2f" %y_point)
 
