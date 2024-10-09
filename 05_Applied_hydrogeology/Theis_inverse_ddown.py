@@ -106,7 +106,8 @@ with columns[0]:
     # Display the logarithmic value
     st.write("**Storativity (dimensionless):** %5.2e" %S)
 with columns[1]:
-    t_search = st.slider(f'**Select the value of time for printout**', 1,max_t,1,1)    
+    t_search = st.slider(f'**Select the value of time for printout**', 1,max_t,1,1)
+    r_pred = st.slider(f'**Select the distance from the well for the prediction**', 1,1000,120,1)    
     
 # Compute K and SS to provide parameters for plausability check
 # (i.e. are the parameter in a reasonable range)
@@ -127,7 +128,7 @@ for t1 in m_time_s:
 t2 = np.linspace(1, max_t, 200)
     
 # Compute Q for each hydraulic gradient
-s  = compute_s(T, S, t2, Qs, r)
+s  = compute_s(T, S, t2, Qs, r_pred)
 
 # Compute s for a specific point
 x_point = t_search
@@ -157,11 +158,17 @@ plt.grid(True)
     
 st.pyplot(fig)
 
-st.write("Transmissivity T = ","% 10.2E"% T, " m^2/s")
-st.write("Storativity    S = ","% 10.2E"% S, "[-]")
-st.write(' ')
-st.write('Distance from the well (in m): %3i' %r)
-st.write("Time since pumping start (in s): %3i" %x_point)
-st.write('Drawdown at this distance and time (in m):  %5.2f' %y_point)
+columns2 = st.columns((1,1), gap = 'large')
+with columns[0]:
+    st.write("**Parameter estimation**")
+    st.write("Transmissivity T = ","% 10.2E"% T, " m^2/s")
+    st.write("Storativity    S = ","% 10.2E"% S, "[-]")
+    st.write("Distance of measurement from the well (in m): %3i" %r)
+
+with columns[1]:
+    st.write("**Prediction**")
+    st.write("Distance of prediction from the well (in m): %3i" %r)
+    st.write("Time since pumping start (in s): %3i" %x_point)
+    st.write("Predicted drawdown at this distance and time (in m):  %5.2f" %y_point)
 
 
