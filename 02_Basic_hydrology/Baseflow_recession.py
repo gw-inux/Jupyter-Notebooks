@@ -26,15 +26,16 @@ import numpy as np
 import math
 from ipywidgets import *
 
-    
+tmax = 91
+t = np.arange(0, tmax, tmax/200)
+
 with columns[0]:
     Q0 = st.slider(f'**Flow at the start of recession (m3/s)**:',0.0,5000.0,1000.0,0.01)
 with columns[1]:
     a = st.slider(f'**Recession constant for the basin (1/d)**',0.000001,0.1,0.01,0.00001,format="%e")
     x_point = st.slider(f'**Point (x-axis) for result output**:',0,tmax,0,1)
     
-tmax = 91
-t = np.arange(0, tmax, tmax/200)
+
 
 Q = Q0*(math.e**(a*t*-1))
     
