@@ -22,7 +22,7 @@ st.latex(r'''u = \frac{Sr^2}{4Tt}''')
 st.write('This equations are not easy to solve. Historically, values for the well function were provided by tables or as so called type-curve. The type-curve matching with experimental data for pumping test analysis can be considered as one of the basic hydrogeological methods.')
 st.write('However, modern computer provide an easier and more convinient way to solve the 1D radial flow equation based on the Theis approach. Subsequently, the Theis equation is solved with Python routines. The results for the measured data are graphically presented.')
 "---"
-
+st.write('The red dots are the measured data. Modify _T_ and _S_ to fit the measured data to the well function.')
 # Computation
 
 
