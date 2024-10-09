@@ -45,19 +45,19 @@ st.write('The equation will be solved in the following section.')
 "---"
 #Computation
 
-log_min1 = -7.0 # T / Corresponds to 10^-7 = 0.0000001
-log_max1 = 0.0  # T / Corresponds to 10^0 = 1
+log_min1 = -5.0 # T / Corresponds to 10^-7 = 0.0000001
+log_max1 = 5.0  # T / Corresponds to 10^0 = 1
 
-log_min2 = -7.0 # S / Corresponds to 10^-7 = 0.0000001
-log_max2 = 0.0  # S / Corresponds to 10^0 = 1
+log_min2 = -5.0 # S / Corresponds to 10^-7 = 0.0000001
+log_max2 = 5.0  # S / Corresponds to 10^0 = 1
 
-log_min3 = -7.0 # S / Corresponds to 10^-7 = 0.0000001
-log_max3 = 0.0  # S / Corresponds to 10^0 = 1
+log_min3 = -5.0 # S / Corresponds to 10^-7 = 0.0000001
+log_max3 = 5.0  # S / Corresponds to 10^0 = 1
 
 columns = st.columns((1,1), gap = 'large')
 
 with columns[0]:
-    K_slider_value=st.slider('(log of) Conductivity', log_min2,log_max2,-2.0,0.01,format="%4.2f" )
+    K_slider_value=st.slider('(log of) Conductivity', log_min1,log_max1,-2.0,0.01,format="%4.2f" )
     # Convert the slider value to the logarithmic scale
     K = 10 ** K_slider_value
     # Display the logarithmic value
@@ -69,7 +69,7 @@ with columns[0]:
     st.write("**Storage:** %5.2e" %S)
 
 with columns[1]:
-    R_slider_value=st.slider('(log of) Recharge', log_min1,log_max1,-1.0,0.01,format="%4.2f" )
+    R_slider_value=st.slider('(log of) Recharge', log_min3,log_max3,-1.0,0.01,format="%4.2f" )
     # Convert the slider value to the logarithmic scale
     R = 10 ** R_slider_value
     # Display the logarithmic value
