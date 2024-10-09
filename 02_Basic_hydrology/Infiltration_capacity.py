@@ -28,9 +28,9 @@ from ipywidgets import *
 
     
 with columns[0]:
-    prec = st.slider(f'**Precipitation in cm/hr**:',0,50,3,1)
-    fc = st.slider(f'**Equilibrium infiltration capacity (cm/hr)**:',0,50,5,1)
-    f0 = st.slider(f'**Initial infiltration capacity (cm/hr)**:',0,50,7,1)
+    prec = st.slider(f'**Precipitation in cm/hr**:',0.0,50.0,3.0,0.01)
+    fc = st.slider(f'**Equilibrium infiltration capacity (cm/hr)**:',0.0,50.0,5.0,0.01)
+    f0 = st.slider(f'**Initial infiltration capacity (cm/hr)**:',0.0,50.0,7.0,0.01)
 with columns[1]:
     k = st.slider(f'**Rate of infiltration capacity decrease (1/hr)**',0.000001,0.01,0.01,0.00001,format="%e")
     x_point = st.slider(f'**Point (x-axis) for result output**:',0,86400,0,10)
