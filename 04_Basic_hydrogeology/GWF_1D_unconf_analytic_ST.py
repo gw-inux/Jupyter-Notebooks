@@ -7,7 +7,33 @@ import streamlit as st
 
 st.title('Analytical solution for 1D unconfined flow with two defined head boundaries')
 
+st.subheader('Conceptual model')
+st.write('The conceptual model considers the aquifer as a homogeneous and isotropic structure with a horizontal bottom. The aquifer is bounded by two defined-head boundary conditions on the in- and outflow part. From the top, the aquifer receives uniform groundwater recharge.')
+
+st.subheader('Mathematical model')
+st.write('The equation for 1D groundwater flow in a homogeneous aquifer is')
+st.latex(r'''\frac{d}{dx}=(-hK\frac{dh}{dx})=R''')
+st.write('with')
+st.write('- _x_ is spatial coordinate along flow,')
+st.write('- _h_ is hydraulic head,')
+st.write('- _K_ is hydraulic conductivity,')
+st.write('- _R_ is recharge.')
+st.write('A solution for the equation can be obtained with two boundary conditions at _x_ = 0 and _x_ = _L_:')
+st.latex(r'''h(0) = h_0''')
+st.latex(r'''h(L) = h_L''')
+st.write('The solution for hydraulic head _h_ along _x_ is')
+st.latex(r'''h(x)=\sqrt{h_0^2-\frac{h_0^2-h_L^2}{L}x+\frac{R}{K}x(L-x)}''')
+
+st.subheader('Computation and visualization')
+st.write('Subsequently, the solution is computed and results are visualized. You can modify the parameters to investigate the functional behavior. You can modify the groundwater recharge _R_ (in mm/a) and the hydraulic conductivity _K_ (in m/s).')
+
+"---"
+
 # Input data
+
+# Define the minimum and maximum for the logarithmic scale
+log_min = -7.0 # Corresponds to 10^-7 = 0.0000001
+log_max = 0.0  # Corresponds to 10^0 = 1
 
 columns = st.columns((1,1), gap = 'large')
 
@@ -20,7 +46,11 @@ with columns[0]:
 
 with columns[1]:
     R=st.slider('Recharge in mm/a', -500,500,0,10)
-    K=st.slider('Hydraulic conductivity in m/s', 0.000001,0.05,0.0001,0.000001,format="%e" )
+    K_slider_value=st.slider('(log of) hydraulic conductivity in m/s', log_min,log_max,-4.0,0.01,format="%4.2f" )
+    # Convert the slider value to the logarithmic scale
+    K = 10 ** K_slider_value
+    # Display the logarithmic value
+    st.write("**Hydraulic conductivity in m/s:** %5.2e" %K)
     
 x = np.arange(0, L,L/1000)
 R=R/1000/365.25/86400

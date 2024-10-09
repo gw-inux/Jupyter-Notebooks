@@ -15,6 +15,8 @@ st.markdown("* Q_0 = flow at the start of the recession (m3/s)")
 st.markdown("* a = is the recession constant for the basin (1/d)")
 st.markdown("* t = is the time since the start of the recession (d)")
 
+"---"
+
 columns = st.columns((1,1), gap = 'large')
 
 # This is a simple computation with a fixed temperature of 10 degrees celsius.
@@ -29,11 +31,19 @@ from ipywidgets import *
 tmax = 91
 t = np.arange(0, tmax, tmax/200)
 
+# Define the minimum and maximum for the logarithmic scale
+log_min = -3.0 # Corresponds to 10^-6 = 0.000001
+log_max = 0.0  # Corresponds to 10^0 = 1
+
 with columns[0]:
     Q0 = st.slider(f'**Flow at the start of recession (m3/s)**:',0.0,5000.0,1000.0,0.01)
-with columns[1]:
-    a = st.slider(f'**Recession constant for the basin (1/d)**',0.000001,0.1,0.01,0.00001,format="%e")
     x_point = st.slider(f'**Point (x-axis) for result output**:',0,tmax,0,1)
+with columns[1]:
+    a_slider_value = st.slider(f'(log of) **Recession constant for the basin (1/d)**',log_min,log_max,log_max,0.01)
+    # Convert the slider value to the logarithmic scale
+    a = 10 ** a_slider_value
+    # Display the logarithmic value
+    st.write("**Recession constant:** %5.2e" %a)
     
 
 
@@ -58,5 +68,5 @@ plt.legend()
 
 st.pyplot(fig)
  
-st.write("Time after beginning of recession: %6.3f" %x_point)
+st.write("Time after beginning of recession: %3i" %x_point)
 st.write('Flow rate in m3/s:  %5.2f' %Q_point)
