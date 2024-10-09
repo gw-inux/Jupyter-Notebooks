@@ -31,7 +31,7 @@ with columns[0]:
     Q0 = st.slider(f'**Flow at the start of recession (m3/s)**:',0.0,5000.0,1000.0,0.01)
 with columns[1]:
     a = st.slider(f'**Recession constant for the basin (1/d)**',0.000001,0.1,0.01,0.00001,format="%e")
-    x_point = st.slider(f'**Point (x-axis) for result output**:',0,61,0,1)
+    x_point = st.slider(f'**Point (x-axis) for result output**:',0,tmax,0,1)
     
 tmax = 91
 t = np.arange(0, tmax, tmax/200)
@@ -47,7 +47,7 @@ ax = fig.add_subplot(1, 1, 1)
 
 ax.plot(t,Q, linewidth =3, label='Baseflow recession')
 ax.set(xlabel='time in d', ylabel='Flow in m3/s',title='Baseflow recession')
-ax.set(xlim=(0, tmax), ylim=(0, Q0*1.1))
+ax.set(xlim=(0, tmax), ylim=(0, 5000))
 ax.fill_between(t, Q, 0, facecolor= 'lightblue')
 plt.plot(x_point,Q_point, marker='o', color='r',linestyle ='None', label='your input')
 xticks = np.arange(0, tmax, 7)
