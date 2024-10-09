@@ -95,7 +95,7 @@ max_s = 10
 columns = st.columns((1,1), gap = 'large')
 
 with columns[0]:
-    T_slider_value=st.slider('(log of) Transmissivity in m2/s', log_min1,log_max1,-4.0,0.01,format="%4.2f" )
+    T_slider_value=st.slider('(log of) Transmissivity in m2/s', log_min1,log_max1,-3.0,0.01,format="%4.2f" )
     # Convert the slider value to the logarithmic scale
     T = 10 ** T_slider_value
     # Display the logarithmic value
