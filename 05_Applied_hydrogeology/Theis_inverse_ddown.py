@@ -229,5 +229,3 @@ with columns2[1]:
     else:
         st.write("Time since pumping start (in monthes): %5.2f" %t_search_mo)
     st.write("Predicted drawdown at this distance and time (in m):  %5.2f" %y_point)
-
-
