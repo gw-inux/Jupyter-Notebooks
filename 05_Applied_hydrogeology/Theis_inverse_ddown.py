@@ -104,27 +104,24 @@ with columns[0]:
     # Display the logarithmic value
     st.write("**Storativity (dimensionless):** %5.2e" %S)
 with columns[1]:
-    Q_pred = st.slider(f'**Select the pumping rate (m^3/s) for the prediction**', 0.001,0.200,Qs,0.001,format="%5.3f")
+    Q_pred = st.slider(f'**Select the pumping rate (m^3/s) for the prediction**', 0.001,0.100,Qs,0.001,format="%5.3f")
     r_pred = st.slider(f'**Select the distance (m)from the well for the prediction**', 1,1000,r,1)
     per_pred = st.slider(f'**Select the duration of the prediction period (days)**',1,3652,3,1) 
     max_t = 86400*per_pred
-    if per_pred <= 1:
-        t_search = st.slider(f'**Select the value of time (s) for printout**', 1.,max_t,1.)
-    elif per_pred <= 3:
-        t_search_m = st.slider(f'**Select the value of time (min) for printout**', 1.,per_pred*1440.,1.)
-        t_search = t_search_m*60
+    if per_pred <= 3:
+        t_search = st.slider(f'**Select the value of time (s) for printout**', 1,max_t,1,1)
     elif per_pred <= 7:
         t_search_h = st.slider(f'**Select the value of time (hours) for printout**', 1.,24.*per_pred,1.)
         t_search = t_search_h*3600
     elif per_pred <= 366:
-        t_search_d = st.slider(f'**Select the value of time (days) for printout**', 1.,per_pred,1.)
+        t_search_d = st.slider(f'**Select the value of time (days) for printout**', 1.,per_pred*1.0,1.)
         t_search = t_search_d*86400
     else:
         t_search_mo = st.slider(f'**Select the value of time (monthes) for printout**', 1.,per_pred/30.4375,1.)
         t_search = t_search_mo*2629800
 
 
-max_s = 10
+max_s = 20
 
 # Compute K and SS to provide parameters for plausability check
 # (i.e. are the parameter in a reasonable range)
@@ -142,8 +139,7 @@ for t1 in m_time_s:
 # PLOT DRAWDOWN VS TIME
 
 # Range of delta_h / delta_l values (hydraulic gradient)
-t2 = np.linspace(1, max_t, 200)
-t2_m = t2/60
+t2 = np.linspace(1, max_t, 100)
 t2_h = t2/3600
 t2_d = t2/86400
 t2_mo = t2/2629800
@@ -170,16 +166,11 @@ ax.grid(which="both")
 plt.legend(('well function','measured'))
 
 ax = fig.add_subplot(1, 2, 2)
-if per_pred <= 1:
+if per_pred <= 3:
     plt.plot(t2, s, linewidth=3., color='r', label=r'Drawdown prediction')
     plt.plot(t_search,y_point, marker='o', color='b',linestyle ='None', label='drawdown output')
     plt.xlabel(r'Time in sec', fontsize=14)
     plt.xlim(0, max_t)
-elif per_pred <= 3:
-    plt.plot(t2_m, s, linewidth=3., color='r', label=r'Drawdown prediction')
-    plt.plot(t_search_m,y_point, marker='o', color='b',linestyle ='None', label='drawdown output')
-    plt.xlabel(r'Time in min', fontsize=14)
-    plt.xlim(0, max_t/60)
 elif per_pred <= 7:
     plt.plot(t2_h, s, linewidth=3., color='r', label=r'Drawdown prediction')
     plt.plot(t_search_h,y_point, marker='o', color='b',linestyle ='None', label='drawdown output')
@@ -218,10 +209,8 @@ with columns2[1]:
     st.write("Distance of prediction from the well (in m): %3i" %r_pred)
     st.write("Pumping rate of prediction (in m^3/s): %5.3f" %Q_pred)
     st.write("Time since pumping start (in s): %3i" %x_point)
-    if per_pred <= 1:
+    if per_pred <= 3:
         st.write("Time since pumping start (in s): %3i" %t_search)
-    elif per_pred <= 3:
-        st.write("Time since pumping start (in min): %5.2f" %t_search_m)
     elif per_pred <= 7:
         st.write("Time since pumping start (in hours): %5.2f" %t_search_h)
     elif per_pred <= 366:
