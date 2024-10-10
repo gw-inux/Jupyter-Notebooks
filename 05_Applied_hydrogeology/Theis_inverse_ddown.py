@@ -104,7 +104,8 @@ with columns[0]:
     # Display the logarithmic value
     st.write("**Storativity (dimensionless):** %5.2e" %S)
 with columns[1]:
-    r_pred = st.slider(f'**Select the distance (m)from the well for the prediction**', 1,1000,120,1)
+    Q_pred = st.slider(f'**Select the pumping rate (m^3/s) for the prediction**', 0.001,0.200,Qs,0.001,format="%5.3f")
+    r_pred = st.slider(f'**Select the distance (m)from the well for the prediction**', 1,1000,r,1)
     per_pred = st.slider(f'**Select the duration of the prediction period (days)**',1,3652,3,1) 
     max_t = 86400*per_pred
     if per_pred <= 1:
@@ -149,11 +150,11 @@ t2_mo = t2/2629800
 
     
 # Compute Q for each hydraulic gradient
-s  = compute_s(T, S, t2, Qs, r_pred)
+s  = compute_s(T, S, t2, Q_pred, r_pred)
 
 # Compute s for a specific point
 x_point = t_search
-y_point = compute_s(T, S, t_search, Qs, r)
+y_point = compute_s(T, S, t_search, Q_pred, r_pred)
     
 fig = plt.figure(figsize=(12,7))
 ax = fig.add_subplot(1, 2, 1)
@@ -204,16 +205,18 @@ plt.grid(True)
     
 st.pyplot(fig)
 
-columns2 = st.columns((1,1), gap = 'large')
+columns2 = st.columns((1,1), gap = 'medium')
 with columns2[0]:
     st.write("**Parameter estimation**")
+    st.write("Distance of measurement from the well (in m): %3i" %r)
+    st.write("Pumping rate of measurement (in m^3/s): %5.3f" %Qs)
     st.write("Transmissivity T = ","% 10.2E"% T, " m^2/s")
     st.write("Storativity    S = ","% 10.2E"% S, "[-]")
-    st.write("Distance of measurement from the well (in m): %3i" %r)
 
 with columns2[1]:
     st.write("**Prediction**")
     st.write("Distance of prediction from the well (in m): %3i" %r_pred)
+    st.write("Pumping rate of prediction (in m^3/s): %5.3f" %Q_pred)
     st.write("Time since pumping start (in s): %3i" %x_point)
     if per_pred <= 1:
         st.write("Time since pumping start (in s): %3i" %t_search)
