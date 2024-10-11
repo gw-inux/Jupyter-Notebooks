@@ -117,7 +117,7 @@ with columns[1]:
         t_search_d = st.slider(f'**Select the value of time (days) for printout**', 1.,per_pred*1.0,1.)
         t_search = t_search_d*86400
     else:
-        t_search_mo = st.slider(f'**Select the value of time (monthes) for printout**', 1.,per_pred/30.4375,1.)
+        t_search_mo = st.slider(f'**Select the value of time (months) for printout**', 1.,per_pred/30.4375,1.)
         t_search = t_search_mo*2629800
 
 
@@ -184,10 +184,12 @@ elif per_pred <= 366:
 else:
     plt.plot(t2_mo, s, linewidth=3., color='r', label=r'Drawdown prediction')
     plt.plot(t_search_mo,y_point, marker='o', color='b',linestyle ='None', label='drawdown output')
-    plt.xlabel(r'Time in monthes', fontsize=14)
+    plt.xlabel(r'Time in months', fontsize=14)
     plt.xlim(0, max_t/2629800)
  
-plt.ylim(max_s, 0)
+#plt.ylim(max_s, 0)
+plt.ylim(bottom=0, top=None)
+ax.invert_yaxis()
 plt.plot(x_point,y_point, marker='o', color='b',linestyle ='None', label='drawdown output') 
 plt.ylabel(r'Drawdown in m', fontsize=14)
 plt.title('Drawdown prediction with Theis', fontsize=16)
@@ -216,5 +218,5 @@ with columns2[1]:
     elif per_pred <= 366:
         st.write("Time since pumping start (in days): %5.2f" %t_search_d)
     else:
-        st.write("Time since pumping start (in monthes): %5.2f" %t_search_mo)
+        st.write("Time since pumping start (in months): %5.2f" %t_search_mo)
     st.write("Predicted drawdown at this distance and time (in m):  %5.2f" %y_point)
