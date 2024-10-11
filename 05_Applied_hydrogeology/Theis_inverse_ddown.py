@@ -119,9 +119,9 @@ with columns[1]:
     else:
         t_search_mo = st.slider(f'**Select the value of time (months) for printout**', 1.,per_pred/30.4375,1.)
         t_search = t_search_mo*2629800
-    auto_y = st.toggle("Increase range of drawdown plotting")
+#   auto_y = st.toggle("Increase range of drawdown plotting")
 
-max_s = 20
+max_s = 30
 
 # Compute K and SS to provide parameters for plausability check
 # (i.e. are the parameter in a reasonable range)
@@ -187,12 +187,11 @@ else:
     plt.xlabel(r'Time in months', fontsize=14)
     plt.xlim(0, max_t/2629800)
 
-#plt.ylim(max_s, 0)
-plt.ylim(bottom=0, top=max_s)
-if auto_y:
-    plt.ylim(bottom=0, top=None)
-
-ax.invert_yaxis()
+plt.ylim(max_s, 0)
+#plt.ylim(bottom=0, top=max_s)
+#if auto_y:
+#    plt.ylim(bottom=0, top=None)
+#ax.invert_yaxis()
 plt.plot(x_point,y_point, marker='o', color='b',linestyle ='None', label='drawdown output') 
 plt.ylabel(r'Drawdown in m', fontsize=14)
 plt.title('Drawdown prediction with Theis', fontsize=16)
