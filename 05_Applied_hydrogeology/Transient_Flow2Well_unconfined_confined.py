@@ -79,23 +79,23 @@ columns = st.columns((1,1), gap = 'large')
 with columns[0]:
     max_s = st.slider(f'Drawdown range in the plot (m)',1,50,10,1)
     max_r = st.slider(f'Distance range in the plot (m)',10,10000,1000,1)
-    x_search = st.slider(f'Distance for result printoutrange in the plot (m)',0,10000,0,1)
+    x_search = st.slider(f'Distance for result printoutrange in the plot (m)',1,1000,10,1)
     t = st.slider(f'**Time (s)**',0,86400*7,86400,600)
-    SY = st.slider(f'Specific yield (/)',0.01,0.60,0.25,0.01)
+    SY = st.slider(f'**Specific yield (/)**',0.01,0.60,0.25,0.01)
     b = st.slider(f'Thinkness of the unconfined aquifer',1.,100.,10.,0.01)
     
 with columns[1]:
     Q = st.slider(f'**Pumping rate (m^3/s)**', 0.001,0.100,0.000,0.001,format="%5.3f")
-    T_slider_value=st.slider('(log of) Transmissivity in m2/s', log_min1,log_max1,-3.0,0.01,format="%4.2f" )
+    T_slider_value=st.slider('(log of) **Transmissivity in m2/s**', log_min1,log_max1,-3.0,0.01,format="%4.2f" )
     # Convert the slider value to the logarithmic scale
     T = 10 ** T_slider_value
     # Display the logarithmic value
-    st.write("**Transmissivity in m2/s:** %5.2e" %T)
-    S_slider_value=st.slider('(log of) Storativity', log_min2,log_max2,-4.0,0.01,format="%4.2f" )
+    st.write("_Transmissivity in m2/s:_ %5.2e" %T)
+    S_slider_value=st.slider('(log of) **Storativity**', log_min2,log_max2,-4.0,0.01,format="%4.2f" )
     # Convert the slider value to the logarithmic scale
     S = 10 ** S_slider_value
     # Display the logarithmic value
-    st.write("**Storativity (dimensionless):** %5.2e" %S)
+    st.write("_Storativity (dimensionless):_ %5.2e" %S)
 
 # Range of delta_h / delta_l values (hydraulic gradient)
 r = np.linspace(1, max_r, 200)
@@ -107,7 +107,9 @@ s_u  = compute_s_unconfined(T, SY, t, Q, r, b)
 
 # Compute s for a specific point
 x_point = x_search
-y_point = compute_s(T, S, t, Q, x_search)
+x_point_u = x_search*-1
+y_point = compute_s(T, S, t, Q, x_point)
+y_point_u = compute_s_unconfined(T, SY, t, Q, x_point_u, b)
     
 # Plotting
 fig=plt.figure(figsize=(10, 6))
@@ -120,7 +122,8 @@ plt.fill_between(r,s,max_s, facecolor='lightblue')
 plt.fill_between(r_neg,s_u,max_s, facecolor='lightgreen')
 plt.xlim(-max_r, max_r)
 plt.ylim(max_s,-5)
-plt.plot(x_point,y_point, marker='o', color='r',linestyle ='None', label='drawdown output') 
+plt.plot(x_point,y_point, marker='o', color='r',linestyle ='None', label='drawdown output confined') 
+plt.plot(x_point_u,y_point_u, marker='o', color='g',linestyle ='None', label='drawdown output unconfined') 
 plt.xlabel(r'Distance from the well in m', fontsize=14)
 plt.ylabel(r'Drawdown in m', fontsize=14)
 plt.title('Drawdown prediction with Theis', fontsize=16)
@@ -129,7 +132,20 @@ plt.grid(True)
 
 st.pyplot(fig)
 
-st.write("DRAWDOWN output:")
+st.write("**DRAWDOWN output:**")
 st.write("Distance from the well (in m): %8.2f" %x_point)
-st.write('Drawdown at this distance (in m):  %5.2f' %y_point)
-st.write('Time (in sec): ',t)
+st.write("Time (in sec): %8i" %t)
+st.write('Transmissivity in m2/s:  %5.2e' %T)
+st.write('Hydraulic conductivity:  %5.2e' %(T/b))
+
+columns2 = st.columns((1,1), gap = 'large')
+
+with columns2[0]:
+    st.write('**Unconfined**')
+    st.write('Storativity:  %5.2e' %(SY*b))    
+    st.write('Drawdown at this distance (in m):  %5.2f' %y_point_u)
+
+with columns2[1]:
+    st.write('**Confined**')
+    st.write('Storativity:  %5.2e' %S)
+    st.write('Drawdown at this distance (in m):  %5.2f' %y_point)
