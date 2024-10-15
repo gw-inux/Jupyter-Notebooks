@@ -78,8 +78,8 @@ columns = st.columns((1,1), gap = 'large')
 
 with columns[0]:
     max_s = st.slider(f'Drawdown range in the plot (m)',1,50,10,1)
-    max_r = st.slider(f'Distance range in the plot (m)',10,10000,1000,1)
-    x_search = st.slider(f'Distance for result printoutrange in the plot (m)',1,1000,10,1)
+    max_r = st.slider(f'Distance range in the plot (m)',10,2000,1000,1)
+    x_search = st.slider(f'Distance for result printoutrange in the plot (m)',1,2000,10,1)
     t = st.slider(f'**Time (s)**',0,86400*7,86400,600)
     b = st.slider(f'**Thickness** of the unconfined aquifer',1.,100.,10.,0.01)
     SY = st.slider(f'**Specific yield (/)**',0.01,0.60,0.25,0.01)
@@ -112,14 +112,17 @@ x_point = x_search
 x_point_u = x_search*-1
 y_point = compute_s(T, S, t, Q, x_point)
 y_point_u = compute_s_unconfined(T, SY, t, Q, x_point_u, b)
+
+textstr1 =('Unconfined')
+textstr2 =('Confined')
     
 # Plotting
-fig=plt.figure(figsize=(10, 6))
+fig =plt.figure(figsize=(10, 6))
     
-plt.plot(r, s, linewidth=1., color='b', label=r'drawdown prediction')
-plt.plot(r_neg, s, linewidth=0.5, color='g', linestyle='dashed')
-plt.plot(r, s_u, linewidth=0.5, color='g', linestyle='dashed')
-plt.plot(r_neg, s_u, linewidth=1, color='g',label=r'drawdown prediction unconfined')
+plt.plot(r, s, linewidth=1.5, color='b', label=r'drawdown prediction confined')
+plt.plot(r_neg, s, linewidth=0.25, color='g', linestyle='dashed')
+plt.plot(r, s_u, linewidth=0.25, color='g', linestyle='dashed')
+plt.plot(r_neg, s_u, linewidth=1.5, color='g',label=r'drawdown prediction unconfined')
 plt.fill_between(r,s,max_s, facecolor='lightblue')
 plt.fill_between(r_neg,s_u,max_s, facecolor='lightgreen')
 plt.xlim(-max_r, max_r)
@@ -129,8 +132,12 @@ plt.plot(x_point_u,y_point_u, marker='o', color='g',linestyle ='None', label='dr
 plt.xlabel(r'Distance from the well in m', fontsize=14)
 plt.ylabel(r'Drawdown in m', fontsize=14)
 plt.title('Drawdown prediction with Theis', fontsize=16)
+plt.text(-max_r*0.9, max_s*0.9, textstr1, fontsize=14,
+        verticalalignment='top')
+plt.text(max_r*0.7, max_s*0.9, textstr2, fontsize=14,
+        verticalalignment='top')
 plt.legend()
-plt.grid(True)
+#plt.grid(True)
 
 st.pyplot(fig)
 
