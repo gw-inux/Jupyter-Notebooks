@@ -81,9 +81,11 @@ with columns[0]:
     max_r = st.slider(f'Distance range in the plot (m)',10,10000,1000,1)
     x_search = st.slider(f'Distance for result printoutrange in the plot (m)',1,1000,10,1)
     t = st.slider(f'**Time (s)**',0,86400*7,86400,600)
+    b = st.slider(f'**Thickness** of the unconfined aquifer',1.,100.,10.,0.01)
     SY = st.slider(f'**Specific yield (/)**',0.01,0.60,0.25,0.01)
-    b = st.slider(f'Thinkness of the unconfined aquifer',1.,100.,10.,0.01)
-    
+    # Display the Storativity
+    st.write("_Storativity (dimensionless):_ %5.2e" %(SY*b))
+
 with columns[1]:
     Q = st.slider(f'**Pumping rate (m^3/s)**', 0.001,0.100,0.000,0.001,format="%5.3f")
     T_slider_value=st.slider('(log of) **Transmissivity in m2/s**', log_min1,log_max1,-3.0,0.01,format="%4.2f" )
@@ -132,6 +134,10 @@ plt.grid(True)
 
 st.pyplot(fig)
 
+if Q==0:
+    st.write(":red[**Abstraction rate 0 - START PUMPING!**]")
+else:
+    st.write("**Pumping with Q (in m3/s):** %8.3f" %Q)
 st.write("**DRAWDOWN output:**")
 st.write("Distance from the well (in m): %8.2f" %x_point)
 st.write("Time (in sec): %8i" %t)
@@ -141,11 +147,11 @@ st.write('Hydraulic conductivity:  %5.2e' %(T/b))
 columns2 = st.columns((1,1), gap = 'large')
 
 with columns2[0]:
-    st.write('**Unconfined**')
+    st.write(":green[**Unconfined**]")
     st.write('Storativity:  %5.2e' %(SY*b))    
     st.write('Drawdown at this distance (in m):  %5.2f' %y_point_u)
 
 with columns2[1]:
-    st.write('**Confined**')
+    st.write(":blue[**Confined**]")
     st.write('Storativity:  %5.2e' %S)
     st.write('Drawdown at this distance (in m):  %5.2f' %y_point)
