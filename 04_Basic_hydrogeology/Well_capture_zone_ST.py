@@ -43,7 +43,6 @@ with columns[1]:
     # Display the logarithmic value
     st.write("_Hydraulic conductivity (m/s):_ %5.2e" %K)
     b = st.slider('**Aquifer thickness (m)**', 1., 100.,20., 0.1, format="%5.2f")
-    i = st.slider('**Gradient of regional flow (dimensionless)**', 0.0001, 1., 0.001, 0.00001,format="%5.2e")
     i_slider_value=st.slider('(log of) **Gradient of regional flow (-)**', log_min2,log_max2,-3.0,0.01,format="%4.2f" )
     # Convert the slider value to the logarithmic scale
     i = 10 ** i_slider_value   
