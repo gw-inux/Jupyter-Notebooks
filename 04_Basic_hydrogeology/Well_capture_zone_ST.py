@@ -47,7 +47,7 @@ with columns[1]:
     # Convert the slider value to the logarithmic scale
     i = 10 ** i_slider_value   
     # Display the logarithmic value
-    st.write("_Gradient of regional flow (-):_ %5.2e" %K)    
+    st.write("_Gradient of regional flow (-):_ %5.2e" %i)    
 
 
 x_max= 1000 #fixed(x_max),
