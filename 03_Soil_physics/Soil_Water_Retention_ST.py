@@ -14,9 +14,9 @@ with columns[0]:
     plot4 = st.toggle('Plot k_r 1')   
 with columns[1]:
     tr    = st.slider('residual water content (-)', 0.01, 0.4, 0.05, 0.01)
-    ts    = st.slider('saturated water content (-)', 0.01, 0.6, 0.30, 0.01)
-    alpha = st.slider('alpha (1/cm)', 0.01, 0.4, 0.1, 0.01)
-    n     = st.slider('n (-)', 0.01, 0.4, 1.2, 0.01)
+    ts    = st.slider('saturated water content (-)', 0.15, 0.7, 0.30, 0.01)
+    alpha = st.slider('alpha (1/cm)', 0.01, 1., 0.1, 0.01)
+    n     = st.slider('n (-)', 1.01, 3, 1.2, 0.01)
   
 
 
