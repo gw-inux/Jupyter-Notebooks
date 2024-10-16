@@ -79,7 +79,7 @@ columns = st.columns((1,1), gap = 'large')
 with columns[0]:
     max_s = st.slider(f'Drawdown range in the plot (m)',1,50,10,1)
     max_r = st.slider(f'Distance range in the plot (m)',10,2000,1000,1)
-    x_search = st.slider(f'Distance for result printoutrange in the plot (m)',1,2000,10,1)
+    x_search = st.slider(f'Distance for result printout in the plot (m)',1,2000,10,1)
     t = st.slider(f'**Time (s)**',0,86400*7,86400,600)
     b = st.slider(f'**Thickness** of the unconfined aquifer',1.,100.,10.,0.01)
     SY = st.slider(f'**Specific yield (/)**',0.01,0.60,0.25,0.01)
