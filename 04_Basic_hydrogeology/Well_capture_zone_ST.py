@@ -26,21 +26,29 @@ def x0_conf(Q, K, i, b):
 log_min = -7.0 # K / Corresponds to 10^-7 = 0.0000001
 log_max = 0.0  # K / Corresponds to 10^0 = 1
 
+log_min2 = -7.0 # K / Corresponds to 10^-7 = 0.0000001
+log_max2 = 0.0  # K / Corresponds to 10^0 = 1
+
 columns = st.columns((1,1), gap = 'large')
 
 with columns[0]:
-    Q = st.slider('**Pumping rate in m3/s**', 0., 0.2,0.005, 0.001, format="%5.3f")
-    K_slider_value=st.slider('(log of) **Hydr. conductivity in m/s**', log_min,log_max,-3.0,0.01,format="%4.2f" )
-    # Convert the slider value to the logarithmic scale
-    K = 10 ** K_slider_value
-    # Display the logarithmic value
-    st.write("_Hydraulic conductivity in m/s:_ %5.2e" %K)
-    b = st.slider('**Aquifer thickness**', 1., 100.,20., 0.1, format="%5.2f")
-    i = st.slider('**Gradient of regional flow (dimensionless)**', 0.0001, 1., 0.001, 0.00001,format="%5.2e")
-with columns[1]:
     x_scale = st.slider('_Plot scaling in x direction_', 0.1, 10., 0.5, 0.01)
     y_scale = st.slider('_Plot scaling in y direction_', 0.1, 10., 0.5, 0.01)
     revers = st.toggle('Revers flow direction')
+with columns[1]:
+    Q = st.slider('**Pumping rate (m3/s)**', 0., 0.2,0.005, 0.001, format="%5.3f")
+    K_slider_value=st.slider('(log of) **Hydr. conductivity (m/s)**', log_min,log_max,-3.0,0.01,format="%4.2f" )
+    # Convert the slider value to the logarithmic scale
+    K = 10 ** K_slider_value
+    # Display the logarithmic value
+    st.write("_Hydraulic conductivity (m/s):_ %5.2e" %K)
+    b = st.slider('**Aquifer thickness (m)**', 1., 100.,20., 0.1, format="%5.2f")
+    i = st.slider('**Gradient of regional flow (dimensionless)**', 0.0001, 1., 0.001, 0.00001,format="%5.2e")
+    i_slider_value=st.slider('(log of) **Gradient of regional flow (-)**', log_min2,log_max2,-3.0,0.01,format="%4.2f" )
+    # Convert the slider value to the logarithmic scale
+    i = 10 ** i_slider_value   
+    # Display the logarithmic value
+    st.write("_Gradient of regional flow (-):_ %5.2e" %K)    
 
 
 x_max= 1000 #fixed(x_max),
@@ -80,6 +88,6 @@ plt.legend()
 
 st.pyplot(fig)
     
-st.write("y_max: %5.2f" %ymax)
-st.write('x_0:  %5.2f' %x0)
+st.write("Width of capture zone (m): %5.2f" %(2*ymax))
+st.write('Culmination point x_0 (m):  %5.2f' %x0)
     
