@@ -26,7 +26,7 @@ def x0_conf(Q, K, i, b):
 log_min = -7.0 # K / Corresponds to 10^-7 = 0.0000001
 log_max = 0.0  # K / Corresponds to 10^0 = 1
 
-log_min2 = -7.0 # K / Corresponds to 10^-7 = 0.0000001
+log_min2 = -5.0 # K / Corresponds to 10^-7 = 0.0000001
 log_max2 = 0.0  # K / Corresponds to 10^0 = 1
 
 columns = st.columns((1,1), gap = 'large')
