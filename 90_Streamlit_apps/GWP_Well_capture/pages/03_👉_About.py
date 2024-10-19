@@ -32,6 +32,6 @@ st.markdown(
 )
 left_co2, cent_co2 = st.columns((20,60))
 with left_co2:
-    st.image("..\assets\images\iNUX_wLogo.png")
+    st.image("assets\images\iNUX_wLogo.png")
 with cent_co2:
-    st.image("..\assets\images\1200px-Erasmus+_Logo.svg.png")
+    st.image("assets\images\1200px-Erasmus+_Logo.svg.png")
