@@ -14,7 +14,7 @@ st.markdown(
 )
 left_co, cent_co = st.columns((20,60))
 with left_co:
-    st.image("..\assets\images\thomasreimann.png")
+    st.image("../assets/images/thomasreimann.png")
 with cent_co:
     st.markdown(
         """
