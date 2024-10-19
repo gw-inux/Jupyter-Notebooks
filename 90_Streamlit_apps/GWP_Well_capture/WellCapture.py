@@ -1,4 +1,6 @@
 import streamlit as st
+from PIL import Image
+
 
 st.set_page_config(
     page_title="Well capture zone",
@@ -24,9 +26,13 @@ st.markdown(
     Additional inputs allow the user to reformat the graph that displays a plan view of the capture zone. The calculated values of the culmination point and the maximum width of the capture area are printed below the graph.
 """
 )
+
+# Open the image from the specified path
+image = Image.open('wellcapturediagram-sm42.png')
+
 left_co, cent_co, last_co = st.columns((20,60,20))
 with cent_co:
-    st.image("wellcapturediagram-sm42.png", caption="Sketch of the well capture zone; modified from Grubb(1993)")
+    st.image(image, caption="Sketch of the well capture zone; modified from Grubb(1993)")
 
 st.markdown(
     """   
