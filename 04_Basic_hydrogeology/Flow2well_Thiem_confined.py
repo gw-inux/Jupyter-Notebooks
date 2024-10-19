@@ -21,6 +21,8 @@ with columns[1]:
     K_slider_value=st.slider('(log of) **Hydr. conductivity (m/s)**', log_min,log_max,-3.0,0.01,format="%4.2f" )
     # Convert the slider value to the logarithmic scale
     K = 10 ** K_slider_value
+    # Display the logarithmic value
+    st.write("_Hydraulic conductivity (m/s):_ %5.2e" %K)
 
          
 # Initialize 
@@ -55,7 +57,7 @@ else:
     ax.hlines(y= H, xmin=-R, xmax=-x_max, colors='r')
     ax.text((R/2),(H*1.05),'UNCONFINED CONDITIONS - ADJUST PARAMETER')
     
-ax.set(xlabel='x [m]',ylabel='head [m]', xlim=[(-x_max*1.1),(x_max*1.1)], ylim=[0,(H+5)])
+ax.set(xlabel='x [m]',ylabel='head [m]', xlim=[(-x_max*1.),(x_max*1.)], ylim=[0,(H+5)])
     
 # MAKE 'WATER'-TRIANGLE
 ax.arrow(x_max*0.95,(H+(H*0.04)), 0, -0.01, fc="k", ec="k",head_width=(x_max*0.04), head_length=(H*0.04))
