@@ -37,6 +37,11 @@ def compute_s(T, S, t, Q, r):
     s = theis_s(Q, T, u)
     return s
 
+def compute_linU(s, s_U0, s_U1):
+    u = (s-s_U0)/(s_U1-s_U0)
+    u = u.clip(0,1)
+    return u
+
 
 st.title('Finding A Compromise Solution: Mine Dewatering')
 st.write('This notebook is designed to guide non-experts through the use of groundwater models to answer a water resources question.')
@@ -47,7 +52,7 @@ st.write('')
 st.write('Use this slider to choose the step to activate')
 st.write('')
 
-a_slider_value=st.slider('Step number', 0,8,7,1,format="%1.0f" )
+a_slider_value=st.slider('Step number', 0,8,0,1,format="%1.0f" )
 
 st.write('')
 st.write('')
@@ -74,24 +79,27 @@ if a_slider_value==0:
     st.write('Encourage students to read the assignments before they are assigned!')
     st.write('')
     st.write('')
-    st.write('Assignment after step 2.')
+    st.write('**Assignment after step 2.**')
     st.write('Produce three curves of s(t) out to two years, one at the distance relevant for each stakeholder, on the same axes.')
     st.write('Explain in a clear paragraph why they all have the same general shape, but they are different in the details.')
+    st.write('Discuss your understanding at this time of the role of a hydrogeologist in negotiating water issues related to dewatering.')
     st.write('')
     st.write('')
-    st.write('Assignment after step 4.')
-    st.write('Produce one tradeoff curve of s at one year for two of the three stakeholders and explain the meaning of the Pareto Front.')
+    st.write('**Assignment after step 4.**')
+    st.write('Plot the utility for the mine against the utility for the town using a point for each dewatering rate considered in class.')
+    st.write('Explain the meaning of the Pareto Front.')
     st.write('Choose one pumping rate that is not on the front and explain in a clear paragraph why it is not among the optimal pumping rates.')
     st.write('')
     st.write('')
-    st.write('Assignment after step 6.')
-    st.write('Make a contour plot of misfit as a function of T and S values.')
-    st.write('Explain how you could use this plot to identify the best estimate of T and S.')
-    st.write('If you were going to try to improve the accuracy of your estimates, identify three T/S pairs for which you might calculate the misfit.')
-    st.write('Show them on the plot as symbols and explain in a clear paragraph why you chose those T/S pairs.')
+    st.write('**Assignment after step 6.**')
+    st.write('How should each stakeholder decide which fit to trust?')
+    st.write('Can you think of an objective way to find the best model?  What are the limitations to this approach?')
+    st.write('Can you think of an objective way to use all three models?')
+    st.write('Comment on the value of improving data quality for hydrogeologic analyses.')
+    st.write('What are the risks or potential costs of poor data quality?')
     st.write('')
     st.write('')
-    st.write('Assignment after step 8.')
+    st.write('**Assignment after step 8.**')
     st.write('Self-reflection – what did you learn in this part of the class?')
     st.write('Do you expect that you might use what you learned in your career?  In your personal life?')
     st.write('How could this section have been improved?')
@@ -109,12 +117,12 @@ if a_slider_value==1:
     st.write('')
     st.write('Turn the column on its side, explore why the gradient will be constant along the column.')
     st.write('')
-    st.write('Convert the column to a constant rectangular cross section.  Then reason through why the gradient would change along the column.')
+    st.write('Convert the column to a constant rectangular cross section.  Then reason through why the gradient would not change along the column.')
     st.write('')
     st.write('Introduce transient flow.  First, show two constant gradient condtions, same inflow H, two different outflow H values.')
     st.write('Reason through how the gradient would change in time from higher to lower inflow H with step change at boundary.')
     st.write('')
-    st.write('Convert the column to a decreasing cross sectional area towards outflow.  Then reason through why the gradient would change along the column.')
+    st.write('Convert the column to a decreasing cross sectional area towards outflow.  Then reason through why the gradient would change along the column under steady state flow .')
     st.write('')
     st.write('Show two steady state conditions for column with a decreasing cross sectional area towards outflow with same inflow H, two different outflow H values.')
     st.write('Reason through how the gradient would change in time from higher to lower inflow H with step change at boundary.')
@@ -284,7 +292,6 @@ if a_slider_value==3:
     plt.ylabel(r'Utility', fontsize=14)
     st.pyplot(fig)
 
-   
 
 
 if a_slider_value==4:
@@ -411,13 +418,17 @@ if a_slider_value==5:
         s_max = 10.0  # T / Corresponds to 10^0 = 1
         mine_s_U0_value=st.slider('Dradown associated with U=0 for the mine', s_min,s_max,5.,0.01,format="%4.2f" )        
         mine_s_U1_value=st.slider('Dradown associated with U=1 for the mine', s_min,s_max,8.,0.01,format="%4.2f")
+        if mine_s_U0_value == mine_s_U1_value:
+            mine_s_U0_value = mine_s_U1_value + 0.1
         mine_t_value=st.slider('Time at which utility is determined for the mine in years', 0.,9.9,1.,0.1,format="%4.1f")
         st.write('')
         st.write('')
         st.write('')
         st.write('')
         town_s_U0_value=st.slider('Dradown associated with U=0 for the town', s_min,s_max,4.5,0.01,format="%4.2f" )        
-        town_s_U1_value=st.slider('Dradown associated with U=1 for the town', s_min,s_max,1.,0.01,format="%4.2f")
+        town_s_U1_value=st.slider('Dradown associated with U=1 for the town', s_min,s_max,1.,0.01,format="%4.2f")    
+        if town_s_U0_value == town_s_U1_value:
+            town_s_U0_value = town_s_U1_value + 0.1
         town_t_value=st.slider('Time at which utility is determined for the town in years', 0.,9.9,5.,0.1,format="%4.1f")
         st.write('')
         st.write('')
@@ -425,42 +436,14 @@ if a_slider_value==5:
         st.write('')
         env_s_U0_value=st.slider('Dradown associated with U=0 for the environment', s_min,s_max,1.0,0.01,format="%4.2f" )        
         env_s_U1_value=st.slider('Dradown associated with U=1 for the environment', s_min,s_max,0.5,0.01,format="%4.2f")
+        if env_s_U0_value == env_s_U1_value:
+            env_s_U0_value = env_s_U1_value + 0.1
         env_t_value=st.slider('Time at which utility is determined for the environment in years', 0.,9.9,9.9,0.1,format="%4.1f")
         
-    s_vals = np.linspace(s_min, s_max, 100)     # in years
-    
-    if mine_s_U0_value == mine_s_U1_value:
-        mine_s_U0_value = mine_s_U1_value + 0.1
-    if mine_s_U0_value < mine_s_U1_value:
-        mine_uvals = (s_vals-mine_s_U0_value)/(mine_s_U1_value-mine_s_U0_value)      
-        mine_uvals[np.where(s_vals<=mine_s_U0_value)] = 0      
-        mine_uvals[np.where(s_vals>=mine_s_U1_value)] = 1      
-    else:
-        mine_uvals = (s_vals-mine_s_U0_value)/(mine_s_U1_value-mine_s_U0_value)      
-        mine_uvals[np.where(s_vals>=mine_s_U0_value)] = 0      
-        mine_uvals[np.where(s_vals<=mine_s_U1_value)] = 1      
-    
-    if town_s_U0_value == town_s_U1_value:
-        town_s_U0_value = town_s_U1_value + 0.1
-    if town_s_U0_value < town_s_U1_value:
-        town_uvals = (s_vals-town_s_U0_value)/(town_s_U1_value-town_s_U0_value)      
-        town_uvals[np.where(s_vals<=town_s_U0_value)] = 0      
-        town_uvals[np.where(s_vals>=town_s_U1_value)] = 1      
-    else:
-        town_uvals = (s_vals-town_s_U0_value)/(town_s_U1_value-town_s_U0_value)      
-        town_uvals[np.where(s_vals>=town_s_U0_value)] = 0      
-        town_uvals[np.where(s_vals<=town_s_U1_value)] = 1      
-    
-    if env_s_U0_value == env_s_U1_value:
-        env_s_U0_value = env_s_U1_value + 0.1
-    if env_s_U0_value < env_s_U1_value:
-        env_uvals = (s_vals-env_s_U0_value)/(env_s_U1_value-env_s_U0_value)      
-        env_uvals[np.where(s_vals<=env_s_U0_value)] = 0      
-        env_uvals[np.where(s_vals>=env_s_U1_value)] = 1      
-    else:
-        env_uvals = (s_vals-env_s_U0_value)/(env_s_U1_value-env_s_U0_value)      
-        env_uvals[np.where(s_vals>=env_s_U0_value)] = 0      
-        env_uvals[np.where(s_vals<=env_s_U1_value)] = 1      
+    s_vals = np.linspace(s_min, s_max, 100)     # in years    
+    mine_uvals = compute_linU(s_vals, mine_s_U0_value, mine_s_U1_value)
+    town_uvals = compute_linU(s_vals, town_s_U0_value, town_s_U1_value)
+    env_uvals = compute_linU(s_vals, env_s_U0_value, env_s_U1_value)
     
     plt.plot(s_vals, mine_uvals, linewidth=3., color='r', label=r'Mine')
     plt.plot(s_vals, town_uvals, linewidth=3., color='g', label=r'Town')
@@ -527,25 +510,11 @@ if a_slider_value==5:
             s_forrs[counter,:] = np.squeeze(compute_s(T*multiplier1[1], S*multiplier2[1], t2*365 *24 *60 *60, Q, r))   # in 
     
     s_mine = np.squeeze(s_forrs[0,np.min(np.where(t2>mine_t_value))])      # use minimum drawdown for mine      
-    u_mine = (s_mine-mine_s_U0_value)/(mine_s_U1_value-mine_s_U0_value)      
-    if u_mine > 1:
-        u_mine = 1
-    if u_mine < 0:
-        u_mine = 0
-            
+    u_mine = compute_linU(s_mine, mine_s_U0_value, mine_s_U1_value)
     s_env = np.squeeze(s_forrs[2,np.min(np.where(t2>env_t_value))])      # env    
-    u_env = (s_env-env_s_U0_value)/(env_s_U1_value-env_s_U0_value)      
-    if u_env > 1:
-        u_env = 1
-    if u_env < 0:
-        u_env = 0
-            
+    u_env = compute_linU(s_env, env_s_U0_value, env_s_U1_value)
     s_town = np.squeeze(s_forrs[1,np.min(np.where(t2>town_t_value))])      # town          
-    u_town = (s_town-town_s_U0_value)/(town_s_U1_value-town_s_U0_value)
-    if u_town > 1:
-        u_town = 1
-    if u_town < 0:
-        u_town = 0
+    u_town = compute_linU(s_town, town_s_U0_value, town_s_U1_value)
         
     fig = plt.figure(figsize=(12,7))
     plt.plot(t2, np.squeeze(s_forrs[0,:]), linewidth=3., color='r', label=r'Mine')
@@ -582,8 +551,6 @@ if a_slider_value==5:
     st.write('')
 
     st.write('Pumping rates will be examined ranging linearly from the min and max that you choose.')
-#    Q_min_value=st.slider('Minimum pumping rate to consider', 10.,400.,200.,10.,format="%4.1f" )
-#    Q_max_value=st.slider('Maximum pumping rate to consider', Q_min_value+10,500.,Q_min_value+10,10.,format="%4.1f" )
     Q_min_value=st.slider('Minimum pumping rate to consider', 10.,400.,20.,10.,format="%4.1f" )
     Q_max_value=st.slider('Maximum pumping rate to consider', Q_min_value+10.,500.,325.,10.,format="%4.1f" )
     Q_values = np.linspace(Q_min_value, Q_max_value, 50)
@@ -630,40 +597,21 @@ if a_slider_value==5:
             if r==np.min(r_preds):           # mine
                 s_forrs[counter,:] = np.squeeze(compute_s(T*multiplier1[0], S*multiplier2[0], t2*365 *24 *60 *60, Q, r))   # in m
             else:
-                s_forrs[counter,:] = np.squeeze(compute_s(T*multiplier1[1], S*multiplier2[1], t2*365 *24 *60 *60, Q, r))   # in 
-    
+                s_forrs[counter,:] = np.squeeze(compute_s(T*multiplier1[1], S*multiplier2[1], t2*365 *24 *60 *60, Q, r))   # in    
         
             if r == np.min(r_preds):          # mine
-
                 s_current = np.squeeze(s_forrs[counter,np.min(np.where(t2>mine_t_value))])      # use minimum drawdown for mine                     
-                u_current = (s_current-mine_s_U0_value)/(mine_s_U1_value-mine_s_U0_value)      
-                if u_current > 1:
-                    u_current = 1
-                if u_current < 0:
-                    u_current = 0
-                u_mine[Qcounter:] = u_current   # in m
-                
-            elif r == np.max(r_preds):          # env
+                u_mine[Qcounter:] = compute_linU(s_current, mine_s_U0_value, mine_s_U1_value)   # in m
 
+            elif r == np.max(r_preds):          # env
                 s_current = np.squeeze(s_forrs[counter,np.min(np.where(t2>env_t_value))])      # env    
-                u_current = (s_current-env_s_U0_value)/(env_s_U1_value-env_s_U0_value)      
-                if u_current > 1:
-                    u_current = 1
-                if u_current < 0:
-                    u_current = 0
-                u_env[Qcounter:] = u_current   # in m
+                u_env[Qcounter:] = compute_linU(s_current, env_s_U0_value, env_s_U1_value)   # in m
                 
             else:          # town
                 s_current = np.squeeze(s_forrs[counter,np.min(np.where(t2>town_t_value))])      # town      
-                u_current = (s_current-town_s_U0_value)/(town_s_U1_value-town_s_U0_value)      
-                if u_current > 1:
-                    u_current = 1
-                if u_current < 0:
-                    u_current = 0
-                u_town[Qcounter:] = u_current   # in m
+                u_town[Qcounter:] = compute_linU(s_current, town_s_U0_value, town_s_U1_value)   # in m
                 s_town[Qcounter:] = s_current   # in m
             
-
     fig = plt.figure(figsize=(12,7))
     plt.plot(u_mine, u_town, marker='o', color='r',linestyle ='None', label=r'Utility')
     plt.xlabel(r'Utility for the Mine', fontsize=14)
@@ -687,8 +635,6 @@ if a_slider_value==5:
     st.write('')
     st.write('')
 
-
-
     st.write('')
     st.write('')
     st.write('What if we optimize based on the total utility?')    
@@ -709,8 +655,6 @@ if a_slider_value==5:
     st.write('')
     st.write('')
 
-
-
     st.write('')
     st.write('')
     st.write('What if we optimize based on the variance of utility?')    
@@ -720,7 +664,6 @@ if a_slider_value==5:
     u_vector[0,:] = u_mine
     u_vector[1,:] = u_town
     u_vector[2,:] = u_env
-    st.write(np.shape(u_vector))
 
     fig = plt.figure(figsize=(12,7))
     plt.plot(Q_values* 24. * 60. * 60., np.var(u_vector,0), marker='o', color='r',linestyle ='None', label=r'Utility')
@@ -729,17 +672,27 @@ if a_slider_value==5:
     plt.legend()
     st.pyplot(fig)
 
+    st.write('')
+    st.write('')
+    st.write('What if tried to find the point with the highest minimum utiility across stakeholders?')    
+    st.write('')
+    st.write('')
+    u_vector = np.zeros((3,len(u_mine)))
+    u_vector[0,:] = u_mine
+    u_vector[1,:] = u_town
+    u_vector[2,:] = u_env
+
+    fig = plt.figure(figsize=(12,7))
+    plt.plot(Q_values* 24. * 60. * 60., np.min(u_vector,0), marker='o', color='r',linestyle ='None', label=r'Utility')
+    plt.xlabel(r'Dewatering rate', fontsize=14)
+    plt.ylabel(r'Highest minimum utility over stakeholders', fontsize=14)
+    plt.legend()
+    st.pyplot(fig)
+
 
   
 if a_slider_value==6:
 
-
-# Define true T and S
-# Fit without error
-# Add error
-# Find three fits
-# Show difference in predicted drawdown v time for each stakeholder
-    
     st.write('A pumping well was operated for 2 days at a rate of 25 m3/d and the drawdown was measured at a monitoring well 25 m from the pumped well.')
 
     t2 = np.linspace(.1, 2, 12)     # in days
@@ -1071,6 +1024,15 @@ if a_slider_value==7:
     st.write('')
 
 
+
+# If there is time
+    # add plots to show utilities for each stakeholder for each fit and for the likelihood weighted average
+    # discuss whether stakeholders should use the Lweighted average
+        # remember - what is the prior for this model!?
+    # discuss why collecting additional data might be useful
+    # discuss when you know that you don't need any more data
+    
+            
      
 if a_slider_value==8:
 
@@ -1089,7 +1051,7 @@ if a_slider_value==8:
     # technical text moved here    
     st.write(' ')
     st.write('---------------------------------------------------------------------------------------------')
-    st.title('For those of you who are interested ... here is the math!')
+    st.subheader('For those of you who are interested ... here is the math!')
     st.write(' ')
     st.title('Theis drawdown prediction - Fitting Formation parameter to measured data')
     st.write('This notebook demonstrate the application of the Theis principle for pumping test evaluation in confined, transient setups. The notebook is based on an Spreadsheet from Prof. Rudolf Liedl.')
@@ -1106,6 +1068,4 @@ if a_slider_value==8:
     st.latex(r'''W(u) = \int_{u }^{+\infty} \frac{e^{-\tilde u}}{\tilde u}d\tilde u''')
     st.write('and the dimensionless variable')
     st.latex(r'''u = \frac{Sr^2}{4Tt}''')
-    st.write('This equations are not easy to solve. Historically, values for the well function were provided by tables or as so called type-curve. The type-curve matching with experimental data for pumping test analysis can be considered as one of the basic hydrogeological methods.')
-    st.write('However, modern computer provide an easier and more convinient way to solve the 1D radial flow equation based on the Theis approach. Subsequently, the Theis equation is solved with Python routines. The results for the measured data are graphically presented.')
-    "---"
+    st.write('This equations are not easy to solve. Historically, values for the well function were provided by tables or as so called type-curve. The type-curve matching with experimental data for pumping test analysis can be considered as one of the basic hydrogeological methods. However, modern computer provide an easier and more convinient way to solve the 1D radial flow equation based on the Theis approach. Subsequently, the Theis equation is solved with Python routines.')
