@@ -28,7 +28,7 @@ st.markdown(
 )
 
 # Open the image from the specified path
-image = Image.open("wellcapturediagram.png")
+image = Image.open("GWP_Well_capture/wellcapturediagram.png")
 
 left_co, cent_co, last_co = st.columns((20,60,20))
 with cent_co:
