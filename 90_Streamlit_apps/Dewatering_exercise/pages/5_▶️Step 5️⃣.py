@@ -43,6 +43,7 @@ def compute_linU(s, s_U0, s_U1):
     return u
 
 r_preds = np.array([100, 2500, 7500])
+
 t2 = np.linspace(.1, 10, 100)     # in years
 
 fig = plt.figure(figsize=(12,7))
@@ -51,46 +52,60 @@ st.markdown(
     ### Dewatering exercise 💦
     ---
     ## Step 5
-    st.write('Hydrogeological information is usually uncertain.  What is the impact if the T and S values that you assumed were wrong?')
-    st.write('')
-    st.write('Use this tool to conduct a sensitivity analysis of the impact of S and T values on each stakeholder.')
-    st.write('Is there one combination of S and T - high and low - that always produces the highest or lowest drawdown?')
-    st.write('Is one parameter always more important than the other?')
-    st.write('How should a stakeholder decide whether to use the inferred T or S value or a slightly higher or lower value to account for uncertainty?')
-    st.write('')
-    st.write('')
-    st.write('')
+    Hydrogeological information is usually uncertain.
+    
+    🤔 What is the impact if the T and S values that you assumed were wrong?
+    
+    💥 Use this tool to conduct a sensitivity analysis of the impact of _S_ and _T_ values on each stakeholder.
+    * Is there one combination of _S_ and _T_ - high and low - that always produces the highest or lowest drawdown?
+    * Is one parameter always more important than the other?
+    * How should a stakeholder decide whether to use the inferred T or S value or a slightly higher or lower value to account for uncertainty?
 
-    st.write('We will fix the value of Q=250 m3/d and the distances to the stakeholders as previously defined.')
+    We will fix the value of _Q_ = 250 m3/d and the distances to the stakeholders as previously defined.
+    
+    ---
 """
 )
 
 Q = 250/24/60/60      #m3/d
-st.write('Consider a maximum and minimum T values to examine.')
+st.write('Consider a **maximum and minimum _T_** value to examine.')
 log_min1 = -7.0 # T / Corresponds to 10^-7 = 0.0000001
 log_max1 = 0.0  # T / Corresponds to 10^0 = 1
-T_min_slider_value=st.slider('Lower (log of) Transmissivity in m2/s', log_min1,0.9*log_max1,(log_min1+0.9*log_max1)/2,0.01,format="%4.2f" )
-T_min_value = 10 ** T_min_slider_value     # Convert the slider value to the logarithmic scale
-T_max_slider_value=st.slider('Higher (log of) Transmissivity in m2/s', T_min_slider_value,log_max1,(T_min_slider_value+log_max1)/2,0.01,format="%4.2f" )
-T_max_value = 10 ** T_max_slider_value     # Convert the slider value to the logarithmic scale
-st.write('')
-st.write('')
 
-st.write('Consider a maximum and minimum S values to examine.')
-log_min1 = -7.0 # T / Corresponds to 10^-7 = 0.0000001
-log_max1 = 0.0  # T / Corresponds to 10^0 = 1
-S_min_slider_value=st.slider('Lower (log of) Storativity - unitless', log_min1,0.9*log_max1,(log_min1+0.9*log_max1)/2,0.01,format="%4.2f" )
-S_min_value = 10 ** S_min_slider_value     # Convert the slider value to the logarithmic scale
-S_max_slider_value=st.slider('Higher (log of) Storativity - unitless', S_min_slider_value,log_max1,(S_min_slider_value+log_max1)/2,0.01,format="%4.2f" )
-S_max_value = 10 ** S_max_slider_value     # Convert the slider value to the logarithmic scale
+columns1 = st.columns((1,1), gap = 'large')
+    
+with columns1[0]:
+    T_min_slider_value=st.slider('Lower (log of) Transmissivity in m2/s', log_min1,0.9*log_max1,(log_min1+0.9*log_max1)/2,0.01,format="%4.2f" )
+    T_min_value = 10 ** T_min_slider_value     # Convert the slider value to the logarithmic scale
+
+with columns1[1]:
+    T_max_slider_value=st.slider('Higher (log of) Transmissivity in m2/s', T_min_slider_value,log_max1,(T_min_slider_value+log_max1)/2,0.01,format="%4.2f" )
+    T_max_value = 10 ** T_max_slider_value     # Convert the slider value to the logarithmic scale
+
+st.write('')
+st.write('Consider a **maximum and minimum _S_** value to examine.')
+
+columns2 = st.columns((1,1), gap = 'large')
+    
+with columns2[0]:
+    S_min_slider_value=st.slider('Lower (log of) Storativity - unitless', log_min1,0.9*log_max1,(log_min1+0.9*log_max1)/2,0.01,format="%4.2f" )
+    S_min_value = 10 ** S_min_slider_value     # Convert the slider value to the logarithmic scale
+with columns2[1]:
+    S_max_slider_value=st.slider('Higher (log of) Storativity - unitless', S_min_slider_value,log_max1,(S_min_slider_value+log_max1)/2,0.01,format="%4.2f" )
+    S_max_value = 10 ** S_max_slider_value     # Convert the slider value to the logarithmic scale
+
 S_values =  10 ** np.linspace(S_min_slider_value, S_max_slider_value, 5)
-st.write('')
-st.write('')
-st.write('Choose a stakeholder: 0=mine, 1=town, 2=environment.')
-stakeholder_slider_value=st.slider('Stakeholder', 0,2,1,format="%4.0f" )
+
+stakeholder = st.selectbox('Choose a Stakeholder:',["Mine", "Town", "Environment"])
+
+if (stakeholder == "Mine"):
+    stakeholder_slider_value = 0
+if (stakeholder == "Town"):
+    stakeholder_slider_value = 1
+if (stakeholder == "Environment"):
+    stakeholder_slider_value = 2
+    
 r = r_preds[stakeholder_slider_value]
-st.write('')
-st.write('')
 
 t2 = np.linspace(.1, 10, 100)     # in years
 
@@ -113,45 +128,47 @@ for T in T_values:
 
 plt.xlabel(r'Drawdown, m', fontsize=14)
 plt.ylabel(r'Utility for the mine', fontsize=14)
+plt.axis([0, None, 0, None])
 plt.legend()
     
 st.pyplot(fig)
 
+st.markdown(
+    """
+
+    ---
+    
+    #### Use the following tool to explore how stakeholders can use hydrogeology to choose an optimal dewatering Q.
+    
+    As a class, you should agree on the utility curves for each stakeholder.
+
+"""
+)
+
 fig = plt.figure(figsize=(12,7))
 
-st.write('')
-
-st.write('Use the following tool to explore how stakeholders can use hydrogeology to choose an optimal dewatering Q.')
-st.write('')
-st.write('As a class, you should agree on the utility curves for each stakeholder.')
-st.write('')
-
-columns = st.columns((1,1), gap = 'large')
+columns = st.columns((1,1,1), gap = 'large')
    
 with columns[0]:
-    st.write('')
-    st.write('')
-    st.write('')
+    st.write('**Mine**')
     st.write('')
     s_min = 0.0 # T / Corresponds to 10^-7 = 0.0000001
     s_max = 10.0  # T / Corresponds to 10^0 = 1
-    mine_s_U0_value=st.slider('Dradown associated with U=0 for the mine', s_min,s_max,5.,0.01,format="%4.2f" )        
-    mine_s_U1_value=st.slider('Dradown associated with U=1 for the mine', s_min,s_max,8.,0.01,format="%4.2f")
+    mine_s_U0_value=st.slider('Dradown associated with **U = 0** for the **mine**', s_min,s_max,5.,0.01,format="%4.2f" )        
+    mine_s_U1_value=st.slider('Dradown associated with **U = 1** for the **mine**', s_min,s_max,8.,0.01,format="%4.2f")
     if mine_s_U0_value == mine_s_U1_value:
         mine_s_U0_value = mine_s_U1_value + 0.1
-    mine_t_value=st.slider('Time at which utility is determined for the mine in years', 0.,9.9,1.,0.1,format="%4.1f")
+    mine_t_value=st.slider('Time at which utility is determined for the **mine** in years', 0.,9.9,1.,0.1,format="%4.1f")
+with columns[1]:
+    st.write('**Town**')
     st.write('')
-    st.write('')
-    st.write('')
-    st.write('')
-    town_s_U0_value=st.slider('Dradown associated with U=0 for the town', s_min,s_max,4.5,0.01,format="%4.2f" )        
-    town_s_U1_value=st.slider('Dradown associated with U=1 for the town', s_min,s_max,1.,0.01,format="%4.2f")    
+    town_s_U0_value=st.slider('Dradown associated with **U = 0** for the **town**', s_min,s_max,4.5,0.01,format="%4.2f" )        
+    town_s_U1_value=st.slider('Dradown associated with **U = 1** for the **town**', s_min,s_max,1.,0.01,format="%4.2f")    
     if town_s_U0_value == town_s_U1_value:
         town_s_U0_value = town_s_U1_value + 0.1
-    town_t_value=st.slider('Time at which utility is determined for the town in years', 0.,9.9,5.,0.1,format="%4.1f")
-    st.write('')
-    st.write('')
-    st.write('')
+    town_t_value=st.slider('Time at which utility is determined for the **town** in years', 0.,9.9,5.,0.1,format="%4.1f")
+with columns[2]:
+    st.write('**Environment**')
     st.write('')
     env_s_U0_value=st.slider('Dradown associated with U=0 for the environment', s_min,s_max,1.0,0.01,format="%4.2f" )        
     env_s_U1_value=st.slider('Dradown associated with U=1 for the environment', s_min,s_max,0.5,0.01,format="%4.2f")
@@ -169,41 +186,43 @@ plt.plot(s_vals, town_uvals, linewidth=3., color='g', label=r'Town')
 plt.plot(s_vals, env_uvals, linewidth=3., color='b', label=r'Environment')
 plt.xlabel(r'Drawdown, m', fontsize=14)
 plt.ylabel(r'Utility for the mine', fontsize=14)
+plt.axis([0, None, None, None])
 plt.legend()
     
 st.pyplot(fig)
+
+st.markdown(
+    """
+
+    ---
+
+    #### Now choose a common S and T pair.
+
+    Work together to determine the utility for each stakeholder over at least 20 pumping rates.
     
-st.write('')
-st.write('')
-st.write('Now choose a common S and T pair.')    
-st.write('')
-st.write('Work together to determine the utility for each stakeholder over at least 20 pumping rates.')    
-st.write('Create a table with Q listed against the utilities.')    
-st.write('')
-st.write('Plot the matched utilities for the town against those of the mine.')    
-st.write('')
-st.write('Be prepared to explain how this plot can be used for Pareto optimization.')
-st.write('')
-st.write('Repeat the exercise for a different S and T pair.')
-st.write('')
-st.write('Is the optimal pumping rate the same for both S and T pairs?')
-st.write('')
-st.write('')
+    Create a table with Q listed against the utilities.   
+    
+    Plot the matched utilities for the town against those of the mine.
+
+    Be prepared to explain how this plot can be used for Pareto optimization.
+
+    Repeat the exercise for a different S and T pair.
+
+    Is the optimal pumping rate the same for both S and T pairs?
+
+"""
+)
 
 Q_temp=st.slider('Pumping rate', 10.,400.,200.,10.,format="%4.0f" )
 Q = Q_temp / 24 / 60 / 60
 st.write('')
 st.write('')
-    
-log_min1 = -7.0 # T / Corresponds to 10^-7 = 0.0000001
-log_max1 = 0.0  # T / Corresponds to 10^0 = 1
+
 T_min_slider_value1=st.slider('(log of) Transmissivity in m2/s', log_min1,0.9*log_max1,(log_min1+0.9*log_max1)/2,0.01,format="%4.2f" )
 T = 10 ** T_min_slider_value1
 st.write('')
 st.write('')
 
-log_min1 = -7.0 # T / Corresponds to 10^-7 = 0.0000001
-log_max1 = 0.0  # T / Corresponds to 10^0 = 1
 S_min_slider_value1=st.slider('(log of) Storativity - unitless', log_min1,0.9*log_max1,(log_min1+0.9*log_max1)/2,0.01,format="%4.2f" )
 S =  10 ** S_min_slider_value1
 st.write('')
@@ -244,49 +263,49 @@ plt.plot(t2, np.squeeze(s_forrs[2,:]), linewidth=3., color='g', label=r'Env')
 plt.plot(t2[np.min(np.where(t2>env_t_value))],s_env, marker='o', color='g',linestyle ='None', label='@env')
 plt.xlabel(r'Time, years', fontsize=14)
 plt.ylabel(r'Drawdown', fontsize=14)
-plt.legend()
+plt.axis([0, None, 0, None])
+plt.legend(fontsize=14)
     
-st.write("The utility for the mine at the assessment time is:  %5.2f" %u_mine)
-st.write("The utility for the town at the assessment time is:  %5.2f" %u_town)
-st.write("The utility for the environment at the assessment time is:  %5.2f" %u_env)
+st.write("The utility for the **mine** at the assessment time is:  %5.2f" %u_mine)
+st.write("The utility for the **town** at the assessment time is:  %5.2f" %u_town)
+st.write("The utility for the **environment** at the assessment time is:  %5.2f" %u_env)
   
 st.pyplot(fig)
     
+st.markdown(
+    """
 
-st.write('')
-st.write('')
-st.write('Finally, consider this tradeoff curve made for the mine and the town for multiple Q values.')    
-st.write('')
-st.write('Change T and S to see how it impacts the Pareto optimal designs.')    
-st.write('')
-st.write('Plot the matched utilities for the town against those of the mine.')    
-st.write('')
-st.write('Be prepared to explain how this plot can be used for Pareto optimization.')
-st.write('')
-st.write('Repeat the exercise for a different S and T pair.')
-st.write('')
-st.write('Is the optimal pumping rate the same for both S and T pairs?')
-st.write('')
-st.write('')
+    ---
 
-st.write('Pumping rates will be examined ranging linearly from the min and max that you choose.')
-Q_min_value=st.slider('Minimum pumping rate to consider', 10.,400.,20.,10.,format="%4.1f" )
-Q_max_value=st.slider('Maximum pumping rate to consider', Q_min_value+10.,500.,325.,10.,format="%4.1f" )
+    #### Finally, consider this tradeoff curve made for the mine and the town for multiple Q values.
+    
+    Change T and S to see how it impacts the Pareto optimal designs.')    
+
+    Plot the matched utilities for the town against those of the mine.')    
+
+    Be prepared to explain how this plot can be used for Pareto optimization.')
+
+    Repeat the exercise for a different S and T pair.')
+
+    Is the optimal pumping rate the same for both S and T pairs?')
+
+    Pumping rates will be examined ranging linearly from the min and max that you choose.
+"""
+)
+
+Q_min_value=st.slider('**Minimum pumping rate** to consider', 10.,400.,20.,10.,format="%4.1f" )
+Q_max_value=st.slider('**Maximum pumping rate** to consider', Q_min_value+10.,500.,325.,10.,format="%4.1f" )
 Q_values = np.linspace(Q_min_value, Q_max_value, 50)
 Q_values = Q_values / 24. / 60. / 60.
 st.write('')
 st.write('')
-    
-log_min1 = -7.0 # T / Corresponds to 10^-7 = 0.0000001
-log_max1 = 0.0  # T / Corresponds to 10^0 = 1
-T_min_slider_value2=st.slider('Choose (log of) Transmissivity in m2/s', log_min1,0.9*log_max1,(log_min1+0.9*log_max1)/2,0.01,format="%4.2f" )
+
+T_min_slider_value2=st.slider('Choose (log of) **Transmissivity** in m2/s', log_min1,0.9*log_max1,(log_min1+0.9*log_max1)/2,0.01,format="%4.2f" )
 T = 10 ** T_min_slider_value2
 st.write('')
 st.write('')
 
-log_min1 = -7.0 # T / Corresponds to 10^-7 = 0.0000001
-log_max1 = 0.0  # T / Corresponds to 10^0 = 1
-S_min_slider_value2=st.slider('Choose (log of) Storativity - unitless', log_min1,0.9*log_max1,(log_min1+0.9*log_max1)/2,0.01,format="%4.2f" )
+S_min_slider_value2=st.slider('Choose (log of) **Storativity** - unitless', log_min1,0.9*log_max1,(log_min1+0.9*log_max1)/2,0.01,format="%4.2f" )
 S =  10 ** S_min_slider_value2
 st.write('')
 st.write('')
@@ -344,20 +363,20 @@ plt.ylabel(r'Utility for the Town', fontsize=14)
 plt.legend()
 st.pyplot(fig)
 
-st.write('')
-st.write('')
-st.write('How can you combine these two tradeoff plots to identify the optimal pumping rate?')    
-st.write('')
-st.write('')
-st.write('')
-st.write('')
-st.write('')
+st.markdown(
+    """
 
-st.write('')
-st.write('')
-st.write('What if we optimize based on the total utility?')    
-st.write('')
-st.write('')
+    ---
+
+    #### How can you combine these two tradeoff plots to identify the optimal pumping rate?   
+
+
+
+    What if we optimize based on the total utility?
+
+"""
+)
+
 u_sum = u_mine + u_town + u_env
 fig = plt.figure(figsize=(12,7))
 plt.plot(Q_values* 24. * 60. * 60., u_sum, marker='o', color='r',linestyle ='None', label=r'Total')
@@ -367,17 +386,16 @@ plt.xlabel(r'Dewatering rate', fontsize=14)
 plt.ylabel(r'Sum of utilities', fontsize=14)
 plt.legend()
 st.pyplot(fig)
-st.write('')
-st.write('')
-st.write('')
-st.write('')
-st.write('')
+st.markdown(
+    """
 
-st.write('')
-st.write('')
-st.write('What if we optimize based on the variance of utility?')    
-st.write('')
-st.write('')
+    ---
+
+    #### What if we optimize based on the variance of utility?
+    
+"""
+)
+
 u_vector = np.zeros((3,len(u_mine)))
 u_vector[0,:] = u_mine
 u_vector[1,:] = u_town
@@ -390,11 +408,16 @@ plt.ylabel(r'Variance of utilities', fontsize=14)
 plt.legend()
 st.pyplot(fig)
 
-st.write('')
-st.write('')
-st.write('What if tried to find the point with the highest minimum utiility across stakeholders?')    
-st.write('')
-st.write('')
+st.markdown(
+    """
+
+    ---
+
+    #### What if tried to find the point with the highest minimum utiility across stakeholders?
+    
+"""
+)
+
 u_vector = np.zeros((3,len(u_mine)))
 u_vector[0,:] = u_mine
 u_vector[1,:] = u_town

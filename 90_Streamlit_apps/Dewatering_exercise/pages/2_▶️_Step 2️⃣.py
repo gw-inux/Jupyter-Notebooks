@@ -116,9 +116,9 @@ st.markdown(
     """
     ---
     
-    #### Assignment after step 2.
-    Produce three curves of s(t) out to two years, one at the distance relevant for each stakeholder, on the same axes.
-    Explain in a clear paragraph why they all have the same general shape, but they are different in the details.
-    Discuss your understanding at this time of the role of a hydrogeologist in negotiating water issues related to dewatering.
+    #### Assignment after step 2. 📃
+    * Produce three curves of }_s(t)_ out to two years, one at the distance relevant for each stakeholder, on the same axes.
+    * Explain in a clear paragraph why they all have the same general shape, but they are different in the details.
+    * Discuss your understanding at this time of the role of a hydrogeologist in negotiating water issues related to dewatering.
 """
 )
