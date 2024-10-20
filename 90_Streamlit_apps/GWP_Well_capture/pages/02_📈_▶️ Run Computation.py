@@ -32,8 +32,8 @@ log_max2 = 0.0  # K / Corresponds to 10^0 = 1
 columns = st.columns((1,1), gap = 'large')
 
 with columns[0]:
-    x_scale = st.slider('_Plot scaling in x direction_', 0.1, 10., 0.5, 0.01)
-    y_scale = st.slider('_Plot scaling in y direction_', 0.1, 10., 0.5, 0.01)
+    x_scale = st.slider('_Plot scaling in x direction_', 0.5, 10., 0.5, 0.5)
+    y_scale = st.slider('_Plot scaling in y direction_', 0.5, 10., 0.5, 0.5)
     revers = st.toggle('Reverse x-axis')
 with columns[1]:
     Q = st.slider('**Pumping rate (m3/s)**', 0., 0.2,0.005, 0.001, format="%5.3f")
