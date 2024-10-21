@@ -54,8 +54,7 @@ x_max= 1000 #fixed(x_max),
 ymax = ymax_conf(Q, K, i, b)
 x0   = x0_conf(Q, K, i, b)
 
-#x = np.arange(int(x0)-1, x_max,1)
-y = np.arange(-ymax*0.99999, ymax, 0.01)
+y = np.linspace(-ymax*0.999, ymax*0.999, 100)
 
 x_well = 0
 y_well = 0
