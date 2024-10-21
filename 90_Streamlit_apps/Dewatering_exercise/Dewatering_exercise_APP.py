@@ -50,6 +50,8 @@ st.subheader('The Assignments 📃')
 st.markdown(
     """
     Encourage students to read the assignments before they are assigned!
+
+    # Ty's comment
     
     #### **Assignment after step 2.**
     Produce three curves of _s(t)_ out to two years, one at the distance relevant for each stakeholder, on the same axes.
