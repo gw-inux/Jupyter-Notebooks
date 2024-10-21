@@ -16,7 +16,7 @@ st.markdown(
     """
     This app is designed to introduce the computation of the well capture zone. 
     
-    In a contaminated aquifer, contamination within a well cpature zone will ultimately reach the well as presented conceptually in the figure below. The Well Capture interactive tool calculates the capture area for a pumping well in a confined, homogeneous, isotropic aquifer with the following properties entered by the user.
+    In a contaminated aquifer, contamination within a well capture zone will ultimately reach the well as presented conceptually in the figure below. The Well Capture interactive tool calculates the capture area for a pumping well in a confined, homogeneous, isotropic aquifer with the following properties entered by the user.
     - hydraulic conductivity _K_ (meters per second)
     - pumping rate _Q_ (cubic meters per second)
     - regional hydraulic gradient of groundwater flow _i_ (dimensionless)
