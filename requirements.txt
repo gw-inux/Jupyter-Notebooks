@@ -9,3 +9,4 @@ xarray
 rise
 voila
 streamlit
+streamlit_book
