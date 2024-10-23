@@ -61,6 +61,7 @@ st.markdown(
     
     - How are the drawdown curves at 100, 2500, and 7500 similar and how are they different?
     - Explore different dewatering pumping rates to see their impacts on the three stakeholders.
+    - Use the drawdown comparison chart that shows two curves to explore how different S and T values affect the drawdown.
     
     ---    
     ### Computational tool 💥
@@ -107,10 +108,66 @@ plt.plot(t2, s, linewidth=3., color='r', label=r'Drawdown prediction')
 plt.plot(t_search,y_point, marker='o', color='b',linestyle ='None', label='drawdown output')
 plt.xlabel(r'Time in years', fontsize=14)
 plt.ylabel(r'Drawdown in m', fontsize=14)
+
 st.pyplot(fig)
 
 st.write('')   
 st.write("The predicted drawdown at the reporting time and distance (in m) is:  %5.2f" %y_point)
+
+
+
+fig = plt.figure(figsize=(12,7))
+
+log_minT1 = -7.0 # T / Corresponds to 10^-7 = 0.0000001
+log_maxT1 = 0.0  # T / Corresponds to 10^0 = 1
+
+log_minS1 = -7.0 # T / Corresponds to 10^-7 = 0.0000001
+log_maxS1 = 0.0  # T / Corresponds to 10^0 = 1
+
+columns = st.columns((2,1), gap = 'large')
+    
+with columns[0]:
+    T_slider_value1=st.slider('Choose first (log of) **Transmissivity in m2/s**', log_min1,log_max1,-3.0,0.01,format="%4.2f" )
+    T1 = 10 ** T_slider_value1     # Convert the slider value to the logarithmic scale
+    st.write("First_Transmissivity in m2/s:_ %5.2e" %T1)
+    S_slider_value1=st.slider('Choose first (log of) **Storativity**', log_min2,log_max2,-4.0,0.01,format="%4.2f" )        
+    S1 = 10 ** S_slider_value1       # Convert the slider value to the logarithmic scale
+    st.write("First_Storativity (dimensionless):_ %5.2e" %S1)
+    T_slider_value2=st.slider('Choose second (log of) **Transmissivity in m2/s**', log_min1,log_max1,-3.0,0.01,format="%4.2f" )
+    T2 = 10 ** T_slider_value2     # Convert the slider value to the logarithmic scale
+    st.write("Second_Transmissivity in m2/s:_ %5.2e" %T2)
+    S_slider_value2=st.slider('Choose second (log of) **Storativity**', log_min2,log_max2,-4.0,0.01,format="%4.2f" )        
+    S2 = 10 ** S_slider_value2       # Convert the slider value to the logarithmic scale
+    st.write("Second_Storativity (dimensionless):_ %5.2e" %S2)
+
+with columns[1]:
+    Q_predboth = st.slider(f'**Select a common pumping rate (m^3/d) for both cases**', 10,1000,100,10,format="%5.0f")
+    Qboth = Q_predboth /24 /60 /60    # convert to m3/s
+    t_predboth = st.slider(f'**Select a common time of pumping in days for both cases**', 10,3650,1000,10)
+
+# Compute s through time
+t2 = np.linspace(per_pred_min, per_pred, 100)     # in years
+rmin = 10
+rmax = 5000
+r2 = np.linspace(rmin, rmax, 100)     # in years
+
+s1  = compute_s(T1, S1, t_predboth*365 *24 *60 *60, Qboth, r2)   # in m
+s2  = compute_s(T2, S2, t_predboth*365 *24 *60 *60, Qboth, r2)   # in m
+
+# Compute s for a specific point
+plt.plot(r2, -s1, linewidth=3., color='r', label=r'Case 1 drawdown')
+plt.plot(r2, -s2, linewidth=3., color='b', label=r'Case 2 drawdown')
+plt.xlabel(r'Distance from the pumped well in meters', fontsize=14)
+plt.ylabel(r'Negative value of drawdown in m', fontsize=14)
+plt.legend()
+
+st.pyplot(fig)
+
+st.write('')   
+
+
+
+
 
 st.markdown(
     """
