@@ -128,13 +128,13 @@ plt.fill_between(r_neg,s_u,max_s, facecolor='lightblue')
 plt.xlim(-max_r, max_r)
 plt.ylim(max_s,-5)
 plt.plot(x_point,y_point, marker='o', color='r',linestyle ='None', label='drawdown output confined') 
-plt.plot(x_point_u,y_point_u, marker='o', color='g',linestyle ='None', label='drawdown output unconfined') 
+plt.plot(x_point_u,y_point_u, marker='o', color='b',linestyle ='None', label='drawdown output unconfined') 
 plt.xlabel(r'Distance from the well in m', fontsize=14)
 plt.ylabel(r'Drawdown in m', fontsize=14)
 plt.title('Drawdown prediction with Theis', fontsize=16)
 plt.text(-max_r*0.9, max_s*0.9, textstr1, fontsize=14,
         verticalalignment='top')
-plt.text(max_r*0.5, max_s*0.9, textstr2, fontsize=14,
+plt.text(max_r*0.25, max_s*0.9, textstr2, fontsize=14,
         verticalalignment='top')
 plt.legend()
 #plt.grid(True)
