@@ -119,8 +119,8 @@ textstr2 =('Confined (above aquifer top)')
 # Plotting
 fig =plt.figure(figsize=(10, 6))
     
-plt.plot(r, s, linewidth=1.5, color='g', label=r'drawdown prediction confined')
-plt.plot(r_neg, s, linewidth=0.25, color='g', linestyle='dashed')
+plt.plot(r, s, linewidth=1.5, color='r', label=r'drawdown prediction confined')
+plt.plot(r_neg, s, linewidth=0.25, color='r', linestyle='dashed')
 plt.plot(r, s_u, linewidth=0.25, color='b', linestyle='dashed')
 plt.plot(r_neg, s_u, linewidth=1.5, color='b',label=r'drawdown prediction unconfined')
 plt.fill_between(r,s,max_s, facecolor='lightgrey')
