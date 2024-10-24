@@ -6,6 +6,7 @@ st.set_page_config(
 )
 
 st.write("# Welcome to the Dewatering exercise! 👋")
+st.write("Testing Git Codespace 👋")
 
 st.sidebar.success("Select a step above.")
 
