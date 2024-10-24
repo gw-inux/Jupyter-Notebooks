@@ -5,6 +5,7 @@ st.set_page_config(
     page_icon="💦",
 )
 
+st.write("# Blah! 👋")
 st.write("# Welcome to the Dewatering exercise! 👋")
 
 st.sidebar.success("Select a step above.")
