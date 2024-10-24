@@ -41,13 +41,13 @@ st.markdown(
     ## Step 2
     
     Consider a well pumping at a rate of Q = 250 m3/d
-    The aquifer has the properties: T = 2.14 e-04 m2/s, S = 9.33 e-06
+    The aquifer has the properties: T = 3.02 e-04 m2/s, S = 1.00 e-03
     The far edge of the zone to be dewatered is at a distance r = 100 from the well.
     
     #### Use the following tool to answer these questions.
     
     - The mine requires a minimum drawdown of 5 m, how long will this take to achieve❓
-    - The mine requires a maximum drawdown of 8 m, when is this drawdown reached❓
+    - The mine requires a maximum drawdown of 7 m, when is this drawdown reached❓
     
     #### Then answer these questions.
     
@@ -117,7 +117,7 @@ st.markdown(
     ---
     
     #### Assignment after Step 2. 📃
-    * Produce three curves of }_s(t)_ out to two years, one at the distance relevant for each stakeholder, on the same axes.
+    * Produce three curves of _s(t)_ out to two years, one at the distance relevant for each stakeholder, on the same axes.
     * Explain in a clear paragraph why they all have the same general shape, but they are different in the details.
     * Discuss your understanding at this time of the role of a hydrogeologist in negotiating water issues related to dewatering.
 """
