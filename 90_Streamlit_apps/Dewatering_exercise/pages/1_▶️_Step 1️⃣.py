@@ -4,7 +4,7 @@ st.markdown(
     """
     ### Dewatering exercise 💦
     ---
-    ## Step 1
+    ## Step 01
     
     - Lead a discussion about how dewatering might affect nearby stakeholders.  Good examples include the water supply for a nearby town and a stream that is important to an environmental group.
     
