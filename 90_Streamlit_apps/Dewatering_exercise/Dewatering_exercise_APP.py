@@ -1,7 +1,7 @@
 import streamlit as st
 
 st.set_page_config(
-    page_title="Dewatering exercise",
+    page_title="Dewatering exercise, with some changes",
     page_icon="💦",
 )
 
