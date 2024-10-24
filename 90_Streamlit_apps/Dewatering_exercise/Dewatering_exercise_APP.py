@@ -1,7 +1,7 @@
 import streamlit as st
 
 st.set_page_config(
-    page_title="Dewatering exercise, with some changes",
+    page_title="Dewatering exercise",
     page_icon="💦",
 )
 
@@ -52,6 +52,7 @@ st.markdown(
     Encourage students to read the assignments before they are assigned!
 
     # Ty's comment
+    # Andrew's comment
     
     #### **Assignment after step 2.**
     Produce three curves of _s(t)_ out to two years, one at the distance relevant for each stakeholder, on the same axes.
