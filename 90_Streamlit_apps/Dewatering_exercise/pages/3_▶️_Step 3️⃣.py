@@ -40,7 +40,7 @@ st.markdown(
     
     This could be a very complicated function and, in reality, it is very difficult to define.
     
-    To get a feel for it, we will use a simple linear function.
+    To get a feel for it, we will use a simple linear function between two threshhold drawdown values.
     
     To define the function, you identify the drawdown _s_ values that you want to associate with U = 0 and U = 1. The utility then varies linearly between these points.
     
