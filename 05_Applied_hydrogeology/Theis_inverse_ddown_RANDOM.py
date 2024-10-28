@@ -290,9 +290,17 @@ def inverse():
         else:
             st.write("Time since pumping start (in months): %5.2f" %t_search_mo)
         st.write("Predicted drawdown at this distance and time (in m):  %5.2f" %y_point)
+        st.write("Predicted drawdown ...(in m) with 'true' parameters:  %5.2f" %true_y_point)
+        st.write("Difference (in m):  %5.2f" %(true_y_point-y_point)
+        if(st.session_state.Data == "Random data with noise"):
+            if show_truth:
+                st.write("Predicted drawdown ...(in m) with 'true' parameters:  %5.2f" %true_y_point)
+                st.write("Difference (in m):  %5.2f" %(true_y_point-y_point)
+                
     
-    if show_truth:
-        st.write("'True' Transmissivity T = ","% 10.2E"% st.session_state.T_random, " m^2/s. Your fitting success is:  %5.2f" %(T/T_random*100), " %")
-        st.write("'True' Storativity    S = ","% 10.2E"% st.session_state.S_random, "[-].    Your fitting success is:  %5.2f" %(S/S_random*100), " %")
+    if(st.session_state.Data == "Random data with noise"):
+        if show_truth:
+            st.write("'True' Transmissivity T = ","% 10.2E"% st.session_state.T_random, " m^2/s. Your fitting success is:  %5.2f" %(T/T_random*100), " %")
+            st.write("'True' Storativity    S = ","% 10.2E"% st.session_state.S_random, "[-].    Your fitting success is:  %5.2f" %(S/S_random*100), " %")
 
 inverse()
