@@ -293,7 +293,7 @@ def inverse():
         if(st.session_state.Data == "Random data with noise"):
             if show_truth:
                 st.write("Predicted drawdown ...(in m) with 'true' parameters:  %5.2f" %true_y_point)
-                st.write("Difference (in m):  %5.2f" %(true_y_point-y_point)
+                st.write("Difference (in m):  %5.2f" %(true_y_point-y_point))
                 
     
     if(st.session_state.Data == "Random data with noise"):
