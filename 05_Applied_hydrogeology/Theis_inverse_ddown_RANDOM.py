@@ -219,16 +219,22 @@ def inverse():
         plt.xlim(0, max_t)
     elif per_pred <= 7:
         plt.plot(t2_h, s, linewidth=3., color='r', label=r'Drawdown prediction')
+        if show_truth:
+            plt.plot(t2_h, true_s, linewidth=3., color='r', label=r'Drawdown prediction with "true" parameters')   
         plt.plot(t_search_h,y_point, marker='o', color='b',linestyle ='None', label='drawdown output')
         plt.xlabel(r'Time in hours', fontsize=14)
         plt.xlim(0, max_t/3600)
     elif per_pred <= 366:
         plt.plot(t2_d, s, linewidth=3., color='r', label=r'Drawdown prediction')
+        if show_truth:
+            plt.plot(t2_d, true_s, linewidth=3., color='r', label=r'Drawdown prediction with "true" parameters')  
         plt.plot(t_search_d,y_point, marker='o', color='b',linestyle ='None', label='drawdown output')
         plt.xlabel(r'Time in days', fontsize=14)
         plt.xlim(0, max_t/86400)
     else:
         plt.plot(t2_mo, s, linewidth=3., color='r', label=r'Drawdown prediction')
+        if show_truth:
+            plt.plot(t2_mo, true_s, linewidth=3., color='r', label=r'Drawdown prediction with "true" parameters')  
         plt.plot(t_search_mo,y_point, marker='o', color='b',linestyle ='None', label='drawdown output')
         plt.xlabel(r'Time in months', fontsize=14)
         plt.xlim(0, max_t/2629800)
