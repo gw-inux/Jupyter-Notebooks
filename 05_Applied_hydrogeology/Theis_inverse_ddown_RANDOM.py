@@ -97,7 +97,7 @@ if (st.session_state.Data == "Synthetic textbook data"):
     Qs = 0.3/60   # m^3/s
     Qd = Qs*60*60*24 # m^3/d
     m_time_s = [i*60 for i in m_time] # time in seconds
-    num_times = len(m_time)
+    num_times = len(m_time_s)
 elif(st.session_state.Data == "Random data with noise"):
     r = 120       # m
     b = 20       # m
@@ -118,6 +118,7 @@ elif(st.session_state.Data == "Random data with noise"):
     
     n_samples = np.random.randint(24, 49)
     m_time_s = m_time_all_s[:n_samples]
+    num_times = len(m_time_s)
     m_ddown = m_ddown_all[:n_samples]
     # Parameters needed to solve Theis (From the SYMPLE example/excercise) !!! UPDATE !!!
 
