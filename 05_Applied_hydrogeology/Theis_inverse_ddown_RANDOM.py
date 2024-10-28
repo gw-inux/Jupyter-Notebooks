@@ -182,6 +182,9 @@ def inverse():
     # Compute s for prediction
     s  = compute_s(T, S, t2, Q_pred, r_pred)
 
+    # Compute true s for prediction
+    true_s  = compute_s(T_random, S_random, t2, Q_pred, r_pred)
+    
     # Compute s for a specific point
     x_point = t_search
     y_point = compute_s(T, S, t_search, Q_pred, r_pred)
@@ -206,6 +209,8 @@ def inverse():
     ax = fig.add_subplot(1, 2, 2)
     if per_pred <= 3:
         plt.plot(t2, s, linewidth=3., color='r', label=r'Drawdown prediction')
+        if show_truth:
+            plt.plot(t2, true_s, linewidth=3., color='r', label=r'Drawdown prediction with "true" parameters')            
         plt.plot(t_search,y_point, marker='o', color='b',linestyle ='None', label='drawdown output')
         plt.xlabel(r'Time in sec', fontsize=14)
         plt.xlim(0, max_t)
@@ -265,8 +270,8 @@ def inverse():
         st.write("Predicted drawdown at this distance and time (in m):  %5.2f" %y_point)
     
     if (st.session_state.Data == "Random data with noise"):
-        on = st.toggle(":rainbow[Tell me how I did the inverse fitting!]")
-        if on:
+        show_truth = st.toggle(":rainbow[Tell me how I did the inverse fitting!]")
+        if show_truth:
             st.write("'True' Transmissivity T = ","% 10.2E"% st.session_state.T_random, " m^2/s. Your fitting success is:  %5.2f" %(T/T_random*100), " %")
             st.write("'True' Storativity    S = ","% 10.2E"% st.session_state.S_random, "[-].    Your fitting success is:  %5.2f" %(S/S_random*100), " %")
 
