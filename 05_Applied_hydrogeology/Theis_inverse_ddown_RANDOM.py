@@ -218,33 +218,37 @@ def inverse():
     ax = fig.add_subplot(1, 2, 2)
     if per_pred <= 3:
         plt.plot(t2, s, linewidth=3., color='r', label=r'Drawdown prediction')
-        if show_truth:
-            plt.plot(t2, true_s, linewidth=3., color='g', label=r'Drawdown prediction with "true" parameters')
-            plt.plot(t_search,true_y_point, marker='o', color='g',linestyle ='None', label='"true" drawdown output')            
+        if(st.session_state.Data == "Random data with noise"):
+            if show_truth:
+                plt.plot(t2, true_s, linewidth=3., color='g', label=r'Drawdown prediction with "true" parameters')
+                plt.plot(t_search,true_y_point, marker='o', color='g',linestyle ='None', label='"true" drawdown output')            
         plt.plot(t_search,y_point, marker='o', color='b',linestyle ='None', label='drawdown output')
         plt.xlabel(r'Time in sec', fontsize=14)
         plt.xlim(0, max_t)
     elif per_pred <= 7:
         plt.plot(t2_h, s, linewidth=3., color='r', label=r'Drawdown prediction')
-        if show_truth:
-            plt.plot(t2_h, true_s, linewidth=3., color='g', label=r'Drawdown prediction with "true" parameters')   
-            plt.plot(t_search_h,true_y_point, marker='o', color='g',linestyle ='None', label='"true" drawdown output')
+        if(st.session_state.Data == "Random data with noise"):
+            if show_truth:
+                plt.plot(t2_h, true_s, linewidth=3., color='g', label=r'Drawdown prediction with "true" parameters')   
+                plt.plot(t_search_h,true_y_point, marker='o', color='g',linestyle ='None', label='"true" drawdown output')
         plt.plot(t_search_h,y_point, marker='o', color='b',linestyle ='None', label='drawdown output')
         plt.xlabel(r'Time in hours', fontsize=14)
         plt.xlim(0, max_t/3600)
     elif per_pred <= 366:
         plt.plot(t2_d, s, linewidth=3., color='r', label=r'Drawdown prediction')
-        if show_truth:
-            plt.plot(t2_d, true_s, linewidth=3., color='g', label=r'Drawdown prediction with "true" parameters') 
-            plt.plot(t_search_d,true_y_point, marker='o', color='g',linestyle ='None', label='"true" drawdown output')            
+        if(st.session_state.Data == "Random data with noise"):
+            if show_truth:
+                plt.plot(t2_d, true_s, linewidth=3., color='g', label=r'Drawdown prediction with "true" parameters') 
+                plt.plot(t_search_d,true_y_point, marker='o', color='g',linestyle ='None', label='"true" drawdown output')            
         plt.plot(t_search_d,y_point, marker='o', color='b',linestyle ='None', label='drawdown output')
         plt.xlabel(r'Time in days', fontsize=14)
         plt.xlim(0, max_t/86400)
     else:
         plt.plot(t2_mo, s, linewidth=3., color='r', label=r'Drawdown prediction')
-        if show_truth:
-            plt.plot(t2_mo, true_s, linewidth=3., color='g', label=r'Drawdown prediction with "true" parameters')
-            plt.plot(t_search_mo,true_y_point, marker='o', color='g',linestyle ='None', label='"true" drawdown output')            
+        if(st.session_state.Data == "Random data with noise"):
+            if show_truth:
+                plt.plot(t2_mo, true_s, linewidth=3., color='g', label=r'Drawdown prediction with "true" parameters')
+                plt.plot(t_search_mo,true_y_point, marker='o', color='g',linestyle ='None', label='"true" drawdown output')            
         plt.plot(t_search_mo,y_point, marker='o', color='b',linestyle ='None', label='drawdown output')
         plt.xlabel(r'Time in months', fontsize=14)
         plt.xlim(0, max_t/2629800)
@@ -287,8 +291,8 @@ def inverse():
             st.write("Time since pumping start (in months): %5.2f" %t_search_mo)
         st.write("Predicted drawdown at this distance and time (in m):  %5.2f" %y_point)
     
-        if show_truth:
-            st.write("'True' Transmissivity T = ","% 10.2E"% st.session_state.T_random, " m^2/s. Your fitting success is:  %5.2f" %(T/T_random*100), " %")
-            st.write("'True' Storativity    S = ","% 10.2E"% st.session_state.S_random, "[-].    Your fitting success is:  %5.2f" %(S/S_random*100), " %")
+    if show_truth:
+        st.write("'True' Transmissivity T = ","% 10.2E"% st.session_state.T_random, " m^2/s. Your fitting success is:  %5.2f" %(T/T_random*100), " %")
+        st.write("'True' Storativity    S = ","% 10.2E"% st.session_state.S_random, "[-].    Your fitting success is:  %5.2f" %(S/S_random*100), " %")
 
 inverse()
