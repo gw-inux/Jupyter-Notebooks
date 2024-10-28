@@ -85,7 +85,7 @@ for x in range(1,r_max,1):
 columns = st.columns((10,80,10), gap = 'large')
 with columns[1]:
     datasource = st.selectbox("**What data should be used?**",
-    ("Synthetic textbook data", "Viterbo 2023", "Varnum 2018 - R14", "Random data with noise"), key = 'Data')
+    ("Synthetic textbook data", "Random data with noise"), key = 'Data')
 
 if (st.session_state.Data == "Synthetic textbook data"):
     # Data from SYMPLE exercise
