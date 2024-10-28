@@ -4,7 +4,8 @@ import matplotlib.pyplot as plt
 import scipy.special
 import streamlit as st
 
-st.title('Predizione di abbassamento con Theis - :green[Adattamento del]  parametro della formazione :red[ai dati misurati]')
+st.title('Predizione di abbassamento con Theis')
+st.subheader(:green[Adattamento del]  parametro della formazione :red[ai dati misurati]')
 st.markdown("""
             Questo documento interattivo consente di applicare il principio di Theis per la valutazione del test di pompaggio in configurazioni transitorie confinate. Il notebook è basato su un foglio di calcolo del Prof. Rudolf Liedl.
             
