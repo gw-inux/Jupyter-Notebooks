@@ -261,6 +261,6 @@ def inverse():
         st.write("Predicted drawdown at this distance and time (in m):  %5.2f" %y_point)
     
     if (st.session_state.Data == "Random data with noise"):
-        st.write("'True' Transmissivity T = ","% 10.2E"% st.session_state.T_random, " m^2/s")
-        st.write("'True' Storativity    S = ","% 10.2E"% st.session_state.S_random, "[-]")
+        st.write("'True' Transmissivity T = ","% 10.2E"% st.session_state.T_random, " m^2/s. Your fitting success is %5.2f" %(T/T_random))
+        st.write("'True' Storativity    S = ","% 10.2E"% st.session_state.S_random, "[-]. . Your fitting success is %5.2f" %(S/S_random)")
 inverse()
