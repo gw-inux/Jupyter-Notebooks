@@ -162,7 +162,10 @@ def inverse():
             t_search_mo = st.slider(f'**Select the value of time (months) for printout**', 1.,per_pred/30.4375,1.)
             t_search = t_search_mo*2629800
         auto_y = st.toggle("Adjust the range of drawdown plotting")
-
+    
+    if (st.session_state.Data == "Random data with noise"):
+        show_truth = st.toggle(":rainbow[Tell me how I did the inverse fitting!]")
+        
     # PLOT MEASURED DATA
     max_s = 20
     x = 0
@@ -269,8 +272,6 @@ def inverse():
             st.write("Time since pumping start (in months): %5.2f" %t_search_mo)
         st.write("Predicted drawdown at this distance and time (in m):  %5.2f" %y_point)
     
-    if (st.session_state.Data == "Random data with noise"):
-        show_truth = st.toggle(":rainbow[Tell me how I did the inverse fitting!]")
         if show_truth:
             st.write("'True' Transmissivity T = ","% 10.2E"% st.session_state.T_random, " m^2/s. Your fitting success is:  %5.2f" %(T/T_random*100), " %")
             st.write("'True' Storativity    S = ","% 10.2E"% st.session_state.S_random, "[-].    Your fitting success is:  %5.2f" %(S/S_random*100), " %")
