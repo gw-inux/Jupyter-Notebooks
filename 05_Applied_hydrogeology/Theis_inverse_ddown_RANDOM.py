@@ -97,7 +97,7 @@ if (st.session_state.Data == "Synthetic textbook data"):
     Qs = 0.3/60   # m^3/s
     Qd = Qs*60*60*24 # m^3/d
 elif(st.session_state.Data == "Random data with noise"):
-    r = 20       # m
+    r = 120       # m
     b = 20       # m
     Qs = 0.2/60   # m^3/s
     Qd = Qs*60*60*24 # m^3/d
