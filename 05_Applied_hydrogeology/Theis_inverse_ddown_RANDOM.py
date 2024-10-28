@@ -270,7 +270,7 @@ def inverse():
     if (st.session_state.Data == "Random data with noise"):
         on = st.toggle(":rainbow[Tell me how I did the inverse fitting!]")
         if on:
-            st.write("'True' Transmissivity T = ","% 10.2E"% st.session_state.T_random, " m^2/s. Your fitting success is %5.2f" %(T/T_random*100), " %")
-            st.write("'True' Storativity    S = ","% 10.2E"% st.session_state.S_random, "[-]. . Your fitting success is %5.2f" %(S/S_random*100), " %")
+            st.write("'True' Transmissivity T = ","% 10.2E"% st.session_state.T_random, " m^2/s. Your fitting success is:  %5.2f" %(T/T_random*100), " %")
+            st.write("'True' Storativity    S = ","% 10.2E"% st.session_state.S_random, "[-].    Your fitting success is:  %5.2f" %(S/S_random*100), " %")
 
 inverse()
