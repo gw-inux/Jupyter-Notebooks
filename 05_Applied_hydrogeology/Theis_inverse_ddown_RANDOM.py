@@ -185,15 +185,18 @@ def inverse():
     t2_d = t2/86400
     t2_mo = t2/2629800
 
-    # Compute s for prediction
+    # Compute s for predictionh
     s  = compute_s(T, S, t2, Q_pred, r_pred)
-
-    # Compute true s for prediction
-    true_s  = compute_s(T_random, S_random, t2, Q_pred, r_pred)
-    
     # Compute s for a specific point
     x_point = t_search
     y_point = compute_s(T, S, t_search, Q_pred, r_pred)
+
+    if(st.session_state.Data == "Random data with noise"):
+        # Compute true s for prediction
+        true_s  = compute_s(T_random, S_random, t2, Q_pred, r_pred)
+        true_y_point = compute_s(T_random, S_random, t_search, Q_pred, r_pred)
+    
+
     
     fig = plt.figure(figsize=(12,7))
     ax = fig.add_subplot(1, 2, 1)
@@ -216,7 +219,8 @@ def inverse():
     if per_pred <= 3:
         plt.plot(t2, s, linewidth=3., color='r', label=r'Drawdown prediction')
         if show_truth:
-            plt.plot(t2, true_s, linewidth=3., color='g', label=r'Drawdown prediction with "true" parameters')            
+            plt.plot(t2, true_s, linewidth=3., color='g', label=r'Drawdown prediction with "true" parameters')
+            plt.plot(t_search,true_y_point, marker='o', color='g',linestyle ='None', label='"true" drawdown output')            
         plt.plot(t_search,y_point, marker='o', color='b',linestyle ='None', label='drawdown output')
         plt.xlabel(r'Time in sec', fontsize=14)
         plt.xlim(0, max_t)
@@ -224,20 +228,23 @@ def inverse():
         plt.plot(t2_h, s, linewidth=3., color='r', label=r'Drawdown prediction')
         if show_truth:
             plt.plot(t2_h, true_s, linewidth=3., color='g', label=r'Drawdown prediction with "true" parameters')   
+            plt.plot(t_search_h,true_y_point, marker='o', color='g',linestyle ='None', label='"true" drawdown output')
         plt.plot(t_search_h,y_point, marker='o', color='b',linestyle ='None', label='drawdown output')
         plt.xlabel(r'Time in hours', fontsize=14)
         plt.xlim(0, max_t/3600)
     elif per_pred <= 366:
         plt.plot(t2_d, s, linewidth=3., color='r', label=r'Drawdown prediction')
         if show_truth:
-            plt.plot(t2_d, true_s, linewidth=3., color='g', label=r'Drawdown prediction with "true" parameters')  
+            plt.plot(t2_d, true_s, linewidth=3., color='g', label=r'Drawdown prediction with "true" parameters') 
+            plt.plot(t_search_d,true_y_point, marker='o', color='g',linestyle ='None', label='"true" drawdown output')            
         plt.plot(t_search_d,y_point, marker='o', color='b',linestyle ='None', label='drawdown output')
         plt.xlabel(r'Time in days', fontsize=14)
         plt.xlim(0, max_t/86400)
     else:
         plt.plot(t2_mo, s, linewidth=3., color='r', label=r'Drawdown prediction')
         if show_truth:
-            plt.plot(t2_mo, true_s, linewidth=3., color='g', label=r'Drawdown prediction with "true" parameters')  
+            plt.plot(t2_mo, true_s, linewidth=3., color='g', label=r'Drawdown prediction with "true" parameters')
+            plt.plot(t_search_mo,true_y_point, marker='o', color='g',linestyle ='None', label='"true" drawdown output')            
         plt.plot(t_search_mo,y_point, marker='o', color='b',linestyle ='None', label='drawdown output')
         plt.xlabel(r'Time in months', fontsize=14)
         plt.xlim(0, max_t/2629800)
@@ -248,7 +255,6 @@ def inverse():
     else:
         plt.ylim(bottom=0, top=max_s)
     ax.invert_yaxis()
-    plt.plot(x_point,y_point, marker='o', color='b',linestyle ='None', label='drawdown output') 
     plt.ylabel(r'Drawdown in m', fontsize=14)
     plt.title('Drawdown prediction with Theis', fontsize=16)
     plt.legend()
