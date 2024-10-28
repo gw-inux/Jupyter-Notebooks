@@ -109,12 +109,9 @@ elif(st.session_state.Data == "Random data with noise"):
     st.session_state.T_random = T_random
     st.session_state.S_random = S_random
     
-    st.write(T_random)
-    st.write(S_random)
-    
     m_time_all  = [1,2,3,4,5,6,7,8,9,10,12,14,16,18,20,25,30,35,40,45,50,55,60,70,80,90,100,110,120,130,140,150,160,170,180,210,240,270,300,330,360,420,480,540,600,660,720,780,840,900]
     m_time_all_s = [i*60 for i in m_time_all] # time in seconds
-    m_ddown_all = [compute_s(T_random, S_random, i, Qs, r)*np.random.randint(92, 108)/100 for i in m_time_all_s] # time in seconds
+    m_ddown_all = [compute_s(T_random, S_random, i, Qs, r)*np.random.randint(90, 110)/100 for i in m_time_all_s] # time in seconds
     
     n_samples = np.random.randint(24, 49)
     m_time_s = m_time_all_s[:n_samples]
