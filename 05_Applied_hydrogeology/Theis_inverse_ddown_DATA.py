@@ -39,9 +39,7 @@ st.markdown("""
             **Select the data below!**
 """
 )            
-
 # Computation
-
 # (Here the necessary functions like the well function $W(u)$ are defined. Later, those functions are used in the computation)
 # Define a function, class, and object for Theis Well analysis
 
@@ -85,7 +83,7 @@ for x in range(1,r_max,1):
 columns = st.columns((10,80,10), gap = 'large')
 with columns[1]:
     datasource = st.selectbox("**What data should be used?**",
-    ("Synthetic textbook data", "Viterbo 2023", "Varnum 2018 - R14", "Random data with noise"), key = 'Data')
+    ("Synthetic textbook data", "Viterbo 2023", "Varnum 2018 - R14"), key = 'Data')
 
 if (st.session_state.Data == "Synthetic textbook data"):
     # Data from SYMPLE exercise
@@ -114,23 +112,6 @@ elif(st.session_state.Data == "Varnum 2018 - R14"):
     b = 15.0       # m
     Qs = 0.0115   # m^3/s
     Qd = Qs*60*60*24 # m^3/d
-elif(st.session_state.Data == "Random data with noise"):
-    r = 20       # m
-    b = 20       # m
-    Qs = 0.2/60   # m^3/s
-    Qd = Qs*60*60*24 # m^3/d
-    T_random = 1.23E-4*b*np.random.randint(1, 10000)/100
-    S_random = 1E-5*b*np.random.randint(1, 10000)/100
-    st.session_state.T_random = T_random
-    st.session_state.S_random = S_random
-    st.write(T_random)
-    st.write(S_random)
-    m_time_all  = [1,2,3,4,5,6,7,8,9,10,12,14,16,18,20,25,30,35,40,45,50,55,60,70,80,90,100,110,120,130,140,150,160,170,180,210,240,270,300,330,360,420,480,540,600,660,720,780,840,900]
-    m_ddown_all = [compute_s(T_random, S_random, i, Qs, r)*np.random.randint(92, 108)/100 for i in m_time_all] # time in seconds
-    n_samples = np.random.randint(24, 49)
-    m_time = m_time_all[:n_samples]
-    m_ddown = m_ddown_all[:n_samples]
-    # Parameters needed to solve Theis (From the SYMPLE example/excercise) !!! UPDATE !!!
 
 m_time_s = [i*60 for i in m_time] # time in seconds
 num_times = len(m_time)
@@ -176,9 +157,7 @@ def inverse():
             t_search_mo = st.slider(f'**Select the value of time (months) for printout**', 1.,per_pred/30.4375,1.)
             t_search = t_search_mo*2629800
         auto_y = st.toggle("Adjust the range of drawdown plotting")
-
     
-
     # PLOT MEASURED DATA
     max_s = 20
     x = 0
@@ -279,8 +258,5 @@ def inverse():
         else:
             st.write("Time since pumping start (in months): %5.2f" %t_search_mo)
         st.write("Predicted drawdown at this distance and time (in m):  %5.2f" %y_point)
-    
-    if (st.session_state.Data == "Random data with noise"):
-        st.write("'True' Transmissivity T = ","% 10.2E"% st.session_state.T_random, " m^2/s")
-        st.write("'True' Storativity    S = ","% 10.2E"% st.session_state.S_random, "[-]")
+
 inverse()
