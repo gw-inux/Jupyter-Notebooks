@@ -96,26 +96,32 @@ if (st.session_state.Data == "Synthetic textbook data"):
     b = 8.5       # m
     Qs = 0.3/60   # m^3/s
     Qd = Qs*60*60*24 # m^3/d
+    m_time_s = [i*60 for i in m_time] # time in seconds
+    num_times = len(m_time)
 elif(st.session_state.Data == "Random data with noise"):
     r = 120       # m
     b = 20       # m
     Qs = 0.2/60   # m^3/s
     Qd = Qs*60*60*24 # m^3/d
+    
     T_random = 1.23E-4*b*np.random.randint(1, 10000)/100
     S_random = 1E-5*b*np.random.randint(1, 10000)/100
     st.session_state.T_random = T_random
     st.session_state.S_random = S_random
+    
     st.write(T_random)
     st.write(S_random)
+    
     m_time_all  = [1,2,3,4,5,6,7,8,9,10,12,14,16,18,20,25,30,35,40,45,50,55,60,70,80,90,100,110,120,130,140,150,160,170,180,210,240,270,300,330,360,420,480,540,600,660,720,780,840,900]
-    m_ddown_all = [compute_s(T_random, S_random, i, Qs, r)*np.random.randint(92, 108)/100 for i in m_time_all] # time in seconds
+    m_time_all_s = [i*60 for i in m_time_all] # time in seconds
+    m_ddown_all = [compute_s(T_random, S_random, i, Qs, r)*np.random.randint(92, 108)/100 for i in m_time_all_s] # time in seconds
+    
     n_samples = np.random.randint(24, 49)
-    m_time = m_time_all[:n_samples]
+    m_time = m_time_all_s[:n_samples]
     m_ddown = m_ddown_all[:n_samples]
     # Parameters needed to solve Theis (From the SYMPLE example/excercise) !!! UPDATE !!!
 
-m_time_s = [i*60 for i in m_time] # time in seconds
-num_times = len(m_time)
+
 
 
 @st.fragment
