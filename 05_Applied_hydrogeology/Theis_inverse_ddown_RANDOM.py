@@ -162,9 +162,12 @@ def inverse():
             t_search_mo = st.slider(f'**Select the value of time (months) for printout**', 1.,per_pred/30.4375,1.)
             t_search = t_search_mo*2629800
         auto_y = st.toggle("Adjust the range of drawdown plotting")
-    
+        columns2 = st.columns((1,1), gap = 'large')
+
     if (st.session_state.Data == "Random data with noise"):
-        show_truth = st.toggle(":rainbow[Tell me how I did the inverse fitting!]")
+        columns4 = st.columns((20,60,20), gap = 'large')
+        with columns4[1]:
+            show_truth = st.toggle(":rainbow[Tell me how I did the inverse fitting!]")
         
     # PLOT MEASURED DATA
     max_s = 20
@@ -213,28 +216,28 @@ def inverse():
     if per_pred <= 3:
         plt.plot(t2, s, linewidth=3., color='r', label=r'Drawdown prediction')
         if show_truth:
-            plt.plot(t2, true_s, linewidth=3., color='r', label=r'Drawdown prediction with "true" parameters')            
+            plt.plot(t2, true_s, linewidth=3., color='g', label=r'Drawdown prediction with "true" parameters')            
         plt.plot(t_search,y_point, marker='o', color='b',linestyle ='None', label='drawdown output')
         plt.xlabel(r'Time in sec', fontsize=14)
         plt.xlim(0, max_t)
     elif per_pred <= 7:
         plt.plot(t2_h, s, linewidth=3., color='r', label=r'Drawdown prediction')
         if show_truth:
-            plt.plot(t2_h, true_s, linewidth=3., color='r', label=r'Drawdown prediction with "true" parameters')   
+            plt.plot(t2_h, true_s, linewidth=3., color='g', label=r'Drawdown prediction with "true" parameters')   
         plt.plot(t_search_h,y_point, marker='o', color='b',linestyle ='None', label='drawdown output')
         plt.xlabel(r'Time in hours', fontsize=14)
         plt.xlim(0, max_t/3600)
     elif per_pred <= 366:
         plt.plot(t2_d, s, linewidth=3., color='r', label=r'Drawdown prediction')
         if show_truth:
-            plt.plot(t2_d, true_s, linewidth=3., color='r', label=r'Drawdown prediction with "true" parameters')  
+            plt.plot(t2_d, true_s, linewidth=3., color='g', label=r'Drawdown prediction with "true" parameters')  
         plt.plot(t_search_d,y_point, marker='o', color='b',linestyle ='None', label='drawdown output')
         plt.xlabel(r'Time in days', fontsize=14)
         plt.xlim(0, max_t/86400)
     else:
         plt.plot(t2_mo, s, linewidth=3., color='r', label=r'Drawdown prediction')
         if show_truth:
-            plt.plot(t2_mo, true_s, linewidth=3., color='r', label=r'Drawdown prediction with "true" parameters')  
+            plt.plot(t2_mo, true_s, linewidth=3., color='g', label=r'Drawdown prediction with "true" parameters')  
         plt.plot(t_search_mo,y_point, marker='o', color='b',linestyle ='None', label='drawdown output')
         plt.xlabel(r'Time in months', fontsize=14)
         plt.xlim(0, max_t/2629800)
