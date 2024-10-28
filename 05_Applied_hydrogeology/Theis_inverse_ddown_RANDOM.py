@@ -117,7 +117,7 @@ elif(st.session_state.Data == "Random data with noise"):
     m_ddown_all = [compute_s(T_random, S_random, i, Qs, r)*np.random.randint(92, 108)/100 for i in m_time_all_s] # time in seconds
     
     n_samples = np.random.randint(24, 49)
-    m_time = m_time_all_s[:n_samples]
+    m_time_s = m_time_all_s[:n_samples]
     m_ddown = m_ddown_all[:n_samples]
     # Parameters needed to solve Theis (From the SYMPLE example/excercise) !!! UPDATE !!!
 
