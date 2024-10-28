@@ -164,7 +164,7 @@ m_time_s = [i*60 for i in m_time] # time in seconds
 num_times = len(m_time)
 
 
-@st.experimental_fragment
+@st.fragment
 def inverse():
     # This is the function to plot the graph with the data     
     # Get input data
