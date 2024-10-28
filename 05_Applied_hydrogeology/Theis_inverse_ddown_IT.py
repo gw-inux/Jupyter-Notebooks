@@ -187,7 +187,6 @@ if refine_theis:
 else:
     plt.axis([1e-1,1E7,1E-4,1E+4])
     ax.text((2E-1),5E+3,"Tracciato grossolano - Raffinare per l'adattamento finale")
-plt.axis([1,1E5,1E-2,1E+2])
 plt.xlabel(r'1/u', fontsize=14)
 plt.ylabel(r'w(u)', fontsize=14)
 plt.title('Theis Abbassamento', fontsize=16)
