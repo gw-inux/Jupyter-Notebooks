@@ -132,6 +132,7 @@ with columns[0]:
     S_slider_value = st.slider('(logaritmo di) Storativity', -7.0, 0.0, -4.0, 0.01, format="%4.2f")
     S = 10 ** S_slider_value
     st.write("**Storativity (senza unità):** %5.2e" % S)
+    refine_theis = st.toggle("**Refine** the range of the **Theis matching plot**")
 with columns[1]:
     Q_pred = st.slider(f'**Seleziona la portata (m^3/s) per la previsione**', 0.001, 0.100, Qs, 0.001, format="%5.3f")
     r_pred = st.slider(f'**Seleziona la distanza (m) dal pozzo per la previsione**', 1, 1000, r, 1)
@@ -181,6 +182,11 @@ ax.plot(u_inv, w_u)
 ax.plot(um_inv[:num_times], w_um[:num_times],'ro')
 plt.yscale("log")
 plt.xscale("log")
+if refine_theis:
+    plt.axis([1,1E5,1E-2,1E+2])
+else:
+    plt.axis([1e-1,1E7,1E-4,1E+4])
+    ax.text((2E-1),5E+3,"Tracciato grossolano - Raffinare per l'adattamento finale")
 plt.axis([1,1E5,1E-2,1E+2])
 plt.xlabel(r'1/u', fontsize=14)
 plt.ylabel(r'w(u)', fontsize=14)
