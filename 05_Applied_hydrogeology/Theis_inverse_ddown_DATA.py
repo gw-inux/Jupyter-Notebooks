@@ -4,8 +4,9 @@ import matplotlib.pyplot as plt
 import scipy.special
 import streamlit as st
 
-st.title('Theis drawdown prediction - Fitting Formation parameter to measured data')
+st.title('Theis drawdown prediction - Fitting Formation parameter to :rainbow[REAL measured] data')
 st.markdown("""
+            #### This variant of the app allows to choose real measured data
             This interactive document allows to apply the Theis principle for pumping test evaluation in confined, transient setups. The notebook is based on an Spreadsheet from Prof. Rudolf Liedl.
             
             ### General situation
