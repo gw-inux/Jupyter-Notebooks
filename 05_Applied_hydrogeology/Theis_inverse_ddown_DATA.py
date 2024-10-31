@@ -2,9 +2,11 @@
 import numpy as np
 import matplotlib.pyplot as plt
 import scipy.special
+import pandas as pd
 import streamlit as st
 
-st.title('Theis drawdown prediction - Fitting Formation parameter to :rainbow[REAL measured] data')
+st.title('Theis parameter estimation and drawdown prediction')
+st.subheader('Fitting formation parameter to :rainbow[REAL measured] data', divider="rainbow")
 st.markdown("""
             #### This variant of the app allows to choose real measured data
             This interactive document allows to apply the Theis principle for pumping test evaluation in confined, transient setups. The notebook is based on an Spreadsheet from Prof. Rudolf Liedl.
@@ -84,7 +86,7 @@ for x in range(1,r_max,1):
 columns = st.columns((10,80,10), gap = 'large')
 with columns[1]:
     datasource = st.selectbox("**What data should be used?**",
-    ("Synthetic textbook data", "Viterbo 2023", "Varnum 2016 - R4", "Varnum 2016 - R12", "Varnum 2016 - R14", "Varnum 2016 - R15", "Varnum 2016 - B1", "Varnum 2018 - R14"), key = 'Data')
+    ("Synthetic textbook data", "Load own CSV dataset", "Viterbo 2023", "Varnum 2016 - R4", "Varnum 2016 - R12", "Varnum 2016 - R14", "Varnum 2016 - R15", "Varnum 2016 - B1", "Varnum 2018 - R14"), key = 'Data')
 
 if (st.session_state.Data == "Synthetic textbook data"):
     # Data from SYMPLE exercise
@@ -95,6 +97,19 @@ if (st.session_state.Data == "Synthetic textbook data"):
     b = 8.5       # m
     Qs = 0.3/60   # m^3/s
     Qd = Qs*60*60*24 # m^3/d
+elif(st.session_state.Data =="Load own CSV dataset"):
+    m_time = []
+    m_ddown = []
+    uploaded_file = st.file_uploader("Choose a file")
+    if uploaded_file is not None:
+        df = pd.read_csv(uploaded_file)
+        m_time = list(df.iloc[:,0].values)
+        m_ddown = list(df.iloc[:,1].values)
+        st.write(df)
+        Qs = st.slider(f'**Pumping rate** (m^3/s) for the **pumping test**', 0.001,0.100,0.005,0.001,format="%5.3f")
+        r = st.slider(f'**Distance** (m) from the **well** for the **observation**', 1,1000,100,1)
+        b = st.slider(f'**Average Aquifer thickness** (m)', 1.,200.,10.,0.01)
+        Qd = Qs*60*60*24 # m^3/d
 elif(st.session_state.Data == "Viterbo 2023"):
     # Data from Viterbo 2023
     m_time = [0.083333333, 1, 1.416666667, 2.166666667, 2.5, 2.916666667, 3.566666667, 3.916666667, 4.416666667, 4.833333333, 5.633333333, 6.516666667, 7.5, 8.916666667, 10.13333333, 11.16666667, 12.6, 16.5, 18.53333333, 22.83333333, 27.15, 34.71666667, 39.91666667, 48.21666667, 60.4, 72.66666667, 81.91666667, 94.66666667, 114.7166667, 123.5]
@@ -163,6 +178,12 @@ elif(st.session_state.Data == "Varnum 2018 - R14"):
 m_time_s = [i*60 for i in m_time] # time in seconds
 num_times = len(m_time)
 
+st.subheader(':green[Inverse parameter fitting]', divider="rainbow")
+
+st.markdown("""
+            Subsequently, you can modify the transmissivity and the storativity to fit your measured data to the Theis type curve. For precise fitting, you can change the plot resolution with the toogle. Additionally, you can perform a prediction of drawdown for specific times/spaces.
+"""
+)
 
 @st.fragment
 def inverse():
