@@ -34,20 +34,20 @@ columns = st.columns((1,1), gap = 'large')
 with columns[0]:
     x_scale = st.slider('_Plot scaling in x direction_', 0.5, 10., 0.5, 0.5)
     y_scale = st.slider('_Plot scaling in y direction_', 0.5, 10., 0.5, 0.5)
-    revers = st.toggle('Reverse x-axis')
+    #revers = st.toggle('Reverse x-axis')
 with columns[1]:
-    Q = st.slider('**Pumping rate (m3/s)**', 0., 0.2,0.005, 0.001, format="%5.3f")
-    K_slider_value=st.slider('(log of) **Hydr. conductivity (m/s)**', log_min,log_max,-3.0,0.01,format="%4.2f" )
-    # Convert the slider value to the logarithmic scale
-    K = 10 ** K_slider_value
-    # Display the logarithmic value
-    st.write("_Hydraulic conductivity (m/s):_ %5.2e" %K)
     b = st.slider('**Aquifer thickness (m)**', 1., 100.,20., 0.1, format="%5.2f")
     i_slider_value=st.slider('(log of) **Gradient of regional flow (-)**', log_min2,log_max2,-3.0,0.01,format="%4.2f" )
     # Convert the slider value to the logarithmic scale
     i = 10 ** i_slider_value   
     # Display the logarithmic value
     st.write("_Gradient of regional flow (-):_ %5.2e" %i)    
+    Q = st.slider('**Pumping rate (m3/s)**', 0., 0.2,0.005, 0.001, format="%5.3f")
+    K_slider_value=st.slider('(log of) **Hydr. conductivity (m/s)**', log_min,log_max,-3.0,0.01,format="%4.2f" )
+    # Convert the slider value to the logarithmic scale
+    K = 10 ** K_slider_value
+    # Display the logarithmic value
+    st.write("_Hydraulic conductivity (m/s):_ %5.2e" %K)
 
 
 x_max= 1000 #fixed(x_max),
@@ -60,8 +60,9 @@ x_well = 0
 y_well = 0
 
 # Compute catchment
-x = -1*y/(np.tan(2*np.pi*K*i*b*y/Q))
-    
+#x = -1*y/(np.tan(2*np.pi*K*i*b*y/Q))
+x = y/(np.tan(2*np.pi*K*i*b*y/Q))
+
 x_plot = 500 * x_scale
 y_plot = 1000 * y_scale
     
@@ -72,11 +73,11 @@ ax = fig.add_subplot(1, 1, 1)
 ax.plot(x,y, label='Well capture zone')
 ax.plot(x_well,y_well, marker='o', color='r',linestyle ='None', label='pumping well') 
 ax.set(xlabel='x (m)', ylabel='y (m)',title='Well capture zone of a pumping well')
-
-if revers:
-    ax.set(xlim=(10*x_plot,-x_plot,), ylim=(-y_plot, y_plot))
-else:
-    ax.set(xlim=(-x_plot,10*x_plot), ylim=(-y_plot, y_plot))
+ax.set(xlim=(-10*x_plot,x_plot), ylim=(-y_plot, y_plot))
+#if revers:
+#    ax.set(xlim=(10*x_plot,-x_plot,), ylim=(-y_plot, y_plot))
+#else:
+#    ax.set(xlim=(-x_plot,10*x_plot), ylim=(-y_plot, y_plot))
     
 
 plt.fill_between(x,y,color='blue', alpha=.1)

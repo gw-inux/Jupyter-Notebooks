@@ -24,7 +24,7 @@ st.markdown(
     - the maximum width of the zone within the flow divide, _B_
 """
 )
-st.latex(r'''x_0=\frac{-Q}{2\pi Kib}''')
+st.latex(r'''x_0=\frac{Q}{2\pi Kib}''')
 st.latex(r'''B=2y_{max}=\frac{Q}{Kib}''')
 st.markdown(
     """
