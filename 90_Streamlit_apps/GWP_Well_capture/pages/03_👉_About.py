@@ -7,7 +7,7 @@ st.markdown(
     The WellCapture interactive tool calculates the capture area for a pumping well in a confined, homogeneous, isotropic aquifer.
     
     ### Development
-    Innovative and digital learning and teaching materials are currently enhanced and transferred to various partners across Europe by the EU cooperation project iNUX. The iNUX project is funded by the ERASMUS+ program of the European Union.
+    Innovative and digital learning and teaching materials are currently enhanced and transferred to various partners across Europe by the EU cooperation project [iNUX](https://www.gw-inux.org/). The iNUX project is funded by the ERASMUS+ program of the European Union.
     
     WellCapture was developed by Thomas Reimann as a Jupyter notebook and adapted to the Groundwater Project interactive education format. It was released in October of 2024. All Groundwater Project books are available for free download.
     """
