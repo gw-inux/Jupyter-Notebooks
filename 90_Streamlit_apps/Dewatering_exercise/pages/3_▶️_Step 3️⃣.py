@@ -57,10 +57,21 @@ st.markdown(
     
     In the previous exercise, you were told that:
     
-    - The mine requires a minimum drawdown of 5 m and a maximum drawdown of 8 m.
+    - The mine requires a minimum drawdown of 5 m and a maximum drawdown of 7 m.
     - Develop a utility curve for the mine.
     
     👉 Discuss why different stakeholders may have a different time at which they would assess utility.
+    
+    👉 Develop a utility curve for the environment and be prepared to explain your choices.
+    
+    Come up with a decision that you have to make in your life:
+    
+    - What is the STATE upon which you make the decision.
+    - What is the OUTCOME upon which you make the decision.
+    - Define the outcomes that define utilities of 0 and 1
+    - Create a utility curve to relate the state to the utility
+    
+    👉 Discuss how utility framing may help you to make a more efficient and effective decision.
     
     ---
 """

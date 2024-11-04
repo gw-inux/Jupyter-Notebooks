@@ -12,6 +12,8 @@ st.markdown(
     * You should work as a class, with each person exploring two different Q values that you decide upon collectively.
     * Produce a common table with Q and utility for each stakeholder.
     * Once you have your table complete, discuss how you can use it to choose the best Q from those that you examined.
+    * Who was Pareto?  Check out Vilfredo Pareto on Wikipedia!
+    * What is the Pareto Principle?  Think of some examples of its application!
     * Introduce Pareto optimization generally and discuss how it could be applied to this problem for the mine and the town.
 
     
