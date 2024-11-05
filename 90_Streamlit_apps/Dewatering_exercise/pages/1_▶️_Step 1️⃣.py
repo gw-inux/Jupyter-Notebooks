@@ -39,6 +39,13 @@ st.markdown(
 """
 )
 
+st.markdown(
+    """
+    ---
+    ### Self-check questions 💦
+ 
+"""
+)
 st.write('')
 st.write('')
 question1 = "Choose the most correct answer."

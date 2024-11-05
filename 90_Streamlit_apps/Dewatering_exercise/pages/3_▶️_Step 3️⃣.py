@@ -13,6 +13,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 import scipy.special
 import streamlit as st
+import streamlit_book as stb
 
 # (Here the necessary functions like the well function $W(u)$ are defined. Later, those functions are used in the computation)
 # Define a function, class, and object for Theis Well analysis
@@ -103,3 +104,33 @@ plt.plot(xvals, yvals, linewidth=3., color='r', label=r'Drawdown prediction')
 plt.xlabel(r'Drawdown, m', fontsize=14)
 plt.ylabel(r'Utility', fontsize=14)
 st.pyplot(fig)
+
+st.markdown(
+    """
+    ---
+    ### Self-check questions 💦
+ 
+"""
+)
+st.write('')
+st.write('')
+question1 = "What is the meaning of a threshold drawdown below which the utilty is zero?"
+options1 = "It is the minimum expected drawdown.", "Any drawdown below this value is equally bad, having zero utility for the stakeholder.", "The stakeholders haven't considered these drawdown levels."
+answer_index1 = 1
+stb.single_choice(question1, options1, answer_index1, success='Correct!  This would indicate a stakeholder who values more drawdown more highly, like the mine, and who finds drawdown below a given level to have no utility.', error='Incorrect - in most cases very low or zero drawdown will be considered - it corresponds to the no-pumping case.', button='Check answer')
+
+st.write('')
+st.write('')
+question1 = "Why is it useful to consider a simple, linear-step utility function?"
+options2 = "It is the best representation of reality for most stakeholders.", "It allows for the development of simple analytical solutions.", "It is probably not correct, but it is easy to understand and probably not too far from true."
+answer_index2 = 2
+stb.single_choice(question1, options2, answer_index2, success='Correct!  It is extremely difficult - if not impossible - to define a true cost function for a stakeholder group, but this simple model provides much of the insight about them', error='Incorrect - this simple model is almost certainly not correct and these problems are generally too messy to lead to clean analytical solutions!', button='Check answer')
+
+st.write('')
+st.write('')
+question3 = "What are the units of utility?"
+options3 = "Utility is unitless.", "Whatever the local currency is.", "Each stakeholder has different units."
+answer_index3 = 0
+stb.single_choice(question3, options3, answer_index3, success='Correct!  It is useful to think of utilty as representing a level of satisfaction.  They are intentionally unitless to allow for comparison among stakeholders..', error='Incorrect - while it is true that some stakeholders use currency for value and each may have their own basis for value, it is important to think of utility as unitless.', button='Check answer')
+
+
