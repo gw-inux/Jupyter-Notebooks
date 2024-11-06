@@ -13,11 +13,7 @@ This webproject presents a wide range of Jupyter Notebooks and Streamlit apps to
 
 Various existing interactive documents are available through the [GitHub repository](https://github.com/gw-inux/Jupyter-Notebooks/). Jupyter Notebooks and Streamlit apps are used through a webbrowser on your computer or any other device (e.g., mobile phone and tablet).
 
-## Streamlit Apps
-
-Streamlit Apps are very user friendly apps that allow to access the interactive documents plattformindependent.
-
-### Featured App - Radioactive decay
+#### Featured App for your initial trial - Radioactive decay
 
 The [**app**](https://radioactive-decay.streamlit.app/) allow to use random data with measurement noise. In a first step, the formation parameters transmissivity _T_ and storativity _S_ are determined. Subsequently, the parameter can be used for a prediction of drawdown. The app compares the results with the 'true' parameters to those fitted by the user. Accordingly, prediction uncertainty can be investigated. 
 
@@ -25,7 +21,9 @@ The [**app**](https://radioactive-decay.streamlit.app/) allow to use random data
 
 You can access the app here [https://radioactive-decay.streamlit.app/](https://radioactive-decay.streamlit.app/)
 
-### More Streamlit Apps
+## Streamlit Apps
+
+Streamlit Apps are very user friendly apps that allow to access the interactive documents plattformindependent.
 
 A range of the interactive documents is accessible through [Streamlit Apps](https://share.streamlit.io/user/thoreimann). An overview about the Streamlit apps is provided [in the Streamlit submenu](https://gw-inux.github.io/Jupyter-Notebooks/Streamlit.html) of this webpage.
 
