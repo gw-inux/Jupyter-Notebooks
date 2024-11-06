@@ -15,7 +15,7 @@ st.subheader('1D groundwater flow in a confined aquifer with uniform recharge', 
 st.subheader('Input values')
 
 st.markdown('''
-            Below you can insert and modify the input parameter for the groundwater flow scenario and the numerical solution. Thereafter, you can start the simulation with the button _Run Simulation_
+            Below you can insert and modify the input parameter for the groundwater flow scenario and the numerical solution. Thereafter, you can start the simulation with the button _Run Simulation_. The results in the plot show the computed heads for the discrete cells (blue dots).
             ''')
 
 # Data input
@@ -91,10 +91,11 @@ out_txt = '\n'.join((
 fig = plt.figure(figsize=(10,7))
 ax1 = fig.add_subplot(1, 1, 1)
 ax2 = ax1.twiny() 
-ax1.set(xlabel='Index cells (starting with 0)', ylabel='Hydraulic head (m)',title='1D GW flow, confined / homogeneous')
-ax2.set(xlabel='Distance (x-axis) in m')
+ax1.set(xlabel='Index cells (starting with 0)', ylabel='Hydraulic head (m)',fontsize=14)
+ax2.set(xlabel='Distance (x-axis) in m',fontsize=14)
 ax1.plot(h, '--o')
 plt.ylim(h_min-h_range,ymax)
+plt.title('Finite Difference computation for 1D GW flow, confined / homogeneous', fontsize=16)
 ax1.set_xlim(0,cells-1)      # Primäre X-Achse
 ax2.set_xlim(0,L)            # Sekundäre X-Achse
 plt.text(0.75, 0.95,out_txt,transform=ax1.transAxes, fontsize=14, verticalalignment='top', bbox=props)
