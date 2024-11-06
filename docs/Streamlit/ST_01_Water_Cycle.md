@@ -11,7 +11,7 @@ has_children: false
 # 01 Water Cycle
 
 ## Radioactive decay
-This [**app**](https://radioactive-decay.streamlit.app/) computes the capture zone for an abstraction well in a confined aquifer. The user can modify parameters like pumping rate _Q_, hydraulic conductivity _K_, and more to investigate the effect on the shape of the capture zone.
+This [**app**](https://radioactive-decay.streamlit.app/) allow to use investigate the mass balance for three substances that can decay. The user can define the initial mass and the decay rate of three substances. This allows to investigate the mass balance.
 
 <img src="../assets/images/st/01/radioactive_decay.png" alt="Screenshot of the app" width="400"/>
 
