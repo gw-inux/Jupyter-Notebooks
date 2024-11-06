@@ -9,4 +9,8 @@ has_children: true
 
 The content of selected Jupyter Notebooks is available as Streamlit App. These interactive applications are very user friendly. The can be accessed by computer and mobile devices. Feel free to explore the iNUX Streamlit apps that are presented in the subsequent folders.
 
+## Featured App - Transient flow to wells - Parameter estimation and drawdown prediction with the Theis solution
+
+
+
 All apps are also shown here [https://share.streamlit.io/user/thoreimann](https://share.streamlit.io/user/thoreimann) (although not categorized/sorted).

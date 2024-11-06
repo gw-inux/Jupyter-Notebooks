@@ -4,8 +4,10 @@ import matplotlib.pyplot as plt
 import scipy.special
 import streamlit as st
 
-st.title('Theis drawdown prediction - Fitting Formation parameter to :blue[randomly generated] data')
+st.title('Theis parameter estimation and drawdown prediction')
+st.subheader('Fitting Formation parameter to :blue[randomly generated] data', divide="blue")
 st.markdown("""
+            #### This variant of the app allows to choose randomly generated data with measurement noise
             This interactive document allows to apply the Theis principle for pumping test evaluation in confined, transient setups. The notebook is based on an Spreadsheet from Prof. Rudolf Liedl.
             
             ### General situation
