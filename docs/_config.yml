@@ -6,5 +6,10 @@ url: https://gw-inux.github.io/Jupyter-Notebooks/
 
 aux_links:
   Template Repository: https://github.com/gw-inux/Jupyter-Notebooks
+  
+sass:
+    sass_dir: _sass
+    style: compressed
 
+color_scheme: iNUX_colors1
 #logo: "/assets/images/iNUX_wLogo.png"
