@@ -1,5 +1,5 @@
 ---
-title: Hydrogeological Concepts
+title: Aquifer Testing
 layout: home
 nav_order: 1
 parent: Applied Hydrogeology

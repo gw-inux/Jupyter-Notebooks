@@ -8,5 +8,5 @@ has_children: true
 
 ### Streamlit Apps for the topic
 
-# 04 Basic Hydrology 
+# 04 Basic Hydrogeology 
 
