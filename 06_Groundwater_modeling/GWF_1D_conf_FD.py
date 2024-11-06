@@ -91,10 +91,10 @@ out_txt = '\n'.join((
 fig = plt.figure(figsize=(10,7))
 ax1 = fig.add_subplot(1, 1, 1)
 ax2 = ax1.twiny() 
-ax1.set(xlabel='Index cells (starting with 0)', ylabel='Hydraulic head (m)',fontsize=14)
-ax2.set(xlabel='Distance (x-axis) in m',fontsize=14)
 ax1.plot(h, '--o')
 plt.ylim(h_min-h_range,ymax)
+plt.xlabel('Index cells (starting with 0) / Distance in m',fontsize=14)
+plt.ylabel('Hydraulic head (m)',fontsize=14)
 plt.title('Finite Difference computation for 1D GW flow, confined / homogeneous', fontsize=16)
 ax1.set_xlim(0,cells-1)      # Primäre X-Achse
 ax2.set_xlim(0,L)            # Sekundäre X-Achse
@@ -140,8 +140,9 @@ def computation():
             fig = plt.figure(figsize=(10,7))
             ax1 = fig.add_subplot(1, 1, 1)
             ax2 = ax1.twiny() 
-            ax1.set(xlabel='Index cells (starting with 0)', ylabel='Hydraulic head (m)',title='1D GW flow, confined / homogeneous')
-            ax2.set(xlabel='Distance (x-axis) in m')
+            plt.xlabel('Index cells (starting with 0) / Distance in m',fontsize=14)
+            plt.ylabel('Hydraulic head (m)',fontsize=14)
+            plt.title('Finite Difference computation for 1D GW flow, confined / homogeneous', fontsize=16)
             ax1.plot(h, '--o')
             plt.ylim(h_min-h_range,ymax)
             ax1.set_xlim(0,cells-1)      # Primäre X-Achse
