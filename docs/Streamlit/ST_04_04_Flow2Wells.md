@@ -17,7 +17,7 @@ has_children: false
 
 This [app](https://well-capture-zone.streamlit.app/) computes the capture zone for an abstraction well in a confined aquifer. The user can modify parameters like pumping rate _Q_, hydraulic conductivity _K_, and more to investigate the effect on the shape of the capture zone.
 
-![Screenshot of the app](../assets/images/st/04/well_capture_zone.png)
+<img src="../assets/images/st/04/well_capture_zone.png" alt="Screenshot of the app" width="400"/>
 
 You can access the app here: [https://well-capture-zone.streamlit.app/](https://well-capture-zone.streamlit.app/)
 
