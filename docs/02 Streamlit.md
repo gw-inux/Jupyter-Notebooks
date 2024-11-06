@@ -16,7 +16,8 @@ The [app](https://theis-inverse-drawdown-random.streamlit.app/) allow to use ran
 ![Screenshot of the app](./assets/images/st/05/theis_invers_drawdown_random.png)
 
 You can access the app here [https://theis-inverse-drawdown-random.streamlit.app/](https://theis-inverse-drawdown-random.streamlit.app/)
-![QR code to access the app](./assets/images/st/05/theis_invers_drawdown_random_QR.png)
+
+<img src="./assets/images/st/05/theis_invers_drawdown_random_QR.png" alt="QR code to access the app" width="200"/>
 
 ### All Apps 
 Browse through this webpage to explore more apps. All apps are also shown here [https://share.streamlit.io/user/thoreimann](https://share.streamlit.io/user/thoreimann) (although not categorized/sorted).
