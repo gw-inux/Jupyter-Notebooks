@@ -25,7 +25,7 @@ This [**app**](https://flow2well-thiem-confined.streamlit.app/) computes the ste
 
 You can **access the app** here: [https://flow2well-thiem-confined.streamlit.app/](https://flow2well-thiem-confined.streamlit.app/)
 
-## Well capture zone
+## Steady state flow to a well in an unconfined aquifer (Thiem solution)
 This [**app**](https://flow2well-thiem-unconfined.streamlit.app/) computes the capture zone for an abstraction well in an unconfined aquifer. The user can modify parameters like pumping rate _Q_, hydraulic conductivity _K_, and more to investigate the effect on the shape of the capture zone.
 
 <img src="../assets/images/st/04/flow2well_thiem_unconfined.png" alt="Screenshot of the app" width="400"/>
