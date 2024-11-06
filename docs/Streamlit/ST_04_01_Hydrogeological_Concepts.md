@@ -1,7 +1,7 @@
 ---
-title: Flow to wells
+title: Hydrogeological Concepts
 layout: home
-nav_order: 4
+nav_order: 1
 parent: Basic Hydrogeology
 grand_parent: Streamlit Apps
 has_children: false
@@ -11,5 +11,5 @@ has_children: false
 
 # 04 Basic Hydrogeology
 
-## Flow to wells 
+## Hydrogeological Concepts
 

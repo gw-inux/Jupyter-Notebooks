@@ -1,12 +1,12 @@
 ---
-title: Flow to wells
+title: Basic Hydrology
 layout: home
-nav_order: 1
+nav_order: 2
 parent: Streamlit Apps
 has_children: false
 ---
 
 ### Streamlit Apps for the topic
 
-# Flow to Wells 
+# Basic Hydrology
 
