@@ -39,6 +39,118 @@ st.markdown(
 """
 )
 
+##################################################################################
+# Interactive discovery of Darcy's Law
+##################################################################################
+
+st.write('-------------------------------------------------------------------------------------------------------------------------------------')   
+st.write('')   
+st.write('')   
+st.write("Henry Darcy is perhaps the most famous hydrogeologist of all time!")
+st.write('')   
+st.write("You can find his Wikipedia page here: https://en.wikipedia.org/wiki/Henry_Darcy.")
+st.write('')   
+st.write("Let's repeat his famous experiments as a mental exercise.")
+st.write('')   
+st.write("Imagine that you have a cylinder, full of a porous and permeable material.")
+st.write("It is oriented vertically.  The vertical length is L.  The cross sectional area is constant and equal to A.")
+st.write("You maintain water ponded to a certain height above the top of the sand, h_top, at the top of the column.")
+st.write("The bottom of the column is connected to a hose.  All water flows through the hose, not through anywhere else at the bottom ofthe column.")
+st.write("The open end of the hose is a height, h_bottom, above the bottom of the column.")
+
+A_min = 1.0 # minimum cross sectional area
+A_max = 10.0  # maximum cross sectional area
+L_min = 10.0 # minimum length
+L_max = 100.0  # maximum length
+h_top_min = 0.0 # minimum ponding at top of column
+h_top_max = 0.1  # maximum ponding at top of column
+h_bottom_min = 0.0 # minimum ponding at top of column
+h_bottom_max = 0.1  # maximum ponding at top of column
+K_min = -0.001 # minimum cross sectional area
+K_max = 0.001  # maximum cross sectional area
+
+st.write('')   
+st.write('')   
+st.write("Before you use the model to check your answers, do you think that there would be more or less flow if the following change was made with everything else being held constant?")
+st.write('')   
+st.write("Area increased, length increased, ponded height at the top of the column increased, height of the bottom of the outflow tube increased?")
+st.write('')   
+st.write("Once you have made your predictions, use the model below to check them!")
+st.write('')   
+st.write('')   
+
+columns = st.columns((1,1), gap = 'large')
+    
+with columns[0]:
+    A_slider_value=st.slider('Cross sectional area in m2', A_min,A_max,(A_min + A_max) / 2,1.0,format="%4.2f" )
+    h_bottom_slider_value=st.slider('Height of bottom of tube above bottom of column in m', h_bottom_min,h_bottom_max,(h_bottom_min + h_bottom_max) / 2,0.01,format="%4.2f" )
+
+with columns[1]:
+    L_slider_value=st.slider('Length in the direction of flow in m', L_min,L_max,(L_min + L_max) / 2,10.0,format="%4.2f" )
+    h_top_slider_value=st.slider('Ponded height of water at top of column in m', h_top_min,h_top_max,(h_top_min + h_top_max) / 2,0.01,format="%4.2f" )
+
+# Compute flow
+Q = -K_min * A_slider_value * (h_bottom_slider_value + L_slider_value - h_top_slider_value) / L_slider_value   # in m3/s
+
+st.write('')   
+st.write('')   
+st.write("The flow rate in m3/s is: ", Q)
+
+
+st.write('-------------------------------------------------------------------------------------------------------------------------------------')   
+st.write('')   
+st.write('')   
+st.write("Now imagine the same column turned on its side, so that it extends horizontally.  What was the top is the left, the bottom became the right.")
+st.write('')   
+st.write('')   
+st.write("Before you use the model to check your answers, answer these questions.")
+st.write('')   
+st.write("Do you think that the flow will have the same dependence on A, L, h_top, and h_bottom that it did for the vertical column?")
+st.write('')   
+st.write("If you set the slider bars to the same values for the vertical and horizontal columns, will they have the same flow?")
+st.write('')   
+st.write("Once you have made your predictions, use the model below to check them!")
+st.write('')   
+st.write('')   
+
+columns = st.columns((1,1), gap = 'large')
+    
+with columns[0]:
+    A_slider_value1=st.slider('Area in m2', A_min,A_max,(A_min + A_max) / 2,1.0,format="%4.2f" )
+    h_bottom_slider_value1=st.slider('Distance of bottom of tube above bottom of column in m', h_bottom_min,h_bottom_max,(h_bottom_min + h_bottom_max) / 2,0.01,format="%4.2f" )
+
+with columns[1]:
+    L_slider_value1=st.slider('Distance in the direction of flow in m', L_min,L_max,(L_min + L_max) / 2,10.0,format="%4.2f" )
+    h_top_slider_value1=st.slider('Ponded height of water at left end of column in m', h_top_min,h_top_max,(h_top_min + h_top_max) / 2,0.01,format="%4.2f" )
+
+# Compute flow
+Q = -K_min * A_slider_value1 * (h_bottom_slider_value1 - h_top_slider_value1) / L_slider_value1   # in m3/s
+
+st.write('')   
+st.write('')   
+st.write("The flow rate in m3/s is: ", Q)
+
+
+
+
+
+st.markdown(
+    """
+    ---
+    
+    #### Assignment after step 2. 📃
+    * Produce three curves of }_s(t)_ out to two years, one at the distance relevant for each stakeholder, on the same axes.
+    * Explain in a clear paragraph why they all have the same general shape, but they are different in the details.
+    * Discuss your understanding at this time of the role of a hydrogeologist in negotiating water issues related to dewatering.
+"""
+)
+
+
+
+
+
+
+
 st.markdown(
     """
     ---
