@@ -126,8 +126,8 @@ for T in T_values:
     if counter == 3:
         plt.plot(t2, s, linewidth=3., color='k', label=r'high T / high S')
 
-plt.xlabel(r'Drawdown, m', fontsize=14)
-plt.ylabel(r'Utility for the mine', fontsize=14)
+plt.xlabel(r'Time, years', fontsize=14)
+plt.ylabel(r'Utility', fontsize=14)
 plt.axis([0, None, 0, None])
 plt.legend()
     
@@ -162,16 +162,16 @@ with columns[0]:
 with columns[1]:
     st.write('**Town**')
     st.write('')
-    town_s_U0_value=st.slider('Dradown associated with **U = 0** for the **town**', s_min,s_max,4.5,0.01,format="%4.2f" )        
-    town_s_U1_value=st.slider('Dradown associated with **U = 1** for the **town**', s_min,s_max,1.,0.01,format="%4.2f")    
+    town_s_U0_value=st.slider('Drawdown associated with **U = 0** for the **town**', s_min,s_max,4.5,0.01,format="%4.2f" )        
+    town_s_U1_value=st.slider('Drawdown associated with **U = 1** for the **town**', s_min,s_max,1.,0.01,format="%4.2f")    
     if town_s_U0_value == town_s_U1_value:
         town_s_U0_value = town_s_U1_value + 0.1
     town_t_value=st.slider('Time at which utility is determined for the **town** in years', 0.,9.9,5.,0.1,format="%4.1f")
 with columns[2]:
     st.write('**Environment**')
     st.write('')
-    env_s_U0_value=st.slider('Dradown associated with U=0 for the environment', s_min,s_max,1.0,0.01,format="%4.2f" )        
-    env_s_U1_value=st.slider('Dradown associated with U=1 for the environment', s_min,s_max,0.5,0.01,format="%4.2f")
+    env_s_U0_value=st.slider('Drawdown associated with U=0 for the environment', s_min,s_max,1.0,0.01,format="%4.2f" )        
+    env_s_U1_value=st.slider('Drawdown associated with U=1 for the environment', s_min,s_max,0.5,0.01,format="%4.2f")
     if env_s_U0_value == env_s_U1_value:
         env_s_U0_value = env_s_U1_value + 0.1
     env_t_value=st.slider('Time at which utility is determined for the environment in years', 0.,9.9,9.9,0.1,format="%4.1f")
@@ -185,7 +185,7 @@ plt.plot(s_vals, mine_uvals, linewidth=3., color='r', label=r'Mine')
 plt.plot(s_vals, town_uvals, linewidth=3., color='g', label=r'Town')
 plt.plot(s_vals, env_uvals, linewidth=3., color='b', label=r'Environment')
 plt.xlabel(r'Drawdown, m', fontsize=14)
-plt.ylabel(r'Utility for the mine', fontsize=14)
+plt.ylabel(r'Utility', fontsize=14)
 plt.axis([0, None, None, None])
 plt.legend()
     
@@ -262,7 +262,7 @@ plt.plot(t2[np.min(np.where(t2>town_t_value))],s_town, marker='o', color='b',lin
 plt.plot(t2, np.squeeze(s_forrs[2,:]), linewidth=3., color='g', label=r'Env')
 plt.plot(t2[np.min(np.where(t2>env_t_value))],s_env, marker='o', color='g',linestyle ='None', label='@env')
 plt.xlabel(r'Time, years', fontsize=14)
-plt.ylabel(r'Drawdown', fontsize=14)
+plt.ylabel(r'Drawdown, m', fontsize=14)
 plt.axis([0, None, 0, None])
 plt.legend(fontsize=14)
     
@@ -382,7 +382,7 @@ fig = plt.figure(figsize=(12,7))
 plt.plot(Q_values* 24. * 60. * 60., u_sum, marker='o', color='r',linestyle ='None', label=r'Total')
 plt.plot(Q_values* 24. * 60. * 60., u_mine, marker='o', color='b',linestyle ='None', label=r'Mine')
 plt.plot(Q_values* 24. * 60. * 60., u_mine + u_town, marker='o', color='g',linestyle ='None', label=r'Mine+Town')
-plt.xlabel(r'Dewatering rate', fontsize=14)
+plt.xlabel(r'Dewatering rate, m3/d', fontsize=14)
 plt.ylabel(r'Sum of utilities', fontsize=14)
 plt.legend()
 st.pyplot(fig)
@@ -403,7 +403,7 @@ u_vector[2,:] = u_env
 
 fig = plt.figure(figsize=(12,7))
 plt.plot(Q_values* 24. * 60. * 60., np.var(u_vector,0), marker='o', color='r',linestyle ='None', label=r'Utility')
-plt.xlabel(r'Dewatering rate', fontsize=14)
+plt.xlabel(r'Dewatering rate, m3/d', fontsize=14)
 plt.ylabel(r'Variance of utilities', fontsize=14)
 plt.legend()
 st.pyplot(fig)
@@ -425,7 +425,7 @@ u_vector[2,:] = u_env
 
 fig = plt.figure(figsize=(12,7))
 plt.plot(Q_values* 24. * 60. * 60., np.min(u_vector,0), marker='o', color='r',linestyle ='None', label=r'Utility')
-plt.xlabel(r'Dewatering rate', fontsize=14)
+plt.xlabel(r'Dewatering rate, m3/d', fontsize=14)
 plt.ylabel(r'Highest minimum utility over stakeholders', fontsize=14)
 plt.legend()
 st.pyplot(fig)

@@ -3,6 +3,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 import scipy.special
 import streamlit as st
+import streamlit_book as stb
 
 # (Here the necessary functions like the well function $W(u)$ are defined. Later, those functions are used in the computation)
 # Define a function, class, and object for Theis Well analysis
@@ -166,7 +167,49 @@ st.pyplot(fig)
 st.write('')   
 
 
+st.markdown(
+    """
+    ---
+    ### Self-check questions 💦
+ 
+"""
+)
+st.write('')
+st.write('')
+question1 = "If everything else is kept constant, what is the effect of increasing S on the drawdown at a given distance and time?"
+options1 = "Drawdown increases.", "Drawdown decreases.", "It depends."
+answer_index1 = 1
+stb.single_choice(question1, options1, answer_index1, success='Correct!  If S is higher, then less drawdown is needed everywhere to release the volume of water pumped by time t.', error='Incorrect - if S is higher, then less drawdown is needed everywhere to release the volume of water pumped by time t.', button='Check answer')
 
+st.write('')
+st.write('')
+question2 = "If everything else is kept constant, what is the effect of increasing T on the drawdown at a given distance and time?"
+options2 = "Drawdown increases.", "Drawdown decreases.", "It depends."
+answer_index2 = 2
+stb.single_choice(question2, options2, answer_index2, success='Correct!  Simulate the following: logS = -4, Q = 100, t = 1 yr, r = 10 and releat it for r - 10000.  No simple answer here!', error='Incorrect - explore a bit with the simulator and remember to change both T and r!', button='Check answer')
+
+st.write('')
+st.write('')
+question3 = "Why does the drawdown get less steep with radial distance from the well?"
+options3 = "Because flow is radially convergent, the cross section perpendicular to flow increases with distance, requiring a lower gradient.", "Because the pumping decreases K near the well.", "Because flow to a well is transient."
+answer_index3 = 0
+stb.single_choice(question3, options3, answer_index3, success='Correct!  If you look down at a well in map view, you will see that the same flow has to pass through smaller area as you approach the well.', error='Incorrect - transient flow has some effect and it is possible that pumping may decrease K, but these are not the major reason.', button='Check answer')
+
+st.write('')
+st.write('')
+question4 = "What is the impact of the drawdown versus time curve if you increase the pumping rate?"
+options4 = "It has no effect.", "The curve becomes shallower near the well.", "The shape stays the same, but the scale of the y-axis changes."
+answer_index4 = 2
+stb.single_choice(question4, options4, answer_index4, success='Correct!  Another way to say this is that the drawdown can be scaled by the pumping rate - this is often used to make Type Curves to interpret pumping tests.', error='Incorrect - if anything, the curve would have to get steeper near the well to drive more flow - but have a closer look at the results when you change Q!', button='Check answer')
+
+st.write('')
+st.write('')
+question5 = "Why might a nearby environmental group be concerned about dewatering operations at a mine?"
+options5 = "The noise of the pumps could affect wildlife.", "The pumping might cause water to flow towards the mine.", "Pumping might lower the water table, which could make it more difficult for plants to get water while also decreasing flow in streams."
+answer_index5 = 2
+stb.single_choice(question5, options5, answer_index5, success='Correct!  This lowering the water table decreases plant-available water and can cause streams to lose water to the subsurface.', error='Incorrect - pumps might be noisy, but this is not their main impact and water flowing toward the well is not a direct problem in most cases.', button='Check answer')
+
+      
 
 
 st.markdown(
