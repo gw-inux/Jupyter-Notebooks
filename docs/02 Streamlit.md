@@ -22,5 +22,3 @@ You can access the app here [https://theis-inverse-drawdown-random.streamlit.app
 
 ## All Apps 
 Browse through this webpage to explore more apps. All apps are also shown here [https://share.streamlit.io/user/thoreimann](https://share.streamlit.io/user/thoreimann) (although not categorized/sorted).
-
-## New HEading
