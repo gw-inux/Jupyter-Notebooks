@@ -1,10 +1,12 @@
 import streamlit as st
 
-st.title('📃 Theory underlying Transient Flow to Wells - Theis solution')
+st.title('📃 Theory underlying Transient Flow to Wells')
+
+st.subheader(':orange-background[The Theis solution]', divider="orange")
 
 st.markdown("""
-            #### This variant of the app allows to choose randomly generated data with measurement noise
-            This interactive document allows to apply the Theis principle for pumping test evaluation in confined, transient setups. The notebook is based on an Spreadsheet from Prof. Rudolf Liedl.
+            ### Introduction
+            This interactive app allows to investigate transient flow to a well with Theis solution. Applications involve the pumping test evaluation in confined, transient setups. The computation is based on an Spreadsheet from Prof. Rudolf Liedl.
             
             ### General situation
             We consider a confined aquifer with constant transmissivity. If a well is pumping water out of the aquifer, radial flow towards the well is induced. To calculate the hydraulic situation, the following simplified flow equation can be used. This equation accounts for 1D radial transient flow towards a fully penetrating well within a confined aquifer without further sinks and sources:

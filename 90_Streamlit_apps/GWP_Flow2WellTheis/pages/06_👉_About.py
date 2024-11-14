@@ -1,10 +1,10 @@
 import streamlit as st
 
-st.header('👉 About WellCapture')
+st.header('👉 About Flow2Well')
 st.markdown(
     """
     ### Description
-    The WellCapture interactive tool calculates the capture area for a pumping well in a confined, homogeneous, isotropic aquifer.
+    The Flow2Well interactive tool calculates the drawdown response for a pumping well in a confined, homogeneous, isotropic aquifer.
     
     ### Development
     Innovative and digital learning and teaching materials are currently enhanced and transferred to various partners across Europe by the EU cooperation project [iNUX](https://www.gw-inux.org/). The iNUX project is funded by the ERASMUS+ program of the European Union.

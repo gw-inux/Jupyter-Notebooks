@@ -5,15 +5,57 @@ import scipy.special
 import streamlit as st
 import streamlit_book as stb
 
-st.title('Water abstraction - Drawdown prediction with the Theis solution for confined and unconfined aquifers')
-st.write('***Drawdown computation with the Theis solution***')
-st.write('This notebook illustrate the drawdown in a confined aquifer in response to pumping.')
+st.title('Theis drawdown prediction for confined and unconfined aquifers')
 
-st.subheader('Correction for unconfined aquifers')
-st.write('Jacob (in Kruseman and de Ridder 1994) proposed an conrrection of the Theis drawdown to account for unconfined aquifers.')
+st.subheader(':green-background[Drawdown comparison in response to water abstraction]', divider="green")
+
+st.markdown(""" 
+            ### Some initial thoughts for the investigation
+            This notebook illustrate the drawdown in a confined and an unconfined aquifer in response to pumping.
+"""
+)
+# Initial assessment
+
+columnsQ1 = st.columns((1,1), gap = 'large')
+
+with columnsQ1[0]:
+    stb.single_choice(":green[**For which conditions is the Theis solution intended?**]",
+                  ["Steady state flow, confined aquifer.", "Transient flow, confined aquifer", "Steady state flow, unconfined aquifer",
+                  "Transient flow, unconfined aquifer"],
+                  1,success='CORRECT!   ...', error='Not quite. ... If required, you can read again about transmissivity _T_ in the following ressources _reference to GWP books...')
+    stb.single_choice(":green[**Question2?**]",
+                  ["Answer1.", "Answer2", "Answer3", "Answer4"],
+                  1,success='CORRECT!   ...', error='Not quite. ... If required, you can read again about transmissivity _T_ in the following ressources _reference to GWP books...')
+                  
+with columnsQ1[1]:
+    stb.single_choice(":green[**Question3?**]",
+                  ["Answer1.", "Answer2", "Answer3", "Answer4"],
+                  1,success='CORRECT!   ...', error='Not quite. ... If required, you can read again about transmissivity _T_ in the following ressources _reference to GWP books...')             
+    stb.single_choice(":green[**Question4?**]",
+                  ["Answer1.", "Answer2", "Answer3", "Answer4"],
+                  1,success='CORRECT!   ...', error='Not quite. ... If required, you can read again about transmissivity _T_ in the following ressources _reference to GWP books...')
+"---"
+st.markdown("""
+            ### Correction of the drawdown for unconfined aquifers
+            
+            Jacob (in Kruseman and de Ridder 1994) proposed an conrrection of the Theis drawdown to account for unconfined aquifers.
+            """
+)
 st.latex(r'''s' = s - \frac{s^2}{2b}''')
-st.write('With a reformulation, this allows to compute the drawdown of unconfined aquifers as')
+st.markdown('''
+            With a reformulation, this allows to compute the drawdown of unconfined aquifers as
+            '''
+)
 st.latex(r'''s = b - b \sqrt{1 - \frac{2s'}{b}}''')
+st.markdown("""
+            ### Computation
+            Subsequently, the Theis equation for confined and unconfined conditions is solved with Python routines. The interactive plot demonstrate the response of both systems to pumping side-by-side.
+            
+            Start your investigations with increasing the pumping rate. See how the drawdown changes. Modify the transmissivity _**T**_, the specific yield _**SY**_, and the storativity _**S**_ to understand how these parameters affect the drawdown.
+
+"""     
+)
+
 "---"
 
 # (Here the necessary functions like the well function $W(u)$ are defined. Later, those functions are used in the computation)
@@ -61,25 +103,32 @@ log_min2 = -7.0 # S / Corresponds to 10^-7 = 0.0000001
 log_max2 = 0.0  # S / Corresponds to 10^0 = 1
 
    
-columns = st.columns((1,1), gap = 'large')
+columns_i1 = st.columns((1,8,1), gap = 'large')
 
-with columns[0]:
-    max_s = st.slider(f'Drawdown range in the plot (m)',1,50,10,1)
-    max_r = st.slider(f'Distance range in the plot (m)',10,2000,1000,1)
-    x_search = st.slider(f'Distance for result printout in the plot (m)',1,2000,10,1)
+with columns_i1[1]:
+    st.write('**General parameter of the plot**')
+    max_s = st.slider(f':grey-background[Drawdown range in the plot (m)]',1,50,10,1)
+    max_r = st.slider(f':grey-background[Distance range in the plot (m)]',10,2000,1000,1)
     t = st.slider(f'**Time (s)**',0,86400*7,86400,600)
-    b = st.slider(f'**Thickness** of the unconfined aquifer',1.,100.,10.,0.01)
-    SY = st.slider(f'**Specific yield (/)**',0.01,0.60,0.25,0.01)
-    # Display the Storativity
-    st.write("_Storativity (dimensionless):_ %5.2e" %(SY*b))
-
-with columns[1]:
+    x_search = st.slider(f'Distance for result printout in the plot (m)',1,2000,10,1)
     Q = st.slider(f'**Pumping rate (m^3/s)**', 0.001,0.100,0.000,0.001,format="%5.3f")
     T_slider_value=st.slider('(log of) **Transmissivity in m2/s**', log_min1,log_max1,-3.0,0.01,format="%4.2f" )
     # Convert the slider value to the logarithmic scale
     T = 10 ** T_slider_value
     # Display the logarithmic value
     st.write("_Transmissivity in m2/s:_ %5.2e" %T)
+
+columns_i2 = st.columns((3,1,3), gap = 'large')
+
+with columns_i2[0]:
+    st.write('**Parameter of the unconfined aquifer**')
+    b = st.slider(f'**Thickness** of the unconfined aquifer',1.,100.,10.,0.01)
+    SY = st.slider(f'**Specific yield (/)**',0.01,0.60,0.25,0.01)
+    # Display the Storativity
+    st.write("_Storativity (dimensionless):_ %5.2e" %(SY*b))
+
+with columns_i2[2]:
+    st.write('**Parameter of the confined aquifer**')
     S_slider_value=st.slider('(log of) **Storativity**', log_min2,log_max2,-4.0,0.01,format="%4.2f" )
     # Convert the slider value to the logarithmic scale
     S = 10 ** S_slider_value
@@ -128,24 +177,28 @@ plt.legend()
 
 st.pyplot(fig)
 
-if Q==0:
-    st.write(":red[**Abstraction rate 0 - START PUMPING!**]")
-else:
-    st.write("**Pumping with Q (in m3/s):** %8.3f" %Q)
-st.write("**DRAWDOWN output:**")
-st.write("Distance from the well (in m): %8.2f" %x_point)
-st.write("Time (in sec): %8i" %t)
-st.write('Transmissivity in m2/s:  %5.2e' %T)
-st.write('Hydraulic conductivity:  %5.2e' %(T/b))
+# Result output below the interactive plot    
+columns2 = st.columns((2.0,5.0,0.1))
 
-columns2 = st.columns((1,1), gap = 'large')
+with columns2[1]:
+    if Q==0:
+        st.write(":red[**Abstraction rate 0 - START PUMPING!**]")
+    else:
+        st.write("**Pumping with Q (in m3/s):** %8.3f" %Q)
+    st.write("**DRAWDOWN output:**")
+    st.write("Distance from the well (in m): %8.2f" %x_point)
+    st.write("Time (in sec): %8i" %t)
+    st.write('Transmissivity in m2/s:  %5.2e' %T)
+    st.write('Hydraulic conductivity:  %5.2e' %(T/b))
 
-with columns2[0]:
+columns3 = st.columns((1,1), gap = 'large')
+
+with columns3[0]:
     st.write(":green[**Unconfined**]")
     st.write('Storativity:  %5.2e' %(SY*b))    
     st.write('Drawdown at this distance (in m):  %5.2f' %y_point_u)
 
-with columns2[1]:
+with columns3[1]:
     st.write(":blue[**Confined**]")
     st.write('Storativity:  %5.2e' %S)
     st.write('Drawdown at this distance (in m):  %5.2f' %y_point)
