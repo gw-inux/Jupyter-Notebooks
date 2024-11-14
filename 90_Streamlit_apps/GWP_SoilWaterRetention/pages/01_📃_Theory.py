@@ -32,3 +32,13 @@ st.markdown(
 """
 )
 st.latex(r'''x=\frac{-y}{\tan (\frac{2 \pi Kiby}{Q})}''')
+
+"---"
+# Navigation at the bottom of the side - useful for mobile phone users     
+        
+columnsN1 = st.columns((1,1,1), gap = 'large')
+with columnsN1[1]:
+    st.subheader(':orange[**Navigation**]')
+with columnsN1[2]:
+    if st.button("Next page"):
+        st.switch_page("pages/02_📈_▶️ The SWC interactive.py")

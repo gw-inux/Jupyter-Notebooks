@@ -39,13 +39,27 @@ st.markdown("""
 
 columns = st.columns((1,1), gap = 'large')
 with columns[0]:
-    tr    = st.slider('residual water content (-)', 0.01, 0.4, 0.05, 0.01)
-    ts    = st.slider('saturated water content (-)', 0.15, 0.7, 0.30, 0.01)   
+    plot1 = st.toggle('Plot Dataset 1')   
+    plot2 = st.toggle('Plot Dataset 2')      
+    plot3 = st.toggle('Plot Dataset 3')      
+    plot4 = st.toggle('Plot k_r 1')   
 with columns[1]:
+    tr    = st.slider('residual water content (-)', 0.01, 0.4, 0.05, 0.01)
+    ts    = st.slider('saturated water content (-)', 0.15, 0.7, 0.30, 0.01)
     alpha = st.slider('alpha (1/cm)', 0.01, 1., 0.1, 0.01)
     n     = st.slider('n (-)', 1.01, 3., 1.2, 0.01)
   
-plot4 = st.toggle('Plot k_r 1')
+
+
+
+# given data (retention) - used in exercise
+
+t1=[0.09,0.12,0.15,0.18,0.21,0.24,0.27,0.3,0.33,0.36,0.39,0.42,0.45]
+p1=[2230.546345,577.472177,300.4391307,199.8371285,142.8205223,109.6375793,85.19965286,67.18768129,53.82569358,41.8841783,31.92533514,21.62546735,10.23974185]
+t2=[0.18,0.19,0.22,0.25,0.28,0.31,0.35,0.4,0.44,0.47,0.51,0.54,0.55]
+p2=[50030.534,9000.477,2000.407,900.835,500.023,120.633,60.528,30.189,11.823,7.883,1.514,0.625,0.285]
+t3=[0.35,0.37,0.4,0.42,0.44,0.47,0.49,0.5,0.52,0.54,0.55,0.57,0.57]
+p3=[350030.55,7800.21,1800.47,940.88,440.03,134.63,56.12,22.11,8.68,4.17,1.94,0.35,0.15]#definition of the function (conductivity)
 
 
 x_max = 300
@@ -74,6 +88,7 @@ for x in range (0, x_max):
     p_plot.append(p)
     kr_plot.append(kr)
         
+    
 fig = plt.figure(figsize=(9,6))
 ax  = fig.add_subplot()
 ax.plot(t_plot, p_plot, 'r', markersize=3)
@@ -82,6 +97,12 @@ ax.hlines(y= 10**4.2, xmin=0, xmax=PWP, colors='g')    #upper green line
 ax.vlines(x= PWP, ymin=1e-1, ymax=10**4.2, colors='g')
 ax.hlines(y= 10**1.8, xmin=0, xmax=FC, colors='b')     #bottom green line
 ax.vlines(x= FC, ymin=1e-1, ymax=10**1.8, colors='b')
+if plot1 == 1:
+    ax.plot(t1, p1,'ro', markersize=3)
+if plot2 == 1:
+    ax.plot(t2, p2,'bo', markersize=3)
+if plot3 == 1:
+    ax.plot(t3, p3,'go', markersize=3)
 ax.set(xlabel='water content [-]', ylabel ='suction head [cm]', xlim = [0, 0.7], ylim = [1e-1,1e+5], yscale = 'log' )
 ax.grid(which="both", color='grey',linewidth=0.5)
 st.pyplot(fig)
@@ -105,9 +126,9 @@ st.write('Eff. Field Capacity     eFC:', '{:.2f}'.format(eFC) )
 columnsN1 = st.columns((1,1,1), gap = 'large')
 with columnsN1[0]:
     if st.button("Previous page"):
-        st.switch_page("pages/02_📈_▶️ Transient_Flow to a Well.py")
+        st.switch_page("pages/04_📈_▶️ SWC Exercise #1.py")
 with columnsN1[1]:
     st.subheader(':orange[**Navigation**]')
 with columnsN1[2]:
     if st.button("Next page"):
-        st.switch_page("pages/03_📈_▶️ The SWC in comparison.py")
+        st.switch_page("pages/06_👉_About.py")

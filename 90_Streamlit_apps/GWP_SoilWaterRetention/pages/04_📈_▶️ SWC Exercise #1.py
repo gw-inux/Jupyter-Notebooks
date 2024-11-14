@@ -320,3 +320,15 @@ st.pyplot(fig)
 
 st.write('The app is developed by Oriol Bertran Oller (UPC Barcelona) 2024')
 
+"---"
+# Navigation at the bottom of the side - useful for mobile phone users     
+        
+columnsN1 = st.columns((1,1,1), gap = 'large')
+with columnsN1[0]:
+    if st.button("Previous page"):
+        st.switch_page("pages/03_📈_▶️ The SWC in comparison.py")
+with columnsN1[1]:
+    st.subheader(':orange[**Navigation**]')
+with columnsN1[2]:
+    if st.button("Next page"):
+        st.switch_page("pages/05_📈_▶️ SWC Exercise #2.py.py")

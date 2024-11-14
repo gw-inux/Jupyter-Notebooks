@@ -46,3 +46,13 @@ with cent_co2:
         Besides research, he has been actively teaching groundwater management and groundwater modeling since 2003 at TU Dresden and as a guest lecturer for Hydrogeology since 2017 at the University of Gothenburg (Sweden). The ongoing teaching activities use various innovative digital methods to improve the learning process, which was honored by the TU Dresden teaching award in 2017.
         """
     )
+
+"---"
+# Navigation at the bottom of the side - useful for mobile phone users     
+        
+columnsN1 = st.columns((1,1,1), gap = 'large')
+with columnsN1[0]:
+    if st.button("Previous page"):
+        st.switch_page("pages/05_📈_▶️ SWC Exercise #2.py")
+with columnsN1[1]:
+    st.subheader(':orange[**Navigation**]')
