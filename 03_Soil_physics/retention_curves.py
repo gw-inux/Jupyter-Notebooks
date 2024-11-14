@@ -318,3 +318,5 @@ fig.tight_layout()
 #ax.set_position([box.x0, box.y0, box.width * 0.8, box.height])
 st.pyplot(fig)
 
+st.write('The app is developed by Oriol Bertran Oller (UPC Barcelona) 2024')
+
