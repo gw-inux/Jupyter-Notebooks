@@ -6,7 +6,7 @@ st.set_page_config(
     page_icon="💦",
 )
 
-st.write("# Flow2Well - Transient Theis App! 💦")
+st.write("# Flow2Well - Transient Theis App 💦")
 
 st.sidebar.success("☝️ Select a page above. ☝️")
 
