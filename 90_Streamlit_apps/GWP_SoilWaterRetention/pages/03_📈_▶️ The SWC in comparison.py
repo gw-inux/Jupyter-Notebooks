@@ -9,6 +9,29 @@ st.title('Soil Water Retention characteristics')
 
 st.subheader('Comparison of datasets')
 
+st.markdown('''
+            ### Available data
+            The interactive plot allows to compare different data sets. You can choose the data sets with the dropdown menu.
+            The data for the various soil types originate from Carsel and Parrish (1988):
+                
+            | Soil texture       | θ_r   | θ_s   | α (cm⁻¹) | n    | K_s (cm per day) |
+            |--------------------|-------|-------|----------|------|-------------------|
+            | sand               | 0.045 | 0.43  | 0.145    | 2.68 | 712.8            |
+            | loamy sand         | 0.057 | 0.41  | 0.124    | 2.28 | 350.2            |
+            | sandy loam         | 0.065 | 0.41  | 0.075    | 1.89 | 106.1            |
+            | loam               | 0.078 | 0.43  | 0.036    | 1.56 | 24.96            |
+            | silt               | 0.034 | 0.46  | 0.016    | 1.37 | 6.00             |
+            | silt loam          | 0.067 | 0.45  | 0.020    | 1.41 | 10.80            |
+            | sandy clay loam    | 0.100 | 0.39  | 0.059    | 1.48 | 31.44            |
+            | clay loam          | 0.095 | 0.41  | 0.019    | 1.31 | 6.24             |
+            | silty clay loam    | 0.089 | 0.43  | 0.010    | 1.23 | 1.68             |
+            | sandy clay         | 0.100 | 0.38  | 0.027    | 1.23 | 2.88             |
+            | silty clay         | 0.070 | 0.36  | 0.005    | 1.09 | 0.48             |
+            | clay               | 0.068 | 0.38  | 0.008    | 1.09 | 4.80             |
+            '''
+)
+
+
 columns = st.columns((1,1), gap = 'large')
 with columns[0]:
     st.write('**Dataset 1 - Input**')
@@ -19,7 +42,19 @@ with columns[0]:
         alpha1 = st.slider('alpha 1 (1/cm)', 0.01, 1., 0.1, 0.01)
         n1     = st.slider('n 1 (-)', 1.01, 3., 1.2, 0.01)
     else:    
-        data1 = st.selectbox("**What data should be used?**",("Synthetic DS1", "Synthetic DS2"), key = 'Data1')
+        data1 = st.selectbox("**What data should be used?**",("Sand", "Loamy Sand", "Synthetic DS1", "Synthetic DS2"), key = 'Data1')
+        if (st.session_state.Data1 == "Sand"):
+            #TODO PUT THE DATA IN ONE LIST, CHOOSE DATA FROM LIST
+            tr1 = 0.045
+            ts1 = 0.43
+            alpha1 = 0.145
+            n1 = 2.68 
+        if (st.session_state.Data1 == "Loamy Sand"):
+            #TODO PUT THE DATA IN ONE LIST, CHOOSE DATA FROM LIST
+            tr1 = 0.057
+            ts1 = 0.41
+            alpha1 = 0.124
+            n1 = 2.28 
         if (st.session_state.Data1 == "Synthetic DS1"):
             #TODO PUT THE DATA IN ONE LIST, CHOOSE DATA FROM LIST
             tr1 = 0.06
@@ -41,7 +76,19 @@ with columns[1]:
         alpha2 = st.slider('alpha 2 (1/cm)', 0.01, 1., 0.2, 0.01)
         n2     = st.slider('n 2 (-)', 1.01, 3., 1.3, 0.01)
     else:
-        data2 = st.selectbox("**What data should be used?**",("Synthetic DS1", "Synthetic DS2"), key = 'Data2')
+        data2 = st.selectbox("**What data should be used?**",("Sand", "Loamy Sand", "Synthetic DS1", "Synthetic DS2"), key = 'Data2')
+        if (st.session_state.Data2 == "Sand"):
+            #TODO PUT THE DATA IN ONE LIST, CHOOSE DATA FROM LIST
+            tr2 = 0.045
+            ts2 = 0.43
+            alpha2 = 0.145
+            n2 = 2.68 
+        if (st.session_state.Data2 == "Loamy Sand"):
+            #TODO PUT THE DATA IN ONE LIST, CHOOSE DATA FROM LIST
+            tr2 = 0.057
+            ts2 = 0.41
+            alpha2 = 0.124
+            n2 = 2.28 
         if (st.session_state.Data2 == "Synthetic DS1"):
             tr2 = 0.06
             ts2 = 0.45
