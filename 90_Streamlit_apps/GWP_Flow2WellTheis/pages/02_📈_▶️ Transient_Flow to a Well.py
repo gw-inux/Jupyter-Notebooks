@@ -16,10 +16,10 @@ st.markdown('''
             Subsequently, the Theis equation is solved with Python routines.
             
             **Before you use the Theis solution to compute the drawdown, think about the following questions:**
-            '''
             e<sup>2</sup> 
             e<sub>2</sub>
             H~2~O is a liquid. 2^10^ is 1024.
+            '''
 )
 
 # Initial assessment
