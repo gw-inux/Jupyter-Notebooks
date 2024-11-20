@@ -319,4 +319,3 @@ fig.tight_layout()
 st.pyplot(fig)
 
 st.write('The app is developed by Oriol Bertran Oller (UPC Barcelona) 2024')
-

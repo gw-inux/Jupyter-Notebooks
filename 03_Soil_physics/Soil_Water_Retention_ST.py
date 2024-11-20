@@ -5,6 +5,9 @@ import matplotlib.pyplot as plt
 import streamlit as st
 
 st.title('Soil Water Retention characteristics')
+st.subheader('Subheader')
+
+st.write('Test')
 
 columns = st.columns((1,1), gap = 'large')
 with columns[0]:
