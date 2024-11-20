@@ -1,6 +1,6 @@
 import streamlit as st
 
-st.header('👉 About WellCapture')
+st.header('👉 About the WellCapture app')
 st.markdown(
     """
     ### Description

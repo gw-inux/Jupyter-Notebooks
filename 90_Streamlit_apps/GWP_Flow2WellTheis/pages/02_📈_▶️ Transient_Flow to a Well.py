@@ -18,7 +18,7 @@ st.markdown('''
             **Before you use the Theis solution to compute the drawdown, think about the following questions:**
             '''
 )
-
+st.markdown("CO<sub>2</sub>", unsafe_allow_html=True)
 # Initial assessment
 
 columnsQ1 = st.columns((1,1), gap = 'large')
