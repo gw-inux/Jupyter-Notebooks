@@ -33,4 +33,12 @@ st.markdown(
     - each point on the flow divide can be calculated as:
 """
 )
+
 st.latex(r'''x=\frac{-y}{\tan (\frac{2 \pi Kiby}{Q})}''')
+
+st.markdown(
+    """
+Grubb, S. (1993). Analytical Model for Estimation of Steady-State Capture Zones of Pumping Wells in Confined and Unconfined Aquifers. Groundwater, 31(1), 27-32. https://doi.org/10.1111/j.1745-6584.1993.tb00824.x
+
+"""
+)
