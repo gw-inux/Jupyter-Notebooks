@@ -245,7 +245,7 @@ def inverse():
         Ss = 10 ** S_slider_value
         # Display the logarithmic value
         st.write("_Specific storage_ (dimensionless):** %5.2e" %Ss)
-        #refine_theis = st.toggle("**Refine** the range of the **Theis matching plot**")
+        refine_plot = st.toggle("**Refine** the range of the **Data matching plot**")
     with columns2[1]:
         if st.session_state.Solution == 'Neuman':
             SY = st.slider('Specific Yield', 0.01, 0.50, 0.25, 0.01, format="%4.2f")
@@ -288,7 +288,10 @@ def inverse():
         ax.plot(m_time_s, m_ddown,'ro', label=r'measured drawdown')
         plt.yscale("log")
         plt.xscale("log")
-        plt.axis([1E-1,1E8,1E-4,1E+1])
+        if refine_plot:
+            plt.axis([1E-0,1E4,1E-3,1E+1])
+        else:
+            plt.axis([1E-1,1E8,1E-4,1E+1])
         ax.set(xlabel='t', ylabel='s',title='Neuman drawdown')
         ax.grid(which="both")
         plt.legend()
