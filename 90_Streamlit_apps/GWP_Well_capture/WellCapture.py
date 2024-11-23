@@ -36,6 +36,7 @@ st.markdown(
     - Learn about the underlying theory
     - Run the wellcapture tool from the Green "Run WellCapture" button
     
-    The online version of wellcapture is copyrighted by the author and distributed by The Groundwater Project. Please use gw-project.org links when you want to share Groundwater Project materials with others. It is not permissible to make GW-Project documents available on other websites nor to send copies of the files directly to others
+    The online version of wellcapture is copyrighted by the author and distributed by The Groundwater Project. Please use gw-project.org links when you want to share Groundwater Project materials with others. It is not permissible to make GW-Project documents available on other websites nor to send copies of the files directly to others.
+    
 """
 )
