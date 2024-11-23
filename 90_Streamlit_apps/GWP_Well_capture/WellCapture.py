@@ -32,7 +32,7 @@ with cent_co:
 
 st.markdown(
     """   
-    To navigate the wellcapture tool you can use menu items at the sidebar:
+    To navigate the wellcapture tool you can use menu items on the sidebar:
     - Learn about the underlying theory
     - Run the wellcapture tool from the Green "Run WellCapture" button
     
