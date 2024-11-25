@@ -365,7 +365,7 @@ def inverse():
         plt.legend()
         st.pyplot(fig)
         
-    else:
+    if st.session_state.Solution == 'Theis':
         # Theis curve
         t = u_inv * t_term
         s = w_u * s_term
@@ -377,7 +377,7 @@ def inverse():
         plt.yscale("log")
         plt.xscale("log")
         plt.axis([1E-1,1E5,1E-4,1E+1])
-        ax.set(xlabel='t', ylabel='s',title='Neuman drawdown')
+        ax.set(xlabel='t', ylabel='s',title='Theis drawdown')
         ax.grid(which="both")
         plt.legend()
         st.pyplot(fig)
