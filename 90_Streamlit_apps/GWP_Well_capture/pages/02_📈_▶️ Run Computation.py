@@ -15,7 +15,7 @@ def ymax_conf(Q, K, i, b):
 
 # Function for the culmination point (Kulminationspunkt)
 def x0_conf(Q, K, i, b):
-    x0 = -Q/(2.*np.pi*K*i*b)
+    x0 = Q/(2.*np.pi*K*i*b)
     return x0
 
 # Computaton of the well catchment (Berechnung der Trennstromlinie)
@@ -37,11 +37,11 @@ with columns[0]:
     #revers = st.toggle('Reverse x-axis')
 with columns[1]:
     b = st.slider('**Aquifer thickness (m)**', 1., 100.,20., 0.1, format="%5.2f")
-    i_slider_value=st.slider('(log of) **Gradient of regional flow (-)**', log_min2,log_max2,-3.0,0.01,format="%4.2f" )
+    i_slider_value=st.slider('(log of) **Gradient of regional flow (dimensionless)**', log_min2,log_max2,-3.0,0.01,format="%4.2f" )
     # Convert the slider value to the logarithmic scale
     i = 10 ** i_slider_value   
     # Display the logarithmic value
-    st.write("_Gradient of regional flow (-):_ %5.2e" %i)    
+    st.write("_Gradient of regional flow (dimensionless):_ %5.2e" %i)    
     Q = st.slider('**Pumping rate (m3/s)**', 0., 0.2,0.005, 0.001, format="%5.3f")
     K_slider_value=st.slider('(log of) **Hydr. conductivity (m/s)**', log_min,log_max,-3.0,0.01,format="%4.2f" )
     # Convert the slider value to the logarithmic scale
