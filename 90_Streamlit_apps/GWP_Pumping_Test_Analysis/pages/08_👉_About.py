@@ -21,13 +21,27 @@ with cent_co2:
 
 st.markdown(
     """
-    ### About the Developer
+    ### About the Developers
 """
 )
-left_co, cent_co = st.columns((20,60))
-with left_co:
+
+left_co1, cent_co1 = st.columns((20,60))
+with left_co1:
+    st.image('90_Streamlit_apps/GWP_SoilWaterRetention/assets/images/oriolbertranoller.png')
+with cent_co1:
+    st.markdown(
+        """
+        Information about contributors.
+        
+        
+        ... add for all contributors
+        """
+    )
+    
+left_co2, cent_co2 = st.columns((20,60))
+with left_co2:
     st.image('90_Streamlit_apps/GWP_Well_capture/assets/images/thomasreimann.png')
-with cent_co:
+with cent_co2:
     st.markdown(
         """
         Thomas Reimann is a researcher and lecturer at the Institute for Groundwater Management at TU Dresden, Germany. With nearly 20 years of experience, Thomas’ work focus on groundwater engineering, often in combination with distributed numerical models in different environments, e.g., karst systems or open-pit mining for soft coal. He received a diploma in water management with a focus on groundwater engineering from TU Dresden in 2003. In 2012 he was promoted to Dr.-Ing. (Ph.D.) in groundwater management for research in karst systems by TU Dresden.
