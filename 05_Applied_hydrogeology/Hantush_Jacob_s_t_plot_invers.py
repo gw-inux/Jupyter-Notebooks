@@ -5,8 +5,8 @@ import scipy.special
 import pandas as pd
 import streamlit as st
 
-st.title('Neuman parameter estimation')
-st.subheader('Understanding the Neuman solution  for :blue[unconfined aquifers]', divider="blue")
+st.title('Hantush Jacob parameter estimation')
+st.subheader('Understanding the Hantush Jacob (1955) solution  for :blue[leaky aquifers]', divider="blue")
 st.markdown("""
             ALL OF THE FOLLOWING NEEDS TO BE ADAPTED
             
@@ -65,58 +65,47 @@ u_max = 4
 
 u = np.logspace(u_min,u_max)
 u_inv = 1/u
-u_inv_a = [4.00E-01, 8.00E-01, 1.40E+00, 2.40E+00, 4.00E+00, 8.00E+00, 1.40E+01, 2.40E+01, 4.00E+01, 8.00E+01, 1.40E+02, 2.40E+02, 4.00E+02, 8.00E+02, 1.40E+03, 2.40E+03, 4.00E+03, 8.00E+03]
-u_inv_b = [1.40E-02, 2.40E-02, 4.00E-02, 8.00E-02, 1.40E-01, 2.40E-01, 4.00E-01, 8.00E-01, 1.40E+00, 2.40E+00, 4.00E+00, 8.00E+00, 1.40E+01, 2.40E+01, 4.00E+01, 8.00E+01, 1.40E+02, 2.40E+02, 4.00E+02, 8.00E+02, 1.00E+03]
-
 w_u = well_function(u)
 
-# Neuman type curve data from tables
+u_HAN = [1.00E-05, 2.00E-05, 4.00E-05, 6.00E-05, 1.00E-04, 2.00E-04, 4.00E-04, 6.00E-04, 1.00E-03, 2.00E-03, 4.00E-03, 6.00E-03, 1.00E-02, 2.00E-02, 4.00E-02, 6.00E-02, 1.00E-01, 2.00E-01, 4.00E-01, 6.00E-01, 1 , 2]
 
-w_u_a = [[2.48E-02, 2.41E-02, 2.30E-02, 2.14E-02, 1.88E-02, 1.70E-02, 1.38E-02, 1.00E-02, 1.00E-02],
-         [1.45E-01, 1.40E-01, 1.31E-01, 1.19E-01, 9.88E-02, 8.49E-02, 6.03E-02, 3.17E-02, 1.74E-02],
-         [3.58E-01, 3.45E-01, 3.18E-01, 2.79E-01, 2.17E-01, 1.75E-01, 1.07E-01, 4.45E-02, 2.10E-02],
-         [6.62E-01, 6.33E-01, 5.70E-01, 4.83E-01, 3.43E-01, 2.56E-01, 1.33E-01, 4.76E-02, 2.14E-02],
-         [1.02E+00, 9.63E-01, 8.49E-01, 6.88E-01, 4.38E-01, 3.00E-01, 1.40E-01, 4.78E-02, 2.15E-02],
-         [1.57E+00, 1.46E+00, 1.23E+00, 9.18E-01, 4.97E-01, 3.17E-01, 1.41E-01, 4.78E-02, 2.15E-02],
-         [2.05E+00, 1.88E+00, 1.51E+00, 1.03E+00, 5.07E-01, 3.17E-01, 1.41E-01, 4.78E-02, 2.15E-02],
-         [2.52E+00, 2.27E+00, 1.73E+00, 1.07E+00, 5.07E-01, 3.17E-01, 1.41E-01, 4.78E-02, 2.15E-02],
-         [2.97E+00, 2.61E+00, 1.85E+00, 1.08E+00, 5.07E-01, 3.17E-01, 1.41E-01, 4.78E-02, 2.15E-02],
-         [3.56E+00, 3.00E+00, 1.92E+00, 1.08E+00, 5.07E-01, 3.17E-01, 1.41E-01, 4.78E-02, 2.15E-02],
-         [4.01E+00, 3.23E+00, 1.93E+00, 1.08E+00, 5.07E-01, 3.17E-01, 1.41E-01, 4.78E-02, 2.15E-02],
-         [4.42E+00, 3.37E+00, 1.94E+00, 1.08E+00, 5.07E-01, 3.17E-01, 1.41E-01, 4.78E-02, 2.15E-02],
-         [4.77E+00, 3.43E+00, 1.94E+00, 1.08E+00, 5.07E-01, 3.17E-01, 1.41E-01, 4.78E-02, 2.15E-02],
-         [5.16E+00, 3.45E+00, 1.94E+00, 1.08E+00, 5.07E-01, 3.17E-01, 1.41E-01, 4.78E-02, 2.15E-02],
-         [5.40E+00, 3.46E+00, 1.94E+00, 1.08E+00, 5.07E-01, 3.17E-01, 1.41E-01, 4.78E-02, 2.15E-02],
-         [5.54E+00, 3.46E+00, 1.94E+00, 1.08E+00, 5.07E-01, 3.17E-01, 1.41E-01, 4.78E-02, 2.15E-02],
-         [5.59E+00, 3.46E+00, 1.94E+00, 1.08E+00, 5.07E-01, 3.17E-01, 1.41E-01, 4.78E-02, 2.15E-02],
-         [5.62E+00, 3.46E+00, 1.94E+00, 1.08E+00, 5.07E-01, 3.17E-01, 1.41E-01, 4.78E-02, 2.15E-02]]
+t_HAN     = [0]*len(u_HAN)
+s_HAN     = [0]*len(u_HAN)
+u_inv_HAN = [0]*len(u_HAN)
 
-w_u_b = [[5.62E+00, 3.46E+00, 1.94E+00, 1.09E+00, 5.12E-01, 3.23E-01, 1.45E-01, 5.09E-02, 2.39E-02],
-         [5.62E+00, 3.46E+00, 1.94E+00, 1.09E+00, 5.12E-01, 3.23E-01, 1.47E-01, 5.32E-02, 2.57E-02],
-         [5.62E+00, 3.46E+00, 1.94E+00, 1.09E+00, 5.16E-01, 3.27E-01, 1.52E-01, 5.68E-02, 2.86E-02],
-         [5.62E+00, 3.46E+00, 1.94E+00, 1.09E+00, 5.24E-01, 3.37E-01, 1.62E-01, 6.61E-02, 3.62E-02],
-         [5.62E+00, 3.46E+00, 1.94E+00, 1.10E+00, 5.37E-01, 3.50E-01, 1.78E-01, 8.06E-02, 4.86E-02],
-         [5.62E+00, 3.46E+00, 1.95E+00, 1.11E+00, 5.57E-01, 3.74E-01, 2.05E-01, 1.06E-01, 7.14E-02],
-         [5.62E+00, 3.46E+00, 1.96E+00, 1.13E+00, 5.89E-01, 4.12E-01, 2.48E-01, 1.49E-01, 1.13E-01],
-         [5.62E+00, 3.46E+00, 1.98E+00, 1.18E+00, 6.67E-01, 5.06E-01, 3.57E-01, 2.66E-01, 2.31E-01],
-         [5.63E+00, 3.47E+00, 2.01E+00, 1.24E+00, 7.80E-01, 6.42E-01, 5.17E-01, 4.45E-01, 4.19E-01],
-         [5.63E+00, 3.49E+00, 2.06E+00, 1.35E+00, 9.54E-01, 8.50E-01, 7.63E-01, 7.18E-01, 7.03E-01],
-         [5.63E+00, 3.51E+00, 2.13E+00, 1.50E+00, 1.20E+00, 1.13E+00, 1.08E+00, 1.06E+00, 1.05E+00],
-         [5.64E+00, 3.56E+00, 2.31E+00, 1.85E+00, 1.68E+00, 1.65E+00, 1.63E+00, 9.99E+02, 9.99E+02],
-         [5.65E+00, 3.63E+00, 2.55E+00, 2.23E+00, 2.15E+00, 9.99E+02, 9.99E+02, 9.99E+02, 9.99E+02],
-         [5.67E+00, 3.74E+00, 2.86E+00, 2.68E+00, 2.65E+00, 9.99E+02, 9.99E+02, 9.99E+02, 9.99E+02],
-         [5.70E+00, 3.90E+00, 3.24E+00, 3.15E+00, 9.99E+02, 9.99E+02, 9.99E+02, 9.99E+02, 9.99E+02],
-         [5.76E+00, 4.22E+00, 3.85E+00, 3.82E+00, 9.99E+02, 9.99E+02, 9.99E+02, 9.99E+02, 9.99E+02],
-         [5.85E+00, 4.58E+00, 4.38E+00, 9.99E+02, 9.99E+02, 9.99E+02, 9.99E+02, 9.99E+02, 9.99E+02],
-         [5.99E+00, 5.00E+00, 4.91E+00, 9.99E+02, 9.99E+02, 9.99E+02, 9.99E+02, 9.99E+02, 9.99E+02],
-         [6.16E+00, 5.46E+00, 9.99E+02, 9.99E+02, 9.99E+02, 9.99E+02, 9.99E+02, 9.99E+02, 9.99E+02],
-         [6.47E+00, 6.11E+00, 9.99E+02, 9.99E+02, 9.99E+02, 9.99E+02, 9.99E+02, 9.99E+02, 9.99E+02],
-         [6.60E+00, 6.50E+00, 9.99E+02, 9.99E+02, 9.99E+02, 9.99E+02, 9.99E+02, 9.99E+02, 9.99E+02]]
+for x in range(0,len(u_HAN)):
+        u_inv_HAN[x] = 1/u_HAN[x]
 
-t_a_NEU = [0]*len(u_inv_a)
-s_a_NEU = [0]*len(u_inv_a)
-t_b_NEU = [0]*len(u_inv_b)
-s_b_NEU = [0]*len(u_inv_b)
+print(u_HAN)
+print(u_inv_HAN)
+
+# Hantush Jacob type curve data from tables
+
+w_u_HAN = [[9.420E+00, 6.670E+00, 4.850E+00, 3.510E+00, 2.230E+00, 1.550E+00, 8.420E-01, 4.271E-01, 2.280E-01, 1.174E-01],
+           [9.300E+00, 6.670E+00, 4.850E+00, 3.510E+00, 2.230E+00, 1.550E+00, 8.420E-01, 4.271E-01, 2.280E-01, 1.174E-01],
+           [9.010E+00, 6.670E+00, 4.850E+00, 3.510E+00, 2.230E+00, 1.550E+00, 8.420E-01, 4.271E-01, 2.280E-01, 1.174E-01],
+           [8.770E+00, 6.670E+00, 4.850E+00, 3.510E+00, 2.230E+00, 1.550E+00, 8.420E-01, 4.271E-01, 2.280E-01, 1.174E-01],
+           [8.400E+00, 6.670E+00, 4.850E+00, 3.510E+00, 2.230E+00, 1.550E+00, 8.420E-01, 4.271E-01, 2.280E-01, 1.174E-01],
+           [7.820E+00, 6.620E+00, 4.850E+00, 3.510E+00, 2.230E+00, 1.550E+00, 8.420E-01, 4.271E-01, 2.280E-01, 1.174E-01],
+           [7.190E+00, 6.450E+00, 4.850E+00, 3.510E+00, 2.230E+00, 1.550E+00, 8.420E-01, 4.271E-01, 2.280E-01, 1.174E-01],
+           [6.800E+00, 6.270E+00, 4.850E+00, 3.510E+00, 2.230E+00, 1.550E+00, 8.420E-01, 4.271E-01, 2.280E-01, 1.174E-01],
+           [6.310E+00, 5.970E+00, 4.830E+00, 3.510E+00, 2.230E+00, 1.550E+00, 8.420E-01, 4.271E-01, 2.280E-01, 1.174E-01],
+           [9.990E+02, 5.450E+00, 4.710E+00, 3.500E+00, 2.230E+00, 1.550E+00, 8.420E-01, 4.271E-01, 2.280E-01, 1.174E-01],
+           [9.990E+02, 4.850E+00, 4.420E+00, 3.480E+00, 2.230E+00, 1.550E+00, 8.420E-01, 4.271E-01, 2.280E-01, 1.174E-01],
+           [9.990E+02, 4.480E+00, 4.180E+00, 3.430E+00, 2.230E+00, 1.550E+00, 8.420E-01, 4.271E-01, 2.280E-01, 1.174E-01],
+           [9.990E+02, 4.000E+00, 3.810E+00, 3.290E+00, 2.230E+00, 1.550E+00, 8.420E-01, 4.271E-01, 2.280E-01, 1.174E-01],
+           [9.990E+02, 3.340E+00, 3.240E+00, 2.950E+00, 2.180E+00, 1.550E+00, 8.420E-01, 4.271E-01, 2.280E-01, 1.174E-01],
+           [9.990E+02, 9.990E+02, 2.630E+00, 2.480E+00, 2.020E+00, 1.520E+00, 8.420E-01, 4.271E-01, 2.280E-01, 1.174E-01],
+           [9.990E+02, 9.990E+02, 2.260E+00, 2.170E+00, 1.850E+00, 1.460E+00, 8.390E-01, 4.271E-01, 2.280E-01, 1.174E-01],
+           [9.990E+02, 9.990E+02, 1.800E+00, 1.750E+00, 1.560E+00, 1.310E+00, 8.190E-01, 4.271E-01, 2.280E-01, 1.174E-01],
+           [9.990E+02, 9.990E+02, 9.990E+02, 1.190E+00, 1.110E+00, 9.960E-01, 7.150E-01, 4.100E-01, 2.270E-01, 1.174E-01],
+           [9.990E+02, 9.990E+02, 9.990E+02, 6.930E-01, 6.650E-01, 6.210E-01, 5.020E-01, 3.400E-01, 2.100E-01, 1.174E-01],
+           [9.990E+02, 9.990E+02, 9.990E+02, 4.500E-01, 4.360E-01, 4.150E-01, 3.540E-01, 2.550E-01, 1.770E-01, 1.100E-01],
+           [9.990E+02, 9.990E+02, 9.990E+02, 9.990E+02, 2.130E-01, 2.060E-01, 1.850E-01, 1.509E-01, 1.140E-01, 8.030E-02],
+           [9.990E+02, 9.990E+02, 9.990E+02, 9.990E+02, 9.990E+02, 4.700E-02, 4.400E-02, 9.990E+02, 3.400E-02, 2.500E-02]]
+
+t_HAN = [0]*len(u_HAN)
+s_HAN = [0]*len(u_HAN)
 
 # Select data
 # Data from Viterbo 2023
@@ -155,61 +144,50 @@ def inverse():
         T = 10 ** T_slider_value
         # Display the logarithmic value
         st.write("_Transmissivity_ in m2/s: %5.2e" %T)
-        S_slider_value=st.slider('(log of) **Specific storage**', log_min2,log_max2,-4.0,0.01,format="%4.2f" )
+        S_slider_value=st.slider('(log of) **Storativity**', log_min2,log_max2,-4.0,0.01,format="%4.2f" )
         # Convert the slider value to the logarithmic scale
-        Ss = 10 ** S_slider_value
+        S = 10 ** S_slider_value
         # Display the logarithmic value
-        st.write("_Specific storage_ (dimensionless):** %5.2e" %Ss)
+        st.write("_Specific storage_ (dimensionless):** %5.2e" %S)
         refine_plot = st.toggle("**Refine** the range of the **Data matching plot**")
     with columns2[1]:
         SY = st.slider('Specific Yield', 0.01, 0.50, 0.25, 0.01, format="%4.2f")
-        beta_choice = st.selectbox("beta",('0.001','0.01', '0.06', '0.2', '0.6', '1', '2', '4', '6'),)
-        beta_list = ['0.001','0.01', '0.06', '0.2', '0.6', '1', '2', '4', '6']
-        beta = beta_list.index(beta_choice)
+        r_div_B_choice = st.selectbox("r/B",('0.01', '0.04', '0.1', '0.2', '0.4', '0.6', '1', '1.5', '2', '2.5'),)
+        r_div_B_list = ['0.01', '0.04', '0.1', '0.2', '0.4', '0.6', '1', '1.5', '2', '2.5']
+        r_div_B = r_div_B_list.index(r_div_B_choice)
         show_data = st.toggle("**Show measured data from Viterbo 2023**")
     
     # Compute K and SS to provide parameters for plausability check
     # (i.e. are the parameter in a reasonable range)
     K = T/b     # m/s
-    S = Ss * b
     
-    # Early (a) and late (b) Theis curve
-    t_a_term = r**2 * S / 4 / T
-    t_b_term = r**2 * SY / 4 / T
+    # Theis curve
+    t_term = r**2 * S / 4 / T
     s_term = Qs/(4 * np.pi * T)
 
-    t_a = u_inv * t_a_term
-    t_b = u_inv * t_b_term
+    t = u_inv * t_term
     s = w_u * s_term
 
-    # Early Neuman curve
-    for x in range(0,len(u_inv_a)):
-        t_a_NEU[x] = u_inv_a[x] * t_a_term
-        s_a_NEU[x] = w_u_a[x][beta] * s_term
-    
-    # Late Neuman curve
-    for x in range(0,len(u_inv_b)):
-        t_b_NEU[x] = u_inv_b[x] * t_b_term
-        if (w_u_b[x][beta] == 999):
-            s_b_NEU[x] = well_function(1/u_inv_b[x]) * s_term
+    # Hantush Jacob curve
+    for x in range(0,len(u_HAN)):
+        t_HAN[x] = u_inv_HAN[x] * t_term
+        if (w_u_HAN[x][r_div_B] == 999):
+            s_HAN[x] = well_function(1/u_inv_HAN[x]) * s_term
         else:
-            s_b_NEU[x] = w_u_b[x][beta] * s_term
+            s_HAN[x] = w_u_HAN[x][r_div_B] * s_term
         
     fig = plt.figure(figsize=(10,7))
     ax = fig.add_subplot(1, 1, 1)
-    ax.plot(t_a, s, label=r'Computed drawdown early -Theis')
-    ax.plot(t_b, s, label=r'Computed drawdown late -Theis')
-    ax.plot(t_a_NEU, s_a_NEU, 'b--', label=r'Computed drawdown early - Neuman')
-    ax.plot(t_b_NEU, s_b_NEU, '--', color='darkorange', label=r'Computed drawdown late - Neuman')
-    if show_data:
-        ax.plot(m_time_s, m_ddown,'ro', label=r'measured drawdown')
+    ax.plot(t, s, label=r'Computed drawdown - Theis')
+    ax.plot(t_HAN, s_HAN, 'b--', label=r'Computed drawdown - Hantush Jacob')
+    ax.plot(m_time_s, m_ddown,'ro', label=r'measured drawdown')
     plt.yscale("log")
     plt.xscale("log")
     if refine_plot:
         plt.axis([1E1,1E5,1E-3,1E+1])
     else:
         plt.axis([1E-1,1E8,1E-4,1E+1])
-    ax.set(xlabel='t', ylabel='s',title='Neuman drawdown')
+    ax.set(xlabel='t', ylabel='s',title='Hantush Jacob drawdown')
     ax.grid(which="both")
     plt.legend()
     st.pyplot(fig)
