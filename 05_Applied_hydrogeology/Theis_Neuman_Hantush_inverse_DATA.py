@@ -48,7 +48,7 @@ st.markdown("""
             
             Modify the transmissivity _**T**_ and the storativity _**S**_ to fit the measured data to the well function.
             
-            **Select the data below!**
+            **Select the data and solution below!**
 """
 )            
 # Computation
