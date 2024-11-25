@@ -232,7 +232,9 @@ def inverse():
     with columns2[1]:
         if st.session_state.Solution == 'Neuman':
             SY = st.slider('Specific Yield', 0.01, 0.50, 0.25, 0.01, format="%4.2f")
-            eta = st.selectbox("Eta",(1, 2, 3, 4, 5, 6, 7, 8, 9),)
+            beta_choice = st.selectbox("beta",('0.001','0.01', '0.06', '0.2', '0.6', '1', '2', '4', '6'),)
+            beta_list = ['0.001','0.01', '0.06', '0.2', '0.6', '1', '2', '4', '6']
+            beta = beta_list.index(beta_choice)
     
     # Compute K and SS to provide parameters for plausability check
     # (i.e. are the parameter in a reasonable range)
@@ -252,15 +254,15 @@ def inverse():
         # Early Neuman curve
         for x in range(0,len(u_inv_a)):
             t_a_NEU[x] = u_inv_a[x] * t_a_term
-            s_a_NEU[x] = w_u_a[x][eta-1] * s_term
+            s_a_NEU[x] = w_u_a[x][beta] * s_term
     
         # Late Neuman curve
         for x in range(0,len(u_inv_b)):
             t_b_NEU[x] = u_inv_b[x] * t_b_term
-            if (w_u_b[x][eta-1] == 999):
+            if (w_u_b[x][beta] == 999):
                 s_b_NEU[x] = well_function(1/u_inv_b[x]) * s_term
             else:
-                s_b_NEU[x] = w_u_b[x][eta-1] * s_term
+                s_b_NEU[x] = w_u_b[x][beta] * s_term
         
         fig = plt.figure(figsize=(10,7))
         ax = fig.add_subplot(1, 1, 1)
