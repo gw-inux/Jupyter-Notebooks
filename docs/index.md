@@ -5,7 +5,7 @@ nav_order: 1
 has_children: false
 ---
 
-# General information about the iNUX Interactive Documents
+# General information about the iNUX Interactive Documentssss
 
 ## Welcome and quick access
 
