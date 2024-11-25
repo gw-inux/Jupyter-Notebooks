@@ -76,9 +76,6 @@ u_inv_HAN = [0]*len(u_HAN)
 for x in range(0,len(u_HAN)):
         u_inv_HAN[x] = 1/u_HAN[x]
 
-print(u_HAN)
-print(u_inv_HAN)
-
 # Hantush Jacob type curve data from tables
 
 w_u_HAN = [[9.420E+00, 6.670E+00, 4.850E+00, 3.510E+00, 2.230E+00, 1.550E+00, 8.420E-01, 4.271E-01, 2.280E-01, 1.174E-01],
@@ -104,8 +101,6 @@ w_u_HAN = [[9.420E+00, 6.670E+00, 4.850E+00, 3.510E+00, 2.230E+00, 1.550E+00, 8.
            [9.990E+02, 9.990E+02, 9.990E+02, 9.990E+02, 2.130E-01, 2.060E-01, 1.850E-01, 1.509E-01, 1.140E-01, 8.030E-02],
            [9.990E+02, 9.990E+02, 9.990E+02, 9.990E+02, 9.990E+02, 4.700E-02, 4.400E-02, 9.990E+02, 3.400E-02, 2.500E-02]]
 
-t_HAN = [0]*len(u_HAN)
-s_HAN = [0]*len(u_HAN)
 
 # Select data
 # Data from Viterbo 2023
@@ -148,10 +143,9 @@ def inverse():
         # Convert the slider value to the logarithmic scale
         S = 10 ** S_slider_value
         # Display the logarithmic value
-        st.write("_Specific storage_ (dimensionless):** %5.2e" %S)
+        st.write("_Storativity_ (dimensionless): %5.2e" %S)
         refine_plot = st.toggle("**Refine** the range of the **Data matching plot**")
     with columns2[1]:
-        SY = st.slider('Specific Yield', 0.01, 0.50, 0.25, 0.01, format="%4.2f")
         r_div_B_choice = st.selectbox("r/B",('0.01', '0.04', '0.1', '0.2', '0.4', '0.6', '1', '1.5', '2', '2.5'),)
         r_div_B_list = ['0.01', '0.04', '0.1', '0.2', '0.4', '0.6', '1', '1.5', '2', '2.5']
         r_div_B = r_div_B_list.index(r_div_B_choice)

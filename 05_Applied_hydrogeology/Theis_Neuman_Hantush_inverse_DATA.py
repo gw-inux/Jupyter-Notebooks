@@ -5,11 +5,11 @@ import scipy.special
 import pandas as pd
 import streamlit as st
 
-st.title('Theis and Neuman parameter estimation')
+st.title('Theis, Neuman, and Hantush Jacob parameter estimation')
 st.subheader('Fitting formation parameter to :rainbow[REAL measured] data', divider="rainbow")
 st.markdown("""
             #### This variant of the app allows to choose real measured data
-            This interactive document allows to apply the Theis and Neuman principle for pumping test evaluation in confined, transient setups. The notebook is based on an Spreadsheet from Prof. Rudolf Liedl.
+            This interactive document allows to apply the Theis and Neuman principle for pumping test evaluation in unconfined, leaky, and confined transient setups. The notebook is based on an Spreadsheet from Prof. Rudolf Liedl.
             
             ### General situation
             We consider a aquifer with constant transmissivity. If a well is pumping water out of the aquifer, radial flow towards the well is induced. To calculate the hydraulic situation, the following simplified flow equation can be used. This equation accounts for 1D radial transient flow towards a fully penetrating well within a confined aquifer without further sinks and sources:
@@ -67,10 +67,23 @@ u_inv = 1/u
 u_inv_a = [4.00E-01, 8.00E-01, 1.40E+00, 2.40E+00, 4.00E+00, 8.00E+00, 1.40E+01, 2.40E+01, 4.00E+01, 8.00E+01, 1.40E+02, 2.40E+02, 4.00E+02, 8.00E+02, 1.40E+03, 2.40E+03, 4.00E+03, 8.00E+03]
 u_inv_b = [1.40E-02, 2.40E-02, 4.00E-02, 8.00E-02, 1.40E-01, 2.40E-01, 4.00E-01, 8.00E-01, 1.40E+00, 2.40E+00, 4.00E+00, 8.00E+00, 1.40E+01, 2.40E+01, 4.00E+01, 8.00E+01, 1.40E+02, 2.40E+02, 4.00E+02, 8.00E+02, 1.00E+03]
 
+u_HAN = [1.00E-05, 2.00E-05, 4.00E-05, 6.00E-05, 1.00E-04, 2.00E-04, 4.00E-04, 6.00E-04, 1.00E-03, 2.00E-03, 4.00E-03, 6.00E-03, 1.00E-02, 2.00E-02, 4.00E-02, 6.00E-02, 1.00E-01, 2.00E-01, 4.00E-01, 6.00E-01, 1 , 2]
+
 w_u = well_function(u)
 
-# Neuman type curve data from tables
+t_HAN     = [0]*len(u_HAN)
+s_HAN     = [0]*len(u_HAN)
+u_inv_HAN = [0]*len(u_HAN)
 
+t_a_NEU = [0]*len(u_inv_a)
+s_a_NEU = [0]*len(u_inv_a)
+t_b_NEU = [0]*len(u_inv_b)
+s_b_NEU = [0]*len(u_inv_b)
+
+for x in range(0,len(u_HAN)):
+        u_inv_HAN[x] = 1/u_HAN[x]
+
+# Neuman type curve data from tables
 w_u_a = [[2.48E-02, 2.41E-02, 2.30E-02, 2.14E-02, 1.88E-02, 1.70E-02, 1.38E-02, 1.00E-02, 1.00E-02],
          [1.45E-01, 1.40E-01, 1.31E-01, 1.19E-01, 9.88E-02, 8.49E-02, 6.03E-02, 3.17E-02, 1.74E-02],
          [3.58E-01, 3.45E-01, 3.18E-01, 2.79E-01, 2.17E-01, 1.75E-01, 1.07E-01, 4.45E-02, 2.10E-02],
@@ -111,11 +124,30 @@ w_u_b = [[5.62E+00, 3.46E+00, 1.94E+00, 1.09E+00, 5.12E-01, 3.23E-01, 1.45E-01, 
          [6.16E+00, 5.46E+00, 9.99E+02, 9.99E+02, 9.99E+02, 9.99E+02, 9.99E+02, 9.99E+02, 9.99E+02],
          [6.47E+00, 6.11E+00, 9.99E+02, 9.99E+02, 9.99E+02, 9.99E+02, 9.99E+02, 9.99E+02, 9.99E+02],
          [6.60E+00, 6.50E+00, 9.99E+02, 9.99E+02, 9.99E+02, 9.99E+02, 9.99E+02, 9.99E+02, 9.99E+02]]
-
-t_a_NEU = [0]*len(u_inv_a)
-s_a_NEU = [0]*len(u_inv_a)
-t_b_NEU = [0]*len(u_inv_b)
-s_b_NEU = [0]*len(u_inv_b)
+         
+# Hantush Jacob type curve data from tables
+w_u_HAN = [[9.420E+00, 6.670E+00, 4.850E+00, 3.510E+00, 2.230E+00, 1.550E+00, 8.420E-01, 4.271E-01, 2.280E-01, 1.174E-01],
+           [9.300E+00, 6.670E+00, 4.850E+00, 3.510E+00, 2.230E+00, 1.550E+00, 8.420E-01, 4.271E-01, 2.280E-01, 1.174E-01],
+           [9.010E+00, 6.670E+00, 4.850E+00, 3.510E+00, 2.230E+00, 1.550E+00, 8.420E-01, 4.271E-01, 2.280E-01, 1.174E-01],
+           [8.770E+00, 6.670E+00, 4.850E+00, 3.510E+00, 2.230E+00, 1.550E+00, 8.420E-01, 4.271E-01, 2.280E-01, 1.174E-01],
+           [8.400E+00, 6.670E+00, 4.850E+00, 3.510E+00, 2.230E+00, 1.550E+00, 8.420E-01, 4.271E-01, 2.280E-01, 1.174E-01],
+           [7.820E+00, 6.620E+00, 4.850E+00, 3.510E+00, 2.230E+00, 1.550E+00, 8.420E-01, 4.271E-01, 2.280E-01, 1.174E-01],
+           [7.190E+00, 6.450E+00, 4.850E+00, 3.510E+00, 2.230E+00, 1.550E+00, 8.420E-01, 4.271E-01, 2.280E-01, 1.174E-01],
+           [6.800E+00, 6.270E+00, 4.850E+00, 3.510E+00, 2.230E+00, 1.550E+00, 8.420E-01, 4.271E-01, 2.280E-01, 1.174E-01],
+           [6.310E+00, 5.970E+00, 4.830E+00, 3.510E+00, 2.230E+00, 1.550E+00, 8.420E-01, 4.271E-01, 2.280E-01, 1.174E-01],
+           [9.990E+02, 5.450E+00, 4.710E+00, 3.500E+00, 2.230E+00, 1.550E+00, 8.420E-01, 4.271E-01, 2.280E-01, 1.174E-01],
+           [9.990E+02, 4.850E+00, 4.420E+00, 3.480E+00, 2.230E+00, 1.550E+00, 8.420E-01, 4.271E-01, 2.280E-01, 1.174E-01],
+           [9.990E+02, 4.480E+00, 4.180E+00, 3.430E+00, 2.230E+00, 1.550E+00, 8.420E-01, 4.271E-01, 2.280E-01, 1.174E-01],
+           [9.990E+02, 4.000E+00, 3.810E+00, 3.290E+00, 2.230E+00, 1.550E+00, 8.420E-01, 4.271E-01, 2.280E-01, 1.174E-01],
+           [9.990E+02, 3.340E+00, 3.240E+00, 2.950E+00, 2.180E+00, 1.550E+00, 8.420E-01, 4.271E-01, 2.280E-01, 1.174E-01],
+           [9.990E+02, 9.990E+02, 2.630E+00, 2.480E+00, 2.020E+00, 1.520E+00, 8.420E-01, 4.271E-01, 2.280E-01, 1.174E-01],
+           [9.990E+02, 9.990E+02, 2.260E+00, 2.170E+00, 1.850E+00, 1.460E+00, 8.390E-01, 4.271E-01, 2.280E-01, 1.174E-01],
+           [9.990E+02, 9.990E+02, 1.800E+00, 1.750E+00, 1.560E+00, 1.310E+00, 8.190E-01, 4.271E-01, 2.280E-01, 1.174E-01],
+           [9.990E+02, 9.990E+02, 9.990E+02, 1.190E+00, 1.110E+00, 9.960E-01, 7.150E-01, 4.100E-01, 2.270E-01, 1.174E-01],
+           [9.990E+02, 9.990E+02, 9.990E+02, 6.930E-01, 6.650E-01, 6.210E-01, 5.020E-01, 3.400E-01, 2.100E-01, 1.174E-01],
+           [9.990E+02, 9.990E+02, 9.990E+02, 4.500E-01, 4.360E-01, 4.150E-01, 3.540E-01, 2.550E-01, 1.770E-01, 1.100E-01],
+           [9.990E+02, 9.990E+02, 9.990E+02, 9.990E+02, 2.130E-01, 2.060E-01, 1.850E-01, 1.509E-01, 1.140E-01, 8.030E-02],
+           [9.990E+02, 9.990E+02, 9.990E+02, 9.990E+02, 9.990E+02, 4.700E-02, 4.400E-02, 9.990E+02, 3.400E-02, 2.500E-02]]         
 
 # Select data
 columns = st.columns((1,1), gap = 'large')
@@ -124,7 +156,7 @@ with columns[0]:
     ("Synthetic textbook data", "Load own CSV dataset", "Viterbo 2023", "Varnum 2016 - R4", "Varnum 2016 - R12", "Varnum 2016 - R14", "Varnum 2016 - R15", "Varnum 2016 - B1", "Varnum 2018 - R14"), key = 'Data')
 with columns[1]:
     solution = st.selectbox("**What solution should be used?**",
-    ("Theis", "Neuman"), key = 'Solution')
+    ("Theis", "Neuman", "Hantush Jacob (1955)"), key = 'Solution')
 
 if (st.session_state.Data == "Synthetic textbook data"):
     # Data from SYMPLE exercise
@@ -240,7 +272,7 @@ def inverse():
         T = 10 ** T_slider_value
         # Display the logarithmic value
         st.write("_Transmissivity_ in m2/s: %5.2e" %T)
-        S_slider_value=st.slider('(log of) **Storativity**', log_min2,log_max2,-4.0,0.01,format="%4.2f" )
+        S_slider_value=st.slider('(log of) **Specific storage**', log_min2,log_max2,-4.0,0.01,format="%4.2f" )
         # Convert the slider value to the logarithmic scale
         Ss = 10 ** S_slider_value
         # Display the logarithmic value
@@ -252,17 +284,22 @@ def inverse():
             beta_choice = st.selectbox("beta",('0.001','0.01', '0.06', '0.2', '0.6', '1', '2', '4', '6'),)
             beta_list = ['0.001','0.01', '0.06', '0.2', '0.6', '1', '2', '4', '6']
             beta = beta_list.index(beta_choice)
+        if st.session_state.Solution == 'Hantush Jacob (1955)':
+            r_div_B_choice = st.selectbox("r/B",('0.01', '0.04', '0.1', '0.2', '0.4', '0.6', '1', '1.5', '2', '2.5'),)
+            r_div_B_list = ['0.01', '0.04', '0.1', '0.2', '0.4', '0.6', '1', '1.5', '2', '2.5']
+            r_div_B = r_div_B_list.index(r_div_B_choice)
     
     # Compute K and SS to provide parameters for plausability check
     # (i.e. are the parameter in a reasonable range)
     K = T/b     # m/s
     S = Ss * b
+    s_term = Qs/(4 * np.pi * T)
+    t_term = r**2 * S / 4 / T
     
     if st.session_state.Solution == 'Neuman':
         # Early (a) and late (b) Theis curve
-        t_a_term = r**2 * S / 4 / T
+        t_a_term = t_term
         t_b_term = r**2 * SY / 4 / T
-        s_term = Qs/(4 * np.pi * T)
 
         t_a = u_inv * t_a_term
         t_b = u_inv * t_b_term
@@ -299,20 +336,37 @@ def inverse():
         plt.legend()
         st.pyplot(fig)
 
-        columns3 = st.columns((1,1), gap = 'medium')
-        with columns3[0]:
-            st.write("**Parameter estimation**")
-            st.write("Distance of measurement from the well (in m): %3i" %r)
-            st.write("Pumping rate of measurement (in m^3/s): %5.3f" %Qs)
-            st.write("Thickness of formation b = ","% 5.2f"% b, " m")
-            st.write("Transmissivity T = ","% 10.2E"% T, " m^2/s")
-            st.write("(Hydr. cond. K) = ","% 10.2E"% (T/b), " m^2/s")
-            st.write("Storativity    S = ","% 10.2E"% S, "[-]")
-    else:
-        # Early (a) and late (b) Theis curve
-        t_term = r**2 * S / 4 / T
-        s_term = Qs/(4 * np.pi * T)
+    if st.session_state.Solution == 'Hantush Jacob (1955)':  
+        # Theis curve
+        t = u_inv * t_term
+        s = w_u * s_term
 
+        # Hantush Jacob curve
+        for x in range(0,len(u_HAN)):
+            t_HAN[x] = u_inv_HAN[x] * t_term
+            if (w_u_HAN[x][r_div_B] == 999):
+                s_HAN[x] = well_function(1/u_inv_HAN[x]) * s_term
+            else:
+                s_HAN[x] = w_u_HAN[x][r_div_B] * s_term
+      
+        fig = plt.figure(figsize=(10,7))
+        ax = fig.add_subplot(1, 1, 1)
+        ax.plot(t, s, label=r'Computed drawdown - Theis')
+        ax.plot(t_HAN, s_HAN, 'b--', label=r'Computed drawdown - Hantush Jacob')
+        ax.plot(m_time_s, m_ddown,'ro', label=r'measured drawdown')
+        plt.yscale("log")
+        plt.xscale("log")
+        if refine_plot:
+            plt.axis([1E1,1E5,1E-3,1E+1])
+        else:
+            plt.axis([1E-1,1E8,1E-4,1E+1])
+        ax.set(xlabel='t', ylabel='s',title='Hantush Jacob drawdown')
+        ax.grid(which="both")
+        plt.legend()
+        st.pyplot(fig)
+        
+    else:
+        # Theis curve
         t = u_inv * t_term
         s = w_u * s_term
         
@@ -328,14 +382,14 @@ def inverse():
         plt.legend()
         st.pyplot(fig)
 
-        columns3 = st.columns((1,1), gap = 'medium')
-        with columns3[0]:
-            st.write("**Parameter estimation**")
-            st.write("Distance of measurement from the well (in m): %3i" %r)
-            st.write("Pumping rate of measurement (in m^3/s): %5.3f" %Qs)
-            st.write("Thickness of formation b = ","% 5.2f"% b, " m")
-            st.write("Transmissivity T = ","% 10.2E"% T, " m^2/s")
-            st.write("(Hydr. cond. K) = ","% 10.2E"% (T/b), " m^2/s")
-            st.write("Storativity    S = ","% 10.2E"% S, "[-]")
+    columns3 = st.columns((1,1), gap = 'medium')
+    with columns3[0]:
+        st.write("**Parameter estimation**")
+        st.write("Distance of measurement from the well (in m): %3i" %r)
+        st.write("Pumping rate of measurement (in m^3/s): %5.3f" %Qs)
+        st.write("Thickness of formation b = ","% 5.2f"% b, " m")
+        st.write("Transmissivity T = ","% 10.2E"% T, " m^2/s")
+        st.write("(Hydr. cond. K) = ","% 10.2E"% (T/b), " m^2/s")
+        st.write("Storativity    S = ","% 10.2E"% S, "[-]")
 
 inverse()
