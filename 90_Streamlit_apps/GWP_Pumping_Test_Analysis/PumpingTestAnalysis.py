@@ -6,7 +6,7 @@ st.set_page_config(
     page_icon="💦",
 )
 
-st.write("# Pumping Test Analysis - Theis and Neuman App 💦")
+st.write("# Pumping Test Analysis App 💦")
 
 st.sidebar.success("☝️ Select a page above. ☝️")
 
