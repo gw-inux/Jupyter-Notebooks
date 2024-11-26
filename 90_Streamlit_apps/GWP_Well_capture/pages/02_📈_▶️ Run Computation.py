@@ -47,7 +47,7 @@ slider_dict = {
 #create figure
 f = figure(height=800,width=600
             # ,title='Well capture zone of a pumping well'
-            ,sizing_mode='scale_width'
+            ,sizing_mode='scale_both'
             ,match_aspect=True
             ,x_range = [-10,1]
             ,y_range= [-5,5]
@@ -111,11 +111,11 @@ for sl in slider_dict.values():
     sl.js_on_change('value',cb)
     sl.stylesheets = [sl_style]
     sl.width=f.width
-    sl.sizing_mode='scale_width'
+    sl.sizing_mode='stretch_width'
     
 #layout
 lo = column([sl for sl in slider_dict.values()]+[f]
-            ,sizing_mode = 'scale_both'
+            ,sizing_mode = 'stretch_both'
             )
 
 
