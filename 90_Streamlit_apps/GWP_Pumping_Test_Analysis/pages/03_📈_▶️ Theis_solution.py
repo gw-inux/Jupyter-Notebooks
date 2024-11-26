@@ -113,7 +113,7 @@ def inverse():
     plt.yscale("log")
     plt.xscale("log")
     if refine_plot:
-        plt.axis([1E-0,1E4,1E-1,1E+1])
+        plt.axis([1E0,1E4,1E-1,1E+1])
     else:
         plt.axis([1E-1,1E5,1E-4,1E+1])
     ax.set(xlabel='t', ylabel='s',title='Neuman drawdown')

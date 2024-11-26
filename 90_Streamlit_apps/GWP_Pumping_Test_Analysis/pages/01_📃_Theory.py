@@ -2,7 +2,7 @@ import streamlit as st
 
 st.title('📃 Theory underlying PumpingTestAnalysis')
 
-st.subheader(':orange-background[The Theis and Neuman solution]', divider="orange")
+st.subheader(':orange-background[The Theis, Neuman, and Hantush Jacob solution]', divider="orange")
 
 st.markdown("""
             ### Introduction

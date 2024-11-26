@@ -14,7 +14,7 @@ st.header('Welcome 👋')
 
 st.markdown(
     """
-    This app is designed to introduce the computation of transient flow to a well in a confined aquifer. 
+    This app is designed to introduce the evaluation of pumping tests for confined, unconfined, and leaky aquifers. 
      
     [Motivation / reason] with the following properties entered by the user.
     - Transmissivity _T_ (square meters per second)

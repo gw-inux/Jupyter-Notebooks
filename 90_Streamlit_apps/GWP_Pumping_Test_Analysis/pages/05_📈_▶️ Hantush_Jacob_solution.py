@@ -8,49 +8,30 @@ import streamlit as st
 st.title('Hantush Jacob parameter estimation')
 st.subheader('Understanding the Hantush Jacob (1955) solution  for :blue[leaky aquifers]', divider="blue")
 st.markdown("""
-            ALL OF THE FOLLOWING NEEDS TO BE ADAPTED
-            
-            #### General explanation and credit
-            
-            ### General situation
-            We consider a aquifer with constant transmissivity. If a well is pumping water out of the aquifer, radial flow towards the well is induced. To calculate the hydraulic situation, the following simplified flow equation can be used. This equation accounts for 1D radial transient flow towards a fully penetrating well within an unconfined aquifer without further sinks and sources:
+            ### Introductionary remarks
 """
 )
-st.latex(r'''\frac{\partial^2 h}{\partial r^2}+\frac{1}{r}\frac{\partial h}{\partial r}=\frac{S}{T}\frac{\partial h}{\partial t}''')
-st.markdown("""
-            ### Mathematical model and solution
-            
-            #### Theis solution for confined aquifers
-            
-            Charles V. Theis presented a solution for this by deriving
-"""
-)
-st.latex(r'''s(r,t)=\frac{Q}{4\pi T}W(u)''')
-st.markdown("""
-            with the well function
-"""
-)
-st.latex(r'''W(u) = \int_{u }^{+\infty} \frac{e^{-\tilde u}}{\tilde u}d\tilde u''')
-st.markdown("""
-            and the dimensionless variable
-"""
-)
-st.latex(r'''u = \frac{Sr^2}{4Tt}''')
-st.markdown("""
-            #### Neuman solution for unconfined aquifers
-            
-            ToDo: Provide explanation and theory here
-"""
-)
-st.markdown("""
-            This equations are not easy to solve. Historically, values for the well function were provided by tables or as so called type-curve. The type-curve matching with experimental data for pumping test analysis can be considered as one of the basic hydrogeological methods. However, modern computer provide an easier and more convinient way to solve the 1D radial flow equation based on the Theis approach. Subsequently, the Theis equation is solved with Python routines. The results for the measured data are graphically presented in an interactive plot.
-            
-            The red dots are the measured data.
-            
-            Modify the transmissivity _**T**_ and the storativity _**S**_ to fit the measured data to the well function.
-            
-            **Select the data below!**
-"""
+# Initial assessment
+
+columnsQ1 = st.columns((1,1), gap = 'large')
+
+with columnsQ1[0]:
+    stb.single_choice(":red[**For which conditions is the Theis solution intended?**]",
+                  ["Steady state flow, confined aquifer.", "Transient flow, confined aquifer", "Steady state flow, unconfined aquifer",
+                  "Transient flow, unconfined aquifer"],
+                  1,success='CORRECT!   ...', error='Not quite. ... If required, you can read again about transmissivity _T_ in the following ressources _reference to GWP books...')
+    stb.single_choice(":red[**Question2?**]",
+                  ["Answer1.", "Answer2", "Answer3", "Answer4"],
+                  1,success='CORRECT!   ...', error='Not quite. ... If required, you can read again about transmissivity _T_ in the following ressources _reference to GWP books...')
+                  
+with columnsQ1[1]:
+    stb.single_choice(":red[**Question3?**]",
+                  ["Answer1.", "Answer2", "Answer3", "Answer4"],
+                  1,success='CORRECT!   ...', error='Not quite. ... If required, you can read again about transmissivity _T_ in the following ressources _reference to GWP books...')             
+    stb.single_choice(":red[**Question4?**]",
+                  ["Answer1.", "Answer2", "Answer3", "Answer4"],
+                  1,success='CORRECT!   ...', error='Not quite. ... If required, you can read again about transmissivity _T_ in the following ressources _reference to GWP books...')
+"---" 
 )            
 # Computation
 # (Here the necessary functions like the well function $W(u)$ are defined. Later, those functions are used in the computation)
