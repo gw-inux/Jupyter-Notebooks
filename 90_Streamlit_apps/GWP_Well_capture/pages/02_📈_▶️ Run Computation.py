@@ -20,8 +20,8 @@ st.title('Well capture zone for a confined aquifer')
 import streamlit.components.v1 as components
 
 # wdir = r'C:\Repo\Jupyter-Notebooks\90_Streamlit_apps\GWP_Well_capture\pages' #when using in IDE locally
-wdir = os.path.dirname(os.path.realpath(__file__)) #when deploying
-
+# wdir = os.path.dirname(os.path.realpath(__file__)) #when deploying
+wdir = os.getcwd()
 #style/theming loading
 thm = Theme(filename=wdir+r'\\Bokeh_Styles.yaml') #read yaml file for some styling already hooked up
 
