@@ -109,11 +109,11 @@ for sl in slider_dict.values():
     sl.js_on_change('value',cb)
     sl.stylesheets = [sl_style]
     sl.width=f.width
-    sl.width_policy='fit'
+    sl.sizing_mode='scale_width'
     
 #layout
 lo = column([sl for sl in slider_dict.values()]+[f]
-            ,sizing_mode = 'stretch_both'
+            ,sizing_mode = 'scale_both'
             )
 
 
