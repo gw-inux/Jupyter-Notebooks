@@ -13,9 +13,14 @@ from bokeh.models import CustomJS, HoverTool, ColumnDataSource, Slider, CustomJS
 from bokeh.models import VeeHead, Arrow, Label
 from bokeh.themes import Theme
 from bokeh.layouts import column
+from bokeh.embed import file_html
 
-wdir = r'C:\Repo\Jupyter-Notebooks\90_Streamlit_apps\GWP_Well_capture\pages' #when using in IDE locally
-# wdir = os.path.dirname(os.path.realpath(__file__)) #when deploying
+import streamlit as st
+st.title('Well capture zone for a confined aquifer')
+import streamlit.components.v1 as components
+
+# wdir = r'C:\Repo\Jupyter-Notebooks\90_Streamlit_apps\GWP_Well_capture\pages' #when using in IDE locally
+wdir = os.path.dirname(os.path.realpath(__file__)) #when deploying
 
 #style/theming loading
 thm = Theme(filename=wdir+r'\\Bokeh_Styles.yaml') #read yaml file for some styling already hooked up
@@ -42,7 +47,7 @@ slider_dict = {
 #create figure
 f = figure(height=800,width=800
            ,title='Well capture zone of a pumping well'
-           # ,sizing_mode='stretch_both'
+            ,sizing_mode='stretch_both'
            ,match_aspect=True
            ,x_range = [-10,1]
            ,y_range= [-5,5]
@@ -107,11 +112,13 @@ for sl in slider_dict.values():
     
 #layout
 lo = column([sl for sl in slider_dict.values()]+[f]
-            # ,sizing_mode = 'stretch_both'
+            ,sizing_mode = 'stretch_both'
             )
 
 
 curdoc().theme = thm #assigns theme
 
-save(lo,wdir+r'\\Testing.html',title='Well Capture')
+bk_html = file_html(models=lo,resources='cdn')
+components.html(bk_html,height=800)
+# save(lo,wdir+r'\\BokehApp.html',title='Well Capture')
 

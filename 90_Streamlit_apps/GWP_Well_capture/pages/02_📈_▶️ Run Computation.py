@@ -1,92 +1,128 @@
-# Initialize librarys
-import matplotlib
-import matplotlib.pyplot as plt
+# -*- coding: utf-8 -*-
+"""
+Created on Mon Nov 25 11:23:09 2024
+
+@author: Gaelen
+"""
+import os
+import sys
+
 import numpy as np
-import math
-from math import pi, tan
+from bokeh.plotting import figure, save, curdoc
+from bokeh.models import CustomJS, HoverTool, ColumnDataSource, Slider, CustomJSTickFormatter, InlineStyleSheet, Div, Range1d
+from bokeh.models import VeeHead, Arrow, Label
+from bokeh.themes import Theme
+from bokeh.layouts import column
+from bokeh.embed import file_html
+
 import streamlit as st
-
 st.title('Well capture zone for a confined aquifer')
+import streamlit.components.v1 as components
 
-# Function for catchment width (maximale Breite des Einzugsgebietes)
-def ymax_conf(Q, K, i, b):
-    ymax = Q/(2.*K*i*b)
-    return ymax
+# wdir = r'C:\Repo\Jupyter-Notebooks\90_Streamlit_apps\GWP_Well_capture\pages' #when using in IDE locally
+wdir = os.path.dirname(os.path.realpath(__file__)) #when deploying
 
-# Function for the culmination point (Kulminationspunkt)
-def x0_conf(Q, K, i, b):
-    x0 = Q/(2.*np.pi*K*i*b)
-    return x0
+#style/theming loading
+thm = Theme(filename=wdir+r'\\Bokeh_Styles.yaml') #read yaml file for some styling already hooked up
 
-# Computaton of the well catchment (Berechnung der Trennstromlinie)
+with open(wdir+'\\Bokeh_Styles.css','r') as f:
+    css = f.read()
+sl_style = InlineStyleSheet(css=css)
 
-# Get input data
-# Define the minimum and maximum for the logarithmic scale
+#slider layout
+slider_dict = {
+    'Pumping': Slider(title='Pumping rate (m³/s)', value=0, start=0, end=0.2, step = 0.001
+                        ,format='0.000'
+                        )
+    ,'Thickness': Slider(title='Aquifer thickness (m)',value=20 ,start=1, end=100, step = 0.01
+                        ,format='0.00')
+    ,'Gradient': Slider(title='Gradient of regional flow (dimensionless)',value = -5, start = -5, end = 0, step = 0.1
+                        ,format=CustomJSTickFormatter(code="return (10**tick).toExponential(2).toString()") #handling log scale slider)
+                        )
 
-log_min = -7.0 # K / Corresponds to 10^-7 = 0.0000001
-log_max = 0.0  # K / Corresponds to 10^0 = 1
+    ,'Conductivity':Slider(title='Hydraulic Conductivity (m/s)',value = -3, start = -7, end = 0, step = 0.01
+                        ,format=CustomJSTickFormatter(code="return (10**tick).toExponential(2).toString()") #handling log scale slider)
+                        )
+    }
 
-log_min2 = -5.0 # K / Corresponds to 10^-7 = 0.0000001
-log_max2 = 0.0  # K / Corresponds to 10^0 = 1
+#create figure
+f = figure(height=800,width=800
+            ,title='Well capture zone of a pumping well'
+            ,sizing_mode='stretch_both'
+            ,match_aspect=True
+            ,x_range = [-10,1]
+            ,y_range= [-5,5]
+            )
 
-columns = st.columns((1,1), gap = 'large')
+f.xaxis[0].axis_label = 'y (km)'
+f.yaxis[0].axis_label = 'x (km)'
 
-with columns[0]:
-    x_scale = st.slider('_Plot scaling in x direction_', 0.5, 10., 0.5, 0.5)
-    y_scale = st.slider('_Plot scaling in y direction_', 0.5, 10., 0.5, 0.5)
-    #revers = st.toggle('Reverse x-axis')
-with columns[1]:
-    b = st.slider('**Aquifer thickness (m)**', 1., 100.,20., 0.1, format="%5.2f")
-    i_slider_value=st.slider('(log of) **Gradient of regional flow (dimensionless)**', log_min2,log_max2,-3.0,0.01,format="%4.2f" )
-    # Convert the slider value to the logarithmic scale
-    i = 10 ** i_slider_value   
-    # Display the logarithmic value
-    st.write("_Gradient of regional flow (dimensionless):_ %5.2e" %i)    
-    Q = st.slider('**Pumping rate (m3/s)**', 0., 0.2,0.005, 0.001, format="%5.3f")
-    K_slider_value=st.slider('(log of) **Hydr. conductivity (m/s)**', log_min,log_max,-3.0,0.01,format="%4.2f" )
-    # Convert the slider value to the logarithmic scale
-    K = 10 ** K_slider_value
-    # Display the logarithmic value
-    st.write("_Hydraulic conductivity (m/s):_ %5.2e" %K)
+vh = VeeHead(size=15, fill_color='black')
+arrw = Arrow(end=vh
+              , x_start=100, y_start=600, x_end=200
+              , y_end=600,
+              end_units='screen',start_units='screen'
+              )
+f.add_layout(arrw,'center')
+lbl = Label(x=100,y=600,y_offset=-50,text='Regional Gradient\nDirection',x_units='screen',y_units='screen')
+f.add_layout(lbl)
+
+#well glyph, using highest level API because it's static (no need to access/manipulate for now)
+pw = f.scatter(x=[0],y=[0],marker='circle_x',size=12,legend_label='Pumping well',fill_color='red')
+
+#capture zone datasource
+src = ColumnDataSource(data={'y': []
+                              ,'x': []
+                              }) #initialize completely empty, to be filled on first user action
+
+#patch renderer for capture zone
+cz_pr = f.patch(x='x',y='y',source=src, fill_alpha=0.1,legend_label='Well capture zone')
 
 
-x_max= 1000 #fixed(x_max),
-ymax = ymax_conf(Q, K, i, b)
-x0   = x0_conf(Q, K, i, b)
 
-y = np.linspace(-ymax*0.999, ymax*0.999, 100)
+#arrow showing width
+w_src = ColumnDataSource(data={'x0':[],'y0':[],'x1':[],'y1':[]})
+w_arrw = Arrow(start=vh,end=vh,x_start='x0',y_start='y0',x_end='x1',y_end='y1'
+                ,source=w_src)
+f.add_layout(w_arrw)
+w_lbl = Label(x=0,y=0,text='Max Width = '
+                ,visible=False
+              )
+f.add_layout(w_lbl)
+#arrow showing culmination
+cvh = VeeHead(size=5, fill_color='black')
+c_src = ColumnDataSource(data={'x0':[],'y0':[],'x1':[],'y1':[]})
+c_arrw = Arrow(start=cvh,end=cvh,x_start='x0',y_start='y0',x_end='x1',y_end='y1'
+                ,source=c_src)
+f.add_layout(c_arrw)
+c_lbl = Label(x=0,y=0,text='Culm. Pt. = '
+                ,visible=False
+              )
+f.add_layout(c_lbl)
 
-x_well = 0
-y_well = 0
+cb = CustomJS.from_file(path=wdir+r'\\cb.mjs'
+                        , src=src,sl_dict=slider_dict, f= f
+                        ,w_src=w_src, w_lbl=w_lbl
+                        ,c_src=c_src,c_lbl=c_lbl)
 
-# Compute catchment
-#x = -1*y/(np.tan(2*np.pi*K*i*b*y/Q))
-x = y/(np.tan(2*np.pi*K*i*b*y/Q))
-
-x_plot = 500 * x_scale
-y_plot = 1000 * y_scale
+#execute this callback when slider value changes
+for sl in slider_dict.values():
+    sl.js_on_change('value',cb)
+    sl.stylesheets = [sl_style]
+    sl.width=f.width
     
-# Plot
-fig = plt.figure(figsize=(8,6))
-ax = fig.add_subplot(1, 1, 1)
+#layout
+lo = column([sl for sl in slider_dict.values()]+[f]
+            ,sizing_mode = 'stretch_both'
+            )
 
-ax.plot(x,y, label='Well capture zone')
-ax.plot(x_well,y_well, marker='o', color='r',linestyle ='None', label='pumping well') 
-ax.set(xlabel='x (m)', ylabel='y (m)',title='Well capture zone of a pumping well')
-ax.set(xlim=(-10*x_plot,x_plot), ylim=(-y_plot, y_plot))
-#if revers:
-#    ax.set(xlim=(10*x_plot,-x_plot,), ylim=(-y_plot, y_plot))
-#else:
-#    ax.set(xlim=(-x_plot,10*x_plot), ylim=(-y_plot, y_plot))
-    
 
-plt.fill_between(x,y,color='blue', alpha=.1)
-plt.fill_between(x,-y,color='blue', alpha=.1)
-ax.grid()
-plt.legend()
+curdoc().theme = thm #assigns theme
+save(lo,wdir+r'\\BokehApp.html',title='Well Capture')
+bk_html = file_html(models=lo,resources='cdn')
 
-st.pyplot(fig)
-    
-st.write("Width of capture zone (m): %5.2f" %(2*ymax))
-st.write('Culmination point x_0 (m):  %5.2f' %x0)
-    
+with open(wdir+'\\BokehApp.html') as f:
+    bk_html = f.read()
+components.html(bk_html,height=800)
+
+
