@@ -27,7 +27,7 @@ from os.path import isfile, join
 onlyfiles = [f for f in listdir(wdir) if isfile(join(wdir, f))]
 print(onlyfiles)
 #style/theming loading
-# thm = Theme(filename=wdir+r'\\Bokeh_Styles.yaml') #read yaml file for some styling already hooked up
+thm = Theme(filename=wdir+r'\\Bokeh_Styles.yaml') #read yaml file for some styling already hooked up
 
 with open(wdir+'\\Bokeh_Styles.css','r') as f:
     css = f.read()
@@ -121,7 +121,7 @@ lo = column([sl for sl in slider_dict.values()]+[f]
             )
 
 
-# curdoc().theme = thm #assigns theme
+curdoc().theme = thm #assigns theme
 save(lo,wdir+r'\\BokehApp.html',title='Well Capture')
 bk_html = file_html(models=lo,resources='cdn')
 
