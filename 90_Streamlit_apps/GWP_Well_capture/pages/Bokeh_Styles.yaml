@@ -5,7 +5,7 @@ attrs:
             axis_label_text_font_style: bold
             axis_label_text_color: '#17648D'
             major_label_text_font: arial
-            major_label_text_font_size: 15px
+            major_label_text_font_size: 16px
             major_label_text_font_style: normal
         Title:
             text_font: arial
@@ -14,6 +14,10 @@ attrs:
         LabelSet:
             #text_font: arial why doesn't this work?
             #text_font_size: 15px
+            text_font_style: bold
+        Label:
+            text_font: arial
+            text_font_size: 15px
             text_font_style: bold
         Legend:
             label_text_font: arial

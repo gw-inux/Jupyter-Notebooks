@@ -45,9 +45,9 @@ slider_dict = {
     }
 
 #create figure
-f = figure(height=800,width=800
-            ,title='Well capture zone of a pumping well'
-            ,sizing_mode='stretch_both'
+f = figure(height=800,width=600
+            # ,title='Well capture zone of a pumping well'
+            ,sizing_mode='scale_width'
             ,match_aspect=True
             ,x_range = [-10,1]
             ,y_range= [-5,5]
@@ -63,7 +63,9 @@ arrw = Arrow(end=vh
               end_units='screen',start_units='screen'
               )
 f.add_layout(arrw,'center')
-lbl = Label(x=100,y=600,y_offset=-50,text='Regional Gradient\nDirection',x_units='screen',y_units='screen')
+lbl = Label(x=100,y=600,y_offset=-50,text='Regional Gradient\nDirection',x_units='screen',y_units='screen'
+            # ,render_mode='css'
+            )
 f.add_layout(lbl)
 
 #well glyph, using highest level API because it's static (no need to access/manipulate for now)
@@ -120,7 +122,7 @@ lo = column([sl for sl in slider_dict.values()]+[f]
 curdoc().theme = thm #assigns theme
 save(lo,wdir+r'/BokehApp.html',title='Well Capture')
 bk_html = file_html(models=lo,resources='cdn')
-
+#%%
 with open(wdir+'/BokehApp.html') as f:
     bk_html = f.read()
 components.html(bk_html,height=800)
