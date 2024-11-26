@@ -22,10 +22,6 @@ import streamlit.components.v1 as components
 # wdir = r'C:\Repo\Jupyter-Notebooks\90_Streamlit_apps\GWP_Well_capture\pages' #when using in IDE locally
 wdir = os.path.dirname(os.path.realpath(__file__)) #when deploying
 # wdir = os.getcwd()+r'\\90_Streamlit_apps/GWP_Well_capture/pages'
-from os import listdir
-from os.path import isfile, join
-onlyfiles = [f for f in listdir(wdir) if isfile(join(wdir, f))]
-print(onlyfiles)
 #style/theming loading
 thm = Theme(filename=wdir+r'/Bokeh_Styles.yaml') #read yaml file for some styling already hooked up
 with open(wdir+r'/Bokeh_Styles.css','r') as f:
@@ -35,7 +31,7 @@ sl_style = InlineStyleSheet(css=css)
 #slider layout
 slider_dict = {
     'Pumping': Slider(title='Pumping rate (m³/s)', value=0, start=0, end=0.2, step = 0.001
-                        ,format='0.000'
+                        ,format='0.000'                        
                         )
     ,'Thickness': Slider(title='Aquifer thickness (m)',value=20 ,start=1, end=100, step = 0.01
                         ,format='0.00')
@@ -113,6 +109,7 @@ for sl in slider_dict.values():
     sl.js_on_change('value',cb)
     sl.stylesheets = [sl_style]
     sl.width=f.width
+    sl.width_policy='fit'
     
 #layout
 lo = column([sl for sl in slider_dict.values()]+[f]
