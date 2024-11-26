@@ -1,5 +1,5 @@
 div.bk-slider-title{
                 font-family: arial;
                 font-weight: bold;
-                font-size: 18px;
+                font-size: min(5vw, 18px);
                 color: #17648D;
