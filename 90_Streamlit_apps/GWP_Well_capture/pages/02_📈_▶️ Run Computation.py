@@ -27,9 +27,7 @@ from os.path import isfile, join
 onlyfiles = [f for f in listdir(wdir) if isfile(join(wdir, f))]
 print(onlyfiles)
 #style/theming loading
-# thm = Theme(filename=wdir+r'\\Bokeh_Styles.yaml') #read yaml file for some styling already hooked up
-thm = Theme(filename='90_Streamlit_apps/GWP_Well_capture/assets/Bokeh_Styles.yaml')
-print(thm)
+thm = Theme(filename=wdir+r'\\Bokeh_Styles.yaml') #read yaml file for some styling already hooked up
 with open(wdir+'\\Bokeh_Styles.css','r') as f:
     css = f.read()
 sl_style = InlineStyleSheet(css=css)
