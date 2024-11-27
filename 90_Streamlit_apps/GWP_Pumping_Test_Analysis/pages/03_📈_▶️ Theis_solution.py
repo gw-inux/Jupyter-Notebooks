@@ -49,19 +49,6 @@ u = np.logspace(u_min,u_max)
 u_inv = 1/u
 w_u = well_function(u)
 
-
-# Data from SYMPLE exercise
-m_time = [1,1.5,2,2.5,3,4,5,6,8,10,12,14,18,24,30,40,50,60,100,120] # time in minutes
-m_ddown = [0.66,0.87,0.99,1.11,1.21,1.36,1.49,1.59,1.75,1.86,1.97,2.08,2.20,2.36,2.49,2.65,2.78,2.88,3.16,3.28]   # drawdown in meters
-# Parameters needed to solve Theis (From the SYMPLE example/excercise)
-r = 120       # m
-b = 8.5       # m
-Qs = 0.3/60   # m^3/s
-Qd = Qs*60*60*24 # m^3/d
-
-m_time_s = [i*60 for i in m_time] # time in seconds
-num_times = len(m_time)
-
 st.subheader(':green[Inverse parameter fitting]', divider="rainbow")
 
 st.markdown("""
@@ -81,6 +68,9 @@ def inverse():
    
     columns2 = st.columns((1,1), gap = 'large')
     with columns2[0]:
+        refine_plot = st.toggle("**Refine** the range of the **Data matching plot**")
+        Viterbo = st.toggle("**Use real data from Viterbo 2023**")
+    with columns2[1]:
         T_slider_value=st.slider('(log of) **Transmissivity** in m2/s', log_min1,log_max1,-3.0,0.01,format="%4.2f" )
         # Convert the slider value to the logarithmic scale
         T = 10 ** T_slider_value
@@ -88,15 +78,34 @@ def inverse():
         st.write("_Transmissivity_ in m2/s: %5.2e" %T)
         S_slider_value=st.slider('(log of) **Storativity**', log_min2,log_max2,-4.0,0.01,format="%4.2f" )
         # Convert the slider value to the logarithmic scale
-        Ss = 10 ** S_slider_value
+        S = 10 ** S_slider_value
         # Display the logarithmic value
-        st.write("_Specific storage_ (dimensionless):** %5.2e" %Ss)
-        refine_plot = st.toggle("**Refine** the range of the **Data matching plot**")
+        st.write("_Specific storage_ (dimensionless):** %5.2e" %S)
     
+    # Data from SYMPLE exercise
+    m_time = [1,1.5,2,2.5,3,4,5,6,8,10,12,14,18,24,30,40,50,60,100,120] # time in minutes
+    m_ddown = [0.66,0.87,0.99,1.11,1.21,1.36,1.49,1.59,1.75,1.86,1.97,2.08,2.20,2.36,2.49,2.65,2.78,2.88,3.16,3.28]   # drawdown in meters
+    # Parameters needed to solve Theis (From the SYMPLE example/excercise)
+    r = 120       # m
+    b = 8.5       # m
+    Qs = 0.3/60   # m^3/s
+    Qd = Qs*60*60*24 # m^3/d
+
+    if Viterbo:
+        # Data from Viterbo 2023
+        m_time = [0.083333333, 1, 1.416666667, 2.166666667, 2.5, 2.916666667, 3.566666667, 3.916666667, 4.416666667, 4.833333333, 5.633333333, 6.516666667, 7.5, 8.916666667, 10.13333333, 11.16666667, 12.6, 16.5, 18.53333333, 22.83333333, 27.15, 34.71666667, 39.91666667, 48.21666667, 60.4, 72.66666667, 81.91666667, 94.66666667, 114.7166667, 123.5]
+        m_ddown = [0.04, 0.09, 0.12, 0.185, 0.235, 0.22, 0.26, 0.3, 0.31, 0.285, 0.34, 0.4, 0.34, 0.38, 0.405, 0.38, 0.385, 0.415, 0.425, 0.44, 0.44, 0.46, 0.47, 0.495, 0.54, 0.525, 0.53, 0.56, 0.57, 0.58]
+        # Parameters needed to solve Theis (From the SYMPLE example/excercise) !!! UPDATE !!!
+        r = 130       # m
+        b = 8.5       # m
+        Qs = 0.3/60   # m^3/s
+        Qd = Qs*60*60*24 # m^3/d
+
+    m_time_s = [i*60 for i in m_time] # time in seconds
+    num_times = len(m_time)
     # Compute K and SS to provide parameters for plausability check
     # (i.e. are the parameter in a reasonable range)
     K = T/b     # m/s
-    S = Ss * b
     
    
     # Early (a) and late (b) Theis curve
@@ -109,16 +118,23 @@ def inverse():
     fig = plt.figure(figsize=(10,7))
     ax = fig.add_subplot(1, 1, 1)
     ax.plot(t, s, label=r'Computed drawdown - Theis')
-    ax.plot(m_time_s, m_ddown,'ro', label=r'measured drawdown')
+    if Viterbo:
+        ax.plot(m_time_s, m_ddown,'go', label=r'measured drawdown - Viterbo 23')
+    else:
+        ax.plot(m_time_s, m_ddown,'ro', label=r'measured drawdown - synthetic textbook')
     plt.yscale("log")
     plt.xscale("log")
+    plt.xticks(fontsize=14)
+    plt.yticks(fontsize=14)
     if refine_plot:
         plt.axis([1E0,1E4,1E-1,1E+1])
     else:
         plt.axis([1E-1,1E5,1E-4,1E+1])
-    ax.set(xlabel='t', ylabel='s',title='Neuman drawdown')
     ax.grid(which="both")
-    plt.legend()
+    plt.xlabel(r'time t in (s)', fontsize=14)
+    plt.ylabel(r'drawdown s in (m)', fontsize=14)
+    plt.title('Theis drawdown', fontsize=16)
+    plt.legend(fontsize=14)
     st.pyplot(fig)
 
     columns3 = st.columns((1,1), gap = 'medium')
@@ -126,9 +142,7 @@ def inverse():
         st.write("**Parameter estimation**")
         st.write("Distance of measurement from the well (in m): %3i" %r)
         st.write("Pumping rate of measurement (in m^3/s): %5.3f" %Qs)
-        st.write("Thickness of formation b = ","% 5.2f"% b, " m")
         st.write("Transmissivity T = ","% 10.2E"% T, " m^2/s")
-        st.write("(Hydr. cond. K) = ","% 10.2E"% (T/b), " m^2/s")
         st.write("Storativity    S = ","% 10.2E"% S, "[-]")
 
 inverse()

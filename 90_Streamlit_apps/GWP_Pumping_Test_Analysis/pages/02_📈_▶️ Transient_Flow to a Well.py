@@ -7,7 +7,7 @@ import streamlit_book as stb
 
 st.title('Transient Flow towards a well in a confined aquifer')
 
-st.subheader(':blue-background[Drawdown computation with the Theis solution]', divider="blue")
+st.subheader(':blue-background[Understanding the response of an aquifer to pumping]', divider="blue")
 
 st.markdown('''
             ### To start the investigation of the topic ...
@@ -24,21 +24,19 @@ st.markdown("CO<sub>2</sub>", unsafe_allow_html=True)
 columnsQ1 = st.columns((1,1), gap = 'large')
 
 with columnsQ1[0]:
-    stb.single_choice(":rainbow[**For which conditions is the Theis solution intended?**]",
+    stb.single_choice(":blue[**For which conditions is the Theis solution intended?**]",
                   ["Steady state flow, confined aquifer.", "Transient flow, confined aquifer", "Steady state flow, unconfined aquifer",
                   "Transient flow, unconfined aquifer"],
                   1,success='CORRECT!   ...', error='Not quite. ... If required, you can read again about transmissivity _T_ in the following ressources _reference to GWP books...')
-    stb.single_choice(":rainbow[**Question2?**]",
-                  ["Answer1.", "Answer2", "Answer3", "Answer4"],
-                  1,success='CORRECT!   ...', error='Not quite. ... If required, you can read again about transmissivity _T_ in the following ressources _reference to GWP books...')
-                  
+    stb.single_choice(":blue[**Assume there is no recharge to the aquifer. What happend with the range of drawdown with ongoing time?**]",
+                  ["The range of drawdown will reach a steady state.", "The range of drawdown will increase.", "The range of drawdown is not dependend of time", "The range of drawdown will decrease."],
+                  1,success='CORRECT! Without recharge, the range of drawdown will increase.', error='Not quite. Without recharge, the range of drawdown will increase with ongoing time. Use the interactive plot to investigate this behavior.') 
 with columnsQ1[1]:
-    stb.single_choice(":rainbow[**Question3?**]",
-                  ["Answer1.", "Answer2", "Answer3", "Answer4"],
-                  1,success='CORRECT!   ...', error='Not quite. ... If required, you can read again about transmissivity _T_ in the following ressources _reference to GWP books...')             
-    stb.single_choice(":rainbow[**Question4?**]",
-                  ["Answer1.", "Answer2", "Answer3", "Answer4"],
-                  1,success='CORRECT!   ...', error='Not quite. ... If required, you can read again about transmissivity _T_ in the following ressources _reference to GWP books...')
+    stb.single_choice(":blue[**How much water is pumped out by a pumping rate of 0.001 m3/s?**]",
+                  ["1000 liters per second.", "100 liters per second", "10 liters per second", "1 liter per second"],
+                  3,success='CORRECT! 0.001 m3/s is equivalent to 1 liter per second.', error='Not quite. Keep in mind that 1,000 liters are equivalent to 1 m3.')
+                  
+            
 "---"
 
 st.markdown('''
@@ -84,42 +82,44 @@ log_max1 = 0.0  # T / Corresponds to 10^0 = 1
 log_min2 = -7.0 # S / Corresponds to 10^-7 = 0.0000001
 log_max2 = 0.0  # S / Corresponds to 10^0 = 1
    
-columns = st.columns((1,1), gap = 'large')
+columns = st.columns((1,1,1), gap = 'large')
 
 with columns[0]:
-    max_s = st.slider(f'Drawdown range in the plot (m)',1,50,20,1)
-    max_r = st.slider(f'Distance range in the plot (m)',10,10000,1000,1)
-    x_search = st.slider(f'Distance for result printoutrange in the plot (m)',0,10000,0,1)
-    t = st.slider(f'**Time (s)**',0,86400*7,86400,600)
+    Q = st.slider(f'**Pumping rate (m^3/s)**', 0.001,0.03,0.000,0.001,format="%5.3f")
+    max_s = 20
+    max_r = 1000
     
 with columns[1]:
-    Q = st.slider(f'**Pumping rate (m^3/s)**', 0.001,0.100,0.000,0.001,format="%5.3f")
-    T_slider_value=st.slider('(log of) Transmissivity in m2/s', log_min1,log_max1,-3.0,0.01,format="%4.2f" )
+    
+    T_slider_value=st.slider('(log of) **Transmissivity** in m2/s', log_min1,log_max1,-3.0,0.01,format="%4.2f" )
     # Convert the slider value to the logarithmic scale
     T = 10 ** T_slider_value
     # Display the logarithmic value
-    st.write("**Transmissivity in m2/s:** %5.2e" %T)
-    S_slider_value=st.slider('(log of) Storativity', log_min2,log_max2,-4.0,0.01,format="%4.2f" )
+    st.write("_Transmissivity in m2/s:_ %5.2e" %T)
+    S_slider_value=st.slider('(log of) **Storativity**', log_min2,log_max2,-4.0,0.01,format="%4.2f" )
     # Convert the slider value to the logarithmic scale
     S = 10 ** S_slider_value
     # Display the logarithmic value
-    st.write("**Storativity (dimensionless):** %5.2e" %S)
+    st.write("_Storativity (dimensionless):_ %5.2e" %S)
 
-# Range of spatial coordinate
+with columns[2]:
+    t_show = st.slider(f'**Time to show(s)**',0,86400*7,86400,600)
+    r_show = st.slider(f'Distance to show (m)',0,1000,100,1)
+    
+# Range of temporal / spatial coordinate
 r = np.linspace(1, max_r, 200)
 r_neg = r * -1.0
-    
-# Compute drawdown
-s  = compute_s(T, S, t, Q, r)
+t = np.linspace(1, 604800, 200)
 
+# Compute drawdown for  1
+s  = compute_s(T, S, t_show, Q, r)
 # Compute drawdown for a specific point
-x_point = x_search
-y_point = compute_s(T, S, t, Q, x_search)
-    
+x_point = r_show
+y_point = compute_s(T, S, t_show, Q, r_show)
 # Plotting and printing of results
-fig=plt.figure(figsize=(10, 6))
-    
-plt.title('Drawdown prediction with Theis', fontsize=16)
+fig=plt.figure(figsize=(15, 6))
+plt.subplot(1, 2, 1)    
+plt.title('Drawdown along distance with Theis', fontsize=16)
 plt.plot(r, s, linewidth=1., color='b', label=r'drawdown prediction')
 plt.plot(r_neg, s, linewidth=1, color='b')
 plt.fill_between(r,s,max_s, facecolor='lightblue')
@@ -131,13 +131,34 @@ plt.xlabel(r'Distance from the well in m', fontsize=14)
 plt.ylabel(r'Drawdown in m', fontsize=14)
 plt.legend()
 plt.grid(True)
+#st.pyplot(fig)
 
+# Compute drawdown 2
+s2  = compute_s(T, S, t, Q, r_show)
+# Compute drawdown for a specific point
+x2_point = t_show
+y2_point = compute_s(T, S, t_show, Q, r_show)
+    
+# Plotting and printing of results
+#fig=plt.figure(figsize=(10, 6))
+plt.subplot(1, 2, 2)    
+plt.title('Drawdown vs time with Theis', fontsize=16)
+plt.plot(t, s2, linewidth=1., color='r', label=r'drawdown prediction')
+plt.fill_between(t,s2,max_s, facecolor='mistyrose')
+plt.plot(x2_point,y2_point, marker='o', color='b',linestyle ='None', label='drawdown output') 
+plt.xlim(0, 86400*7)
+plt.ylim(max_s,-5)
+plt.xlabel(r'time in s', fontsize=14)
+plt.ylabel(r'Drawdown in m', fontsize=14)
+plt.legend()
+plt.grid(True)
 st.pyplot(fig)
 
-st.write("DRAWDOWN output:")
+st.write("**DRAWDOWN output:**")
 st.write("Distance from the well (in m): %8.2f" %x_point)
+st.write('Time (in sec): %8i' %x2_point)
 st.write('Drawdown at this distance (in m):  %5.2f' %y_point)
-st.write('Time (in sec): ',t)
+
 
 st.markdown('''
             ### Follow-up steps for the investigation
