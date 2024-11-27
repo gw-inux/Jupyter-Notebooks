@@ -10,7 +10,7 @@ import sys
 import numpy as np
 from bokeh.plotting import figure, save, curdoc
 from bokeh.models import CustomJS, HoverTool, ColumnDataSource, Slider, CustomJSTickFormatter, InlineStyleSheet, Div, Range1d
-from bokeh.models import VeeHead, Arrow, Label
+from bokeh.models import VeeHead, Arrow, Label, ColorBar, RadioButtonGroup
 from bokeh.themes import Theme
 from bokeh.layouts import column
 from bokeh.embed import file_html
@@ -80,7 +80,6 @@ src = ColumnDataSource(data={'y': []
 cz_pr = f.patch(x='x',y='y',source=src, fill_alpha=0.1,legend_label='Well capture zone')
 
 
-
 #arrow showing width
 w_src = ColumnDataSource(data={'x0':[],'y0':[],'x1':[],'y1':[]})
 w_arrw = Arrow(start=vh,end=vh,x_start='x0',y_start='y0',x_end='x1',y_end='y1'
@@ -101,10 +100,30 @@ c_lbl = Label(x=0,y=0,text='Culm. Pt. = '
               )
 f.add_layout(c_lbl)
 
+
+#head/drawdown contours
+
+rb = RadioButtonGroup(labels=['Well Drawdown','Hydraulic Head'],active=0)
+
+hr_src = ColumnDataSource(data={'xs':[],'ys':[],'z':[]})
+from bokeh.palettes import Turbo256
+from bokeh.transform import linear_cmap
+hr = f.multi_line(xs='xs',ys='ys'
+               ,line_color=linear_cmap(field_name='z',palette=Turbo256,low=None,high=None)
+               ,line_alpha=1.0
+               ,source=hr_src
+                )
+color_bar = ColorBar(color_mapper=hr.glyph.line_color.transform
+                     ,title='Drawdown (m)')
+
+f.add_layout(color_bar, 'right')
+
 cb = CustomJS.from_file(path=wdir+r'/cb.mjs'
                         , src=src,sl_dict=slider_dict, f= f
                         ,w_src=w_src, w_lbl=w_lbl
-                        ,c_src=c_src,c_lbl=c_lbl)
+                        ,c_src=c_src,c_lbl=c_lbl
+                        ,hr_src=hr_src, color_bar=color_bar, rb = rb
+                        )
 
 #execute this callback when slider value changes
 for sl in slider_dict.values():
@@ -112,16 +131,20 @@ for sl in slider_dict.values():
     sl.stylesheets = [sl_style]
     sl.width=f.width
     sl.sizing_mode='stretch_width'
-    
+
+rb.js_on_change('active',cb)
+rb.stylesheets = [sl_style]
+
+
 #layout
-lo = column([sl for sl in slider_dict.values()]+[f]
+lo = column([sl for sl in slider_dict.values()]+[rb,f]
             ,sizing_mode = 'stretch_both'
             )
 
 
 curdoc().theme = thm #assigns theme
 save(lo,wdir+r'/BokehApp.html',title='Well Capture')
-bk_html = file_html(models=lo,resources='cdn')
+# bk_html = file_html(models=lo,resources='cdn')
 #%%
 with open(wdir+'/BokehApp.html') as f:
     bk_html = f.read()
