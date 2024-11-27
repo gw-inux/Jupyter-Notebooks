@@ -263,9 +263,9 @@ def inverse():
         plt.xticks(fontsize=14)
         plt.yticks(fontsize=14)
         if refine_plot:
-            plt.axis([1E0,1E4,1E-1,1E+1])
+            plt.axis([1E0,1E4,1E-2,1E+1])
         else:
-            plt.axis([1,1E7,1E-4,1E+4])
+            plt.axis([1,1E7,1E-4,1E+2])
             ax.text((2),1.8E-4,'Coarse plot - Refine for final fitting')
         ax.grid(which="both")
         plt.xlabel(r'time t in (s)', fontsize=14)
@@ -311,19 +311,6 @@ def inverse():
                     st.write("Difference (in m):  %5.2f" %(true_y_point-y_point))
 
 inverse()
-
-"---"
-# Navigation at the bottom of the side - useful for mobile phone users     
-        
-columnsN1 = st.columns((1,1,1), gap = 'large')
-with columnsN1[0]:
-    if st.button("Previous page"):
-        st.switch_page("pages/02_📈_▶️ Transient_Flow to a Well.py")
-with columnsN1[1]:
-    st.subheader(':orange[**Navigation**]')
-with columnsN1[2]:
-    if st.button("Next page"):
-        st.switch_page("pages/04_📈_▶️ Real Data Parameter Estimation.py")
 
 "---"
 # Navigation at the bottom of the side - useful for mobile phone users     
