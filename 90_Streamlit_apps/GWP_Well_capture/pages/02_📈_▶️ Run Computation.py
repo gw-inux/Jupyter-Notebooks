@@ -100,14 +100,13 @@ c_lbl = Label(x=0,y=0,text='Culm. Pt. = '
               )
 f.add_layout(c_lbl)
 
-
 #head/drawdown contours
 
 rb = RadioButtonGroup(labels=['Well Drawdown','Hydraulic Head'],active=0)
 
 hr_src = ColumnDataSource(data={'xs':[],'ys':[],'z':[]})
 from bokeh.palettes import Turbo256
-from bokeh.transform import linear_cmap
+from bokeh.transform import linear_cmap, log_cmap
 hr = f.multi_line(xs='xs',ys='ys'
                ,line_color=linear_cmap(field_name='z',palette=Turbo256,low=None,high=None)
                ,line_alpha=1.0
@@ -117,6 +116,7 @@ color_bar = ColorBar(color_mapper=hr.glyph.line_color.transform
                      ,title='Drawdown (m)')
 
 f.add_layout(color_bar, 'right')
+
 
 cb = CustomJS.from_file(path=wdir+r'/cb.mjs'
                         , src=src,sl_dict=slider_dict, f= f

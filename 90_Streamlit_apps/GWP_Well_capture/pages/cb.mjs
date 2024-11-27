@@ -59,7 +59,8 @@ function contours_to_cds(d3_contour){
 
 
 export default function({src,sl_dict,f,w_src,w_lbl,c_src,c_lbl
-                        ,hr_src,color_bar,rb}){
+                        ,hr_src,color_bar,rb
+                        }){
 	//collect slider values
 	var q = sl_dict['Pumping'].value/10**9 //cubic km/s 
 	var k = 10**sl_dict['Conductivity'].value/1000 //km/s
@@ -112,6 +113,11 @@ export default function({src,sl_dict,f,w_src,w_lbl,c_src,c_lbl
     var grd = genGridPts(bnds,nx,ny)
 
     var rp = {'x':1000,'y':0, 'h':0} //reference point
+    //calc head at well
+    var wrft = i*(1000-0) 
+    var wt = q/(2*Math.PI*b*k)*Math.log(1000/1e-6) //calc drawdown from well, reference point 1000 km away
+    var hwell = wrft-(wt*1000)
+    
     for (var gi = 0; gi< grd.length; gi++){
         
         // where b, k and i are aquifer thickness, hyd. cond., and regional gradient respectively
@@ -121,13 +127,19 @@ export default function({src,sl_dict,f,w_src,w_lbl,c_src,c_lbl
         
         var rf = b*k*i //"regional flow Q_0", thickness * k * i, just darcy's law???
         var rft = i*(1000-grd[gi].x) //regional flow component
-        
 
         grd[gi]['rft'] = rft*1000
         grd[gi]['wt'] = wt*1000
-        grd[gi]['h'] = grd[gi]['rft']-grd[gi]['wt']
+        grd[gi]['h'] = (grd[gi]['rft']-grd[gi]['wt'])-hwell
+        
+        //deriving velocity field 
+        //partial derivate wrt x of h = f(x,y)
+        grd[gi]['vx'] = i*(1000-1)+(q*grd[gi]['x'])/(Math.PI*b*k*(grd[gi]['x']**2+grd[gi]['y']**2))
+        //partial derivate wrt y of h = f(x,y)
+        grd[gi]['vy'] = (q*grd[gi]['y'])/(Math.PI*b*k*(grd[gi]['x']**2+grd[gi]['y']**2))
+        grd[gi]['v'] = (grd[gi]['vx']**2+grd[gi]['vy']**2)**0.5*1000 //to m/s
         }
-    
+        
     var ctr = d3Contour.contours().thresholds(10).size([nx,ny])
     if (rb.active==0){
         var contours = contours_to_cds(ctr(grd.map(x=>x.wt)))
@@ -135,13 +147,13 @@ export default function({src,sl_dict,f,w_src,w_lbl,c_src,c_lbl
         }
     else {
         var contours = contours_to_cds(ctr(grd.map(x=>x.h)))
-        color_bar.title = 'Hydraulic Head (m)'
+        color_bar.title = 'Hydraulic Head (m, relative to well)'
         }
     
     //back to coords
     contours['xs'] = contours['xs'].map(x=>x.map(xx=>xx/nx*(bnds['xmax']-bnds['xmin'])+bnds['xmin']))
     contours['ys'] = contours['ys'].map(y=>y.map(yy=>yy/ny*(bnds['ymax']-bnds['ymin'])+bnds['ymin']))  
     hr_src.data=contours
-    
+    console.log(grd)  
           	
 }
