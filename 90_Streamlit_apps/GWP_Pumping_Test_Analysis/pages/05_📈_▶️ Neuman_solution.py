@@ -15,22 +15,23 @@ st.markdown("""
 )
 # Initial assessment
 
-columnsQ1 = st.columns((1,1), gap = 'large')
-
-with columnsQ1[0]:
-    stb.single_choice(":red[**For which conditions is the Theis solution intended?**]",
+show_initial_assessment = st.toggle("**Show the initial assessment**")
+if show_initial_assessment:
+    columnsQ1 = st.columns((1,1), gap = 'large')
+    with columnsQ1[0]:
+        stb.single_choice(":red[**For which conditions is the Theis solution intended?**]",
                   ["Steady state flow, confined aquifer.", "Transient flow, confined aquifer", "Steady state flow, unconfined aquifer",
                   "Transient flow, unconfined aquifer"],
                   1,success='CORRECT!   ...', error='Not quite. ... If required, you can read again about transmissivity _T_ in the following ressources _reference to GWP books...')
-    stb.single_choice(":red[**Question2?**]",
+        stb.single_choice(":red[**Question2?**]",
                   ["Answer1.", "Answer2", "Answer3", "Answer4"],
                   1,success='CORRECT!   ...', error='Not quite. ... If required, you can read again about transmissivity _T_ in the following ressources _reference to GWP books...')
                   
-with columnsQ1[1]:
-    stb.single_choice(":red[**Question3?**]",
+    with columnsQ1[1]:
+        stb.single_choice(":red[**Question3?**]",
                   ["Answer1.", "Answer2", "Answer3", "Answer4"],
                   1,success='CORRECT!   ...', error='Not quite. ... If required, you can read again about transmissivity _T_ in the following ressources _reference to GWP books...')             
-    stb.single_choice(":red[**Question4?**]",
+        stb.single_choice(":red[**Question4?**]",
                   ["Answer1.", "Answer2", "Answer3", "Answer4"],
                   1,success='CORRECT!   ...', error='Not quite. ... If required, you can read again about transmissivity _T_ in the following ressources _reference to GWP books...')
 "---"         
@@ -134,18 +135,16 @@ def inverse():
         show_data = st.toggle("**Show measured data from Pirna 2024**")
         refine_plot = st.toggle("**Refine** the range of the **Data matching plot**")
     with columns2[1]:
+        # READ LOG VALUE, CONVERT, AND WRITE VALUE FOR TRANSMISSIVITY
         T_slider_value=st.slider('(log of) **Transmissivity** in m2/s', log_min1,log_max1,-2.0,0.01,format="%4.2f" )
-        # Convert the slider value to the logarithmic scale
         T = 10 ** T_slider_value
-        # Display the logarithmic value
         st.write("_Transmissivity_ in m2/s: %5.2e" %T)
+        # READ LOG VALUE, CONVERT, AND WRITE VALUE FOR SPECIFIC STORAGE
         S_slider_value=st.slider('(log of) **Specific storage**', log_min2,log_max2,-4.0,0.01,format="%4.2f" )
-        # Convert the slider value to the logarithmic scale
         Ss = 10 ** S_slider_value
-        # Display the logarithmic value
         st.write("_Specific storage_ (dimensionless):** %5.2e" %Ss)
-        SY = st.slider('Specific Yield', 0.01, 0.50, 0.25, 0.01, format="%4.2f")
-        beta_choice = st.selectbox("beta",('0.001','0.01', '0.06', '0.2', '0.6', '1', '2', '4', '6'),)
+        SY = st.slider('**Specific Yield**', 0.01, 0.50, 0.25, 0.01, format="%4.2f")
+        beta_choice = st.selectbox("**beta**",('0.001','0.01', '0.06', '0.2', '0.6', '1', '2', '4', '6'),)
         beta_list = ['0.001','0.01', '0.06', '0.2', '0.6', '1', '2', '4', '6']
         beta = beta_list.index(beta_choice)
 
@@ -211,3 +210,16 @@ def inverse():
         st.write("Storativity    S = ","% 10.2E"% S, "[-]")
  
 inverse()
+
+"---"
+# Navigation at the bottom of the side - useful for mobile phone users     
+        
+columnsN1 = st.columns((1,1,1), gap = 'large')
+with columnsN1[0]:
+    if st.button("Previous page"):
+        st.switch_page("pages/04_📈_▶️ Hantush_Jacob_solution.py")
+with columnsN1[1]:
+    st.subheader(':orange[**Navigation**]')
+with columnsN1[2]:
+    if st.button("Next page"):
+        st.switch_page("pages/06_📈_▶️ Parameter Uncertainty.py")

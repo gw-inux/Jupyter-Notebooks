@@ -21,18 +21,21 @@ st.markdown('''
 st.markdown("CO<sub>2</sub>", unsafe_allow_html=True)
 # Initial assessment
 
-columnsQ1 = st.columns((1,1), gap = 'large')
+# Initial assessment
 
-with columnsQ1[0]:
-    stb.single_choice(":blue[**For which conditions is the Theis solution intended?**]",
+show_initial_assessment = st.toggle("**Show the initial assessment**")
+if show_initial_assessment:
+    columnsQ1 = st.columns((1,1), gap = 'large')
+    with columnsQ1[0]:
+        stb.single_choice(":blue[**For which conditions is the Theis solution intended?**]",
                   ["Steady state flow, confined aquifer.", "Transient flow, confined aquifer", "Steady state flow, unconfined aquifer",
                   "Transient flow, unconfined aquifer"],
                   1,success='CORRECT!   ...', error='Not quite. ... If required, you can read again about transmissivity _T_ in the following ressources _reference to GWP books...')
-    stb.single_choice(":blue[**Assume there is no recharge to the aquifer. What happend with the range of drawdown with ongoing time?**]",
+        stb.single_choice(":blue[**Assume there is no recharge to the aquifer. What happend with the range of drawdown with ongoing time?**]",
                   ["The range of drawdown will reach a steady state.", "The range of drawdown will increase.", "The range of drawdown is not dependend of time", "The range of drawdown will decrease."],
                   1,success='CORRECT! Without recharge, the range of drawdown will increase.', error='Not quite. Without recharge, the range of drawdown will increase with ongoing time. Use the interactive plot to investigate this behavior.') 
-with columnsQ1[1]:
-    stb.single_choice(":blue[**How much water is pumped out by a pumping rate of 0.001 m3/s?**]",
+    with columnsQ1[1]:
+        stb.single_choice(":blue[**How much water is pumped out by a pumping rate of 0.001 m3/s?**]",
                   ["1000 liters per second.", "100 liters per second", "10 liters per second", "1 liter per second"],
                   3,success='CORRECT! 0.001 m3/s is equivalent to 1 liter per second.', error='Not quite. Keep in mind that 1,000 liters are equivalent to 1 m3.')
                   
@@ -165,17 +168,18 @@ st.markdown('''
             Now that you have an impression for the interactive plot we can move on to understand the system more in detail. We will guide this with the following questions:
             '''
 )
+# Second assessment
 
-# Assessment to guide users through the interactive plot
-stb.single_choice(":green[**QuestionI1?**]",
+show_second_assessment = st.toggle("**Show the second assessment**")
+if show_second_assessment:
+    # Assessment to guide users through the interactive plot
+    stb.single_choice(":green[**QuestionI1?**]",
                   ["Answer1.", "Answer2", "Answer3", "Answer4"],
                   1,success='CORRECT!   ...', error='Not quite. ... If required, you can read again about transmissivity _T_ in the following ressources _reference to GWP books...')
-                  
-stb.single_choice(":green[**QuestionI2?**]",
+    stb.single_choice(":green[**QuestionI2?**]",
                   ["Answer1.", "Answer2", "Answer3", "Answer4"],
                   1,success='CORRECT!   ...', error='Not quite. ... If required, you can read again about transmissivity _T_ in the following ressources _reference to GWP books...')
-
-stb.single_choice(":green[**QuestionI3?**]",
+    stb.single_choice(":green[**QuestionI3?**]",
                   ["Answer1.", "Answer2", "Answer3", "Answer4"],
                   1,success='CORRECT!   ...', error='Not quite. ... If required, you can read again about transmissivity _T_ in the following ressources _reference to GWP books...')
 
@@ -197,4 +201,4 @@ with columnsN1[1]:
     st.subheader(':orange[**Navigation**]')
 with columnsN1[2]:
     if st.button("Next page"):
-        st.switch_page("pages/03_📈_▶️ Parameter Estimation.py")
+        st.switch_page("pages/03_📈_▶️ Theis_solution.py")

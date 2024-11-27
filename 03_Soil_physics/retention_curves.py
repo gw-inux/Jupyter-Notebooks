@@ -6,6 +6,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 import streamlit as st
 import streamlit_book as stb
+from bokeh.plotting import figure
 
 st.title('Soil Water Retention curves 💦')
 
@@ -319,3 +320,4 @@ fig.tight_layout()
 st.pyplot(fig)
 
 st.write('The app is developed by Oriol Bertran Oller (UPC Barcelona) 2024')
+
