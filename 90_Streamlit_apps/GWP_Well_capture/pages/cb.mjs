@@ -20,8 +20,6 @@ function genGridPts(bnds,Xdim,Ydim){
   return cx
     }
     
-function euclideanDistance(v,w) {return Math.sqrt(Math.pow(w.x-v.x,2)+Math.pow(w.y-v.y,2))}
-
 //transforms columndatasource data to array of objects
 function cds_to_objarray(cds_data){
   var keys = Object.keys(cds_data)
@@ -56,10 +54,30 @@ function contours_to_cds(d3_contour){
     return {'z':cv,'xs':cxs,'ys':cys}
     }
 
-
+function arrayCenteredOnPt(bnds,n,ptX){
+    var step = (bnds[1] - bnds[0] )/ (n - 1);
+       //step forward
+       var f = []
+       var i = 0
+       do {
+       	var xn = ptX+i*step
+        f.push(xn)
+        i++
+       	} while (xn<bnds[1])
+       //step backward
+       var b = []
+       var i = 1
+       do {
+       	var xn = ptX+i*-step
+        b.push(xn)
+        i++
+       	} while (xn>bnds[0])
+    b.reverse()
+    return b.concat(f)
+    	}
 
 export default function({src,sl_dict,f,w_src,w_lbl,c_src,c_lbl
-                        ,hr_src,color_bar,rb
+                        ,hr_src,color_bar,rb,pt_cb
                         }){
 	//collect slider values
 	var q = sl_dict['Pumping'].value/10**9 //cubic km/s 
@@ -79,13 +97,17 @@ export default function({src,sl_dict,f,w_src,w_lbl,c_src,c_lbl
 	//update src
 	src.data = {'x':xa, 'y':ya}
 	src.change.emit()
-
 	//calculate figure bounds
-	f.x_range.end = x0*1.1
-	f.x_range.start = x0*-25
-	var yr = (f.x_range.end - f.x_range.start)/2
-	f.y_range.start = -yr
-	f.y_range.end = yr
+	var xr = [x0*-25,x0*1.1]
+
+	f.x_range.start = xr[0]
+	f.x_range.end = xr[1]
+    var r = xr[1]-xr[0]
+    f.y_range.start = -r/2
+    f.y_range.end = r/2
+	
+	
+
 	
 	//calculate max width
 	var w = q/(k*i*b)
@@ -106,54 +128,50 @@ export default function({src,sl_dict,f,w_src,w_lbl,c_src,c_lbl
     //build and evaluation grid for drawdown
     var xr = f.x_range.end-f.x_range.start
     var yr = f.y_range.end-f.y_range.start
-    var bnds = {'xmin':f.x_range.start-xr*0.1,'xmax':f.x_range.end+xr*0.1
-        ,'ymin':f.y_range.start-yr*0.1,'ymax':f.y_range.end+yr*0.1}
+    var bnds = {'xmin':f.x_range.start-xr*0.5,'xmax':f.x_range.end+xr*0.5
+        ,'ymin':f.y_range.start-yr*0.5,'ymax':f.y_range.end+yr*0.5}
     var nx  = 200
     var ny = 200
-    var grd = genGridPts(bnds,nx,ny)
 
-    var rp = {'x':1000,'y':0, 'h':0} //reference point
-    //calc head at well
-    var wrft = i*(1000-0) 
-    var wt = q/(2*Math.PI*b*k)*Math.log(1000/1e-6) //calc drawdown from well, reference point 1000 km away
-    var hwell = wrft-(wt*1000)
-    
-    for (var gi = 0; gi< grd.length; gi++){
-        
-        // where b, k and i are aquifer thickness, hyd. cond., and regional gradient respectively
-        
-        var dw = euclideanDistance(grd[gi],{'x':0,'y':0}) //calc distance of location to well
-        var wt = q/(2*Math.PI*b*k)*Math.log(1000/dw) //calc drawdown from well, reference point 1000 km away
-        
-        var rf = b*k*i //"regional flow Q_0", thickness * k * i, just darcy's law???
-        var rft = i*(1000-grd[gi].x) //regional flow component
 
-        grd[gi]['rft'] = rft*1000
-        grd[gi]['wt'] = wt*1000
-        grd[gi]['h'] = (grd[gi]['rft']-grd[gi]['wt'])-hwell
-        
-        //deriving velocity field 
-        //partial derivate wrt x of h = f(x,y)
-        grd[gi]['vx'] = i*(1000-1)+(q*grd[gi]['x'])/(Math.PI*b*k*(grd[gi]['x']**2+grd[gi]['y']**2))
-        //partial derivate wrt y of h = f(x,y)
-        grd[gi]['vy'] = (q*grd[gi]['y'])/(Math.PI*b*k*(grd[gi]['x']**2+grd[gi]['y']**2))
-        grd[gi]['v'] = (grd[gi]['vx']**2+grd[gi]['vy']**2)**0.5*1000 //to m/s
+    function calcH(x,y,i,q,b,k){
+        var rgt = -i*(x-1000) 
+        var wt = q/(2*Math.PI*b*k)*Math.log((x**2+y**2)**0.5/1000)
+        return {'rgt':rgt,'wt':wt, 'h':rgt+wt}
         }
         
-    var ctr = d3Contour.contours().thresholds(10).size([nx,ny])
+    //calc head at well
+    var hwell = calcH(1e-20,1e-20,i,q,b,k)
+    hwell = hwell['h']*1000
+
+    //get arrays for grid --> centered on .01,.01 (reasonable distance)
+    var xa = arrayCenteredOnPt([bnds['xmin'],bnds['xmax']],nx,0)
+    var ya = arrayCenteredOnPt([bnds['ymin'],bnds['ymax']],ny,0)
+
+    var grd = []
+
+    for (var yi = 0; yi < ya.length; yi++){
+        for (var xi = 0; xi < xa.length; xi++){
+            var h = calcH(xa[xi],ya[yi],i,q,b,k)
+            var obj = {'x':xa[xi],'y':ya[yi],'wt':h['wt']*1000,'h':h['h']*1000-hwell}
+            grd.push(obj)
+            }
+        }
+
+    var ctr = d3Contour.contours().thresholds(25).size([xa.length,ya.length])
+    //var ctr = d3Contour.contours().thresholds(25).size([nx,ny])
     if (rb.active==0){
         var contours = contours_to_cds(ctr(grd.map(x=>x.wt)))
-        color_bar.title = 'Drawdown (m)'
+        color_bar.title = 'Drawdown Contours (m)'
         }
     else {
         var contours = contours_to_cds(ctr(grd.map(x=>x.h)))
-        color_bar.title = 'Hydraulic Head (m, relative to well)'
+        color_bar.title = 'Hydraulic Head Contours (m, relative to well)'
         }
     
     //back to coords
-    contours['xs'] = contours['xs'].map(x=>x.map(xx=>xx/nx*(bnds['xmax']-bnds['xmin'])+bnds['xmin']))
-    contours['ys'] = contours['ys'].map(y=>y.map(yy=>yy/ny*(bnds['ymax']-bnds['ymin'])+bnds['ymin']))  
-    hr_src.data=contours
-    console.log(grd)  
-          	
+    contours['xs'] = contours['xs'].map(x=>x.map(xx=>xx/xa.length*(xa[xa.length-1]-xa[0])+xa[0]))
+    contours['ys'] = contours['ys'].map(y=>y.map(yy=>yy/ya.length*(ya[ya.length-1]-ya[0])+ya[0]))
+    hr_src.data=contours  
+    pt_cb.execute()        	
 }

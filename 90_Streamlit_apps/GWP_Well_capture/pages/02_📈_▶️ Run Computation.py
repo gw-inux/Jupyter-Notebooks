@@ -10,7 +10,7 @@ import sys
 import numpy as np
 from bokeh.plotting import figure, save, curdoc
 from bokeh.models import CustomJS, HoverTool, ColumnDataSource, Slider, CustomJSTickFormatter, InlineStyleSheet, Div, Range1d
-from bokeh.models import VeeHead, Arrow, Label, ColorBar, RadioButtonGroup
+from bokeh.models import VeeHead, Arrow, Label, ColorBar, RadioButtonGroup, PointDrawTool
 from bokeh.themes import Theme
 from bokeh.layouts import column
 from bokeh.embed import file_html
@@ -45,9 +45,9 @@ slider_dict = {
     }
 
 #create figure
-f = figure(height=800,width=600
+f = figure(height=800,width=1200
             # ,title='Well capture zone of a pumping well'
-            ,sizing_mode='scale_both'
+            # ,sizing_mode='scale_both'
             ,match_aspect=True
             ,x_range = [-10,1]
             ,y_range= [-5,5]
@@ -105,7 +105,7 @@ f.add_layout(c_lbl)
 rb = RadioButtonGroup(labels=['Well Drawdown','Hydraulic Head'],active=0)
 
 hr_src = ColumnDataSource(data={'xs':[],'ys':[],'z':[]})
-from bokeh.palettes import Turbo256
+from bokeh.palettes import Turbo256, Inferno
 from bokeh.transform import linear_cmap, log_cmap
 hr = f.multi_line(xs='xs',ys='ys'
                ,line_color=linear_cmap(field_name='z',palette=Turbo256,low=None,high=None)
@@ -118,11 +118,38 @@ color_bar = ColorBar(color_mapper=hr.glyph.line_color.transform
 f.add_layout(color_bar, 'right')
 
 
+
+pt_rel = f.scatter(x=[],y=[],size=5)
+pt_d = PointDrawTool(renderers=[pt_rel], num_objects=1)
+f.add_tools(pt_d)
+
+ptl_src = ColumnDataSource(data={'x':[],'y':[]})
+# pt_l = f.line(x='x',y='y',source=ptl_src)
+pt_sc = f.scatter(x='x',y='y',source=ptl_src,line_alpha=0
+                  ,fill_alpha=0.5
+                  ,fill_color=linear_cmap(field_name='t',palette=Inferno[11],low=0,high=None)
+                  )
+
+tt_bar = ColorBar(color_mapper=pt_sc.glyph.fill_color.transform
+                     ,title='Particle Travel Time (years)'
+                     ,orientation='horizontal')
+
+f.add_layout(tt_bar, 'below')
+
+pt_cb = CustomJS.from_file(path=wdir+r'/pt_cb.mjs'
+                           ,sl_dict=slider_dict,pt_src=pt_rel.data_source, f = f
+                           , pt_d = pt_d, ptl_src = ptl_src)
+
+f.js_on_event('tap',pt_cb)
+f.toolbar.active_tap = pt_d
+
+
 cb = CustomJS.from_file(path=wdir+r'/cb.mjs'
                         , src=src,sl_dict=slider_dict, f= f
                         ,w_src=w_src, w_lbl=w_lbl
                         ,c_src=c_src,c_lbl=c_lbl
                         ,hr_src=hr_src, color_bar=color_bar, rb = rb
+                        ,pt_cb = pt_cb
                         )
 
 #execute this callback when slider value changes
@@ -132,13 +159,18 @@ for sl in slider_dict.values():
     sl.width=f.width
     sl.sizing_mode='stretch_width'
 
+
+
+
 rb.js_on_change('active',cb)
 rb.stylesheets = [sl_style]
 
+# from bokeh.events import RangesUpdate
+# f.js_on_event(RangesUpdate,cb)
 
 #layout
 lo = column([sl for sl in slider_dict.values()]+[rb,f]
-            ,sizing_mode = 'stretch_both'
+            # ,sizing_mode = 'scale_both'
             )
 
 
