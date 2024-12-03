@@ -54,6 +54,7 @@ export default function({sl_dict,pt_src, f, pt_d, ptl_src
     	var k = 10**sl_dict['Conductivity'].value/1000 //km/s
     	var i = 10**sl_dict['Gradient'].value
     	var b = sl_dict['Thickness'].value/1000 //km
+    	var por = sl_dict['Porosity'].value //porosity
     	
 
         function calcVx(x,y,i,q,b,k,n){
@@ -73,8 +74,8 @@ export default function({sl_dict,pt_src, f, pt_d, ptl_src
         var xi = pt_src.data['x'][0]
         var yi = pt_src.data['y'][0]
 
-        var vx = calcVx(xi,yi,i,q,b,k,0.3)
-        var vy = calcVy(xi,yi,q,b,k,0.3)
+        var vx = calcVx(xi,yi,i,q,b,k,por)
+        var vy = calcVy(xi,yi,q,b,k,por)
         var v = (vx**2+vy**2)**0.5
         var xr = f.x_range.end-f.x_range.start
         var yr = f.y_range.end-f.y_range.start
@@ -101,8 +102,8 @@ export default function({sl_dict,pt_src, f, pt_d, ptl_src
             xa.push(xn)
             ya.push(yn)
             ta.push(td)
-            vx = calcVx(xn,yn,i,q,b,k,0.3)
-            vy = calcVy(xn,yn,q,b,k,0.3)
+            vx = calcVx(xn,yn,i,q,b,k,por)
+            vy = calcVy(xn,yn,q,b,k,por)
             vxa.push(vx)
             vya.push(vy)
             

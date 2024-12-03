@@ -12,8 +12,125 @@ from bokeh.plotting import figure, save, curdoc
 from bokeh.models import CustomJS, HoverTool, ColumnDataSource, Slider, CustomJSTickFormatter, InlineStyleSheet, Div, Range1d
 from bokeh.models import VeeHead, Arrow, Label, ColorBar, RadioButtonGroup, PointDrawTool
 from bokeh.themes import Theme
-from bokeh.layouts import column
+from bokeh.layouts import column, row
 from bokeh.embed import file_html
+from bokeh.models import NumericInput
+
+def linkNumericInputToSlider(slider,log=False):
+    '''function to create a numeric input that will follow a slider value and vice versa.'''
+    model = NumericInput(value=slider.value,low=slider.start,high=slider.end,mode='float')
+    if log == True:
+        model.value = 10**slider.value
+        model.low = 10**slider.start
+        model.high = 10**slider.end
+        model.mode = 'float'
+        if hasattr(model,'step'):
+            model.step = slider.step
+    else: 
+        model.value = slider.value
+        model.low = slider.start
+        model.high = slider.end
+        model.mode = 'float'
+        if hasattr(model,'step'):
+            model.step = slider.step
+    ni = model
+    
+    ccb = CustomJS(args=dict(ni=ni,sl=slider,log=log)
+                    ,code='''
+                    sl.tags=[]
+                    ni.tags=[]
+                                        
+                    if (cb_obj === sl){
+                            if (log == true){
+                                 ni.value = 10**sl.value
+                                    }
+                            else {
+                                ni.value = sl.value
+                                }
+                            }
+                    else {
+                        // if ni, need to find nearest slider value
+                        if (log == true){
+                                var v = Math.log10(ni.value)
+                                }
+                        else {
+                            var v = ni.value
+                            }
+                        //value input is less than slider start
+                        if (v<=sl.start){
+                                if (log == true){
+                                     sl.value = sl.start
+                                     ni.value = 10**sl.start
+                                        }
+                                else {
+                                    sl.value = sl.start
+                                    ni.value = sl.start
+                                    }
+                                }
+                        //value is more than slider end
+                        else if (v>=sl.end){
+                                if (log == true){
+                                     sl.value = sl.end
+                                     ni.value = 10**sl.end
+                                        }
+                                else {
+                                    sl.value = sl.end
+                                    ni.value = sl.end
+                                    }
+                            }
+                        
+                        else {
+                            var i = 1
+                            do {
+                                if (v<sl.start+sl.step*i){
+                                        //value is now between current notch and previous
+                                        if (log==true){
+                                            var dl = Math.log10(ni.value)-(sl.start+sl.step*(i-1))
+                                            var dr = (sl.start+(sl.step*i))-Math.log(ni.value)
+                                            }
+                                        else {
+                                            var dl = ni.value-(sl.start+sl.step*(i-1))
+                                            var dr = (sl.start+(sl.step*i))-ni.value
+                                            }
+                                        if (dl<=dr){
+                                                var v = sl.start+sl.step*(i-1)
+                                                }
+                                        else {
+                                            var v = sl.start+sl.step*i
+                                            }
+                                        sl.value = v
+                                        if (log==true){
+                                                ni.value = 10**v
+                                                }
+                                        else {
+                                            ni.value = v
+                                            }
+                                        break
+                                        }
+                                i++
+                                } while (true)
+                            }
+                        }
+                    ''')
+    cb = CustomJS(args=dict(ccb=ccb,sl=slider,ni=ni),
+                  code='''
+
+                  if (cb_obj.tags.length>0){
+                          return
+                          }
+                  else {
+                      sl.tags = ['run_me']
+                      ni.tags = ['run_me']
+                      ccb.execute(cb_obj)
+                      sl.tags = ['run_me']
+                      ni.tags = ['run_me']
+                      }
+                  '''
+                  )
+
+    ni.js_on_change('value',cb)
+    slider.js_on_change('value',cb)
+    return ni
 
 import streamlit as st
 st.title('Well capture zone for a confined aquifer')
@@ -42,6 +159,7 @@ slider_dict = {
     ,'Conductivity':Slider(title='Hydraulic Conductivity (m/s)',value = -3, start = -7, end = 0, step = 0.01
                         ,format=CustomJSTickFormatter(code="return (10**tick).toExponential(2).toString()") #handling log scale slider)
                         )
+    ,'Porosity':Slider(title='Porosity', value=0.3,start=0.01,end=0.5,step=0.01)
     }
 
 #create figure
@@ -153,12 +271,18 @@ cb = CustomJS.from_file(path=wdir+r'/cb.mjs'
                         )
 
 #execute this callback when slider value changes
-for sl in slider_dict.values():
+#link the numeric inputs too
+ni_dict = {}
+for k,sl in slider_dict.items():
     sl.js_on_change('value',cb)
     sl.stylesheets = [sl_style]
     sl.width=f.width
     sl.sizing_mode='stretch_width'
-
+    if k in ['Gradient','Conductivity']:
+        ni_dict[k] = linkNumericInputToSlider(slider=sl,log=True)
+    else:
+        ni_dict[k] = linkNumericInputToSlider(slider=sl,log=False)
+    ni_dict[k].width=100
 
 
 
@@ -168,9 +292,15 @@ rb.stylesheets = [sl_style]
 # from bokeh.events import RangesUpdate
 # f.js_on_event(RangesUpdate,cb)
 
+slider_layout = [row(list(x),sizing_mode='scale_width') for x in zip(slider_dict.values(),ni_dict.values())]
+
+
 #layout
-lo = column([sl for sl in slider_dict.values()]+[rb,f]
-            # ,sizing_mode = 'scale_both'
+lo = column(
+    # [sl for sl in slider_dict.values()]
+            slider_layout
+            +[rb,f]
+            ,sizing_mode = 'scale_width'
             )
 
 
