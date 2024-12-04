@@ -33,18 +33,15 @@ if show_initial_assessment:
     with columnsQ1[0]:
         stb.single_choice(":red[**What initial measure would you suggest?**]",
                   ["Immitiatly place a well close to the accidient to capture contaminated water.", "Immitialy stop the production well", "Reduce the pumping rate of the production well", "Increase the hydraulic conductivity of the aquifer"],
-                  1,success='CORRECT! We will do this in the next steps.', error='This option is not suitable. Re-Think the situation.')
+                  2,success='CORRECT! We will do this in the next steps.', error='This option is not suitable. Re-Think the situation.')
         stb.single_choice(":red[**What parameter can be adjusted to manage the capture zone of the abstraction well?**]",
                   ["Pumping rate.", "Hydraulic conductivity", "Effective porosity", "Regional flow gradient"],
-                  1,success='CORRECT! We will adapt this parameter in the next step.', error='Not quite. Please rethink.')
+                  0,success='CORRECT! We will adapt this parameter in the next step.', error='Not quite. Please rethink.')
     
     with columnsQ1[1]:
         stb.single_choice(":red[**How much is the approximate measurement uncertainty of the hydraulic conductivity?**]",
                   ["0.01%", "1%", "10%", "100%"],
-                  1,success='CORRECT! Although this number is just a very rought approximate.', error='Not quite. Feel free to answer again.')             
-        stb.single_choice(":red[**Question4?**]",
-                  ["Answer1.", "Answer2", "Answer3", "Answer4"],
-                  1,success='CORRECT!   ...', error='Not quite. ... If required, you can read again about transmissivity _T_ in the following ressources _reference to GWP books...')
+                  2,success='CORRECT! Although this number is just a very rought approximate.', error='Not quite. Feel free to answer again.')             
 "---"
 
 # Function for catchment width (maximale Breite des Einzugsgebietes)
