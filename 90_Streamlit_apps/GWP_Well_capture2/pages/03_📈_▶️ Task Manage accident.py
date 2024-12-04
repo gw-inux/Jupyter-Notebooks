@@ -83,9 +83,8 @@ def wellcapture(v):
     columns = st.columns((1,1,1), gap = 'medium')
     
     with columns[0]:
-        if v == 0:
-            st.session_state.x_scale = st.slider('_Plot scaling in x direction_', 0.5, 10., 1.0, 0.5, key = 10+v)
-            st.session_state.y_scale = st.slider('_Plot scaling in y direction_', 0.5, 10., 1.0, 0.5, key = 20+v)
+        st.session_state.x_scale = st.slider('_Plot scaling in x direction_', 0.5, 10., 1.0, 0.5, key = 10+v)
+        st.session_state.y_scale = st.slider('_Plot scaling in y direction_', 0.5, 10., 1.0, 0.5, key = 20+v)
     with columns[1]:
         accident = st.toggle('Task: Accident', value=True, key = 30+v)
         if v>0:
