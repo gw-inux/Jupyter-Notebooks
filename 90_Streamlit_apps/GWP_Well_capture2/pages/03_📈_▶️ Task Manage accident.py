@@ -187,6 +187,7 @@ with stylable_container(
             - Turn on uncertainty by using the switch (middle of the input section)
             - Re-adjust the pumping rate to manage the accident under consideration of uncertainty
             - Increase/Decrease the uncetainty with the slider and investigate the effects on the well capture zone
+            - Increase/Decrease the hydraulic conductivity with the slider and investigate the effects on the well capture zone 
 """
 )
         wellcapture(1)
