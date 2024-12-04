@@ -153,7 +153,7 @@ st.markdown("""
             To manage the accident, we will adapt the pumping rate of the well. In consequenze, the capture zone will change in a way that the accident is not longer within the capture zone.
             
             **To proceed**:
-            - Modify the pumping rate.
+            - Manage the capture zone by adapting the reasonable parameters.
 """
 )
 
