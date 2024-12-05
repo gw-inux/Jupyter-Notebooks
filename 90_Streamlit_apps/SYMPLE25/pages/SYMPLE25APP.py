@@ -9,10 +9,6 @@ st.markdown(
      
     The app is composed of various applications that contain demonstrations, applications, and exercises to the various lectures. The content will be updated over the course. 
     
-    An overview of the currently available topics is
-    - Analytical solution of 1D flow in an unconfined aquifer with optional recharge,
-    - Deliniation of the well capture zone.
-    
     You can access the individual topics through the sidebar menu.
 """
 )
