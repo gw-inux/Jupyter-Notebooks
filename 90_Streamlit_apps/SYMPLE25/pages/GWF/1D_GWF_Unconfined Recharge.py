@@ -3,29 +3,82 @@ import matplotlib
 import matplotlib.pyplot as plt
 import numpy as np
 import streamlit as st
+import streamlit_book as stb
+from streamlit_extras.stylable_container import stylable_container
 
+st.title('Initial example for :green[System Understanding through Model Analysis]')
+st.header('Analytical solution for 1D unconfined flow with two defined head boundaries', divider="green")
+st.markdown(
+    """
+    The app computes 1D groundwater flow in an unconfined, homogeneous, and isotropic aquifer that is bounded by two defned head boundaries. The aquifer receives groundwater recharge from the top.
+    """
+)
+st.subheader('Initial situation and challenge (management task)')
+st.markdown(
+    """
+    We consider an area that is mainly composed of thick sandy aquifers. In the area are several large lakes, see figure. On the land surface between two lakes happend an car accident that results in the possible release of harmful substances in the underground. For that reasons, a very quick initial evaluation of the situation is required.
+    """
+)
+"---"
 
-st.title('Analytical solution for 1D unconfined flow with two defined head boundaries')
+if st.button('Click here if you want to read more about the underlying theory'):
+    st.subheader('Conceptual model')
+    st.markdown(
+        """
+        The conceptual model considers the aquifer as a homogeneous and isotropic structure with a horizontal bottom. The aquifer is bounded by two defined-head boundary conditions on the in- and outflow part. From the top, the aquifer receives uniform groundwater recharge.
+        """
+    )
 
-st.subheader('Conceptual model')
-st.write('The conceptual model considers the aquifer as a homogeneous and isotropic structure with a horizontal bottom. The aquifer is bounded by two defined-head boundary conditions on the in- and outflow part. From the top, the aquifer receives uniform groundwater recharge.')
+    st.subheader('Mathematical model')
+    st.markdown("""The equation for 1D groundwater flow in a homogeneous aquifer is""")
+    st.latex(r'''\frac{d}{dx}=(-hK\frac{dh}{dx})=R''')
+    st.markdown(
+        """
+        with
+        - _x_ is spatial coordinate along flow,
+        - _h_ is hydraulic head,
+        - _K_ is hydraulic conductivity,
+        - _R_ is recharge.
+    
+        A solution for the equation can be obtained with two boundary conditions at _x_ = 0 and _x_ = _L_:
+        """
+    )
 
-st.subheader('Mathematical model')
-st.write('The equation for 1D groundwater flow in a homogeneous aquifer is')
-st.latex(r'''\frac{d}{dx}=(-hK\frac{dh}{dx})=R''')
-st.write('with')
-st.write('- _x_ is spatial coordinate along flow,')
-st.write('- _h_ is hydraulic head,')
-st.write('- _K_ is hydraulic conductivity,')
-st.write('- _R_ is recharge.')
-st.write('A solution for the equation can be obtained with two boundary conditions at _x_ = 0 and _x_ = _L_:')
-st.latex(r'''h(0) = h_0''')
-st.latex(r'''h(L) = h_L''')
-st.write('The solution for hydraulic head _h_ along _x_ is')
-st.latex(r'''h(x)=\sqrt{h_0^2-\frac{h_0^2-h_L^2}{L}x+\frac{R}{K}x(L-x)}''')
+    st.latex(r'''h(0) = h_0''')
+    st.latex(r'''h(L) = h_L''')
+    st.markdown(
+        """
+        The solution for hydraulic head _h_ along _x_ is
+        """
+    )
+    st.latex(r'''h(x)=\sqrt{h_0^2-\frac{h_0^2-h_L^2}{L}x+\frac{R}{K}x(L-x)}''')
+
+st.subheader('Own investigation (exercise)')
+# Initial assessment
+show_initial_assessment = st.toggle("**Show the initial questions**")
+if show_initial_assessment:
+    columnsQ1 = st.columns((1,1), gap = 'large')
+    
+    with columnsQ1[0]:
+        stb.single_choice(":green[**Assume a situation without recharge (e.g., after a long and dry summer). You intend to compute the hydraulic heads _h(x)_ in the underground. How much is the influence of the hydraulic conductivity _K_ on the solution?**]",
+                  ["Very high influence", "High influence", "Intermediate influence", "Minor influence", "No influence"],
+                  4,success='CORRECT! You will see this in the next steps.', error='This is not correct. In the next steps we will further investiage this behaviour.')
+        stb.single_choice(":green[**What is a typical ammount for groundwater recharge (in moderate climate like Middle Europe)?**]",
+                  ["1000 mm/a", "500 mm/a", "200 mm/a", "50 mm/a", "5 mm/a"],
+                  2,success='CORRECT! This is a reasonable approximation.', error='This is not correct. Please consider an average precipitation of 700 mm/a and evapotranspiration of 500 mm/a.')
+    
+    with columnsQ1[1]:
+        stb.single_choice(":green[**Now assume a situation with average annual recharge. To which lake will the possible contamination move?**]",
+                  ["To the lake on the left", "To the lake on the right", "The possible contamination will not move", "The flow direction can be to the left or to the right"],
+                  1,success='CORRECT! We will do this in the next steps.', error='This option is not suitable. Re-Think the situation.')
+"---"
 
 st.subheader('Computation and visualization')
-st.write('Subsequently, the solution is computed and results are visualized. You can modify the parameters to investigate the functional behavior. You can modify the groundwater recharge _R_ (in mm/a) and the hydraulic conductivity _K_ (in m/s).')
+st.markdown(
+    """
+    Subsequently, the solution is computed and results are visualized. You can modify the parameters to investigate the functional behavior. You can modify the groundwater recharge _R_ (in mm/a) and the hydraulic conductivity _K_ (in m/s).
+    """
+)
 
 "---"
 
