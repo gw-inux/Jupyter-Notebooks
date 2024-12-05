@@ -2,7 +2,7 @@ import streamlit as st
 
 
 st.set_page_config(
-    page_title="SYMPLE25",
+    page_title="SYMPLE25 App",
     page_icon="💦",
 )
 
