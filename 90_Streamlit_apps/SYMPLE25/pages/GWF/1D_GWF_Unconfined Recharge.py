@@ -146,6 +146,9 @@ st.markdown(
 log_min = -7.0 # Corresponds to 10^-7 = 0.0000001
 log_max = 0.0  # Corresponds to 10^0 = 1
 
+log_min2 = -5.0 # Corresponds to 10^-7 = 0.0000001
+log_max2 = 3.0  # Corresponds to 10^0 = 1
+
 columns = st.columns((1,1,1), gap = 'large')
 
 with columns[0]:
@@ -160,12 +163,18 @@ with columns[1]:
 
 
 with columns[2]:
+    if st.toggle('K in m/d'):
+        # Input, convert the slider value to the logarithmic scale and display
+        K_slider_valued=st.slider('(log of) **Hydraulic conductivity** _K_ in m/d', log_min2,log_max2,-2.0,0.01,format="%4.2f")
+        Kd = (10 ** K_slider_valued)*86400
+        st.write("**Hydraulic conductivity in m/d:** %5.2e" %Kd)
+        K = Kd/86400
+    else:
+        # Input, convert the slider value to the logarithmic scale and display
+        K_slider_value=st.slider('(log of) **Hydraulic conductivity** _K_ in m/s', log_min,log_max,-4.0,0.01,format="%4.2f")
+        K = 10 ** K_slider_value
+        st.write("**Hydraulic conductivity in m/s:** %5.2e" %K)    
     R=st.slider('**Recharge** _R_ in mm/a', -500,500,0,10)
-    K_slider_value=st.slider('(log of) **Hydraulic conductivity** _K_ in m/s', log_min,log_max,-4.0,0.01,format="%4.2f" )
-    # Convert the slider value to the logarithmic scale
-    K = 10 ** K_slider_value
-    # Display the logarithmic value
-    st.write("**Hydraulic conductivity in m/s:** %5.2e" %K)
     
 x = np.arange(0, L,L/1000)
 R=R/1000/365.25/86400
