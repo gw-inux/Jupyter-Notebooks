@@ -18,6 +18,8 @@ st.markdown(
     - The exercise with questions, directions for the analysis including an interactive plot.
     """
 )
+st.image('90_Streamlit_apps/SYMPLE25/assets/images/GWF/GWF_001.jpg', caption="Fig 01: Sketch of the model.")
+
 st.subheader('Initial situation and challenge (management task)')
 st.markdown(
     """
@@ -25,6 +27,11 @@ st.markdown(
     
     """
 )
+left_co, right_co = st.columns((1,1))
+with left_co:
+    st.image('90_Streamlit_apps/SYMPLE25/assets/images/GWF/GWF_002.jpg', caption="Fig 02: Top view of the area, showing the close proximity of active open pit mines and post-mining lakes. The spatial extent of the areal view is several 10s of kilometers.")
+with right_co:
+    st.image('90_Streamlit_apps/SYMPLE25/assets/images/GWF/GWF_003.jpg', caption="Fig 03: Picture from the inside of an open pit mine, showing the geological composition of the underground, which is mainly thick sandy structures.")
 "---"
 
 if st.button('Click here if you want to read more about the underlying theory'):
@@ -58,27 +65,72 @@ if st.button('Click here if you want to read more about the underlying theory'):
         """
     )
     st.latex(r'''h(x)=\sqrt{h_0^2-\frac{h_0^2-h_L^2}{L}x+\frac{R}{K}x(L-x)}''')
+"---"
 
 st.subheader('Own investigation (exercise)')
+st.markdown(
+    """
+    Now we take a closer look on the remaining land area between two post-mining laks (Fig 04, the lakes are represented by the organge and green dot.). We assume that on a street an accident occured. To investigate the situation, we apply a 1D groundwater model for an unconfined aquifer (see Fig. 01). The model is placed between the two lakes as indicated by the pink line in Fig. 04. The distance between the two lakes is fixed to _L_ = 2500 m.
+    
+    """
+)
+st.image('90_Streamlit_apps/SYMPLE25/assets/images/GWF/GWF_004.jpg', caption="Fig 04: Top view of the section between two post-mining lakes.")
+
 # Initial assessment
 show_initial_assessment = st.toggle("**Show the initial questions**")
 if show_initial_assessment:
-    columnsQ1 = st.columns((1,1), gap = 'large')
-    
-    with columnsQ1[0]:
-        stb.single_choice(":green[Assume a situation **without recharge** (recharge is zero, e.g., after a long and dry summer). You intend to compute the hydraulic heads _h(x)_ in the underground. **How much is the influence of the hydraulic conductivity _K_ on the solution?**]",
+    stb.single_choice(":green[Assume a situation **without recharge** (recharge is zero, e.g., after a long and dry summer). You intend to compute the hydraulic heads _h(x)_ in the underground. **How much is the influence of the hydraulic conductivity _K_ on the solution?**]",
                   ["Very high influence", "High influence", "Intermediate influence", "Minor influence", "No influence"],
                   4,success='CORRECT! You will see this in the next steps.', error='This is not correct. In the next steps we will further investiage this behaviour.')
-        stb.single_choice(":green[What is a **typical ammount for groundwater recharge** (in moderate climate like Middle Europe)?]",
+    stb.single_choice(":green[Now assume a situation **with** average annual **recharge**. **To which lake** will the possible contamination move?]",
+                  ["To the lake on the left", "To the lake on the right", "The possible contamination will not move", "The flow direction can be to the left or to the right"],
+                  1,success='CORRECT! We will do this in the next steps.', error='This option is not suitable. Re-Think the situation.')    
+    stb.single_choice(":green[What is a **typical ammount for groundwater recharge** (in moderate climate like Middle Europe)?]",
                   ["1000 mm/a", "500 mm/a", "200 mm/a", "50 mm/a", "5 mm/a"],
                   2,success='CORRECT! This is a reasonable approximation.', error='This is not correct. Please consider an average precipitation of 700 mm/a and evapotranspiration of 500 mm/a.')
-    
-    with columnsQ1[1]:
-        stb.single_choice(":green[Now assume a situation **with** average annual **recharge**. **To which lake** will the possible contamination move?]",
-                  ["To the lake on the left", "To the lake on the right", "The possible contamination will not move", "The flow direction can be to the left or to the right"],
-                  1,success='CORRECT! We will do this in the next steps.', error='This option is not suitable. Re-Think the situation.')
+
 "---"
 
+# Create buttons with st.button and proceed with the steps of the exercise
+with stylable_container(
+    "green",
+    css_styles="""
+    button {
+        background-color: #00FF00;
+        color: black;
+    }""",
+):
+    if st.button('Proceed with Exercise Step 1'):
+        st.markdown("""
+            **STEP 1:**
+            First we aim to investigate the sensitivity of the hydraulic conductivity _K_ on hydraulic heads _h_ without recharge.
+            
+           _To proceed_ (with the interactive plot):
+            - Modify the hydraulic conductivity. What happens?
+"""
+)
+    if st.button('Proceed with Exercise Step 2'):
+        st.markdown("""
+            **STEP 2:**
+            Now we aim to investigate the sensitivity of the hydraulic conductivity _K_ on hydraulic heads _h_ with recharge.
+            
+           _To proceed_:
+            - First set a reasonable value for groundwater recharge _R_,
+            - Now, modify the hydraulic conductivity again. What happens?
+            - Further reduce the hydraulic conductivity to small values. What happens?
+            - Eventually, go back to the initial assessment (the questions above) and re-answer.
+"""
+)
+    if st.button('Proceed with Exercise Step 3'):
+        st.markdown("""
+            **STEP 3:**
+            
+            Now you can use the interactive plot for your own investigations. 
+            
+           _To proceed_:
+            - Modify the different parameters and see the reaction.
+"""
+)
 st.subheader('Computation and visualization')
 st.markdown(
     """
@@ -94,18 +146,22 @@ st.markdown(
 log_min = -7.0 # Corresponds to 10^-7 = 0.0000001
 log_max = 0.0  # Corresponds to 10^0 = 1
 
-columns = st.columns((1,1), gap = 'large')
+columns = st.columns((1,1,1), gap = 'large')
 
 with columns[0]:
     y_scale = st.slider('Scaling y-axis', 0,20,3,1)
+
+    
+with columns[1]:
     hl=st.slider('LEFT defined head', 120,180,150,1)
     hr=st.slider('RIGHT defined head', 120,180,152,1)
-    L= st.slider('Length', 0,7000,2500,10)
+    #L= st.slider('Length', 0,7000,2500,10)
+    L = 2500
 
 
-with columns[1]:
-    R=st.slider('Recharge in mm/a', -500,500,0,10)
-    K_slider_value=st.slider('(log of) hydraulic conductivity in m/s', log_min,log_max,-4.0,0.01,format="%4.2f" )
+with columns[2]:
+    R=st.slider('**Recharge** _R_ in mm/a', -500,500,0,10)
+    K_slider_value=st.slider('(log of) **Hydraulic conductivity** _K_ in m/s', log_min,log_max,-4.0,0.01,format="%4.2f" )
     # Convert the slider value to the logarithmic scale
     K = 10 ** K_slider_value
     # Display the logarithmic value
