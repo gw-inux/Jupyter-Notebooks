@@ -84,7 +84,7 @@ if show_initial_assessment:
                   4,success='CORRECT! You will see this in the next steps.', error='This is not correct. In the next steps we will further investiage this behaviour.')
     stb.single_choice(":green[Now assume a situation **with** average annual **recharge**. **To which lake** will the possible contamination move?]",
                   ["To the lake on the left", "To the lake on the right", "The possible contamination will not move", "The flow direction can be to the left or to the right"],
-                  1,success='CORRECT! We will do this in the next steps.', error='This option is not suitable. Re-Think the situation.')    
+                  3,success='CORRECT! We will do this in the next steps.', error='This option is not suitable. Re-Think the situation.')    
     stb.single_choice(":green[What is a **typical ammount for groundwater recharge** (in moderate climate like Middle Europe)?]",
                   ["1000 mm/a", "500 mm/a", "200 mm/a", "50 mm/a", "5 mm/a"],
                   2,success='CORRECT! This is a reasonable approximation.', error='This is not correct. Please consider an average precipitation of 700 mm/a and evapotranspiration of 500 mm/a.')
