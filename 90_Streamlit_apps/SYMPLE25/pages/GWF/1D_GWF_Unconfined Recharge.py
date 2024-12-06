@@ -10,13 +10,19 @@ st.title('Initial example for :green[System Understanding through Model Analysis
 st.header('Analytical solution for 1D unconfined flow with two defined head boundaries', divider="green")
 st.markdown(
     """
-    The app computes 1D groundwater flow in an unconfined, homogeneous, and isotropic aquifer that is bounded by two defned head boundaries. The aquifer receives groundwater recharge from the top.
+    The app computes **1D groundwater flow** in an unconfined, homogeneous, and isotropic aquifer that is bounded by two defned head boundaries. The aquifer receives groundwater recharge from the top.
+    
+    Subsequently, you will find 
+    - A short description of the initial situation that serve for an exercise,
+    - Some explanation of the underlying theory of the 1D analytical groundwater flow model,
+    - The exercise with questions, directions for the analysis including an interactive plot.
     """
 )
 st.subheader('Initial situation and challenge (management task)')
 st.markdown(
     """
     We consider an area that is mainly composed of thick sandy aquifers. In the area are several large lakes, see figure. On the land surface between two lakes happend an car accident that results in the possible release of harmful substances in the underground. For that reasons, a very quick initial evaluation of the situation is required.
+    
     """
 )
 "---"
@@ -60,15 +66,15 @@ if show_initial_assessment:
     columnsQ1 = st.columns((1,1), gap = 'large')
     
     with columnsQ1[0]:
-        stb.single_choice(":green[**Assume a situation without recharge (e.g., after a long and dry summer). You intend to compute the hydraulic heads _h(x)_ in the underground. How much is the influence of the hydraulic conductivity _K_ on the solution?**]",
+        stb.single_choice(":green[Assume a situation **without recharge** (recharge is zero, e.g., after a long and dry summer). You intend to compute the hydraulic heads _h(x)_ in the underground. **How much is the influence of the hydraulic conductivity _K_ on the solution?**]",
                   ["Very high influence", "High influence", "Intermediate influence", "Minor influence", "No influence"],
                   4,success='CORRECT! You will see this in the next steps.', error='This is not correct. In the next steps we will further investiage this behaviour.')
-        stb.single_choice(":green[**What is a typical ammount for groundwater recharge (in moderate climate like Middle Europe)?**]",
+        stb.single_choice(":green[What is a **typical ammount for groundwater recharge** (in moderate climate like Middle Europe)?]",
                   ["1000 mm/a", "500 mm/a", "200 mm/a", "50 mm/a", "5 mm/a"],
                   2,success='CORRECT! This is a reasonable approximation.', error='This is not correct. Please consider an average precipitation of 700 mm/a and evapotranspiration of 500 mm/a.')
     
     with columnsQ1[1]:
-        stb.single_choice(":green[**Now assume a situation with average annual recharge. To which lake will the possible contamination move?**]",
+        stb.single_choice(":green[Now assume a situation **with** average annual **recharge**. **To which lake** will the possible contamination move?]",
                   ["To the lake on the left", "To the lake on the right", "The possible contamination will not move", "The flow direction can be to the left or to the right"],
                   1,success='CORRECT! We will do this in the next steps.', error='This option is not suitable. Re-Think the situation.')
 "---"
