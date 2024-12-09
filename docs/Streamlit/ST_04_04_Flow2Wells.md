@@ -7,6 +7,10 @@ grand_parent: Streamlit Apps
 has_children: false
 ---
 
+<script type="text/javascript" async
+    src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js">
+</script>
+
 #### Streamlit Apps for the topic
 ### 04 Basic Hydrogeology
 # Flow to wells 
@@ -45,5 +49,4 @@ This [**app**](https://flow2well-transient-unconfined-confined.streamlit.app/) c
 <img src="../assets/images/st/04/flow2well-transient-unconfined-confined.png" alt="Screenshot of the app" width="400"/>
 
 You can **access the app** here: [https://flow2well-transient-unconfined-confined.streamlit.app/](https://flow2well-transient-unconfined-confined.streamlit.app/)
-
 
