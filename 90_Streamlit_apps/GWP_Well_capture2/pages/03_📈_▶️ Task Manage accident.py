@@ -22,6 +22,7 @@ st.markdown("""
             
             In the following you find some initial questions to start with the challenge.
 """
+)
 
 # Function for catchment width (maximale Breite des Einzugsgebietes)
 def ymax_conf(Q, K, i, b):
