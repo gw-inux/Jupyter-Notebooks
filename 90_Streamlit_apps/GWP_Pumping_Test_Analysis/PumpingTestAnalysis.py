@@ -14,14 +14,19 @@ st.header('Welcome 👋')
 
 st.markdown(
     """
-    This app is designed to introduce the evaluation of pumping tests for confined, unconfined, and leaky aquifers. 
-     
-    [Motivation / reason] with the following properties entered by the user.
-    - Transmissivity _T_ (square meters per second)
-    - Storativity _S_
-    - pumping rate _Q_ (cubic meters per second)
+    Pumping tests are one of the most important methods in Hydrogeology to achieve information and parameters of hydrogeological structures like aquifers. Accordingly, a pumping test provides the aquifers transmissivity _T_ and storativity _S_. This app is designed to introduce the evaluation of pumping tests for confined, unconfined, and leaky aquifers.
     
-    Additional inputs allow the user to reformat the graph ...
+    First, you will understand the general reaction of aquifers on water abstraction. You will understand how the cone of drawdown develops over space and time. Then we will see how pumping test data can be evaluated. We will do this for
+    - confined,
+    - leaky, and
+    - unconfined aquifers.
+    
+    And we will use different data sets
+    - synthetic and idealized data that originate from textbooks,
+    - measured data from the Varnum test site in Sweden,
+    - measured data from the Viterbo test site in Italy,
+    - measured data from the Pirna test site in Germany,
+    - plus you can also use your own data.
 """
 )
 
@@ -32,12 +37,15 @@ with cent_co:
 st.markdown(
     """   
     To navigate the Pumping test analysis tool you can use menu items at the sidebar:
-    - Learn about the underlying theory
-    - Investigate how a confined aquifer reacts on pumping
-    - Understand the behavior and characteristics of the Theis solution for confined aquifers
-    - Understand the behavior and characteristics of the Neuman solution for unconfined aquifers
-    - Estimate the parameters for a confined aquifer and understand the effect of parameter uncertainty for future drawdown prediction
-    - Finally, investigate real measured data (or your own dataset) with the Theis or Neuman solution.
+    - Learn about the underlying **theory**,
+    - Investigate how a **confined aquifer reacts on pumping**,
+    - Understand the behavior and characteristics of the **Theis solution for confined aquifers**,
+    - Understand the behavior and characteristics of the **Hantush/Jacob solution for leaky aquifers**,
+    - Understand the behavior and characteristics of the **Neuman solution for unconfined aquifers**,
+    - Estimate the parameters for a confined aquifer and understand the **effect of parameter uncertainty** for future drawdown prediction
+    - Finally, **investigate real measured data (or your own dataset)** with the Theis, Hantush/Jacob, or Neuman solution.
+    
+    This interactive app allows to investigate transient flow to a well with the Theis and Neuman solution. Applications involve the pumping test evaluation in confined and unconfined, transient setups. The computation is based on Spreadsheets from Prof. Rudolf Liedl and Prof. Charles R. Fitts.
     
     The online version of PumpingTestAnalysis is copyrighted by the author and distributed by The Groundwater Project. Please use gw-project.org links when you want to share Groundwater Project materials with others. It is not permissible to make GW-Project documents available on other websites nor to send copies of the files directly to others
 """

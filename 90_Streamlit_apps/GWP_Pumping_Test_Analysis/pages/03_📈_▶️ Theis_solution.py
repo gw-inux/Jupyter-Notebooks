@@ -16,7 +16,19 @@ st.markdown("""
             In the following you find some initial questions to start with the investigation of the Theis solution.
 """
 )
+"---"
 
+# Optional theory here
+lc1, mc1, rc1 = st.columns([1,4,1])
+with mc1:
+    show_theory = st.button('Click here if you want to read more about the underlying theory')
+    
+if show_theory:
+    st.markdown(
+    """
+    ## Required theory
+    """
+    )
 # Initial assessment
 
 show_initial_assessment = st.toggle("**Show the initial assessment**")

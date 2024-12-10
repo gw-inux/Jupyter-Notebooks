@@ -11,7 +11,7 @@ st.subheader(':red-background[Fitting aquifer parameter to randomly generated da
 
 # Initial assessment
 
-show_initial_assessment = st.toggle("**Show the initial assessment**")
+show_initial_assessment = st.checkbox("**Show the initial assessment**")
 if show_initial_assessment:
     columnsQ1 = st.columns((1,1), gap = 'large')
     
