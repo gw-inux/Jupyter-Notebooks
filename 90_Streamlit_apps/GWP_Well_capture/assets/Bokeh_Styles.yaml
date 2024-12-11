@@ -1,0 +1,33 @@
+attrs:
+        Axis:
+            axis_label_text_font: arial
+            axis_label_text_font_size: 14pt
+            axis_label_text_font_style: bold
+            axis_label_text_color: '#17648D'
+            major_label_text_font: arial
+            major_label_text_font_size: 12pt
+            major_label_text_font_style: normal
+        Title:
+            text_font: arial
+            text_font_size: 16pt
+            text_color: '#17648D'
+        LabelSet:
+            #text_font: arial why doesn't this work?
+            #text_font_size: 10pt
+            text_font_style: bold
+        Legend:
+            label_text_font: arial
+            label_text_font_size: 12pt
+            label_text_color: '#17648D'
+            title_text_font: arial
+            title_text_font_size: 14pt
+            title_text_font_style: bold
+        ColorBar:
+            title_text_font: arial
+            title_text_font_size: 14pt
+            title_text_color: '#17648D'
+            title_text_font_style: bold
+            major_label_text_font: arial
+            major_label_text_font_size: 12pt
+            major_label_text_font_style: normal
+            
