@@ -106,7 +106,6 @@ def computation():
             calib = st.selectbox("What data for calibration?", ('Regular data', 'Irregular data', 'Irregular data with noise'))
         else:
             calib = 'No calibration'
-        st.write(calib)
         
     with columns[1]:
         if st.toggle('Fix recharge'):
