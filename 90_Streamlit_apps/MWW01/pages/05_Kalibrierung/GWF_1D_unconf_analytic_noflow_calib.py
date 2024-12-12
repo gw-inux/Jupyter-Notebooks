@@ -106,6 +106,7 @@ def computation():
             calib = st.selectbox("What data for calibration?", ('Regular data', 'Irregular data', 'Irregular data with noise'))
         else:
             calib = 'No calibration'
+        st.write(calib)
         
     with columns[1]:
         if st.toggle('Fix recharge'):
@@ -182,16 +183,19 @@ def computation():
         plt.text(L, 0.99 * hr *(1+y_scale/100), 'Defined head bc', horizontalalignment='right', bbox=dict(boxstyle="square", facecolor='lightgrey'), fontsize=14)
     st.pyplot(fig)
     
-    lc2, cc2, rc2 = st.columns((1,1,1), gap = 'large')
-    with cc2:
-        show_truth = st.button(":rainbow[Tell me how I did the calibration!]")
-        
+    
     if calib != 'No calibration':
-        if show_truth:
-            st.write("'True' Recharge R = ","% 10.2E"% st.session_state.R_random, " m^2/s. Your fitting success is:  %5.2f" %(R/R_random*100), " %")
-            st.write("'True' Hydr. Conductivity K = ","% 10.2E"% st.session_state.K_random, "[-].    Your fitting success is:  %5.2f" %(K/K_random*100), " %")
-            if riv:
-                st.write("'True' River conductance C = ","% 10.2E"% cRiv_random, "[-].    Your fitting success is:  %5.2f" %(cRiv/cRiv_random*100), " %")
+        lc2, cc2, rc2 = st.columns((1,1,1), gap = 'large')
+        with cc2:
+            show_truth = st.button(":rainbow[Tell me how I did the calibration!]")
+    else:
+        show_truth = False
+        
+    if show_truth:
+        st.write("'True' Recharge R = ","% 10.2E"% st.session_state.R_random, " m^2/s. Your fitting success is:  %5.2f" %(R/R_random*100), " %")
+        st.write("'True' Hydr. Conductivity K = ","% 10.2E"% st.session_state.K_random, "[-].    Your fitting success is:  %5.2f" %(K/K_random*100), " %")
+        if riv:
+            st.write("'True' River conductance C = ","% 10.2E"% cRiv_random, "[-].    Your fitting success is:  %5.2f" %(cRiv/cRiv_random*100), " %")
     
 computation()
 
