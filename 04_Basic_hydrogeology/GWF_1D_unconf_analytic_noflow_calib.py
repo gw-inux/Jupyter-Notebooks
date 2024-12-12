@@ -113,7 +113,7 @@ def computation():
             R_print = R*1000*86400*365.25
             st.write("**Recharge (fixed) in mm/a:** %5.2f" %R_print)
         else:
-            R = st.slider('Recharge in mm/a',0,500,0,5)
+            R = st.slider('Recharge in mm/a',0,500,0,1)
             R = R/1000/365.25/86400
         # Log slider for K with input and print
         K_slider_value=st.slider('(log of) hydraulic conductivity in m/s', log_min,log_max,-4.0,0.01,format="%4.2f" )
@@ -191,7 +191,7 @@ def computation():
         show_truth = False
         
     if show_truth:
-        st.write("'True' Recharge R = ","% 10.2E"% st.session_state.R_random, " m^2/s. Your fitting success is:  %5.2f" %(R/R_random*100), " %")
+        st.write("'True' Recharge R = ","% 5.2f"% (st.session_state.R_random*1000*86400*365.25), " m^2/s. Your fitting success is:  %5.2f" %(R/R_random*100), " %")
         st.write("'True' Hydr. Conductivity K = ","% 10.2E"% st.session_state.K_random, "[-].    Your fitting success is:  %5.2f" %(K/K_random*100), " %")
         if riv:
             st.write("'True' River conductance C = ","% 10.2E"% cRiv_random, "[-].    Your fitting success is:  %5.2f" %(cRiv/cRiv_random*100), " %")
