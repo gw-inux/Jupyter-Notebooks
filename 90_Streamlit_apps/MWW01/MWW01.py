@@ -26,6 +26,7 @@ wellcapture = st.Page("pages/04_Transportmodellierung/WellCapture_MWW01.py",    
 # 05 Calibration
 gwf1D_calib = st.Page("pages/05_Kalibrierung/GWF_1D_unconf_analytic_calib.py", title="1D GWF Kalibrierung")
 gwf1D_noflow_calib = st.Page("pages/05_Kalibrierung/GWF_1D_unconf_analytic_noflow_calib.py", title="1D GWF Kalibrierung (no flow)")
+gwf1D_noflow_calib_fix = st.Page("pages/05_Kalibrierung/GWF_1D_unconf_analytic_noflow_calib_fix.py", title="1D GWF Kalibrierung FIX (no flow)")
 
 # About Section
 about = st.Page("pages/About.py", title="About 👈")
@@ -37,7 +38,7 @@ pg = st.navigation(
         "🔶 Konzeptionelles Modell": [],
         "🔶 Grundwasserströmung": [gwf1D_FD],
         "🔶 Stofftransport": [trans1D_AD,wellcapture],
-        "🔶 Kalibrierung": [gwf1D_calib, gwf1D_noflow_calib],
+        "🔶 Kalibrierung": [gwf1D_calib, gwf1D_noflow_calib, 1D GWF Kalibrierung FIX (no flow)],
         "🔷 General info": [about, about_MWW01],
     }
 )
