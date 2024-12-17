@@ -98,7 +98,6 @@ def computation():
 
     columns = st.columns((1,1,1), gap = 'large')
     with columns[0]:
-        y_scale = st.slider('Scaling y-axis', 0,20,10,1)
         #hl=st.slider('LEFT defined head', 120,180,150,1)
         #hr=st.slider('RIGHT defined head', 120,180,152,1)
         #L= st.slider('Length', 0,7000,2500,10)
@@ -106,6 +105,7 @@ def computation():
             calib = st.selectbox("What data for calibration?", ('Irregular data with noise', 'Irregular data','Regular data' ))
         else:
             calib = 'No calibration'
+        y_scale = st.slider('Scaling y-axis', 0,20,10,1)
         
     with columns[1]:
         if st.toggle('Fix recharge'):
