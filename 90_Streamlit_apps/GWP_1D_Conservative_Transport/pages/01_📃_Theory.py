@@ -1,0 +1,38 @@
+import streamlit as st
+
+st.title('📃 Theory underlying 1D Conservative Transport')
+
+st.markdown(
+    """
+    ## The Conceptual Model for 1D Conservative Transport
+    ...
+"""
+)
+left_co, cent_co, last_co = st.columns((20,60,20))
+with cent_co:
+    st.image('90_Streamlit_apps/GWP_Well_capture/assets/images/wellcapturediagram-sm42.png', caption="Conceptual Diagram of a well capture zone; modified from Grubb(1993)")
+
+st.markdown(
+    """
+    ## The Mathematical Model for 1D Conservative Transport
+    ...
+"""
+)
+st.latex(r'''x_0=\frac{Q}{2\pi Kib}''')
+st.latex(r'''B=2y_{max}=\frac{Q}{Kib}''')
+st.markdown(
+    """
+    The symbols are: _Q_ = pumping rate, _K_ = hydraulic conductivity, _i_ = hydrauic gradient, and _b_ = aquifer thickness.
+    
+    - each point on the flow divide can be calculated as:
+"""
+)
+
+st.latex(r'''x=\frac{-y}{\tan (\frac{2 \pi Kiby}{Q})}''')
+
+st.markdown(
+    """
+UPDATE  Grubb, S. (1993). Analytical Model for Estimation of Steady-State Capture Zones of Pumping Wells in Confined and Unconfined Aquifers. Groundwater, 31(1), 27-32. https://doi.org/10.1111/j.1745-6584.1993.tb00824.x
+
+"""
+)
