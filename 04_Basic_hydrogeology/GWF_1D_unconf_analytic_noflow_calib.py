@@ -103,7 +103,7 @@ def computation():
         #hr=st.slider('RIGHT defined head', 120,180,152,1)
         #L= st.slider('Length', 0,7000,2500,10)
         if st.toggle('Provide data for calibration?'):
-            calib = st.selectbox("What data for calibration?", ('Regular data', 'Irregular data', 'Irregular data with noise'))
+            calib = st.selectbox("What data for calibration?", ('Irregular data with noise', 'Irregular data','Regular data' ))
         else:
             calib = 'No calibration'
         
