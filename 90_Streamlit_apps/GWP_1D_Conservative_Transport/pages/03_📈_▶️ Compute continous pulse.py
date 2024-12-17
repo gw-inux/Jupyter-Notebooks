@@ -69,7 +69,7 @@ def BC(PE,r_time, r_dur):
         BC = 0.5 * (BC5 - BCC5)
     return BC
 
-st.title('1D Transport with advection and dispersion')
+st.title('1D Transport with advection and dispersion - Input as continous pulse')
 
 st.write('The plot shows the solute concentration at an observation point in a user-defined distance from the source. Transport is considered for a 1D system with steady groundwater flow. Solutes are added by an finite pulse with a concentration of 0.1 g per cubicmeter.')
 "---"
@@ -162,7 +162,7 @@ ax.set_ylabel ('Concentration (g)', fontsize=14)
 if plot_A:
     ax.plot(time,conca, 'fuchsia', linewidth=2, label="Computed: (only) Advection")
 if plot_AD:
-    ax.plot(time,conc, 'navy', linewidth=2, label="Computed: Adcektion-Dispersion")
+    ax.plot(time,conc, 'navy', linewidth=2, label="Computed: Advection-Dispersion")
 if plot_DATA == 1:
     ax.plot(t_obs, c_obs, 'ro', label="Measured")
 #ax.scatter(t_obs, c_obs, marker="x", c="red", zorder=10)

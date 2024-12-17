@@ -58,7 +58,7 @@ def BC(PE,r_time, r_dur):
         BC = 0.5 * (BC5 - BCC5)
     return BC
 
-st.title('1D Transport with advection and dispersion')
+st.title('1D Transport with advection and dispersion - Input as finite pulse')
 
 st.write('The plot shows the solute concentration at an observation point in a user-defined distance from the source. Transport is considered for a 1D system with steady groundwater flow. Solutes are added by an finite pulse with a concentration of 0.1 g per cubicmeter.')
 "---"
