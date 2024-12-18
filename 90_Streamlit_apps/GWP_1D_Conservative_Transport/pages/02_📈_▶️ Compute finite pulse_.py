@@ -102,10 +102,7 @@ v =     q/n
 D =     a*v
 PE =    l/a
 
-if dirac:
-    dur = 0
-else:
-    dur =   m/(Q*(c0-ci))
+dur =   m/(Q*(c0-ci))
 tPV =   l/v
 r_dur = dur/tPV
 r_dt =  dt/tPV
