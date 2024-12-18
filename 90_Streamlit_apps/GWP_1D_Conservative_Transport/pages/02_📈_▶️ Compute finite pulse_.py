@@ -84,8 +84,6 @@ with columns[0]:
     else:
         l  = st.slider(f'**Distance of observation from source (m)**',1,100,15,1)
     
-    dirac = st.toggle('Dirac input')
-    
 with columns[1]:
     n  = st.slider(f'**Porosity (dimensionless)**',0.02,0.6,0.2,0.001)       
     a  = st.slider(f'**Longitudinal dispersivity (m)**',0.001,10.0,0.01,0.002)
