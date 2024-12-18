@@ -11,12 +11,11 @@ st.markdown("""
             
             Transport is considered for a 1D system with steady groundwater flow with a specific discharge _q_ of 0.016 m/s. The average velocity is depending on the porosity and printed below the interactive plot.
             
-            The solutes are added as a finite pulse with an input concentration of 0.1 g/m<sup>3</sup>
+            The solutes are added by an finite pulse with a concentration of 0.1 g/m<sup>3</sup>. The duration of the input pulse is depending on the added total mass, which can be modified by the user.
             
-            The plot shows the solute concentration at an observation point in a user-defined distance from the source.  Solutes are added by an finite pulse with a concentration of 0.1 g per cubicmeter.
+            Finally, the plot shows the solute concentration at an observation point in a user-defined distance from the source. The solute concentration can be computed for pure advective transport and advective-dispersive transport.
 """, unsafe_allow_html=True
 )
-st.write()
 "---"
 
 #FUNCTIONS FOR COMPUTATION; ADS = ADVECTION, DISPERSION AND SORPTION - EVENTUALLY SET RETARDATION TO 1 FOR NO SORPTION
@@ -76,10 +75,6 @@ def BC(PE,r_time, r_dur):
 
 columns = st.columns((1,1), gap = 'large')
 
-#t1 = st.slider('Time max',60,86400,1800,60)
-#c0 = st.slider('Mass input conc.',0.01,5.0,0.1,0.01)
-#m  = st.slider('Mass input',0.0,1000.0,10.0,1.0)
-#Q  = 0.2
 l = 15
 t1 = 1800
 c0 = 0.1
@@ -87,9 +82,9 @@ m = 10.0
 Q= 0.2
 
 with columns[0]:
-    plot_A    = st.toggle('Plot Advection', True)
-    plot_AD   = st.toggle('Plot Dispersion', False)
-    plot_DATA = st.toggle('Show Measured data for calibration',False)
+    plot_A    = st.toggle('Plot advective transport', True)
+    plot_AD   = st.toggle('Plot advective-dispersive transport', False)
+    plot_DATA = st.toggle('Show measured data for calibration exercise',False)
     if plot_DATA:
         l = 15
         st.write('D**Distance of observation from source** for the measured data is fixed to 15 m.')
@@ -97,6 +92,7 @@ with columns[0]:
         l  = st.slider(f'**Distance of observation from source (m)**',1,100,15,1)
     
 with columns[1]:
+    m  = st.slider(f'**Total mass input (g)**',0.1,20.0,10.0,0.1)  
     n  = st.slider(f'**Porosity (dimensionless)**',0.02,0.6,0.2,0.001)       
     a  = st.slider(f'**Longitudinal dispersivity (m)**',0.001,10.0,0.01,0.002)
 "---"
@@ -113,8 +109,6 @@ q =     Q/A
 v =     q/n
 D =     a*v
 PE =    l/a
-
-st.write(q, v)
 
 dur =   m/(Q*(c0-ci))
 tPV =   l/v
@@ -160,7 +154,7 @@ fig = plt.figure(figsize=(9,6))
 ax = fig.add_subplot(1, 1, 1)
 ax.set_title('1D solute transport with advection-dispersion', fontsize=16)
 ax.set_xlabel ('Time (s)', fontsize=14)
-ax.set_ylabel ('Concentration (g)', fontsize=14)
+ax.set_ylabel ('Concentration (g/m³)', fontsize=14)
       
 # PLOT HERE
 if plot_A:
@@ -178,3 +172,5 @@ plt.yticks(fontsize=14)
 plt.legend(frameon=False, loc='upper right', fontsize=14)
     
 st.pyplot(fig)
+
+st.write("Average velocity _v_ = ","% 7.3E"% v)
