@@ -7,10 +7,13 @@ import streamlit as st
 st.title('1D Transport with advection and dispersion')
 st.subheader('Tracer input as :green[Dirac Pulse] data', divider="green")
 
+if st.button('Show theory'):
+    st.latex(r'''c(x,t) = \frac{\Delta M}{2 \cdot A \cdot n_e \sqrt{\pi \cdot D \cdot t}} e^{-\frac{(x - v \cdot t)^2}{4 D \cdot t}}''')
+
 st.markdown("""
             ### About the computed situation
             
-            Transport is considered for a 1D system with steady groundwater flow with a specific discharge _q_ of 0.016 m/s. The average velocity is depending on the porosity and printed below the interactive plot.
+            Transport is considered for a 1D system with steady groundwater flow with an average velocity _v_ of 0.00014 m/s. The average velocity is depending on the porosity and printed below the interactive plot.
             
             The solutes are added by an Dirac pulse with a user defined mass.
             
@@ -18,8 +21,6 @@ st.markdown("""
 """, unsafe_allow_html=True
 )
 "---"
-
-st.latex(r'''c(x,t) = \frac{\Delta M}{2 \cdot A \cdot n_e \sqrt{\pi \cdot D \cdot t}} e^{-\frac{(x - v_a \cdot t)^2}{4 D \cdot t}}''')
 
 #FUNCTIONS FOR COMPUTATION; ADS = ADVECTION, DISPERSION AND SORPTION - EVENTUALLY SET RETARDATION TO 1 FOR NO SORPTION
 
