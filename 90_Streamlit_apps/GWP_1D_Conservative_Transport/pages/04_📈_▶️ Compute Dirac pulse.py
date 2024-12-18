@@ -115,7 +115,6 @@ if multi:
 #ax.scatter(t_obs, c_obs, marker="x", c="red", zorder=10)
 plt.ylim(0,cmax*0.5)
 plt.xlim(0,t1)
-plt.xticks([0, 21600, 43200, 64800, 86400, 172800, 259200])
 plt.xticks(fontsize=14)
 plt.yticks(fontsize=14)
 #if not plot_A !=1 and plot_AD != 1 and plot_DATA != 1:
