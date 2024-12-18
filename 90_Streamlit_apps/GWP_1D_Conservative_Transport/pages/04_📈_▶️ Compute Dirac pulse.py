@@ -28,15 +28,6 @@ st.markdown("""
 
 #FUNCTIONS FOR COMPUTATION; ADS = ADVECTION, DISPERSION AND SORPTION - EVENTUALLY SET RETARDATION TO 1 FOR NO SORPTION
 
-r  = 2      # Column radius
-Q = 0.2
-A = np.pi*r**2
-q = Q/A
-v = q/n
-
-
-import numpy as np
-
 def c_ADE(x, t, dM, Area, n, a, v):
     
     D = v * a
@@ -67,6 +58,11 @@ with columns2[1]:
     a = st.slider(f'**Longitudinal dispersivity (m)**',0.001,1.0,0.01,0.001)
     
 "---"
+r  = 2      # Column radius
+Q = 0.2
+A = np.pi*r**2
+q = Q/A
+v = q/n
 
 # Data for plotting
 t0 = 1      # Starting time
