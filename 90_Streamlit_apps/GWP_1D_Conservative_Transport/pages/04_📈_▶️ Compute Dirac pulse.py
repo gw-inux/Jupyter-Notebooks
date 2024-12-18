@@ -112,7 +112,7 @@ t_obs = [100, 200, 300, 400, 500, 600, 700, 800, 900, 1000]
 c_obs = [1e-3, 5e-2, 8.5e-2, 9.7e-2, 9.9e-2, 10e-2, 10e-2, 10e-2, 10e-2, 10e-2]
    
 #PLOT FIGURE
-fig = plt.figure(figsize=(18,6))
+fig = plt.figure(figsize=(9,12))
 ax = fig.add_subplot(2, 1, 1)
 ax.set_title('1D solute transport with advection-dispersion', fontsize=16)
 ax.set_xlabel ('Time (s)', fontsize=14)
