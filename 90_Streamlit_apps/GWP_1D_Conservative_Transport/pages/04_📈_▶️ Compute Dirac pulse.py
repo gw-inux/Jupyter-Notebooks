@@ -114,7 +114,8 @@ if multi:
 #    ax.plot(t_obs, c_obs, 'ro', label="Measured")
 #ax.scatter(t_obs, c_obs, marker="x", c="red", zorder=10)
 plt.ylim(0,cmax*0.5)
-plt.xlim(0,t1, break=21600)
+plt.xlim(0,t1)
+plt.xticks(21600)
 plt.xticks(fontsize=14)
 plt.yticks(fontsize=14)
 #if not plot_A !=1 and plot_AD != 1 and plot_DATA != 1:
