@@ -19,7 +19,7 @@ st.markdown("""
 )
 "---"
 
-st.latex(r'''c(x,t) = \frac{\Delta M}{2 \cdot B \cdot m \cdot n_e \sqrt{\pi \cdot D \cdot t}} e^{-\frac{(x - v_a \cdot t)^2}{4 D \cdot t}}''')
+st.latex(r'''c(x,t) = \frac{\Delta M}{2 \cdot A \cdot n_e \sqrt{\pi \cdot D \cdot t}} e^{-\frac{(x - v_a \cdot t)^2}{4 D \cdot t}}''')
 
 #FUNCTIONS FOR COMPUTATION; ADS = ADVECTION, DISPERSION AND SORPTION - EVENTUALLY SET RETARDATION TO 1 FOR NO SORPTION
 
@@ -59,7 +59,7 @@ with columns[0]:
 with columns[1]:
     dM = st.slider(f'**Input mass (g)**',0.01,1.0,0.1,0.01)
     n = st.slider(f'**Porosity (dimensionless)**',0.02,0.6,0.2,0.001)       
-    a = st.slider(f'**Longitudinal dispersivity (m)**',0.001,2.0,0.01,0.001)
+    a = st.slider(f'**Longitudinal dispersivity (m)**',0.001,1.0,0.01,0.001)
     
 "---"
 
