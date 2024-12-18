@@ -41,7 +41,7 @@ with cent_co:
 
 left_co3, cent_co3 = st.columns((20,60))
 with left_co3:
-    st.image('90_Streamlit_apps/GWP_Well_capture/assets/images/oriolbertran.jpg')
+    st.image('90_Streamlit_apps/GWP_1D_Conservative_Transport/assets/images/oriolbertran.jpg')
 with cent_co3:
     st.markdown(
         """
