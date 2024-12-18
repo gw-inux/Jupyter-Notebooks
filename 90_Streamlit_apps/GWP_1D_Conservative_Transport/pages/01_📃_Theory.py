@@ -10,8 +10,7 @@ st.markdown(
 )
 left_co, cent_co, last_co = st.columns((20,60,20))
 with cent_co:
-    st.image('90_Streamlit_apps/GWP_Well_capture/assets/images/wellcapturediagram-sm42.png', caption="Conceptual Diagram of a well capture zone; modified from Grubb(1993)")
-
+    st.image('90_Streamlit_apps/GWP_1D_Conservative_Transport/assets/images/break_through_curve.jpg', caption="A breakt through curve (concentration over time) for an observation well.")
 st.markdown(
     """
     ## The Mathematical Model for 1D Conservative Transport
@@ -32,7 +31,7 @@ st.latex(r'''x=\frac{-y}{\tan (\frac{2 \pi Kiby}{Q})}''')
 
 st.markdown(
     """
-UPDATE  Grubb, S. (1993). Analytical Model for Estimation of Steady-State Capture Zones of Pumping Wells in Confined and Unconfined Aquifers. Groundwater, 31(1), 27-32. https://doi.org/10.1111/j.1745-6584.1993.tb00824.x
+UPDATE  References
 
 """
 )
