@@ -32,8 +32,10 @@ st.markdown("""
     The following is requested:
 
     **(A)** Calculate the travel time of the chlorides to point A.  
-    **(B)** Calculate the concentration of chlorides at point A after 440 days.
-    **(C)** Calculate the maximum concentration of chlorides that will reach point A.
+    
+    **(B)** Calculate the concentration of chlorides at point A after 440 days.  
+    
+    **(C)** Calculate the maximum concentration of chlorides that will reach point A.  
     """, unsafe_allow_html=True)
 
 #--------------------------------------#
