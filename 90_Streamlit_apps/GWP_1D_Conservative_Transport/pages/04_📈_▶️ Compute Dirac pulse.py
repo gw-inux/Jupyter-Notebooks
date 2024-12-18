@@ -65,7 +65,7 @@ with columns[1]:
 
 # Data for plotting
 t0 = 1      # Starting time
-t1 = 172800   # Ending time
+t1 = 3*86400   # Ending time
 dt = 2      # Time discretization
 ci = 0      # Initial concentration
 
@@ -114,7 +114,7 @@ if multi:
 #    ax.plot(t_obs, c_obs, 'ro', label="Measured")
 #ax.scatter(t_obs, c_obs, marker="x", c="red", zorder=10)
 plt.ylim(0,cmax*0.5)
-plt.xlim(0,)
+plt.xlim(0,t1, break=21600)
 plt.xticks(fontsize=14)
 plt.yticks(fontsize=14)
 #if not plot_A !=1 and plot_AD != 1 and plot_DATA != 1:
