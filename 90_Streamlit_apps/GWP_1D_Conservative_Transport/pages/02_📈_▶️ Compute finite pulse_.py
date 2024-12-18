@@ -4,6 +4,19 @@ from scipy import special
 import numpy as np
 import streamlit as st
 
+st.title('1D Transport with advection and dispersion - Input as finite pulse')
+
+st.markdown("""
+            ### About the computed situation
+            
+            Transport is considered for a 1D system with steady groundwater flow with a velocity of
+            
+            The plot shows the solute concentration at an observation point in a user-defined distance from the source.  Solutes are added by an finite pulse with a concentration of 0.1 g per cubicmeter.
+"""
+)
+st.write()
+"---"
+
 #FUNCTIONS FOR COMPUTATION; ADS = ADVECTION, DISPERSION AND SORPTION - EVENTUALLY SET RETARDATION TO 1 FOR NO SORPTION
 
 def IC(PE,r_time):
@@ -58,10 +71,7 @@ def BC(PE,r_time, r_dur):
         BC = 0.5 * (BC5 - BCC5)
     return BC
 
-st.title('1D Transport with advection and dispersion - Input as finite pulse')
 
-st.write('The plot shows the solute concentration at an observation point in a user-defined distance from the source. Transport is considered for a 1D system with steady groundwater flow. Solutes are added by an finite pulse with a concentration of 0.1 g per cubicmeter.')
-"---"
 columns = st.columns((1,1), gap = 'large')
 
 #t1 = st.slider('Time max',60,86400,1800,60)
@@ -101,6 +111,8 @@ q =     Q/A
 v =     q/n
 D =     a*v
 PE =    l/a
+
+st.write(q, v)
 
 dur =   m/(Q*(c0-ci))
 tPV =   l/v
