@@ -66,7 +66,7 @@ v = q/n
 
 # Data for plotting
 t0 = 1      # Starting time
-t1 = 86400   # Ending time
+t1 = 1800   # Ending time
 dt = 2      # Time discretization
 ci = 0      # Initial concentration
 
