@@ -13,7 +13,7 @@ warnings.filterwarnings("ignore")
 # Streamlit title and text             #
 #--------------------------------------#
 st.title("Solute transport and the principle of superposition")
-st.subheader(':rainbow[An example] data', divider="rainbow")
+st.subheader(':rainbow[An example]', divider="rainbow")
 
 st.markdown("""
     ### The situation
@@ -28,13 +28,13 @@ st.markdown("""
 st.image('90_Streamlit_apps/GWP_1D_Conservative_Transport/assets/images/superposition_principle_figure.PNG', caption = "Case example.")
 
 st.markdown("""
-The following is requested:
+    ### The exercise
+    The following is requested:
 
-**(A)** Calculate the travel time of the chlorides to point A.  
-**(B)** Calculate the concentration of chlorides at point A after 440 days.
-**(C)** Calculate the maximum concentration of chlorides that will reach point A.
-
-""", unsafe_allow_html=True)
+    **(A)** Calculate the travel time of the chlorides to point A.  
+    **(B)** Calculate the concentration of chlorides at point A after 440 days.
+    **(C)** Calculate the maximum concentration of chlorides that will reach point A.
+    """, unsafe_allow_html=True)
 
 #--------------------------------------#
 # Functions                            #
