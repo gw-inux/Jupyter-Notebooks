@@ -9,7 +9,9 @@ st.title('1D Transport with advection and dispersion - Input as finite pulse')
 st.markdown("""
             ### About the computed situation
             
-            Transport is considered for a 1D system with steady groundwater flow with a velocity of
+            Transport is considered for a 1D system with steady groundwater flow with a specific discharge _q_ of 0.016 m/s. The average velocity is depending on the porosity and printed below the interactive plot.
+            
+            The solutes are added as a finite pulse with an input concentration of 0.1 g/m<sup>3</sup>
             
             The plot shows the solute concentration at an observation point in a user-defined distance from the source.  Solutes are added by an finite pulse with a concentration of 0.1 g per cubicmeter.
 """
