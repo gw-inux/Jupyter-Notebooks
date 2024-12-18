@@ -10,8 +10,9 @@ st.subheader('Tracer input as :green[Dirac Pulse] data', divider="green")
 columns1 = st.columns((1,1,1), gap = 'large')
 with columns1[1]:
     theory = st.button('Show theory')
-    if theory:
-        st.latex(r'''c(x,t) = \frac{\Delta M}{2 \cdot A \cdot n_e \sqrt{\pi \cdot D \cdot t}} e^{-\frac{(x - v \cdot t)^2}{4 D \cdot t}}''')
+    
+if theory:
+    st.latex(r'''c(x,t) = \frac{\Delta M}{2 \cdot A \cdot n_e \sqrt{\pi \cdot D \cdot t}} e^{-\frac{(x - v \cdot t)^2}{4 D \cdot t}}''')
 
 st.markdown("""
             ### About the computed situation
