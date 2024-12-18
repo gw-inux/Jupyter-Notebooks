@@ -47,6 +47,7 @@ st.write('The plot shows the solute concentration at an observation point in a u
 columns2 = st.columns((1,1), gap = 'large')
 
 with columns2[0]:
+    tp = st.slider(f'**Time for the concentration profile (s)**',1.,1800.,120,1.)
     multi = st.toggle("Plot two curves")
     x  = st.slider(f'**Distance of the primary observation from source (m)**',1.,100.,1.,1.)
     if multi:
@@ -96,8 +97,6 @@ for t in range(t0, t1, dt):
         conc2.append(c2) 
     time.append(t)
     
-tp = 1000
-
 #compute concentration profile
 for xp in range(0, 100, 1):      
     # ADVECTION-DISPERSION
@@ -113,16 +112,16 @@ t_obs = [100, 200, 300, 400, 500, 600, 700, 800, 900, 1000]
 c_obs = [1e-3, 5e-2, 8.5e-2, 9.7e-2, 9.9e-2, 10e-2, 10e-2, 10e-2, 10e-2, 10e-2]
    
 #PLOT FIGURE
-fig = plt.figure(figsize=(9,6))
+fig = plt.figure(figsize=(12,6))
 ax = fig.add_subplot(2, 1, 1)
 ax.set_title('1D solute transport with advection-dispersion', fontsize=16)
 ax.set_xlabel ('Time (s)', fontsize=14)
 ax.set_ylabel ('Concentration (g/m³)', fontsize=14)
       
 # PLOT HERE
-ax.plot(time,conc, 'navy', linewidth=2, label="Computed: Adcektion-Dispersion")
+ax.plot(time,conc, 'navy', linewidth=2, label="Breakthrough observation 1")
 if multi:
-    ax.plot(time,conc2, 'lightblue', linewidth=2, label="Computed: Adcektion-Dispersion plot2")
+    ax.plot(time,conc2, 'lightblue', linewidth=2, label="Breakthrough observation 2")
 plt.ylim(0,cmax*0.5)
 plt.xlim(0,t1)
 plt.xticks(fontsize=14)
@@ -130,12 +129,11 @@ plt.yticks(fontsize=14)
 plt.legend(frameon=False, loc='upper right', fontsize=14)
 
 ax = fig.add_subplot(2, 1, 2)
-ax.set_title('1D solute transport with advection-dispersion', fontsize=16)
 ax.set_xlabel ('Distance from source along flow directions (m)', fontsize=14)
 ax.set_ylabel ('Concentration (g/m³)', fontsize=14)
       
 # PLOT HERE
-ax.plot(space,concp, 'navy', linewidth=2, label="Computed: Adcektion-Dispersion")
+ax.plot(space,concp, 'orange', linewidth=2, label="Concentration profile")
 plt.ylim(0,cmax*0.5)
 plt.xlim(0,100)
 plt.xticks(fontsize=14)
