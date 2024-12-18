@@ -4,7 +4,8 @@ from scipy import special
 import numpy as np
 import streamlit as st
 
-st.title('1D Transport with advection and dispersion - :blue[Input as Finite Pulse]', divider="blue")
+st.title('1D Transport with advection and dispersion')
+st.subheader('Tracer input as :blue[Finite Pulse] data', divider="blue")
 
 st.markdown("""
             ### About the computed situation

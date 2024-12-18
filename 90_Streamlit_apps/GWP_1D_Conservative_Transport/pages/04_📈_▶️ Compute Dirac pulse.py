@@ -4,13 +4,25 @@ from scipy import special
 import numpy as np
 import streamlit as st
 
-st.title('1D Transport with advection and dispersion - Input as Dirac pulse')
+st.title('1D Transport with advection and dispersion')
+st.subheader('Tracer input as :green[Dirac Pulse] data', divider="green")
 
-st.latex('c(x,t) = \frac{\Delta M}{2 \cdot B \cdot m \cdot n_e \sqrt{\pi \cdot D \cdot t}} e^{-\frac{(x - v_a \cdot t)^2}{4 D \cdot t}}')
+st.markdown("""
+            ### About the computed situation
+            
+            Transport is considered for a 1D system with steady groundwater flow with a specific discharge _q_ of 0.016 m/s. The average velocity is depending on the porosity and printed below the interactive plot.
+            
+            The solutes are added by an Dirac pulse with a user defined mass.
+            
+            The plot shows the solute concentration for advective-dispersive transport. The break through curve is computed for an observation point in a user-defined distance from the source. It is possible to plot a second breakthrough curve in an user-defined distance relative to the first observation.
+""", unsafe_allow_html=True
+)
+"---"
+
+st.latex(r'''c(x,t) = \frac{\Delta M}{2 \cdot B \cdot m \cdot n_e \sqrt{\pi \cdot D \cdot t}} e^{-\frac{(x - v_a \cdot t)^2}{4 D \cdot t}}''')
 
 #FUNCTIONS FOR COMPUTATION; ADS = ADVECTION, DISPERSION AND SORPTION - EVENTUALLY SET RETARDATION TO 1 FOR NO SORPTION
 
-dM = 1
 Area = 7.85E-3
 v = 0.00014
 
@@ -36,11 +48,6 @@ columns = st.columns((1,1), gap = 'large')
 
 with columns[0]:
     multi = st.toggle("Plot two curves")
-    #plot_DATA = st.toggle('Show Measured data for calibration',False)
-    #if plot_DATA:
-    #    x = 15
-    #    st.write('D**Distance of observation from source** for the measured data is fixed to 15 m.')
-    #else:
     if multi:
         x  = st.slider(f'**Minimal distance of observation from source (m)**',1.,100.,1.,1.)
         dx = st.slider(f'**Distance between the two observations (m)**',0.,50.,1.,0.1)
@@ -50,6 +57,7 @@ with columns[0]:
     
     
 with columns[1]:
+    dM = st.slider(f'**Input mass (g)**',0.01,1.0,0.1,0.01)
     n = st.slider(f'**Porosity (dimensionless)**',0.02,0.6,0.2,0.001)       
     a = st.slider(f'**Longitudinal dispersivity (m)**',0.001,2.0,0.01,0.001)
     
@@ -75,7 +83,7 @@ conc2  = []
 #compute concentration  
 for t in range(t0, t1, dt):      
     # ADVECTION-DISPERSION
-    cmax1 = ci+c_ADE(1, t, dM, Area, n, 0.01, v)
+    cmax1 = ci+c_ADE(1, t, 1, Area, n, 0.01, v)
     if cmax1 > cmax:
         cmax = cmax1
     c = ci+c_ADE(x, t, dM, Area, n, a, v)
@@ -105,7 +113,7 @@ if multi:
 #if plot_DATA == 1:
 #    ax.plot(t_obs, c_obs, 'ro', label="Measured")
 #ax.scatter(t_obs, c_obs, marker="x", c="red", zorder=10)
-plt.ylim(0,cmax*1.1)
+plt.ylim(0,cmax*0.5)
 plt.xlim(0,)
 plt.xticks(fontsize=14)
 plt.yticks(fontsize=14)
