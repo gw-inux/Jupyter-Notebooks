@@ -21,7 +21,7 @@ with cent_co2:
 
 st.markdown(
     """
-    ### About the Developer
+    ### About the Developers
 """
 )
 left_co, cent_co = st.columns((20,60))
@@ -38,3 +38,16 @@ with cent_co:
         
         """
     )
+
+left_co, cent_co = st.columns((20,60))
+with left_co:
+    st.image('90_Streamlit_apps/GWP_Well_capture/assets/images/oriolbertran.jpg')
+with cent_co:
+    st.markdown(
+        """
+        Oriol Bertran graduated as a Geologist from the Universitat de Barcelona (UB) and further specialized through the Master's in Hydrogeology at the Polytechnic University of Catalonia (UPC). Holding a PhD in the Geotechnical Engineering program at UPC's Hydrogeology Group, his research focused on studying mixing processes in heterogeneous porous media—from laboratory characterization to the design of engineered chaotic flows for practical applications in groundwater remediation. His main tasks included: (i) designing and conducting laboratory experiments followed by data processing through image analysis, and (ii) running stochastic models of groundwater flow and transport using Monte Carlo simulations.
+
+        He is currently a researcher at UPC, where he develops tools to streamline hydrogeological data collection and analysis. His work leverages programming languages such as Python, R, SQL, and Java, along with techniques like API requests, web scraping, and machine learning. In addition to his research, Oriol is actively contributing to several industry projects involving groundwater model development.
+        """
+    )
+
