@@ -99,8 +99,6 @@ for t in range(t0, t1, dt):
 # measurements
 t_obs = [100, 200, 300, 400, 500, 600, 700, 800, 900, 1000]
 c_obs = [1e-3, 5e-2, 8.5e-2, 9.7e-2, 9.9e-2, 10e-2, 10e-2, 10e-2, 10e-2, 10e-2]
-
-st.write(conc)
    
 #PLOT FIGURE
 fig = plt.figure(figsize=(9,6))
