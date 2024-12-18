@@ -12,14 +12,28 @@ warnings.filterwarnings("ignore")
 #--------------------------------------#
 # Streamlit title and text             #
 #--------------------------------------#
-st.title("Solute transport and the principle of superposition, an example")
-st.markdown("We have an aquifer with a saturated thickness of 20 m, porosity of 0.1, and hydraulic conductivity of 5 m/d. The river is completely contaminated by two pollution episodes separated by 5 days. The first pollution episode can be represented as a constant pulse with a concentration of 800 mg/L that lasts for 30 days. The second episode is a constant pulse with a concentration of 600 mg/L that lasts for 40 days. After 80 days from the start of the contamination, the river returns to its initial chemical state (zero chlorides). It is assumed that chlorides are neither adsorbed nor degraded in the aquifer.")
-st.image('90_Streamlit_apps/GWP_1D_Conservative_Transport/assets/images/superposition_principle_figure.PNG', caption = "Case example.")
+st.title("Solute transport and the principle of superposition")
+st.subheader(':rainbow[An example] data', divider="rainbow")
+
 st.markdown("""
-The following is requested:<br> 
+    ### The situation
+    
+    We have an aquifer with a saturated thickness of 20 m, porosity of 0.1, and hydraulic conductivity of 5 m/d. The river is completely contaminated by two pollution episodes separated by 5 days. In response to the pollution, chlorides enter the aquifer.
+
+    The first pollution episode can be represented as a constant pulse with a concentration of 800 mg/L that lasts for 30 days. The second pollution episode is a constant pulse with a concentration of 600 mg/L that lasts for 40 days. After 80 days from the start of the pollution, the river returns to its initial chemical state (zero chlorides).
+    
+    It is assumed that chlorides are neither adsorbed nor degraded in the aquifer.
+    """)
+    
+st.image('90_Streamlit_apps/GWP_1D_Conservative_Transport/assets/images/superposition_principle_figure.PNG', caption = "Case example.")
+
+st.markdown("""
+The following is requested:
+
 **(A)** Calculate the travel time of the chlorides to point A.  
-**(B)** Calculate the concentration of chlorides at point A after 440 days.<br>
-**(C)** Calculate the maximum concentration of chlorides that will reach point A.  
+**(B)** Calculate the concentration of chlorides at point A after 440 days.
+**(C)** Calculate the maximum concentration of chlorides that will reach point A.
+
 """, unsafe_allow_html=True)
 
 #--------------------------------------#
