@@ -4,7 +4,7 @@ from scipy import special
 import numpy as np
 import streamlit as st
 
-st.title('1D Transport with advection and dispersion - :orange[Input as Input as Continous Injection]', divider="orange"')
+st.title('1D Transport with advection and dispersion - :orange[Input as Input as Continous Injection]', divider="orange")
 
 st.markdown("""
             ### About the computed situation
