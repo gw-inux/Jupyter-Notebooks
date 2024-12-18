@@ -181,7 +181,7 @@ if plot_AD:
 if plot_DATA == 1:
     ax.plot(t_obs, c_obs, 'ro', label="Measured")
 #ax.scatter(t_obs, c_obs, marker="x", c="red", zorder=10)
-plt.ylim(0, cp)
+plt.ylim(0, 0.25)
 plt.xlim(0,t1)
 plt.xticks(fontsize=14)
 plt.yticks(fontsize=14)
