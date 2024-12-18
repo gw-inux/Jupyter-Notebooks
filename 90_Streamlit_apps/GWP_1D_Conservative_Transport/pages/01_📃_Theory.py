@@ -14,16 +14,9 @@ with cent_co:
 st.markdown(
     """
     ## The Mathematical Model for 1D Conservative Transport
-    ...
-"""
-)
-st.latex(r'''x_0=\frac{Q}{2\pi Kib}''')
-st.latex(r'''B=2y_{max}=\frac{Q}{Kib}''')
-st.markdown(
-    """
-    The symbols are: _Q_ = pumping rate, _K_ = hydraulic conductivity, _i_ = hydrauic gradient, and _b_ = aquifer thickness.
     
-    - each point on the flow divide can be calculated as:
+    UPDATE
+    ...
 """
 )
 
