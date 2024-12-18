@@ -98,7 +98,7 @@ for t in range(t0, t1, dt):
     time.append(t)
     
 #compute concentration profile
-for xp in range(0, 100, 0.1):      
+for xp/10 in range(0, 1000, 1):      
     # ADVECTION-DISPERSION
     cp = ci+c_ADE(xp, tp, dM, Area, n, a, v)
     concp.append(cp)
