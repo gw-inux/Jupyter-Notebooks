@@ -4,7 +4,7 @@ from scipy import special
 import numpy as np
 import streamlit as st
 
-st.title('1D Transport with advection and dispersion - Input as finite pulse')
+st.title('1D Transport with advection and dispersion - :blue[Input as finite pulse]', divider="blue")
 
 st.markdown("""
             ### About the computed situation
@@ -173,4 +173,4 @@ plt.legend(frameon=False, loc='upper right', fontsize=14)
     
 st.pyplot(fig)
 
-st.write("Average velocity _v_ = ","% 7.3E"% v)
+st.write("Average velocity _v_ (m/s) = ","% 7.3E"% v)
