@@ -4,6 +4,22 @@ from scipy import special
 import numpy as np
 import streamlit as st
 
+st.title('1D Transport with advection and dispersion - :orange[Input as Input as Continous Injection]', divider="orange"')
+
+st.markdown("""
+            ### About the computed situation
+            
+            Transport is considered for a 1D system with steady groundwater flow with a specific discharge _q_ of 0.016 m/s. The average velocity is depending on the porosity and printed below the interactive plot.
+            
+            The solutes are added by contineous injection with a user-defined concentration in g/m<sup>3</sup>.
+            
+            Finally, the plot shows the solute concentration at an observation point in a user-defined distance from the source. The solute concentration can be computed for pure advective transport and advective-dispersive transport.
+""", unsafe_allow_html=True
+)
+"---"
+
+st.write('The plot shows the solute concentration at an observation point in a user-defined distance from the source. Transport is considered for a 1D system with steady groundwater flow. Solutes are added by an finite pulse with a concentration of 0.1 g per cubicmeter.')
+
 #FUNCTIONS FOR COMPUTATION; ADS = ADVECTION, DISPERSION AND SORPTION - EVENTUALLY SET RETARDATION TO 1 FOR NO SORPTION
 
 def IC(PE,r_time):
@@ -69,9 +85,7 @@ def BC(PE,r_time, r_dur):
         BC = 0.5 * (BC5 - BCC5)
     return BC
 
-st.title('1D Transport with advection and dispersion - Input as continous pulse')
 
-st.write('The plot shows the solute concentration at an observation point in a user-defined distance from the source. Transport is considered for a 1D system with steady groundwater flow. Solutes are added by an finite pulse with a concentration of 0.1 g per cubicmeter.')
 "---"
 columns = st.columns((1,1), gap = 'large')
 
@@ -82,7 +96,7 @@ columns = st.columns((1,1), gap = 'large')
 l = 15
 t1 = 1800
 c0 = 0.1
-m = 1000.0
+m = 10000000
 Q= 0.2
 
 with columns[0]:
@@ -156,7 +170,7 @@ fig = plt.figure(figsize=(9,6))
 ax = fig.add_subplot(1, 1, 1)
 ax.set_title('1D solute transport with advection-dispersion', fontsize=16)
 ax.set_xlabel ('Time (s)', fontsize=14)
-ax.set_ylabel ('Concentration (g)', fontsize=14)
+ax.set_ylabel ('Concentration (g/m³)', fontsize=14)
       
 # PLOT HERE
 if plot_A:
@@ -174,3 +188,5 @@ plt.yticks(fontsize=14)
 plt.legend(frameon=False, loc='upper right', fontsize=14)
     
 st.pyplot(fig)
+
+st.write("Average velocity _v_ (m/s) = ","% 7.3E"% v)
