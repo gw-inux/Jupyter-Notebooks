@@ -7,8 +7,11 @@ import streamlit as st
 st.title('1D Transport with advection and dispersion')
 st.subheader('Tracer input as :green[Dirac Pulse] data', divider="green")
 
-if st.button('Show theory'):
-    st.latex(r'''c(x,t) = \frac{\Delta M}{2 \cdot A \cdot n_e \sqrt{\pi \cdot D \cdot t}} e^{-\frac{(x - v \cdot t)^2}{4 D \cdot t}}''')
+columns1 = st.columns((1,1,1), gap = 'large')
+with columns1[1]:
+    theory = st.button('Show theory')
+    if theory:
+        st.latex(r'''c(x,t) = \frac{\Delta M}{2 \cdot A \cdot n_e \sqrt{\pi \cdot D \cdot t}} e^{-\frac{(x - v \cdot t)^2}{4 D \cdot t}}''')
 
 st.markdown("""
             ### About the computed situation
@@ -45,19 +48,15 @@ def c_ADE(x, t, dM, Area, n, a, v):
 
 st.write('The plot shows the solute concentration at an observation point in a user-defined distance from the source. Transport is considered for a 1D system with steady groundwater flow. Solutes are added by an finite pulse with a concentration of 0.1 g per cubicmeter.')
 "---"
-columns = st.columns((1,1), gap = 'large')
+columns2 = st.columns((1,1), gap = 'large')
 
-with columns[0]:
+with columns2[0]:
     multi = st.toggle("Plot two curves")
+    x  = st.slider(f'**Distance of the primary observation from source (m)**',1.,100.,1.,1.)
     if multi:
-        x  = st.slider(f'**Minimal distance of observation from source (m)**',1.,100.,1.,1.)
-        dx = st.slider(f'**Distance between the two observations (m)**',0.,50.,1.,0.1)
-    else:
-        x  = st.slider(f'**Distance of observation from source (m)**',1.,100.,1.,1.)
-        
+        dx = st.slider(f'**Distance between the primary and secondary observation (m)**',0.,50.,1.,0.1) 
     
-    
-with columns[1]:
+with columns2[1]:
     dM = st.slider(f'**Input mass (g)**',0.01,1.0,0.1,0.01)
     n = st.slider(f'**Porosity (dimensionless)**',0.02,0.6,0.2,0.001)       
     a = st.slider(f'**Longitudinal dispersivity (m)**',0.001,1.0,0.01,0.001)
