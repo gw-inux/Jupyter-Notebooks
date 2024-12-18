@@ -104,7 +104,7 @@ fig = plt.figure(figsize=(9,6))
 ax = fig.add_subplot(1, 1, 1)
 ax.set_title('1D solute transport with advection-dispersion', fontsize=16)
 ax.set_xlabel ('Time (s)', fontsize=14)
-ax.set_ylabel ('Concentration (g)', fontsize=14)
+ax.set_ylabel ('Concentration (g/m³)', fontsize=14)
       
 # PLOT HERE
 ax.plot(time,conc, 'navy', linewidth=2, label="Computed: Adcektion-Dispersion")
