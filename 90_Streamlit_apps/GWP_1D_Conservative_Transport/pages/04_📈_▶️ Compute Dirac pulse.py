@@ -17,7 +17,7 @@ if theory:
 st.markdown("""
             ### About the computed situation
             
-            Transport is considered for a 1D system with steady groundwater flow with an average velocity _v_ of 0.00014 m/s. The average velocity is depending on the porosity and printed below the interactive plot.
+            Transport is considered for a 1D system with steady groundwater flow with a specific discharge _q_ of 0.016 m/s. The average velocity is depending on the porosity and printed below the interactive plot.
             
             The solutes are added by an Dirac pulse with a user defined mass.
             
@@ -28,8 +28,11 @@ st.markdown("""
 
 #FUNCTIONS FOR COMPUTATION; ADS = ADVECTION, DISPERSION AND SORPTION - EVENTUALLY SET RETARDATION TO 1 FOR NO SORPTION
 
-Area = 7.85E-3
-v = 0.00014
+Q = 0.2
+A = np.pi*r**2
+q = Q/A
+v = q/n
+
 
 import numpy as np
 
@@ -122,3 +125,5 @@ plt.yticks(fontsize=14)
 plt.legend(frameon=False, loc='upper right', fontsize=14)
     
 st.pyplot(fig)
+
+st.write("Average velocity _v_ (m/s) = ","% 7.3E"% v)
