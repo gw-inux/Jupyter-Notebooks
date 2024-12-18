@@ -14,7 +14,7 @@ st.markdown("""
             The solutes are added as a finite pulse with an input concentration of 0.1 g/m<sup>3</sup>
             
             The plot shows the solute concentration at an observation point in a user-defined distance from the source.  Solutes are added by an finite pulse with a concentration of 0.1 g per cubicmeter.
-"""
+""", unsafe_allow_html=True
 )
 st.write()
 "---"
