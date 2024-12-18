@@ -95,7 +95,6 @@ columns = st.columns((1,1), gap = 'large')
 #Q  = 0.2
 l = 15
 t1 = 1800
-c0 = 0.1
 m = 10000000
 Q= 0.2
 
@@ -110,6 +109,7 @@ with columns[0]:
         l  = st.slider(f'**Distance of observation from source (m)**',1,100,15,1)
     
 with columns[1]:
+    c0 = st.slider(f'**Input concentration (g/m³)**',0.01,0.2,0.1,0.01) 
     n  = st.slider(f'**Porosity (dimensionless)**',0.02,0.6,0.2,0.001)       
     a  = st.slider(f'**Longitudinal dispersivity (m)**',0.001,10.0,0.01,0.002)
 "---"
