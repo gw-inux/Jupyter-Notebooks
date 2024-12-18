@@ -126,7 +126,7 @@ time   = []
 conc   = []
 conca  = []
    
-#compute concentration  
+#compute break through
 for t in range(t0, t1, dt):      
     r_time = t/tPV
     
@@ -149,6 +149,26 @@ for t in range(t0, t1, dt):
 # measurements
 t_obs = [100, 200, 300, 400, 500, 600, 700, 800, 900, 1000]
 c_obs = [1e-3, 5e-2, 8.5e-2, 9.7e-2, 9.9e-2, 9e-2, 5e-2, 1.5e-2, 2e-3, 5e-4]
+
+#compute concentration profile
+for t in range(t0, t1, dt):      
+    r_time = t/tPV
+    
+    # ADVECTION-DISPERSION
+    c = ci*IC(PE,r_time)+c0*BC(PE,r_time, r_dur)
+    conc.append(c)
+    
+    # Input pulse
+    if r_time < 1:
+        ca = 0
+    elif r_time > 1+r_dur:
+        ca = 0
+    else:
+        ca = c0
+    
+    conca.append(ca)
+    
+    time.append(t)
    
 #PLOT FIGURE
 fig = plt.figure(figsize=(9,6))

@@ -77,11 +77,13 @@ t = np.arange(t0, t1, dt)
 # Set fraction of distance
 cmax   = 0
 time   = []
+space  = []
 conc   = []
 conc2  = []
+concp  = []
    
 
-#compute concentration  
+#compute break through
 for t in range(t0, t1, dt):      
     # ADVECTION-DISPERSION
     cmax1 = ci+c_ADE(1, t, 1, Area, n, 0.01, v)
@@ -93,8 +95,18 @@ for t in range(t0, t1, dt):
         c2 = ci+c_ADE(x+dx, t, dM, Area, n, a, v)
         conc2.append(c2) 
     time.append(t)
+    
+tp = 1000
 
-        
+#compute concentration profile
+for xp in range(0, 100, 1):      
+    # ADVECTION-DISPERSION
+    cp = ci+c_ADE(xp, tp, dM, Area, n, a, v)
+    concp.append(cp)
+    if multi:
+        c2 = ci+c_ADE(x+dx, t, dM, Area, n, a, v)
+        conc2.append(c2) 
+    space.append(xp)     
         
 # measurements
 t_obs = [100, 200, 300, 400, 500, 600, 700, 800, 900, 1000]
@@ -102,7 +114,7 @@ c_obs = [1e-3, 5e-2, 8.5e-2, 9.7e-2, 9.9e-2, 10e-2, 10e-2, 10e-2, 10e-2, 10e-2]
    
 #PLOT FIGURE
 fig = plt.figure(figsize=(9,6))
-ax = fig.add_subplot(1, 1, 1)
+ax = fig.add_subplot(1, 2, 1)
 ax.set_title('1D solute transport with advection-dispersion', fontsize=16)
 ax.set_xlabel ('Time (s)', fontsize=14)
 ax.set_ylabel ('Concentration (g/m³)', fontsize=14)
@@ -111,14 +123,23 @@ ax.set_ylabel ('Concentration (g/m³)', fontsize=14)
 ax.plot(time,conc, 'navy', linewidth=2, label="Computed: Adcektion-Dispersion")
 if multi:
     ax.plot(time,conc2, 'lightblue', linewidth=2, label="Computed: Adcektion-Dispersion plot2")
-#if plot_DATA == 1:
-#    ax.plot(t_obs, c_obs, 'ro', label="Measured")
-#ax.scatter(t_obs, c_obs, marker="x", c="red", zorder=10)
 plt.ylim(0,cmax*0.5)
 plt.xlim(0,t1)
 plt.xticks(fontsize=14)
 plt.yticks(fontsize=14)
-#if not plot_A !=1 and plot_AD != 1 and plot_DATA != 1:
+plt.legend(frameon=False, loc='upper right', fontsize=14)
+
+ax = fig.add_subplot(1, 2, 2)
+ax.set_title('1D solute transport with advection-dispersion', fontsize=16)
+ax.set_xlabel ('Distance from source along flow directions (m)', fontsize=14)
+ax.set_ylabel ('Concentration (g/m³)', fontsize=14)
+      
+# PLOT HERE
+ax.plot(space,concp, 'navy', linewidth=2, label="Computed: Adcektion-Dispersion")
+plt.ylim(0,cmax*0.5)
+plt.xlim(0,100)
+plt.xticks(fontsize=14)
+plt.yticks(fontsize=14)
 plt.legend(frameon=False, loc='upper right', fontsize=14)
     
 st.pyplot(fig)
