@@ -102,9 +102,6 @@ for xp in np.linspace(0, 100, num=1000):
     # ADVECTION-DISPERSION
     cp = ci+c_ADE(xp, tp, dM, Area, n, a, v)
     concp.append(cp)
-    if multi:
-        c2 = ci+c_ADE(x+dx, t, dM, Area, n, a, v)
-        conc2.append(c2) 
     space.append(xp)     
         
 # measurements
