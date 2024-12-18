@@ -47,7 +47,7 @@ st.write('The plot shows the solute concentration at an observation point in a u
 columns2 = st.columns((1,1), gap = 'large')
 
 with columns2[0]:
-    tp = st.slider(f'**Time for the concentration profile (s)**',1.,1800.,120,1.)
+    tp = st.slider(f'**Time for the concentration profile (s)**',1.,1800.,120.,1.)
     multi = st.toggle("Plot two curves")
     x  = st.slider(f'**Distance of the primary observation from source (m)**',1.,100.,1.,1.)
     if multi:
