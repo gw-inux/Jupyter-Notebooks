@@ -53,7 +53,7 @@ with columns2[0]:
         dx = st.slider(f'**Distance between the primary and secondary observation (m)**',0.,50.,1.,0.1) 
     
 with columns2[1]:
-    dM = st.slider(f'**Input mass (g)**',0.01,1.0,0.1,0.01)
+    dM = st.slider(f'**Input mass (g)**',0.01,5.0,1.0,0.01)
     n = st.slider(f'**Porosity (dimensionless)**',0.02,0.6,0.2,0.001)       
     a = st.slider(f'**Longitudinal dispersivity (m)**',0.001,1.0,0.01,0.001)
     
