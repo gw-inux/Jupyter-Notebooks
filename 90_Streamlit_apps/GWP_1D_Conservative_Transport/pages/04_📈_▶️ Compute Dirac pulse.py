@@ -60,8 +60,8 @@ with columns2[1]:
 "---"
 r  = 2      # Column radius
 Q = 0.2
-A = np.pi*r**2
-q = Q/A
+Area = np.pi*r**2
+q = Q/Area
 v = q/n
 
 # Data for plotting
