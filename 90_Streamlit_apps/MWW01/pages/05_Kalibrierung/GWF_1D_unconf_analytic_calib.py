@@ -87,9 +87,12 @@ def computation():
         #hr=st.slider('RIGHT defined head', 120,180,152,1)
         #L= st.slider('Length', 0,7000,2500,10)
         if st.toggle('Provide data for calibration?'):
-            calib = st.selectbox("What data for calibration?", ('Regular data', 'Irregular data', 'Irregular data with noise'))
+            calib = st.selectbox("What data for calibration?", ('Irregular data with noise', 'Irregular data','Regular data' ))
+            scatter = st.toggle('Show scatter plot')
         else:
             calib = 'No calibration'
+            scatter = False
+        
         
     with columns[1]:
         R=st.slider('Recharge in mm/a',0,500,0,5)
@@ -103,15 +106,21 @@ def computation():
     h=(hl**2-(hl**2-hr**2)/L*x+(R/K*x*(L-x)))**0.5
     
     # PLOT FIGURE
-    fig = plt.figure(figsize=(9,6))
-    ax = fig.add_subplot(1, 1, 1)
+    fig = plt.figure(figsize=(9,12))
+    ax = fig.add_subplot(2, 1, 1)
     ax.plot(x,h)
     if calib == 'Regular data':
         ax.plot(xp1,hp1, 'ro', label=r'measured')
+        # compute heads for measurments
+        hm1 = [((hl**2-(hl**2-hr**2)/L*x+(R/K*x*(L-x)))**0.5) for x in xp1]
     if calib == 'Irregular data':
         ax.plot(xp2,hp2, 'go', label=r'measured')
+        # compute heads for measurments
+        hm2 = [((hl**2-(hl**2-hr**2)/L*x+(R/K*x*(L-x)))**0.5) for x in xp2]
     if calib == 'Irregular data with noise':
         ax.plot(xp3,hp3, 'bo', label=r'measured')
+        # compute heads for measurments
+        hm3 = [((hl**2-(hl**2-hr**2)/L*x+(R/K*x*(L-x)))**0.5) for x in xp3]
     ax.set(xlabel='x', ylabel='head',title='Hydraulic head for 1D unconfined flow')
     ax.fill_between(x,0,h, facecolor='lightblue')
     
@@ -125,16 +134,6 @@ def computation():
     ax.hlines(y= h_arrow-(h_arrow*0.0005), xmin=L*0.95, xmax=L*0.97, colors='blue')   
     ax.hlines(y= h_arrow-(h_arrow*0.001), xmin=L*0.955, xmax=L*0.965, colors='blue')
 
-    #ARROWS FOR RECHARGE 
-    #if R != 0:
-    #    head_length=(R*86400*365.25*1000*0.002)*y_scale/2
-    #    h_rch1 = (hl**2-(hl**2-hr**2)/L*(L*0.25)+(R/K*(L*0.25)*(L-(L*0.25))))**0.5  #water level at arrow for Recharge Posotion 1
-    #    ax.arrow(L*0.25,(h_rch1+head_length), 0, -0.01, fc="k", ec="k", head_width=(head_length*300/y_scale), head_length=head_length)
-    #    h_rch2 = (hl**2-(hl**2-hr**2)/L*(L*0.50)+(R/K*(L*0.50)*(L-(L*0.50))))**0.5  #water level at arrow for Recharge Postition 2
-    #    ax.arrow(L*0.50,(h_rch2+head_length), 0, -0.01, fc="k", ec="k", head_width=(head_length*300/y_scale), head_length=head_length)
-    #    h_rch3 = (hl**2-(hl**2-hr**2)/L*(L*0.75)+(R/K*(L*0.75)*(L-(L*0.75))))**0.5  #water level at arrow for Recharge Position 3
-    #    ax.arrow(L*0.75,(h_rch3+head_length), 0, -0.01, fc="k", ec="k", head_width=(head_length*300/y_scale), head_length=head_length)
-
     #Groundwater divide
     max_y = max(h)
     max_x = x[h.argmax()]
@@ -144,8 +143,35 @@ def computation():
 
     plt.ylim(hl*(1-y_scale/100),hr*(1+y_scale/100))
     plt.xlim(-50,L+50)
-    plt.text(L, (hr*1.016), 'R: {:.2e} m/s '.format(R), horizontalalignment='right', bbox=dict(boxstyle="square", facecolor='lightgrey'), fontsize=14)
+    #plt.text(L, (hr*1.016), 'R: {:.2e} m/s '.format(R), horizontalalignment='right', bbox=dict(boxstyle="square", facecolor='lightgrey'), fontsize=14)
+    if scatter:
+        x45 = [0,200]
+        y45 = [0,200]
+        ax = fig.add_subplot(2, 1, 2)
+        ax.plot(x45,y45, '--')
+        if calib == 'Regular data':
+            ax.plot(hm1,hp1, 'ro', label=r'measured')
+        if calib == 'Irregular data':
+            ax.plot(hm2,hp2, 'go', label=r'measured')
+        if calib == 'Irregular data with noise':
+            ax.plot(hm3,hp3, 'bo', label=r'measured')
+        ax.set(xlabel='head computed', ylabel='head measured',title='Scatter plot')
+        plt.ylim(150,156)
+        plt.xlim(150,156)
+    
+    
     st.pyplot(fig)
+    
+    if calib != 'No calibration':
+        lc2, cc2, rc2 = st.columns((1,1,1), gap = 'large')
+        with cc2:
+            show_truth = st.button(":rainbow[Tell me how I did the calibration!]")
+    else:
+        show_truth = False
+        
+    if show_truth:
+        st.write("'True' Recharge R = ","% 5.2f"% (st.session_state.R_random*1000*86400*365.25), " m^2/s. Your fitting success is:  %5.2f" %(R/R_random*100), " %")
+        st.write("'True' Hydr. Conductivity K = ","% 10.2E"% st.session_state.K_random, "[-].    Your fitting success is:  %5.2f" %(K/K_random*100), " %")
     
 computation()
 
