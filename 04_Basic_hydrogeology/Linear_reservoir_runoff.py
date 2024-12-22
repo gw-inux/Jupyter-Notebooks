@@ -3,18 +3,37 @@ import streamlit as st
 import numpy as np
 import matplotlib.pyplot as plt
 
-st.title('Runoff for a linear Reservoir')
-st.write('description')
+
+st.title('Runoff from a linear Reservoir')
+st.write('')
+
+c1, c2 = st.columns(2)
+with c1:
+    st.write(r'$Q = S V $')
+    st.write(r'$ Q = - \frac{dV}{dt}$')
+    st.write('')
+    st.write(r'$\frac{dV}{dt} = -S V $')
+    st.write(r'$\frac{dV}{d} = - S dt$')
+    st.write(r'$\int \frac{dV}{V} = - \int S dt$')
+    st.write('$ln V = -S t + ln V_0$')
+    st.write('')
+    st.write('$V = V_0 e^{-St}$, where $ V_0 = V_{t=0}$')
+    st.write('$Q = Q_0 e^{-St}$, where $Q_0 = Q_{t=0}$')
+with c2:
+    st.image('FIGS\Linear_reservoir_runoff.png', caption= 'Figure 1: Runoff model for a linear reservoir.')
+st.write('')
+st.write('Where: $V$...Volume of stored water [$L³$], $Q$...Discharge, runoff [$L³T^{-1}$], $S$...Storage coefficient')
+st.write('')
 
 # Interactive user input for the Parameters
 
 ## Storage coefficient
 col1, col2 = st.columns(2)
 with col1:
-    k = st.slider('storage coefficient', 0.0,1.0,0.1,0.01)
+    k = st.slider('Storage coefficient S', 0.0,.5,0.1,0.01)
 ## Initial stored Volume 
 with col2:
-    initial_v = st.slider('stored volume', 0,100,10,1)
+    initial_v = st.slider('Stored volume V', 0,100,10,1)
 ## Scaling for the y-axis
 ax_scale = st.radio('Scaling of the y-axis',['linear', 'log'])
 
@@ -33,10 +52,10 @@ Out_a = Out0 * np.exp(-k*t_a)
    
 # plot the data
 fig, ax = plt.subplots(figsize=(6, 4))
-ax.plot(t, Out, 'r+', label='iterativ solution')
+ax.plot(t, Out, 'r+', label='iterative solution')
 ax.plot(t_a, Out_a, label='analytic solution')
-ax.set_ylabel('Outflow [L^3/t]')
-ax.set_xlabel('time [t]')
+ax.set_ylabel(r'Runoff [$\frac{L^3}{T}$]')
+ax.set_xlabel('Time [T]')
 ax.legend()
 ax.grid(which='major')
 ax.grid(which='minor')
