@@ -16,13 +16,13 @@ from bokeh.palettes import Turbo256
 from bokeh.themes import Theme
 from bokeh.layouts import column, row
 import pandas as pd
-sys.path.append(r'C:\Repo\GWProject_Bokeh')
-import Bokeh_Util as Bokeh_Util
+# sys.path.append(r'C:\Repo\GWProject_Bokeh')
+# import Bokeh_Util as Bokeh_Util
 
-# import httpimport
-# url = r"https://raw.githubusercontent.com/gmerritt123/GWProject_Bokeh/refs/heads/main/Bokeh_Util.py"
-# with httpimport.github_repo('gmerritt123', 'GWProject_Bokeh', ref='main'):
-#   import Bokeh_Util as Bokeh_Util
+import httpimport
+url = r"https://raw.githubusercontent.com/gmerritt123/GWProject_Bokeh/refs/heads/main/Bokeh_Util.py"
+with httpimport.github_repo('gmerritt123', 'GWProject_Bokeh', ref='main'):
+  import Bokeh_Util as Bokeh_Util
 
 
 wdir = r'C:\Repo\Jupyter-Notebooks\90_Streamlit_apps\GWP_Pumping_Test_Analysis\pages' #when using in IDE locally
