@@ -105,7 +105,6 @@ export default function({hr_src,ddr_src,obs_src,ddt_src,sl_dict}){
         var ts = makeArr(1,t,1000)
         var dda = ts.map(x=>ddt(x))
         ddt_src.data = {'t':ts,'dd':dda}
-        console.log(obs_src.data)
         }
     
      
