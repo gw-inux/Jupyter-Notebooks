@@ -4,7 +4,6 @@ import matplotlib.pyplot as plt
 import numpy as np
 import streamlit as st
 
-
 st.title('Analytical solution for 1D unconfined flow with two defined head boundaries')
 st.subheader('Understanding :rainbow[Model Calibration]', divider="blue")
 
@@ -33,37 +32,64 @@ st.subheader('Computation and visualization')
 st.write('Subsequently, the solution is computed and results are visualized. You can modify the parameters to investigate the functional behavior. You can modify the groundwater recharge _R_ (in mm/a) and the hydraulic conductivity _K_ (in m/s).')
 
 "---"
-# Data for 'measurements'
+# Random data for 'measurements'
 K_random = 2.34E-5*(np.random.randint(5, 500)/100)
 R_random = 250/1000/365.25/86400*(np.random.randint(50, 150)/100)
 st.session_state.K_random = K_random
 st.session_state.R_random = R_random
 
+# Pre setting data
 hl = 150
 hr = 152
 L = 2500
 noise = 0.2
 calib = 'No calibration'
 
-# TODO - Implement the following function
+# TODO - Implement the following function to add noise
 def add_noise(j,noise):
     upper_value = round((i + noise/2)/ i * 100000)
     lower_value = round((i - noise/2)/ i * 100000)
     return upper_value, lower_value
 
-# calib points
+# Postprocessing statistics
+def compute_statistics(measured, computed):
+    # Calculate the number of values
+    n = len(measured)
+
+    # Initialize a variable to store the sum of squared differences
+    total_me = 0
+    total_mae = 0
+    total_rmse = 0
+
+    # Loop through each value
+    for i in range(n): # Add the squared difference to the total
+        total_me   += (computed[i] - measured[i])
+        total_mae  += (abs(computed[i] - measured[i]))
+        total_rmse += (computed[i] - measured[i])**2
+
+    # Calculate the me, mae, mean squared error
+    me = total_me / n
+    mae = total_mae / n
+    meanSquaredError = total_rmse / n
+
+    # Raise the mean squared error to the power of 0.5 
+    rmse = (meanSquaredError) ** (1/2)
+    return me, mae, rmse
+    
+# Compute the measurements for calibration
+
 #1 Regular
 xp1 = [250, 500, 750, 1000, 1250, 1500, 1750,2000, 2250]
 hp1 = [(hl**2-(hl**2-hr**2)/L*x+(R_random/K_random*x*(L-x)))**0.5 for x in xp1]
 
-#2 Random calib points
+#2 Random x positions calib points
 n_random2 = np.random.randint(3,8)
 xp2 = []
 for i in range(n_random2):
     xp2.append(np.random.randint(100, 2500))
 hp2 = [(hl**2-(hl**2-hr**2)/L*x+(R_random/K_random*x*(L-x)))**0.5 for x in xp2]
 
-#3 Random calib points with uncertainty
+#3 Random calib points with noise
 n_random3 = np.random.randint(5,8)
 xp3 = []
 for i in range(n_random3):
@@ -72,37 +98,43 @@ for i in range(n_random3):
 hp3 = [((hl**2-(hl**2-hr**2)/L*x+(R_random/K_random*x*(L-x)))**0.5) for x in xp3]
 hp3 = [i*np.random.randint(round((i - noise/2)/ i * 100000),round((i + noise/2)/ i * 100000))/100000 for i in hp3]
 
-
+# Subsequently the computation
 @st.fragment
 def computation():
     # Input data
     # Define the minimum and maximum for the logarithmic scale
-    log_min = -7.0 # Corresponds to 10^-7 = 0.0000001
-    log_max =  0.0  # Corresponds to 10^0 = 1
+    log_min = -6.0 # Corresponds to 10^-7 = 0.0000001
+    log_max = -2.0  # Corresponds to 10^0 = 1
 
     columns = st.columns((1,1), gap = 'large')
     with columns[0]:
-        y_scale = st.slider('Scaling y-axis', 0,20,3,1)
-        #hl=st.slider('LEFT defined head', 120,180,150,1)
-        #hr=st.slider('RIGHT defined head', 120,180,152,1)
-        #L= st.slider('Length', 0,7000,2500,10)
+        y_scale = st.slider('_Scaling the y-axis of the plot_', 0,20,3,1)
         if st.toggle('Provide data for calibration?'):
             calib = st.selectbox("What data for calibration?", ('Irregular data with noise', 'Irregular data','Regular data' ))
             scatter = st.toggle('Show scatter plot')
+            rch_fix = st.toggle('Fix recharge')
         else:
             calib = 'No calibration'
             scatter = False
-        
+            rch_fix = False 
         
     with columns[1]:
-        R=st.slider('Recharge in mm/a',0,500,0,5)
         # Log slider with input and print
-        K_slider_value=st.slider('(log of) hydraulic conductivity in m/s', log_min,log_max,-4.0,0.01,format="%4.2f" )
+        # K_slider_value=st.slider('(log of) hydraulic conductivity in m/s', log_min,log_max,-4.0,0.01,format="%4.2f" )
+        K_slider_value=st.slider('_(log of) Hydraulic conductivity input:_', log_min,log_max,-4.0,0.01,format="%4.2f" )
         K = 10 ** K_slider_value
         st.write("**Hydraulic conductivity in m/s:** %5.2e" %K)
+        if rch_fix:
+            R = R_random
+            R_print = R*1000*86400*365.25
+            st.write("**Recharge (fixed) in mm/a:** %5.2f" %R_print)
+        else:
+            R = st.slider('_Recharge input:_',0,400,0,1)
+            st.write("**Recharge in mm/a:** %3i" %R)
+            R = R/1000/365.25/86400
       
+    # Computation of head
     x = np.arange(0, L,L/1000)
-    R=R/1000/365.25/86400
     h=(hl**2-(hl**2-hr**2)/L*x+(R/K*x*(L-x)))**0.5
     
     # PLOT FIGURE
@@ -112,17 +144,19 @@ def computation():
     if calib == 'Regular data':
         ax.plot(xp1,hp1, 'ro', label=r'measured')
         # compute heads for measurments
-        hm1 = [((hl**2-(hl**2-hr**2)/L*x+(R/K*x*(L-x)))**0.5) for x in xp1]
+        hm = [((hl**2-(hl**2-hr**2)/L*x+(R/K*x*(L-x)))**0.5) for x in xp1]
     if calib == 'Irregular data':
         ax.plot(xp2,hp2, 'go', label=r'measured')
         # compute heads for measurments
-        hm2 = [((hl**2-(hl**2-hr**2)/L*x+(R/K*x*(L-x)))**0.5) for x in xp2]
+        hm = [((hl**2-(hl**2-hr**2)/L*x+(R/K*x*(L-x)))**0.5) for x in xp2]
     if calib == 'Irregular data with noise':
         ax.plot(xp3,hp3, 'bo', label=r'measured')
         # compute heads for measurments
-        hm3 = [((hl**2-(hl**2-hr**2)/L*x+(R/K*x*(L-x)))**0.5) for x in xp3]
-    ax.set(xlabel='x', ylabel='head',title='Hydraulic head for 1D unconfined flow')
+        hm = [((hl**2-(hl**2-hr**2)/L*x+(R/K*x*(L-x)))**0.5) for x in xp3]
     ax.fill_between(x,0,h, facecolor='lightblue')
+    plt.title('Hydraulic head for 1D unconfined flow', fontsize=16)
+    plt.xlabel(r'x in m', fontsize=14)
+    plt.ylabel(r'hydraulic head in m', fontsize=14)
     
     # BOUNDARY CONDITIONS hl, hr
     ax.vlines(0, 0, hl, linewidth = 10, color='b')
@@ -134,7 +168,7 @@ def computation():
     ax.hlines(y= h_arrow-(h_arrow*0.0005), xmin=L*0.95, xmax=L*0.97, colors='blue')   
     ax.hlines(y= h_arrow-(h_arrow*0.001), xmin=L*0.955, xmax=L*0.965, colors='blue')
 
-    #Groundwater divide
+    # Groundwater divide
     max_y = max(h)
     max_x = x[h.argmax()]
     R_min_ms=K*abs(hl**2-hr**2)/L**2
@@ -143,23 +177,40 @@ def computation():
 
     plt.ylim(hl*(1-y_scale/100),hr*(1+y_scale/100))
     plt.xlim(-50,L+50)
-    #plt.text(L, (hr*1.016), 'R: {:.2e} m/s '.format(R), horizontalalignment='right', bbox=dict(boxstyle="square", facecolor='lightgrey'), fontsize=14)
+    x_pos1 = 500
+    x_pos2 = 2500
+    y_pos1 = ((hr *(1+y_scale/100))-150)*0.9+150
+    plt.text(x_pos1, y_pos1, 'Defined head bc', horizontalalignment='right', bbox=dict(boxstyle="square", facecolor='lightgrey'), fontsize=12)
+    plt.text(x_pos2, y_pos1, 'Defined head bc', horizontalalignment='right', bbox=dict(boxstyle="square", facecolor='lightgrey'), fontsize=12)
+    
     if scatter:
         x45 = [0,200]
         y45 = [0,200]
         ax = fig.add_subplot(2, 1, 2)
         ax.plot(x45,y45, '--')
         if calib == 'Regular data':
-            ax.plot(hm1,hp1, 'ro', label=r'measured')
+            ax.plot(hm,hp1, 'ro', label=r'measured')
+            me, mae, rmse = compute_statistics(hm, hp1)
         if calib == 'Irregular data':
-            ax.plot(hm2,hp2, 'go', label=r'measured')
+            ax.plot(hm,hp2, 'go', label=r'measured')
+            me, mae, rmse = compute_statistics(hm, hp2)
         if calib == 'Irregular data with noise':
-            ax.plot(hm3,hp3, 'bo', label=r'measured')
-        ax.set(xlabel='head computed', ylabel='head measured',title='Scatter plot')
-        plt.ylim(150,156)
-        plt.xlim(150,156)
-    
-    
+            ax.plot(hm,hp3, 'bo', label=r'measured')
+            me, mae, rmse = compute_statistics(hm, hp3)
+        plt.title('Scatter plot', fontsize=16)
+        plt.xlabel(r'Computed head in m', fontsize=14)
+        plt.ylabel(r'Measured head in m', fontsize=14)
+        plt.ylim(150, hr *(1+y_scale/100))
+        plt.xlim(150, hr *(1+y_scale/100))
+        # Generate the data for printing in the plot
+        out_txt = '\n'.join((
+                             r'$ME = %.3f$ m' % (me, ),
+                             r'$MAE = %.3f$ m' % (mae, ),
+                             r'$RMSE = %.3f$ m' % (rmse, ))) 
+        x_pos3 = ((hr *(1+y_scale/100))-150)*0.25+150
+        y_pos3 = ((hr *(1+y_scale/100))-150)*0.82+150
+        plt.text(x_pos3, y_pos3, out_txt, horizontalalignment='right', bbox=dict(boxstyle="square", facecolor='lightgrey'), fontsize=14)
+        
     st.pyplot(fig)
     
     if calib != 'No calibration':
@@ -177,4 +228,4 @@ computation()
 
 lc2, cc2, rc2 = st.columns((1,1,1), gap = 'large')
 with cc2:
-    st.button('Regenerate data? Press here!')
+    st.button('Restart with new data? Press here!')
