@@ -15,122 +15,15 @@ from bokeh.themes import Theme
 from bokeh.layouts import column, row
 from bokeh.embed import file_html
 from bokeh.models import NumericInput
+import pandas as pd
+# sys.path.append(r'C:\Repo\GWProject_Bokeh')
+# import Bokeh_Util as Bokeh_Util
 
-def linkNumericInputToSlider(slider,log=False):
-    '''function to create a numeric input that will follow a slider value and vice versa.'''
-    model = NumericInput(value=slider.value,low=slider.start,high=slider.end,mode='float')
-    if log == True:
-        model.value = 10**slider.value
-        model.low = 10**slider.start
-        model.high = 10**slider.end
-        model.mode = 'float'
-        if hasattr(model,'step'):
-            model.step = slider.step
-    else: 
-        model.value = slider.value
-        model.low = slider.start
-        model.high = slider.end
-        model.mode = 'float'
-        if hasattr(model,'step'):
-            model.step = slider.step
-    ni = model
-    
-    ccb = CustomJS(args=dict(ni=ni,sl=slider,log=log)
-                    ,code='''
-                    sl.tags=[]
-                    ni.tags=[]
-                                        
-                    if (cb_obj === sl){
-                            if (log == true){
-                                 ni.value = 10**sl.value
-                                    }
-                            else {
-                                ni.value = sl.value
-                                }
-                            }
-                    else {
-                        // if ni, need to find nearest slider value
-                        if (log == true){
-                                var v = Math.log10(ni.value)
-                                }
-                        else {
-                            var v = ni.value
-                            }
-                        //value input is less than slider start
-                        if (v<=sl.start){
-                                if (log == true){
-                                     sl.value = sl.start
-                                     ni.value = 10**sl.start
-                                        }
-                                else {
-                                    sl.value = sl.start
-                                    ni.value = sl.start
-                                    }
-                                }
-                        //value is more than slider end
-                        else if (v>=sl.end){
-                                if (log == true){
-                                     sl.value = sl.end
-                                     ni.value = 10**sl.end
-                                        }
-                                else {
-                                    sl.value = sl.end
-                                    ni.value = sl.end
-                                    }
-                            }
-                        
-                        else {
-                            var i = 1
-                            do {
-                                if (v<sl.start+sl.step*i){
-                                        //value is now between current notch and previous
-                                        if (log==true){
-                                            var dl = Math.log10(ni.value)-(sl.start+sl.step*(i-1))
-                                            var dr = (sl.start+(sl.step*i))-Math.log(ni.value)
-                                            }
-                                        else {
-                                            var dl = ni.value-(sl.start+sl.step*(i-1))
-                                            var dr = (sl.start+(sl.step*i))-ni.value
-                                            }
-                                        if (dl<=dr){
-                                                var v = sl.start+sl.step*(i-1)
-                                                }
-                                        else {
-                                            var v = sl.start+sl.step*i
-                                            }
-                                        sl.value = v
-                                        if (log==true){
-                                                ni.value = 10**v
-                                                }
-                                        else {
-                                            ni.value = v
-                                            }
-                                        break
-                                        }
-                                i++
-                                } while (true)
-                            }
-                        }
-                    ''')
-    cb = CustomJS(args=dict(ccb=ccb,sl=slider,ni=ni),
-                  code='''
+import httpimport
+url = r"https://raw.githubusercontent.com/gmerritt123/GWProject_Bokeh/refs/heads/main/Bokeh_Util.py"
+with httpimport.github_repo('gmerritt123', 'GWProject_Bokeh', ref='main'):
+  import Bokeh_Util as Bokeh_Util
 
-                  if (cb_obj.tags.length>0){
-                          return
-                          }
-                  else {
-                      sl.tags = ['run_me']
-                      ni.tags = ['run_me']
-                      ccb.execute(cb_obj)
-                      sl.tags = ['run_me']
-                      ni.tags = ['run_me']
-                      }
-                  '''
-                  )
-
-    ni.js_on_change('value',cb)
-    slider.js_on_change('value',cb)
-    return ni
 
 import streamlit as st
 st.title('Well capture zone for a confined aquifer')
@@ -171,8 +64,8 @@ f = figure(height=800,width=1200
             ,y_range= [-5,5]
             )
 
-f.xaxis[0].axis_label = 'y (km)'
-f.yaxis[0].axis_label = 'x (km)'
+f.xaxis[0].axis_label = 'Kilometers'
+f.yaxis[0].axis_label = 'Kilometers'
 
 vh = VeeHead(size=15, fill_color='black')
 arrw = Arrow(end=vh
@@ -279,9 +172,9 @@ for k,sl in slider_dict.items():
     sl.width=f.width
     sl.sizing_mode='stretch_width'
     if k in ['Gradient','Conductivity']:
-        ni_dict[k] = linkNumericInputToSlider(slider=sl,log=True)
+        ni_dict[k] = Bokeh_Util.linkNumericInputToSlider(slider=sl,log=True)
     else:
-        ni_dict[k] = linkNumericInputToSlider(slider=sl,log=False)
+        ni_dict[k] = Bokeh_Util.linkNumericInputToSlider(slider=sl,log=False)
     ni_dict[k].width=100
 
 
@@ -289,8 +182,6 @@ for k,sl in slider_dict.items():
 rb.js_on_change('active',cb)
 rb.stylesheets = [sl_style]
 
-# from bokeh.events import RangesUpdate
-# f.js_on_event(RangesUpdate,cb)
 
 slider_layout = [row(list(x),sizing_mode='scale_width') for x in zip(slider_dict.values(),ni_dict.values())]
 
@@ -303,13 +194,24 @@ lo = column(
             ,sizing_mode = 'scale_width'
             )
 
+pv_ins_df = pd.DataFrame(data={'minRange':[0,3],'unitName':['Meters','Kilometers'],'scaleFactor':[.001,1]})
+Bokeh_Util.setDynamicUnitScale(fig=f,ins_df=pv_ins_df,ranges='both')
 
-curdoc().theme = thm #assigns theme
-save(lo,wdir+r'/BokehApp.html',title='Well Capture')
+           
+
+# curdoc().theme = thm #assigns theme
+# save(lo,wdir+r'/BokehApp.html',title='Well Capture')
+Bokeh_Util.save_html_wJSResources(bk_obj=lo
+                                  ,fname=wdir+r'/BokehApp.html'
+                                  ,resources_list_dict={'sources':['http://d3js.org/d3.v6.js'],'scripts':[]}
+                                  ,html_title='Well Capture',theme=thm
+    ,icon_url='https://aquainsight.sharepoint.com/sites/AquaInsight/_api/siteiconmanager/getsitelogo?type=%271%27&hash=637675014792340093')
+
 # bk_html = file_html(models=lo,resources='cdn')
-#%%
+
 with open(wdir+'/BokehApp.html') as f:
     bk_html = f.read()
 components.html(bk_html,height=800)
+
 
 

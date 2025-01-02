@@ -98,15 +98,27 @@ export default function({src,sl_dict,f,w_src,w_lbl,c_src,c_lbl
 	src.data = {'x':xa, 'y':ya}
 	src.change.emit()
 	//calculate figure bounds
-	var xr = [x0*-25,x0*1.1]
-
+	//hard set x range based on x0.
+	var sbs = [0.25,1,5,25,50,100].map(x=>x/25) // 
+	
+	for (var ib = 0; ib < sbs.length; ib++){
+    	if (x0<sbs[ib]){
+        	var x0v = sbs[ib]
+        	break
+        	}
+    	}
+    if (ib==sbs.length){
+        var x0v = x0
+        }
+	var xr = [x0v*-25,x0v*1.1]
+	
 	f.x_range.start = xr[0]
 	f.x_range.end = xr[1]
+	//aspect ratio
+	var ar = f.inner_height/f.inner_width
     var r = xr[1]-xr[0]
-    f.y_range.start = -r/2
-    f.y_range.end = r/2
-	
-	
+    f.y_range.start = -r/2*ar
+    f.y_range.end = r/2*ar
 
 	
 	//calculate max width

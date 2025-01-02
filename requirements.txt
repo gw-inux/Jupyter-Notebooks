@@ -11,3 +11,4 @@ voila
 streamlit
 streamlit_book
 bokeh == 3.4.1
+httpimport
