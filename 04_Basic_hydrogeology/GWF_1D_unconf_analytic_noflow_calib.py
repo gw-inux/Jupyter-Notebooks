@@ -20,7 +20,7 @@ if theory:
             
     lc2, cc2, rc2 = st.columns((20,60,20))
     with cc2:
-        st.image('04_Basic_hydrogeology/    FIGS/GWF_008.jpg', caption="Conceptual model for a groundwater system with one no-flow boundary.")
+        st.image('04_Basic_hydrogeology/FIGS/GWF_008.jpg', caption="Conceptual model for a groundwater system with one no-flow boundary.")
 
     st.markdown("""
             ### Mathematical model
