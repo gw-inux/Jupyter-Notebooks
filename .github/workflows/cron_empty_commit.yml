@@ -16,16 +16,16 @@ jobs:
     runs-on: ubuntu-latest
     
     steps:
-    #- name: Checkout Repository
-    #  uses: actions/checkout@v2
+    - name: Checkout Repository
+      uses: actions/checkout@v2
 
-    #- run: git config user.email "YOUR_EMAIL@EMAIL.COM"
-    #- run: git config user.name "YOUR NAME"
+    - run: git config user.email thomas.reimann@tu-dresden
+    - run: git config user.name ThoReimann
 
     - name: Create Empty Commit
       run: git commit --allow-empty -m "Empty commit"
 
     - name: Push Empty Commit
-      run: git push origin main  # Change 'main' to your branch name
+      run: git push origin main/90_Streamlit_apps/GWP_Well_capture  # Change 'main' to your branch name
       env:
         GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
