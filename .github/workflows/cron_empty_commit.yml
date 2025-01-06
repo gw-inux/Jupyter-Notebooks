@@ -11,13 +11,21 @@ on:
  
       # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
-  # This workflow contains a single job called "cron"
-  cron:
-    # The type of runner that the job will run on
+  # jobs:
+  empty_commit:
     runs-on: ubuntu-latest
- 
-    # Steps represent a sequence of tasks that will be executed as part of the job
+    
     steps:
-      # Runs a single command using the runners shell
-      - name: Run a one-line script
-        run: echo Hello, world!
+    #- name: Checkout Repository
+    #  uses: actions/checkout@v2
+
+    #- run: git config user.email "YOUR_EMAIL@EMAIL.COM"
+    #- run: git config user.name "YOUR NAME"
+
+    - name: Create Empty Commit
+      run: git commit --allow-empty -m "Empty commit"
+
+    - name: Push Empty Commit
+      run: git push origin main  # Change 'main' to your branch name
+      env:
+        GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
