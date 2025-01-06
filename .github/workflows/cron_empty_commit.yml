@@ -19,6 +19,7 @@ jobs:
     - name: Checkout Repository
       uses: actions/checkout@v2
 
+    - run: git init
     - run: git config user.email thomas.reimann@tu-dresden
     - run: git config user.name ThoReimann
 
