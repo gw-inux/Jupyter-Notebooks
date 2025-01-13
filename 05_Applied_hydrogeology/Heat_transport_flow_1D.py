@@ -51,7 +51,7 @@ T = T_ini+T0 * erfc(x/np.sqrt(4.*D_H*(t*86400.)))
 h = h_ini+h0 * erfc(x/np.sqrt(4.*D_F*(t*86400.)))
     
 fig, ax = plt.subplots()
-ax.plot(t,T)
+ax.plot(t,T, 'r')
 ax.plot(t,h, 'b+')
 ax.set(xlabel='time in days', ylabel='temperature / hydraulic head',title='1D Conductive Heat transfer and groundwater flow')
 plt.axis([0,tmax,T_ini-1,T_BC+1])
