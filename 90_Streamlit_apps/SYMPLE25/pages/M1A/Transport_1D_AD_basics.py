@@ -77,7 +77,6 @@ with columns[0]:
     l  = st.slider(f'**Distance of observation from source (m)**',1,100,15,1)
     plot_A    = st.toggle('Advection', True)
     plot_AD   = st.toggle('Dispersion', False)
-    plot_DATA = st.toggle('Measured data',False) 
     
 with columns[1]:
     n  = st.slider(f'**Porosity (dimensionless)**',0.02,0.6,0.2,0.001)       
@@ -126,10 +125,6 @@ for t in range(t0, t1, dt):
         ca = c0
     conca.append(ca)
     time.append(t)
-        
-# measurements
-t_obs = [100, 200, 300, 400, 500, 600, 700, 800, 900, 1000]
-c_obs = [1e-3, 5e-2, 8.5e-2, 9.7e-2, 9.9e-2, 9e-2, 5e-2, 1.5e-2, 2e-3, 5e-4]
    
 #PLOT FIGURE
 fig = plt.figure(figsize=(9,6))
@@ -144,9 +139,6 @@ if plot_A == 1:
     ax.plot(time,conca, 'fuchsia', linewidth=2, label="(only) Advektion - computed")
 if plot_AD == 1:
     ax.plot(time,conc, 'navy', linewidth=2, label="Advektion-Dispersion - computed")
-if plot_DATA == 1:
-    ax.plot(t_obs, c_obs, 'ro', label="Measured")
-#ax.scatter(t_obs, c_obs, marker="x", c="red", zorder=10)
 plt.ylim(0, cp)
 plt.xlim(0,t1)
 plt.xticks(fontsize=14)

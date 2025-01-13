@@ -16,19 +16,19 @@ if st.button ('Show theory'):
     st.write('Subsequently, the parameters of groundwater flow (left side) and heat conduction (right side) are named.')
 
     st.latex(r'''S = c\rho''')
-#>with $S$ = Storativity, $c$ = heat capacity, and $\rho$ = density
+    st.write('with S = Storativity, c = heat capacity, and p = density')
 
     st.latex(r'''K = \lambda''')
-#>with $K$ = hydraulic conductivity, $\lambda$ = thermal conductivity
+    st.write('with K = hydraulic conductivity, lambda = thermal conductivity')
 
     st.latex(r'''D_f=\frac{K}{S}''')
-#>with $D_f$ = hydraulic Diffusivity
+    st.write('with D_f = hydraulic Diffusivity')
 
     st.latex(r'''D_h=\frac{\lambda_w}{c_w \rho_w}''')
-#>with $D_h$ = thermal Diffusivity
+    st.write('with D_h = thermal Diffusivity')
 
     st.latex(r'''h = T''')
-#>with $h$ = hydraulic head, $T$ = temperature
+    st.write('with h = hydraulic head, T = temperature')
 
     st.write('1-D Conduction without heat storage')
 
@@ -86,9 +86,7 @@ T = T_ini+T0 * erfc(x/np.sqrt(4.*D_H*(t*86400.)))
 if show_flow:
     D_F = K/S
     h = h_ini+h0 * erfc(x/np.sqrt(4.*D_F*(t*86400.)))
-    
-
-
+ 
     
 fig, ax = plt.subplots()
 ax.plot(t,T, 'r')
@@ -96,9 +94,8 @@ if show_flow:
     ax.plot(t,h, 'b+')
     ax.set(xlabel='time in days', ylabel='temperature (in Celsius) / hydraulic head (in m)',title='1D Conductive heat transfer and groundwater flow')
 else:
-    ax.set(xlabel='time in days', ylabel='temperature (in Celsius)',title='1D Conductive heat transfer')
+    ax.set(xlabel='time in days', ylabel='temperature (in Celsius)',title='1D Conductive hbeat transfer')
 plt.axis([0,tmax,T_ini-1,T_BC+1])
-ax.grid()
 
 st.pyplot(fig=fig)
 
