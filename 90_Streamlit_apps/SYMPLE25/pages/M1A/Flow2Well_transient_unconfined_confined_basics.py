@@ -82,7 +82,7 @@ with columns[0]:
     x_search = st.slider(f'Distance for result printout in the plot (m)',1,2000,10,1)
     t = st.slider(f'**Time (s)**',0,86400*7,86400,600)
     b = st.slider(f'**Thickness** of the unconfined aquifer',1.,100.,10.,0.01)
-    SY = st.slider(f'**Specific yield (/)**',0.01,0.60,0.25,0.01)
+    SY = st.slider(f'**Specific yield (/)**',0.001,0.60,0.25,0.001)
     # Display the Storativity
     st.write("_Storativity (dimensionless):_ %5.2e" %(SY*b))
 
