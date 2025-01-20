@@ -20,12 +20,12 @@ st.markdown(
     
     A conservative solute does not undergo chemical reactions nor does it attach to the medium so it moves at the same velocity as the groundwater. 
     
-    :blue[The 1D Conservative Transport Application calculates the break through curve for different input sources with ONLY longitudinal dispersion in one-dimensional steady flow through a homogeneous porous medium.] This is representative of solute moving through a laboratory column full of homogeneous sand.
+    :blue[The 1D Conservative Transport Application calculates the break through curve for two types of input sources with ONLY longitudinal dispersion in one-dimensional steady flow through a homogeneous porous medium.] This is representative of solute moving through a laboratory column full of homogeneous sand.
 """
 )
 left_co, cent_co, last_co = st.columns((20,60,20))
 with cent_co:
-    st.image('90_Streamlit_apps/GWP_1D_Conservative_Transport/assets/images/tracer_input_signals.jpg', caption="Solute input options for the 1D Conservative Transport Application")
+    st.image('C:/_1_GitHub/Jupyter-Notebooks/90_Streamlit_apps/GWP_1D_Conservative_Transport/assets/images/tracer_input_signals.jpg', caption="Solute input options for the 1D Conservative Transport Application")
 
 st.markdown (
     """
@@ -34,21 +34,20 @@ st.markdown (
     - effective porosity _n_ (dimensionless)
     - dispersivity _alpha_ (meters)
     
-    Additional inputs allow the user to modify the appearance of the graph and to add observation data for a calibration exercise.
+    Additional inputs allow the user to specify the source parameters and observation location, as well as to add observation data for a calibration exercise.
 """
 )
 
 left_co, cent_co, last_co = st.columns((20,60,20))
 with cent_co:
-    st.image('90_Streamlit_apps/GWP_1D_Conservative_Transport/assets/images/break_through_curve.jpg', caption="Example break through curve at a given distance from the source")
+    st.image('C:/_1_GitHub/Jupyter-Notebooks/90_Streamlit_apps/GWP_1D_Conservative_Transport/assets/images/break_through_curve.jpg', caption="Example break through curve at a given distance from the source")
 
 st.markdown(
     """   
      :blue[To navigate the '1D Conservative Transport' tool, you can use menu items on the sidebar:]
-    - Theory: to learn about the underlying assumptions and mathematics
-    - Compute Mass Pulse to run the 1D Conservative Transport tool for that source type
-    - Compute Finite Pulse to run the 1D Conservative Transport tool for that source type
-    - Compute Continuous Injection to run the 1D Conservative Transport tool for that source type
+    - Theory for the underlying assumptions and mathematics
+    - Compute Continuous Injection to calculate a 
+    - Compute Finite Pulse
     - Exercise Supperposition Principle
   
 """

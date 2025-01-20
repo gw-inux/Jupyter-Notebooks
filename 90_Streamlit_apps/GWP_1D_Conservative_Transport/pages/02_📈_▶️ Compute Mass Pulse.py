@@ -18,7 +18,7 @@ if theory:
     - M : mass (grams)
     - C : concentration (grams/cubic meter)
     - A : area of flow column (square meters)
-    - v : average linear velocity = product of hydraulic conductivity and gradient divided by effective porosity (meters/second)
+    - v : average linear velocity = product of hydraulic conductivity and gradient dividied by effective porosity (meters/second)
     - D : dispersion coefficient - product of dispersivity and average linear velocity (square meters/second)
     - x : distance from the source (meters)
     - t : time since the source was introduced (seconds)
@@ -26,12 +26,13 @@ if theory:
 """
 )
 
+
 st.markdown("""
             ### About the computed situation
             
-            Solute transport with one-dimensional spreading (longitudinal in the direction of flow) in steady flow through ahomogeneous porous medium.
+            Solute transport with one-dimensional (longitudinal in the direction of flow) spreading in steady flow through a porous medium.
             
-            The specific discharge _q_ is fixed at 0.01 m/s. However, the average linear velocity depends on the effective porosity (v = q/n). The velocity is printed below the interactive plot.
+            The specific discharge _q_ is fixed at 0.016 m/s. However, the average linear velocity depends on the effective porosity (v = q/n). The velocity is printed below the interactive plot.
             
             The solute is added as a user defined mass on the plane of the inlet end of the flow column at time = 0. The plane is infinitesimally thin, which although impossible in physical space, can be mathematically useful in representing a spill of finite mass in a small area.
 
@@ -61,27 +62,27 @@ def c_ADE(x, t, dM, Area, n, a, v):
 columns2 = st.columns((1,1), gap = 'large')
 
 with columns2[0]:
-    tp = st.slider(f'**Time for the concentration profile (s)**',60.,6000.,60.,1.)
+    tp = st.slider(f'**Time for the concentration profile (s)**',1.,1800.,100.,1.)
     multi = st.toggle("Plot two curves")
-    x  = st.slider(f'**Distance of the primary observation from source (m)**',0.1,1.0,0.1,0.01)
+    x  = st.slider(f'**Distance of the primary observation from source (m)**',1.,100.,1.,1.)
     if multi:
-        dx = st.slider(f'**Distance between the primary and secondary observation (m)**',0.1,1.0,0.1,0.01) 
+        dx = st.slider(f'**Distance between the primary and secondary observation (m)**',0.,50.,1.,0.1) 
     
 with columns2[1]:
-    dM = st.slider(f'**Input mass (mg)**',0.001,0.1,0.001,0.0001,("%.3e"))
+    dM = st.slider(f'**Input mass (g)**',0.01,1.0,1.0,0.01)
     n = st.slider(f'**Porosity (dimensionless)**',0.02,0.6,0.2,0.001)       
     a = st.slider(f'**Longitudinal dispersivity (m)**',0.001,1.0,0.01,0.001)
     
 "---"
-r  = 0.0254      # Column radius in meters 
-Q = 4.05365983277998E-07 # 24.322 ml/minute which is a reasonable flow for laboratory column and produces a q of 0.0002,
+r  = 2      # Column radius
+Q = 0.2
 Area = np.pi*r**2
 q = Q/Area
 v = q/n
 
 # Data for plotting
 t0 = 1      # Starting time
-t1 = 6000   # Ending time
+t1 = 3600   # Ending time
 dt = 2      # Time discretization
 ci = 0      # Initial concentration
 
@@ -101,7 +102,7 @@ concp  = []
 #compute break through
 for t in range(t0, t1, dt):      
     # ADVECTION-DISPERSION
-    cmax1 = ci+c_ADE(0.1, t, dM, Area, n, 0.01, v)
+    cmax1 = ci+c_ADE(1, t, 1, Area, n, 0.01, v)
     if cmax1 > cmax:
         cmax = cmax1
     c = ci+c_ADE(x, t, dM, Area, n, a, v)
@@ -122,6 +123,7 @@ for xp in np.linspace(0, 100, num=1000):
 t_obs = [100, 200, 300, 400, 500, 600, 700, 800, 900, 1000]
 c_obs = [1e-3, 5e-2, 8.5e-2, 9.7e-2, 9.9e-2, 10e-2, 10e-2, 10e-2, 10e-2, 10e-2]
    
+
 st.write("**Average velocity _v_ (m/s)** = ","% 7.3E"% v)
 
 #PLOT FIGURE
@@ -135,7 +137,7 @@ ax.set_ylabel ('Concentration (g/m³)', fontsize=14)
 ax.plot(time,conc, 'navy', linewidth=2, label="Breakthrough observation 1")
 if multi:
     ax.plot(time,conc2, 'lightblue', linewidth=2, label="Breakthrough observation 2")
-plt.ylim(0,cmax)
+plt.ylim(0,cmax*0.5)
 plt.xlim(0,t1)
 plt.xticks(fontsize=14)
 plt.yticks(fontsize=14)
@@ -147,7 +149,7 @@ ax.set_ylabel ('Concentration (g/m³)', fontsize=14)
       
 # PLOT HERE
 ax.plot(space,concp, 'orange', linewidth=2, label="Concentration profile")
-plt.ylim(0,cmax)
+plt.ylim(0,cmax*0.5)
 plt.xlim(0,100)
 plt.xticks(fontsize=14)
 plt.yticks(fontsize=14)

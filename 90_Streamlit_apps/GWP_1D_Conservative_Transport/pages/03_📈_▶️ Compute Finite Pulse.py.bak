@@ -141,9 +141,7 @@ v =     q/n
 D =     a*v
 PE =    l/a
 dur =   m/(Q*(c0-ci))
-tPV =   l/v
-r_dur = dur/tPV
-r_dt =  dt/tPV
+r_dur = dur
 
 # Defining time range
 t = np.arange(t0, t1, dt)
@@ -157,7 +155,7 @@ conca  = []
    
 #compute concentration
 for t in range(t0, t1, dt):      
-    r_time = t/tPV
+    r_time = t
     
     # ADVECTION-DISPERSION
     c = ci*IC(PE,r_time)+c0*BC(PE,r_time, r_dur)
@@ -181,7 +179,7 @@ c_obs = [1e-3, 5e-2, 8.5e-2, 9.7e-2, 9.9e-2, 9e-2, 5e-2, 1.5e-2, 2e-3, 5e-4]
 
 #compute concentration profile
 for t in range(t0, t1, dt):      
-    r_time = t/tPV
+    r_time = t
     
     # ADVECTION-DISPERSION
     c = ci*IC(PE,r_time)+c0*BC(PE,r_time, r_dur)

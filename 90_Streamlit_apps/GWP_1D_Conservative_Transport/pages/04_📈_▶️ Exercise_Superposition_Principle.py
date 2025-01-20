@@ -25,7 +25,7 @@ st.markdown("""
     It is assumed that chlorides are neither adsorbed nor degraded in the aquifer.
     """)
     
-st.image('C:/_1_GitHub/Jupyter-Notebooks/90_Streamlit_apps/GWP_1D_Conservative_Transport/assets/images/superposition_principle_figure.PNG', caption = "Case example.")
+st.image('90_Streamlit_apps/GWP_1D_Conservative_Transport/assets/images/superposition_principle_figure.PNG', caption = "Case example.")
 
 st.markdown("""
     ### The exercise

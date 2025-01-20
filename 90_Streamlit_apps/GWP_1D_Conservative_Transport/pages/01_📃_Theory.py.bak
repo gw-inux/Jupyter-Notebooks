@@ -109,7 +109,7 @@ st.markdown(
 st.latex(r'''C(x,t) = \frac{Co}{ 2 }  \left( erfc \left( \frac{x - vt}{2 \sqrt{Dt}} \right) + exp \left(\frac{vx}{D} \right) erfc \left( \frac{x + vt}{2 \sqrt{Dt}} \right)\right) ''')
 
 
-st.latex(r'''+ \frac{-Co}{ 2 }  \left( erfc \left( \frac{x - v(t-tduration)}{2 \sqrt{D (t-tduration)}} \right) + exp \left(\frac{vx}{D} \right) erfc \left( \frac{x + v(t-tduration)}{2 \sqrt{D(t-tduration)}} \right)\right)''')
+st.latex(r'''+ \frac{-Co}{ 2 }  \left( erfc \left( \frac{x - vt}{2 \sqrt{D (t-tduration)}} \right) + exp \left(\frac{vx}{D} \right) erfc \left( \frac{x + v(t-tduration)}{2 \sqrt{D(t-tduration)}} \right)\right)''')
 
 
 st.markdown(
