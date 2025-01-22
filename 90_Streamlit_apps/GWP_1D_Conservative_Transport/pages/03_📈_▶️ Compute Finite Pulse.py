@@ -33,7 +33,20 @@ with columns1[1]:
     theory = st.button('Show Equation')
     
 if theory:
-    
+	
+    st.markdown("""
+            For t less than or equal to the source duration:
+    """, unsafe_allow_html=True
+    )
+
+    st.latex(r'''C(x,t) = \frac{Co}{ 2 }  \left( erfc \left( \frac{x - vt}{2 \sqrt{Dt}} \right) + exp \left(\frac{vx}{D} \right) erfc \left( \frac{x + vt}{2 \sqrt{Dt}} \right)\right) ''')
+
+	
+    st.markdown("""
+            For t greater than the sourcce duration:
+    """, unsafe_allow_html=True
+    )
+
     st.latex(r'''C(x,t) = \frac{Co}{ 2 }  \left( erfc \left( \frac{x - vt}{2 \sqrt{Dt}} \right) + exp \left(\frac{vx}{D} \right) erfc \left( \frac{x + vt}{2 \sqrt{Dt}} \right)\right) ''')
     st.latex(r'''+ \frac{-Co}{ 2 }  \left( erfc \left( \frac{x - v(t-tduration)}{2 \sqrt{D (t-tduration)}} \right) + exp \left(\frac{vx}{D} \right) erfc \left( \frac{x + v(t-tduration)}{2 \sqrt{D(t-tduration)}} \right)\right)''')
 
@@ -44,8 +57,8 @@ if theory:
     - x : distance from the source (meters)
     - v : average linear velocity = Ki/n (meters/second)
     - t : time since the source was introduced (seconds)
+    - tduration : duration of the input pulse (seconds)
     - D : dispersion coefficient - product of dispersivity and average linear velocity (square meters/second)
-    - tduration : duration of the source (seconds)
 
 """
 )
@@ -111,7 +124,7 @@ def BC(PE,r_time, r_dur):
 columns = st.columns((1,1), gap = 'large')
 
 l = 0.75
-t1 = 10000
+t1 = 20000
 c0 = 1000
 Q= 2.0268E-7
 
@@ -130,7 +143,7 @@ with columns[1]:
 "---"
 # Data for plotting
 t0 = 1      # Starting time
-dt = 2      # Time discretization
+dt = 1      # Time discretization
 r  = 0.0254      # Column radius
 ci = 0      # Initial concentration
     
@@ -146,7 +159,7 @@ r_dur = dur/tPV
 r_dt =  dt/tPV
 
 # Defining time range
-t = np.arange(t0, t1, dt)
+t = np.arange(t0, t1+1, dt)
 
 # Computation of concentration (terms in brackets)
 # Set fraction of distance
@@ -156,7 +169,7 @@ conc   = []
 conca  = []
    
 #compute concentration
-for t in range(t0, t1, dt):      
+for t in range(t0, t1+1, dt):      
     r_time = t/tPV
     
     # ADVECTION-DISPERSION
@@ -176,17 +189,16 @@ for t in range(t0, t1, dt):
     time.append(t)
         
 # measurements
-t_obs = [100, 200, 300, 400, 500, 600, 700, 800, 900, 1000]
-c_obs = [1e-3, 5e-2, 8.5e-2, 9.7e-2, 9.9e-2, 9e-2, 5e-2, 1.5e-2, 2e-3, 5e-4]
+t_obs = [1000,	1250,	1500,	1750,	2000,	2250,	2500,	2750,	3000,	3250,	3500,	3750,	4000,	4250,	4500,	4750,	5000,	5250,	5500,	5750,	6000,	6250]
+c_obs = [16.08,	69.12,	168.85,	300.32,	440.37,	570.62,	681.23,	769.41,	836.55,	884.15,	901.09,	866.78,	778.96,	656.93,	525.37,	402.76,	298.71,	215.88,	152.87,	106.53,	73.29,	49.90]
 
 #compute concentration profile
-for t in range(t0, t1, dt):      
+for t in range(t0, t1+1, dt):      
     r_time = t/tPV
-    
+    	   
     # ADVECTION-DISPERSION
     c = ci*IC(PE,r_time)+c0*BC(PE,r_time, r_dur)
-    conc.append(c)
-    
+    conc.append(c) 
     # Input pulse
     if r_time < 1:
         ca = 0
@@ -198,25 +210,39 @@ for t in range(t0, t1, dt):
     conca.append(ca)
     
     time.append(t)
-   
+
 #PLOT FIGURE
 fig = plt.figure(figsize=(9,6))
 ax = fig.add_subplot(1, 1, 1)
 ax.set_title('1D solute transport with advection-dispersion', fontsize=16)
 ax.set_xlabel ('Time (s)', fontsize=14)
 ax.set_ylabel ('Concentration (g/m³)', fontsize=14)
-      
+
 # PLOT HERE
-ax.plot(time,conca, 'fuchsia', linewidth=2, label="Computed: (only) Advection")
+ax.plot(time,conca, 'fuchsia', linewidth=2, label="Computed: ONLY Advection")
 ax.plot(time,conc, 'navy', linewidth=2, label="Computed: Advection-Dispersion")
 if plot_DATA == 1:
     ax.plot(t_obs, c_obs, 'ro', label="Measured")
 plt.ylim(0, 1000)
-plt.xlim(0,t1)
-plt.xticks(fontsize=14)
+plt.xlim(0,t1-1)
+plt.xticks(np.arange(0, 20001, 2500),fontsize=14)
 plt.yticks(fontsize=14)
 plt.legend(frameon=False, loc='upper right', fontsize=14)
 
 st.write("Average velocity _v_ (m/s) = ","% 7.3E"% v)
+st.write("Source Duration _tduration_ (s) = ","% 7.3E"% dur)
     
 st.pyplot(fig)
+
+columns1 = st.columns((1,1,1), gap = 'large')
+with columns1[1]:
+    calib = st.button('Show input values that will generate observed calibration data')
+    
+if calib:
+	
+    st.markdown("""
+    - mass : 0.5 grams
+    - porosity : 0.3
+    - longitudinal dispersivity : 0.05 meters
+    """, unsafe_allow_html=True
+    )

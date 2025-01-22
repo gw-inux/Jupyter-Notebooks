@@ -183,7 +183,7 @@ ax.set_xlabel ('Time (s)', fontsize=14)
 ax.set_ylabel ('Concentration (g/m³)', fontsize=14)
       
 # PLOT HERE
-ax.plot(time,conca, 'fuchsia', linewidth=2, label="Computed: (only) Advection")
+ax.plot(time,conca, 'fuchsia', linewidth=2, label="Computed: ONLY Advection")
 ax.plot(time,conc, 'navy', linewidth=2, label="Computed: Advection-Dispersion")
 if plot_DATA == 1:
     ax.plot(t_obs, c_obs, 'ro', label="Measured")
@@ -197,3 +197,16 @@ plt.legend(frameon=False, loc='upper right', fontsize=14)
 st.write("Average velocity _v_ (m/s) = ","% 7.3E"% v)
 
 st.pyplot(fig)
+
+columns1 = st.columns((1,1,1), gap = 'large')
+with columns1[1]:
+    calib = st.button('Show input values that will generate observed calibration data')
+    
+if calib:
+	
+    st.markdown("""
+    - cooncentration : 1000 grams per cubic meter
+    - porosity : 0.34
+    - longitudinal dispersivity : 0.05 meters
+    """, unsafe_allow_html=True
+    )

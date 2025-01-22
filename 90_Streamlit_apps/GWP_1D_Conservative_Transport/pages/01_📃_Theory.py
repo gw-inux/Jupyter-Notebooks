@@ -18,7 +18,7 @@ st.markdown(
 
 left_co, cent_co, last_co = st.columns((20,60,20))
 with cent_co:
-    st.image('C:\_1_GitHub\Jupyter-Notebooks\90_Streamlit_apps\GWP_1D_Conservative_Transport/assets/images/1DtransportConceptualModel_1.jpg')
+    st.image('90_Streamlit_apps\GWP_1D_Conservative_Transport/assets/images/1DtransportConceptualModel_1.jpg')
 
 
 st.markdown(
@@ -31,7 +31,7 @@ st.markdown(
 
 left_co, cent_co, last_co = st.columns((20,60,20))
 with cent_co:
-    st.image('C:\_1_GitHub\Jupyter-Notebooks\90_Streamlit_apps\GWP_1D_Conservative_Transport/assets/images/1DtransportConceptualModel_2.jpg')
+    st.image('90_Streamlit_apps\GWP_1D_Conservative_Transport/assets/images/1DtransportConceptualModel_2.jpg')
 
 
 st.markdown(
@@ -74,6 +74,8 @@ st.markdown(
     - D : dispersion coefficient - product of dispersivity and average linear velocity (square meters/second)
     - x : distance from the source (meters)
     - t : time since the source was introduced (seconds)
+    - tduration : duration of the source (seconds)
+
 
 """
 )
@@ -106,11 +108,22 @@ st.markdown(
 )
 
 
+st.markdown("""
+      For t less than or equal to the source duration:
+""", unsafe_allow_html=True
+)
+
+
 st.latex(r'''C(x,t) = \frac{Co}{ 2 }  \left( erfc \left( \frac{x - vt}{2 \sqrt{Dt}} \right) + exp \left(\frac{vx}{D} \right) erfc \left( \frac{x + vt}{2 \sqrt{Dt}} \right)\right) ''')
 
+	
+st.markdown("""
+       For t greater than the sourcce duration:
+""", unsafe_allow_html=True
+)
 
+st.latex(r'''C(x,t) = \frac{Co}{ 2 }  \left( erfc \left( \frac{x - vt}{2 \sqrt{Dt}} \right) + exp \left(\frac{vx}{D} \right) erfc \left( \frac{x + vt}{2 \sqrt{Dt}} \right)\right) ''')
 st.latex(r'''+ \frac{-Co}{ 2 }  \left( erfc \left( \frac{x - v(t-tduration)}{2 \sqrt{D (t-tduration)}} \right) + exp \left(\frac{vx}{D} \right) erfc \left( \frac{x + v(t-tduration)}{2 \sqrt{D(t-tduration)}} \right)\right)''')
-
 
 st.markdown(
     """
