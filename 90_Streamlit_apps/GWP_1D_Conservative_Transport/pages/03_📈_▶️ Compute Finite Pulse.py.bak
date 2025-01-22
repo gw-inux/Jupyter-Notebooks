@@ -5,7 +5,7 @@ import numpy as np
 import streamlit as st
 
 st.title('1D Transport with advection and dispersion')
-st.subheader('Solute input as :orange[Finite Pulse] ', divider="orange")
+st.subheader('Solute input as :orange[Finite Pulse] data', divider="orange")
 
 st.markdown("""
             ### About the computed situation
