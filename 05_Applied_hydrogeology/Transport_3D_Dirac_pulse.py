@@ -49,13 +49,13 @@ columns1 = st.columns((1,1,1), gap = 'large')
 
 with columns1[0]:
     t = st.slider(f'**Time for the concentration profile (s)**',1.,1800.,1.,1.)
-    Zp = st.slider(f'**Slice at z (top view plot)**',-25,25,1,1)
+    Zp = st.slider(f'**Slice at z (top view plot)**',-25,25,0,1)
     Yp = st.slider(f'**Slice at y (side view plot)**',-100,100,0,1)
     
 with columns1[1]:
     #M = st.slider(f'**Input mass (g)**',0.01,5.0,1.0,0.01)  
     n = st.slider(f'**Porosity (-)**',0.01,0.6,0.25,0.01)    
-    ax = st.slider(f'**Longitudinal (x) dispersivity (m)**',0.001,1.0,0.01,0.001)
+    ax = st.slider(f'**Longitudinal (x) dispersivity (m)**',0.001,10.0,1.00,0.001)
     rat_x_y = st.slider(f'**Dispersivity ratio 1/n for x/y**',1,100,10,1)
     rat_x_z = st.slider(f'**Dispersivity ratio 1/n for x/z**',1,500,100,1)
 with columns1[2]:
