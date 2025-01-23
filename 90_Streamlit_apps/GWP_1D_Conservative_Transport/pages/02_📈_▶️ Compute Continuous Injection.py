@@ -10,9 +10,11 @@ st.subheader('Solute input as :orange[Continuous Injection]', divider="orange")
 st.markdown("""
             ### About the computed situation
             
-            Transport is calculated for steady one-dimensional flow through a homogeneous porous medium in a 1 meter long laboratory column with a specific discharge _q_ of 0.0001 m/s. The average velocity depends on the porosity and is printed above the graph.
+            Transport is calculated for steady one-dimensional flow through a homogeneous porous medium in a 1-meter long laboratory column with a specific discharge _q_ of 0.0001 m/s.
             
-            Solutes are continuously injected on the left with a user-defined concentration in g/m<sup>3</sup> (same as mg/L).
+            The average velocity _v_ depends on the porosity _n_ (_v=q/n_) which is printed above the graph.
+            
+            Solutes are continuously injected on the left with a user-defined concentration  _Co_ in g/m<sup>3</sup> (same as mg/L).
             
             The graph shows the solute concentration at an observation point a user-defined distance from the source. Concentration is computed for pure advective transport and for advective-dispersive transport.
 """, unsafe_allow_html=True
@@ -116,6 +118,8 @@ with columns[0]:
     if plot_DATA:
         l = 0.75
         st.write('**Distance of observation from source is 0.75 m for the measured data**')
+        st.write('**Calibration is the process of adjusting parameter values until the model matches the data**')
+        st.write('**After calibrating to the data, you can check your values using the button below the graph**')
     else:
         l  = st.slider(f'**Distance of observation from source (m)**',0.01,1.0,0.5,0.01)
     
@@ -198,15 +202,44 @@ st.write("Average velocity _v_ (m/s) = ","% 7.3E"% v)
 
 st.pyplot(fig)
 
-columns1 = st.columns((1,1,1), gap = 'large')
-with columns1[1]:
-    calib = st.button('Show input values that will generate observed calibration data')
+if plot_DATA:
+    columns1 = st.columns((1,1,1), gap = 'large')
+    with columns1[1]:
+        calib = st.button('Show input values that will generate observed calibration data')
     
-if calib:
+    if calib:
 	
-    st.markdown("""
-    - cooncentration : 1000 grams per cubic meter
-    - porosity : 0.34
-    - longitudinal dispersivity : 0.05 meters
-    """, unsafe_allow_html=True
-    )
+        st.markdown("""
+        - cooncentration : 1000 grams per cubic meter
+        - porosity : 0.34
+        - longitudinal dispersivity : 0.05 meters
+        """, unsafe_allow_html=True
+        )
+        
+
+st.markdown (
+    """   
+    :green
+    ___
+  
+"""
+)
+
+
+st.markdown(
+    """
+        :green[The Groundwater Project is nonprofit with one full-time staff and over a 1000 volunteers.]
+        """
+)
+st.markdown(
+    """
+        :green[Please help us by using the following link when sharing this tool with others.]
+        """   
+)
+
+st.markdown(
+    """
+        https://interactive-education.gw-project.org/1D_conservative_transport/
+        """   
+)
+
