@@ -70,7 +70,7 @@ az = ax/rat_x_z
 xmax = 1000
 ymax = 100
 zmax = 25
-X_vals = np.linspace(-0.05*xmax, xmax, 300)
+X_vals = np.linspace(-0.1*xmax, xmax, 300)
 Y_vals = np.linspace(-ymax, ymax, 300)
 Z_vals = np.linspace(-zmax, zmax, 300)
 Xxy, Yxy = np.meshgrid(X_vals, Y_vals)
@@ -95,7 +95,7 @@ else:
 plt.colorbar(contour, label="Concentration (g/m3)", format='%.0e')
 plt.xlabel("x in m",fontsize=14)
 plt.ylabel("y in m",fontsize=14)
-plt.xlim(-0.05*xmax,xmax)
+plt.xlim(-0.1*xmax,xmax)
 plt.legend(fontsize=14)
 plt.title(f"Contaminant Concentration (top view) at t = {t}, z = {Zp}", fontsize=16)
 
@@ -107,7 +107,7 @@ else:
     contour2 = plt.contour(Xxz, Zxz, Cxz, lev_exp, locator=ticker.LogLocator())
 plt.xlabel("x in m",fontsize=14)
 plt.ylabel("z in m",fontsize=14)
-plt.xlim(-0.05*xmax,xmax)
+plt.xlim(-0.1*xmax,xmax)
 plt.title(f"Contaminant Concentration (side view) at t = {t}, y = {Yp}", fontsize=16)
 
 st.pyplot(fig)
