@@ -192,11 +192,13 @@ ax.plot(time,conc, 'navy', linewidth=2, label="Computed: Advection-Dispersion")
 if plot_DATA == 1:
     ax.plot(t_obs, c_obs, 'ro', label="Measured")
 #ax.scatter(t_obs, c_obs, marker="x", c="red", zorder=10)
-plt.ylim(0, c0)
+plt.ylim(0, 1.05*c0)
 plt.xlim(0,t1)
 plt.xticks(np.arange(0, 11000, 1000),fontsize=14)
 plt.yticks(fontsize=14)
-plt.legend(frameon=False, loc='upper right', fontsize=14)
+legend = plt.legend(loc='lower right', fontsize=14, framealpha=0.8)
+legend.get_frame().set_linewidth(0.0)
+
 
 st.write("Average velocity _v_ (m/s) = ","% 7.3E"% v)
 
