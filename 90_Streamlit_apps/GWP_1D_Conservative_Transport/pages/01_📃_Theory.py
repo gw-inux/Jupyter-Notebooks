@@ -62,24 +62,22 @@ st.markdown(
    
 st.markdown(
     """
-    - M : mass (grams)
-    - Co : initial concentration (grams/cubic meter)
-    - C : concentration (grams/cubic meter)
-    - A : area of flow column (square meters)
-    - K : hydraulic conducitivity (meters/second)
-    - i : hydraulic gradient (dimensionless)
-    - n : effective porosity (dimensionless)
-    - v : average linear velocity = Ki/n (meters/second)
-    - a : dispersivity (meters)
-    - D : dispersion coefficient - product of dispersivity and average linear velocity (square meters/second)
-    - x : distance from the source (meters)
-    - t : time since the source was introduced (seconds)
-    - tduration : duration of the source (seconds)
+    - _M_ : mass (grams)
+    - _Co_ : initial concentration (grams/cubic meter)
+    - _C_ : concentration (grams/cubic meter)
+    - _A_ : area of flow column (square meters)
+    - _K_ : hydraulic conducitivity (meters/second)
+    - _i_ : hydraulic gradient (dimensionless)
+    - _n_ : effective porosity (dimensionless)
+    - _v_ : average linear velocity = Ki/n (meters/second)
+    - _a_ : dispersivity (meters)
+    - _D_ : dispersion coefficient - product of dispersivity and average linear velocity (square meters/second)
+    - _x_ : distance from the source (meters)
+    - _t_ : time since the source was introduced (seconds)
+    - _t<sub>dur</sub>_ : duration of the source (seconds)
 
-
-"""
+    """, unsafe_allow_html=True
 )
-
 
 st.markdown(
     """
@@ -123,7 +121,7 @@ st.markdown("""
 )
 
 st.latex(r'''C(x,t) = \frac{Co}{ 2 }  \left( erfc \left( \frac{x - vt}{2 \sqrt{Dt}} \right) + exp \left(\frac{vx}{D} \right) erfc \left( \frac{x + vt}{2 \sqrt{Dt}} \right)\right) ''')
-st.latex(r'''+ \frac{-Co}{ 2 }  \left( erfc \left( \frac{x - v(t-tduration)}{2 \sqrt{D (t-tduration)}} \right) + exp \left(\frac{vx}{D} \right) erfc \left( \frac{x + v(t-tduration)}{2 \sqrt{D(t-tduration)}} \right)\right)''')
+st.latex(r'''+ \frac{-Co}{ 2 }  \left( erfc \left( \frac{x - v(t-t_{dur})}{2 \sqrt{D (t-t_{dur})}} \right) + exp \left(\frac{vx}{D} \right) erfc \left( \frac{x + v(t-t_{dur})}{2 \sqrt{D(t-t_{dur})}} \right)\right)''')
 
 st.markdown(
     """

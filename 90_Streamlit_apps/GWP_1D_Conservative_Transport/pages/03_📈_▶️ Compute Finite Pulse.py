@@ -50,19 +50,19 @@ if theory:
     )
 
     st.latex(r'''C(x,t) = \frac{Co}{ 2 }  \left( erfc \left( \frac{x - vt}{2 \sqrt{Dt}} \right) + exp \left(\frac{vx}{D} \right) erfc \left( \frac{x + vt}{2 \sqrt{Dt}} \right)\right) ''')
-    st.latex(r'''+ \frac{-Co}{ 2 }  \left( erfc \left( \frac{x - v(t-tduration)}{2 \sqrt{D (t-tduration)}} \right) + exp \left(\frac{vx}{D} \right) erfc \left( \frac{x + v(t-tduration)}{2 \sqrt{D(t-tduration)}} \right)\right)''')
+    st.latex(r'''+ \frac{-Co}{ 2 }  \left( erfc \left( \frac{x - v(t-t_{dur})}{2 \sqrt{D (t-t_{dur})}} \right) + exp \left(\frac{vx}{D} \right) erfc \left( \frac{x + v(t-t_{dur})}{2 \sqrt{D(t-t_{dur})}} \right)\right)''')
 
     st.markdown(
     """
-    - C : concentration (grams/cubic meter)
-    - Co : initial concentration (grams/cubic meter)
-    - x : distance from the source (meters)
-    - v : average linear velocity = Ki/n (meters/second)
-    - t : time since the source was introduced (seconds)
-    - tduration : duration of the input pulse (seconds)
-    - D : dispersion coefficient - product of dispersivity and average linear velocity (square meters/second)
+    - _C_ : concentration (grams/cubic meter)
+    - _Co_ : initial concentration (grams/cubic meter)
+    - _x_ : distance from the source (meters)
+    - _v_ : average linear velocity = Ki/n (meters/second)
+    - _t_ : time since the source was introduced (seconds)
+    - _t<sub>dur</sub>_ : duration of the input pulse (seconds)
+    - _D_ : dispersion coefficient - product of dispersivity and average linear velocity (square meters/second)
 
-"""
+    """, unsafe_allow_html=True
 )
 
 columns1 = st.columns((1,1,1), gap = 'large')

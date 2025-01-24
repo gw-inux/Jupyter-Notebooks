@@ -29,12 +29,12 @@ if theory:
 
     st.markdown(
     """
-    - C : concentration (grams/cubic meter)
-    - Co : initial concentration (grams/cubic meter)
-    - x : distance from the source (meters)
-    - v : average linear velocity = Ki/n (meters/second)
-    - t : time since the source was introduced (seconds)
-    - D : dispersion coefficient - product of dispersivity and average linear velocity (square meters/second)
+    - _C_ : concentration (grams/cubic meter)
+    - _Co_ : initial concentration (grams/cubic meter)
+    - _x_ : distance from the source (meters)
+    - _v_ : average linear velocity = Ki/n (meters/second)
+    - _t_ : time since the source was introduced (seconds)
+    - _D_ : dispersion coefficient - product of dispersivity and average linear velocity (square meters/second)
 
 """
 )
