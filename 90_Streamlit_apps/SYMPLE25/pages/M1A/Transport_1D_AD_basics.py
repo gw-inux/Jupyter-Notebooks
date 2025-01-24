@@ -143,7 +143,7 @@ plt.ylim(0, cp)
 plt.xlim(0,t1)
 plt.xticks(fontsize=14)
 plt.yticks(fontsize=14)
-if not plot_A !=1 and plot_AD != 1 and plot_DATA != 1:
+if not plot_A !=1 and plot_AD != 1:
     plt.legend(frameon=False, loc='upper right', fontsize=14)
     
 st.pyplot(fig)
