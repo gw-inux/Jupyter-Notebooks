@@ -136,14 +136,13 @@ ax.set_ylabel ('Concentration (g)', fontsize=14)
       
 # PLOT HERE
 if plot_A == 1:
-    ax.plot(time,conca, 'fuchsia', linewidth=2, label="(only) Advektion - computed")
+    ax.plot(time,conca, 'fuchsia', linewidth=2, label="(Advection - computed")
 if plot_AD == 1:
-    ax.plot(time,conc, 'navy', linewidth=2, label="Advektion-Dispersion - computed")
+    ax.plot(time,conc, 'navy', linewidth=2, label="Advection-Dispersion - computed")
 plt.ylim(0, cp)
 plt.xlim(0,t1)
 plt.xticks(fontsize=14)
 plt.yticks(fontsize=14)
-if not plot_A !=1 and plot_AD != 1:
-    plt.legend(frameon=False, loc='upper right', fontsize=14)
+plt.legend(frameon=False, loc='upper right', fontsize=14)
     
 st.pyplot(fig)

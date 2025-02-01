@@ -5,12 +5,13 @@ import matplotlib.pyplot as plt
 import numpy as np
 import math
 import streamlit as st
+from streamlit_extras.stateful_button import button
 
-st.title("1D transient heat transport and groundwater flow")
+st.title("1D transient heat transport and groundwater flow (unconfined aquifer)")
 
 st.subheader("Theoretical background")
 
-if st.button ('Show theory'):
+if button("Show/Hide theory", key= 'button1'):
     st.write('Equations (groundwater flow and heat conduction in water)')
     
     st.write('Subsequently, the parameters of groundwater flow (left side) and heat conduction (right side) are named.')
@@ -22,10 +23,10 @@ if st.button ('Show theory'):
     st.write('with K = hydraulic conductivity, lambda = thermal conductivity')
 
     st.latex(r'''D_f=\frac{K}{S}''')
-    st.write('with D_f = hydraulic Diffusivity')
+    st.write('with D_f = hydraulic diffusivity')
 
     st.latex(r'''D_h=\frac{\lambda_w}{c_w \rho_w}''')
-    st.write('with D_h = thermal Diffusivity')
+    st.write('with D_h = thermal diffusivity')
 
     st.latex(r'''h = T''')
     st.write('with h = hydraulic head, T = temperature')
@@ -58,8 +59,8 @@ h0 = h_BC - h_ini
 
 columns = st.columns((1,1))
 with columns[0]:
-    tmax = st.slider('Time for printout in days', 1., 730., 10., 1.)
-    x = st.slider('Distance from the input', 0.1, 10., 1., 0.1)
+    tmax = st.slider('Time to plot in days', 1., 730., 10., 1.)
+    x = st.slider('Distance from the source', 0.1, 10., 1., 0.1)
     
 with columns[1]:
     show_flow = st.toggle('Click here if you want to compute groundwater flow')
@@ -71,10 +72,10 @@ with columns[1]:
         K_slider_value=st.slider('(log of) hydraulic conductivity in m/s', log_min,log_max,-4.0,0.01,format="%4.2f" )
         K = 10 ** K_slider_value
         st.write("**Hydraulic conductivity in m/s:** %5.2e" %K)
+        SY = st.slider('Specific Yield', 0.01, 0.50, 0.25, 0.01)
+        S = SY
 
-S_S = 1E-5
-m = 20
-S = S_S * m
+
 
 
 
@@ -94,10 +95,13 @@ if show_flow:
     ax.plot(t,h, 'b+')
     ax.set(xlabel='time in days', ylabel='temperature (in Celsius) / hydraulic head (in m)',title='1D Conductive heat transfer and groundwater flow')
 else:
-    ax.set(xlabel='time in days', ylabel='temperature (in Celsius)',title='1D Conductive hbeat transfer')
+    ax.set(xlabel='time in days', ylabel='temperature (in Celsius)',title='1D Conductive heat transfer')
 plt.axis([0,tmax,T_ini-1,T_BC+1])
 
 st.pyplot(fig=fig)
 
+st.write('Thermal diffusivity:  %5.2e' %D_H)
+if show_flow:
+    st.write('Hydraulic diffusivity:  %5.2e' %D_F)
 
 print("D_H: ",D_H)

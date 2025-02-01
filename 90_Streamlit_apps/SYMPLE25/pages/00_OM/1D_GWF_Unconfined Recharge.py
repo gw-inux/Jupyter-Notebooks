@@ -5,6 +5,7 @@ import numpy as np
 import streamlit as st
 import streamlit_book as stb
 from streamlit_extras.stylable_container import stylable_container
+from streamlit_extras.stateful_button import button
 
 st.title('Initial example for :green[System Understanding through Model Analysis]')
 
@@ -40,9 +41,9 @@ with right_co1:
     st.image('90_Streamlit_apps/SYMPLE25/assets/images/GWF/GWF_003.jpg', caption="Fig 03: Picture from the inside of an open pit mine, showing the geological composition of the underground, which is mainly thick sandy structures.")
 "---"
 
-lc1, mc1, rc1 = st.columns([1,4,1])
+lc1, mc1, rc1 = st.columns([1,1,1])
 with mc1:
-    show_theory = st.button('Click here if you want to read more about the underlying theory')
+    show_theory = button('Show/Hide the underlying theory', key="button2")
     
 if show_theory:
     st.subheader('Conceptual model')
@@ -96,7 +97,7 @@ with right_co2:
 
 lc2, mc2, rc2 = st.columns([2,3,1])
 with mc2:
-    show_initial_assessment = st.button("**Show the initial questions**")
+    show_initial_assessment = button("**Show/Hide the initial questions**", key="button2")
 if show_initial_assessment:
     stb.single_choice(":green[Assume a situation **without recharge** (recharge is zero, e.g., after a long and dry summer). You intend to compute the hydraulic heads _h(x)_ in the underground. **How much is the influence of the hydraulic conductivity _K_ on the solution?**]",
                   ["Very high influence", "High influence", "Intermediate influence", "Minor influence", "No influence"],

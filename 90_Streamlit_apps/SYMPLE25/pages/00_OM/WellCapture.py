@@ -7,6 +7,7 @@ from math import pi, tan
 import streamlit as st
 import streamlit_book as stb
 from streamlit_extras.stylable_container import stylable_container
+from streamlit_extras.stateful_button import button
 
 st.title('Initial example for :orange[System Understanding through Model Analysis]')
 
@@ -29,9 +30,9 @@ st.markdown(
 "---"
 
 # Optional theory here
-lc1, mc1, rc1 = st.columns([1,4,1])
+lc1, mc1, rc1 = st.columns([1,2,1])
 with mc1:
-    show_theory = st.button('Click here if you want to read more about the underlying theory')
+    show_theory = button('Show/Hide the underlying theory', key = 'button1')
     
 if show_theory:
     st.markdown(
@@ -89,9 +90,10 @@ st.markdown(
 
 # Initial assessment
 
-lc2, mc2, rc2 = st.columns([2,3,1])
+lc2, mc2, rc2 = st.columns([1,2,1])
 with mc2:
-    show_initial_assessment = st.button("**Show the initial questions**")
+    show_initial_assessment = button("**Show/Hide the initial questions**", key = 'button2')
+    
 if show_initial_assessment:
     stb.single_choice(":orange[The catchment area of the production well is computed and used for decision making. Afterwards it appears that the hydraulic conductivity was assumed to be too large. How much will this effect the shape of the catchment area?]",
                   ["The capture zone will be larger", "The capture zone will be smaller", "The capture zone is not affected"],
