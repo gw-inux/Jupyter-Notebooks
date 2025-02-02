@@ -3,9 +3,13 @@ import matplotlib.pyplot as plt
 from scipy import special
 import numpy as np
 import streamlit as st
+import streamlit_book as stb
+from streamlit_extras.stateful_button import button
 
 st.title('1D Transport with advection and dispersion')
 st.subheader('Solute input as :orange[Continuous Injection]', divider="orange")
+
+# version 1.1 - last modified by Thomas Reimann on 2025 02 02 
 
 st.markdown("""
             ### About the computed situation
@@ -22,7 +26,7 @@ st.markdown("""
 
 columns1 = st.columns((1,1,1), gap = 'large')
 with columns1[1]:
-    theory = st.button('Show Equation')
+    theory = button('Show/Hide Equation', key = 'button1') # This button from Streamlit.Extras keeps the part open until the user press the button again
     
 if theory:
     st.latex(r'''C(x,t) = \frac{Co}{ 2 }  \left( erfc \left( \frac{x - vt}{2 \sqrt{Dt}} \right) + exp \left(\frac{vx}{D} \right) erfc \left( \frac{x + vt}{2 \sqrt{Dt}} \right)\right)''')
@@ -35,85 +39,67 @@ if theory:
     - _v_ : average linear velocity = Ki/n (meters/second)
     - _t_ : time since the source was introduced (seconds)
     - _D_ : dispersion coefficient - product of dispersivity and average linear velocity (square meters/second)
-
 """
 )
 
-#FUNCTIONS FOR COMPUTATION; ADS = ADVECTION, DISPERSION AND SORPTION - EVENTUALLY SET RETARDATION TO 1 FOR NO SORPTION
-
-def IC(PE,r_time):
-    
-    IC1 = np.sqrt(0.25*PE/r_time)*(1-r_time)
-    
-    if (IC1>0):
-        IC2 = 1-(1-special.erfc(abs(IC1)))
-    else:
-        IC2 = 1+(1-special.erfc(abs(IC1)))
-    
-    IC3 = np.sqrt(0.25*PE/r_time)*(1+r_time)
-    
-    if (IC3>0):
-        IC4 = 1-(1-special.erfc(abs(IC3)))
-    else:
-        IC4 = 1+(1-special.erfc(abs(IC3)))
-    
-    if IC4 == 0:
-        IC5 = IC2
-    else:
-        IC5 = IC2+np.exp(PE)*IC4
-    
-    IC  = 1-0.5*IC5
-    
-    return IC
-
-def BC(PE,r_time, r_dur):
-    # BCx positive pulse
-    
-    BC1 = np.sqrt(0.25*PE/r_time)*(1-r_time)
-    
-    if (BC1>0):
-        BC2 = 1-(1-special.erfc(abs(BC1)))
-    else:
-        BC2 = 1+(1-special.erfc(abs(BC1)))
-        
-    BC3 = np.sqrt(0.25*PE/r_time)*(1+r_time)
-    
-    BC4 = special.erfc(BC3)
-    
-    if BC4 == 0:
-        BC5 = BC2
-    else:
-        BC5 = BC2 + np.exp(PE) * BC4
-    
-    # BCCx negative pulse
-    if r_time > r_dur:
-        BCC1 = np.sqrt(0.25 * PE / (r_time - r_dur)) * (1 - (r_time - r_dur))
-        if BCC1 > 0:
-            BCC2 = 1 - (1 - special.erfc(abs(BCC1)))
-        else:
-            BCC2 = 1 + (1 - special.erfc(abs(BCC1)))  
-        BCC3 = np.sqrt(0.25 * PE / (r_time - r_dur)) * (1 + (r_time - r_dur))
-        BCC4 = special.erfc(BCC3)
-        if BCC4 == 0:
-            BCC5 = BCC2
-        else:
-            BCC5 = BCC2 + np.exp(PE) * BCC4      
-    if r_time <= r_dur:
-        BC = 0.5 * BC5
-    else:
-        BC = 0.5 * (BC5 - BCC5)
-    return BC
-
-
 "---"
-columns = st.columns((1,1), gap = 'large')
+st.subheader('Quiz for self education')
+st.markdown("""            
+            The subsequent digital questions allow you to assess your knowledge. They are intended to enhance your learning experience. You can show and hide the questions with the following button.
+""", unsafe_allow_html=True
+)
+columns2 = st.columns((1,1,1), gap = 'large')
+with columns2[1]:
+    quiz = button('Show/Hide quiz questions', key = 'button2') # This button from Streamlit.Extras keeps the part open until the user press the button again
+    
+if quiz:
+    stb.single_choice(":orange[You plot solute transport with a concentration profile. What is shown on the x-axis?]",
+                  ["Time", "Concentration", "Space"],
+                  2,success='CORRECT! You will see this in the next steps.', error='This is not correct. You can plot the concentration profile with the slider below.')
+"---"
 
-l = 0.75
-t1 = 10000
-m = 10000000
-Q= 2.0268E-7
+#FUNCTIONS FOR COMPUTATION
+def concentration(x, t, a, v, c0, R):
+    # Computes 1D advection-dispersion with retardation
+    D = v * a
+    
+    coeff = c0/2
+    
+    erf1 = special.erfc((x-v*t/R)/(2*np.sqrt(D*t/R)))
+    erf2 = special.erfc((x+v*t/R)/(2*np.sqrt(D*t/R)))
+    exp  = np.exp(v*x/D)
+    
+    return coeff * (erf1 + exp * erf2)
+    
+def concentration_a(x, t, v, c0, R):
+    # Computes 1D advection with retardation
+    tPV =   x/v*R
+    residence_time = t/tPV
+    
+    if residence_time <= 1:
+        conc = 0
+    else:
+        conc = c0
+    
+    return conc
 
-with columns[0]:
+# Data for the scenario
+
+Q  = 2.0268E-7 # Discharge in the column
+r  = 0.0254    # Column radius
+lmax = 1.0     # Column lenght
+ci = 0         # Initial concentration
+
+tmax = 10000   # Maximum time
+dt = 10         # Time discretization for ploting
+
+
+columns3 = st.columns((1,1,1), gap = 'large')
+
+
+
+
+with columns3[0]:
     plot_DATA = st.toggle('Show Measured data for calibration',False)
     if plot_DATA:
         l = 0.75
@@ -121,104 +107,120 @@ with columns[0]:
         st.write('**Calibration is the process of adjusting parameter values until the model matches the data**')
         st.write('**After calibrating to the data, you can check your values using the button below the graph**')
     else:
-        l  = st.slider(f'**Distance of observation from source (m)**',0.01,1.0,0.5,0.01)
-    
-with columns[1]:
+        l  = st.slider(f'**Distance of observation from source (m)**',0.01,lmax,0.5,0.01)
+
+with columns3[1]:
+    plot_PROFILE = st.toggle('Plot concentration profile',False) 
+    if plot_PROFILE:
+        time_p = st.slider(f'**Time to plot the conc. profile (s)**',0,10000,600,60)
+        
+with columns3[2]:
     c0 = st.slider(f'**Input concentration (g/m³) (same as mg/L)**',100,10000,1000,100) 
     n  = st.slider(f'**Porosity (dimensionless)**',0.01,0.6,0.2,0.01)       
-    a  = st.slider(f'**Longitudinal dispersivity (m)**',0.001,0.1,0.01,0.001)
+    a  = st.slider(f'**Longitudinal dispersivity (m)**',0.001,0.100,0.010,0.001, format="%5.3f")
+
 "---"
-# Data for plotting
-t0 = 1      # Starting time
-dt = 2      # Time discretization
-r  = 0.0254      # Column radius
-ci = 0      # Initial concentration
-    
+
 # Computation of intermediate results
 A =     np.pi*r**2
 q =     Q/A
 v =     q/n
-D =     a*v
-PE =    l/a
-dur =   m/(Q*(c0-ci))
-tPV =   l/v
-r_dur = dur/tPV
-r_dt =  dt/tPV
 
-# Defining time range
-t = np.arange(t0, t1, dt)
+# Compute concentration for profile
+if plot_PROFILE:
+    
+    loc = np.arange(0., lmax, lmax/150)
+    conc_p = concentration(loc, time_p, a, v, c0, 1)
+    
+    # Advection only
+    loca =    []
+    conca_p = []
+    
+    for x in np.linspace(0, lmax, num=150):
+        ca_p = concentration_a(x, time_p, v, c0, 1)
+        conca_p.append(ca_p)
+        loca.append(x)
 
-# Computation of concentration (terms in brackets)
-# Set fraction of distance
-r_time = []
-time   = []
-conc   = []
+
+# Computation of breakthrough
+time = np.arange(0., tmax, tmax/150)
+conc = concentration(l, time, a, v, c0, 1)
+
+# Computation of breakthrough for advection only
+timea  = []
 conca  = []
-   
-#compute concentration  
-for t in range(t0, t1, dt):      
-    r_time = t/tPV
-    
-    # ADVECTION-DISPERSION
-    c = ci*IC(PE,r_time)+c0*BC(PE,r_time, r_dur)
-    conc.append(c)
-    
-    # Input pulse
-    if r_time < 1:
-        ca = 0
-    elif r_time > 1+r_dur:
-        ca = 0
-    else:
-        ca = c0
+
+for t in range(0, tmax, dt):
+    ca = concentration_a(l, t, v, c0, 1)
     
     conca.append(ca)
+    timea.append(t)
     
-    time.append(t)
-        
+         
 # measurements
 t_obs = [1000,	1250,	1500,	1750,	2000,	2250,	2500,	2750,	3000,	3250,	3500,	3750,	4000,	4250]
 c_obs = [5.79,	32.19,	93.93,	190.40,	308.54,	432.26,	548.89,	651.01,	735.79,	803.45,	855.85,	895.50,	924.97,	946.55]
 
-#PLOT FIGURE
-fig = plt.figure(figsize=(9,6))
-ax = fig.add_subplot(1, 1, 1)
-ax.set_title('1D solute transport with advection-dispersion', fontsize=16)
+st.write("Average velocity _v_ (m/s) = ","% 7.3E"% v)
+
+# PLOT FIGURE
+
+# General figure settings
+fig = plt.figure(figsize=(16,20))
+gs = matplotlib.gridspec.GridSpec(3,1, height_ratios=[1,0.02,0.7])
+
+# Upper figure 
+ax = fig.add_subplot(gs[0,:])
+ax.set_title  ('1D solute transport with advection-dispersion', fontsize=16)
 ax.set_xlabel ('Time (s)', fontsize=14)
 ax.set_ylabel ('Concentration (g/m³)', fontsize=14)
       
-# PLOT HERE
-ax.plot(time,conca, 'fuchsia', linewidth=2, label="Computed: ONLY Advection")
-ax.plot(time,conc, 'navy', linewidth=2, label="Computed: Advection-Dispersion")
+ax.plot(timea, conca, 'fuchsia', linewidth=2, label="Computed: ONLY Advection")
+ax.plot(time,  conc,  'navy',    linewidth=2, label="Computed: Advection-Dispersion")
+
 if plot_DATA == 1:
     ax.plot(t_obs, c_obs, 'ro', label="Measured")
 #ax.scatter(t_obs, c_obs, marker="x", c="red", zorder=10)
-plt.ylim(0, 1.05*c0)
-plt.xlim(0,t1)
+
+plt.ylim(0, 1.12*c0)
+plt.xlim(0, tmax)
 plt.xticks(np.arange(0, 11000, 1000),fontsize=14)
 plt.yticks(fontsize=14)
-legend = plt.legend(loc='lower right', fontsize=14, framealpha=0.8)
+legend = plt.legend(loc='upper right', fontsize=14, framealpha=0.8)
 legend.get_frame().set_linewidth(0.0)
 
+# Lower figure
+if plot_PROFILE:
+    ax = fig.add_subplot(gs[2,:])
+    ax.set_title  (f"Concentration profile at t = {time_p}", fontsize=16)
+    ax.set_xlabel ('Column lenght (m)', fontsize=14)
+    ax.set_ylabel ('Concentration (g/m³)', fontsize=14)
+      
+    ax.plot(loca, conca_p, 'orange', linewidth=2, label="Computed: ONLY Advection")  
+    ax.plot(loc,  conc_p,  'green',    linewidth=2, label="Computed: Advection-Dispersion")
 
-st.write("Average velocity _v_ (m/s) = ","% 7.3E"% v)
+    plt.ylim(0, 1.19*c0)
+    plt.xlim(0, lmax)
+    plt.xticks(np.arange(0, 1.01*lmax, 0.1),fontsize=14)
+    plt.yticks(fontsize=14)
+    legend = plt.legend(loc='upper right', fontsize=14, framealpha=0.8)
+    legend.get_frame().set_linewidth(0.0)
 
 st.pyplot(fig)
 
 if plot_DATA:
-    columns1 = st.columns((1,1,1), gap = 'large')
-    with columns1[1]:
+    columns4 = st.columns((1,1,1), gap = 'large')
+    with columns4[1]:
         calib = st.button('Show input values that will generate observed calibration data')
     
     if calib:
-	
         st.markdown("""
-        - cooncentration : 1000 grams per cubic meter
+        - concentration : 1000 grams per cubic meter
         - porosity : 0.34
         - longitudinal dispersivity : 0.05 meters
         """, unsafe_allow_html=True
         )
         
-
 st.markdown (
     """   
     :green
@@ -227,20 +229,12 @@ st.markdown (
 """
 )
 
-
 st.markdown(
     """
         :green[The Groundwater Project is nonprofit with one full-time staff and over a 1000 volunteers.]
-        """
-)
-st.markdown(
-    """
-        :green[Please help us by using the following link when sharing this tool with others.]
-        """   
-)
 
-st.markdown(
-    """
+        :green[Please help us by using the following link when sharing this tool with others.]
+
         https://interactive-education.gw-project.org/1D_conservative_transport/
         """   
 )
