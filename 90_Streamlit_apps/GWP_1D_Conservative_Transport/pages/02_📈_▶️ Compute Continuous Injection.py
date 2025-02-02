@@ -117,7 +117,7 @@ with columns3[1]:
 with columns3[2]:
     c0 = st.slider(f'**Input concentration (g/m³) (same as mg/L)**',100,10000,1000,100) 
     n  = st.slider(f'**Porosity (dimensionless)**',0.01,0.6,0.2,0.01)       
-    a  = st.slider(f'**Longitudinal dispersivity (m)**',0.001,0.100,0.010,0.001, format="%5.3f")
+    a  = st.slider(f'**Longitudinal dispersivity (m)**',0.002,0.100,0.010,0.001, format="%5.3f")
 
 "---"
 
