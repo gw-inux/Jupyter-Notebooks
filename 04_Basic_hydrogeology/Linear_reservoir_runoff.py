@@ -20,7 +20,7 @@ with c1:
     st.write('$V = V_0 e^{-St}$, where $ V_0 = V_{t=0}$')
     st.write('$Q = Q_0 e^{-St}$, where $Q_0 = Q_{t=0}$')
 with c2:
-    st.image('FIGS\Linear_reservoir_runoff.png', caption= 'Figure 1: Runoff model for a linear reservoir.')
+    st.image('FIGS/Linear_reservoir_runoff.png', caption= 'Figure 1: Runoff model for a linear reservoir.')
 st.write('')
 st.write('Where: $V$...Volume of stored water [$L³$], $Q$...Discharge, runoff [$L³T^{-1}$], $S$...Storage coefficient')
 st.write('')
