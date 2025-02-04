@@ -1,11 +1,14 @@
 import streamlit as st
 import streamlit_book as stb
+from streamlit_extras.stodo import to_do
+
+st.title('Dewatering exercise 💦')
+st.subheader("Step 01 - Interactive discovery of :blue[Darcy's Law]", divider="blue")
 
 st.markdown(
     """
-    ### Dewatering exercise 💦
-    ---
-    ## Step 01
+    <details>
+     <summary>Click here for additional Notes for instructors </summary>
     
     - Lead a discussion about how dewatering might affect nearby stakeholders.  Good examples include the water supply for a nearby town and a stream that is important to an environmental group.
     
@@ -36,27 +39,85 @@ st.markdown(
     - Show a supply well and discuss why a decreased water level could be detrimental.
     
     - Show a groundwater-connected stream and discuss why a decreased water level could be detrimental.
-"""
-)
+    
+    </details>
+""", unsafe_allow_html=True
+) 
+    
+if st.toggle('Show additional **Notes for instructors**'):
+    to_do(
+    [(st.write, "Lead a discussion about how dewatering might affect nearby stakeholders.  Good examples include the water supply for a nearby town and a stream that is important to an environmental group.")],
+    "td01",)
+    to_do(
+    [(st.write, "Introduce Henry Darcy and show a simplified version of his experiment.  Have students reason their way to Darcys Law.")],
+    "td02",)
+    to_do(
+    [(st.write, "Turn the column on its side, explore why the gradient will be constant along the column.")],
+    "td03",)
+    to_do(
+    [(st.write, "Convert the column to a constant rectangular cross section.  Then reason through why the gradient would not change along the column.")],
+    "td04",)
+    to_do(
+    [(st.write, "Introduce transient flow.  First, show two constant gradient condtions, same inflow H, two different outflow H values.")],
+    "td05",)
+    to_do(
+    [(st.write, "Reason through how the gradient would change in time from higher to lower inflow H with step change at boundary.")],
+    "td06",)
+    to_do(
+    [(st.write, "Convert the column to a decreasing cross sectional area towards outflow.  Then reason through why the gradient would change along the column under steady state flow .")],
+    "td07",)
+    to_do(
+    [(st.write, "Show two steady state conditions for column with a decreasing cross sectional area towards outflow with same inflow H, two different outflow H values.")],
+    "td08",)
+    to_do(
+    [(st.write, "Reason through how the gradient would change in time from higher to lower inflow H with step change at boundary.")],
+    "td09",)
+    to_do(
+    [(st.write, "Show a cross section of a well in an aquifer - you decide if you want to show that it is confined for the sake of accuracy versus simplicity.")],
+    "td10",)
+    to_do(
+    [(st.write, "Draw analogy of radial flow towards a well and decreasing area 1D case shown previously.")],
+    "td11",)
+    to_do(
+    [(st.write, "Talk through the transient response of an aquifer to pumping.")],
+    "td12",)
+    to_do(
+    [(st.write, "Relate this to distant effects of pumping through time.")],
+    "td13",)
+    to_do(
+    [(st.write, "Show a supply well and discuss why a decreased water level could be detrimental.")],
+    "td14",)
+    to_do(
+    [(st.write, "Show a groundwater-connected stream and discuss why a decreased water level could be detrimental.")],
+    "td15",)
 
 ##################################################################################
 # Interactive discovery of Darcy's Law
 ##################################################################################
 
-st.write('-------------------------------------------------------------------------------------------------------------------------------------')   
-st.write('')   
-st.write('')   
-st.write("Henry Darcy is perhaps the most famous hydrogeologist of all time!")
-st.write('')   
-st.write("You can find his Wikipedia page here: https://en.wikipedia.org/wiki/Henry_Darcy.")
-st.write('')   
-st.write("Let's repeat his famous experiments as a mental exercise.")
-st.write('')   
-st.write("Imagine that you have a cylinder, full of a porous and permeable material.")
-st.write("It is oriented vertically.  The vertical length is L.  The cross sectional area is constant and equal to A.")
-st.write("You maintain water ponded to a certain height above the top of the sand, h_top, at the top of the column.")
-st.write("The bottom of the column is connected to a hose.  All water flows through the hose, not through anywhere else at the bottom ofthe column.")
-st.write("The open end of the hose is a height, h_bottom, above the bottom of the column.")
+'---'
+st.markdown(
+    """
+    Henry Darcy is perhaps the most famous hydrogeologist of all time!
+    
+    You can find his Wikipedia page here: https://en.wikipedia.org/wiki/Henry_Darcy.
+
+    Let's repeat his famous experiments as a mental exercise.
+    
+    Imagine that you have a cylinder, full of a porous and permeable material.
+    
+    It is oriented vertically.  The vertical length is _L_.  The cross sectional area is constant and equal to _A_.
+    You maintain water ponded to a certain height above the top of the sand, _h<sub>top</sub>_, at the top of the column.
+    The bottom of the column is connected to a hose.  All water flows through the hose, not through anywhere else at the bottom ofthe column.
+    The open end of the hose is a height, _h<sub>bottom</sub>_, above the bottom of the column.
+    
+    Before you use the model to check your answers, do you think that there would be more or less flow if the following change was made with everything else being held constant?
+    
+    Area increased, length increased, ponded height at the top of the column increased, height of the bottom of the outflow tube increased?
+    
+    Once you have made your predictions, use the model below to check them!
+    """, unsafe_allow_html=True
+) 
 
 A_min = 1.0 # minimum cross sectional area
 A_max = 10.0  # maximum cross sectional area
@@ -68,16 +129,6 @@ h_bottom_min = 0.0 # minimum ponding at top of column
 h_bottom_max = 0.1  # maximum ponding at top of column
 K_min = -0.001 # minimum cross sectional area
 K_max = 0.001  # maximum cross sectional area
-
-st.write('')   
-st.write('')   
-st.write("Before you use the model to check your answers, do you think that there would be more or less flow if the following change was made with everything else being held constant?")
-st.write('')   
-st.write("Area increased, length increased, ponded height at the top of the column increased, height of the bottom of the outflow tube increased?")
-st.write('')   
-st.write("Once you have made your predictions, use the model below to check them!")
-st.write('')   
-st.write('')   
 
 columns = st.columns((1,1), gap = 'large')
     
@@ -96,22 +147,22 @@ st.write('')
 st.write('')   
 st.write("The flow rate in m3/s is: ", Q)
 
+'---'
+st.markdown(
+    """
 
-st.write('-------------------------------------------------------------------------------------------------------------------------------------')   
-st.write('')   
-st.write('')   
-st.write("Now imagine the same column turned on its side, so that it extends horizontally.  What was the top is the left, the bottom became the right.")
-st.write('')   
-st.write('')   
-st.write("Before you use the model to check your answers, answer these questions.")
-st.write('')   
-st.write("Do you think that the flow will have the same dependence on A, L, h_top, and h_bottom that it did for the vertical column?")
-st.write('')   
-st.write("If you set the slider bars to the same values for the vertical and horizontal columns, will they have the same flow?")
-st.write('')   
-st.write("Once you have made your predictions, use the model below to check them!")
-st.write('')   
-st.write('')   
+    Now imagine the same column turned on its side, so that it extends horizontally.  What was the top is the left, the bottom became the right.
+
+    Before you use the model to check your answers, answer these questions.
+ 
+    Do you think that the flow will have the same dependence on _A_, _L_, _h<sub>top</sub>_, and _h<sub>bottom</sub>_ that it did for the vertical column?
+    
+    If you set the slider bars to the same values for the vertical and horizontal columns, will they have the same flow?
+
+    Once you have made your predictions, use the model below to check them!
+
+    """, unsafe_allow_html=True
+)   
 
 columns = st.columns((1,1), gap = 'large')
     
