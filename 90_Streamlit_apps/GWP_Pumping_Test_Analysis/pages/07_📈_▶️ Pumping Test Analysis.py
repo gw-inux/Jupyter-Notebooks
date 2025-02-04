@@ -151,9 +151,14 @@ if (st.session_state.Data == "Synthetic textbook data"):
     Qs = 0.3/60   # m^3/s
     Qd = Qs*60*60*24 # m^3/d
 elif(st.session_state.Data =="Load own CSV dataset"):
+    # Initialize
     m_time = []
     m_ddown = []
-    uploaded_file = st.file_uploader("Choose a file")
+    r = 100       # m
+    b = 10        # m
+    Qs = 0.005    # m^3/s
+    Qd = 100      # m^3/d
+    uploaded_file = st.file_uploader("Choose a file (subsequently you can add pumping rate and distance between well and observation)")
     if uploaded_file is not None:
         df = pd.read_csv(uploaded_file)
         m_time = list(df.iloc[:,0].values)
