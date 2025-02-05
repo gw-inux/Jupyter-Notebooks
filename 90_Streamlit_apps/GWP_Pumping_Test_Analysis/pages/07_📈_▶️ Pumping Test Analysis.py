@@ -281,6 +281,7 @@ def inverse():
             r_div_B_choice = st.selectbox("r/B",('0.01', '0.04', '0.1', '0.2', '0.4', '0.6', '1', '1.5', '2', '2.5'),)
             r_div_B_list = ['0.01', '0.04', '0.1', '0.2', '0.4', '0.6', '1', '1.5', '2', '2.5']
             r_div_B = r_div_B_list.index(r_div_B_choice)
+            st.write(r_div_B)
     
     # Compute K and SS to provide parameters for plausability check
     # (i.e. are the parameter in a reasonable range)
