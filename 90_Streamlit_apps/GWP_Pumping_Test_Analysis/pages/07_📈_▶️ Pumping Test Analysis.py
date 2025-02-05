@@ -164,7 +164,11 @@ elif(st.session_state.Data =="Load own CSV dataset"):
         m_time = list(df.iloc[:,0].values)
         m_ddown = list(df.iloc[:,1].values)
         st.write(df)
-        Qs = st.slider(f'**Pumping rate** (m^3/s) for the **pumping test**', 0.001,0.100,0.005,0.001,format="%5.3f")
+        if st.toggle('Pumping rate input in m^3/h'):
+            Qs_slider = st.slider(f'**Pumping rate (m^3/h)** for the **pumping test**', 0.1,100.,10.,0.01,format="%5.2f")
+            Qs = Qs_slider/3600
+        else:
+            Qs = st.slider(f'**Pumping rate (m^3/s)** for the **pumping test**', 0.001,0.100,0.005,0.001,format="%5.3f")
         r = st.slider(f'**Distance** (m) from the **well** for the **observation**', 1,1000,100,1)
         b = st.slider(f'**Average Aquifer thickness** (m)', 1.,200.,10.,0.01)
         Qd = Qs*60*60*24 # m^3/d
