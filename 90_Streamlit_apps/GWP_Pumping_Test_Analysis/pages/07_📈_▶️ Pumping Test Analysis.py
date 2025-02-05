@@ -334,7 +334,7 @@ def inverse():
             else:
                 s_HAN[x] = w_u_HAN[x][r_div_B] * s_term
       
-        plt.title('Hantush Jacob drawdown', fontsize=16)
+        plt.title(f"Hantush Jacob drawdown with r/b = {r_div_B}", fontsize=16)
         ax.plot(t, s, label=r'Computed drawdown - Theis')
         ax.plot(t_HAN, s_HAN, 'b--', label=r'Computed drawdown - Hantush Jacob')
         ax.plot(m_time_s, m_ddown,'ro', label=r'measured drawdown')
