@@ -314,7 +314,7 @@ def inverse():
             else:
                 s_b_NEU[x] = w_u_b[x][beta] * s_term
         
-        plt.title('Neuman drawdown', fontsize=16)
+        plt.title(f"Neuman drawdown with beta = {beta}", fontsize=16)
         ax.plot(t_a, s, label=r'Computed drawdown early -Theis')
         ax.plot(t_b, s, label=r'Computed drawdown late -Theis')
         ax.plot(t_a_NEU, s_a_NEU, 'b--', label=r'Computed drawdown early - Neuman')
@@ -364,7 +364,7 @@ def inverse():
     with columns3[0]:
             st.write("**Parameter estimation**")
             st.write("Distance of measurement from the well (in m): %3i" %r)
-            st.write("Pumping rate of measurement (in m^3/s): %5.3f" %Qs)
+            st.write("Pumping rate of measurement (in m^3/s): %6.4f" %Qs)
             st.write("Thickness of formation b = ","% 5.2f"% b, " m")
             st.write("Transmissivity T = ","% 10.2E"% T, " m^2/s")
             st.write("(Hydr. cond. K) = ","% 10.2E"% (T/b), " m^2/s")
