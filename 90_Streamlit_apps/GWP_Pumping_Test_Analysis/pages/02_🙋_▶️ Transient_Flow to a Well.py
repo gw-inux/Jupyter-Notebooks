@@ -29,11 +29,12 @@ with mc1:
 if show_theory:
     st.markdown(
     """
-    ## Required theory
+    ### Theory of pumping test evaluation
+    
+    Information about transient flow to wells will follow.
     """
     )
     
-st.markdown("CO<sub>2</sub>", unsafe_allow_html=True)
 # Initial assessment
 
 # Initial assessment

@@ -5,50 +5,61 @@ import scipy.special
 import pandas as pd
 import streamlit as st
 import streamlit_book as stb
+from streamlit_extras.stateful_button import button
 
 st.title(':green[Hantush/Jacob] parameter estimation')
 
 st.subheader('Understanding the Hantush/Jacob (1955) solution  for :green[leaky aquifers]', divider="green")
 
 st.markdown("""
-            ### Introductionary remarks
+            ### Introduction
+            
+            The Hantush/Jacob solution is intended to evaluate pumping tests in semiconfined settings.
+            
+            The app allows to apply the Hantush/Jacob solution for pumping test data. You can use the sliders to modify the transmissivity _T_ and storativity _S_ to fit the measured data to the Hantush/Jacob type curves.
+            
+            In the following you find some initial questions to start with the investigation of the Theis solution.
 """
 )
+
+# Initial assessment
+lc0, mc0, rc0 = st.columns([1,2,1])
+with mc0:
+    show_initial_assessment = button('Show/Hide the initial **assessment**', key= 'button1')
+    
+if show_initial_assessment:
+    columnsQ1 = st.columns((1,1), gap = 'large')
+    
+    with columnsQ1[0]:
+        stb.single_choice(":red[**For which conditions is the Hantush/Jacob solution intended?**]",
+                  ["Steady state flow, confined aquifer.", "Transient flow, confined aquifer", "Steady state flow, semiconfined aquifer",
+                  "Transient flow, semiconfined aquifer", "Steady state flow, unconfined aquifer",
+                  "Transient flow, unconfined aquifer"],
+                  3,success='CORRECT!   ...', error='Not quite. ... If required, you can read again about the Theis solution in the following ressources _reference to GWP books...')
+
 "---"
 
 # Optional theory here
-lc1, mc1, rc1 = st.columns([1,4,1])
+lc1, mc1, rc1 = st.columns([1,3,1])
 with mc1:
-    show_theory = st.button('Click here if you want to read more about the underlying theory')
+    show_theory = button('Show/Hide more about the underlying **theory**', key= 'button2')
     
 if show_theory:
     st.markdown(
     """
-    ## Required theory
+    ### Required theory - The Hantush/Jacob Solution for Pumping Test Evaluation
+    
+    The Hantush/Jacob solution is a fundamental method in hydrogeology used to analyze transient flow to a well in a semiconfined aquifer. It describes the drawdown _s_ as a function of time and radial distance from a pumping well under the assumption of an infinite, homogeneous, and isotropic aquifer with uniform thickness.
     """
     )
-# Initial assessment
+    
+    st.latex(r'''EQ1''')
 
-show_initial_assessment = st.checkbox("**Show the initial assessment**")
-if show_initial_assessment:
-    columnsQ1 = st.columns((1,1), gap = 'large')
+    st.markdown(
+    """    
+    where: ...
+    """)
 
-    with columnsQ1[0]:
-        stb.single_choice(":red[**For which conditions is the Theis solution intended?**]",
-                  ["Steady state flow, confined aquifer.", "Transient flow, confined aquifer", "Steady state flow, unconfined aquifer",
-                  "Transient flow, unconfined aquifer"],
-                  1,success='CORRECT!   ...', error='Not quite. ... If required, you can read again about transmissivity _T_ in the following ressources _reference to GWP books...')
-        stb.single_choice(":red[**Question2?**]",
-                  ["Answer1.", "Answer2", "Answer3", "Answer4"],
-                  1,success='CORRECT!   ...', error='Not quite. ... If required, you can read again about transmissivity _T_ in the following ressources _reference to GWP books...')
-                  
-    with columnsQ1[1]:
-        stb.single_choice(":red[**Question3?**]",
-                  ["Answer1.", "Answer2", "Answer3", "Answer4"],
-                  1,success='CORRECT!   ...', error='Not quite. ... If required, you can read again about transmissivity _T_ in the following ressources _reference to GWP books...')             
-        stb.single_choice(":red[**Question4?**]",
-                  ["Answer1.", "Answer2", "Answer3", "Answer4"],
-                  1,success='CORRECT!   ...', error='Not quite. ... If required, you can read again about transmissivity _T_ in the following ressources _reference to GWP books...')
 "---" 
           
 # Computation
@@ -120,9 +131,9 @@ def inverse(v):
    
     columns2 = st.columns((1,1), gap = 'large')
     with columns2[0]:
+        refine_plot = st.toggle("**Refine** the range of the **Data matching plot**", key = 10+v)
         if v==2:
             Pirna = st.toggle("**Show measured data from Pirna 2024**", value = True)
-        refine_plot = st.toggle("**Refine** the range of the **Data matching plot**", key = 10+v)
     with columns2[1]:
         # READ LOG VALUE, CONVERT, AND WRITE VALUE FOR TRANSMISSIVITY
         T_slider_value=st.slider('(log of) **Transmissivity** in m2/s', log_min1,log_max1,-3.0,0.01,format="%4.2f", key = 20+v )
@@ -181,7 +192,7 @@ def inverse(v):
     ax.plot(t, s, label=r'Computed drawdown - Theis')
     ax.plot(t_HAN, s_HAN, 'b--', label=r'Computed drawdown - Hantush Jacob')
     if Pirna:
-        ax.plot(m_time_s, m_ddown,'bo', label=r'measured drawdown - Pirna 24')
+        ax.plot(m_time_s, m_ddown,'o', color='violet', label=r'measured drawdown - Pirna 24')
     else:
         ax.plot(m_time_s, m_ddown,'go', label=r'measured drawdown - Viterbo 23')
     plt.yscale("log")
@@ -212,14 +223,17 @@ def inverse(v):
 inverse(1)
 
 st.markdown("""
-            ### Next step - How about using Data from an alluvial and unconfined aquifer?
+            ### Next step - How about using data from an alluvial and unconfined aquifer?
             
             So far, we investigate the data from Viterbo. However, some aquifers are placed in alluvial structures with high hydraulic conductivity .These aquifers are unconfined. In the next step we will see how the Theis respectively the Hantush Jacob solution works with data from an unconfined aquifer.
-            
 """
 )
 
-if st.button("Let me see how data from an unconfined aquifer looks like"):
+lc2, mc2, rc2 = st.columns([1,3,1])
+with mc2:
+    real_data = button("Let me see how data from an unconfined aquifer looks like", key = 'button3')
+
+if real_data:
     inverse(2)
     
     st.markdown("""

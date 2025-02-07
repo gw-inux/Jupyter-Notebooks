@@ -5,50 +5,62 @@ import scipy.special
 import pandas as pd
 import streamlit as st
 import streamlit_book as stb
+from streamlit_extras.stateful_button import button
 
 st.title(':violet[Neuman] parameter estimation')
 
 st.subheader('Understanding the Neuman solution for :violet[unconfined aquifers]', divider="violet")
 
 st.markdown("""
-            ### Introductionary remarks
+            ### Introduction
+            
+            The Neuman solution is intended to evaluate pumping tests in unconfined settings.
+            
+            The app allows to apply the Neuman solution for pumping test data. You can use the sliders to modify the transmissivity _T_ and storativity _S_ to fit the measured data to the Hantush/Jacob type curves.
+            
+            In the following you find some initial questions to start with the investigation of the Theis solution.
 """
 )
+
+# Initial assessment
+lc0, mc0, rc0 = st.columns([1,2,1])
+with mc0:
+    show_initial_assessment = button('Show/Hide the initial **assessment**', key= 'button1')
+    
+if show_initial_assessment:
+    columnsQ1 = st.columns((1,1), gap = 'large')
+    
+    with columnsQ1[0]:
+        stb.single_choice(":red[**For which conditions is the Neuman solution intended?**]",
+                  ["Steady state flow, confined aquifer.", "Transient flow, confined aquifer", "Steady state flow, semiconfined aquifer",
+                  "Transient flow, semiconfined aquifer", "Steady state flow, unconfined aquifer",
+                  "Transient flow, unconfined aquifer"],
+                  5,success='CORRECT!   ...', error='Not quite. ... If required, you can read again about the Neuman solution in the following ressources _reference to GWP books...')
+
 "---"
 
 # Optional theory here
-lc1, mc1, rc1 = st.columns([1,4,1])
+lc1, mc1, rc1 = st.columns([1,3,1])
 with mc1:
-    show_theory = st.button('Click here if you want to read more about the underlying theory')
+    show_theory = button('Show/Hide more about the underlying **theory**', key= 'button2')
     
 if show_theory:
     st.markdown(
     """
-    ## Required theory
+    ### Required theory - The Neuman Solution for Pumping Test Evaluation
+    
+    The Neuman solution is a fundamental method in hydrogeology used to analyze transient flow to a well in a unconfined aquifer. It describes the drawdown _s_ as a function of time and radial distance from a pumping well under the assumption of an infinite, homogeneous, and isotropic aquifer with uniform thickness.
     """
     )
-# Initial assessment
+    
+    st.latex(r'''EQ1''')
 
-show_initial_assessment = st.checkbox("**Show the initial assessment**")
-if show_initial_assessment:
-    columnsQ1 = st.columns((1,1), gap = 'large')
-    with columnsQ1[0]:
-        stb.single_choice(":red[**For which conditions is the Theis solution intended?**]",
-                  ["Steady state flow, confined aquifer.", "Transient flow, confined aquifer", "Steady state flow, unconfined aquifer",
-                  "Transient flow, unconfined aquifer"],
-                  1,success='CORRECT!   ...', error='Not quite. ... If required, you can read again about transmissivity _T_ in the following ressources _reference to GWP books...')
-        stb.single_choice(":red[**Question2?**]",
-                  ["Answer1.", "Answer2", "Answer3", "Answer4"],
-                  1,success='CORRECT!   ...', error='Not quite. ... If required, you can read again about transmissivity _T_ in the following ressources _reference to GWP books...')
-                  
-    with columnsQ1[1]:
-        stb.single_choice(":red[**Question3?**]",
-                  ["Answer1.", "Answer2", "Answer3", "Answer4"],
-                  1,success='CORRECT!   ...', error='Not quite. ... If required, you can read again about transmissivity _T_ in the following ressources _reference to GWP books...')             
-        stb.single_choice(":red[**Question4?**]",
-                  ["Answer1.", "Answer2", "Answer3", "Answer4"],
-                  1,success='CORRECT!   ...', error='Not quite. ... If required, you can read again about transmissivity _T_ in the following ressources _reference to GWP books...')
-"---"         
+    st.markdown(
+    """    
+    where: ...
+    """)
+
+"---" 
 # Computation
 # (Here the necessary functions like the well function $W(u)$ are defined. Later, those functions are used in the computation)
 # Define a function, class, and object for Theis Well analysis
@@ -146,7 +158,6 @@ def inverse():
    
     columns2 = st.columns((1,1), gap = 'large')
     with columns2[0]:
-        show_data = st.toggle("**Show measured data from Pirna 2024**")
         refine_plot = st.toggle("**Refine** the range of the **Data matching plot**")
     with columns2[1]:
         # READ LOG VALUE, CONVERT, AND WRITE VALUE FOR TRANSMISSIVITY
@@ -196,8 +207,7 @@ def inverse():
     ax.plot(t_b, s, label=r'Computed ddown late - Theis')
     ax.plot(t_a_NEU, s_a_NEU, 'b--', label=r'Computed ddown early - Neuman')
     ax.plot(t_b_NEU, s_b_NEU, '--', color='darkorange', label=r'Computed ddown late - Neuman')
-    if show_data:
-        ax.plot(m_time_s, m_ddown,'bo', label=r'measured drawdown - Pirna 25')
+    ax.plot(m_time_s, m_ddown,'o', color='violet', label=r'measured drawdown - Pirna 25')
     plt.xticks(fontsize=14)
     plt.yticks(fontsize=14)
     plt.yscale("log")
