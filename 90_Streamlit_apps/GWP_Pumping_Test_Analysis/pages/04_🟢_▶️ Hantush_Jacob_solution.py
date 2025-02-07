@@ -6,8 +6,10 @@ import pandas as pd
 import streamlit as st
 import streamlit_book as stb
 
-st.title('Hantush Jacob parameter estimation')
-st.subheader('Understanding the Hantush Jacob (1955) solution  for :blue[leaky aquifers]', divider="blue")
+st.title(':green[Hantush/Jacob] parameter estimation')
+
+st.subheader('Understanding the Hantush/Jacob (1955) solution  for :green[leaky aquifers]', divider="green")
+
 st.markdown("""
             ### Introductionary remarks
 """
@@ -234,9 +236,9 @@ if st.button("Let me see how data from an unconfined aquifer looks like"):
 columnsN1 = st.columns((1,1,1), gap = 'large')
 with columnsN1[0]:
     if st.button("Previous page"):
-        st.switch_page("pages/03_📈_▶️ Theis_solution.py")
+        st.switch_page("pages/03_🟠_▶️ Theis_solution.py")
 with columnsN1[1]:
     st.subheader(':orange[**Navigation**]')
 with columnsN1[2]:
     if st.button("Next page"):
-        st.switch_page("pages/05_📈_▶️ Neuman_solution.py")
+        st.switch_page("pages/05_🟣_▶️ Neuman_solution.py")

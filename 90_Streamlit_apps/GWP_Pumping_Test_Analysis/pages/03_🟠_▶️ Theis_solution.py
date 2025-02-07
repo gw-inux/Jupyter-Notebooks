@@ -6,11 +6,16 @@ import pandas as pd
 import streamlit as st
 import streamlit_book as stb
 
-st.title('Theis parameter estimation')
+st.title(':red[Theis] parameter estimation')
 
-st.subheader('Understanding the :red[characteristics and behavior of the Theis solution]', divider="red")
+st.subheader('Understanding the Theis (1935) solution for :red[confined aquifers]', divider="red")
+
 st.markdown("""
-            ### Introductionary remarks
+            ### Introduction
+            
+            The Theis solution is intended to evaluate pumping tests in confined settings.
+            
+            The app allows to apply the Theis solution for pumping test data. You can use the sliders to modify the transmissivity _T_ and storativity _S_ to fit the measured data to the Theis curve.
             ...
             
             In the following you find some initial questions to start with the investigation of the Theis solution.
@@ -26,7 +31,28 @@ with mc1:
 if show_theory:
     st.markdown(
     """
-    ## Required theory
+    ### Required theory - The Theis Solution for Pumping Test Evaluation
+    
+    The Theis solution is a fundamental method in hydrogeology used to analyze transient flow to a well in a confined aquifer. It describes the drawdown _s_ as a function of time and radial distance from a pumping well under the assumption of an infinite, homogeneous, and isotropic aquifer with uniform thickness.
+    
+    The solution is derived from the groundwater flow equation and is based on the analogy between heat conduction and groundwater flow. The drawdown at a distance _r_ from a well pumping at a constant rate _Q_ is given by:
+    
+    EQ1 HERE
+    
+    where:
+    _T_ is the transmissivity of the aquifer
+    _W(u)_ is the well function of the Theis solution,
+    _u_ is a dimensionless time parameter defined as:
+    
+    EQ2 HERE
+    
+    where:
+    _S_ is the storativity (specific storage times aquifer thickness),
+    _t_ is the time since pumping began.
+    
+    The well function _W(u)_ is given by the integral:
+    
+    This function is commonly evaluated using numerical techniques or lookup tables. The Theis solution is widely used in pumping test analysis to estimate aquifer properties by fitting observed drawdown data to theoretical type curves.
     """
     )
 # Initial assessment
@@ -183,9 +209,9 @@ if st.button("Let me see how Theis works with real data"):
 columnsN1 = st.columns((1,1,1), gap = 'large')
 with columnsN1[0]:
     if st.button("Previous page"):
-        st.switch_page("pages/02_📈_▶️ Transient_Flow to a Well.py")
+        st.switch_page("pages/02_🙋_▶️ Transient_Flow to a Well.py")
 with columnsN1[1]:
     st.subheader(':orange[**Navigation**]')
 with columnsN1[2]:
     if st.button("Next page"):
-        st.switch_page("pages/04_📈_▶️ Hantush_Jacob_solution.py")
+        st.switch_page("pages/04_🟢_▶️ Hantush_Jacob_solution.py")

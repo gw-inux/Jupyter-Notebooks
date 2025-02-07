@@ -58,7 +58,7 @@ with cent_co2:
 columnsN1 = st.columns((1,1,1), gap = 'large')
 with columnsN1[0]:
     if st.button("Previous page"):
-        st.switch_page("pages/07_📈_▶️ Pumping Test Analysis.py")
+        st.switch_page("pages/07_📈_▶️ Parameter Uncertainty.py")
 with columnsN1[1]:
     st.subheader(':orange[**Navigation**]')
 with columnsN1[2]:

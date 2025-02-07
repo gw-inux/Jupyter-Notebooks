@@ -5,6 +5,7 @@ from streamlit_extras.stylable_container import stylable_container
 st.title('📃 Basic Theory underlying PumpingTestAnalysis')
 
 st.subheader(':orange-background[The Theis, Neuman, and Hantush Jacob solution]', divider="orange")
+
 st.markdown("""
             ### Introduction and Overview
             This part of the app provides a general overview about groundwater flow towards well. The basic principles for a quantitative description of the processes with mathematical equations are explained and derived. The individual details for specific solutions (like Theis, Hantush/Jacob, Neuman) are provided in the specific parts of the app.
@@ -74,4 +75,4 @@ with columnsN1[1]:
     st.subheader(':orange[**Navigation**]')
 with columnsN1[2]:
     if st.button("Next page"):
-        st.switch_page("pages/02_📈_▶️ Transient_Flow to a Well.py")
+        st.switch_page("pages/02_🙋_▶️ Transient_Flow to a Well.py")

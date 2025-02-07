@@ -6,33 +6,17 @@ import pandas as pd
 import streamlit as st
 import streamlit_book as stb
 
-st.title('Pumping Test Analysis with Theis and Neuman parameter estimation')
+st.title('Pumping Test Analysis with the :red[Theis], :green[Hantush/Jacob], and :violet[Neuman] solutions')
 
 st.subheader('Fitting formation parameter to :rainbow[REAL measured] data', divider="rainbow")
+
 st.markdown("""
-            ### Introductionary remarks
+            ### Motivation
+            
+            This app allows you to use the different solutions for various data. Measurments from various pumping tests can be selected. Alternatively, you can use your own data by uploading them as *.csv data. 
 """
 )
-# Initial assessment
-show_initial_assessment = st.checkbox("**Show the initial assessment**")
-if show_initial_assessment:
-    columnsQ1 = st.columns((1,1), gap = 'large')
-    with columnsQ1[0]:
-        stb.single_choice(":red[**For which conditions is the Theis solution intended?**]",
-                  ["Steady state flow, confined aquifer.", "Transient flow, confined aquifer", "Steady state flow, unconfined aquifer",
-                  "Transient flow, unconfined aquifer"],
-                  1,success='CORRECT!   ...', error='Not quite. ... If required, you can read again about transmissivity _T_ in the following ressources _reference to GWP books...')
-        stb.single_choice(":red[**Question2?**]",
-                  ["Answer1.", "Answer2", "Answer3", "Answer4"],
-                  1,success='CORRECT!   ...', error='Not quite. ... If required, you can read again about transmissivity _T_ in the following ressources _reference to GWP books...')
-                  
-    with columnsQ1[1]:
-        stb.single_choice(":red[**Question3?**]",
-                  ["Answer1.", "Answer2", "Answer3", "Answer4"],
-                  1,success='CORRECT!   ...', error='Not quite. ... If required, you can read again about transmissivity _T_ in the following ressources _reference to GWP books...')             
-        stb.single_choice(":red[**Question4?**]",
-                  ["Answer1.", "Answer2", "Answer3", "Answer4"],
-                  1,success='CORRECT!   ...', error='Not quite. ... If required, you can read again about transmissivity _T_ in the following ressources _reference to GWP books...')
+
 "---"   
       
 # Computation
@@ -140,7 +124,7 @@ with columns[0]:
     ("Synthetic textbook data", "Load own CSV dataset", "Viterbo (IT) 2023", "Pirna (DE) 2024", "Varnum (SWE) 2016 - R4", "Varnum (SWE) 2016 - R12", "Varnum (SWE) 2016 - R14", "Varnum (SWE) 2016 - R15", "Varnum (SWE) 2016 - B1", "Varnum (SWE) 2018 - R14"), key = 'Data')
 with columns[1]:
     solution = st.selectbox("**What solution should be used?**",
-    ("Theis", "Hantush Jacob (1955)", "Neuman"), key = 'Solution')
+    ("Theis", "Hantush/Jacob", "Neuman"), key = 'Solution')
 
 if (st.session_state.Data == "Synthetic textbook data"):
     # Data and parameter from SYMPLE exercise
@@ -277,7 +261,7 @@ def inverse():
             beta_choice = st.selectbox("beta",('0.001','0.01', '0.06', '0.2', '0.6', '1', '2', '4', '6'),)
             beta_list = ['0.001','0.01', '0.06', '0.2', '0.6', '1', '2', '4', '6']
             beta = beta_list.index(beta_choice)
-        if st.session_state.Solution == 'Hantush Jacob (1955)':
+        if st.session_state.Solution == 'Hantush/Jacob':
             r_div_B_choice = st.selectbox("r/B",('0.01', '0.04', '0.1', '0.2', '0.4', '0.6', '1', '1.5', '2', '2.5'),)
             r_div_B_list = ['0.01', '0.04', '0.1', '0.2', '0.4', '0.6', '1', '1.5', '2', '2.5']
             r_div_B = r_div_B_list.index(r_div_B_choice)
@@ -320,9 +304,9 @@ def inverse():
         ax.plot(t_b, s, label=r'Computed drawdown late -Theis')
         ax.plot(t_a_NEU, s_a_NEU, 'b--', label=r'Computed drawdown early - Neuman')
         ax.plot(t_b_NEU, s_b_NEU, '--', color='darkorange', label=r'Computed drawdown late - Neuman')
-        ax.plot(m_time_s, m_ddown,'ro', label=r'measured drawdown')
+        ax.plot(m_time_s, m_ddown, 'o', color='violet', label=r'measured drawdown')
 
-    if st.session_state.Solution == 'Hantush Jacob (1955)':  
+    if st.session_state.Solution == 'Hantush/Jacob':  
         # Theis curve
         t = u_inv * t_term
         s = w_u * s_term
@@ -338,7 +322,7 @@ def inverse():
         plt.title(f"Hantush Jacob drawdown with r/b = {r_div_B_choice}", fontsize=16)
         ax.plot(t, s, label=r'Computed drawdown - Theis')
         ax.plot(t_HAN, s_HAN, 'b--', label=r'Computed drawdown - Hantush Jacob')
-        ax.plot(m_time_s, m_ddown,'ro', label=r'measured drawdown')
+        ax.plot(m_time_s, m_ddown,'go', label=r'measured drawdown')
         
     if st.session_state.Solution == 'Theis':
         # Theis curve
@@ -379,9 +363,9 @@ inverse()
 columnsN1 = st.columns((1,1,1), gap = 'large')
 with columnsN1[0]:
     if st.button("Previous page"):
-        st.switch_page("pages/06_📈_▶️ Parameter Uncertainty.py")
+        st.switch_page("pages/05_🟣_▶️ Neuman_solution.py")
 with columnsN1[1]:
     st.subheader(':orange[**Navigation**]')
 with columnsN1[2]:
     if st.button("Next page"):
-        st.switch_page("pages/08_👉_About.py")
+        st.switch_page("pages/07_📈_▶️ Parameter Uncertainty.py")

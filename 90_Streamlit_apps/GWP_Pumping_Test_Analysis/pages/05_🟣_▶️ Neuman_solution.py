@@ -6,9 +6,10 @@ import pandas as pd
 import streamlit as st
 import streamlit_book as stb
 
-st.title('Neuman parameter estimation')
+st.title(':violet[Neuman] parameter estimation')
 
-st.subheader('Understanding the Neuman solution  for :blue[unconfined aquifers]', divider="blue")
+st.subheader('Understanding the Neuman solution for :violet[unconfined aquifers]', divider="violet")
+
 st.markdown("""
             ### Introductionary remarks
 """
@@ -230,9 +231,9 @@ inverse()
 columnsN1 = st.columns((1,1,1), gap = 'large')
 with columnsN1[0]:
     if st.button("Previous page"):
-        st.switch_page("pages/04_📈_▶️ Hantush_Jacob_solution.py")
+        st.switch_page("pages/04_🟢_▶️ Hantush_Jacob_solution.py")
 with columnsN1[1]:
     st.subheader(':orange[**Navigation**]')
 with columnsN1[2]:
     if st.button("Next page"):
-        st.switch_page("pages/06_📈_▶️ Parameter Uncertainty.py")
+        st.switch_page("pages/06_🎯_▶️ Pumping Test Analysis.py")

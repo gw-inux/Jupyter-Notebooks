@@ -318,9 +318,9 @@ inverse()
 columnsN1 = st.columns((1,1,1), gap = 'large')
 with columnsN1[0]:
     if st.button("Previous page"):
-        st.switch_page("pages/05_📈_▶️ Neuman_solution.py")
+        st.switch_page("pages/06_🎯_▶️ Pumping Test Analysis.py")
 with columnsN1[1]:
     st.subheader(':orange[**Navigation**]')
 with columnsN1[2]:
     if st.button("Next page"):
-        st.switch_page("pages/07_📈_▶️ Pumping Test Analysis.py")
+        st.switch_page("pages/08_👉_About.py")
