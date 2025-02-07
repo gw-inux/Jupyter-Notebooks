@@ -4,14 +4,18 @@ import matplotlib.pyplot as plt
 import scipy.special
 import streamlit as st
 import streamlit_book as stb
+from streamlit_extras.stateful_button import button
 
-st.title('Theis parameter estimation and drawdown prediction')
+st.title(':red[Theis] parameter estimation and drawdown prediction')
 
-st.subheader(':red-background[Fitting aquifer parameter to randomly generated data]', divider="red")
+st.subheader(':red-background[Fitting aquifer parameter to randomly generated data and predict future drawdown]', divider="red")
 
 # Initial assessment
-
-show_initial_assessment = st.checkbox("**Show the initial assessment**")
+# Initial assessment
+lc0, mc0, rc0 = st.columns([1,2,1])
+with mc0:
+    show_initial_assessment = button('Show/Hide the initial **assessment**', key= 'button1')
+    
 if show_initial_assessment:
     columnsQ1 = st.columns((1,1), gap = 'large')
     
@@ -19,17 +23,6 @@ if show_initial_assessment:
         stb.single_choice(":red[**For which conditions is the Theis solution intended?**]",
                   ["Steady state flow, confined aquifer.", "Transient flow, confined aquifer", "Steady state flow, unconfined aquifer",
                   "Transient flow, unconfined aquifer"],
-                  1,success='CORRECT!   ...', error='Not quite. ... If required, you can read again about transmissivity _T_ in the following ressources _reference to GWP books...')
-        stb.single_choice(":red[**Question2?**]",
-                  ["Answer1.", "Answer2", "Answer3", "Answer4"],
-                  1,success='CORRECT!   ...', error='Not quite. ... If required, you can read again about transmissivity _T_ in the following ressources _reference to GWP books...')
-                  
-    with columnsQ1[1]:
-        stb.single_choice(":red[**Question3?**]",
-                  ["Answer1.", "Answer2", "Answer3", "Answer4"],
-                  1,success='CORRECT!   ...', error='Not quite. ... If required, you can read again about transmissivity _T_ in the following ressources _reference to GWP books...')             
-        stb.single_choice(":red[**Question4?**]",
-                  ["Answer1.", "Answer2", "Answer3", "Answer4"],
                   1,success='CORRECT!   ...', error='Not quite. ... If required, you can read again about transmissivity _T_ in the following ressources _reference to GWP books...')
 "---"
 st.markdown("""
@@ -118,8 +111,6 @@ def inverse():
     log_max1 = 0.0  # T / Corresponds to 10^0 = 1
     log_min2 = -7.0 # S / Corresponds to 10^-7 = 0.0000001
     log_max2 = 0.0  # S / Corresponds to 10^0 = 1
-    
-    
     
     columns2 = st.columns((1,1), gap = 'large')
     with columns2[0]:
