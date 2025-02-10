@@ -34,7 +34,7 @@ if show_initial_assessment:
     with columnsQ1[1]:
         stb.single_choice(":orange[**What is the equivalent to 0.001 m3/s?**]",
                   ["1 Liter per second", "10 Liters per second", "100 Liters per second", "1 000 Liters per second", "10 000 Liters per second"],
-                  3,success='CORRECT! 1000 Liters are one m3', error='Not quite. Feel free to answer again.')             
+                  0,success='CORRECT! 1000 Liters are one m3', error='Not quite. Feel free to answer again.')             
 "---"
 
 st.markdown("""
