@@ -147,7 +147,8 @@ elif(st.session_state.Data == "Random data with noise"):
     m_time_all_s = [i*60 for i in m_time_all] # time in seconds
     m_ddown_all = [compute_s(st.session_state.T_random, st.session_state.S_random, i, Qs, r)*np.random.randint(80, 120)/100 for i in m_time_all_s] # time in seconds
     
-
+    n_samples_long = np.random.randint (35, 49)
+    n_samples_short = np.random.randint (16, 25)
 
 
 @st.fragment
@@ -200,9 +201,9 @@ def inverse():
             show_truth = st.toggle(":rainbow[Tell me how I did the inverse fitting!]")
         
     if long:
-        n_samples = np.random.randint (35, 49)
+        n_samples = n_samples_long
     else:
-        n_samples = np.random.randint (16, 25)
+        n_samples = n_samples_short
     m_time_s = m_time_all_s[:n_samples]
     num_times = len(m_time_s)
     m_ddown = m_ddown_all[:n_samples]
