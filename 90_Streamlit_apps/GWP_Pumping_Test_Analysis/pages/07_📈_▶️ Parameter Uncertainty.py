@@ -118,9 +118,6 @@ columns = st.columns((10,80,10), gap = 'large')
 with columns[1]:
     datasource = st.selectbox("**What data should be used?**",
     ("Random data with noise", "Synthetic textbook data"), key = 'Data')
-    if(st.session_state.Data == "Random data with noise"):
-        short = st.toggle('Provide only restricted data from the beginning of the test')
-        st.write(short)
 
 if (st.session_state.Data == "Synthetic textbook data"):
     # Data from SYMPLE exercise
@@ -149,18 +146,12 @@ elif(st.session_state.Data == "Random data with noise"):
     m_time_all_s = [i*60 for i in m_time_all] # time in seconds
     m_ddown_all = [compute_s(st.session_state.T_random, st.session_state.S_random, i, Qs, r)*np.random.randint(80, 120)/100 for i in m_time_all_s] # time in seconds
     
-    if short:
-        n_samples = np.random.randint(16, 28)
-    else:
-        n_samples = np.random.randint(24, 49)
-    m_time_s = m_time_all_s[:n_samples]
-    num_times = len(m_time_s)
-    m_ddown = m_ddown_all[:n_samples]
-    # Parameters needed to solve Theis (From the SYMPLE example/excercise) !!! UPDATE !!!
+
 
 
 @st.fragment
-def inverse():
+def inverse(): 
+    
     # This is the function to plot the graph with the data     
     # Get input data
     # Define the minimum and maximum for the logarithmic scale
@@ -179,6 +170,8 @@ def inverse():
         S_slider_value=st.slider('(log of) **Storativity**', log_min2,log_max2,-4.0,0.01,format="%4.2f" )
         S = 10 ** S_slider_value
         st.write("_Storativity_ (dimensionless):** %5.2e" %S)
+        if(st.session_state.Data == "Random data with noise"):
+            long = st.toggle('Provide more times for the pumping test (longer pumping)')
         refine_plot = st.toggle("**Refine** the range of the **Theis matching plot**")
     with columns2[1]:
         prediction = st.toggle('Do the prediction')
@@ -204,6 +197,15 @@ def inverse():
         columns4 = st.columns((1,1,1), gap = 'large')
         with columns4[1]:
             show_truth = st.toggle(":rainbow[Tell me how I did the inverse fitting!]")
+        
+    if long:
+        n_samples = np.random.randint (35, 49)
+    else:
+        n_samples = np.random.randint (16, 25)
+    m_time_s = m_time_all_s[:n_samples]
+    num_times = len(m_time_s)
+    m_ddown = m_ddown_all[:n_samples]
+        
         
     # Theis curve
     t_term = r**2 * S / 4 / T
