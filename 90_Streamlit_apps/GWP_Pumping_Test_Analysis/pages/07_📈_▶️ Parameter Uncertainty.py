@@ -81,7 +81,10 @@ st.markdown("""
             
             Perform the following steps in the exercise
             - Step 1: Estimate transmissivity (T) and storativity (S) from the provided data.
-            - Step 2: Use these estimates to predict future drawdown at a specified distance and pumping rate.
+            - Step 2: Use these estimates to predict future drawdown at a specified distance and pumping rate (slider 'Do the prediction').
+                - Predict the drawdown with a pumping rate of 0.04 m3/s
+                - in 500 m distance from the pumping well and
+                - in 5 years.
             - Step 3: Compare predictions using true vs. estimated parameters (slider 'Tell me how I did the inverse fitting')
             - Step 4: Increase the provided time series (slider 'Provide more times for the pumping test (longer pumping)') and re-do the parameter estimation and prediction
 """     
