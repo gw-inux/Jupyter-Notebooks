@@ -13,14 +13,21 @@ st.subheader('Understanding the Hantush/Jacob (1955) solution  for :green[leaky 
 
 st.markdown("""
             ### Introduction
+            The Hantush-Jacob solution is intended to evaluate pumping tests in semiconfined settings.
             
-            The Hantush/Jacob solution is intended to evaluate pumping tests in semiconfined settings.
+            The app allows to apply the Hantush/Jacob solution for pumping test data. You can use the sliders to modify the transmissivity _T_, the storativity _S_, and the leakage _r/B_ to fit the measured data to the Theis curve.
+            """)
             
-            The app allows to apply the Hantush/Jacob solution for pumping test data. You can use the sliders to modify the transmissivity _T_ and storativity _S_ to fit the measured data to the Hantush/Jacob type curves.
+left_co, cent_co, last_co = st.columns((20,60,20))
+with cent_co:
+    st.image('90_Streamlit_apps/GWP_Pumping_Test_Analysis/assets/images/leaky_aquifer.png', caption="The figure shows a cross section through a pumped leaky underground formation; from Kruseman and De Ridder (1994); available as preserved book in the Groundwater Project")
             
-            In the following you find some initial questions to start with the investigation of the Theis solution.
+st.markdown("""
+            In the following you find some initial questions to start with the investigation of the Hantush/Jacob solution.
 """
 )
+
+
 
 # Initial assessment
 lc0, mc0, rc0 = st.columns([1,2,1])
@@ -28,15 +35,30 @@ with mc0:
     show_initial_assessment = button('Show/Hide the initial **assessment**', key= 'button1')
     
 if show_initial_assessment:
-    columnsQ1 = st.columns((1,1), gap = 'large')
+    columnsQ1 = st.columns((1,1))
     
     with columnsQ1[0]:
-        stb.single_choice(":red[**For which conditions is the Hantush/Jacob solution intended?**]",
+        stb.single_choice(":green[**For which conditions is the Hantush/Jacob solution intended?**]",
                   ["Steady state flow, confined aquifer.", "Transient flow, confined aquifer", "Steady state flow, semiconfined aquifer",
                   "Transient flow, semiconfined aquifer", "Steady state flow, unconfined aquifer",
                   "Transient flow, unconfined aquifer"],
                   3,success='CORRECT!   ...', error='Not quite. ... If required, you can read again about the Theis solution in the following ressources _reference to GWP books...')
 
+        stb.single_choice(":green[**What is the key difference between the Hantush-Jacob solution and the Theis solution?**]",
+                  ["Theis solution applies to leaky aquifers, while Hantush-Jacob is for unconfined aquifers", "Hantush-Jacob solution accounts for leakage through an aquitard, while Theis assumes a fully confined aquifer", "Theis solution considers the presence of an impermeable boundary", "Hantush-Jacob solution applies only to steady-state conditions"],
+                  1,success='CORRECT! Hantush-Jacob solution accounts for leakage through an aquitard, while Theis assumes a fully confined aquifer', error='Not quite. Feel free to answer again.')                   
+                  
+        stb.single_choice(":green[**What parameter is introduced in the Hantush-Jacob solution to account for leakage?**]",
+                  ["Storage coefficient", "Leakage factor (B)", "Specific yield", "Transmissivity"],
+                  1,success='CORRECT! Leakage factor', error='Not quite. Feel free to answer again.')                      
+    with columnsQ1[1]:      
+        stb.single_choice(":green[**Which of the following best defines the leakage factor B in the Hantush-Jacob solution?**]",
+                  ["A measure of the storage capacity of the aquifer", "A parameter that describes the rate at which water moves through the aquifer", "A term that quantifies how much water leaks through an aquitard into the aquifer", "A constant value independent of aquifer properties"],
+                  2,success='CORRECT! A term that quantifies how much water leaks through an aquitard into the aquifer', error='Not quite. Feel free to answer again.')                      
+                  
+        stb.single_choice(":green[**What happens to drawdown in a leaky confined aquifer compared to a fully confined aquifer?**]",
+                  ["Drawdown decreases more rapidly in a leaky aquifer", "Drawdown is greater in a leaky aquifer due to the additional water source", "Drawdown remains the same in both cases", "Drawdown occurs only in the aquitard, not in the aquifer"],
+                  1,success='CORRECT! Drawdown is greater in a leaky aquifer due to the additional water source', error='Not quite. Feel free to answer again.')                      
 "---"
 
 # Optional theory here
@@ -45,20 +67,53 @@ with mc1:
     show_theory = button('Show/Hide more about the underlying **theory**', key= 'button2')
     
 if show_theory:
-    st.markdown(
-    """
-    ### Required theory - The Hantush/Jacob Solution for Pumping Test Evaluation
-    
-    The Hantush/Jacob solution is a fundamental method in hydrogeology used to analyze transient flow to a well in a semiconfined aquifer. It describes the drawdown _s_ as a function of time and radial distance from a pumping well under the assumption of an infinite, homogeneous, and isotropic aquifer with uniform thickness.
-    """
-    )
-    
-    st.latex(r'''EQ1''')
+    st.markdown("""
+            ### Required theory - The Hantush-Jacob Solution for Pumping Test Evaluation
+            
+            The Hantush-Jacob solution extends the Theis solution to account for leaky confined aquifers, where vertical leakage from an overlying or underlying aquitard contributes to the flow towards the well. This approach is useful when an aquifer is semi-confined rather than perfectly confined.
+            
+            The drawdown _s_ at a distance _r_ from a well pumping at a constant rate _Q_ is given by:
+            """)
+            
+    st.latex(r'''s(r,t) = \frac{Q}{4\pi T} W(u, r/B)''')
 
     st.markdown(
-    """    
-    where: ...
-    """)
+            """
+            where:
+            _T_ is the transmissivity of the aquifer
+            _W(u, r/B)_ is the Hantush leaky well function,
+            _u_ is a dimensionless time parameter, given by:
+            """)
+            
+    st.latex(r'''u = \frac{r^2 S}{4 T t}''')
+            
+    st.markdown(
+            """
+            _S_ is the storativity (specific storage times aquifer thickness),
+            _t_ is the time since pumping began,
+            _B_ is the leakage factor, defined as:
+            
+            """)
+            
+    st.latex(r'''B = \sqrt{\frac{T b'}{K'}}''')
+
+    st.markdown(
+            """
+            where:
+            _b′_ is the thickness of the aquitard,
+            _K′_ is the vertical hydraulic conductivity of the aquitard.
+            
+            The well function _W(u,r/B)_ is computed as:
+            """)
+
+    st.latex(r'''W(u, r/B) = \int_u^{\infty} \frac{e^{-x}}{x} E_1 \left( \frac{x (r/B)^2}{4} \right) dx''')
+
+    st.markdown(
+            """
+            where _E1(x)_ is the exponential integral function.
+            
+            This solution is commonly used in pumping test analysis when leakage from an aquitard significantly affects the drawdown behavior, making it more gradual compared to the purely confined case described by the Theis solution.
+            """)
 
 "---" 
           
@@ -114,7 +169,7 @@ w_u_HAN = [[9.420E+00, 6.670E+00, 4.850E+00, 3.510E+00, 2.230E+00, 1.550E+00, 8.
 st.subheader(':green[Inverse parameter fitting]', divider="rainbow")
 
 st.markdown("""
-            Subsequently, you can modify the transmissivity and the storativity to fit the measured data to the Neuman type curves. For precise fitting, you can change the plot resolution with the toogle. Additionally, you can perform a prediction of drawdown for specific times/spaces.
+            Subsequently, you can modify the transmissivity, the storativity, and the horizontal leakage of the underground to fit the measured data to the Hantush-Jacob type curves. For precise fitting, you can change the plot resolution with the toogle.
 """
 )
 
@@ -190,7 +245,7 @@ def inverse(v):
     fig = plt.figure(figsize=(10,7))
     ax = fig.add_subplot(1, 1, 1)
     ax.plot(t, s, label=r'Computed drawdown - Theis')
-    ax.plot(t_HAN, s_HAN, 'b--', label=r'Computed drawdown - Hantush Jacob')
+    ax.plot(t_HAN, s_HAN, 'b--', label=r'Computed drawdown - Hantush Jacob') 
     if Pirna:
         ax.plot(m_time_s, m_ddown,'o', color='violet', label=r'measured drawdown - Pirna 24')
     else:
@@ -203,9 +258,10 @@ def inverse(v):
         plt.axis([1E1,1E5,1E-3,1E+1])
     else:
         plt.axis([1E-1,1E8,1E-4,1E+1])
+        ax.text((0.2),1.8E-4,'Coarse plot - Refine for final fitting')
     plt.xlabel(r'time t in (s)', fontsize=14)
     plt.ylabel(r'drawdown s in (m)', fontsize=14)
-    plt.title('Hantush Jacob drawdown', fontsize=16)
+    plt.title(f"Hantush Jacob drawdown with r/b = {r_div_B_choice}", fontsize=16)
     ax.grid(which="both")
     plt.legend(fontsize=14)
     st.pyplot(fig)
@@ -221,6 +277,8 @@ def inverse(v):
         st.write("Storativity    S = ","% 10.2E"% S, "[-]")
  
 inverse(1)
+
+"---"
 
 st.markdown("""
             ### Next step - How about using data from an alluvial and unconfined aquifer?

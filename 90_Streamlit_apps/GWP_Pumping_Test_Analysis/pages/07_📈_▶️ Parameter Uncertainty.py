@@ -10,7 +10,32 @@ st.title(':red[Theis] parameter estimation and drawdown prediction')
 
 st.subheader(':red-background[Fitting aquifer parameter to randomly generated data and predict future drawdown]', divider="red")
 
-# Initial assessment
+st.markdown("""
+            ### Introduction to the exercise
+            
+            This exercise demonstrate the inverse parameter estimation with the Theis solution. Randomly generated data are provided for this exercise to estimate the transmissivity and storativity of the underground formation.
+            
+            In a subsequent step, the estimated parameters are used to predict the future drawdown for a defined pumping rate in a specific distance. The results with the true parameters can be compared to those with the estimated parameters.
+            """)
+            
+left_co, cent_co, last_co = st.columns((20,60,20))
+with cent_co:
+    st.image('90_Streamlit_apps/GWP_Pumping_Test_Analysis/assets/images/drawdown_aquifer.png', caption="The figure shows the drawdown in a confined pumped underground formation; from Kruseman and De Ridder (1994); available as preserved book in the Groundwater Project")
+            
+st.markdown("""
+            
+            The **objective of this exercise** is to apply inverse parameter estimation techniques using the Theis solution to determine aquifer properties and assess the accuracy of predictions made with these estimated parameters.
+            
+            This helps you to discuss the following **key questions**
+            - How does the accuracy of the estimated parameters affect drawdown predictions?
+            - What are potential sources of error in parameter estimation?
+            - How would uncertainty in the data influence predictions?
+            
+            In the following you find some initial questions to start the exercise.
+"""
+)
+
+"---"   
 # Initial assessment
 lc0, mc0, rc0 = st.columns([1,2,1])
 with mc0:
@@ -24,14 +49,40 @@ if show_initial_assessment:
                   ["Steady state flow, confined aquifer.", "Transient flow, confined aquifer", "Steady state flow, unconfined aquifer",
                   "Transient flow, unconfined aquifer"],
                   1,success='CORRECT!   ...', error='Not quite. ... If required, you can read again about transmissivity _T_ in the following ressources _reference to GWP books...')
+      
+        stb.single_choice(":red[**What is the main goal of inverse parameter estimation in groundwater modeling?**]",
+                  ["To determine unknown aquifer properties from observed data", "To predict the future pumping rate of a well", "To measure the depth of the groundwater table", "To calculate the hydraulic gradient"],
+                  0,success='CORRECT! o determine unknown aquifer properties from observed data', error='Not quite. Feel free to answer again.')      
+                  
+        stb.single_choice(":red[**If the estimated transmissivity (T) is too low, how will the predicted drawdown compare to the true drawdown?**]",
+                  ["The predicted drawdown will be too small", "The predicted drawdown will remain unchanged", "The predicted drawdown will be too large", "The predicted drawdown will fluctuate randomly"],
+                  2,success='CORRECT!The predicted drawdown will be too large', error='Not quite. Feel free to answer again.')
+        
+    with columnsQ1[1]:        
+        stb.single_choice(":red[**In inverse parameter estimation, what role does curve fitting play?**]",
+                  ["It predicts future rainfall effects on groundwater levels", "It determines the total groundwater storage in the aquifer", "It estimates the pumping rate required for full aquifer depletion", "It helps visually compare theoretical and observed drawdown curves"],
+                  3,success='CORRECT! It helps visually compare theoretical and observed drawdown curves', error='Not quite. Feel free to answer again.')  
+ 
+        stb.single_choice(":red[**Why is it important to compare predicted drawdown using estimated parameters with the true drawdown?**]",
+                  ["To determine the maximum sustainable pumping rate", "To verify the accuracy of the parameter estimation process", "To find out if the aquifer is unconfined or confined", "To measure the recharge rate of the aquifer"],
+                  1,success='CORRECT! To verify the accuracy of the parameter estimation process', error='Not quite. Feel free to answer again.')
+                  
+        stb.single_choice(":red[**Which parameters are typically estimated using the Theis solution in a pumping test?**]",
+                  ["Hydraulic conductivity and porosity", "Transmissivity and storativity", "Specific yield and permeability", "Pumping rate and aquifer thickness"],
+                  1,success='CORRECT! Transmissivity and storativity', error='Not quite. Feel free to answer again.')   
+                
 "---"
 st.markdown("""
-            ### Computation of the drawdown
+            ### Parameter estimation and drawdown prediction
+            
             Subsequently, the Theis equation is solved with Python routines. The interactive plot demonstrate the response of a confined aquifer to pumping. The results for the measured data are graphically presented in an interactive plot as red dots.
             
-            Start your investigations with increasing the pumping rate. See how the drawdown changes. Modify the transmissivity _**T**_ and the storativity _**S**_ to fit the measured data to the well function.
-
-            **Select the data below!** 
+            A further plot shows the derived water table response based on the Theis solution. With this, you can predict the future drawdown as function of the pumping rate, the distance and the time.
+            
+            Perform the following steps in the exercise
+            - Step 1: Estimate transmissivity (T) and storativity (S) from the provided data.
+            - Step 2: Use these estimates to predict future drawdown at a specified distance and pumping rate.
+            - Step 3: Compare predictions using true vs. estimated parameters.
 """     
 )
 
@@ -67,6 +118,9 @@ columns = st.columns((10,80,10), gap = 'large')
 with columns[1]:
     datasource = st.selectbox("**What data should be used?**",
     ("Random data with noise", "Synthetic textbook data"), key = 'Data')
+    if(st.session_state.Data == "Random data with noise"):
+        short = st.toggle('Provide only restricted data from the beginning of the test')
+        st.write(short)
 
 if (st.session_state.Data == "Synthetic textbook data"):
     # Data from SYMPLE exercise
@@ -91,11 +145,14 @@ elif(st.session_state.Data == "Random data with noise"):
     st.session_state.T_random = T_random
     st.session_state.S_random = S_random
     
-    m_time_all  = [1,2,3,4,5,6,7,8,9,10,12,14,16,18,20,25,30,35,40,45,50,55,60,70,80,90,100,110,120,130,140,150,160,170,180,210,240,270,300,330,360,420,480,540,600,660,720,780,840,900]
+    m_time_all  = [1,2,3,4,5,6,7,8,9,10,12,14,16,18,20,25,30,35,40,45,50,55,60,70,80,90,100,110,120,130,140,150,160,170,180,210,240,270,300,330,360,420,480,540,600,660,720,780,840,900, 960, 1020, 1080, 1140, 1200, 1260, 1320, 1380, 1440, 1500]
     m_time_all_s = [i*60 for i in m_time_all] # time in seconds
-    m_ddown_all = [compute_s(T_random, S_random, i, Qs, r)*np.random.randint(80, 120)/100 for i in m_time_all_s] # time in seconds
+    m_ddown_all = [compute_s(st.session_state.T_random, st.session_state.S_random, i, Qs, r)*np.random.randint(80, 120)/100 for i in m_time_all_s] # time in seconds
     
-    n_samples = np.random.randint(24, 49)
+    if short:
+        n_samples = np.random.randint(16, 28)
+    else:
+        n_samples = np.random.randint(24, 49)
     m_time_s = m_time_all_s[:n_samples]
     num_times = len(m_time_s)
     m_ddown = m_ddown_all[:n_samples]
@@ -299,7 +356,7 @@ def inverse():
             if(st.session_state.Data == "Random data with noise"):
                 if show_truth:
                     st.write("Predicted drawdown ...(in m) with 'true' parameters:  %5.2f" %true_y_point)
-                    st.write("Difference (in m):  %5.2f" %(true_y_point-y_point))
+                    st.write("**Difference** (in m):  %5.2f" %(true_y_point-y_point))
 
 inverse()
 

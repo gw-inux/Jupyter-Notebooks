@@ -299,7 +299,7 @@ def inverse():
             else:
                 s_b_NEU[x] = w_u_b[x][beta] * s_term
         
-        plt.title(f"Neuman drawdown with beta = {beta}", fontsize=16)
+        plt.title(f"Neuman drawdown with beta = {beta_choice}", fontsize=16)
         ax.plot(t_a, s, label=r'Computed drawdown early -Theis')
         ax.plot(t_b, s, label=r'Computed drawdown late -Theis')
         ax.plot(t_a_NEU, s_a_NEU, 'b--', label=r'Computed drawdown early - Neuman')
@@ -337,6 +337,7 @@ def inverse():
         plt.axis([1E1,1E5,1E-3,1E+1])
     else:
         plt.axis([1,1E8,1E-4,1E+1])
+        ax.text((2),1.8E-4,'Coarse plot - Refine for final fitting')
     plt.yscale("log")
     plt.xscale("log")
     plt.xlabel(r'time t in (s)', fontsize=14)

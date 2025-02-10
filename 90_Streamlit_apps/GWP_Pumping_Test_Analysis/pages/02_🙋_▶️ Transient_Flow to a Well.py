@@ -5,6 +5,9 @@ import scipy.special
 import streamlit as st
 import streamlit_book as stb
 from streamlit_extras.stylable_container import stylable_container
+from streamlit_extras.stateful_button import button
+from streamlit_extras.stodo import to_do
+
 
 st.title('Transient Flow towards a well in a confined aquifer')
 
@@ -19,29 +22,14 @@ st.markdown('''
             **Before you use the Theis solution to compute the drawdown, think about the following questions:**
             '''
 )
-"---"
-
-# Optional theory here
-lc1, mc1, rc1 = st.columns([1,4,1])
-with mc1:
-    show_theory = st.button('Click here if you want to read more about the underlying theory')
-    
-if show_theory:
-    st.markdown(
-    """
-    ### Theory of pumping test evaluation
-    
-    Information about transient flow to wells will follow.
-    """
-    )
-    
 # Initial assessment
-
-# Initial assessment
-
-show_initial_assessment = st.checkbox("**Show the initial assessment**")
+lc0, mc0, rc0 = st.columns([1,1.5,1])
+with mc0:
+    show_initial_assessment = button('**Show/Hide the initial assessment**', key= 'button1')
+    
 if show_initial_assessment:
-    columnsQ1 = st.columns((1,1), gap = 'large')
+    columnsQ1 = st.columns((1,1))
+    
     with columnsQ1[0]:
         stb.single_choice(":blue[**For which conditions is the Theis solution intended?**]",
                   ["Steady state flow, confined aquifer.", "Transient flow, confined aquifer", "Steady state flow, unconfined aquifer",
@@ -51,55 +39,70 @@ if show_initial_assessment:
                   ["The range of drawdown will reach a steady state.", "The range of drawdown will increase.", "The range of drawdown is not dependend of time", "The range of drawdown will decrease."],
                   1,success='CORRECT! Without recharge, the range of drawdown will increase.', error='Not quite. Without recharge, the range of drawdown will increase with ongoing time. Use the interactive plot to investigate this behavior.') 
     with columnsQ1[1]:
-        stb.single_choice(":blue[**How much water is pumped out by a pumping rate of 0.001 m3/s?**]",
-                  ["1000 liters per second.", "100 liters per second", "10 liters per second", "1 liter per second"],
-                  3,success='CORRECT! 0.001 m3/s is equivalent to 1 liter per second.', error='Not quite. Keep in mind that 1,000 liters are equivalent to 1 m3.')
-                  
+        stb.single_choice(":blue[**How does storativity (_S_) influence the response of an aquifer to pumping?**]",
+                  ["A higher storativity results in a slower drawdown response", "A lower storativity leads to rapid recovery after pumping stops", "Storativity only affects steady-state conditions", "Storativity is not relevant for confined aquifers"],
+                  0,success='CORRECT! A higher storativity results in a slower drawdown response', error='Not quite. Feel free to answer again.')  
+        stb.single_choice(":blue[**Which of the following describes the drawdown at a point due to pumping in a confined aquifer?**]",
+                  ["It increases with radial distance from the well", "It decreases with time", "It remains constant over time", "It is independent of the pumping rate"],
+                  2,success='CORRECT! It decreases with time', error='Not quite. Feel free to answer again.')
             
 "---"
 
-# Create buttons with st.button and proceed with the steps of the exercise
-with stylable_container(
-    "green",
-    css_styles="""
-    button {
-        background-color: #00FF00;
-        color: black;
-    }""",
-):
-    if st.checkbox(':blue[**Proceed with Exercise Step 1**]'):
-        st.markdown("""
+# Optional theory here
+lc1, mc1, rc1 = st.columns([1,2,1])
+with mc1:
+    show_theory = button('Show/Hide more about the underlying **theory**', key= 'button2')
+    
+if show_theory:
+    st.markdown(
+    """
+    ### Theory of transient flow to wells and pumping test evaluation
+    
+    Information about transient flow to wells will follow.
+    """
+    )
+"---"
+
+# Create ToDos to proceed with the steps of the exercise
+
+if st.toggle(':blue[**Proceed with Exercise Step 1**] - Use the slider for instructions'):
+    st.markdown("""
             **STEP 1:**
             First we aim to investigate the drawdown in response to water abstraction as function of space and time.
             
            _To proceed_ (with the interactive plot):
-            - Increase the pumping rate. What happens with the drawdown? You can use the slider 'Distance to show (m)' (middle column) to print specific values of drawdown.
-            - Now use the toggle on the left side to 'Show drawdown vs time plot'. Modify the 'Distance to show (m)' and see how the drawdown vs time changes depending of the distance from the abstraction well.
-"""
-)
-    if st.checkbox(':blue[**Proceed with Exercise Step 2**]'):
-        st.markdown("""
+           """)
+    to_do(
+        [(st.write, "Increase the pumping rate. What happens with the drawdown? You can use the slider 'Distance to show (m)' (middle column) to print specific values of drawdown.")],"td01",)
+    to_do(
+        [(st.write, "Now use the toggle on the left side to 'Show drawdown vs time plot'. Modify the 'Distance to show (m)' and see how the drawdown vs time changes depending of the distance from the abstraction well.")], "td02",)
+
+if st.toggle(':blue[**Proceed with Exercise Step 2**] - Use the slider for instructions'):
+    st.markdown("""
             **STEP 2:**
             Now we investigate the sensitivity of the hydraulic conductivity _K_ and the storativity _S_ on the drawdown in response to a specific abstraction rate.
             
-           _To proceed_:
-            - Modify the Transmissivity. What happens?
-            - Modify the Storativity. What happens?           
-            
-"""
-)
-    if st.checkbox(':blue[**Proceed with Exercise Step 3**]'):
-        st.markdown("""
+           _To proceed_ (with the interactive plot):
+           """)
+    to_do(
+        [(st.write, "Modify the Transmissivity. What happens?")],"td03",)
+    to_do(
+        [(st.write, "Modify the Storativity. What happens?")], "td04",)
+
+if st.toggle(':blue[**Proceed with Exercise Step 3**] - Use the slider for instructions'):
+    st.markdown("""
             **STEP 3:**
-            
             Now you can use the interactive plot to compare two variants with different transmissivity and storativity. 
             
-           _To proceed_:
-            - Use the toggle 'Compute a second variant for comparison'.
-            - Decrease the transmissivity and compare. Then increase the transmissivity and compare.
-            - Decrease the storativity and compare. Then increase the storativity and compare.
-"""
-)
+           _To proceed_ (with the interactive plot):
+           """)
+    to_do(
+        [(st.write, "Use the toggle 'Compute a second variant for comparison'.")],"td05",)
+    to_do(
+        [(st.write, "Decrease the transmissivity and compare. Then increase the transmissivity and compare.")], "td06",) 
+    to_do(
+        [(st.write, "Decrease the storativity and compare. Then increase the storativity and compare.")], "td07",)        
+"---"
 
 st.markdown('''
             ### Computation of the drawdown
@@ -248,16 +251,16 @@ st.markdown('''
 )
 # Second assessment
 
-show_second_assessment = st.toggle("**Show the second assessment**")
+show_second_assessment = button("**Show/Hide the second assessment**", key = 'button2')
 if show_second_assessment:
     # Assessment to guide users through the interactive plot
-    stb.single_choice(":green[**QuestionI1?**]",
+    stb.single_choice(":blue[**QuestionI1?**]",
                   ["Answer1.", "Answer2", "Answer3", "Answer4"],
                   1,success='CORRECT!   ...', error='Not quite. ... If required, you can read again about transmissivity _T_ in the following ressources _reference to GWP books...')
-    stb.single_choice(":green[**QuestionI2?**]",
+    stb.single_choice(":blue[**QuestionI2?**]",
                   ["Answer1.", "Answer2", "Answer3", "Answer4"],
                   1,success='CORRECT!   ...', error='Not quite. ... If required, you can read again about transmissivity _T_ in the following ressources _reference to GWP books...')
-    stb.single_choice(":green[**QuestionI3?**]",
+    stb.single_choice(":blue[**QuestionI3?**]",
                   ["Answer1.", "Answer2", "Answer3", "Answer4"],
                   1,success='CORRECT!   ...', error='Not quite. ... If required, you can read again about transmissivity _T_ in the following ressources _reference to GWP books...')
 

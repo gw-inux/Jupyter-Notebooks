@@ -17,7 +17,13 @@ st.markdown("""
             The Theis solution is intended to evaluate pumping tests in confined settings.
             
             The app allows to apply the Theis solution for pumping test data. You can use the sliders to modify the transmissivity _T_ and storativity _S_ to fit the measured data to the Theis curve.
+            """)
             
+left_co, cent_co, last_co = st.columns((20,60,20))
+with cent_co:
+    st.image('90_Streamlit_apps/GWP_Pumping_Test_Analysis/assets/images/confined_aquifer.png', caption="The figure shows a cross section through a pumped confined underground formation; from Kruseman and De Ridder (1994); available as preserved book in the Groundwater Project")
+            
+st.markdown("""
             In the following you find some initial questions to start with the investigation of the Theis solution.
 """
 )
@@ -44,6 +50,10 @@ if show_initial_assessment:
         stb.single_choice(":red[**How does the drawdown reaction change at one specific place if the transmissivity is increased**]",
                   ["The drawdown is less.", "The drawdown is more", "The drawdown is not affected."],
                   0,success='CORRECT!   ...', error='Not quite. You can use the app to investigate what happens when you increase transmissivity ... If required, you can read again about transmissivity _T_ in the following ressources _reference to GWP books...')
+        stb.single_choice(":red[**Which of the following assumptions is made in the Theis solution for transient flow to a well?**]",
+                  ["The aquifer has variable thickness", "The aquifer is confined and infinite in extent", "The well fully penetrates an unconfined aquifer", "The pumping rate varies with time"],
+                  1,success='CORRECT! The aquifer is confined and infinite in extent', error='Not quite. If required, you can read again about the Theis solution in the following ressources _reference to GWP books...')                 
+                  
 "---"
 
 # Optional theory here
@@ -62,7 +72,7 @@ if show_theory:
     """
     )
     
-    st.latex(r'''EQ1''')
+    st.latex(r'''s(r,t) = \frac{Q}{4\pi T} W(u)''')
 
     st.markdown(
     """    
@@ -73,7 +83,7 @@ if show_theory:
     """
     )
     
-    st.latex(r'''EQ2''')
+    st.latex(r'''u = \frac{r^2 S}{4 T t}''')
     
     st.markdown(
     """
@@ -85,7 +95,7 @@ if show_theory:
     """
     )
 
-    st.latex(r'''EQ3''')
+    st.latex(r'''W(u) = \int_u^{\infty} \frac{e^{-x}}{x} dx''')
     
     st.markdown(
     """
@@ -113,7 +123,7 @@ w_u = well_function(u)
 st.subheader(':green[Inverse parameter fitting]', divider="rainbow")
 
 st.markdown("""
-            Subsequently, you can modify the transmissivity and the storativity to fit your measured data to the Theis type curve. For precise fitting, you can change the plot resolution with the toogle. Additionally, you can perform a prediction of drawdown for specific times/spaces.
+            Subsequently, you can modify the transmissivity and the storativity to fit your measured data to the Theis type curve. For precise fitting, you can change the plot resolution with the toogle.
 """
 )
 
@@ -190,6 +200,7 @@ def inverse(v):
         plt.axis([1E0,1E4,1E-1,1E+1])
     else:
         plt.axis([1E-1,1E5,1E-4,1E+1])
+        ax.text((0.2),1.8E-4,'Coarse plot - Refine for final fitting')
     ax.grid(which="both")
     plt.xlabel(r'time t in (s)', fontsize=14)
     plt.ylabel(r'drawdown s in (m)', fontsize=14)
@@ -206,6 +217,8 @@ def inverse(v):
         st.write("Storativity    S = ","% 10.2E"% S, "[-]")
 
 inverse(1)
+
+"---"
 
 st.markdown("""
             ### Next step - How about using Theis with real data?

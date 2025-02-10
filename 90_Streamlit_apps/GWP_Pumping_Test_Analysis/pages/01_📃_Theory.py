@@ -1,6 +1,7 @@
 import streamlit as st
 import streamlit_book as stb
 from streamlit_extras.stylable_container import stylable_container
+from streamlit_extras.stateful_button import button
 
 st.title('📃 Basic Theory underlying PumpingTestAnalysis')
 
@@ -15,26 +16,29 @@ st.markdown("""
 )
 
 # Initial assessment
-lc1, cc1, rc1 = st.columns([1,1,1])
+lc1, cc1, rc1 = st.columns([1,1.5,1])
 
 with cc1:
-    show_initial_assessment = st.toggle("**Show the initial assessment**")
+    show_initial_assessment = button("**Show/Hide the initial assessment**", key = 'button1')
 
 if show_initial_assessment:
-    columnsQ1 = st.columns((1,1), gap = 'large')
-    
+    columnsQ1 = st.columns((1,1))
+     
     with columnsQ1[0]:
         stb.single_choice(":orange[**Where do you find the hydraulic head within a confined aquifer?**]",
                   ["Below the aquifer top.", "Directly at the aquifer top.", "Above the aquifer top.", "A confined aquifer doesn't show a hydraulic head"],
                   2,success='CORRECT! This understanding is important for the subsequent steps.', error='This option is not suitable. Re-Think the situation.')
         stb.single_choice(":orange[**What is considered as transient state?**]",
                   ["The model represents a long-term average.", "The model changes over time.", "The model changes over space.", "When the model accounts for water abstraction."],
-                  1,success='CORRECT! This understanding is important for the subsequent steps.', error='This option is not suitable. Re-Think the situation.')
-    
+                  1,success='CORRECT! This understanding is important for the subsequent steps.', error='This option is not suitable. Re-Think the situation.')             
     with columnsQ1[1]:
+        stb.single_choice(":orange[**What parameter is used to describe the ability of an aquifer to transmit water?**]",
+                  ["Storativity", "Hydraulic head", "Transmissivity", "Specific storage"],
+                  2,success='Transmissivity', error='Not quite. Feel free to answer again.') 
         stb.single_choice(":orange[**What is the equivalent to 0.001 m3/s?**]",
                   ["1 Liter per second", "10 Liters per second", "100 Liters per second", "1 000 Liters per second", "10 000 Liters per second"],
-                  0,success='CORRECT! 1000 Liters are one m3', error='Not quite. Feel free to answer again.')             
+                  0,success='CORRECT! 1000 Liters are one m3', error='Not quite. Feel free to answer again.')  
+          
 "---"
 
 st.markdown("""
