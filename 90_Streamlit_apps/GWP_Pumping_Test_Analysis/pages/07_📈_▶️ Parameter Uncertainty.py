@@ -86,7 +86,7 @@ st.markdown("""
                 - in 500 m distance from the pumping well and
                 - in 5 years.
             - Step 3: Compare predictions using true vs. estimated parameters (slider 'Tell me how I did the inverse fitting')
-            - Step 4: Increase the provided time series (slider 'Provide more times for the pumping test (longer pumping)') and re-do the parameter estimation and prediction
+            - Step 4: Increase the provided time series (slider 'Provide more times for the pumping test (longer pumping)') and re-do the parameter estimation and prediction.
 """     
 )
 
@@ -151,7 +151,7 @@ elif(st.session_state.Data == "Random data with noise"):
     m_ddown_all = [compute_s(st.session_state.T_random, st.session_state.S_random, i, Qs, r)*np.random.randint(80, 120)/100 for i in m_time_all_s] # time in seconds
     
     n_samples_long = np.random.randint (35, 49)
-    n_samples_short = np.random.randint (16, 25)
+    n_samples_short = np.random.randint (16, 22)
 
 
 @st.fragment
