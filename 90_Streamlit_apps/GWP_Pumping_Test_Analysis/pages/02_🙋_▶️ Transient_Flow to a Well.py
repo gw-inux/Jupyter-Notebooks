@@ -251,18 +251,18 @@ st.markdown('''
 )
 # Second assessment
 
-show_second_assessment = button("**Show/Hide the second assessment**", key = 'button2')
+# Initial assessment
+lc9, mc9, rc9 = st.columns([1,1.5,1])
+with mc9:
+    show_second_assessment = button("**Show/Hide the second assessment**", key = 'button2')
 if show_second_assessment:
     # Assessment to guide users through the interactive plot
-    stb.single_choice(":blue[**QuestionI1?**]",
-                  ["Answer1.", "Answer2", "Answer3", "Answer4"],
-                  1,success='CORRECT!   ...', error='Not quite. ... If required, you can read again about transmissivity _T_ in the following ressources _reference to GWP books...')
-    stb.single_choice(":blue[**QuestionI2?**]",
-                  ["Answer1.", "Answer2", "Answer3", "Answer4"],
-                  1,success='CORRECT!   ...', error='Not quite. ... If required, you can read again about transmissivity _T_ in the following ressources _reference to GWP books...')
-    stb.single_choice(":blue[**QuestionI3?**]",
-                  ["Answer1.", "Answer2", "Answer3", "Answer4"],
-                  1,success='CORRECT!   ...', error='Not quite. ... If required, you can read again about transmissivity _T_ in the following ressources _reference to GWP books...')
+    stb.single_choice(":blue[**How does the drawdown reaction change at one specific place if the storativity is decreased**]",
+                  ["The drawdown is less.", "The drawdown is more", "The drawdown is not affected."],
+                  1,success='CORRECT!   ...', error='Not quite. You can use the app to investigate what happens when you decrease storativity ... If required, you can read again about storativity _S_ in the following ressources _reference to GWP books...')
+    stb.single_choice(":blue[**If the estimated transmissivity (T) is too low, how will the predicted drawdown compare to the true drawdown?**]",
+                  ["The predicted drawdown will be too small", "The predicted drawdown will remain unchanged", "The predicted drawdown will be too large", "The predicted drawdown will fluctuate randomly"],
+                  2,success='CORRECT!The predicted drawdown will be too large', error='Not quite. Feel free to answer again.')
 
 st.markdown('''
             ### Intermediate conclusion and next steps
