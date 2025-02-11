@@ -43,7 +43,7 @@ if show_initial_assessment:
 
 st.markdown("""
             ### General situation
-            We consider a homogeneous and isotropic aquifer. The aquifer can be confined, leady, or unconfined. If a well is pumping water out of the aquifer, radial flow towards the well is induced. To calculate the hydraulic situation, the following simplified flow equation can be used. This equation accounts for 1D radial transient flow towards a fully penetrating well within a confined or unconfined aquifer without further sinks and sources:
+            We consider a homogeneous and isotropic aquifer. The aquifer can be confined, leaky, or unconfined. If a well is pumping water out of the aquifer, radial flow towards the well is induced. To calculate the hydraulic situation, the following simplified flow equation can be used. This equation accounts for 1D radial transient flow towards a fully penetrating well within a confined or unconfined aquifer without further sinks and sources:
 """
 )
 
