@@ -13,7 +13,7 @@ st.subheader('Fitting formation parameter to :rainbow[REAL measured] data', divi
 st.markdown("""
             ### Motivation
             
-            This app allows you to use the different solutions for various data. Measurments from various pumping tests can be selected. Alternatively, you can use your own data by uploading them as *.csv data. 
+            This app allows you to use the different solutions for various data. Measurements from various pumping tests can be selected. Alternatively, you can use your own data by uploading them as *.csv data. 
 """
 )
 
