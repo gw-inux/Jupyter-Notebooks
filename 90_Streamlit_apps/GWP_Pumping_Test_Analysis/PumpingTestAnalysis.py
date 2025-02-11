@@ -43,7 +43,7 @@ st.markdown(
     - Understand the behavior and characteristics of the **Hantush/Jacob solution for leaky aquifers**,
     - Understand the behavior and characteristics of the **Neuman solution for unconfined aquifers**,
     - Finally, **investigate real measured data (or your own dataset)** with the Theis, Hantush/Jacob, or Neuman solution.
-    - At the end, an exercise allows you to understand you the effect of paramter uncertainty on predictions. For that reason, you can estimate parameters for a random dataset with noise, and use your estimate for drawdown prediction.
+    - At the end, an exercise allows you to understand you the effect of parameter uncertainty on predictions. For that reason, you can estimate parameters for a random dataset with noise, and use your estimate for drawdown prediction.
     
     This interactive app allows to investigate transient flow to a well with the Theis and Neuman solution. Applications involve the pumping test evaluation in confined and unconfined, transient setups. The computation is based on Spreadsheets from Prof. Rudolf Liedl and Prof. Charles R. Fitts.
     
