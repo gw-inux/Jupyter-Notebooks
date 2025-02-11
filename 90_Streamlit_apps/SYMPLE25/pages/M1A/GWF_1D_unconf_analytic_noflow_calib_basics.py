@@ -68,19 +68,20 @@ def computation():
         
     with columns[1]:
         # Log slider for K with input and print
-        K_slider_value=st.slider('_(log of) Hydraulic conductivity input:_', log_min,log_max,-4.0,0.01,format="%4.2f" )
+        container = st.container()
+        K_slider_value=st.slider('_(log of) hydr. cond. input:_', log_min,log_max,-4.0,0.01,format="%4.2f" )
         K = 10 ** K_slider_value
-        st.write("**Hydraulic conductivity in m/s:** %5.2e" %K)
-        R = st.slider('_Recharge input:_',-400,400,0,1)
-        st.write("**Recharge in mm/a:** %3i" %R)
+        container.write("**hydr. cond. in m/s:** %5.2e" %K)
+        R = st.slider('**Recharge in mm/a:**',-400,400,0,1)
         R = R/1000/365.25/86400
     with columns[2]:
         riv = st.toggle ('River BC?')
         if riv:
             #hRiv = st.slider('River head', hr, hr+5.0, hr, 0.01)
+            container = st.container()
             cRiv_slider = st.slider('_(log of) CRIV input_', log_min2,log_max2,-5.0,0.01,format="%4.2f")
             cRiv = 10**cRiv_slider
-            st.write("**CRIV:** %5.2e" %cRiv)
+            container.write("**CRIV:** %5.2e" %cRiv)
             hr_riv = R * L / cRiv / zb + hRiv
      
     x = np.arange(0, L, L/1000)

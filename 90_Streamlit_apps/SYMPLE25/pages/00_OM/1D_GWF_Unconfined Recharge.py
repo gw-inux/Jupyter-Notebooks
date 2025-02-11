@@ -182,15 +182,17 @@ with columns[1]:
 with columns[2]:
     if st.toggle('K in m/d'):
         # Input, convert the slider value to the logarithmic scale and display
-        K_slider_valued=st.slider('(log of) **Hydraulic conductivity** _K_ in m/d', log_min2,log_max2,-2.0,0.01,format="%4.2f")
+        container = st.container()
+        K_slider_valued=st.slider('_(log of) hydr. cond _K_ in m/d_', log_min2,log_max2,-2.0,0.01,format="%4.2f")
         Kd = (10 ** K_slider_valued)*86400
-        st.write("**_K_ in m/d:** %5.2e" %Kd)
+        container.write("**_K_ in m/d:** %5.2e" %Kd)
         K = Kd/86400
     else:
         # Input, convert the slider value to the logarithmic scale and display
-        K_slider_value=st.slider('(log of) **Hydraulic conductivity** _K_ in m/s', log_min,log_max,-4.0,0.01,format="%4.2f")
+        container = st.container()
+        K_slider_value=st.slider('_(log of) hydr. cond. _K_ in m/s_', log_min,log_max,-4.0,0.01,format="%4.2f")
         K = 10 ** K_slider_value
-        st.write("**_K_ in m/s:** %5.2e" %K)    
+        container.write("**_K_ in m/s:** %5.2e" %K)    
     R = st.slider('**Recharge** _R_ in mm/a', 0,500,0,10)
     
 x = np.arange(0, L,L/1000)

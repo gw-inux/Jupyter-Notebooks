@@ -176,16 +176,18 @@ with columns[0]:
     #revers = st.toggle('Reverse x-axis')
 with columns[1]:
     b = st.slider('**Aquifer thickness (m)**', 1., 100.,20., 0.1, format="%5.2f")
-    i_slider_value=st.slider('(log of) **Gradient of regional flow (-)**', log_min2,log_max2,-3.0,0.01,format="%4.2f" )
+    container = st.container()
+    i_slider_value=st.slider('_(log of) Gradient of regional flow (-)', log_min2,log_max2,-3.0,0.01,format="%4.2f" )
     # Convert the slider value to the logarithmic scale and display the value
     i = 10 ** i_slider_value   
-    st.write("_Gradient of regional flow (-):_ %5.2e" %i)    
+    container.write("**Gradient of regional flow (-):** %5.2e" %i)    
 with columns[2]:  
     Q = st.slider('**Pumping rate** (m3/s)', 0., 0.1,0.03, 0.001, format="%5.3f")
-    K_slider_value=st.slider('(log of) **Hydr. conductivity _K_** (m/s)', log_min,log_max,-3.0,0.01,format="%4.2f" )
+    container = st.container()
+    K_slider_value=st.slider('_(log of) hydr. cond. K (m/s)_', log_min,log_max,-3.0,0.01,format="%4.2f" )
     # Convert the slider value to the logarithmic scale and display the value
     K = 10 ** K_slider_value
-    st.write("_Hydraulic conductivity (m/s):_ %5.2e" %K)
+    container.write("**Hydraulic conductivity K (m/s):** %5.2e" %K)
 
 
 x_max= 1000 #fixed(x_max),
