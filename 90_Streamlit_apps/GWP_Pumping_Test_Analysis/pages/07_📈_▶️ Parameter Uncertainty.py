@@ -183,7 +183,7 @@ def inverse():
     with columns2[1]:
         prediction = st.toggle('Do the prediction')
         if prediction:
-            Q_pred = st.slider(f'**Pumping rate** (m^3/s) for the **prediction**', 0.001,0.100,Qs,0.001,format="%5.3f")
+            Q_pred = st.slider(f'**Pumping rate** (m³³/s) for the **prediction**', 0.001,0.100,Qs,0.001,format="%5.3f")
             r_pred = st.slider(f'**Distance** (m) from the **well** for the **prediction**', 1,1000,r,1)
             per_pred = st.slider(f'**Duration** of the **prediction period** (days)',1,3652,3,1) 
             max_t = 86400*per_pred
@@ -335,7 +335,7 @@ def inverse():
     with columns3[0]:
         st.write("**Parameter estimation**")
         st.write("Distance of measurement from the well (in m): %3i" %r)
-        st.write("Pumping rate of measurement (in m^3/s): %5.3f" %Qs)
+        st.write("Pumping rate of measurement (in m³/s): %5.3f" %Qs)
         st.write("Thickness of formation b = ","% 5.2f"% b, " m")
         st.write("Transmissivity T = ","% 10.2E"% T, " m²/s")
         st.write("(Hydr. cond. K) = ","% 10.2E"% (T/b), " m²/s")
@@ -351,7 +351,7 @@ def inverse():
         if prediction:
             st.write("**Prediction**")
             st.write("Distance of prediction from the well (in m): %3i" %r_pred)
-            st.write("Pumping rate of prediction (in m^3/s): %5.3f" %Q_pred)
+            st.write("Pumping rate of prediction (in m³/s): %5.3f" %Q_pred)
             st.write("Time since pumping start (in s): %3i" %x_point)
             if per_pred <= 3:
                 st.write("Time since pumping start (in s): %3i" %t_search)

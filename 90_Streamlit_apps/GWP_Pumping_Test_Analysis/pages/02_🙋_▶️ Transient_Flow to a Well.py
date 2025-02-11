@@ -150,7 +150,7 @@ log_max2 = 0.0  # S / Corresponds to 10^0 = 1
 columns = st.columns((1,1,1), gap = 'large')
 
 with columns[0]:
-    Q = st.slider(f'**Pumping rate (m^3/s)**', 0.001,0.03,0.000,0.001,format="%5.3f")
+    Q = st.slider(f'**Pumping rate (m³/s)**', 0.001,0.03,0.000,0.001,format="%5.3f")
     show_time = st.toggle('Show drawdown vs time plot')
     comparison = st.toggle('Compute a second variant for comparison')
     max_s = 20

@@ -352,7 +352,7 @@ def inverse():
     with columns3[0]:
             st.write("**Parameter estimation**")
             st.write("Distance of measurement from the well (in m): %3i" %r)
-            st.write("Pumping rate of measurement (in m^3/s): %6.4f" %Qs)
+            st.write("Pumping rate of measurement (in m³/s): %6.4f" %Qs)
             st.write("Thickness of formation b = ","% 5.2f"% b, " m")
             st.write("Transmissivity T = ","% 10.2E"% T, " m²/s")
             st.write("(Hydr. cond. K) = ","% 10.2E"% (T/b), " m²/s")

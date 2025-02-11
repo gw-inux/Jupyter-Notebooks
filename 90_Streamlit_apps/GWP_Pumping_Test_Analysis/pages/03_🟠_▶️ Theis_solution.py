@@ -214,7 +214,7 @@ def inverse(v):
     with columns3[0]:
         st.write("**Parameter estimation**")
         st.write("Distance of measurement from the well (in m): %3i" %r)
-        st.write("Pumping rate of measurement (in m^3/s): %5.3f" %Qs)
+        st.write("Pumping rate of measurement (in m³/s): %5.3f" %Qs)
         st.write("Transmissivity T = ","% 10.2E"% T, " m²/s")
         st.write("Storativity    S = ","% 10.2E"% S, "[-]")
 

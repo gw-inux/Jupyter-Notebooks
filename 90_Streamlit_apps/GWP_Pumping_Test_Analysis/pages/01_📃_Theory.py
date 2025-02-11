@@ -35,9 +35,9 @@ if show_initial_assessment:
         stb.single_choice(":orange[**What parameter is used to describe the ability of an aquifer to transmit water?**]",
                   ["Storativity", "Hydraulic head", "Transmissivity", "Specific storage"],
                   2,success='Transmissivity', error='Not quite. Feel free to answer again.') 
-        stb.single_choice(":orange[**What is the equivalent to 0.001 m3/s?**]",
+        stb.single_choice(":orange[**What is the equivalent to 0.001 m³/s?**]",
                   ["1 Liter per second", "10 Liters per second", "100 Liters per second", "1 000 Liters per second", "10 000 Liters per second"],
-                  0,success='CORRECT! 1000 Liters are one m3', error='Not quite. Feel free to answer again.')  
+                  0,success='CORRECT! 1000 Liters are one m³', error='Not quite. Feel free to answer again.')  
           
 "---"
 
