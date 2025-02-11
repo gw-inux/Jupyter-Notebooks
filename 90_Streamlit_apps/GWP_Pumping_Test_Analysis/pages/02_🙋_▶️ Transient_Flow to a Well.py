@@ -157,27 +157,31 @@ with columns[0]:
     max_r = 1000
 
 with columns[1]:
-    r_show = st.slider(f'Distance to show (m)',0,1000,100,1)
+    r_show = st.slider(f'**Distance to show (m)**',0,1000,100,1)
     t_show = st.slider(f'**Time to show(s)**',0,86400*7,86400,600) 
     
 with columns[2]:
     #Logaritmic T-Slider
-    T_slider_value=st.slider('(log of) **Transmissivity _T_**', log_min1,log_max1,-3.0,0.01,format="%4.2f", key='T1' )
+    container = st.container()
+    T_slider_value=st.slider('_(log of) Transmissivity T_', log_min1,log_max1,-3.0,0.01,format="%4.2f", key='T1' )
     T = 10 ** T_slider_value
-    st.write("**_T in m2/s:_** %5.2e" %T)
+    container.write("**_T_ in m²/s:** %5.2e" %T)
     if comparison:
-        T2_slider_value=st.slider('(log of) **Transmissivity _T2_**', log_min1,log_max1,-3.0,0.01,format="%4.2f", key='T2' )
+        container = st.container()
+        T2_slider_value=st.slider('_(log of) Transmissivity T2_', log_min1,log_max1,-3.0,0.01,format="%4.2f", key='T2' )
         T2 = 10 ** T2_slider_value
-        st.write("**_T2 in m2/s:_** %5.2e" %T2)
+        container.write("**_T2_ in m²/s:** %5.2e" %T2)
     #Logaritmic S-Slider
-    S_slider_value=st.slider('(log of) **Storativity _S_**', log_min2,log_max2,-4.0,0.01,format="%4.2f", key='S1' )
+    container = st.container()
+    S_slider_value=st.slider('_(log of) Storativity S_', log_min2,log_max2,-4.0,0.01,format="%4.2f", key='S1' )
     S = 10 ** S_slider_value
-    st.write("**_S (dimensionless):_** %5.2e" %S)
+    container.write("**_S_ (dimensionless):** %5.2e" %S)
     if comparison:
         #Logaritmic S-Slider
-        S2_slider_value=st.slider('(log of) **Storativity _S2_**', log_min2,log_max2,-4.0,0.01,format="%4.2f", key='S2' )
+        container = st.container()
+        S2_slider_value=st.slider('_(log of) Storativity S2_', log_min2,log_max2,-4.0,0.01,format="%4.2f", key='S2' )
         S2 = 10 ** S2_slider_value
-        st.write("**_S2 (dimensionless):_** %5.2e" %S2)
+        container.write("**_S2_ (dimensionless):** %5.2e" %S2)
         
     
 # Range of temporal / spatial coordinate

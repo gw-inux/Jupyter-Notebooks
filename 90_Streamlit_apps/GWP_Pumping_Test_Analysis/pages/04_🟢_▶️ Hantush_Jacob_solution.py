@@ -80,9 +80,9 @@ if show_theory:
     st.markdown(
             """
             where:
-            _T_ is the transmissivity of the aquifer
-            _W(u, r/B)_ is the Hantush leaky well function,
-            _u_ is a dimensionless time parameter, given by:
+            - _T_ is the transmissivity of the aquifer
+            - $W(u, r/B)$ is the Hantush leaky well function,
+            - _u_ is a dimensionless time parameter, given by:
             """)
             
     st.latex(r'''u = \frac{r^2 S}{4 T t}''')
@@ -100,17 +100,17 @@ if show_theory:
     st.markdown(
             """
             where:
-            _b′_ is the thickness of the aquitard,
-            _K′_ is the vertical hydraulic conductivity of the aquitard.
+            - _b′_ is the thickness of the aquitard,
+            - _K′_ is the vertical hydraulic conductivity of the aquitard.
             
-            The well function _W(u,r/B)_ is computed as:
+            The well function $W(u, r/B)$ is computed as:
             """)
 
     st.latex(r'''W(u, r/B) = \int_u^{\infty} \frac{e^{-x}}{x} E_1 \left( \frac{x (r/B)^2}{4} \right) dx''')
 
     st.markdown(
             """
-            where _E1(x)_ is the exponential integral function.
+            where $E_1(x)$ is the exponential integral function.
             
             This solution is commonly used in pumping test analysis when leakage from an aquitard significantly affects the drawdown behavior, making it more gradual compared to the purely confined case described by the Theis solution.
             """)
@@ -191,13 +191,15 @@ def inverse(v):
             Pirna = st.toggle("**Show measured data from Pirna 2024**", value = True)
     with columns2[1]:
         # READ LOG VALUE, CONVERT, AND WRITE VALUE FOR TRANSMISSIVITY
-        T_slider_value=st.slider('(log of) **Transmissivity** in m2/s', log_min1,log_max1,-3.0,0.01,format="%4.2f", key = 20+v )
+        container = st.container()
+        T_slider_value=st.slider('_(log of) Transmissivity in m²/s_', log_min1,log_max1,-3.0,0.01,format="%4.2f", key = 20+v )
         T = 10 ** T_slider_value
-        st.write("_Transmissivity_ in m2/s: %5.2e" %T)
+        container.write("**Transmissivity in m²/s**: %5.2e" %T)
         # READ LOG VALUE, CONVERT, AND WRITE VALUE FOR STORATIVITY
-        S_slider_value=st.slider('(log of) **Storativity**', log_min2,log_max2,-4.0,0.01,format="%4.2f", key = 30+v)
+        container = st.container()
+        S_slider_value=st.slider('_(log of) Storativity_', log_min2,log_max2,-4.0,0.01,format="%4.2f", key = 30+v)
         S = 10 ** S_slider_value
-        st.write("_Storativity_ (dimensionless): %5.2e" %S)
+        container.write("**Storativity (dimensionless)**: %5.2e" %S)
         r_div_B_choice = st.selectbox("r/B",('0.01', '0.04', '0.1', '0.2', '0.4', '0.6', '1', '1.5', '2', '2.5'), key = 40+v,)
         r_div_B_list = ['0.01', '0.04', '0.1', '0.2', '0.4', '0.6', '1', '1.5', '2', '2.5']
         r_div_B = r_div_B_list.index(r_div_B_choice)
@@ -272,8 +274,8 @@ def inverse(v):
         st.write("Distance of measurement from the well (in m): %3i" %r)
         st.write("Pumping rate of measurement (in m^3/s): %5.3f" %Qs)
         st.write("Thickness of formation b = ","% 5.2f"% b, " m")
-        st.write("Transmissivity T = ","% 10.2E"% T, " m^2/s")
-        st.write("(Hydr. cond. K) = ","% 10.2E"% (T/b), " m^2/s")
+        st.write("Transmissivity T = ","% 10.2E"% T, " m²/s")
+        st.write("(Hydr. cond. K) = ","% 10.2E"% (T/b), " m²/s")
         st.write("Storativity    S = ","% 10.2E"% S, "[-]")
  
 inverse(1)

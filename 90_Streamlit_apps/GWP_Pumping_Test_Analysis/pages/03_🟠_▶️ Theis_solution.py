@@ -145,13 +145,15 @@ def inverse(v):
             Viterbo = st.toggle("**Use real data from Viterbo 2023**", value = True)
     with columns2[1]:
         # READ LOG VALUE, CONVERT, AND WRITE VALUE FOR TRANSMISSIVITY
-        T_slider_value=st.slider('(log of) **Transmissivity** in m2/s', log_min1,log_max1,-3.0,0.01,format="%4.2f", key = 20+v)
+        container = st.container()
+        T_slider_value=st.slider('_(log of) Transmissivity in m²/s_', log_min1,log_max1,-3.0,0.01,format="%4.2f", key = 20+v)
         T = 10 ** T_slider_value
-        st.write("_Transmissivity_ in m2/s: %5.2e" %T)
+        container.write("**Transmissivity in m²/s:** %5.2e" %T)
         # READ LOG VALUE, CONVERT, AND WRITE VALUE FOR STORATIVITY
-        S_slider_value=st.slider('(log of) **Storativity**', log_min2,log_max2,-4.0,0.01,format="%4.2f", key = 30+v)
+        container = st.container()
+        S_slider_value=st.slider('_(log of) Storativity_', log_min2,log_max2,-4.0,0.01,format="%4.2f", key = 30+v)
         S = 10 ** S_slider_value
-        st.write("_Specific storage_ (dimensionless):** %5.2e" %S)
+        container.write("**Specific storage (dimensionless):** %5.2e" %S)
     
     # Drawdown data from SYMPLE exercise and parameters 
     m_time = [1,1.5,2,2.5,3,4,5,6,8,10,12,14,18,24,30,40,50,60,100,120] # time in minutes
@@ -197,7 +199,7 @@ def inverse(v):
     plt.xticks(fontsize=14)
     plt.yticks(fontsize=14)
     if refine_plot:
-        plt.axis([1E0,1E4,1E-1,1E+1])
+        plt.axis([1E0,1E4,1E-2,1E+1])
     else:
         plt.axis([1E-1,1E5,1E-4,1E+1])
         ax.text((0.2),1.8E-4,'Coarse plot - Refine for final fitting')
@@ -213,7 +215,7 @@ def inverse(v):
         st.write("**Parameter estimation**")
         st.write("Distance of measurement from the well (in m): %3i" %r)
         st.write("Pumping rate of measurement (in m^3/s): %5.3f" %Qs)
-        st.write("Transmissivity T = ","% 10.2E"% T, " m^2/s")
+        st.write("Transmissivity T = ","% 10.2E"% T, " m²/s")
         st.write("Storativity    S = ","% 10.2E"% S, "[-]")
 
 inverse(1)

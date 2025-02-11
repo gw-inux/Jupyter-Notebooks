@@ -83,9 +83,9 @@ if show_theory:
     st.markdown(
     """    
     where:
-    _T_ is the transmissivity of the aquifer,
-    _W(uA, uB)_ is the Neuman well function,
-    _uA_ and uB are dimensionless time parameters, defined as:
+    - _T_ is the transmissivity of the aquifer,
+    - $W(u_A, u_B)$ is the Neuman well function,
+    - $u_A$ and $u_B$ are dimensionless time parameters, defined as:
     """)
 
     st.latex(r'''u_A = \frac{r^2 S}{4 T t}''')
@@ -94,13 +94,13 @@ if show_theory:
     st.markdown(
     """    
     where:
-    _S_ is the storativity (specific storage times aquifer thickness),
-    _Sy_ is the specific yield of the unconfined aquifer,
-    _Kz_ is the vertical hydraulic conductivity,
-    _b_ is the saturated thickness of the aquifer,
-    _t_ is the elapsed time since pumping began.
+    - _S_ is the storativity (specific storage times aquifer thickness),
+    - _Sy_ is the specific yield of the unconfined aquifer,
+    - $K_z$ is the vertical hydraulic conductivity,
+    - _b_ is the saturated thickness of the aquifer,
+    - _t_ is the elapsed time since pumping began.
     
-    The Neuman well function _W(uA,uB) accounts for both horizontal and vertical flow components and is computed numerically. It is often used in pumping test analysis to determine aquifer properties in unconfined conditions, where early-time drawdown is influenced by elastic storage effects (similar to confined aquifers), while later-time drawdown is dominated by drainage from the water table.
+    The Neuman well function $W(u_A, u_B)$ accounts for both horizontal and vertical flow components and is computed numerically. It is often used in pumping test analysis to determine aquifer properties in unconfined conditions, where early-time drawdown is influenced by elastic storage effects (similar to confined aquifers), while later-time drawdown is dominated by drainage from the water table.
     """)
 
 "---" 
@@ -204,13 +204,15 @@ def inverse():
         refine_plot = st.toggle("**Refine** the range of the **Data matching plot**")
     with columns2[1]:
         # READ LOG VALUE, CONVERT, AND WRITE VALUE FOR TRANSMISSIVITY
-        T_slider_value=st.slider('(log of) **Transmissivity** in m2/s', log_min1,log_max1,-2.0,0.01,format="%4.2f" )
+        container = st.container()
+        T_slider_value=st.slider('_(log of) Transmissivity in m²/s_', log_min1,log_max1,-2.0,0.01,format="%4.2f" )
         T = 10 ** T_slider_value
-        st.write("_Transmissivity_ in m2/s: %5.2e" %T)
+        container.write("**Transmissivity in m²/s**: %5.2e" %T)
         # READ LOG VALUE, CONVERT, AND WRITE VALUE FOR SPECIFIC STORAGE
-        S_slider_value=st.slider('(log of) **Specific storage**', log_min2,log_max2,-4.0,0.01,format="%4.2f" )
+        container = st.container()
+        S_slider_value=st.slider('_(log of) Specific storage_', log_min2,log_max2,-4.0,0.01,format="%4.2f" )
         Ss = 10 ** S_slider_value
-        st.write("_Specific storage_ (dimensionless):** %5.2e" %Ss)
+        container.write("**Specific storage (dimensionless):** %5.2e" %Ss)
         SY = st.slider('**Specific Yield**', 0.01, 0.50, 0.25, 0.01, format="%4.2f")
         beta_choice = st.selectbox("**beta**",('0.001','0.01', '0.06', '0.2', '0.6', '1', '2', '4', '6'),)
         beta_list = ['0.001','0.01', '0.06', '0.2', '0.6', '1', '2', '4', '6']
@@ -273,8 +275,8 @@ def inverse():
         st.write("Distance of measurement from the well (in m): %3i" %r)
         st.write("Pumping rate of measurement (in m^3/s): %5.3f" %Qs)
         st.write("Thickness of formation b = ","% 5.2f"% b, " m")
-        st.write("Transmissivity T = ","% 10.2E"% T, " m^2/s")
-        st.write("(Hydr. cond. K) = ","% 10.2E"% (T/b), " m^2/s")
+        st.write("Transmissivity T = ","% 10.2E"% T, " m²/s")
+        st.write("(Hydr. cond. K) = ","% 10.2E"% (T/b), " m²/s")
         st.write("Storativity    S = ","% 10.2E"% S, "[-]")
  
 inverse()

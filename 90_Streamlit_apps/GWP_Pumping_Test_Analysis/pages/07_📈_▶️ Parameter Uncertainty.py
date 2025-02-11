@@ -8,7 +8,7 @@ from streamlit_extras.stateful_button import button
 
 st.title(':red[Theis] parameter estimation and drawdown prediction')
 
-st.subheader(':red-background[Fitting aquifer parameter to randomly generated data and predict future drawdown]', divider="red")
+st.subheader(':red-background[Excercise:] Fitting hydrogeologic parameters to randomly generated data and predict future drawdown', divider="red")
 
 st.markdown("""
             ### Introduction to the exercise
@@ -168,13 +168,15 @@ def inverse():
     columns2 = st.columns((1,1), gap = 'large')
     with columns2[0]:
         # READ LOG VALUE, CONVERT, AND WRITE VALUE FOR TRANSMISSIVITY
-        T_slider_value=st.slider('(log of) **Transmissivity** in m2/s', log_min1,log_max1,-3.0,0.01,format="%4.2f" )
+        container = st.container()
+        T_slider_value=st.slider('_(log of) Transmissivity in m²/s_', log_min1,log_max1,-3.0,0.01,format="%4.2f" )
         T = 10 ** T_slider_value
-        st.write("_Transmissivity_ in m2/s: %5.2e" %T)
+        container.write("**Transmissivity_ in m²/s:** %5.2e" %T)
         # READ LOG VALUE, CONVERT, AND WRITE VALUE FOR STORATIVIT
-        S_slider_value=st.slider('(log of) **Storativity**', log_min2,log_max2,-4.0,0.01,format="%4.2f" )
+        container = st.container()
+        S_slider_value=st.slider('_(log of) Storativity_', log_min2,log_max2,-4.0,0.01,format="%4.2f" )
         S = 10 ** S_slider_value
-        st.write("_Storativity_ (dimensionless):** %5.2e" %S)
+        container.write("**Storativity (dimensionless):** %5.2e" %S)
         if(st.session_state.Data == "Random data with noise"):
             long = st.toggle('Provide more times for the pumping test (longer pumping)')
         refine_plot = st.toggle("**Refine** the range of the **Theis matching plot**")
@@ -335,12 +337,12 @@ def inverse():
         st.write("Distance of measurement from the well (in m): %3i" %r)
         st.write("Pumping rate of measurement (in m^3/s): %5.3f" %Qs)
         st.write("Thickness of formation b = ","% 5.2f"% b, " m")
-        st.write("Transmissivity T = ","% 10.2E"% T, " m^2/s")
-        st.write("(Hydr. cond. K) = ","% 10.2E"% (T/b), " m^2/s")
+        st.write("Transmissivity T = ","% 10.2E"% T, " m²/s")
+        st.write("(Hydr. cond. K) = ","% 10.2E"% (T/b), " m²/s")
         st.write("Storativity    S = ","% 10.2E"% S, "[-]")
         if(st.session_state.Data == "Random data with noise"):
             if show_truth:
-                st.write("**'True' Transmissivity T** = ","% 10.2E"% st.session_state.T_random, " m^2/s.")
+                st.write("**'True' Transmissivity T** = ","% 10.2E"% st.session_state.T_random, " m²/s.")
                 st.write("_Your fitting success is:  %5.2f_" %(T/T_random*100), " %")
                 st.write("**'True' Storativity    S** = ","% 10.2E"% st.session_state.S_random, "[-].")    
                 st.write("_Your fitting success is:  %5.2f_" %(S/S_random*100), " %")

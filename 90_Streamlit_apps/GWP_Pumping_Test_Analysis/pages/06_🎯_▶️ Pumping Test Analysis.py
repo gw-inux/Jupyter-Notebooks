@@ -244,16 +244,18 @@ def inverse():
    
     columns2 = st.columns((1,1), gap = 'large')
     with columns2[0]:
-        T_slider_value=st.slider('(log of) **Transmissivity** in m2/s', log_min1,log_max1,-3.0,0.01,format="%4.2f" )
+        container = st.container()
+        T_slider_value=st.slider('_(log of) Transmissivity in m²/s_', log_min1,log_max1,-3.0,0.01,format="%4.2f" )
         # Convert the slider value to the logarithmic scale
         T = 10 ** T_slider_value
         # Display the logarithmic value
-        st.write("_Transmissivity_ in m2/s: %5.2e" %T)
-        S_slider_value=st.slider('(log of) **Specific storage**', log_min2,log_max2,-4.0,0.01,format="%4.2f" )
+        container.write("**Transmissivity in m²/s:** %5.2e" %T)
+        container = st.container()
+        S_slider_value=st.slider('_(log of) Specific storage_', log_min2,log_max2,-4.0,0.01,format="%4.2f" )
         # Convert the slider value to the logarithmic scale
         Ss = 10 ** S_slider_value
         # Display the logarithmic value
-        st.write("_Specific storage_ (dimensionless):** %5.2e" %Ss)
+        container.write("**Specific storage (dimensionless):** %5.2e" %Ss)
         refine_plot = st.toggle("**Refine** the range of the **Data matching plot**")
     with columns2[1]:
         if st.session_state.Solution == 'Neuman':
@@ -352,8 +354,8 @@ def inverse():
             st.write("Distance of measurement from the well (in m): %3i" %r)
             st.write("Pumping rate of measurement (in m^3/s): %6.4f" %Qs)
             st.write("Thickness of formation b = ","% 5.2f"% b, " m")
-            st.write("Transmissivity T = ","% 10.2E"% T, " m^2/s")
-            st.write("(Hydr. cond. K) = ","% 10.2E"% (T/b), " m^2/s")
+            st.write("Transmissivity T = ","% 10.2E"% T, " m²/s")
+            st.write("(Hydr. cond. K) = ","% 10.2E"% (T/b), " m²/s")
             st.write("Storativity    S = ","% 10.2E"% S, "[-]")
 
 inverse()
