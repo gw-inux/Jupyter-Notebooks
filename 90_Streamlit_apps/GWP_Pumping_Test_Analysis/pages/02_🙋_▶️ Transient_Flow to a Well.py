@@ -35,10 +35,14 @@ if show_initial_assessment:
                   ["Steady state flow, confined aquifer.", "Transient flow, confined aquifer", "Steady state flow, unconfined aquifer",
                   "Transient flow, unconfined aquifer"],
                   1,success='CORRECT!   ...', error='Not quite. ... If required, you can read again about transmissivity _T_ in the following ressources _reference to GWP books...')
+        stb.single_choice(":blue[**Assume there is no recharge to the aquifer. What happend with the cone of depression with ongoing time?**]",
+                  ["The cone of depression will reach a steady state.", "The cone of depression will increase.", "The cone of depression is not dependend of time", "The cone of depression will decrease."],
+                  1,success='CORRECT! Without recharge, the cone of depression will increase.', error='Not quite. Without recharge, the cone of depression will increase with ongoing time. Use the interactive plot to investigate this behavior.') 
     with columnsQ1[1]:
         stb.single_choice(":blue[**How does storativity (_S_) influence the response of an aquifer to pumping?**]",
                   ["A higher storativity results in a slower drawdown response", "A lower storativity leads to rapid recovery after pumping stops", "Storativity only affects steady-state conditions", "Storativity is not relevant for confined aquifers"],
                   0,success='CORRECT! A higher storativity results in a slower drawdown response', error='Not quite. Feel free to answer again.')  
+        stb.single_choice(":blue[**Which of the following statements describes the drawdown at a point due to pumping in a confined aquifer?**]",
                   ["It increases with radial distance from the well", "It decreases with time", "It remains constant over time", "It is independent of the pumping rate"],
                   2,success='CORRECT! It decreases with time', error='Not quite. Feel free to answer again.')
             
