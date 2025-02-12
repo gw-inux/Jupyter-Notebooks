@@ -186,7 +186,7 @@ if show_flow:
 fig = plt.figure(figsize=(9,6))
 ax = fig.add_subplot(1, 1, 1)
 
-ax.plot(t, T_w, 'b', label = 'Heat cond. in water only')
+ax.plot(t, T_w, 'c', label = 'Heat cond. in water only')
 
 if show_rock:
     ax.plot(t_r,T_r, 'r', label = 'Heat cond. in granite only')
@@ -196,7 +196,7 @@ if show_porous:
     ax.plot(t_r,T_s2, 'c', label = 'Heat cond. in water-saturated sand - with heat storage')
     
 if show_flow:
-    ax.plot(t,h, 'g+', label = 'Groundwater flow')
+    ax.plot(t,h, 'bo', label = 'Groundwater flow')
     plt.ylabel("temp. (in Celsius) / head (in m)",fontsize=14)
 else:
     plt.ylabel("temperature (in Celsius)",fontsize=14)
