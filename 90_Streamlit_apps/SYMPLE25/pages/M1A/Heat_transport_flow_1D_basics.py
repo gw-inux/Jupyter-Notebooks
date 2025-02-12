@@ -126,7 +126,7 @@ rho_r    = 2650.
 ne = 0.25
 lambda_s = 0.35
 c_s = 0.84
-rho_s = 1650
+rho_s = 2650
 
 
 # Variable parameters
