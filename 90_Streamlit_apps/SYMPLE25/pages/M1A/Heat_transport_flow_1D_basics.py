@@ -119,13 +119,13 @@ rho_w    = 1000.
 
 # Granite
 lambda_r = 2.5
-c_r      = 0.75
+c_r      = 750
 rho_r    = 2650.
 
 # Porous sand
 ne = 0.25
 lambda_s = 0.35
-c_s = 0.84
+c_s = 840
 rho_s = 2650
 
 
