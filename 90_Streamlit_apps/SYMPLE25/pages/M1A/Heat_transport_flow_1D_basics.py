@@ -18,9 +18,9 @@ st.markdown("""
             - advective motion (due to a moving carrier) and
             - diffusive motion (due to a gradient). 
             
-            The **conduction of heat** as well as **groundwater flow** can be described with diffusive motion laws.
+            The **conduction of heat** as well as **groundwater flow** can be described with diffusion equations.
             
-            :blue[**Groundwater flow**] can be described with the Darcy equation:
+            Accordingly, :blue[**Groundwater flow**] can be computed with the Darcy equation:
 """
 )
 
@@ -33,7 +33,7 @@ st.markdown("""
             - _A_ is the cross-sectional area of flow (L2),
             - _dh/dl_ is the hydraulic gradient (change in hydraulic head per unit length).
             
-            :red[**Heat conduction**] can be described with Fourier's law as
+            The :red[**Heat conduction**] can be computed with Fourier's law as
 """
 )
 
@@ -46,30 +46,32 @@ st.markdown("""
             - _A_ is the cross-sectional area (L2),
             - _dT/dx_ = is the temperature gradient (change in temperature per unit length).
             
-            Both equations can be solved to describe 1D motion (groundwater flow/heat conduction). The resulting temperature _T_ (heat conduction) and the resulting hydraulic heads _h_ (groundwater flow) are comparable if the parameters are equavilant.
+            Both equations can be analytically solved to describe 1D motion processes in homogenous media (groundwater flow/heat conduction). The resulting temperature _T_ (heat conduction) and the resulting hydraulic heads _h_ (groundwater flow) are comparable if the parameters are equivalent.
             
-            This interactive document allows to apply the 1D heat conduction equation and the 1D groundwater flow equation for a 1D setup. Heat conduction is computed in pure water or pure rock. Groundwater flow is computed for a porous media.
+            **This interactive document allows** to apply the 1D heat conduction equation and the 1D groundwater flow equation for a 1D setup. Heat conduction is computed in water or rock (granit) only. For comparison, groundwater flow is computed for a porous media (e.g., sand).
             
             The situation is characterized by the following parameters:
             - heat transport only due to conduction
             - (for heat transport) background temperature 10 degree celsius
             - (for groundwater flow) initial head 10 m
             
-            **Heat conduction** in water only
-            - $\lambda_w$ = 0.598
-            - $c_w$       = 4186
-            - $\\rho_w$      = 1000
+            **Heat conduction** in water only with the following parameters
+            - $\lambda_w$ = 0.598 W/m/K
+            - $c_w$       = 4186 J/kg/K
+            - $\\rho_w$      = 1000 kg/m³
             
             **Heat conduction** in granite only
-            - $\lambda_r$ = 2.5
-            - $c_r$       = 740
-            - $\\rho_r$   = 2650
+            - $\lambda_r$ = 2.5 W/m/K
+            - $c_r$       = 740 J/kg/K
+            - $\\rho_r$   = 2650 kg/m³
             
             **User-defined** parameters for groundwater flow
             - hydraulic conductivity _K_
             - specific yield $S_y$
 """
 )
+
+"---"
 
 st.subheader("Theoretical background", divider="blue")
 
@@ -81,7 +83,7 @@ with mc1:
 if show_theory:
     st.write('Equations (groundwater flow and heat conduction in water)')
     
-    st.write('Subsequently, the parameters of groundwater flow (left side) and heat conduction (right side) are named.')
+    st.write('Subsequently, the parameters of groundwater flow and heat conduction are named.')
 
     st.latex(r'''S = c\rho''')
     st.write('with S = Storativity, c = heat capacity, and $\\rho$ = density')
@@ -103,8 +105,6 @@ if show_theory:
 
     st.write(':red[1-D Conduction without heat storage]')
     st.latex(r'''T(x,t)=T_0 erfc (\frac{x}{\sqrt{4 D_h t}})''')
-
-
 
 "---"
 # Definition of the function
@@ -132,7 +132,6 @@ rho_s = 2650
 
 # For this app we dont show heat conduction in porous media
 show_porous = False
-
 
 # Variable parameters
 columns = st.columns((1,1))
@@ -171,6 +170,7 @@ K_H_s = c_s / (c_w * rho_w)
 R_s = 1 + (1-ne)/ne * rho_s * K_H_s
 
 T_w = T_ini + T0 * erfc(x/np.sqrt(4.*D_H_w*(t*86400.)))
+
 if show_rock:
     T_r = T_ini+T0 * erfc(x/np.sqrt(4.*D_H_r*(t_r*86400.)))
     
@@ -183,28 +183,28 @@ if show_flow:
     h = h_ini + h0 * erfc(x/np.sqrt(4.*D_F*(t*86400.)))
  
 # Plotting
-
 fig = plt.figure(figsize=(9,6))
 ax = fig.add_subplot(1, 1, 1)
-ax.plot(t,T_w, 'r', label = 'Heat cond. in water only')
+
+ax.plot(t, T_w, 'b', label = 'Heat cond. in water only')
+
 if show_rock:
-    ax.plot(t_r,T_r, 'm', label = 'Heat cond. in granite only')
+    ax.plot(t_r,T_r, 'r', label = 'Heat cond. in granite only')
     
 if show_porous:
-    ax.plot(t_r,T_s, 'y--', label = 'Heat cond. in water-saturated sand - without heat storage')
-    ax.plot(t_r,T_s2, 'y', label = 'Heat cond. in water-saturated sand - with heat storage')
+    ax.plot(t_r,T_s, 'c--', label = 'Heat cond. in water-saturated sand - without heat storage')
+    ax.plot(t_r,T_s2, 'c', label = 'Heat cond. in water-saturated sand - with heat storage')
     
 if show_flow:
-    ax.plot(t,h, 'b+', label = 'Groundwater flow')
+    ax.plot(t,h, 'g+', label = 'Groundwater flow')
     plt.ylabel("temp. (in Celsius) / head (in m)",fontsize=14)
 else:
     plt.ylabel("temperature (in Celsius)",fontsize=14)
+    
 plt.axis([0,tmax,T_ini-1,TB+1])
-plt.legend(frameon=False, fontsize=12)
-
 plt.title(f"1D heat conduction & groundwater flow at x = {x} m", fontsize=16)
 plt.xlabel("time in days",fontsize=14)
-
+plt.legend(frameon=False, fontsize=12)
 
 st.pyplot(fig=fig)
 

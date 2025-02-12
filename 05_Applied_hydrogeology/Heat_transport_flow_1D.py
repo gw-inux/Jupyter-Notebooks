@@ -44,35 +44,36 @@ st.markdown("""
             - _A_ is the cross-sectional area (L2),
             - _dT/dx_ = is the temperature gradient (change in temperature per unit length).
             
-            Both equations can be solved to describe 1D motion (groundwater flow/heat conduction). The resulting temperature _T_ (heat conduction) and the resulting hydraulic heads _h_ (groundwater flow) are comparable if the parameters are equavilant.
+            Both equations can be analytically solved to describe 1D motion processes in homogenous media (groundwater flow/heat conduction). The resulting temperature _T_ (heat conduction) and the resulting hydraulic heads _h_ (groundwater flow) are comparable if the parameters are equivalent.
             
-            This interactive document allows to apply the 1D heat conduction equation and the 1D groundwater flow equation for a 1D setup. Heat conduction is computed in pure water or pure rock. Additionally, heat conduction is computed for water-saturated sand, representing porous media (with and without heat storage in the sand grains). Groundwater flow is computed for a porous media.
+            **This interactive document allows** to apply the 1D heat conduction equation and the 1D groundwater flow equation for a 1D setup. Heat conduction is computed in water or rock (granit) only. Additionally, heat conduction is computed for water-saturated sand, representing porous media (with and without heat storage in the sand grains). For comparison, groundwater flow is computed for a porous media (e.g., sand).
             
             The situation is characterized by the following parameters:
             - heat transport only due to conduction
             - (for heat transport) background temperature 10 degree celsius
             - (for groundwater flow) initial head 10 m
             
-            **Heat conduction** in water only
-            - $\lambda_w$ = 0.598
-            - $c_w$       = 4186
-            - $\\rho_w$      = 1000
+            **Heat conduction** in water only with the following parameters
+            - $\lambda_w$ = 0.598 W/m/K
+            - $c_w$       = 4186 J/kg/K
+            - $\\rho_w$      = 1000 kg/m³
             
             **Heat conduction** in granite only
-            - $\lambda_r$ = 2.5
-            - $c_r$       = 740
-            - $\\rho_r$   = 2650
+            - $\lambda_r$ = 2.5 W/m/K
+            - $c_r$       = 740 J/kg/K
+            - $\\rho_r$   = 2650 kg/m³
             
             **Heat conduction** in water saturated sand
-            - $\lambda_s$ = 0.35
-            - $c_s$       = 840
-            - $\\rho_s$   = 2650 (density of the solids)
+            - $\lambda_s$ = 0.35 W/m/K
+            - $c_s$       = 840 J/kg/K
+            - $\\rho_s$   = 2650 kg/m³(density of the solids)
             
             **User-defined** parameters for groundwater flow
             - hydraulic conductivity _K_
             - specific yield $S_y$
 """
 )
+"---"
 
 st.subheader("Theoretical background", divider="blue")
 
@@ -84,7 +85,7 @@ with mc1:
 if show_theory:
     st.write('Equations (groundwater flow and heat conduction in water)')
     
-    st.write('Subsequently, the parameters of groundwater flow (left side) and heat conduction (right side) are named.')
+    st.write('Subsequently, the parameters of groundwater flow and heat conduction are named.')
 
     st.latex(r'''S = c\rho''')
     st.write('with S = Storativity, c = heat capacity, and $\\rho$ = density')
