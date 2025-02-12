@@ -160,7 +160,7 @@ t_r = np.arange(0., tmax,tmax/200)
     
 D_H_w = lambda_w /(c_w * rho_w)
 D_H_r = lambda_r /(c_r * rho_r)
-D_h_s = (ne * lambda_w + (1-ne) * lambda_s) /(ne * c_w * rho_w)
+D_H_s = (ne * lambda_w + (1-ne) * lambda_s) /(ne * c_w * rho_w)
 
 T_w = T_ini + T0 * erfc(x/np.sqrt(4.*D_H_w*(t*86400.)))
 if show_rock:
