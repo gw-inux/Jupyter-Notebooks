@@ -12,6 +12,8 @@ st.title("1D transient :red[heat transport] and :blue[groundwater flow] in an un
 st.subheader("Introduction and Motivation", divider="blue")
 
 st.markdown("""
+            **The aim of this app is** to demonstrate that groundwater flow and heat conduction can be described by diffusive motion.
+            
             The two fundamental laws of motion in hydrogeology are
             - advective motion (due to a moving carrier) and
             - diffusive motion (due to a gradient). 
@@ -46,7 +48,7 @@ st.markdown("""
             
             Both equations can be solved to describe 1D motion (groundwater flow/heat conduction). The resulting temperature _T_ (heat conduction) and the resulting hydraulic heads _h_ (groundwater flow) are comparable if the parameters are equavilant.
             
-            This interactive document allows to apply the 1D heat conduction equation and the 1D groundwater flow equation for a 1D setup. Heat conduction is computed in pure water or pure rock. Additionally, heat conduction is computed for water-saturated sand, representing porous media (with and without heat storage in the sand grains). Groundwater flow is computed for a porous media.
+            This interactive document allows to apply the 1D heat conduction equation and the 1D groundwater flow equation for a 1D setup. Heat conduction is computed in pure water or pure rock. Groundwater flow is computed for a porous media.
             
             The situation is characterized by the following parameters:
             - heat transport only due to conduction
@@ -62,11 +64,6 @@ st.markdown("""
             - $\lambda_r$ = 2.5
             - $c_r$       = 740
             - $\\rho_r$   = 2650
-            
-            **Heat conduction** in water saturated sand
-            - $\lambda_s$ = 0.35
-            - $c_s$       = 840
-            - $\\rho_s$   = 2650 (density of the solids)
             
             **User-defined** parameters for groundwater flow
             - hydraulic conductivity _K_
@@ -133,13 +130,16 @@ lambda_s = 0.35
 c_s = 840
 rho_s = 2650
 
+# For this app we dont show heat conduction in porous media
+show_porous = False
+
 
 # Variable parameters
 columns = st.columns((1,1))
 with columns[0]:
     TB = st.slider('Temperature/Head at inlet boundary', T_ini, 100., 15., 0.1)
     show_rock = st.toggle('Click here if you want to compute heat conduction for Granite')
-    show_porous = st.toggle('Click here if you want to compute heat conduction for water saturated sand')
+    #show_porous = st.toggle('Click here if you want to compute heat conduction for water saturated sand')
     tmax = st.slider('Time to plot in days', 1., 730., 60., 1.)
     x = st.slider('Distance from the source', 0.1, 10., 1., 0.1)
     
