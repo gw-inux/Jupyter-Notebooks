@@ -46,22 +46,27 @@ st.markdown("""
             
             Both equations can be solved to describe 1D motion (groundwater flow/heat conduction). The resulting temperature _T_ (heat conduction) and the resulting hydraulic heads _h_ (groundwater flow) are comparable if the parameters are equavilant.
             
-            This interactive document allows to apply the 1D heat conduction equation and the 1D groundwater flow equation for a 1D setup. Heat conduction is computed in pure water or pure rock. Groundwater flow is computed for a porous media.
+            This interactive document allows to apply the 1D heat conduction equation and the 1D groundwater flow equation for a 1D setup. Heat conduction is computed in pure water or pure rock. Additionally, heat conduction is computed for water-saturated sand, representing porous media (with and without heat storage in the sand grains). Groundwater flow is computed for a porous media.
             
             The situation is characterized by the following parameters:
             - heat transport only due to conduction
             - (for heat transport) background temperature 10 degree celsius
             - (for groundwater flow) initial head 10 m
             
-            **Heat conduction** in only pure water
+            **Heat conduction** in water only
             - $\lambda_w$ = 0.598
             - $c_w$       = 4186
             - $\\rho_w$      = 1000
             
-            **Heat conduction** in only pure granite
+            **Heat conduction** in granite only
             - $\lambda_r$ = 2.5
-            - $c_r$       = 0.75
-            - $\\rho_r$       = 2650
+            - $c_r$       = 740
+            - $\\rho_r$   = 2650
+            
+            **Heat conduction** in water saturated sand
+            - $\lambda_s$ = 0.35
+            - $c_s$       = 840
+            - $\\rho_s$   = 2650 (density of the solids)
             
             **User-defined** parameters for groundwater flow
             - hydraulic conductivity _K_
@@ -183,13 +188,13 @@ if show_flow:
 
 fig = plt.figure(figsize=(9,6))
 ax = fig.add_subplot(1, 1, 1)
-ax.plot(t,T_w, 'r', label = 'Heat conduction in only water')
+ax.plot(t,T_w, 'r', label = 'Heat cond. in water only')
 if show_rock:
-    ax.plot(t_r,T_r, 'm', label = 'Heat conduction in only granite')
+    ax.plot(t_r,T_r, 'm', label = 'Heat cond. in granite only')
     
 if show_porous:
-    ax.plot(t_r,T_s, 'y--', label = 'Heat conduction in water saturated sand - without heat storage')
-    ax.plot(t_r,T_s2, 'y', label = 'Heat conduction in water saturated sand - with heat storage')
+    ax.plot(t_r,T_s, 'y--', label = 'Heat cond. in water-saturated sand - without heat storage')
+    ax.plot(t_r,T_s2, 'y', label = 'Heat cond. in water-saturated sand - with heat storage')
     
 if show_flow:
     ax.plot(t,h, 'b+', label = 'Groundwater flow')
