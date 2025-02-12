@@ -110,6 +110,7 @@ if show_theory:
 # Initial parameters
 # Heat transport
 T_ini = 10.
+h_ini = T_ini
 
 # Water
 lambda_w = 0.598
