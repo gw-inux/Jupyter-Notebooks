@@ -125,6 +125,8 @@ rho_r    = 2650.
 # Porous sand
 ne = 0.25
 lambda_s = 0.35
+c_s = 0.84
+rho_s = 1.65
 
 
 # Variable parameters
@@ -151,7 +153,6 @@ with columns[1]:
         S = SY
 
 #Computation
-R = 1
 T0 = TB - T_ini
 h0 = T0
 t = np.arange(0., tmax,tmax/80)
@@ -161,13 +162,16 @@ t_r = np.arange(0., tmax,tmax/200)
 D_H_w = lambda_w /(c_w * rho_w)
 D_H_r = lambda_r /(c_r * rho_r)
 D_H_s = (ne * lambda_w + (1-ne) * lambda_s) /(ne * c_w * rho_w)
+K_H_s = c_s / (c_w * rho_w)
+R_s = 1 + (1-ne)/ne * rho_s * K_H_s
 
 T_w = T_ini + T0 * erfc(x/np.sqrt(4.*D_H_w*(t*86400.)))
 if show_rock:
     T_r = T_ini+T0 * erfc(x/np.sqrt(4.*D_H_r*(t_r*86400.)))
     
 if show_porous:
-    T_s = T_ini+T0 * erfc(x/np.sqrt(4.*D_H_s*(t_r*86400.)/R))
+    T_s = T_ini+T0 * erfc(x/np.sqrt(4.*D_H_s*(t_r*86400.)))
+    T_s2 = T_ini+T0 * erfc(x/np.sqrt(4.*D_H_s*(t_r*86400.)/R_s))
 
 if show_flow:
     D_F = K/S
@@ -182,7 +186,8 @@ if show_rock:
     ax.plot(t_r,T_r, 'm', label = 'Heat conduction in only granite')
     
 if show_porous:
-    ax.plot(t_r,T_s, 'y', label = 'Heat conduction in water saturated sand')
+    ax.plot(t_r,T_s, 'y--', label = 'Heat conduction in water saturated sand - without heat storage')
+    ax.plot(t_r,T_s2, 'y', label = 'Heat conduction in water saturated sand - with heat storage')
     
 if show_flow:
     ax.plot(t,h, 'b+', label = 'Groundwater flow')
