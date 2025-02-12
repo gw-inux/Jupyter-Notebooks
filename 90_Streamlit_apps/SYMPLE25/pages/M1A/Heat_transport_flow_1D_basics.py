@@ -164,6 +164,7 @@ D_H_r = lambda_r /(c_r * rho_r)
 D_H_s = (ne * lambda_w + (1-ne) * lambda_s) /(ne * c_w * rho_w)
 K_H_s = c_s / (c_w * rho_w)
 R_s = 1 + (1-ne)/ne * rho_s * K_H_s
+st.write(R_s)
 
 T_w = T_ini + T0 * erfc(x/np.sqrt(4.*D_H_w*(t*86400.)))
 if show_rock:
@@ -195,7 +196,7 @@ if show_flow:
 else:
     plt.ylabel("temperature (in Celsius)",fontsize=14)
 plt.axis([0,tmax,T_ini-1,TB+1])
-plt.legend(frameon=False, fontsize=14)
+plt.legend(frameon=False, fontsize=12)
 
 plt.title(f"1D heat conduction & groundwater flow at x = {x} m", fontsize=16)
 plt.xlabel("time in days",fontsize=14)
