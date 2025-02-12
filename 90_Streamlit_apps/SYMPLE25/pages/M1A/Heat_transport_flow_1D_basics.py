@@ -164,6 +164,7 @@ D_H_r = lambda_r /(c_r * rho_r)
 D_H_s = (ne * lambda_w + (1-ne) * lambda_s) /(ne * c_w * rho_w)
 K_H_s = c_s / (c_w * rho_w)
 R_s = 1 + (1-ne)/ne * rho_s * K_H_s
+st.write(K_H_s)
 st.write(R_s)
 
 T_w = T_ini + T0 * erfc(x/np.sqrt(4.*D_H_w*(t*86400.)))
