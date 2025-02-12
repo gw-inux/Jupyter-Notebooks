@@ -196,7 +196,7 @@ if show_porous:
     ax.plot(t_r,T_s2, 'c', label = 'Heat cond. in water-saturated sand - with heat storage')
     
 if show_flow:
-    ax.plot(t,h, 'bo', label = 'Groundwater flow')
+    ax.plot(t,h, 'bo', mfc='none', label = 'Groundwater flow')
     plt.ylabel("temp. (in Celsius) / head (in m)",fontsize=14)
 else:
     plt.ylabel("temperature (in Celsius)",fontsize=14)
