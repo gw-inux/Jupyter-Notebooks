@@ -1,6 +1,6 @@
 import streamlit as st
 
-st.header('👉 About Flow2Well')
+st.header('👉 About PumpingTestAnalysis')
 st.markdown(
     """
     ### Description
