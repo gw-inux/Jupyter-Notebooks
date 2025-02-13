@@ -60,7 +60,7 @@ ymin = -200 # lower value for plotting
 lc1, rc1 = st.columns((1,1), gap = 'large')
 with lc1:
     rho_f = st.number_input("Freshwater Density ($ρ_f$) in kg/m³", min_value=950, max_value=1050, value=1000, step=1)
-    rho_s = st.number_input("Saltwater Density ($ρ_s$)in kg/m³", min_value=950, max_value=1050, value=1025, step=1)
+    rho_s = st.number_input("Saltwater Density ($ρ_s$) in kg/m³", min_value=950, max_value=1050, value=1025, step=1)
 with rc1:
     hl = st.slider("Freshwater head ($h$) at x = 0 in m a.s.l.", min_value=0.1, max_value=8.0, value=5.0, step=0.1)
     
