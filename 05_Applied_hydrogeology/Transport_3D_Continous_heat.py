@@ -77,7 +77,7 @@ T_ini    = 10
 columns1 = st.columns((1,1,1), gap = 'large')
 
 with columns1[0]:
-    TB = st.slider(f'**Source temperature (g/m3)**',1,100,T_ini+10,1) 
+    TB = st.slider(f'**Source temperature (°C)**',1,100,T_ini+10,1) 
     Y  = st.slider(f'**Source width (m)**',1,100,10,1)   
     Z  = st.slider(f'**Source thickness (m)**',1,20,2,1) 
     q  = st.slider(f'**specific discharge (m/s)**',0.001,0.1,0.016,0.001,format='%5.3f') 
