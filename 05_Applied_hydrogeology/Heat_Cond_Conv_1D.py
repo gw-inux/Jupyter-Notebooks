@@ -95,6 +95,7 @@ lambda_s = 0.35
 c_s      = 840
 c_w      = 4186.
 rho_w    = 1000.
+rho_s    = 2650
 
 
 T0 = T_BC - T_ini
@@ -104,7 +105,7 @@ t = np.arange(0., tmax,tmax/80)
     
 D_H = (n_e*lambda_w + (1-n_e)*lambda_s) /(n_e * c_w * rho_w)
 Kd = c_s/(c_w * rho_w)
-R = 1 + (1-n_e)/n_e * rho_w * Kd
+R = 1 + (1-n_e)/n_e * rho_s * Kd
 
 T1 = temp(T0, x, v, t, alpha, D_H, 1) + T_ini
 T  = temp(T0, x, v, t, alpha, D_H, R) + T_ini

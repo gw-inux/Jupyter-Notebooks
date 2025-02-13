@@ -184,28 +184,28 @@ if show_flow:
     h = h_ini + h0 * erfc(x/np.sqrt(4.*D_F*(t*86400.)))
  
 # Plotting
-
 fig = plt.figure(figsize=(9,6))
 ax = fig.add_subplot(1, 1, 1)
-ax.plot(t,T_w, 'r', label = 'Heat cond. in water only')
+
+ax.plot(t, T_w, 'c', label = 'Heat cond. in water only')
+
 if show_rock:
-    ax.plot(t_r,T_r, 'm', label = 'Heat cond. in granite only')
+    ax.plot(t_r,T_r, 'r', label = 'Heat cond. in granite only')
     
 if show_porous:
-    ax.plot(t_r,T_s, 'y--', label = 'Heat cond. in water-saturated sand - without heat storage')
-    ax.plot(t_r,T_s2, 'y', label = 'Heat cond. in water-saturated sand - with heat storage')
+    ax.plot(t_r,T_s, 'c--', label = 'Heat cond. in water-saturated sand - without heat storage')
+    ax.plot(t_r,T_s2, 'c', label = 'Heat cond. in water-saturated sand - with heat storage')
     
 if show_flow:
-    ax.plot(t,h, 'b+', label = 'Groundwater flow')
+    ax.plot(t,h, 'bo', mfc='none', label = 'Groundwater flow')
     plt.ylabel("temp. (in Celsius) / head (in m)",fontsize=14)
 else:
     plt.ylabel("temperature (in Celsius)",fontsize=14)
+    
 plt.axis([0,tmax,T_ini-1,TB+1])
-plt.legend(frameon=False, fontsize=12)
-
 plt.title(f"1D heat conduction & groundwater flow at x = {x} m", fontsize=16)
 plt.xlabel("time in days",fontsize=14)
-
+plt.legend(frameon=False, fontsize=12)
 
 st.pyplot(fig=fig)
 
