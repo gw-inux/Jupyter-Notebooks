@@ -74,7 +74,7 @@ c_s      = 840
 rho_s    = 2650
 T_ini    = 10
 
-columns1 = st.columns((1,1,1), gap = 'large')
+columns1 = st.columns((1,1,1))
 
 with columns1[0]:
     with st.expander("Here you find widgets to :red[**adjust the inlet boundary**]"): 
