@@ -62,7 +62,7 @@ with lc1:
     rho_f = st.number_input("Freshwater Density ($ρ_f$)", min_value=950, max_value=1050, value=1000, step=1)
     rho_s = st.number_input("Saltwater Density ($ρ_s$)", min_value=950, max_value=1050, value=1025, step=1)
 with rc1:
-    hl = st.slider("Freshwater head (h)", min_value=0.1, max_value=8.0, value=5.0, step=0.1)
+    hl = st.slider("Freshwater head at x = 0 (h)", min_value=0.1, max_value=8.0, value=5.0, step=0.1)
     
 # Calculation
 
@@ -97,5 +97,8 @@ plt.xlim(0,1200)
 ax.set_ylabel("hydraulic head [m]",fontsize=14)
 ax.set_title("Freshwater-Saltwater Interface",fontsize=16)
 ax.legend(loc = 'lower right', fontsize=12)
+plt.text(1180, -20, 'Sea', horizontalalignment='right', bbox=dict(boxstyle="square", facecolor='lightgrey'), fontsize=10)
+plt.text(1180, -80, 'Saltwater', horizontalalignment='right', bbox=dict(boxstyle="square", facecolor='lightgrey'), fontsize=10)
+plt.text(150, -10, 'Freshwater', horizontalalignment='right', bbox=dict(boxstyle="square", facecolor='lightgrey'), fontsize=10)
     
 st.pyplot(fig)
