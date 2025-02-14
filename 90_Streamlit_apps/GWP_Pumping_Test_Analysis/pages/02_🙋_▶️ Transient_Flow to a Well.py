@@ -23,11 +23,8 @@ st.markdown('''
             '''
 )
 # Initial assessment
-lc0, mc0, rc0 = st.columns([1,1.5,1])
-with mc0:
-    show_initial_assessment = button('**Show/Hide the initial assessment**', key= 'button1')
-    
-if show_initial_assessment:
+   
+with st.expander(":green[**Show/Hide the initial assessment**]"):
     columnsQ1 = st.columns((1,1))
     
     with columnsQ1[0]:
@@ -44,16 +41,11 @@ if show_initial_assessment:
                   0,success='CORRECT! A higher storativity results in a slower drawdown response', error='Not quite. Feel free to answer again.')  
         stb.single_choice(":blue[**Which of the following statements describes the drawdown at a point due to pumping in a confined aquifer?**]",
                   ["It increases with radial distance from the well", "It decreases with time", "It remains constant over time", "It is independent of the pumping rate"],
-                  2,success='CORRECT! It decreases with time', error='Not quite. Feel free to answer again.')
-            
-"---"
+                  1,success='CORRECT! It decreases with time', error='Not quite. Feel free to answer again.')
 
 # Optional theory here
-lc1, mc1, rc1 = st.columns([1,2,1])
-with mc1:
-    show_theory = button('Show/Hide more about the underlying **theory**', key= 'button2')
-    
-if show_theory:
+   
+with st.expander("Show more about the underlying **theory**"):
     st.markdown(
     """
     ### Theory of transient flow to wells and pumping test evaluation
@@ -65,7 +57,7 @@ if show_theory:
 
 # Create ToDos to proceed with the steps of the exercise
 
-if st.toggle(':blue[**Proceed with Exercise Step 1**] - Use the slider for instructions'):
+with st.expander(":blue[**Proceed with Exercise Step 1**] - See here for instructions"):
     st.markdown("""
             **STEP 1:**
             First we aim to investigate the drawdown in response to water abstraction as function of space and time.
@@ -77,7 +69,8 @@ if st.toggle(':blue[**Proceed with Exercise Step 1**] - Use the slider for instr
     to_do(
         [(st.write, "Now use the toggle on the left side to 'Show drawdown vs time plot'. Modify the 'Distance to show (m)' and see how the drawdown vs time changes depending of the distance from the abstraction well.")], "td02",)
 
-if st.toggle(':blue[**Proceed with Exercise Step 2**] - Use the slider for instructions'):
+
+with st.expander(":blue[**Proceed with Exercise Step 2**] - See here for instructions"):
     st.markdown("""
             **STEP 2:**
             Now we investigate the sensitivity of the hydraulic conductivity _K_ and the storativity _S_ on the drawdown in response to a specific abstraction rate.
@@ -89,7 +82,7 @@ if st.toggle(':blue[**Proceed with Exercise Step 2**] - Use the slider for instr
     to_do(
         [(st.write, "Modify the Storativity. What happens?")], "td04",)
 
-if st.toggle(':blue[**Proceed with Exercise Step 3**] - Use the slider for instructions'):
+with st.expander(":blue[**Proceed with Exercise Step 3**] - See here for instructions"):
     st.markdown("""
             **STEP 3:**
             Now you can use the interactive plot to compare two variants with different transmissivity and storativity. 
@@ -158,7 +151,7 @@ with columns[0]:
 
 with columns[1]:
     r_show = st.slider(f'**Distance to show (m)**',0,1000,100,1)
-    t_show = st.slider(f'**Time to show(s)**',0,86400*7,86400,600) 
+    t_show = st.slider(f'**Time to show(s)**',0.001,86400.*7,86400.,600.,format="%5.0f") 
     
 with columns[2]:
     #Logaritmic T-Slider
@@ -237,6 +230,7 @@ if show_time:
     plt.ylim(max_s,-5)
     plt.xlabel(r'time in s', fontsize=14)
     plt.ylabel(r'Drawdown in m', fontsize=14)
+    plt.xticks(np.arange(0, 7*86400, step=86400))  # Set label locations.
     plt.legend()
     plt.grid(True)
 
@@ -255,11 +249,7 @@ st.markdown('''
 )
 # Second assessment
 
-# Initial assessment
-lc9, mc9, rc9 = st.columns([1,1.5,1])
-with mc9:
-    show_second_assessment = button("**Show/Hide the second assessment**", key = 'button2')
-if show_second_assessment:
+with st.expander(":green[**Show/Hide the second assessment**]"):
     # Assessment to guide users through the interactive plot
     stb.single_choice(":blue[**How does the drawdown reaction change at one specific place if the storativity is decreased**]",
                   ["The drawdown is less.", "The drawdown is more", "The drawdown is not affected."],

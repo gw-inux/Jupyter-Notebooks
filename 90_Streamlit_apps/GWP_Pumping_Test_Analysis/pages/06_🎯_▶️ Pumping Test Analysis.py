@@ -302,8 +302,8 @@ def inverse():
                 s_b_NEU[x] = w_u_b[x][beta] * s_term
         
         plt.title(f"Neuman drawdown with beta = {beta_choice}", fontsize=16)
-        ax.plot(t_a, s, label=r'Computed drawdown early -Theis')
-        ax.plot(t_b, s, label=r'Computed drawdown late -Theis')
+        ax.plot(t_a, s, label=r'Computed drawdown early - Theis')
+        ax.plot(t_b, s, label=r'Computed drawdown late - Theis')
         ax.plot(t_a_NEU, s_a_NEU, 'b--', label=r'Computed drawdown early - Neuman')
         ax.plot(t_b_NEU, s_b_NEU, '--', color='darkorange', label=r'Computed drawdown late - Neuman')
         ax.plot(m_time_s, m_ddown, 'o', color='violet', label=r'measured drawdown')

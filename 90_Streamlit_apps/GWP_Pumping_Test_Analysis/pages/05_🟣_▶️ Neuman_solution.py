@@ -100,11 +100,7 @@ if show_theory:
     - _b_ is the saturated thickness of the aquifer,
     - _t_ is the elapsed time since pumping began.
     
-<<<<<<< HEAD
     The Neuman well function $W(u_A, u_B)$ accounts for both horizontal and vertical flow components and is computed numerically. It is often used in pumping test analysis to determine aquifer properties in unconfined conditions, where early-time drawdown is influenced by elastic storage effects (similar to confined aquifers), while later-time drawdown is dominated by drainage from the water table.
-=======
-    The Neuman well function _W(uA,uB)_ accounts for both horizontal and vertical flow components and is computed numerically. It is often used in pumping test analysis to determine aquifer properties in unconfined conditions, where early-time drawdown is influenced by elastic storage effects (similar to confined aquifers), while later-time drawdown is dominated by drainage from the water table.
->>>>>>> 05d6cd5c8cb05daaff3f9412971b04ddb44ce60d
     """)
 
 "---" 

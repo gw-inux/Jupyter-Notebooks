@@ -57,8 +57,8 @@ if show_initial_assessment:
                   2,success='CORRECT! A term that quantifies how much water leaks through an aquitard into the aquifer', error='Not quite. Feel free to answer again.')                      
                   
         stb.single_choice(":green[**What happens to drawdown in a leaky confined aquifer compared to a fully confined aquifer?**]",
-                  ["Drawdown decreases more rapidly in a leaky aquifer", "Drawdown is greater in a leaky aquifer due to the additional water source", "Drawdown remains the same in both cases", "Drawdown occurs only in the aquitard, not in the aquifer"],
-                  1,success='CORRECT! Drawdown is greater in a leaky aquifer due to the additional water source', error='Not quite. Feel free to answer again.')                      
+                  ["Drawdown decreases more rapidly in a leaky aquifer", "Drawdown is less in a leaky aquifer due to the additional water source", "Drawdown remains the same in both cases", "Drawdown is greater in a leaky aquifer due to the additional water source", "Drawdown occurs only in the aquitard, not in the aquifer"],
+                  1,success='CORRECT! Drawdown is less in a leaky aquifer due to the additional water source', error='Not quite. Feel free to answer again.')                      
 "---"
 
 # Optional theory here
