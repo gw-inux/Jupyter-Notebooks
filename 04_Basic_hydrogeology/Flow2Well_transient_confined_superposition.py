@@ -64,47 +64,50 @@ log_min2 = -7.0 # S / Corresponds to 10^-7 = 0.0000001
 log_max2 = 0.0  # S / Corresponds to 10^0 = 1
 
    
-columns = st.columns((1,1), gap = 'large')
+columns = st.columns((1,1,1))
 
 with columns[0]:
-    max_s = st.slider(f'Drawdown range in the plot (m)',1,50,10,1)
-    max_r = st.slider(f'Distance range in the plot (m)',10,10000,1000,1)
-    x_search = st.slider(f'Distance for result printoutrange in the plot (m)',0,10000,0,1)
+    with st.expander('Modify the plot'):
+        max_s = st.slider(f'Drawdown range in the plot (m)',1,50,10,1)
+        max_r = st.slider(f'Distance range in the plot (m)',10,10000,1000,1)
+        #x_search = st.slider(f'Distance for result printoutrange in the plot (m)',0,10000,0,1)
     t = st.slider(f'**Time (s)**',0,86400*7,86400,600)
     
 with columns[1]:
-    container = st.container()
-    T_slider_value=st.slider('_(log of) Transmissivity in m2/s_', log_min1,log_max1,-3.0,0.01,format="%4.2f" )
-    # Convert the slider value to the logarithmic scale
-    T = 10 ** T_slider_value
-    # Display the logarithmic value
-    container.write("**Transmissivity in m2/s:** %5.2e" %T)
-    S_slider_value=st.slider('(log of) Storativity', log_min2,log_max2,-4.0,0.01,format="%4.2f" )
-    # Convert the slider value to the logarithmic scale
-    S = 10 ** S_slider_value
-    # Display the logarithmic value
-    st.write("**Storativity (dimensionless):** %5.2e" %S)
-    #
+    with st.expander('Hydraulic parameters'):
+        container = st.container()
+        T_slider_value=st.slider('_(log of) Transmissivity in m2/s_', log_min1,log_max1,-3.0,0.01,format="%4.2f" )
+        # Convert the slider value to the logarithmic scale
+        T = 10 ** T_slider_value
+        # Display the logarithmic value
+        container.write("**Transmissivity in m2/s:** %5.2e" %T)
+        container = st.container()
+        S_slider_value=st.slider('_(log of) Storativity_', log_min2,log_max2,-4.0,0.01,format="%4.2f" )
+        # Convert the slider value to the logarithmic scale
+        S = 10 ** S_slider_value
+        # Display the logarithmic value
+        container.write("**Storativity (dimensionless):** %5.2e" %S)
+with columns[2]:
     with st.expander('Use cases'):
         case = st.selectbox("**What situation should be considered?**",
               ("Two wells same pumping", "Two wells different pumping", "Well with noflow bc", "Well with infiltration bc"), key = 'case')
         if st.session_state.case == 'Two wells same pumping':
             distanz = st.slider(f'**Distance between wells** (m)',10,1500,500,10, key = 'Distanz')
-            Q1 = st.slider(f'**Pumping rate (m^3/s)**', 0.001,0.100,0.000,0.001,format="%5.3f")
+            Q1 = st.slider(f'**Pumping rate (m^3/s)**', 0.001,0.100,0.005,0.001,format="%5.3f")
             Q2 = Q1
         elif st.session_state.case == 'Two wells different pumping':
             distanz = st.slider(f'**Distance between wells** (m)',10,1500,500,10, key = 'Distanz')
-            Q1 = st.slider(f'**Pumping rate well A (m^3/s)**', 0.001,0.100,0.000,0.001,format="%5.3f")
-            Q2 = st.slider(f'**Pumping rate well B (m^3/s)**', 0.001,0.100,0.000,0.001,format="%5.3f")
+            Q1 = st.slider(f'**Pumping rate well A (m^3/s)**', 0.001,0.100,0.005,0.001,format="%5.3f")
+            Q2 = st.slider(f'**Pumping rate well B (m^3/s)**', 0.001,0.100,0.002,0.001,format="%5.3f")
         elif st.session_state.case == 'Well with noflow bc':
             distanzbc = st.slider(f'**Distance from the well to the boundary** (m)',5,750,250,5, key = 'Distanz2')
             distanz = 2*distanzbc
-            Q1 = st.slider(f'**Pumping rate (m^3/s)**', 0.001,0.100,0.000,0.001,format="%5.3f")
+            Q1 = st.slider(f'**Pumping rate (m^3/s)**', 0.001,0.100,0.005,0.001,format="%5.3f")
             Q2 = Q1
         elif st.session_state.case == 'Well with infiltration bc':
             distanzbc = st.slider(f'**Distance from the well to the boundary** (m)',5,750,250,5, key = 'Distanz2')
             distanz = 2*distanzbc
-            Q1 = st.slider(f'**Pumping rate (m^3/s)**', 0.001,0.100,0.000,0.001,format="%5.3f")
+            Q1 = st.slider(f'**Pumping rate (m^3/s)**', 0.001,0.100,0.005,0.001,format="%5.3f")
             Q2 = Q1*-1
 
 # Range of delta_h / delta_l values (hydraulic gradient)
