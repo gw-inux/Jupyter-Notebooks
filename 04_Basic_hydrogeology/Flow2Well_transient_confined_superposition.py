@@ -224,7 +224,7 @@ if st.session_state.case == 'Well with infiltration bc':
 '---'
 
 # Copyright
-col1, col2 = st.columns([1, 5])  # Adjust column width ratio
+col1, col2 = st.columns([1, 5], gap = 'large')  # Adjust column width ratio
 with col1:
     st.image('04_Basic_hydrogeology/FIGS/logo_iNUX.jpg', width=125)
 with col2:
