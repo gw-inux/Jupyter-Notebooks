@@ -17,7 +17,7 @@ Accoding to the principle of superposition, the drawdown of different wells in o
 
 lc0, cc0, rc0 = st.columns((20,60,20))
 with cc0:
-    st.image('04_Basic_hydrogeology/FIGS/ferris_no_flow_small.png', caption="Conceptual sketch through an aquifer with one pumping well and an imaginary well to represent a no-flow boundary (Ferris et al. 1962)[ https://pubs.usgs.gov/wsp/wsp1536-E/].")
+    st.image('04_Basic_hydrogeology/FIGS/ferris_no_flow_small.png', caption="Conceptual sketch through an aquifer with one pumping well and an imaginary well to represent a no-flow boundary [Ferris et al. 1962]( https://pubs.usgs.gov/wsp/wsp1536-E/).")
 
 st.markdown(r"""
 ### This app allows to investigate the principle of superposition for two abstraction wells. The pumping rate can be uniform or different.
@@ -213,3 +213,10 @@ if st.session_state.case == 'Well with infiltration bc':
 plt.legend(loc='lower right', fontsize=12)
 
 st.pyplot(fig)
+if st.session_state.case == 'Well with noflow bc':
+    with st.expander('Here you can find additional explanation'):
+        st.image('04_Basic_hydrogeology/FIGS/ferris_no_flow.png', caption="Conceptual sketch through an aquifer with one pumping well and an imaginary well to represent a no-flow boundary [Ferris et al. 1962]( https://pubs.usgs.gov/wsp/wsp1536-E/).")
+
+if st.session_state.case == 'Well with infiltration bc':
+    with st.expander('Here you can find additional explanation'):
+        st.image('04_Basic_hydrogeology/FIGS/ferris_infiltration.png', caption="Conceptual sketch through an aquifer with one pumping well and an imaginary well to represent an infiltration boundary [Ferris et al. 1962]( https://pubs.usgs.gov/wsp/wsp1536-E/).")
