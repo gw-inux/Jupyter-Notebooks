@@ -220,3 +220,12 @@ if st.session_state.case == 'Well with noflow bc':
 if st.session_state.case == 'Well with infiltration bc':
     with st.expander('Here you can find additional explanation'):
         st.image('04_Basic_hydrogeology/FIGS/ferris_infiltration.png', caption="Conceptual sketch through an aquifer with one pumping well and an imaginary well to represent an infiltration boundary [Ferris et al. 1962]( https://pubs.usgs.gov/wsp/wsp1536-E/).")
+
+'---'
+
+# Copyright
+col1, col2 = st.columns([1, 5])  # Adjust column width ratio
+with col1:
+    st.image('04_Basic_hydrogeology/FIGS/logo_iNUX.jpg', width=125)
+with col2:
+    st.markdown("© 2025 iNUX Project - Interactive understanding of groundwater hydrology and hydrogeology - An ERASMUS+ cooperation project.<br>App developer: Thomas Reimann (TU Dresden)", unsafe_allow_html=True)

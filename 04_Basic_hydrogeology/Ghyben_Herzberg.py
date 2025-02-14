@@ -102,3 +102,12 @@ plt.text(1180, -80, 'Saltwater', horizontalalignment='right', bbox=dict(boxstyle
 plt.text(150, -10, 'Freshwater', horizontalalignment='right', bbox=dict(boxstyle="square", facecolor='lightgrey'), fontsize=10)
     
 st.pyplot(fig)
+
+'---'
+
+# Copyright
+col1, col2 = st.columns([1, 5])  # Adjust column width ratio
+with col1:
+    st.image('04_Basic_hydrogeology/FIGS/logo_iNUX.jpg', width=125)
+with col2:
+    st.markdown("© 2025 iNUX Project - Interactive understanding of groundwater hydrology and hydrogeology - An ERASMUS+ cooperation project.<br>App developer: Markus Giese (University of Gothenburg), Thomas Reimann (TU Dresden)", unsafe_allow_html=True)
