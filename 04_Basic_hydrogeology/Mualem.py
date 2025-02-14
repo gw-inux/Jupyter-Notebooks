@@ -2,6 +2,9 @@ import streamlit as st
 import numpy as np
 import matplotlib.pyplot as plt
 
+# Streamlit app title and description
+# Developed by Markus Giese University of Gothenburg 2025
+
 # Markdown description
 st.markdown(r"""
 ### **Mualem Equation**  
