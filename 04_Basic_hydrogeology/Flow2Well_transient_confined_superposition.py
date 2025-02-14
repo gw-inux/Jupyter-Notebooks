@@ -4,27 +4,57 @@ import matplotlib.pyplot as plt
 import scipy.special
 import streamlit as st
 
-st.title('Transient Flow towards a well in a confined aquifer')
+st.title('Transient Flow towards wells and superposition')
 
-st.subheader('Consideration of two wells with :orange[superposition]', divider="orange")
+st.subheader('Consideration of two wells under the principle of :orange[superposition]', divider="orange")
 
-st.write('This notebook illustrate the drawdown in a confined aquifer in response to pumping.')
+st.markdown(r"""
+### **Introduction and Motivation**  
+We consider a confined, homogeneous, isotropic aquifer with constant transmissivity. Water abstraction will induce radial flow towards the well. The hydraulic situation can be calculated with the Theis solution.
 
-st.subheader('General situation')
-st.write('We consider a confined aquifer with constant transmissivity. If a well is pumping water out of the aquifer, radial flow towards the well is induced.')
-st.write('The calculate the hydraulic situation, the following simplified flow equation can be used. This equation accounts for 1D radial transient flow towards a fully penetrating well within a confined aquifer without further sinks and sources:')
-st.latex(r'''\frac{\partial^2 h}{\partial r^2}+\frac{1}{r}\frac{\partial h}{\partial r}=\frac{S}{T}\frac{\partial h}{\partial t}''')
+Accoding to the principle of superposition, the drawdown of different wells in one space is added, see the following figure.  
+""", unsafe_allow_html=True)
 
-st.subheader('Mathematical model and solution')
-st.write('Charles V. Theis presented a solution for this by deriving')
-st.latex(r'''s(r,t)=\frac{Q}{4\pi T}W(u)''')
-st.write('with the well function')
-st.latex(r'''W(u) = \int_{u }^{+\infty} \frac{e^{-\tilde u}}{\tilde u}d\tilde u''')
-st.write('and the dimensionless variable')
-st.latex(r'''u = \frac{Sr^2}{4Tt}''')
-st.write('Subsequently, the Theis equation is solved with Python routines.')
-"---"
+lc0, cc0, rc0 = st.columns((20,60,20))
+with cc0:
+    st.image('04_Basic_hydrogeology/FIGS/ferris_no_flow_small.png', caption="Conceptual sketch through an aquifer with one pumping well and an imaginary well to represent a no-flow boundary (Ferris et al. 1962)[ https://pubs.usgs.gov/wsp/wsp1536-E/].")
 
+st.markdown(r"""
+### This app allows to investigate the principle of superposition for two abstraction wells. The pumping rate can be uniform or different.
+
+Further, the principle of superposition can also be used to account for the effect of no-flow and infiltration boundaries.  
+""", unsafe_allow_html=True)
+
+with st.expander('Show more theory'):
+    st.markdown(r"""
+    To calculate the hydraulic situation, the following simplified flow equation can be used. This equation accounts for 1D radial transient flow towards a fully penetrating well within a confined aquifer without further sinks and sources:
+
+    $\frac{\partial^2 h}{\partial r^2}+\frac{1}{r}\frac{\partial h}{\partial r}=\frac{S}{T}\frac{\partial h}{\partial t}$  
+    
+    #### Mathematical model and solution
+    
+    Charles V. Theis presented a solution for this by deriving
+    
+    $s(r,t)=\frac{Q}{4\pi T}W(u)$
+    
+    with the well function
+    
+    $W(u) = \int_{u }^{+\infty} \frac{e^{-\tilde u}}{\tilde u}d\tilde u$
+    
+    and the dimensionless variable
+    
+    $u = \frac{Sr^2}{4Tt}$
+    
+    Subsequently, the Theis equation is solved with Python routines and the individual results are combined to represent the overall system response according to the principle of superposition.
+        
+    """, unsafe_allow_html=True)
+
+'---'
+st.subheader('Computation of well drawdown with the principle of superposition', divider = 'orange')
+
+st.markdown(r"""
+The menu point '**Use cases**' allows you to choose different scenarios and to modify the pumping rate and the position of the wells.  
+""", unsafe_allow_html=True)
 # (Here the necessary functions like the well function $W(u)$ are defined. Later, those functions are used in the computation)
 # Define a function, class, and object for Theis Well analysis
 
@@ -68,24 +98,22 @@ columns = st.columns((1,1,1))
 
 with columns[0]:
     with st.expander('Modify the plot'):
-        max_s = st.slider(f'Drawdown range in the plot (m)',1,50,10,1)
+        max_s = st.slider(f'Drawdown range in the plot (m)',1,50,20,1)
         max_r = st.slider(f'Distance range in the plot (m)',10,10000,1000,1)
         #x_search = st.slider(f'Distance for result printoutrange in the plot (m)',0,10000,0,1)
     t = st.slider(f'**Time (s)**',0,86400*7,86400,600)
     
 with columns[1]:
     with st.expander('Hydraulic parameters'):
+        # Transmissivity
         container = st.container()
-        T_slider_value=st.slider('_(log of) Transmissivity in m2/s_', log_min1,log_max1,-3.0,0.01,format="%4.2f" )
-        # Convert the slider value to the logarithmic scale
-        T = 10 ** T_slider_value
-        # Display the logarithmic value
+        Ts =st.slider('_(log of) Transmissivity in m2/s_', log_min1,log_max1,-3.0,0.01,format="%4.2f" )
+        T  = 10 ** Ts
         container.write("**Transmissivity in m2/s:** %5.2e" %T)
+        # Storativity
         container = st.container()
-        S_slider_value=st.slider('_(log of) Storativity_', log_min2,log_max2,-4.0,0.01,format="%4.2f" )
-        # Convert the slider value to the logarithmic scale
-        S = 10 ** S_slider_value
-        # Display the logarithmic value
+        Ss=st.slider('_(log of) Storativity_', log_min2,log_max2,-4.0,0.01,format="%4.2f" )
+        S = 10 ** Ss
         container.write("**Storativity (dimensionless):** %5.2e" %S)
 with columns[2]:
     with st.expander('Use cases'):
@@ -93,21 +121,21 @@ with columns[2]:
               ("Two wells same pumping", "Two wells different pumping", "Well with noflow bc", "Well with infiltration bc"), key = 'case')
         if st.session_state.case == 'Two wells same pumping':
             distanz = st.slider(f'**Distance between wells** (m)',10,1500,500,10, key = 'Distanz')
-            Q1 = st.slider(f'**Pumping rate (m^3/s)**', 0.001,0.100,0.005,0.001,format="%5.3f")
+            Q1 = st.slider(f'**Pumping rate (m^3/s)**', 0.000,0.100,0.005,0.001,format="%5.3f")
             Q2 = Q1
         elif st.session_state.case == 'Two wells different pumping':
             distanz = st.slider(f'**Distance between wells** (m)',10,1500,500,10, key = 'Distanz')
-            Q1 = st.slider(f'**Pumping rate well A (m^3/s)**', 0.001,0.100,0.005,0.001,format="%5.3f")
-            Q2 = st.slider(f'**Pumping rate well B (m^3/s)**', 0.001,0.100,0.002,0.001,format="%5.3f")
+            Q1 = st.slider(f'**Pumping rate well 1 (m³/s)**', 0.000,0.100,0.005,0.001,format="%5.3f")
+            Q2 = st.slider(f'**Pumping rate well 2 (m³/s)**', 0.000,0.100,0.002,0.001,format="%5.3f")
         elif st.session_state.case == 'Well with noflow bc':
             distanzbc = st.slider(f'**Distance from the well to the boundary** (m)',5,750,250,5, key = 'Distanz2')
             distanz = 2*distanzbc
-            Q1 = st.slider(f'**Pumping rate (m^3/s)**', 0.001,0.100,0.005,0.001,format="%5.3f")
+            Q1 = st.slider(f'**Pumping rate (m³/s)**', 0.000,0.100,0.005,0.001,format="%5.3f")
             Q2 = Q1
         elif st.session_state.case == 'Well with infiltration bc':
             distanzbc = st.slider(f'**Distance from the well to the boundary** (m)',5,750,250,5, key = 'Distanz2')
             distanz = 2*distanzbc
-            Q1 = st.slider(f'**Pumping rate (m^3/s)**', 0.001,0.100,0.005,0.001,format="%5.3f")
+            Q1 = st.slider(f'**Pumping rate (m³/s)**', 0.000,0.100,0.005,0.001,format="%5.3f")
             Q2 = Q1*-1
 
 # Range of delta_h / delta_l values (hydraulic gradient)
@@ -124,7 +152,6 @@ s2  = compute_s(T, S, t, Q2, r)
 
 
 # Superposition
-
 num_steps = 500
 r_super = np.linspace(-1000, 1000, num_steps)
 
@@ -140,23 +167,49 @@ for x in r_super:
 fig=plt.figure(figsize=(10, 6))
 ax = fig.add_subplot(1, 1, 1)
     
-plt.plot(r1, s1, linewidth=1., color='b', label=r'drawdown well A')
-plt.plot(r1_neg, s1, linewidth=1, color='b')
-plt.plot(r2, s2, linewidth=1., color='g', label=r'drawdown well B')
-plt.plot(r2_neg, s2, linewidth=1, color='g')
-plt.plot(r_super, s_super, linewidth=1, color='black',label=r'total drawdown')
+plt.plot(r1, s1,     linewidth=1., color='b', label=r'drawdown well 1')
+plt.plot(r1_neg, s1, linewidth=1., color='b')
+plt.plot(r2, s2,     linewidth=1., color='g', label=r'drawdown well 2')
+plt.plot(r2_neg, s2, linewidth=1., color='g')
+plt.plot(r_super, s_super, linewidth=2, color='black',label=r'resulting drawdown')
+
 plt.fill_between(r_super,s_super,max_s, facecolor='lightblue')
-#plt.fill_between(r1_neg,s1,max_s, facecolor='lightblue')
+
 plt.xlim(-max_r, max_r)
 plt.ylim(max_s,-5)
 plt.xlabel(r'spatial coordinate in m', fontsize=14)
 plt.ylabel(r'Drawdown in m', fontsize=14)
-plt.title('Drawdown prediction with Theis', fontsize=16)
+plt.title('Drawdown prediction with Theis - principle of superposition', fontsize=16)
+
+if st.session_state.case == 'Two wells same pumping':
+    ax.vlines(0.5*distanz, max_s, -0.5, linewidth = 3, color='darkblue')
+    ax.vlines(-0.5*distanz, max_s, -0.5, linewidth = 3, color='darkgreen')
+    plt.text (  0.5*distanz, -1, 'pumping \n well', horizontalalignment='center', fontsize=12)
+    plt.text (- 0.5*distanz, -1, 'pumping \n well', horizontalalignment='center', fontsize=12)
+if st.session_state.case == 'Two wells different pumping':
+    ax.vlines(0.5*distanz, max_s, -0.5, linewidth = 3, color='darkblue')
+    ax.vlines(-0.5*distanz, max_s, -0.5, linewidth = 3, color='darkgreen')
+    plt.text (  0.5*distanz, -1, 'pumping \n well 1', horizontalalignment='center', fontsize=12)
+    plt.text (- 0.5*distanz, -1, 'pumping \n well 2', horizontalalignment='center', fontsize=12)
 if st.session_state.case == 'Well with noflow bc':
-    ax.vlines(0, max_s, -5, linewidth = 1, color='darkblue', label='No Flow Boundary')
+    ax.vlines(0, max_s, -5, linestyle="--", linewidth = 2, color='black')
+    ax.vlines(0.5*distanz, max_s, -0.5, linewidth = 3, color='darkblue')
+    ax.vlines(-0.5*distanz, max_s, -0.5, linestyle=":", linewidth = 3, color='darkgreen')
+    plt.text (120, max_s-1, 'real \n system', horizontalalignment='center', bbox=dict(boxstyle="square", facecolor='lightgrey'), fontsize=12)
+    plt.text (-150, max_s-1, 'imaginary \n system', horizontalalignment='center', bbox=dict(boxstyle="square", facecolor='lightgrey'), fontsize=12)
+    plt.text (  0.55*distanz, 1, 'real \n pumping well', horizontalalignment='left', fontsize=12)
+    plt.text (- 0.55*distanz, 1, 'imaginary \n pumping well', horizontalalignment='right', fontsize=12)
+    plt.text (-20, max_s-5, 'no flow boundary', rotation=90, horizontalalignment='right', fontsize=12)
 if st.session_state.case == 'Well with infiltration bc':
-    ax.vlines(0, max_s, -5, linewidth = 1, color='green', label='Infiltration Boundary')
-plt.legend()
-plt.grid(True)
+    ax.vlines(0, max_s, -5, linestyle="--", linewidth = 2, color='black')
+    ax.vlines(0.5*distanz, max_s, -0.5, linewidth = 3, color='darkblue')
+    ax.vlines(-0.5*distanz, max_s, -0.5, linestyle=":", linewidth = 3, color='darkgreen')
+    plt.text (120, max_s-1, 'real \n system', horizontalalignment='center', bbox=dict(boxstyle="square", facecolor='lightgrey'), fontsize=12)
+    plt.text (-150, max_s-1, 'imaginary \n system', horizontalalignment='center', bbox=dict(boxstyle="square", facecolor='lightgrey'), fontsize=12)
+    plt.text (  0.55*distanz, 5, 'real \n pumping well', horizontalalignment='left', fontsize=12)
+    plt.text (- 0.55*distanz, 1, 'imaginary \n infiltration well', horizontalalignment='right',  fontsize=12)
+    plt.text (-20, max_s-5, 'discharge boundary', rotation=90, horizontalalignment='right', fontsize=12)
+    
+plt.legend(loc='lower right', fontsize=12)
 
 st.pyplot(fig)
