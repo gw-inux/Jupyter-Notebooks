@@ -32,7 +32,7 @@ st.markdown("""
 #FUNCTIONS FOR COMPUTATION; ADS = ADVECTION, DISPERSION AND SORPTION - EVENTUALLY SET RETARDATION TO 1 FOR NO SORPTION
 
 # Define the function
-def concentration(Y, Z, x, y, z, t, M, ax, ay, az, v, C0, down_only):
+def concentration(Y, Z, x, y, z, t, ax, ay, az, v, C0, down_only):
     Dx = v * ax
     Dy = v * ay
     Dz = v * az
@@ -57,24 +57,29 @@ def concentration(Y, Z, x, y, z, t, M, ax, ay, az, v, C0, down_only):
 columns1 = st.columns((1,1,1), gap = 'large')
 
 with columns1[0]:
-    C0 = st.slider(f'**Source concentration (g/m3)**',1,100,10,1) 
-    Y  = st.slider(f'**Source width (m)**',1,100,10,1)   
-    Z  = st.slider(f'**Source thickness (m)**',1,20,2,1)
-    t = st.slider(f'**Time for the concentration profile (s)**',1.,1800.,1.,1.)
+    with st.expander("Here you find widgets to :red[**adjust the inlet boundary**]"): 
+        C0 = st.slider(f'**Source concentration (g/m3)**',1,100,10,1) 
+        Y  = st.slider(f'**Source width (m)**',1,100,10,1)   
+        Z  = st.slider(f'**Source thickness (m)**',1,20,2,1)
+    qd = st.slider(f'**specific discharge (m/d)**',0.001,1.0,0.25,0.001,format='%5.3f') 
+    q = qd/86400    
     
 with columns1[1]:
-    n = st.slider(f'**Porosity (-)**',0.01,0.6,0.25,0.01)    
-    ax = st.slider(f'**Longitudinal (x) dispersivity (m)**',0.001,10.0,1.00,0.001)
-    rat_x_y = st.slider(f'**Dispersivity ratio 1/n for x/y**',1,100,10,1)
-    rat_x_z = st.slider(f'**Dispersivity ratio 1/n for x/z**',1,500,100,1)
+    with st.expander("Here you find widgets to :orange[**adjust dispersion**]"):  
+        ax = st.slider(f'**Longitudinal (x) dispersivity (m)**',0.001,10.0,1.00,0.001)
+        rat_x_y = st.slider(f'**Dispersivity ratio 1/n for x/y**',1,100,10,1)
+        rat_x_z = st.slider(f'**Dispersivity ratio 1/n for x/z**',1,500,100,1)
+    n = st.slider(f'**Porosity (-)**',0.01,0.6,0.25,0.01)  
 with columns1[2]:
-    isolines = st.toggle("Show isolines instead of isosurfaces")
-    down_only = st.toggle("Spreading is only downward")
-    Zp = st.slider(f'**Slice at z (top view plot)**',-25,25,0,1)
-    Yp = st.slider(f'**Slice at y (side view plot)**',-100,100,0,1)
+    with st.expander("Here you find widgets to :green[**adjust the plot**]"):
+        isolines = st.toggle("Show isolines instead of isosurfaces")
+        down_only = st.toggle("Spreading is only downward")
+        Zp = st.slider(f'**Slice at z (top view plot)**',-25,25,0,1)
+        Yp = st.slider(f'**Slice at y (side view plot)**',-100,100,0,1)
+    td  = st.slider(f'**Time for the concentration profile (d)**',1.,1800.,1.,1.)
+    t = td * 86400
     
-M = 10
-v = 0.016/n
+v = q/n
 ay = ax/rat_x_y
 az = ax/rat_x_z
 
@@ -89,8 +94,8 @@ xxy, yxy = np.meshgrid(x_vals, y_vals)
 xxz, zxz = np.meshgrid(x_vals, z_vals)
 
 # Compute concentration values
-Cxy =    concentration(Y, Z, xxy, yxy, Zp, t, M, ax, ay, az, v, C0, down_only)
-Cxz =    concentration(Y, Z, xxz, Yp, zxz, t, M, ax, ay, az, v, C0, down_only)
+Cxy =    concentration(Y, Z, xxy, yxy, Zp, t, ax, ay, az, v, C0, down_only)
+Cxz =    concentration(Y, Z, xxz, Yp, zxz, t, ax, ay, az, v, C0, down_only)
 
 # Plot the concentration field
 lev_exp = 10.**np.arange(-8, 3)
