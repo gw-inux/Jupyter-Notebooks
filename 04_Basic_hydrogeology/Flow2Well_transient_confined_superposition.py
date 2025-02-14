@@ -73,24 +73,39 @@ with columns[0]:
     t = st.slider(f'**Time (s)**',0,86400*7,86400,600)
     
 with columns[1]:
-    if st.toggle('Two different pumping rates?'):
-        Q1 = st.slider(f'**Pumping rate well A (m^3/s)**', 0.001,0.100,0.000,0.001,format="%5.3f")
-        Q2 = st.slider(f'**Pumping rate well B (m^3/s)**', 0.001,0.100,0.000,0.001,format="%5.3f")
-    else:
-        Q1 = st.slider(f'**Pumping rate (m^3/s)**', 0.001,0.100,0.000,0.001,format="%5.3f")
-        Q2 = Q1
-    T_slider_value=st.slider('(log of) Transmissivity in m2/s', log_min1,log_max1,-3.0,0.01,format="%4.2f" )
+    container = st.container()
+    T_slider_value=st.slider('_(log of) Transmissivity in m2/s_', log_min1,log_max1,-3.0,0.01,format="%4.2f" )
     # Convert the slider value to the logarithmic scale
     T = 10 ** T_slider_value
     # Display the logarithmic value
-    st.write("**Transmissivity in m2/s:** %5.2e" %T)
+    container.write("**Transmissivity in m2/s:** %5.2e" %T)
     S_slider_value=st.slider('(log of) Storativity', log_min2,log_max2,-4.0,0.01,format="%4.2f" )
     # Convert the slider value to the logarithmic scale
     S = 10 ** S_slider_value
     # Display the logarithmic value
     st.write("**Storativity (dimensionless):** %5.2e" %S)
-    distanz = st.slider(f'**Distance between wells** (m)',10,1500,500,10)
-
+    #
+    with st.expander('Use cases'):
+        case = st.selectbox("**What situation should be considered?**",
+              ("Two wells same pumping", "Two wells different pumping", "Well with noflow bc", "Well with infiltration bc"), key = 'case')
+        if st.session_state.case == 'Two wells same pumping':
+            distanz = st.slider(f'**Distance between wells** (m)',10,1500,500,10, key = 'Distanz')
+            Q1 = st.slider(f'**Pumping rate (m^3/s)**', 0.001,0.100,0.000,0.001,format="%5.3f")
+            Q2 = Q1
+        elif st.session_state.case == 'Two wells different pumping':
+            distanz = st.slider(f'**Distance between wells** (m)',10,1500,500,10, key = 'Distanz')
+            Q1 = st.slider(f'**Pumping rate well A (m^3/s)**', 0.001,0.100,0.000,0.001,format="%5.3f")
+            Q2 = st.slider(f'**Pumping rate well B (m^3/s)**', 0.001,0.100,0.000,0.001,format="%5.3f")
+        elif st.session_state.case == 'Well with noflow bc':
+            distanzbc = st.slider(f'**Distance from the well to the boundary** (m)',5,750,250,5, key = 'Distanz2')
+            distanz = 2*distanzbc
+            Q1 = st.slider(f'**Pumping rate (m^3/s)**', 0.001,0.100,0.000,0.001,format="%5.3f")
+            Q2 = Q1
+        elif st.session_state.case == 'Well with infiltration bc':
+            distanzbc = st.slider(f'**Distance from the well to the boundary** (m)',5,750,250,5, key = 'Distanz2')
+            distanz = 2*distanzbc
+            Q1 = st.slider(f'**Pumping rate (m^3/s)**', 0.001,0.100,0.000,0.001,format="%5.3f")
+            Q2 = Q1*-1
 
 # Range of delta_h / delta_l values (hydraulic gradient)
 r = np.linspace(1, max_r+distanz, 200)
@@ -120,6 +135,7 @@ for x in r_super:
     
 # Plotting
 fig=plt.figure(figsize=(10, 6))
+ax = fig.add_subplot(1, 1, 1)
     
 plt.plot(r1, s1, linewidth=1., color='b', label=r'drawdown well A')
 plt.plot(r1_neg, s1, linewidth=1, color='b')
@@ -133,6 +149,10 @@ plt.ylim(max_s,-5)
 plt.xlabel(r'spatial coordinate in m', fontsize=14)
 plt.ylabel(r'Drawdown in m', fontsize=14)
 plt.title('Drawdown prediction with Theis', fontsize=16)
+if st.session_state.case == 'Well with noflow bc':
+    ax.vlines(0, max_s, -5, linewidth = 1, color='darkblue', label='No Flow Boundary')
+if st.session_state.case == 'Well with infiltration bc':
+    ax.vlines(0, max_s, -5, linewidth = 1, color='green', label='Infiltration Boundary')
 plt.legend()
 plt.grid(True)
 
