@@ -9,7 +9,7 @@ st.latex('\Large V_i = V_{i-1} - Q_{i-1} \Delta t + R_i \Delta t ')
 st.text('')
 col0, col00 = st.columns(2)
 with col0:
-    st.image('FIGS/Linear_reservoir.png', caption= 'Figure 1: Model for a linear reservoir.')
+    st.image('04_Basic_hydrogeology/FIGS/Linear_reservoir.png', caption= 'Figure 1: Model for a linear reservoir.')
 with col00:
     st.write('$V$...Volume of stored water [$L³$]')
     st.write('$Q$...Discharge, runoff [$L³T^{-1}$]')
