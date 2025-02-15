@@ -54,8 +54,10 @@ where
 - $n$ = porosity [-],
 - $t$ = time [T],
 - $x$ = distance from the well [L].
+""", unsafe_allow_html=True)
 
-#### **References**
+with st.expander('**References**'):
+    st.markdown(r"""
 Bear, J. (Ed.), 1999. Seawater intrusion in coastal aquifers: concepts, methods and practices, Theory and applications of transport in porous media. Kluwer, Dordrecht.
 
 Callander, P., Lough, H., Steffens, C., 2011. New Zealand Guidelines for the Monitoring and Management of Sea Water Intrusion Risks on Groundwater. Pattle Delamore Partners LTD, New Zealand.
@@ -63,8 +65,11 @@ Callander, P., Lough, H., Steffens, C., 2011. New Zealand Guidelines for the Mon
 Schmork, S., Mercado, A., 1969. Upconing of Fresh Water-Sea Water Interface Below Pumping Wells, Field Study. Water Resources Research 5, 1290–1311. doi: 10.1029/WR005i006p01290
 
 Dagan, G., Bear, J., 1968. Solving The Problem Of Local Interface Upconing In A Coastal Aquifer By The Method Of Small Perturbations. Journal of Hydraulic Research 6, 15–44. doi: 10.1080/00221686809500218
-
 """, unsafe_allow_html=True)
+
+"---"
+
+st.subheader('Computation')
 
 # User inputs
 def upconing(x, Q, K, d_pre, rho_f, rho_s, n):
@@ -91,8 +96,8 @@ with rc1:
     with st.expander('Hydrogeologic parameters'):
         K = st.slider("Hydraulic Conductivity (K)", min_value=1, max_value=100, step=1, value=50)
         n = st.slider("Porosity (n)", min_value=0.05, max_value=0.4, step=0.01, value=0.15)
-    d_pre = st.slider("Pre-pumping distance (d_pre)", min_value=0.5, max_value=100.0, step=0.1, value=10.0)
-    Q = st.slider("Freshwater Discharge (Q)", min_value=100, max_value=5000, step=10, value=1000)
+    d_pre = st.slider("Pre-pumping distance ($d_{pre}$)", min_value=0.5, max_value=100.0, step=0.1, value=10.0)
+    Q = st.slider("Freshwater Discharge ($Q$)", min_value=0, max_value=5000, step=10, value=100)
    
 z, z_0, Q_max, z_max = upconing(x, Q, K, d_pre, rho_f, rho_s, n)
 
@@ -115,7 +120,7 @@ ax.set_ylabel('Height above initial water table (m)')
 ax.set_title("Upconing")
 ax.legend(loc="upper right")
 #ax.grid()
-plt.text(-100, d_pre, 'Pumping well', horizontalalignment='right', bbox=dict(boxstyle="square", facecolor='lightgrey'), fontsize=10)
+plt.text(-100, d_pre+1, 'Pumping well', horizontalalignment='right', bbox=dict(boxstyle="square", facecolor='lightgrey'), fontsize=10)
 plt.text(0, -3, 'Saltwater', horizontalalignment='center', bbox=dict(boxstyle="square", facecolor='lightgrey'), fontsize=10)
 plt.text(-950, 2.5, 'Freshwater', horizontalalignment='left', bbox=dict(boxstyle="square", facecolor='lightgrey'), fontsize=10)
     
