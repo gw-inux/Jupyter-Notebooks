@@ -6,14 +6,19 @@ import matplotlib.pyplot as plt
 # Developed by Markus Giese University of Gothenburg 2025
 
 # Markdown description
+
+st.title("Upconing")
+
+st.subheader('Upconing of the Saltwater Interface', divider= "blue")
+
+
 st.markdown(r"""
-### **Upconing of the Saltwater Interface**
-This notebook demonstrate the principle of upconing (rise of saltwater) due to pumping. The notebook is based on an example from the INOWAS platform (https://www.inowas.com).
+This interactive app demonstrate the principle of upconing (rise of saltwater) due to pumping. The notebook is based on an example from the INOWAS platform (https://www.inowas.com).
 
 ### **Introduction**  
 #### **General Situation** 
 
-Upconing of the saltwater interface can occur when the aquifer head is lowered by pumping from wells. Schmork and Mercado (1969) and Dagan and Bear (1968) developed equations to calculate upconing and determine the maximum well pumping rate at a new equilibrium caused by pumping. In these calculations, the pumping well is considered as a point.
+Upconing of the saltwater interface can occur when the aquifer (freshwater) head is lowered by pumping from wells. Schmork and Mercado (1969) and Dagan and Bear (1968) developed equations to calculate upconing and determine the maximum well pumping rate at a new equilibrium caused by pumping. In these calculations, the pumping well is considered as a point.
 
 The maximum upconing, which occurs directly underneath the pumping well, can be calculated as:
 
@@ -62,50 +67,65 @@ Dagan, G., Bear, J., 1968. Solving The Problem Of Local Interface Upconing In A 
 """, unsafe_allow_html=True)
 
 # User inputs
-def upconing(Q, K, d_pre, rho_f, rho_s, n):
+def upconing(x, Q, K, d_pre, rho_f, rho_s, n):
 
     # Compute values
     t = np.inf
-    x = np.arange(-1000, 1000, 0.25)
     z = (1/(x**2/d_pre**2+1)**0.5-1/(x**2/d_pre**2+(1+((rho_s - rho_f)/rho_f)*K*t/(n*d_pre*(2+(rho_s - rho_f)/rho_f)))**2)**0.5)* Q/(2*np.pi*d_pre*K*((rho_s - rho_f)/rho_f))
     z_0 = Q*(rho_f/(rho_s - rho_f))/(2*np.pi*d_pre*K)
     Q_max = (0.6*np.pi*d_pre**2*K)/(rho_f/(rho_s - rho_f))
     z_max = Q_max*(rho_f/(rho_s - rho_f))/(2*np.pi*d_pre*K)
     
+    return z, z_0, Q_max, z_max
+   
+# Parameter / Input
 
-    # Plot Glover equation results
-    fig, ax = plt.subplots(figsize=(9, 6))
-    ax.plot(x,z, color='darkblue', linewidth=2.5, label='Saltwater Interface')
-    ax.fill_between(x,z,-2.5, facecolor='cornflowerblue', hatch = '//')
-    ax.fill_between(x,z,max(z_0, d_pre +3), facecolor='lightskyblue', alpha=0.5)
-    ax.hlines(z_max, -1000, 1000, color = 'red', linestyle = "dashed", label='Critical upconing elevation')
-    ax.vlines(2.5, d_pre, max(z_0, d_pre +3), color = 'black', linestyle = "dashed", label = 'Pumping well')
-    ax.vlines(-2.5, d_pre, max(z_0, d_pre +3), color = 'black', linestyle = "dashed")
-    ax.set_xlabel('Distance from Well (m)')
-    ax.set_ylabel('Height above initial water table (m)')
-    ax.set_title("Upconing")
-    ax.legend(loc="upper right")
-    ax.grid()
-    plt.text(100, -2, 'Saltwater', horizontalalignment='right', bbox=dict(boxstyle="square", facecolor='lightgrey'), fontsize=10)
-    plt.text(-750, 2.5, 'Freshwater', horizontalalignment='right', bbox=dict(boxstyle="square", facecolor='lightgrey'), fontsize=10)
+x = np.arange(-1000, 1000, 0.25)
+
+lc1, rc1 = st.columns((1,1), gap = 'large')
+with lc1:
+    with st.expander('System parameters'):
+        rho_f = st.slider("Freshwater Density (ρ_f) in kg/m³", min_value=950, max_value=1050, step=1, value=1000)
+        rho_s = st.slider("Saltwater Density (ρ_s) in kg/m³", min_value=950, max_value=1050, step=1, value=1025)
+with rc1:
+    with st.expander('Hydrogeologic parameters'):
+        K = st.slider("Hydraulic Conductivity (K)", min_value=1, max_value=100, step=1, value=50)
+        n = st.slider("Porosity (n)", min_value=0.05, max_value=0.4, step=0.01, value=0.15)
+    d_pre = st.slider("Pre-pumping distance (d_pre)", min_value=0.5, max_value=100.0, step=0.1, value=10.0)
+    Q = st.slider("Freshwater Discharge (Q)", min_value=100, max_value=5000, step=10, value=1000)
+   
+z, z_0, Q_max, z_max = upconing(x, Q, K, d_pre, rho_f, rho_s, n)
+
+# Plot Glover equation results
+fig, ax = plt.subplots(figsize=(9, 6))
+ax.plot(x,z, color='darkblue', linewidth=2.5, label='Saltwater Interface')
+plt.ylim(-5, d_pre+3)
+plt.xlim(-1000, 1000)
+ax.fill_between(x,z,-5, facecolor='cornflowerblue', hatch = '//')
+ax.fill_between(x,z,max(z_0, d_pre +3), facecolor='lightskyblue', alpha=0.5)
+ax.hlines(z_max, -1000, 1000, color = 'red', linestyle = "dashed", label='Critical upconing elevation')
+ax.vlines(0, d_pre, max(z_0, d_pre +3), linewidth=10, color = 'darkgrey')
+ax.vlines(2, d_pre+0.1, max(z_0, d_pre +3), linewidth=2, color = 'silver')
+ax.hlines(d_pre+2,-15, 15, color = 'grey')
+ax.hlines(d_pre+1.5,-15, 15, color = 'grey')
+ax.hlines(d_pre+1,-15, 15, color = 'grey')
+ax.hlines(d_pre+0.5,-15, 15, color = 'grey')
+ax.set_xlabel('Distance from Well (m)')
+ax.set_ylabel('Height above initial water table (m)')
+ax.set_title("Upconing")
+ax.legend(loc="upper right")
+#ax.grid()
+plt.text(-100, d_pre, 'Pumping well', horizontalalignment='right', bbox=dict(boxstyle="square", facecolor='lightgrey'), fontsize=10)
+plt.text(0, -3, 'Saltwater', horizontalalignment='center', bbox=dict(boxstyle="square", facecolor='lightgrey'), fontsize=10)
+plt.text(-950, 2.5, 'Freshwater', horizontalalignment='left', bbox=dict(boxstyle="square", facecolor='lightgrey'), fontsize=10)
     
-    st.write(f"**Maximum upconing:** {z_0:.2f} m")
-    st.write(f"**Critical pumping rate:** {Q_max:.3f} m^3/d")
-    st.write(f"**Critical upconing elevation:** {z_max:.2f} m")
-    return fig 
-    
-# Streamlit UI
-st.title("Upconing")
-
-Q = st.slider("Freshwater Discharge (Q)", min_value=100, max_value=5000, step=10, value=1000)
-K = st.slider("Hydraulic Conductivity (K)", min_value=1, max_value=100, step=1, value=50)
-d_pre = st.slider("Pre-pumping distance (d_pre)", min_value=0.5, max_value=100.0, step=0.1, value=10.0)
-rho_f = st.slider("Freshwater Density (ρ_f)", min_value=950, max_value=1050, step=1, value=1000)
-rho_s = st.slider("Saltwater Density (ρ_s)", min_value=950, max_value=1050, step=1, value=1025)
-n = st.slider("Porosity (n)", min_value=0.05, max_value=0.4, step=0.01, value=0.15)
-
-fig = upconing(Q, K, d_pre, rho_f, rho_s, n)
 st.pyplot(fig)
+    
+st.write(f"**Maximum upconing:** {z_0:.2f} m")
+st.write(f"**Critical pumping rate:** {Q_max:.3f} m^3/d")
+st.write(f"**Critical upconing elevation:** {z_max:.2f} m")
+
+
 
 # Copyright
 col1, col2 = st.columns([1, 5], gap = 'large')  # Adjust column width ratio
