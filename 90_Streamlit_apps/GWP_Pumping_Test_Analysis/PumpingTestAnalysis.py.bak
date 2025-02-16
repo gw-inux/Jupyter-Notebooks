@@ -14,19 +14,19 @@ st.header('Welcome 👋')
 
 st.markdown(
     """
-    Pumping tests are one of the most important methods in hydrogeology for acquiring information about groundwater systems. A pumping test provides values of aquifer transmissivity _T_ and storativity _S_. This application is designed to introduce the evaluation of pumping tests for confined, unconfined, and leaky aquifers.
+    Pumping tests are one of the most important methods in Hydrogeology to achieve information and parameters of hydrogeological structures like aquifers. Accordingly, a pumping test provides the aquifers transmissivity _T_ and storativity _S_. This app is designed to introduce the evaluation of pumping tests for confined, unconfined, and leaky aquifers.
     
-    First, the general response of aquifers to groundwater abstraction is explained as a cone of water-level drawdown expanding outward from a well over time. Then we explore how pumping test data can be evaluated for
+    First, you will understand the general reaction of aquifers on water abstraction. You will understand how the cone of drawdown develops over space and time. Then we will see how pumping test data can be evaluated. We will do this for
     - confined,
     - leaky, and
     - unconfined aquifers.
     
-    We will use a few different data sets
+    And we will use different data sets
     - synthetic and idealized data that originate from textbooks,
     - measured data from the Varnum test site in Sweden,
     - measured data from the Viterbo test site in Italy,
     - measured data from the Pirna test site in Germany,
-    - and you can also use your own data.
+    - plus you can also use your own data.
 """
 )
 
