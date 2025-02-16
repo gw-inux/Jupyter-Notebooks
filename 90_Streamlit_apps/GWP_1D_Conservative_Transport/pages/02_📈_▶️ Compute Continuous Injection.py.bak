@@ -191,6 +191,8 @@ legend.get_frame().set_linewidth(0.0)
 
 # Lower figure
 
+st.write("Concentration along column for an average velocity of _v_ (m/s) = ","% 7.3E"% v)
+
 if plot_PROFILE:
     ax = fig.add_subplot(gs[2,:])
     ax.set_title  (f"Concentration profile along the column at t = {time_p} seconds", fontsize=24)
