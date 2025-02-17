@@ -96,7 +96,7 @@ with st.expander(":blue[**Step 5b: Postprocessing with GW_Chart**] - Expand to s
     st.video(videourl6)    
 with st.expander(":blue[**Step 5c: Export model data**], **processing model data, and importing in the** :red[**Pumping Test App**] - Expand to see the instructions"):
     st.markdown("""
-            **STEP 5c: Export model data, process model data, and importing in the PumpingTest App**
+            **STEP 5c: Export model data, process model data, and importing in the PumpingTest App (https://gwp-pumping-test-analysis.streamlit.app/)**
             
            """)
     to_do(
