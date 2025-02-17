@@ -20,7 +20,7 @@ st.markdown(
     
     A conservative solute does not undergo chemical reactions nor does it attach to the medium so it moves at the same velocity as the groundwater. 
     
-    :blue[The 1D Conservative Transport Application calculates the breakthrough curve for two types of input sources with ONLY longitudinal dispersion in one-dimensional steady flow through a homogeneous porous medium.] This is representative of solute moving through a laboratory column full of homogeneous sand.
+    :blue[The 1D Conservative Transport Application calculates the break through curve for two types of input sources with ONLY longitudinal dispersion in one-dimensional steady flow through a homogeneous porous medium.] This is representative of solute moving through a laboratory column full of homogeneous sand.
 """
 )
 left_co, cent_co, last_co = st.columns((20,60,20))
@@ -40,7 +40,7 @@ st.markdown (
 
 left_co, cent_co, last_co = st.columns((20,60,20))
 with cent_co:
-    st.image('C:/_1_GitHub/Jupyter-Notebooks/90_Streamlit_apps/GWP_1D_Conservative_Transport/assets/images/breakthrough_curve.jpg', caption="Example breakthrough curve at a given distance from the source")
+    st.image('C:/_1_GitHub/Jupyter-Notebooks/90_Streamlit_apps/GWP_1D_Conservative_Transport/assets/images/break_through_curve.jpg', caption="Example break through curve at a given distance from the source")
 
 st.markdown(
     """   

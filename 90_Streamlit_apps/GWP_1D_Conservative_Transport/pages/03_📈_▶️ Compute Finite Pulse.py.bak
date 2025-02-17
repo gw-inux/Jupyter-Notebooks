@@ -238,7 +238,7 @@ for t in range(t0, t1+1, dt):
 #PLOT FIGURE
 fig = plt.figure(figsize=(9,6))
 ax = fig.add_subplot(1, 1, 1)
-ax.set_title(f"Concentration breakthrough curve at x = {l} meters", fontsize=18)
+ax.set_title(f"Concentration breakthrough curve at x = {l} meters", fontsize=20)
 ax.set_xlabel ('Time (s)', fontsize=14)
 ax.set_ylabel ('Concentration (g/m³)', fontsize=14)
 

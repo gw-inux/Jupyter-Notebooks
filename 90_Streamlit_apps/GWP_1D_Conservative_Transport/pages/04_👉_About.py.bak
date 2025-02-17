@@ -5,7 +5,7 @@ st.header('The 1D Conservative Transport Application')
 st.markdown(
     """
     ### Description
-    The 1D Conservative Transport interactive tool calculates the breakthrough curve for different input sources in one-dimensional, steady, uniform, groundwater flow in a homogeneous, isotropic aquifer.
+    The 1D Conservative Transport interactive tool calculates the break through curve for different input sources in one-dimensional, steady, uniform, groundwater flow in a homogeneous, isotropic aquifer.
     
     ### Development
     Innovative and digital learning and teaching materials are currently enhanced and transferred to various partners across Europe by the EU cooperation project [iNUX](https://www.gw-inux.org/). The iNUX project is funded by the ERASMUS+ program of the European Union.
@@ -16,9 +16,9 @@ st.markdown(
 
 left_co2, cent_co2 = st.columns((20,60))
 with left_co2:
-    st.image('C:/_1_GitHub/Jupyter-Notebooks/90_Streamlit_apps/GWP_1D_Conservative_Transport/assets/images/iNUX_wLogo.png')
+    st.image('90_Streamlit_apps/GWP_1D_Conservative_Transport/assets/images/iNUX_wLogo.png')
 with cent_co2:
-    st.image('C:/_1_GitHub/Jupyter-Notebooks/90_Streamlit_apps/GWP_1D_Conservative_Transport/assets/images/1200px-Erasmus+_Logo.svg.png')
+    st.image('90_Streamlit_apps/GWP_1D_Conservative_Transport/assets/images/1200px-Erasmus+_Logo.svg.png')
 
 st.markdown(
     """
@@ -54,7 +54,7 @@ with cent_co3:
 
 left_co3, cent_co3 = st.columns((20,60))
 with left_co3:
-    st.image('C:/_1_GitHub/Jupyter-Notebooks/90_Streamlit_apps/GWP_1D_Conservative_Transport/assets/images/eileen.poeter.jpg')
+    st.image('90_Streamlit_apps/GWP_1D_Conservative_Transport/assets/images/eileen.poeter.jpg')
 with cent_co3:
     st.markdown(
         """
