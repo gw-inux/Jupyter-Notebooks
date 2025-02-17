@@ -7,7 +7,7 @@ st.title('Tutorial: Numerical model of a pumping test')
 st.subheader('Running a pumping test :orange[in a confined aquifer to compare with the Theis solution]', divider="orange")
 
 st.markdown("""
-            This app contains a tutorial with descriptions (as To-Do list) and videos on how to setup a MODFLOW model for pumping from a confined aquifer (see the following figure). The model generates data that are subsequently further processed by the PumpingTest app. The individual steps of the modeling process are provided in the following boxes that you can expand by clicking.
+            This app contains a tutorial with descriptions (as To-Do list) and videos on how to setup a MODFLOW model for pumping from a confined aquifer (see the following figure). The model generates data that are subsequently further processed by the PumpingTest app (https://gwp-pumping-test-analysis.streamlit.app/). The individual steps of the modeling process are provided in the following boxes that you can expand by clicking.
             
             The model (Confined_pumping.gpt) and the generated data (confined_pumping.csv) are available in GitHub (https://github.com/gw-inux/Jupyter-Notebooks/tree/main/90_Streamlit_apps/SYMPLE25/DATA)
            """)
@@ -106,7 +106,7 @@ with st.expander(":blue[**Step 5c: Export model data**], **processing model data
     to_do(
         [(st.write, "Copy the data to an text editor. Replace the _TAB_ (space between the numbers) by a comma and save the file with the ending *.csv.")], "td16",)
     to_do(
-        [(st.write, "Open the data in the PumpingTest App and adapt the parameters pumping rate (0.01 m³/s) and distance of the observation to the pumping well (50 m). Then do the parameter fitting - the results in the app should reflect your model parameters (storativity and transmissivity = hydr. conductivity x thickness of the aquifer).")], "td17",)
+        [(st.write, "Open the data in the PumpingTest App (https://gwp-pumping-test-analysis.streamlit.app/) and adapt the parameters pumping rate (0.01 m³/s) and distance of the observation to the pumping well (50 m). Then do the parameter fitting - the results in the app should reflect your model parameters (storativity and transmissivity = hydr. conductivity x thickness of the aquifer).")], "td17",)
     st.video(videourl7)
     
 st.subheader('Possible next steps for your own investigation', divider = 'blue')
