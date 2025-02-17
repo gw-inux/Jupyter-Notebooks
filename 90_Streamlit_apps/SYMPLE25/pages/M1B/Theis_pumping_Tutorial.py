@@ -4,7 +4,7 @@ from streamlit_extras.stodo import to_do
 
 st.title('Tutorial: Numerical model of a pumping test')
 
-st.subheader('Running a pumping test :orange[in a confined aquifer to compare with the Theis solution]', divider="orange")
+st.subheader('Running a pumping test with MODFLOW :orange[in a confined aquifer to compare with the Theis solution]', divider="orange")
 
 st.markdown("""
             This app contains a tutorial with descriptions (as To-Do list) and videos on how to setup a MODFLOW model for pumping from a confined aquifer (see the following figure). The model generates data that are subsequently further processed by the PumpingTest app. The individual steps of the modeling process are provided in the following boxes that you can expand by clicking.
