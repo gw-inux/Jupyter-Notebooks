@@ -5,6 +5,7 @@ import numpy as np
 import streamlit as st
 import streamlit_book as stb
 from streamlit_extras.stateful_button import button
+from decimal import Decimal
 
 st.title('1D Transport with advection and dispersion')
 st.subheader('Solute input as :orange[Continuous Injection]', divider="orange")
@@ -14,9 +15,9 @@ st.subheader('Solute input as :orange[Continuous Injection]', divider="orange")
 st.markdown("""
             ### About the computed situation
             
-            Transport is calculated for steady one-dimensional flow through a homogeneous porous medium in a 1-meter long laboratory column with a specific discharge _q_ of 0.0001 m/s.
+            Transport is calculated for steady one-dimensional flow through a homogeneous porous medium in a 1 meter long laboratory column with a flow rate _Q_ of approximately 2x10<sup>-7</sup> m<sup>3</sup>/sec and specific discharge _q_ of 0.0001 m/s.
             
-            The average velocity _v_ depends on the porosity _n_ (_v=q/n_) which is printed above the graph.
+            The average velocity _v_ depends on the porosity _n_ (_v=q/n_) which is printed above the graphs.
             
             Solutes are continuously injected on the left with a user-defined concentration  _Co_ in g/m<sup>3</sup> (same as mg/L).
             
@@ -85,8 +86,8 @@ def concentration_a(x, t, v, c0, R):
 
 # Data for the scenario
 
-Q  = 2.0268E-7 # Discharge in the column
-r  = 0.0254    # Column radius
+Q  = 2.0268E-7 # Discharge in the column (cubic meters per second)
+r  = 0.0254    # Column radius (meters)
 lmax = 1.0     # Column length
 ci = 0         # Initial concentration
 
@@ -96,28 +97,23 @@ dt = 10         # Time discretization for ploting
 
 columns3 = st.columns((1,1,1), gap = 'large')
 
-
-
-
 with columns3[0]:
-    plot_DATA = st.toggle('Show Measured data for calibration',False)
-    if plot_DATA:
-        l = 0.75
-        st.write('**Distance of observation from source is 0.75 m for the measured data**')
-        st.write('**Calibration is the process of adjusting parameter values until the model matches the data**')
-        st.write('**After calibrating to the data, you can check your values using the button below the graph**')
-    else:
-        l  = st.slider(f'**Distance of observation from source (m)**',0.01,lmax,0.5,0.01)
-
-with columns3[1]:
-    plot_PROFILE = st.toggle('Plot concentration profile',False) 
-    if plot_PROFILE:
-        time_p = st.slider(f'**Time to plot the conc. profile (s)**',0,10000,600,60)
-        
-with columns3[2]:
     c0 = st.slider(f'**Input concentration (g/m³) (same as mg/L)**',100,10000,1000,100) 
     n  = st.slider(f'**Porosity (dimensionless)**',0.01,0.6,0.2,0.01)       
     a  = st.slider(f'**Longitudinal dispersivity (m)**',0.002,0.100,0.010,0.001, format="%5.3f")
+
+with columns3[1]:
+    plot_DATA = st.toggle('Show Measured data for calibration',False)
+    if plot_DATA:
+        l = 0.75
+        time_p = l/(Q/(np.pi*r**2)/n)
+        st.write(f"**Calibration data measured {l} m from the source**")
+        st.write(f"**Concentration profile is for {round(time_p)} seconds**")
+        st.write('**To calibrate, adjust parameter values until model matches data**')
+        st.write('**Check calibrated values using button below graphs**')
+    else:
+        l  = st.slider(f'**Distance of observation from source (m)**',0.01,lmax,0.5,0.01)
+        time_p = st.slider(f'**Time to plot the conc. profile (s)**',0,10000,600,60)
 
 "---"
 
@@ -127,19 +123,17 @@ q =     Q/A
 v =     q/n
 
 # Compute concentration for profile
-if plot_PROFILE:
+loc = np.arange(0., lmax, lmax/150)
+conc_p = concentration(loc, time_p, a, v, c0, 1)
     
-    loc = np.arange(0., lmax, lmax/150)
-    conc_p = concentration(loc, time_p, a, v, c0, 1)
-    
-    # Advection only
-    loca =    []
-    conca_p = []
-    
-    for x in np.linspace(0, lmax, num=150):
-        ca_p = concentration_a(x, time_p, v, c0, 1)
-        conca_p.append(ca_p)
-        loca.append(x)
+# Advection only
+loca =    []
+conca_p = []
+
+for x in np.linspace(0, lmax, num=150):
+    ca_p = concentration_a(x, time_p, v, c0, 1)
+    conca_p.append(ca_p)
+    loca.append(x)
 
 
 # Computation of breakthrough
@@ -161,7 +155,7 @@ for t in range(0, tmax, dt):
 t_obs = [1000,	1250,	1500,	1750,	2000,	2250,	2500,	2750,	3000,	3250,	3500,	3750,	4000,	4250]
 c_obs = [5.79,	32.19,	93.93,	190.40,	308.54,	432.26,	548.89,	651.01,	735.79,	803.45,	855.85,	895.50,	924.97,	946.55]
 
-st.write("Concentration at one location for an average velocity of _v_ (m/s) = ","% 7.3E"% v)
+st.write("Concentration for an average velocity _v_ = ","% 7.3E"% v, " (m/s)")
 
 # PLOT FIGURE
 
@@ -171,7 +165,7 @@ gs = matplotlib.gridspec.GridSpec(3,1, height_ratios=[1,0.02,0.7])
 
 # Upper figure 
 ax = fig.add_subplot(gs[0,:])
-ax.set_title  (f"Concentration through time at x = {l} meters", fontsize=24)
+ax.set_title  (f"Concentration breakthrough curve at x = {l} meters", fontsize=24)
 ax.set_xlabel ('Time (s)', fontsize=14)
 ax.set_ylabel ('Concentration (g/m³)', fontsize=14)
       
@@ -191,23 +185,20 @@ legend.get_frame().set_linewidth(0.0)
 
 # Lower figure
 
-st.write("Concentration along column for an average velocity of _v_ (m/s) = ","% 7.3E"% v)
+ax = fig.add_subplot(gs[2,:])
+ax.set_title  (f"Concentration profile along the column at t = {round(time_p)} seconds", fontsize=24)
+ax.set_xlabel ('Column length (m)', fontsize=14)
+ax.set_ylabel ('Concentration (g/m³)', fontsize=14)
+  
+ax.plot(loca, conca_p, 'orange', linewidth=2, label="Computed: ONLY Advection")  
+ax.plot(loc,  conc_p,  'green',    linewidth=2, label="Computed: Advection-Dispersion")
 
-if plot_PROFILE:
-    ax = fig.add_subplot(gs[2,:])
-    ax.set_title  (f"Concentration profile along the column at t = {time_p} seconds", fontsize=24)
-    ax.set_xlabel ('Column length (m)', fontsize=14)
-    ax.set_ylabel ('Concentration (g/m³)', fontsize=14)
-      
-    ax.plot(loca, conca_p, 'orange', linewidth=2, label="Computed: ONLY Advection")  
-    ax.plot(loc,  conc_p,  'green',    linewidth=2, label="Computed: Advection-Dispersion")
-
-    plt.ylim(0, 1.19*c0)
-    plt.xlim(0, lmax)
-    plt.xticks(np.arange(0, 1.01*lmax, 0.1),fontsize=14)
-    plt.yticks(fontsize=14)
-    legend = plt.legend(loc='upper right', fontsize=14, framealpha=0.8)
-    legend.get_frame().set_linewidth(0.0)
+plt.ylim(0, 1.19*c0)
+plt.xlim(0, lmax)
+plt.xticks(np.arange(0, 1.01*lmax, 0.1),fontsize=14)
+plt.yticks(fontsize=14)
+legend = plt.legend(loc='upper right', fontsize=14, framealpha=0.8)
+legend.get_frame().set_linewidth(0.0)
 
 st.pyplot(fig)
 
