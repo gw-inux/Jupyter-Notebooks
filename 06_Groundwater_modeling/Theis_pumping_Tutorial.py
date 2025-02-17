@@ -8,6 +8,8 @@ st.subheader('Running a pumping test :orange[in a confined aquifer to compare wi
 
 st.markdown("""
             This app contains a tutorial with descriptions (as To-Do list) and videos on how to setup a MODFLOW model for pumping from a confined aquifer (see the following figure). The model generates data that are subsequently further processed by the PumpingTest app. The individual steps of the modeling process are provided in the following boxes that you can expand by clicking.
+            
+            The model (Confined_pumping.gpt) and the generated data (confined_pumping.csv) are available in GitHub (https://github.com/gw-inux/Jupyter-Notebooks/tree/main/90_Streamlit_apps/SYMPLE25/DATA)
            """)
 
 lc0, cc0, rc0 = st.columns((20,60,20))
