@@ -20,8 +20,8 @@ st.markdown(
     
     Use the sidebar to choose the step to activate
 
-    STILL TRYING TO FIGURE OUT CODESPACES
-        
+    TRY AGAIN?
+
     ---
 """
 )
