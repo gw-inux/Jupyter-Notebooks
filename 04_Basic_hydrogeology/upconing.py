@@ -90,8 +90,8 @@ x = np.arange(-1000, 1000, 0.25)
 lc1, rc1 = st.columns((1,1), gap = 'large')
 with lc1:
     with st.expander('System parameters'):
-        rho_f = st.slider("Freshwater Density (#ρ_f#) in kg/m³", min_value=950, max_value=1050, step=1, value=1000)
-        rho_s = st.slider("Saltwater Density (#ρ_s#) in kg/m³", min_value=950, max_value=1050, step=1, value=1025)
+        rho_f = st.slider("Freshwater Density (#\rho_f#) in kg/m³", min_value=950, max_value=1050, step=1, value=1000)
+        rho_s = st.slider("Saltwater Density (#\rho_s#) in kg/m³", min_value=950, max_value=1050, step=1, value=1025)
 with rc1:
     with st.expander('Hydrogeologic parameters'):
         K = st.slider("Hydraulic Conductivity (K) in m/d", min_value=1, max_value=100, step=1, value=50)
