@@ -135,6 +135,6 @@ st.write(f"**Critical upconing elevation:** {z_max:.2f} m")
 # Copyright
 col1, col2 = st.columns([1, 5], gap = 'large')  # Adjust column width ratio
 with col1:
-    st.image('Jupyter-Notebooks/04_Basic_hydrology/FIGS/logo_iNUX.jpg', width=125)
+    st.image('04_Basic_hydrology/FIGS/logo_iNUX.jpg', width=125)
 with col2:
     st.markdown("© 2025 iNUX Project - Interactive understanding of groundwater hydrology and hydrogeology - An ERASMUS+ cooperation project.<br>App developer: Markus Giese (University of Gothenburg)", unsafe_allow_html=True)
