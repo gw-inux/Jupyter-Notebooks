@@ -48,7 +48,7 @@ with st.expander(":blue[**Proceed with Exercise Step 1**] - See here for instruc
            _To proceed,_ use the interactive plot below and observe the response to the following actions:
            """)
     to_do(
-        [(st.write, "Increase the pumping rate. What happens with the drawdown? Adjust the slider 'Print drawdown at _r_ (m)' (middle column) to print specific values below the graph.")],"td01",)
+        [(st.write, "Increase the pumping rate. What happens with the drawdown? The slider 'Print drawdown at distance _r_ (m)' (middle column) to print specific values of drawdown.")],"td01",)
     to_do(
         [(st.write, "Now use the toggle on the left side to 'Show drawdown vs time plot'. Modify the 'Distance to show (m)' and see how the drawdown vs time changes depending of the distance from the abstraction well.")], "td02",)
 
