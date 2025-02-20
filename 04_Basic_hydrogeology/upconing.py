@@ -90,14 +90,14 @@ x = np.arange(-1000, 1000, 0.25)
 lc1, rc1 = st.columns((1,1), gap = 'large')
 with lc1:
     with st.expander('System parameters'):
-        rho_f = st.slider("Freshwater Density (ρ_f) in kg/m³", min_value=950, max_value=1050, step=1, value=1000)
-        rho_s = st.slider("Saltwater Density (ρ_s) in kg/m³", min_value=950, max_value=1050, step=1, value=1025)
+        rho_f = st.slider("Freshwater Density (#ρ_f#) in kg/m³", min_value=950, max_value=1050, step=1, value=1000)
+        rho_s = st.slider("Saltwater Density (#ρ_s#) in kg/m³", min_value=950, max_value=1050, step=1, value=1025)
 with rc1:
     with st.expander('Hydrogeologic parameters'):
-        K = st.slider("Hydraulic Conductivity (K)", min_value=1, max_value=100, step=1, value=50)
+        K = st.slider("Hydraulic Conductivity (K) in m/d", min_value=1, max_value=100, step=1, value=50)
         n = st.slider("Porosity (n)", min_value=0.05, max_value=0.4, step=0.01, value=0.15)
-    d_pre = st.slider("Pre-pumping distance ($d_{pre}$)", min_value=0.5, max_value=100.0, step=0.1, value=10.0)
-    Q = st.slider("Freshwater Discharge ($Q$)", min_value=0, max_value=5000, step=10, value=100)
+    d_pre = st.slider("Pre-pumping distance ($d_{pre}$) in m", min_value=0.5, max_value=100.0, step=0.1, value=10.0)
+    Q = st.slider("Freshwater Discharge (pumping rate) ($Q$) in m³/d", min_value=0, max_value=5000, step=10, value=100)
    
 z, z_0, Q_max, z_max = upconing(x, Q, K, d_pre, rho_f, rho_s, n)
 
@@ -127,7 +127,7 @@ plt.text(-950, 2.5, 'Freshwater', horizontalalignment='left', bbox=dict(boxstyle
 st.pyplot(fig)
     
 st.write(f"**Maximum upconing:** {z_0:.2f} m")
-st.write(f"**Critical pumping rate:** {Q_max:.3f} m^3/d")
+st.write(f"**Critical pumping rate:** {Q_max:.3f} m³/d")
 st.write(f"**Critical upconing elevation:** {z_max:.2f} m")
 
 
