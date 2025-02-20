@@ -46,7 +46,6 @@ with column[0]:
         K = 10 ** K_slider_value
         # Display the logarithmic value
         container.write("**Hydraulic conductivity** in m/s: %5.2e" %K)
-    st.session_state.analytic = st.toggle("Show analytic solution", help="Press here to plot the analytical solution for comparison") 
 with column[1]:
     with st.expander('**Spatial discretization**'):
         cells   = st.number_input('Number of cells', 3, 100, 11, 1)
@@ -57,6 +56,8 @@ with column[2]:
         st.session_state.epsilon = st.number_input('Closure criteria (in m)', 0.00001, 10., 0.001, 0.00001, format="%0.4f")
         st.session_state.analytic = st.toggle("Show analytic solution", help="Press here to start the iteration with the analytic solution")    
 
+st.session_state.analytic = st.toggle("Show analytic solution", help="Press here to plot the analytical solution for comparison") 
+    
 i = 0
 run = False
     
