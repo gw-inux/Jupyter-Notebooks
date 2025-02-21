@@ -109,6 +109,7 @@ elif(st.session_state.Data =="Load own CSV dataset"):
         df = pd.read_csv(uploaded_file)
         m_time = list(df.iloc[:,0].values)
         m_head = list(df.iloc[:,1].values)
+    st.write(m_head)
 
 "---"
 st.subheader('Computation')
