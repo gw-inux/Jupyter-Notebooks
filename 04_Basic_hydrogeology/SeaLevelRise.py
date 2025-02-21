@@ -178,7 +178,7 @@ ax.fill_between(x_sea-1, -y_sea, -z0, facecolor='cornflowerblue', hatch = '//')
 ax.fill_between(x_sea-1, 0, -y_sea, facecolor='royalblue')
 ax.fill_between(x_sea-1, delta_z0, 0, facecolor='royalblue', alpha=0.5)
 
-ax.fill_between(x_land, delta_z0, np.maximum(y_land,0), facecolor='royalblue', alpha=0.5, where=(x_land >= x_T+delta_L))
+ax.fill_between(x_land, delta_z0, np.maximum(y_land,0), facecolor='royalblue', alpha=0.5, where=(x_land >= L0-delta_L))
 
 ax.fill_between(x_land, np.maximum(-z_new_x + delta_z0, -z_x), -z_x, facecolor='red', alpha=0.5, hatch='//')
 ax.fill_between(x_land, np.maximum(new_sealevel, -z_x), -z_x, facecolor='red', alpha=0.5, hatch='//')
