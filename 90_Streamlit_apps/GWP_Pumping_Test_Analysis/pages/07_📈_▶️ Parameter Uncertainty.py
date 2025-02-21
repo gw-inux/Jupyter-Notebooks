@@ -20,7 +20,7 @@ st.markdown("""
             
 left_co, cent_co, last_co = st.columns((20,60,20))
 with cent_co:
-    st.image('90_Streamlit_apps/GWP_Pumping_Test_Analysis/assets/images/drawdown_aquifer.png', caption="The figure shows the drawdown in a confined pumped underground formation; from Kruseman and De Ridder (1994); available as preserved book in the Groundwater Project")
+    st.image('C:/_1_GitHub/Jupyter-Notebooks/90_Streamlit_apps/GWP_Pumping_Test_Analysis/assets/images/drawdown_aquifer.png', caption="The figure shows the drawdown in a confined pumped underground formation; from Kruseman and De Ridder (1994); available as preserved book in the Groundwater Project")
             
 st.markdown("""
             
