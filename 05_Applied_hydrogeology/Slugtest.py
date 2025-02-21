@@ -88,7 +88,7 @@ with columns[0]:
 with columns[1]:
     if(st.session_state.Data =="Load own CSV dataset"):
         slugsize = st.number_input("Slug size in cm³ (1 liter = 1000 cm³)", value = 700,step=1)
-        h_static = st.number_input("Static water level (hydraulic head) in m", value = 0, step=0.01)
+        h_static = st.number_input("Static water level (hydraulic head) in m", value = 0., step=0.01)
     
 
 
