@@ -132,7 +132,7 @@ L0=1000
 rho_f=1000
 rho_s=1025
 theta=2
-delta_z0=st.slider('Sea Level rise in m', 0.1, 10., 5., 0.01)
+delta_z0=st.slider('Sea Level rise in m', 0.01, 7.6, 0.1, 0.01)
 h0_x=1
 n = 0.2
 
@@ -175,8 +175,8 @@ ax.hlines(delta_z0, L0-delta_L, L0 + xmax, color='blue')   # new sea level
 ax.fill_between(x_land, -z_x, -z0, facecolor='cornflowerblue', hatch = '//')
 ax.fill_between(x_sea-1, -y_sea, -z0, facecolor='cornflowerblue', hatch = '//')
 
-ax.fill_between(x_sea-1, 0, -y_sea, facecolor='royalblue')
-ax.fill_between(x_sea-1, delta_z0, 0, facecolor='royalblue', alpha=0.5)
+ax.fill_between(x_sea, 0, -y_sea, facecolor='royalblue')
+ax.fill_between(x_sea, delta_z0, 0, facecolor='royalblue', alpha=0.5)
 
 ax.fill_between(x_land, delta_z0, np.maximum(y_land,0), facecolor='royalblue', alpha=0.5, where=(x_land >= L0-delta_L))
 
@@ -190,7 +190,7 @@ ax.fill_between(x_land, 0, -z_x, facecolor='lightskyblue', alpha=0.5)
 #plt.text(1180, -80, 'Saltwater', horizontalalignment='right', bbox=dict(boxstyle="square", facecolor='lightgrey'), fontsize=10)
 #plt.text(150, -10, 'Freshwater', horizontalalignment='right', bbox=dict(boxstyle="square", facecolor='lightgrey'), fontsize=10)
 ax.set(xlabel='x [m]', ylabel='head [m]',title='Sea level rise')
-plt.ylim(-z0, 10)
+plt.ylim(-z0, 15)
 plt.xlim(0,L0 + xmax)
 
 st.pyplot(fig)
