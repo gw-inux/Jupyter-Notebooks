@@ -15,9 +15,9 @@ st.markdown(
 
 left_co2, cent_co2 = st.columns((20,60))
 with left_co2:
-    st.image('90_Streamlit_apps/GWP_Well_capture/assets/images/iNUX_wLogo.png')
+    st.image('C:/_1_GitHub/Jupyter-Notebooks/90_Streamlit_apps/GWP_Well_capture/assets/images/iNUX_wLogo.png')
 with cent_co2:
-    st.image('90_Streamlit_apps/GWP_Well_capture/assets/images/1200px-Erasmus+_Logo.svg.png')
+    st.image('C:/_1_GitHub/Jupyter-Notebooks/90_Streamlit_apps/GWP_Well_capture/assets/images/1200px-Erasmus+_Logo.svg.png')
 
 st.markdown(
     """
@@ -27,7 +27,7 @@ st.markdown(
     
 left_co2, cent_co2 = st.columns((20,60))
 with left_co2:
-    st.image('90_Streamlit_apps/GWP_Well_capture/assets/images/thomasreimann.png')
+    st.image('C:/_1_GitHub/Jupyter-Notebooks/90_Streamlit_apps/GWP_Well_capture/assets/images/thomasreimann.png')
 with cent_co2:
     st.markdown(
         """

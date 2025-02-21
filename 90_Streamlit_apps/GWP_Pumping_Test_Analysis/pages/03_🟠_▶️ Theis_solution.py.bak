@@ -99,7 +99,7 @@ if show_theory:
     
     st.markdown(
     """
-    This function is commonly evaluated using numerical techniques or tables of _W(u)_ as a function of _u_. The Theis solution is widely used in pumping test analysis to estimate aquifer properties by fitting observed drawdown data to Theis type curve.
+    This function is commonly evaluated using numerical techniques or lookup tables. The Theis solution is widely used in pumping test analysis to estimate aquifer properties by fitting observed drawdown data to theoretical type curves.
     """
     )
 
