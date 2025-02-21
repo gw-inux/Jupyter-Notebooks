@@ -28,7 +28,7 @@ with lc0:
     st.image('05_Applied_hydrogeology/FIGS/slug_confined.png', caption="Schematic representation of a slug test where a slug of water is added to a well. Figure from Kruseman and DeRidder - a Groundwater Project preserved book (https://gw-project.org/books/analysis-and-evaluation-of-pumping-test-data/).")
 with rc0:
     st.video('https://youtu.be/GTq72oB0qZo')
-    st.write('_Video:_ Slugtest performed at the Varnum site (Sweden) by adding approximately 10 liter to an groundwater observation well.')
+    st.write('_Video:_ Slugtest performed at the Varnum site (Sweden) by adding approximately 4 liter to an groundwater observation well.')
 
 
 with st.expander('The Theory behind the Bouwer & Rice Method for Unconfined Aquifers'):
