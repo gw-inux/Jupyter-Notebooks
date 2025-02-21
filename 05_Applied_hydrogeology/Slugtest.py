@@ -25,7 +25,7 @@ st.markdown("""
            
 lc0, rc0 = st.columns((1,1.3),gap = 'large')
 with lc0:
-    st.image('05_Applied_hydrogeology/FIGS/slug_unconfined.png', caption="Schematic representation of a slug test where a slug of water is added to a well. Figure modified from Bouwer and Rice (1976).")
+    st.image('05_Applied_hydrogeology/FIGS/slug_unconfined.png', caption="Schematic representation of a slug test where a slug of water is added to a well. Accordingly the water level will rise (blue part in the illustration). Figure modified from Bouwer and Rice (1976).")
 with rc0:
     st.video('https://youtu.be/GTq72oB0qZo')
     st.write('_Video:_ Slugtest performed at the Varnum site (Sweden) by adding approximately 4 liter to an groundwater observation well.')
