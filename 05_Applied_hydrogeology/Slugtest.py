@@ -75,6 +75,8 @@ with st.expander('The Theory behind the Bouwer & Rice Method for Unconfined Aqui
  
     st.markdown("""    
             Reference: Bouwer, H., & Rice, R. C. (1976). A slug test for determining hydraulic conductivity of unconfined aquifers with completely or partially penetrating wells. Water Resources Research, 12(3), 423-428.
+            
+            The subsequent interactive app is based on an idea from Prof. Masaki Hayashi.
            """)
     
 "---"
