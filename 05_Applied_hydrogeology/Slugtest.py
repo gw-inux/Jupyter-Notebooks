@@ -23,9 +23,13 @@ st.markdown("""
             **Why use slug tests?** They are fast, inexpensive, and suitable for small-scale investigations, making them a standard tool in hydrogeological site assessments.
            """)
            
-lc0, cc0, rc0 = st.columns((20,60,20))
-with cc0:
+lc0, rc0 = st.columns((1,1.3),gap = 'large')
+with lc0:
     st.image('05_Applied_hydrogeology/FIGS/slug_confined.png', caption="Schematic representation of a slug test where a slug of water is added to a well. Figure from Kruseman and DeRidder - a Groundwater Project preserved book (https://gw-project.org/books/analysis-and-evaluation-of-pumping-test-data/).")
+with rc0:
+    st.video('https://youtu.be/GTq72oB0qZo')
+    st.write('_Video:_ Slugtest performed at the Varnum site (Sweden) by adding approximately 10 liter to an groundwater observation well.')
+
 
 with st.expander('The Theory behind the Bouwer & Rice Method for Unconfined Aquifers'):
     st.markdown("""
@@ -49,17 +53,27 @@ with st.expander('The Theory behind the Bouwer & Rice Method for Unconfined Aqui
             - $h_t$: Head displacement at time $t$ (m)
             
             **Estimating the Effective Radius $R_e$**
-            The **effective radius** $R_e$ depends on the **well penetration**:  
+            The **effective radius** $R_e$ depends on the well penetration, which depends on the thickness and conductivity of the the well pack, the fraction of the screen that is below the water table, anisotropy and skin effects:  
             - **Fully penetrating well:**
             """)
+            
     st.latex(r'''R_e = \frac{D}{2}''')
     
     st.markdown("""  
             *(where $D$ is the saturated aquifer thickness)*  
             
-            - **Partially penetrating well:**  
-            $R_e = 1.1L + r_w$       
+            - **Partially penetrating well:**
+            """)
             
+    st.latex(r'''R_e = 1.1L + r_w''')     
+    
+    st.markdown("""              
+            - **For simplicity**, we use in this app:
+            """)
+            
+    st.latex(r'''R_e = L''')
+ 
+    st.markdown("""    
             Reference: Bouwer, H., & Rice, R. C. (1976). A slug test for determining hydraulic conductivity of unconfined aquifers with completely or partially penetrating wells. Water Resources Research, 12(3), 423-428.
            """)
     
@@ -90,7 +104,6 @@ elif(st.session_state.Data =="Load own CSV dataset"):
 
 # Fixed values
 
-L = 2.1
 tmax = 300
 
 # User defined values
@@ -106,6 +119,7 @@ with lc1:
     with st.expander('Provide well parameter'):
         rc = st.number_input("well casing radius", value = 0.025,step=.001, format="%.3f")
         rw = st.number_input("well screen radius", value = 0.085,step=.001, format="%.3f")
+        L  = st.number_input("Lenght of the well screen", value = 2.1,step=.1, format="%.1f")
     
 
 
@@ -132,7 +146,7 @@ exp_decay = np.exp(-F/prq*K*t)
 fig = plt.figure(figsize=(12,7))
 ax = fig.add_subplot()
 ax.plot(t_plot,exp_decay, color='magenta', label='computed')
-ax.plot(m_time,m_head, 'bo', label='measured')
+plt.plot(m_time,m_head, 'bo', mfc='none', label='measured')
 plt.axis([0,tmax,0,1])
 
 plt.xlabel(r'time t in (s)', fontsize=14)
