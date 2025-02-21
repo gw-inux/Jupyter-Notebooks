@@ -87,9 +87,10 @@ with columns[0]:
     ("Varnum (SWE) 2018 - R4", "Load own CSV dataset"), key = 'Data')
 with columns[1]:
     if(st.session_state.Data =="Load own CSV dataset"):
-        slugsize = st.number_input("Slug size in cm3 (1 liter = 1000 cm3)", value = 5000,step=.01, format="%.2f")
+        slugsize = st.number_input("Slug size in cm³ (1 liter = 1000 cm³)", value = 700,step=1)
     
-    
+
+
 if (st.session_state.Data == "Varnum (SWE) 2018 - R4"):
     slugsize = 700
     # Data and parameter from Varnum (SWE) 2018 - R4
@@ -106,6 +107,9 @@ elif(st.session_state.Data =="Load own CSV dataset"):
         df = pd.read_csv(uploaded_file)
         m_time = list(df.iloc[:,0].values)
         m_head = list(df.iloc[:,1].values)
+
+"---"
+st.subheader('Computation')
 
 # Computation
 
@@ -124,7 +128,7 @@ log_max =  -2.0  # Corresponds to 10^0 = 1
 lc1, rc1 = st.columns((1,1))
 with lc1:
     with st.expander('Provide well parameter'):
-        rc = st.number_input("well casing radius", value = 0.0255,step=.0001, format="%.4f")
+        rc = st.number_input("well casing radius", value = 0.03,step=.0001, format="%.4f")
         rw = st.number_input("well screen radius", value = 0.085,step=.001, format="%.3f")
         L  = st.number_input("Lenght of the well screen", value = 2.1,step=.1, format="%.1f")
     
@@ -167,3 +171,6 @@ plt.title('Slugtest evaluation (positive slug)', fontsize=16)
 plt.legend(fontsize=14)
 
 st.pyplot(fig=fig)
+
+st.write('Slugsize = ', slugsize, ' cm³')
+st.write('Initial water level $H_0$ = ', H0, ' m')
