@@ -28,7 +28,7 @@ st.markdown(
 
 left_co, cent_co, last_co = st.columns((20,60,20))
 with cent_co:
-    st.image('C:/_1_GitHub/Jupyter-Notebooks/90_Streamlit_apps/GWP_Pumping_Test_Analysis/assets/images/Flow_well_confined_2.png', caption="Sketch of developing drawdown cone around an abstraction well")
+    st.image('90_Streamlit_apps/GWP_Pumping_Test_Analysis/assets/images/Flow_well_confined_2.png', caption="Sketch of developing drawdown cone around an abstraction well")
 
 
 st.markdown(
