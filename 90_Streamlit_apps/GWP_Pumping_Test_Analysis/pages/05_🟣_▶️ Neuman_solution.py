@@ -23,7 +23,7 @@ st.markdown("""
             
 left_co, cent_co, last_co = st.columns((20,60,20))
 with cent_co:
-    st.image('C:/_1_GitHub/Jupyter-Notebooks/90_Streamlit_apps/GWP_Pumping_Test_Analysis/assets/images/unconfined_aquifer.png', caption="Cross section of a pumped unconfined aquifer Kruseman et al. 1994")
+    st.image('90_Streamlit_apps/GWP_Pumping_Test_Analysis/assets/images/unconfined_aquifer.png', caption="Cross section of a pumped unconfined aquifer Kruseman et al. 1994")
             
 st.markdown("""
             To start investigating the Neuman Solution it is useful to think about the questions provided in this initial assessment.

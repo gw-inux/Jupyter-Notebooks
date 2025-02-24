@@ -25,7 +25,7 @@ st.latex(r'''B = \sqrt{\frac{Tb'}{K'}}''')
             
 left_co, cent_co, last_co = st.columns((20,60,20))
 with cent_co:
-    st.image('C:/_1_GitHub/Jupyter-Notebooks/90_Streamlit_apps/GWP_Pumping_Test_Analysis/assets/images/leaky_aquifer_2.png', caption="Cross section of a pumped leaky aquifer, Kruseman et al., 1994")
+    st.image('90_Streamlit_apps/GWP_Pumping_Test_Analysis/assets/images/leaky_aquifer_2.png', caption="Cross section of a pumped leaky aquifer, Kruseman et al., 1994")
             
 st.markdown("""
            To start investigating the Hantush/Jacob Solution it is useful to think about the questions provided in this initial assessment.
