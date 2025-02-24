@@ -63,8 +63,6 @@ st.markdown(
     
     👉 Discuss why different stakeholders may have a different time at which they would assess utility.
     
-    👉 Develop a utility curve for the environment and be prepared to explain your choices.
-    
     Come up with a decision that you have to make in your life:
     
     - What is the STATE upon which you make the decision.
