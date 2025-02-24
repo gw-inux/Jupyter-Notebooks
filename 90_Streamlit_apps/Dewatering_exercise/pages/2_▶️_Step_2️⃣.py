@@ -4,6 +4,7 @@ import matplotlib.pyplot as plt
 import scipy.special
 import streamlit as st
 import streamlit_book as stb
+from streamlit_extras.stodo import to_do
 
 # (Here the necessary functions like the well function $W(u)$ are defined. Later, those functions are used in the computation)
 # Define a function, class, and object for Theis Well analysis
@@ -35,12 +36,30 @@ def compute_linU(s, s_U0, s_U1):
 
 fig = plt.figure(figsize=(12,7))
 
+st.title('Dewatering exercise 💦')
+st.subheader("Step 02 - Exploring Drawdown from Pumping", divider="blue")
+
+if st.toggle('Show additional **Notes for instructors**'):
+    to_do(
+    [(st.write, "Lead a discussion to remind students of radial flow to a well due to pumping.  Show half of a drawdown cone at two times and explain how it progresses.")],
+    "td01",)
+    to_do(
+    [(st.write, "Lead them through a discussion of the impact of ease of flow and ease of change in storage on transient response.")],
+    "td02",)
+    to_do(
+    [(st.write, "Define Transmissivity [L3/T] and Storativity [L].")],
+    "td03",)
+    to_do(
+    [(st.write, "If they know these properties, a hydrogeologist can provide quantitative predictions of the impact of pumping through time.")],
+    "td04",)
+    to_do(
+    [(st.write, "We will use an interactive model to explore the sensitivity of drawdown through time on S and T.")],
+    "td05",)
+    
+    
 st.markdown(
     """
-    ### Dewatering exercise 💦
-    ---
-    ## Step 2
-    
+                    
     Consider a well pumping at a rate of Q = 300 m3/d
     The aquifer has the properties: T = 3.02 e-04 m2/s, S = 3.02 e-03
     The far edge of the zone to be dewatered is at a distance r = 100 from the well.
