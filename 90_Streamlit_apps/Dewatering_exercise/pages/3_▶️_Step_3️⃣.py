@@ -14,6 +14,7 @@ import matplotlib.pyplot as plt
 import scipy.special
 import streamlit as st
 import streamlit_book as stb
+from streamlit_extras.stodo import to_do
 
 # (Here the necessary functions like the well function $W(u)$ are defined. Later, those functions are used in the computation)
 # Define a function, class, and object for Theis Well analysis
@@ -26,13 +27,35 @@ def compute_linU(s, s_U0, s_U1):
 
 fig = plt.figure(figsize=(12,7))
 
+st.title('Dewatering exercise 💦')
+st.subheader("Step 03 - Exploring Stakeholder Utility", divider="blue")
+
 # I found U slightly confusing because it is also used in the Theis context
+
+if st.toggle('Show additional **Notes for instructors**'):
+    to_do(
+    [(st.write, "Lead a discussion to examine how we 'value' things.")],
+    "td01",)
+    to_do(
+    [(st.write, "Start with everyday things ... how do we determine if something is 'worth the price'?")],
+    "td02",)
+    to_do(
+    [(st.write, "Then move on to town stakeholder - how do they value water?  Repeat for mine, then for environment.")],
+    "td03",)
+    to_do(
+    [(st.write, "Discuss pros and cons of translating everything to monetary value for valuation.")],
+    "td04",)
+    to_do(
+    [(st.write, "Introduce the idea of 'utility', varying from worthless U=0 to couldn't be better U=1.")],
+    "td05",)
+    to_do(
+    [(st.write, "What is the shape of U versus water level in a well?  How could you actually decide?")],
+    "td06",)
+    
 
 st.markdown(
     """
-    ### Dewatering exercise 💦
-    ---
-    ## Step 3
+
     Each stakeholder will place a different value on a given drawdown. Utility _U_ is a way to normalize these values.
     
     Consider a stakeholder for whom more drawdown is a worse outcome.    
