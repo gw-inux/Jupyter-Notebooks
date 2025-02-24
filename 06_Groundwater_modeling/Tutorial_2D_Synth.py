@@ -41,7 +41,7 @@ with st.expander(":blue[**Step 1: Discretization in space and time**] - Expand t
     to_do(
         [(st.write, "specify initial grid (difficult to be changed later!)."
         ,"\n - note: grid origin is at the upper left(!) corner, and length unit is meters (default)"
-        ,"\n - set x = 0, y = 2500, z = 250 for grid origin"
+        ,"\n - modify y = 2500 for grid origin"
         ,"\n - set further input data: number of columns = 40, number of rows = 25, number of layers = 1, model_top = 265, upper aquifer = 250"
         ,"\n - Press “Finish”")],"td02",)
     to_do(
@@ -168,7 +168,7 @@ with st.expander(":blue[**Step 3: Structure & Parameters**] - Expand to see the 
         
     to_do(
         [(st.write, "select “Create point object” (dot symbol two rows below “Navigation”) for the first well."
-        ,"\n - click on the cell containing the well location."
+        ,"\n - click on the cell containing the well location (3050, 1450)."
         ,"\n - name point object (like “well 1”)."
         ,"\n - select “MODFLOW Features” and “WEL”."
         ,"\n - set starting time = -1 and ending time = 0."
