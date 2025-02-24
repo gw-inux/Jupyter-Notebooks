@@ -6,7 +6,7 @@ st.markdown(
     ### Dewatering exercise 💦
     ---
     ## Step 4
-    * Discuss how stakeholders can use utility to find a compromise decision for the dewatering rate?
+    * Discuss how stakeholders can use utility to find a compromise decision for the dewatering rate.
     * Consider that the values of _T_, _S_, and the distances to the stakeholder interests are known and correct.
     * Use any tools that have been shown to you previously to explore the utilities of different pumping rates for all stakeholders.    
     * You should agree upon the utility curves for each stakeholder before you begin your analyses.    
