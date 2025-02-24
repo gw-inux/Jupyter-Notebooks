@@ -16,12 +16,14 @@ st.markdown("""
             
             The Theis (1935) solution was developed to calculate drawdown due to pumping a confined aquifer.
             
-            This application uses the Theis solution to estimate Transmissivity _T_ and Storativity _S_ from drawdown data collected during a pumping test. You can estimate _T_ and _S_ for aquifer in which the data were collected by adjusting the sliders for _T_ and _S_ until the measured data align with the Theis curve.
+            This application uses the Theis Solution to estimate Transmissivity _T_ and Storativity _S_ from drawdown data collected during a pumping test. 
+            
+            You can estimate _T_ and _S_ by adjusting the sliders to modify the parameter values until the measured data align with the Theis curve for the input parameters.
             """)
             
 left_co, cent_co, last_co = st.columns((20,60,20))
 with cent_co:
-    st.image('C:/_1_GitHub/Jupyter-Notebooks/90_Streamlit_apps/GWP_Pumping_Test_Analysis/assets/images/confined_aquifer.png', caption="Cross section of a pumped confined aquifer, Kruseman et al., 1991")
+    st.image('90_Streamlit_apps/GWP_Pumping_Test_Analysis/assets/images/confined_aquifer.png', caption="Cross section of a pumped confined aquifer, Kruseman et al., 1991")
             
 st.markdown("""
             To start investigating the Theis Solution it is useful to think about the questions provided in this initial assessment.
@@ -37,22 +39,22 @@ if show_initial_assessment:
     columnsQ1 = st.columns((1,1), gap = 'large')
     
     with columnsQ1[0]:
-        stb.single_choice(":red[**For which conditions is the Theis solution intended?**]",
+        stb.single_choice(":blue[**What conditions are appropriate for use of the Theis Solution?**]",
                   ["Steady state flow, confined aquifer.", "Transient flow, confined aquifer", "Steady state flow, semiconfined aquifer",
                   "Transient flow, semiconfined aquifer", "Steady state flow, unconfined aquifer",
                   "Transient flow, unconfined aquifer"],
-                  1,success='CORRECT!   ...', error='Not quite. ... If required, you can read again about the Theis solution in the following ressources _reference to GWP books...')
-        stb.single_choice(":red[**How does the drawdown reaction change at one specific place if the storativity is decreased**]",
-                  ["The drawdown is less.", "The drawdown is more", "The drawdown is not affected."],
-                  1,success='CORRECT!   ...', error='Not quite. You can use the app to investigate what happens when you decrease storativity ... If required, you can read again about storativity _S_ in the following ressources _reference to GWP books...')
+                  1,success='CORRECT! Theis is designed for transient flow in a fully confined aquifer', error='This is not correct ... You can learn more about the Theis Solution [by downloading the book: An Introduction to Hydraulic Testing in Hydrogeology - Basic Pumping, Slug, and Packer Methods​​ and reading Section 8](https://gw-project.org/books/an-introduction-to-hydraulic-testing-in-hydrogeology-basic-pumping-slug-and-packer-methods/). Feel free to answer again.')
+        stb.single_choice(":blue[**How does storativity _S_ influence the response of an aquifer to pumping?**]",
+                  ["A higher storativity results in a slower drawdown response", "A higher storativity leads to more rapid flow to the well", "Storativity only affects steady-state conditions", "Storativity is not relevant for confined aquifers"],
+                  0,success='CORRECT! A higher storativity results in a slower drawdown response, because more water must be removed for an equivalent decline in head.', error='This is not correct. Storativity does not influence the rate of groundwater flow. Storativity is not relevant to steady state flow which is defined by no change in storage. Storativity is relevant to all types of aquifers. Feel free to answer again.')
     
     with columnsQ1[1]:
-        stb.single_choice(":red[**How does the drawdown reaction change at one specific place if the transmissivity is increased**]",
-                  ["The drawdown is less.", "The drawdown is more", "The drawdown is not affected."],
-                  0,success='CORRECT!   ...', error='Not quite. You can use the app to investigate what happens when you increase transmissivity ... If required, you can read again about transmissivity _T_ in the following ressources _reference to GWP books...')
-        stb.single_choice(":red[**Which of the following assumptions is made in the Theis solution for transient flow to a well?**]",
+        stb.single_choice(":blue[**How does the drawdown change at one specific place and time if the transmissivity is increased?**]",
+                  ["The drawdown is less", "The drawdown is more", "The drawdown is not affected", "All of the above depending on the parameter values"],
+                  3,success='CORRECT! When all else is equal, a higher transmissivity will produce a broader cone of depression that is not as deep. So, near the well there will be less drawdown but far from the well there will be more drawdown.', error='This is not completely correct ... You can use the application to investigate what happens when you increase transmissivity. However, you will need to experiment with different combinations of hydraulic parameters as well as distance and time, then holding all else constant, except _T_, observe the change in drawdown. When all else is equal, a higher transmissivity will produce a broader cone of depression that is not as deep. So, near the well there will be less drawdown but far from the well there will be more drawdown.')
+        stb.single_choice(":blue[**Which of the following assumptions was made in the development of the Theis solution for transient flow to a well?**]",
                   ["The aquifer has variable thickness", "The aquifer is confined and infinite in extent", "The well fully penetrates an unconfined aquifer", "The pumping rate varies with time"],
-                  1,success='CORRECT! The aquifer is confined and infinite in extent', error='Not quite. If required, you can read again about the Theis solution in the following ressources _reference to GWP books...')                 
+                  1,success='CORRECT! The aquifer is confined and infinite in extent', error='This is not correct. You can learn more about the Theis Solution [by downloading the book: An Introduction to Hydraulic Testing in Hydrogeology - Basic Pumping, Slug, and Packer Methods​​ and reading Section 8](https://gw-project.org/books/an-introduction-to-hydraulic-testing-in-hydrogeology-basic-pumping-slug-and-packer-methods/). Feel free to answer again.')
                   
 "---"
 
@@ -120,10 +122,12 @@ u = np.logspace(u_min,u_max)
 u_inv = 1/u
 w_u = well_function(u)
 
-st.subheader(':green[Inverse parameter fitting]', divider="rainbow")
+st.subheader(':green[Estimate _T_ and _S_ by matching a Theis Curve to measured data]', divider="rainbow")
 
 st.markdown("""
-            Subsequently, you can modify the transmissivity and the storativity to fit your measured data to the Theis type curve. For precise fitting, you can change the plot resolution with the toogle.
+            In this section, you can **adjust the values of transmissivity and storativity until the curve of drawdown versus time that is calculated and plotted on the graph matches the idealized measured data**. The match indicates that the selected values are a reasonable representation of the aquifer properties.
+            
+            For more precise matching, zoom in by using the toogle.
 """
 )
 
@@ -140,7 +144,7 @@ def inverse(v):
    
     columns2 = st.columns((1,1), gap = 'large')
     with columns2[0]:
-        refine_plot = st.toggle("**Refine** the range of the **Data matching plot**", key = 10+v)
+        refine_plot = st.toggle("**Zoom in** on the **data in the graph**", key = 10+v)
         if v==2:
             Viterbo = st.toggle("**Use real data from Viterbo 2023**", value = True)
     with columns2[1]:
@@ -189,11 +193,11 @@ def inverse(v):
         
     fig = plt.figure(figsize=(10,7))
     ax = fig.add_subplot(1, 1, 1)
-    ax.plot(t, s, label=r'Computed drawdown - Theis')
+    ax.plot(t, s, label=r'calculated Theis drawdown for T and S')
     if Viterbo:
         ax.plot(m_time_s, m_ddown,'go', label=r'measured drawdown - Viterbo 23')
     else:
-        ax.plot(m_time_s, m_ddown,'ro', label=r'measured drawdown - synthetic textbook')
+        ax.plot(m_time_s, m_ddown,'ro', label=r'measured drawdown - idealized data')
     plt.yscale("log")
     plt.xscale("log")
     plt.xticks(fontsize=14)
@@ -212,26 +216,26 @@ def inverse(v):
 
     columns3 = st.columns((1,1), gap = 'medium')
     with columns3[0]:
-        st.write("**Parameter estimation**")
-        st.write("Distance of measurement from the well (in m): %3i" %r)
-        st.write("Pumping rate of measurement (in m³/s): %5.3f" %Qs)
-        st.write("Transmissivity T = ","% 10.2E"% T, " m²/s")
-        st.write("Storativity    S = ","% 10.2E"% S, "[-]")
+        st.write("**Parameters**")
+        st.write("**Distance of measurement from the well r = %3i" %r," m**")
+        st.write("**Pumping rate during test Q = %5.3f" %Qs," m³/s**")
+        st.write("**Transmissivity T = % 10.2E"% T, " m²/s**")
+        st.write("**Storativity    S = % 10.2E"% S, "[dimensionless]**")
 
 inverse(1)
 
 "---"
 
 st.markdown("""
-            ### Next step - How about using Theis with real data?
+            ### Next step - Using Theis with field data
             
-            So far, we investigate the Theis solution with idealized data. However, the real world is not always that idealistic. In the next step we will see how the Theis solution works with measured data.  
+            So far, we investigated the Theis solution with idealized data. However, data collected in the field is less than ideal. Drawdown measurements vary because it is not possible to maintain an absolutely constant pumping rate and other stresses influence groundwater levels such as pumping of wells near the test site.  The next step investigates matching the Theis solution to measured data.  
 """
 )
 
 lc2, mc2, rc2 = st.columns([1,3,1])
 with mc2:
-    real_data = button("Let me see how Theis works with **real data**", key = 'button3')
+    real_data = button("Matching the Theis Solution to **field data**", key = 'button3')
 
 if real_data:
     inverse(2)
@@ -242,15 +246,15 @@ st.markdown (
     :green
     ___
 """
-)
-st.markdown("""
-Theis, C.V., 1935. The relation between the lowering of the piezometric surface and the rate and duration of discharge of a well using groundwater storage, Transactions of the American Geophysical Union, volume 16, pages 519-524.
-"""
-)            
+)     
 st.markdown("""
 [Kruseman, G.P., de Ridder, N.A., & Verweij, J.M.,  1991.](https://gw-project.org/books/analysis-and-evaluation-of-pumping-test-data/) Analysis and Evaluation of Pumping Test Data, International Institute for Land Reclamation and Improvement, Wageningen, The Netherlands, 377 pages.
 """
-)            
+)     
+st.markdown("""
+Theis, C.V., 1935. The relation between the lowering of the piezometric surface and the rate and duration of discharge of a well using groundwater storage, Transactions of the American Geophysical Union, volume 16, pages 519-524.
+"""
+)              
 
 
 

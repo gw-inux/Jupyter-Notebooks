@@ -8,12 +8,12 @@ import streamlit_book as stb
 
 st.title('Pumping Test Analysis with the :red[Theis], :green[Hantush/Jacob], and :violet[Neuman] solutions')
 
-st.subheader('Fitting formation parameter to :rainbow[REAL measured] data', divider="rainbow")
+st.subheader('Fitting formation parameter values to :rainbow[FIELD measured] data', divider="rainbow")
 
 st.markdown("""
             ### Motivation
             
-            This app allows you to use the different solutions for various data. Measurements from various pumping tests can be selected. Alternatively, you can use your own data by uploading them as *.csv data. 
+            This application allows you to choose the solution for fitting a model of aquifer response to pumping curve to different data sets. Measurements from various pumping tests can be selected. Alternatively, you can use your own data by uploading them as *.csv file. 
 """
 )
 
@@ -227,8 +227,10 @@ num_times = len(m_time)
 
 st.subheader(':green[Inverse parameter fitting]', divider="rainbow")
 
+st.markdown(f"In this section you can modify the parameter values to fit your measured data to the curve defined by {solution}")
+
 st.markdown("""
-            Subsequently, you can modify the transmissivity and the storativity to fit your measured data to the Theis type curve. For precise fitting, you can change the plot resolution with the toogle. Additionally, you can perform a prediction of drawdown for specific times/spaces.
+            For more precise matching, zoom in by using the toogle.
 """
 )
 
@@ -351,7 +353,7 @@ def inverse():
     columns3 = st.columns((1,1), gap = 'medium')
     with columns3[0]:
             st.write("**Parameter estimation**")
-            st.write("Distance of measurement from the well (in m): %3i" %r)
+            st.write("**Distance of measurement from the well r = %3i" %r," m**")
             st.write("Pumping rate of measurement (in m³/s): %6.4f" %Qs)
             st.write("Thickness of formation b = ","% 5.2f"% b, " m")
             st.write("Transmissivity T = ","% 10.2E"% T, " m²/s")

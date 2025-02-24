@@ -6,32 +6,31 @@ import streamlit as st
 import streamlit_book as stb
 from streamlit_extras.stateful_button import button
 
-st.title(':red[Theis] parameter estimation and drawdown prediction')
-
-st.subheader(':red-background[Excercise:] Fitting hydrogeologic parameters to randomly generated data and predict future drawdown', divider="red")
+st.title(':red[Explore Uncertainty] associated with using estimated parameters based on the Theis Solution for drawdown prediction')
 
 st.markdown("""
-            ### Introduction to the exercise
+            ### Introduction
             
-            This exercise demonstrate the inverse parameter estimation with the Theis solution. Randomly generated data are provided for this exercise to estimate the transmissivity and storativity of the underground formation.
+            Randomly generated data are provided for fitting the Theis (1935) Solution to estimate the transmissivity and storativity of the aquifer.
             
-            In a subsequent step, the estimated parameters are used to predict the future drawdown for a defined pumping rate in a specific distance. The results with the true parameters can be compared to those with the estimated parameters.
+            Then, in a subsequent step, the estimated parameters are used to predict drawdown at a user specified distance from the well for a user specified duration of pumping at a user dpecifed rate. 
+            
             """)
             
 left_co, cent_co, last_co = st.columns((20,60,20))
 with cent_co:
-    st.image('C:/_1_GitHub/Jupyter-Notebooks/90_Streamlit_apps/GWP_Pumping_Test_Analysis/assets/images/drawdown_aquifer.png', caption="The figure shows the drawdown in a confined pumped underground formation; from Kruseman and De Ridder (1994); available as preserved book in the Groundwater Project")
+    st.image('90_Streamlit_apps/GWP_Pumping_Test_Analysis/assets/images/drawdown_aquifer.png', caption="Cross section of a pumped confined aquifer, Kruseman et al., 1991")
             
 st.markdown("""
             
-            The **objective of this exercise** is to apply inverse parameter estimation techniques using the Theis solution to determine aquifer properties and assess the accuracy of predictions made with these estimated parameters.
+            The **objective of this exercise** is to estimate aquifer properties using the Theis solution and assess the accuracy of predictions made with these estimated parameters.
             
-            This helps you to discuss the following **key questions**
+            Considering these **key questions** may help you to prepare for the exercise:
             - How does the accuracy of the estimated parameters affect drawdown predictions?
             - What are potential sources of error in parameter estimation?
-            - How would uncertainty in the data influence predictions?
+            - How does uncertainty in the data influence predictions?
             
-            In the following you find some initial questions to start the exercise.
+            It is useful to consider the initial assessment questions before proceding with the investigation.
 """
 )
 
@@ -45,48 +44,54 @@ if show_initial_assessment:
     columnsQ1 = st.columns((1,1), gap = 'large')
     
     with columnsQ1[0]:
-        stb.single_choice(":red[**For which conditions is the Theis solution intended?**]",
-                  ["Steady state flow, confined aquifer.", "Transient flow, confined aquifer", "Steady state flow, unconfined aquifer",
+        stb.single_choice(":blue[**What conditions are appropriate for use of the Theis Solution?**]",
+                  ["Steady state flow, confined aquifer.", "Transient flow, confined aquifer", "Steady state flow, semiconfined aquifer",
+                  "Transient flow, semiconfined aquifer", "Steady state flow, unconfined aquifer",
                   "Transient flow, unconfined aquifer"],
-                  1,success='CORRECT!   ...', error='Not quite. ... If required, you can read again about transmissivity _T_ in the following ressources _reference to GWP books...')
+                  1,success='CORRECT! Theis is designed for transient flow in a fully confined aquifer', error='This is not correct. You can learn more about the Theis Solution [by downloading the book: An Introduction to Hydraulic Testing in Hydrogeology - Basic Pumping, Slug, and Packer Methods​​ and reading Section 8](https://gw-project.org/books/an-introduction-to-hydraulic-testing-in-hydrogeology-basic-pumping-slug-and-packer-methods/). Feel free to answer again.')
       
-        stb.single_choice(":red[**What is the main goal of inverse parameter estimation in groundwater modeling?**]",
+        stb.single_choice(":blue[**What is the main goal of fitting pumping test data to curves describing drawdown in response to pumping?**]",
                   ["To determine unknown aquifer properties from observed data", "To predict the future pumping rate of a well", "To measure the depth of the groundwater table", "To calculate the hydraulic gradient"],
-                  0,success='CORRECT! o determine unknown aquifer properties from observed data', error='Not quite. Feel free to answer again.')      
+                  0,success='CORRECT! to determine unknown aquifer properties from observed data', error='This is not correct. You can learn more about the goal of fitting pumping test data to type curves by exploring the previous pages of this Pumping Test Analysis application. Feel free to answer again.')      
                   
-        stb.single_choice(":red[**If the estimated transmissivity (T) is too low, how will the predicted drawdown compare to the true drawdown?**]",
-                  ["The predicted drawdown will be too small", "The predicted drawdown will remain unchanged", "The predicted drawdown will be too large", "The predicted drawdown will fluctuate randomly"],
-                  2,success='CORRECT!The predicted drawdown will be too large', error='Not quite. Feel free to answer again.')
+        stb.single_choice(":blue[**If the estimated transmissivity (T) is too low, how will the predicted drawdown compare to the true drawdown?**]",
+                  ["The predicted drawdown will be too small", "The predicted drawdown will remain unchanged", "The predicted drawdown will be too large", "The predicted drawdown will be too large or too small depending on the distance from the well"],
+                  3,success='CORRECT!The predicted drawdown will be too large near the well, too small far from the well and may be correct at one point between the near and far field', error='This is not completely correct. Feel free to answer again.')
         
     with columnsQ1[1]:        
-        stb.single_choice(":red[**In inverse parameter estimation, what role does curve fitting play?**]",
+        stb.single_choice(":blue[**What role does curve fitting to pumping test data play in the process of estimating aquifer parameters?**]",
                   ["It predicts future rainfall effects on groundwater levels", "It determines the total groundwater storage in the aquifer", "It estimates the pumping rate required for full aquifer depletion", "It helps visually compare theoretical and observed drawdown curves"],
-                  3,success='CORRECT! It helps visually compare theoretical and observed drawdown curves', error='Not quite. Feel free to answer again.')  
+                  3,success='CORRECT! It helps visually compare theoretical models and observed drawdown data', error='This is not correct. It may help to consider how veiwing the curves and data on the same graph was useful on previous pages of this application. Feel free to answer again.')  
  
-        stb.single_choice(":red[**Why is it important to compare predicted drawdown using estimated parameters with the true drawdown?**]",
-                  ["To determine the maximum sustainable pumping rate", "To verify the accuracy of the parameter estimation process", "To find out if the aquifer is unconfined or confined", "To measure the recharge rate of the aquifer"],
-                  1,success='CORRECT! To verify the accuracy of the parameter estimation process', error='Not quite. Feel free to answer again.')
+        stb.single_choice(":blue[**Why is it important to compare predicted drawdown using estimated parameters with the true drawdown?**]",
+                  ["To determine the maximum sustainable pumping rate", "To evaluate the accuracy of the parameter estimation process", "To find out if the aquifer is unconfined or confined", "To measure the recharge rate of the aquifer"],
+                  1,success='CORRECT! To evaluate the accuracy of the parameter estimation process', error='This is not correct. It may help to think a bit more about the value of comparing predictions with true evants. Feel free to answer again.')
                   
-        stb.single_choice(":red[**Which parameters are typically estimated using the Theis solution in a pumping test?**]",
-                  ["Hydraulic conductivity and porosity", "Transmissivity and storativity", "Specific yield and permeability", "Pumping rate and aquifer thickness"],
-                  1,success='CORRECT! Transmissivity and storativity', error='Not quite. Feel free to answer again.')   
+        stb.single_choice(":blue[**Which parameters are estimated using the Theis solution and pumping test data?**]",
+                  ["Hydraulic Conductivity and Porosity", "Transmissivity and Storativity", "Specific Yield and Permeability", "Pumping Rate and Aquifer Thickness"],
+                  1,success='CORRECT! Transmissivity and Storativity', error='This is not correct. It may help to visit the Theis Solution page of this application and rethink your answer. Feel free to answer again.')   
                 
 "---"
 st.markdown("""
             ### Parameter estimation and drawdown prediction
+
+            In this section, you can **adjust the values of transmissivity and storativity until the Theis curve of drawdown versus time that is calculated and plotted on the graph matches the data**. The match indicates that the selected values are a reasonable representation of the aquifer properties.
             
-            Subsequently, the Theis equation is solved with Python routines. The interactive plot demonstrate the response of a confined aquifer to pumping. The results for the measured data are graphically presented in an interactive plot as red dots.
+            Each time that you select "Random data with noise", a new set of drawdown versus time data will be generated using a pumping rate of Q = 0.017 m³/s, an observation well at r = 120 m, and assuming a random value for T and S.
             
-            A further plot shows the derived water table response based on the Theis solution. With this, you can predict the future drawdown as function of the pumping rate, the distance and the time.
-            
-            Perform the following steps in the exercise
-            - Step 1: Estimate transmissivity (T) and storativity (S) from the provided data.
-            - Step 2: Use these estimates to predict future drawdown at a specified distance and pumping rate (slider 'Do the prediction').
-                - Predict the drawdown with a pumping rate of 0.04 m3/s
-                - in 500 m distance from the pumping well and
-                - in 5 years.
-            - Step 3: Compare predictions using true vs. estimated parameters (slider 'Tell me how I did the inverse fitting')
-            - Step 4: Increase the provided time series (slider 'Provide more times for the pumping test (longer pumping)') and re-do the parameter estimation and prediction.
+            The generated "measured" data are presented as red dots on the graph. For more precise matching, you can zoom in by using the toogle switch. Also you can elect to show data from a longer pumping test.
+           
+            These steps can be followed to estimate parameter values and make a prediction of drawdown and assess the quality of the prediction:
+            - Step 1: Estimate the values of _T_ and _S_ by adjusting the sliders until the Theis curve, calculated using those values, matches the "measured" data. Zooming in and/or opting to toggle the 'Provide data for a longer period of pumping' may help you find a better fit.
+            - Step 2: Toggle 'Make the prediction'
+            - Step 3: Select the values of pumping rate, duration, and distance from the well that you are interested in for the prediction of future drawdown. For example, you might select:
+                - Pumping rate for the prediction of 0.04 m³/s
+                - Distance from the pumping well of 500 m
+                - Duration of prediction period of 5 years (entered as 1825 days).
+            - Step 3: Compare predictions using true versus estimated parameters (slider 'How accurate are the parameter value estimates?')
+            - Step 4: Make note of how close your prediction is to the "true" system generated for this case and whether it is better or worse for shorter or longer distance and/or time. Consider whether the fit obtained using data from a longer test made much improvement in the predictino and, if so, in what way.
+            - Step 5: While the prediction graph is open, experiment with adjusting the estimated _T_ and _S_ to observe how subtle chnges in estimated parameters impact the prediction.
+           
 """     
 )
 
@@ -171,39 +176,39 @@ def inverse():
         container = st.container()
         T_slider_value=st.slider('_(log of) Transmissivity in m²/s_', log_min1,log_max1,-3.0,0.01,format="%4.2f" )
         T = 10 ** T_slider_value
-        container.write("**Transmissivity_ in m²/s:** %5.2e" %T)
+        container.write("**Transmissivity in m²/s:** %5.2e" %T)
         # READ LOG VALUE, CONVERT, AND WRITE VALUE FOR STORATIVIT
         container = st.container()
         S_slider_value=st.slider('_(log of) Storativity_', log_min2,log_max2,-4.0,0.01,format="%4.2f" )
         S = 10 ** S_slider_value
         container.write("**Storativity (dimensionless):** %5.2e" %S)
         if(st.session_state.Data == "Random data with noise"):
-            long = st.toggle('Provide more times for the pumping test (longer pumping)')
-        refine_plot = st.toggle("**Refine** the range of the **Theis matching plot**")
+            long = st.toggle('**Provide data for a longer pumping test**')
+        refine_plot = st.toggle("**Zoom in** on the **data in the graph**")
     with columns2[1]:
-        prediction = st.toggle('Do the prediction')
+        prediction = st.toggle('**Make the prediction**')
         if prediction:
-            Q_pred = st.slider(f'**Pumping rate** (m³³/s) for the **prediction**', 0.001,0.100,Qs,0.001,format="%5.3f")
+            Q_pred = st.slider(f'**Pumping rate** (m³/s) for the **prediction**', 0.001,0.100,Qs,0.001,format="%5.3f")
             r_pred = st.slider(f'**Distance** (m) from the **well** for the **prediction**', 1,1000,r,1)
             per_pred = st.slider(f'**Duration** of the **prediction period** (days)',1,3652,3,1) 
             max_t = 86400*per_pred
             if per_pred <= 3:
-                t_search = st.slider(f'**Select the value of time (s) for printout**', 1,max_t,1,1)
+                t_search = st.slider(f'**Select time (s) for printout below graph**', 1,max_t,1,1)
             elif per_pred <= 7:
-                t_search_h = st.slider(f'**Select the value of time (hours) for printout**', 1.,24.*per_pred,1.)
+                t_search_h = st.slider(f'**Select time (hours) for printout below graph**', 1.,24.*per_pred,1.)
                 t_search = t_search_h*3600
             elif per_pred <= 366:
-                t_search_d = st.slider(f'**Select the value of time (days) for printout**', 1.,per_pred*1.0,1.)
+                t_search_d = st.slider(f'**Select time (days) for printout below graph**', 1.,per_pred*1.0,1.)
                 t_search = t_search_d*86400
             else:
-                t_search_mo = st.slider(f'**Select the value of time (months) for printout**', 1.,per_pred/30.4375,1.)
+                t_search_mo = st.slider(f'**Select time (months) for printout below graph**', 1.,per_pred/30.4375,1.)
                 t_search = t_search_mo*2629800
             auto_y = st.toggle("Adjust the range of drawdown plotting", value = True)
 
     if (st.session_state.Data == "Random data with noise"):
         columns4 = st.columns((1,1,1), gap = 'large')
         with columns4[1]:
-            show_truth = st.toggle(":rainbow[Tell me how I did the inverse fitting!]")
+            show_truth = st.toggle(":rainbow[How accurate are the parameter value estimates?]")
         
     if long:
         n_samples = n_samples_long
@@ -331,43 +336,75 @@ def inverse():
         plt.legend(fontsize=14)
         st.pyplot(fig)
 
+
     columns3 = st.columns((1,1), gap = 'medium')
     with columns3[0]:
-        st.write("**Parameter estimation**")
-        st.write("Distance of measurement from the well (in m): %3i" %r)
-        st.write("Pumping rate of measurement (in m³/s): %5.3f" %Qs)
-        st.write("Thickness of formation b = ","% 5.2f"% b, " m")
-        st.write("Transmissivity T = ","% 10.2E"% T, " m²/s")
-        st.write("(Hydr. cond. K) = ","% 10.2E"% (T/b), " m²/s")
-        st.write("Storativity    S = ","% 10.2E"% S, "[-]")
+        st.write("**Estimated Parameters**")
+        st.write("**Distance of measurement from the well r = %3i" %r," m**")
+        st.write("**Pumping rate of measurement Q = %5.3f" %Qs," m³/s**")
+        st.write("**Thickness of formation b = %5.2f" % b, " m**")
+        st.write("**Transmissivity T = %10.2E" %T, " m²/s**")
+        st.write("**Hydraulic Conductivity K = %10.2E" %(T/b), " m²/s**")
+        st.write("**Storativity S = %10.2E" %S, "[-]**")
         if(st.session_state.Data == "Random data with noise"):
             if show_truth:
-                st.write("**'True' Transmissivity T** = ","% 10.2E"% st.session_state.T_random, " m²/s.")
+                st.write("**'True' Transmissivity T = % 10.2E"% st.session_state.T_random, " m²/s**")
                 st.write("_Your fitting success is:  %5.2f_" %(T/T_random*100), " %")
-                st.write("**'True' Storativity    S** = ","% 10.2E"% st.session_state.S_random, "[-].")    
+                st.write("**'True' Storativity    S = % 10.2E"% st.session_state.S_random, "[-]**")    
                 st.write("_Your fitting success is:  %5.2f_" %(S/S_random*100), " %")
 
     with columns3[1]:
         if prediction:
             st.write("**Prediction**")
-            st.write("Distance of prediction from the well (in m): %3i" %r_pred)
-            st.write("Pumping rate of prediction (in m³/s): %5.3f" %Q_pred)
-            st.write("Time since pumping start (in s): %3i" %x_point)
+            st.write("**Distance of measurement from the well r = %3i" %r_pred," m**")
+            st.write("**Pumping rate of prediction Q = %5.3f" %Q_pred," m³/s**")
+            st.write("**Time since pumping started = %3i" %x_point," s**")
             if per_pred <= 3:
-                st.write("Time since pumping start (in s): %3i" %t_search)
+                st.write("**Time since pumping started t = %3i" %t_search," s**")
             elif per_pred <= 7:
-                st.write("Time since pumping start (in hours): %5.2f" %t_search_h)
+                st.write("**Time since pumping started t = %5.2f" %t_search_h," hrs**")
             elif per_pred <= 366:
-                st.write("Time since pumping start (in days): %5.2f" %t_search_d)
+                st.write("**Time since pumping started t = %5.2f" %t_search_d," days**")
             else:
-                st.write("Time since pumping start (in months): %5.2f" %t_search_mo)
-            st.write("Predicted drawdown at this distance and time (in m):  %5.2f" %y_point)
+                st.write("**Time since pumping started t = %5.2f" %t_search_mo," months**")
+            st.write("**Predicted drawdown at r and t  %5.2f" %y_point," m**")
             if(st.session_state.Data == "Random data with noise"):
                 if show_truth:
-                    st.write("Predicted drawdown ...(in m) with 'true' parameters:  %5.2f" %true_y_point)
-                    st.write("**Difference** (in m):  %5.2f" %(true_y_point-y_point))
+                    st.write("**Predicted drawdown with 'true' parameters:  %5.2f" %true_y_point," m**")
+                    st.write("**Difference**:  %5.2f" %(true_y_point-y_point)," m**")
 
 inverse()
+
+st.markdown (
+    """   
+    :blue
+    ___
+"""
+) 
+
+st.markdown("""
+            ### Considering these **key questions** may help you process your experience and findings resulting from this exercise
+            
+            - How does accuracy of the estimated parameters affect drawdown predictions?
+            - What are potential sources of error in estimating parameters by curve matching?
+            - How does error in the data influence predictions?
+"""
+)
+
+st.markdown (
+    """   
+    :green
+    ___
+"""
+)     
+st.markdown("""
+[Kruseman, G.P., de Ridder, N.A., & Verweij, J.M.,  1991.](https://gw-project.org/books/analysis-and-evaluation-of-pumping-test-data/) Analysis and Evaluation of Pumping Test Data, International Institute for Land Reclamation and Improvement, Wageningen, The Netherlands, 377 pages.
+"""
+)     
+st.markdown("""
+Theis, C.V., 1935. The relation between the lowering of the piezometric surface and the rate and duration of discharge of a well using groundwater storage, Transactions of the American Geophysical Union, volume 16, pages 519-524.
+"""
+)       
 
 "---"
 # Navigation at the bottom of the side - useful for mobile phone users     
