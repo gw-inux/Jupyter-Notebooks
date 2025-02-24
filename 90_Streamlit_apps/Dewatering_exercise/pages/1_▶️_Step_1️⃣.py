@@ -90,6 +90,15 @@ if st.toggle('Show additional **Notes for instructors**'):
     to_do(
     [(st.write, "Show a groundwater-connected stream and discuss why a decreased water level could be detrimental.")],
     "td15",)
+    to_do(
+    [(st.write, "When using the slider bars below ....")],
+    "td16",)
+    to_do(
+    [(st.write, "Have the students examine A first, then increase L, then decrease L.")],
+    "td17",)
+    to_do(
+    [(st.write, "At some point the direction of flow will change - discuss why!")],
+    "td18",)
 
 ##################################################################################
 # Interactive discovery of Darcy's Law
@@ -119,33 +128,33 @@ st.markdown(
     """, unsafe_allow_html=True
 ) 
 
-A_min = 1.0 # minimum cross sectional area
-A_max = 10.0  # maximum cross sectional area
-L_min = 10.0 # minimum length
-L_max = 100.0  # maximum length
-h_top_min = 0.0 # minimum ponding at top of column
-h_top_max = 0.1  # maximum ponding at top of column
-h_bottom_min = 0.0 # minimum ponding at top of column
-h_bottom_max = 0.1  # maximum ponding at top of column
-K_min = -0.001 # minimum cross sectional area
-K_max = 0.001  # maximum cross sectional area
+A_min = 10.0 # minimum cross sectional area, cm3
+A_max = 40.0  # maximum cross sectional area, cm3
+L_min = 0.5 # minimum length, cm
+L_max = 25.0  # maximum length, cm
+h_top_min = 0.0 # minimum ponding at top of column, cm
+h_top_max = 20.0  # maximum ponding at top of column, cm
+h_bottom_min = 0.0 # minimum ponding at top of column, cm
+h_bottom_max = 20.0  # maximum ponding at top of column, cm
+K_min = 0.0001 # minimum K in cm/s
+K_max = 0.01  # maximum K in cm/s
 
 columns = st.columns((1,1), gap = 'large')
     
 with columns[0]:
-    A_slider_value=st.slider('Cross sectional area in m2', A_min,A_max,(A_min + A_max) / 2,1.0,format="%4.2f" )
-    h_bottom_slider_value=st.slider('Height of bottom of tube above bottom of column in m', h_bottom_min,h_bottom_max,(h_bottom_min + h_bottom_max) / 2,0.01,format="%4.2f" )
+    A_slider_value=st.slider('Cross sectional area in cm2', A_min,A_max,(A_min + A_max) / 2,(A_max - A_min)/10,format="%4.2f" )
+    h_bottom_slider_value=st.slider('Height of bottom of tube above bottom of column in cm', h_bottom_min,h_bottom_max,(h_bottom_min + h_bottom_max) / 2,(h_bottom_max - h_bottom_min)/10,format="%4.2f" )
 
 with columns[1]:
-    L_slider_value=st.slider('Length in the direction of flow in m', L_min,L_max,(L_min + L_max) / 2,10.0,format="%4.2f" )
-    h_top_slider_value=st.slider('Ponded height of water at top of column in m', h_top_min,h_top_max,(h_top_min + h_top_max) / 2,0.01,format="%4.2f" )
+    L_slider_value=st.slider('Length in the direction of flow in cm', L_min,L_max,(L_min + L_max) / 2,(L_max - L_min)/10,format="%4.2f" )
+    h_top_slider_value=st.slider('Ponded height of water at top of column in cm', h_top_min,h_top_max,h_top_min,(h_top_max - h_top_min)/10,format="%4.2f" )
 
 # Compute flow
-Q = -K_min * A_slider_value * (h_bottom_slider_value + L_slider_value - h_top_slider_value) / L_slider_value   # in m3/s
+Q = -K_max * A_slider_value * (h_bottom_slider_value - h_top_slider_value - L_slider_value ) / L_slider_value   # in cm3/s
 
 st.write('')   
 st.write('')   
-st.write("The flow rate in m3/s is: ", Q)
+st.write("The downward flow rate in cm3/min is: ", Q*60.00)
 
 '---'
 st.markdown(
@@ -167,19 +176,19 @@ st.markdown(
 columns = st.columns((1,1), gap = 'large')
     
 with columns[0]:
-    A_slider_value1=st.slider('Area in m2', A_min,A_max,(A_min + A_max) / 2,1.0,format="%4.2f" )
-    h_bottom_slider_value1=st.slider('Distance of bottom of tube above bottom of column in m', h_bottom_min,h_bottom_max,(h_bottom_min + h_bottom_max) / 2,0.01,format="%4.2f" )
+    A_slider_value1=st.slider('Area in cm2', A_min,A_max,(A_min + A_max) / 2,(A_max - A_min)/10,format="%4.2f" )
+    h_bottom_slider_value1=st.slider('Ponded height of water at left end of column in cm', h_bottom_min,h_bottom_max,(h_bottom_min + h_bottom_max) / 2,(h_bottom_max - h_bottom_min)/10,format="%4.2f" )
 
 with columns[1]:
-    L_slider_value1=st.slider('Distance in the direction of flow in m', L_min,L_max,(L_min + L_max) / 2,10.0,format="%4.2f" )
-    h_top_slider_value1=st.slider('Ponded height of water at left end of column in m', h_top_min,h_top_max,(h_top_min + h_top_max) / 2,0.01,format="%4.2f" )
+    L_slider_value1=st.slider('Distance in the direction of flow in cm', L_min,L_max,(L_min + L_max) / 2,(L_max - L_min)/10,format="%4.2f" )
+    h_top_slider_value1=st.slider('Ponded height of water at right end of column in cm', h_top_min,h_top_max,h_top_min,(h_top_max - h_top_min)/10,format="%4.2f" )
 
 # Compute flow
-Q = -K_min * A_slider_value1 * (h_bottom_slider_value1 - h_top_slider_value1) / L_slider_value1   # in m3/s
+Q = -K_max * A_slider_value1 * (h_top_slider_value1 - h_bottom_slider_value1) / L_slider_value1   # in cm3/s
 
 st.write('')   
 st.write('')   
-st.write("The flow rate in m3/s is: ", Q)
+st.write("The flow rate to the right in cm3/min is: ", Q * 60.)
 
 
 
