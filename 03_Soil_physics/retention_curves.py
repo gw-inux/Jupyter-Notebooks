@@ -6,7 +6,6 @@ import numpy as np
 import matplotlib.pyplot as plt
 import streamlit as st
 import streamlit_book as stb
-from bokeh.plotting import figure
 
 st.title('Soil Water Retention curves 💦')
 
