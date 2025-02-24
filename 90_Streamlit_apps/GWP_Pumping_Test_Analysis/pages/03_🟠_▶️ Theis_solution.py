@@ -16,9 +16,9 @@ st.markdown("""
             
             The Theis (1935) solution was developed to calculate drawdown due to pumping a confined aquifer.
             
-            This application uses the Theis solution to estimate Transmissivity _T_ and Storativity _S_ from drawdown data collected during a pumping test. 
+            This application uses the Theis Solution to estimate Transmissivity _T_ and Storativity _S_ from drawdown data collected during a pumping test. 
             
-            You can estimate _T_ and _S_ by adjusting the sliders for _T_ and _S_ until the measured data align with the Theis curve.
+            You can estimate _T_ and _S_ by adjusting the sliders to modify the parameter values until the measured data align with the Theis curve for the input parameters.
             """)
             
 left_co, cent_co, last_co = st.columns((20,60,20))
@@ -39,7 +39,7 @@ if show_initial_assessment:
     columnsQ1 = st.columns((1,1), gap = 'large')
     
     with columnsQ1[0]:
-        stb.single_choice(":blue[**What conditions is the Theis Solution applicable to?**]",
+        stb.single_choice(":blue[**What conditions are appropriate for use of the Theis Solution?**]",
                   ["Steady state flow, confined aquifer.", "Transient flow, confined aquifer", "Steady state flow, semiconfined aquifer",
                   "Transient flow, semiconfined aquifer", "Steady state flow, unconfined aquifer",
                   "Transient flow, unconfined aquifer"],
@@ -125,7 +125,7 @@ w_u = well_function(u)
 st.subheader(':green[Estimate _T_ and _S_ by matching a Theis Curve to measured data]', divider="rainbow")
 
 st.markdown("""
-            In this section, you can **adjust the value of transmissivity and storativity until the curve of drawdown versus time, that is calculated and plotted on the graph, matches the idealized measured data**. The match indicates that the selected values represent the properties of the tested aquifer.
+            In this section, you can **adjust the values of transmissivity and storativity until the curve of drawdown versus time that is calculated and plotted on the graph matches the idealized measured data**. The match indicates that the selected values are a reasonable representation of the aquifer properties.
             
             For more precise matching, zoom in by using the toogle.
 """
@@ -214,22 +214,28 @@ def inverse(v):
     plt.legend(fontsize=14)
     st.pyplot(fig)
 
-    st.write("**Values of Transmissivity ","% 10.2E"% T, " m²/s and Storativity ","% 10.2E"% S, "[dimensionless] are estimated to result in a Theis curve that matches drawdown measured in an observation well %3i" %r, "m from a well pumping %5.3f" %Qs, " m³/s.**")
+    columns3 = st.columns((1,1), gap = 'medium')
+    with columns3[0]:
+        st.write("**Parameters**")
+        st.write("**Distance of measurement from the well r = %3i" %r," m**")
+        st.write("**Pumping rate during test Q = %5.3f" %Qs," m³/s**")
+        st.write("**Transmissivity T = % 10.2E"% T, " m²/s**")
+        st.write("**Storativity    S = % 10.2E"% S, "[dimensionless]**")
 
 inverse(1)
 
 "---"
 
 st.markdown("""
-            ### Next step - How about using Theis with real data?
+            ### Next step - Using Theis with field data
             
-            So far, we investigate the Theis solution with idealized data. However, the real world is not always that idealistic. In the next step we will see how the Theis solution works with measured data.  
+            So far, we investigated the Theis solution with idealized data. However, data collected in the field is less than ideal. Drawdown measurements vary because it is not possible to maintain an absolutely constant pumping rate and other stresses influence groundwater levels such as pumping of wells near the test site.  The next step investigates matching the Theis solution to measured data.  
 """
 )
 
 lc2, mc2, rc2 = st.columns([1,3,1])
 with mc2:
-    real_data = button("Let me see how Theis works with **real data**", key = 'button3')
+    real_data = button("Matching the Theis Solution to **field data**", key = 'button3')
 
 if real_data:
     inverse(2)
@@ -240,15 +246,15 @@ st.markdown (
     :green
     ___
 """
-)
-st.markdown("""
-Theis, C.V., 1935. The relation between the lowering of the piezometric surface and the rate and duration of discharge of a well using groundwater storage, Transactions of the American Geophysical Union, volume 16, pages 519-524.
-"""
-)            
+)     
 st.markdown("""
 [Kruseman, G.P., de Ridder, N.A., & Verweij, J.M.,  1991.](https://gw-project.org/books/analysis-and-evaluation-of-pumping-test-data/) Analysis and Evaluation of Pumping Test Data, International Institute for Land Reclamation and Improvement, Wageningen, The Netherlands, 377 pages.
 """
-)            
+)     
+st.markdown("""
+Theis, C.V., 1935. The relation between the lowering of the piezometric surface and the rate and duration of discharge of a well using groundwater storage, Transactions of the American Geophysical Union, volume 16, pages 519-524.
+"""
+)              
 
 
 

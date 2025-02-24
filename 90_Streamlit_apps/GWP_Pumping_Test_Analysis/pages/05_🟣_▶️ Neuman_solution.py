@@ -9,22 +9,24 @@ from streamlit_extras.stateful_button import button
 
 st.title(':violet[Neuman] parameter estimation')
 
-st.subheader('Understanding the Neuman solution for :violet[unconfined aquifers]', divider="violet")
+st.subheader('Using the Neuman Solution for drawdown in response to pumping :violet[unconfined aquifers] to estimate aquifer properties', divider="violet")
 
 st.markdown("""
             ### Introduction
             
-            The Neuman solution is intended to evaluate pumping tests in unconfined settings.
+            The Neuman solution (1972,1973) is intended to evaluate pumping tests in unconfined aquifers.
             
-            The app allows to apply the Neuman solution for pumping test data. You can use the sliders to modify the transmissivity _T_ and storativity _S_ to fit the measured data to the Hantush/Jacob type curves.
+            This application uses the Neuman Solution to estimate Transmissivity _T_, Specific Storage _Ss_, Specific Yield _Sy_, and Beta _β_ from drawdown data collected during a pumping test.
+            
+            You can estimate _T_, _Ss_, _Sy_, and _β_ by adjusting sliders to modify the parameter values until the measured data align with the Neuman curves for the input parameters.
             """)
             
 left_co, cent_co, last_co = st.columns((20,60,20))
 with cent_co:
-    st.image('C:/_1_GitHub/Jupyter-Notebooks/90_Streamlit_apps/GWP_Pumping_Test_Analysis/assets/images/unconfined_aquifer.png', caption="The figure shows a cross section through a pumped unconfined underground formation; from Kruseman and De Ridder (1994); available as preserved book in the Groundwater Project")
+    st.image('C:/_1_GitHub/Jupyter-Notebooks/90_Streamlit_apps/GWP_Pumping_Test_Analysis/assets/images/unconfined_aquifer.png', caption="Cross section of a pumped unconfined aquifer Kruseman et al. 1994")
             
 st.markdown("""
-            In the following you find some initial questions to start with the investigation of the Neuman solution.
+            To start investigating the Neuman Solution it is useful to think about the questions provided in this initial assessment.
 """
 )
 
@@ -37,29 +39,29 @@ if show_initial_assessment:
     columnsQ1 = st.columns((1,1), gap = 'large')
     
     with columnsQ1[0]:
-        stb.single_choice(":violet[**For which conditions is the Neuman solution intended?**]",
+        stb.single_choice(":violet[**What conditions are appropriate for use of the Neuman Solution?**]",
                   ["Steady state flow, confined aquifer.", "Transient flow, confined aquifer", "Steady state flow, semiconfined aquifer",
                   "Transient flow, semiconfined aquifer", "Steady state flow, unconfined aquifer",
                   "Transient flow, unconfined aquifer"],
-                  5,success='CORRECT!   ...', error='Not quite. ... If required, you can read again about the Neuman solution in the following ressources _reference to GWP books...')
+                  5,success='CORRECT! The Neuman Solution is designed for evaluating transient flow in an unconfined aquifer', error='This is not correct ... You can learn more about the Neuman Solution [by downloading the book: An Introduction to Hydraulic Testing in Hydrogeology - Basic Pumping, Slug, and Packer Methods​​ and reading Section 10.3 and 10.4](https://gw-project.org/books/an-introduction-to-hydraulic-testing-in-hydrogeology-basic-pumping-slug-and-packer-methods/). Feel free to answer again.')
         stb.single_choice(":violet[**In an unconfined aquifer, what additional factor must be considered when analyzing well drawdown?**]",
                   ["The presence of a confining layer", "The effect of specific storage", "The delayed response due to water table storage", "The transmissivity remains constant"],
-                  2,success='CORRECT! The delayed response due to water table storage', error='Not quite. Feel free to answer again.') 
+                  2,success='CORRECT! The delayed response due to water table storage', error='This is not correct ... You can learn more about the Neuman Solution [by downloading the book: An Introduction to Hydraulic Testing in Hydrogeology - Basic Pumping, Slug, and Packer Methods​​ and reading Section 10.3 and 10.4](https://gw-project.org/books/an-introduction-to-hydraulic-testing-in-hydrogeology-basic-pumping-slug-and-packer-methods/). Feel free to answer again.')
         stb.single_choice(":violet[**What is the key difference between the Neuman solution and the Theis solution?**]",
                   ["Theis solution applies to unconfined aquifers, while Neuman is for confined aquifers", "Neuman solution accounts for delayed water table response, while Theis assumes an immediate response", "Theis solution considers leaky conditions, while Neuman assumes a fully confined system", "The Neuman solution is only valid for steady-state conditions"],
-                  1,success='CORRECT! Neuman solution accounts for delayed water table response, while Theis assumes an immediate response', error='Not quite. Feel free to answer again.')
+                  1,success='CORRECT! Neuman solution accounts for delayed water table response, while Theis assumes an immediate response', error='This is not correct ... You can learn more about the Neuman Solution [by downloading the book: An Introduction to Hydraulic Testing in Hydrogeology - Basic Pumping, Slug, and Packer Methods​​ and reading Section 10.3 and 10.4](https://gw-project.org/books/an-introduction-to-hydraulic-testing-in-hydrogeology-basic-pumping-slug-and-packer-methods/). Feel free to answer again.')
     with columnsQ1[1]:
         stb.single_choice(":violet[**What additional parameter is introduced in the Neuman solution to account for water table effects?**]",
                   ["Leakage factor", "Specific yield (Sy)", "Hydraulic head", "Transmissivity (T)"],
-                  1,success='CORRECT! Specific yield (Sy)', error='Not quite. Feel free to answer again.') 
+                  1,success='CORRECT! Specific yield (Sy) is used to reflect drainage of water from pores under unconfined conditions', error='This is not correct ... You can learn more about the Neuman Solution [by downloading the book: An Introduction to Hydraulic Testing in Hydrogeology - Basic Pumping, Slug, and Packer Methods​​ and reading Section 10.3 and 10.4](https://gw-project.org/books/an-introduction-to-hydraulic-testing-in-hydrogeology-basic-pumping-slug-and-packer-methods/). Feel free to answer again.')
 
         stb.single_choice(":violet[**How does the specific yield (Sy) affect the response of an unconfined aquifer in the Neuman solution?**]",
-                  ["A higher specific yield results in a slower drawdown response", "A lower specific yield leads to faster recovery after pumping stops", "Specific yield does not influence drawdown in unconfined aquifers", "A higher specific yield causes the drawdown to increase over time"],
-                  0,success='CORRECT! A higher specific yield results in a slower drawdown response', error='Not quite. Feel free to answer again.') 
+                  ["A higher specific yield results in a slower drawdown response", "A lower specific yield leads to more rapid flow to the well", "Specific yield does not influence drawdown in unconfined aquifers", "A higher specific yield causes the drawdown to increase over time"],
+                  0,success='CORRECT! A higher specific yield results in a slower drawdown response', error='This is not correct ... You can learn more about the Neuman Solution [by downloading the book: An Introduction to Hydraulic Testing in Hydrogeology - Basic Pumping, Slug, and Packer Methods​​ and reading Section 10.3 and 10.4](https://gw-project.org/books/an-introduction-to-hydraulic-testing-in-hydrogeology-basic-pumping-slug-and-packer-methods/). Feel free to answer again.')
 
         stb.single_choice(":violet[**Compared to a confined aquifer, what is a key effect of pumping in an unconfined aquifer?**]",
                   ["The drawdown is larger due to the lower storativity", "The drawdown is delayed due to water table storage effects", "The drawdown is smaller because of the lower transmissivity", "The aquifer does not experience any delayed response"],
-                  1,success='CORRECT! The drawdown is delayed due to water table storage effects', error='Not quite. Feel free to answer again.') 
+                  1,success='CORRECT! The drawdown is delayed due to water table storage effects', error='This is not correct ... You can learn more about the Neuman Solution [by downloading the book: An Introduction to Hydraulic Testing in Hydrogeology - Basic Pumping, Slug, and Packer Methods​​ and reading Section 10.3 and 10.4](https://gw-project.org/books/an-introduction-to-hydraulic-testing-in-hydrogeology-basic-pumping-slug-and-packer-methods/). Feel free to answer again.')
 "---"
 
 # Optional theory here
@@ -70,9 +72,9 @@ with mc1:
 if show_theory:
     st.markdown(
     """
-    ### Required theory - The Neuman Solution for Pumping Test Evaluation
+    ### Underlying theory - The Neuman Solution for Pumping Test Evaluation
     
-    The Neuman solution extends the Theis solution to describe transient flow to a well in an unconfined aquifer, where both vertical and horizontal flow components contribute to the drawdown. Unlike the Theis and Hantush-Jacob solutions, which assume confined or leaky aquifers, the Neuman solution accounts for the delayed response caused by water table storage and vertical flow effects.
+    The Neuman solution extends the Theis solution to describe transient flow to a well in an unconfined aquifer, where both vertical and horizontal flow components contribute to drawdown. Unlike the Theis and Hantush-Jacob solutions, which assume confined or leaky aquifers, the Neuman solution accounts for the delayed response caused by water table storage and vertical flow effects.
     
     The drawdown _s_ at a distance _r_ from a well pumping at a constant rate _Q_ is given by:
     """
@@ -94,12 +96,28 @@ if show_theory:
     st.markdown(
     """    
     where:
-    - _S_ is the storativity (specific storage times aquifer thickness),
-    - _Sy_ is the specific yield of the unconfined aquifer,
-    - $K_z$ is the vertical hydraulic conductivity,
-    - _b_ is the saturated thickness of the aquifer,
-    - _t_ is the elapsed time since pumping began.
+    - _S_ is storativity of the unconfined aquifer (specific storage times aquifer thickness)
+    - _Sy_ is specific yield of the unconfined aquifer
+    - $K_z$ is vertical hydraulic conductivity of the unconfined aquifer
+    - _b_ is saturated thickness of the unconfined aquifer
+    - _t_ is elapsed time since pumping began
+    """)
+
+    st.markdown(
+    """    
+    _β_ defines the character of the Neuman curve as it transitions from elastic storage to pore water drainage
+    """)
     
+    st.latex(r'''\beta = \frac{r^2 K_z}{b^2 K}''') 
+    
+    st.markdown(
+    """    
+    where:
+    - $K$ is horizontal hydraulic conductivity of the unconfined aquifer
+    """)
+  
+    st.markdown(
+    """ 
     The Neuman well function $W(u_A, u_B)$ accounts for both horizontal and vertical flow components and is computed numerically. It is often used in pumping test analysis to determine aquifer properties in unconfined conditions, where early-time drawdown is influenced by elastic storage effects (similar to confined aquifers), while later-time drawdown is dominated by drainage from the water table.
     """)
 
@@ -182,10 +200,20 @@ Qd = Qs*60*60*24 # m^3/d
 m_time_s = [i*60 for i in m_time] # time in seconds
 num_times = len(m_time)
 
-st.subheader(':green[Inverse parameter fitting]', divider="rainbow")
+st.subheader(':green[Estimate T, S, and Leakage by matching a Hantush/Jacob Curve to measured data]', divider="rainbow")
 
 st.markdown("""
-            Subsequently, you can modify the transmissivity and the storativity to fit the measured data to the Neuman type curves. For precise fitting, you can change the plot resolution with the toogle. Additionally, you can perform a prediction of drawdown for specific times/spaces.
+            In this section, you can **adjust the values of transmissivity, specific storage, specific yield, and beta until the curve of drawdown versus time that is calculated and plotted on the graph matches the measured data from the Pirna test site in Germany**. The match indicates that the selected values are a reasonable representation of the aquifer properties.
+            
+            The aquifer is 6 meters thick.
+            
+            After estimating the parameter values that result in a good fit of the Neuman curve to the data, and knowing the thickness of the aquifer, the horizontal and vertical hydraulic conductivity of the aquifer is calculated.
+            
+            :red[ADD A BIT OF DISCUSSION ABOUT THE DATA ....]
+            
+            For more precise matching, zoom in by using the toogle.
+            
+            Additionally, you can perform a prediction of drawdown for specific times/spaces.
 """
 )
 
@@ -218,7 +246,6 @@ def inverse():
         beta_list = ['0.001','0.01', '0.06', '0.2', '0.6', '1', '2', '4', '6']
         beta = beta_list.index(beta_choice)
 
-    
     # Compute K and SS to provide parameters for plausability check
     # (i.e. are the parameter in a reasonable range)
     K = T/b     # m/s
@@ -269,17 +296,34 @@ def inverse():
     plt.legend(fontsize=14)
     st.pyplot(fig)
 
-    columns3 = st.columns((1,1), gap = 'medium')
-    with columns3[0]:
-        st.write("**Parameter estimation**")
-        st.write("Distance of measurement from the well (in m): %3i" %r)
-        st.write("Pumping rate of measurement (in m³/s): %5.3f" %Qs)
-        st.write("Thickness of formation b = ","% 5.2f"% b, " m")
-        st.write("Transmissivity T = ","% 10.2E"% T, " m²/s")
-        st.write("(Hydr. cond. K) = ","% 10.2E"% (T/b), " m²/s")
-        st.write("Storativity    S = ","% 10.2E"% S, "[-]")
+
+    st.write("**Parameters**")
+    st.write("**Distance of measurement from well r = %3i" % r, " m**")
+    st.write("**Pumping rate during test Q = % 5.3f"% Qs, " m³/s**")
+    st.write("**Thickness of aquifer b = % 5.2f"% b, " m**")
+    st.write("**Transmissivity T = % 10.2E"% T, " m²/s**")
+    st.write("**Specific Storage S = % 10.2E"% S, " 1/m**")
+    st.write("**Specific Yield Sy = % 10.2E"% SY, "[dimensionless]**")
+    st.write("**Horizontal Hydraulic Conductivity K' = % 10.2E"% (T/b), " m²/s**")
+    st.write("**Vertical Hydraulic Conductivity Kz = % 10.2E"% (beta*(T/b)*b*b/r/r), " m²/s**")
  
 inverse()
+
+
+st.markdown("""
+**References**
+"""
+) 
+           
+st.markdown("""
+Neuman, S.P., 1972. Theory of flow in unconfined aquifers considering delayed gravity response of the water table, Water Resources Research, volume 8, number 4, ppages 1031-1045.
+"""
+)  
+
+st.markdown("""
+Neuman, S.P., 1973. Supplementary comments on ‘Theory of flow in unconfined aquifers considering delayed gravity response of the water table’, Water Resources Research, volume 9, number 4, pages 1102-1103.
+"""
+) 
 
 "---"
 # Navigation at the bottom of the side - useful for mobile phone users     
