@@ -7,12 +7,14 @@ import streamlit as st
 import streamlit_book as stb
 from streamlit_extras.stateful_button import button
 
-st.title(':green[Hantush/Jacob] parameter estimation')
+st.title('🟢 :green[Hantush/Jacob] parameter estimation')
 
-st.subheader('Using the Hantush/Jacob solution for drawdown in response to pumping :green[leaky aquifers] to estimate Transmissivity, Storativity, and Aquitard Leakage', divider="green")
-
+st.header('For drawdown in :green[**leaky aquifers**]')
 st.markdown("""
-            ### Introduction
+            Using the Hantush/Jacob solution for drawdown in response to pumping :green[**leaky aquifers**] to estimate Transmissivity, Storativity, and Aquitard Leakage.
+            """) 
+st.subheader(':green-background[Introduction]', divider="green")
+st.markdown("""
             The Hantush-Jacob (1955) solution is intended to evaluate pumping tests in semiconfined settings.
             
             This application uses the Hantush/Jacob solution to estimate Transmissivity _T_ and  Storativity _S_ of an aquifer, as well as the leakage factor _r/B_ related to aquitard properties, from drawdown data collected during a pumping test.
@@ -31,15 +33,9 @@ st.markdown("""
            To start investigating the Hantush/Jacob Solution it is useful to think about the questions provided in this initial assessment.
 """
 )
-
-
-
 # Initial assessment
-lc0, mc0, rc0 = st.columns([1,2,1])
-with mc0:
-    show_initial_assessment = button('Show/Hide the initial **assessment**', key= 'button1')
-    
-if show_initial_assessment:
+   
+with st.expander(":green[**Show/Hide the initial assessment**]"):
     columnsQ1 = st.columns((1,1))
     
     with columnsQ1[0]:
@@ -67,16 +63,13 @@ if show_initial_assessment:
 "---"
 
 # Optional theory here
-lc1, mc1, rc1 = st.columns([1,3,1])
-with mc1:
-    show_theory = button('Show/Hide more about the underlying **theory**', key= 'button2')
-    
-if show_theory:
-    st.markdown("""
-            ### Underlying theory - The Hantush-Jacob Solution for Pumping Test Evaluation
-            
+st.subheader(':green-background[Underlying theory] - The Hantush-Jacob Solution for Pumping Test Evaluation', divider="green")
+st.markdown("""       
             The Hantush-Jacob solution extends the Theis solution to account for leaky confined aquifers, where vertical leakage from an overlying or underlying aquitard contributes to the flow through the aquifer towards the well. This approach is useful when an aquifer is semi-confined rather than perfectly confined.
-            
+            """)
+# Optional theory here
+with st.expander('**Click here for more information** about the underlying theory of the :green[**Hantush-Jacob Solution**]'):
+    st.markdown("""        
             The drawdown _s_ at a distance _r_ from a well pumping at a constant rate _Q_ is given by:
             """)
             
@@ -291,17 +284,16 @@ def inverse(v):
  
 inverse(1)
 
-"---"
+st.subheader(':green-background[Next step - Using Theis and Hantush/Jacob] with field data from an alluvial aquifer', divider="green")
 
+# OR MAYBE YOU ARE ONLY TRYING TO SHOW THAT THIS IS AN UNCONFINED AQUIFER AND THESE PROCEDURES DO NOT WORK WELL? CLEARLY I AM CONFUSED ENOUGH BY THE POINT OF THIS EXERCISE THAT WE ARE GOING TO HAVE TO MAKE IT MORE CLEAR FOR USERS
 st.markdown("""
-            ### Next step - investigating how the Theis and Hantush/Jacob Solutions align with field data from an unconfined aquifer with and underlying aquitard separating it from another underlying aquifer
+            Above, we investigated field data from Viterbo. We could fit the Hantush/Jacob solution to the measured data.
             
-            Above, we investigated field data from Viterbo. However, some aquifers are unconfined alluvial material with high hydraulic conductivity so the thickness does not change much when they are pumped and sso hydrogeologist will often approximate their behavior with equations developed for a confined aquifer. In this case the value of storativity will reflect the specific yield of the aquifer. In this next step we investigate how the Theis and Hantush/Jacob solutions align with drawdonw data from an unconfined aquifer.
-            
-            :red[OR MAYBE YOU ARE ONLY TRYING TO SHOW THAT THIS IS AN UNCONFINED AQUIFER AND THESE PROCEDURES DO NOT WORK WELL? CLEARLY I AM CONFUSED ENOUGH BY THE POINT OF THIS EXERCISE THAT WE ARE GOING TO HAVE TO MAKE IT MORE CLEAR FOR USERS]
-            
+            Subsequently, we are investigating how the Theis and Hantush/Jacob Solutions align with field data from an alluvial aquifer with and underlying aquitard separating it from another underlying aquifer. In this next step we explore how the Theis and Hantush/Jacob solutions align with drawdonw data from an possibly unconfined aquifer.  
 """
 )
+# However, some aquifers are unconfined alluvial material with high hydraulic conductivity so the thickness does not change much when they are pumped and so hydrogeologist will often approximate their behavior with equations developed for a confined aquifer. In this case the value of storativity will reflect the specific yield of the aquifer. 
 
 lc2, mc2, rc2 = st.columns([1,3,1])
 with mc2:
@@ -318,27 +310,13 @@ if real_data:
     """
     )
 
-st.markdown (
-    """   
-    :green
-    ___
+with st.expander('**Click here for some references**'):
+    st.markdown("""
+    Hantush, M.S. and C.E. Jacob, 1955. Non-steady radial flow in an infinite leaky aquifer, American Geophysical Union Transactions, volume 36, number 1, pages 95-100.
+    
+    [Kruseman, G.P., de Ridder, N.A., & Verweij, J.M.,  1991.](https://gw-project.org/books/analysis-and-evaluation-of-pumping-test-data/) Analysis and Evaluation of Pumping Test Data, International Institute for Land Reclamation and Improvement, Wageningen, The Netherlands, 377 pages.
 """
 )
-
-st.markdown("""
-**References**
-"""
-) 
-
-st.markdown("""
-Hantush, M.S. and C.E. Jacob, 1955. Non-steady radial flow in an infinite leaky aquifer, American Geophysical Union Transactions, volume 36, number 1, pages 95-100.
-"""
-) 
-           
-st.markdown("""
-[Kruseman, G.P., de Ridder, N.A., & Verweij, J.M.,  1991.](https://gw-project.org/books/analysis-and-evaluation-of-pumping-test-data/) Analysis and Evaluation of Pumping Test Data, International Institute for Land Reclamation and Improvement, Wageningen, The Netherlands, 377 pages.
-"""
-)  
 
 "---"
 # Navigation at the bottom of the side - useful for mobile phone users     

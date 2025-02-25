@@ -7,13 +7,16 @@ import streamlit as st
 import streamlit_book as stb
 from streamlit_extras.stateful_button import button
 
-st.title(':violet[Neuman] parameter estimation')
+st.title('🟣 :violet[Neuman] parameter estimation')
 
-st.subheader('Using the Neuman Solution for drawdown in response to pumping :violet[unconfined aquifers] to estimate aquifer properties', divider="violet")
+st.header('For drawdown in :violet[**unconfined aquifers**]')
+st.markdown("""
+            Using the Neuman Solution for drawdown in response to pumping :violet[**unconfined aquifers**] to estimate aquifer properties.
+            """) 
+
+st.subheader(':violet-background[Introduction]', divider="violet")
 
 st.markdown("""
-            ### Introduction
-            
             The Neuman solution (1972,1973) is intended to evaluate pumping tests in unconfined aquifers.
             
             This application uses the Neuman Solution to estimate Transmissivity _T_, Specific Storage _Ss_, Specific Yield _Sy_, and Beta _β_ from drawdown data collected during a pumping test.
@@ -29,14 +32,10 @@ st.markdown("""
             To start investigating the Neuman Solution it is useful to think about the questions provided in this initial assessment.
 """
 )
-
 # Initial assessment
-lc0, mc0, rc0 = st.columns([1,2,1])
-with mc0:
-    show_initial_assessment = button('Show/Hide the initial **assessment**', key= 'button1')
-    
-if show_initial_assessment:
-    columnsQ1 = st.columns((1,1), gap = 'large')
+   
+with st.expander(":green[**Show/Hide the initial assessment**]"):
+    columnsQ1 = st.columns((1,1))
     
     with columnsQ1[0]:
         stb.single_choice(":violet[**What conditions are appropriate for use of the Neuman Solution?**]",
@@ -200,22 +199,19 @@ Qd = Qs*60*60*24 # m^3/d
 m_time_s = [i*60 for i in m_time] # time in seconds
 num_times = len(m_time)
 
-st.subheader(':green[Estimate T, S, and Leakage by matching a Hantush/Jacob Curve to measured data]', divider="rainbow")
+st.subheader(':violet-background[Estimate T, S, and Leakage] by matching a Hantush/Jacob Curve to measured data', divider="violet")
 
 st.markdown("""
             In this section, you can **adjust the values of transmissivity, specific storage, specific yield, and beta until the curve of drawdown versus time that is calculated and plotted on the graph matches the measured data from the Pirna test site in Germany**. The match indicates that the selected values are a reasonable representation of the aquifer properties.
             
-            The aquifer is 6 meters thick.
+            The alluvial aquifer is 6 meters thick. The data are produced in a relatively short pumping test that was performed in November 2024. The pumping rate during the test was 1.18 m³/min. The drawdown was measured with an pressure transducer in an observation well that is 91 m beside the pumping well. The measured data show an initial response to the pumping that is reflect by the first approximately five to ten measurments. Subsequently, the curve of drawdown flattens and then rise again. 
             
             After estimating the parameter values that result in a good fit of the Neuman curve to the data, and knowing the thickness of the aquifer, the horizontal and vertical hydraulic conductivity of the aquifer is calculated.
             
-            :red[ADD A BIT OF DISCUSSION ABOUT THE DATA ....]
-            
             For more precise matching, zoom in by using the toogle.
-            
-            Additionally, you can perform a prediction of drawdown for specific times/spaces.
 """
 )
+# Additionally, you can perform a prediction of drawdown for specific times/spaces.
 
 @st.fragment
 def inverse():
@@ -229,22 +225,24 @@ def inverse():
    
     columns2 = st.columns((1,1), gap = 'large')
     with columns2[0]:
-        refine_plot = st.toggle("**Refine** the range of the **Data matching plot**")
-    with columns2[1]:
         # READ LOG VALUE, CONVERT, AND WRITE VALUE FOR TRANSMISSIVITY
         container = st.container()
         T_slider_value=st.slider('_(log of) Transmissivity in m²/s_', log_min1,log_max1,-2.0,0.01,format="%4.2f" )
         T = 10 ** T_slider_value
         container.write("**Transmissivity in m²/s**: %5.2e" %T)
+        beta_choice = st.selectbox("**beta**",('0.001','0.01', '0.06', '0.2', '0.6', '1', '2', '4', '6'),)
+        beta_list = ['0.001','0.01', '0.06', '0.2', '0.6', '1', '2', '4', '6']
+        beta = beta_list.index(beta_choice)
+        refine_plot = st.toggle("**Refine** the range of the **Data matching plot**")
+    with columns2[1]:
+
         # READ LOG VALUE, CONVERT, AND WRITE VALUE FOR SPECIFIC STORAGE
         container = st.container()
         S_slider_value=st.slider('_(log of) Specific storage_', log_min2,log_max2,-4.0,0.01,format="%4.2f" )
         Ss = 10 ** S_slider_value
         container.write("**Specific storage (dimensionless):** %5.2e" %Ss)
         SY = st.slider('**Specific Yield**', 0.01, 0.50, 0.25, 0.01, format="%4.2f")
-        beta_choice = st.selectbox("**beta**",('0.001','0.01', '0.06', '0.2', '0.6', '1', '2', '4', '6'),)
-        beta_list = ['0.001','0.01', '0.06', '0.2', '0.6', '1', '2', '4', '6']
-        beta = beta_list.index(beta_choice)
+
 
     # Compute K and SS to provide parameters for plausability check
     # (i.e. are the parameter in a reasonable range)
@@ -298,32 +296,26 @@ def inverse():
 
 
     st.write("**Parameters**")
-    st.write("**Distance of measurement from well r = %3i" % r, " m**")
-    st.write("**Pumping rate during test Q = % 5.3f"% Qs, " m³/s**")
-    st.write("**Thickness of aquifer b = % 5.2f"% b, " m**")
-    st.write("**Transmissivity T = % 10.2E"% T, " m²/s**")
-    st.write("**Specific Storage S = % 10.2E"% S, " 1/m**")
-    st.write("**Specific Yield Sy = % 10.2E"% SY, "[dimensionless]**")
-    st.write("**Horizontal Hydraulic Conductivity K' = % 10.2E"% (T/b), " m²/s**")
-    st.write("**Vertical Hydraulic Conductivity Kz = % 10.2E"% (beta*(T/b)*b*b/r/r), " m²/s**")
+    st.write("**Distance of measurement from well $r$ = %3i" % r, " m**")
+    st.write("**Pumping rate during test $Q$ = % 5.3f"% Qs, " m³/s**")
+    st.write("**Thickness of aquifer $b$ = % 5.2f"% b, " m**")
+    st.write("**Transmissivity $T$ = % 10.2E"% T, " m²/s**")
+    st.write("**Specific Storage $S_S$ = % 10.2E"% S, " 1/m**")
+    st.write("**Specific Yield $S_Y$ = % 10.2E"% SY, "[dimensionless]**")
+    st.write("**Horizontal Hydraulic Conductivity $K_h$ = % 10.2E"% (T/b), " m²/s**")
+    st.write("**Vertical Hydraulic Conductivity $K_v$ = % 10.2E"% (beta*(T/b)*b*b/r/r), " m²/s**")
  
 inverse()
 
-
-st.markdown("""
-**References**
+with st.expander('**Click here for some references**'):
+    st.markdown("""
+    Neuman, S.P., 1972. Theory of flow in unconfined aquifers considering delayed gravity response of the water table, Water Resources Research, volume 8, number 4, ppages 1031-1045.
+    
+    Neuman, S.P., 1973. Supplementary comments on ‘Theory of flow in unconfined aquifers considering delayed gravity response of the water table’, Water Resources Research, volume 9, number 4, pages 1102-1103.
+    
+    [Kruseman, G.P., de Ridder, N.A., & Verweij, J.M.,  1991.](https://gw-project.org/books/analysis-and-evaluation-of-pumping-test-data/) Analysis and Evaluation of Pumping Test Data, International Institute for Land Reclamation and Improvement, Wageningen, The Netherlands, 377 pages.
 """
-) 
-           
-st.markdown("""
-Neuman, S.P., 1972. Theory of flow in unconfined aquifers considering delayed gravity response of the water table, Water Resources Research, volume 8, number 4, ppages 1031-1045.
-"""
-)  
-
-st.markdown("""
-Neuman, S.P., 1973. Supplementary comments on ‘Theory of flow in unconfined aquifers considering delayed gravity response of the water table’, Water Resources Research, volume 9, number 4, pages 1102-1103.
-"""
-) 
+)
 
 "---"
 # Navigation at the bottom of the side - useful for mobile phone users     

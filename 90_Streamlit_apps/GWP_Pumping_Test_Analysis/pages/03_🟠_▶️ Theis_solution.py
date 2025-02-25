@@ -7,13 +7,14 @@ import streamlit as st
 import streamlit_book as stb
 from streamlit_extras.stateful_button import button
 
-st.title(':red[Theis] parameter estimation')
+st.title('🟠 :red[Theis] parameter estimation')
 
-st.subheader('Using the Theis Solution for drawdown in response to pumping :red[confined aquifers] to estimate Transmissivity and Storativity', divider="red")
-
+st.header('For drawdown in :red[confined aquifers]')
 st.markdown("""
-            ### Introduction
-            
+            Using the Theis Solution for drawdown in response to pumping :red[confined aquifers] to estimate Transmissivity and Storativity.
+            """) 
+st.subheader(':red-background[Introduction]', divider="red")
+st.markdown(""" 
             The Theis (1935) solution was developed to calculate drawdown due to pumping a confined aquifer.
             
             This application uses the Theis Solution to estimate Transmissivity _T_ and Storativity _S_ from drawdown data collected during a pumping test. 
@@ -31,12 +32,9 @@ st.markdown("""
 )
 
 # Initial assessment
-lc0, mc0, rc0 = st.columns([1,2,1])
-with mc0:
-    show_initial_assessment = button('Show/Hide the initial **assessment**', key= 'button1')
-    
-if show_initial_assessment:
-    columnsQ1 = st.columns((1,1), gap = 'large')
+   
+with st.expander(":green[**Show/Hide the initial assessment**]"):
+    columnsQ1 = st.columns((1,1))
     
     with columnsQ1[0]:
         stb.single_choice(":blue[**What conditions are appropriate for use of the Theis Solution?**]",
@@ -56,17 +54,18 @@ if show_initial_assessment:
                   ["The aquifer has variable thickness", "The aquifer is confined and infinite in extent", "The well fully penetrates an unconfined aquifer", "The pumping rate varies with time"],
                   1,success='CORRECT! The aquifer is confined and infinite in extent', error='This is not correct. You can learn more about the Theis Solution [by downloading the book: An Introduction to Hydraulic Testing in Hydrogeology - Basic Pumping, Slug, and Packer Methods​​ and reading Section 8](https://gw-project.org/books/an-introduction-to-hydraulic-testing-in-hydrogeology-basic-pumping-slug-and-packer-methods/). Feel free to answer again.')
                   
-"---"
-
-# Optional theory here
-lc1, mc1, rc1 = st.columns([1,3,1])
-with mc1:
-    show_theory = button('Show/Hide more about the underlying **theory**', key= 'button2')
+st.subheader(':red-background[Underlying Theory] - Theis Solution for Pumping Test Evaluation', divider="red")
+st.markdown(
+    """
+    The Theis solution is a fundamental method in hydrogeology used to analyze transient flow to a well in a confined aquifer. It describes the drawdown _s_ as a function of time and radial distance from a pumping well under the assumption of an infinite, homogeneous, and isotropic aquifer with uniform thickness.
+    """
+    )
     
-if show_theory:
+# Optional theory here
+with st.expander('**Click here for more information** about the underlying theory of the :red[**Theis solution**]'):
     st.markdown(
     """
-    ### Underlying theory - Theis Solution for Pumping Test Evaluation
+    ### 
     
     The Theis solution is a fundamental method in hydrogeology used to analyze transient flow to a well in a confined aquifer. It describes the drawdown _s_ as a function of time and radial distance from a pumping well under the assumption of an infinite, homogeneous, and isotropic aquifer with uniform thickness.
     
@@ -105,8 +104,14 @@ if show_theory:
     """
     )
 
-"---"
+st.subheader(':red-background[Estimate _T_ and _S_ by matching a Theis Curve] to measured data', divider="red")
 
+st.markdown("""
+            In this section, you can **adjust the values of transmissivity and storativity until the curve of drawdown versus time that is calculated and plotted on the graph matches the idealized measured data**. The match indicates that the selected values are a reasonable representation of the aquifer properties.
+            
+            For more precise matching, zoom in by using the toogle.
+"""
+)
 # Computation
 # (Here the necessary functions like the well function $W(u)$ are defined. Later, those functions are used in the computation)
 # Define a function, class, and object for Theis Well analysis
@@ -122,14 +127,7 @@ u = np.logspace(u_min,u_max)
 u_inv = 1/u
 w_u = well_function(u)
 
-st.subheader(':green[Estimate _T_ and _S_ by matching a Theis Curve to measured data]', divider="rainbow")
 
-st.markdown("""
-            In this section, you can **adjust the values of transmissivity and storativity until the curve of drawdown versus time that is calculated and plotted on the graph matches the idealized measured data**. The match indicates that the selected values are a reasonable representation of the aquifer properties.
-            
-            For more precise matching, zoom in by using the toogle.
-"""
-)
 
 @st.fragment
 def inverse(v):
@@ -222,43 +220,43 @@ def inverse(v):
         st.write("**Transmissivity T = % 10.2E"% T, " m²/s**")
         st.write("**Storativity    S = % 10.2E"% S, "[dimensionless]**")
 
+# The first interactive plot 
 inverse(1)
 
-"---"
+st.subheader(':red-background[Next step - Using Theis with field data]', divider="red")
 
 st.markdown("""
-            ### Next step - Using Theis with field data
-            
             So far, we investigated the Theis solution with idealized data. However, data collected in the field is less than ideal. Drawdown measurements vary because it is not possible to maintain an absolutely constant pumping rate and other stresses influence groundwater levels such as pumping of wells near the test site.  The next step investigates matching the Theis solution to measured data.  
 """
 )
 
-lc2, mc2, rc2 = st.columns([1,3,1])
-with mc2:
-    real_data = button("Matching the Theis Solution to **field data**", key = 'button3')
-
-if real_data:
+with st.expander('**:red[Click here] to open the interactive plot with real measured data**'):
+    # The second interactive plot
     inverse(2)
 
+st.subheader(':red-background[Some initial conclusions]', divider="red")
+with st.expander('**Click here for some initial conclusions**'):
+    st.markdown("""
+    With the **first interactive plot** we understood how to modify the Theis plot to obtain a fit with measured data. The modifications were done by adjusting transmissivity $T$ and storativity $S$.
+    
+    With the data from the textbook we could obtain perfect fit to the Theis solution.
+    
+    In the **second interactive plot** we aimed to fit the Theis solution to measured data from a field site.
+    
+    We understood that measured data can contain outliers as the first measured point.
+    
+    We also understood that the Theis solution only partially reflect the measured data. We could obtain a good fit for the initial data. But for later data, the measurements deviate from the Theis solution.
+    """
+)  
 
-st.markdown (
-    """   
-    :green
-    ___
+with st.expander('**Click here for some references**'):
+    st.markdown("""
+    [Kruseman, G.P., de Ridder, N.A., & Verweij, J.M.,  1991.](https://gw-project.org/books/analysis-and-evaluation-of-pumping-test-data/) Analysis and Evaluation of Pumping Test Data, International Institute for Land Reclamation and Improvement, Wageningen, The Netherlands, 377 pages.
+    
+    Theis, C.V., 1935. The relation between the lowering of the piezometric surface and the rate and duration of discharge of a well using groundwater storage, Transactions of the American Geophysical Union, volume 16, pages 519-524.
 """
 )     
-st.markdown("""
-[Kruseman, G.P., de Ridder, N.A., & Verweij, J.M.,  1991.](https://gw-project.org/books/analysis-and-evaluation-of-pumping-test-data/) Analysis and Evaluation of Pumping Test Data, International Institute for Land Reclamation and Improvement, Wageningen, The Netherlands, 377 pages.
-"""
-)     
-st.markdown("""
-Theis, C.V., 1935. The relation between the lowering of the piezometric surface and the rate and duration of discharge of a well using groundwater storage, Transactions of the American Geophysical Union, volume 16, pages 519-524.
-"""
-)              
-
-
-
-
+            
 "---"
 # Navigation at the bottom of the side - useful for mobile phone users     
         

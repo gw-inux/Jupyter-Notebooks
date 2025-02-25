@@ -6,15 +6,14 @@ import pandas as pd
 import streamlit as st
 import streamlit_book as stb
 
-st.title('Pumping Test Analysis with the :red[Theis], :green[Hantush/Jacob], and :violet[Neuman] solutions')
+st.title('🎯 Pumping Test Analysis with the :red[Theis], :green[Hantush/Jacob], and :violet[Neuman] solutions')
 
-st.subheader('Fitting formation parameter values to :rainbow[FIELD measured] data', divider="rainbow")
+st.header('Fitting formation parameter values to :rainbow[FIELD measured] data')
 
-st.markdown("""
-            ### Motivation
-            
-            This application allows you to choose the solution for fitting a model of aquifer response to pumping curve to different data sets. Measurements from various pumping tests can be selected. Alternatively, you can use your own data by uploading them as *.csv file. 
-"""
+st.subheader('Introduction and Motivation', divider="rainbow")
+st.markdown("""    
+            This application allows you to choose the solution for fitting a model of aquifer response to pumping curve to different data sets. Measurements from various pumping tests can be selected. Alternatively, you can use your own data by uploading them as *.csv file. The required data format is time in minutes and drawdown in meters, both separated by a comma. 
+            """
 )
 
 "---"   
@@ -142,7 +141,7 @@ elif(st.session_state.Data =="Load own CSV dataset"):
     b = 10        # m
     Qs = 0.005    # m^3/s
     Qd = 100      # m^3/d
-    uploaded_file = st.file_uploader("Choose a file (subsequently you can add pumping rate and distance between well and observation)")
+    uploaded_file = st.file_uploader("Choose a file (subsequently you can add pumping rate and distance between well and observation). The required data format is time in minutes and drawdown in meters, both separated by a comma.")
     if uploaded_file is not None:
         df = pd.read_csv(uploaded_file)
         m_time = list(df.iloc[:,0].values)
