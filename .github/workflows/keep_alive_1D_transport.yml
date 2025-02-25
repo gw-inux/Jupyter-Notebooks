@@ -1,0 +1,17 @@
+name: Keep Streamlit App Alive
+
+on:
+  schedule:
+    - cron: '*/30 * * * *'  # Runs every 30 minutes
+  workflow_dispatch:         # Allows manual triggering
+
+jobs:
+  keep-alive:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Send keep-alive request
+        run: |
+          echo "Pinging Streamlit app at https://gwp-1d-conservative-transport2.streamlit.app/..."
+          response=$(curl -s -o /dev/null -w "%{http_code}" "https://gwp-1d-conservative-transport2.streamlit.app/")
+          echo "Response Code: $response"
