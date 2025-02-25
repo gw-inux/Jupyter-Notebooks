@@ -175,16 +175,17 @@ def inverse():
         refine_plot = st.toggle("**Zoom in** on the **data in the graph**")
         show_truth = st.toggle(":rainbow[How accurate are the parameter value estimates?]")
     with columns2[1]:
-        # READ LOG VALUE, CONVERT, AND WRITE VALUE FOR TRANSMISSIVITY
-        container = st.container()
-        T_slider_value=st.slider('_(log of) Transmissivity in m²/s_', log_min1,log_max1,-3.0,0.01,format="%4.2f" )
-        T = 10 ** T_slider_value
-        container.write("**Transmissivity in m²/s:** %5.2e" %T)
-        # READ LOG VALUE, CONVERT, AND WRITE VALUE FOR STORATIVIT
-        container = st.container()
-        S_slider_value=st.slider('_(log of) Storativity_', log_min2,log_max2,-4.0,0.01,format="%4.2f" )
-        S = 10 ** S_slider_value
-        container.write("**Storativity (dimensionless):** %5.2e" %S)
+        with st.expander('Parameters _T_ and _S_'):
+            # READ LOG VALUE, CONVERT, AND WRITE VALUE FOR TRANSMISSIVITY
+            container = st.container()
+            T_slider_value=st.slider('_(log of) Transmissivity in m²/s_', log_min1,log_max1,-3.0,0.01,format="%4.2f" )
+            T = 10 ** T_slider_value
+            container.write("**Transmissivity in m²/s:** %5.2e" %T)
+            # READ LOG VALUE, CONVERT, AND WRITE VALUE FOR STORATIVIT
+            container = st.container()
+            S_slider_value=st.slider('_(log of) Storativity_', log_min2,log_max2,-4.0,0.01,format="%4.2f" )
+            S = 10 ** S_slider_value
+            container.write("**Storativity (dimensionless):** %5.2e" %S)
     with columns2[2]:
         prediction = st.toggle('**Make the prediction**')
         if prediction:
