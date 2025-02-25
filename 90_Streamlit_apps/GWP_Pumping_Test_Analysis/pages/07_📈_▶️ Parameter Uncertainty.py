@@ -163,7 +163,7 @@ def inverse():
     log_min2 = -7.0 # S / Corresponds to 10^-7 = 0.0000001
     log_max2 = 0.0  # S / Corresponds to 10^0 = 1
 
-    columns2 = st.columns((1,1,1), gap = 'large')
+    columns2 = st.columns((1,1,1), gap = 'medium')
     with columns2[0]:
         def_noise = st.toggle("**Define the noise** in the measured data")
         if def_noise:
@@ -189,20 +189,21 @@ def inverse():
         prediction = st.toggle('**Make the prediction**')
         if prediction:
             Q_pred = st.slider(f'**Pumping rate** (m³/s) for the **prediction**', 0.001,0.100,Qs,0.001,format="%5.3f")
-            r_pred = st.slider(f'**Distance** (m) from the **well** for the **prediction**', 1,1000,r,1)
-            per_pred = st.slider(f'**Duration** of the **prediction period** (days)',1,3652,3,1) 
-            max_t = 86400*per_pred
-            if per_pred <= 3:
-                t_search = st.slider(f'**Select time (s) for printout below graph**', 1,max_t,1,1)
-            elif per_pred <= 7:
-                t_search_h = st.slider(f'**Select time (hours) for printout below graph**', 1.,24.*per_pred,1.)
-                t_search = t_search_h*3600
-            elif per_pred <= 366:
-                t_search_d = st.slider(f'**Select time (days) for printout below graph**', 1.,per_pred*1.0,1.)
-                t_search = t_search_d*86400
-            else:
-                t_search_mo = st.slider(f'**Select time (months) for printout below graph**', 1.,per_pred/30.4375,1.)
-                t_search = t_search_mo*2629800
+            with st.expander('Define time and space for prediction'):
+                r_pred = st.slider(f'**Distance** (m) from the **well** for the **prediction**', 1,1000,r,1)
+                per_pred = st.slider(f'**Duration** of the **prediction period** (days)',1,3652,3,1) 
+                max_t = 86400*per_pred
+                if per_pred <= 3:
+                    t_search = st.slider(f'**Select time (s) for printout below graph**', 1,max_t,1,1)
+                elif per_pred <= 7:
+                    t_search_h = st.slider(f'**Select time (hours) for printout below graph**', 1.,24.*per_pred,1.)
+                    t_search = t_search_h*3600
+                elif per_pred <= 366:
+                    t_search_d = st.slider(f'**Select time (days) for printout below graph**', 1.,per_pred*1.0,1.)
+                    t_search = t_search_d*86400
+                else:
+                    t_search_mo = st.slider(f'**Select time (months) for printout below graph**', 1.,per_pred/30.4375,1.)
+                    t_search = t_search_mo*2629800
    
     if long:
         n_samples = n_samples_long
