@@ -153,6 +153,7 @@ m_ddown_noise = [np.random.randint((100-max_noise), (100+max_noise))/100 for i i
 n_samples_long = np.random.randint (35, 49)
 n_samples_short = np.random.randint (16, 22)
 
+show_truth = False
 
 @st.fragment
 def inverse(): 
@@ -163,7 +164,7 @@ def inverse():
     log_max1 = 0.0  # T / Corresponds to 10^0 = 1
     log_min2 = -7.0 # S / Corresponds to 10^-7 = 0.0000001
     log_max2 = 0.0  # S / Corresponds to 10^0 = 1
-    
+
     columns2 = st.columns((1,1,1), gap = 'large')
     with columns2[0]:
         def_noise = st.toggle("**Define the noise** in the measured data")
