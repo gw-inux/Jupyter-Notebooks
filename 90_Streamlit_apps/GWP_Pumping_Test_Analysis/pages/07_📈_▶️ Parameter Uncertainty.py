@@ -153,8 +153,6 @@ m_ddown_noise = [np.random.randint((100-max_noise), (100+max_noise))/100 for i i
 n_samples_long = np.random.randint (35, 49)
 n_samples_short = np.random.randint (16, 22)
 
-show_truth = False
-
 @st.fragment
 def inverse(): 
         
@@ -175,6 +173,7 @@ def inverse():
             noise_strength = 20/max_noise
         long = st.toggle('**Provide data for a longer pumping test**')
         refine_plot = st.toggle("**Zoom in** on the **data in the graph**")
+        show_truth = st.toggle(":rainbow[How accurate are the parameter value estimates?]")
     with columns2[1]:
         # READ LOG VALUE, CONVERT, AND WRITE VALUE FOR TRANSMISSIVITY
         container = st.container()
@@ -324,10 +323,6 @@ def inverse():
         plt.legend(fontsize=14)
         st.pyplot(fig)
     
-    columns4 = st.columns((1,1,1), gap = 'large')
-    with columns4[1]:
-        show_truth = st.toggle(":rainbow[How accurate are the parameter value estimates?]")
-
     columns3 = st.columns((1,1), gap = 'medium')
     with columns3[0]:
         st.write("**Estimated Parameters**")
