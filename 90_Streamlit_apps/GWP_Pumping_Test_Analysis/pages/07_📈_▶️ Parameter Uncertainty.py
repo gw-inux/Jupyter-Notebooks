@@ -312,7 +312,7 @@ def inverse():
         plt.xticks(fontsize=14)
         plt.yticks(fontsize=14)
         if refine_plot:
-            plt.axis([1E0,1E4,1E-2,1E+1])
+            plt.axis([1E1,1E5,1E-2,1E+1])
         else:
             plt.axis([1,1E7,1E-4,1E+2])
             ax.text((2),1.8E-4,'Coarse plot - Refine for final fitting')
