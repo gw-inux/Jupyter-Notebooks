@@ -1,32 +1,15 @@
-# This is a basic workflow to help you get started with Actions
- 
-name:
-  Empty Commit through Cron Job
- 
-  # Controls when the workflow will run
+name: Keep Streamlit App Alive
+
 on:
-  # Triggers the workflow every 5 minutes
   schedule:
-    - cron: "5 5 * * *"
- 
-      # A workflow run is made up of one or more jobs that can run sequentially or in parallel
+    - cron: '0 * * * *'  # Runs every hour
+  workflow_dispatch:     # Allows manual triggering
+
 jobs:
-  # jobs:
-  empty_commit:
+  keep-alive:
     runs-on: ubuntu-latest
-    
     steps:
-    - name: Checkout Repository
-      uses: actions/checkout@v2
+      - name: Send keep-alive request
+        run: |
+          curl -s -o /dev/null -w "%{http_code}" "https://gwp-wellcapture.streamlit.app/"
 
-    - run: git init
-    - run: git config user.email thomas.reimann@tu-dresden
-    - run: git config user.name ThoReimann
-
-    - name: Create Empty Commit
-      run: git commit --allow-empty -m "Empty commit"
-
-    - name: Push Empty Commit
-      run: git push origin main/90_Streamlit_apps/GWP_Well_capture  # Change 'main' to your branch name
-      env:
-        GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
