@@ -14,7 +14,7 @@ warnings.filterwarnings("ignore")
 #--------------------------------------#
 st.title("Solute transport and the principle of superposition, an example")
 st.markdown("We have an aquifer with a saturated thickness of 20 m, porosity of 0.1, and hydraulic conductivity of 5 m/d. The river is completely contaminated by two pollution episodes separated by 5 days. The first pollution episode can be represented as a constant pulse with a concentration of 800 mg/L that lasts for 30 days. The second episode is a constant pulse with a concentration of 600 mg/L that lasts for 40 days. After 80 days from the start of the contamination, the river returns to its initial chemical state (zero chlorides). It is assumed that chlorides are neither adsorbed nor degraded in the aquifer.")
-st.image('90_Streamlit_apps/GWP_1D_Conservative_Transport/assets/images/superposition_principle_figure.PNG', caption = "Case example.")
+st.image('05_Applied_hydrogeology/FIGS/superposition_principle_figure.PNG', caption = "Case example.")
 st.markdown("""
 The following is requested:<br> 
 **(A)** Calculate the travel time of the chlorides to point A.  
