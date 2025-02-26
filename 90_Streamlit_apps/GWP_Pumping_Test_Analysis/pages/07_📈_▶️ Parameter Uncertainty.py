@@ -129,35 +129,39 @@ u = np.logspace(u_min,u_max)
 u_inv = 1/u
 w_u = well_function(u)
 
-# Generate data
-r = 120       # m
-b = 10       # m
-Qs = 1.0/60   # m^3/s
-Qd = Qs*60*60*24 # m^3/d
+# Generate the random data
+r = 120          # m, distance of the observation
+b = 10           # m, thickness of the aquifer
+Qs = 1.0/60      # m^3/s, pumping rate in m3/s
+Qd = Qs*60*60*24 # m^3/d, pumping rate in m3/d
     
 T_random = 1.23E-4*b*np.random.randint(1, 10000)/100
 S_random = 1E-5*b*np.random.randint(1, 10000)/100
 st.session_state.T_random = T_random
 st.session_state.S_random = S_random
     
-m_time_all  = [1,2,3,4,5,6,7,8,9,10,12,14,16,18,20,25,30,35,40,45,50,55,60,70,80,90,100,110,120,130,140,150,160,170,180,210,240,270,300,330,360,420,480,540,600,660,720,780,840,900, 960, 1020, 1080, 1140, 1200, 1260, 1320, 1380, 1440, 1500]
+m_time_all  = [1,2,3,4,5,6,7,8,9,10,12,14,16,18,20,25,30,35,40,45,50,55,60,70,80,90,100,110,120,130,140,150,160,170,180,210,240,270,300,330,360,420,480,540,600,660,720,780,840,900, 960, 1020, 1080, 1140, 1200, 1260, 1320, 1380, 1440, 1500] # time in minutes
 m_time_all_s = [i*60 for i in m_time_all] # time in seconds
 
        
 # Compute measured data with noise
-# m_ddown_all = [compute_s(st.session_state.T_random, st.session_state.S_random, i, Qs, r)*np.random.randint((100-noise), (100+noise))/100 for i in m_time_all_s] # time in seconds
-max_noise = 50
+# The noise is computed at the beginning with the max noise (as percentage) and subsequently, the noise is normalized by a strenght (ranging from 1.0 to 0.0 -> full noise to no noise)
+max_noise = 50 # max noise - should not be smaller than 20 - see input slider 
+
+# Compute all random data 
 m_ddown_all = [compute_s(st.session_state.T_random, st.session_state.S_random, i, Qs, r) for i in m_time_all_s]
+# Compute the ranom noise
 m_ddown_noise = [np.random.randint((100-max_noise), (100+max_noise))/100 for i in m_time_all_s]
 
+# Random number of samples
 n_samples_long = np.random.randint (35, 49)
 n_samples_short = np.random.randint (16, 22)
 
+# Everything inside the fragment is re-computed with every input change
 @st.fragment
 def inverse(): 
         
-    # Get input data
-    # Define the minimum and maximum for the logarithmic scale
+    # Get user defined input data
     log_min1 = -7.0 # T / Corresponds to 10^-7 = 0.0000001
     log_max1 = 0.0  # T / Corresponds to 10^0 = 1
     log_min2 = -7.0 # S / Corresponds to 10^-7 = 0.0000001
@@ -167,7 +171,7 @@ def inverse():
     with columns2[0]:
         def_noise = st.toggle("**Define the noise** in the measured data")
         if def_noise:
-            noise_slider = st.slider('Percentage of noise', 0,max_noise, 20,1)
+            noise_slider = st.slider('Percentage of noise', 0, max_noise, 20, 1)
             noise_strength = noise_slider/max_noise
         else:
             noise_strength = 20/max_noise
@@ -211,16 +215,16 @@ def inverse():
     else:
         n_samples = n_samples_short
         
-#
     m_time_s = m_time_all_s[:n_samples]
     num_times = len(m_time_s)
     
     # Multiply each value to add noise and normalize the noise according to the noise strength
     m_ddown_all_noise = [ddown * (1 + noise_strength * (noise - 1 ))  for ddown, noise in zip(m_ddown_all, m_ddown_noise)]
     
+    # Use a random number of samples
     m_ddown = m_ddown_all_noise[:n_samples]
         
-    # Theis curve
+    # Compute the Theis curve
     t_term = r**2 * S / 4 / T
     s_term = Qs/(4 * np.pi * T)
 

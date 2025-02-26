@@ -172,12 +172,11 @@ st.markdown("""
             The aquifer is ### meters thick and is overlain by an aquitard that is 8.5 m thick that separates the Viterbo Aquifer from an overlying aquifer. When the Viterbo Aquifer is pumped, water leaks downward from the overlying aquifer in response to the lowered head in the Viterbo Aquifer.
         
             After estimating the parameter values that result in a good fit of the Hantush/Jacob curve to the data, and knowing the thickness of the aquitard, the vertical hydraulic conductivity of the aquitard is calculated.
-        
-            :red[ADD A BIT OF DISCUSSION ABOUT THE FIRST DATA POINT ....]
             
             For more precise matching, zoom in by using the toogle.
 """
 )
+# :red[ADD A BIT OF DISCUSSION ABOUT THE FIRST DATA POINT ....]
 
 @st.fragment
 def inverse(v):
@@ -295,11 +294,7 @@ st.markdown("""
 )
 # However, some aquifers are unconfined alluvial material with high hydraulic conductivity so the thickness does not change much when they are pumped and so hydrogeologist will often approximate their behavior with equations developed for a confined aquifer. In this case the value of storativity will reflect the specific yield of the aquifer. 
 
-lc2, mc2, rc2 = st.columns([1,3,1])
-with mc2:
-    real_data = button("Matching the Theis and Hantush/Jacob Solutions to drawdown data from a leaky unconfined aquifer ", key = 'button3')
-
-if real_data:
+with st.expander("Matching the Theis and Hantush/Jacob Solutions to drawdown data from a leaky unconfined aquifer - Click here"):
     inverse(2)
     
     st.markdown("""
