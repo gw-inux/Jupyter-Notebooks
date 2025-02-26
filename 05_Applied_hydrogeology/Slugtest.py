@@ -90,8 +90,6 @@ with columns[1]:
         slugsize = st.number_input("Slug size in cm³ (1 liter = 1000 cm³)", value = 700,step=1)
         h_static = st.number_input("Static water level (hydraulic head) in m", value = 0., step=0.01)
     
-
-
 if (st.session_state.Data == "Varnum (SWE) 2018 - R4"):
     slugsize = 700
     h_static = 0
@@ -123,10 +121,7 @@ elif(st.session_state.Data =="Load own CSV dataset"):
         df = pd.read_csv(uploaded_file)
         m_time = list(df.iloc[:,0].values)
         m_head = list(df.iloc[:,1].values)
-    st.write(m_head)
-
-"---"
-st.subheader('Computation')
+    st.write('Overview about loaded data', m_head)
 
 # Computation
 
@@ -136,8 +131,6 @@ tmax = 300
 
 # User defined values
 
-
-    
 # Define the minimum and maximum for the logarithmic scale
 log_min = -6.0 # Corresponds to 10^-7 = 0.0000001
 log_max =  -2.0  # Corresponds to 10^0 = 1
@@ -149,8 +142,6 @@ with lc1:
         rw = st.number_input("well screen radius", value = rw_ini,step=.001, format="%.3f")
         L  = st.number_input("Lenght of the well screen", value = L_ini,step=.1, format="%.1f")
     
-
-
 with rc1:
     # Log slider with input and print
     t_off = st.slider('**Time offset** in s', 0, 60, 0, 1)
