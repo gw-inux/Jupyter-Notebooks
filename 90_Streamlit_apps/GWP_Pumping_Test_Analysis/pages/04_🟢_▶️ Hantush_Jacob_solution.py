@@ -296,10 +296,8 @@ st.markdown("""
 
 with st.expander("Matching the Theis and Hantush/Jacob Solutions to drawdown data from a leaky unconfined aquifer - Click here"):
     inverse(2)
-    
+    st.subheader(':green-background[To continue...]', divider="green")
     st.markdown("""
-            ### To continue... 
-            
             Are you curious whether there is a better way how to proceed with the estimating aquifer properties from drawdown data collected while pumping and unconfined aquifer? On the next page we will investigate the Neuman Solution for calculating drawdown in response to pumping an unconfined aquifer.
             
     """
