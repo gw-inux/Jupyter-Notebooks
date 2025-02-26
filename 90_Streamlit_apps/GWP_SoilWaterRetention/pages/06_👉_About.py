@@ -26,7 +26,7 @@ st.markdown(
 )
 left_co1, cent_co1 = st.columns((20,60))
 with left_co1:
-    st.image('90_Streamlit_apps/GWP_SoilWaterRetention/assets/images/oriolbertranoller.png')
+    st.image('90_Streamlit_apps/GWP_1D_Conservative_Transport/assets/images/oriolbertran.jpg')
 with cent_co1:
     st.markdown(
         """
