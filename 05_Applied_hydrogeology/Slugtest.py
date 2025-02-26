@@ -3,24 +3,14 @@ import pandas as pd
 import streamlit as st
 import matplotlib.pyplot as plt
 
-st.title('Slugtest evaluation')
+st.title('Slugtest evaluation 📉')
 
-st.subheader('Evaluating slug test in :green[unconfined aquifers with the Bouwer & Rice method]', divider="green")
+st.header('Evaluating slug test in :green[unconfined aquifers with the Bouwer & Rice method]')
+
+st.subheader(':green-background[Introduction and Motivation]', divider="green")
 
 st.markdown("""
-            ### Introduction and Motivation
             Slug tests are quick and cost-effective field methods used to determine the hydraulic conductivity (K) of an aquifer. They involve a sudden change in water level within a well (either by adding or removing a known volume of water, or inserting/removing a slug) and measuring the subsequent water level recovery over time, see subsequent figure.
-            
-            These tests are ideal for:
-            - Assessing aquifer properties in low-permeability formations.
-            - Situations where pumping tests are not feasible due to time or space constraints.
-            - Monitoring wells where minimal disturbance to the aquifer is desired.
-            
-            Types of Slug Tests:
-            - Rising-head test: Water level rises after removal of a slug.
-            - Falling-head test: Water level falls after adding water or a slug.
-            
-            **Why use slug tests?** They are fast, inexpensive, and suitable for small-scale investigations, making them a standard tool in hydrogeological site assessments.
            """)
            
 lc0, rc0 = st.columns((1,1.3),gap = 'large')
@@ -30,13 +20,23 @@ with rc0:
     st.video('https://youtu.be/GTq72oB0qZo')
     st.write('_Video:_ Slugtest performed at the Varnum site (Sweden) by adding approximately 4 liter to an groundwater observation well.')
 
-
-with st.expander('The Theory behind the Bouwer & Rice Method for Unconfined Aquifers'):
-    st.markdown("""
-            ### The Theory behinf the Bouwer & Rice Method for Unconfined Aquifers
+st.subheader(':green-background[The Theory behind] the Bouwer & Rice Method for Unconfined Aquifers', divider="green")
+st.markdown("""
+                        These tests are ideal for:
+            - Assessing aquifer properties in low-permeability formations.
+            - Situations where pumping tests are not feasible due to time or space constraints.
+            - Monitoring wells where minimal disturbance to the aquifer is desired.
+            
+            Types of Slug Tests:
+            - Rising-head test: Water level rises after removal of a slug.
+            - Falling-head test: Water level falls after adding water or a slug.
+            
+            **Why use slug tests?** They are fast, inexpensive, and suitable for small-scale investigations, making them a standard tool in hydrogeological site assessments.
             
             The **Bouwer and Rice (1976) method** is a widely used approach to evaluate **slug test data**, especially in **partially penetrating wells** in **unconfined aquifers**. It relates the **water level recovery** to the **hydraulic conductivity** of the aquifer, accounting for well geometry and screen penetration.
-            
+            """)
+with st.expander('**Click here to read more about the theory**'):
+    st.markdown("""
             The hydraulic conductivity $K$ is calculated using:
             """)
     st.latex(r'''K = \frac{r_c^2 \ln\left(\frac{R_e}{r_w}\right)}{2L} \cdot \frac{1}{t} \cdot \ln\left(\frac{h_t}{h_0}\right)''')
@@ -72,16 +72,14 @@ with st.expander('The Theory behind the Bouwer & Rice Method for Unconfined Aqui
             """)
             
     st.latex(r'''R_e = L''')
- 
-    st.markdown("""    
-            Reference: Bouwer, H., & Rice, R. C. (1976). A slug test for determining hydraulic conductivity of unconfined aquifers with completely or partially penetrating wells. Water Resources Research, 12(3), 423-428.
-            
-            The subsequent interactive app is based on an idea from Prof. Masaki Hayashi.
-           """)
     
-"---"
+st.subheader(':green-background[Computation and Interactive Plot]', divider="green")
+st.markdown("""    
+            Below you can choose the data for evaluation. You can upload your own data as *.CSV file with time (in seconds) and hydraulic head (in meters) separated by commas. Alternatively, you can choose preloaded data. 
+            
+            Once the data are loaded, you can modify the time offset and fit the hydraulic conductivity to the measured data.
+           """)
 # Available Data / Choose data
-
 # Select data
 columns = st.columns((1,1), gap = 'large')
 with columns[0]:
@@ -193,3 +191,11 @@ st.pyplot(fig=fig)
 
 st.write('Slugsize = ', slugsize, ' cm³')
 st.write('Initial water level $H_0$ = ', H0, ' m')
+with st.expander('**Click here for some references**'):
+    st.markdown("""    
+                Bouwer, H., & Rice, R. C. (1976). A slug test for determining hydraulic conductivity of unconfined aquifers with completely or partially penetrating wells. Water Resources Research, 12(3), 423-428.
+            
+                [Kruseman, G.P., de Ridder, N.A., & Verweij, J.M.,  1991.](https://gw-project.org/books/analysis-and-evaluation-of-pumping-test-data/) Analysis and Evaluation of Pumping Test Data, International Institute for Land Reclamation and Improvement, Wageningen, The Netherlands, 377 pages.
+                
+                The  interactive app is based on an idea from Prof. Masaki Hayashi.
+                """)
