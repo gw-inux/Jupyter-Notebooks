@@ -84,7 +84,7 @@ st.markdown("""
 columns = st.columns((1,1), gap = 'large')
 with columns[0]:
     datasource = st.selectbox("**What data should be used?**",
-    ("Load own CSV dataset", "Varnum (SWE) 2018 - R4", "Viterbo (ITA) 2024", "Random data with noise"), key = 'Data')
+    ("Random data with noise", "Load own CSV dataset", "Varnum (SWE) 2018 - R4", "Viterbo (ITA) 2024"), key = 'Data')
 with columns[1]:
     if(st.session_state.Data =="Load own CSV dataset"):
         slugsize = st.number_input("Slug size in cm³ (1 liter = 1000 cm³)", value = 700,step=1)
@@ -129,7 +129,7 @@ elif(st.session_state.Data =="Random data with noise"):
     rc_ini = 0.03
     rw_ini = 0.2
     L_ini = 2.
-    # Data and parameter from Varnum (SWE) 2018 - R4
+    # Random data
     m_time = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,63,64,65,66,67,68,69,70,71,72,73,74,75,76,77,78,79,80,81,82,83,84,85,86,87,88,89,90,91,92,93,94,95,96,97,98,99,100,101,102,103,104,105,106,107,108,109,110,111,112,113,114,115,116,117,118,119,120,121,122,123,124,125,126,127,128,129,130,131,132,133,134,135,136,137,138,139,140,141,142,143,144,145,146,147,148,149,150,151,152,153,154,155,156,157,158,159,160,161,162,163,164,165,166,167,168,169,170,171,172,173,174,175,176,177,178,179,180,181,182,183,184,185,186,187,188,189,190,191,192,193,194,195,196,197,198,199,200,201,202,203,204,205,206,207,208,209,210,211,212,213,214,215,216,217,218,219,220,221,222,223,224,225,226,227,228,229,230,231,232,233,234,235,236,237,238,239,240,241,242,243,244,245,246,247,248,249,250,251,252,253,254,255,256,257,258,259,260,261,262,263,264,265,266,267,268,269,270,271,272,273,274,275,276,277,278,279,280,281,282,283,284,285,286,287,288,289,290,291,292,293,294,295,296,297,298,299,300] # time in minutes
     # Empty heads file - computed later
     m_head = []
@@ -138,10 +138,19 @@ elif(st.session_state.Data =="Random data with noise"):
     F_random = 2 * np.pi * L_ini/np.log(L_ini/rw_ini)
     prq_random = np.pi * rc_ini**2 
     t_off_random = np.random.randint(1, 15)
-    m_head = [np.exp(-F_random/prq_random*K_random*t) for t in m_time]
+    m_head_random = [np.exp(-F_random/prq_random*K_random*t) for t in m_time]
     
-    # Add noise
-
+    
+    # Compute measured data with noise
+    # The noise is computed at the beginning with the max noise (as percentage) and subsequently, the noise is normalized by a strenght (ranging from 1.0 to 0.0 -> full noise to no noise)
+    max_noise = 50 # max noise - should not be smaller than 20 - see input slider 
+    # Compute ranom noise
+    m_noise = [np.random.randint((100-max_noise), (100+max_noise))/100 for i in m_time]
+    
+    st.session_state.max_noise = max_noise
+    st.session_state.m_noise = m_noise
+    st.session_state.m_head_random = m_head_random
+"---"
 # Computation
 
 # Everything inside the fragment is re-computed with every input change
@@ -157,14 +166,43 @@ def slug():
 
     lc1, rc1 = st.columns((1,1))
     with lc1:
-        with st.expander('Provide well parameter'):
-            rc = st.number_input("well casing radius", value = rc_ini,step=.0001, format="%.4f")
-            rw = st.number_input("well screen radius", value = rw_ini,step=.001, format="%.3f")
-            L  = st.number_input("Lenght of the well screen", value = L_ini,step=.1, format="%.1f")
+        if(st.session_state.Data =="Load own CSV dataset"):
+            with st.expander('**Provide well parameter**'):
+                rc = st.number_input("well casing radius", value = rc_ini,step=.0001, format="%.4f")
+                rw = st.number_input("well screen radius", value = rw_ini,step=.001, format="%.3f")
+                L  = st.number_input("Lenght of the well screen", value = L_ini,step=.1, format="%.1f")
+        else:
+            # Well parameter are fix for random data and provided data sets
+            rc = rc_ini
+            rw = rw_ini
+            L  = L_ini
+            st.markdown("""
+            The plotted data are based on
+            - $r_c$ = 0.03 m
+            - $r_w$ = 0.20 m
+            - $L$ = 2.0 m
+            """)
+        if(st.session_state.Data =="Random data with noise"):
+            def_noise = st.toggle("**Define the noise** in the measured data")
+            if def_noise:
+                noise_slider = st.slider('Percentage of noise', 0, st.session_state.max_noise, 20, 1)
+                noise_strength = noise_slider/st.session_state.max_noise
+            else:
+                noise_strength = 20/st.session_state.max_noise
+            # Compute heads with noise - Multiply each value to add noise and normalize the noise according to the noise strength
+            m_head_noise = [head * (1 + noise_strength * (noise - 1 ))  for head, noise in zip(st.session_state.m_head_random, st.session_state.m_noise)]
+            # Create a DataFrame
+            df = pd.DataFrame({'Time': m_time, 'Hydraulic Head': m_head_noise})
+            output_csv = df.to_csv(index=False).encode('utf-8')
+            st.download_button('Download Random data as CSV', output_csv, file_name="random_data_slug.csv", mime='text/csv')
+            
+            show_truth = st.toggle(":rainbow[How accurate are the parameter value estimates?]")
     
     with rc1:
         # Log slider with input and print
-        t_off = st.slider('**Time offset** in s', 0, 60, 0, 1)
+        with st.expander('**Scale of plot and time offset**'):
+            t_off = st.slider('**Time offset** in s', 0, 60, 0, 1)
+            x_plot = st.slider('**Max x-value in plot** in s', 60, 300, 300, 30)
         container = st.container()
         K_slider_value=st.slider('_(log of) hydraulic conductivity in m/s_', log_min,log_max,-3.0,0.01,format="%4.2f" )
         K = 10 ** K_slider_value
@@ -173,7 +211,7 @@ def slug():
     # Calculation
     # For random data, the initial head increase due to the slug is randomly computed
     if(st.session_state.Data =="Random data with noise"):
-        H0 = m_head[0]
+        H0 = st.session_state.m_head_random[0]
     else:
         H0 = 0.01*slugsize/np.pi/(rc*100)**2
     F = 2 * np.pi * L/np.log(L/rw)
@@ -185,8 +223,12 @@ def slug():
         t_plot.append(i+t_off)
   
     h_norm = []
-    for i in m_head:
-        h_norm.append((i-h_static)/H0)
+    if(st.session_state.Data =="Random data with noise"):
+        for i in m_head_noise:
+            h_norm.append((i-h_static)/H0)
+    else:
+        for i in m_head:
+            h_norm.append((i-h_static)/H0)
 
     exp_decay = np.exp(-F/prq*K*t)
 
@@ -195,7 +237,7 @@ def slug():
     ax = fig.add_subplot()
     ax.plot(t_plot,exp_decay, color='magenta', label='computed')
     plt.plot(m_time,h_norm, 'bo', mfc='none', label='measured')
-    plt.axis([0,tmax,0,1])
+    plt.axis([0,x_plot,0,1])
 
     plt.xlabel(r'time t in (s)', fontsize=14)
     plt.ylabel(r'H/Ho', fontsize=14)
@@ -203,11 +245,20 @@ def slug():
     plt.legend(fontsize=14)
 
     st.pyplot(fig=fig)
-
-    st.write('Slugsize = ', slugsize, ' cm³')
-    st.write('Initial water level $H_0$ = ', H0, ' m')
+    
+    if(st.session_state.Data =="Random data with noise"):
+        if show_truth:
+            st.write("**'True' hydraulic conductivity K = % 10.2E"% st.session_state.K_random, " m²/s**")
+            st.write("_Your fitting success is:  %5.2f_" %(K/st.session_state.K_random*100), " %")
+    else:
+        st.write("Slugsize = %5.2f_"% slugsize, ' cm³')
+        st.write("Initial water level $H_0$ = %5.2f_"% H0, ' m')
 
 slug()
+
+columns5 = st.columns((1,1,1), gap = 'large')
+with columns5[1]:
+    st.button('**Regenerate data**')
 
 with st.expander('**Click here for some references**'):
     st.markdown("""    
