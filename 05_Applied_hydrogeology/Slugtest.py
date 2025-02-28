@@ -251,7 +251,7 @@ def slug():
     if(st.session_state.Data =="Data from random properties with added noise"):
         if show_truth:
             st.write("**'True' hydraulic conductivity _K_ = % 5.2e"% st.session_state.K_random, " m²/s**")
-            st.write("**log of 'True' hydraulic conductivity = % 5.2e"% np.log10(st.session_state.K_random))
+            st.write("**log of 'True' hydraulic conductivity = % 4.2f**"% np.log10(st.session_state.K_random))
             st.write("_Your fitting success is:  %5.2f_" %(K/st.session_state.K_random*100), " %")
     else:
         st.write("Slugsize = %5.2f_"% slugsize, ' cm³')
