@@ -11,7 +11,7 @@ st.title('🟠 :red[Theis] parameter estimation')
 
 st.header('For drawdown in :red[confined aquifers]')
 st.markdown("""
-            Using the Theis Solution for drawdown in response to pumping :red[confined aquifers] to estimate Transmissivity and Storativity.
+            This section uses the Theis Solution for drawdown in response to pumping :red[confined aquifers] to estimate Transmissivity and Storativity.
             """) 
 st.subheader(':red-background[Introduction]', divider="red")
 st.markdown(""" 
@@ -51,13 +51,13 @@ with st.expander(":green[**Show/Hide the initial assessment**]"):
                   ["The drawdown is less", "The drawdown is more", "The drawdown is not affected", "All of the above depending on the parameter values"],
                   3,success='CORRECT! When all else is equal, a higher transmissivity will produce a broader cone of depression that is not as deep. So, near the well there will be less drawdown but far from the well there will be more drawdown.', error='This is not completely correct ... You can use the application to investigate what happens when you increase transmissivity. However, you will need to experiment with different combinations of hydraulic parameters as well as distance and time, then holding all else constant, except _T_, observe the change in drawdown. When all else is equal, a higher transmissivity will produce a broader cone of depression that is not as deep. So, near the well there will be less drawdown but far from the well there will be more drawdown.')
         stb.single_choice(":blue[**Which of the following assumptions was made in the development of the Theis solution for transient flow to a well?**]",
-                  ["The aquifer has variable thickness", "The aquifer is confined and infinite in extent", "The well fully penetrates an unconfined aquifer", "The pumping rate varies with time"],
-                  1,success='CORRECT! The aquifer is confined and infinite in extent', error='This is not correct. You can learn more about the Theis Solution [by downloading the book: An Introduction to Hydraulic Testing in Hydrogeology - Basic Pumping, Slug, and Packer Methods​​ and reading Section 8](https://gw-project.org/books/an-introduction-to-hydraulic-testing-in-hydrogeology-basic-pumping-slug-and-packer-methods/). Feel free to answer again.')
+                  ["The aquifer has variable thickness", "The aquifer is confined and infinite in lateral extent", "The well fully penetrates an unconfined aquifer", "The pumping rate varies with time"],
+                  1,success='CORRECT! The aquifer is confined and infinite in lateral extent', error='This is not correct. You can learn more about the Theis Solution [by downloading the book: An Introduction to Hydraulic Testing in Hydrogeology - Basic Pumping, Slug, and Packer Methods​​ and reading Section 8](https://gw-project.org/books/an-introduction-to-hydraulic-testing-in-hydrogeology-basic-pumping-slug-and-packer-methods/). Feel free to answer again.')
                   
 st.subheader(':red-background[Underlying Theory] - Theis Solution for Pumping Test Evaluation', divider="red")
 st.markdown(
     """
-    The Theis solution is a fundamental method in hydrogeology used to analyze transient flow to a well in a confined aquifer. It describes the drawdown _s_ as a function of time and radial distance from a pumping well under the assumption of an infinite, homogeneous, and isotropic aquifer with uniform thickness.
+    The Theis solution is a fundamental method in hydrogeology used to analyze transient flow to a well pumping at a constant rate _Q_ in a confined aquifer. It describes the drawdown _s_ as a function of time _t_ since pumping began and radial distance _r_ from a pumping well under the assumption of a laterally infinite, homogeneous, and isotropic aquifer with uniform thickness.
     """
     )
     
@@ -67,7 +67,7 @@ with st.expander('**Click here for more information** about the underlying theor
     """
     ### 
     
-    The Theis solution is a fundamental method in hydrogeology used to analyze transient flow to a well in a confined aquifer. It describes the drawdown _s_ as a function of time and radial distance from a pumping well under the assumption of an infinite, homogeneous, and isotropic aquifer with uniform thickness.
+    The Theis solution is a fundamental method in hydrogeology used to analyze transient flow to a well in a confined aquifer. It describes the drawdown _s_ as a function of time  _t_ since pumping began and radial distance _r_ from a well pumping at a constant rate from a laterally infinite, homogeneous, and isotropic aquifer with uniform thickness.
     
     The solution is derived from the groundwater flow equation and is based on the analogy between heat conduction and groundwater flow. The drawdown at a distance _r_ from a well pumping at a constant rate _Q_ is given by:
     """
@@ -100,7 +100,7 @@ with st.expander('**Click here for more information** about the underlying theor
     
     st.markdown(
     """
-    This function is commonly evaluated using numerical techniques or tables of _W(u)_ as a function of _u_. The Theis solution is widely used in pumping test analysis to estimate aquifer properties by fitting observed drawdown data to Theis type curve.
+    This function is commonly evaluated using numerical techniques or tables of _W(u)_ as a function of _u_. The Theis solution is widely used in pumping test analysis to estimate aquifer properties by fitting observed drawdown data to the Theis type curve.
     """
     )
 
@@ -144,7 +144,7 @@ def inverse(v):
     with columns2[0]:
         refine_plot = st.toggle("**Zoom in** on the **data in the graph**", key = 10+v)
         if v==2:
-            Viterbo = st.toggle("**Use real data from Viterbo 2023**", value = True)
+            Viterbo = True
     with columns2[1]:
         # READ LOG VALUE, CONVERT, AND WRITE VALUE FOR TRANSMISSIVITY
         container = st.container()
@@ -230,22 +230,22 @@ st.markdown("""
 """
 )
 
-with st.expander('**:red[Click here] to open the interactive plot with real measured data**'):
+with st.expander('**:red[Click here] to open the interactive plot with field measured data**'):
     # The second interactive plot
     inverse(2)
 
 st.subheader(':red-background[Some initial conclusions]', divider="red")
 with st.expander('**Click here for some initial conclusions**'):
     st.markdown("""
-    With the **first interactive plot** we understood how to modify the Theis plot to obtain a fit with measured data. The modifications were done by adjusting transmissivity $T$ and storativity $S$.
+    The **first interactive plot** showed how to modify the values used to generate the Theis curve to obtain a fit with measured data. The modifications were done by adjusting transmissivity $T$ and storativity $S$.
     
-    With the data from the textbook we could obtain perfect fit to the Theis solution.
+    With the data from the idealized "textbook" data we could obtain perfect fit to the Theis solution.
     
     In the **second interactive plot** we aimed to fit the Theis solution to measured data from a field site.
     
-    We understood that measured data can contain outliers as the first measured point.
+    This revealed that measured data can contain outliers as is particularly noticeable in the first measured data point for the Viterbo data.
     
-    We also understood that the Theis solution only partially reflect the measured data. We could obtain a good fit for the initial data. But for later data, the measurements deviate from the Theis solution.
+    Also the use of field data revealed that the Theis solution may only partially reflect the measured data, that is, it may be possible to obtain a good fit for the early data or the late data, but not for both.
     """
 )  
 
