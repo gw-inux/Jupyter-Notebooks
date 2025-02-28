@@ -81,10 +81,10 @@ st.markdown("""
            """)
 # Available Data / Choose data
 # Select data
-columns = st.columns((1,1), gap = 'large')
-with columns[0]:
+columns = st.columns((1,4,1), gap = 'large')
+with columns[1]:
     datasource = st.selectbox("**What data should be used?**",
-    ("Data from random properties with added noise", "Load own CSV dataset", "Varnum (SWE) 2018 - R4", "Viterbo (ITA) 2024"), key = 'Data')
+    ("Data from random properties with added noise", "Load your own CSV dataset", "Varnum (SWE) 2018 - R4", "Viterbo (ITA) 2024"), key = 'Data')
 with columns[1]:
     if(st.session_state.Data =="Load your own CSV dataset"):
         slugsize = st.number_input("Slug size in cm³ (1 liter = 1000 cm³)", value = 700,step=1)
@@ -206,7 +206,9 @@ def slug():
         K = 10 ** K_slider_value
         container.write("**Hydraulic conductivity in m/s:** %5.2e" %K)
     
-    show_truth = st.toggle(":rainbow[How accurate are the parameter value estimates?]")
+    columns = st.columns((1,4,1), gap = 'large')
+    with columns[1]:
+        show_truth = st.toggle(":rainbow[How accurate are the parameter value estimates?]")
     
     # Calculation
     # For random data, the initial head increase due to the slug is randomly computed
@@ -248,7 +250,7 @@ def slug():
     
     if(st.session_state.Data =="Data from random properties with added noise"):
         if show_truth:
-            st.write("**'True' hydraulic conductivity K = % 5.2e"% st.session_state.K_random, " m²/s**")
+            st.write("**'True' hydraulic conductivity _K_ = % 5.2e"% st.session_state.K_random, " m²/s**")
             st.write("_Your fitting success is:  %5.2f_" %(K/st.session_state.K_random*100), " %")
     else:
         st.write("Slugsize = %5.2f_"% slugsize, ' cm³')
