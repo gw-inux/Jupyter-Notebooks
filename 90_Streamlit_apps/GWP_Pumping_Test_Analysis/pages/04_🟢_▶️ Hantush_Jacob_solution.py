@@ -55,7 +55,7 @@ with st.expander(":green[**Show/Hide the initial assessment**]"):
     with columnsQ1[1]:      
         stb.single_choice(":green[**Which of the following best defines the leakage factor B in the Hantush-Jacob solution?**]",
                   ["A measure of the storage capacity of the aquifer", "A parameter that describes the rate at which water moves through the aquifer", "A term that quantifies how much water leaks through an aquitard into the aquifer", "A constant value independent of aquifer properties"],
-                  2,success='CORRECT! A term that quantifies how readily water leaks through an aquitard into the aquifer', error='This is not correct ... You can learn more about the Hantush/Jacob Solution [by downloading the book: An Introduction to Hydraulic Testing in Hydrogeology - Basic Pumping, Slug, and Packer Methods​​ and reading Section 9.2](https://gw-project.org/books/an-introduction-to-hydraulic-testing-in-hydrogeology-basic-pumping-slug-and-packer-methods/). Feel free to answer again.')
+                  2,success='CORRECT! A term that quantifies how readily water leaks through an aquitard into an aquifer', error='This is not correct ... You can learn more about the Hantush/Jacob Solution [by downloading the book: An Introduction to Hydraulic Testing in Hydrogeology - Basic Pumping, Slug, and Packer Methods​​ and reading Section 9.2](https://gw-project.org/books/an-introduction-to-hydraulic-testing-in-hydrogeology-basic-pumping-slug-and-packer-methods/). Feel free to answer again.')
                   
         stb.single_choice(":green[**What happens to drawdown in a leaky confined aquifer compared to a fully confined aquifer?**]",
                   ["Drawdown decreases more rapidly in a leaky aquifer", "Drawdown is less in a leaky aquifer due to the additional water source", "Drawdown remains the same in both cases", "Drawdown is greater in a leaky aquifer due to the additional water source", "Drawdown occurs only in the aquitard, not in the aquifer"],
@@ -65,7 +65,7 @@ with st.expander(":green[**Show/Hide the initial assessment**]"):
 # Optional theory here
 st.subheader(':green-background[Underlying theory] - The Hantush-Jacob Solution for Pumping Test Evaluation', divider="green")
 st.markdown("""       
-            The Hantush-Jacob solution extends the Theis solution to account for leaky confined aquifers, where vertical leakage from an overlying or underlying aquitard contributes to the flow through the aquifer towards the well. This approach is useful when an aquifer is semi-confined rather than perfectly confined.
+            The Hantush-Jacob solution extends the Theis solution to account for leaky confined aquifers, where vertical leakage from an overlying or underlying aquitard contributes to flow in an aquifer that moves toward a well. This approach is useful when an aquifer is semi-confined rather than perfectly confined.
             """)
 # Optional theory here
 with st.expander('**Click here for more information** about the underlying theory of the :green[**Hantush-Jacob Solution**]'):
@@ -79,7 +79,7 @@ with st.expander('**Click here for more information** about the underlying theor
             """
             where:
             - _T_ is the transmissivity of the aquifer
-            - $W(u, r/B)$ is the Hantush leaky well function
+            - _W(u, r/B)_ is the Hantush leaky well function
             - _u_ is a dimensionless time parameter, given by:
             """)
             
@@ -101,15 +101,13 @@ with st.expander('**Click here for more information** about the underlying theor
             - _b′_ is the thickness of the aquitard
             - _K′_ is the vertical hydraulic conductivity of the aquitard
             
-            The well function $W(u, r/B)$ is computed as:
+            The well function _W(u, r/B)_ is computed as:
             """)
 
-    st.latex(r'''W(u, r/B) = \int_u^{\infty} \frac{e^{-x}}{x} E_1 \left( \frac{x (r/B)^2}{4} \right) dx''')
+    st.latex(r'''W \left (u, \left (\frac{r}{B}  \right ) \right )  = \int_u^{\infty} \frac{e^{ -x - \frac{1}{4x} (\frac{r}{B})^2} }{x} dx''')
 
     st.markdown(
             """
-            where $E_1(x)$ is the exponential integral function
-            
             This solution is commonly used in pumping test analysis when leakage from an aquitard significantly affects the drawdown behavior, making it more gradual compared to the purely confined case described by the Theis solution.
             """)
 

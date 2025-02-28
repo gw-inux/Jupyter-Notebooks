@@ -13,11 +13,11 @@ st.title('🙋 Transient Flow toward a well in a confined aquifer')
 
 st.header(':blue[Conceptualizing the response of a confined aquifer to pumping]')
 
-st.subheader(':blue-background[Guidance and instructions for your own investigation]', divider="blue")
+st.subheader(':blue-background[Guidance for investigating flow to a well in a confined aquifer]', divider="blue")
 st.markdown('''
-            Transient Flow toward a well in a confined aquifer is described here using the Theis Solution. You can use the subsequent instructions and the interactive plot to gain a profound understanding of the system behavior. 
+            Transient Flow toward a well in a confined aquifer is described here using the Theis Solution. You can use the subsequent instructions and the interactive plot to gain a sound understanding of the system behavior. 
             
-            To start your investigation of the topic it is useful to think about the system using this **initial assessment**.
+            When starting an investigation of this topic it is useful to think about the system using this **initial assessment**.
             '''
 )
 # Initial assessment
@@ -46,15 +46,15 @@ st.markdown("""
             **STEP 1:**
             First we investigate drawdown around a pumping well in response to water abstraction as function of space and time.
            
-           _This can be accomplished by adjusting the interactive inputs for the graphs to observe changes in drawdown as follows._
+           _This can be accomplished by adjusting the interactive inputs for the graphs in the section below titled "Computation of drawdown" to observe changes in drawdown as described for Exercise 1._
            """)
 with st.expander(":blue[**To proceed with detailed instruction for Exercise  1**] click here"):
     to_do(
-        [(st.write, "Increase Pumping rate _Q_. How do graphs and printout of drawdown change? Then, decrease pumping rate. How do drawdowns change? ")],"td01",)
+        [(st.write, "Increase Pumping rate _Q_ (expand the first input column). How do the graphs and the printed value of drawdown change? Then, decrease pumping rate. How does drawdown change? ")],"td01",)
     to_do(
-        [(st.write, "Increase the observation 'Distance _r_ in meters' (middle column). How do graphs and values printed below the graphs change? Then, decrease the observation distance. How do drawdowns change?")], "td02",)
+        [(st.write, "Increase the distance of the observation from the well 'Distance _r_ in meters' (expand the first input column). How do the graphs and values printed below the graphs change? Then, decrease the observation distance. How does drawdown change?")], "td02",)
     to_do(
-        [(st.write, "Increase the obervation 'Time _t_ in seconds' (middle column). How do the graphs and values printed below the graphs change? Then, decrease the observation time. How do drawdowns change?")], "td03",)
+        [(st.write, "Increase the time after pumping begins that the observation is made 'Time _t_ in seconds' (expand the first input column). How do the graphs and values printed below the graphs change? Then, decrease the observation time. How does drawdown change?")], "td03",)
 
 st.markdown("""
             **STEP 2:**
@@ -64,23 +64,23 @@ st.markdown("""
            """)
 with st.expander(":blue[**To proceed with detailed instruction for Exercise  2**] click here"):
     to_do(
-        [(st.write, "Modify the Transmissivity (third column). What happens?")],"td04",)
+        [(st.write, "Modify the Transmissivity (second input column). What happens?")],"td04",)
     to_do(
-        [(st.write, "Modify the Storativity (third column). What happens?")], "td05",)
+        [(st.write, "Modify the Storativity (second input column). What happens?")], "td05",)
 
 st.markdown("""
             **STEP 3:**
             The graphs can be used to compare drawdown for two different sets of Transmissivity and Storativity. 
             
-           _This can be accomplished by turning on the toggle for 'Second set of _T_ and _S_ for comparison' and adjusting the interactive inputs for _T2_ and _S2_ that appear in the thrid column of inptus._
+           _This can be accomplished by turning on the toggle for 'Second set of _T_ and _S_ for comparison' and adjusting the interactive inputs for _T2_ and _S2_ that appear in a third column of inptus._
            """)
 with st.expander(":blue[**To proceed with detailed instruction for Exercise  3**] click here"):
     to_do(
-        [(st.write, "Toggle 'Second set of _T_ and _S_ for comparison' to the ON position (it will turn red). New data inputs will appear in the third column but the graphs will not change because the two data sets are identical.")],"td06",)
+        [(st.write, "For a given sclection of valuies for _Q_, _r_, and _t_, toggle 'Second set of _T_ and _S_ for comparison' to the ON position (it will turn red). New data inputs will appear in a third column, but the graphs will not change because the two data sets are identical.")],"td06",)
     to_do(
-        [(st.write, "Choose a lower value for transmissivity _T2_ and compare the graph with the initial graph. Then choose a higher value for _T2_ and compare.")], "td07",) 
+        [(st.write, "Choose a lower value for transmissivity _T2_ and compare the curve with the curve for the initial value of _T_. Then choose a value for _T2_ that is higher than _T_ and compare.")], "td07",) 
     to_do(
-        [(st.write, "Choose a lower value for storativity _S2_ and compare the graph with the initial graph. Then choose a higher value for _S2_  compare.")], "td08",)        
+        [(st.write, "Toggle the 'Second set of _T_ and _S_ for comparison' to the OFF position and then back ON in order to reset the values to your initial values. Then, choose a lower value for storativity _S2_ and compare the curve with the curve for the initial value of _S_. Then choose a value for _S2_ that is higher than _S_ and compare.")], "td08",)        
 "---"
 st.subheader(':blue-background[Computation of drawdown]', divider="blue")
 st.markdown('''
@@ -228,15 +228,16 @@ st.markdown('''
 
 with st.expander(":green[**Show/Hide the second assessment**]"):
     # Assessment to guide users through the interactive plot
-    stb.single_choice(":blue[**How does the drawdown change at one specific distance from the well if storativity is decreased**]",
+    stb.single_choice(":blue[**How does the drawdown change at one specific distance from the well if storativity is decreased?**]",
                   ["Drawdown is less", "Drawdown is more", "Drawdown is not affected"],
-                  1,success='CORRECT!  ... when all else is equal, a lower value of storativity wil result in more drawdown.', error='This is not correct ...  You can use the interactive tool to explore this and learn more about Storativity [by downloading the book: Basic Hydrogeology - An Introduction to the Fundamentals of Groundwater Science​ and reading Section 5.3](https://gw-project.org/books/basic-hydrogeology/). Feel free to answer again.')
+                  1,success='CORRECT! When all else is equal, a lower value of storativity will result in more drawdown.', error='This is not correct ...  You can use the interactive tool to explore this and learn more about Storativity [by downloading the book: Basic Hydrogeology - An Introduction to the Fundamentals of Groundwater Science​ and reading Section 5.3](https://gw-project.org/books/basic-hydrogeology/). Feel free to answer again.')
     stb.single_choice(":blue[**If the estimated transmissivity _T_ is too low, how will the predicted drawdown compare to the true drawdown?**]",
                   ["The predicted drawdown will be too small", "The predicted drawdown will remain unchanged", "The predicted drawdown will be too large", "The predicted drawdown will be too large close to the well and too small far from the well"],
-                  3,success='CORRECT! ... the low transmissivity will require a higher gradient to accomodate flow through the aquifer surrounding the well screen, so predicted drawdown will be larger than true drawdown near the well. This results in more of the pumped volume being extracted from storage near the well bore, thus less of the volume will be drawn from storage further away resulting in less drawdown at larger distances from the well. It may not be possible to observe this on the application graph for every combination of parameter values entered in this application because the r distance on the graph is limited to 1000 m and the distance where drawdown transitions from overestimation to underestimation may be further than 1000 m from the well. If you are unable to see the transition, then decreasing the values input for time and/or distance might bring the transition zone into view.', error='This is partially correct because the low transmissivity will require a higher gradient to accomodate flow through the aquifer surrounding the well screen, so predicted drawdown will be larger than true drawdown near the well. This results in more of the pumped volume being extrated from storage near the well bore, thus less of the volume will be drawn from storage further away resulting in less drawdown at larger distances from the well. At some location depending on the combination of parameter values the drawdown may be the same for both cases. It may not be possible to observe this on the application graph for every combination of parameter values entered in this application because the r distance is limited to 1000 m and the distance where drawdown transitions from overestimation to underestimation may be further away than 1000 m. If that is the case, decresing the values input for time and/or distance might bring the transition zone into view. Feel free to answer again.')
+                  3,success='CORRECT! ... the low transmissivity will require a higher gradient to accomodate flow through the aquifer surrounding the well screen, so predicted drawdown will be larger than true drawdown near the well. This results in more of the pumped volume being extracted from storage near the well bore, thus less of the volume will be drawn from storage further away resulting in less drawdown at larger distances from the well. It may not be possible to observe this on the application graph for every combination of parameter values entered in this application because the r distance on the graph is limited to 1000 m and the distance where drawdown transitions from overestimation to underestimation may be further than 1000 m from the well. If you are unable to see the transition, then decreasing the values input for time and/or distance might bring the transition zone into view.', error='This is partially correct because the low transmissivity will require a higher gradient to accomodate flow through the aquifer surrounding the well screen, so predicted drawdown will be larger than true drawdown near the well. This results in more of the pumped volume being extracted from storage near the well bore, thus less of the volume will be drawn from storage further away resulting in less drawdown at larger distances from the well. At some location depending on the combination of parameter values the drawdown may be the same for both cases. It may not be possible to observe this on the application graph for every combination of parameter values entered in this application because the r distance is limited to 1000 m and the distance where drawdown transitions from overestimation to underestimation may be further away than 1000 m. If that is the case, decreasing the values input for time and/or distance might bring the transition zone into view. Feel free to answer again.')
 
-st.subheader(':blue-background[Intermediate conclusion and next steps]', divider="blue")
+st.subheader(':blue-background[Next steps]', divider="blue")
 st.markdown('''
+
             Thus far, we investigated flow to a well in a confined aquifer, and showed the Theis solution can be used to calculate drawdown in response to pumping for a specific place and time.
             
             The next part of this application demonstrates how to estimate aquifer parameter values using drawdown data measured near a pumping well. You can move to the next section using either the side menu or the navigation buttons at the bottom of this page.
