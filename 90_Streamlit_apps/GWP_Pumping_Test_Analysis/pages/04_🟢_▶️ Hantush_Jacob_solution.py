@@ -128,7 +128,11 @@ def theis_u(T,S,r,t):
     
 def Hantush_s(Q, T, u, u_HAN, w_u_HAN,r_div_B):
     #Interpolate for discrete w_u_HAN
-    w_u_HAN_interpolated = interp.interp1d(u_HAN, w_u_HAN[:, r_div_B], kind='cubic', fill_value="extrapolate")
+    if r_div_B in [0, 1]:
+        method = 'nearest'
+    else:
+        method = 'linear'
+    w_u_HAN_interpolated = interp.interp1d(u_HAN, w_u_HAN[:, r_div_B], kind=method, fill_value="extrapolate")
     s = Q / 4. / np.pi / T * w_u_HAN_interpolated(u)
     return s
     
@@ -311,6 +315,7 @@ def inverse(v):
         ax.plot(m_time_s, m_ddown,'o', color='violet', label=r'measured drawdown - Pirna 24')
     else:
         ax.plot(m_time_s, m_ddown,'go', label=r'measured drawdown - Viterbo 23')
+    ax.plot(m_time_s, m_ddown_Hantush,'ro', label=r'Hantush Point data')
     plt.yscale("log")
     plt.xscale("log")
     plt.xticks(fontsize=14)
