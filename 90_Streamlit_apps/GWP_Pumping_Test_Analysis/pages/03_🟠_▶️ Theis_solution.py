@@ -2,6 +2,7 @@
 import numpy as np
 import matplotlib.pyplot as plt
 import scipy.special
+import math
 import pandas as pd
 import streamlit as st
 import streamlit_book as stb
@@ -49,7 +50,7 @@ with st.expander(":green[**Show/Hide the initial assessment**]"):
     with columnsQ1[1]:
         stb.single_choice(":blue[**How does the drawdown change at one specific place and time if the transmissivity is increased?**]",
                   ["The drawdown is less", "The drawdown is more", "The drawdown is not affected", "All of the above depending on the parameter values"],
-                  3,success='CORRECT! When all else is equal, a higher transmissivity will produce a broader cone of depression that is not as deep. So, near the well there will be less drawdown but far from the well there will be more drawdown.', error='This is not completely correct ... You can use the application to investigate what happens when you increase transmissivity. However, you will need to experiment with different combinations of hydraulic parameters as well as distance and time, then holding all else constant, except _T_, observe the change in drawdown. When all else is equal, a higher transmissivity will produce a broader cone of depression that is not as deep. So, near the well there will be less drawdown but far from the well there will be more drawdown.')
+                  3,success='CORRECT! When all else is equal, a higher transmissivity will produce a broader cone of depression that is not as deep. So, near the well there will be less drawdown but far from the well there will be more drawdown. You can investigate this with the interactive plot and the option to plot a second set of _T_ and _S_ for comparison', error='This is not completely correct ... You can use the application to investigate what happens when you increase transmissivity, e.g. with the option to plot a second set of _T_ and _S_ for comparison. However, you will need to experiment with different combinations of hydraulic parameters as well as distance and time, then holding all else constant, except _T_, observe the change in drawdown. When all else is equal, a higher transmissivity will produce a broader cone of depression that is not as deep. So, near the well there will be less drawdown but far from the well there will be more drawdown.')
         stb.single_choice(":blue[**Which of the following assumptions was made in the development of the Theis solution for transient flow to a well?**]",
                   ["The aquifer has variable thickness", "The aquifer is confined and infinite in lateral extent", "The well fully penetrates an unconfined aquifer", "The pumping rate varies with time"],
                   1,success='CORRECT! The aquifer is confined and infinite in lateral extent', error='This is not correct. You can learn more about the Theis Solution [by downloading the book: An Introduction to Hydraulic Testing in Hydrogeology - Basic Pumping, Slug, and Packer Methods​​ and reading Section 8](https://gw-project.org/books/an-introduction-to-hydraulic-testing-in-hydrogeology-basic-pumping-slug-and-packer-methods/). Feel free to answer again.')
@@ -118,6 +119,43 @@ st.markdown("""
 
 def well_function(u):
     return scipy.special.exp1(u)
+    
+def theis_u(T,S,r,t):
+    u = r ** 2 * S / 4. / T / t
+    return u
+
+def theis_s(Q, T, u):
+    s = Q / 4. / np.pi / T * well_function(u)
+    return s
+    
+def compute_s(T, S, t, Q, r):
+    u = theis_u(T, S, r, t)
+    s = theis_s(Q, T, u)
+    return s
+    
+def compute_statistics(measured, computed):
+    # Calculate the number of values
+    n = len(measured)
+
+    # Initialize a variable to store the sum of squared differences
+    total_me = 0
+    total_mae = 0
+    total_rmse = 0
+
+    # Loop through each value
+    for i in range(n): # Add the squared difference to the total
+        total_me   += (computed[i] - measured[i])
+        total_mae  += (abs(computed[i] - measured[i]))
+        total_rmse += (computed[i] - measured[i])**2
+
+    # Calculate the me, mae, mean squared error
+    me = total_me / n
+    mae = total_mae / n
+    meanSquaredError = total_rmse / n
+
+    # Raise the mean squared error to the power of 0.5 
+    rmse = (meanSquaredError) ** (1/2)
+    return me, mae, rmse
 
 # (Here, the methode computes the data for the well function. Those data can be used to generate a type curve.)
 u_min = -5
@@ -143,6 +181,7 @@ def inverse(v):
     columns2 = st.columns((1,1), gap = 'large')
     with columns2[0]:
         refine_plot = st.toggle("**Zoom in** on the **data in the graph**", key = 10+v)
+        scatter = st.toggle('Show scatter plot', key = 40+v)
         if v==2:
             Viterbo = True
     with columns2[1]:
@@ -167,8 +206,8 @@ def inverse(v):
 
     if Viterbo:
         # Drawdown data from Viterbo exercise and parameters 
-        m_time = [0.083333333, 1, 1.416666667, 2.166666667, 2.5, 2.916666667, 3.566666667, 3.916666667, 4.416666667, 4.833333333, 5.633333333, 6.516666667, 7.5, 8.916666667, 10.13333333, 11.16666667, 12.6, 16.5, 18.53333333, 22.83333333, 27.15, 34.71666667, 39.91666667, 48.21666667, 60.4, 72.66666667, 81.91666667, 94.66666667, 114.7166667, 123.5]
-        m_ddown = [0.04, 0.09, 0.12, 0.185, 0.235, 0.22, 0.26, 0.3, 0.31, 0.285, 0.34, 0.4, 0.34, 0.38, 0.405, 0.38, 0.385, 0.415, 0.425, 0.44, 0.44, 0.46, 0.47, 0.495, 0.54, 0.525, 0.53, 0.56, 0.57, 0.58]
+        m_time = [ 1, 1.416666667, 2.166666667, 2.5, 2.916666667, 3.566666667, 3.916666667, 4.416666667, 4.833333333, 5.633333333, 6.516666667, 7.5, 8.916666667, 10.13333333, 11.16666667, 12.6, 16.5, 18.53333333, 22.83333333, 27.15, 34.71666667, 39.91666667, 48.21666667, 60.4, 72.66666667, 81.91666667, 94.66666667, 114.7166667, 123.5]
+        m_ddown = [ 0.09, 0.12, 0.185, 0.235, 0.22, 0.26, 0.3, 0.31, 0.285, 0.34, 0.4, 0.34, 0.38, 0.405, 0.38, 0.385, 0.415, 0.425, 0.44, 0.44, 0.46, 0.47, 0.495, 0.54, 0.525, 0.53, 0.56, 0.57, 0.58]
         r = 20           # m
         b = 8.5          # m
         Qs = 15.6/3600   # m^3/s
@@ -188,9 +227,20 @@ def inverse(v):
 
     t = u_inv * t_term
     s = w_u * s_term
+    
+    # Compute point data for scatter plot 
+    m_ddown_theis = [compute_s(T, S, i, Qs, r) for i in m_time_s]
+    
+    # Find the max for the scatter plot
+    max_s = math.ceil(max(m_ddown))
         
-    fig = plt.figure(figsize=(10,7))
-    ax = fig.add_subplot(1, 1, 1)
+    fig = plt.figure(figsize=(10,14))
+    ax = fig.add_subplot(2, 1, 1)
+    # Info-Box
+    props   = dict(boxstyle='round', facecolor='wheat', alpha=0.5)
+    out_txt = '\n'.join((       
+                         r'$T$ (m²/s) = %10.2E' % (T, ),
+                         r'$S$ (-) = %10.2E' % (S, )))
     ax.plot(t, s, label=r'calculated Theis drawdown for T and S')
     if Viterbo:
         ax.plot(m_time_s, m_ddown,'go', label=r'measured drawdown - Viterbo 23')
@@ -210,15 +260,37 @@ def inverse(v):
     plt.ylabel(r'drawdown s in (m)', fontsize=14)
     plt.title('Theis drawdown', fontsize=16)
     plt.legend(fontsize=14)
+    plt.text(0.97, 0.15,out_txt, horizontalalignment='right', transform=ax.transAxes, fontsize=14, verticalalignment='top', bbox=props)
+    
+    if scatter:
+        x45 = [0,200]
+        y45 = [0,200]
+        ax = fig.add_subplot(2, 1, 2)
+        ax.plot(x45,y45, '--')
+        ax.plot(m_ddown, m_ddown_theis,  'ro', label=r'measured')
+        me, mae, rmse = compute_statistics(m_ddown, m_ddown_theis)
+        plt.title('Scatter plot', fontsize=16)
+        plt.xlabel(r'Measured s in m', fontsize=14)
+        plt.ylabel(r'Computed s in m', fontsize=14)
+        plt.ylim(0, max_s)
+        plt.xlim(0, max_s)
+        out_txt = '\n'.join((
+                             r'$ME = %.3f$ m' % (me, ),
+                             r'$MAE = %.3f$ m' % (mae, ),
+                             r'$RMSE = %.3f$ m' % (rmse, ))) 
+        plt.text(0.97*max_s, 0.05*max_s, out_txt, horizontalalignment='right', bbox=dict(boxstyle="square", facecolor='wheat'), fontsize=14)
+    
+    
     st.pyplot(fig)
-
-    columns3 = st.columns((1,1), gap = 'medium')
-    with columns3[0]:
-        st.write("**Parameters**")
-        st.write("**Distance of measurement from the well r = %3i" %r," m**")
-        st.write("**Pumping rate during test Q = %5.3f" %Qs," m³/s**")
-        st.write("**Transmissivity T = % 10.2E"% T, " m²/s**")
-        st.write("**Storativity    S = % 10.2E"% S, "[dimensionless]**")
+    
+    columns3 = st.columns((1,10,1), gap = 'medium')
+    with columns3[1]:
+        if st.button(':green[**Submit**] your parameters and **show protocol**', key = 50+v):
+            st.write("**Protocol / Parameters**")
+            st.write("- Distance of measurement from the well **r = %3i" %r," m**")
+            st.write("- Pumping rate during test **Q = %5.3f" %Qs," m³/s**")
+            st.write("- Transmissivity **T = % 10.2E"% T, " m²/s**")
+            st.write("- Storativity    **S = % 10.2E"% S, "[dimensionless]**")
 
 # The first interactive plot 
 inverse(1)
@@ -233,6 +305,14 @@ st.markdown("""
 with st.expander('**:red[Click here] to open the interactive plot with field measured data**'):
     # The second interactive plot
     inverse(2)
+    
+with st.expander('**:red[Click here]** if you want to see one **example of the curve fitting to the :green[Viterbo] data**'):
+    st.markdown(""" 
+            The following example show one curve match. If five experts made the curve match they would all have a slightly different set of parameters but they would likely all be close enough to the shown example to draw comparable conclusions. It becomes clear that the initial part of the data can be matched well and the second part deviates from the Theis solution. The reason for this behavior is that the investigated aquifer doesnt fullfill the conditions to apply the Theis solution. 
+            """)
+    left_co2, cent_co2, last_co2 = st.columns((20,60,20))
+    with cent_co2:
+        st.image('90_Streamlit_apps/GWP_Pumping_Test_Analysis/assets/images/Theis_Viterbo_example.png', caption="One example for a curve match of the Theis solution to the Viterbo data") 
 
 st.subheader(':red-background[Some initial conclusions]', divider="red")
 with st.expander('**Click here for some initial conclusions**'):

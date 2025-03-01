@@ -209,8 +209,8 @@ def inverse(v):
     
     # Select data
     # Drawdown data from Viterbo exercise and parameters 
-    m_time = [0.083333333, 1, 1.416666667, 2.166666667, 2.5, 2.916666667, 3.566666667, 3.916666667, 4.416666667, 4.833333333, 5.633333333, 6.516666667, 7.5, 8.916666667, 10.13333333, 11.16666667, 12.6, 16.5, 18.53333333, 22.83333333, 27.15, 34.71666667, 39.91666667, 48.21666667, 60.4, 72.66666667, 81.91666667, 94.66666667, 114.7166667, 123.5]
-    m_ddown = [0.04, 0.09, 0.12, 0.185, 0.235, 0.22, 0.26, 0.3, 0.31, 0.285, 0.34, 0.4, 0.34, 0.38, 0.405, 0.38, 0.385, 0.415, 0.425, 0.44, 0.44, 0.46, 0.47, 0.495, 0.54, 0.525, 0.53, 0.56, 0.57, 0.58]
+    m_time = [1, 1.416666667, 2.166666667, 2.5, 2.916666667, 3.566666667, 3.916666667, 4.416666667, 4.833333333, 5.633333333, 6.516666667, 7.5, 8.916666667, 10.13333333, 11.16666667, 12.6, 16.5, 18.53333333, 22.83333333, 27.15, 34.71666667, 39.91666667, 48.21666667, 60.4, 72.66666667, 81.91666667, 94.66666667, 114.7166667, 123.5]
+    m_ddown = [0.09, 0.12, 0.185, 0.235, 0.22, 0.26, 0.3, 0.31, 0.285, 0.34, 0.4, 0.34, 0.38, 0.405, 0.38, 0.385, 0.415, 0.425, 0.44, 0.44, 0.46, 0.47, 0.495, 0.54, 0.525, 0.53, 0.56, 0.57, 0.58]
     r = 20           # m
     b = 8.5          # m
     Qs = 15.6/3600   # m^3/s
@@ -249,6 +249,11 @@ def inverse(v):
         
     fig = plt.figure(figsize=(10,7))
     ax = fig.add_subplot(1, 1, 1)
+    # Info-Box
+    props   = dict(boxstyle='round', facecolor='wheat', alpha=0.5)
+    out_txt = '\n'.join((       
+                         r'$T$ (m²/s) = %10.2E' % (T, ),
+                         r'$S$ (-) = %10.2E' % (S, )))
     ax.plot(t, s, label=r'Computed drawdown - Theis')
     ax.plot(t_HAN, s_HAN, 'b--', label=r'Computed drawdown - Hantush Jacob') 
     if Pirna:
@@ -269,15 +274,19 @@ def inverse(v):
     plt.title(f"Hantush Jacob drawdown with r/b = {r_div_B_choice}", fontsize=16)
     ax.grid(which="both")
     plt.legend(fontsize=14)
+    plt.text(0.3, 0.95,out_txt, horizontalalignment='right', transform=ax.transAxes, fontsize=14, verticalalignment='top', bbox=props)
     st.pyplot(fig)
     
-    st.write("**Parameters**")
-    st.write("**Distance of measurement from well r = %3i" % r, " m**")
-    st.write("**Pumping rate during test Q = % 5.3f"% Qs, " m³/s**")
-    st.write("**Transmissivity of aquifer T = % 10.2E"% T, " m²/s**")
-    st.write("**Storativity of aquifer S = % 10.2E"% S, "[dimensionless]**")
-    st.write("**Thickness of aquitard b = % 5.2f"% b, " m**")
-    st.write("**Aquitard Vertical Hydraulic Conductivity K' = % 10.2E"% (T/b), " m²/s**")
+    columns3 = st.columns((1,10,1), gap = 'medium')
+    with columns3[1]:
+        if st.button(':green[**Submit**] your parameters and **show protocol**', key = 50+v):
+            st.write("**Protocol / Parameters**")
+            st.write("- Distance of measurement from the well **r = %3i" %r," m**")
+            st.write("- Pumping rate during test **Q = %5.3f" %Qs," m³/s**")
+            st.write("- Transmissivity **T = % 10.2E"% T, " m²/s**")
+            st.write("- Storativity    **S = % 10.2E"% S, "[dimensionless]**")
+            st.write("- Thickness of aquitard **b = % 5.2f"% b, " m**")
+            st.write("- Aquitard Vertical Hydraulic Conductivity **K' = % 10.2E"% (T/b), " m²/s**")
  
 inverse(1)
 

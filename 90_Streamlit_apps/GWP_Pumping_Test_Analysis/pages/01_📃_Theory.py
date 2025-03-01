@@ -131,30 +131,29 @@ st.markdown (
     To address these limitations, **Hantush and Jacob (1955)** developed a solution that extends the Theis model to leaky aquifers, incorporating the effects of vertical leakage through semi-pervious confining layers. This modification allows for more accurate analysis in regions where aquitards are present.
     
     Further refinements were made by **Neuman (1972)**, who introduced solutions accounting for the delayed water level decline in unconfined aquifers, the vertical flow components in response to partially penetrating wells, and the delayed observation of aquifer drawdown due to removal of water from wellbore storage. These developments represent significant advancements over the Theis solution, enabling more realistic interpretations of pumping test data in a wider range of hydrogeological settings.
-    ___
 """
-)
-with st.expander('Click here for some references'):
-    st.markdown("""
-    Theis, C.V., 1935. The relation between the lowering of the piezometric surface and the rate and duration of discharge of a well using groundwater storage, Transactions of the American Geophysical Union, volume 16, pages 519-524.
-    
-    Hantush, M. S., & Jacob, C. E. (1955). Non-steady radial flow in an infinite leaky aquifer. Transactions, American Geophysical Union, 36(1), 95-100.
-    
-    Neuman, S. P. (1972). Theory of flow in unconfined aquifers considering delayed gravity response. Water Resources Research, 8(4), 1031-1045. DOI: 10.1029/WR008i004p01031
-    """
-)   
+)     
 
-"---"         
-
-st.subheader(':blue-background[Intermediate conclusion and next steps]', divider="blue")
+st.subheader(':orange-background[Intermediate conclusion and next steps]', divider="blue")
 st.markdown('''
             Thus far, we investigated the theory of flow to a well.
             
             The next part of this application explores visual conceptualization of drawdown around a pumping well. You can move to the next section using either the side menu or the navigation buttons at the bottom of this page.
             '''
 )
-"---"
 
+with st.expander('**Click here for some references**'):
+    st.markdown("""
+    Theis, C.V., 1935. The relation between the lowering of the piezometric surface and the rate and duration of discharge of a well using groundwater storage, Transactions of the American Geophysical Union, volume 16, pages 519-524.
+    
+    Hantush, M. S., & Jacob, C. E. (1955). Non-steady radial flow in an infinite leaky aquifer. Transactions, American Geophysical Union, 36(1), 95-100.
+    
+    Neuman, S. P. (1972). Theory of flow in unconfined aquifers considering delayed gravity response. Water Resources Research, 8(4), 1031-1045. DOI: 10.1029/WR008i004p01031
+    
+    [Kruseman, G.P., de Ridder, N.A., & Verweij, J.M.,  1991.](https://gw-project.org/books/analysis-and-evaluation-of-pumping-test-data/) Analysis and Evaluation of Pumping Test Data, International Institute for Land Reclamation and Improvement, Wageningen, The Netherlands, 377 pages.
+    """
+) 
+"---"
 columnsN1 = st.columns((1,1,1), gap = 'large')
 with columnsN1[0]:
     st.write()
