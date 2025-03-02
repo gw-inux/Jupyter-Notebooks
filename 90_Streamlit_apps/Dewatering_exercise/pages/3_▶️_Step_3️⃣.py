@@ -142,10 +142,10 @@ stb.single_choice(question1, options1, answer_index1, success='Correct!  This wo
 
 st.write('')
 st.write('')
-question1 = "Why is it useful to consider a simple, linear-step utility function?"
+question2 = "Why is it useful to consider a simple, linear-step utility function?"
 options2 = "It is the best representation of reality for most stakeholders.", "It allows for the development of simple analytical solutions.", "It is probably not correct, but it is easy to understand and probably not too far from true."
 answer_index2 = 2
-stb.single_choice(question1, options2, answer_index2, success='Correct!  It is extremely difficult - if not impossible - to define a true cost function for a stakeholder group, but this simple model provides much of the insight about them', error='Incorrect - this simple model is almost certainly not correct and these problems are generally too messy to lead to clean analytical solutions!', button='Check answer')
+stb.single_choice(question2, options2, answer_index2, success='Correct!  It is extremely difficult - if not impossible - to define a true cost function for a stakeholder group, but this simple model provides much of the insight about them', error='Incorrect - this simple model is almost certainly not correct and these problems are generally too messy to lead to clean analytical solutions!', button='Check answer')
 
 st.write('')
 st.write('')

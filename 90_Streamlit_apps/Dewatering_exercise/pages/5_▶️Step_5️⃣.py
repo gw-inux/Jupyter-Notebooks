@@ -13,6 +13,40 @@ import numpy as np
 import matplotlib.pyplot as plt
 import scipy.special
 import streamlit as st
+import streamlit_book as stb
+from streamlit_extras.stodo import to_do
+
+st.title('Dewatering exercise 💦')
+st.subheader("Step 05 - Hydrogeologic Uncertainty", divider="blue")
+
+# I found U slightly confusing because it is also used in the Theis context
+
+if st.toggle('Show additional **Notes for instructors**'):
+    to_do(
+    [(st.write, "Remind students of what S and T are and how they affect drawdown versus distance and time.")],
+    "td01",)
+    to_do(
+    [(st.write, "Ask which is more important if you want to determine the impact of dewatering on your well.")],
+    "td02",)
+    to_do(
+    [(st.write, "Talk to them about the concept of sensitivity - change in one thing due to a change in another.  Ask for everyday examples.")],
+    "td03",)
+    to_do(
+    [(st.write, "Use the tool to explore sensitivity for the mine dewatering case for each stakeholder.  Consider single and dual parameter sensitivity.")],
+    "td04",)
+    to_do(
+    [(st.write, "Given uncertainty in S and T, how should each stakeholder cast their risk-based decisions regarding the utility of a given proposed Q?")],
+    "td05",)
+    to_do(
+    [(st.write, "How can these stakeholder utilities be combined?  Is Pareto optimality still applicable?  What is the cost of the uncertainty to each stakeholder?")],
+    "td06",)
+    to_do(
+    [(st.write, "Lead a discussion of why it might not be best to find the highest average utility (e.g. more non-mine stakeholders).  What are some alternative approaches?")],
+    "td07",)
+    
+    
+
+
 
 # (Here the necessary functions like the well function $W(u)$ are defined. Later, those functions are used in the computation)
 # Define a function, class, and object for Theis Well analysis
@@ -49,9 +83,6 @@ t2 = np.linspace(.1, 10, 100)     # in years
 fig = plt.figure(figsize=(12,7))
 st.markdown(
     """
-    ### Dewatering exercise 💦
-    ---
-    ## Step 5
     Hydrogeological information is usually uncertain.
     
     🤔 What is the impact if the T and S values that you assumed were wrong?
@@ -429,3 +460,40 @@ plt.xlabel(r'Dewatering rate, m3/d', fontsize=14)
 plt.ylabel(r'Highest minimum utility over stakeholders', fontsize=14)
 plt.legend()
 st.pyplot(fig)
+
+
+st.markdown(
+    """
+    ---
+    ### Self-check questions 💦
+ 
+"""
+)
+st.write('')
+st.write('')
+question1 = "What is meant by sensitivity as used in this exercise?"
+options1 = "How much a stakeholder cares about and outcome.", "The change in something - e.g. drawdown - for a given change in one or more parameter values.", "The accuracy of a given parameter value."
+answer_index1 = 1
+stb.single_choice(question1, options1, answer_index1, success='Correct!  There are many uses of sensitivity in science, but they are all essentially a measure of the change of one thing due to a change in another.', error='Incorrect - while sensitivity could be used to explain both the impact of stakeholder utility on an outcome and the uncertainty of measurements on instrument properties, this is not how the term is used here.', button='Check answer')
+
+st.write('')
+st.write('')
+question1 = "Which parameter, S or T, has a larger impact on drawdown at a given distance?"
+options2 = "Both parameters affect drawdown and it is hard to say which is more important without modeling the process.", "Only T is important, you can ignore S.", "Only S is important, you can ignore T."
+answer_index2 = 0
+stb.single_choice(question1, options2, answer_index2, success='Correct!  Use the tool to explore the full range of T and S values, you will find that the answer to this question is ... it depends!', error='Incorrect - if T is very low, then S does not matter much; if S is very high, the T does not matter much.  Neither parameter dominates in all cases.', button='Check answer')
+
+st.write('')
+st.write('')
+question3 = "Pareto optimization can only be applied if predictions are entirely accurate."
+options3 = "True - you cannot make a decision based on incomplete data and understanding of a system.", "False - Pareto optimization depends only on utilities, not on predictions.", "False - one option is for stakeholders to base their decisions on the worst-case version of uncertain predictions."
+answer_index3 = 2
+stb.single_choice(question3, options3, answer_index3, success='Correct!  We always make decisions on incomplete data and understanding!  But it is important to consider the possible impacts of those uncertianties.', error='Incorrect - utilities are applied to predicted outcomes, but those predictions are almost always uncertain.', button='Check answer')
+
+st.write('')
+st.write('')
+question4 = "The optimal solution is that which leads to ____"
+options4 = "the highest average utility for all stakeholders.", "the highest minimum utility across all stakeholders.", "It depends."
+answer_index4 = 2
+stb.single_choice(question4, options4, answer_index4, success='Correct!  Of course, this is the answer to most applied science questions!  You have to choose the method of combining utilities that achieves the goals of the group.', error='Incorrect - maximizing the average utility may leave some stakeholders unacceptably unhappy while maximizing the minimum utility may leave most stakeholders less happy.  Neither approach is always the best.', button='Check answer')
+
