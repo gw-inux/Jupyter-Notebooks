@@ -27,7 +27,7 @@ radio_decay                 = st.Page("pages/M1A/Radioactive_Decay_basics.py", t
 modflow_confined_pumping    = st.Page("pages/M1B/Theis_pumping_Tutorial.py", title="Pumping test analysis: 📈 MODFLOW tutorial - Pumping from a confined aquifer")
 
 # M1C - Flow modeling
-mf_tutorial_2D_synth        = st.Page("pages/M1C/Tutorial_2D_Synth.py.py",        title="MODFLOW/MODELMUSE: 📈 Tutorial 2D synthetic model")
+mf_tutorial_2D_synth        = st.Page("pages/M1C/Tutorial_2D_Synth.py",        title="MODFLOW/MODELMUSE: 📈 Tutorial 2D synthetic model")
 gwf_1D_FD                   = st.Page("pages/M1C/GWF_1D_conf_FD.py",        title="Finite Difference scheme: 📈 1D flow with 2 defined heads")
 gwf_1D_unconf_calib         = st.Page("pages/Calibration/GWF_1D_unconf_analytic_calib.py",        title="Model calibration I: 📈 1D flow with 2 defined heads")
 gwf_1D_unconf_no_flow_calib = st.Page("pages/Calibration/GWF_1D_unconf_analytic_noflow_calib.py", title="Model calibration II: 📈 1D flow with defined head / river")
