@@ -12,9 +12,13 @@ st.markdown("""
             This app contains a tutorial with descriptions (as To-Do list) and videos on how to setup a MODFLOW model for 2D synthetic catchment (see the following figure). The individual steps of the modeling process are provided in the following boxes that you can expand by clicking.
             
             #### Ressources used for the tutorial
-            - The background images are available on GitHub
-            - The PDF File with the step-by-step tutorial is available on GitHub
-            - The MODELMUSE model files (....gpt) is available on GitHub (https://github.com/gw-inux/Jupyter-Notebooks/...)
+            - The background images are available on GitHub 
+              - https://github.com/gw-inux/Jupyter-Notebooks/06_Groundwater_modeling/FIGS/MAP_well.jpg)
+              - https://github.com/gw-inux/Jupyter-Notebooks/06_Groundwater_modeling/FIGS/MAP_calib.jpg)
+            - The PDF File with the step-by-step tutorial is available on GitHub   
+              - https://github.com/gw-inux/Jupyter-Notebooks/06_Groundwater_modeling/DATA/TUTORIAL_2DSYNTH.pdf
+            - The MODELMUSE model files (....gpt) is available on GitHub
+              - https://github.com/gw-inux/Jupyter-Notebooks/06_Groundwater_modeling/DATA/2D_Synthetic.gpt
            """)
 
 lc0, cc0, rc0 = st.columns((20,60,20))
