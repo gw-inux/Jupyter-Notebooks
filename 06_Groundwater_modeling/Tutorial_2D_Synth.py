@@ -2,14 +2,19 @@
 import streamlit as st
 from streamlit_extras.stodo import to_do
 
-st.title('Tutorial: 2D Steady State Groundwater Flow for a Synthetic Catchment ')
+st.title('Modflow-2005/MODELMUSE Tutorial')
 
-st.subheader('Modeldesign with :green[MODFLOW and MODELMUSE]', divider="green")
+st.header('2D Steady State Groundwater Flow for a Synthetic Catchment')
+
+st.subheader('Modeldesign with :green[MODFLOW-2005 and MODELMUSE]', divider="green")
 
 st.markdown("""
             This app contains a tutorial with descriptions (as To-Do list) and videos on how to setup a MODFLOW model for 2D synthetic catchment (see the following figure). The individual steps of the modeling process are provided in the following boxes that you can expand by clicking.
             
-            The model (....gpt) is available in GitHub (https://github.com/gw-inux/Jupyter-Notebooks/...)
+            #### Ressources used for the tutorial
+            - The background images are available on GitHub
+            - The PDF File with the step-by-step tutorial is available on GitHub
+            - The MODELMUSE model files (....gpt) is available on GitHub (https://github.com/gw-inux/Jupyter-Notebooks/...)
            """)
 
 lc0, cc0, rc0 = st.columns((20,60,20))
@@ -17,13 +22,11 @@ with cc0:
     st.image('06_Groundwater_modeling/FIGS/2D_synthetic.png', caption="The synthetic catchment for the numerical model.")
 
 # This are the links to the tutorial videos
-videourl1 = 'https://youtu.be/0eS7sscSyVs'
-#videourl2 = 'https://youtu.be/SUkPsbF7J7s'
-#videourl3 = 'https://youtu.be/S6C3hZxmT4Q'
-#videourl4 = 'https://youtu.be/vPoDFphkR4o'
-#videourl5 = 'https://youtu.be/1s6yglVVDoI'
-#videourl6 = 'https://youtu.be/RuIMmfGMbWA'
-#videourl7 = 'https://youtu.be/Jn1hzE2gEG4'
+videourl1 = 'https://youtu.be/H49fWN3D1H0'
+videourl2 = 'https://youtu.be/5jDPDjX3GCE'
+videourl3 = 'https://youtu.be/YF9dE1gWg3I'
+videourl4 = 'https://youtu.be/2YjltpX2cKM'
+videourl5 = 'https://youtu.be/cTUlaRniPcc'
 
 # Create ToDos to proceed with the steps of the exercise
 
@@ -75,7 +78,7 @@ with st.expander(":blue[**Step 2: Structure & Parameters**] - Expand to see the 
         ,"\n - select tab “Data Sets,” then move to “Required” / “Hydrology” / “Kx.”"
         ,"\n - replace 0.005 by 0.002 and press “OK.”")],"td07",)
         
-    st.video(videourl1)    
+    st.video(videourl2)    
 
 # STEP 3
     
@@ -182,7 +185,7 @@ with st.expander(":blue[**Step 3: Structure & Parameters**] - Expand to see the 
         ,"\n - set starting time = -1 and ending time = 0."
         ,"\n - select “F()” below “Pumping rate per unit length or area”, type the following expression into the in-put field: -5000/86400, and press “OK” (Please do not forget the negative sign! Input corresponds to a pumping rate of 5000 m³/d.).")],"td23",)        
         
-    st.video(videourl1)
+    st.video(videourl3)
     
 # STEP 4
     
@@ -217,7 +220,7 @@ with st.expander(":blue[**Step 4: Properties and Simulation**] - Expand to see t
         
     to_do(
         [(st.write, "close ModelMonitor window .")],"td30",)
-    st.video(videourl1)
+    st.video(videourl4)
     
 # STEP 5
     
@@ -321,7 +324,7 @@ with st.expander(":blue[**Step 5: Postprocessing**] - Expand to see the instruct
             (Please note that another MODFLOW run needs to be carried out before MODPATH is started if other parameters, which affect the flow behavior, were changed.)
            """) 
         
-    st.video(videourl1)
+    st.video(videourl5)
     
 # OPTIONALLY STEPS
     
@@ -348,4 +351,3 @@ with st.expander(":blue[**OPTIONALLY Steps: Some further things to do**] - Expan
         [(st.write, "select “Subdivide grid cells”, mark the cell containing well 2, set “subdivide each row into” = 3, and press “OK”.")],"td059",)
     to_do(
         [(st.write, "choose “Restore default 2D view” and learn about buttons to hide/show the 2D gridlines (on the very right in the second row of symbols).")],"td060",)        
-    st.video(videourl1)
