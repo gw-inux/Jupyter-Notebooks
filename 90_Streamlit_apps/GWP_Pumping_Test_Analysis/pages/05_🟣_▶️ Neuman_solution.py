@@ -249,7 +249,7 @@ Qd = Qs*60*60*24 # m^3/d
 m_time_s = [i*60 for i in m_time] # time in seconds
 num_times = len(m_time)
 
-st.subheader(':violet-background[Estimate T, S, and Leakage] by matching a Hantush/Jacob Curve to measured data', divider="violet")
+st.subheader(':violet-background[Estimate T, S, and Leakage] by matching Neuman Curves to measured data', divider="violet")
 
 st.markdown("""
             In this section, you can **adjust the values of transmissivity, specific storage, specific yield, and beta until the curve of drawdown versus time that is calculated and plotted on the graph matches the measured data from the Pirna test site in Germany**. The match indicates that the selected values are a reasonable representation of the aquifer properties.
