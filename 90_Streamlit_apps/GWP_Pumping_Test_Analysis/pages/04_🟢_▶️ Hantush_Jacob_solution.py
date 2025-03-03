@@ -310,7 +310,7 @@ def inverse(v):
                          r'$T$ (m²/s) = %10.2E' % (T, ),
                          r'$S$ (-) = %10.2E' % (S, )))
     ax.plot(t, s, label=r'Computed drawdown - Theis')
-    ax.plot(t_HAN, s_HAN, 'b--', label=r'Computed drawdown - Hantush Jacob') 
+    ax.plot(t_HAN, s_HAN, 'b--', label=r'Computed drawdown - Hantush-Jacob') 
     if Pirna:
         ax.plot(m_time_s, m_ddown,'o', color='violet', label=r'measured drawdown - Pirna 24')
     else:
@@ -326,7 +326,7 @@ def inverse(v):
         ax.text((0.2),1.8E-4,'Coarse plot - Refine for final fitting')
     plt.xlabel(r'time t in (s)', fontsize=14)
     plt.ylabel(r'drawdown s in (m)', fontsize=14)
-    plt.title(f"Hantush Jacob drawdown with r/b = {r_div_B_choice}", fontsize=16)
+    plt.title(f"Hantush-Jacob drawdown with r/b = {r_div_B_choice}", fontsize=16)
     ax.grid(which="both")
     plt.legend(fontsize=14)
     plt.text(0.3, 0.95,out_txt, horizontalalignment='right', transform=ax.transAxes, fontsize=14, verticalalignment='top', bbox=props)
@@ -362,7 +362,7 @@ def inverse(v):
             st.write("- Transmissivity **T = % 10.2E"% T, " m²/s**")
             st.write("- Storativity    **S = % 10.2E"% S, "[dimensionless]**")
             st.write("- Thickness of aquitard **b = % 5.2f"% b, " m**")
-            st.write("- Aquitard Vertical Hydraulic Conductivity **K' = % 10.2E"% (T*b*r_div_B_choice*r_div_B_choice/r/r), " m²/s**")
+            st.write("- Aquitard Vertical Hydraulic Conductivity **K' = % 10.2E"% (T*b*float(r_div_B_list[r_div_B])*float(r_div_B_list[r_div_B])/r/r), " m²/s**")
  
 inverse(1)
 

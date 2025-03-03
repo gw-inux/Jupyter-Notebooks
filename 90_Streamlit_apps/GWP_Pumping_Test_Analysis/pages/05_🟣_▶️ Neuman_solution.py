@@ -136,7 +136,7 @@ def second_u_inv(T,SY,r,t):
     return u_inv
     
 def Neuman_s(Q, T, u, u_inv_NEU, w_u, beta):
-    #Interpolate for discrete w_u_a
+    #Interpolate for discrete w_u
     method = 'linear'
     w_u_interpolated = interp.interp1d(u_inv_NEU, w_u[:, beta], kind=method, fill_value="extrapolate")
     s = Q / 4. / np.pi / T * w_u_interpolated(u)
@@ -295,7 +295,7 @@ def inverse():
         SY = st.slider('**Specific Yield**', 0.01, 0.50, 0.25, 0.01, format="%4.2f")
         if scatter:
             container = st.container()
-            switch_time_slider_value=st.slider('_(log of) switch time_', 0.,8.,3.,0.01,format="%4.2f" )
+            switch_time_slider_value=st.slider('_(log of) switch time_', 0.,8.,4.,0.01,format="%4.2f" )
             switch_time = 10 ** switch_time_slider_value
             container.write("**Time to switch from early to late curve (s):** %5.2e" %switch_time)
 
@@ -329,15 +329,17 @@ def inverse():
      
     # Compute point data for scatter plot
     m_ddown_Neuman_a = [compute_s(T, S, SY, i, Qs, r, u_inv_a, w_u_a, beta,1) for i in m_time_s]
-    m_ddown_Neuman_b = [compute_s(T, S, SY, i, Qs, r, u_inv_a, w_u_a, beta,2) for i in m_time_s]
+    m_ddown_Neuman_b = [compute_s(T, S, SY, i, Qs, r, u_inv_b, w_u_b, beta,2) for i in m_time_s]
     
     # Recompile data and combine them according to switch time
     if scatter:
         m_ddown_Neuman_combined = [m1 if t <= switch_time else m2 for t, m1, m2 in zip(m_time_s, m_ddown_Neuman_a, m_ddown_Neuman_b)]
+        # Find the max for the scatter plot
+        max_s1 = math.ceil(max(m_ddown*10))/10
+        max_s2 = math.ceil(max(m_ddown_Neuman_a)*10)/10
+        max_s3 = math.ceil(max(m_ddown_Neuman_b)*10)/10
+        max_s = max(max_s1, max_s2, max_s3)
     
-    # Find the max for the scatter plot
-    max_s = math.ceil(max(m_ddown))
-     
     fig = plt.figure(figsize=(10,14))
     ax = fig.add_subplot(2, 1, 1)
     # Info-Box
@@ -346,19 +348,20 @@ def inverse():
                          r'$T$ (m²/s) = %10.2E' % (T, ),
                          r'$S$ (m²/s) = %10.2E' % (S, ),
                          r'$S_y$ (-) = %3.2f' % (SY, )))
-    ax.plot(t_a, s, label=r'Computed ddown early - Theis')
-    ax.plot(t_b, s, label=r'Computed ddown late - Theis')
-    ax.plot(t_a_NEU, s_a_NEU, 'b--', label=r'Computed ddown early - Neuman')
-    ax.plot(t_b_NEU, s_b_NEU, '--', color='darkorange', label=r'Computed ddown late - Neuman')
-    ax.plot(m_time_s, m_ddown,'o', color='violet', label=r'measured drawdown - Pirna 25')
+    ax.plot(t_a, s, color='deepskyblue',label=r'Computed ddown early - Theis')
+    ax.plot(t_b, s, color='blue',label=r'Computed ddown late - Theis')
+    ax.plot(t_a_NEU, s_a_NEU, '--', color='dodgerblue',label=r'Computed ddown early - Neuman')
+    ax.plot(t_b_NEU, s_b_NEU, '--', color='darkblue', label=r'Computed ddown late - Neuman')
+    ax.plot(m_time_s, m_ddown,'o', color='mediumorchid', label=r'measured drawdown - Pirna 25')
     if scatter:
-        plt.vlines(switch_time,1E-4,1E+1, label='switch time scatter plot and statistics')
+        #ax.plot(m_time_s, m_ddown_Neuman_combined,'o', color='green', label=r'points for scatter') # Use this for evaluation
+        plt.vlines(switch_time,1E-4,1E+1,color='orangered',linestyles='dashdot', label='switch time scatter plot and statistics')
     plt.xticks(fontsize=14)
     plt.yticks(fontsize=14)
     plt.yscale("log")
     plt.xscale("log")
     if refine_plot:
-        plt.axis([1E1,1E5,1E-3,1E+1])
+        plt.axis([1E1,1E6,1E-3,1E+1])
     else:
         plt.axis([1E-1,1E8,1E-4,1E+1])
         ax.text((0.2),1.8E-4,'Coarse plot - Refine for final fitting')
@@ -374,7 +377,7 @@ def inverse():
         y45 = [0,200]
         ax = fig.add_subplot(2, 1, 2)
         ax.plot(x45,y45, '--')
-        plt.plot(m_ddown, m_ddown_Neuman_combined,  'o', color='violet')
+        plt.plot(m_ddown, m_ddown_Neuman_combined,  'o', color='mediumorchid')
         me, mae, rmse = compute_statistics(m_ddown, m_ddown_Neuman_combined)
         plt.title('Scatter plot', fontsize=16)
         plt.xlabel(r'Measured s in m', fontsize=14)
@@ -386,9 +389,7 @@ def inverse():
                              r'$MAE = %.3f$ m' % (mae, ),
                              r'$RMSE = %.3f$ m' % (rmse, ))) 
         plt.text(0.97*max_s, 0.05*max_s, out_txt, horizontalalignment='right', bbox=dict(boxstyle="square", facecolor='wheat'), fontsize=14)
-        plt.legend(fontsize=14)    
-    
-    
+   
     st.pyplot(fig)
     
     columns3 = st.columns((1,10,1), gap = 'medium')
