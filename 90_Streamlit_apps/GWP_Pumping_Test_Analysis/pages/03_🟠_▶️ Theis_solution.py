@@ -267,7 +267,10 @@ def inverse(v):
         y45 = [0,200]
         ax = fig.add_subplot(2, 1, 2)
         ax.plot(x45,y45, '--')
-        ax.plot(m_ddown, m_ddown_theis,  'ro', label=r'measured')
+        if Viterbo:
+            ax.plot(m_ddown, m_ddown_theis,  'go', label=r'measured')
+        else:
+            ax.plot(m_ddown, m_ddown_theis,  'ro', label=r'measured')
         me, mae, rmse = compute_statistics(m_ddown, m_ddown_theis)
         plt.title('Scatter plot', fontsize=16)
         plt.xlabel(r'Measured s in m', fontsize=14)
@@ -294,6 +297,14 @@ def inverse(v):
 
 # The first interactive plot 
 inverse(1)
+
+with st.expander('**:red[Click here]** to see one **example of the curve fitting to the :red[idealized] data**'):
+    st.markdown(""" 
+            The following example shows one curve match. If five experts made the curve match they would all have a slightly different set of parameter values, but the parameter sets would likely all be close enough to the shown example to draw comparable conclusions, and make similar predictions. While adjusting parameter values, one finds that the idealized data can be matched very well to the Theis curve. The reason for this behavior is that the idealized aquifer data conform to the conditions for applying the Theis solution. 
+            """)
+    left_co2, cent_co2, last_co2 = st.columns((20,60,20))
+    with cent_co2:
+        st.image('90_Streamlit_apps/GWP_Pumping_Test_Analysis/assets/images/Theis_Idealized_example.png', caption="One example for a curve match of the Theis solution to idealized data") 
 
 st.subheader(':red-background[Next step - Using Theis with field data]', divider="red")
 

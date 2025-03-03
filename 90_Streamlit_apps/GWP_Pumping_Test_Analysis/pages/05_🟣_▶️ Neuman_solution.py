@@ -396,17 +396,25 @@ def inverse():
     with columns3[1]:
         if st.button(':green[**Submit**] your parameters and **show protocol**'):
             st.write("**Protocol / Parameters**")
-            st.write("- Distance of measurement from the well $r$ = %3i" %r," m")
-            st.write("- Pumping rate during test $Q$ = %5.3f" %Qs," m³/s")
-            st.write("- Thickness of aquifer $b$ = % 5.2f"% b, " m")
-            st.write("- Transmissivity $T$ = % 10.2E"% T, " m²/s")
-            st.write("- Storativity $S$ = % 10.2E"% S, "[dimensionless]")
-            st.write("- Specific Storage $S_S$ = % 10.2E"% Ss, " 1/m")
-            st.write("- Specific Yield $S_Y$ = % 10.2E"% SY, "[dimensionless]")
-            st.write("- Horizontal Hydraulic Conductivity $K_h$ = % 10.2E"% (T/b), " m²/s")
-            st.write("- Vertical Hydraulic Conductivity $K_v$ = % 10.2E"% (beta*(T/b)*b*b/r/r), " m²/s")
+            st.write("- Distance of measurement from the well **r = %3i" %r," m**")
+            st.write("- Pumping rate during test **Q = %5.3f" %Qs," m³/s**")
+            st.write("- Thickness of aquifer **b = % 5.2f"% b, " m**")
+            st.write("- Transmissivity **T = % 10.2E"% T, " m²/s**")
+            st.write("- Storativity **S = % 10.2E"% S, "[dimensionless]**")
+            st.write("- Specific Storage **Ss = % 10.2E"% Ss, " 1/m**")
+            st.write("- Specific Yield **Sy = % 10.2E"% SY, "[dimensionless]**")
+            st.write("- Horizontal Hydraulic Conductivity **K_h = % 10.2E"% (T/b), " m²/s**")
+            st.write("- Vertical Hydraulic Conductivity **K_v = % 10.2E"% (beta*(T/b)*b*b/r/r), " m²/s**")
  
 inverse()
+
+with st.expander('**:red[Click here]** to see one **example of the Neuman curve fitting to the :violet[Pirna] data**'):
+    st.markdown(""" 
+            The following example shows one curve match of the Pirna data set, which represents an unconfined aquifer. If several experts made the curve match they would all have a slightly different set of parameter values, but the parameter sets would likely all be close enough to the shown example to draw comparable conclusions, and make similar predictions. While adjusting parameter values, one finds that the data can be matched well to the Neuman curve. The reason for this behavior is that the investigated aquifer, at least partially, conform to the conditions for applying the Neuman solution because it is unconfined. 
+            """)
+    left_co2, cent_co2, last_co2 = st.columns((20,60,20))
+    with cent_co2:
+        st.image('90_Streamlit_apps/GWP_Pumping_Test_Analysis/assets/images/Neuman_Pirna_example.png', caption="One example for a curve match of the Neuman solution to the Pirna data") 
 
 with st.expander('**Click here for some references**'):
     st.markdown("""

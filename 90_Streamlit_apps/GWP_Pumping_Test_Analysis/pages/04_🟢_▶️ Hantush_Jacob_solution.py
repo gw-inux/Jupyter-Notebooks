@@ -312,7 +312,7 @@ def inverse(v):
     ax.plot(t, s, label=r'Computed drawdown - Theis')
     ax.plot(t_HAN, s_HAN, 'b--', label=r'Computed drawdown - Hantush-Jacob') 
     if Pirna:
-        ax.plot(m_time_s, m_ddown,'o', color='violet', label=r'measured drawdown - Pirna 24')
+        ax.plot(m_time_s, m_ddown,'o', color='mediumorchid', label=r'measured drawdown - Pirna 24')
     else:
         ax.plot(m_time_s, m_ddown,'go', label=r'measured drawdown - Viterbo 23')
     plt.yscale("log")
@@ -337,7 +337,7 @@ def inverse(v):
         ax = fig.add_subplot(2, 1, 2)
         ax.plot(x45,y45, '--')
         if Pirna:
-            ax.plot(m_ddown, m_ddown_Hantush,  'o', color='violet', label=r'measured')
+            ax.plot(m_ddown, m_ddown_Hantush,  'o', color='mediumorchid', label=r'measured')
         else:
             ax.plot(m_ddown, m_ddown_Hantush,  'go', label=r'measured')
         me, mae, rmse = compute_statistics(m_ddown, m_ddown_Hantush)
@@ -366,6 +366,14 @@ def inverse(v):
  
 inverse(1)
 
+with st.expander('**:red[Click here]** to see one **example of the Hantush-Jacob curve fitting to the :green[Viterbo] data**'):
+    st.markdown(""" 
+            The following example shows one curve match. If five experts made the curve match they would all have a slightly different set of parameter values, but the parameter sets would likely all be close enough to the shown example to draw comparable conclusions, and make similar predictions. While adjusting parameter values, one finds that the data can be matched well to the Hantush-Jacob curve with an r/B value of 0.4. 
+            """)
+    left_co2, cent_co2, last_co2 = st.columns((20,60,20))
+    with cent_co2:
+        st.image('90_Streamlit_apps/GWP_Pumping_Test_Analysis/assets/images/Hantush_Viterbo_example.png', caption="One example for a curve match of the Hantush-Jacob solution to the Viterbo data") 
+        
 st.subheader(':green-background[Next step - Using Theis and Hantush-Jacob] with field data from an alluvial aquifer', divider="green")
 
 # OR MAYBE YOU ARE ONLY TRYING TO SHOW THAT THIS IS AN UNCONFINED AQUIFER AND THESE PROCEDURES DO NOT WORK WELL? CLEARLY I AM CONFUSED ENOUGH BY THE POINT OF THIS EXERCISE THAT WE ARE GOING TO HAVE TO MAKE IT MORE CLEAR FOR USERS
@@ -377,12 +385,20 @@ st.markdown("""
 )
 # However, some aquifers are unconfined alluvial material with high hydraulic conductivity so the thickness does not change much when they are pumped and so hydrogeologist will often approximate their behavior with equations developed for a confined aquifer. In this case the value of storativity will reflect the specific yield of the aquifer. 
 
-with st.expander("Matching the Theis and Hantush-Jacob Solutions to drawdown data from a leaky unconfined aquifer - Click here"):
+with st.expander("Matching the **Hantush-Jacob Solutions** to drawdown data from a leaky **unconfined aquifer** - :red[Click here]"):
     inverse(2)
-    st.subheader(':green-background[To continue...]', divider="green")
-    st.markdown("""
-            Are you curious whether there is a better way how to proceed with the estimating aquifer properties from drawdown data collected while pumping and unconfined aquifer? On the next page we will investigate the Neuman Solution for calculating drawdown in response to pumping an unconfined aquifer.
-            
+
+with st.expander('**:red[Click here]** to see one **example of the Hantush-Jacob curve fitting to the :violet[Pirna] data**'):
+    st.markdown(""" 
+            The following example shows one curve match of the Pirna data set, which represents an unconfined aquifer. If several experts made the curve match they would all have a slightly different set of parameter values, but the parameter sets would likely all be close enough to the shown example to draw comparable conclusions, and make similar predictions. While adjusting parameter values, one finds that the data cannot be matched well to the Hantush-Jacob curve. The reason for this behavior is that the investigated aquifer doesn't conform to the conditions for applying the Hantush-Jacob solution because it is unconfined. 
+            """)
+    left_co2, cent_co2, last_co2 = st.columns((20,60,20))
+    with cent_co2:
+        st.image('90_Streamlit_apps/GWP_Pumping_Test_Analysis/assets/images/Hantush_Pirna_example.png', caption="One example for a curve match of the Hantush-Jacob solution to the Viterbo data") 
+    
+st.subheader(':green-background[To continue...]', divider="green")
+st.markdown("""
+            Are you curious whether there is a better way how to proceed with the estimating aquifer properties from drawdown data collected while pumping and unconfined aquifer? On the next page we will investigate the Neuman Solution for calculating drawdown in response to pumping an unconfined aquifer.      
     """
     )
 
