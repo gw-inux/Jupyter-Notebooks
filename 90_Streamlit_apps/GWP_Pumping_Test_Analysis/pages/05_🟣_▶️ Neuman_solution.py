@@ -94,11 +94,11 @@ with st.expander('**Click here for more information** about the underlying theor
     st.markdown(
     """    
     where:
-    - _S_ is storativity of the unconfined aquifer (specific storage times aquifer thickness)
-    - _Sy_ is specific yield of the unconfined aquifer
-    - $K_z$ is vertical hydraulic conductivity of the unconfined aquifer
-    - _b_ is saturated thickness of the unconfined aquifer
-    - _t_ is elapsed time since pumping began
+    - _S_ is storativity of the unconfined aquifer (specific storage times aquifer thickness),
+    - _Sy_ is specific yield of the unconfined aquifer,
+    - $K_z$ is vertical hydraulic conductivity of the unconfined aquifer,
+    - _b_ is saturated thickness of the unconfined aquifer,
+    - _t_ is elapsed time since pumping began.
     """)
 
     st.markdown(
