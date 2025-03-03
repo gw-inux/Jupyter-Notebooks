@@ -9,19 +9,19 @@ import streamlit as st
 import streamlit_book as stb
 from streamlit_extras.stateful_button import button
 
-st.title('🟢 :green[Hantush/Jacob] parameter estimation')
+st.title('🟢 :green[Hantush-Jacob] parameter estimation')
 
 st.header('For drawdown in :green[**leaky aquifers**]')
 st.markdown("""
-            Using the Hantush/Jacob solution for drawdown in response to pumping :green[**leaky aquifers**] to estimate Transmissivity, Storativity, and Aquitard Leakage.
+            Using the Hantush-Jacob solution for drawdown in response to pumping :green[**leaky aquifers**] to estimate Transmissivity, Storativity, and Aquitard Leakage.
             """) 
 st.subheader(':green-background[Introduction]', divider="green")
 st.markdown("""
             The Hantush-Jacob (1955) solution is intended to evaluate pumping tests in semiconfined settings.
             
-            This application uses the Hantush/Jacob solution to estimate Transmissivity _T_ and  Storativity _S_ of an aquifer, as well as the leakage factor _r/B_ related to aquitard properties, from drawdown data collected during a pumping test.
+            This application uses the Hantush-Jacob solution to estimate Transmissivity _T_ and  Storativity _S_ of an aquifer, as well as the leakage factor _r/B_ related to aquitard properties, from drawdown data collected during a pumping test.
             
-            You can estimate _T_, _S_, and _r/B_ by adjusting sliders to modify the parameter values until the measured data align with the Hantush/Jacob curve for the input parameters.
+            You can estimate _T_, _S_, and _r/B_ by adjusting sliders to modify the parameter values until the measured data align with the Hantush-Jacob curve for the input parameters. _B_ is a parameter that reflects the potential for aquitard leakage _b'/K'_ relative to the ability of the aquifer to transmit groundwater laterally _T_. There is greater leakage potential for a thinner aquitard of higher conductivity, that is, there is more potential leakage through an aquitard with a smaller ratio of _b'_ to _K'_. 
             
             """)      
                 
@@ -32,7 +32,7 @@ with cent_co:
     st.image('90_Streamlit_apps/GWP_Pumping_Test_Analysis/assets/images/leaky_aquifer_2.png', caption="Cross section of a pumped leaky aquifer, Kruseman et al., 1994")
             
 st.markdown("""
-           To start investigating the Hantush/Jacob Solution it is useful to think about the questions provided in this initial assessment.
+           To start investigating the Hantush-Jacob Solution it is useful to think about the questions provided in this initial assessment.
 """
 )
 # Initial assessment
@@ -41,27 +41,27 @@ with st.expander(":green[**Show/Hide the initial assessment**]"):
     columnsQ1 = st.columns((1,1))
     
     with columnsQ1[0]:
-        stb.single_choice(":green[**What conditions are appropriate for use of the Hantush/Jacob Solution?**]",
+        stb.single_choice(":green[**What conditions are appropriate for use of the Hantush-Jacob Solution?**]",
                   ["Steady state flow, confined aquifer.", "Transient flow, confined aquifer", "Steady state flow, semiconfined aquifer",
                   "Transient flow, semiconfined aquifer", "Steady state flow, unconfined aquifer",
                   "Transient flow, unconfined aquifer"],
-                  3,success='CORRECT! Hantush/Jacob is designed for transient flow in a semiconfined (i.e., leaky) aquifer', error='This is not correct ... You can learn more about the Hantush/Jacob Solution [by downloading the book: An Introduction to Hydraulic Testing in Hydrogeology - Basic Pumping, Slug, and Packer Methods​​ and reading Section 9 through 9.2](https://gw-project.org/books/an-introduction-to-hydraulic-testing-in-hydrogeology-basic-pumping-slug-and-packer-methods/). Feel free to answer again.')
+                  3,success='CORRECT! Hantush-Jacob is designed for transient flow in a semiconfined (i.e., leaky) aquifer', error='This is not correct ... You can learn more about the Hantush-Jacob Solution [by downloading the book: An Introduction to Hydraulic Testing in Hydrogeology - Basic Pumping, Slug, and Packer Methods​​ and reading Section 9 through 9.2](https://gw-project.org/books/an-introduction-to-hydraulic-testing-in-hydrogeology-basic-pumping-slug-and-packer-methods/). Feel free to answer again.')
                   
         stb.single_choice(":green[**What is the key difference between the Hantush-Jacob solution and the Theis solution?**]",
                   ["Theis solution applies to leaky aquifers, while Hantush-Jacob is for unconfined aquifers", "Hantush-Jacob solution accounts for leakage through an aquitard, while Theis assumes a fully confined aquifer", "Theis solution considers the presence of an impermeable boundary", "Hantush-Jacob solution applies only to steady-state conditions"],
-                  1,success='CORRECT! Hantush-Jacob solution accounts for leakage through an aquitard, while Theis assumes a fully confined aquifer', error='This is not correct ... You can learn more about the Theis and Hantush/Jacob Solutions [by downloading the book: An Introduction to Hydraulic Testing in Hydrogeology - Basic Pumping, Slug, and Packer Methods​​ and reading Sections 8 and 9.2, respectively](https://gw-project.org/books/an-introduction-to-hydraulic-testing-in-hydrogeology-basic-pumping-slug-and-packer-methods/). Feel free to answer again.')
+                  1,success='CORRECT! Hantush-Jacob solution accounts for leakage through an aquitard, while Theis assumes a fully confined aquifer', error='This is not correct ... You can learn more about the Theis and Hantush-Jacob Solutions [by downloading the book: An Introduction to Hydraulic Testing in Hydrogeology - Basic Pumping, Slug, and Packer Methods​​ and reading Sections 8 and 9.2, respectively](https://gw-project.org/books/an-introduction-to-hydraulic-testing-in-hydrogeology-basic-pumping-slug-and-packer-methods/). Feel free to answer again.')
                   
         stb.single_choice(":green[**What parameter is introduced in the Hantush-Jacob solution to account for leakage?**]",
                   ["Storage coefficient", "Leakage factor (B)", "Specific yield", "Transmissivity"],
-                  1,success='CORRECT! Leakage factor', error='This is not correct ... You can learn more about the Theis and Hantush/Jacob Solutions [by downloading the book: An Introduction to Hydraulic Testing in Hydrogeology - Basic Pumping, Slug, and Packer Methods​​ and reading Sections 8 and 9 through 9.2, respectively](https://gw-project.org/books/an-introduction-to-hydraulic-testing-in-hydrogeology-basic-pumping-slug-and-packer-methods/). Feel free to answer again.')                     
+                  1,success='CORRECT! Leakage factor', error='This is not correct ... You can learn more about the Theis and Hantush-Jacob Solutions [by downloading the book: An Introduction to Hydraulic Testing in Hydrogeology - Basic Pumping, Slug, and Packer Methods​​ and reading Sections 8 and 9 through 9.2, respectively](https://gw-project.org/books/an-introduction-to-hydraulic-testing-in-hydrogeology-basic-pumping-slug-and-packer-methods/). Feel free to answer again.')                     
     with columnsQ1[1]:      
         stb.single_choice(":green[**Which of the following best defines the leakage factor B in the Hantush-Jacob solution?**]",
                   ["A measure of the storage capacity of the aquifer", "A parameter that describes the rate at which water moves through the aquifer", "A term that quantifies how much water leaks through an aquitard into the aquifer", "A constant value independent of aquifer properties"],
-                  2,success='CORRECT! A term that quantifies how readily water leaks through an aquitard into an aquifer', error='This is not correct ... You can learn more about the Hantush/Jacob Solution [by downloading the book: An Introduction to Hydraulic Testing in Hydrogeology - Basic Pumping, Slug, and Packer Methods​​ and reading Section 9.2](https://gw-project.org/books/an-introduction-to-hydraulic-testing-in-hydrogeology-basic-pumping-slug-and-packer-methods/). Feel free to answer again.')
+                  2,success='CORRECT! A term that quantifies how readily water leaks through an aquitard into an aquifer', error='This is not correct ... You can learn more about the Hantush-Jacob Solution [by downloading the book: An Introduction to Hydraulic Testing in Hydrogeology - Basic Pumping, Slug, and Packer Methods​​ and reading Section 9.2](https://gw-project.org/books/an-introduction-to-hydraulic-testing-in-hydrogeology-basic-pumping-slug-and-packer-methods/). Feel free to answer again.')
                   
         stb.single_choice(":green[**What happens to drawdown in a leaky confined aquifer compared to a fully confined aquifer?**]",
                   ["Drawdown decreases more rapidly in a leaky aquifer", "Drawdown is less in a leaky aquifer due to the additional water source", "Drawdown remains the same in both cases", "Drawdown is greater in a leaky aquifer due to the additional water source", "Drawdown occurs only in the aquitard, not in the aquifer"],
-                  1,success='CORRECT! Drawdown is less in a leaky aquifer due to the additional water source', error='This is not correct ... You can learn more about the Theis and Hantush/Jacob Solutions [by downloading the book: An Introduction to Hydraulic Testing in Hydrogeology - Basic Pumping, Slug, and Packer Methods​​ and reading Sections 8 and 9 through 9.2, respectively](https://gw-project.org/books/an-introduction-to-hydraulic-testing-in-hydrogeology-basic-pumping-slug-and-packer-methods/). Feel free to answer again.')                     
+                  1,success='CORRECT! Drawdown is less in a leaky aquifer due to the additional water source', error='This is not correct ... You can learn more about the Theis and Hantush-Jacob Solutions [by downloading the book: An Introduction to Hydraulic Testing in Hydrogeology - Basic Pumping, Slug, and Packer Methods​​ and reading Sections 8 and 9 through 9.2, respectively](https://gw-project.org/books/an-introduction-to-hydraulic-testing-in-hydrogeology-basic-pumping-slug-and-packer-methods/). Feel free to answer again.')                     
 "---"
 
 # Optional theory here
@@ -209,14 +209,14 @@ w_u_HAN = [[9.420E+00, 6.670E+00, 4.850E+00, 3.510E+00, 2.230E+00, 1.550E+00, 8.
 
 w_u_HAN = np.array(w_u_HAN)
 
-st.subheader(':green[Estimate T, S, and Leakage by matching a Hantush/Jacob Curve to measured data]', divider="rainbow")
+st.subheader(':green[Estimate T, S, and Leakage by matching a Hantush-Jacob Curve to measured data]', divider="rainbow")
 
 st.markdown("""
             In this section, you can **adjust the values of transmissivity, storativity, and r/B until the curve of drawdown versus time that is calculated and plotted on the graph matches the measured data from the Viterbo test site in Italy**. The match indicates that the selected values are a reasonable representation of the aquifer properties.
             
-            The aquifer is ### meters thick and is overlain by an aquitard that is 8.5 m thick that separates the Viterbo Aquifer from an overlying aquifer. When the Viterbo Aquifer is pumped, water leaks downward from the overlying aquifer in response to the lowered head in the Viterbo Aquifer.
+            :red[The aquifer is ### meters thick and is overlain by an aquitard that is 8.5 m thick] that separates the Viterbo Aquifer from an overlying aquifer. When the Viterbo Aquifer is pumped, water leaks downward from the overlying aquifer in response to the lowered head in the Viterbo Aquifer.
         
-            After estimating the parameter values that result in a good fit of the Hantush/Jacob curve to the data, and knowing the thickness of the aquitard, the vertical hydraulic conductivity of the aquitard is calculated.
+            After estimating the parameter values that result in a good fit of the Hantush-Jacob curve to the data, and knowing the thickness of the aquitard, the vertical hydraulic conductivity of the aquitard is calculated.
             
             For more precise matching, zoom in by using the toogle.
 """
@@ -355,29 +355,29 @@ def inverse(v):
     
     columns3 = st.columns((1,10,1), gap = 'medium')
     with columns3[1]:
-        if st.button(':green[**Submit**] your parameters and **show protocol**', key = 50+v):
-            st.write("**Protocol / Parameters**")
+        if st.button(':green[**Submit**] your parameters and **show results**', key = 50+v):
+            st.write("**Parameters and Results**")
             st.write("- Distance of measurement from the well **r = %3i" %r," m**")
             st.write("- Pumping rate during test **Q = %5.3f" %Qs," m³/s**")
             st.write("- Transmissivity **T = % 10.2E"% T, " m²/s**")
             st.write("- Storativity    **S = % 10.2E"% S, "[dimensionless]**")
             st.write("- Thickness of aquitard **b = % 5.2f"% b, " m**")
-            st.write("- Aquitard Vertical Hydraulic Conductivity **K' = % 10.2E"% (T/b), " m²/s**")
+            st.write("- Aquitard Vertical Hydraulic Conductivity **K' = % 10.2E"% (T*b*r_div_B_choice*r_div_B_choice/r/r), " m²/s**")
  
 inverse(1)
 
-st.subheader(':green-background[Next step - Using Theis and Hantush/Jacob] with field data from an alluvial aquifer', divider="green")
+st.subheader(':green-background[Next step - Using Theis and Hantush-Jacob] with field data from an alluvial aquifer', divider="green")
 
 # OR MAYBE YOU ARE ONLY TRYING TO SHOW THAT THIS IS AN UNCONFINED AQUIFER AND THESE PROCEDURES DO NOT WORK WELL? CLEARLY I AM CONFUSED ENOUGH BY THE POINT OF THIS EXERCISE THAT WE ARE GOING TO HAVE TO MAKE IT MORE CLEAR FOR USERS
 st.markdown("""
-            Above, we investigated field data from Viterbo. We could fit the Hantush/Jacob solution to the measured data.
+            Above, we investigated field data from Viterbo. We could fit the Hantush-Jacob solution to the measured data.
             
-            Subsequently, we are investigating how the Theis and Hantush/Jacob Solutions align with field data from an alluvial aquifer with and underlying aquitard separating it from another underlying aquifer. In this next step we explore how the Theis and Hantush/Jacob solutions align with drawdonw data from an possibly unconfined aquifer.  
+            Subsequently, we are investigating how the Theis and Hantush-Jacob Solutions align with field data from an alluvial aquifer with and underlying aquitard separating it from another underlying aquifer. In this next step we explore how the Theis and Hantush-Jacob solutions align with drawdonw data from an possibly unconfined aquifer.  
 """
 )
 # However, some aquifers are unconfined alluvial material with high hydraulic conductivity so the thickness does not change much when they are pumped and so hydrogeologist will often approximate their behavior with equations developed for a confined aquifer. In this case the value of storativity will reflect the specific yield of the aquifer. 
 
-with st.expander("Matching the Theis and Hantush/Jacob Solutions to drawdown data from a leaky unconfined aquifer - Click here"):
+with st.expander("Matching the Theis and Hantush-Jacob Solutions to drawdown data from a leaky unconfined aquifer - Click here"):
     inverse(2)
     st.subheader(':green-background[To continue...]', divider="green")
     st.markdown("""

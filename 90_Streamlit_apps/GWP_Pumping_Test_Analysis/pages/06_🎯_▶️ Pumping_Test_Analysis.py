@@ -6,7 +6,7 @@ import pandas as pd
 import streamlit as st
 import streamlit_book as stb
 
-st.title('🎯 Pumping Test Analysis with the :red[Theis], :green[Hantush/Jacob], and :violet[Neuman] solutions')
+st.title('🎯 Pumping Test Analysis with the :red[Theis], :green[Hantush-Jacob], and :violet[Neuman] solutions')
 
 st.header('Fitting formation parameter values to :rainbow[FIELD measured] data')
 
@@ -123,7 +123,7 @@ with columns[0]:
     ("Synthetic textbook data", "Load own CSV dataset", "Viterbo (IT) 2023", "Pirna (DE) 2024", "Varnum (SWE) 2016 - R4", "Varnum (SWE) 2016 - R12", "Varnum (SWE) 2016 - R14", "Varnum (SWE) 2016 - R15", "Varnum (SWE) 2016 - B1", "Varnum (SWE) 2018 - R14"), key = 'Data')
 with columns[1]:
     solution = st.selectbox("**What solution should be used?**",
-    ("Theis", "Hantush/Jacob", "Neuman"), key = 'Solution')
+    ("Theis", "Hantush-Jacob", "Neuman"), key = 'Solution')
 
 if (st.session_state.Data == "Synthetic textbook data"):
     # Data and parameter from SYMPLE exercise
@@ -264,7 +264,7 @@ def inverse():
             beta_choice = st.selectbox("beta",('0.001','0.01', '0.06', '0.2', '0.6', '1', '2', '4', '6'),)
             beta_list = ['0.001','0.01', '0.06', '0.2', '0.6', '1', '2', '4', '6']
             beta = beta_list.index(beta_choice)
-        if st.session_state.Solution == 'Hantush/Jacob':
+        if st.session_state.Solution == 'Hantush-Jacob':
             r_div_B_choice = st.selectbox("r/B",('0.01', '0.04', '0.1', '0.2', '0.4', '0.6', '1', '1.5', '2', '2.5'),)
             r_div_B_list = ['0.01', '0.04', '0.1', '0.2', '0.4', '0.6', '1', '1.5', '2', '2.5']
             r_div_B = r_div_B_list.index(r_div_B_choice)
@@ -309,7 +309,7 @@ def inverse():
         ax.plot(t_b_NEU, s_b_NEU, '--', color='darkorange', label=r'Computed drawdown late - Neuman')
         ax.plot(m_time_s, m_ddown, 'o', color='violet', label=r'measured drawdown')
 
-    if st.session_state.Solution == 'Hantush/Jacob':  
+    if st.session_state.Solution == 'Hantush-Jacob':  
         # Theis curve
         t = u_inv * t_term
         s = w_u * s_term

@@ -11,7 +11,7 @@ st.subheader(':orange-background[Introduction and Overview]', divider="orange")
 st.markdown("""
             This part of the application provides a general overview about groundwater flow toward a well. It explains the basic principles and provides a quantitative description of the process using basic groundwater flow equations. 
             
-            The details of specific solutions (Theis, Hantush/Jacob, Neuman) are provided in separate sections of this application that are dedicated to each solution.
+            The details of specific solutions (Theis, Hantush-Jacob, Neuman) are provided in separate sections of this application that are dedicated to each solution.
             
             We offer a few questions to allow you to assess the current state of your knowledge.
 """
@@ -142,7 +142,7 @@ st.markdown('''
             '''
 )
 
-with st.expander('**Click here for some references**'):
+with st.expander('**Click here for related references**'):
     st.markdown("""
     Theis, C.V., 1935. The relation between the lowering of the piezometric surface and the rate and duration of discharge of a well using groundwater storage, Transactions of the American Geophysical Union, volume 16, pages 519-524.
     

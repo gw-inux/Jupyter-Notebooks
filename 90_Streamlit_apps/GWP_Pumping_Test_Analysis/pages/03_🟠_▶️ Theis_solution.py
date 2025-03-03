@@ -285,8 +285,8 @@ def inverse(v):
     
     columns3 = st.columns((1,10,1), gap = 'medium')
     with columns3[1]:
-        if st.button(':green[**Submit**] your parameters and **show protocol**', key = 50+v):
-            st.write("**Protocol / Parameters**")
+        if st.button(':green[**Submit**] your parameters and **show results**', key = 50+v):
+            st.write("**Parameters and Results**")
             st.write("- Distance of measurement from the well **r = %3i" %r," m**")
             st.write("- Pumping rate during test **Q = %5.3f" %Qs," m³/s**")
             st.write("- Transmissivity **T = % 10.2E"% T, " m²/s**")
@@ -298,7 +298,27 @@ inverse(1)
 st.subheader(':red-background[Next step - Using Theis with field data]', divider="red")
 
 st.markdown("""
-            So far, we investigated the Theis solution with idealized data. However, data collected in the field is less than ideal. Drawdown measurements vary because it is not possible to maintain an absolutely constant pumping rate and other stresses influence groundwater levels such as pumping of wells near the test site.  The next step investigates matching the Theis solution to measured data.  
+           
+            So far, we investigated the Theis solution with idealized data. However, data collected in the field are less than ideal. Drawdown measurements vary for many reasons.  
+"""
+)
+
+# Irregularities of field datay here
+with st.expander('**:red[Click here] for more information** about the causes of irregularities in field pumping test data'):
+    st.markdown(
+    """
+            - it is not possible to maintain an absolutely constant pumping rate so the data will not form a smooth curve
+            - water is removed from the well bore in the early period of pumping, but that phenomenon is not accounted for by the Theis solution that assumes an infinitesimal well diameter with instantaneous response in the aquifer so drawdown may be unexpectedly large at early times 
+            - aquifers are not laterally infinite as assumed in the Theis solution, rather there may be bodies of water near the well that provide water to the system, slowing the rate of drawdown, or  there may be low permeability materials such as bedrock or faults that prevent water flow toward the well from some directions causing drawdown to occur more rapidly than calculated by the Theis Solution - these "boundary effects" are noticeable in data from later in the pumping test
+            - other stresses on the groundwater system may influence groundwater levels such as pumps in nearby wells being turned on or turned off, causing either more rapid drawdown or slower drawdown (and sometimes even resulting in a rise of water levels)
+            - a notable example of the effect of other stresses occurred during the test of a well in an alluvial aquifer near a river being conducted to provide example data for a class to work with - the drawdown was proceeding, but even though the pumping rate was constant the water levels began to rise around sunset, then it was realized that the cottonwood trees along the river had been "pumping water" by way of evapotranspiration all day and the evapotranspiration stopped as the sun went down. The evapotranspiration was such a powerful influence on the water levels that the data were not useful for a first-level class exercise.  
+            
+    """
+    )
+
+st.markdown("""
+           
+            The next step investigates matching the Theis solution to measured data.  
 """
 )
 
@@ -306,9 +326,9 @@ with st.expander('**:red[Click here] to open the interactive plot with field mea
     # The second interactive plot
     inverse(2)
     
-with st.expander('**:red[Click here]** if you want to see one **example of the curve fitting to the :green[Viterbo] data**'):
+with st.expander('**:red[Click here]** to see one **example of the curve fitting to the :green[Viterbo] data**'):
     st.markdown(""" 
-            The following example show one curve match. If five experts made the curve match they would all have a slightly different set of parameters but they would likely all be close enough to the shown example to draw comparable conclusions. It becomes clear that the initial part of the data can be matched well and the second part deviates from the Theis solution. The reason for this behavior is that the investigated aquifer doesnt fullfill the conditions to apply the Theis solution. 
+            The following example shows one curve match. If five experts made the curve match they would all have a slightly different set of parameter values, but the parameter sets would likely all be close enough to the shown example to draw comparable conclusions, and make similar predictions. While adjusting parameter values, one finds that the early data can be matched well to the Theis curve while the later data deviates from the curve. The reason for this behavior is that the investigated aquifer doesn't conform to the conditions for applying the Theis solution because it is not fully confined. 
             """)
     left_co2, cent_co2, last_co2 = st.columns((20,60,20))
     with cent_co2:
@@ -319,17 +339,15 @@ with st.expander('**Click here for some initial conclusions**'):
     st.markdown("""
     The **first interactive plot** showed how to modify the values used to generate the Theis curve to obtain a fit with measured data. The modifications were done by adjusting transmissivity $T$ and storativity $S$.
     
-    With the data from the idealized "textbook" data we could obtain perfect fit to the Theis solution.
+    With the idealized "textbook" data we could obtain perfect fit to the Theis solution.
     
     In the **second interactive plot** we aimed to fit the Theis solution to measured data from a field site.
-    
-    This revealed that measured data can contain outliers as is particularly noticeable in the first measured data point for the Viterbo data.
     
     Also the use of field data revealed that the Theis solution may only partially reflect the measured data, that is, it may be possible to obtain a good fit for the early data or the late data, but not for both.
     """
 )  
 
-with st.expander('**Click here for some references**'):
+with st.expander('**Click here for references**'):
     st.markdown("""
     [Kruseman, G.P., de Ridder, N.A., & Verweij, J.M.,  1991.](https://gw-project.org/books/analysis-and-evaluation-of-pumping-test-data/) Analysis and Evaluation of Pumping Test Data, International Institute for Land Reclamation and Improvement, Wageningen, The Netherlands, 377 pages.
     

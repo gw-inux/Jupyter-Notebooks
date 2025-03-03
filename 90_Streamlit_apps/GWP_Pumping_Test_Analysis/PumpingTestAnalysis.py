@@ -59,12 +59,12 @@ st.markdown(
     - 📃 Learn about the underlying **Theory**,
     - 🙋 Investigate **Transient flow to a well**,
     - 🟠 Understand the behavior and characteristics of the **Theis Solution for confined aquifers**,
-    - 🟢 Understand the behavior and characteristics of the **Hantush/Jacob Solution for leaky aquifers**,
+    - 🟢 Understand the behavior and characteristics of the **Hantush-Jacob Solution for leaky aquifers**,
     - 🟣 Understand the behavior and characteristics of the **Neuman Solution for unconfined aquifers**,
-    - 🎯 **Investigate measured data of your own** (or other field datasets you provide) with the Theis, Hantush/Jacob, or Neuman Solution.
+    - 🎯 **Investigate measured data of your own** (or other field datasets you provide) with the Theis, Hantush-Jacob, or Neuman Solution.
     - 📈 **Explore the impact of uncertainty associated with parameter value estimates on predicted drawdown** by estimating parameters for a random dataset with noise and using the estimates for a drawdown prediction.
 
-    This interactive application allows investigation of transient flow to a well and estimation of aquifer parameter values using the Theis, Hantush/Jacob, and Neuman Solutions for confined, leaky, and unconfined conditions. The calculations are based on spreadsheets developed by Professor Rudolf Liedl and Professor Charles R. Fitts.
+    This interactive application allows investigation of transient flow to a well and estimation of aquifer parameter values using the Theis, Hantush-Jacob, and Neuman Solutions for confined, leaky, and unconfined conditions. The calculations are based on spreadsheets developed by Professor Rudolf Liedl and Professor Charles R. Fitts.
     
     :green
     ___
