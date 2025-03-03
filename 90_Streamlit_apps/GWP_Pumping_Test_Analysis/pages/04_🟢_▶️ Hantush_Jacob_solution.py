@@ -368,7 +368,8 @@ inverse(1)
 
 with st.expander('**:red[Click here]** to see one **example of the Hantush-Jacob curve fitting to the :green[Viterbo] data**'):
     st.markdown(""" 
-            The following example shows one curve match. If five experts made the curve match they would all have a slightly different set of parameter values, but the parameter sets would likely all be close enough to the shown example to draw comparable conclusions, and make similar predictions. While adjusting parameter values, one finds that the data can be matched well to the Hantush-Jacob curve with an r/B value of 0.4. 
+            The following example shows one curve match. If five experts made the curve match they would all have a slightly different set of parameter values, but the parameter sets would likely all be close enough to one another to draw comparable conclusions, and make similar predictions. 
+            While adjusting parameter values, one finds that the data can be matched well to the Hantush-Jacob curve with an r/B value of 0.4. 
             """)
     left_co2, cent_co2, last_co2 = st.columns((20,60,20))
     with cent_co2:
