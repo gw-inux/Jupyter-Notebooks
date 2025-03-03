@@ -2,6 +2,8 @@
 import numpy as np
 import matplotlib.pyplot as plt
 import scipy.special
+import scipy.interpolate as interp
+import math
 import pandas as pd
 import streamlit as st
 import streamlit_book as stb
@@ -24,6 +26,81 @@ st.markdown("""
 
 def well_function(u):
     return scipy.special.exp1(u)
+    
+def theis_u(T,S,r,t):
+    u = r ** 2 * S / 4. / T / t
+    return u
+    
+def theis_u_inv(T,S,r,t):
+    u_inv = 1/(r ** 2 * S / 4. / T / t)
+    return u_inv
+    
+def second_u_inv(T,SY,r,t):
+    u_inv = 1/(r ** 2 * SY / 4. / T / t)
+    return u_inv    
+    
+def theis_s(Q, T, u):
+    s = Q / 4. / np.pi / T * well_function(u)
+    return s
+    
+def Hantush_s(Q, T, u, u_HAN, w_u_HAN,r_div_B):
+    #Interpolate for discrete w_u_HAN
+    if r_div_B in [0, 1]:
+        method = 'nearest'
+    else:
+        method = 'linear'
+    w_u_HAN_interpolated = interp.interp1d(u_HAN, w_u_HAN[:, r_div_B], kind=method, fill_value="extrapolate")
+    s = Q / 4. / np.pi / T * w_u_HAN_interpolated(u)
+    return s
+    
+def Neuman_s(Q, T, u, u_inv_NEU, w_u, beta):
+    #Interpolate for discrete w_u
+    method = 'linear'
+    w_u_interpolated = interp.interp1d(u_inv_NEU, w_u[:, beta], kind=method, fill_value="extrapolate")
+    s = Q / 4. / np.pi / T * w_u_interpolated(u)
+    return s
+    
+def compute_s_HAN(T, S, t, Q, r, u_HAN, w_u_HAN, r_div_B):
+    u = theis_u(T, S, r, t)
+    s = Hantush_s(Q, T, u, u_HAN, w_u_HAN,r_div_B)
+    return s
+    
+def compute_s_Theis(T, S, t, Q, r):
+    u = theis_u(T, S, r, t)
+    s = theis_s(Q, T, u)
+    return s
+
+def compute_s_NEU(T, S, SY, t, Q, r, u_inv_NEU, w_u, beta, var):
+    if var == 1:
+        u_inv = theis_u_inv(T, S, r, t)
+    else:
+        u_inv = second_u_inv (T, SY, r, t)
+    s = Neuman_s(Q, T, u_inv, u_inv_NEU, w_u, beta)
+    return s    
+    
+def compute_statistics(measured, computed):
+    # Calculate the number of values
+    n = len(measured)
+
+    # Initialize a variable to store the sum of squared differences
+    total_me = 0
+    total_mae = 0
+    total_rmse = 0
+
+    # Loop through each value
+    for i in range(n): # Add the squared difference to the total
+        total_me   += (computed[i] - measured[i])
+        total_mae  += (abs(computed[i] - measured[i]))
+        total_rmse += (computed[i] - measured[i])**2
+
+    # Calculate the me, mae, mean squared error
+    me = total_me / n
+    mae = total_mae / n
+    meanSquaredError = total_rmse / n
+
+    # Raise the mean squared error to the power of 0.5 
+    rmse = (meanSquaredError) ** (1/2)
+    return me, mae, rmse
 
 # (Here, the methode computes the data for the well function. Those data can be used to generate a type curve.)
 u_min = -5
@@ -31,10 +108,10 @@ u_max = 4
 
 u = np.logspace(u_min,u_max)
 u_inv = 1/u
-u_inv_a = [4.00E-01, 8.00E-01, 1.40E+00, 2.40E+00, 4.00E+00, 8.00E+00, 1.40E+01, 2.40E+01, 4.00E+01, 8.00E+01, 1.40E+02, 2.40E+02, 4.00E+02, 8.00E+02, 1.40E+03, 2.40E+03, 4.00E+03, 8.00E+03]
-u_inv_b = [1.40E-02, 2.40E-02, 4.00E-02, 8.00E-02, 1.40E-01, 2.40E-01, 4.00E-01, 8.00E-01, 1.40E+00, 2.40E+00, 4.00E+00, 8.00E+00, 1.40E+01, 2.40E+01, 4.00E+01, 8.00E+01, 1.40E+02, 2.40E+02, 4.00E+02, 8.00E+02, 1.00E+03]
+u_inv_a = np.array([4.00E-01, 8.00E-01, 1.40E+00, 2.40E+00, 4.00E+00, 8.00E+00, 1.40E+01, 2.40E+01, 4.00E+01, 8.00E+01, 1.40E+02, 2.40E+02, 4.00E+02, 8.00E+02, 1.40E+03, 2.40E+03, 4.00E+03, 8.00E+03])
+u_inv_b = np.array([1.40E-02, 2.40E-02, 4.00E-02, 8.00E-02, 1.40E-01, 2.40E-01, 4.00E-01, 8.00E-01, 1.40E+00, 2.40E+00, 4.00E+00, 8.00E+00, 1.40E+01, 2.40E+01, 4.00E+01, 8.00E+01, 1.40E+02, 2.40E+02, 4.00E+02, 8.00E+02, 1.00E+03])
 
-u_HAN = [1.00E-05, 2.00E-05, 4.00E-05, 6.00E-05, 1.00E-04, 2.00E-04, 4.00E-04, 6.00E-04, 1.00E-03, 2.00E-03, 4.00E-03, 6.00E-03, 1.00E-02, 2.00E-02, 4.00E-02, 6.00E-02, 1.00E-01, 2.00E-01, 4.00E-01, 6.00E-01, 1 , 2]
+u_HAN = np.array([1.00E-05, 2.00E-05, 4.00E-05, 6.00E-05, 1.00E-04, 2.00E-04, 4.00E-04, 6.00E-04, 1.00E-03, 2.00E-03, 4.00E-03, 6.00E-03, 1.00E-02, 2.00E-02, 4.00E-02, 6.00E-02, 1.00E-01, 2.00E-01, 4.00E-01, 6.00E-01, 1 , 2])
 
 w_u = well_function(u)
 
@@ -69,6 +146,8 @@ w_u_a = [[2.48E-02, 2.41E-02, 2.30E-02, 2.14E-02, 1.88E-02, 1.70E-02, 1.38E-02, 
          [5.54E+00, 3.46E+00, 1.94E+00, 1.08E+00, 5.07E-01, 3.17E-01, 1.41E-01, 4.78E-02, 2.15E-02],
          [5.59E+00, 3.46E+00, 1.94E+00, 1.08E+00, 5.07E-01, 3.17E-01, 1.41E-01, 4.78E-02, 2.15E-02],
          [5.62E+00, 3.46E+00, 1.94E+00, 1.08E+00, 5.07E-01, 3.17E-01, 1.41E-01, 4.78E-02, 2.15E-02]]
+         
+w_u_a = np.array(w_u_a)
 
 w_u_b = [[5.62E+00, 3.46E+00, 1.94E+00, 1.09E+00, 5.12E-01, 3.23E-01, 1.45E-01, 5.09E-02, 2.39E-02],
          [5.62E+00, 3.46E+00, 1.94E+00, 1.09E+00, 5.12E-01, 3.23E-01, 1.47E-01, 5.32E-02, 2.57E-02],
@@ -91,6 +170,8 @@ w_u_b = [[5.62E+00, 3.46E+00, 1.94E+00, 1.09E+00, 5.12E-01, 3.23E-01, 1.45E-01, 
          [6.16E+00, 5.46E+00, 9.99E+02, 9.99E+02, 9.99E+02, 9.99E+02, 9.99E+02, 9.99E+02, 9.99E+02],
          [6.47E+00, 6.11E+00, 9.99E+02, 9.99E+02, 9.99E+02, 9.99E+02, 9.99E+02, 9.99E+02, 9.99E+02],
          [6.60E+00, 6.50E+00, 9.99E+02, 9.99E+02, 9.99E+02, 9.99E+02, 9.99E+02, 9.99E+02, 9.99E+02]]
+         
+w_u_b = np.array(w_u_b)
          
 # Hantush Jacob type curve data from tables
 w_u_HAN = [[9.420E+00, 6.670E+00, 4.850E+00, 3.510E+00, 2.230E+00, 1.550E+00, 8.420E-01, 4.271E-01, 2.280E-01, 1.174E-01],
@@ -115,6 +196,8 @@ w_u_HAN = [[9.420E+00, 6.670E+00, 4.850E+00, 3.510E+00, 2.230E+00, 1.550E+00, 8.
            [9.990E+02, 9.990E+02, 9.990E+02, 4.500E-01, 4.360E-01, 4.150E-01, 3.540E-01, 2.550E-01, 1.770E-01, 1.100E-01],
            [9.990E+02, 9.990E+02, 9.990E+02, 9.990E+02, 2.130E-01, 2.060E-01, 1.850E-01, 1.509E-01, 1.140E-01, 8.030E-02],
            [9.990E+02, 9.990E+02, 9.990E+02, 9.990E+02, 9.990E+02, 4.700E-02, 4.400E-02, 9.990E+02, 3.400E-02, 2.500E-02]]  
+
+w_u_HAN = np.array(w_u_HAN)
 
 # Select data
 columns = st.columns((1,1), gap = 'large')
@@ -258,12 +341,18 @@ def inverse():
         # Display the logarithmic value
         container.write("**Specific storage (dimensionless):** %5.2e" %Ss)
         refine_plot = st.toggle("**Refine** the range of the **Data matching plot**")
+        scatter = st.toggle('Show scatter plot')
     with columns2[1]:
         if st.session_state.Solution == 'Neuman':
             SY = st.slider('Specific Yield', 0.01, 0.50, 0.25, 0.01, format="%4.2f")
             beta_choice = st.selectbox("beta",('0.001','0.01', '0.06', '0.2', '0.6', '1', '2', '4', '6'),)
             beta_list = ['0.001','0.01', '0.06', '0.2', '0.6', '1', '2', '4', '6']
             beta = beta_list.index(beta_choice)
+            if scatter:
+                container = st.container()
+                switch_time_slider_value=st.slider('_(log of) switch time_', 0.,8.,4.,0.01,format="%4.2f" )
+                switch_time = 10 ** switch_time_slider_value
+                container.write("**Time to switch from early to late curve (s):** %5.2e" %switch_time)
         if st.session_state.Solution == 'Hantush-Jacob':
             r_div_B_choice = st.selectbox("r/B",('0.01', '0.04', '0.1', '0.2', '0.4', '0.6', '1', '1.5', '2', '2.5'),)
             r_div_B_list = ['0.01', '0.04', '0.1', '0.2', '0.4', '0.6', '1', '1.5', '2', '2.5']
@@ -277,8 +366,9 @@ def inverse():
     s_term = Qs/(4 * np.pi * T)
     t_term = r**2 * S / 4 / T
     
-    fig = plt.figure(figsize=(10,7))
-    ax = fig.add_subplot(1, 1, 1)
+        
+    fig = plt.figure(figsize=(10,14))
+    ax = fig.add_subplot(2, 1, 1)
     
     if st.session_state.Solution == 'Neuman':
         # Early (a) and late (b) Theis curve
@@ -308,6 +398,8 @@ def inverse():
         ax.plot(t_a_NEU, s_a_NEU, '--', color='dodgerblue', label=r'Computed drawdown early - Neuman')
         ax.plot(t_b_NEU, s_b_NEU, '--', color='darkblue', label=r'Computed drawdown late - Neuman')
         ax.plot(m_time_s, m_ddown, 'o', color='mediumorchid', label=r'measured drawdown')
+        if scatter:
+            plt.vlines(switch_time,1E-4,1E+1,color='orangered',linestyles='dashdot', label='switch time scatter plot and statistics')
 
     if st.session_state.Solution == 'Hantush-Jacob':  
         # Theis curve
@@ -347,18 +439,76 @@ def inverse():
     plt.ylabel(r'drawdown s in (m)', fontsize=14)
     ax.grid(which="both")
     plt.legend(fontsize=14)
+    
+    if scatter:
+        # Compute point data for scatter plot
+        if st.session_state.Solution == 'Theis':
+            m_ddown_Theis = [compute_s_Theis(T, S, i, Qs, r) for i in m_time_s]
+            
+        if st.session_state.Solution == 'Hantush-Jacob':
+            m_ddown_Hantush = [compute_s_HAN(T, S, i, Qs, r, u_HAN, w_u_HAN, r_div_B) for i in m_time_s]
+    
+        if st.session_state.Solution == 'Neuman':
+            m_ddown_Neuman_a = [compute_s_NEU(T, S, SY, i, Qs, r, u_inv_a, w_u_a, beta,1) for i in m_time_s]
+            m_ddown_Neuman_b = [compute_s_NEU(T, S, SY, i, Qs, r, u_inv_b, w_u_b, beta,2) for i in m_time_s]
+            m_ddown_Neuman_combined = [m1 if t <= switch_time else m2 for t, m1, m2 in zip(m_time_s, m_ddown_Neuman_a, m_ddown_Neuman_b)]
+      
+        # Find the max for the scatter plot
+        max_s = math.ceil(max(m_ddown))
+        x45 = [0,200]
+        y45 = [0,200]
+        ax = fig.add_subplot(2, 1, 2)
+        ax.plot(x45,y45, '--')
+        if st.session_state.Solution == 'Theis':
+            ax.plot(m_ddown, m_ddown_Theis,  'ro', label=r'measured')
+            me, mae, rmse = compute_statistics(m_ddown, m_ddown_Theis)
+        if st.session_state.Solution == 'Hantush-Jacob':
+            ax.plot(m_ddown, m_ddown_Hantush,  'go', label=r'measured')
+            me, mae, rmse = compute_statistics(m_ddown, m_ddown_Hantush)
+        if st.session_state.Solution == 'Neuman':
+            plt.plot(m_ddown, m_ddown_Neuman_combined,  'o', color='mediumorchid')
+            me, mae, rmse = compute_statistics(m_ddown, m_ddown_Neuman_combined)
+        plt.title('Scatter plot', fontsize=16)
+        plt.xlabel(r'Measured s in m', fontsize=14)
+        plt.ylabel(r'Computed s in m', fontsize=14)
+        plt.ylim(0, max_s)
+        plt.xlim(0, max_s)
+        out_txt = '\n'.join((
+                             r'$ME = %.3f$ m' % (me, ),
+                             r'$MAE = %.3f$ m' % (mae, ),
+                             r'$RMSE = %.3f$ m' % (rmse, ))) 
+        plt.text(0.97*max_s, 0.05*max_s, out_txt, horizontalalignment='right', bbox=dict(boxstyle="square", facecolor='wheat'), fontsize=14)
+    
     st.pyplot(fig)
         
-    columns3 = st.columns((1,1), gap = 'medium')
-    with columns3[0]:
-            st.write("**Parameter estimation**")
-            st.write("**Distance of measurement from the well r = %3i" %r," m**")
-            st.write("Pumping rate of measurement (in m³/s): %6.4f" %Qs)
-            st.write("Thickness of formation b = ","% 5.2f"% b, " m")
-            st.write("Transmissivity T = ","% 10.2E"% T, " m²/s")
-            st.write("(Hydr. cond. K) = ","% 10.2E"% (T/b), " m²/s")
-            st.write("Storativity    S = ","% 10.2E"% S, "[-]")
-
+    columns3 = st.columns((1,10,1), gap = 'medium')
+    with columns3[1]:
+        if st.button(':green[**Submit**] your parameters and **show results**'):        
+            if st.session_state.Solution == 'Theis':
+                st.write("**Parameters and Results**")
+                st.write("- Distance of measurement from the well **r = %3i" %r," m**")
+                st.write("- Pumping rate during test **Q = %5.3f" %Qs," m³/s**")
+                st.write("- Transmissivity **T = % 10.2E"% T, " m²/s**")
+                st.write("- Storativity    **S = % 10.2E"% S, "[dimensionless]**")
+            elif st.session_state.Solution == 'Hantush-Jacob':
+                st.write("**Parameters and Results**")
+                st.write("- Distance of measurement from the well **r = %3i" %r," m**")
+                st.write("- Pumping rate during test **Q = %5.3f" %Qs," m³/s**")
+                st.write("- Transmissivity **T = % 10.2E"% T, " m²/s**")
+                st.write("- Storativity    **S = % 10.2E"% S, "[dimensionless]**")
+                st.write("- Thickness of aquitard **b = % 5.2f"% b, " m**")
+                st.write("- Aquitard Vertical Hydraulic Conductivity **K' = % 10.2E"% (T*b*float(r_div_B_list[r_div_B])*float(r_div_B_list[r_div_B])/r/r), " m²/s**")           
+            elif st.session_state.Solution == 'Neuman':
+                st.write("**Parameters and Results**")
+                st.write("- Distance of measurement from the well **r = %3i" %r," m**")
+                st.write("- Pumping rate during test **Q = %5.3f" %Qs," m³/s**")
+                st.write("- Thickness of aquifer **b = % 5.2f"% b, " m**")
+                st.write("- Transmissivity **T = % 10.2E"% T, " m²/s**")
+                st.write("- Storativity **S = % 10.2E"% S, "[dimensionless]**")
+                st.write("- Specific Storage **Ss = % 10.2E"% Ss, " 1/m**")
+                st.write("- Specific Yield **Sy = % 10.2E"% SY, "[dimensionless]**")
+                st.write("- Horizontal Hydraulic Conductivity **K_h = % 10.2E"% (T/b), " m²/s**")
+                st.write("- Vertical Hydraulic Conductivity **K_v = % 10.2E"% (beta*(T/b)*b*b/r/r), " m²/s**")
 inverse()
 
 "---"

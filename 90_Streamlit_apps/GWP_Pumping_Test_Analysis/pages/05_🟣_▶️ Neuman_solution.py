@@ -395,7 +395,7 @@ def inverse():
     columns3 = st.columns((1,10,1), gap = 'medium')
     with columns3[1]:
         if st.button(':green[**Submit**] your parameters and **show protocol**'):
-            st.write("**Protocol / Parameters**")
+            st.write("**Parameters and Results**")
             st.write("- Distance of measurement from the well **r = %3i" %r," m**")
             st.write("- Pumping rate during test **Q = %5.3f" %Qs," m³/s**")
             st.write("- Thickness of aquifer **b = % 5.2f"% b, " m**")
