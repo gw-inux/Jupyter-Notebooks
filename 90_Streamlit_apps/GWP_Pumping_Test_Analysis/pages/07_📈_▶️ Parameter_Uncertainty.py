@@ -2,6 +2,7 @@
 import numpy as np
 import matplotlib.pyplot as plt
 import scipy.special
+import math
 import streamlit as st
 import streamlit_book as stb
 from streamlit_extras.stateful_button import button
@@ -121,6 +122,30 @@ def compute_s(T, S, t, Q, r):
     s = theis_s(Q, T, u)
     return s
     
+def compute_statistics(measured, computed):
+    # Calculate the number of values
+    n = len(measured)
+
+    # Initialize a variable to store the sum of squared differences
+    total_me = 0
+    total_mae = 0
+    total_rmse = 0
+
+    # Loop through each value
+    for i in range(n): # Add the squared difference to the total
+        total_me   += (computed[i] - measured[i])
+        total_mae  += (abs(computed[i] - measured[i]))
+        total_rmse += (computed[i] - measured[i])**2
+
+    # Calculate the me, mae, mean squared error
+    me = total_me / n
+    mae = total_mae / n
+    meanSquaredError = total_rmse / n
+
+    # Raise the mean squared error to the power of 0.5 
+    rmse = (meanSquaredError) ** (1/2)
+    return me, mae, rmse
+    
 # (Here, the methode computes the data for the well function. Those data can be used to generate a type curve.)
 u_min = -5
 u_max = 4
@@ -177,6 +202,7 @@ def inverse():
             noise_strength = 20/max_noise
         long = st.toggle('**Provide data for a longer pumping test**')
         refine_plot = st.toggle("**Zoom in** on the **data in the graph**")
+        scatter = st.toggle('Show scatter plot')
         show_truth = st.toggle(":rainbow[How accurate are the parameter value estimates?]")
     with columns2[1]:
         with st.expander('Parameters _T_ and _S_'):
@@ -231,6 +257,18 @@ def inverse():
     t1 = u_inv * t_term
     s1 = w_u * s_term
     
+    # Compute point data for scatter plot 
+    m_ddown_theis = [compute_s(T, S, i, Qs, r) for i in m_time_s]
+    
+    # Find the max for the scatter plot
+    max_s = math.ceil(max(m_ddown)*10)/10
+    
+    # Info-Box for plots
+    props   = dict(boxstyle='round', facecolor='wheat', alpha=0.5)
+    out_txt = '\n'.join((       
+                         r'$T$ (m²/s) = %10.2E' % (T, ),
+                         r'$S$ (-) = %10.2E' % (S, )))
+    
     if prediction:
         # PLOT DRAWDOWN VS TIME
         # Range of delta_h / delta_l values (hydraulic gradient)
@@ -238,7 +276,6 @@ def inverse():
         t2_h = t2/3600
         t2_d = t2/86400
         t2_mo = t2/2629800
-        max_s = 30
 
         # Compute s for prediction h
         s  = compute_s(T, S, t2, Q_pred, r_pred)
@@ -250,8 +287,8 @@ def inverse():
         true_s  = compute_s(T_random, S_random, t2, Q_pred, r_pred)
         true_y_point = compute_s(T_random, S_random, t_search, Q_pred, r_pred)
             
-        fig = plt.figure(figsize=(12,7))
-        ax = fig.add_subplot(1, 2, 1)
+        fig = plt.figure(figsize=(12,14))
+        ax = fig.add_subplot(2, 2, 1)
         ax.plot(t1, s1, label=r'Computed drawdown - Theis')
         ax.plot(m_time_s, m_ddown,'ro', label=r'synthetic drawdown with random noise')
         plt.yscale("log")
@@ -267,7 +304,7 @@ def inverse():
         ax.grid(which="both")
         plt.legend(('well function','measured'))
 
-        ax = fig.add_subplot(1, 2, 2)
+        ax = fig.add_subplot(2, 2, 2)
         if per_pred <= 3:
             plt.plot(t2, s, linewidth=3., color='r', label=r'Drawdown prediction')
             if show_truth:
@@ -307,10 +344,30 @@ def inverse():
         plt.title('Drawdown prediction with Theis', fontsize=16)
         plt.legend()
         plt.grid(True)
+        
+        if scatter:
+            x45 = [0,200]
+            y45 = [0,200]
+            ax = fig.add_subplot(2, 1, 2)
+            ax.plot(x45,y45, '--')
+            ax.plot(m_ddown, m_ddown_theis,  'ro', label=r'measured')
+            me, mae, rmse = compute_statistics(m_ddown, m_ddown_theis)
+            plt.title('Scatter plot', fontsize=16)
+            plt.xlabel(r'Measured s in m', fontsize=14)
+            plt.ylabel(r'Computed s in m', fontsize=14)
+            plt.ylim(0, max_s)
+            plt.xlim(0, max_s)
+            out_txt = '\n'.join((
+                                 r'$ME = %.3f$ m' % (me, ),
+                                 r'$MAE = %.3f$ m' % (mae, ),
+                                 r'$RMSE = %.3f$ m' % (rmse, ))) 
+            plt.text(0.97*max_s, 0.05*max_s, out_txt, horizontalalignment='right', bbox=dict(boxstyle="square", facecolor='wheat'), fontsize=14)
+        
+        
         st.pyplot(fig)
     else:
-        fig = plt.figure(figsize=(10,7))
-        ax = fig.add_subplot(1, 1, 1)
+        fig = plt.figure(figsize=(10,14))
+        ax = fig.add_subplot(2, 1, 1)
         ax.plot(t1, s1, label=r'Computed drawdown - Theis')
         ax.plot(m_time_s, m_ddown,'ro', label=r'synthetic drawdown with random noise')
         plt.yscale("log")
@@ -326,38 +383,58 @@ def inverse():
         plt.xlabel(r'time t in (s)', fontsize=14)
         plt.ylabel(r'drawdown s in (m)', fontsize=14)
         plt.title('Theis drawdown', fontsize=16)
+        plt.text(0.97, 0.15,out_txt, horizontalalignment='right', transform=ax.transAxes, fontsize=14, verticalalignment='top', bbox=props)
         plt.legend(fontsize=14)
+        
+        if scatter:
+            x45 = [0,200]
+            y45 = [0,200]
+            ax = fig.add_subplot(2, 1, 2)
+            ax.plot(x45,y45, '--')
+            ax.plot(m_ddown, m_ddown_theis,  'ro', label=r'measured')
+            me, mae, rmse = compute_statistics(m_ddown, m_ddown_theis)
+            plt.title('Scatter plot', fontsize=16)
+            plt.xlabel(r'Measured s in m', fontsize=14)
+            plt.ylabel(r'Computed s in m', fontsize=14)
+            plt.ylim(0, max_s)
+            plt.xlim(0, max_s)
+            out_txt = '\n'.join((
+                                 r'$ME = %.3f$ m' % (me, ),
+                                 r'$MAE = %.3f$ m' % (mae, ),
+                                 r'$RMSE = %.3f$ m' % (rmse, ))) 
+            plt.text(0.97*max_s, 0.05*max_s, out_txt, horizontalalignment='right', bbox=dict(boxstyle="square", facecolor='wheat'), fontsize=14)
+        
         st.pyplot(fig)
     
     columns3 = st.columns((1,1), gap = 'medium')
     with columns3[0]:
         st.write("**Estimated Parameters**")
-        st.write("**Distance of measurement from the well r = %3i" %r," m**")
-        st.write("**Pumping rate of measurement Q = %5.3f" %Qs," m³/s**")
-        st.write("**Thickness of formation b = %5.2f" % b, " m**")
-        st.write("**Transmissivity T = %10.2E" %T, " m²/s**")
-        st.write("**Hydraulic Conductivity K = %10.2E" %(T/b), " m²/s**")
-        st.write("**Storativity S = %10.2E" %S, "[-]**")
+        st.write("Distance of measurement from the well **r = %3i" %r," m**")
+        st.write("Pumping rate of measurement **Q = %5.3f" %Qs," m³/s**")
+        st.write("Thickness of formation **b = %5.2f" % b, " m**")
+        st.write("Transmissivity **T = %10.2E" %T, " m²/s**")
+        st.write("Hydraulic Conductivity **K = %10.2E" %(T/b), " m²/s**")
+        st.write("Storativity **S = %10.2E" %S, "[-]**")
         if show_truth:
-            st.write("**'True' Transmissivity T = % 10.2E"% st.session_state.T_random, " m²/s**")
+            st.write("'True' Transmissivity **T = % 10.2E"% st.session_state.T_random, " m²/s**")
             st.write("_Your fitting success is:  %5.2f_" %(T/T_random*100), " %")
-            st.write("**'True' Storativity    S = % 10.2E"% st.session_state.S_random, "[-]**")    
+            st.write("'True' Storativity    **S = % 10.2E"% st.session_state.S_random, "[-]**")    
             st.write("_Your fitting success is:  %5.2f_" %(S/S_random*100), " %")
 
     with columns3[1]:
         if prediction:
             st.write("**Prediction**")
-            st.write("**Distance of measurement from the well r = %3i" %r_pred," m**")
-            st.write("**Pumping rate of prediction Q = %5.3f" %Q_pred," m³/s**")
-            st.write("**Time since pumping started = %3i" %x_point," s**")
+            st.write("Distance of measurement from the well **r = %3i" %r_pred," m**")
+            st.write("Pumping rate of prediction **Q = %5.3f" %Q_pred," m³/s**")
+            st.write("Time since pumping started = %3i" %x_point," s**")
             if per_pred <= 3:
-                st.write("**Time since pumping started t = %3i" %t_search," s**")
+                st.write("Time since pumping started **t = %3i" %t_search," s**")
             elif per_pred <= 7:
-                st.write("**Time since pumping started t = %5.2f" %t_search_h," hrs**")
+                st.write("Time since pumping started **t = %5.2f" %t_search_h," hrs**")
             elif per_pred <= 366:
-                st.write("**Time since pumping started t = %5.2f" %t_search_d," days**")
+                st.write("Time since pumping started **t = %5.2f" %t_search_d," days**")
             else:
-                st.write("**Time since pumping started t = %5.2f" %t_search_mo," months**")
+                st.write("Time since pumping started **t = %5.2f" %t_search_mo," months**")
             st.write("**Predicted drawdown at r and t  %5.2f" %y_point," m**")
             if show_truth:
                 st.write("**Predicted drawdown with 'true' parameters:  %5.2f" %true_y_point," m**")
