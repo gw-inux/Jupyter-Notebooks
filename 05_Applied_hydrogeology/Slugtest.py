@@ -150,8 +150,35 @@ elif(st.session_state.Data =="Data from random properties with added noise"):
     st.session_state.max_noise = max_noise
     st.session_state.m_noise = m_noise
     st.session_state.m_head_random = m_head_random
+
+st.session_state.m_time = m_time
+st.session_state.m_head = m_head
 "---"
 # Computation
+
+def compute_statistics(measured, computed):
+    # Calculate the number of values
+    n = len(measured)
+
+    # Initialize a variable to store the sum of squared differences
+    total_me = 0
+    total_mae = 0
+    total_rmse = 0
+
+    # Loop through each value
+    for i in range(n): # Add the squared difference to the total
+        total_me   += (computed[i] - measured[i])
+        total_mae  += (abs(computed[i] - measured[i]))
+        total_rmse += (computed[i] - measured[i])**2
+
+    # Calculate the me, mae, mean squared error
+    me = total_me / n
+    mae = total_mae / n
+    meanSquaredError = total_rmse / n
+
+    # Raise the mean squared error to the power of 0.5 
+    rmse = (meanSquaredError) ** (1/2)
+    return me, mae, rmse
 
 # Everything inside the fragment is re-computed with every input change
 @st.fragment
@@ -192,9 +219,10 @@ def slug():
             # Compute heads with noise - Multiply each value to add noise and normalize the noise according to the noise strength
             m_head_noise = [head * (1 + noise_strength * (noise - 1 ))  for head, noise in zip(st.session_state.m_head_random, st.session_state.m_noise)]
             # Create a DataFrame
-            df = pd.DataFrame({'Time': m_time, 'Hydraulic Head': m_head_noise})
+            df = pd.DataFrame({'Time': st.session_state.m_time, 'Hydraulic Head': m_head_noise})
             output_csv = df.to_csv(index=False).encode('utf-8')
             st.download_button('Download Random data as CSV', output_csv, file_name="random_data_slug.csv", mime='text/csv')
+        scatter = st.toggle('**Show scatter plot**')
     
     with rc1:
         # Log slider with input and print
@@ -208,7 +236,8 @@ def slug():
     
     columns = st.columns((1,4,1), gap = 'large')
     with columns[1]:
-        show_truth = st.toggle(":rainbow[How accurate are the parameter value estimates?]")
+        if(st.session_state.Data =="Data from random properties with added noise"):
+            show_truth = st.toggle(":rainbow[How accurate are the parameter value estimates?]")
     
     # Calculation
     # For random data, the initial head increase due to the slug is randomly computed
@@ -220,25 +249,32 @@ def slug():
     prq = np.pi * rc**2
     t = np.arange(0, tmax, 1)
 
+    # Generate the time for plotting - with offset
     t_plot=[]
     for i in t:
         t_plot.append(i+t_off)
-  
+    
+    # Generate the normalized heads for the plot
     h_norm = []
     if(st.session_state.Data =="Data from random properties with added noise"):
         for i in m_head_noise:
             h_norm.append((i-h_static)/H0)
     else:
-        for i in m_head:
+        for i in st.session_state.m_head:
             h_norm.append((i-h_static)/H0)
-
+    
+    # Compute the function 
     exp_decay = np.exp(-F/prq*K*t)
-
+    
+    # Compute point data for scatter plot 
+    scatter_computed = [0 if i < t_off else np.exp(-F/prq*K*(i-t_off)) for i in st.session_state.m_time]
+    
+    max_s = 1
     # Plot figure
-    fig = plt.figure(figsize=(12,7))
-    ax = fig.add_subplot()
+    fig = plt.figure(figsize=(12,14))
+    ax = fig.add_subplot(2,1,1)
     ax.plot(t_plot,exp_decay, color='magenta', label='computed')
-    plt.plot(m_time,h_norm, 'bo', mfc='none', label='measured')
+    plt.plot(st.session_state.m_time,h_norm, 'bo', mfc='none', label='measured')
     plt.axis([0,x_plot,0,1])
 
     plt.xlabel(r'time t in (s)', fontsize=14)
@@ -246,6 +282,24 @@ def slug():
     plt.title('Slugtest evaluation (positive slug)', fontsize=16)
     plt.legend(fontsize=14)
 
+    if scatter:
+        x45 = [0,200]
+        y45 = [0,200]
+        ax = fig.add_subplot(2, 1, 2)
+        ax.plot(x45,y45, '--')
+        ax.plot(h_norm, scatter_computed,  'ro', label=r'measured')
+        me, mae, rmse = compute_statistics(h_norm, scatter_computed)
+        plt.title('Scatter plot', fontsize=16)
+        plt.xlabel(r'Measured s in m', fontsize=14)
+        plt.ylabel(r'Computed s in m', fontsize=14)
+        plt.ylim(0, max_s)
+        plt.xlim(0, max_s)
+        out_txt = '\n'.join((
+                             r'$ME = %.3f$ m' % (me, ),
+                             r'$MAE = %.3f$ m' % (mae, ),
+                             r'$RMSE = %.3f$ m' % (rmse, ))) 
+        plt.text(0.97*max_s, 0.05*max_s, out_txt, horizontalalignment='right', bbox=dict(boxstyle="square", facecolor='wheat'), fontsize=14)
+    
     st.pyplot(fig=fig)
     
     if(st.session_state.Data =="Data from random properties with added noise"):
@@ -260,13 +314,14 @@ def slug():
             st.write("**RAE:  %5.2f**" %((K-st.session_state.K_random)/st.session_state.K_random*100), " %")
     else:
         st.write("Slugsize = %5.2f_"% slugsize, ' cm³')
-        st.write("Initial water level $H_0$ = %5.2f_"% H0, ' m')
+        st.write("Initial water level $H_0$ = %5.3f"% H0, ' m')
 
 slug()
 
 columns5 = st.columns((1,1,1), gap = 'large')
 with columns5[1]:
-    st.button('**Regenerate data**')
+    if(st.session_state.Data =="Data from random properties with added noise"):
+        st.button('**Regenerate data**')
 
 with st.expander('**Click here for some references**'):
     st.markdown("""    
