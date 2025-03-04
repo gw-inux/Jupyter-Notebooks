@@ -385,7 +385,7 @@ with st.expander('**Click here for references**'):
 columnsN1 = st.columns((1,1,1), gap = 'large')
 with columnsN1[0]:
     if st.button("Previous page"):
-        st.switch_page("pages/02_🙋_▶️ Transient_Flow to a Well.py")
+        st.switch_page("pages/02_🙋_▶️ Transient_Flow_to_a_Well.py")
 with columnsN1[1]:
     st.subheader(':orange[**Navigation**]')
 with columnsN1[2]:

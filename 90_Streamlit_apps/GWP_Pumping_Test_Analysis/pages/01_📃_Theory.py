@@ -161,4 +161,4 @@ with columnsN1[1]:
     st.subheader(':orange[**Navigation**]')
 with columnsN1[2]:
     if st.button("Next page"):
-        st.switch_page("pages/02_🙋_▶️ Transient_Flow to a Well.py")
+        st.switch_page("pages/02_🙋_▶️ Transient_Flow_to_a_Well.py")
