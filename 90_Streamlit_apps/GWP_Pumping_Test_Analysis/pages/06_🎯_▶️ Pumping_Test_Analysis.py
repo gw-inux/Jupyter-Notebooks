@@ -4,6 +4,7 @@ import matplotlib.pyplot as plt
 import scipy.special
 import scipy.interpolate as interp
 import math
+import io
 import pandas as pd
 import streamlit as st
 import streamlit_book as stb
