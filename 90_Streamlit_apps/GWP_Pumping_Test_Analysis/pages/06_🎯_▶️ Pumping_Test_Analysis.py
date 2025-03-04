@@ -370,6 +370,10 @@ def inverse():
     fig = plt.figure(figsize=(10,14))
     ax = fig.add_subplot(2, 1, 1)
     
+    # Info-Box
+    props   = dict(boxstyle='round', facecolor='wheat', alpha=0.5)
+
+    
     if st.session_state.Solution == 'Neuman':
         # Early (a) and late (b) Theis curve
         t_a_term = t_term
@@ -378,6 +382,11 @@ def inverse():
         t_a = u_inv * t_a_term
         t_b = u_inv * t_b_term
         s = w_u * s_term
+        
+        out_txt = '\n'.join((       
+                     r'$T$ (m²/s) = %10.2E' % (T, ),
+                     r'$S$ (m²/s) = %10.2E' % (S, ),
+                     r'$S_y$ (-) = %3.2f' % (SY, )))
 
         # Early Neuman curve
         for x in range(0,len(u_inv_a)):
@@ -405,6 +414,10 @@ def inverse():
         # Theis curve
         t = u_inv * t_term
         s = w_u * s_term
+        
+        out_txt = '\n'.join((       
+                     r'$T$ (m²/s) = %10.2E' % (T, ),
+                     r'$S$ (-) = %10.2E' % (S, )))
 
         # Hantush Jacob curve
         for x in range(0,len(u_HAN)):
@@ -424,6 +437,11 @@ def inverse():
         t = u_inv * t_term
         s = w_u * s_term
         
+        #Text for info box
+        out_txt = '\n'.join((       
+                     r'$T$ (m²/s) = %10.2E' % (T, ),
+                     r'$S$ (-) = %10.2E' % (S, )))
+        
         plt.title('Theis drawdown', fontsize=16)
         ax.plot(t, s, label=r'Computed drawdown - Theis')
         ax.plot(m_time_s, m_ddown,'ro', label=r'measured drawdown')
@@ -439,6 +457,7 @@ def inverse():
     plt.ylabel(r'drawdown s in (m)', fontsize=14)
     ax.grid(which="both")
     plt.legend(fontsize=14)
+    plt.text(0.97, 0.15,out_txt, horizontalalignment='right', transform=ax.transAxes, fontsize=14, verticalalignment='top', bbox=props)
     
     if scatter:
         # Compute point data for scatter plot
@@ -480,6 +499,21 @@ def inverse():
         plt.text(0.97*max_s, 0.05*max_s, out_txt, horizontalalignment='right', bbox=dict(boxstyle="square", facecolor='wheat'), fontsize=14)
     
     st.pyplot(fig)
+    
+    # Safe the figure
+    # Convert figure to a BytesIO object
+    img_buffer = io.BytesIO()
+    fig.savefig(img_buffer, format="png")
+    img_buffer.seek(0)  # Reset buffer position
+    
+    columns5 = st.columns((1,1,1), gap = 'large')
+    with columns5[1]:
+        # Add download button
+        st.download_button(
+            label=":green[**Download**] **Figure**",
+            data=img_buffer,
+            file_name="Pumping_Test_Evalutation.png",
+            mime="image/png"
         
     columns3 = st.columns((1,10,1), gap = 'medium')
     with columns3[1]:
