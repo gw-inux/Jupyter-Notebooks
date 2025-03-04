@@ -558,4 +558,4 @@ with columnsN1[1]:
     st.subheader(':orange[**Navigation**]')
 with columnsN1[2]:
     if st.button("Next page"):
-        st.switch_page("pages/07_📈_▶️_Parameter_Uncertainty.py")
+        st.switch_page("pages/07_📈_▶️ Parameter_Uncertainty.py")
