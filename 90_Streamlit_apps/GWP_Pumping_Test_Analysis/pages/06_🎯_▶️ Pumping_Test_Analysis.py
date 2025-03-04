@@ -514,6 +514,7 @@ def inverse():
             data=img_buffer,
             file_name="Pumping_Test_Evalutation.png",
             mime="image/png"
+            )
         
     columns3 = st.columns((1,10,1), gap = 'medium')
     with columns3[1]:
