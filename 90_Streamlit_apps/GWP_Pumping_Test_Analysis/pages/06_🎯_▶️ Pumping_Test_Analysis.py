@@ -474,7 +474,7 @@ def inverse():
             m_ddown_Neuman_combined = [m1 if t <= switch_time else m2 for t, m1, m2 in zip(m_time_s, m_ddown_Neuman_a, m_ddown_Neuman_b)]
       
         # Find the max for the scatter plot
-        max_s = math.ceil(max(m_ddown))
+        max_s = math.ceil(max(m_ddown)*10)/10
         x45 = [0,200]
         y45 = [0,200]
         ax = fig.add_subplot(2, 1, 2)
