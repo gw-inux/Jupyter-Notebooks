@@ -11,4 +11,3 @@ voila
 streamlit
 streamlit_book
 streamlit_extras
-io
