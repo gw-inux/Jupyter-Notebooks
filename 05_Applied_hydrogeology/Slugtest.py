@@ -1,6 +1,7 @@
 import numpy as np
 import pandas as pd
 import streamlit as st
+import io
 import matplotlib.pyplot as plt
 
 st.title('Slugtest evaluation 📉')
@@ -227,7 +228,7 @@ def slug():
     with rc1:
         # Log slider with input and print
         with st.expander('**Scale of plot and time offset**'):
-            t_off = st.slider('**Time offset** in s', 0, 60, 0, 1)
+            t_off = st.slider('**Time offset $t_{off}$** in s', 0, 60, 0, 1)
             x_plot = st.slider('**Max x-value in plot** in s', 60, 300, 300, 30)
         container = st.container()
         K_slider_value=st.slider('_(log of) hydraulic conductivity in m/s_', log_min,log_max,-3.0,0.01,format="%4.2f" )
@@ -273,6 +274,11 @@ def slug():
     # Plot figure
     fig = plt.figure(figsize=(12,14))
     ax = fig.add_subplot(2,1,1)
+    # Info-Box
+    props   = dict(boxstyle='round', facecolor='wheat', alpha=0.5)
+    out_txt = '\n'.join((       
+                         r'$K$ (m/s) = %10.2E' % (K, ),
+                         r'$t_{off}$ (s) = %4i' % (t_off, )))
     ax.plot(t_plot,exp_decay, color='magenta', label='computed')
     plt.plot(st.session_state.m_time,h_norm, 'bo', mfc='none', label='measured')
     plt.axis([0,x_plot,0,1])
@@ -280,6 +286,7 @@ def slug():
     plt.xlabel(r'time t in (s)', fontsize=14)
     plt.ylabel(r'H/Ho', fontsize=14)
     plt.title('Slugtest evaluation (positive slug)', fontsize=16)
+    plt.text(0.97, 0.15,out_txt, horizontalalignment='right', transform=ax.transAxes, fontsize=14, verticalalignment='top', bbox=props)
     plt.legend(fontsize=14)
 
     if scatter:
@@ -302,6 +309,22 @@ def slug():
     
     st.pyplot(fig=fig)
     
+    # Safe the figure
+    # Convert figure to a BytesIO object
+    img_buffer = io.BytesIO()
+    fig.savefig(img_buffer, format="png")
+    img_buffer.seek(0)  # Reset buffer position
+    
+    columns5 = st.columns((1,1,1), gap = 'large')
+    with columns5[1]:
+        # Add download button
+        st.download_button(
+            label=":green[**Download**] **Figure**",
+            data=img_buffer,
+            file_name="Slug_BouwerRice_Evalutation.png",
+            mime="image/png"
+)
+    
     if(st.session_state.Data =="Data from random properties with added noise"):
         if show_truth:
             st.write("**'True' hydraulic conductivity _K_ = % 5.2e"% st.session_state.K_random, " m²/s**")
@@ -318,8 +341,8 @@ def slug():
 
 slug()
 
-columns5 = st.columns((1,1,1), gap = 'large')
-with columns5[1]:
+columns6 = st.columns((1,1,1), gap = 'large')
+with columns6[1]:
     if(st.session_state.Data =="Data from random properties with added noise"):
         st.button('**Regenerate data**')
 
