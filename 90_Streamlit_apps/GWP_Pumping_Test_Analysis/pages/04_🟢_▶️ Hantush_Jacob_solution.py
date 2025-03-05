@@ -314,7 +314,7 @@ def inverse(v):
     if Pirna:
         ax.plot(m_time_s, m_ddown,'o', color='mediumorchid', label=r'measured drawdown - Pirna 24')
     else:
-        ax.plot(m_time_s, m_ddown,'go', label=r'measured drawdown - Viterbo 23')
+        ax.plot(m_time_s, m_ddown,'go', label=r'measured drawdown - Varnum 16')
     plt.yscale("log")
     plt.xscale("log")
     plt.xticks(fontsize=14)
