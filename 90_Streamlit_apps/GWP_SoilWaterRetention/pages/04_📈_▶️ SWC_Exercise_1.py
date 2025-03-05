@@ -7,6 +7,21 @@ import streamlit_book as stb
 
 st.title('Soil Water Retention curves 💦')
 
+# Authors, institutions, and year
+year = 2025 
+authors = {
+    "Oriol Bertran Oller": [1],  # Author 1 belongs to Institution 1
+   #"Colleague Name": [1],  # Author 2 also belongs to Institution 1
+}
+institutions = {
+    1: "UPC Barcelona",
+#   2: "Second Institution / Organization"
+}
+index_symbols = ["¹", "²", "³", "⁴", "⁵", "⁶", "⁷", "⁸", "⁹"]
+author_list = [f"{name}{''.join(index_symbols[i-1] for i in indices)}" for name, indices in authors.items()]
+institution_list = [f"{index_symbols[i-1]} {inst}" for i, inst in institutions.items()]
+institution_text = " | ".join(institution_list)  # Institutions in one line
+
 st.subheader(':rainbow-background[Soil Water Retention curves: explanation & exercise]', divider="rainbow")
 
 st.markdown(""" 
@@ -328,3 +343,11 @@ with columnsN1[1]:
 with columnsN1[2]:
     if st.button("Next page"):
         st.switch_page("pages/05_📈_▶️ SWC_Exercise_2.py")
+   
+'---'
+# Render footer with authors, institutions, and license logo in a single line
+columns_lic = st.columns((5,1))
+with columns_lic[0]:
+    st.markdown(f'Developed by {", ".join(author_list)} ({year}). <br> {institution_text}', unsafe_allow_html=True)
+with columns_lic[1]:
+    st.image('FIGS/CC_BY-SA_icon.png')
