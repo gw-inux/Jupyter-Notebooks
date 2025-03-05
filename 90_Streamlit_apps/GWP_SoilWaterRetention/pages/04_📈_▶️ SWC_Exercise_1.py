@@ -327,4 +327,4 @@ with columnsN1[1]:
     st.subheader(':orange[**Navigation**]')
 with columnsN1[2]:
     if st.button("Next page"):
-        st.switch_page("pages/05_📈_▶️ SWC Exercise #2.py")
+        st.switch_page("pages/05_📈_▶️ SWC_Exercise_2.py")

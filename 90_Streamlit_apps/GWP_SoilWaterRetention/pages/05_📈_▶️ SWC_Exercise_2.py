@@ -125,7 +125,7 @@ st.write('Eff. Field Capacity     eFC:', '{:.2f}'.format(eFC) )
 columnsN1 = st.columns((1,1,1), gap = 'large')
 with columnsN1[0]:
     if st.button("Previous page"):
-        st.switch_page("pages/04_📈_▶️ SWC Exercise #1.py")
+        st.switch_page("pages/04_📈_▶️ SWC_Exercise_1.py")
 with columnsN1[1]:
     st.subheader(':orange[**Navigation**]')
 with columnsN1[2]:
