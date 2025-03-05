@@ -1,6 +1,4 @@
 #-- Check and install required packages if not already installed --#
-import sys
-import subprocess
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt

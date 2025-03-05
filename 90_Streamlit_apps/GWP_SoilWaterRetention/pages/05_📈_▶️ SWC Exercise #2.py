@@ -1,5 +1,4 @@
 # Initialize the needed Python packages
-import math
 import numpy as np
 import matplotlib.pyplot as plt
 import streamlit as st
