@@ -173,8 +173,6 @@ def soil_water_diffusivity(Ks, n, ts, tr, T):
 #Example from Van Genuchten 1980
 #
 
-
-
 # Given parameters:
 tr = 0.10       # residual water content
 ts = 0.50       # saturated water content
@@ -233,7 +231,7 @@ ax4.set_ylim(1, 1000000)
 ax4.set_xlabel(r'Water Content, $\Theta$')
 ax4.set_ylabel(r'Diffusivity, $D$')
 
-plt.tight_layout()
+#plt.tight_layout()
 st.pyplot(fig)
 
 #
@@ -331,4 +329,4 @@ with columnsN1[1]:
     st.subheader(':orange[**Navigation**]')
 with columnsN1[2]:
     if st.button("Next page"):
-        st.switch_page("pages/05_📈_▶️ SWC Exercise #2.py.py")
+        st.switch_page("pages/05_📈_▶️ SWC Exercise #2.py")
