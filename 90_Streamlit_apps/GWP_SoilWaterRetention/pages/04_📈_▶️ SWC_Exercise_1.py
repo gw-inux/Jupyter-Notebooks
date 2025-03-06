@@ -279,14 +279,22 @@ st.markdown(
             """
             ### Exercise
             Calculates, fits and visualizes the soil-water retention curve for sand and silt soils using the van Genuchten model.
-            
-            #### Parameters
-            * tr_soil : residual soil-water content of the soil
-            * ts_soil : satured soil-water content of the soil
-            * alpha_soil : alpha parameter for the soil
-            * n_soil : n parameter for the soil
             """
 )
+
+data = {
+        "Sand Soil |ψ| [hPa]": [1, 2, 3, 4, 8, 12, 17, 23, 32, 46, 65, 98, 148, 328, 726, 1217, 2175, 4330, 7576, 16796, 41464, 95973],
+        "θ (Sand)": [0.368, 0.365, 0.358, 0.348, 0.321, 0.293, 0.267, 0.240, 0.213, 0.185, 0.160, 0.137, 0.119, 0.090, 0.074, 0.065, 0.059, 0.054, 0.051, 0.048, 0.046, 0.045],
+        "Silt Soil |ψ| [hPa]": [1, 2, 6, 25, 49, 118, 235, 354, 488, 765, 1033, 1456, 2656, 4351, 6830, 13582, 26438, 45248, 98112, 199482, 396999, 958958],
+        "θ (Silt)": [0.422, 0.422, 0.421, 0.417, 0.412, 0.395, 0.366, 0.342, 0.319, 0.285, 0.260, 0.236, 0.195, 0.167, 0.143, 0.113, 0.089, 0.074, 0.057, 0.045, 0.035, 0.026]
+        }
+
+# Convert to DataFrame
+df = pd.DataFrame(data)
+
+# Display the table with markdown
+st.markdown(df.style.hide(axis="index").to_html(), unsafe_allow_html=True)
+
 columns_i1 = st.columns((1,1), gap = 'large')
 
 with columns_i1[0]:
