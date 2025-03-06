@@ -278,7 +278,7 @@ siltSoil["Water Content"] = [0.422, 0.422, 0.421, 0.417, 0.412, 0.395, 0.366, 0.
 st.markdown(
             """
             ### Exercise
-            Calculates, fits and visualizes the soil-water retention curve for sand and silt soils using the van Genuchten model.
+            Given the suction pressure and water content data for two soil types—sand and silt—determine the best-fitting parameters.
             """
 )
 
@@ -294,6 +294,16 @@ df = pd.DataFrame(data)
 
 # Display the table with markdown
 st.markdown(df.style.hide(axis="index").to_html(), unsafe_allow_html=True)
+
+st.markdown(
+            """
+            #### Parameters
+            θr : Residual soil-water content of the soil
+            θs : Satured soil-water content of the soil
+            α : alpha parameter, related to the inverse of the air entry suction
+            n : n parameter, is a mesure of the pore-size distribution
+            """
+)
 
 columns_i1 = st.columns((1,1), gap = 'large')
 
