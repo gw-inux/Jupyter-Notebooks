@@ -123,7 +123,7 @@ def some_bokeh_content():
 # Let the user decide what plot should be shown
 
 bokeh = False
-bokeh = st.toggle(':green[**Click here**] if you want to see the :rainbow[**Bokeh plot**]')
+bokeh = st.toggle(':green[**Click here**] if you want to see the :rainbow[**Bokeh plot**] (_this may take a few seconds_)')
 
 if bokeh:
     some_bokeh_content()    
@@ -138,5 +138,5 @@ st.markdown("""
 )
 
 some_streamlit_content(2)
-with st.expander(':green[**Click here**] if you additionally want to see the :rainbow[**Bokeh plot**]'):
+with st.expander(':green[**Click here**] if you additionally want to see the :rainbow[**Bokeh plot**] (_this may take a few seconds_)'):
     some_bokeh_content()
