@@ -4,12 +4,12 @@ st.header('👉 About PumpingTestAnalysis')
 st.markdown(
     """
     ### Description
-    The Pumping Test Analysis interactive tool calculates the drawdown response for a pumping well in a confined, homogeneous, isotropic aquifer. Based on this, the application is designed to introduce the evaluation of pumping tests for confined, unconfined, and leaky aquifers.
+    The Pumping Test Analysis interactive tool calculates the drawdown response for a pumping well in a homogeneous, isotropic aquifer. The application is designed to introduce the evaluation of pumping tests for confined, unconfined, and leaky aquifers.
     
     ### Development
     Innovative and digital learning and teaching materials are currently enhanced and transferred to various partners across Europe by the EU cooperation project [iNUX](https://www.gw-inux.org/). The iNUX project is funded by the ERASMUS+ program of the European Union.
     
-    PumpingTestAnalysis was developed by Thomas Reimann and the iNUX Team as a Streamlit app and adapted to the Groundwater Project interactive education format. It was released in February of 2025. All Groundwater Project books are available for free download.
+    PumpingTestAnalysis was developed by Thomas Reimann and the iNUX Team as a Streamlit application and adapted to the Groundwater Project interactive education format. It was released in March of 2025. All Groundwater Project books are available for free download.
     """
 )
 
@@ -52,7 +52,7 @@ left_co4, cent_co4, last_co4 = st.columns((1,8,1))
 with cent_co4:
     st.markdown(
     """
-        :green[The Groundwater Project is nonprofit with one full-time staff and over a 1000 volunteers.]
+        :green[The Groundwater Project is nonprofit with one full-time staff and over 1000 volunteers.]
 
         :green[Please help us by using the following link when sharing this tool with others.]   
 
@@ -66,7 +66,7 @@ with cent_co4:
 columnsN1 = st.columns((1,1,1), gap = 'large')
 with columnsN1[0]:
     if st.button("Previous page"):
-        st.switch_page("pages/07_📈_▶️ Parameter Uncertainty.py")
+        st.switch_page("pages/07_📈_▶️ Parameter_Uncertainty.py")
 with columnsN1[1]:
     st.subheader(':orange[**Navigation**]')
 with columnsN1[2]:

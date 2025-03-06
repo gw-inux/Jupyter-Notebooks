@@ -26,7 +26,7 @@ with st.expander(":green[**Show/Hide the initial assessment**]"):
                   ["Lower than the elevation of the aquifer top", "Equal to the elevation of the aquifer top", "Higher than the elevation of the aquifer top", "A confined aquifer doesn't show a hydraulic head"],
                   2,success='CORRECT! Confined aquifer heads are above the top of the aquifer. This understanding is important for the subsequent steps.', error='This option is not suitable. Re-Think about how confined and unconfined aquifers differ and feel free to answer again.')
         stb.single_choice(":orange[**What is considered as transient?**]",
-                  ["A system with a constant long-term average", "A system in swhich head changes over time.", "A system in which head is different at different locations", "A system experiencing water abstraction."],
+                  ["A system with a constant long-term average", "A system in which head changes over time.", "A system in which head is different at different locations", "A system experiencing water abstraction."],
                   1,success='CORRECT! Head changes with time in a transient situation. This understanding is important for the subsequent steps.', error='This option is not suitable. Re-Think about the meaning of transient and feel free to answer again.')             
     with columnsQ1[1]:
         stb.single_choice(":orange[**What parameter is used to describe the ability of an aquifer to transmit water?**]",
@@ -39,11 +39,11 @@ with st.expander(":green[**Show/Hide the initial assessment**]"):
 st.subheader(':orange-background[General situation]', divider="orange")
 
 st.markdown("""
-            The mathematics included in this application consider only homogeneous and isotropic aquifers. Natural aquifers are not homogeneous nor isotropic (although they come close to isotropic in most instances), so in practice the procedures presented in this application are applied to heterogeneous and anisoptropic aquifers to glean average parameter values that are representative of bulk behavior of the system. The aquifer can be confined, leaky, or unconfined. 
+            The mathematics included in this application consider only homogeneous and isotropic aquifers. Natural aquifers are not homogeneous nor isotropic (although they come close to isotropic in most instances), so in practice the procedures presented in this application are applied to heterogeneous and anisotropic aquifers to glean average parameter values that are representative of bulk behavior of the system. The aquifer can be confined, leaky, or unconfined. 
             
             When a well pumps water out of an aquifer, water flows radially toward the well.
             
-            The following video provides a conceptual overview of aquifer testing in different underground formations. It can be viewed by clicking below or accessed through the [Groundwater-Project website](https://gw-project.org/videos/concept-testing-confined-and-leaky-confined-aquifers/).
+            The following 2-minute video provides a conceptual overview of aquifer testing in different underground formations. It can be viewed by clicking below or accessed through the [Groundwater-Project website](https://gw-project.org/videos/concept-testing-confined-and-leaky-confined-aquifers/).
 """
 )
 st.video('https://www.youtube.com/watch?v=Bz3wh9RF0c4')
@@ -51,7 +51,7 @@ st.video('https://www.youtube.com/watch?v=Bz3wh9RF0c4')
 st.subheader(':orange-background[Mathematical description]', divider="orange")
 st.markdown("""         
             #### The radial flow equation
-            The radial gourndwater flow equation can be used to describe hydraulic head at a time $t$ and distance $r$ from a pumping well. This equation accounts for 1-dimensional, radial, transient flow toward a well that fully penetrates a confined or unconfined aquifer without any other sinks and sources of water.
+            The radial groundwater flow equation can be used to describe hydraulic head at a time $t$ and distance $r$ from a pumping well. This equation accounts for 1-dimensional, radial, transient flow toward a well that fully penetrates a confined or unconfined aquifer without any other sinks and sources of water.
 """
 )
 st.latex(r'''\frac{\partial^2 h}{\partial r^2}+\frac{1}{r}\frac{\partial h}{\partial r}=\frac{S}{T}\frac{\partial h}{\partial t}''')
@@ -81,7 +81,7 @@ st.markdown("""
 ) 
 with st.expander(':orange[**Click here**] for further **information about Charles V. Theis** and his solution, including the **original communication** and a **video interview**'):
     st.markdown("""
-            The following information is a short exercpt from IAH's The Hydrogeologist Time Capsule (https://timecapsule.iah.org/).
+            The following information is a short excerpt from IAH's The Hydrogeologist Time Capsule (https://timecapsule.iah.org/).
             
             _... In 1935, Charles V. Theis published a brief article that was the first transient solution for groundwater flow toward a well. He did so by understanding the vital analogy between groundwater flow and heat transfer. As John Bredehoeft says: "It takes real genius to see the basic form of the underlying theory – this was Theis’ contribution". Today, the Theis transient pump test solution is used by all hydrogeologists for well test interpretation. It is one of the many consequences of his discovery. The Theis legacy is not limited to the transient theory. He was one of the first scientists to emphasize the importance of geological heterogeneity._
             
@@ -115,30 +115,30 @@ st.subheader(':orange-background[Limitations and extensions]', divider="orange")
 st.markdown (
     """   
     #### Limitations of the Theis solution
-    While the **Theis solution** has been widely used for analyzing pumping tests in confined aquifers, it is based on several simplifying assumptions that can limit its applicability. The solution assumes the following.
-    - that the aquifer is 
-        - of infinite lateral extent
-        - homogeneous
-        - isotropic 
-        - fully confined
-    - the aquifer response to removal of water from the wll bore  is instantaneous
-    - the well bore is infinitesimally small
-    - the well fully penetrates the auifer
+    While the **Theis solution** has been widely used for analyzing pumping tests in confined aquifers, it is based on **the following assumptions that limit its applicability**.
+    - The aquifer is 
+        - infinite in lateral extent,
+        - homogeneous,
+        - isotropic, and
+        - fully confined.
+    - The aquifer response to removal of water from the well bore is instantaneous.
+    - The well bore is infinitesimally small.
+    - The well fully penetrates the aquifer.
 
-    Unlike the pristine system described by the Theis equation, in the field many aquifers are leaky, allowing water exchange with adjacent layers, or they are uncofnined, or exhibit anisotropy and heterogeneity. The Theis Solution does not account for these complexities.
+    Unlike the pristine system described by the Theis equation, many aquifers are leaky, allowing water exchange with adjacent layers, or they are unconfined, or exhibit anisotropy and heterogeneity. The Theis Solution does not account for these complexities.
     
     #### Further approaches to overcome the limitations of the Theis solution
     To address these limitations, **Hantush and Jacob (1955)** developed a solution that extends the Theis model to leaky aquifers, incorporating the effects of vertical leakage through semi-pervious confining layers. This modification allows for more accurate analysis in regions where aquitards are present.
     
-    Further refinements were made by **Neuman (1972)**, who introduced solutions accounting for the delayed water level decline in unconfined aquifers, the vertical flow components in response to partially penetrating wells, and the delayed observation of aquifer drawdown due to removal of water from wellbore storage. These developments represent significant advancements over the Theis solution, enabling more realistic interpretations of pumping test data in a wider range of hydrogeological settings.
+    Further refinements were made by **Neuman (1972)**, who introduced solutions accounting for the delayed water level decline in unconfined aquifers, the vertical flow components in response to partially penetrating wells, and the delayed observation of aquifer drawdown due to removal of water from wellbore storage. These developments represent significant advancements over the Theis solution, enabling more realistic interpretations of pumping test data in a wider range of hydrogeological settings. His consideration of unconfined aquifers is included in this application.
 """
 )     
 
 st.subheader(':orange-background[Intermediate conclusion and next steps]', divider="blue")
 st.markdown('''
-            Thus far, we investigated the theory of flow to a well.
+            This section presents the general theory of groundwater flow to a well.
             
-            The next part of this application explores visual conceptualization of drawdown around a pumping well. You can move to the next section using either the side menu or the navigation buttons at the bottom of this page.
+            The next section presents concepts of groundwater flow to a well using an interactive graphing tool. Subsequent sections provide graphic presentations of drawdown around a pumping well under confined, leaky, and unconfined conditions using both synthetic and field data. You can move to the next section using either the side menu or the navigation buttons at the bottom of this page.
             '''
 )
 
