@@ -18,6 +18,7 @@ gwf_1D_unconf_rech_OM       = st.Page("pages/00_OM/1D_GWF_Unconfined Recharge.py
 well_capture_OM             = st.Page("pages/00_OM/WellCapture.py", title="Initial Model: 📈 Well Capture")
 
 #M1A - Basics
+M1A_1_presentation          = st.Page("pages/M1A/M1A_1_presentation.py", title="Presentation: 📝 M1A_1")
 f2w_conf_unconf             = st.Page("pages/M1A/Flow2Well_transient_unconfined_confined_basics.py", title="Flow2Well: 📈 1D radial flow to wells")
 heat_transport_basics       = st.Page("pages/M1A/Heat_transport_flow_1D_basics.py", title="Types of movement: 📈 Comparison heat transport and groundwater flow")
 transport_1D_basics         = st.Page("pages/M1A/Transport_1D_AD_basics.py", title="Types of movement: 📈 Example of 1D transport")
@@ -41,7 +42,7 @@ pg = st.navigation(
     {
         "💦 Overview": [symple25app],
         "🔶 Orientation meeting": [M0_presentation,gwf_1D_unconf_rech_OM, well_capture_OM],
-        "🔶 M1A - Basics": [f2w_conf_unconf,heat_transport_basics,transport_1D_basics,gwf_1D_unconf_basics,radio_decay],
+        "🔶 M1A - Basics": [M1A_1_presentation, f2w_conf_unconf,heat_transport_basics,transport_1D_basics,gwf_1D_unconf_basics,radio_decay],
         "🔶 M1B - Data processing": [modflow_confined_pumping],
         "🔶 M1C - Flow modeling": [gwf_1D_FD, gwf_1D_unconf_calib, gwf_1D_unconf_no_flow_calib, mf_tutorial_2D_synth],
         "🔶 M1D - Transport modeling": [],
