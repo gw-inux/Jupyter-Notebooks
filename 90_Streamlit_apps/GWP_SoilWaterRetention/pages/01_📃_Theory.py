@@ -6,7 +6,7 @@ st.title('📃 Theory underlying SoilWaterRetention')
 year = 2025 
 authors = {
     "Thomas Reimann": [1],  # Author 1 belongs to Institution 1
-    "Oriol Bertran Oller": [2],
+    "Oriol Bertran": [2],
    #"Colleague Name": [1],  # Author 2 also belongs to Institution 1
 }
 institutions = {
