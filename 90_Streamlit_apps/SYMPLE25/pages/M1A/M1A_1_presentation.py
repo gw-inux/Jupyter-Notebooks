@@ -8,8 +8,8 @@ JSON_FILE = os.path.join(FIXED_FOLDER, "slide_data.json")
 IMAGE_FOLDER = os.path.join(FIXED_FOLDER, "images")
 
 st.title("Presentation Slides")
-st.header(':blue-background[Module M1A - Fundamentals]')
-st.subheader('Orientation Meeting', divider = 'blue')
+st.header(':red-background[Module M1A - Review of key topics]')
+st.subheader('Storage and Flow of water', divider = 'red')
 
 # Load slide data JSON directly (no checks)
 with open(JSON_FILE, "r") as f:
