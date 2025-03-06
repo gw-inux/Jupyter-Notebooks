@@ -21,7 +21,7 @@ authors = {
 }
 institutions = {
     1: "TU Dresden",
-    2: "Universitat Politècnica de Catalunya (UPC)",
+    2: "UPC Universitat Politècnica de Catalunya",
 #   2: "Second Institution / Organization"
 }
 index_symbols = ["¹", "²", "³", "⁴", "⁵", "⁶", "⁷", "⁸", "⁹"]
