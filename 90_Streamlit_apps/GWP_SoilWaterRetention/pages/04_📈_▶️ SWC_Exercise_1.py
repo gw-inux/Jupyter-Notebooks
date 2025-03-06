@@ -14,7 +14,7 @@ authors = {
    #"Colleague Name": [1],  # Author 2 also belongs to Institution 1
 }
 institutions = {
-    1: "UPC Barcelona",
+    1: "UPC Universitat Politècnica de Catalunya",
 #   2: "Second Institution / Organization"
 }
 index_symbols = ["¹", "²", "³", "⁴", "⁵", "⁶", "⁷", "⁸", "⁹"]
