@@ -31,11 +31,11 @@ if slide_data:
 
     # Display Slide Image and Notes
     if st.toggle('Click here for vertical layout'):
-        st.image(image_path, use_column_width=True)
+        st.image(image_path)
         st.write(f"**Notes:**\n\n{selected_slide['notes']}")
     else:
         col1, col2 = st.columns([3, 1])
         with col1:
-            st.image(image_path, use_column_width=True)
+            st.image(image_path)
         with col2:
             st.write(f"**Notes:**\n\n{selected_slide['notes']}")
