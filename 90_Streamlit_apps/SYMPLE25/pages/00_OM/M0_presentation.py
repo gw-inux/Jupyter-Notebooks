@@ -22,11 +22,11 @@ if "slide_index" not in st.session_state:
 # Navigation buttons
 col1, col2, col3 = st.columns([1, 3, 1])
 with col1:
-    if st.button("⬅ Previous", key="prev_button"):
+    if st.button("👈 Previous", key="prev_button"):
         st.session_state["slide_index"] = max(1, st.session_state["slide_index"] - 1)
 
 with col3:
-    if st.button("Next ➡", key="next_button"):
+    if st.button("Next 👉", key="next_button"):
         st.session_state["slide_index"] = min(len(slide_data), st.session_state["slide_index"] + 1)
 
 # Display slides
@@ -47,12 +47,15 @@ if slide_data:
     image_path = os.path.join(IMAGE_FOLDER, os.path.basename(selected_slide["image"]))
 
     # Display Slide Image and Notes
-    col1, col2 = st.columns([2, 1])
-    with col1:
-        st.image(image_path, use_column_width=True)
-    with col2:
+    if st.toggle('Click here for vertical layout'):
+        st.image(image_path)
         st.write(f"**Notes:**\n\n{selected_slide['notes']}")
-
+    else:
+        col1, col2 = st.columns([3, 1])
+        with col1:
+            st.image(image_path)
+        with col2:
+            st.write(f"**Notes:**\n\n{selected_slide['notes']}")
 
 
 #import os
