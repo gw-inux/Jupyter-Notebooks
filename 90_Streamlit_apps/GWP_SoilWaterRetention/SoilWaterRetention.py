@@ -16,12 +16,12 @@ st.header('Welcome 👋')
 year = 2025 
 authors = {
     "Thomas Reimann": [1],  # Author 1 belongs to Institution 1
-    "Oriol Bertran Oller": [2],
+    "Oriol Bertran": [2],
    #"Colleague Name": [1],  # Author 2 also belongs to Institution 1
 }
 institutions = {
     1: "TU Dresden",
-    2: "UPC Barcelona",
+    2: "Universitat Politècnica de Catalunya (UPC)",
 #   2: "Second Institution / Organization"
 }
 index_symbols = ["¹", "²", "³", "⁴", "⁵", "⁶", "⁷", "⁸", "⁹"]
