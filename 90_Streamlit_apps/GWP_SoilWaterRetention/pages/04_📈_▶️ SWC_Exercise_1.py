@@ -10,7 +10,7 @@ st.title('Soil Water Retention curves 💦')
 # Authors, institutions, and year
 year = 2025 
 authors = {
-    "Oriol Bertran Oller": [1],  # Author 1 belongs to Institution 1
+    "Oriol Bertran": [1],  # Author 1 belongs to Institution 1
    #"Colleague Name": [1],  # Author 2 also belongs to Institution 1
 }
 institutions = {
@@ -26,7 +26,7 @@ st.subheader(':rainbow-background[Soil Water Retention curves: explanation & exe
 
 st.markdown(""" 
             ### Some initial thoughts for the investigation
-            This notebook illustrate the soil water retention curves with examples and exercises based on Van Genuchten (1980).
+            This notebook illustrate the soil water retention curves with examples and exercises based on :blue-background[[van Genuchten (1980)](https://www.researchgate.net/publication/250125437_A_Closed-form_Equation_for_Predicting_the_Hydraulic_Conductivity_of_Unsaturated_Soils1)].
 """
 )
 
@@ -328,8 +328,6 @@ fig.tight_layout()
 #box = ax.get_position()
 #ax.set_position([box.x0, box.y0, box.width * 0.8, box.height])
 st.pyplot(fig)
-
-st.write('The app is developed by Oriol Bertran Oller (UPC Barcelona) 2024')
 
 "---"
 # Navigation at the bottom of the side - useful for mobile phone users     
