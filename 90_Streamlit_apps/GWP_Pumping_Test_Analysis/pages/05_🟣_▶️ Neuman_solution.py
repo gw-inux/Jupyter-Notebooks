@@ -286,6 +286,8 @@ def inverse():
     log_min2 = -7.0 # S / Corresponds to 10^-7 = 0.0000001
     log_max2 = 0.0  # S / Corresponds to 10^0 = 1
    
+    st.session_state["use_slider"] = st.toggle("Use Slider/Number number for paramter input", value=st.session_state["use_slider"])
+   
     columns2 = st.columns((1,1), gap = 'large')
     with columns2[0]:
         # READ LOG VALUE, CONVERT, AND WRITE VALUE FOR TRANSMISSIVITY
