@@ -42,8 +42,8 @@ with cent_co:
 
 st.markdown(
     """       
-    We explore the evaluation methods with a few :blue[**different data sets**]
-    - synthetic and idealized data that originate from **textbooks**,
+    Opportunities are offered to explore the evaluation methods with a few :blue[**different data sets**]
+    - synthetic and idealized data that originate from **textbooks**, as well as
     - **measured** data from 
       - the Varnum test site in Sweden,
       - the Viterbo test site in Italy,
@@ -75,7 +75,7 @@ left_co2, cent_co2, last_co2 = st.columns((1,8,1))
 with cent_co2:
     st.markdown(
     """
-        :green[The Groundwater Project is a nonprofit organization with one full-time staff and over a 1000 volunteers.]
+        :green[The Groundwater Project is a nonprofit organization with one full-time staff and over 1000 volunteers.]
 
         :green[Please help us by using the following link when sharing this application with others.]   
 

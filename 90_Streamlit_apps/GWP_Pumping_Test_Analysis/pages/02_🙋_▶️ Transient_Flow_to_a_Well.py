@@ -11,9 +11,9 @@ from streamlit_extras.stodo import to_do
 
 st.title('🙋 Transient Flow toward a well in a confined aquifer')
 
-st.header(':blue[Conceptualizing the response of a confined aquifer to pumping]')
+st.header(':blue[Conceptualizing the drawdown response to pumping in a confined aquifer]')
 
-st.subheader(':blue-background[Guidance for investigating flow to a well in a confined aquifer]', divider="blue")
+st.subheader(':blue-background[Guidance for investigation]', divider="blue")
 st.markdown('''
             Transient Flow toward a well in a confined aquifer is described here using the Theis Solution. You can use the subsequent instructions and the interactive plot to gain a sound understanding of the system behavior. 
             
@@ -29,12 +29,12 @@ with st.expander(":green[**Show/Hide the initial assessment**]"):
         stb.single_choice(":blue[**What conditions are applicable for use of the Theis equaiton?**]",
                   ["Steady state flow, confined aquifer", "Transient flow, confined aquifer", "Steady state flow, unconfined aquifer",
                   "Transient flow, unconfined aquifer"],
-                  1,success='CORRECT! The Theis Solution describes transeint flow to a well in a confined aquifer.', error='This is not correct ... You can learn more about the Theis Solution [by downloading the book: An Introduction to Hydraulic Testing in Hydrogeology - Basic Pumping, Slug, and Packer Methods​​ and reading Section 8](https://gw-project.org/books/an-introduction-to-hydraulic-testing-in-hydrogeology-basic-pumping-slug-and-packer-methods/). Feel free to answer again.')
+                  1,success='CORRECT! The Theis Solution describes transient flow to a well in a confined aquifer.', error='This is not correct ... You can learn more about the Theis Solution [by downloading the book: An Introduction to Hydraulic Testing in Hydrogeology - Basic Pumping, Slug, and Packer Methods​​ and reading Section 8](https://gw-project.org/books/an-introduction-to-hydraulic-testing-in-hydrogeology-basic-pumping-slug-and-packer-methods/). Feel free to answer again.')
         stb.single_choice(":blue[**If there is no recharge to an aquifer how does the cone of depression behave with ongoing time?**]",
                   ["The cone of depression will reach a steady state", "The cone of depression continue to increase", "The cone of depression is not dependent on time", "The cone of depression will decrease"],
                   1,success='CORRECT! Without recharge, the cone of depression will increase.', error='This is not correct ... Without recharge, the cone of depression will increase with ongoing time. You can explore this by using the interactive tool to investigate this behavior. Feel free to answer again.') 
     with columnsQ1[1]:
-        stb.single_choice(":blue[**How does storativity (_S_) influence the response of an aquifer to pumping?**]",
+        stb.single_choice(":blue[**How does storativity ($S$) influence the response of an aquifer to pumping?**]",
                   ["A higher storativity results in a slower drawdown response", "A higher storativity leads to more rapid flow to the well", "Storativity only affects steady-state conditions", "Storativity is not relevant for confined aquifers"],
                   0,success='CORRECT! A higher storativity results in a slower drawdown response', error='This is not correct ... You can use the interactive tool to explore this and learn more about Storativity [by downloading the book: Basic Hydrogeology - An Introduction to the Fundamentals of Groundwater Science​ and reading Section 5.3](https://gw-project.org/books/basic-hydrogeology/). Feel free to answer again.')  
         stb.single_choice(":blue[**Which of the following statements describes the drawdown at a point due to pumping in a confined aquifer?**]",
@@ -45,20 +45,22 @@ with st.expander(":green[**Show/Hide the initial assessment**]"):
 st.markdown("""
             **STEP 1:**
             First we investigate drawdown around a pumping well in response to water abstraction as function of space and time.
+                       
+           _This can be accomplished by adjusting the interactive inputs for the graphs in the section below titled "Computation of drawdown" to observe changes in drawdown as described for Exercise 1 below._
            
-           _This can be accomplished by adjusting the interactive inputs for the graphs in the section below titled "Computation of drawdown" to observe changes in drawdown as described for Exercise 1._
+           The initial head is 20 meters above the top of a thin confined aquifer so if the parameters you enter result in drawdown of 20 meters or more at the pumping well, the results are not realistic.
            """)
 with st.expander(":blue[**To proceed with detailed instruction for Exercise  1**] click here"):
     to_do(
-        [(st.write, "Increase Pumping rate _Q_ (expand the first input column). How do the graphs and the printed value of drawdown change? Then, decrease pumping rate. How does drawdown change? ")],"td01",)
+        [(st.write, "Increase Pumping rate $Q$. How do the graphs and the printed value of drawdown change? Then, decrease pumping rate. How does drawdown change? ")],"td01",)
     to_do(
-        [(st.write, "Increase the distance of the observation from the well 'Distance _r_ in meters' (expand the first input column). How do the graphs and values printed below the graphs change? Then, decrease the observation distance. How does drawdown change?")], "td02",)
+        [(st.write, "Increase the distance of the observation from the well 'Distance $r$ in meters'. The location, time, and the magnitude of drawdown are indicated by the dots on the graphs and their values are printed below the graphs. How do they change? Then, decrease the observation distance. How does drawdown change?")], "td02",)
     to_do(
-        [(st.write, "Increase the time after pumping begins that the observation is made 'Time _t_ in seconds' (expand the first input column). How do the graphs and values printed below the graphs change? Then, decrease the observation time. How does drawdown change?")], "td03",)
+        [(st.write, "Increase the time after pumping begins that the observation is made 'Time $t$ in seconds'. The location, time, and the magnitude of drawdown are indicated by the dots on the graphs and their values are printed below the graphs. How does drawdown change? Then, decrease the observation time. How does drawdown change?")], "td03",)
 
 st.markdown("""
             **STEP 2:**
-            Next, we investigate the sensitivity of drawdown caused by abstraction to changes in Transmissivity _T_ and storativity _S_.
+            Next, we investigate the sensitivity of drawdown caused by abstraction to changes in Transmissivity $T$ and Storativity $S$.
             
            _This can be accomplished by adjusting the interactive inputs for the graphs to observe changes in drawdown as follows._
            """)
@@ -72,19 +74,23 @@ st.markdown("""
             **STEP 3:**
             The graphs can be used to compare drawdown for two different sets of Transmissivity and Storativity. 
             
-           _This can be accomplished by turning on the toggle for 'Second set of _T_ and _S_ for comparison' and adjusting the interactive inputs for _T2_ and _S2_ that appear in a third column of inptus._
+           _This can be accomplished by turning on the toggle for 'Second set of $T$ and $S$ for comparison' and adjusting the interactive inputs for $T2$ and $S2$ that appear in a third column of inputs._
            """)
 with st.expander(":blue[**To proceed with detailed instruction for Exercise  3**] click here"):
     to_do(
-        [(st.write, "For a given sclection of valuies for _Q_, _r_, and _t_, toggle 'Second set of _T_ and _S_ for comparison' to the ON position (it will turn red). New data inputs will appear in a third column, but the graphs will not change because the two data sets are identical.")],"td06",)
+        [(st.write, "For a given selection of values for $Q$, $r$, and $t$, toggle 'Second set of $T$ and $S$ for comparison' to the ON position (it will turn red). New data inputs will appear in a third column. When the values  of $T$ and $T2$ and/or $S$ and $S2$ differ, two sets of curves will appear. Only one curve will appear on each graph if the values are the same because the drawdowns will be identical. If there is no drawdown, check to see if the pumping rate $Q$ is 0")],"td06",)
     to_do(
-        [(st.write, "Choose a lower value for transmissivity _T2_ and compare the curve with the curve for the initial value of _T_. Then choose a value for _T2_ that is higher than _T_ and compare.")], "td07",) 
+        [(st.write, "Choose a lower value for transmissivity $T2$ and compare the curve with the curve for the initial value of $T$. Then choose a value for $T2$ that is higher than $T$ and compare.")], "td07",) 
     to_do(
-        [(st.write, "Toggle the 'Second set of _T_ and _S_ for comparison' to the OFF position and then back ON in order to reset the values to your initial values. Then, choose a lower value for storativity _S2_ and compare the curve with the curve for the initial value of _S_. Then choose a value for _S2_ that is higher than _S_ and compare.")], "td08",)        
+        [(st.write, "Toggle the 'Second set of $T$ and $S$ for comparison' to the OFF position and then back ON in order to reset the values to your initial values. Then, choose a lower value for storativity $S2$ and compare the curve with the curve for the initial value of $S$. Then choose a value for $S2$ that is higher than $S$ and compare.")], "td08",)        
 "---"
 st.subheader(':blue-background[Computation of drawdown]', divider="blue")
 st.markdown('''
             The interactive graphs shown below demonstrate the response of a confined aquifer to pumping as described by the Theis Solution. The parameter values can be modified using the sliders. A toggle allows viewing of graphs for two sets of Transmissivity and Storativity at once. You can follow the exercises provided above, or explore on your own.
+            
+           **If the graphs are completely white with no curves, it is likely that the selected parameters have caused unreasonably large drawdown (greater than the 20-meters which in this case would indicate and impossible situation because the initial water level is only 20 meters above the top of a thin confined aquifer. Checking the values of drawdown, distance, and time printed below the graphs and adjust the inputs until drawdown is less than 20 meters.**
+            
+            **If the drawdown is zero, check the pumping rate $Q$ to be sure it is greater than zero.**
             '''
 )
 
@@ -131,34 +137,33 @@ log_max2 = 0.0  # S / Corresponds to 10^0 = 1
 columns = st.columns((1,1,1), gap = 'large')
 
 with columns[0]:
-    with st.expander('Pumping rate, distance and time to plot'):
-        Q = st.slider(f'**Pumping rate _Q_ (m³/s)**', 0.001,0.03,0.000,0.001,format="%5.3f")
-        r_show = st.slider(f'**Distance _r_ in meters**',0,1000,100,1)
-        t_show = st.slider(f'**Time _t_ in seconds**',0.001,86400.*7,86400.,600.,format="%5.0f")
-    comparison = st.toggle('Second set of _T_ and _S_ for comparison')
+    Q = st.slider(f'**Pumping rate $Q$ (m³/s)**', 0.001,0.03,0.000,0.001,format="%5.3f")
+    r_show = st.slider(f'**Distance $r$ in meters**',0,1000,100,1)
+    t_show = st.slider(f'**Time $t$ in seconds**',0.001,86400.*7,86400.,600.,format="%5.0f")
 with columns[1]:
     #Logaritmic T-Slider
     container = st.container()
-    T_slider_value=st.slider('_(log of) Transmissivity T_', log_min1,log_max1,-3.0,0.01,format="%4.2f", key='T1' )
+    T_slider_value=st.slider('_(log of) Transmissivity $T$_', log_min1,log_max1,-3.0,0.01,format="%4.2f", key='T1' )
     T = 10 ** T_slider_value
-    container.write("**_T_ in m²/s:** %5.2e" %T)
+    container.write("**$T$ in m²/s:** %5.2e" %T)
     #Logaritmic S-Slider
     container = st.container()
-    S_slider_value=st.slider('_(log of) Storativity S_', log_min2,log_max2,-4.0,0.01,format="%4.2f", key='S1' )
+    S_slider_value=st.slider('_(log of) Storativity $S$', log_min2,log_max2,-4.0,0.01,format="%4.2f", key='S1' )
     S = 10 ** S_slider_value
-    container.write("**_S_ (dimensionless):** %5.2e" %S)    
+    container.write("**$S$ (dimensionless):** %5.2e" %S)    
+    comparison = st.toggle('Second set of $T$ and $S$ for comparison')
 with columns[2]:
     
     if comparison:
         container = st.container()
-        T2_slider_value=st.slider('_(log of) Transmissivity T2_', log_min1,log_max1,-3.0,0.01,format="%4.2f", key='T2' )
+        T2_slider_value=st.slider('_(log of) Transmissivity $T2$_', log_min1,log_max1,-3.0,0.01,format="%4.2f", key='T2' )
         T2 = 10 ** T2_slider_value
-        container.write("**_T2_ in m²/s:** %5.2e" %T2)
+        container.write("**$T2$ in m²/s:** %5.2e" %T2)
         #Logaritmic S-Slider
         container = st.container()
-        S2_slider_value=st.slider('_(log of) Storativity S2_', log_min2,log_max2,-4.0,0.01,format="%4.2f", key='S2' )
+        S2_slider_value=st.slider('_(log of) Storativity $S2$_', log_min2,log_max2,-4.0,0.01,format="%4.2f", key='S2' )
         S2 = 10 ** S2_slider_value
-        container.write("**_S2_ (dimensionless):** %5.2e" %S2)
+        container.write("**$S2$ (dimensionless):** %5.2e" %S2)
         
     
 # Range of temporal / spatial coordinate
@@ -217,7 +222,7 @@ plt.grid(True)
 
 st.pyplot(fig)
 
-st.write('**Drawdown**  =  %5.2f' %y_point, ' m at _r_ = %8.2f' %x_point, ' m and time =  %8i' %x2_point, ' sec')
+st.write('**Drawdown  =  %5.2f' %y_point, ' m at distance = %8.2f' %x_point, ' m and time =  %8i' %x2_point, ' sec**')
 
 st.subheader(':blue-background[Continued investigation]', divider="blue")
 st.markdown('''
@@ -231,9 +236,9 @@ with st.expander(":green[**Show/Hide the second assessment**]"):
     stb.single_choice(":blue[**How does the drawdown change at one specific distance from the well if storativity is decreased?**]",
                   ["Drawdown is less", "Drawdown is more", "Drawdown is not affected"],
                   1,success='CORRECT! When all else is equal, a lower value of storativity will result in more drawdown.', error='This is not correct ...  You can use the interactive tool to explore this and learn more about Storativity [by downloading the book: Basic Hydrogeology - An Introduction to the Fundamentals of Groundwater Science​ and reading Section 5.3](https://gw-project.org/books/basic-hydrogeology/). Feel free to answer again.')
-    stb.single_choice(":blue[**If the estimated transmissivity _T_ is too low, how will the predicted drawdown compare to the true drawdown?**]",
+    stb.single_choice(":blue[**If the estimated transmissivity $T$ is too low, how will the predicted drawdown compare to the true drawdown?**]",
                   ["The predicted drawdown will be too small", "The predicted drawdown will remain unchanged", "The predicted drawdown will be too large", "The predicted drawdown will be too large close to the well and too small far from the well"],
-                  3,success='CORRECT! ... the low transmissivity will require a higher gradient to accomodate flow through the aquifer surrounding the well screen, so predicted drawdown will be larger than true drawdown near the well. This results in more of the pumped volume being extracted from storage near the well bore, thus less of the volume will be drawn from storage further away resulting in less drawdown at larger distances from the well. It may not be possible to observe this on the application graph for every combination of parameter values entered in this application because the r distance on the graph is limited to 1000 m and the distance where drawdown transitions from overestimation to underestimation may be further than 1000 m from the well. If you are unable to see the transition, then decreasing the values input for time and/or distance might bring the transition zone into view.', error='This is partially correct because the low transmissivity will require a higher gradient to accomodate flow through the aquifer surrounding the well screen, so predicted drawdown will be larger than true drawdown near the well. This results in more of the pumped volume being extracted from storage near the well bore, thus less of the volume will be drawn from storage further away resulting in less drawdown at larger distances from the well. At some location depending on the combination of parameter values the drawdown may be the same for both cases. It may not be possible to observe this on the application graph for every combination of parameter values entered in this application because the r distance is limited to 1000 m and the distance where drawdown transitions from overestimation to underestimation may be further away than 1000 m. If that is the case, decreasing the values input for time and/or distance might bring the transition zone into view. Feel free to answer again.')
+                  3,success='CORRECT! ... the low transmissivity will require a higher gradient to accommodate flow through the aquifer surrounding the well screen, so predicted drawdown will be larger than true drawdown near the well. This results in more of the pumped volume being extracted from storage near the well bore, thus less of the volume will be drawn from storage further away resulting in less drawdown at larger distances from the well. It may not be possible to observe this on the application graph for every combination of parameter values entered in this application because the r distance on the graph is limited to 1000 m and the distance where drawdown transitions from overestimation to underestimation may be further than 1000 m from the well. If you are unable to see the transition, then decreasing the values input for time and/or distance might bring the transition zone into view.', error='This is partially correct because the low transmissivity will require a higher gradient to accommodate flow through the aquifer surrounding the well screen, so predicted drawdown will be larger than true drawdown near the well. This results in more of the pumped volume being extracted from storage near the well bore, thus less of the volume will be drawn from storage further away resulting in less drawdown at larger distances from the well. At some location depending on the combination of parameter values the drawdown may be the same for both cases. It may not be possible to observe this on the application graph for every combination of parameter values entered in this application because the r distance is limited to 1000 m and the distance where drawdown transitions from overestimation to underestimation may be further away than 1000 m. If that is the case, decreasing the values input for time and/or distance might bring the transition zone into view. Feel free to answer again.')
 
 st.subheader(':blue-background[Next steps]', divider="blue")
 st.markdown('''
