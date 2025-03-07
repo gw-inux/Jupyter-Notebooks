@@ -10,14 +10,14 @@ from streamlit_extras.stodo import to_do
 
 st.title('📈 Exercise and Application')
 
-st.header(':red[Explore Uncertainty] associated with using estimated parameters based on the Theis Solution for drawdown prediction')
+st.header(':red[Explore Uncertainty] associated with using parameter values estimated via Theis Curve fitting to predict drawdown for other pumping rates, times, and distances')
 
 st.subheader(':red-background[Introduction]', divider="red")
 
 st.markdown("""
             Randomly generated data are provided for fitting the Theis (1935) Solution to estimate the transmissivity and storativity of the aquifer.
             
-            Then, in a subsequent step, the estimated parameters are used to predict drawdown at a user specified distance from the well for a user specified duration of pumping at a user dpecifed rate. 
+            Then, in a subsequent step, the estimated parameters are used to predict drawdown for a user specified: distance from the well, duration of pumping, and pumping rate. 
             """)
             
 left_co, cent_co, last_co = st.columns((20,60,20))
@@ -25,15 +25,15 @@ with cent_co:
     st.image('90_Streamlit_apps/GWP_Pumping_Test_Analysis/assets/images/drawdown_aquifer.png', caption="Cross section of a pumped confined aquifer, Kruseman et al., 1991")
             
 st.markdown("""
-            The **objective of this exercise** is to estimate aquifer properties using the Theis solution and assess the accuracy of predictions made with these estimated parameters.
+            The **objective of this exercise** is to estimate aquifer properties using the Theis solution and assess the accuracy of drawdown predictions made with these estimated parameters.
             
-            Considering these **key questions** may help you to prepare for the exercise:
-            - How does the accuracy of the estimated parameters affect drawdown predictions?
-            - What is the effect of only a short time series is available (e.g., the pumping test was performed only for a few hours)?
-            - What are potential sources of error in parameter estimation?
+            Considering these **key questions** may help you prepare for the exercise:
+            - How does the accuracy of estimated parameter values affect the accuracy of predicted drawdowns?
+            - What are the potential problems associated with estimating aquifer properties using a drawdown data from a very short set of time/drawdown values? (e.g., for a pumping test that lasts only a few minutes or hours)?
+            - What are potential sources of error in estimating aquifer property values by matching well hydraulics solutions to time/drawdown data?
             - How does uncertainty in the data influence predictions?
             
-            It is useful to consider the initial assessment questions before proceding with the investigation.
+            It can be useful to consider the following initial assessment questions before proceeding with the investigation.
 """
 )
 # Initial assessment
@@ -53,16 +53,16 @@ with st.expander(":green[**Show/Hide the initial assessment**]"):
                   
         stb.single_choice(":blue[**If the estimated transmissivity (T) is too low, how will the predicted drawdown compare to the true drawdown?**]",
                   ["The predicted drawdown will be too small", "The predicted drawdown will remain unchanged", "The predicted drawdown will be too large", "The predicted drawdown will be too large or too small depending on the distance from the well"],
-                  3,success='CORRECT!The predicted drawdown will be too large near the well, too small far from the well and may be correct at one point between the near and far field', error='This is not completely correct. Feel free to answer again.')
+                  3,success='CORRECT! The predicted drawdown will be too large near the well, too small far from the well and may be correct at one point between the near and far field', error='This is not completely correct. Feel free to answer again.')
         
     with columnsQ1[1]:        
         stb.single_choice(":blue[**What role does curve fitting to pumping test data play in the process of estimating aquifer parameters?**]",
                   ["It predicts future rainfall effects on groundwater levels", "It determines the total groundwater storage in the aquifer", "It estimates the pumping rate required for full aquifer depletion", "It helps visually compare theoretical and observed drawdown curves"],
-                  3,success='CORRECT! It helps visually compare theoretical models and observed drawdown data', error='This is not correct. It may help to consider how veiwing the curves and data on the same graph was useful on previous pages of this application. Feel free to answer again.')  
+                  3,success='CORRECT! It helps visually compare theoretical models and observed drawdown data', error='This is not correct. It may help to consider how viewing the curves and data on the same graph was useful on previous pages of this application. Feel free to answer again.')  
  
         stb.single_choice(":blue[**Why is it important to compare predicted drawdown using estimated parameters with the true drawdown?**]",
                   ["To determine the maximum sustainable pumping rate", "To evaluate the accuracy of the parameter estimation process", "To find out if the aquifer is unconfined or confined", "To measure the recharge rate of the aquifer"],
-                  1,success='CORRECT! To evaluate the accuracy of the parameter estimation process', error='This is not correct. It may help to think a bit more about the value of comparing predictions with true evants. Feel free to answer again.')
+                  1,success='CORRECT! To evaluate the accuracy of the parameter estimation process', error='This is not correct. It may help to think a bit more about the value of comparing predictions with true events. Feel free to answer again.')
                   
         stb.single_choice(":blue[**Which parameters are estimated using the Theis solution and pumping test data?**]",
                   ["Hydraulic Conductivity and Porosity", "Transmissivity and Storativity", "Specific Yield and Permeability", "Pumping Rate and Aquifer Thickness"],
@@ -72,38 +72,42 @@ st.subheader(':red-background[Parameter estimation and drawdown prediction]', di
 st.markdown("""
             In this section, you can **adjust the values of transmissivity and storativity until the Theis curve of drawdown versus time that is calculated and plotted on the graph matches the data**. The match indicates that the selected values are a reasonable representation of the aquifer properties.
             
-            The generated "measured" data are presented as red dots on the graph. For more precise matching, you can zoom in by using the toogle switch. Also you can elect to show data from a longer pumping test.
+            The synthetic "measured" data are presented as red dots on the graph. For more precise matching, you can zoom in by using the toggle switch. Also, you can elect to show data from a longer pumping test to assess the potential value of having data from a longer test.
             
-            The generated data consider some 'measurement noise'. You can modify the amount of noise by toggle "Define the noise in the data" on the left control panel above the plot. 
+            The generated data include some 'measurement noise'. You can modify the amount of noise by toggling "Define the noise in the data" on the left control panel above the plot and adjusting the value. 
 
-            Each time that you use the button "Generate new data" below the plot, a new set of drawdown versus time data will be generated using a pumping rate of $Q$ = 0.017 m³/s, an observation well at $r$ = 120 m, and assuming a random value for $T$ and $S$.           
+            Each time you click the button "Regenerate data" below the plot, a new set of drawdown versus time data will be generated using a pumping rate of _Q_ = 0.017 m³/s, an observation well at _r_ = 120 m, and assuming a random value for $T$ and $S$.           
             
-            These steps can be followed to estimate parameter values and make a prediction of drawdown and assess the quality of the prediction:      
+            Clicking the box below will provide steps that you can follow to estimate parameter values, make a prediction of drawdown, and assess the quality of the prediction.      
 """     
 )
 
-with st.expander(":blue[**To proceed with detailed instruction for the exercise**] click here"):
+with st.expander(":blue[**Detailed instructions for the exercise are provided by**] clicking here"):
     to_do(
-        [(st.write, "Step 1: Estimate the values of $T$ and $S$ by adjusting the sliders until the Theis curve, calculated using those values, matches the 'measured' data. Zooming in and/or opting to toggle the 'Provide data for a longer period of pumping' may help you find a better fit.")],"td01",)                 
+        [(st.write, "Step 1: **Estimate the values of $T$ and $S$ by adjusting the sliders** until the Theis curve, calculated using those values, matches the 'measured' data. Zooming in and/or opting to toggle the 'Provide data for a longer period of pumping' may help you find a better fit.")],"td01",)                 
     to_do(
-        [(st.write, "Step 2: Toggle 'Make the prediction'")],"td02",)
+        [(st.write, "Step 2: **Toggle 'Make the prediction'**.")],"td02",)
     to_do(
-        [(st.write, "Step 3: Select the values of pumping rate, duration, and distance from the well that you are interested in for the prediction of future drawdown. For example, you might select:"
+        [(st.write, "Step 3: **Select the values of pumping rate, duration, and distance from the well** that you are interested in for the prediction of future drawdown. For example, you might select:"
         ,"\n - Pumping rate for the prediction of 0.04 m³/s"
         ,"\n - Distance from the pumping well of 500 m"
         ,"\n - Duration of prediction period of 5 years (entered as 1825 days).")],"td03",)
     to_do(
-        [(st.write, "Step 4: Compare predictions using true versus estimated parameters (slider 'How accurate are the parameter value estimates?')")],"td04",)
+        [(st.write, "Step 4: Compare predictions using true versus estimated parameters (**toggle 'How accurate are the parameter value estimates?'**)")],"td04",)
     to_do(
-        [(st.write, "Step 5: Make note of how close your prediction is to the 'true' system generated for this case and whether it is better or worse for shorter or longer distance and/or time. Consider whether the fit obtained using data from a longer test made much improvement in the predictino and, if so, in what way.")],"td05",)
+        [(st.write, "Step 5: **Make note of how close your prediction is to the 'true' system** generated for this case and whether it is better or worse for shorter or longer distance and/or time.**")],"td05",)
     to_do(
-        [(st.write, "Step 6: While the prediction graph is open, experiment with adjusting the estimated $T$ and $S$ to observe how subtle changes in estimated parameters impact the prediction.")],"td06",)  
+        [(st.write, "Step 6: **Consider whether the fit obtained using data from a longer test made much improvement in the prediction and, if so, in what way.**")],"td06",)
     to_do(
-        [(st.write, "Step 7: Repeat the procedure with new data by using the 'Regenerate data' button below the interactive plot. Analyse the effect on predictions of the following variants:"
-        ,"\n - Use different values for the 'measurement noise' while you repeat the procedure. You can define the measurement noise with the toggle 'Define the noise in the data' on the left control panel above the plot,"
-        ,"\n - Use different lenght of the measurement data by using the 'Provide data for a longer period of pumping'.")],"td07",)        
+        [(st.write, "Step 7: **While the prediction graph is open, experiment with adjusting the estimated $T$ and $S$** to observe how subtle changes in estimated parameters impact the prediction.")],"td07",)  
+    to_do(
+        [(st.write, "Step 8: **While the prediction graph is open, experiment with adjusting the percentage of noise** and consider how that might prompt you to adjust your estimated $T$ and $S$ and notice how that impacts the prediction.")],"td08",)  
+    to_do(
+        [(st.write, "Step 9: **Repeat the procedure with new data by using the 'Regenerate data' button** below the interactive plot. Analyze the effect on predictions of the following variations:"
+        ,"\n - **Use different values for the 'measurement noise'** while you repeat the procedure. You can define the measurement noise with the toggle 'Define the noise in the data' on the left control panel above the plot."
+        ,"\n - **Use different length of the measurement data by using the 'Provide data for a longer pumping test.**'")],"td09",)        
 
-# (Here the necessary functions like the well function $W(u)$ are defined. Later, those functions are used in the computation)
+# (Here the necessary functions like the well function _W(u)_ are defined. Later, those functions are used in the computation)
 # Define a function, class, and object for Theis Well analysis
 
 def well_function(u):
@@ -146,7 +150,7 @@ def compute_statistics(measured, computed):
     rmse = (meanSquaredError) ** (1/2)
     return me, mae, rmse
     
-# (Here, the methode computes the data for the well function. Those data can be used to generate a type curve.)
+# (Here, the method computes the data for the well function. Those data can be used to generate a type curve.)
 u_min = -5
 u_max = 4
 
@@ -170,12 +174,12 @@ m_time_all_s = [i*60 for i in m_time_all] # time in seconds
 
        
 # Compute measured data with noise
-# The noise is computed at the beginning with the max noise (as percentage) and subsequently, the noise is normalized by a strenght (ranging from 1.0 to 0.0 -> full noise to no noise)
+# The noise is computed at the beginning with the max noise (as percentage) and subsequently, the noise is normalized by a strength (ranging from 1.0 to 0.0 -> full noise to no noise)
 max_noise = 50 # max noise - should not be smaller than 20 - see input slider 
 
 # Compute all random data 
 m_ddown_all = [compute_s(st.session_state.T_random, st.session_state.S_random, i, Qs, r) for i in m_time_all_s]
-# Compute the ranom noise
+# Compute the random noise
 m_ddown_noise = [np.random.randint((100-max_noise), (100+max_noise))/100 for i in m_time_all_s]
 
 # Random number of samples
@@ -409,36 +413,36 @@ def inverse():
     columns3 = st.columns((1,1), gap = 'medium')
     with columns3[0]:
         st.write("**Estimated Parameters**")
-        st.write("Distance of measurement from the well **r = %3i" %r," m**")
-        st.write("Pumping rate of measurement **Q = %5.3f" %Qs," m³/s**")
-        st.write("Thickness of formation **b = %5.2f" % b, " m**")
-        st.write("Transmissivity **T = %10.2E" %T, " m²/s**")
-        st.write("Hydraulic Conductivity **K = %10.2E" %(T/b), " m²/s**")
-        st.write("Storativity **S = %10.2E" %S, "[-]**")
+        st.write("Distance of measurement from the well **$r$ = %3i" %r," m**")
+        st.write("Pumping rate of measurement **$Q$ = %5.3f" %Qs," m³/s**")
+        st.write("Thickness of formation **$b$ = %5.2f" % b, " m**")
+        st.write("Transmissivity **$T$ = %10.2E" %T, " m²/s**")
+        st.write("Hydraulic Conductivity **$K$ = %10.2E" %(T/b), " m²/s**")
+        st.write("Storativity **$S$ = %10.2E" %S, "[-]**")
         if show_truth:
-            st.write("'True' Transmissivity **T = % 10.2E"% st.session_state.T_random, " m²/s**")
+            st.write("'True' Transmissivity **$T$ = % 10.2E"% st.session_state.T_random, " m²/s**")
             st.write("_Your fitting success is:  %5.2f_" %(T/T_random*100), " %")
-            st.write("'True' Storativity    **S = % 10.2E"% st.session_state.S_random, "[-]**")    
+            st.write("'True' Storativity    **$S$ = % 10.2E"% st.session_state.S_random, "[-]**")    
             st.write("_Your fitting success is:  %5.2f_" %(S/S_random*100), " %")
 
     with columns3[1]:
         if prediction:
             st.write("**Prediction**")
-            st.write("Distance of measurement from the well **r = %3i" %r_pred," m**")
-            st.write("Pumping rate of prediction **Q = %5.3f" %Q_pred," m³/s**")
-            st.write("Time since pumping started = %3i" %x_point," s**")
+            st.write("Distance of measurement from the well **$r$ = %3i" %r_pred," m**")
+            st.write("Pumping rate of prediction **$Q$ = %5.3f" %Q_pred," m³/s**")
+            st.write("Time since pumping started **$t$ = %3i" %x_point," s**")
             if per_pred <= 3:
-                st.write("Time since pumping started **t = %3i" %t_search," s**")
+                st.write("Time since pumping started **$t$ = %3i" %t_search," s**")
             elif per_pred <= 7:
-                st.write("Time since pumping started **t = %5.2f" %t_search_h," hrs**")
+                st.write("Time since pumping started **$t$ = %5.2f" %t_search_h," hrs**")
             elif per_pred <= 366:
-                st.write("Time since pumping started **t = %5.2f" %t_search_d," days**")
+                st.write("Time since pumping started **$t$ = %5.2f" %t_search_d," days**")
             else:
-                st.write("Time since pumping started **t = %5.2f" %t_search_mo," months**")
-            st.write("**Predicted drawdown at r and t  %5.2f" %y_point," m**")
+                st.write("Time since pumping started **$t$ = %5.2f" %t_search_mo," months**")
+            st.write("**Predicted drawdown at $r$ and $t$  %5.2f" %y_point," m**")
             if show_truth:
                 st.write("**Predicted drawdown with 'true' parameters:  %5.2f" %true_y_point," m**")
-                st.write("**Difference**:  %5.2f" %(true_y_point-y_point)," m**")
+                st.write("**Difference:  %5.2f" %(true_y_point-y_point)," m**")
 
 inverse()
 
@@ -446,9 +450,9 @@ columns5 = st.columns((1,1,1), gap = 'large')
 with columns5[1]:
     st.button('**Regenerate data**')
 
-st.subheader(':red-background[Key questions to process your experience and finding]', divider="red")
+st.subheader(':red-background[Key questions for processing your experience and findings]', divider="red")
 st.markdown("""
-            Considering these **key questions** may help you process your experience and findings resulting from this exercise
+            Considering these **key questions** may help you process your experience and findings resulting from this exercise.
             
             - How does accuracy of the estimated parameters affect drawdown predictions?
             - What are potential sources of error in estimating parameters by curve matching?

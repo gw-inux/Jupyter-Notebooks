@@ -13,17 +13,17 @@ st.title('🟣 :violet[Neuman] parameter estimation')
 
 st.header('For drawdown in :violet[**unconfined aquifers**]')
 st.markdown("""
-            Using the Neuman Solution for drawdown in response to pumping :violet[**unconfined aquifers**] to estimate aquifer properties.
+            This section uses the Neuman Solution for drawdown in response to pumping an :violet[**unconfined aquifer**] to estimate Transmissivity, Specific Storage, Specific Yield, and Vertical Hydraulic Conductivity of the aquifer.
             """) 
 
 st.subheader(':violet-background[Introduction]', divider="violet")
 
 st.markdown("""
-            The Neuman solution (1972,1973) is intended to evaluate pumping tests in unconfined aquifers.
+            The Neuman solution (1972, 1973) was developed to evaluate pumping tests in unconfined aquifers.
             
-            This application uses the Neuman Solution to estimate Transmissivity _T_, Specific Storage _Ss_, Specific Yield _Sy_, and Beta _β_ from drawdown data collected during a pumping test.
+            This application uses the Neuman Solution to estimate Transmissivity $T$, Specific Storage $Ss$, Specific Yield $Sy$, and Beta $β$ from drawdown data collected during a pumping test.
             
-            You can estimate _T_, _Ss_, _Sy_, and _β_ by adjusting sliders to modify the parameter values until the measured data align with the Neuman curves for the input parameters.
+            You can estimate $T$, $Ss$, $Sy$, and $β$ by adjusting sliders to modify the parameter values until the measured data align with the Neuman curves for the input parameters.
             """)
             
 left_co, cent_co, last_co = st.columns((20,60,20))
@@ -69,13 +69,15 @@ st.subheader(':violet-background[Underlying theory] - The Neuman Solution for Pu
 st.markdown(
             """  
             The Neuman solution extends the Theis solution to describe transient flow to a well in an unconfined aquifer, where both vertical and horizontal flow components contribute to drawdown. Unlike the Theis and Hantush-Jacob solutions, which assume confined or leaky aquifers, the Neuman solution accounts for the delayed response caused by water table storage and vertical flow effects.
+            
+            The Theis Solution fits the early-time data when the elastic storativity of the aquifer $S$ is used, while the Theis curve fits the late-time data when the specific yield of the aquifer $Sy$ is used. A term defined as beta $β$ describes the transition from elastic storage to pore water storage based on the relative values of vertical and horizontal hydraulic conductivity of the aquifer for a given aquifer thickness and distance from the pumping well. During the transition period, water drains vertically which is akin to leakage from an aquitard, thus the drawdown curves levels out until that drainage is complete, then specific yield controls the rate of drawdown. The early portion of the curve may occur so quickly that it is missed in the drawdown data collection.
             """
             )
 # Optional theory here
 with st.expander('**Click here for more information** about the underlying theory of the :violet[**Neuman Solution**]'): 
     st.markdown(
     """
-    The drawdown _s_ at a distance _r_ from a well pumping at a constant rate _Q_ is given by:
+    The drawdown $s$ at a distance $r$ from a well pumping at a constant rate $Q$ is given by:
     """
     )    
     st.latex(r'''s(r,t) = \frac{Q}{4\pi T} W(u_A, u_B)''')
@@ -83,7 +85,8 @@ with st.expander('**Click here for more information** about the underlying theor
     st.markdown(
     """    
     where:
-    - _T_ is the transmissivity of the aquifer,
+    - $s$ is drawdown at time $t$ and distance $r$ from the well
+    - $T$ is the transmissivity of the aquifer,
     - $W(u_A, u_B)$ is the Neuman well function,
     - $u_A$ and $u_B$ are dimensionless time parameters, defined as:
     """)
@@ -94,16 +97,16 @@ with st.expander('**Click here for more information** about the underlying theor
     st.markdown(
     """    
     where:
-    - _S_ is storativity of the unconfined aquifer (specific storage times aquifer thickness),
-    - _Sy_ is specific yield of the unconfined aquifer,
+    - $S$ is storativity of the unconfined aquifer (the product of specific storage and aquifer thickness),
+    - $Sy$ is specific yield of the unconfined aquifer,
     - $K_z$ is vertical hydraulic conductivity of the unconfined aquifer,
-    - _b_ is saturated thickness of the unconfined aquifer,
-    - _t_ is elapsed time since pumping began.
+    - $b$ is saturated thickness of the unconfined aquifer,
+    - $t$ is elapsed time since pumping began.
     """)
 
     st.markdown(
     """    
-    _β_ defines the character of the Neuman curve as it transitions from elastic storage to pore water drainage
+    $β$ defines the character of the Neuman curve as it transitions from elastic storage to pore water drainage
     """)
     
     st.latex(r'''\beta = \frac{r^2 K_z}{b^2 K}''') 
@@ -184,7 +187,6 @@ if "SY" not in st.session_state:
 if "use_slider" not in st.session_state:
     st.session_state["use_slider"] = True  # Default to slider
     
-    
 # (Here, the methode computes the data for the well function. Those data can be used to generate a type curve.)
 u_min = -5
 u_max = 4
@@ -260,7 +262,7 @@ Qd = Qs*60*60*24 # m^3/d
 m_time_s = [i*60 for i in m_time] # time in seconds
 num_times = len(m_time)
 
-st.subheader(':violet-background[Estimate T, S, and Leakage] by matching Neuman Curves to measured data', divider="violet")
+st.subheader(':violet-background[Estimate $T$, $S$, and $β$] by matching Neuman Curves to measured data', divider="violet")
 
 st.markdown("""
             In this section, you can **adjust the values of transmissivity, specific storage, specific yield, and beta until the curve of drawdown versus time that is calculated and plotted on the graph matches the measured data from the Pirna test site in Germany**. The match indicates that the selected values are a reasonable representation of the aquifer properties.
@@ -284,8 +286,6 @@ def inverse():
     log_min2 = -7.0 # S / Corresponds to 10^-7 = 0.0000001
     log_max2 = 0.0  # S / Corresponds to 10^0 = 1
    
-    st.session_state["use_slider"] = st.toggle("Use Slider/Number number for paramter input", value=st.session_state["use_slider"])
-    
     columns2 = st.columns((1,1), gap = 'large')
     with columns2[0]:
         # READ LOG VALUE, CONVERT, AND WRITE VALUE FOR TRANSMISSIVITY
@@ -319,11 +319,7 @@ def inverse():
         else:
             SY = st.number_input('**Specific Yield**', 0.01, 0.50, st.session_state["SY"], 0.01, format="%4.2f")
         st.session_state["SY"] = SY
-#        if scatter:
-#            container = st.container()
-#            switch_time_slider_value=st.slider('_(log of) switch time_', 0.,8.,4.,0.01,format="%4.2f" )
-#            switch_time = 10 ** switch_time_slider_value
-#            container.write("**Time to switch from early to late curve (s):** %5.2e" %switch_time)
+
 
     # Compute K and SS to provide parameters for plausability check
     # (i.e. are the parameter in a reasonable range)
@@ -344,7 +340,7 @@ def inverse():
     for x in range(0,len(u_inv_a)):
         t_a_NEU[x] = u_inv_a[x] * t_a_term
         s_a_NEU[x] = w_u_a[x][beta] * s_term
-      
+    
     # Late Neuman curve
     for x in range(0,len(u_inv_b)):
         t_b_NEU[x] = u_inv_b[x] * t_b_term
@@ -352,7 +348,7 @@ def inverse():
             s_b_NEU[x] = well_function(1/u_inv_b[x]) * s_term
         else:
             s_b_NEU[x] = w_u_b[x][beta] * s_term
-
+     
     # Compute the switch time
     diffs_a_NEU = np.abs(np.gradient(s_a_NEU, t_a_NEU))
     diffs_b_NEU = np.abs(np.gradient(s_b_NEU, t_b_NEU))
@@ -395,9 +391,6 @@ def inverse():
     ax.plot(t_a_NEU, s_a_NEU, '--', color='dodgerblue',label=r'Computed ddown early - Neuman')
     ax.plot(t_b_NEU, s_b_NEU, '--', color='darkblue', label=r'Computed ddown late - Neuman')
     ax.plot(m_time_s, m_ddown,'o', color='mediumorchid', label=r'measured drawdown - Pirna 25')
-    #if scatter:
-        #ax.plot(m_time_s, m_ddown_Neuman_combined,'o', color='green', label=r'points for scatter') # Use this for evaluation
-        #plt.vlines(switch_time,1E-4,1E+1,color='orangered',linestyles='dashdot', label='switch time scatter plot and statistics')
     plt.xticks(fontsize=14)
     plt.yticks(fontsize=14)
     plt.yscale("log")
@@ -436,23 +429,23 @@ def inverse():
     
     columns3 = st.columns((1,10,1), gap = 'medium')
     with columns3[1]:
-        if st.button(':green[**Submit**] your parameters and **show protocol**'):
+        if st.button(':green[**Submit**] your parameters and **show results**'):
             st.write("**Parameters and Results**")
-            st.write("- Distance of measurement from the well **r = %3i" %r," m**")
-            st.write("- Pumping rate during test **Q = %5.3f" %Qs," m³/s**")
-            st.write("- Thickness of aquifer **b = % 5.2f"% b, " m**")
-            st.write("- Transmissivity **T = % 10.2E"% T, " m²/s**")
-            st.write("- Storativity **S = % 10.2E"% S, "[dimensionless]**")
-            st.write("- Specific Storage **Ss = % 10.2E"% Ss, " 1/m**")
-            st.write("- Specific Yield **Sy = % 10.2E"% SY, "[dimensionless]**")
-            st.write("- Horizontal Hydraulic Conductivity **K_h = % 10.2E"% (T/b), " m²/s**")
-            st.write("- Vertical Hydraulic Conductivity **K_v = % 10.2E"% (beta*(T/b)*b*b/r/r), " m²/s**")
+            st.write("- Distance of measurement from the well **$r$ = %3i" %r," m**")
+            st.write("- Pumping rate during test **$Q$ = %5.3f" %Qs," m³/s**")
+            st.write("- Thickness of aquifer **$b$ = % 5.2f"% b, " m**")
+            st.write("- Transmissivity **$T$ = % 10.2E"% T, " m²/s**")
+            st.write("- Storativity **$S$ = % 10.2E"% S, "[dimensionless]**")
+            st.write("- Specific Storage **$Ss$ = % 10.2E"% Ss, " 1/m**")
+            st.write("- Specific Yield **$Sy$ = % 10.2E"% SY, "[dimensionless]**")
+            st.write("- Horizontal Hydraulic Conductivity **$K_h$ = % 10.2E"% (T/b), " m²/s**")
+            st.write("- Vertical Hydraulic Conductivity **$K_v$ = % 10.2E"% (beta*(T/b)*b*b/r/r), " m²/s**")
  
 inverse()
 
 with st.expander('**:red[Click here]** to see one **example of the Neuman curve fitting to the :violet[Pirna] data**'):
     st.markdown(""" 
-            The following example shows one curve match of the Pirna data set, which represents an unconfined aquifer. If several experts made the curve match they would all have a slightly different set of parameter values, but the parameter sets would likely all be close enough to the shown example to draw comparable conclusions, and make similar predictions. While adjusting parameter values, one finds that the data can be matched well to the Neuman curve. The reason for this behavior is that the investigated aquifer, at least partially, conform to the conditions for applying the Neuman solution because it is unconfined. 
+            The following example shows one curve match of the Pirna data set, which represents an unconfined aquifer. If several experts made the curve match they would all have a slightly different set of parameter values, but the parameter sets would likely all be close enough to the shown example to draw comparable conclusions, and make similar predictions. While adjusting parameter values, one finds that the data can be matched well to the Neuman curve. The reason for this behavior is that the investigated aquifer, at least partially, conforms to the conditions for applying the Neuman solution because it is unconfined. 
             """)
     left_co2, cent_co2, last_co2 = st.columns((20,60,20))
     with cent_co2:

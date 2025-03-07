@@ -11,11 +11,13 @@ import streamlit_book as stb
 
 st.title('🎯 Pumping Test Analysis with the :red[Theis], :green[Hantush-Jacob], and :violet[Neuman] solutions')
 
-st.header('Fitting formation parameter values to :rainbow[FIELD measured] data')
+st.header('Eatimating aquifer property values using drawdown data :rainbow[measured in the FIELD] ')
 
 st.subheader('Introduction and Motivation', divider="rainbow")
 st.markdown("""    
-            This application allows you to choose the solution for fitting a model of aquifer response to pumping curve to different data sets. Measurements from various pumping tests can be selected. Alternatively, you can use your own data by uploading them as *.csv file. The required data format is time in minutes and drawdown in meters, both separated by a comma. 
+            This application allows you to choose the :red[Theis], :green[Hantush-Jacob], or :violet[Neuman] models to estimate aquifer properties by matching the curve to drawdown data measured during one of a number of pumping tests. 
+            
+            Alternatively, you can use your own data by uploading them as a *.csv file. The required data format is time in minutes separated by a comma from drawdown in meters. 
             """
 )
 
@@ -310,7 +312,7 @@ num_times = len(m_time)
 
 st.subheader(':green[Inverse parameter fitting]', divider="rainbow")
 
-st.markdown(f"In this section you can modify the parameter values to fit your measured data to the curve defined by {solution}")
+st.markdown(f"In this section you can modify the parameter values to fit the measured data to the curve defined by {solution}")
 
 st.markdown("""
             For more precise matching, zoom in by using the toogle.
@@ -428,7 +430,7 @@ def inverse():
             else:
                 s_HAN[x] = w_u_HAN[x][r_div_B] * s_term
       
-        plt.title(f"Hantush Jacob drawdown with r/b = {r_div_B_choice}", fontsize=16)
+        plt.title(f"Hantush Jacob drawdown with $r/B$ = {r_div_B_choice}", fontsize=16)
         ax.plot(t, s, label=r'Computed drawdown - Theis')
         ax.plot(t_HAN, s_HAN, 'b--', label=r'Computed drawdown - Hantush Jacob')
         ax.plot(m_time_s, m_ddown,'go', label=r'measured drawdown')
@@ -522,29 +524,29 @@ def inverse():
         if st.button(':green[**Submit**] your parameters and **show results**'):        
             if st.session_state.Solution == 'Theis':
                 st.write("**Parameters and Results**")
-                st.write("- Distance of measurement from the well **r = %3i" %r," m**")
-                st.write("- Pumping rate during test **Q = %5.3f" %Qs," m³/s**")
-                st.write("- Transmissivity **T = % 10.2E"% T, " m²/s**")
-                st.write("- Storativity    **S = % 10.2E"% S, "[dimensionless]**")
+                st.write("- Distance of measurement from the well **$r$ = %3i" %r," m**")
+                st.write("- Pumping rate during test **$Q$ = %5.3f" %Qs," m³/s**")
+                st.write("- Transmissivity **$T$ = % 10.2E"% T, " m²/s**")
+                st.write("- Storativity    **$S$ = % 10.2E"% S, "[dimensionless]**")
             elif st.session_state.Solution == 'Hantush-Jacob':
                 st.write("**Parameters and Results**")
-                st.write("- Distance of measurement from the well **r = %3i" %r," m**")
-                st.write("- Pumping rate during test **Q = %5.3f" %Qs," m³/s**")
-                st.write("- Transmissivity **T = % 10.2E"% T, " m²/s**")
-                st.write("- Storativity    **S = % 10.2E"% S, "[dimensionless]**")
-                #st.write("- Thickness of aquitard **b = % 5.2f"% b, " m**")
-                #st.write("- Aquitard Vertical Hydraulic Conductivity **K' = % 10.2E"% (T*b*float(r_div_B_list[r_div_B])*float(r_div_B_list[r_div_B])/r/r), " m²/s**")           
+                st.write("- Distance of measurement from the well **$r$ = %3i" %r," m**")
+                st.write("- Pumping rate during test **$Q$ = %5.3f" %Qs," m³/s**")
+                st.write("- Transmissivity **$T$ = % 10.2E"% T, " m²/s**")
+                st.write("- Storativity    **$S$ = % 10.2E"% S, "[dimensionless]**")
+                #st.write("- Thickness of aquitard **$b'$ = % 5.2f"% b, " m**")
+                #st.write("- Aquitard Vertical Hydraulic Conductivity **$K'$ = % 10.2E"% (T*b*float(r_div_B_list[r_div_B])*float(r_div_B_list[r_div_B])/r/r), " m²/s**")           
             elif st.session_state.Solution == 'Neuman':
                 st.write("**Parameters and Results**")
-                st.write("- Distance of measurement from the well **r = %3i" %r," m**")
-                st.write("- Pumping rate during test **Q = %5.3f" %Qs," m³/s**")
-                #st.write("- Thickness of aquifer **b = % 5.2f"% b, " m**")
-                st.write("- Transmissivity **T = % 10.2E"% T, " m²/s**")
-                st.write("- Storativity **S = % 10.2E"% S, "[dimensionless]**")
-                #st.write("- Specific Storage **Ss = % 10.2E"% Ss, " 1/m**")
-                #st.write("- Specific Yield **Sy = % 10.2E"% SY, "[dimensionless]**")
-                #st.write("- Horizontal Hydraulic Conductivity **K_h = % 10.2E"% (T/b), " m²/s**")
-                #st.write("- Vertical Hydraulic Conductivity **K_v = % 10.2E"% (beta*(T/b)*b*b/r/r), " m²/s**")
+                st.write("- Distance of measurement from the well **$r$ = %3i" %r," m**")
+                st.write("- Pumping rate during test **$Q$ = %5.3f" %Qs," m³/s**")
+                #st.write("- Thickness of aquifer **$b$ = % 5.2f"% b, " m**")
+                st.write("- Transmissivity **$T$ = % 10.2E"% T, " m²/s**")
+                st.write("- Storativity **$S$ = % 10.2E"% S, "[dimensionless]**")
+                #st.write("- Specific Storage **$Ss$ = % 10.2E"% Ss, " 1/m**")
+                #st.write("- Specific Yield **$Sy$ = % 10.2E"% SY, "[dimensionless]**")
+                #st.write("- Horizontal Hydraulic Conductivity **$K_h$ = % 10.2E"% (T/b), " m²/s**")
+                #st.write("- Vertical Hydraulic Conductivity **$K_v$ = % 10.2E"% (beta*(T/b)*b*b/r/r), " m²/s**")
 inverse()
 
 "---"
