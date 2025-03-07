@@ -94,11 +94,11 @@ with right_co2:
 
 
 # Initial assessment
-
-lc2, mc2, rc2 = st.columns([2,3,1])
-with mc2:
-    show_initial_assessment = button("**Show/Hide the initial questions**", key="button2")
-if show_initial_assessment:
+   
+with st.expander(":green[**Show/Hide the initial assessment**]"):
+    columnsQ1 = st.columns((1,3,1))
+    
+    with columnsQ1[1]:
     stb.single_choice(":green[Assume a situation **without recharge** (recharge is zero, e.g., after a long and dry summer). You intend to compute the hydraulic heads _h(x)_ in the underground. **How much is the influence of the hydraulic conductivity _K_ on the solution?**]",
                   ["Very high influence", "High influence", "Intermediate influence", "Minor influence", "No influence"],
                   4,success='CORRECT! You will see this in the next steps.', error='This is not correct. In the next steps we will further investiage this behaviour.')
