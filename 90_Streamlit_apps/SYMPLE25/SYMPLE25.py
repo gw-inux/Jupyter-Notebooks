@@ -41,8 +41,10 @@ about_symple = st.Page("pages/About_SYMPLE.py", title="About SYMPLE 🌳")
 pg = st.navigation(
     {
         "💦 Overview": [symple25app],
-        "🔶 Orientation meeting": [M0_presentation,gwf_1D_unconf_rech_OM, well_capture_OM],
-        "🔶 M1A - Basics": [M1A_1_presentation, f2w_conf_unconf,heat_transport_basics,transport_1D_basics,gwf_1D_unconf_basics,radio_decay],
+#       "🔶 Orientation meeting": [M0_presentation,gwf_1D_unconf_rech_OM, well_capture_OM],
+        "🔶 Orientation meeting": [gwf_1D_unconf_rech_OM, well_capture_OM],
+        "🔶 M1A - Basics": [f2w_conf_unconf,heat_transport_basics,transport_1D_basics,gwf_1D_unconf_basics,radio_decay],
+#       "🔶 M1A - Basics": [M1A_1_presentation, f2w_conf_unconf,heat_transport_basics,transport_1D_basics,gwf_1D_unconf_basics,radio_decay],
         "🔶 M1B - Data processing": [modflow_confined_pumping],
         "🔶 M1C - Flow modeling": [gwf_1D_FD, gwf_1D_unconf_calib, gwf_1D_unconf_no_flow_calib, mf_tutorial_2D_synth],
         "🔶 M1D - Transport modeling": [],
