@@ -24,7 +24,7 @@ st.subheader(':blue[Overview of the application]', divider="blue")
 
 st.markdown(
     """       
-    This application combines theoretical explanations with interactive applications and execises. Quizzes inside the application allow you to assess your understanding. The underlying theory is provided as an concise overview at the beginning.
+    This application combines theoretical explanations with interactive applications and exercises. Quizzes inside the application allow you to assess your understanding. The underlying theory is provided as an concise overview at the beginning.
     
     :blue[First, the general response of aquifers to groundwater abstraction] is explained as a cone of water-level drawdown expanding outward from a well over time.
     
