@@ -8,7 +8,6 @@ import pandas as pd
 import streamlit as st
 import streamlit_book as stb
 from streamlit_extras.stateful_button import button
-from streamlit_super_slider import st_slider
 
 st.title('🟣 :violet[Neuman] parameter estimation')
 
