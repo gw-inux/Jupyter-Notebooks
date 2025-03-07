@@ -8,6 +8,7 @@ import pandas as pd
 import streamlit as st
 import streamlit_book as stb
 from streamlit_extras.stateful_button import button
+from streamlit_super_slider import st_slider
 
 st.title('🟣 :violet[Neuman] parameter estimation')
 
@@ -174,6 +175,17 @@ def compute_statistics(measured, computed):
     rmse = (meanSquaredError) ** (1/2)
     return me, mae, rmse
 
+# Initialize session state for value and toggle state
+if "T_slider_value" not in st.session_state:
+    st.session_state["T_slider_value"] = -2.0  # Default value
+if "S_slider_value" not in st.session_state:
+    st.session_state["S_slider_value"] = -4.0  # Default value
+if "SY" not in st.session_state:
+    st.session_state["SY"] = 0.25  # Default value
+if "use_slider" not in st.session_state:
+    st.session_state["use_slider"] = True  # Default to slider
+    
+    
 # (Here, the methode computes the data for the well function. Those data can be used to generate a type curve.)
 u_min = -5
 u_max = 4
@@ -273,12 +285,19 @@ def inverse():
     log_min2 = -7.0 # S / Corresponds to 10^-7 = 0.0000001
     log_max2 = 0.0  # S / Corresponds to 10^0 = 1
    
+    st.session_state["use_slider"] = st.toggle("Use Slider/Number number for paramter input", value=st.session_state["use_slider"])
+    
     columns2 = st.columns((1,1), gap = 'large')
     with columns2[0]:
         # READ LOG VALUE, CONVERT, AND WRITE VALUE FOR TRANSMISSIVITY
         container = st.container()
-        T_slider_value=st.slider('_(log of) Transmissivity in m²/s_', log_min1,log_max1,-2.0,0.01,format="%4.2f" )
-        T = 10 ** T_slider_value
+        #T_slider_value=st.slider('_(log of) Transmissivity in m²/s_', log_min1,log_max1,-2.0,0.01,format="%4.2f" )
+        if st.session_state["use_slider"]:
+            T_slider_value_new = st.slider("_(log of) Transmissivity in m²/s_", log_min1,log_max1, st.session_state["T_slider_value"], 0.01, format="%4.2f")
+        else:
+            T_slider_value_new = st.number_input("_(log of) Transmissivity in m²/s_", log_min1, log_max1, st.session_state["T_slider_value"], 0.01, format="%4.2f")
+        st.session_state["T_slider_value"] = T_slider_value_new
+        T = 10 ** T_slider_value_new
         container.write("**Transmissivity in m²/s**: %5.2e" %T)
         beta_choice = st.selectbox("**beta**",('0.001','0.01', '0.06', '0.2', '0.6', '1', '2', '4', '6'),)
         beta_list = ['0.001','0.01', '0.06', '0.2', '0.6', '1', '2', '4', '6']
@@ -289,15 +308,23 @@ def inverse():
 
         # READ LOG VALUE, CONVERT, AND WRITE VALUE FOR SPECIFIC STORAGE
         container = st.container()
-        S_slider_value=st.slider('_(log of) Specific storage_', log_min2,log_max2,-4.0,0.01,format="%4.2f" )
-        Ss = 10 ** S_slider_value
+        if st.session_state["use_slider"]:
+            S_slider_value_new=st.slider('_(log of) Specific storage_', log_min2, log_max2, st.session_state["S_slider_value"],0.01,format="%4.2f" )
+        else:
+            S_slider_value_new=st.number_input('_(log of) Specific storage_', log_min2,log_max2, st.session_state["S_slider_value"],0.01,format="%4.2f" )
+        st.session_state["S_slider_value"] = S_slider_value_new
+        Ss = 10 ** S_slider_value_new
         container.write("**Specific storage (dimensionless):** %5.2e" %Ss)
-        SY = st.slider('**Specific Yield**', 0.01, 0.50, 0.25, 0.01, format="%4.2f")
-        if scatter:
-            container = st.container()
-            switch_time_slider_value=st.slider('_(log of) switch time_', 0.,8.,4.,0.01,format="%4.2f" )
-            switch_time = 10 ** switch_time_slider_value
-            container.write("**Time to switch from early to late curve (s):** %5.2e" %switch_time)
+        if st.session_state["use_slider"]:
+            SY = st.slider('**Specific Yield**', 0.01, 0.50, st.session_state["SY"], 0.01, format="%4.2f")
+        else:
+            SY = st.number_input('**Specific Yield**', 0.01, 0.50, st.session_state["SY"], 0.01, format="%4.2f")
+        st.session_state["SY"] = SY
+#        if scatter:
+#            container = st.container()
+#            switch_time_slider_value=st.slider('_(log of) switch time_', 0.,8.,4.,0.01,format="%4.2f" )
+#            switch_time = 10 ** switch_time_slider_value
+#            container.write("**Time to switch from early to late curve (s):** %5.2e" %switch_time)
 
     # Compute K and SS to provide parameters for plausability check
     # (i.e. are the parameter in a reasonable range)
@@ -318,7 +345,7 @@ def inverse():
     for x in range(0,len(u_inv_a)):
         t_a_NEU[x] = u_inv_a[x] * t_a_term
         s_a_NEU[x] = w_u_a[x][beta] * s_term
-    
+      
     # Late Neuman curve
     for x in range(0,len(u_inv_b)):
         t_b_NEU[x] = u_inv_b[x] * t_b_term
@@ -326,7 +353,23 @@ def inverse():
             s_b_NEU[x] = well_function(1/u_inv_b[x]) * s_term
         else:
             s_b_NEU[x] = w_u_b[x][beta] * s_term
-     
+
+    # Compute the switch time
+    diffs_a_NEU = np.abs(np.gradient(s_a_NEU, t_a_NEU))
+    diffs_b_NEU = np.abs(np.gradient(s_b_NEU, t_b_NEU))
+
+    # Find indices where change is below threshold
+    threshold = 0.000001
+    plateau_indices_a = np.where(diffs_a_NEU < threshold)[0]
+    plateau_indices_b = np.where(diffs_b_NEU < threshold)[0]
+
+     # Get start and end times of the plateau
+    if len(plateau_indices_a) > 0:
+        plateau_start_a = t_a_NEU[plateau_indices_a[0]]
+    if len(plateau_indices_b) > 0:
+        plateau_start_b = t_b_NEU[plateau_indices_b[0]]  
+    switch_time = plateau_start_a + plateau_start_b / 2
+    
     # Compute point data for scatter plot
     m_ddown_Neuman_a = [compute_s(T, S, SY, i, Qs, r, u_inv_a, w_u_a, beta,1) for i in m_time_s]
     m_ddown_Neuman_b = [compute_s(T, S, SY, i, Qs, r, u_inv_b, w_u_b, beta,2) for i in m_time_s]
@@ -353,9 +396,9 @@ def inverse():
     ax.plot(t_a_NEU, s_a_NEU, '--', color='dodgerblue',label=r'Computed ddown early - Neuman')
     ax.plot(t_b_NEU, s_b_NEU, '--', color='darkblue', label=r'Computed ddown late - Neuman')
     ax.plot(m_time_s, m_ddown,'o', color='mediumorchid', label=r'measured drawdown - Pirna 25')
-    if scatter:
+    #if scatter:
         #ax.plot(m_time_s, m_ddown_Neuman_combined,'o', color='green', label=r'points for scatter') # Use this for evaluation
-        plt.vlines(switch_time,1E-4,1E+1,color='orangered',linestyles='dashdot', label='switch time scatter plot and statistics')
+        #plt.vlines(switch_time,1E-4,1E+1,color='orangered',linestyles='dashdot', label='switch time scatter plot and statistics')
     plt.xticks(fontsize=14)
     plt.yticks(fontsize=14)
     plt.yscale("log")
