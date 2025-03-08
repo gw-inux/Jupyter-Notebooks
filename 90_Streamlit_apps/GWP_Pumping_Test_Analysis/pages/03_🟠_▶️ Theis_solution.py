@@ -112,7 +112,7 @@ st.markdown("""
             
             For more precise matching, zoom in by using the toogle.
             
-            Toggling on the scatter plot provides an visual comparison of the data and the fitted curve. A 1 to 1, 45 degree line, indictses a perfact match.
+            Toggling on the scatter plot provides an visual comparison of the data and the fitted curve. A 1 to 1, 45 degree line, indicates a perfect match.
 """
 )
 # Computation
@@ -159,6 +159,14 @@ def compute_statistics(measured, computed):
     rmse = (meanSquaredError) ** (1/2)
     return me, mae, rmse
 
+# Initialize session state for value and toggle state
+if "T_slider_value" not in st.session_state:
+    st.session_state["T_slider_value"] = -3.0  # Default value
+if "S_slider_value" not in st.session_state:
+    st.session_state["S_slider_value"] = -4.0  # Default value
+number_input = False
+st.session_state.number_input = number_input  # Default to number_input
+
 # (Here, the methode computes the data for the well function. Those data can be used to generate a type curve.)
 u_min = -5
 u_max = 4
@@ -180,11 +188,14 @@ def inverse(v):
     log_max1 = 0.0  # T / Corresponds to 10^0 = 1
     log_min2 = -7.0 # S / Corresponds to 10^-7 = 0.0000001
     log_max2 = 0.0  # S / Corresponds to 10^0 = 1
+    
+    # Toggle to switch between slider and number-input mode
+    st.session_state.number_input = st.toggle("Use Slider/Number number for paramter input", key = 10+v)
    
     columns2 = st.columns((1,1), gap = 'large')
     with columns2[0]:
-        refine_plot = st.toggle("**Zoom in** on the **data in the graph**", key = 10+v)
-        scatter = st.toggle('Show scatter plot', key = 40+v)
+        refine_plot = st.toggle("**Zoom in** on the **data in the graph**", key = 20+v)
+        scatter = st.toggle('Show scatter plot', key = 30+v)
         if v==2:
             Viterbo = True
         if v==3:
@@ -192,14 +203,22 @@ def inverse(v):
     with columns2[1]:
         # READ LOG VALUE, CONVERT, AND WRITE VALUE FOR TRANSMISSIVITY
         container = st.container()
-        T_slider_value=st.slider('_(log of) Transmissivity in m²/s_', log_min1,log_max1,-3.0,0.01,format="%4.2f", key = 20+v)
-        T = 10 ** T_slider_value
+        if st.session_state.number_input:
+            T_slider_value_new = st.number_input("_(log of) Transmissivity in m²/s_", log_min1,log_max1, st.session_state["T_slider_value"], 0.01, format="%4.2f", key = 40+v)
+        else:
+            T_slider_value_new = st.slider("_(log of) Transmissivity in m²/s_", log_min1, log_max1, st.session_state["T_slider_value"], 0.01, format="%4.2f", key = 40+v)
+        st.session_state["T_slider_value"] = T_slider_value_new
+        T = 10 ** T_slider_value_new
         container.write("**Transmissivity in m²/s:** %5.2e" %T)
         # READ LOG VALUE, CONVERT, AND WRITE VALUE FOR STORATIVITY
         container = st.container()
-        S_slider_value=st.slider('_(log of) Storativity_', log_min2,log_max2,-4.0,0.01,format="%4.2f", key = 30+v)
-        S = 10 ** S_slider_value
-        container.write("**Specific storage (dimensionless):** %5.2e" %S)
+        if st.session_state.number_input:
+            S_slider_value_new=st.number_input('_(log of) Storativity_', log_min2,log_max2,st.session_state["S_slider_value"],0.01,format="%4.2f", key = 50+v)
+        else:
+            S_slider_value_new=st.slider('_(log of) Storativity_', log_min2,log_max2,st.session_state["S_slider_value"],0.01,format="%4.2f", key = 50+v)
+        st.session_state["S_slider_value"] = S_slider_value_new
+        S = 10 ** S_slider_value_new
+        container.write("**Storativity (dimensionless):** %5.2e" %S)
     
     # Drawdown data from SYMPLE exercise and parameters 
     m_time = [1,1.5,2,2.5,3,4,5,6,8,10,12,14,18,24,30,40,50,60,100,120] # time in minutes
@@ -306,7 +325,7 @@ def inverse(v):
     
     columns3 = st.columns((1,10,1), gap = 'medium')
     with columns3[1]:
-        if st.button(':green[**Submit**] your parameters and **show results**', key = 50+v):
+        if st.button(':green[**Submit**] your parameters and **show results**', key = 60+v):
             st.write("**Parameters and Results**")
             st.write("- Distance of measurement from the well **$r$ = %3i" %r," m**")
             st.write("- Pumping rate during test **$Q$ = %5.3f" %Qs," m³/s**")

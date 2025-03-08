@@ -1,6 +1,4 @@
 #-- Check and install required packages if not already installed --#
-import sys
-import subprocess
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
@@ -9,11 +7,26 @@ import streamlit_book as stb
 
 st.title('Soil Water Retention curves 💦')
 
+# Authors, institutions, and year
+year = 2025 
+authors = {
+    "Oriol Bertran": [1],  # Author 1 belongs to Institution 1
+   #"Colleague Name": [1],  # Author 2 also belongs to Institution 1
+}
+institutions = {
+    1: "UPC Universitat Politècnica de Catalunya",
+#   2: "Second Institution / Organization"
+}
+index_symbols = ["¹", "²", "³", "⁴", "⁵", "⁶", "⁷", "⁸", "⁹"]
+author_list = [f"{name}{''.join(index_symbols[i-1] for i in indices)}" for name, indices in authors.items()]
+institution_list = [f"{index_symbols[i-1]} {inst}" for i, inst in institutions.items()]
+institution_text = " | ".join(institution_list)  # Institutions in one line
+
 st.subheader(':rainbow-background[Soil Water Retention curves: explanation & exercise]', divider="rainbow")
 
 st.markdown(""" 
             ### Some initial thoughts for the investigation
-            This notebook illustrate the soil water retention curves with examples and exercises based on Van Genuchten (1980).
+            This notebook illustrate the soil water retention curves with examples and exercises based on :blue-background[[van Genuchten (1980)](https://www.researchgate.net/publication/250125437_A_Closed-form_Equation_for_Predicting_the_Hydraulic_Conductivity_of_Unsaturated_Soils1)].
 """
 )
 
@@ -173,8 +186,6 @@ def soil_water_diffusivity(Ks, n, ts, tr, T):
 #Example from Van Genuchten 1980
 #
 
-
-
 # Given parameters:
 tr = 0.10       # residual water content
 ts = 0.50       # saturated water content
@@ -233,7 +244,7 @@ ax4.set_ylim(1, 1000000)
 ax4.set_xlabel(r'Water Content, $\Theta$')
 ax4.set_ylabel(r'Diffusivity, $D$')
 
-plt.tight_layout()
+#plt.tight_layout()
 st.pyplot(fig)
 
 #
@@ -267,15 +278,33 @@ siltSoil["Water Content"] = [0.422, 0.422, 0.421, 0.417, 0.412, 0.395, 0.366, 0.
 st.markdown(
             """
             ### Exercise
-            Calculates, fits and visualizes the soil-water retention curve for sand and silt soils using the van Genuchten model.
-            
-            #### Parameters
-            * tr_soil : residual soil-water content of the soil
-            * ts_soil : satured soil-water content of the soil
-            * alpha_soil : alpha parameter for the soil
-            * n_soil : n parameter for the soil
+            Given the suction pressure and water content data for two soil types—sand and silt—determine the best-fitting parameters.
             """
 )
+
+data = {
+        "Sand Soil |ψ| [hPa]": [1, 2, 3, 4, 8, 12, 17, 23, 32, 46, 65, 98, 148, 328, 726, 1217, 2175, 4330, 7576, 16796, 41464, 95973],
+        "θ (Sand)": [0.368, 0.365, 0.358, 0.348, 0.321, 0.293, 0.267, 0.240, 0.213, 0.185, 0.160, 0.137, 0.119, 0.090, 0.074, 0.065, 0.059, 0.054, 0.051, 0.048, 0.046, 0.045],
+        "Silt Soil |ψ| [hPa]": [1, 2, 6, 25, 49, 118, 235, 354, 488, 765, 1033, 1456, 2656, 4351, 6830, 13582, 26438, 45248, 98112, 199482, 396999, 958958],
+        "θ (Silt)": [0.422, 0.422, 0.421, 0.417, 0.412, 0.395, 0.366, 0.342, 0.319, 0.285, 0.260, 0.236, 0.195, 0.167, 0.143, 0.113, 0.089, 0.074, 0.057, 0.045, 0.035, 0.026]
+        }
+
+# Convert to DataFrame
+df = pd.DataFrame(data)
+
+# Display the table with markdown
+st.markdown(df.style.hide(axis="index").to_html(), unsafe_allow_html=True)
+
+st.markdown(
+            """
+            #### Parameters
+            - *θr* : Residual soil-water content of the soil
+            - *θs* : Satured soil-water content of the soil
+            - *α* : alpha parameter, related to the inverse of the air entry suction
+            - *n* : n parameter, is a mesure of the pore-size distribution
+            """
+)
+
 columns_i1 = st.columns((1,1), gap = 'large')
 
 with columns_i1[0]:
@@ -318,8 +347,6 @@ fig.tight_layout()
 #ax.set_position([box.x0, box.y0, box.width * 0.8, box.height])
 st.pyplot(fig)
 
-st.write('The app is developed by Oriol Bertran Oller (UPC Barcelona) 2024')
-
 "---"
 # Navigation at the bottom of the side - useful for mobile phone users     
         
@@ -331,4 +358,12 @@ with columnsN1[1]:
     st.subheader(':orange[**Navigation**]')
 with columnsN1[2]:
     if st.button("Next page"):
-        st.switch_page("pages/05_📈_▶️ SWC Exercise #2.py.py")
+        st.switch_page("pages/05_📈_▶️ SWC_Exercise_2.py")
+   
+'---'
+# Render footer with authors, institutions, and license logo in a single line
+columns_lic = st.columns((5,1))
+with columns_lic[0]:
+    st.markdown(f'Developed by {", ".join(author_list)} ({year}). <br> {institution_text}', unsafe_allow_html=True)
+with columns_lic[1]:
+    st.image('FIGS/CC_BY-SA_icon.png')

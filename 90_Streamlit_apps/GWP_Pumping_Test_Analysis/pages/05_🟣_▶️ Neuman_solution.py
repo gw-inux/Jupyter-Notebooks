@@ -91,13 +91,13 @@ with st.expander('**Click here for more information** about the underlying theor
     - $u_A$ and $u_B$ are dimensionless time parameters, defined as:
     """)
 
-    st.latex(r'''u_A = \frac{r^2 S}{4 T t}''')
+    st.latex(r'''u_A = \frac{r^2 S_a}{4 T t}''')
     st.latex(r'''u_B = \frac{r^2 S_y}{4 K_z b t}''')
     
     st.markdown(
     """    
     where:
-    - $S$ is storativity of the unconfined aquifer (the product of specific storage and aquifer thickness),
+    - $S_a$ is the elastic early-time storativity of the unconfined aquifer (the product of specific storage and aquifer thickness),
     - $Sy$ is specific yield of the unconfined aquifer,
     - $K_z$ is vertical hydraulic conductivity of the unconfined aquifer,
     - $b$ is saturated thickness of the unconfined aquifer,
@@ -145,11 +145,8 @@ def Neuman_s(Q, T, u, u_inv_NEU, w_u, beta):
     s = Q / 4. / np.pi / T * w_u_interpolated(u)
     return s
 
-def compute_s(T, S, SY, t, Q, r, u_inv_NEU, w_u, beta, var):
-    if var == 1:
-        u_inv = theis_u_inv(T, S, r, t)
-    else:
-        u_inv = second_u_inv (T, SY, r, t)
+def compute_s(T, S, t, Q, r, u_inv_NEU, w_u, beta):
+    u_inv = theis_u_inv(T, S, r, t)
     s = Neuman_s(Q, T, u_inv, u_inv_NEU, w_u, beta)
     return s
     
@@ -177,6 +174,20 @@ def compute_statistics(measured, computed):
     rmse = (meanSquaredError) ** (1/2)
     return me, mae, rmse
 
+# Callback function to update session state
+def update_T():
+    st.session_state.T_slider_value = st.session_state.T_input
+def update_Ss():
+    st.session_state.Ss_slider_value = st.session_state.Ss_input
+def update_SY():
+    st.session_state.SY = st.session_state.SY_input
+    
+# Initialize session state for value and toggle state
+st.session_state.T_slider_value = -2.0
+st.session_state.Ss_slider_value = -5.0
+st.session_state.SY = 0.25
+st.session_state.number_input = False  # Default to number_input
+    
 # (Here, the methode computes the data for the well function. Those data can be used to generate a type curve.)
 u_min = -5
 u_max = 4
@@ -276,40 +287,48 @@ def inverse():
     log_min2 = -7.0 # S / Corresponds to 10^-7 = 0.0000001
     log_max2 = 0.0  # S / Corresponds to 10^0 = 1
    
+    # Toggle to switch between slider and number-input mode
+    st.session_state.number_input = st.toggle("Use Slider/Number number for paramter input")
+   
     columns2 = st.columns((1,1), gap = 'large')
     with columns2[0]:
-        # READ LOG VALUE, CONVERT, AND WRITE VALUE FOR TRANSMISSIVITY
+        # TRANSMISSIVITY
         container = st.container()
-        T_slider_value=st.slider('_(log of) Transmissivity in m²/s_', log_min1,log_max1,-2.0,0.01,format="%4.2f" )
-        T = 10 ** T_slider_value
+        if st.session_state.number_input:
+            T_slider_value_new = st.number_input("_(log of) Transmissivity in m²/s_", log_min1,log_max1, st.session_state.T_slider_value, 0.01, format="%4.2f", key="T_input", on_change=update_T)
+        else:
+            T_slider_value_new = st.slider("_(log of) Transmissivity in m²/s_", log_min1,log_max1, st.session_state.T_slider_value, 0.01, format="%4.2f", key="T_input", on_change=update_T)
+        T = 10 ** T_slider_value_new
         container.write("**Transmissivity in m²/s**: %5.2e" %T)
+        # Parameter beta
         beta_choice = st.selectbox("**beta**",('0.001','0.01', '0.06', '0.2', '0.6', '1', '2', '4', '6'),)
         beta_list = ['0.001','0.01', '0.06', '0.2', '0.6', '1', '2', '4', '6']
         beta = beta_list.index(beta_choice)
         refine_plot = st.toggle("**Refine** the range of the **Data matching plot**")
         scatter = st.toggle('Show scatter plot')
     with columns2[1]:
-
-        # READ LOG VALUE, CONVERT, AND WRITE VALUE FOR SPECIFIC STORAGE
+        # SPECIFIC STORAGE SS
         container = st.container()
-        S_slider_value=st.slider('_(log of) Specific storage_', log_min2,log_max2,-4.0,0.01,format="%4.2f" )
-        Ss = 10 ** S_slider_value
-        container.write("**Specific storage (dimensionless):** %5.2e" %Ss)
-        SY = st.slider('**Specific Yield**', 0.01, 0.50, 0.25, 0.01, format="%4.2f")
-        if scatter:
-            container = st.container()
-            switch_time_slider_value=st.slider('_(log of) switch time_', 0.,8.,4.,0.01,format="%4.2f" )
-            switch_time = 10 ** switch_time_slider_value
-            container.write("**Time to switch from early to late curve (s):** %5.2e" %switch_time)
+        if st.session_state.number_input:
+            Ss_slider_value_new=st.number_input('_(log of) Specific storage_', log_min2, log_max2, st.session_state.Ss_slider_value,0.01,format="%4.2f", key="Ss_input", on_change=update_Ss)
+        else:
+            Ss_slider_value_new=st.slider('_(log of) Specific storage_', log_min2, log_max2, st.session_state.Ss_slider_value,0.01,format="%4.2f", key="Ss_input", on_change=update_Ss)
+        Ss = 10 ** Ss_slider_value_new
+        container.write("**Specific storage (1/m):** %5.2e" %Ss)
+        # Specific Yield SY
+        if st.session_state.number_input:
+            SY = st.number_input('**Specific Yield**', 0.01, 0.50, st.session_state.SY, 0.01, format="%4.2f", key="SY_input",on_change=update_SY)
+        else:
+            SY = st.slider('**Specific Yield**', 0.01, 0.50, st.session_state.SY, 0.01, format="%4.2f", key="SY_input",on_change=update_SY)
 
-    # Compute K and SS to provide parameters for plausability check
-    # (i.e. are the parameter in a reasonable range)
+    # Compute K and SS to provide parameters for plausability check (i.e. are the parameter in a reasonable range)
     K = T/b     # m/s
     Kz = K/10
-    S = Ss * b
+    Sa = Ss * b
+    S = Sa + SY
     
     # Early (a) and late (b) Theis curve
-    t_a_term = r**2 * S / 4 / T
+    t_a_term = r**2 * Sa / 4 / T
     t_b_term = r**2 * SY / 4 / T
     s_term = Qs/(4 * np.pi * T)
 
@@ -330,9 +349,25 @@ def inverse():
         else:
             s_b_NEU[x] = w_u_b[x][beta] * s_term
      
+    # Compute the switch time between the early and late curve
+    diffs_a_NEU = np.abs(np.gradient(s_a_NEU, t_a_NEU))
+    diffs_b_NEU = np.abs(np.gradient(s_b_NEU, t_b_NEU))
+
+    # Find indices where change is below threshold
+    threshold = 0.000001
+    plateau_indices_a = np.where(diffs_a_NEU < threshold)[0]
+    plateau_indices_b = np.where(diffs_b_NEU < threshold)[0]
+
+     # Get start and end times of the plateau
+    if len(plateau_indices_a) > 0:
+        plateau_start_a = t_a_NEU[plateau_indices_a[0]]
+    if len(plateau_indices_b) > 0:
+        plateau_start_b = t_b_NEU[plateau_indices_b[0]]  
+    switch_time = plateau_start_a + plateau_start_b / 2
+    
     # Compute point data for scatter plot
-    m_ddown_Neuman_a = [compute_s(T, S, SY, i, Qs, r, u_inv_a, w_u_a, beta,1) for i in m_time_s]
-    m_ddown_Neuman_b = [compute_s(T, S, SY, i, Qs, r, u_inv_b, w_u_b, beta,2) for i in m_time_s]
+    m_ddown_Neuman_a = [compute_s(T, Sa, i, Qs, r, u_inv_a, w_u_a, beta) for i in m_time_s]
+    m_ddown_Neuman_b = [compute_s(T, SY, i, Qs, r, u_inv_b, w_u_b, beta) for i in m_time_s]
     
     # Recompile data and combine them according to switch time
     if scatter:
@@ -349,16 +384,13 @@ def inverse():
     props   = dict(boxstyle='round', facecolor='wheat', alpha=0.5)
     out_txt = '\n'.join((       
                          r'$T$ (m²/s) = %10.2E' % (T, ),
-                         r'$S$ (m²/s) = %10.2E' % (S, ),
+                         r'$S_s$ (m²/s) = %10.2E' % (Ss, ),
                          r'$S_y$ (-) = %3.2f' % (SY, )))
     ax.plot(t_a, s, color='deepskyblue',label=r'Computed ddown early - Theis')
     ax.plot(t_b, s, color='blue',label=r'Computed ddown late - Theis')
     ax.plot(t_a_NEU, s_a_NEU, '--', color='dodgerblue',label=r'Computed ddown early - Neuman')
     ax.plot(t_b_NEU, s_b_NEU, '--', color='darkblue', label=r'Computed ddown late - Neuman')
     ax.plot(m_time_s, m_ddown,'o', color='mediumorchid', label=r'measured drawdown - Pirna 25')
-    if scatter:
-        #ax.plot(m_time_s, m_ddown_Neuman_combined,'o', color='green', label=r'points for scatter') # Use this for evaluation
-        plt.vlines(switch_time,1E-4,1E+1,color='orangered',linestyles='dashdot', label='switch time scatter plot and statistics')
     plt.xticks(fontsize=14)
     plt.yticks(fontsize=14)
     plt.yscale("log")
@@ -405,7 +437,7 @@ def inverse():
             st.write("- Transmissivity **$T$ = % 10.2E"% T, " m²/s**")
             st.write("- Storativity **$S$ = % 10.2E"% S, "[dimensionless]**")
             st.write("- Specific Storage **$Ss$ = % 10.2E"% Ss, " 1/m**")
-            st.write("- Specific Yield **$Sy$ = % 10.2E"% SY, "[dimensionless]**")
+            st.write("- Specific Yield **$Sy$ = %5.3f"% SY, "[dimensionless]**")
             st.write("- Horizontal Hydraulic Conductivity **$K_h$ = % 10.2E"% (T/b), " m²/s**")
             st.write("- Vertical Hydraulic Conductivity **$K_v$ = % 10.2E"% (beta*(T/b)*b*b/r/r), " m²/s**")
  

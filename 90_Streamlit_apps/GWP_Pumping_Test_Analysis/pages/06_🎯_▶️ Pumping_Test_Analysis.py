@@ -73,11 +73,8 @@ def compute_s_Theis(T, S, t, Q, r):
     s = theis_s(Q, T, u)
     return s
 
-def compute_s_NEU(T, S, SY, t, Q, r, u_inv_NEU, w_u, beta, var):
-    if var == 1:
-        u_inv = theis_u_inv(T, S, r, t)
-    else:
-        u_inv = second_u_inv (T, SY, r, t)
+def compute_s_NEU(T, S, t, Q, r, u_inv_NEU, w_u, beta):
+    u_inv = theis_u_inv(T, S, r, t)
     s = Neuman_s(Q, T, u_inv, u_inv_NEU, w_u, beta)
     return s    
     
@@ -105,6 +102,16 @@ def compute_statistics(measured, computed):
     rmse = (meanSquaredError) ** (1/2)
     return me, mae, rmse
 
+# Callback function to update session state
+def update_T():
+    st.session_state.T_slider_value = st.session_state.T_input
+def update_S():
+    st.session_state.S_slider_value = st.session_state.S_input
+def update_Ss():
+    st.session_state.Ss_slider_value = st.session_state.Ss_input
+def update_SY():
+    st.session_state.SY = st.session_state.SY_input
+    
 # (Here, the methode computes the data for the well function. Those data can be used to generate a type curve.)
 u_min = -5
 u_max = 4
@@ -202,7 +209,7 @@ w_u_HAN = [[9.420E+00, 6.670E+00, 4.850E+00, 3.510E+00, 2.230E+00, 1.550E+00, 8.
 
 w_u_HAN = np.array(w_u_HAN)
 
-# Select data
+# Select data and solution
 columns = st.columns((1,1), gap = 'large')
 with columns[0]:
     datasource = st.selectbox("**What data should be used?**",
@@ -227,19 +234,19 @@ elif(st.session_state.Data =="Load own CSV dataset"):
     b = 10        # m
     Qs = 0.005    # m^3/s
     Qd = 100      # m^3/d
-    uploaded_file = st.file_uploader("Choose a file (subsequently you can add pumping rate and distance between well and observation). The required data format is time in minutes and drawdown in meters, both separated by a comma.")
+    uploaded_file = st.file_uploader("Choose a file (subsequently you can add the aquifer thicknes, the pumping rate and the distance between well and observation). The required data format for the CSV-file is time in minutes and drawdown in meters, both separated by a comma.")
     if uploaded_file is not None:
         df = pd.read_csv(uploaded_file)
         m_time = list(df.iloc[:,0].values)
         m_ddown = list(df.iloc[:,1].values)
         st.write(df)
         if st.toggle('Pumping rate input in m^3/h'):
-            Qs_slider = st.slider(f'**Pumping rate (m^3/h)** for the **pumping test**', 0.1,100.,10.,0.01,format="%5.2f")
+            Qs_slider = st.number_input(f'**Pumping rate (m³/h)** for the **pumping test**', 0.1,100.,10.,0.01,format="%5.2f")
             Qs = Qs_slider/3600
         else:
-            Qs = st.slider(f'**Pumping rate (m^3/s)** for the **pumping test**', 0.001,0.100,0.005,0.001,format="%5.3f")
-        r = st.slider(f'**Distance** (m) from the **well** for the **observation**', 1,1000,100,1)
-        b = st.slider(f'**Average Aquifer thickness** (m)', 1.,200.,10.,0.01)
+            Qs = st.number_input(f'**Pumping rate (m³/s)** for the **pumping test**', 0.001,0.100,0.005,0.001,format="%5.3f")
+        r = st.number_input(f'**Distance** (m) from the **well** for the **observation**', 1,1000,100,1)
+        b = st.number_input(f'**average Aquifer thickness** (m)', 1.,200.,10.,0.01)
         Qd = Qs*60*60*24 # m^3/d
 elif(st.session_state.Data == "Viterbo (IT) 2023"):
     # Data and parameter from Viterbo 2023
@@ -310,6 +317,31 @@ elif(st.session_state.Data == "Pirna (DE) 2024"):
 m_time_s = [i*60 for i in m_time] # time in seconds
 num_times = len(m_time)
 
+# Initialize session state for value and toggle state
+st.session_state.T_slider_value = -2.0
+# Specific for Neuman
+if st.session_state.Solution == 'Neuman':
+    st.session_state.Ss_slider_value = -5.0
+    st.session_state.SY = 0.25
+# This for Theis / Hantush-Jacob
+else:
+    st.session_state.S_slider_value = -4.0
+st.session_state.number_input = False  # Default to number_input
+
+
+
+# Initialize session state for value and toggle state
+
+
+
+
+
+
+
+
+
+
+
 st.subheader(':green[Inverse parameter fitting]', divider="rainbow")
 
 st.markdown(f"In this section you can modify the parameter values to fit the measured data to the curve defined by {solution}")
@@ -328,35 +360,57 @@ def inverse():
     log_max1 = 0.0  # T / Corresponds to 10^0 = 1
     log_min2 = -7.0 # S / Corresponds to 10^-7 = 0.0000001
     log_max2 = 0.0  # S / Corresponds to 10^0 = 1
+
+    # Toggle to switch between slider and number-input mode
+    st.session_state.number_input = st.toggle("Use Slider/Number number for paramter input")
    
     columns2 = st.columns((1,1), gap = 'large')
     with columns2[0]:
+        # Transmissivity
         container = st.container()
-        T_slider_value=st.slider('_(log of) Transmissivity in m²/s_', log_min1,log_max1,-3.0,0.01,format="%4.2f" )
-        # Convert the slider value to the logarithmic scale
-        T = 10 ** T_slider_value
-        # Display the logarithmic value
+        if st.session_state.number_input:
+            T_slider_value_new = st.number_input("_(log of) Transmissivity in m²/s_", log_min1,log_max1, st.session_state["T_slider_value"], 0.01, format="%4.2f", key="T_input", on_change=update_T)
+        else:
+            T_slider_value_new = st.slider("_(log of) Transmissivity in m²/s_", log_min1, log_max1, st.session_state["T_slider_value"], 0.01, format="%4.2f", key="T_input", on_change=update_T)
+        st.session_state["T_slider_value"] = T_slider_value_new
+        T = 10 ** T_slider_value_new
         container.write("**Transmissivity in m²/s:** %5.2e" %T)
-        container = st.container()
-        S_slider_value=st.slider('_(log of) Specific storage_', log_min2,log_max2,-4.0,0.01,format="%4.2f" )
-        # Convert the slider value to the logarithmic scale
-        Ss = 10 ** S_slider_value
-        # Display the logarithmic value
-        container.write("**Specific storage (dimensionless):** %5.2e" %Ss)
+        if st.session_state.Solution == 'Neuman':
+            # Specific storage Ss
+            container = st.container()
+            if st.session_state.number_input:
+                Ss_slider_value_new=st.number_input('_(log of) Specific storage_', log_min2, log_max2, st.session_state["Ss_slider_value"],0.01,format="%4.2f", key="Ss_input", on_change=update_Ss)
+            else:
+                Ss_slider_value_new=st.slider('_(log of) Specific storage_', log_min2,log_max2, st.session_state["Ss_slider_value"],0.01,format="%4.2f", key="Ss_input", on_change=update_Ss)
+            st.session_state["Ss_slider_value"] = Ss_slider_value_new
+            Ss = 10 ** Ss_slider_value_new
+            container.write("**Specific storage (dimensionless):** %5.2e" %Ss)
+        else:
+            # Storativity S
+            container = st.container()
+            if st.session_state.number_input:
+                S_slider_value_new=st.number_input('_(log of) Storativity_', log_min2,log_max2,st.session_state["S_slider_value"],0.01,format="%4.2f", key="S_input", on_change=update_S)
+            else:
+                S_slider_value_new=st.slider('_(log of) Storativity_', log_min2,log_max2,st.session_state["S_slider_value"],0.01,format="%4.2f", key="S_input", on_change=update_S)
+            st.session_state["S_slider_value"] = S_slider_value_new
+            S = 10 ** S_slider_value_new
+            container.write("**Storativity (dimensionless):** %5.2e" %S)            
         refine_plot = st.toggle("**Refine** the range of the **Data matching plot**")
         scatter = st.toggle('Show scatter plot')
     with columns2[1]:
         if st.session_state.Solution == 'Neuman':
-            SY = st.slider('Specific Yield', 0.01, 0.50, 0.25, 0.01, format="%4.2f")
+            # Specific Yield Sy
+            if st.session_state.number_input:
+                SY = st.number_input('**Specific Yield**', 0.01, 0.50, st.session_state["SY"], 0.01, format="%4.2f", key="SY_input",on_change=update_SY)
+            else:
+                SY = st.slider('**Specific Yield**', 0.01, 0.50, st.session_state["SY"], 0.01, format="%4.2f", key="SY_input",on_change=update_SY)
+            st.session_state["SY"] = SY
+            # beta
             beta_choice = st.selectbox("beta",('0.001','0.01', '0.06', '0.2', '0.6', '1', '2', '4', '6'),)
             beta_list = ['0.001','0.01', '0.06', '0.2', '0.6', '1', '2', '4', '6']
             beta = beta_list.index(beta_choice)
-            if scatter:
-                container = st.container()
-                switch_time_slider_value=st.slider('_(log of) switch time_', 0.,8.,4.,0.01,format="%4.2f" )
-                switch_time = 10 ** switch_time_slider_value
-                container.write("**Time to switch from early to late curve (s):** %5.2e" %switch_time)
         if st.session_state.Solution == 'Hantush-Jacob':
+            # r/B
             r_div_B_choice = st.selectbox("r/B",('0.01', '0.04', '0.1', '0.2', '0.4', '0.6', '1', '1.5', '2', '2.5'),)
             r_div_B_list = ['0.01', '0.04', '0.1', '0.2', '0.4', '0.6', '1', '1.5', '2', '2.5']
             r_div_B = r_div_B_list.index(r_div_B_choice)
@@ -365,21 +419,21 @@ def inverse():
     # Compute K and SS to provide parameters for plausability check
     # (i.e. are the parameter in a reasonable range)
     K = T/b     # m/s
-    S = Ss * b
+    if st.session_state.Solution == 'Neuman':
+        Sa = Ss * b
+        S = Sa + SY
     s_term = Qs/(4 * np.pi * T)
     t_term = r**2 * S / 4 / T
-    
-        
+      
     fig = plt.figure(figsize=(10,14))
     ax = fig.add_subplot(2, 1, 1)
     
     # Info-Box
     props   = dict(boxstyle='round', facecolor='wheat', alpha=0.5)
 
-    
     if st.session_state.Solution == 'Neuman':
         # Early (a) and late (b) Theis curve
-        t_a_term = t_term
+        t_a_term = r**2 * Sa / 4 / T
         t_b_term = r**2 * SY / 4 / T
 
         t_a = u_inv * t_a_term
@@ -388,7 +442,7 @@ def inverse():
         
         out_txt = '\n'.join((       
                      r'$T$ (m²/s) = %10.2E' % (T, ),
-                     r'$S$ (m²/s) = %10.2E' % (S, ),
+                     r'$S_s$ (m²/s) = %10.2E' % (Ss, ),
                      r'$S_y$ (-) = %3.2f' % (SY, )))
 
         # Early Neuman curve
@@ -403,6 +457,22 @@ def inverse():
                 s_b_NEU[x] = well_function(1/u_inv_b[x]) * s_term
             else:
                 s_b_NEU[x] = w_u_b[x][beta] * s_term
+                
+        # Compute the switch time between the early and late curve
+        diffs_a_NEU = np.abs(np.gradient(s_a_NEU, t_a_NEU))
+        diffs_b_NEU = np.abs(np.gradient(s_b_NEU, t_b_NEU))
+    
+        # Find indices where change is below threshold
+        threshold = 0.000001
+        plateau_indices_a = np.where(diffs_a_NEU < threshold)[0]
+        plateau_indices_b = np.where(diffs_b_NEU < threshold)[0]
+    
+         # Get start and end times of the plateau
+        if len(plateau_indices_a) > 0:
+            plateau_start_a = t_a_NEU[plateau_indices_a[0]]
+        if len(plateau_indices_b) > 0:
+            plateau_start_b = t_b_NEU[plateau_indices_b[0]]  
+        switch_time = plateau_start_a + plateau_start_b / 2
         
         plt.title(f"Neuman drawdown with beta = {beta_choice}", fontsize=16)
         ax.plot(t_a, s, color='deepskyblue',label=r'Computed drawdown early - Theis')
@@ -471,8 +541,8 @@ def inverse():
             m_ddown_Hantush = [compute_s_HAN(T, S, i, Qs, r, u_HAN, w_u_HAN, r_div_B) for i in m_time_s]
     
         if st.session_state.Solution == 'Neuman':
-            m_ddown_Neuman_a = [compute_s_NEU(T, S, SY, i, Qs, r, u_inv_a, w_u_a, beta,1) for i in m_time_s]
-            m_ddown_Neuman_b = [compute_s_NEU(T, S, SY, i, Qs, r, u_inv_b, w_u_b, beta,2) for i in m_time_s]
+            m_ddown_Neuman_a = [compute_s_NEU(T, Sa, i, Qs, r, u_inv_a, w_u_a, beta) for i in m_time_s]
+            m_ddown_Neuman_b = [compute_s_NEU(T, SY, i, Qs, r, u_inv_b, w_u_b, beta) for i in m_time_s]
             m_ddown_Neuman_combined = [m1 if t <= switch_time else m2 for t, m1, m2 in zip(m_time_s, m_ddown_Neuman_a, m_ddown_Neuman_b)]
       
         # Find the max for the scatter plot
@@ -540,11 +610,12 @@ def inverse():
                 st.write("**Parameters and Results**")
                 st.write("- Distance of measurement from the well **$r$ = %3i" %r," m**")
                 st.write("- Pumping rate during test **$Q$ = %5.3f" %Qs," m³/s**")
-                #st.write("- Thickness of aquifer **$b$ = % 5.2f"% b, " m**")
+                st.write("- Thickness of aquifer **$b$ = % 5.2f"% b, " m**")
                 st.write("- Transmissivity **$T$ = % 10.2E"% T, " m²/s**")
                 st.write("- Storativity **$S$ = % 10.2E"% S, "[dimensionless]**")
-                #st.write("- Specific Storage **$Ss$ = % 10.2E"% Ss, " 1/m**")
-                #st.write("- Specific Yield **$Sy$ = % 10.2E"% SY, "[dimensionless]**")
+                st.write("- Specific Storage **$Ss$ = % 10.2E"% Ss, " 1/m**")
+                st.write("- Elastic early-time storativity of the unconfined aquifer **$S_a$ = % 10.2E"% Sa, "[dimensionless]**")
+                st.write("- Specific Yield **$Sy$ = %5.3f"% SY, "[dimensionless]**")
                 #st.write("- Horizontal Hydraulic Conductivity **$K_h$ = % 10.2E"% (T/b), " m²/s**")
                 #st.write("- Vertical Hydraulic Conductivity **$K_v$ = % 10.2E"% (beta*(T/b)*b*b/r/r), " m²/s**")
 inverse()

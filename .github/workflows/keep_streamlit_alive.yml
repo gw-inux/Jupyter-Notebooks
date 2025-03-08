@@ -16,7 +16,6 @@ jobs:
           urls=(
             "https://gwp-wellcapture.streamlit.app/"
             "https://gwp-1d-conservative-transport2.streamlit.app/"
-            "https://your-third-app.streamlit.app/"
             "https://symple25.streamlit.app/"
             "https://gwf-1d-unconf-noflow-calib.streamlit.app/"
             "https://slugtest-unconfined.streamlit.app/"

@@ -114,6 +114,18 @@ def compute_s(T, S, t, Q, r):
     s = theis_s(Q, T, u)
     return s
     
+# Initialize session state for value and toggle state
+if "T_slider_value" not in st.session_state:
+    st.session_state["T_slider_value"] = -3.0  # Default value
+if "S_slider_value" not in st.session_state:
+    st.session_state["S_slider_value"] = -4.0  # Default value
+if "T2_slider_value" not in st.session_state:
+    st.session_state["T2_slider_value"] = -3.0  # Default value
+if "S2_slider_value" not in st.session_state:
+    st.session_state["S2_slider_value"] = -4.0  # Default value
+number_input = False
+st.session_state.number_input = number_input  # Default to number_input
+
 # Fixed values
 u_max = 1
 r_max = 10000
@@ -124,105 +136,125 @@ w_u  = [well_function(u_max/r_max) for x in range(r_max)]
 max_s = 20
 max_r = 1000
 
-   
-# Get input data
-# Define the minimum and maximum for the logarithmic scale
+# Define the part of the code that is re-run with each user interaction
 
-log_min1 = -7.0 # T / Corresponds to 10^-7 = 0.0000001
-log_max1 = 0.0  # T / Corresponds to 10^0 = 1
-
-log_min2 = -7.0 # S / Corresponds to 10^-7 = 0.0000001
-log_max2 = 0.0  # S / Corresponds to 10^0 = 1
-   
-columns = st.columns((1,1,1), gap = 'large')
-
-with columns[0]:
-    Q = st.slider(f'**Pumping rate $Q$ (m³/s)**', 0.001,0.03,0.000,0.001,format="%5.3f")
-    r_show = st.slider(f'**Distance $r$ in meters**',0,1000,100,1)
-    t_show = st.slider(f'**Time $t$ in seconds**',0.001,86400.*7,86400.,600.,format="%5.0f")
-with columns[1]:
-    #Logaritmic T-Slider
-    container = st.container()
-    T_slider_value=st.slider('_(log of) Transmissivity $T$_', log_min1,log_max1,-3.0,0.01,format="%4.2f", key='T1' )
-    T = 10 ** T_slider_value
-    container.write("**$T$ in m²/s:** %5.2e" %T)
-    #Logaritmic S-Slider
-    container = st.container()
-    S_slider_value=st.slider('_(log of) Storativity $S$', log_min2,log_max2,-4.0,0.01,format="%4.2f", key='S1' )
-    S = 10 ** S_slider_value
-    container.write("**$S$ (dimensionless):** %5.2e" %S)    
-    comparison = st.toggle('Second set of $T$ and $S$ for comparison')
-with columns[2]:
-    
-    if comparison:
+@st.fragment
+def transient_flow_well():
+    # Get input data
+    # Define the minimum and maximum for the logarithmic scale 
+    log_min1 = -7.0 # T / Corresponds to 10^-7 = 0.0000001
+    log_max1 = 0.0  # T / Corresponds to 10^0 = 1
+    log_min2 = -7.0 # S / Corresponds to 10^-7 = 0.0000001
+    log_max2 = 0.0  # S / Corresponds to 10^0 = 1
+       
+    # Toggle to switch between slider and number-input mode
+    st.session_state.number_input = st.toggle("Use Slider/Number number for paramter input") 
+       
+    columns = st.columns((1,1,1), gap = 'medium')
+    with columns[0]:
+        Q = st.slider(f'**Pumping rate $Q$ (m³/s)**', 0.001,0.03,0.000,0.001,format="%5.3f")
+        r_show = st.slider(f'**Distance $r$ in meters**',0,1000,100,1)
+        t_show = st.slider(f'**Time $t$ in seconds**',0.001,86400.*7,86400.,600.,format="%5.0f")
+    with columns[1]:
+        #Logaritmic T-Slider
         container = st.container()
-        T2_slider_value=st.slider('_(log of) Transmissivity $T2$_', log_min1,log_max1,-3.0,0.01,format="%4.2f", key='T2' )
-        T2 = 10 ** T2_slider_value
-        container.write("**$T2$ in m²/s:** %5.2e" %T2)
+        if st.session_state.number_input:
+            T_slider_value_new = st.number_input("_(log of) Transmissivity $T$_", log_min1,log_max1, st.session_state["T_slider_value"], 0.01, format="%4.2f")
+        else:
+            T_slider_value_new = st.slider("_(log of) Transmissivity $T$_", log_min1, log_max1, st.session_state["T_slider_value"], 0.01, format="%4.2f")
+        st.session_state["T_slider_value"] = T_slider_value_new
+        T = 10 ** T_slider_value_new
+        container.write("**$T$ in m²/s:** %5.2e" %T)
         #Logaritmic S-Slider
         container = st.container()
-        S2_slider_value=st.slider('_(log of) Storativity $S2$_', log_min2,log_max2,-4.0,0.01,format="%4.2f", key='S2' )
-        S2 = 10 ** S2_slider_value
-        container.write("**$S2$ (dimensionless):** %5.2e" %S2)
+        if st.session_state.number_input:
+            S_slider_value_new=st.number_input('_(log of) Storativity $S$_', log_min2, log_max2, st.session_state["S_slider_value"],0.01,format="%4.2f" )
+        else:
+            S_slider_value_new=st.slider('_(log of) Storativity $S$_', log_min2,log_max2, st.session_state["S_slider_value"],0.01,format="%4.2f" )
+        st.session_state["S_slider_value"] = S_slider_value_new
+        S = 10 ** S_slider_value_new
+        container.write("**$S$ (dimensionless):** %5.2e" %S)    
+        comparison = st.toggle('Second set of $T$ and $S$ for comparison')
+    with columns[2]:
         
+        if comparison:
+            container = st.container()
+            if st.session_state.number_input:
+                T2_slider_value_new = st.number_input("_(log of) Transmissivity $T2$_", log_min1,log_max1, st.session_state["T2_slider_value"], 0.01, format="%4.2f")
+            else:
+                T2_slider_value_new = st.slider("_(log of) Transmissivity $T2$_", log_min1, log_max1, st.session_state["T2_slider_value"], 0.01, format="%4.2f")
+            st.session_state["T2_slider_value"] = T2_slider_value_new
+            T2 = 10 ** T2_slider_value_new
+            container.write("**$T2$ in m²/s:** %5.2e" %T2)
+            #Logaritmic S-Slider
+            container = st.container()
+            if st.session_state.number_input:
+                S2_slider_value_new=st.number_input('_(log of) Storativity $S2$_', log_min2, log_max2, st.session_state["S2_slider_value"],0.01,format="%4.2f" )
+            else:
+                S2_slider_value_new=st.slider('_(log of) Storativity $S2$_', log_min2,log_max2, st.session_state["S2_slider_value"],0.01,format="%4.2f" )
+            st.session_state["S2_slider_value"] = S2_slider_value_new
+            S2 = 10 ** S2_slider_value_new
+            container.write("**$S2$ (dimensionless):** %5.2e" %S2)
+            
+    # Range of temporal / spatial coordinate
+    r = np.linspace(1, max_r, 200)
+    r_neg = r * -1.0
+    t = np.linspace(1, 604800, 200)
     
-# Range of temporal / spatial coordinate
-r = np.linspace(1, max_r, 200)
-r_neg = r * -1.0
-t = np.linspace(1, 604800, 200)
-
-# Compute drawdown for  1 and 2
-s1 = compute_s(T, S, t_show, Q, r)
-s2  = compute_s(T, S, t, Q, r_show)
-if comparison:
-    # Compute drawdown for  1_2
-    s1_2 = compute_s(T2, S2, t_show, Q, r)
-    s2_2 = compute_s(T2, S2, t, Q, r_show)
-
-# Compute drawdown for a specific point
-x_point = r_show
-y_point = compute_s(T, S, t_show, Q, r_show)
-x2_point = t_show
-y2_point = compute_s(T, S, t_show, Q, r_show)
-
-# Plotting and printing of results
-fig=plt.figure(figsize=(15, 6))
-
-plt.subplot(1, 2, 1)    
-plt.title('Drawdown vs Distance at seconds =  %8i' %x2_point, fontsize=16)
-plt.plot(r, s1, linewidth=1., color='b', label=r'drawdown prediction')
-plt.plot(r_neg, s1, linewidth=1, color='b')
-if comparison:
-    plt.plot(r, s1_2, linewidth=1., color='black', label=r'comparison', linestyle='dashed')
-    plt.plot(r_neg, s1_2, linewidth=1, color='black', linestyle='dashed')
-plt.fill_between(r,s1,max_s, facecolor='lightblue')
-plt.fill_between(r_neg,s1,max_s, facecolor='lightblue')
-plt.xlim(-max_r, max_r)
-plt.ylim(max_s,-5)
-plt.plot(x_point,y_point, marker='o', color='r',linestyle ='None', label='drawdown plotted & printed below graph') 
-plt.xlabel(r'Distance from well in m', fontsize=14)
-plt.ylabel(r'Drawdown in m', fontsize=14)
-plt.legend()
-plt.grid(True)
-
-plt.subplot(1, 2, 2)
-plt.title('Drawdown vs Time at meters =  %8i' %x_point, fontsize=16)
-plt.plot(t, s2, linewidth=1., color='r', label=r'drawdown prediction')
-if comparison:
-    plt.plot(t, s2_2, linewidth=1., color='black', label=r'drawdown prediction', linestyle='dashed')
-plt.fill_between(t,s2,max_s, facecolor='mistyrose')
-plt.plot(x2_point,y2_point, marker='o', color='b',linestyle ='None', label='drawdown ') 
-plt.xlim(0, 86400*7)
-plt.ylim(max_s,-5)
-plt.xlabel(r'time in s', fontsize=14)
-plt.ylabel(r'Drawdown in m', fontsize=14)
-plt.xticks(np.arange(0, 7*86400, step=86400))  # Set label locations.
-plt.legend()
-plt.grid(True)
-
-st.pyplot(fig)
-
-st.write('**Drawdown  =  %5.2f' %y_point, ' m at distance = %8.2f' %x_point, ' m and time =  %8i' %x2_point, ' sec**')
+    # Compute drawdown for  1 and 2
+    s1 = compute_s(T, S, t_show, Q, r)
+    s2  = compute_s(T, S, t, Q, r_show)
+    if comparison:
+        # Compute drawdown for  1_2
+        s1_2 = compute_s(T2, S2, t_show, Q, r)
+        s2_2 = compute_s(T2, S2, t, Q, r_show)
+    
+    # Compute drawdown for a specific point
+    x_point = r_show
+    y_point = compute_s(T, S, t_show, Q, r_show)
+    x2_point = t_show
+    y2_point = compute_s(T, S, t_show, Q, r_show)
+    
+    # Plotting and printing of results
+    fig=plt.figure(figsize=(15, 6))
+    
+    plt.subplot(1, 2, 1)    
+    plt.title('Drawdown vs Distance at seconds =  %8i' %x2_point, fontsize=16)
+    plt.plot(r, s1, linewidth=1., color='b', label=r'drawdown prediction')
+    plt.plot(r_neg, s1, linewidth=1, color='b')
+    if comparison:
+        plt.plot(r, s1_2, linewidth=1., color='black', label=r'comparison', linestyle='dashed')
+        plt.plot(r_neg, s1_2, linewidth=1, color='black', linestyle='dashed')
+    plt.fill_between(r,s1,max_s, facecolor='lightblue')
+    plt.fill_between(r_neg,s1,max_s, facecolor='lightblue')
+    plt.xlim(-max_r, max_r)
+    plt.ylim(max_s,-5)
+    plt.plot(x_point,y_point, marker='o', color='r',linestyle ='None', label='drawdown plotted & printed below graph') 
+    plt.xlabel(r'Distance from well in m', fontsize=14)
+    plt.ylabel(r'Drawdown in m', fontsize=14)
+    plt.legend()
+    plt.grid(True)
+    
+    plt.subplot(1, 2, 2)
+    plt.title('Drawdown vs Time at meters =  %8i' %x_point, fontsize=16)
+    plt.plot(t, s2, linewidth=1., color='r', label=r'drawdown prediction')
+    if comparison:
+        plt.plot(t, s2_2, linewidth=1., color='black', label=r'drawdown prediction', linestyle='dashed')
+    plt.fill_between(t,s2,max_s, facecolor='mistyrose')
+    plt.plot(x2_point,y2_point, marker='o', color='b',linestyle ='None', label='drawdown ') 
+    plt.xlim(0, 86400*7)
+    plt.ylim(max_s,-5)
+    plt.xlabel(r'time in s', fontsize=14)
+    plt.ylabel(r'Drawdown in m', fontsize=14)
+    plt.xticks(np.arange(0, 7*86400, step=86400))  # Set label locations.
+    plt.legend()
+    plt.grid(True)
+    
+    st.pyplot(fig)
+    
+    st.write('**Drawdown  =  %5.2f' %y_point, ' m at distance = %8.2f' %x_point, ' m and time =  %8i' %x2_point, ' sec**')
+    
+transient_flow_well()
 
 st.subheader(':blue-background[Continued investigation]', divider="blue")
 st.markdown('''

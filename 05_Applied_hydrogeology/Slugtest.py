@@ -210,7 +210,7 @@ def slug():
             st.markdown("""
             The plotted data are based on
             - $r_c$ = 0.03 m
-            - $r_w$ = 0.20 m
+            - $r_w$ = 0.07 m
             - $L$ = 2.0 m
             """)
         if(st.session_state.Data =="Data from random properties with added noise"):

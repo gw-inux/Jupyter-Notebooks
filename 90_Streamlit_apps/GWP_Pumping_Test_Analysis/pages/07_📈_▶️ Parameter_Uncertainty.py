@@ -150,6 +150,16 @@ def compute_statistics(measured, computed):
     rmse = (meanSquaredError) ** (1/2)
     return me, mae, rmse
     
+def update_T():
+    st.session_state.T_slider_value = st.session_state.T_input
+def update_S():
+    st.session_state.S_slider_value = st.session_state.S_input
+    
+# Initialize session state for value and toggle state
+st.session_state.T_slider_value = -2.0
+st.session_state.S_slider_value = -4.0
+st.session_state.number_input = False  # Default to number_input
+
 # (Here, the method computes the data for the well function. Those data can be used to generate a type curve.)
 u_min = -5
 u_max = 4
@@ -195,6 +205,9 @@ def inverse():
     log_max1 = 0.0  # T / Corresponds to 10^0 = 1
     log_min2 = -7.0 # S / Corresponds to 10^-7 = 0.0000001
     log_max2 = 0.0  # S / Corresponds to 10^0 = 1
+    
+    # Toggle to switch between slider and number-input mode
+    st.session_state.number_input = st.toggle("Use Slider/Number number for paramter input")
 
     columns2 = st.columns((1,1,1), gap = 'medium')
     with columns2[0]:
@@ -209,34 +222,44 @@ def inverse():
         scatter = st.toggle('Show scatter plot')
         show_truth = st.toggle(":rainbow[How accurate are the parameter value estimates?]")
     with columns2[1]:
-        # READ LOG VALUE, CONVERT, AND WRITE VALUE FOR TRANSMISSIVITY
-        container = st.container()
-        T_slider_value=st.slider('_(log of) Transmissivity in m²/s_', log_min1,log_max1,-3.0,0.01,format="%4.2f" )
-        T = 10 ** T_slider_value
-        container.write("**Transmissivity in m²/s:** %5.2e" %T)
-        # READ LOG VALUE, CONVERT, AND WRITE VALUE FOR STORATIVIT
-        container = st.container()
-        S_slider_value=st.slider('_(log of) Storativity_', log_min2,log_max2,-4.0,0.01,format="%4.2f" )
-        S = 10 ** S_slider_value
-        container.write("**Storativity (dimensionless):** %5.2e" %S)
+        with st.expander('Parameters _T_ and _S_'):
+            # READ LOG VALUE, CONVERT, AND WRITE VALUE FOR TRANSMISSIVITY
+            container = st.container()
+            if st.session_state.number_input:
+                T_slider_value_new = st.number_input("_(log of) Transmissivity in m²/s_", log_min1,log_max1, st.session_state["T_slider_value"], 0.01, format="%4.2f", key="T_input", on_change=update_T)
+            else:
+                T_slider_value_new = st.slider("_(log of) Transmissivity in m²/s_", log_min1, log_max1, st.session_state["T_slider_value"], 0.01, format="%4.2f", key="T_input", on_change=update_T)
+            st.session_state["T_slider_value"] = T_slider_value_new
+            T = 10 ** T_slider_value_new
+            container.write("**Transmissivity in m²/s:** %5.2e" %T)
+            # READ LOG VALUE, CONVERT, AND WRITE VALUE FOR STORATIVIT
+            container = st.container()
+            if st.session_state.number_input:
+                S_slider_value_new=st.number_input('_(log of) Storativity_', log_min2,log_max2,st.session_state["S_slider_value"],0.01,format="%4.2f", key="S_input", on_change=update_S)
+            else:
+                S_slider_value_new=st.slider('_(log of) Storativity_', log_min2,log_max2,st.session_state["S_slider_value"],0.01,format="%4.2f", key="S_input", on_change=update_S)
+            st.session_state["S_slider_value"] = S_slider_value_new
+            S = 10 ** S_slider_value_new
+            container.write("**Storativity (dimensionless):** %5.2e" %S)
     with columns2[2]:
         prediction = st.toggle('**Make the prediction**')
         if prediction:
-            Q_pred = st.slider(f'**Pumping rate** (m³/s) for the **prediction**', 0.001,0.100,Qs,0.001,format="%5.3f")
-            r_pred = st.slider(f'**Distance** (m) from the **well** for the **prediction**', 1,1000,r,1)
-            per_pred = st.slider(f'**Duration** of the **prediction period** (days)',1,3652,3,1) 
-            max_t = 86400*per_pred
-            if per_pred <= 3:
-                t_search = st.slider(f'**Select time (s) for printout below graph**', 1,max_t,1,1)
-            elif per_pred <= 7:
-                t_search_h = st.slider(f'**Select time (hours) for printout below graph**', 1.,24.*per_pred,1.)
-                t_search = t_search_h*3600
-            elif per_pred <= 366:
-                t_search_d = st.slider(f'**Select time (days) for printout below graph**', 1.,per_pred*1.0,1.)
-                t_search = t_search_d*86400
-            else:
-                t_search_mo = st.slider(f'**Select time (months) for printout below graph**', 1.,per_pred/30.4375,1.)
-                t_search = t_search_mo*2629800
+            Q_pred = st.number_input(f'**Pumping rate** (m³/s) for the **prediction**', 0.001,0.100,Qs,0.001,format="%5.3f")
+            with st.expander('Define time and space for prediction'):
+                r_pred = st.slider(f'**Distance** (m) from the **well** for the **prediction**', 1,1000,r,1)
+                per_pred = st.slider(f'**Duration** of the **prediction period** (days)',1,3652,3,1) 
+                max_t = 86400*per_pred
+                if per_pred <= 3:
+                    t_search = st.slider(f'**Select time (s) for printout below graph**', 1,max_t,1,1)
+                elif per_pred <= 7:
+                    t_search_h = st.slider(f'**Select time (hours) for printout below graph**', 1.,24.*per_pred,1.)
+                    t_search = t_search_h*3600
+                elif per_pred <= 366:
+                    t_search_d = st.slider(f'**Select time (days) for printout below graph**', 1.,per_pred*1.0,1.)
+                    t_search = t_search_d*86400
+                else:
+                    t_search_mo = st.slider(f'**Select time (months) for printout below graph**', 1.,per_pred/30.4375,1.)
+                    t_search = t_search_mo*2629800
    
     if long:
         n_samples = n_samples_long

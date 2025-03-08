@@ -9,6 +9,22 @@ st.title('Soil Water Retention characteristics')
 
 st.subheader(':red-background[Understanding the soil water retention curve]', divider="red")
 
+# Authors, institutions, and year
+year = 2025 
+authors = {
+    "Thomas Reimann": [1],  # Author 1 belongs to Institution 1
+    "Rudolf Liedl": [1],
+   #"Colleague Name": [1],  # Author 2 also belongs to Institution 1
+}
+institutions = {
+    1: "TU Dresden",
+#   2: "Second Institution / Organization"
+}
+index_symbols = ["¹", "²", "³", "⁴", "⁵", "⁶", "⁷", "⁸", "⁹"]
+author_list = [f"{name}{''.join(index_symbols[i-1] for i in indices)}" for name, indices in authors.items()]
+institution_list = [f"{index_symbols[i-1]} {inst}" for i, inst in institutions.items()]
+institution_text = " | ".join(institution_list)  # Institutions in one line
+
 # Initial assessment
 
 columnsQ1 = st.columns((1,1), gap = 'large')
@@ -111,3 +127,11 @@ with columnsN1[1]:
 with columnsN1[2]:
     if st.button("Next page"):
         st.switch_page("pages/03_📈_▶️ The SWC in comparison.py")
+        
+'---'
+# Render footer with authors, institutions, and license logo in a single line
+columns_lic = st.columns((5,1))
+with columns_lic[0]:
+    st.markdown(f'Developed by {", ".join(author_list)} ({year}). <br> {institution_text}', unsafe_allow_html=True)
+with columns_lic[1]:
+    st.image('FIGS/CC_BY-SA_icon.png')
