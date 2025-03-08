@@ -174,17 +174,19 @@ def compute_statistics(measured, computed):
     rmse = (meanSquaredError) ** (1/2)
     return me, mae, rmse
 
+# Callback function to update session state
+def update_T():
+    st.session_state.T_slider_value = st.session_state.T_input
+def update_Ss():
+    st.session_state.Ss_slider_value = st.session_state.Ss_input
+def update_SY():
+    st.session_state.SY = st.session_state.SY_input
+    
 # Initialize session state for value and toggle state
-if "T_slider_value" not in st.session_state:
-    st.session_state["T_slider_value"] = -2.0  # Default value
-if "Ss_slider_value" not in st.session_state:
-    st.session_state["Ss_slider_value"] = -5.0  # Default value
-#if "SY" not in st.session_state:
-#    st.session_state["SY"] = 0.25  # Default value
-SY = 0.25
-st.session_state.SY = SY
-number_input = False
-st.session_state.number_input = number_input  # Default to number_input
+st.session_state.T_slider_value = -2.0
+st.session_state.Ss_slider_value = -5.0
+st.session_state.SY = 0.25
+st.session_state.number_input = False  # Default to number_input
     
 # (Here, the methode computes the data for the well function. Those data can be used to generate a type curve.)
 u_min = -5
@@ -293,10 +295,9 @@ def inverse():
         # TRANSMISSIVITY
         container = st.container()
         if st.session_state.number_input:
-            T_slider_value_new = st.number_input("_(log of) Transmissivity in m²/s_", log_min1,log_max1, st.session_state["T_slider_value"], 0.01, format="%4.2f")
+            T_slider_value_new = st.number_input("_(log of) Transmissivity in m²/s_", log_min1,log_max1, st.session_state.T_slider_value, 0.01, format="%4.2f", key="T_input", on_change=update_T)
         else:
-            T_slider_value_new = st.slider("_(log of) Transmissivity in m²/s_", log_min1, log_max1, st.session_state["T_slider_value"], 0.01, format="%4.2f")
-        st.session_state["T_slider_value"] = T_slider_value_new
+            T_slider_value_new = st.slider("_(log of) Transmissivity in m²/s_", log_min1,log_max1, st.session_state.T_slider_value, 0.01, format="%4.2f", key="T_input", on_change=update_T)
         T = 10 ** T_slider_value_new
         container.write("**Transmissivity in m²/s**: %5.2e" %T)
         # Parameter beta
@@ -309,18 +310,16 @@ def inverse():
         # SPECIFIC STORAGE SS
         container = st.container()
         if st.session_state.number_input:
-            Ss_slider_value_new=st.number_input('_(log of) Specific storage_', log_min2, log_max2, st.session_state["Ss_slider_value"],0.01,format="%4.2f" )
+            Ss_slider_value_new=st.number_input('_(log of) Specific storage_', log_min2, log_max2, st.session_state.Ss_slider_value,0.01,format="%4.2f", key="Ss_input", on_change=update_Ss)
         else:
-            Ss_slider_value_new=st.slider('_(log of) Specific storage_', log_min2,log_max2, st.session_state["Ss_slider_value"],0.01,format="%4.2f" )
-        st.session_state["Ss_slider_value"] = Ss_slider_value_new
+            Ss_slider_value_new=st.slider('_(log of) Specific storage_', log_min2, log_max2, st.session_state.Ss_slider_value,0.01,format="%4.2f", key="Ss_input", on_change=update_Ss)
         Ss = 10 ** Ss_slider_value_new
         container.write("**Specific storage (1/m):** %5.2e" %Ss)
         # Specific Yield SY
         if st.session_state.number_input:
-            SY = st.number_input('**Specific Yield**', 0.01, 0.50, st.session_state.SY, 0.01, format="%4.2f")
+            SY = st.number_input('**Specific Yield**', 0.01, 0.50, st.session_state.SY, 0.01, format="%4.2f", key="SY_input",on_change=update_SY)
         else:
-            SY = st.slider('**Specific Yield**', 0.01, 0.50, st.session_state.SY, 0.01, format="%4.2f")
-        st.session_state.SY = SY
+            SY = st.slider('**Specific Yield**', 0.01, 0.50, st.session_state.SY, 0.01, format="%4.2f", key="SY_input",on_change=update_SY)
 
     # Compute K and SS to provide parameters for plausability check (i.e. are the parameter in a reasonable range)
     K = T/b     # m/s
