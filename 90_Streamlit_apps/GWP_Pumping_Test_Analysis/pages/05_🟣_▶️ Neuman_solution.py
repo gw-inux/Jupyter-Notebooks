@@ -91,13 +91,13 @@ with st.expander('**Click here for more information** about the underlying theor
     - $u_A$ and $u_B$ are dimensionless time parameters, defined as:
     """)
 
-    st.latex(r'''u_A = \frac{r^2 S}{4 T t}''')
+    st.latex(r'''u_A = \frac{r^2 S_a}{4 T t}''')
     st.latex(r'''u_B = \frac{r^2 S_y}{4 K_z b t}''')
     
     st.markdown(
     """    
     where:
-    - $S$ is storativity of the unconfined aquifer (the product of specific storage and aquifer thickness),
+    - $S_a$ is the elastic early-time storativity of the unconfined aquifer (the product of specific storage and aquifer thickness),
     - $Sy$ is specific yield of the unconfined aquifer,
     - $K_z$ is vertical hydraulic conductivity of the unconfined aquifer,
     - $b$ is saturated thickness of the unconfined aquifer,
@@ -145,11 +145,8 @@ def Neuman_s(Q, T, u, u_inv_NEU, w_u, beta):
     s = Q / 4. / np.pi / T * w_u_interpolated(u)
     return s
 
-def compute_s(T, S, SY, t, Q, r, u_inv_NEU, w_u, beta, var):
-    if var == 1:
-        u_inv = theis_u_inv(T, S, r, t)
-    else:
-        u_inv = second_u_inv (T, SY, r, t)
+def compute_s(T, S, t, Q, r, u_inv_NEU, w_u, beta):
+    u_inv = theis_u_inv(T, S, r, t)
     s = Neuman_s(Q, T, u_inv, u_inv_NEU, w_u, beta)
     return s
     
@@ -180,8 +177,8 @@ def compute_statistics(measured, computed):
 # Initialize session state for value and toggle state
 if "T_slider_value" not in st.session_state:
     st.session_state["T_slider_value"] = -2.0  # Default value
-if "S_slider_value" not in st.session_state:
-    st.session_state["S_slider_value"] = -4.0  # Default value
+if "Ss_slider_value" not in st.session_state:
+    st.session_state["Ss_slider_value"] = -5.0  # Default value
 if "SY" not in st.session_state:
     st.session_state["SY"] = 0.25  # Default value
 number_input = False
@@ -291,12 +288,12 @@ def inverse():
    
     columns2 = st.columns((1,1), gap = 'large')
     with columns2[0]:
-        # READ LOG VALUE, CONVERT, AND WRITE VALUE FOR TRANSMISSIVITY
+        # TRANSMISSIVITY
         container = st.container()
         if st.session_state.number_input:
-            T_slider_value_new = st.slider("_(log of) Transmissivity in m²/s_", log_min1,log_max1, st.session_state["T_slider_value"], 0.01, format="%4.2f")
+            T_slider_value_new = st.number_input("_(log of) Transmissivity in m²/s_", log_min1,log_max1, st.session_state["T_slider_value"], 0.01, format="%4.2f")
         else:
-            T_slider_value_new = st.number_input("_(log of) Transmissivity in m²/s_", log_min1, log_max1, st.session_state["T_slider_value"], 0.01, format="%4.2f")
+            T_slider_value_new = st.slider("_(log of) Transmissivity in m²/s_", log_min1, log_max1, st.session_state["T_slider_value"], 0.01, format="%4.2f")
         st.session_state["T_slider_value"] = T_slider_value_new
         T = 10 ** T_slider_value_new
         container.write("**Transmissivity in m²/s**: %5.2e" %T)
@@ -307,28 +304,30 @@ def inverse():
         refine_plot = st.toggle("**Refine** the range of the **Data matching plot**")
         scatter = st.toggle('Show scatter plot')
     with columns2[1]:
-        # READ LOG VALUE, CONVERT, AND WRITE VALUE FOR SPECIFIC STORAGE
+        # SPECIFIC STORAGE SS
         container = st.container()
         if st.session_state.number_input:
-            S_slider_value_new=st.slider('_(log of) Specific storage_', log_min2, log_max2, st.session_state["S_slider_value"],0.01,format="%4.2f" )
+            Ss_slider_value_new=st.number_input('_(log of) Specific storage_', log_min2, log_max2, st.session_state["Ss_slider_value"],0.01,format="%4.2f" )
         else:
-            S_slider_value_new=st.number_input('_(log of) Specific storage_', log_min2,log_max2, st.session_state["S_slider_value"],0.01,format="%4.2f" )
-        st.session_state["S_slider_value"] = S_slider_value_new
-        Ss = 10 ** S_slider_value_new
-        container.write("**Specific storage (dimensionless):** %5.2e" %Ss)
+            Ss_slider_value_new=st.slider('_(log of) Specific storage_', log_min2,log_max2, st.session_state["Ss_slider_value"],0.01,format="%4.2f" )
+        st.session_state["Ss_slider_value"] = Ss_slider_value_new
+        Ss = 10 ** Ss_slider_value_new
+        container.write("**Specific storage (1/m):** %5.2e" %Ss)
+        # Specific Yield SY
         if st.session_state.number_input:
-            SY = st.slider('**Specific Yield**', 0.01, 0.50, st.session_state["SY"], 0.01, format="%4.2f")
-        else:
             SY = st.number_input('**Specific Yield**', 0.01, 0.50, st.session_state["SY"], 0.01, format="%4.2f")
+        else:
+            SY = st.slider('**Specific Yield**', 0.01, 0.50, st.session_state["SY"], 0.01, format="%4.2f")
         st.session_state["SY"] = SY
 
     # Compute K and SS to provide parameters for plausability check (i.e. are the parameter in a reasonable range)
     K = T/b     # m/s
     Kz = K/10
-    S = Ss * b
+    Sa = Ss * b
+    S = Sa + SY
     
     # Early (a) and late (b) Theis curve
-    t_a_term = r**2 * S / 4 / T
+    t_a_term = r**2 * Sa / 4 / T
     t_b_term = r**2 * SY / 4 / T
     s_term = Qs/(4 * np.pi * T)
 
@@ -366,8 +365,8 @@ def inverse():
     switch_time = plateau_start_a + plateau_start_b / 2
     
     # Compute point data for scatter plot
-    m_ddown_Neuman_a = [compute_s(T, S, SY, i, Qs, r, u_inv_a, w_u_a, beta,1) for i in m_time_s]
-    m_ddown_Neuman_b = [compute_s(T, S, SY, i, Qs, r, u_inv_b, w_u_b, beta,2) for i in m_time_s]
+    m_ddown_Neuman_a = [compute_s(T, Sa, i, Qs, r, u_inv_a, w_u_a, beta) for i in m_time_s]
+    m_ddown_Neuman_b = [compute_s(T, SY, i, Qs, r, u_inv_b, w_u_b, beta) for i in m_time_s]
     
     # Recompile data and combine them according to switch time
     if scatter:
@@ -384,7 +383,7 @@ def inverse():
     props   = dict(boxstyle='round', facecolor='wheat', alpha=0.5)
     out_txt = '\n'.join((       
                          r'$T$ (m²/s) = %10.2E' % (T, ),
-                         r'$S$ (m²/s) = %10.2E' % (S, ),
+                         r'$S_s$ (m²/s) = %10.2E' % (Ss, ),
                          r'$S_y$ (-) = %3.2f' % (SY, )))
     ax.plot(t_a, s, color='deepskyblue',label=r'Computed ddown early - Theis')
     ax.plot(t_b, s, color='blue',label=r'Computed ddown late - Theis')
@@ -437,7 +436,7 @@ def inverse():
             st.write("- Transmissivity **$T$ = % 10.2E"% T, " m²/s**")
             st.write("- Storativity **$S$ = % 10.2E"% S, "[dimensionless]**")
             st.write("- Specific Storage **$Ss$ = % 10.2E"% Ss, " 1/m**")
-            st.write("- Specific Yield **$Sy$ = % 10.2E"% SY, "[dimensionless]**")
+            st.write("- Specific Yield **$Sy$ = %5.3f"% SY, "[dimensionless]**")
             st.write("- Horizontal Hydraulic Conductivity **$K_h$ = % 10.2E"% (T/b), " m²/s**")
             st.write("- Vertical Hydraulic Conductivity **$K_v$ = % 10.2E"% (beta*(T/b)*b*b/r/r), " m²/s**")
  
