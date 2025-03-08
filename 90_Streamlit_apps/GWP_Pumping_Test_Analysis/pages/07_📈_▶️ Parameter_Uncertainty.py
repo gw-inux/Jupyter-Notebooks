@@ -150,13 +150,15 @@ def compute_statistics(measured, computed):
     rmse = (meanSquaredError) ** (1/2)
     return me, mae, rmse
     
+def update_T():
+    st.session_state.T_slider_value = st.session_state.T_input
+def update_S():
+    st.session_state.S_slider_value = st.session_state.S_input
+    
 # Initialize session state for value and toggle state
-if "T_slider_value" not in st.session_state:
-    st.session_state["T_slider_value"] = -3.0  # Default value
-if "S_slider_value" not in st.session_state:
-    st.session_state["S_slider_value"] = -4.0  # Default value
-number_input = False
-st.session_state.number_input = number_input  # Default to number_input
+st.session_state.T_slider_value = -2.0
+st.session_state.S_slider_value = -4.0
+st.session_state.number_input = False  # Default to number_input
 
 # (Here, the method computes the data for the well function. Those data can be used to generate a type curve.)
 u_min = -5
@@ -224,18 +226,18 @@ def inverse():
             # READ LOG VALUE, CONVERT, AND WRITE VALUE FOR TRANSMISSIVITY
             container = st.container()
             if st.session_state.number_input:
-                T_slider_value_new = st.number_input("_(log of) Transmissivity in m²/s_", log_min1,log_max1, st.session_state["T_slider_value"], 0.01, format="%4.2f")
+                T_slider_value_new = st.number_input("_(log of) Transmissivity in m²/s_", log_min1,log_max1, st.session_state["T_slider_value"], 0.01, format="%4.2f", key="T_input", on_change=update_T)
             else:
-                T_slider_value_new = st.slider("_(log of) Transmissivity in m²/s_", log_min1, log_max1, st.session_state["T_slider_value"], 0.01, format="%4.2f")
+                T_slider_value_new = st.slider("_(log of) Transmissivity in m²/s_", log_min1, log_max1, st.session_state["T_slider_value"], 0.01, format="%4.2f", key="T_input", on_change=update_T)
             st.session_state["T_slider_value"] = T_slider_value_new
             T = 10 ** T_slider_value_new
             container.write("**Transmissivity in m²/s:** %5.2e" %T)
             # READ LOG VALUE, CONVERT, AND WRITE VALUE FOR STORATIVIT
             container = st.container()
             if st.session_state.number_input:
-                S_slider_value_new=st.number_input('_(log of) Storativity_', log_min2,log_max2,st.session_state["S_slider_value"],0.01,format="%4.2f")
+                S_slider_value_new=st.number_input('_(log of) Storativity_', log_min2,log_max2,st.session_state["S_slider_value"],0.01,format="%4.2f", key="S_input", on_change=update_S)
             else:
-                S_slider_value_new=st.slider('_(log of) Storativity_', log_min2,log_max2,st.session_state["S_slider_value"],0.01,format="%4.2f")
+                S_slider_value_new=st.slider('_(log of) Storativity_', log_min2,log_max2,st.session_state["S_slider_value"],0.01,format="%4.2f", key="S_input", on_change=update_S)
             st.session_state["S_slider_value"] = S_slider_value_new
             S = 10 ** S_slider_value_new
             container.write("**Storativity (dimensionless):** %5.2e" %S)

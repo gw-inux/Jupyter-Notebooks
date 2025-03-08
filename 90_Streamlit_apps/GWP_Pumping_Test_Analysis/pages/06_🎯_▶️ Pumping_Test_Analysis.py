@@ -73,7 +73,7 @@ def compute_s_Theis(T, S, t, Q, r):
     s = theis_s(Q, T, u)
     return s
 
-def compute_s_NEU(T, S t, Q, r, u_inv_NEU, w_u, beta):
+def compute_s_NEU(T, S, t, Q, r, u_inv_NEU, w_u, beta):
     u_inv = theis_u_inv(T, S, r, t)
     s = Neuman_s(Q, T, u_inv, u_inv_NEU, w_u, beta)
     return s    
@@ -102,6 +102,16 @@ def compute_statistics(measured, computed):
     rmse = (meanSquaredError) ** (1/2)
     return me, mae, rmse
 
+# Callback function to update session state
+def update_T():
+    st.session_state.T_slider_value = st.session_state.T_input
+def update_S():
+    st.session_state.S_slider_value = st.session_state.S_input
+def update_Ss():
+    st.session_state.Ss_slider_value = st.session_state.Ss_input
+def update_SY():
+    st.session_state.SY = st.session_state.SY_input
+    
 # (Here, the methode computes the data for the well function. Those data can be used to generate a type curve.)
 u_min = -5
 u_max = 4
@@ -308,20 +318,29 @@ m_time_s = [i*60 for i in m_time] # time in seconds
 num_times = len(m_time)
 
 # Initialize session state for value and toggle state
-if "T_slider_value" not in st.session_state:
-    st.session_state["T_slider_value"] = -3.0  # Default value
+st.session_state.T_slider_value = -2.0
 # Specific for Neuman
 if st.session_state.Solution == 'Neuman':
-    if "Ss_slider_value" not in st.session_state:
-        st.session_state["Ss_slider_value"] = -5.0  # Default value
-    if "SY" not in st.session_state:
-        st.session_state["SY"] = 0.25  # Default value
+    st.session_state.Ss_slider_value = -5.0
+    st.session_state.SY = 0.25
 # This for Theis / Hantush-Jacob
 else:
-    if "S_slider_value" not in st.session_state:
-        st.session_state["S_slider_value"] = -4.0  # Default value
-number_input = False
-st.session_state.number_input = number_input  # Default to number_input
+    st.session_state.S_slider_value = -4.0
+st.session_state.number_input = False  # Default to number_input
+
+
+
+# Initialize session state for value and toggle state
+
+
+
+
+
+
+
+
+
+
 
 st.subheader(':green[Inverse parameter fitting]', divider="rainbow")
 
@@ -350,9 +369,9 @@ def inverse():
         # Transmissivity
         container = st.container()
         if st.session_state.number_input:
-            T_slider_value_new = st.number_input("_(log of) Transmissivity in m²/s_", log_min1,log_max1, st.session_state["T_slider_value"], 0.01, format="%4.2f")
+            T_slider_value_new = st.number_input("_(log of) Transmissivity in m²/s_", log_min1,log_max1, st.session_state["T_slider_value"], 0.01, format="%4.2f", key="T_input", on_change=update_T)
         else:
-            T_slider_value_new = st.slider("_(log of) Transmissivity in m²/s_", log_min1, log_max1, st.session_state["T_slider_value"], 0.01, format="%4.2f")
+            T_slider_value_new = st.slider("_(log of) Transmissivity in m²/s_", log_min1, log_max1, st.session_state["T_slider_value"], 0.01, format="%4.2f", key="T_input", on_change=update_T)
         st.session_state["T_slider_value"] = T_slider_value_new
         T = 10 ** T_slider_value_new
         container.write("**Transmissivity in m²/s:** %5.2e" %T)
@@ -360,9 +379,9 @@ def inverse():
             # Specific storage Ss
             container = st.container()
             if st.session_state.number_input:
-                Ss_slider_value_new=st.number_input('_(log of) Specific storage_', log_min2, log_max2, st.session_state["Ss_slider_value"],0.01,format="%4.2f" )
+                Ss_slider_value_new=st.number_input('_(log of) Specific storage_', log_min2, log_max2, st.session_state["Ss_slider_value"],0.01,format="%4.2f", key="Ss_input", on_change=update_Ss)
             else:
-                Ss_slider_value_new=st.slider('_(log of) Specific storage_', log_min2,log_max2, st.session_state["Ss_slider_value"],0.01,format="%4.2f" )
+                Ss_slider_value_new=st.slider('_(log of) Specific storage_', log_min2,log_max2, st.session_state["Ss_slider_value"],0.01,format="%4.2f", key="Ss_input", on_change=update_Ss)
             st.session_state["Ss_slider_value"] = Ss_slider_value_new
             Ss = 10 ** Ss_slider_value_new
             container.write("**Specific storage (dimensionless):** %5.2e" %Ss)
@@ -370,9 +389,9 @@ def inverse():
             # Storativity S
             container = st.container()
             if st.session_state.number_input:
-                S_slider_value_new=st.number_input('_(log of) Storativity_', log_min2,log_max2,st.session_state["S_slider_value"],0.01,format="%4.2f")
+                S_slider_value_new=st.number_input('_(log of) Storativity_', log_min2,log_max2,st.session_state["S_slider_value"],0.01,format="%4.2f", key="S_input", on_change=update_S)
             else:
-                S_slider_value_new=st.slider('_(log of) Storativity_', log_min2,log_max2,st.session_state["S_slider_value"],0.01,format="%4.2f")
+                S_slider_value_new=st.slider('_(log of) Storativity_', log_min2,log_max2,st.session_state["S_slider_value"],0.01,format="%4.2f", key="S_input", on_change=update_S)
             st.session_state["S_slider_value"] = S_slider_value_new
             S = 10 ** S_slider_value_new
             container.write("**Storativity (dimensionless):** %5.2e" %S)            
@@ -382,9 +401,9 @@ def inverse():
         if st.session_state.Solution == 'Neuman':
             # Specific Yield Sy
             if st.session_state.number_input:
-                SY = st.number_input('**Specific Yield**', 0.01, 0.50, st.session_state["SY"], 0.01, format="%4.2f")
+                SY = st.number_input('**Specific Yield**', 0.01, 0.50, st.session_state["SY"], 0.01, format="%4.2f", key="SY_input",on_change=update_SY)
             else:
-                SY = st.slider('**Specific Yield**', 0.01, 0.50, st.session_state["SY"], 0.01, format="%4.2f")
+                SY = st.slider('**Specific Yield**', 0.01, 0.50, st.session_state["SY"], 0.01, format="%4.2f", key="SY_input",on_change=update_SY)
             st.session_state["SY"] = SY
             # beta
             beta_choice = st.selectbox("beta",('0.001','0.01', '0.06', '0.2', '0.6', '1', '2', '4', '6'),)
@@ -591,10 +610,11 @@ def inverse():
                 st.write("**Parameters and Results**")
                 st.write("- Distance of measurement from the well **$r$ = %3i" %r," m**")
                 st.write("- Pumping rate during test **$Q$ = %5.3f" %Qs," m³/s**")
-                #st.write("- Thickness of aquifer **$b$ = % 5.2f"% b, " m**")
+                st.write("- Thickness of aquifer **$b$ = % 5.2f"% b, " m**")
                 st.write("- Transmissivity **$T$ = % 10.2E"% T, " m²/s**")
                 st.write("- Storativity **$S$ = % 10.2E"% S, "[dimensionless]**")
                 st.write("- Specific Storage **$Ss$ = % 10.2E"% Ss, " 1/m**")
+                st.write("- Elastic early-time storativity of the unconfined aquifer **$S_a$ = % 10.2E"% Sa, "[dimensionless]**")
                 st.write("- Specific Yield **$Sy$ = %5.3f"% SY, "[dimensionless]**")
                 #st.write("- Horizontal Hydraulic Conductivity **$K_h$ = % 10.2E"% (T/b), " m²/s**")
                 #st.write("- Vertical Hydraulic Conductivity **$K_v$ = % 10.2E"% (beta*(T/b)*b*b/r/r), " m²/s**")
