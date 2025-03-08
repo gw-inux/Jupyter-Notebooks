@@ -112,7 +112,7 @@ st.markdown("""
             
             For more precise matching, zoom in by using the toogle.
             
-            Toggling on the scatter plot provides an visual comparison of the data and the fitted curve. A 1 to 1, 45 degree line, indictses a perfact match.
+            Toggling on the scatter plot provides an visual comparison of the data and the fitted curve. A 1 to 1, 45 degree line, indicates a perfect match.
 """
 )
 # Computation
@@ -164,8 +164,6 @@ if "T_slider_value" not in st.session_state:
     st.session_state["T_slider_value"] = -3.0  # Default value
 if "S_slider_value" not in st.session_state:
     st.session_state["S_slider_value"] = -4.0  # Default value
-if "SY" not in st.session_state:
-    st.session_state["SY"] = 0.25  # Default value
 number_input = False
 st.session_state.number_input = number_input  # Default to number_input
 
@@ -220,7 +218,7 @@ def inverse(v):
             S_slider_value_new=st.slider('_(log of) Storativity_', log_min2,log_max2,st.session_state["S_slider_value"],0.01,format="%4.2f", key = 50+v)
         st.session_state["S_slider_value"] = S_slider_value_new
         S = 10 ** S_slider_value_new
-        container.write("**Specific storage (dimensionless):** %5.2e" %S)
+        container.write("**Storativity (dimensionless):** %5.2e" %S)
     
     # Drawdown data from SYMPLE exercise and parameters 
     m_time = [1,1.5,2,2.5,3,4,5,6,8,10,12,14,18,24,30,40,50,60,100,120] # time in minutes

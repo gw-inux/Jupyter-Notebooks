@@ -150,6 +150,14 @@ def compute_statistics(measured, computed):
     rmse = (meanSquaredError) ** (1/2)
     return me, mae, rmse
     
+# Initialize session state for value and toggle state
+if "T_slider_value" not in st.session_state:
+    st.session_state["T_slider_value"] = -3.0  # Default value
+if "S_slider_value" not in st.session_state:
+    st.session_state["S_slider_value"] = -4.0  # Default value
+number_input = False
+st.session_state.number_input = number_input  # Default to number_input
+
 # (Here, the method computes the data for the well function. Those data can be used to generate a type curve.)
 u_min = -5
 u_max = 4
@@ -195,6 +203,9 @@ def inverse():
     log_max1 = 0.0  # T / Corresponds to 10^0 = 1
     log_min2 = -7.0 # S / Corresponds to 10^-7 = 0.0000001
     log_max2 = 0.0  # S / Corresponds to 10^0 = 1
+    
+    # Toggle to switch between slider and number-input mode
+    st.session_state.number_input = st.toggle("Use Slider/Number number for paramter input")
 
     columns2 = st.columns((1,1,1), gap = 'medium')
     with columns2[0]:
@@ -212,18 +223,26 @@ def inverse():
         with st.expander('Parameters _T_ and _S_'):
             # READ LOG VALUE, CONVERT, AND WRITE VALUE FOR TRANSMISSIVITY
             container = st.container()
-            T_slider_value=st.slider('_(log of) Transmissivity in m²/s_', log_min1,log_max1,-3.0,0.01,format="%4.2f" )
-            T = 10 ** T_slider_value
+            if st.session_state.number_input:
+                T_slider_value_new = st.number_input("_(log of) Transmissivity in m²/s_", log_min1,log_max1, st.session_state["T_slider_value"], 0.01, format="%4.2f")
+            else:
+                T_slider_value_new = st.slider("_(log of) Transmissivity in m²/s_", log_min1, log_max1, st.session_state["T_slider_value"], 0.01, format="%4.2f")
+            st.session_state["T_slider_value"] = T_slider_value_new
+            T = 10 ** T_slider_value_new
             container.write("**Transmissivity in m²/s:** %5.2e" %T)
             # READ LOG VALUE, CONVERT, AND WRITE VALUE FOR STORATIVIT
             container = st.container()
-            S_slider_value=st.slider('_(log of) Storativity_', log_min2,log_max2,-4.0,0.01,format="%4.2f" )
-            S = 10 ** S_slider_value
+            if st.session_state.number_input:
+                S_slider_value_new=st.number_input('_(log of) Storativity_', log_min2,log_max2,st.session_state["S_slider_value"],0.01,format="%4.2f")
+            else:
+                S_slider_value_new=st.slider('_(log of) Storativity_', log_min2,log_max2,st.session_state["S_slider_value"],0.01,format="%4.2f")
+            st.session_state["S_slider_value"] = S_slider_value_new
+            S = 10 ** S_slider_value_new
             container.write("**Storativity (dimensionless):** %5.2e" %S)
     with columns2[2]:
         prediction = st.toggle('**Make the prediction**')
         if prediction:
-            Q_pred = st.slider(f'**Pumping rate** (m³/s) for the **prediction**', 0.001,0.100,Qs,0.001,format="%5.3f")
+            Q_pred = st.number_input(f'**Pumping rate** (m³/s) for the **prediction**', 0.001,0.100,Qs,0.001,format="%5.3f")
             with st.expander('Define time and space for prediction'):
                 r_pred = st.slider(f'**Distance** (m) from the **well** for the **prediction**', 1,1000,r,1)
                 per_pred = st.slider(f'**Duration** of the **prediction period** (days)',1,3652,3,1) 
