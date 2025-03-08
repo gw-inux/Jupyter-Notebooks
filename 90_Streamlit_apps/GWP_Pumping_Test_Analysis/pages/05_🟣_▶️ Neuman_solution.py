@@ -179,8 +179,10 @@ if "T_slider_value" not in st.session_state:
     st.session_state["T_slider_value"] = -2.0  # Default value
 if "Ss_slider_value" not in st.session_state:
     st.session_state["Ss_slider_value"] = -5.0  # Default value
-if "SY" not in st.session_state:
-    st.session_state["SY"] = 0.25  # Default value
+#if "SY" not in st.session_state:
+#    st.session_state["SY"] = 0.25  # Default value
+SY = 0.25
+st.session_state.SY = SY
 number_input = False
 st.session_state.number_input = number_input  # Default to number_input
     
@@ -315,10 +317,10 @@ def inverse():
         container.write("**Specific storage (1/m):** %5.2e" %Ss)
         # Specific Yield SY
         if st.session_state.number_input:
-            SY = st.number_input('**Specific Yield**', 0.01, 0.50, st.session_state["SY"], 0.01, format="%4.2f")
+            SY = st.number_input('**Specific Yield**', 0.01, 0.50, st.session_state.SY, 0.01, format="%4.2f")
         else:
-            SY = st.slider('**Specific Yield**', 0.01, 0.50, st.session_state["SY"], 0.01, format="%4.2f")
-        st.session_state["SY"] = SY
+            SY = st.slider('**Specific Yield**', 0.01, 0.50, st.session_state.SY, 0.01, format="%4.2f")
+        st.session_state.SY = SY
 
     # Compute K and SS to provide parameters for plausability check (i.e. are the parameter in a reasonable range)
     K = T/b     # m/s
