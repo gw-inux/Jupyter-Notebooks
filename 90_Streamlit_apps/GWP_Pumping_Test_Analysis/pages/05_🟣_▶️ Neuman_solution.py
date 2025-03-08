@@ -184,8 +184,8 @@ if "S_slider_value" not in st.session_state:
     st.session_state["S_slider_value"] = -4.0  # Default value
 if "SY" not in st.session_state:
     st.session_state["SY"] = 0.25  # Default value
-if "use_slider" not in st.session_state:
-    st.session_state["use_slider"] = True  # Default to slider
+number_input = False
+st.session_state.number_input = number_input  # Default to number_input
     
 # (Here, the methode computes the data for the well function. Those data can be used to generate a type curve.)
 u_min = -5
@@ -286,45 +286,43 @@ def inverse():
     log_min2 = -7.0 # S / Corresponds to 10^-7 = 0.0000001
     log_max2 = 0.0  # S / Corresponds to 10^0 = 1
    
-    st.session_state["use_slider"] = st.toggle("Use Slider/Number number for paramter input", value=st.session_state["use_slider"])
+    # Toggle to switch between slider and number-input mode
+    st.session_state.number_input = st.toggle("Use Slider/Number number for paramter input")
    
     columns2 = st.columns((1,1), gap = 'large')
     with columns2[0]:
         # READ LOG VALUE, CONVERT, AND WRITE VALUE FOR TRANSMISSIVITY
         container = st.container()
-        #T_slider_value=st.slider('_(log of) Transmissivity in m²/s_', log_min1,log_max1,-2.0,0.01,format="%4.2f" )
-        if st.session_state["use_slider"]:
+        if st.session_state.number_input:
             T_slider_value_new = st.slider("_(log of) Transmissivity in m²/s_", log_min1,log_max1, st.session_state["T_slider_value"], 0.01, format="%4.2f")
         else:
             T_slider_value_new = st.number_input("_(log of) Transmissivity in m²/s_", log_min1, log_max1, st.session_state["T_slider_value"], 0.01, format="%4.2f")
         st.session_state["T_slider_value"] = T_slider_value_new
         T = 10 ** T_slider_value_new
         container.write("**Transmissivity in m²/s**: %5.2e" %T)
+        # Parameter beta
         beta_choice = st.selectbox("**beta**",('0.001','0.01', '0.06', '0.2', '0.6', '1', '2', '4', '6'),)
         beta_list = ['0.001','0.01', '0.06', '0.2', '0.6', '1', '2', '4', '6']
         beta = beta_list.index(beta_choice)
         refine_plot = st.toggle("**Refine** the range of the **Data matching plot**")
         scatter = st.toggle('Show scatter plot')
     with columns2[1]:
-
         # READ LOG VALUE, CONVERT, AND WRITE VALUE FOR SPECIFIC STORAGE
         container = st.container()
-        if st.session_state["use_slider"]:
+        if st.session_state.number_input:
             S_slider_value_new=st.slider('_(log of) Specific storage_', log_min2, log_max2, st.session_state["S_slider_value"],0.01,format="%4.2f" )
         else:
             S_slider_value_new=st.number_input('_(log of) Specific storage_', log_min2,log_max2, st.session_state["S_slider_value"],0.01,format="%4.2f" )
         st.session_state["S_slider_value"] = S_slider_value_new
         Ss = 10 ** S_slider_value_new
         container.write("**Specific storage (dimensionless):** %5.2e" %Ss)
-        if st.session_state["use_slider"]:
+        if st.session_state.number_input:
             SY = st.slider('**Specific Yield**', 0.01, 0.50, st.session_state["SY"], 0.01, format="%4.2f")
         else:
             SY = st.number_input('**Specific Yield**', 0.01, 0.50, st.session_state["SY"], 0.01, format="%4.2f")
         st.session_state["SY"] = SY
 
-
-    # Compute K and SS to provide parameters for plausability check
-    # (i.e. are the parameter in a reasonable range)
+    # Compute K and SS to provide parameters for plausability check (i.e. are the parameter in a reasonable range)
     K = T/b     # m/s
     Kz = K/10
     S = Ss * b
@@ -351,7 +349,7 @@ def inverse():
         else:
             s_b_NEU[x] = w_u_b[x][beta] * s_term
      
-    # Compute the switch time
+    # Compute the switch time between the early and late curve
     diffs_a_NEU = np.abs(np.gradient(s_a_NEU, t_a_NEU))
     diffs_b_NEU = np.abs(np.gradient(s_b_NEU, t_b_NEU))
 
