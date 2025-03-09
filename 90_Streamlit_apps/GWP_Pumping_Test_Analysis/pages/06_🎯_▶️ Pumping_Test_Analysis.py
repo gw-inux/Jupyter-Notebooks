@@ -416,7 +416,6 @@ def inverse():
             r_div_B_choice = st.selectbox("r/B",('0.01', '0.04', '0.1', '0.2', '0.4', '0.6', '1', '1.5', '2', '2.5'),)
             r_div_B_list = ['0.01', '0.04', '0.1', '0.2', '0.4', '0.6', '1', '1.5', '2', '2.5']
             r_div_B = r_div_B_list.index(r_div_B_choice)
-            st.write(r_div_B_choice)
     
     # Compute K and SS to provide parameters for plausability check
     # (i.e. are the parameter in a reasonable range)
@@ -482,8 +481,8 @@ def inverse():
         ax.plot(t_a_NEU, s_a_NEU, '--', color='dodgerblue', label=r'Computed drawdown early - Neuman')
         ax.plot(t_b_NEU, s_b_NEU, '--', color='darkblue', label=r'Computed drawdown late - Neuman')
         ax.plot(m_time_s, m_ddown, 'o', color='mediumorchid', label=r'measured drawdown')
-        if scatter:
-            plt.vlines(switch_time,1E-4,1E+1,color='orangered',linestyles='dashdot', label='switch time scatter plot and statistics')
+        #if scatter:
+        #    plt.vlines(switch_time,1E-4,1E+1,color='orangered',linestyles='dashdot', label='switch time scatter plot and statistics')
 
     if st.session_state.Solution == 'Hantush-Jacob':  
         # Theis curve
