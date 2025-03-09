@@ -350,7 +350,7 @@ def inverse():
         if Ss_slider_value not in st.session_state:
             st.session_state.Ss_slider_value = -5.0
         if SY not in st.session_state:
-        st.session_state.SY = 0.25
+            st.session_state.SY = 0.25
     # This for Theis / Hantush-Jacob
     else:
         if S_slider_value not in st.session_state:
