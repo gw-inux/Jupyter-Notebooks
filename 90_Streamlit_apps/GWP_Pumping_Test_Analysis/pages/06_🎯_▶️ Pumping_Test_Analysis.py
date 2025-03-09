@@ -318,29 +318,15 @@ m_time_s = [i*60 for i in m_time] # time in seconds
 num_times = len(m_time)
 
 # Initialize session state for value and toggle state
-st.session_state.T_slider_value = -2.0
-# Specific for Neuman
-if st.session_state.Solution == 'Neuman':
-    st.session_state.Ss_slider_value = -5.0
-    st.session_state.SY = 0.25
-# This for Theis / Hantush-Jacob
-else:
-    st.session_state.S_slider_value = -4.0
+# st.session_state.T_slider_value = -2.0
+# # Specific for Neuman
+# if st.session_state.Solution == 'Neuman':
+#     st.session_state.Ss_slider_value = -5.0
+#     st.session_state.SY = 0.25
+# # This for Theis / Hantush-Jacob
+# else:
+#     st.session_state.S_slider_value = -4.0
 st.session_state.number_input = False  # Default to number_input
-
-
-
-# Initialize session state for value and toggle state
-
-
-
-
-
-
-
-
-
-
 
 st.subheader(':green[Inverse parameter fitting]', divider="rainbow")
 
@@ -353,7 +339,23 @@ st.markdown("""
 
 @st.fragment
 def inverse():
-    # This is the function to plot the graph with the data     
+    # This is the function to plot the graph with the data   
+
+    # Initialize session state for value and toggle state
+    if T_slider_value not in st.session_state:
+        st.session_state.T_slider_value = -2.0 = -3.0  # Default value (log of T)
+    
+    # Specific for Neuman
+    if st.session_state.Solution == 'Neuman':
+        if Ss_slider_value not in st.session_state:
+            st.session_state.Ss_slider_value = -5.0
+        if SY not in st.session_state:
+        st.session_state.SY = 0.25
+    # This for Theis / Hantush-Jacob
+    else:
+        if S_slider_value not in st.session_state:
+            st.session_state.S_slider_value = -4.0
+
     # Get input data
     # Define the minimum and maximum for the logarithmic scale
     log_min1 = -7.0 # T / Corresponds to 10^-7 = 0.0000001
