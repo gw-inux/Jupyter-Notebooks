@@ -11,7 +11,7 @@ from streamlit_extras.stateful_button import button
 
 st.title('🟣 :violet[Neuman] parameter estimation')
 
-st.header('For drawdown in :violet[**unconfined aquifers**]')
+st.header('for drawdown in :violet[**unconfined aquifers**]')
 st.markdown("""
             This section uses the Neuman Solution for drawdown in response to pumping an :violet[**unconfined aquifer**] to estimate Transmissivity, Specific Storage, Specific Yield, and Vertical Hydraulic Conductivity of the aquifer.
             """) 
@@ -23,15 +23,15 @@ st.markdown("""
             
             This application uses the Neuman Solution to estimate Transmissivity $T$, Specific Storage $Ss$, Specific Yield $Sy$, and Beta $β$ from drawdown data collected during a pumping test.
             
-            You can estimate $T$, $Ss$, $Sy$, and $β$ by adjusting sliders to modify the parameter values until the measured data align with the Neuman curves for the input parameters.
+            You can estimate $T$, $Ss$, $Sy$, and $β$ by adjusting a slider or by typing a number (depending on the toggle switch position) to modify the values of $T$, $Ss$, $Sy$, and $β$ until the measured data align with the Neuman curve for the input parameters. 
             """)
             
 left_co, cent_co, last_co = st.columns((20,60,20))
 with cent_co:
-    st.image('90_Streamlit_apps/GWP_Pumping_Test_Analysis/assets/images/unconfined_aquifer.png', caption="Cross section of a pumped unconfined aquifer Kruseman et al. 1994")
+    st.image('90_Streamlit_apps/GWP_Pumping_Test_Analysis/assets/images/unconfined_aquifer_2.png', caption="Cross section of a pumped unconfined aquifer, Kruseman et al. 1994")
             
 st.markdown("""
-            To start investigating the Neuman Solution it is useful to think about the questions provided in this initial assessment.
+            Before investigating the Neuman Solution it is useful to think about the questions provided in this initial assessment.
 """
 )
 # Initial assessment
@@ -68,9 +68,11 @@ with st.expander(":green[**Show/Hide the initial assessment**]"):
 st.subheader(':violet-background[Underlying theory] - The Neuman Solution for Pumping Test Evaluation', divider="violet")
 st.markdown(
             """  
-            The Neuman solution extends the Theis solution to describe transient flow to a well in an unconfined aquifer, where both vertical and horizontal flow components contribute to drawdown. Unlike the Theis and Hantush-Jacob solutions, which assume confined or leaky aquifers, the Neuman solution accounts for the delayed response caused by water table storage and vertical flow effects.
+            The Neuman solution extends the Theis solution to describe transient flow to a well in an unconfined aquifer, where drawdown begins as controlled by elastic storage, drawdown plateaus while vertical components of flow contribute water from storage near the water table, then drawdown continues at a rate controlled by drainage of pores as reflected by the specific yield term. 
             
-            The Theis Solution fits the early-time data when the elastic storativity of the aquifer $S$ is used, while the Theis curve fits the late-time data when the specific yield of the aquifer $Sy$ is used. A term defined as beta $β$ describes the transition from elastic storage to pore water storage based on the relative values of vertical and horizontal hydraulic conductivity of the aquifer for a given aquifer thickness and distance from the pumping well. During the transition period, water drains vertically which is akin to leakage from an aquitard, thus the drawdown curves levels out until that drainage is complete, then specific yield controls the rate of drawdown. The early portion of the curve may occur so quickly that it is missed in the drawdown data collection.
+            The Theis curve can be fit to early-time data by using the elastic storativity of the aquifer $S$, and another Theis curve can be fit to the late-time data by using the specific yield of the aquifer $Sy$. A term defined as beta $β$ describes the transition from elastic storage to pore water storage based on the relative values of vertical and horizontal hydraulic conductivity of the aquifer. 
+            
+            The early portion of the curve may occur so quickly that it is missed in the drawdown data collection.
             """
             )
 # Optional theory here
@@ -263,16 +265,18 @@ Qd = Qs*60*60*24 # m^3/d
 m_time_s = [i*60 for i in m_time] # time in seconds
 num_times = len(m_time)
 
-st.subheader(':violet-background[Estimate $T$, $S$, and $β$] by matching Neuman Curves to measured data', divider="violet")
+st.subheader(':violet-background[Estimate $T$, $Ss$, $S$, aynd $β$] by matching Neuman Curves to measured data', divider="violet")
 
 st.markdown("""
             In this section, you can **adjust the values of transmissivity, specific storage, specific yield, and beta until the curve of drawdown versus time that is calculated and plotted on the graph matches the measured data from the Pirna test site in Germany**. The match indicates that the selected values are a reasonable representation of the aquifer properties.
             
-            The alluvial aquifer is 6 meters thick. The data are produced in a relatively short pumping test that was performed in November 2024. The pumping rate during the test was 1.18 m³/min. The drawdown was measured with an pressure transducer in an observation well that is 91 m beside the pumping well. The measured data show an initial response to the pumping that is reflect by the first approximately five to ten measurments. Subsequently, the curve of drawdown flattens and then rise again. 
+            The alluvial aquifer is 6 meters thick. The data are produced in a relatively short pumping test that was performed in November 2024. The pumping rate during the test was 1.18 m³/min. The drawdown was measured with an pressure transducer in an observation well that is 91 m away from the pumping well. The measured drawdown data show an initial response to the pumping that is reflect by the first approximately five to ten measurments. Subsequently, the curve of drawdown flattens and then rises again. 
             
             After estimating the parameter values that result in a good fit of the Neuman curve to the data, and knowing the thickness of the aquifer, the horizontal and vertical hydraulic conductivity of the aquifer is calculated.
             
-            For more precise matching, zoom in by using the toogle.
+            More precise matching can be acheived by zooming in and/or by using typed number input rather than slider input. Both are selected with a toggle switch.
+            
+            The scatter plot can be turned on by using a toggle switch. It provides a visual comparison of the data and the fitted curve. A 45 degree line indicates a perfect match between the measured drawdowns and those calculated by the Neuman solution for the input values of $T$, $Ss$, $Sy$,  and $β$.
 """
 )
 # Additionally, you can perform a prediction of drawdown for specific times/spaces.
@@ -288,7 +292,7 @@ def inverse():
     log_max2 = 0.0  # S / Corresponds to 10^0 = 1
    
     # Toggle to switch between slider and number-input mode
-    st.session_state.number_input = st.toggle("Use Slider/Number number for paramter input")
+    st.session_state.number_input = st.toggle("Toggle to use Slider or Number for input of $T$ and $S$")
    
     columns2 = st.columns((1,1), gap = 'large')
     with columns2[0]:
@@ -304,7 +308,7 @@ def inverse():
         beta_choice = st.selectbox("**beta**",('0.001','0.01', '0.06', '0.2', '0.6', '1', '2', '4', '6'),)
         beta_list = ['0.001','0.01', '0.06', '0.2', '0.6', '1', '2', '4', '6']
         beta = beta_list.index(beta_choice)
-        refine_plot = st.toggle("**Refine** the range of the **Data matching plot**")
+        refine_plot = st.toggle("**Zoom in** on the **data in the graph**")
         scatter = st.toggle('Show scatter plot')
     with columns2[1]:
         # SPECIFIC STORAGE SS

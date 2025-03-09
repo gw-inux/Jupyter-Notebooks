@@ -11,17 +11,19 @@ from streamlit_extras.stateful_button import button
 
 st.title('🟢 :green[Hantush-Jacob] parameter estimation')
 
-st.header('For drawdown in :green[**leaky aquifers**]')
+st.header('for drawdown in :green[**leaky aquifers**]')
 st.markdown("""
-            This section uses the Hantush-Jacob solution for drawdown in response to pumping a :green[**leaky aquifer**] to estimate Transmissivity, Storativity, and Aquitard Leakage.
+            This section uses the Hantush-Jacob solution for drawdown in response to pumping a :green[**leaky aquifer with no storage capacity**] to estimate Transmissivity, Storativity, and Aquitard Leakage.
             """) 
 st.subheader(':green-background[Introduction]', divider="green")
 st.markdown("""
-            The Hantush-Jacob (1955) solution is intended to evaluate pumping tests in semiconfined settings.
+            The Hantush-Jacob (1955) solution is intended to evaluate pumping tests in semiconfined settings with aquitards that store an insignificant volume of water.
             
             This application uses the Hantush-Jacob solution to estimate Transmissivity $T$ and  Storativity $S$ of an aquifer, as well as the leakage factor $r/B$ related to aquitard properties, from drawdown data collected during a pumping test.
             
-            You can estimate $T$, $S$, and $r/B$ by adjusting the sliders to modify the parameter values until the measured data align with the Hantush-Jacob curve for the input parameters. _B_ is a parameter that reflects the inverse of the potential for aquitard leakage _b'/K'_ relative to the ability of the aquifer to transmit groundwater laterally $T$. There is greater leakage potential for a smaller value of B which reflects a thinner aquitard of higher conductivity, that is, there is more potential leakage through an aquitard with a smaller ratio of _b'_ to _K'_. 
+            You can estimate $T$, $S$, and $r/B$ by adjusting a slider or by typing a number (depending on the toggle switch position) to modify the values of $T$, $S$, and $r/B$ until the measured data align with the Hantush-Jacob curve for the input parameters. 
+            
+            _B_ is a parameter that reflects the inverse of the potential for aquitard leakage _b'/K'_ relative to the ability of the aquifer to transmit groundwater laterally $T$. There is greater leakage potential for a smaller value of B which reflects a thinner aquitard of higher vertical hydraulic conductivity, that is, there is more potential leakage through an aquitard with a smaller ratio of _b'_ to _K'_. 
             
             """)      
                 
@@ -34,7 +36,7 @@ st.markdown("""
             
 left_co, cent_co, last_co = st.columns((20,60,20))
 with cent_co:
-    st.image('90_Streamlit_apps/GWP_Pumping_Test_Analysis/assets/images/leaky_aquifer_2.png', caption="Cross section of a pumped leaky aquifer, Kruseman et al., 1994")
+    st.image('90_Streamlit_apps/GWP_Pumping_Test_Analysis/assets/images/leaky_aquifer_2.png', caption="Cross section of a pumped leaky aquifer, with vertical arrows illustrating leakage is larger near the well where drawdown is larger and declines with distance from the well, Kruseman et al., 1994")
             
 st.markdown("""
            Before investigating the Hantush-Jacob Solution it is useful to think about the questions provided in this initial assessment.
@@ -67,12 +69,16 @@ with st.expander(":green[**Show/Hide the initial assessment**]"):
         stb.single_choice(":green[**What happens to drawdown in a leaky confined aquifer compared to a fully confined aquifer?**]",
                   ["Drawdown decreases more rapidly in a leaky aquifer", "Drawdown is less in a leaky aquifer due to the additional water source", "Drawdown remains the same in both cases", "Drawdown is greater in a leaky aquifer due to the additional water source", "Drawdown occurs only in the aquitard, not in the aquifer"],
                   1,success='CORRECT! Drawdown is less in a leaky aquifer due to the additional water source', error='This is not correct ... You can learn more about the Theis and Hantush-Jacob Solutions [by downloading the book: An Introduction to Hydraulic Testing in Hydrogeology - Basic Pumping, Slug, and Packer Methods​​ and reading Sections 8 and 9 through 9.2, respectively](https://gw-project.org/books/an-introduction-to-hydraulic-testing-in-hydrogeology-basic-pumping-slug-and-packer-methods/). Feel free to answer again.')                     
+
+        stb.single_choice(":green[**How does the Hantush-Jacob solution represent storage in the aquitard?**]",
+                  ["Aquitard storage is ignored", "Aquitard storage controls the rate of leakage", "Aquitard storage controls the timing of leakage"],
+                  0,success='CORRECT! The Hantush-Jacob solution assumes there is no water stored in the aquitard. Water flows through the aquitard from another aquifer.', error='This is not correct ... You can learn more about the Hantush-Jacob Solution by reviewing the Introduction to this section or [by downloading the book: An Introduction to Hydraulic Testing in Hydrogeology - Basic Pumping, Slug, and Packer Methods​​ and reading Section 9](https://gw-project.org/books/an-introduction-to-hydraulic-testing-in-hydrogeology-basic-pumping-slug-and-packer-methods/). Feel free to answer again.')                     
 "---"
 
 # Optional theory here
 st.subheader(':green-background[Underlying theory] - The Hantush-Jacob Solution for Pumping Test Evaluation', divider="green")
 st.markdown("""       
-            The Hantush-Jacob solution extends the Theis solution to account for leaky confined aquifers, where vertical leakage from an overlying or underlying aquitard contributes to flow in an aquifer that moves toward a well. This approach is useful when an aquifer is semi-confined rather than perfectly confined.
+            The Hantush-Jacob solution extends the Theis solution to account for leaky confined aquifers, where vertical leakage from an overlying or underlying aquifer flows through an aquitard, contributing to flow that moves toward a well in the pumped aquifer. This approach is useful when an aquifer is semi-confined rather than perfectly confined.
             """)
 # Optional theory here
 with st.expander('**Click here for more information** about the underlying theory of the :green[**Hantush-Jacob Solution**]'):
@@ -224,16 +230,18 @@ w_u_HAN = [[9.420E+00, 6.670E+00, 4.850E+00, 3.510E+00, 2.230E+00, 1.550E+00, 8.
 
 w_u_HAN = np.array(w_u_HAN)
 
-st.subheader(':green[Estimate $T$, $S$, and Leakage Factor $r/B$ by matching a Hantush-Jacob Curve to measured darwdown data]', divider="rainbow")
+st.subheader(':green[Estimate $T$, $S$, and Leakage Factor $r/B$ by matching a Hantush-Jacob Curve to measured drawdown data]', divider="rainbow")
 
 st.markdown("""
-            In this section, you can **adjust the values of transmissivity, storativity, and $r/B$ until the curve of drawdown versus time that is calculated and plotted on the graph matches the measured data from the Viterbo test site in Italy**. The match indicates that the selected values are a reasonable representation of the aquifer properties.
+            In this section, you can **adjust the values of transmissivity, storativity, and $r/B$ until the curve of drawdown versus time that is calculated and plotted on the graph matches the measured data from the Varnum test site in Sweden**. A close match indicates that the selected values are a reasonable representation of the aquifer properties.
             
-            The lower aquifer is 9 meters thick and is overlain by an aquitard that is 11 m thick that separates the lower Varnum Aquifer from an overlying aquifer. When the Varnum Aquifer is pumped, water leaks downward from the overlying aquifer in response to the lowered head in the Varnum Aquifer.
+            The aquifer is 9 meters thick and is overlain by an 11-meters thick aquitard that separates the lower Varnum Aquifer from an overlying aquifer. When the lower aquifer is pumped, water leaks downward from the overlying aquifer in response to the lowered head in the deeper aquifer.
         
             After estimating the parameter values that result in a good fit of the Hantush-Jacob curve to the data, and knowing the thickness of the aquitard, the vertical hydraulic conductivity of the aquitard is calculated.
             
-            For more precise matching, zoom in by using the toogle.
+            More precise matching can be achieved by zooming in and/or by using typed number input rather than slider input. Both are selected with a toggle switch.
+            
+            The scatter plot can be turned on by using a toggle switch. It provides a visual comparison of the data and the fitted curve. A 45 degree line indicates a perfect match between the measured drawdowns and those calculated by the Hantush-Jacob solution for the input values of $T$, $S$, and $r/B$.
 """
 )
 
@@ -256,7 +264,7 @@ def inverse(v):
     log_max2 = 0.0  # S / Corresponds to 10^0 = 1
     
     # Toggle to switch between slider and number-input mode
-    st.session_state.number_input = st.toggle("Use Slider/Number number for paramter input", key = 10+v)
+    st.session_state.number_input = st.toggle("Toggle to use Slider or Number for input of $T$ and $S$", key = 10+v)
    
     columns2 = st.columns((1,1), gap = 'large')
     with columns2[0]:
@@ -292,8 +300,8 @@ def inverse(v):
     m_time =  [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,63,64,65,66,67,68,69,70,71,72,73,74,75,76,77,78,79,80,81,82,83,84,85,86,87,88,89,90,91,92,93,94,95,96,97,98,99,100,101,102,103,104,105,106,107,108,109,110,111,112,113,114,115,116,117,118,119,120,121,122,123,124,125,126,127,128,129,130,131,132,133,134,135,136,137,138,139,140,141,142,143,144,145,146,147,148,149,150,151,152,153,154,155,156,157,158,159,160,161,162,163,164,165,166,167,168,169,170,171,172,173,174,175,176,177,178,179,180,181,182,183,184,185,186,187,188,189,190,191,192,193,194,195,196,197,198,199,200,201,202,203,204,205,206,207,208,209,210,211,212,213,214,215,216,217,218,219,220,221,222,223,224,225,226,227,228,229,230,231,232,233,234,235,236,237,238,239,240,241,242,243,244,245,246,247,248,249,250,251,252,253,254,255,256,257,258,259,260,261,262,263,264,265,266,267,268,269,270,271,272,273,274,275,276,277,278,279,280,281,282,283,284,285,286,287,288,289,290,291,292,293,294,295,296,297,298,299,300,301,302,303,304,305,306,307,308,309,310,311,312,313,314,315,316,317,318,319,320,321,322,323,324,325] # time in minutes\n",
     m_ddown = [2E-05,0.02022,0.04591,0.0716,0.09342,0.11433,0.12882,0.14332,0.15139,0.16313,0.17396,0.18203,0.18827,0.1936,0.19878,0.2012,0.20729,0.21247,0.21489,0.22007,0.22249,0.22583,0.22826,0.23068,0.23358,0.23648,0.23938,0.24228,0.24243,0.24533,0.24915,0.2493,0.2522,0.25235,0.2551,0.2551,0.25785,0.25785,0.2606,0.2606,0.26335,0.26335,0.2661,0.2661,0.26597,0.26585,0.26847,0.2656,0.26822,0.27177,0.26797,0.27152,0.27139,0.27402,0.27397,0.27392,0.27387,0.27382,0.27652,0.27647,0.27642,0.27637,0.27907,0.27627,0.27614,0.27877,0.27589,0.27577,0.27839,0.27735,0.27814,0.2771,0.28064,0.2796,0.27712,0.2774,0.28042,0.27795,0.27822,0.2785,0.28152,0.27905,0.28207,0.28235,0.28307,0.28012,0.28175,0.2843,0.2841,0.28482,0.28462,0.28442,0.28422,0.28402,0.28404,0.28407,0.28684,0.28412,0.28689,0.28692,0.28694,0.28422,0.28699,0.28702,0.28717,0.28732,0.28747,0.28762,0.28777,0.28792,0.28807,0.28822,0.28837,0.28852,0.29144,0.28887,0.29179,0.28922,0.28939,0.28957,0.28974,0.28992,0.29009,0.29027,0.28994,0.29237,0.28929,0.29172,0.29139,0.29107,0.29074,0.29042,0.29009,0.28977,0.28974,0.28972,0.28969,0.29333,0.28964,0.28687,0.28959,0.29323,0.28954,0.28952,0.29336,0.29353,0.29371,0.29022,0.29406,0.29423,0.29441,0.29458,0.29109,0.29493,0.29488,0.29483,0.29478,0.29473,0.29468,0.29463,0.29458,0.29453,0.29723,0.29718,0.29443,0.29443,0.29443,0.29443,0.29443,0.29718,0.29443,0.29443,0.29443,0.29718,0.29701,0.29683,0.29666,0.29648,0.29631,0.29613,0.29596,0.29578,0.29561,0.29543,0.29561,0.29853,0.29596,0.29613,0.29631,0.29648,0.29666,0.29683,0.29701,0.29993,0.29688,0.29658,0.29628,0.29598,0.29568,0.29538,0.29508,0.29478,0.29723,0.29693,0.29418,0.29418,0.29418,0.29418,0.29693,0.29693,0.29418,0.29418,0.29693,0.29418,0.29433,0.29723,0.29738,0.29478,0.29768,0.29783,0.29798,0.29813,0.29828,0.29843,0.29838,0.29833,0.29828,0.29823,0.29818,0.29813,0.29808,0.29803,0.29798,0.29793,0.29796,0.29798,0.29801,0.29803,0.30081,0.30083,0.29811,0.29813,0.29816,0.30093,0.29853,0.29888,0.29923,0.29958,0.29993,0.30303,0.30338,0.30098,0.30133,0.30168,0.30408,0.30098,0.30063,0.30303,0.29993,0.30233,0.29923,0.29888,0.29853,0.29818,0.30113,0.30133,0.29878,0.29898,0.30193,0.30213,0.30233,0.30253,0.30273,0.30018,0.30001,0.30258,0.30241,0.29948,0.29931,0.29913,0.30171,0.29878,0.29861,0.29843,0.30133,0.29873,0.29888,0.29903,0.29918,0.29933,0.29948,0.29963,0.30253,0.29993,0.30011,0.30028,0.30046,0.30063,0.30081,0.30373,0.30391,0.30133,0.30151,0.30443,0.30151,0.30133,0.30116,0.30098,0.30081,0.30338,0.30046,0.30028,0.30286,0.29993,0.30286,0.30303,0.30321,0.30338,0.30356,0.30373,0.30391,0.30408,0.30426,0.30443,0.30408] # drawdown in meters\n",
     r = 38.9     # m
-    b = 12       # m
-    b2 = 12      # m aquitard 
+    b = 9       # m
+    b2 = 11      # m aquitard 
     Qs = 0.01317   # m^3/s
     Qd = Qs*60*60*24 # m^3/d
 
@@ -309,7 +317,7 @@ def inverse(v):
     m_time_s = [i*60 for i in m_time] # time in seconds
     num_times = len(m_time)
         
-    # Compute K and SS to provide parameters for plausability check
+    # Compute K and SS to provide parameters for plausibility check
     # (i.e. are the parameter in a reasonable range)
     K = T/b     # m/s
     
@@ -408,12 +416,14 @@ with st.expander('**:red[Click here]** to see one **example of the Hantush-Jacob
     with cent_co2:
         st.image('90_Streamlit_apps/GWP_Pumping_Test_Analysis/assets/images/Hantush_Varnum_example.png', caption="One example for a curve match of the Hantush-Jacob solution to the Varnum data") 
         
-st.subheader(':green-background[Next step - Using Theis and Hantush-Jacob] with field data from an alluvial aquifer', divider="green")
+st.subheader(':green-background[Next step - evaluating Theis and Hantush-Jacob curves] with field data from an alluvial aquifer', divider="green")
 
 st.markdown("""
-            Above, we investigated field data from Varnum. The lower Varnum aquifer is overlain by an aquitard. We could fit the Hantush-Jacob solution to the measured data.
+            Above, we investigated field data from the lower Varnum aquifer which is overlain by a semi-permeable aquitard. Parameter values could be adjusted such that the Hantush-Jacob curve closely fit the measured drawdown data.
             
-            Subsequently, we investigate how the Theis and Hantush-Jacob Solutions align with field data from an unconfined alluvial aquifer with and underlying aquitard separating it from another underlying aquifer. In this next step we explore how the Theis and Hantush-Jacob solutions align with drawdown data from anunconfined aquifer.  
+            Next, we investigate how the Hantush-Jacob Solution aligns with field data from an unconfined alluvial aquifer during a pumping test where the drawdown is small relative to the saturated thickness of the unconfined aquifer. Assuming a small change in thickness makes it reasonable to consider use of a confined aquifer solution for an unconfined aquifer because uniform thickness is an underlying assumption of the Theis Solution and its extensions.
+            
+            We do not have an aquitard thickness for the unconfined system, thus for the purposes of calculation we continue to use the thickness for the Varnum site.
 """
 )
 # However, some aquifers are unconfined alluvial material with high hydraulic conductivity so the thickness does not change much when they are pumped and so hydrogeologist will often approximate their behavior with equations developed for a confined aquifer. In this case the value of storativity will reflect the specific yield of the aquifer. 
@@ -423,11 +433,11 @@ with st.expander("Matching the **Hantush-Jacob Solutions** to drawdown data from
 
 with st.expander('**:red[Click here]** to see one **example of the Hantush-Jacob curve fitting to the :violet[Pirna] data**'):
     st.markdown(""" 
-            The following example shows one curve match of the Pirna data set, which represents an unconfined aquifer. If several experts made the curve match they would all have a slightly different set of parameter values, but the parameter sets would likely all be close enough to the shown example to draw comparable conclusions, and make similar predictions. While adjusting parameter values, one finds that the data cannot be matched well to the Hantush-Jacob curve. The reason for this behavior is that the investigated aquifer doesn't conform to the conditions for applying the Hantush-Jacob solution because it is unconfined. 
+            While adjusting parameter values, one finds that the data cannot be matched well to the Hantush-Jacob curve. The reason for this behavior is that the investigated aquifer doesn't conform to the conditions for applying the Hantush-Jacob solution because it is unconfined. In an uncofined aquifer, delayed yield should be considered, that is the character of the drawdown curve will first be controlled by the elastic storage of the aquifer, then there will be a period of constant drawdown while pore drainage
             """)
     left_co2, cent_co2, last_co2 = st.columns((20,60,20))
     with cent_co2:
-        st.image('90_Streamlit_apps/GWP_Pumping_Test_Analysis/assets/images/Hantush_Pirna_example.png', caption="One example for a curve match of the Hantush-Jacob solution to the Viterbo data") 
+        st.image('90_Streamlit_apps/GWP_Pumping_Test_Analysis/assets/images/Hantush_Pirna_example.png', caption="One example for a curve match of the Hantush-Jacob solution to the Pirna drawdown data") 
     
 st.subheader(':green-background[To continue...]', divider="green")
 st.markdown("""

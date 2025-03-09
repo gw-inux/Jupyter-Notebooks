@@ -15,7 +15,7 @@ st.header(':blue[Conceptualizing the drawdown response to pumping in a confined 
 
 st.subheader(':blue-background[Guidance for investigation]', divider="blue")
 st.markdown('''
-            Transient Flow toward a well in a confined aquifer is described here using the Theis Solution. You can use the subsequent instructions and the interactive plot to gain a sound understanding of the system behavior. 
+            Transient Flow toward a well in a confined aquifer is described here using the Theis Solution. You can use the subsequent instructions and the interactive plot to gain an understanding of the system behavior. 
             
             When starting an investigation of this topic it is useful to think about the system using this **initial assessment**.
             '''
@@ -44,15 +44,15 @@ with st.expander(":green[**Show/Hide the initial assessment**]"):
 # Create ToDos to proceed with the steps of the exercise
 st.markdown("""
             **STEP 1:**
-            First we investigate drawdown around a pumping well in response to water abstraction as function of space and time.
+            First we investigate drawdown around a pumping well in response to water abstraction as a function of space and time.
                        
-           _This can be accomplished by adjusting the interactive inputs for the graphs in the section below titled "Computation of drawdown" to observe changes in drawdown as described for Exercise 1 below._
+           _This can be accomplished by adjusting the interactive inputs (using a slider or a typed number, depending on the toggle switch) for the graphs in the section below titled "Computation of drawdown" to observe changes in drawdown as is described for Exercise 1 below._
            
-           The initial head is 20 meters above the top of a thin confined aquifer so if the parameters you enter result in drawdown of 20 meters or more at the pumping well, the results are not realistic.
+           **This specific case is conceptualized as a thin confined aquifer with initial head 20 meters above its top, so if the parameter values result in drawdown of 20 meters or more at the pumping well, then a portion of the graphs will be white, indicating the results are NOT VALID.**
            """)
 with st.expander(":blue[**To proceed with detailed instruction for Exercise  1**] click here"):
     to_do(
-        [(st.write, "Increase Pumping rate $Q$. How do the graphs and the printed value of drawdown change? Then, decrease pumping rate. How does drawdown change? ")],"td01",)
+        [(st.write, "Increase the Pumping rate $Q$. How do the graphs and the value of drawdown printed below the graphs change? Next, decrease the Pumping rate. How does drawdown change? ")],"td01",)
     to_do(
         [(st.write, "Increase the distance of the observation from the well 'Distance $r$ in meters'. The location, time, and the magnitude of drawdown are indicated by the dots on the graphs and their values are printed below the graphs. How do they change? Then, decrease the observation distance. How does drawdown change?")], "td02",)
     to_do(
@@ -112,7 +112,8 @@ def theis_s(Q, T, u):
 def compute_s(T, S, t, Q, r):
     u = theis_u(T, S, r, t)
     s = theis_s(Q, T, u)
-    return s
+    return s 
+    
     
 # Callback function to update session state
 def update_T():
@@ -153,7 +154,7 @@ def transient_flow_well():
     log_max2 = 0.0  # S / Corresponds to 10^0 = 1
        
     # Toggle to switch between slider and number-input mode
-    st.session_state.number_input = st.toggle("Use Slider/Number number for paramter input") 
+    st.session_state.number_input = st.toggle("Toggle to use Slider or Number for input of $T$ and $S$") 
        
     columns = st.columns((1,1,1), gap = 'medium')
     with columns[0]:
@@ -225,10 +226,10 @@ def transient_flow_well():
     
     plt.subplot(1, 2, 1)    
     plt.title('Drawdown vs Distance at seconds =  %8i' %x2_point, fontsize=16)
-    plt.plot(r, s1, linewidth=1., color='b', label=r'drawdown prediction')
+    plt.plot(r, s1, linewidth=1., color='b', label=r'drawdown')
     plt.plot(r_neg, s1, linewidth=1, color='b')
     if comparison:
-        plt.plot(r, s1_2, linewidth=1., color='black', label=r'comparison', linestyle='dashed')
+        plt.plot(r, s1_2, linewidth=1., color='black', label=r'drawdown for T2 & S2', linestyle='dashed')
         plt.plot(r_neg, s1_2, linewidth=1, color='black', linestyle='dashed')
     plt.fill_between(r,s1,max_s, facecolor='lightblue')
     plt.fill_between(r_neg,s1,max_s, facecolor='lightblue')
@@ -242,11 +243,11 @@ def transient_flow_well():
     
     plt.subplot(1, 2, 2)
     plt.title('Drawdown vs Time at meters =  %8i' %x_point, fontsize=16)
-    plt.plot(t, s2, linewidth=1., color='r', label=r'drawdown prediction')
+    plt.plot(t, s2, linewidth=1., color='r', label=r'drawdown')
     if comparison:
-        plt.plot(t, s2_2, linewidth=1., color='black', label=r'drawdown prediction', linestyle='dashed')
+        plt.plot(t, s2_2, linewidth=1., color='black', label=r'drawdown for T2 & S2', linestyle='dashed')
     plt.fill_between(t,s2,max_s, facecolor='mistyrose')
-    plt.plot(x2_point,y2_point, marker='o', color='b',linestyle ='None', label='drawdown ') 
+    plt.plot(x2_point,y2_point, marker='o', color='b',linestyle ='None', label='drawdown plotted & printed below graph') 
     plt.xlim(0, 86400*7)
     plt.ylim(max_s,-5)
     plt.xlabel(r'time in s', fontsize=14)
@@ -263,7 +264,7 @@ transient_flow_well()
 
 st.subheader(':blue-background[Continued investigation]', divider="blue")
 st.markdown('''
-            Having gained an overview of the interactive graphs, we move on to exploring the system more in detail as guided by the following questions.
+            Having gained an overview of drawdown around a well using the interactive graphs, we move on to exploring the system in more detail as guided by the following questions.
             '''
 )
 # Second assessment
@@ -282,7 +283,7 @@ st.markdown('''
 
             Thus far, we investigated flow to a well in a confined aquifer, and showed the Theis solution can be used to calculate drawdown in response to pumping for a specific place and time.
             
-            The next part of this application demonstrates how to estimate aquifer parameter values using drawdown data measured near a pumping well. You can move to the next section using either the side menu or the navigation buttons at the bottom of this page.
+            The next part of this application demonstrates how to estimate aquifer parameter values using drawdown data measured near a pumping well. You can move to the next section using either the menu on the left side or the navigation buttons at the bottom of this page.
             '''
 )
 "---"

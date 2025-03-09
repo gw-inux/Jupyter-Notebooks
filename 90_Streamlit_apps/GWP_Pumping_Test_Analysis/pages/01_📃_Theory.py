@@ -5,13 +5,13 @@ from streamlit_extras.stateful_button import button
 
 st.title('📃 Basic Theory')
 
-st.header(':orange[Underlying the Pumping Test Analysis Application]')
+st.header(':orange[underlying the Pumping Test Analysis Application]')
 
 st.subheader(':orange-background[Introduction and Overview]', divider="orange")
 st.markdown("""
-            This part of the application provides a general overview about groundwater flow toward a well. It explains the basic principles and provides a quantitative description of the process using basic groundwater flow equations. 
+            This part of the application provides a general overview about groundwater flow toward a well. It explains the underlying principles and provides a quantitative description of the process using the groundwater flow equation. 
             
-            The details of specific solutions (Theis, Hantush-Jacob, Neuman) are provided in separate sections of this application that are dedicated to each solution.
+            The details of specific equations describing groundwater flow to a well under confined, leaky, and unconfined aquifer conditions (i.e., the Theis, Hantush-Jacob, and Neuman solutions) are provided in separate sections of this application that are dedicated to each solution.
             
             We offer a few questions to allow you to assess the current state of your knowledge.
 """
@@ -39,11 +39,11 @@ with st.expander(":green[**Show/Hide the initial assessment**]"):
 st.subheader(':orange-background[General situation]', divider="orange")
 
 st.markdown("""
-            The mathematics included in this application consider only homogeneous and isotropic aquifers. Natural aquifers are not homogeneous nor isotropic (although they come close to isotropic in most instances), so in practice the procedures presented in this application are applied to heterogeneous and anisotropic aquifers to glean average parameter values that are representative of bulk behavior of the system. The aquifer can be confined, leaky, or unconfined. 
+            The mathematics included in this application consider only homogeneous and isotropic aquifers. Natural aquifers are not homogeneous nor isotropic (although they come close to isotropic in most instances). Consequently, in practice, the procedures presented in this application are applied to heterogeneous and anisotropic aquifers to glean average parameter values that are representative of bulk behavior of the system. The aquifer can be confined, leaky, or unconfined. 
             
             When a well pumps water out of an aquifer, water flows radially toward the well.
             
-            The following 2-minute video provides a conceptual overview of aquifer testing in different underground formations. It can be viewed by clicking below or accessed through the [Groundwater-Project website](https://gw-project.org/videos/concept-testing-confined-and-leaky-confined-aquifers/).
+            The following 2-minute video provides a conceptual overview of pumping tests for different aquifer conditions (i.e., an aquifer that is fully confined, an aquifer receiving water via leakage through an aquitard, and an aquifer receiving water from both storage in and leakage through an aquitard. It can be viewed by clicking below or accessed through the [Groundwater-Project website](https://gw-project.org/videos/concept-testing-confined-and-leaky-confined-aquifers/).
 """
 )
 st.video('https://www.youtube.com/watch?v=Bz3wh9RF0c4')
@@ -57,13 +57,13 @@ st.markdown("""
 st.latex(r'''\frac{\partial^2 h}{\partial r^2}+\frac{1}{r}\frac{\partial h}{\partial r}=\frac{S}{T}\frac{\partial h}{\partial t}''')
 
 st.markdown("""
-            Charles V. Theis (1935) derived an equation describing drawdown $s$ with radial distance $r$ from the well as shown here.
+            Charles V. Theis (1935) used this general equation to derive a specific equation describing drawdown $s$ with radial distance $r$ from a well in a confined aquifer as shown here.
 """
 )
 st.latex(r'''s(r,t)=\frac{Q}{4\pi T}W(u)''')
 
 st.markdown("""
-            with the well function as follows
+            with the well function $W(u)$ as follows
 """
 )
 st.latex(r'''W(u) = \int_{u }^{+\infty} \frac{e^{-\tilde u}}{\tilde u}d\tilde u''')
@@ -79,19 +79,19 @@ st.markdown("""
             This equation is not easy to solve. **Historically**, values for the well function were provided in **tables** or presented as a **type-curve** graph.
 """
 ) 
-with st.expander(':orange[**Click here**] for further **information about Charles V. Theis** and his solution, including the **original communication** and a **video interview**'):
+with st.expander(':orange[**Click here**] for further **information about Charles V. Theis** and his solution, including his **original communication** of the solution and a **video interview**'):
     st.markdown("""
             The following information is a short excerpt from IAH's The Hydrogeologist Time Capsule (https://timecapsule.iah.org/).
             
-            _... In 1935, Charles V. Theis published a brief article that was the first transient solution for groundwater flow toward a well. He did so by understanding the vital analogy between groundwater flow and heat transfer. As John Bredehoeft says: "It takes real genius to see the basic form of the underlying theory – this was Theis’ contribution". Today, the Theis transient pump test solution is used by all hydrogeologists for well test interpretation. It is one of the many consequences of his discovery. The Theis legacy is not limited to the transient theory. He was one of the first scientists to emphasize the importance of geological heterogeneity._
+            _... In 1935, Charles V. Theis published a brief article that was the first transient solution for groundwater flow toward a well. He did so by understanding the vital analogy between groundwater flow and heat transfer. As John Bredehoeft says: "It takes real genius to see the basic form of the underlying theory – this was Theis’s contribution". Today, the Theis transient pump test solution is used by all hydrogeologists for well test interpretation. It is one of the many consequences of his discovery. Theis's legacy is not limited to the transient theory. He was one of the first scientists to emphasize the importance of geological heterogeneity._
             
-            _Further information about Theis’ life and discoveries is available in the references provided below._
+            _Further information about Theis’s life and discoveries is available in the references provided below._
             
-            - The original correspondence about C.V. Theis' solution can be read here: https://timecapsule.iah.org/wp-content/uploads/2021/10/TheisLubin.pdf
-            - Selected Contributions to Ground-Water Hydrology by C.V. Theis, and a Review of His Life and Work. U.S. GEOLOGICAL SURVEY WATER-SUPPLY PAPER 2415 https://pubs.usgs.gov/wsp/2415/report.pdf
+            - The original correspondence about C.V. Theis's solution can be read here: https://timecapsule.iah.org/wp-content/uploads/2021/10/TheisLubin.pdf
+            - A United States Geological Survey History of Theis is provided in the report titled "Selected Contributions to Ground-Water Hydrology by C.V. Theis, and a Review of His Life and Work." USGS Water-Supply Paper 2415, and can be accessed here: https://pubs.usgs.gov/wsp/2415/report.pdf
             
-            _The subsequent video gives an impression of Charles V. Theis and his contributions to hydrogeology_
-            _(**Recording date**: 1985/11/13, **Recording location**: Albuquerque, New Mexico, USA, **Interview**: John Bredehoeft,  **Production**: Ben Jones, **Editing**: Sylvain Tissot & Philippe Renard)_. 
+            _The following video gives an impression of Charles V. Theis and his contributions to hydrogeology_
+            _(**Recording date**: 1985/11/13, **Recording location**: Albuquerque, New Mexico, USA, **Interviewer**: John Bredehoeft,  **Production**: Ben Jones, **Editing**: Sylvain Tissot & Philippe Renard)_. 
     """
     ) 
     st.video('https://youtu.be/AEq-jvl0GMw?si')
@@ -101,16 +101,16 @@ with st.expander(':orange[**Click here**] for further **information about Charle
     ) 
     
 st.markdown("""            
-            Plotting field measurements of drawdown over time during a pumping test on graph paper and matching it to the type curve to estimate transmissivity $T$ and storativity $S$ is a time-tested hydrogeological method.
+            In the years following publication of Theis's equations, the practice of plotting field measurements of drawdown over time during a pumping test on graph paper and matching it to a type curve to estimate transmissivity $T$ and storativity $S$ is a time-tested hydrogeological method.
             
-            **Today** however, rather than physically plotting data on paper, we use **computer codes** to match the data to the type curve because it is easier and more convenient. 
+            **Today**, rather than physically plotting data on paper, we use **computer codes** to match the data to the type curve because it is easier and more convenient. 
             
-            Nevertheless, it is best practice to view the data in graphical form whether it is plotted by hand or by a computer because the shape of the curve provides insight to the nature of the groundwater system and sometimes plotting the data reveals errors in the data.
+            Nevertheless, **it is best practice to view the data in graphical form whether it is plotted by hand or by a computer** because the shape of the curve provides insight to the nature of the groundwater system and sometimes plotting the data reveals errors in the data.
                   
             Subsequently, in this application, the Theis equation is solved using Python codes.
 """
 ) 
-st.subheader(':orange-background[Limitations and extensions]', divider="orange")           
+st.subheader(':orange-background[Limitations and Extensions of the Theis Solution]', divider="orange")           
 
 st.markdown (
     """   
@@ -127,18 +127,21 @@ st.markdown (
 
     Unlike the pristine system described by the Theis equation, many aquifers are leaky, allowing water exchange with adjacent layers, or they are unconfined, or exhibit anisotropy and heterogeneity. The Theis Solution does not account for these complexities.
     
-    #### Further approaches to overcome the limitations of the Theis solution
-    To address these limitations, **Hantush and Jacob (1955)** developed a solution that extends the Theis model to leaky aquifers, incorporating the effects of vertical leakage through semi-pervious confining layers. This modification allows for more accurate analysis in regions where aquitards are present.
+    #### Extensions of the Theis Solution to overcome its limitations
     
-    Further refinements were made by **Neuman (1972)**, who introduced solutions accounting for the delayed water level decline in unconfined aquifers, the vertical flow components in response to partially penetrating wells, and the delayed observation of aquifer drawdown due to removal of water from wellbore storage. These developments represent significant advancements over the Theis solution, enabling more realistic interpretations of pumping test data in a wider range of hydrogeological settings. His consideration of unconfined aquifers is included in this application.
+    To address these limitations, **Hantush and Jacob (1955)** developed a solution that extends the Theis model of flow in a fully confined aquifer to flow in a leaky aquifer. This represents leakage from an over- or under-lying aquifer through an aquitard that does not store water, allowing for analysis in regions where semi-pervious aquitards are present.
+    
+    Further refinements were made by **Neuman (1972)**, who introduced a solution that accounts for the delayed decline of water level in unconfined aquifers. Also, although not included in this application, Neuman developed solutions for flow to partially penetrating wells for the delayed observation of aquifer drawdown due to removal of water from wellbore storage. 
+    
+    These developments represent significant advancements beyond the Theis solution, enabling interpretation of pumping test data in a wider range of hydrogeological settings.
 """
 )     
 
 st.subheader(':orange-background[Intermediate conclusion and next steps]', divider="blue")
 st.markdown('''
-            This section presents the general theory of groundwater flow to a well.
+            This section presented the general theory of groundwater flow to a well.
             
-            The next section presents concepts of groundwater flow to a well using an interactive graphing tool. Subsequent sections provide graphic presentations of drawdown around a pumping well under confined, leaky, and unconfined conditions using both synthetic and field data. You can move to the next section using either the side menu or the navigation buttons at the bottom of this page.
+            The next section presents concepts of groundwater flow to a well using an interactive graphing tool. Subsequent sections provide graphic presentations of drawdown around a pumping well under confined, leaky, and unconfined conditions using both synthetic and field data. You can move to the next section using either the menu on the left side or the navigation buttons at the bottom of this page.
             '''
 )
 
@@ -161,4 +164,4 @@ with columnsN1[1]:
     st.subheader(':orange[**Navigation**]')
 with columnsN1[2]:
     if st.button("Next page"):
-        st.switch_page("pages/02_🙋_▶️ Transient_Flow to a Well.py")
+        st.switch_page("pages/02_🙋_▶️ Transient_Flow_to_a_Well.py")

@@ -2,11 +2,11 @@ import streamlit as st
 
 
 st.set_page_config(
-    page_title="Pumping Test Analysis App",
+    page_title="Pumping Test Analysis Application",
     page_icon="🌀",
 )
 
-st.title("Pumping Test Analysis App 🌀")
+st.title("Pumping Test Analysis Application 🌀")
 
 st.sidebar.success("☝️ Select a page above ☝️")
 
@@ -14,7 +14,7 @@ st.header(':blue-background[Welcome 👋]')
 
 st.markdown(
     """
-    **Pumping tests** are one of the most **important methods** in hydrogeology for acquiring information about groundwater systems. A pumping test provides values of aquifer **transmissivity** $T$ and **storativity**  $S$ and in some settings, other hydraulic parameter values.
+    **Pumping tests** are one of the most **important methods** for acquiring information about groundwater systems. A pumping test provides values of aquifer **transmissivity** $T$ and **storativity**  $S$ and in some settings, other hydraulic parameter values.
     
     This application is designed to introduce the evaluation of pumping tests for confined, unconfined, and leaky aquifers.
 """
@@ -37,7 +37,7 @@ st.markdown(
 
 left_co, cent_co, last_co = st.columns((20,60,20))
 with cent_co:
-    st.image('90_Streamlit_apps/GWP_Pumping_Test_Analysis/assets/images/Flow_well_confined_2.png',caption="Sketch of developing drawdown cone around an abstraction well")
+    st.image('90_Streamlit_apps/GWP_Pumping_Test_Analysis/assets/images/Flow_well_confined_2.png',caption="Sketch of developing drawdown cone around an abstraction well in a confined aquifer")
 
 
 st.markdown(
@@ -48,7 +48,7 @@ st.markdown(
       - the Varnum test site in Sweden,
       - the Viterbo test site in Italy,
       - the Pirna test site in Germany, and
-      - you can also use **your own** data.
+      - you can also use **your own** data in the Pumping Test Amalysis section.
  """
 )
 

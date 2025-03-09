@@ -10,7 +10,7 @@ from streamlit_extras.stateful_button import button
 
 st.title('🟠 :red[Theis] parameter estimation')
 
-st.header('For drawdown in :red[confined aquifers]')
+st.header('for drawdown in :red[confined aquifers]')
 st.markdown("""
             This section uses the Theis Solution for drawdown in response to pumping a :red[confined aquifer] to estimate Transmissivity and Storativity.
             """) 
@@ -20,12 +20,12 @@ st.markdown("""
             
             This application uses the Theis Solution to estimate Transmissivity $T$ and Storativity $S$ from drawdown data collected during a pumping test. 
             
-            You can estimate $T$ and $S$ by adjusting the sliders to modify $T$ and $S$ until the measured data align with the Theis curve for the input parameters.
+            You can estimate $T$ and $S$ by adjusting a slider or by typing a number (depending on the toggle switch position) to modify the values of $T$ and $S$ until the measured data align with the Theis curve for the input parameters.
             """)
             
 left_co, cent_co, last_co = st.columns((20,60,20))
 with cent_co:
-    st.image('90_Streamlit_apps/GWP_Pumping_Test_Analysis/assets/images/confined_aquifer.png', caption="Cross section of a pumped confined aquifer, Kruseman et al., 1991")
+    st.image('90_Streamlit_apps/GWP_Pumping_Test_Analysis/assets/images/confined_aquifer_2.png', caption="Cross section of a pumped confined aquifer with s1 the drawdown at distance r1 from the well and s2 the drawdown at distance r2, Kruseman et al., 1991")
             
 st.markdown("""
             Before investigating the Theis Solution it is useful to think about the questions provided in this initial assessment.
@@ -38,34 +38,34 @@ with st.expander(":green[**Show/Hide the initial assessment**]"):
     columnsQ1 = st.columns((1,1))
     
     with columnsQ1[0]:
-        stb.single_choice(":blue[**What conditions are appropriate for use of the Theis Solution?**]",
+        stb.single_choice(":orange[**What conditions are appropriate for use of the Theis Solution?**]",
                   ["Steady state flow, confined aquifer.", "Transient flow, confined aquifer", "Steady state flow, semiconfined aquifer",
                   "Transient flow, semiconfined aquifer", "Steady state flow, unconfined aquifer",
                   "Transient flow, unconfined aquifer"],
                   1,success='CORRECT! Theis is designed for transient flow in a fully confined aquifer', error='This is not correct ... You can learn more about the Theis Solution [by downloading the book: An Introduction to Hydraulic Testing in Hydrogeology - Basic Pumping, Slug, and Packer Methods​​ and reading Section 8](https://gw-project.org/books/an-introduction-to-hydraulic-testing-in-hydrogeology-basic-pumping-slug-and-packer-methods/). Feel free to answer again.')
-        stb.single_choice(":blue[**How does storativity $S$ influence the response of an aquifer to pumping?**]",
+        stb.single_choice(":orange[**How does storativity $S$ influence the response of an aquifer to pumping?**]",
                   ["A higher storativity results in a slower drawdown response", "A higher storativity leads to more rapid flow to the well", "Storativity only affects steady-state conditions", "Storativity is not relevant for confined aquifers"],
                   0,success='CORRECT! A higher storativity results in a slower drawdown response, because more water must be removed for an equivalent decline in head.', error='This is not correct. Storativity does not influence the rate of groundwater flow. Storativity is not relevant to steady state flow which is defined by no change in storage. Storativity is relevant to all types of aquifers. Feel free to answer again.')
     
     with columnsQ1[1]:
-        stb.single_choice(":blue[**How does the drawdown change at one specific place and time if the transmissivity is increased?**]",
+        stb.single_choice(":orange[**How does the drawdown change at one specific place and time if the transmissivity is increased?**]",
                   ["The drawdown is less", "The drawdown is more", "The drawdown is not affected", "All of the above depending on the parameter values"],
                   3,success='CORRECT! When all else is equal, a higher transmissivity will produce a broader cone of depression that is not as deep. So, near the well there will be less drawdown but far from the well there will be more drawdown. You can investigate this with the interactive plot and the option to plot a second set of $T$ and $S$ for comparison', error='This is not completely correct ... You can use the application to investigate what happens when you increase transmissivity, e.g. with the option to plot a second set of $T$ and $S$ for comparison. However, you will need to experiment with different combinations of hydraulic parameters as well as distance and time, then holding all else constant, except $T$, observe the change in drawdown. When all else is equal, a higher transmissivity will produce a broader cone of depression that is not as deep. So, near the well there will be less drawdown but far from the well there will be more drawdown.')
-        stb.single_choice(":blue[**Which of the following assumptions was made in the development of the Theis solution for transient flow to a well?**]",
+        stb.single_choice(":orange[**Which of the following assumptions was made in the development of the Theis solution for transient flow to a well?**]",
                   ["The aquifer has variable thickness", "The aquifer is confined and infinite in lateral extent", "The well fully penetrates an unconfined aquifer", "The pumping rate varies with time"],
                   1,success='CORRECT! The aquifer is confined and infinite in lateral extent', error='This is not correct. You can learn more about the Theis Solution [by downloading the book: An Introduction to Hydraulic Testing in Hydrogeology - Basic Pumping, Slug, and Packer Methods​​ and reading Section 8](https://gw-project.org/books/an-introduction-to-hydraulic-testing-in-hydrogeology-basic-pumping-slug-and-packer-methods/). Feel free to answer again.')
                   
 st.subheader(':red-background[Underlying Theory] - Theis Solution for Pumping Test Evaluation', divider="red")
 st.markdown(
     """
-    The Theis solution is a fundamental method in hydrogeology that is used to analyze transient flow to a well pumping at a constant rate _Q_ in a confined aquifer. It describes the drawdown $s$ as a function of time $t$ since pumping began and radial distance $r$ from a pumping well under the assumption of a laterally infinite, homogeneous, and isotropic aquifer with uniform thickness.
+    The Theis solution is a fundamental method in hydrogeology that is used to analyze transient flow to a well pumping at a constant rate $Q$ in a confined aquifer. It describes the drawdown $s$ as a function of time $t$ since pumping began and radial distance $r$ from a pumping well under the assumption of a laterally infinite, homogeneous, and isotropic aquifer with uniform thickness.
     """
     )
     
 # Optional theory here
 with st.expander('**Click here for more information** about the underlying theory of the :red[**Theis solution**]'):
     st.markdown(""" 
-            The Theis solution is a fundamental method in hydrogeology used to analyze transient flow to a well in a confined aquifer. It describes the drawdown $s$ as a function of time  $t$ since pumping began and radial distance $r$ from a well pumping at a constant rate from a laterally infinite, homogeneous, and isotropic aquifer with uniform thickness.
+            The Theis solution is a fundamental method in hydrogeology used to analyze transient flow to a well in a confined aquifer. It describes the drawdown $s$ as a function of time $t$ since pumping began and radial distance $r$ from a well pumping at a constant rate from a laterally infinite, homogeneous, and isotropic aquifer with uniform thickness.
             
             The solution is derived from the radial groundwater flow equation. The drawdown at a distance $r$ from a well pumping at a constant rate _Q_ is given by:
             """
@@ -78,8 +78,8 @@ with st.expander('**Click here for more information** about the underlying theor
     where:
     - $s$ is drawdown at time $t$ and distance $r$ from the well
     - $T$ is the transmissivity of the aquifer
-    - _W(u)_ is the well function defined below
-    - _u_ is a dimensionless time parameter defined as:
+    - $W(u)$ is the well function defined below
+    - $u$ is a dimensionless time parameter defined as:
     """
     )
     
@@ -91,7 +91,7 @@ with st.expander('**Click here for more information** about the underlying theor
     - $S$ is the storativity (specific storage times aquifer thickness)
     - $t$ is the time since pumping began
     
-    The well function _W(u)_ is given by the integral:
+    The well function $W(u)$ is given by the integral:
     """
     )
 
@@ -99,7 +99,7 @@ with st.expander('**Click here for more information** about the underlying theor
     
     st.markdown(
     """
-    This function is commonly evaluated using numerical techniques or tables of _W(u)_ as a function of _u_. The Theis solution is widely used in pumping test analysis to estimate aquifer properties by fitting observed drawdown data to the Theis type curve.
+    This function is commonly evaluated using either numerical techniques or tables of $W$ as a function of $u$. The Theis solution is widely used in pumping test analysis to estimate aquifer properties by fitting observed drawdown data to the Theis type curve.
     """
     )
 
@@ -108,11 +108,11 @@ st.subheader(':red-background[Estimate $T$ and $S$ by matching a Theis Curve] to
 st.markdown("""
             In this section, you can **adjust the values of transmissivity and storativity until the calculated curve of drawdown versus time using the input values of $T$ and $S$ matches the ideal drawdown data**. The ideal data represent drawdown at a distance of 120 m from a well pumping 0.005 m³/s.
             
-            A match indicates that the selected values are a reasonable representation of the aquifer properties.
+            A close match indicates that the selected values are a reasonable representation of the aquifer properties.
             
-            For more precise matching, zoom in by using the toogle.
+            More precise matching can be acheived by zooming in and/or by using typed number input rather than slider input. Both are selected with a toggle switch.
             
-            Toggling on the scatter plot provides an visual comparison of the data and the fitted curve. A 1 to 1, 45 degree line, indicates a perfect match.
+            The scatter plot can be turned on by using a toggle switch. It provides a visual comparison of the data and the fitted curve. A 45 degree line indicates a perfect match between the measured drawdowns and those calculated by the Theis solution for the input values of $T$ and $S$.
 """
 )
 # Computation
@@ -198,7 +198,7 @@ def inverse(v):
     log_max2 = 0.0  # S / Corresponds to 10^0 = 1
     
     # Toggle to switch between slider and number-input mode
-    st.session_state.number_input = st.toggle("Use Slider/Number number for paramter input", key = 10+v)
+    st.session_state.number_input = st.toggle("Toggle to use Slider or Number for input of $T$ and $S$", key = 10+v)
    
     columns2 = st.columns((1,1), gap = 'large')
     with columns2[0]:
@@ -362,9 +362,9 @@ with st.expander('**:red[Click here] for more information** about some of the ca
     st.markdown(
     """
             - It is generally **not possible to maintain an absolutely constant pumping rate** so the data do not form a completely smooth curve.
-            - **Water is removed from the well bore in the early period of pumping**, but that phenomenon is not accounted for by the Theis solution which assumes an infinitesimal well diameter and thus instantaneous response of head in the aquifer to pumping of the well so drawdown may be unexpectedly large and rapid at early times while water is removed from the bore.
-            - **Aquifers are not laterally infinite** as assumed in the Theis solution, rather there may be bodies of water near the well that provide water to the system, slowing the rate of drawdown, or  there may be low permeability materials such as bedrock or faults that prevent water flow toward the well from some directions causing drawdown to occur more rapidly than calculated by the Theis Solution - these "boundary effects" are noticeable in data from later in the pumping test.
-            - **Other stresses on the groundwater system may influence groundwater levels** such as pumps in nearby wells being turned on or turned off, causing either more rapid drawdown or slower drawdown (and sometimes even resulting in a rise of water levels). An interesting example of the effect of other stresses occurred during the test of a well in an alluvial aquifer near a river being conducted to provide example data for a class to work with - the drawdown was proceeding, but even though the pumping rate was constant the water levels began to rise as the sun began to set. It was realized that the cottonwood trees along the river had been "pumping water" by way of evapotranspiration all day while the well was pumping. The evapotranspiration stopped as the sun went down decreasing the withdrawal of water form the aquifer, thus water levels rose. The evapotranspiration was such a powerful influence on the water levels that the data were not useful for a first-level class exercise.  
+            - **Water is removed from the well bore in the early period of pumping**, but that phenomenon is not accounted for by the Theis solution which assumes an infinitesimal well diameter and thus instantaneous response of head in the aquifer to pumping of the well, so drawdown may be unexpectedly large and rapid at early times while water is removed from the bore.
+            - **Aquifers are not laterally infinite** as assumed in the Theis solution, rather there may be bodies of surface water near the well that provide water to the system, slowing the rate of drawdown, or  there may be low permeability materials such as bedrock or faults that prevent water flow toward the well from some directions causing drawdown to occur more rapidly than calculated by the Theis Solution. These are referred to as "boundary effects" and noticeable in data from later in the pumping test.
+            - **Other stresses on the groundwater system may influence groundwater levels** such as pumps in nearby wells being turned on or turned off, causing either more rapid drawdown or slower drawdown (and sometimes even resulting in a rise of water levels). An interesting example of the effect of other stresses occurred during the test of a well in an alluvial aquifer near a river being conducted by an instructor to provide example data for a class exercise - the drawdown was proceeding, but even though the pumping rate was constant the water levels began to rise as the sun began to set. The cottonwood trees along the river had been "pumping water" by way of evapotranspiration all day while the well was pumping. The evapotranspiration stopped as the sun went down decreasing the withdrawal of water from the aquifer, thus water levels rose. The evapotranspiration was such a powerful influence on the water levels that the data were not useful for a first-level class exercise.  
             
     """
     )
@@ -383,7 +383,7 @@ with st.expander('**:red[Click here]** to see one **example of the curve fitting
     st.markdown(""" 
             The following image shows one match of the Theis curve to the drawdown data. If many expert hydrogeologists matched a Theis curve to the data, they would all have a slightly different values of $T$ and $S$, but the parameter sets would likely all be close enough to the values of the aquifer $T$ and $S$ to draw comparable conclusions, and make similar predictions of drawdown for other distances from the well and for longer time than the duration of the test. 
             
-            While adjusting parameter values, **one finds that the early-time drawdown data can be matched very well to the Theis curve, but the data do not fit well at later times**. The reason for this behavior is that as the drawdown cone grows in depth and extent, leakage through an aquitard enters the aquifer which slows the rate of drawdown. At that time the underlying assumptions of the Theis solution are no longer met, but the curve match to the early time data provides representative values of $T$ and $S$.
+            While adjusting parameter values, **one finds that the early-time drawdown data can be matched very well to the Theis curve, but the data do not fit well at later times**. The reason for this behavior is that as the drawdown cone grows in depth and extent, leakage through an aquitard enters the aquifer which slows the rate of drawdown. At that time the underlying assumptions of the Theis solution are no longer met. The $T$ and $S$ values used to match to the early time data to the Theis curve provides representative values of $T$ and $S$ because the leakage is so insignificant at early time that the assumption of a fully confined aquifer is reasonable.
             """)
     left_co2, cent_co2, last_co2 = st.columns((20,60,20))
     with cent_co2:
@@ -392,9 +392,9 @@ with st.expander('**:red[Click here]** to see one **example of the curve fitting
 st.subheader(':red-background[Some initial conclusions]', divider="red")
 with st.expander('**Click here for some initial conclusions**'):
     st.markdown("""
-    The **first interactive plot** allowed adjustment of $T$ and $S$ values used to generate the Theis curve to obtain a fit with ideal drawdown data. **With the ideal data we could obtain perfect fit to the Theis solution**.
+    The **first interactive plot** allowed adjustment of the $T$ and $S$ values used to calculate the Theis curve in order to obtain a fit with ideal drawdown data. **With the ideal data we could obtain a perfect fit to the Theis solution**.
     
-    In the **second interactive plot** we aimed to adjust $T$ and $S$ values to generate a Theis curve that matched drawdown data measured during a pumping test at a field site. **This revealed that the Theis solution may only partially match the measured drawdown data because conditions may deviate from the assumptions made when deriving the Theis solution**.
+    In the **second interactive plot** we aimed to adjust $T$ and $S$ values to generate a Theis curve that matched drawdown data measured during a pumping test at a field site. **This revealed that the Theis curve may only partially match the measured drawdown data because conditions may deviate from the assumptions made when deriving the Theis solution**.
     """
 )  
 
