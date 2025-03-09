@@ -250,8 +250,8 @@ elif(st.session_state.Data =="Load own CSV dataset"):
         Qd = Qs*60*60*24 # m^3/d
 elif(st.session_state.Data == "Viterbo (IT) 2023"):
     # Data and parameter from Viterbo 2023
-    m_time = [0.083333333, 1, 1.416666667, 2.166666667, 2.5, 2.916666667, 3.566666667, 3.916666667, 4.416666667, 4.833333333, 5.633333333, 6.516666667, 7.5, 8.916666667, 10.13333333, 11.16666667, 12.6, 16.5, 18.53333333, 22.83333333, 27.15, 34.71666667, 39.91666667, 48.21666667, 60.4, 72.66666667, 81.91666667, 94.66666667, 114.7166667, 123.5]
-    m_ddown = [0.04, 0.09, 0.12, 0.185, 0.235, 0.22, 0.26, 0.3, 0.31, 0.285, 0.34, 0.4, 0.34, 0.38, 0.405, 0.38, 0.385, 0.415, 0.425, 0.44, 0.44, 0.46, 0.47, 0.495, 0.54, 0.525, 0.53, 0.56, 0.57, 0.58]
+    m_time = [1, 1.416666667, 2.166666667, 2.5, 2.916666667, 3.566666667, 3.916666667, 4.416666667, 4.833333333, 5.633333333, 6.516666667, 7.5, 8.916666667, 10.13333333, 11.16666667, 12.6, 16.5, 18.53333333, 22.83333333, 27.15, 34.71666667, 39.91666667, 48.21666667, 60.4, 72.66666667, 81.91666667, 94.66666667, 114.7166667, 123.5]
+    m_ddown = [0.09, 0.12, 0.185, 0.235, 0.22, 0.26, 0.3, 0.31, 0.285, 0.34, 0.4, 0.34, 0.38, 0.405, 0.38, 0.385, 0.415, 0.425, 0.44, 0.44, 0.46, 0.47, 0.495, 0.54, 0.525, 0.53, 0.56, 0.57, 0.58]
     r = 20           # m
     b = 8.5          # m
     Qs = 15.6/3600   # m^3/s
@@ -318,29 +318,15 @@ m_time_s = [i*60 for i in m_time] # time in seconds
 num_times = len(m_time)
 
 # Initialize session state for value and toggle state
-st.session_state.T_slider_value = -2.0
-# Specific for Neuman
-if st.session_state.Solution == 'Neuman':
-    st.session_state.Ss_slider_value = -5.0
-    st.session_state.SY = 0.25
-# This for Theis / Hantush-Jacob
-else:
-    st.session_state.S_slider_value = -4.0
+# st.session_state.T_slider_value = -2.0
+# # Specific for Neuman
+# if st.session_state.Solution == 'Neuman':
+#     st.session_state.Ss_slider_value = -5.0
+#     st.session_state.SY = 0.25
+# # This for Theis / Hantush-Jacob
+# else:
+#     st.session_state.S_slider_value = -4.0
 st.session_state.number_input = False  # Default to number_input
-
-
-
-# Initialize session state for value and toggle state
-
-
-
-
-
-
-
-
-
-
 
 st.subheader(':green[Inverse parameter fitting]', divider="rainbow")
 
@@ -353,7 +339,23 @@ st.markdown("""
 
 @st.fragment
 def inverse():
-    # This is the function to plot the graph with the data     
+    # This is the function to plot the graph with the data   
+
+    # Initialize session state for value and toggle state
+    if "T_slider_value" not in st.session_state:
+        st.session_state["T_slider_value"] = -3.0  # Default value (log of T)
+    
+    # Specific for Neuman
+    if st.session_state.Solution == 'Neuman':
+        if "Ss_slider_value" not in st.session_state:
+            st.session_state["Ss_slider_value"] = -5.0
+        if "SY" not in st.session_state:
+            st.session_state["SY"] = 0.25
+    # This for Theis / Hantush-Jacob
+    else:
+        if "S_slider_value" not in st.session_state:
+            st.session_state["S_slider_value"] = -4.0
+
     # Get input data
     # Define the minimum and maximum for the logarithmic scale
     log_min1 = -7.0 # T / Corresponds to 10^-7 = 0.0000001
@@ -414,7 +416,6 @@ def inverse():
             r_div_B_choice = st.selectbox("r/B",('0.01', '0.04', '0.1', '0.2', '0.4', '0.6', '1', '1.5', '2', '2.5'),)
             r_div_B_list = ['0.01', '0.04', '0.1', '0.2', '0.4', '0.6', '1', '1.5', '2', '2.5']
             r_div_B = r_div_B_list.index(r_div_B_choice)
-            st.write(r_div_B_choice)
     
     # Compute K and SS to provide parameters for plausability check
     # (i.e. are the parameter in a reasonable range)
@@ -480,8 +481,8 @@ def inverse():
         ax.plot(t_a_NEU, s_a_NEU, '--', color='dodgerblue', label=r'Computed drawdown early - Neuman')
         ax.plot(t_b_NEU, s_b_NEU, '--', color='darkblue', label=r'Computed drawdown late - Neuman')
         ax.plot(m_time_s, m_ddown, 'o', color='mediumorchid', label=r'measured drawdown')
-        if scatter:
-            plt.vlines(switch_time,1E-4,1E+1,color='orangered',linestyles='dashdot', label='switch time scatter plot and statistics')
+        #if scatter:
+        #    plt.vlines(switch_time,1E-4,1E+1,color='orangered',linestyles='dashdot', label='switch time scatter plot and statistics')
 
     if st.session_state.Solution == 'Hantush-Jacob':  
         # Theis curve

@@ -114,17 +114,22 @@ def compute_s(T, S, t, Q, r):
     s = theis_s(Q, T, u)
     return s
     
+# Callback function to update session state
+def update_T():
+    st.session_state.T_slider_value = st.session_state.T_input
+def update_S():
+    st.session_state.S_slider_value = st.session_state.S_input
+def update_T2():
+    st.session_state.T2_slider_value = st.session_state.T2_input
+def update_S2():
+    st.session_state.S2_slider_value = st.session_state.S2_input
+    
 # Initialize session state for value and toggle state
-if "T_slider_value" not in st.session_state:
-    st.session_state["T_slider_value"] = -3.0  # Default value
-if "S_slider_value" not in st.session_state:
-    st.session_state["S_slider_value"] = -4.0  # Default value
-if "T2_slider_value" not in st.session_state:
-    st.session_state["T2_slider_value"] = -3.0  # Default value
-if "S2_slider_value" not in st.session_state:
-    st.session_state["S2_slider_value"] = -4.0  # Default value
-number_input = False
-st.session_state.number_input = number_input  # Default to number_input
+st.session_state.T_slider_value = -3.0
+st.session_state.S_slider_value = -4.0
+st.session_state.T2_slider_value = -3.0
+st.session_state.S2_slider_value = -4.0
+st.session_state.number_input = False  # Default to number_input
 
 # Fixed values
 u_max = 1
@@ -159,18 +164,18 @@ def transient_flow_well():
         #Logaritmic T-Slider
         container = st.container()
         if st.session_state.number_input:
-            T_slider_value_new = st.number_input("_(log of) Transmissivity $T$_", log_min1,log_max1, st.session_state["T_slider_value"], 0.01, format="%4.2f")
+            T_slider_value_new = st.number_input("_(log of) Transmissivity $T$_", log_min1,log_max1, st.session_state["T_slider_value"], 0.01, format="%4.2f", key="T_input", on_change=update_T)
         else:
-            T_slider_value_new = st.slider("_(log of) Transmissivity $T$_", log_min1, log_max1, st.session_state["T_slider_value"], 0.01, format="%4.2f")
+            T_slider_value_new = st.slider("_(log of) Transmissivity $T$_", log_min1, log_max1, st.session_state["T_slider_value"], 0.01, format="%4.2f", key="T_input", on_change=update_T)
         st.session_state["T_slider_value"] = T_slider_value_new
         T = 10 ** T_slider_value_new
         container.write("**$T$ in m²/s:** %5.2e" %T)
         #Logaritmic S-Slider
         container = st.container()
         if st.session_state.number_input:
-            S_slider_value_new=st.number_input('_(log of) Storativity $S$_', log_min2, log_max2, st.session_state["S_slider_value"],0.01,format="%4.2f" )
+            S_slider_value_new=st.number_input('_(log of) Storativity $S$_', log_min2, log_max2, st.session_state["S_slider_value"],0.01,format="%4.2f", key="S_input", on_change=update_S)
         else:
-            S_slider_value_new=st.slider('_(log of) Storativity $S$_', log_min2,log_max2, st.session_state["S_slider_value"],0.01,format="%4.2f" )
+            S_slider_value_new=st.slider('_(log of) Storativity $S$_', log_min2,log_max2, st.session_state["S_slider_value"],0.01,format="%4.2f", key="S_input", on_change=update_S)
         st.session_state["S_slider_value"] = S_slider_value_new
         S = 10 ** S_slider_value_new
         container.write("**$S$ (dimensionless):** %5.2e" %S)    
@@ -180,18 +185,18 @@ def transient_flow_well():
         if comparison:
             container = st.container()
             if st.session_state.number_input:
-                T2_slider_value_new = st.number_input("_(log of) Transmissivity $T2$_", log_min1,log_max1, st.session_state["T2_slider_value"], 0.01, format="%4.2f")
+                T2_slider_value_new = st.number_input("_(log of) Transmissivity $T2$_", log_min1,log_max1, st.session_state["T2_slider_value"], 0.01, format="%4.2f", key="T2_input", on_change=update_T2)
             else:
-                T2_slider_value_new = st.slider("_(log of) Transmissivity $T2$_", log_min1, log_max1, st.session_state["T2_slider_value"], 0.01, format="%4.2f")
+                T2_slider_value_new = st.slider("_(log of) Transmissivity $T2$_", log_min1, log_max1, st.session_state["T2_slider_value"], 0.01, format="%4.2f", key="T2_input", on_change=update_T2)
             st.session_state["T2_slider_value"] = T2_slider_value_new
             T2 = 10 ** T2_slider_value_new
             container.write("**$T2$ in m²/s:** %5.2e" %T2)
             #Logaritmic S-Slider
             container = st.container()
             if st.session_state.number_input:
-                S2_slider_value_new=st.number_input('_(log of) Storativity $S2$_', log_min2, log_max2, st.session_state["S2_slider_value"],0.01,format="%4.2f" )
+                S2_slider_value_new=st.number_input('_(log of) Storativity $S2$_', log_min2, log_max2, st.session_state["S2_slider_value"],0.01,format="%4.2f", key="S2_input", on_change=update_S2)
             else:
-                S2_slider_value_new=st.slider('_(log of) Storativity $S2$_', log_min2,log_max2, st.session_state["S2_slider_value"],0.01,format="%4.2f" )
+                S2_slider_value_new=st.slider('_(log of) Storativity $S2$_', log_min2,log_max2, st.session_state["S2_slider_value"],0.01,format="%4.2f", key="S2_input", on_change=update_S2)
             st.session_state["S2_slider_value"] = S2_slider_value_new
             S2 = 10 ** S2_slider_value_new
             container.write("**$S2$ (dimensionless):** %5.2e" %S2)
