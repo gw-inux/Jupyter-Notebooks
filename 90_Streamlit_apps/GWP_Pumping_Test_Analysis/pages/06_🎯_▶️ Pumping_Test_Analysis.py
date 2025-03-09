@@ -343,7 +343,7 @@ def inverse():
 
     # Initialize session state for value and toggle state
     if T_slider_value not in st.session_state:
-        st.session_state.T_slider_value = -2.0 = -3.0  # Default value (log of T)
+        st.session_state.T_slider_value = -3.0  # Default value (log of T)
     
     # Specific for Neuman
     if st.session_state.Solution == 'Neuman':
