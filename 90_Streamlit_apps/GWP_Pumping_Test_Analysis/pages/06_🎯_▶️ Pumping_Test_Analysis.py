@@ -342,19 +342,19 @@ def inverse():
     # This is the function to plot the graph with the data   
 
     # Initialize session state for value and toggle state
-    if T_slider_value not in st.session_state:
-        st.session_state.T_slider_value = -3.0  # Default value (log of T)
+    if "T_slider_value" not in st.session_state:
+        st.session_state["T_slider_value"] = -3.0  # Default value (log of T)
     
     # Specific for Neuman
     if st.session_state.Solution == 'Neuman':
-        if Ss_slider_value not in st.session_state:
-            st.session_state.Ss_slider_value = -5.0
-        if SY not in st.session_state:
-            st.session_state.SY = 0.25
+        if "Ss_slider_value" not in st.session_state:
+            st.session_state["Ss_slider_value"] = -5.0
+        if "SY" not in st.session_state:
+            st.session_state["SY"] = 0.25
     # This for Theis / Hantush-Jacob
     else:
-        if S_slider_value not in st.session_state:
-            st.session_state.S_slider_value = -4.0
+        if "S_slider_value" not in st.session_state:
+            st.session_state["S_slider_value"] = -4.0
 
     # Get input data
     # Define the minimum and maximum for the logarithmic scale
