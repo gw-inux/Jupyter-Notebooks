@@ -1,8 +1,6 @@
 import streamlit as st
-from deep_translator import GoogleTranslator
-
-# Optional: Uncomment these lines if you have API keys
-# from deep_translator import DeeplTranslator, MicrosoftTranslator, YandexTranslator
+import requests
+from deep_translator import GoogleTranslator, MyMemoryTranslator
 
 st.title('🌍 Streamlit App Translation')
 
@@ -15,44 +13,29 @@ def translate_markdown(markdown_text, target_language, translator_choice):
     try:
         if translator_choice == "Google":
             translator = GoogleTranslator(source='auto', target=target_language)
-        
-        elif translator_choice == "DeepL":
-            # Requires an API key
-            st.warning("⚠️ DeepL translation requires an API key.")
-            return markdown_text
-        
-        elif translator_choice == "Microsoft":
-            # Requires an API key
-            st.warning("⚠️ Microsoft translation requires an API key.")
-            return markdown_text
-        
-        elif translator_choice == "Yandex":
-            # Requires an API key
-            st.warning("⚠️ Yandex translation requires an API key.")
-            return markdown_text
-        
+            translated_text = translator.translate(markdown_text)
+
+        elif translator_choice == "LibreTranslate":
+            response = requests.post("https://libretranslate.com/translate", data={
+                "q": markdown_text,
+                "source": "auto",
+                "target": target_language
+            })
+            translated_text = response.json().get("translatedText", "❌ Translation failed")
+
+        elif translator_choice == "MyMemory":
+            translator = MyMemoryTranslator(source="auto", target=target_language)
+            translated_text = translator.translate(markdown_text)
+
         else:
-            st.error("❌ Invalid translator selected!")
-            return markdown_text
+            return "❌ Invalid translator selected!"
 
-        # Split text into lines to preserve markdown structure
-        lines = markdown_text.strip().split("\n")
+        # Ensure Markdown formatting remains intact
+        return translated_text.replace("\n", "\n\n")
 
-        translated_lines = []
-        for line in lines:
-            if line.strip().startswith("#"):  # Preserve Markdown headers
-                header_level = line.count("#")
-                text_without_hash = line.lstrip("#").strip()
-                translated_text = translator.translate(text_without_hash)
-                translated_lines.append("#" * header_level + " " + translated_text)
-            else:
-                translated_lines.append(translator.translate(line))
-
-        return "\n\n".join(translated_lines)  # Ensure proper Markdown spacing
-    
     except Exception as e:
         st.error(f"❌ Translation failed: {e}")
-        return markdown_text
+        return markdown_text  # Return original text on failure
 
 # Example Markdown text
 Text1 = """
@@ -65,25 +48,7 @@ Gelato is more than just ice cream in **Italy**—it is an essential part of dai
 - **More intense flavor**
 
 ## 📍 Where to Find the Best Gelato
-- [Gelateria del Teatro](https://www.gelateriadelteatro.it/) (Rome 🇮🇹)
-- [Grom](https://www.grom.it/) (Various locations)
-- [La Carraia](https://www.lacarraiagroup.eu/) (Florence 🇮🇹)
-"""
-
-# Language selection dropdown
-languages = ['fr', 'es', 'it', 'ru']
-target_lang = st.selectbox("🌎 Choose the target language", languages)
-
-# Translator selection dropdown (Only Google works without API keys)
-translators = ["Google", "DeepL", "Microsoft", "Yandex"]
-translator_choice = st.selectbox("🛠 Choose the translation engine", translators)
-
-# Translate the text
-Text1_t = translate_markdown(Text1, target_lang, translator_choice)
-
-# Display the translated Markdown properly
-st.markdown(Text1_t)
-
+- [Gelateria del Teatro](https://www.gelateriadelteatro.it/
 
 
 # Example markdown text
