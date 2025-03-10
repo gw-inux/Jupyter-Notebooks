@@ -13,14 +13,14 @@ def translate_markdown(markdown_text, target_language):
     try:
         translator = GoogleTranslator(source='auto', target=target_language)
 
-        # Function to translate text while keeping Markdown bold/italic formatting
+        # ✅ Function to translate while preserving Markdown bold/italic formatting
         def translate_with_formatting(match):
             markdown_syntax = match.group(1)  # Capture ** or *
-            original_text = match.group(2)  # Extract text inside **bold** or *italic*
+            original_text = match.group(2).strip()  # Extract text inside **bold** or *italic*
             translated_text = translator.translate(original_text)  # Translate only inner text
             return f"{markdown_syntax}{translated_text}{markdown_syntax}"  # Preserve formatting
 
-        # ✅ Preserve bold (**bold**) and italic (*italic*) formatting
+        # ✅ Preserve **bold** and *italic* formatting
         formatted_text = re.sub(r"(\*\*|\*)(.*?)\1", translate_with_formatting, markdown_text)
 
         # ✅ Split text into lines to preserve Markdown structure
@@ -76,6 +76,7 @@ Text1_t = translate_markdown(Text1, target_lang)
 
 # Display the translated Markdown properly
 st.markdown(Text1_t)
+
 
 
 
