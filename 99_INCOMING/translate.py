@@ -93,17 +93,44 @@ Whether in Italy or abroad, gelato remains a **beloved tradition** for people of
     """
 ]
 
-# ✅ Language selection dropdown
-languages = ['fr', 'es', 'it', 'ru']
-target_lang = st.selectbox("🌎 Choose the target language", languages)
+# ✅ Top 15 most spoken languages (with English as the default)
+languages = {
+    "English": "en",
+    "Mandarin Chinese": "zh",
+    "Hindi": "hi",
+    "Spanish": "es",
+    "French": "fr",
+    "Standard Arabic": "ar",
+    "Bengali": "bn",
+    "Portuguese": "pt",
+    "Russian": "ru",
+    "Japanese": "ja",
+    "German": "de",
+    "Punjabi": "pa",
+    "Korean": "ko",
+    "Italian": "it",
+    "Turkish": "tr"
+}
+
+# ✅ Language selection dropdown (default = English)
+target_lang_name = st.selectbox("🌎 Choose the target language", list(languages.keys()), index=0)
+target_lang = languages[target_lang_name]
+
+# ✅ Preserve previous translations when switching languages
+if "translated_sections" not in st.session_state or st.session_state["current_lang"] != target_lang:
+    st.session_state["translated_sections"] = [None] * len(sections)
+    st.session_state["current_lang"] = target_lang
 
 # ✅ Create placeholders for streaming translation
 placeholders = [st.empty() for _ in sections]
 
-# ✅ Loop through each section and show it while translating
+# ✅ Loop through each section and translate it progressively
 for i, section in enumerate(sections):
-    placeholders[i].markdown(section)  # Show English text immediately
-    time.sleep(1)  # Simulate delay to allow user to start reading
+    if st.session_state["translated_sections"][i] is None:  # If not translated yet
+        placeholders[i].markdown(section)  # Show English text immediately
+        time.sleep(1)  # Simulate delay to allow user to start reading
 
-    translated_text = translate_markdown(section, target_lang)  # Translate section
-    placeholders[i].markdown(translated_text)  # Replace with translated text
+        translated_text = translate_markdown(section, target_lang)  # Translate section
+        st.session_state["translated_sections"][i] = translated_text  # Save translated text
+
+    placeholders[i].markdown(st.session_state["translated_sections"][i])  # Display translation
