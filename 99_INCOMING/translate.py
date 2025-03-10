@@ -13,21 +13,29 @@ def translate_markdown(markdown_text, target_language):
     try:
         translator = GoogleTranslator(source='auto', target=target_language)
 
-        # Function to translate while keeping Markdown bold/italic intact
+        # Function to translate while keeping Markdown bold/italic formatting intact
         def translate_with_formatting(match):
-            original_text = match.group(2)  # Extract text inside formatting
-            translated_text = translator.translate(original_text)  # Translate only the text
-            return f"{match.group(1)}{translated_text}{match.group(1)}"  # Reattach Markdown symbols
+            original_text = match.group(2)  # Extract text inside **bold** or *italic*
+            translated_text = translator.translate(original_text)  # Translate only the inner text
+            return f"{match.group(1)}{translated_text}{match.group(1)}"  # Reattach ** or *
 
         # Preserve bold (**bold**) and italic (*italic*) formatting
         formatted_text = re.sub(r"(\*\*|\*)(.*?)\1", translate_with_formatting, markdown_text)
 
-        # ✅ **Split text into smaller paragraphs for faster processing**
+        # ✅ Split text into paragraphs for faster & more accurate translation
         paragraphs = formatted_text.split("\n\n")
-        translated_paragraphs = [translator.translate(para) for para in paragraphs if para.strip()]
+        translated_paragraphs = []
 
-        # ✅ **Reassemble translated text with Markdown spacing**
-        return "\n\n".join(translated_paragraphs)
+        for para in paragraphs:
+            if para.startswith("#"):  # ✅ Ensure headers are translated correctly
+                header_level = para.count("#")
+                text_without_hash = para.lstrip("#").strip()
+                translated_text = translator.translate(text_without_hash)
+                translated_paragraphs.append("#" * header_level + " " + translated_text)
+            else:
+                translated_paragraphs.append(translator.translate(para))
+
+        return "\n\n".join(translated_paragraphs)  # Ensure proper Markdown spacing
     
     except Exception as e:
         st.error(f"❌ Translation failed: {e}")
