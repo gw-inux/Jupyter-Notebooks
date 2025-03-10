@@ -8,23 +8,16 @@ st.header(':rainbow[Test app for deep_translator]')
 
 st.subheader(':rainbow-background[Feasibility of automatic translation in Streamlit Apps]')
 
-# Function to translate Markdown text while preserving formatting
+# Function to translate Markdown text while preserving bold/italic formatting
 def translate_markdown(markdown_text, target_language):
     try:
         translator = GoogleTranslator(source='auto', target=target_language)
 
-        # ✅ Function to translate while preserving Markdown bold/italic formatting
-        def translate_with_formatting(match):
-            markdown_syntax = match.group(1)  # Capture ** or *
-            original_text = match.group(2).strip()  # Extract text inside **bold** or *italic*
-            translated_text = translator.translate(original_text)  # Translate only inner text
-            return f"{markdown_syntax}{translated_text}{markdown_syntax}"  # Preserve formatting
+        # ✅ Step 1: Add spaces inside **bold** and *italic* before translation
+        text_with_spaces = re.sub(r"(\*\*|\*)(\S.*?\S)(\*\*|\*)", r"\1 \2 \3", markdown_text)
 
-        # ✅ Preserve **bold** and *italic* formatting
-        formatted_text = re.sub(r"(\*\*|\*)(.*?)\1", translate_with_formatting, markdown_text)
-
-        # ✅ Split text into lines to preserve Markdown structure
-        lines = formatted_text.strip().split("\n")
+        # ✅ Step 2: Split text into lines to preserve Markdown structure
+        lines = text_with_spaces.strip().split("\n")
 
         translated_lines = []
         for line in lines:
@@ -40,7 +33,10 @@ def translate_markdown(markdown_text, target_language):
 
         translated_text = "\n\n".join(translated_lines)  # Ensure proper spacing
 
-        return translated_text
+        # ✅ Step 3: Remove spaces inside **bold** and *italic* after translation
+        final_text = re.sub(r"(\*\*|\*) (.*?) (\*\*|\*)", r"\1\2\3", translated_text)
+
+        return final_text
     
     except Exception as e:
         st.error(f"❌ Translation failed: {e}")
@@ -76,6 +72,7 @@ Text1_t = translate_markdown(Text1, target_lang)
 
 # Display the translated Markdown properly
 st.markdown(Text1_t)
+
 
 
 
