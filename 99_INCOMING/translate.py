@@ -1,4 +1,5 @@
 import streamlit as st
+import re
 from deep_translator import GoogleTranslator
 
 st.title('🌍 Streamlit App Translation')
@@ -7,13 +8,22 @@ st.header(':rainbow[Test app for deep_translator]')
 
 st.subheader(':rainbow-background[Feasibility of automatic translation in Streamlit Apps]')
 
-# Function to translate markdown text with Google Translator
+# Function to preserve Markdown formatting during translation
 def translate_markdown(markdown_text, target_language):
     try:
         translator = GoogleTranslator(source='auto', target=target_language)
-        
-        # Split text into lines to preserve markdown structure
-        lines = markdown_text.strip().split("\n")
+
+        # Function to translate while keeping Markdown bold/italic intact
+        def translate_with_formatting(match):
+            original_text = match.group(2)  # Extract the text inside the formatting
+            translated_text = translator.translate(original_text)  # Translate only the inner text
+            return f"{match.group(1)}{translated_text}{match.group(1)}"  # Reconstruct with ** or *
+
+        # Preserve bold (**bold**) and italic (*italic*) formatting
+        formatted_text = re.sub(r"(\*\*|\*)(.*?)\1", translate_with_formatting, markdown_text)
+
+        # Split text into lines to preserve Markdown headers
+        lines = formatted_text.strip().split("\n")
 
         translated_lines = []
         for line in lines:
@@ -56,6 +66,7 @@ Text1_t = translate_markdown(Text1, target_lang)
 
 # Display the translated Markdown properly
 st.markdown(Text1_t)
+
 
 
 ## 🍦 The Culture of Italian Gelato
