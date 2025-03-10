@@ -124,12 +124,15 @@ def update_T2():
     st.session_state.T2_slider_value = st.session_state.T2_input
 def update_S2():
     st.session_state.S2_slider_value = st.session_state.S2_input
+def update_Q():
+    st.session_state.Q = st.session_state.Q_input
     
 # Initialize session state for value and toggle state
 st.session_state.T_slider_value = -3.0
 st.session_state.S_slider_value = -4.0
 st.session_state.T2_slider_value = -3.0
 st.session_state.S2_slider_value = -4.0
+st.session_state.Q = 0.000
 st.session_state.number_input = False  # Default to number_input
 
 # Fixed values
@@ -158,7 +161,7 @@ def transient_flow_well():
        
     columns = st.columns((1,1,1), gap = 'medium')
     with columns[0]:
-        Q = st.slider(f'**Pumping rate $Q$ (m³/s)**', 0.001,0.03,0.000,0.001,format="%5.3f")
+        Q = st.slider(f'**Pumping rate $Q$ (m³/s)**', 0.001,0.03,st.session_state["Q"],0.001,format="%5.3f", key="Q_input", on_change=update_Q)
         r_show = st.slider(f'**Distance $r$ in meters**',0,1000,100,1)
         t_show = st.slider(f'**Time $t$ in seconds**',0.001,86400.*7,86400.,600.,format="%5.0f")
     with columns[1]:
