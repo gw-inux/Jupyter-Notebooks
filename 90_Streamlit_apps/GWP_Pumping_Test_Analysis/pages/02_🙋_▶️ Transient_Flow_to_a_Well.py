@@ -162,9 +162,9 @@ def transient_flow_well():
     columns = st.columns((1,1,1), gap = 'medium')
     with columns[0]:
         if st.session_state.number_input:
-            Q = st.number_input(f'**Pumping rate $Q$ (m³/s)**', 0.001,0.03,st.session_state["Q"],0.001,format="%5.3f", key="Q_input", on_change=update_Q)
+            Q = st.number_input(f'**Pumping rate $Q$ (m³/s)**', 0.000,0.03,st.session_state["Q"],0.001,format="%5.3f", key="Q_input", on_change=update_Q)
         else:
-            Q = st.slider(f'**Pumping rate $Q$ (m³/s)**', 0.001,0.03,st.session_state["Q"],0.001,format="%5.3f", key="Q_input", on_change=update_Q)
+            Q = st.slider(f'**Pumping rate $Q$ (m³/s)**', 0.000,0.03,st.session_state["Q"],0.001,format="%5.3f", key="Q_input", on_change=update_Q)
         r_show = st.slider(f'**Distance $r$ in meters**',0,1000,100,1)
         t_show = st.slider(f'**Time $t$ in seconds**',0.001,86400.*7,86400.,600.,format="%5.0f")
     with columns[1]:
