@@ -1,5 +1,8 @@
 import streamlit as st
-from deep_translator import GoogleTranslator, DeeplTranslator, MicrosoftTranslator, YandexTranslator
+from deep_translator import GoogleTranslator
+
+# Optional: Uncomment these lines if you have API keys
+# from deep_translator import DeeplTranslator, MicrosoftTranslator, YandexTranslator
 
 st.title('🌍 Streamlit App Translation')
 
@@ -7,35 +10,49 @@ st.header(':rainbow[Test app for deep_translator]')
 
 st.subheader(':rainbow-background[Feasibility of automatic translation in Streamlit Apps]')
 
-# Function to translate markdown text with a chosen translator
+# Function to translate markdown text with the chosen translator
 def translate_markdown(markdown_text, target_language, translator_choice):
-    # Select the appropriate translation engine
-    if translator_choice == "Google":
-        translator = GoogleTranslator(source='auto', target=target_language)
-    elif translator_choice == "DeepL":
-        translator = DeeplTranslator(source='auto', target=target_language, api_key="YOUR_DEEPL_API_KEY")
-    elif translator_choice == "Microsoft":
-        translator = MicrosoftTranslator(api_key="YOUR_MICROSOFT_API_KEY", target=target_language)
-    elif translator_choice == "Yandex":
-        translator = YandexTranslator(api_key="YOUR_YANDEX_API_KEY", target=target_language)
-    else:
-        st.error("Invalid translator selected!")
-        return markdown_text  # Return original text if selection fails
-
-    # Split text into lines to preserve markdown structure
-    lines = markdown_text.strip().split("\n")
-
-    translated_lines = []
-    for line in lines:
-        if line.strip().startswith("#"):  # Preserve Markdown headers
-            header_level = line.count("#")
-            text_without_hash = line.lstrip("#").strip()
-            translated_text = translator.translate(text_without_hash)
-            translated_lines.append("#" * header_level + " " + translated_text)
+    try:
+        if translator_choice == "Google":
+            translator = GoogleTranslator(source='auto', target=target_language)
+        
+        elif translator_choice == "DeepL":
+            # Requires an API key
+            st.warning("⚠️ DeepL translation requires an API key.")
+            return markdown_text
+        
+        elif translator_choice == "Microsoft":
+            # Requires an API key
+            st.warning("⚠️ Microsoft translation requires an API key.")
+            return markdown_text
+        
+        elif translator_choice == "Yandex":
+            # Requires an API key
+            st.warning("⚠️ Yandex translation requires an API key.")
+            return markdown_text
+        
         else:
-            translated_lines.append(translator.translate(line))
+            st.error("❌ Invalid translator selected!")
+            return markdown_text
 
-    return "\n\n".join(translated_lines)  # Ensure proper Markdown spacing
+        # Split text into lines to preserve markdown structure
+        lines = markdown_text.strip().split("\n")
+
+        translated_lines = []
+        for line in lines:
+            if line.strip().startswith("#"):  # Preserve Markdown headers
+                header_level = line.count("#")
+                text_without_hash = line.lstrip("#").strip()
+                translated_text = translator.translate(text_without_hash)
+                translated_lines.append("#" * header_level + " " + translated_text)
+            else:
+                translated_lines.append(translator.translate(line))
+
+        return "\n\n".join(translated_lines)  # Ensure proper Markdown spacing
+    
+    except Exception as e:
+        st.error(f"❌ Translation failed: {e}")
+        return markdown_text
 
 # Example Markdown text
 Text1 = """
@@ -57,7 +74,7 @@ Gelato is more than just ice cream in **Italy**—it is an essential part of dai
 languages = ['fr', 'es', 'it', 'ru']
 target_lang = st.selectbox("🌎 Choose the target language", languages)
 
-# Translator selection dropdown
+# Translator selection dropdown (Only Google works without API keys)
 translators = ["Google", "DeepL", "Microsoft", "Yandex"]
 translator_choice = st.selectbox("🛠 Choose the translation engine", translators)
 
@@ -66,6 +83,7 @@ Text1_t = translate_markdown(Text1, target_lang, translator_choice)
 
 # Display the translated Markdown properly
 st.markdown(Text1_t)
+
 
 
 # Example markdown text
