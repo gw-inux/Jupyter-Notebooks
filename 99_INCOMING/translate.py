@@ -48,11 +48,25 @@ Gelato is more than just ice cream in **Italy**—it is an essential part of dai
 - **More intense flavor**
 
 ## 📍 Where to Find the Best Gelato
-- [Gelateria del Teatro](https://www.gelateriadelteatro.it/
+- [Gelateria del Teatro](https://www.gelateriadelteatro.it/) (Rome 🇮🇹)
+- [Grom](https://www.grom.it/) (Various locations)
+- [La Carraia](https://www.lacarraiagroup.eu/) (Florence 🇮🇹)
+"""
 
+# Language selection dropdown
+languages = ['fr', 'es', 'it', 'ru']
+target_lang = st.selectbox("🌎 Choose the target language", languages)
 
-# Example markdown text
-#Text1 = """
+# Translator selection dropdown (Only free, no API required)
+translators = ["Google", "LibreTranslate", "MyMemory"]
+translator_choice = st.selectbox("🛠 Choose the translation engine", translators)
+
+# Translate the text
+Text1_t = translate_markdown(Text1, target_lang, translator_choice)
+
+# Display the translated Markdown properly
+st.markdown(Text1_t)
+
 ## 🍦 The Culture of Italian Gelato
 #Gelato is more than just ice cream in **Italy**—it is an essential part of daily life and a **symbol of Italian culture**. Unlike industrial ice cream, gelato is **crafted daily** in artisanal shops called _gelaterie_. 
 #
