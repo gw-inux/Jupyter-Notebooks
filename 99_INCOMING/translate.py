@@ -15,27 +15,19 @@ def translate_markdown(markdown_text, target_language):
 
         # Function to translate while keeping Markdown bold/italic intact
         def translate_with_formatting(match):
-            original_text = match.group(2)  # Extract the text inside the formatting
-            translated_text = translator.translate(original_text)  # Translate only the inner text
-            return f"{match.group(1)}{translated_text}{match.group(1)}"  # Reconstruct with ** or *
+            original_text = match.group(2)  # Extract text inside formatting
+            translated_text = translator.translate(original_text)  # Translate only the text
+            return f"{match.group(1)}{translated_text}{match.group(1)}"  # Reattach Markdown symbols
 
         # Preserve bold (**bold**) and italic (*italic*) formatting
         formatted_text = re.sub(r"(\*\*|\*)(.*?)\1", translate_with_formatting, markdown_text)
 
-        # Split text into lines to preserve Markdown headers
-        lines = formatted_text.strip().split("\n")
+        # ✅ **Split text into smaller paragraphs for faster processing**
+        paragraphs = formatted_text.split("\n\n")
+        translated_paragraphs = [translator.translate(para) for para in paragraphs if para.strip()]
 
-        translated_lines = []
-        for line in lines:
-            if line.strip().startswith("#"):  # Preserve Markdown headers
-                header_level = line.count("#")
-                text_without_hash = line.lstrip("#").strip()
-                translated_text = translator.translate(text_without_hash)
-                translated_lines.append("#" * header_level + " " + translated_text)
-            else:
-                translated_lines.append(translator.translate(line))
-
-        return "\n\n".join(translated_lines)  # Ensure proper Markdown spacing
+        # ✅ **Reassemble translated text with Markdown spacing**
+        return "\n\n".join(translated_paragraphs)
     
     except Exception as e:
         st.error(f"❌ Translation failed: {e}")
@@ -61,7 +53,7 @@ Gelato is more than just ice cream in **Italy**—it is an essential part of dai
 languages = ['fr', 'es', 'it', 'ru']
 target_lang = st.selectbox("🌎 Choose the target language", languages)
 
-# Translate the text using Google Translator only
+# Translate the text using Google Translator only (optimized)
 Text1_t = translate_markdown(Text1, target_lang)
 
 # Display the translated Markdown properly
