@@ -8,42 +8,37 @@ st.header(':rainbow[Test app for deep_translator]')
 
 st.subheader(':rainbow-background[Feasibility of automatic translation in Streamlit Apps]')
 
-# Function to translate text while preserving Markdown structure
+# Function to translate Markdown text while preserving formatting
 def translate_markdown(markdown_text, target_language):
     try:
         translator = GoogleTranslator(source='auto', target=target_language)
 
-        # Function to translate while keeping Markdown bold/italic formatting intact
+        # Function to translate text while keeping Markdown bold/italic formatting
         def translate_with_formatting(match):
+            markdown_syntax = match.group(1)  # Capture ** or *
             original_text = match.group(2)  # Extract text inside **bold** or *italic*
-            translated_text = translator.translate(original_text)  # Translate only the text
-            return f"{match.group(1)}{translated_text}{match.group(1)}"  # Reattach ** or *
+            translated_text = translator.translate(original_text)  # Translate only inner text
+            return f"{markdown_syntax}{translated_text}{markdown_syntax}"  # Preserve formatting
 
-        # Preserve bold (**bold**) and italic (*italic*) formatting
+        # ✅ Preserve bold (**bold**) and italic (*italic*) formatting
         formatted_text = re.sub(r"(\*\*|\*)(.*?)\1", translate_with_formatting, markdown_text)
 
-        # ✅ Split text into paragraphs for better accuracy
-        paragraphs = formatted_text.split("\n\n")
-        translated_paragraphs = []
+        # ✅ Split text into lines to preserve Markdown structure
+        lines = formatted_text.strip().split("\n")
 
-        for para in paragraphs:
-            if para.startswith("#"):  # ✅ Ensure headers are fully translated
-                header_level = para.count("#")
-                text_without_hash = para.lstrip("#").strip()
-                translated_text = translator.translate(text_without_hash)
-                translated_paragraphs.append("#" * header_level + " " + translated_text)
+        translated_lines = []
+        for line in lines:
+            stripped_line = line.strip()
+
+            if stripped_line.startswith("#"):  # ✅ Preserve headers (even multiple ##)
+                header_level = len(stripped_line) - len(stripped_line.lstrip("#"))  # Count #
+                text_without_hash = stripped_line.lstrip("#").strip()  # Remove #
+                translated_text = translator.translate(text_without_hash)  # Translate only text
+                translated_lines.append("#" * header_level + " " + translated_text)  # Rebuild header
             else:
-                translated_paragraphs.append(translator.translate(para))
+                translated_lines.append(translator.translate(stripped_line))
 
-        translated_text = "\n\n".join(translated_paragraphs)
-
-        # ✅ Post-processing corrections for better grammar (manual improvements)
-        corrections = {
-            "La meilleure gelato": "Le meilleur gelato",
-            "la culture Italienne": "la culture italienne"
-        }
-        for wrong, correct in corrections.items():
-            translated_text = translated_text.replace(wrong, correct)
+        translated_text = "\n\n".join(translated_lines)  # Ensure proper spacing
 
         return translated_text
     
@@ -60,6 +55,11 @@ Gelato is more than just ice cream in **Italy**—it is an essential part of dai
 - **Less fat**
 - **Denser texture**
 - **More intense flavor**
+
+### 🍧 Popular Flavors
+- **Pistachio**
+- **Stracciatella**
+- **Lemon**
 
 ## 📍 Where to Find the Best Gelato
 - [Gelateria del Teatro](https://www.gelateriadelteatro.it/) (Rome 🇮🇹)
