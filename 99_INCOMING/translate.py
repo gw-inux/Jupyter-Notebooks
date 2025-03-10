@@ -1,6 +1,5 @@
 import streamlit as st
-import requests
-from deep_translator import GoogleTranslator, MyMemoryTranslator
+from deep_translator import GoogleTranslator
 
 st.title('🌍 Streamlit App Translation')
 
@@ -8,34 +7,29 @@ st.header(':rainbow[Test app for deep_translator]')
 
 st.subheader(':rainbow-background[Feasibility of automatic translation in Streamlit Apps]')
 
-# Function to translate markdown text with the chosen translator
-def translate_markdown(markdown_text, target_language, translator_choice):
+# Function to translate markdown text with Google Translator
+def translate_markdown(markdown_text, target_language):
     try:
-        if translator_choice == "Google":
-            translator = GoogleTranslator(source='auto', target=target_language)
-            translated_text = translator.translate(markdown_text)
+        translator = GoogleTranslator(source='auto', target=target_language)
+        
+        # Split text into lines to preserve markdown structure
+        lines = markdown_text.strip().split("\n")
 
-        elif translator_choice == "LibreTranslate":
-            response = requests.post("https://libretranslate.com/translate", data={
-                "q": markdown_text,
-                "source": "auto",
-                "target": target_language
-            })
-            translated_text = response.json().get("translatedText", "❌ Translation failed")
+        translated_lines = []
+        for line in lines:
+            if line.strip().startswith("#"):  # Preserve Markdown headers
+                header_level = line.count("#")
+                text_without_hash = line.lstrip("#").strip()
+                translated_text = translator.translate(text_without_hash)
+                translated_lines.append("#" * header_level + " " + translated_text)
+            else:
+                translated_lines.append(translator.translate(line))
 
-        elif translator_choice == "MyMemory":
-            translator = MyMemoryTranslator(source="auto", target=target_language)
-            translated_text = translator.translate(markdown_text)
-
-        else:
-            return "❌ Invalid translator selected!"
-
-        # Ensure Markdown formatting remains intact
-        return translated_text.replace("\n", "\n\n")
-
+        return "\n\n".join(translated_lines)  # Ensure proper Markdown spacing
+    
     except Exception as e:
         st.error(f"❌ Translation failed: {e}")
-        return markdown_text  # Return original text on failure
+        return markdown_text  # Return original text if translation fails
 
 # Example Markdown text
 Text1 = """
@@ -57,15 +51,12 @@ Gelato is more than just ice cream in **Italy**—it is an essential part of dai
 languages = ['fr', 'es', 'it', 'ru']
 target_lang = st.selectbox("🌎 Choose the target language", languages)
 
-# Translator selection dropdown (Only free, no API required)
-translators = ["Google", "LibreTranslate", "MyMemory"]
-translator_choice = st.selectbox("🛠 Choose the translation engine", translators)
-
-# Translate the text
-Text1_t = translate_markdown(Text1, target_lang, translator_choice)
+# Translate the text using Google Translator only
+Text1_t = translate_markdown(Text1, target_lang)
 
 # Display the translated Markdown properly
 st.markdown(Text1_t)
+
 
 ## 🍦 The Culture of Italian Gelato
 #Gelato is more than just ice cream in **Italy**—it is an essential part of daily life and a **symbol of Italian culture**. Unlike industrial ice cream, gelato is **crafted daily** in artisanal shops called _gelaterie_. 
