@@ -8,7 +8,7 @@ st.header(':rainbow[Test app for deep_translator]')
 
 st.subheader(':rainbow-background[Feasibility of automatic translation in Streamlit Apps]')
 
-# Function to preserve Markdown formatting during translation
+# Function to translate text while preserving Markdown structure
 def translate_markdown(markdown_text, target_language):
     try:
         translator = GoogleTranslator(source='auto', target=target_language)
@@ -16,18 +16,18 @@ def translate_markdown(markdown_text, target_language):
         # Function to translate while keeping Markdown bold/italic formatting intact
         def translate_with_formatting(match):
             original_text = match.group(2)  # Extract text inside **bold** or *italic*
-            translated_text = translator.translate(original_text)  # Translate only the inner text
+            translated_text = translator.translate(original_text)  # Translate only the text
             return f"{match.group(1)}{translated_text}{match.group(1)}"  # Reattach ** or *
 
         # Preserve bold (**bold**) and italic (*italic*) formatting
         formatted_text = re.sub(r"(\*\*|\*)(.*?)\1", translate_with_formatting, markdown_text)
 
-        # ✅ Split text into paragraphs for faster & more accurate translation
+        # ✅ Split text into paragraphs for better accuracy
         paragraphs = formatted_text.split("\n\n")
         translated_paragraphs = []
 
         for para in paragraphs:
-            if para.startswith("#"):  # ✅ Ensure headers are translated correctly
+            if para.startswith("#"):  # ✅ Ensure headers are fully translated
                 header_level = para.count("#")
                 text_without_hash = para.lstrip("#").strip()
                 translated_text = translator.translate(text_without_hash)
@@ -35,7 +35,17 @@ def translate_markdown(markdown_text, target_language):
             else:
                 translated_paragraphs.append(translator.translate(para))
 
-        return "\n\n".join(translated_paragraphs)  # Ensure proper Markdown spacing
+        translated_text = "\n\n".join(translated_paragraphs)
+
+        # ✅ Post-processing corrections for better grammar (manual improvements)
+        corrections = {
+            "La meilleure gelato": "Le meilleur gelato",
+            "la culture Italienne": "la culture italienne"
+        }
+        for wrong, correct in corrections.items():
+            translated_text = translated_text.replace(wrong, correct)
+
+        return translated_text
     
     except Exception as e:
         st.error(f"❌ Translation failed: {e}")
@@ -66,6 +76,7 @@ Text1_t = translate_markdown(Text1, target_lang)
 
 # Display the translated Markdown properly
 st.markdown(Text1_t)
+
 
 
 
