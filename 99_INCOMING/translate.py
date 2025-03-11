@@ -122,7 +122,10 @@ languages = {
 }
 
 # ✅ Language selection dropdown (default = English)
-target_lang_name = st.selectbox("🌎 Choose the target language", list(languages.keys()), index=list(languages.keys()).index(ORIGINAL_LANGUAGE))
+
+columns1 = st.columns((1,1,1), gap = 'large')
+with columns1[1]:
+    target_lang_name = st.selectbox("🌎 Choose the target language", list(languages.keys()), index=list(languages.keys()).index(ORIGINAL_LANGUAGE))
 target_lang = languages[target_lang_name]
 
 # ✅ Preserve previous translations when switching languages
