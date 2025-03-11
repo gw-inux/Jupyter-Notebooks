@@ -100,40 +100,46 @@ Whether in Italy or abroad, gelato remains a **beloved tradition** for people of
     """
 ]
 
-# ✅ Updated language list
+# ✅ Dictionary with languages and their corresponding flags (Unicode flag emojis)
 languages = {
-    "English": "en",
-    "Catalan": "ca",
-    "Spanish": "es",
-    "Swedish": "sv",
-    "German": "de",
-    "Italian": "it",
-    "French": "fr",
-    "Chinese (Simplified)": "zh-CN",
-    "Hindi": "hi",
-    "Arabic": "ar",
-    "Bengali": "bn",
-    "Portuguese": "pt",
-    "Russian": "ru",
-    "Japanese": "ja",
-    "Punjabi": "pa",
-    "Korean": "ko",
-    "Turkish": "tr"
+    "English 🇬🇧": "en",
+    "Spanish 🇪🇸": "es",
+    "French 🇫🇷": "fr",
+    "German 🇩🇪": "de",
+    "Italian 🇮🇹": "it",
+    "Swedish 🇸🇪": "sv",
+    "Chinese (Simplified) 🇨🇳": "zh-CN",
+    "Hindi 🇮🇳": "hi",
+    "Arabic 🇸🇦": "ar",
+    "Bengali 🇧🇩": "bn",
+    "Portuguese 🇵🇹": "pt",
+    "Russian 🇷🇺": "ru",
+    "Japanese 🇯🇵": "ja",
+    "Punjabi 🇵🇰": "pa",
+    "Korean 🇰🇷": "ko",
+    "Turkish 🇹🇷": "tr",
+    "Catalan 🇦🇩": "ca"
 }
 
-# ✅ Language selection dropdown (default = English)
-
-columns1 = st.columns((1,1,1), gap = 'large')
+# ✅ Place the language selector neatly centered
+columns1 = st.columns((1,1,1), gap='large')
 with columns1[1]:
-    target_lang_name = st.selectbox("🌎 Choose the target language", list(languages.keys()), index=list(languages.keys()).index(ORIGINAL_LANGUAGE))
+    target_lang_name = st.selectbox(
+        "🌎 Choose the target language",
+        list(languages.keys()),  # Now displays with flags
+        index=list(languages.keys()).index(f"English 🇬🇧")  # Ensure correct default
+    )
+
+# ✅ Get the corresponding language code
 target_lang = languages[target_lang_name]
+
 
 # ✅ Preserve previous translations when switching languages
 if "translated_sections" not in st.session_state or st.session_state["current_lang"] != target_lang:
     st.session_state["translated_sections"] = [None] * len(sections)
     st.session_state["current_lang"] = target_lang
 
-# ✅ Initialize placeholders (this was missing before)
+# ✅ Initialize placeholders
 placeholders = [st.empty() for _ in sections]
 
 # ✅ Show the entire English text first
