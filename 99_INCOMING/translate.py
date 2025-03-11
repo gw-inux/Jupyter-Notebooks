@@ -96,19 +96,21 @@ Whether in Italy or abroad, gelato remains a **beloved tradition** for people of
 # ✅ Top 15 most spoken languages (with English as the default)
 languages = {
     "English": "en",
+    "Catalan": "ca",
+    "Spanish": "es",
+    "Swedish": "sv",
+    "German": "de",
+    "Italian": "it",
+    "French": "fr",
     "Chinese (Simplified)": "zh-CN",
     "Hindi": "hi",
-    "Spanish": "es",
-    "French": "fr",
     "Arabic": "ar",
     "Bengali": "bn",
     "Portuguese": "pt",
     "Russian": "ru",
     "Japanese": "ja",
-    "German": "de",
     "Punjabi": "pa",
     "Korean": "ko",
-    "Italian": "it",
     "Turkish": "tr"
 }
 
