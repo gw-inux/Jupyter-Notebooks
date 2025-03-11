@@ -113,9 +113,10 @@ languages = {
     "Korean": "ko",
     "Turkish": "tr"
 }
-
-# ✅ Language selection dropdown (default = English)
-target_lang_name = st.selectbox("🌎 Choose the target language", list(languages.keys()), index=0)
+columns = st.columns((1,1,1.5), gap = 'large')
+with columns[1]:
+    # ✅ Language selection dropdown (default = English)
+    target_lang_name = st.selectbox("🌎 Choose the target language", list(languages.keys()), index=0)
 target_lang = languages[target_lang_name]
 
 # ✅ Preserve previous translations when switching languages
@@ -126,13 +127,16 @@ if "translated_sections" not in st.session_state or st.session_state["current_la
 # ✅ Create placeholders for streaming translation
 placeholders = [st.empty() for _ in sections]
 
-# ✅ Loop through each section and translate it progressively
+# ✅ Show the entire English text first
+for i, section in enumerate(sections):
+    placeholders[i].markdown(section)  # Display all English text immediately
+
+# ✅ Then translate each section progressively
 for i, section in enumerate(sections):
     if st.session_state["translated_sections"][i] is None:  # If not translated yet
-        placeholders[i].markdown(section)  # Show English text immediately
-        time.sleep(1)  # Simulate delay to allow user to start reading
-
+        time.sleep(1)  # Simulated delay to allow smooth reading
         translated_text = translate_markdown(section, target_lang)  # Translate section
-        st.session_state["translated_sections"][i] = translated_text  # Save translated text
+        st.session_state["translated_sections"][i] = translated_text  # Save translation
 
-    placeholders[i].markdown(st.session_state["translated_sections"][i])  # Display translation
+    placeholders[i].markdown(st.session_state["translated_sections"][i])  # Update with translation
+
