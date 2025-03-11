@@ -1,6 +1,5 @@
 import streamlit as st
 import re
-import time
 from deep_translator import GoogleTranslator
 
 st.title('🌍 Streamlit App Translation')
@@ -9,8 +8,16 @@ st.header(':rainbow[Test app for deep_translator]')
 
 st.subheader(':rainbow-background[Feasibility of automatic translation in Streamlit Apps]')
 
+# ✅ Define the original language of the text (set by the app author)
+ORIGINAL_LANGUAGE = "English"  # Change this if the original text is another language
+ORIGINAL_LANGUAGE_CODE = "en"  # The corresponding language code
+
 # Function to translate Markdown text while preserving bold/italic formatting
 def translate_markdown(markdown_text, target_language):
+    # ✅ Prevent translation if the target language is the same as the original language
+    if target_language == ORIGINAL_LANGUAGE_CODE:
+        return markdown_text  # Return the original text without modification
+
     translator = GoogleTranslator(source='auto', target=target_language)
 
     # ✅ Step 1: Add spaces inside **bold** and *italic* before translation
@@ -93,7 +100,7 @@ Whether in Italy or abroad, gelato remains a **beloved tradition** for people of
     """
 ]
 
-# ✅ Top 15 most spoken languages (with English as the default)
+# ✅ Updated language list
 languages = {
     "English": "en",
     "Catalan": "ca",
@@ -113,10 +120,9 @@ languages = {
     "Korean": "ko",
     "Turkish": "tr"
 }
-columns = st.columns((1,1,1.5), gap = 'large')
-with columns[1]:
-    # ✅ Language selection dropdown (default = English)
-    target_lang_name = st.selectbox("🌎 Choose the target language", list(languages.keys()), index=0)
+
+# ✅ Language selection dropdown (default = English)
+target_lang_name = st.selectbox("🌎 Choose the target language", list(languages.keys()), index=list(languages.keys()).index(ORIGINAL_LANGUAGE))
 target_lang = languages[target_lang_name]
 
 # ✅ Preserve previous translations when switching languages
@@ -124,19 +130,17 @@ if "translated_sections" not in st.session_state or st.session_state["current_la
     st.session_state["translated_sections"] = [None] * len(sections)
     st.session_state["current_lang"] = target_lang
 
-# ✅ Create placeholders for streaming translation
+# ✅ Initialize placeholders (this was missing before)
 placeholders = [st.empty() for _ in sections]
 
 # ✅ Show the entire English text first
 for i, section in enumerate(sections):
     placeholders[i].markdown(section)  # Display all English text immediately
 
-# ✅ Then translate each section progressively
+# ✅ Then translate each section progressively (only if needed)
 for i, section in enumerate(sections):
-    if st.session_state["translated_sections"][i] is None:  # If not translated yet
-        time.sleep(1)  # Simulated delay to allow smooth reading
+    if target_lang != ORIGINAL_LANGUAGE_CODE and st.session_state["translated_sections"][i] is None:  # If not translated yet & needed
         translated_text = translate_markdown(section, target_lang)  # Translate section
         st.session_state["translated_sections"][i] = translated_text  # Save translation
 
-    placeholders[i].markdown(st.session_state["translated_sections"][i])  # Update with translation
-
+    placeholders[i].markdown(st.session_state["translated_sections"][i] if target_lang != ORIGINAL_LANGUAGE_CODE else section)  # Display translation or original
