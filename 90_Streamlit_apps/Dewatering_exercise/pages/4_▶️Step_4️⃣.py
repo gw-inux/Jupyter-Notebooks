@@ -1,21 +1,52 @@
 import streamlit as st
 import streamlit_book as stb
+from streamlit_extras.stodo import to_do
+
+st.title('Dewatering exercise 💦')
+st.subheader("Step 04 - Finding Compromise", divider="blue")
+
+# I found U slightly confusing because it is also used in the Theis context
+
+if st.toggle('Show additional **Notes for instructors**'):
+    to_do(
+    [(st.write, "Lead a discussion to examine tradeoffs.  Think of everyday examples and more complex examples.")],
+    "td01",)
+    to_do(
+    [(st.write, "In each case, you need to balance the cost/benefit or the relative costs and benefits of multiple actions.")],
+    "td02",)
+    to_do(
+    [(st.write, "This requires that you have some way to predict the impacts of the actions and then to value those impacts - good and bad.")],
+    "td03",)
+    to_do(
+    [(st.write, "Conduct the in class exercise to form a Q vs utility curve for different stakeholders.  Can you define the best Q for each stakeholder?")],
+    "td04",)
+    to_do(
+    [(st.write, "Then ask how they could find the best Q considering any two stakeholders, forming a utility tradeoff plot.")],
+    "td05",)
+    to_do(
+    [(st.write, "Introduce Pareto, the man, (see Vilfredo Pareto on Wikipedia) and then talk about the set of optimal tradeoff conditions for any two stakeholders.")],
+    "td06",)
+    to_do(
+    [(st.write, "Introduce the Pareto principle - the 80/20 Rule - ask them to come up with examples and explain why it is a powerful idea.")],
+    "td07",)
+    to_do(
+    [(st.write, "Generalize to describe Pareto optimality.  Ideally, bring this back to the everyday examples that students offered at the start of class.")],
+    "td08",)
+    to_do(
+    [(st.write, "Discuss how Pareto optimality can be applied to the mine dewatering and similar problems.")],
+    "td09",)
+    
+
 
 st.markdown(
     """
-    ### Dewatering exercise 💦
-    ---
-    ## Step 4
-    * Discuss how stakeholders can use utility to find a compromise decision for the dewatering rate?
+    * Discuss how stakeholders can use utility to find a compromise decision for the dewatering rate.
     * Consider that the values of _T_, _S_, and the distances to the stakeholder interests are known and correct.
     * Use any tools that have been shown to you previously to explore the utilities of different pumping rates for all stakeholders.    
     * You should agree upon the utility curves for each stakeholder before you begin your analyses.    
     * You should work as a class, with each person exploring two different Q values that you decide upon collectively.
     * Produce a common table with Q and utility for each stakeholder.
-    * Once you have your table complete, discuss how you can use it to choose the best Q from those that you examined.
-    * Who was Pareto?  Check out Vilfredo Pareto on Wikipedia!
-    * What is the Pareto Principle?  Think of some examples of its application!
-    * Introduce Pareto optimization generally and discuss how it could be applied to this problem for the mine and the town.
+    * Once you have your table complete, discuss how you can use it to choose the best Q from those that you examined for any two stakeholders.
 
     
     
@@ -61,8 +92,8 @@ stb.single_choice(question3, options3, answer_index3, success='Correct!  Have a 
 
 st.write('')
 st.write('')
-question3 = "Which is the most correct statement?"
-options3 = "Pareto optimization finds the best solution.", "Pareto optimization finds the best set of trade-off solutions.", "Pareto optimization is too complicated to ever be used in practice."
-answer_index3 = 1
-stb.single_choice(question3, options3, answer_index3, success='Correct!  You still need to decide which Pareto-optimal solution is most acceptable among stakeholders, but you can eliminate all suboptimal trade-off solutions!', error='Incorrect - Pareto optimization is used all the time, even if you do not realize that you are doing it.  But it does not necessarily find a single best solution.', button='Check answer')
+question4 = "Which is the most correct statement?"
+options4 = "Pareto optimization finds the best solution.", "Pareto optimization finds the best set of trade-off solutions.", "Pareto optimization is too complicated to ever be used in practice."
+answer_index4 = 1
+stb.single_choice(question4, options4, answer_index4, success='Correct!  You still need to decide which Pareto-optimal solution is most acceptable among stakeholders, but you can eliminate all suboptimal trade-off solutions!', error='Incorrect - Pareto optimization is used all the time, even if you do not realize that you are doing it.  But it does not necessarily find a single best solution.', button='Check answer')
 
