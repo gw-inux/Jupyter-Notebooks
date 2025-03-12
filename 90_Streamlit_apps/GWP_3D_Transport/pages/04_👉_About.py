@@ -16,9 +16,9 @@ st.markdown(
 
 left_co2, cent_co2 = st.columns((20,60))
 with left_co2:
-    st.image('C:/_1_GitHub/Jupyter-Notebooks/90_Streamlit_apps/GWP_1D_Conservative_Transport/assets/images/iNUX_wLogo.png')
+    st.image('90_Streamlit_apps/GWP_1D_Conservative_Transport/assets/images/iNUX_wLogo.png')
 with cent_co2:
-    st.image('C:/_1_GitHub/Jupyter-Notebooks/90_Streamlit_apps/GWP_1D_Conservative_Transport/assets/images/1200px-Erasmus+_Logo.svg.png')
+    st.image('90_Streamlit_apps/GWP_1D_Conservative_Transport/assets/images/1200px-Erasmus+_Logo.svg.png')
 
 st.markdown(
     """
@@ -27,7 +27,7 @@ st.markdown(
 )
 left_co, cent_co = st.columns((20,60))
 with left_co:
-    st.image('C:/_1_GitHub/Jupyter-Notebooks/90_Streamlit_apps/GWP_1D_Conservative_Transport/assets/images/thomasreimann.png')
+    st.image('90_Streamlit_apps/GWP_1D_Conservative_Transport/assets/images/thomasreimann.png')
 with cent_co:
     st.markdown(
         """
@@ -54,7 +54,7 @@ with cent_co3:
 
 left_co3, cent_co3 = st.columns((20,60))
 with left_co3:
-    st.image('C:/_1_GitHub/Jupyter-Notebooks/90_Streamlit_apps/GWP_1D_Conservative_Transport/assets/images/eileen.poeter.jpg')
+    st.image('90_Streamlit_apps/GWP_1D_Conservative_Transport/assets/images/eileen.poeter.jpg')
 with cent_co3:
     st.markdown(
         """

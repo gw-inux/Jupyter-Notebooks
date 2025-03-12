@@ -25,7 +25,7 @@ st.markdown(
 )
 left_co, cent_co, last_co = st.columns((20,60,20))
 with cent_co:
-    st.image('C:/_1_GitHub/Jupyter-Notebooks/90_Streamlit_apps/GWP_3D_Transport/assets/images/tracer_input_signals.jpg', caption="Solute input options for the 3D Transport Application")
+    st.image('90_Streamlit_apps/GWP_3D_Transport/assets/images/tracer_input_signals.jpg', caption="Solute input options for the 3D Transport Application")
 
 st.markdown (
     """
@@ -41,7 +41,7 @@ st.markdown (
 
 left_co, cent_co, last_co = st.columns((20,60,20))
 with cent_co:
-    st.image('C:/_1_GitHub/Jupyter-Notebooks/90_Streamlit_apps/GWP_3D_Transport/assets/images/break_through_curve.jpg', caption="Example break through curve at a given distance from the source")
+    st.image('90_Streamlit_apps/GWP_3D_Transport/assets/images/break_through_curve.jpg', caption="Example break through curve at a given distance from the source")
 
 st.markdown(
     """   
