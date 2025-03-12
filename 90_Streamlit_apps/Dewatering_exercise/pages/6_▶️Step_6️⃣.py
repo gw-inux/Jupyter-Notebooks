@@ -13,7 +13,32 @@ import numpy as np
 import matplotlib.pyplot as plt
 import scipy.special
 import streamlit as st
+import streamlit_book as stb
+from streamlit_extras.stodo import to_do
 
+st.title('Dewatering exercise 💦')
+st.subheader("Step 06 - Pumping Tests and the Impacts of Hydrogeologic Uncertainty", divider="blue")
+
+# I found U slightly confusing because it is also used in the Theis context
+
+if st.toggle('Show additional **Notes for instructors**'):
+    to_do(
+    [(st.write, "Remind students of what S and T are and how they affect drawdown versus distance and time.")],
+    "td01",)
+    to_do(
+    [(st.write, "Ask them how they think that S and T could be measured.")],
+    "td02",)
+    to_do(
+    [(st.write, "Introduce the idea of inverse modeling - parameter estimation - and a pumping test.")],
+    "td03",)
+    to_do(
+    [(st.write, "Discuss measurement uncertainty and conceptual errors in conducting a pumping test.")],
+    "td04",)
+    to_do(
+    [(st.write, "Circle back to the previous exercise, now extending from measurement uncertainty, to parameter uncertainty, to prediction uncertainty, to loss of utility.")],
+    "td05",)
+    
+    
 # (Here the necessary functions like the well function $W(u)$ are defined. Later, those functions are used in the computation)
 # Define a function, class, and object for Theis Well analysis
 
@@ -44,10 +69,6 @@ def compute_linU(s, s_U0, s_U1):
   
 st.markdown(
     """
-    ### Dewatering exercise 💦
-    ---
-    ## Step 6
-
     A pumping well was operated for 2 days at a rate of 25 m3/d and the drawdown was measured at a monitoring well 25 m from the pumped well.
     
     
@@ -254,3 +275,40 @@ st.markdown(
     
 """
 )
+
+
+st.markdown(
+    """
+    ---
+    ### Self-check questions 💦
+ 
+"""
+)
+st.write('')
+st.write('')
+question1 = "What is parameter estimation?"
+options1 = "Making an educated guess about parameter values.", "Rethinking the processes that describe a system given new data.", "Finding the values of parameters that make a model fit the data as well as possible."
+answer_index1 = 2
+stb.single_choice(question1, options1, answer_index1, success='Correct!  In parameter estimation, we typically assume that our model is correct, but that it has to be tuned to match the data.', error='Incorrect - while we often start with an educated guess, we then alter parameter values to fit our model to data.  If we cannot get a good fit, we may have to rethink our model!', button='Check answer')
+
+st.write('')
+st.write('')
+question1 = "If a model does not fit the data, then the parameters are wrong."
+options2 = "True - this is the basis of parameter estimation.", "False - data typically include measurement error so we shouldn't expect the model to fit the data exactly.", "True - data cannot reveal mistakes in our understanding of the system."
+answer_index2 = 1
+stb.single_choice(question1, options2, answer_index2, success='Correct!  Collecting more (and better) data can reduce the impacts of measurement error, but it will always exist!', error='Incorrect - we might assume that our model is correct and that we only have to find the right parameters to fit the data, but we should always be on the lookout for structural errors built into our models.', button='Check answer')
+
+st.write('')
+st.write('')
+question3 = "Uncertain data leads to uncertain parameters which lead to uncertain predictions."
+options3 = "True - you should quantify prediction errors and let a stakeholder decide how to consider them.", "True - but the best fitting model is usually good enough to rely on for decision making.", "False - it is our job as a scientist to provide the best possible prediction; adding uncertainty reduces our credibility."
+answer_index3 = 0
+stb.single_choice(question3, options3, answer_index3, success='True - we should included errors on our predictions because they always exist.  Sophisticated decision makers will know how to account for prediction error.', error='Incorrect - in some cases there may be very little data, so a single model is adquate; but the job of a scientist is to provide the best possible answer including the level of uncertainty.', button='Check answer')
+
+st.write('')
+st.write('')
+question4 = "A pumping test is designed to:"
+options4 = "Choose the right pump to use in a well.", "Test how solidly a well was constructed.", "Determine the hydraulic properties of an aquifer."
+answer_index4 = 2
+stb.single_choice(question4, options4, answer_index4, success='Correct!  A pumping test is a classic hydrogeologic method to determine aquifer hydraulic properties, which can then be used in models to make predictions.', error='Incorrect - it is true that a pumping test may indicate that too small or large a pump was used or that the well was poorly installed, but these are not the main purposes of the test.', button='Check answer')
+

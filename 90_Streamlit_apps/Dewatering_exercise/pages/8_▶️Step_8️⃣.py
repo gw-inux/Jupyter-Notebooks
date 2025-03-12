@@ -1,11 +1,10 @@
 import streamlit as st
 
+st.title('Dewatering exercise 💦')
+st.subheader("Step 08 - Self Reflection", divider="blue")
+
 st.markdown(
     """
-    ### Dewatering exercise 💦
-    ---
-    ## Step 8
-    
     👉 Outline, in bullet form, what you have learned in this part of the class.
     
     👉 How do you imagine that what you have learned might influence your professional life?
