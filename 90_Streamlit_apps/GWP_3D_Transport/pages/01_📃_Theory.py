@@ -1,7 +1,7 @@
 import streamlit as st
 
 st.title('📃 Theory ')
-st.title(' 1D Conservative Transport')
+st.title(' 3D Conservative Transport')
 
 st.markdown(
     """
@@ -18,7 +18,7 @@ st.markdown(
 
 left_co, cent_co, last_co = st.columns((20,60,20))
 with cent_co:
-    st.image('C:/_1_GitHub/Jupyter-Notebooks/90_Streamlit_apps/GWP_1D_Conservative_Transport/assets/images/1DtransportConceptualModel_1.jpg')
+    st.image('90_Streamlit_apps/GWP_1D_Conservative_Transport/assets/images/1DtransportConceptualModel_1.jpg')
 
 
 st.markdown(
@@ -31,7 +31,7 @@ st.markdown(
 
 left_co, cent_co, last_co = st.columns((20,60,20))
 with cent_co:
-    st.image('C:/_1_GitHub/Jupyter-Notebooks/90_Streamlit_apps/GWP_1D_Conservative_Transport/assets/images/1DtransportConceptualModel_2.jpg')
+    st.image('90_Streamlit_apps/GWP_1D_Conservative_Transport/assets/images/1DtransportConceptualModel_2.jpg')
 
 
 st.markdown(
