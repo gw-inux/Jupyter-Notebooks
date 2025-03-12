@@ -19,6 +19,7 @@ languages = {
     "German 🇩🇪": "de",
     "Italian 🇮🇹": "it",
     "Swedish 🇸🇪": "sv",
+    "Catalan 🇦🇩": "ca"
     "Chinese (Simplified) 🇨🇳": "zh-CN",
     "Hindi 🇮🇳": "hi",
     "Arabic 🇸🇦": "ar",
@@ -28,8 +29,7 @@ languages = {
     "Japanese 🇯🇵": "ja",
     "Punjabi 🇵🇰": "pa",
     "Korean 🇰🇷": "ko",
-    "Turkish 🇹🇷": "tr",
-    "Catalan 🇦🇩": "ca"
+    "Turkish 🇹🇷": "tr", 
 }
 
 # Language selection
@@ -45,29 +45,10 @@ def translate_text(text, target_language):
 
     translator = GoogleTranslator(source="auto", target=target_language)
 
-#    # Preserve color formatting (:color[Text])
-#    color_pattern = re.compile(r":(\w+)\[(.*?)\]")  
-#    color_replacements = {match.group(): f":{match.group(1)}[{translator.translate(match.group(2))}]" for match in color_pattern.finditer(text)}
-#
-#    # Preserve LaTeX expressions ($math$)
-#    latex_pattern = re.compile(r"(\$.*?\$)")  
-#    latex_replacements = {match.group(): match.group() for match in latex_pattern.finditer(text)}
-#
-#    # Translate only plain text (excluding formatting)
-#    text = color_pattern.sub(lambda match: match.group(), text)  # Temporarily remove colors
-#    text = latex_pattern.sub(lambda match: match.group(), text)  # Temporarily remove LaTeX
-#    text = translator.translate(text)  # Translate only the remaining text
-#
-#    # Restore color formatting and LaTeX
-#    for original, translated in color_replacements.items():
-#        text = text.replace(original, translated)
-#    for original in latex_replacements.keys():
-#        text = text.replace(original, original)
-
-    # ✅ Step 1: Add spaces inside **bold** and *italic* before translation
+    # Step 1: Add spaces inside **bold** and *italic* before translation
     text_with_spaces = re.sub(r"(\*\*|\*)(\S.*?\S)(\*\*|\*)", r"\1 \2 \3", text)
 
-    # ✅ Step 2: Split text into lines to preserve Markdown structure
+    # Step 2: Split text into lines to preserve Markdown structure
     lines = text_with_spaces.strip().split("\n")
 
     translated_lines = []
@@ -84,14 +65,13 @@ def translate_text(text, target_language):
 
     translated_text = "\n\n".join(translated_lines)  # Ensure proper spacing
 
-    # ✅ Step 3: Remove spaces inside **bold** and *italic* after translation
+    # Step 3: Remove spaces inside **bold** and *italic* after translation
     final_text = re.sub(r"(\*\*|\*) (.*?) (\*\*|\*)", r"\1\2\3", translated_text)
 
     return final_text
 
     
 # Markdown / Texts for Translation
-
 # Sections are the markdown texts
 sections = {
 
@@ -150,8 +130,6 @@ text01_text = "Evaluating slug tests in unconfined aquifers with the Bouwer & Ri
 text02_text = "Introduction and Motivation - Multilingual version"
 text03_text = "The Theory behind the Bouwer & Rice Method for Unconfined Aquifers"
 
-
-
 ### TRANSLATION PART
 # Initialize session state only once with None
 st.session_state.setdefault("translated_sections", {key: None for key in sections.keys()})
@@ -160,6 +138,7 @@ st.session_state.setdefault("translated_headers", {
     "text02": None,
     "text03": None,
 })
+
 st.session_state.setdefault("current_lang", ORIGINAL_LANGUAGE_CODE)  # Default is English
 
 # Ensure placeholders are initialized with the original text if None
@@ -174,24 +153,23 @@ st.session_state["translated_headers"] = {
     "text03": st.session_state["translated_headers"]["text03"] if st.session_state["translated_headers"]["text03"] is not None else text03_text,
 }
 
-
-# **Translate only when the language actually changes**
+# Translate only when the language actually changes
 if st.session_state["current_lang"] != target_lang:
-    new_translations = {}
+    new_sections = {}
     new_headers = {}
 
     # Translate Sections
     for key in sections:
         translated_text = translate_text(sections[key], target_lang)
-        new_translations[key] = translated_text if translated_text else sections[key]  # ✅ Keep English if translation fails
+        new_sections[key] = translated_text if translated_text else sections[key]  # Keep English if translation fails
 
     # Translate Headers
     new_headers["text01"] = translate_text(text01_text, target_lang) or text01_text
     new_headers["text02"] = translate_text(text02_text, target_lang) or text02_text
     new_headers["text03"] = translate_text(text03_text, target_lang) or text03_text
 
-    # ✅ Update translations in session state after all translations are done
-    st.session_state["translated_sections"] = new_translations
+    # Update translations in session state after all translations are done
+    st.session_state["translated_sections"] = new_sections
     st.session_state["translated_headers"] = new_headers
     st.session_state["current_lang"] = target_lang  # ✅ Update stored language
 
