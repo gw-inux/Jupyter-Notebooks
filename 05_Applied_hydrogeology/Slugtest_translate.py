@@ -45,26 +45,49 @@ def translate_text(text, target_language):
 
     translator = GoogleTranslator(source="auto", target=target_language)
 
-    # Preserve color formatting (:color[Text])
-    color_pattern = re.compile(r":(\w+)\[(.*?)\]")  
-    color_replacements = {match.group(): f":{match.group(1)}[{translator.translate(match.group(2))}]" for match in color_pattern.finditer(text)}
+#    # Preserve color formatting (:color[Text])
+#    color_pattern = re.compile(r":(\w+)\[(.*?)\]")  
+#    color_replacements = {match.group(): f":{match.group(1)}[{translator.translate(match.group(2))}]" for match in color_pattern.finditer(text)}
+#
+#    # Preserve LaTeX expressions ($math$)
+#    latex_pattern = re.compile(r"(\$.*?\$)")  
+#    latex_replacements = {match.group(): match.group() for match in latex_pattern.finditer(text)}
+#
+#    # Translate only plain text (excluding formatting)
+#    text = color_pattern.sub(lambda match: match.group(), text)  # Temporarily remove colors
+#    text = latex_pattern.sub(lambda match: match.group(), text)  # Temporarily remove LaTeX
+#    text = translator.translate(text)  # Translate only the remaining text
+#
+#    # Restore color formatting and LaTeX
+#    for original, translated in color_replacements.items():
+#        text = text.replace(original, translated)
+#    for original in latex_replacements.keys():
+#        text = text.replace(original, original)
 
-    # Preserve LaTeX expressions ($math$)
-    latex_pattern = re.compile(r"(\$.*?\$)")  
-    latex_replacements = {match.group(): match.group() for match in latex_pattern.finditer(text)}
+    # ✅ Step 1: Add spaces inside **bold** and *italic* before translation
+    text_with_spaces = re.sub(r"(\*\*|\*)(\S.*?\S)(\*\*|\*)", r"\1 \2 \3", text)
 
-    # Translate only plain text (excluding formatting)
-    text = color_pattern.sub(lambda match: match.group(), text)  # Temporarily remove colors
-    text = latex_pattern.sub(lambda match: match.group(), text)  # Temporarily remove LaTeX
-    text = translator.translate(text)  # Translate only the remaining text
+    # ✅ Step 2: Split text into lines to preserve Markdown structure
+    lines = text_with_spaces.strip().split("\n")
 
-    # Restore color formatting and LaTeX
-    for original, translated in color_replacements.items():
-        text = text.replace(original, translated)
-    for original in latex_replacements.keys():
-        text = text.replace(original, original)
+    translated_lines = []
+    for line in lines:
+        stripped_line = line.strip()
 
-    return text
+        if stripped_line.startswith("#"):  # ✅ Preserve headers (even multiple ##)
+            header_level = len(stripped_line) - len(stripped_line.lstrip("#"))  # Count #
+            text_without_hash = stripped_line.lstrip("#").strip()  # Remove #
+            translated_text = translator.translate(text_without_hash)  # Translate only text
+            translated_lines.append("#" * header_level + " " + translated_text)  # Rebuild header
+        else:
+            translated_lines.append(translator.translate(stripped_line))
+
+    translated_text = "\n\n".join(translated_lines)  # Ensure proper spacing
+
+    # ✅ Step 3: Remove spaces inside **bold** and *italic* after translation
+    final_text = re.sub(r"(\*\*|\*) (.*?) (\*\*|\*)", r"\1\2\3", translated_text)
+
+    return final_text
 
     
 # Markdown / Texts for Translation
@@ -115,7 +138,11 @@ The **effective radius** $R_e$ depends on the well penetration, which depends on
 *(where $D$ is the saturated aquifer thickness)*  
             
 - **Partially penetrating well:**
-"""
+""",
+
+    "part_06": """              
+            - **For simplicity**, we use in this app:
+            """
 }
 
 # Headers and other texts
@@ -209,9 +236,8 @@ with st.expander('**Click here to read more about the theory**'):
     
     st.latex(r'''R_e = 1.1L + r_w''')     
     
-    st.markdown("""              
-            - **For simplicity**, we use in this app:
-            """)
+    # Translation of section 6
+    part06_placeholder = st.empty()  # First section placeholder 
             
     st.latex(r'''R_e = L''')
     
@@ -234,6 +260,7 @@ part02_placeholder.markdown(st.session_state["translated_sections"].get("part_02
 part03_placeholder.markdown(st.session_state["translated_sections"].get("part_03", sections["part_03"]))
 part04_placeholder.markdown(st.session_state["translated_sections"].get("part_04", sections["part_04"]))
 part05_placeholder.markdown(st.session_state["translated_sections"].get("part_05", sections["part_05"]))
+part06_placeholder.markdown(st.session_state["translated_sections"].get("part_06", sections["part_06"]))
 
 # COMPUTATION HERE
 
