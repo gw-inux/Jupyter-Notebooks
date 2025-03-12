@@ -4,7 +4,7 @@ import streamlit.components.v1 as components
 import os
 import plotly.graph_objects as go
 import matplotlib.pyplot as plt
-from bokeh.plotting import figure, output_file, save
+from bokeh.plotting import figure
 from bokeh.models import ColumnDataSource, Range1d
 import io
 import base64
@@ -50,13 +50,13 @@ def some_bokeh_content():
 st.title("Interactive Function Plot (Plotly)")
 
 # ✅ Define sliders
-a = st.slider("Parameter a", 0.1, 5.0, 1.0)
+
 columns = st.columns((1,1))
 with columns[0]:
     x_min = st.slider("Minimum x", -10, 0, -5)
 with columns[1]:
     x_max = st.slider("Maximum x", 1, 10, 5)
-
+a = st.slider("Parameter a", 0.1, 5.0, 1.0)
 
 # ✅ Compute function
 x = np.linspace(x_min, x_max, 200)
