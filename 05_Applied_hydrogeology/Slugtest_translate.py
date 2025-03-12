@@ -6,14 +6,9 @@ import matplotlib.pyplot as plt
 import re
 from deep_translator import GoogleTranslator
 
-st.title('Slugtest evaluation 📉')
-
-# Two empty container to place the headings
-text01_ph = st.empty()
-text02_ph = st.empty()
+### FIRST THE TEXTS ARE DEFINED AND THE TRANSLATION IS DONE
 
 # Define the original language of the text (set by the app author)
-ORIGINAL_LANGUAGE = "English" 
 ORIGINAL_LANGUAGE_CODE = "en"
 
 # Dictionary with languages and their corresponding flags (Unicode flag emojis); eventually add more languages
@@ -43,99 +38,45 @@ with columns1[1]:
     target_lang_name = st.selectbox("🌎 Choose the target language", list(languages.keys()))
 target_lang = languages[target_lang_name]
 
-## Function to translate Markdown text while preserving bold/italic formatting
-#def translate_markdown(markdown_text, target_language):
-#    # ✅ Prevent translation if the target language is the same as the original language
-#    if target_language == ORIGINAL_LANGUAGE_CODE:
-#        return markdown_text  # Return the original text without modification
-#
-#    translator = GoogleTranslator(source='auto', target=target_language)
-#
-#    # ✅ Step 1: Add spaces inside **bold** and *italic* before translation
-#    text_with_spaces = re.sub(r"(\*\*|\*)(\S.*?\S)(\*\*|\*)", r"\1 \2 \3", markdown_text)
-#
-#    # ✅ Step 2: Split text into lines to preserve Markdown structure
-#    lines = text_with_spaces.strip().split("\n")
-#
-#    translated_lines = []
-#    for line in lines:
-#        stripped_line = line.strip()
-#
-#        if stripped_line.startswith("#"):  # ✅ Preserve headers (even multiple ##)
-#            header_level = len(stripped_line) - len(stripped_line.lstrip("#"))  # Count #
-#            text_without_hash = stripped_line.lstrip("#").strip()  # Remove #
-#            translated_text = translator.translate(text_without_hash)  # Translate only text
-#            translated_lines.append("#" * header_level + " " + translated_text)  # Rebuild header
-#        else:
-#            translated_lines.append(translator.translate(stripped_line))
-#
-#    translated_text = "\n\n".join(translated_lines)  # Ensure proper spacing
-#
-#    # ✅ Step 3: Remove spaces inside **bold** and *italic* after translation
-#    final_text = re.sub(r"(\*\*|\*) (.*?) (\*\*|\*)", r"\1\2\3", translated_text)
-#
-#    return final_text
-
-def translate_markdown(markdown_text, target_language):
-    # ✅ Prevent translation if the target language is the same as the original language
+def translate_text(text, target_language):
+    """ Translates markdown text while preserving formatting like `**bold**`, `*italic*`, `:red[]`, and LaTeX `$math$`. """
     if target_language == ORIGINAL_LANGUAGE_CODE:
-        return markdown_text  # Return original text without modification
+        return text  # No translation needed
 
-    translator = GoogleTranslator(source='auto', target=target_language)
+    translator = GoogleTranslator(source="auto", target=target_language)
 
-    # ✅ Step 1: Preserve formatting inside **bold** and *italic*
-    text_with_spaces = re.sub(r"(\*\*|\*)(\S.*?\S)(\*\*|\*)", r"\1 \2 \3", markdown_text)
+    # Preserve color formatting (:color[Text])
+    color_pattern = re.compile(r":(\w+)\[(.*?)\]")  
+    color_replacements = {match.group(): f":{match.group(1)}[{translator.translate(match.group(2))}]" for match in color_pattern.finditer(text)}
 
-    # ✅ Step 2: Extract and preserve Streamlit color formatting like `:red[TEXT]`
-    color_pattern = re.compile(r":(\w+)\[(.*?)\]")  # Matches `:color[TEXT]`
+    # Preserve LaTeX expressions ($math$)
+    latex_pattern = re.compile(r"(\$.*?\$)")  
+    latex_replacements = {match.group(): match.group() for match in latex_pattern.finditer(text)}
 
-    # Store original formatting and translate only the inner text
-    color_replacements = []
-    def replace_color(match):
-        color_tag, inner_text = match.groups()
-        translated_text = translator.translate(inner_text)  # Translate only the TEXT inside brackets
-        replacement = f":{color_tag}[{translated_text}]"  # Keep original color formatting
-        color_replacements.append((match.group(), replacement))
-        return match.group()  # Keep the original for now, we replace later
+    # Translate only plain text (excluding formatting)
+    text = color_pattern.sub(lambda match: match.group(), text)  # Temporarily remove colors
+    text = latex_pattern.sub(lambda match: match.group(), text)  # Temporarily remove LaTeX
+    text = translator.translate(text)  # Translate only the remaining text
 
-    # Apply regex substitution (but keep original text for now)
-    text_with_colors = color_pattern.sub(replace_color, text_with_spaces)
+    # Restore color formatting and LaTeX
+    for original, translated in color_replacements.items():
+        text = text.replace(original, translated)
+    for original in latex_replacements.keys():
+        text = text.replace(original, original)
 
-    # ✅ Step 3: Split text into lines to preserve Markdown structure
-    lines = text_with_colors.strip().split("\n")
-
-    translated_lines = []
-    for line in lines:
-        stripped_line = line.strip()
-
-        if stripped_line.startswith("#"):  # ✅ Preserve headers (even multiple ##)
-            header_level = len(stripped_line) - len(stripped_line.lstrip("#"))  # Count #
-            text_without_hash = stripped_line.lstrip("#").strip()  # Remove #
-            translated_text = translator.translate(text_without_hash)  # Translate only text
-            translated_lines.append("#" * header_level + " " + translated_text)  # Rebuild header
-        else:
-            translated_lines.append(translator.translate(stripped_line))
-
-    translated_text = "\n\n".join(translated_lines)  # Ensure proper spacing
-
-    # ✅ Step 4: Restore original color formatting with translated text
-    for original, replacement in color_replacements:
-        translated_text = translated_text.replace(original, replacement)
-
-    # ✅ Step 5: Restore spaces inside **bold** and *italic* after translation
-    final_text = re.sub(r"(\*\*|\*) (.*?) (\*\*|\*)", r"\1\2\3", translated_text)
-
-    return final_text
+    return text
 
     
 # Markdown / Texts for Translation
 
 # Sections are the markdown texts
 sections = {
-    "Part_01": """
+
+    "part_01": """
 Slug tests are quick and cost-effective field methods used to determine the hydraulic conductivity (K) of an aquifer. They involve a sudden change in water level within a well (either by adding or removing a known volume of water, or inserting/removing a slug) and measuring the subsequent water level recovery over time, see subsequent figure.
 """,
-    "Part_02": """
+
+    "part_02": """
             These tests are ideal for:
 - Assessing aquifer properties in low-permeability formations.
 - Situations where pumping tests are not feasible due to time or space constraints.
@@ -149,10 +90,12 @@ Types of Slug Tests:
 
 The **Bouwer and Rice (1976) method** is a widely used approach to evaluate **slug test data**, especially in **partially penetrating wells** in **unconfined aquifers**. It relates the **water level recovery** to the **hydraulic conductivity** of the aquifer, accounting for well geometry and screen penetration.
 """,
-    "Part_03": """
+
+    "part_03": """
 The hydraulic conductivity $K$ is calculated using:
 """,
-    "Part_04": """
+
+    "part_04": """
 **Where:**
 - $K$: Hydraulic conductivity (m/s)  
 - $r_c$: Radius of the well casing (m) 
@@ -167,7 +110,8 @@ The hydraulic conductivity $K$ is calculated using:
 The **effective radius** $R_e$ depends on the well penetration, which depends on the thickness and conductivity of the the well pack, the fraction of the screen that is below the water table, anisotropy and skin effects:  
 - **Fully penetrating well:**
 """,
-    "Part_05": """
+
+    "part_05": """
 *(where $D$ is the saturated aquifer thickness)*  
             
 - **Partially penetrating well:**
@@ -175,24 +119,63 @@ The **effective radius** $R_e$ depends on the well penetration, which depends on
 }
 
 # Headers and other texts
-header_text = "Evaluating slug tests in unconfined aquifers with the Bouwer & Rice method"
-subheader_text = "Introduction and Motivation - Multilingual version"
+text01_text = "Evaluating slug tests in unconfined aquifers with the Bouwer & Rice method"
+text02_text = "Introduction and Motivation - Multilingual version"
 text03_text = "The Theory behind the Bouwer & Rice Method for Unconfined Aquifers"
 
-# Preserve previous translations / Initialize empty
-if "translated_sections" not in st.session_state or st.session_state["current_lang"] != target_lang:
-    st.session_state["translated_sections"] = {key: None for key in sections.keys()}
-    st.session_state["current_lang"] = target_lang
 
-if "translated_headers" not in st.session_state or st.session_state["current_lang"] != target_lang:
-    st.session_state["translated_headers"] = {
-        "header": translate_markdown(header_text, target_lang) if target_lang != ORIGINAL_LANGUAGE_CODE else header_text,
-        "subheader": translate_markdown(subheader_text, target_lang) if target_lang != ORIGINAL_LANGUAGE_CODE else subheader_text,
-        "text03": translate_markdown(text03_text, target_lang) if target_lang != ORIGINAL_LANGUAGE_CODE else text03_text,
-    }
-    st.session_state["current_lang"] = target_lang
+
+### TRANSLATION PART
+# Initialize session state only once with None
+st.session_state.setdefault("translated_sections", {key: None for key in sections.keys()})
+st.session_state.setdefault("translated_headers", {
+    "text01": None,
+    "text02": None,
+    "text03": None,
+})
+st.session_state.setdefault("current_lang", ORIGINAL_LANGUAGE_CODE)  # Default is English
+
+# Ensure placeholders are initialized with the original text if None
+for key in sections.keys():
+    if st.session_state["translated_sections"][key] is None:
+        st.session_state["translated_sections"][key] = sections[key]  # Fallback to English
+
+# Ensure headers always have a fallback
+st.session_state["translated_headers"] = {
+    "text01": st.session_state["translated_headers"]["text01"] if st.session_state["translated_headers"]["text01"] is not None else text01_text,
+    "text02": st.session_state["translated_headers"]["text02"] if st.session_state["translated_headers"]["text02"] is not None else text02_text,
+    "text03": st.session_state["translated_headers"]["text03"] if st.session_state["translated_headers"]["text03"] is not None else text03_text,
+}
+
+
+# **Translate only when the language actually changes**
+if st.session_state["current_lang"] != target_lang:
+    new_translations = {}
+    new_headers = {}
+
+    # Translate Sections
+    for key in sections:
+        translated_text = translate_text(sections[key], target_lang)
+        new_translations[key] = translated_text if translated_text else sections[key]  # ✅ Keep English if translation fails
+
+    # Translate Headers
+    new_headers["text01"] = translate_text(text01_text, target_lang) or text01_text
+    new_headers["text02"] = translate_text(text02_text, target_lang) or text02_text
+    new_headers["text03"] = translate_text(text03_text, target_lang) or text03_text
+
+    # ✅ Update translations in session state after all translations are done
+    st.session_state["translated_sections"] = new_translations
+    st.session_state["translated_headers"] = new_headers
+    st.session_state["current_lang"] = target_lang  # ✅ Update stored language
+
 
 # Subsequent the text part of the app
+st.title('Slugtest evaluation 📉')
+
+# Two empty container to place the headings
+text01_ph = st.empty()
+text02_ph = st.empty()
+
 # SECTION1 / TRANSLATION
 part01_placeholder = st.empty()  # First section placeholder
            
@@ -239,106 +222,18 @@ st.markdown("""
             Once the data are loaded, you can modify the time offset and fit the hydraulic conductivity to the measured data.
            """)
 
-# TRANSLATION
 
-# ✅ Show original English text / headers first
-part01_placeholder.markdown(sections["Part_01"])
-part02_placeholder.markdown(sections["Part_02"])
-part03_placeholder.markdown(sections["Part_03"])
-part04_placeholder.markdown(sections["Part_04"])
-part05_placeholder.markdown(sections["Part_05"])
-text01_ph.header(header_text)
-text02_ph.subheader(subheader_text)
-text03_ph.subheader(text03_text)
+# **Ensure headers do not disappear during reruns**
+text01_ph.header(st.session_state["translated_headers"]["text01"])
+text02_ph.subheader(st.session_state["translated_headers"]["text02"])
+text03_ph.subheader(st.session_state["translated_headers"]["text03"])
 
-if target_lang != ORIGINAL_LANGUAGE_CODE:
-    st.session_state["translated_headers"]["header"] = translate_markdown(header_text, target_lang)
-    st.session_state["translated_headers"]["subheader"] = translate_markdown(subheader_text, target_lang)
-    st.session_state["translated_headers"]["text03"] = translate_markdown(text03_text, target_lang)
-
-# ✅ Store translations only when needed
-if st.session_state["translated_headers"]["header"] is None:
-    st.session_state["translated_headers"]["header"] = (
-        translate_markdown(header_text, target_lang) if target_lang != ORIGINAL_LANGUAGE_CODE else header_text
-    )
-
-if st.session_state["translated_headers"]["subheader"] is None:
-    st.session_state["translated_headers"]["subheader"] = (
-        translate_markdown(subheader_text, target_lang) if target_lang != ORIGINAL_LANGUAGE_CODE else subheader_text
-    )
-
-if st.session_state["translated_headers"]["text03"] is None:
-    st.session_state["translated_headers"]["text03"] = (
-        translate_markdown(text03_text, target_lang) if target_lang != ORIGINAL_LANGUAGE_CODE else text03_text
-    )
-
-# ✅ Display translated headers dynamically
-text01_ph.header(st.session_state["translated_headers"]["header"])
-text02_ph.subheader(st.session_state["translated_headers"]["subheader"])
-text03_ph.text03(st.session_state["translated_headers"]["text03"])
-
-
-# Translating sections
-# Translate if the language is changed and the session_state is empty
-for key in sections.keys():
-    if target_lang != ORIGINAL_LANGUAGE_CODE and st.session_state["translated_sections"][key] is None:
-        translated_text = translate_markdown(sections[key], target_lang)
-        st.session_state["translated_sections"][key] = translated_text
-        
-if target_lang != ORIGINAL_LANGUAGE_CODE and st.session_state["translated_headers"]["header"] is None:
-    translated_text = translate_markdown(header_text, target_lang)
-    st.session_state["translated_headers"]["header"] = translated_text
-
-if target_lang != ORIGINAL_LANGUAGE_CODE and st.session_state["translated_headers"]["subheader"] is None:
-    translated_text = translate_markdown(subheader_text, target_lang)
-    st.session_state["translated_headers"]["subheader"] = translated_text   
-
-if target_lang != ORIGINAL_LANGUAGE_CODE and st.session_state["translated_headers"]["text03"] is None:
-    translated_text = translate_markdown(text03_text, target_lang)
-    st.session_state["translated_headers"]["text03"] = translated_text 
-
-text01_ph.header(
-    st.session_state["translated_headers"]["header"]
-    if target_lang != ORIGINAL_LANGUAGE_CODE
-    else header_text
-)
-
-text02_ph.subheader(
-    st.session_state["translated_headers"]["subheader"]
-    if target_lang != ORIGINAL_LANGUAGE_CODE
-    else subheader_text
-)
-text03_ph.subheader(
-    st.session_state["translated_headers"]["text03"]
-    if target_lang != ORIGINAL_LANGUAGE_CODE
-    else text03_text
-)
-
-part01_placeholder.markdown(
-    st.session_state["translated_sections"]["Part_01"]
-    if target_lang != ORIGINAL_LANGUAGE_CODE
-    else sections["Part_01"]
-)
-part02_placeholder.markdown(
-    st.session_state["translated_sections"]["Part_02"]
-    if target_lang != ORIGINAL_LANGUAGE_CODE
-    else sections["Part_02"]
-)
-part03_placeholder.markdown(
-    st.session_state["translated_sections"]["Part_03"]
-    if target_lang != ORIGINAL_LANGUAGE_CODE
-    else sections["Part_03"]
-)
-part04_placeholder.markdown(
-    st.session_state["translated_sections"]["Part_04"]
-    if target_lang != ORIGINAL_LANGUAGE_CODE
-    else sections["Part_04"]
-)
-part05_placeholder.markdown(
-    st.session_state["translated_sections"]["Part_05"]
-    if target_lang != ORIGINAL_LANGUAGE_CODE
-    else sections["Part_05"]
-)
+# **Ensure content placeholders do not disappear**
+part01_placeholder.markdown(st.session_state["translated_sections"].get("part_01", sections["part_01"]))
+part02_placeholder.markdown(st.session_state["translated_sections"].get("part_02", sections["part_02"]))
+part03_placeholder.markdown(st.session_state["translated_sections"].get("part_03", sections["part_03"]))
+part04_placeholder.markdown(st.session_state["translated_sections"].get("part_04", sections["part_04"]))
+part05_placeholder.markdown(st.session_state["translated_sections"].get("part_05", sections["part_05"]))
 
 # COMPUTATION HERE
 
