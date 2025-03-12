@@ -3,53 +3,20 @@ import pandas as pd
 import streamlit as st
 import io
 import matplotlib.pyplot as plt
+import re
+from deep_translator import GoogleTranslator
 
 st.title('Slugtest evaluation 📉')
 
-st.header('Evaluating slug tests in :green[unconfined aquifers with the Bouwer & Rice method]')
+# Two empty container to place the headings
+text01_ph = st.empty()
+text02_ph = st.empty()
 
-st.subheader(':green-background[Introduction and Motivation] - :rainbow[Multilingual version]', divider="green")
+# Define the original language of the text (set by the app author)
+ORIGINAL_LANGUAGE = "English" 
+ORIGINAL_LANGUAGE_CODE = "en"
 
-# ## MULTILINGUAL SUPPORT
-
-# ✅ Define the original language of the text (set by the app author)
-ORIGINAL_LANGUAGE = "English"  # Change this if the original text is another language
-ORIGINAL_LANGUAGE_CODE = "en"  # The corresponding language code
-
-# Function to translate Markdown text while preserving bold/italic formatting
-def translate_markdown(markdown_text, target_language):
-    # ✅ Prevent translation if the target language is the same as the original language
-    if target_language == ORIGINAL_LANGUAGE_CODE:
-        return markdown_text  # Return the original text without modification
-
-    translator = GoogleTranslator(source='auto', target=target_language)
-
-    # ✅ Step 1: Add spaces inside **bold** and *italic* before translation
-    text_with_spaces = re.sub(r"(\*\*|\*)(\S.*?\S)(\*\*|\*)", r"\1 \2 \3", markdown_text)
-
-    # ✅ Step 2: Split text into lines to preserve Markdown structure
-    lines = text_with_spaces.strip().split("\n")
-
-    translated_lines = []
-    for line in lines:
-        stripped_line = line.strip()
-
-        if stripped_line.startswith("#"):  # ✅ Preserve headers (even multiple ##)
-            header_level = len(stripped_line) - len(stripped_line.lstrip("#"))  # Count #
-            text_without_hash = stripped_line.lstrip("#").strip()  # Remove #
-            translated_text = translator.translate(text_without_hash)  # Translate only text
-            translated_lines.append("#" * header_level + " " + translated_text)  # Rebuild header
-        else:
-            translated_lines.append(translator.translate(stripped_line))
-
-    translated_text = "\n\n".join(translated_lines)  # Ensure proper spacing
-
-    # ✅ Step 3: Remove spaces inside **bold** and *italic* after translation
-    final_text = re.sub(r"(\*\*|\*) (.*?) (\*\*|\*)", r"\1\2\3", translated_text)
-
-    return final_text
-    
-# ✅ Dictionary with languages and their corresponding flags (Unicode flag emojis)
+# Dictionary with languages and their corresponding flags (Unicode flag emojis); eventually add more languages
 languages = {
     "English 🇬🇧": "en",
     "Spanish 🇪🇸": "es",
@@ -70,21 +37,164 @@ languages = {
     "Catalan 🇦🇩": "ca"
 }
 
-# ✅ Place the language selector neatly centered
-columns1 = st.columns((1,1,1), gap='large')
+# Language selection
+columns1 = st.columns((1, 1, 1), gap="large")
 with columns1[1]:
-    target_lang_name = st.selectbox(
-        "🌎 Choose the target language",
-        list(languages.keys()),  # Now displays with flags
-        index=list(languages.keys()).index(f"English 🇬🇧")  # Ensure correct default
-    )
-
-# ✅ Get the corresponding language code
+    target_lang_name = st.selectbox("🌎 Choose the target language", list(languages.keys()))
 target_lang = languages[target_lang_name]
 
-st.markdown("""
-            Slug tests are quick and cost-effective field methods used to determine the hydraulic conductivity (K) of an aquifer. They involve a sudden change in water level within a well (either by adding or removing a known volume of water, or inserting/removing a slug) and measuring the subsequent water level recovery over time, see subsequent figure.
-           """)
+## Function to translate Markdown text while preserving bold/italic formatting
+#def translate_markdown(markdown_text, target_language):
+#    # ✅ Prevent translation if the target language is the same as the original language
+#    if target_language == ORIGINAL_LANGUAGE_CODE:
+#        return markdown_text  # Return the original text without modification
+#
+#    translator = GoogleTranslator(source='auto', target=target_language)
+#
+#    # ✅ Step 1: Add spaces inside **bold** and *italic* before translation
+#    text_with_spaces = re.sub(r"(\*\*|\*)(\S.*?\S)(\*\*|\*)", r"\1 \2 \3", markdown_text)
+#
+#    # ✅ Step 2: Split text into lines to preserve Markdown structure
+#    lines = text_with_spaces.strip().split("\n")
+#
+#    translated_lines = []
+#    for line in lines:
+#        stripped_line = line.strip()
+#
+#        if stripped_line.startswith("#"):  # ✅ Preserve headers (even multiple ##)
+#            header_level = len(stripped_line) - len(stripped_line.lstrip("#"))  # Count #
+#            text_without_hash = stripped_line.lstrip("#").strip()  # Remove #
+#            translated_text = translator.translate(text_without_hash)  # Translate only text
+#            translated_lines.append("#" * header_level + " " + translated_text)  # Rebuild header
+#        else:
+#            translated_lines.append(translator.translate(stripped_line))
+#
+#    translated_text = "\n\n".join(translated_lines)  # Ensure proper spacing
+#
+#    # ✅ Step 3: Remove spaces inside **bold** and *italic* after translation
+#    final_text = re.sub(r"(\*\*|\*) (.*?) (\*\*|\*)", r"\1\2\3", translated_text)
+#
+#    return final_text
+
+def translate_markdown(markdown_text, target_language):
+    # ✅ Prevent translation if the target language is the same as the original language
+    if target_language == ORIGINAL_LANGUAGE_CODE:
+        return markdown_text  # Return original text without modification
+
+    translator = GoogleTranslator(source='auto', target=target_language)
+
+    # ✅ Step 1: Preserve formatting inside **bold** and *italic*
+    text_with_spaces = re.sub(r"(\*\*|\*)(\S.*?\S)(\*\*|\*)", r"\1 \2 \3", markdown_text)
+
+    # ✅ Step 2: Extract and preserve Streamlit color formatting like `:red[TEXT]`
+    color_pattern = re.compile(r":(\w+)\[(.*?)\]")  # Matches `:color[TEXT]`
+
+    # Store original formatting and translate only the inner text
+    color_replacements = []
+    def replace_color(match):
+        color_tag, inner_text = match.groups()
+        translated_text = translator.translate(inner_text)  # Translate only the TEXT inside brackets
+        replacement = f":{color_tag}[{translated_text}]"  # Keep original color formatting
+        color_replacements.append((match.group(), replacement))
+        return match.group()  # Keep the original for now, we replace later
+
+    # Apply regex substitution (but keep original text for now)
+    text_with_colors = color_pattern.sub(replace_color, text_with_spaces)
+
+    # ✅ Step 3: Split text into lines to preserve Markdown structure
+    lines = text_with_colors.strip().split("\n")
+
+    translated_lines = []
+    for line in lines:
+        stripped_line = line.strip()
+
+        if stripped_line.startswith("#"):  # ✅ Preserve headers (even multiple ##)
+            header_level = len(stripped_line) - len(stripped_line.lstrip("#"))  # Count #
+            text_without_hash = stripped_line.lstrip("#").strip()  # Remove #
+            translated_text = translator.translate(text_without_hash)  # Translate only text
+            translated_lines.append("#" * header_level + " " + translated_text)  # Rebuild header
+        else:
+            translated_lines.append(translator.translate(stripped_line))
+
+    translated_text = "\n\n".join(translated_lines)  # Ensure proper spacing
+
+    # ✅ Step 4: Restore original color formatting with translated text
+    for original, replacement in color_replacements:
+        translated_text = translated_text.replace(original, replacement)
+
+    # ✅ Step 5: Restore spaces inside **bold** and *italic* after translation
+    final_text = re.sub(r"(\*\*|\*) (.*?) (\*\*|\*)", r"\1\2\3", translated_text)
+
+    return final_text
+
+    
+# Markdown / Texts for Translation
+
+# Sections are the markdown texts
+sections = {
+    "Part_01": """
+Slug tests are quick and cost-effective field methods used to determine the hydraulic conductivity (K) of an aquifer. They involve a sudden change in water level within a well (either by adding or removing a known volume of water, or inserting/removing a slug) and measuring the subsequent water level recovery over time, see subsequent figure.
+""",
+    "Part_02": """
+            These tests are ideal for:
+- Assessing aquifer properties in low-permeability formations.
+- Situations where pumping tests are not feasible due to time or space constraints.
+- Monitoring wells where minimal disturbance to the aquifer is desired.
+
+Types of Slug Tests:
+- Rising-head test: Water level rises after removal of a slug.
+- Falling-head test: Water level falls after adding water or a slug.
+
+**Why use slug tests?** They are fast, inexpensive, and suitable for small-scale investigations, making them a standard tool in hydrogeological site assessments.
+
+The **Bouwer and Rice (1976) method** is a widely used approach to evaluate **slug test data**, especially in **partially penetrating wells** in **unconfined aquifers**. It relates the **water level recovery** to the **hydraulic conductivity** of the aquifer, accounting for well geometry and screen penetration.
+""",
+    "Part_03": """
+The hydraulic conductivity $K$ is calculated using:
+""",
+    "Part_04": """
+**Where:**
+- $K$: Hydraulic conductivity (m/s)  
+- $r_c$: Radius of the well casing (m) 
+- $r_w$: Radius of the well screen (m)  
+- $R_e$: Effective radius of influence (m)   
+- $L$: Length of the well screen intersecting the aquifer (m)
+- $t$: Elapsed time since the slug event (s)  
+- $h_0$: Initial head displacement (m) 
+- $h_t$: Head displacement at time $t$ (m)
+
+**Estimating the Effective Radius $R_e$**
+The **effective radius** $R_e$ depends on the well penetration, which depends on the thickness and conductivity of the the well pack, the fraction of the screen that is below the water table, anisotropy and skin effects:  
+- **Fully penetrating well:**
+""",
+    "Part_05": """
+*(where $D$ is the saturated aquifer thickness)*  
+            
+- **Partially penetrating well:**
+"""
+}
+
+# Headers and other texts
+header_text = "Evaluating slug tests in unconfined aquifers with the Bouwer & Rice method"
+subheader_text = "Introduction and Motivation - Multilingual version"
+text03_text = "The Theory behind the Bouwer & Rice Method for Unconfined Aquifers"
+
+# Preserve previous translations / Initialize empty
+if "translated_sections" not in st.session_state or st.session_state["current_lang"] != target_lang:
+    st.session_state["translated_sections"] = {key: None for key in sections.keys()}
+    st.session_state["current_lang"] = target_lang
+
+if "translated_headers" not in st.session_state or st.session_state["current_lang"] != target_lang:
+    st.session_state["translated_headers"] = {
+        "header": translate_markdown(header_text, target_lang) if target_lang != ORIGINAL_LANGUAGE_CODE else header_text,
+        "subheader": translate_markdown(subheader_text, target_lang) if target_lang != ORIGINAL_LANGUAGE_CODE else subheader_text,
+        "text03": translate_markdown(text03_text, target_lang) if target_lang != ORIGINAL_LANGUAGE_CODE else text03_text,
+    }
+    st.session_state["current_lang"] = target_lang
+
+# Subsequent the text part of the app
+# SECTION1 / TRANSLATION
+part01_placeholder = st.empty()  # First section placeholder
            
 lc0, rc0 = st.columns((1,1.3),gap = 'large')
 with lc0:
@@ -93,51 +203,27 @@ with rc0:
     st.video('https://youtu.be/GTq72oB0qZo')
     st.write('_Video:_ Slugtest performed at the Varnum site (Sweden) by adding approximately 4 liter to an groundwater observation well.')
 
-st.subheader(':green-background[The Theory behind] the Bouwer & Rice Method for Unconfined Aquifers', divider="green")
-st.markdown("""
-                        These tests are ideal for:
-            - Assessing aquifer properties in low-permeability formations.
-            - Situations where pumping tests are not feasible due to time or space constraints.
-            - Monitoring wells where minimal disturbance to the aquifer is desired.
-            
-            Types of Slug Tests:
-            - Rising-head test: Water level rises after removal of a slug.
-            - Falling-head test: Water level falls after adding water or a slug.
-            
-            **Why use slug tests?** They are fast, inexpensive, and suitable for small-scale investigations, making them a standard tool in hydrogeological site assessments.
-            
-            The **Bouwer and Rice (1976) method** is a widely used approach to evaluate **slug test data**, especially in **partially penetrating wells** in **unconfined aquifers**. It relates the **water level recovery** to the **hydraulic conductivity** of the aquifer, accounting for well geometry and screen penetration.
-            """)
-with st.expander('**Click here to read more about the theory**'):
-    st.markdown("""
-            The hydraulic conductivity $K$ is calculated using:
-            """)
-    st.latex(r'''K = \frac{r_c^2 \ln\left(\frac{R_e}{r_w}\right)}{2L} \cdot \frac{1}{t} \cdot \ln\left(\frac{h_t}{h_0}\right)''')
 
-    st.markdown("""        
-            **Where:**
-            - $K$: Hydraulic conductivity (m/s)  
-            - $r_c$: Radius of the well casing (m) 
-            - $r_w$: Radius of the well screen (m)  
-            - $R_e$: Effective radius of influence (m)   
-            - $L$: Length of the well screen intersecting the aquifer (m)
-            - $t$: Elapsed time since the slug event (s)  
-            - $h_0$: Initial head displacement (m) 
-            - $h_t$: Head displacement at time $t$ (m)
-            
-            **Estimating the Effective Radius $R_e$**
-            The **effective radius** $R_e$ depends on the well penetration, which depends on the thickness and conductivity of the the well pack, the fraction of the screen that is below the water table, anisotropy and skin effects:  
-            - **Fully penetrating well:**
-            """)
-            
-    st.latex(r'''R_e = \frac{D}{2}''')
+text03_ph = st.empty()
+
+# Section 02 / Translation
+part02_placeholder = st.empty()  # First section placeholder
+
+with st.expander('**Click here to read more about the theory**'):
+ 
+    # Translation of section 3
+    part03_placeholder = st.empty()  # First section placeholder
+
+    st.latex(r'''K = \frac{r_c^2 \ln\left(\frac{R_e}{r_w}\right)}{2L} \cdot \frac{1}{t} \cdot \ln\left(\frac{h_t}{h_0}\right)''')
+ 
+    # Translation of section 4
+    part04_placeholder = st.empty()  # First section placeholder        
     
-    st.markdown("""  
-            *(where $D$ is the saturated aquifer thickness)*  
+    st.latex(r'''R_e = \frac{D}{2}''')
             
-            - **Partially penetrating well:**
-            """)
-            
+    # Translation of section 5
+    part05_placeholder = st.empty()  # First section placeholder 
+    
     st.latex(r'''R_e = 1.1L + r_w''')     
     
     st.markdown("""              
@@ -152,6 +238,110 @@ st.markdown("""
             
             Once the data are loaded, you can modify the time offset and fit the hydraulic conductivity to the measured data.
            """)
+
+# TRANSLATION
+
+# ✅ Show original English text / headers first
+part01_placeholder.markdown(sections["Part_01"])
+part02_placeholder.markdown(sections["Part_02"])
+part03_placeholder.markdown(sections["Part_03"])
+part04_placeholder.markdown(sections["Part_04"])
+part05_placeholder.markdown(sections["Part_05"])
+text01_ph.header(header_text)
+text02_ph.subheader(subheader_text)
+text03_ph.subheader(text03_text)
+
+if target_lang != ORIGINAL_LANGUAGE_CODE:
+    st.session_state["translated_headers"]["header"] = translate_markdown(header_text, target_lang)
+    st.session_state["translated_headers"]["subheader"] = translate_markdown(subheader_text, target_lang)
+    st.session_state["translated_headers"]["text03"] = translate_markdown(text03_text, target_lang)
+
+# ✅ Store translations only when needed
+if st.session_state["translated_headers"]["header"] is None:
+    st.session_state["translated_headers"]["header"] = (
+        translate_markdown(header_text, target_lang) if target_lang != ORIGINAL_LANGUAGE_CODE else header_text
+    )
+
+if st.session_state["translated_headers"]["subheader"] is None:
+    st.session_state["translated_headers"]["subheader"] = (
+        translate_markdown(subheader_text, target_lang) if target_lang != ORIGINAL_LANGUAGE_CODE else subheader_text
+    )
+
+if st.session_state["translated_headers"]["text03"] is None:
+    st.session_state["translated_headers"]["text03"] = (
+        translate_markdown(text03_text, target_lang) if target_lang != ORIGINAL_LANGUAGE_CODE else text03_text
+    )
+
+# ✅ Display translated headers dynamically
+text01_ph.header(st.session_state["translated_headers"]["header"])
+text02_ph.subheader(st.session_state["translated_headers"]["subheader"])
+text03_ph.text03(st.session_state["translated_headers"]["text03"])
+
+
+# Translating sections
+# Translate if the language is changed and the session_state is empty
+for key in sections.keys():
+    if target_lang != ORIGINAL_LANGUAGE_CODE and st.session_state["translated_sections"][key] is None:
+        translated_text = translate_markdown(sections[key], target_lang)
+        st.session_state["translated_sections"][key] = translated_text
+        
+if target_lang != ORIGINAL_LANGUAGE_CODE and st.session_state["translated_headers"]["header"] is None:
+    translated_text = translate_markdown(header_text, target_lang)
+    st.session_state["translated_headers"]["header"] = translated_text
+
+if target_lang != ORIGINAL_LANGUAGE_CODE and st.session_state["translated_headers"]["subheader"] is None:
+    translated_text = translate_markdown(subheader_text, target_lang)
+    st.session_state["translated_headers"]["subheader"] = translated_text   
+
+if target_lang != ORIGINAL_LANGUAGE_CODE and st.session_state["translated_headers"]["text03"] is None:
+    translated_text = translate_markdown(text03_text, target_lang)
+    st.session_state["translated_headers"]["text03"] = translated_text 
+
+text01_ph.header(
+    st.session_state["translated_headers"]["header"]
+    if target_lang != ORIGINAL_LANGUAGE_CODE
+    else header_text
+)
+
+text02_ph.subheader(
+    st.session_state["translated_headers"]["subheader"]
+    if target_lang != ORIGINAL_LANGUAGE_CODE
+    else subheader_text
+)
+text03_ph.subheader(
+    st.session_state["translated_headers"]["text03"]
+    if target_lang != ORIGINAL_LANGUAGE_CODE
+    else text03_text
+)
+
+part01_placeholder.markdown(
+    st.session_state["translated_sections"]["Part_01"]
+    if target_lang != ORIGINAL_LANGUAGE_CODE
+    else sections["Part_01"]
+)
+part02_placeholder.markdown(
+    st.session_state["translated_sections"]["Part_02"]
+    if target_lang != ORIGINAL_LANGUAGE_CODE
+    else sections["Part_02"]
+)
+part03_placeholder.markdown(
+    st.session_state["translated_sections"]["Part_03"]
+    if target_lang != ORIGINAL_LANGUAGE_CODE
+    else sections["Part_03"]
+)
+part04_placeholder.markdown(
+    st.session_state["translated_sections"]["Part_04"]
+    if target_lang != ORIGINAL_LANGUAGE_CODE
+    else sections["Part_04"]
+)
+part05_placeholder.markdown(
+    st.session_state["translated_sections"]["Part_05"]
+    if target_lang != ORIGINAL_LANGUAGE_CODE
+    else sections["Part_05"]
+)
+
+# COMPUTATION HERE
+
 # Available Data / Choose data
 # Select data
 columns = st.columns((1,4,1), gap = 'large')
