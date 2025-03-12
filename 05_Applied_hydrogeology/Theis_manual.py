@@ -143,12 +143,18 @@ with columns5[1]:
         
 # PLOTTING DATA
 
+st.subheader(':red[Here you will find soon an option to choose from different data sets and to upload own data]')
+
+semilog = st.toggle('Switch from log-log to semi-log plot')
 fig = plt.figure(figsize=(9,6))
 ax = fig.add_subplot(1, 1, 1)
 plt.subplots_adjust(left=0.1, bottom=0.1, right=0.9, top=0.9)  # adjust plot area
 ax.plot(m_time, m_ddown,'bo', markersize=3)
-plt.yscale("log")
-plt.xscale("log")
+if semilog:
+    plt.xscale("log")
+else:
+    plt.xscale("log")
+    plt.yscale("log")
 plt.axis([0.1,1E4,1E-2,1E+1])
 ax.set(xlabel='time t (min)', ylabel='drawdown s (m)',
        title='Measured data')
@@ -173,5 +179,8 @@ with columns6[1]:
         )
         
         
+st.subheader(':red[Here you will find soon further explanation and instructions how to perform type curve matching]')        
+        
 # TODO - NUMBER INPUT AND EVALUATION
 # fig.savefig(img_buffer,  transparent='true',format="png", dpi=300)
+# TODO - INSTRUCTION HOW TO USE (MAYBE SCREENCAST)
