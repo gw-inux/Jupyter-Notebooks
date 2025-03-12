@@ -50,9 +50,13 @@ def some_bokeh_content():
 st.title("Interactive Function Plot (Plotly)")
 
 # ✅ Define sliders
-x_min = st.slider("Minimum x", -10, 0, -5)
-x_max = st.slider("Maximum x", 1, 10, 5)
 a = st.slider("Parameter a", 0.1, 5.0, 1.0)
+columns = st.columns((1,1))
+with columns[0]:
+    x_min = st.slider("Minimum x", -10, 0, -5)
+with columns[1]:
+    x_max = st.slider("Maximum x", 1, 10, 5)
+
 
 # ✅ Compute function
 x = np.linspace(x_min, x_max, 200)
@@ -61,12 +65,9 @@ y = a * np.sin(x)
 # ✅ Fixed y-axis limits
 y_min, y_max = -5, 5  # Adjust based on expected range
 
-st.subheader('Bokeh')
+st.subheader('Show :green[Bokeh] from Streamlit')
 
-with st.expander('Show BOKEH as :rainbow[HTML] in Streamlit'):
-    some_bokeh_content()
-
-with st.expander('Show BOKEH in Streamlit'):
+with st.expander(':red[**Show/Collapse**] the BOKEH plot from Streamlit'):
     # ✅ Use ColumnDataSource for efficient updates
     source = ColumnDataSource(data=dict(x=x, y=y))
     
@@ -94,9 +95,9 @@ with st.expander('Show BOKEH in Streamlit'):
     # ✅ Display Bokeh figure in Streamlit
     st.bokeh_chart(p)
 
-st.subheader(' Show PLOTLY')
+st.subheader('Show :violet[PLOTLY]')
 
-with st.expander('Show PLOTLY'):
+with st.expander(':red[**Show/Collapse**] the PLOTLY plot]'):
     # ✅ Plotly interactive figure
     fig = go.Figure()
     
@@ -127,9 +128,9 @@ with st.expander('Show PLOTLY'):
     
     st.plotly_chart(fig)
 
-st.subheader('Show Matplotlib')
+st.subheader('Show :blue[Matplotlib]')
 
-with st.expander('Show MATPLOTLIB'):
+with st.expander(':red[**Show/Collapse**] the MATPLOTLIB plot'):
     # ✅ Efficient plotting
     fig, ax = plt.subplots()
     ax.plot(x, y, label=f"f(x) = {a} * sin(x)")
@@ -141,3 +142,8 @@ with st.expander('Show MATPLOTLIB'):
     
     # ✅ Display figure
     st.pyplot(fig)
+
+st.subheader('Show :rainbow[BOKEH interactive html]')
+
+with st.expander(':red[**Show/Collapse**] BOKEH as :rainbow[HTML] in Streamlit'):
+    some_bokeh_content()

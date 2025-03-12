@@ -1,5 +1,5 @@
 from bokeh.plotting import figure, output_file, save
-from bokeh.models import Slider, ColumnDataSource, CustomJS, Legend, LegendItem
+from bokeh.models import Slider, ColumnDataSource, CustomJS
 from bokeh.layouts import column, row
 import numpy as np
 
@@ -8,7 +8,7 @@ def f(x, a=1):
     return a * np.sin(x)
 
 # Generate initial data
-x = np.linspace(-5, 5, 200)  # ✅ Start from -5 to 5
+x = np.linspace(-5, 5, 200)  # ✅ Same x-range as Matplotlib
 y = f(x)
 
 # Create Bokeh ColumnDataSource
@@ -18,23 +18,23 @@ source = ColumnDataSource(data={'x': x, 'y': y})
 p = figure(title="Interactive Function Plot", width=700, height=450)
 
 # ✅ Match Matplotlib color & line style
-line = p.line('x', 'y', source=source, line_width=2, color="#1f77b4")
+line = p.line('x', 'y', source=source, line_width=2, color="#1f77b4", legend_label="f(x) = a * sin(x)")
 
 # ✅ Fix y-axis range to match Matplotlib
 p.y_range.start = -5
 p.y_range.end = 5
 
-# ✅ Match Matplotlib axis ticks (exact number)
+# ✅ Match Matplotlib axis ticks (EXACTLY same number)
 p.xaxis.ticker.desired_num_ticks = 7
 p.yaxis.ticker.desired_num_ticks = 7
 
-# ✅ Match Matplotlib grid style (gray, dashed)
+# ✅ **Fix Matplotlib grid style (SOLID, NOT DASHED)**
 p.xgrid.grid_line_color = "gray"
 p.ygrid.grid_line_color = "gray"
-p.xgrid.grid_line_dash = [4, 4]
-p.ygrid.grid_line_dash = [4, 4]
 p.xgrid.grid_line_alpha = 0.6
 p.ygrid.grid_line_alpha = 0.6
+p.xgrid.grid_line_dash = "solid"  # ✅ Solid grid
+p.ygrid.grid_line_dash = "solid"  # ✅ Solid grid
 
 # ✅ Set fonts & sizes to match Matplotlib/Streamlit
 p.title.text_font_size = "16pt"
@@ -45,13 +45,12 @@ p.yaxis.axis_label_text_font_size = "14pt"
 p.xaxis.major_label_text_font_size = "12pt"
 p.yaxis.major_label_text_font_size = "12pt"
 
-# ✅ Fix legend (EXACT Matplotlib style)
-legend = Legend(items=[LegendItem(label="f(x) = a * sin(x)", renderers=[line])])
-legend.label_text_font_size = "12pt"
-legend.border_line_width = 1
-legend.border_line_color = "black"
-legend.background_fill_alpha = 0.6
-p.add_layout(legend, "top_right")
+# ✅ Fix legend WITHOUT ERROR (use "right" instead of "top_right")
+p.legend.location = "top_right"  # ✅ Works without add_layout()
+p.legend.label_text_font_size = "12pt"
+p.legend.border_line_width = 1
+p.legend.border_line_color = "black"
+p.legend.background_fill_alpha = 0.6
 
 # ✅ Streamlit-style Sliders (Red line, rounded **dot** handle)
 slider_a = Slider(start=0.1, end=5, value=1, step=0.1, title="Amplitude (a)", bar_color="red")
