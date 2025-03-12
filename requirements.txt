@@ -12,4 +12,3 @@ streamlit
 streamlit_book
 streamlit_extras
 deep_translator
-bokeh==2.4.3
