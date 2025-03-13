@@ -21,8 +21,8 @@ def translate_text(text, target_language):
             "slug test": "Slug Test",
             "hydraulic conductivity": "hydraulische Leitfähigkeit",
             "aquifer": "Grundwasserleiter",
-            "pumping test": "Pumpversuch",
-            "slug": "Verdrängungskörper" 
+            "pumping test": "Pumpversuch"
+            #"slug": "Verdrängungskörper" 
         },
         "fr": {  # French
             "slug test": "essai de slug",
