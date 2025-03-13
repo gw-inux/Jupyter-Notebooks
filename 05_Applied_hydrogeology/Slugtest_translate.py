@@ -129,7 +129,7 @@ target_lang = languages[target_lang_name]
 sections = {
 
     "part_01": """
-Slug tests are quick and cost-effective field methods used to determine the hydraulic conductivity (K) of an aquifer. They involve a sudden change in water level within a well (either by adding or removing a known volume of water, or inserting/removing a slug) and measuring the subsequent water level recovery over time, see subsequent figure.
+Slug tests are quick and cost-effective field methods used to determine the hydraulic conductivity (K) of an aquifer. They involve a sudden change in water level within a well (either by adding or removing a known volume of water, or inserting/removing a slug) and measuring the subsequent water level recovery over time, see subsequent figure. The terminology ‘slug test’ is an informal nickname for a method that should really be called ‘piezometer response test’ or ‘single well response test’, whereas 'slug' refers to a solid body that replaces the water in an observation well.
 """,
 
     "part_02": """
