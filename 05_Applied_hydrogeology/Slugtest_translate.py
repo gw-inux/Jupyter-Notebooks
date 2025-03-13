@@ -429,7 +429,7 @@ def slug():
     with rc1:
         # Log slider with input and print
         with st.expander('**Scale of plot and time offset**'):
-            t_off = st.slider('**Time offset $t_{off}$** in s', 0, 60, 0, 1)
+            t_off = st.slider('**Time offset $t_{off}$** in s', 0, 120, 0, 1)
             x_plot = st.number_input('**Max x-value in plot** in s (up to 21600)', 60, 21600, 300, 30)
         container = st.container()
         K_slider_value=st.slider('_(log of) hydraulic conductivity in m/s_', log_min,log_max,-3.0,0.01,format="%4.2f" )
