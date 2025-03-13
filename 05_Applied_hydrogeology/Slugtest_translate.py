@@ -6,49 +6,30 @@ import matplotlib.pyplot as plt
 import re
 from deep_translator import GoogleTranslator
 
-### FIRST THE TEXTS ARE DEFINED AND THE TRANSLATION IS DONE
-
-# Define the original language of the text (set by the app author)
-ORIGINAL_LANGUAGE_CODE = "en"
-
-# Dictionary with languages and their corresponding flags (Unicode flag emojis); eventually add more languages
-languages = {
-    "English 🇬🇧": "en",
-    "Spanish 🇪🇸": "es",
-    "French 🇫🇷": "fr",
-    "German 🇩🇪": "de",
-    "Italian 🇮🇹": "it",
-    "Swedish 🇸🇪": "sv",
-    "Catalan 🇦🇩": "ca"
-    "Chinese (Simplified) 🇨🇳": "zh-CN",
-    "Hindi 🇮🇳": "hi",
-    "Arabic 🇸🇦": "ar",
-    "Bengali 🇧🇩": "bn",
-    "Portuguese 🇵🇹": "pt",
-    "Russian 🇷🇺": "ru",
-    "Japanese 🇯🇵": "ja",
-    "Punjabi 🇵🇰": "pa",
-    "Korean 🇰🇷": "ko",
-    "Turkish 🇹🇷": "tr", 
-}
-
-# Language selection
-columns1 = st.columns((1, 1, 1), gap="large")
-with columns1[1]:
-    target_lang_name = st.selectbox("🌎 Choose the target language", list(languages.keys()))
-target_lang = languages[target_lang_name]
+### 1ST PART - Translation
 
 def translate_text(text, target_language):
-    """ Translates markdown text while preserving formatting like `**bold**`, `*italic*`, `:red[]`, and LaTeX `$math$`. """
+    """ Translates markdown and HTML text while preserving formatting. """
+
     if target_language == ORIGINAL_LANGUAGE_CODE:
         return text  # No translation needed
 
     translator = GoogleTranslator(source="auto", target=target_language)
 
-    # Step 1: Add spaces inside **bold** and *italic* before translation
+    # Step 1: Preserve HTML content separately
+    def translate_html(match):
+        """ Translates only the inner text of HTML tags, preserving structure. """
+        opening_tag, inner_text, closing_tag = match.groups()
+        translated_inner_text = translator.translate(inner_text)  # Translate only inner text
+        return f"{opening_tag}{translated_inner_text}{closing_tag}"
+
+    html_pattern = r"(<[^>]+>)(.*?)(</[^>]+>)"
+    text = re.sub(html_pattern, translate_html, text)
+
+    # Step 2: Add spaces inside **bold** and *italic* before translation
     text_with_spaces = re.sub(r"(\*\*|\*)(\S.*?\S)(\*\*|\*)", r"\1 \2 \3", text)
 
-    # Step 2: Split text into lines to preserve Markdown structure
+    # Step 3: Split text into lines to preserve Markdown structure
     lines = text_with_spaces.strip().split("\n")
 
     translated_lines = []
@@ -65,14 +46,42 @@ def translate_text(text, target_language):
 
     translated_text = "\n\n".join(translated_lines)  # Ensure proper spacing
 
-    # Step 3: Remove spaces inside **bold** and *italic* after translation
+    # Step 4: Remove spaces inside **bold** and *italic* after translation
     final_text = re.sub(r"(\*\*|\*) (.*?) (\*\*|\*)", r"\1\2\3", translated_text)
 
     return final_text
 
-    
-# Markdown / Texts for Translation
-# Sections are the markdown texts
+# Define the original language of the text (set by the app author)
+ORIGINAL_LANGUAGE_CODE = "en"
+
+# Dictionary with languages and their corresponding flags (Unicode flag emojis); eventually add more languages
+languages = {
+    "English 🇬🇧": "en",
+    "Spanish 🇪🇸": "es",
+    "French 🇫🇷": "fr",
+    "German 🇩🇪": "de",
+    "Italian 🇮🇹": "it",
+    "Swedish 🇸🇪": "sv",
+    "Catalan 🇦🇩": "ca",
+    "Chinese (Simplified) 🇨🇳": "zh-CN",
+    "Hindi 🇮🇳": "hi",
+    "Arabic 🇸🇦": "ar",
+    "Bengali 🇧🇩": "bn",
+    "Portuguese 🇵🇹": "pt",
+    "Russian 🇷🇺": "ru",
+    "Japanese 🇯🇵": "ja",
+    "Punjabi 🇵🇰": "pa",
+    "Korean 🇰🇷": "ko",
+    "Turkish 🇹🇷": "tr"
+}
+
+# Language selection
+columns1 = st.columns((1, 1, 1), gap="large")
+with columns1[1]:
+    target_lang_name = st.selectbox("🌎 Choose the target language", list(languages.keys()))
+target_lang = languages[target_lang_name]
+
+# TEXTS to translate
 sections = {
 
     "part_01": """
@@ -122,23 +131,27 @@ The **effective radius** $R_e$ depends on the well penetration, which depends on
 
     "part_06": """              
             - **For simplicity**, we use in this app:
-            """
+            """,
+            
+    "part_07": """    
+            Below you can choose the data for evaluation. You can upload your own data as *.CSV file with time (in seconds) and hydraulic head (in meters) separated by commas. Alternatively, you can choose preloaded data. 
+            
+            Once the data are loaded, you can modify the time offset and fit the hydraulic conductivity to the measured data.
+           """,
+    "fig_caption": "Schematic representation of a slug test where a slug of water is added to a well. Figure modified from Bouwer and Rice (1976).",
+    "video_caption": "Video: Slugtest performed at the Varnum site (Sweden) by adding approximately 4 liter to a groundwater observation well.",
+    "expander1": "**Click here to read more about the theory**",
+    "header": "Evaluating slug tests in unconfined aquifers with the Bouwer & Rice method",
+    "subheader1": "Introduction and Motivation - Multilingual version",
+    "subheader2": "The Theory behind the Bouwer & Rice Method for Unconfined Aquifers",
+    "subheader3": "Computation and Interactive Plot",
+    "button1": """<div style="text-align: center; font-weight: bold; font-size: 125%"> What data should be used? </div>""",
+    "selectbox": "**Please select the dataset**"
 }
-
-# Headers and other texts
-text01_text = "Evaluating slug tests in unconfined aquifers with the Bouwer & Rice method"
-text02_text = "Introduction and Motivation - Multilingual version"
-text03_text = "The Theory behind the Bouwer & Rice Method for Unconfined Aquifers"
 
 ### TRANSLATION PART
 # Initialize session state only once with None
 st.session_state.setdefault("translated_sections", {key: None for key in sections.keys()})
-st.session_state.setdefault("translated_headers", {
-    "text01": None,
-    "text02": None,
-    "text03": None,
-})
-
 st.session_state.setdefault("current_lang", ORIGINAL_LANGUAGE_CODE)  # Default is English
 
 # Ensure placeholders are initialized with the original text if None
@@ -146,91 +159,70 @@ for key in sections.keys():
     if st.session_state["translated_sections"][key] is None:
         st.session_state["translated_sections"][key] = sections[key]  # Fallback to English
 
-# Ensure headers always have a fallback
-st.session_state["translated_headers"] = {
-    "text01": st.session_state["translated_headers"]["text01"] if st.session_state["translated_headers"]["text01"] is not None else text01_text,
-    "text02": st.session_state["translated_headers"]["text02"] if st.session_state["translated_headers"]["text02"] is not None else text02_text,
-    "text03": st.session_state["translated_headers"]["text03"] if st.session_state["translated_headers"]["text03"] is not None else text03_text,
-}
-
 # Translate only when the language actually changes
 if st.session_state["current_lang"] != target_lang:
     new_sections = {}
-    new_headers = {}
 
     # Translate Sections
     for key in sections:
         translated_text = translate_text(sections[key], target_lang)
         new_sections[key] = translated_text if translated_text else sections[key]  # Keep English if translation fails
 
-    # Translate Headers
-    new_headers["text01"] = translate_text(text01_text, target_lang) or text01_text
-    new_headers["text02"] = translate_text(text02_text, target_lang) or text02_text
-    new_headers["text03"] = translate_text(text03_text, target_lang) or text03_text
-
     # Update translations in session state after all translations are done
     st.session_state["translated_sections"] = new_sections
-    st.session_state["translated_headers"] = new_headers
     st.session_state["current_lang"] = target_lang  # ✅ Update stored language
 
 
-# Subsequent the text part of the app
+# 2nd Part: Texts and explanations
+
 st.title('Slugtest evaluation 📉')
 
 # Two empty container to place the headings
-text01_ph = st.empty()
-text02_ph = st.empty()
+st.header(st.session_state["translated_sections"].get("header", sections["header"]))
+st.subheader(st.session_state["translated_sections"].get("subheader1", sections["subheader1"]))
 
 # SECTION1 / TRANSLATION
-part01_placeholder = st.empty()  # First section placeholder
+part01_placeholder = st.empty()  # Section placeholder
            
 lc0, rc0 = st.columns((1,1.3),gap = 'large')
 with lc0:
-    st.image('05_Applied_hydrogeology/FIGS/slug_unconfined.png', caption="Schematic representation of a slug test where a slug of water is added to a well. Accordingly, the water level will rise (blue part in the illustration). Figure modified from Bouwer and Rice (1976).")
+    st.image('05_Applied_hydrogeology/FIGS/slug_unconfined.png', caption=st.session_state["translated_sections"].get("fig_caption", sections["fig_caption"]))
+
 with rc0:
     st.video('https://youtu.be/GTq72oB0qZo')
-    st.write('_Video:_ Slugtest performed at the Varnum site (Sweden) by adding approximately 4 liter to an groundwater observation well.')
+    st.write(f'_{st.session_state["translated_sections"].get("video_caption", sections["video_caption"])}_')
 
-
-text03_ph = st.empty()
+st.subheader(st.session_state["translated_sections"].get("subheader2", sections["subheader2"]))
 
 # Section 02 / Translation
-part02_placeholder = st.empty()  # First section placeholder
+part02_placeholder = st.empty()  # Section placeholder
 
-with st.expander('**Click here to read more about the theory**'):
+with st.expander(st.session_state["translated_sections"].get("expander1", sections["expander1"])):
  
     # Translation of section 3
-    part03_placeholder = st.empty()  # First section placeholder
+    part03_placeholder = st.empty()  # Section placeholder
 
     st.latex(r'''K = \frac{r_c^2 \ln\left(\frac{R_e}{r_w}\right)}{2L} \cdot \frac{1}{t} \cdot \ln\left(\frac{h_t}{h_0}\right)''')
  
     # Translation of section 4
-    part04_placeholder = st.empty()  # First section placeholder        
+    part04_placeholder = st.empty()  # Section placeholder        
     
     st.latex(r'''R_e = \frac{D}{2}''')
             
     # Translation of section 5
-    part05_placeholder = st.empty()  # First section placeholder 
+    part05_placeholder = st.empty()  # Section placeholder 
     
     st.latex(r'''R_e = 1.1L + r_w''')     
     
     # Translation of section 6
-    part06_placeholder = st.empty()  # First section placeholder 
+    part06_placeholder = st.empty()  # Section placeholder 
             
     st.latex(r'''R_e = L''')
     
-st.subheader(':green-background[Computation and Interactive Plot]', divider="green")
-st.markdown("""    
-            Below you can choose the data for evaluation. You can upload your own data as *.CSV file with time (in seconds) and hydraulic head (in meters) separated by commas. Alternatively, you can choose preloaded data. 
-            
-            Once the data are loaded, you can modify the time offset and fit the hydraulic conductivity to the measured data.
-           """)
-
-
-# **Ensure headers do not disappear during reruns**
-text01_ph.header(st.session_state["translated_headers"]["text01"])
-text02_ph.subheader(st.session_state["translated_headers"]["text02"])
-text03_ph.subheader(st.session_state["translated_headers"]["text03"])
+st.subheader(st.session_state["translated_sections"].get("subheader3", sections["subheader3"]))
+    
+# Translation of section 7
+part07_placeholder = st.empty()  # Section placeholder
 
 # **Ensure content placeholders do not disappear**
 part01_placeholder.markdown(st.session_state["translated_sections"].get("part_01", sections["part_01"]))
@@ -239,17 +231,17 @@ part03_placeholder.markdown(st.session_state["translated_sections"].get("part_03
 part04_placeholder.markdown(st.session_state["translated_sections"].get("part_04", sections["part_04"]))
 part05_placeholder.markdown(st.session_state["translated_sections"].get("part_05", sections["part_05"]))
 part06_placeholder.markdown(st.session_state["translated_sections"].get("part_06", sections["part_06"]))
+part07_placeholder.markdown(st.session_state["translated_sections"].get("part_07", sections["part_07"]))
 
-# COMPUTATION HERE
+# 3rd part COMPUTATION HERE
 
 # Available Data / Choose data
 # Select data
 columns = st.columns((1,4,1), gap = 'large')
 with columns[1]:
-    st.markdown("""    
-            <div style="text-align: center; font-weight: bold; font-size: 125%"> What data should be used? </div>
-           """, unsafe_allow_html=True)
-    datasource = st.selectbox("**:red-background[Please select the dataset]**",
+    st.markdown(st.session_state["translated_sections"].get("button1", sections["button1"]), unsafe_allow_html=True) 
+           
+    datasource = st.selectbox(st.session_state["translated_sections"].get("selectbox", sections["selectbox"]),
     ("Data from random properties with added noise", "Load your own CSV dataset", "Varnum (SWE) 2018 - R4", "Viterbo (ITA) 2024"), key = 'Data')
 with columns[1]:
     if(st.session_state.Data =="Load your own CSV dataset"):
