@@ -346,7 +346,7 @@ def slug():
 
     # User defined values
     # Define the minimum and maximum for the logarithmic scale
-    log_min = -6.0 # Corresponds to 10^-7 = 0.0000001
+    log_min = -7.0 # Corresponds to 10^-7 = 0.0000001
     log_max =  -2.0  # Corresponds to 10^0 = 1
 
     lc1, rc1 = st.columns((1,1))
@@ -405,7 +405,8 @@ def slug():
         H0 = 0.01*slugsize/np.pi/(rc*100)**2
     F = 2 * np.pi * L/np.log(L/rw)
     prq = np.pi * rc**2
-    t = np.arange(0, tmax, 1)
+    #t = np.arange(0, tmax, 1)
+    t = np.linspace(0, x_plot, num=300)
 
     # Generate the time for plotting - with offset
     t_plot=[]
