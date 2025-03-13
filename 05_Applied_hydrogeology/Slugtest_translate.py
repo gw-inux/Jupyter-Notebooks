@@ -390,7 +390,7 @@ def slug():
 
     # User defined values
     # Define the minimum and maximum for the logarithmic scale
-    log_min = -7.0 # Corresponds to 10^-7 = 0.0000001
+    log_min = -8.0 # Corresponds to 10^-7 = 0.0000001
     log_max =  -2.0  # Corresponds to 10^0 = 1
 
     lc1, rc1 = st.columns((1,1))
