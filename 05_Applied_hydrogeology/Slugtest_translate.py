@@ -323,7 +323,7 @@ elif(st.session_state.Data =="Load your own CSV dataset"):
         df = pd.read_csv(uploaded_file)
         m_time = list(df.iloc[:,0].values)
         m_head = list(df.iloc[:,1].values)
-    st.write('Overview about loaded data', m_head)
+    st.write('Overview about loaded data', m_head[:min(100, len(m_head))])
 elif(st.session_state.Data =="Data from random properties with added noise"):
     # Generate Random Data
     slugsize = 700
