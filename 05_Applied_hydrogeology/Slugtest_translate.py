@@ -18,7 +18,7 @@ def translate_text(text, target_language):
             "aquifer": "aquifer",
         },
         "de": {  # German
-            "slug test": "Slug test",
+            "slug test": "Slug Test",
             "hydraulic conductivity": "hydraulische Leitfähigkeit",
             "aquifer": "Grundwasserleiter",
             "pumping test": "Pumpversuch",
@@ -390,7 +390,7 @@ def slug():
 
     # User defined values
     # Define the minimum and maximum for the logarithmic scale
-    log_min = -7.0 # Corresponds to 10^-7 = 0.0000001
+    log_min = -8.0 # Corresponds to 10^-7 = 0.0000001
     log_max =  -2.0  # Corresponds to 10^0 = 1
 
     lc1, rc1 = st.columns((1,1))
@@ -429,7 +429,7 @@ def slug():
     with rc1:
         # Log slider with input and print
         with st.expander('**Scale of plot and time offset**'):
-            t_off = st.slider('**Time offset $t_{off}$** in s', 0, 60, 0, 1)
+            t_off = st.number_input('**Time offset $t_{off}$** in s (up to 1200)', 0, 1200, 0, 1)
             x_plot = st.number_input('**Max x-value in plot** in s (up to 21600)', 60, 21600, 300, 30)
         container = st.container()
         K_slider_value=st.slider('_(log of) hydraulic conductivity in m/s_', log_min,log_max,-3.0,0.01,format="%4.2f" )
