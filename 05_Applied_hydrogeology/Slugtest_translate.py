@@ -430,7 +430,11 @@ def slug():
         # Log slider with input and print
         with st.expander('**Scale of plot and time offset**'):
 <<<<<<< HEAD
+<<<<<<< HEAD
             t_off = st.number_input('**Time offset $t_{off}$** in s (up to 1200)', 0, 1200, 0, 1)
+=======
+            t_off = st.number_input('**Time offset $t_{off}$** in s', 0, 1200, 0, 1)
+>>>>>>> 653e9a38d33be3142ee82a1fa53fd18f0a271ae1
 =======
             t_off = st.number_input('**Time offset $t_{off}$** in s', 0, 1200, 0, 1)
 >>>>>>> 653e9a38d33be3142ee82a1fa53fd18f0a271ae1
