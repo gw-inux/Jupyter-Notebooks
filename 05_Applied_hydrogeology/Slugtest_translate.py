@@ -11,6 +11,49 @@ from deep_translator import GoogleTranslator
 def translate_text(text, target_language):
     """ Translates markdown and HTML text while preserving formatting. """
 
+    custom_terms_dict = {
+        "en": {  # English (no replacements needed, but included for completeness)
+            "slug test": "slug test",
+            "hydraulic conductivity": "hydraulic conductivity",
+            "aquifer": "aquifer",
+        },
+        "de": {  # German
+            "slug test": "Slugg test",
+            "hydraulic conductivity": "hydraulische Leitfähigkeit",
+            "aquifer": "Grundwasserleiter",
+            "pumping test": "Pumpversuch"
+        },
+        "fr": {  # French
+            "slug test": "essai de slug",
+            "hydraulic conductivity": "conductivité hydraulique",
+            "aquifer": "aquifère",
+            "pumping test": "essai de pompage"
+        },
+        "es": {  # Spanish
+            "slug test": "prueba de slug",
+            "hydraulic conductivity": "conductividad hidráulica",
+            "aquifer": "acuífero",
+            "pumping test": "prueba de bombeo"
+        }
+    }
+
+    def apply_custom_terms(text, language_code):
+        """Replaces specific technical terms with predefined translations before sending to translator."""
+        if language_code in custom_terms_dict:
+            terms_dict = custom_terms_dict[language_code]  # Select the correct dictionary
+            for term, translation in custom_terms_dict.items():
+                text = text.replace(term, translation)  # Replace terms in the text
+        return text
+    
+    
+    # ✅ Calling the function with `custom_terms`
+    preprocessed_text = apply_custom_terms("A slug test is used to determine the hydraulic conductivity of an aquifer.", custom_terms)
+    
+    print(preprocessed_text)
+    # Output: "A Schluggversuch is used to determine the hydraulische Leitfähigkeit of an Grundwasserleiter."
+    
+
+
     if target_language == ORIGINAL_LANGUAGE_CODE:
         return text  # No translation needed
 
@@ -39,7 +82,12 @@ def translate_text(text, target_language):
         if stripped_line.startswith("#"):  # ✅ Preserve headers (even multiple ##)
             header_level = len(stripped_line) - len(stripped_line.lstrip("#"))  # Count #
             text_without_hash = stripped_line.lstrip("#").strip()  # Remove #
-            translated_text = translator.translate(text_without_hash)  # Translate only text
+            # Preprocessing here / Apply the pre-processing to ensure correct terminology
+            preprocessed_text = apply_custom_terms(text_without_hast, target_lang)
+            #translated_text = translator.translate(text_without_hash)  # Translate only text
+            translated_text = translator.translate(preprocessed_text)  # Translate only text
+            translated_text = GoogleTranslator(source="auto", target=target_lang).translate(preprocessed_text)
+
             translated_lines.append("#" * header_level + " " + translated_text)  # Rebuild header
         else:
             translated_lines.append(translator.translate(stripped_line))
