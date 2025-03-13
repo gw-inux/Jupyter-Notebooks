@@ -18,10 +18,11 @@ def translate_text(text, target_language):
             "aquifer": "aquifer",
         },
         "de": {  # German
-            "slug test": "Slugg test",
+            "slug test": "Slug test",
             "hydraulic conductivity": "hydraulische Leitfähigkeit",
             "aquifer": "Grundwasserleiter",
-            "pumping test": "Pumpversuch"
+            "pumping test": "Pumpversuch",
+            "slug": "Verdrängungskörper" 
         },
         "fr": {  # French
             "slug test": "essai de slug",
@@ -40,19 +41,11 @@ def translate_text(text, target_language):
     def apply_custom_terms(text, language_code):
         """Replaces specific technical terms with predefined translations before sending to translator."""
         if language_code in custom_terms_dict:
-            terms_dict = custom_terms_dict[language_code]  # Select the correct dictionary
-            for term, translation in custom_terms_dict.items():
-                text = text.replace(term, translation)  # Replace terms in the text
+            terms_dict = custom_terms_dict[language_code]
+            for term, translation in terms_dict.items():
+                text = re.sub(rf'\b{re.escape(term)}\b', translation, text)  # Präzise Ersetzung
         return text
     
-    
-    # ✅ Calling the function with `custom_terms`
-    preprocessed_text = apply_custom_terms("A slug test is used to determine the hydraulic conductivity of an aquifer.", custom_terms)
-    
-    print(preprocessed_text)
-    # Output: "A Schluggversuch is used to determine the hydraulische Leitfähigkeit of an Grundwasserleiter."
-    
-
 
     if target_language == ORIGINAL_LANGUAGE_CODE:
         return text  # No translation needed
@@ -83,14 +76,16 @@ def translate_text(text, target_language):
             header_level = len(stripped_line) - len(stripped_line.lstrip("#"))  # Count #
             text_without_hash = stripped_line.lstrip("#").strip()  # Remove #
             # Preprocessing here / Apply the pre-processing to ensure correct terminology
-            preprocessed_text = apply_custom_terms(text_without_hast, target_lang)
+            preprocessed_text = apply_custom_terms(text_without_hash, target_lang)
             #translated_text = translator.translate(text_without_hash)  # Translate only text
             translated_text = translator.translate(preprocessed_text)  # Translate only text
             translated_text = GoogleTranslator(source="auto", target=target_lang).translate(preprocessed_text)
 
             translated_lines.append("#" * header_level + " " + translated_text)  # Rebuild header
         else:
-            translated_lines.append(translator.translate(stripped_line))
+            preprocessed_text = apply_custom_terms(stripped_line, target_lang)
+            #translated_lines.append(translator.translate(stripped_line))
+            translated_lines.append(translator.translate(preprocessed_text))
 
     translated_text = "\n\n".join(translated_lines)  # Ensure proper spacing
 
@@ -120,7 +115,8 @@ languages = {
     "Japanese 🇯🇵": "ja",
     "Punjabi 🇵🇰": "pa",
     "Korean 🇰🇷": "ko",
-    "Turkish 🇹🇷": "tr"
+    "Turkish 🇹🇷": "tr",
+    "Urdu 🇵🇰": "ur"
 }
 
 # Language selection
