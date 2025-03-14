@@ -1,54 +1,42 @@
 import numpy as np
 import pandas as pd
 import streamlit as st
+import random
+import string
 import io
+import unicodedata
 import matplotlib.pyplot as plt
 import re
 from deep_translator import GoogleTranslator
 
 ### 1ST PART - Translation
+# ✅ Generate a unique random sequence for each term
+def generate_random_key():
+    """Creates a truly random sequence to act as a placeholder."""
+    return ''.join(random.choices(string.ascii_lowercase + string.digits, k=10))
+    
+def remove_accents(input_str):
+    """Removes accents and normalizes Unicode characters for consistent replacement."""
+    nfkd_form = unicodedata.normalize('NFKD', input_str)
+    return "".join([c for c in nfkd_form if not unicodedata.combining(c)])
 
+def apply_custom_terms(text, language_code):
+    """Replaces specific technical terms with predefined translations before sending to translator."""
+    if language_code in custom_terms_dict:
+        terms_dict = custom_terms_dict[language_code]
+        for term, translation in terms_dict.items():
+            text = re.sub(rf'\b{re.escape(term)}\b', translation, text)  # Präzise Ersetzung
+    return text
+    
 def translate_text(text, target_language):
     """ Translates markdown and HTML text while preserving formatting. """
-
-    custom_terms_dict = {
-        "en": {  # English (no replacements needed, but included for completeness)
-            "slug test": "slug test",
-            "hydraulic conductivity": "hydraulic conductivity",
-            "aquifer": "aquifer",
-        },
-        "de": {  # German
-            "slug test": "Slug Test",
-            "hydraulic conductivity": "hydraulische Leitfähigkeit",
-            "aquifer": "Grundwasserleiter",
-            "pumping test": "Pumpversuch"
-            #"slug": "Verdrängungskörper" 
-        },
-        "fr": {  # French
-            "slug test": "essai de slug",
-            "hydraulic conductivity": "conductivité hydraulique",
-            "aquifer": "aquifère",
-            "pumping test": "essai de pompage"
-        },
-        "es": {  # Spanish
-            "slug test": "prueba de slug",
-            "hydraulic conductivity": "conductividad hidráulica",
-            "aquifer": "acuífero",
-            "pumping test": "prueba de bombeo"
-        }
-    }
-
-    def apply_custom_terms(text, language_code):
-        """Replaces specific technical terms with predefined translations before sending to translator."""
-        if language_code in custom_terms_dict:
-            terms_dict = custom_terms_dict[language_code]
-            for term, translation in terms_dict.items():
-                text = re.sub(rf'\b{re.escape(term)}\b', translation, text)  # Präzise Ersetzung
-        return text
-    
-
+   
     if target_language == ORIGINAL_LANGUAGE_CODE:
         return text  # No translation needed
+
+    # Replace technical terms with randomized placeholders**
+    for term, placeholder in technical_terms.items():
+        text = re.sub(rf'\b{re.escape(term)}\b', placeholder, text, flags=re.IGNORECASE)
 
     translator = GoogleTranslator(source="auto", target=target_language)
 
@@ -75,17 +63,34 @@ def translate_text(text, target_language):
         if stripped_line.startswith("#"):  # ✅ Preserve headers (even multiple ##)
             header_level = len(stripped_line) - len(stripped_line.lstrip("#"))  # Count #
             text_without_hash = stripped_line.lstrip("#").strip()  # Remove #
-            # Preprocessing here / Apply the pre-processing to ensure correct terminology
-            preprocessed_text = apply_custom_terms(text_without_hash, target_lang)
-            #translated_text = translator.translate(text_without_hash)  # Translate only text
-            translated_text = translator.translate(preprocessed_text)  # Translate only text
-            translated_text = GoogleTranslator(source="auto", target=target_lang).translate(preprocessed_text)
+            translated_text = translator.translate(text_without_hash)  # Translate only text
 
-            translated_lines.append("#" * header_level + " " + translated_text)  # Rebuild header
+            # Normalize accents before replacing placeholders
+            normalized_text = remove_accents(translated_text)
+
+            # Replace placeholders with correct translations
+            if target_language in translations_dict:
+                for placeholder, original_term in decryption_map.items():
+                    # Get the correct translation for the technical term
+                    correct_translation = translations_dict[target_language].get(original_term, original_term)
+                    # Replace placeholder with translated term
+                    normalized_text = re.sub(re.escape(placeholder), correct_translation, normalized_text, flags=re.IGNORECASE)
+
+           #translated_lines.append("#" * header_level + " " + translated_text)  # Rebuild header
+            translated_lines.append("#" * header_level + " " + normalized_text)  # Rebuild header
         else:
-            preprocessed_text = apply_custom_terms(stripped_line, target_lang)
-            #translated_lines.append(translator.translate(stripped_line))
-            translated_lines.append(translator.translate(preprocessed_text))
+            # Translate and normalize normal text lines
+            translated_text = translator.translate(stripped_line)
+            normalized_text = remove_accents(translated_text)  # ✅ Fix: process single string
+
+            # Replace placeholders with correct translations
+            if target_language in translations_dict:
+                for placeholder, original_term in decryption_map.items():
+                    # Get the correct translation for the technical term
+                    correct_translation = translations_dict[target_language].get(original_term, original_term)
+                    # Replace placeholder with translated term
+                    normalized_text = re.sub(re.escape(placeholder), correct_translation, normalized_text, flags=re.IGNORECASE)
+            translated_lines.append(normalized_text)  # ✅ Append the corrected text
 
     translated_text = "\n\n".join(translated_lines)  # Ensure proper spacing
 
@@ -93,6 +98,71 @@ def translate_text(text, target_language):
     final_text = re.sub(r"(\*\*|\*) (.*?) (\*\*|\*)", r"\1\2\3", translated_text)
 
     return final_text
+
+# Store random placeholders directly in `technical_terms`
+technical_terms = {
+    "slug test": generate_random_key(),
+    "hydraulic conductivity": generate_random_key(),
+    "aquifer": generate_random_key(),
+    "pumping test": generate_random_key(),
+    "slug": generate_random_key()
+}
+
+# ✅ Reverse lookup dictionary to get the original term from the placeholder
+decryption_map = {v: k for k, v in technical_terms.items()}  # Reverse map for decoding
+
+# Define correct translations for technical terms per language
+translations_dict = {
+    "de": {  # German 🇩🇪
+        "slug test": "Slug-Test",
+        "hydraulic conductivity": "hydraulische Leitfähigkeit",
+        "aquifer": "Grundwasserleiter",
+        "pumping test": "Pumpversuch",
+        "slug": "Verdrängungskörper"
+    },
+    "fr": {  # French 🇫🇷
+        "slug test": "essai de slug",
+        "hydraulic conductivity": "conductivité hydraulique",
+        "aquifer": "aquifère",
+        "pumping test": "essai de pompage",
+        "slug": "corps de déplacement"
+    },
+    "es": {  # Spanish 🇪🇸
+        "slug test": "prueba de slug",
+        "hydraulic conductivity": "conductividad hidráulica",
+        "aquifer": "acuífero",
+        "pumping test": "prueba de bombeo",
+        "slug": "cuerpo de desplazamiento"
+    },
+    "ca": {  # Catalan 🇦🇩
+        "slug test": "prova de slug",
+        "hydraulic conductivity": "conductivitat hidràulica",
+        "aquifer": "aqüífer",
+        "pumping test": "prova de bombeig",
+        "slug": "cos de desplaçament"
+    },
+    "it": {  # Italian 🇮🇹
+        "slug test": "test di slug",
+        "hydraulic conductivity": "conducibilità idraulica",
+        "aquifer": "acquifero",
+        "pumping test": "test di pompaggio",
+        "slug": "corpo di spostamento"
+    },
+    "zh-CN": {  # Chinese 🇨🇳
+        "slug test": "slug 测试",
+        "hydraulic conductivity": "水力传导率",
+        "aquifer": "含水层",
+        "pumping test": "抽水试验",
+        "slug": "位移体"
+    },
+    "ja": {  # Japanese 🇯🇵
+        "slug test": "スラッグ試験",
+        "hydraulic conductivity": "水理伝導率",
+        "aquifer": "帯水層",
+        "pumping test": "揚水試験",
+        "slug": "変位体"
+    }
+}
 
 # Define the original language of the text (set by the app author)
 ORIGINAL_LANGUAGE_CODE = "en"
@@ -118,6 +188,13 @@ languages = {
     "Turkish 🇹🇷": "tr",
     "Urdu 🇵🇰": "ur"
 }
+
+
+
+
+
+
+
 
 # Language selection
 columns1 = st.columns((1, 1, 1), gap="large")

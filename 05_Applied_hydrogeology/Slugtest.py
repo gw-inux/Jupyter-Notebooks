@@ -125,7 +125,7 @@ elif(st.session_state.Data =="Load your own CSV dataset"):
         df = pd.read_csv(uploaded_file)
         m_time = list(df.iloc[:,0].values)
         m_head = list(df.iloc[:,1].values)
-    st.write('Overview about loaded data', m_head)
+    st.write('Overview about loaded data', m_head[:min(100, len(m_head))])
 elif(st.session_state.Data =="Data from random properties with added noise"):
     # Generate Random Data
     slugsize = 700
@@ -231,7 +231,7 @@ def slug():
     with rc1:
         # Log slider with input and print
         with st.expander('**Scale of plot and time offset**'):
-            t_off = st.slider('**Time offset $t_{off}$** in s', 0, 60, 0, 1)
+            t_off = st.number_input('**Time offset $t_{off}$** in s (up to 1200)', 0, 1200, 0, 1)
             x_plot = st.number_input('**Max x-value in plot** in s (up to 21600)', 60, 21600, 300, 30)
         container = st.container()
         K_slider_value=st.slider('_(log of) hydraulic conductivity in m/s_', log_min,log_max,-3.0,0.01,format="%4.2f" )
@@ -251,7 +251,8 @@ def slug():
         H0 = 0.01*slugsize/np.pi/(rc*100)**2
     F = 2 * np.pi * L/np.log(L/rw)
     prq = np.pi * rc**2
-    t = np.arange(0, tmax, 1)
+    #t = np.arange(0, tmax, 1)
+    t = np.linspace(0, x_plot, num=300)
 
     # Generate the time for plotting - with offset
     t_plot=[]
