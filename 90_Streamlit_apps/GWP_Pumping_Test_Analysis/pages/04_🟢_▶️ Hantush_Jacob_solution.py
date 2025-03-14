@@ -233,7 +233,7 @@ w_u_HAN = np.array(w_u_HAN)
 st.subheader(':green[Estimate $T$, $S$, and Leakage Factor $r/B$ by matching a Hantush-Jacob Curve to measured drawdown data]', divider="rainbow")
 
 st.markdown("""
-            In this section, you can **adjust the values of transmissivity, storativity, and $r/B$ until the curve of drawdown versus time that is calculated and plotted on the graph matches the measured data from the Varnum test site in Sweden**. A close match indicates that the selected values are a reasonable representation of the aquifer properties.
+            In this section, you can **adjust the values of transmissivity, storativity, and $r/B$ until the curve of drawdown versus time that is calculated and plotted on the graph matches the measured data from the Varnum test site in Sweden**. A close match indicates that the selected values are a reasonable representation of the aquifer properties. The measured data were collected during a field course for the GVG460 course at the [University of Gothenburg](https://www.gu.se/en/earth-sciences).
             
             The aquifer is 9 meters thick and is overlain by an 11-meters thick aquitard that separates the lower Varnum Aquifer from an overlying aquifer. When the lower aquifer is pumped, water leaks downward from the overlying aquifer in response to the lowered head in the deeper aquifer.
         

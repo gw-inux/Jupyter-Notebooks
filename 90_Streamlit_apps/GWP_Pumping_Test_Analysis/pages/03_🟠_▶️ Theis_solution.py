@@ -371,7 +371,7 @@ with st.expander('**:red[Click here] for more information** about some of the ca
 
 st.markdown("""
            
-            The next step investigates matching the Theis solution to measured data from the Varnum field site in Sweden. 
+            The next step investigates matching the Theis solution to measured data from the Varnum field site in Sweden. These data were collected during a field course for the GVG460 course at the [University of Gothenburg](https://www.gu.se/en/earth-sciences).
 """
 )
 

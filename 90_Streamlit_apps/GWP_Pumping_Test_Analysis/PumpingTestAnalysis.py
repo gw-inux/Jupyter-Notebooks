@@ -1,5 +1,19 @@
 import streamlit as st
 
+# Authors, institutions, and year
+year = 2025 
+authors = {
+    "Thomas Reimann": [1],  # Author 1 belongs to Institution 1
+    "Eileen Poeter": [2],
+}
+institutions = {
+    1: "TU Dresden, Institute for Groundwater Management",
+    2: "Colorado School of Mines"
+}
+index_symbols = ["¹", "²", "³", "⁴", "⁵", "⁶", "⁷", "⁸", "⁹"]
+author_list = [f"{name}{''.join(index_symbols[i-1] for i in indices)}" for name, indices in authors.items()]
+institution_list = [f"{index_symbols[i-1]} {inst}" for i, inst in institutions.items()]
+institution_text = " | ".join(institution_list)
 
 st.set_page_config(
     page_title="Pumping Test Analysis Application",
@@ -7,6 +21,7 @@ st.set_page_config(
 )
 
 st.title("Pumping Test Analysis Application 🌀")
+
 
 st.sidebar.success("☝️ Select a page above ☝️")
 
@@ -82,3 +97,11 @@ with cent_co2:
         https://interactive-education.gw-project.org/GWP_Pumping_Test_Analysis/
         """   
     )
+    
+'---'
+# Render footer with authors, institutions, and license logo in a single line
+columns_lic = st.columns((5,1))
+with columns_lic[0]:
+    st.markdown(f'Developed by {", ".join(author_list)} ({year}). <br> {institution_text}', unsafe_allow_html=True)
+with columns_lic[1]:
+    st.image('FIGS/CC_BY-SA_icon.png')
