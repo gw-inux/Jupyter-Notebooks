@@ -9,6 +9,21 @@ from streamlit_extras.stodo import to_do
 
 ### 01 TITLE AND HEADER
 
+# Authors, institutions, and year
+year = 2025 
+authors = {
+    "Thomas Reimann": [1],  # Author 1 belongs to Institution 1
+   #"Colleague Name": [1],  # Author 2 also belongs to Institution 1
+}
+institutions = {
+    1: "TU Dresden",
+#   2: "Second Institution / Organization"
+}
+index_symbols = ["¹", "²", "³", "⁴", "⁵", "⁶", "⁷", "⁸", "⁹"]
+author_list = [f"{name}{''.join(index_symbols[i-1] for i in indices)}" for name, indices in authors.items()]
+institution_list = [f"{index_symbols[i-1]} {inst}" for i, inst in institutions.items()]
+institution_text = " | ".join(institution_list)  # Institutions in one line
+
 st.title('🎯 The Theis solution for pumping test evaluation')
 
 st.header(':blue[Manually parmater fitting with type-curve matching]')
@@ -296,3 +311,11 @@ with st.expander(':green[**Click here**] to see an **example result** of the man
     left_co2, cent_co2, last_co2 = st.columns((20,60,20))
     with cent_co2:
         st.image('05_Applied_hydrogeology/FIGS/theis_manual_example.png', caption="One acceptable manual match of the Theis curve to the drawdown data")
+        
+'---'
+# Render footer with authors, institutions, and license logo in a single line
+columns_lic = st.columns((5,1))
+with columns_lic[0]:
+    st.markdown(f'Developed by {", ".join(author_list)} ({year}). <br> {institution_text}', unsafe_allow_html=True)
+with columns_lic[1]:
+    st.image('FIGS/CC_BY-SA_icon.png')
