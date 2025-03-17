@@ -3,7 +3,9 @@ import numpy as np
 import matplotlib.pyplot as plt
 import scipy.special
 import io
+import pandas as pd
 import streamlit as st
+from streamlit_extras.stodo import to_do
 
 ### 01 TITLE AND HEADER
 
@@ -19,7 +21,7 @@ st.markdown('''
             '''
 )
 
-st.subheader(':blue-background[The Theis Type-curve]', divider="blue")
+st.subheader(':blue-background[The Theis type-curve]', divider="blue")
 st.markdown('''
             The **Theis type curve plot** is a fundamental tool in hydrogeology for analyzing **transient groundwater flow** in response to well pumping. It is based on the **Theis solution**, which describes how drawdown evolves over time in a **confined aquifer**.
             
@@ -108,7 +110,7 @@ fig = plt.figure(figsize=(9,6))
 ax = fig.add_subplot(1, 1, 1)
 plt.subplots_adjust(left=0.1, bottom=0.1, right=0.9, top=0.9)  # adjust plot area
 ax.plot(u_inv, w_u, color = 'black', linewidth = 2)
-ax.plot(match_u_inv, match_wu,'ro',markersize=6)
+ax.plot(match_u_inv, match_wu,'bo',markersize=6)
 ax.plot(matchgrid_x,matchgrid,color ='lime', linewidth = 1)
 ax.plot(matchgrid,matchgrid_y,color = 'lime', linewidth = 1)
 plt.yscale("log")
@@ -155,7 +157,7 @@ st.markdown('''
 columns12 = st.columns((1,1), gap = 'large')
 with columns12[0]:
     datasource = st.selectbox("**What data should be used?**",
-    ("Synthetic textbook data", "Load own CSV dataset"))
+    ("Synthetic textbook data", "Load own CSV dataset"), key='Data')
 if (datasource == "Synthetic textbook data"):
     # Data and parameter from SYMPLE exercise
     m_time = [1,1.5,2,2.5,3,4,5,6,8,10,12,14,18,24,30,40,50,60,100,120] # time in minutes
@@ -164,6 +166,9 @@ if (datasource == "Synthetic textbook data"):
     b = 8.5       # m
     Qs = 0.3/60   # m^3/s
     Qd = Qs*60*60*24 # m^3/d
+    st.write('**Pumping rate (m³/s)** for the **pumping test** = % 5.3f'% Qs)
+    st.write('**Distance** (m) from the **well** for the **observation** =  % 6.2f'% r)
+    st.write('**average Aquifer thickness** (m) = % 6.2f'% b)
 elif(st.session_state.Data =="Load own CSV dataset"):
     # Initialize
     m_time = []
@@ -196,7 +201,7 @@ d = [0 for x in range(t_max)]
 fig = plt.figure(figsize=(9,6))
 ax = fig.add_subplot(1, 1, 1)
 plt.subplots_adjust(left=0.1, bottom=0.1, right=0.9, top=0.9)  # adjust plot area
-ax.plot(m_time, m_ddown,'bo', markersize=3)
+ax.plot(m_time, m_ddown,'ro', markersize=6)
 if semilog:
     plt.xscale("log")
 else:
@@ -219,17 +224,50 @@ columns6 = st.columns((1,1,1), gap = 'large')
 with columns6[1]:
     # Add download button
     st.download_button(
-        label=":green[**Download**] **Measured Data for Theis**",
+        label=":green[**Download**] **measured data**",
         data=img_buffer,
         file_name="measured_data_Theis.png",
         mime="image/png"
         )
         
-st.subheader(':red[Computing Transmissivity and Storativity]')        
+st.subheader(':red[Type-curve matching and computation of transmissivity $T$ and storativity $S$]')        
 st.markdown('''
-            In this part you can input the data that you got from the Theis Type curve matching and compute the Transmissivity $T$ and the Storativity $S$.
+            This subsection provide information about how to perform the type-curve matching. Step-by-step instructions guide you through the method. Further, you can use the application to process the data that you got from the type-curve matching to compute the transmissivity $T$ and the storativity $S$.
             '''
 )
+with st.expander(':green[**Click here**] to get detailed **step-by-step instructions** about how to perform the manual Theis type-curve matching'):
+    to_do(
+        [(st.write, "Safe the Theis type-curve on your local computer. You can start with the provided matching point at $1/u$ = 1 and $w(u)$ = 1.")],"td01",)
+    to_do(
+        [(st.write, "Eventually load own measured data (or use the provided idealized data) for plotting. Safe the measured data with the button **Download measured data** on your local computer.")],"td02",)
+    to_do(
+        [(st.write, "Open on your local computer a software to show pictures, for example a word processor. Then load the saved figures (Theis type-curve and measured data) in your word processor.")],"td03",)
+    to_do(
+        [(st.write, "Allow the figure with the measured data to be placed _before the text_ such that it can be plotted above the Theis type-curve. The background of the measured data is transparent. Accordingly, you see the Theis type-curve through the measured data")],"td04",)
+    to_do(
+        [(st.write, "Move the plot with the measured data such that the dots coincide with the type curve. Take note of the time $t_0$ (in minutes) and the drawdown $s_0$ (in meters) of the measured data plot that corresponds to the matching point of the Theis type-curve plot. The green lines in the Theis type-curve will help you to find the time and drawdown values")],"td05",)
+    to_do(
+        [(st.write, "Finally, you can compute the transmissivity $T$ and the storativity $S$ by help of application by putting the time and drawdown in the input section below.")],"td06",)
+st.markdown('''
+            After selecting the **matching point** on the Theis type curve, the corresponding **time** $t_0$ and **drawdown** $s_0$ from the measured data are determined. Using these values, the transmissivity $T$ and storativity $S$of the aquifer can be computed as follows:
+            ''')
+st.latex(r'''T = \frac{Q}{4\pi s_0 W(u)}''')
+
+st.latex(r'''S = \frac{u T t_0}{r^2}''')
+            
+st.markdown('''            
+            where:
+            - $Q$ is the pumping rate (m³/s),
+            - $s_0$ is the measured drawdown at the matching point (m),
+            - $W(u)$ is the well function value at the matching point,
+            - $u$ is the dimensionless time parameter,
+            - $t_0$ is the corresponding measured time (s),
+            - $r$ is the radial distance from the well (m).
+            
+            By aligning the measured data with the selected **matching point** on the Theis type curve, these equations allow for the estimation of key aquifer properties, enabling a better understanding of groundwater flow dynamics.
+            ''')   
+        
+
 time_input = st.number_input('Time (min) from the type curve plot', 0.,1000., 1., 0.1)
 ddown = st.number_input('Drawdown (m) from the type curve plot', 0.,1000., 1., 0.1)
 time = time_input*60
@@ -240,6 +278,20 @@ storativity = 4*transmissivity*(time/r/r)/match_u_inv
 if st.button('Show the computed results'):
     st.write("- Transmissivity **$T$ = % 10.2E"% transmissivity, " m²/s**")
     st.write("- Storativity **$S$ = % 10.2E"% storativity, "[dimensionless]**")
-# TODO - NUMBER INPUT AND EVALUATION
-# fig.savefig(img_buffer,  transparent='true',format="png", dpi=300)
+
 # TODO - INSTRUCTION HOW TO USE (MAYBE SCREENCAST)
+
+with st.expander(':green[**Click here**] to see a **video tutorial** of the manual Theis type-curve matching'):
+    st.write('Video here')
+    
+with st.expander(':green[**Click here**] to see an **example result** of the manual Theis type-curve matching'):
+    st.markdown(""" 
+        The following example shows one curve match to the ideal drawdown data 120 m from a well pumping 0.005 m³/s. The **time $t_0$** is 0.22 minutes and the **drawdown $s_0$** is 0.59 m. Therewith, the
+        - transmissivity $T$ is 6.74E-04 m2/s and the 
+        - storativity $S$ is 2.47E-06 (dimensionless).
+        
+        If many expert hydrogeologists matched a Theis curve to the data, they would all have a slightly different values of $T$ and $S$, but the parameter sets would likely all be close enough to the values of the aquifer $T$ and $S$ to draw comparable conclusions, and make similar predictions of drawdown for other distances from the well and for longer time than the duration of the test. While adjusting parameter values, one finds that the ideal data can be matched very well to the Theis curve. The reason for this behavior is that the ideal aquifer data conform to the conditions for applying the Theis solution. 
+            """)
+    left_co2, cent_co2, last_co2 = st.columns((20,60,20))
+    with cent_co2:
+        st.image('05_Applied_hydrogeology/FIGS/theis_manual_example.png', caption="One acceptable manual match of the Theis curve to the drawdown data")
