@@ -283,7 +283,7 @@ if st.button('Show the computed results'):
 
 with st.expander(':green[**Click here**] to see a **video tutorial** of the manual Theis type-curve matching'):
     st.write('Video here')
-    st.video(https://youtu.be/atdMi2siFJU)
+    st.video('https://youtu.be/atdMi2siFJU')
     
 with st.expander(':green[**Click here**] to see an **example result** of the manual Theis type-curve matching'):
     st.markdown(""" 
