@@ -333,9 +333,9 @@ st.subheader(':green[Estimating aquifer parameter values]', divider="rainbow")
 st.markdown(f"In this section you can modify the parameter values to fit the measured data to the curve defined by the {solution} Solution.")
 
 st.markdown("""
-            More precise matching can be acheived by zooming in and/or by using typed number input rather than slider input. Both are selected with a toggle switch.
+            More precise matching can be achieved by typing in values for the parameters instead of using the sliders. You can turn on this option by selecting the toggle below.
             
-            The scatter plot can be turned on by using a toggle switch. It provides a visual comparison of the drawdown data and the fitted curve. A 45 degree line indicates a perfect match between the measured drawdowns and those calculated by the selected solution for the input parameter values.
+            The scatter plot can be turned on by selecting the toggle switch  immediately above the graph. This provides a visual comparison of the drawdown data and the fitted curve. If the data fall on a 45-degree line, then there is a perfect match between the measured drawdowns and those calculated by the Neuman solution for the input values of $T$ and $S$.
 """
 )
 
