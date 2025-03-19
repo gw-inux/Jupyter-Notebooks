@@ -9,6 +9,21 @@ import streamlit as st
 import streamlit_book as stb
 from streamlit_extras.stateful_button import button
 
+# Authors, institutions, and year
+year = 2025 
+authors = {
+    "Thomas Reimann": [1],  # Author 1 belongs to Institution 1
+    "Eileen Poeter": [2],
+}
+institutions = {
+    1: "TU Dresden, Institute for Groundwater Management",
+    2: "Colorado School of Mines"
+}
+index_symbols = ["¹", "²", "³", "⁴", "⁵", "⁶", "⁷", "⁸", "⁹"]
+author_list = [f"{name}{''.join(index_symbols[i-1] for i in indices)}" for name, indices in authors.items()]
+institution_list = [f"{index_symbols[i-1]} {inst}" for i, inst in institutions.items()]
+institution_text = " | ".join(institution_list)
+
 st.title('🟣 :violet[Neuman] parameter estimation')
 
 st.header('for drawdown in :violet[**unconfined aquifers**]')
@@ -274,9 +289,11 @@ st.markdown("""
             
             After fitting the data to the Neuman curve we can estimate parameter values and use the aquifer thickness to calculate horizontal and vertical hydraulic conductivity of the aquifer.
             
-            More precise matching can be achieved by zooming in and manually entering numbers versus using the sliders. This can be activated using the toggle switch below.
+            Additionally, you can **switch between a log-log and a semi-log plot** to analyze the effect of transmissivity, specific storage, specific yield, and beta on the drawdown behavior. The semi-log plot is especially useful to understand the late time traight line slope under consideration of varying transmissivity, specific storage, specific yield, and beta.
             
-            The scatter plot can also be turned on using a different toggle that is located immediately above the graph below. This provides a visual comparison of the data and the fitted curve. If the data fall on a 45-degree line, then there is a perfect match between the measured drawdowns and those calculated by the Neuman solution for the input values of $T$, $Ss$, $Sy$,  and $β$.
+            More precise matching can be achieved by **zooming in** and manually entering **numbers versus using the sliders**. This can be activated using the toggle switch below.
+            
+            The **scatter plot** can also be turned on using a different toggle that is located immediately above the graph below. This provides a visual comparison of the data and the fitted curve. If the data fall on a 45-degree line, then there is a perfect match between the measured drawdowns and those calculated by the Neuman solution for the input values of $T$, $Ss$, $Sy$,  and $β$.
 """
 )
 # Additionally, you can perform a prediction of drawdown for specific times/spaces.
@@ -308,6 +325,7 @@ def inverse():
         beta_choice = st.selectbox("**beta**",('0.001','0.01', '0.06', '0.2', '0.6', '1', '2', '4', '6'),)
         beta_list = ['0.001','0.01', '0.06', '0.2', '0.6', '1', '2', '4', '6']
         beta = beta_list.index(beta_choice)
+        semilog = st.toggle("Toggle for **semi log graph**")
         refine_plot = st.toggle("**Zoom in** on the **data in the graph**")
         scatter = st.toggle('Show scatter plot')
     with columns2[1]:
@@ -397,13 +415,23 @@ def inverse():
     ax.plot(m_time_s, m_ddown,'o', color='mediumorchid', label=r'measured drawdown - Pirna 25')
     plt.xticks(fontsize=14)
     plt.yticks(fontsize=14)
-    plt.yscale("log")
-    plt.xscale("log")
+    if semilog:
+        plt.xscale("log")
+    else:    
+        plt.yscale("log")
+        plt.xscale("log")     
     if refine_plot:
-        plt.axis([1E1,1E6,1E-3,1E+1])
+        if semilog:
+            plt.axis([1E1,1E6,0,1])
+        else:
+            plt.axis([1E1,1E6,1E-3,1E+1])
     else:
-        plt.axis([1E-1,1E8,1E-4,1E+1])
-        ax.text((0.2),1.8E-4,'Coarse plot - Refine for final fitting')
+        if semilog:
+            plt.axis([1E-1,1E8,0,10])
+            ax.text((0.2),0.8,'Coarse plot - Refine for final fitting')            
+        else:
+            plt.axis([1E-1,1E8,1E-4,1E+1])
+            ax.text((0.2),1.8E-4,'Coarse plot - Refine for final fitting')        
     plt.xlabel(r'time t in (s)', fontsize=14)
     plt.ylabel(r'drawdown s in (m)', fontsize=14)
     plt.title(f"Neuman drawdown with beta = {beta_choice}", fontsize=16)
@@ -477,3 +505,11 @@ with columnsN1[1]:
 with columnsN1[2]:
     if st.button("Next page"):
         st.switch_page("pages/06_🎯_▶️ Pumping_Test_Analysis.py")
+
+'---'
+# Render footer with authors, institutions, and license logo in a single line
+columns_lic = st.columns((5,1))
+with columns_lic[0]:
+    st.markdown(f'Developed by {", ".join(author_list)} ({year}). <br> {institution_text}', unsafe_allow_html=True)
+with columns_lic[1]:
+    st.image('FIGS/CC_BY-SA_icon.png')

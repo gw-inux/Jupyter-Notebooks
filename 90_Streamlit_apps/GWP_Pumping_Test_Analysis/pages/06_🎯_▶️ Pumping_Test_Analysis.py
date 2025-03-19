@@ -9,6 +9,21 @@ import pandas as pd
 import streamlit as st
 import streamlit_book as stb
 
+# Authors, institutions, and year
+year = 2025 
+authors = {
+    "Thomas Reimann": [1],  # Author 1 belongs to Institution 1
+    "Eileen Poeter": [2],
+}
+institutions = {
+    1: "TU Dresden, Institute for Groundwater Management",
+    2: "Colorado School of Mines"
+}
+index_symbols = ["¹", "²", "³", "⁴", "⁵", "⁶", "⁷", "⁸", "⁹"]
+author_list = [f"{name}{''.join(index_symbols[i-1] for i in indices)}" for name, indices in authors.items()]
+institution_list = [f"{index_symbols[i-1]} {inst}" for i, inst in institutions.items()]
+institution_text = " | ".join(institution_list)
+
 st.title('🎯 Pumping Test Analysis with the :red[Theis], :green[Hantush-Jacob], and :violet[Neuman] solutions')
 
 st.header('Estimating aquifer property values using drawdown data :rainbow[measured in the FIELD] ')
@@ -399,6 +414,7 @@ def inverse():
             st.session_state["S_slider_value"] = S_slider_value_new
             S = 10 ** S_slider_value_new
             container.write("**Storativity (dimensionless):** %5.2e" %S)            
+        semilog = st.toggle("Toggle for **semi log graph**")
         refine_plot = st.toggle("**Refine** the range of the **Data matching plot**")
         scatter = st.toggle('Show scatter plot')
     with columns2[1]:
@@ -521,19 +537,31 @@ def inverse():
         plt.title('Theis drawdown', fontsize=16)
         ax.plot(t, s, label=r'Computed drawdown - Theis')
         ax.plot(m_time_s, m_ddown,'ro', label=r'measured drawdown')
-
     if refine_plot:
-        plt.axis([1E1,1E5,1E-3,1E+1])
+        if semilog:
+            plt.axis([1E1,1E5,0,4])
+        else:
+            plt.axis([1E1,1E5,1E-3,1E+1])
     else:
-        plt.axis([1,1E8,1E-4,1E+1])
-        ax.text((2),1.8E-4,'Coarse plot - Refine for final fitting')
-    plt.yscale("log")
-    plt.xscale("log")
+        if semilog:
+            plt.axis([1,1E8,0,10])
+            ax.text((2),0.8,'Coarse plot - Refine for final fitting')            
+        else:
+            plt.axis([1,1E8,1E-4,1E+1])
+            ax.text((2),1.8E-4,'Coarse plot - Refine for final fitting')  
+    if semilog:
+        plt.xscale("log")
+    else:    
+        plt.yscale("log")
+        plt.xscale("log") 
     plt.xlabel(r'time t in (s)', fontsize=14)
     plt.ylabel(r'drawdown s in (m)', fontsize=14)
     ax.grid(which="both")
     plt.legend(fontsize=14)
-    plt.text(0.97, 0.15,out_txt, horizontalalignment='right', transform=ax.transAxes, fontsize=14, verticalalignment='top', bbox=props)
+    if semilog:
+        plt.text(0.3, 0.95,out_txt, horizontalalignment='right', transform=ax.transAxes, fontsize=14, verticalalignment='top', bbox=props)
+    else:
+        plt.text(0.97, 0.15,out_txt, horizontalalignment='right', transform=ax.transAxes, fontsize=14, verticalalignment='top', bbox=props)
     
     if scatter:
         # Compute point data for scatter plot
@@ -635,3 +663,11 @@ with columnsN1[1]:
 with columnsN1[2]:
     if st.button("Next page"):
         st.switch_page("pages/07_📈_▶️ Parameter_Uncertainty.py")
+
+'---'
+# Render footer with authors, institutions, and license logo in a single line
+columns_lic = st.columns((5,1))
+with columns_lic[0]:
+    st.markdown(f'Developed by {", ".join(author_list)} ({year}). <br> {institution_text}', unsafe_allow_html=True)
+with columns_lic[1]:
+    st.image('FIGS/CC_BY-SA_icon.png')

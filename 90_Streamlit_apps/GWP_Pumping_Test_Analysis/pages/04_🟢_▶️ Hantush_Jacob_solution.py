@@ -9,6 +9,21 @@ import streamlit as st
 import streamlit_book as stb
 from streamlit_extras.stateful_button import button
 
+# Authors, institutions, and year
+year = 2025 
+authors = {
+    "Thomas Reimann": [1],  # Author 1 belongs to Institution 1
+    "Eileen Poeter": [2],
+}
+institutions = {
+    1: "TU Dresden, Institute for Groundwater Management",
+    2: "Colorado School of Mines"
+}
+index_symbols = ["¹", "²", "³", "⁴", "⁵", "⁶", "⁷", "⁸", "⁹"]
+author_list = [f"{name}{''.join(index_symbols[i-1] for i in indices)}" for name, indices in authors.items()]
+institution_list = [f"{index_symbols[i-1]} {inst}" for i, inst in institutions.items()]
+institution_text = " | ".join(institution_list)
+
 st.title('🟢 :green[Hantush-Jacob] parameter estimation')
 
 st.header('for drawdown in :green[**leaky aquifers**]')
@@ -239,9 +254,11 @@ st.markdown("""
         
             After estimating the parameter values that result in a good fit of the Hantush-Jacob curve to the data, and knowing the thickness of the aquitard, the vertical hydraulic conductivity of the aquitard is calculated.
             
-            More precise matching can be achieved by zooming in and/or by using typed number input rather than slider input. Both are selected with a toggle switch.
+            Additionally, you can **switch between a log-log and a semi-log plot** to analyze the effect of transmissivity, storativity, and $r/B$ on the drawdown behavior. The semi-log plot is especially useful to understand the late time traight line slope under consideration of varying transmissivity, storativity, and $r/B$.
             
-            The scatter plot can be turned on by using a toggle switch. It provides a visual comparison of the data and the fitted curve. A 45 degree line indicates a perfect match between the measured drawdowns and those calculated by the Hantush-Jacob solution for the input values of $T$, $S$, and $r/B$.
+            More precise matching can be achieved by **zooming in** and/or by using **typed number input rather than slider input**. Both are selected with a toggle switch.
+            
+            The **scatter plot** can be turned on by using a toggle switch. It provides a visual comparison of the data and the fitted curve. A 45 degree line indicates a perfect match between the measured drawdowns and those calculated by the Hantush-Jacob solution for the input values of $T$, $S$, and $r/B$.
 """
 )
 
@@ -268,6 +285,7 @@ def inverse(v):
    
     columns2 = st.columns((1,1), gap = 'large')
     with columns2[0]:
+        semilog = st.toggle("Toggle for **semi log graph**", key = 15+v)
         refine_plot = st.toggle("**Zoom in** on the **data in the graph**", key = 20+v)
         scatter = st.toggle('Show scatter plot', key = 30+v)
         if v==2:
@@ -356,15 +374,25 @@ def inverse(v):
         ax.plot(m_time_s, m_ddown,'o', color='mediumorchid', label=r'measured drawdown - Pirna 24')
     else:
         ax.plot(m_time_s, m_ddown,'go', label=r'measured drawdown - Varnum 16')
-    plt.yscale("log")
-    plt.xscale("log")
+    if semilog:
+        plt.xscale("log")
+    else:    
+        plt.yscale("log")
+        plt.xscale("log")
     plt.xticks(fontsize=14)
     plt.yticks(fontsize=14)
     if refine_plot:
-        plt.axis([1E1,1E5,1E-3,1E+1])
+        if semilog:
+            plt.axis([1E1,1E5,0,1])
+        else:
+            plt.axis([1E1,1E5,1E-3,1E+1])
     else:
-        plt.axis([1E-1,1E8,1E-4,1E+1])
-        ax.text((0.2),1.8E-4,'Coarse plot - Refine for final fitting')
+        if semilog:
+            plt.axis([1E-1,1E8,0,10])
+            ax.text((0.2),0.8,'Coarse plot - Refine for final fitting')            
+        else:
+            plt.axis([1E-1,1E8,1E-4,1E+1])
+            ax.text((0.2),1.8E-4,'Coarse plot - Refine for final fitting')
     plt.xlabel(r'time t in (s)', fontsize=14)
     plt.ylabel(r'drawdown s in (m)', fontsize=14)
     plt.title(f"Hantush-Jacob drawdown with $r/B$ = {r_div_B_choice}", fontsize=16)
@@ -465,3 +493,11 @@ with columnsN1[1]:
 with columnsN1[2]:
     if st.button("Next page"):
         st.switch_page("pages/05_🟣_▶️ Neuman_solution.py")
+        
+'---'
+# Render footer with authors, institutions, and license logo in a single line
+columns_lic = st.columns((5,1))
+with columns_lic[0]:
+    st.markdown(f'Developed by {", ".join(author_list)} ({year}). <br> {institution_text}', unsafe_allow_html=True)
+with columns_lic[1]:
+    st.image('FIGS/CC_BY-SA_icon.png')
