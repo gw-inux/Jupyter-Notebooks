@@ -21,7 +21,7 @@ jobs:
             "https://slugtest-unconfined.streamlit.app/"
             "https://gwp-3d-transport.streamlit.app/"
             "https://gwp-pumping-test-analysis.streamlit.app/"
-            
+            "https://theis-manual.streamlit.app/"
           )
 
           for url in "${urls[@]}"; do
