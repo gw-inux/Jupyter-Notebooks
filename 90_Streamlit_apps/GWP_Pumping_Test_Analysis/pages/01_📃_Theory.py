@@ -5,7 +5,7 @@ from streamlit_extras.stateful_button import button
 
 st.title('📃 Basic Theory')
 
-st.header(':orange[underlying the Pumping Test Analysis Application]')
+st.header(':orange[Underlying the Pumping Test Analysis Application]')
 
 st.subheader(':orange-background[Introduction and Overview]', divider="orange")
 st.markdown("""

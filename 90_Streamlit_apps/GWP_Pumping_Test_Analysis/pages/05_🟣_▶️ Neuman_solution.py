@@ -270,13 +270,13 @@ st.subheader(':violet-background[Estimate $T$, $Ss$, $S$, aynd $β$] by matching
 st.markdown("""
             In this section, you can **adjust the values of transmissivity, specific storage, specific yield, and beta until the curve of drawdown versus time that is calculated and plotted on the graph matches the measured data from the Pirna test site in Germany**. The match indicates that the selected values are a reasonable representation of the aquifer properties.
             
-            The alluvial aquifer is 6 meters thick. The data are produced in a relatively short pumping test that was performed in November 2024 during a field course for the MWW02 course at the [Technical University of Dresden](http://www.tu-dresden.de/die_tu_dresden/fakultaeten/fakultaet_forst_geo_und_hydrowissenschaften/fachrichtung_wasserwesen/igw).  The pumping rate during the test was 1.18 m³/min. The drawdown was measured with an pressure transducer in an observation well that is 91 m away from the pumping well. The measured drawdown data show an initial response to the pumping that is reflect by the first approximately five to ten measurments. Subsequently, the curve of drawdown flattens and then rises again. 
+            The alluvial aquifer is 6 meters thick. The data are produced in a relatively short pumping test that was performed in November 2024 during a field course for the MWW02 course at the [Technical University of Dresden](http://www.tu-dresden.de/die_tu_dresden/fakultaeten/fakultaet_forst_geo_und_hydrowissenschaften/fachrichtung_wasserwesen/igw).  The pumping rate during the test was 1.18 m³/min. The drawdown was measured with an pressure transducer in an observation well that is 91 m away from the pumping well. The measured drawdown data show an initial response to the pumping that is reflected by the first approximately five to ten measurments. The drawdown curve subsequently flattens and then rises again. 
             
-            After estimating the parameter values that result in a good fit of the Neuman curve to the data, and knowing the thickness of the aquifer, the horizontal and vertical hydraulic conductivity of the aquifer is calculated.
+            After fitting the data to the Neuman curve we can estimate parameter values and use the aquifer thickness to calculate horizontal and vertical hydraulic conductivity of the aquifer.
             
-            More precise matching can be acheived by zooming in and/or by using typed number input rather than slider input. Both are selected with a toggle switch.
+            More precise matching can be achieved by zooming in and manually entering numbers versus using the sliders. This can be activated using the toggle switch below.
             
-            The scatter plot can be turned on by using a toggle switch. It provides a visual comparison of the data and the fitted curve. A 45 degree line indicates a perfect match between the measured drawdowns and those calculated by the Neuman solution for the input values of $T$, $Ss$, $Sy$,  and $β$.
+            The scatter plot can also be turned on using a different toggle that is located immediately above the graph below. This provides a visual comparison of the data and the fitted curve. If the data fall on a 45-degree line, then there is a perfect match between the measured drawdowns and those calculated by the Neuman solution for the input values of $T$, $Ss$, $Sy$,  and $β$.
 """
 )
 # Additionally, you can perform a prediction of drawdown for specific times/spaces.
