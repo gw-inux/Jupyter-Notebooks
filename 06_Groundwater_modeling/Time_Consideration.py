@@ -165,12 +165,12 @@ with st.expander('Show the interactive plot'):
            
         # READ LOG VALUE, CONVERT, AND WRITE VALUE FOR Storativity
         container = st.container()
-        S2_slider_value=st.slider('_(log of) Storativity', log_min2,log_max2,-4.0,0.01,format="%4.2f", key = 60)
+        S2_slider_value=st.slider('_(log of) Storativity', log_min2,log_max2,-3.0,0.01,format="%4.2f", key = 60)
         S2 = 10 ** S2_slider_value
         container.write("**Storativity (dimensionless):** %5.2e" %S2) 
     with columns2[1]:
         b2 = st.slider("Aquifer Thickness (b) [m]", min_value=1.0, max_value=100.0, value=10.0, step=0.1, key = 70)
-        L2 = st.slider("Characteristic Length (L) [m]", min_value=1.0, max_value=1000.0, value=100.0, step=1.0, key = 80)
+        L2 = st.slider("Characteristic Length (L) [m]", min_value=1.0, max_value=1000.0, value=400.0, step=1.0, key = 80)
         P_point = st.slider("period of the forcing function of interest [d]", min_value=0.01, max_value=1000.0, value=7.0, step=0.1, key = 90)
         
     P_min, P_max = 0, 1000  # Range for P in days
