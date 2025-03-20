@@ -56,9 +56,9 @@ st.markdown("""
     
     The app provides **two approaches** for time step generation:
     
-    1. **Geometric Progression (Variant 1)** – The user defines the **initial time step** and **multiplier**. Time steps grow geometrically until reaching the total simulation time.
+    1. **Geometric Progression (Variant 1)** – The user defines the **initial time step** and **multiplier**. Time steps grow geometrically until reaching the total simulation time. This variant can be addressed e.g., with MODELMUSE.
     
-    2. **MODFLOW Formula (Variant 2)** – The user specifies the **stress period length**, **number of time steps**, and **multiplier**. The first time step is computed using the **analytical MODFLOW equation**, and subsequent time steps follow an increasing pattern.
+    2. **Defined number of time steps (Variant 2)** – The user specifies the **stress period length**, **number of time steps**, and **multiplier**. The first time step is computed using the **analytical MODFLOW equation**, and subsequent time steps follow an increasing pattern. This variant is implemented in the MODFLOW DIS package.
     
     Both variants include a **reference case** with a **multiplier of 1**, ensuring constant time steps for comparison. The results are visualized as scatter plots, and key numerical values (number of time steps, initial time step size) are displayed within each plot.
             """)
