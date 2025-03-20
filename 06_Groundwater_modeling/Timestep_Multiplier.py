@@ -56,8 +56,17 @@ ax1.set_yticks([])
 ax1.legend()
 ax1.set_title("Time Step Distribution (Geometric Progression)")
 ax1.grid(True, linestyle='--', alpha=0.6)
+num_steps_v1 = len(steps_v1)
+num_steps_v1_fixed = len(steps_v1_fixed)
+
 st.pyplot(fig1)
 
+columns2 = st.columns((1,1), gap = 'medium')
+with columns2[0]:
+    st.write('Number of time steps with multiplier', tsmult1, " = ", num_steps_v1)
+with columns2[1]:
+    st.write('Number of time steps with multiplier 1.0 = ', num_steps_v1_fixed)
+    
 st.header("Variant 2: :green[Set the number of time steps]")
 col4, col5, col6 = st.columns(3)
 with col4:
