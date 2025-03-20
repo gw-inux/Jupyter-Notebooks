@@ -18,7 +18,7 @@ institution_text = " | ".join(institution_list)
 st.title('Time Consideration')
 st.header('for :green[numerical groundwater flow models]')
 st.markdown("""
-            This application investigate for an underground structure and provided boundary characteristics (distance and period of forcing function) wether steady-state or transient conditions are required.
+            This application investigate for an underground structure and provided boundary characteristics (distance and period of forcing function) wether steady-state or transient conditions are required. The theory can be found in Anderson et al. 2015 (Applied Groundwater Modeling' on page 307ff (chapter 7.2 - Steady state or Transient?). 
             """) 
 st.subheader(':green-background[Overview]', divider="green")
 
