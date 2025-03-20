@@ -254,7 +254,7 @@ st.markdown("""
         
             After estimating the parameter values that result in a good fit of the Hantush-Jacob curve to the data, and knowing the thickness of the aquitard, the vertical hydraulic conductivity of the aquitard is calculated.
             
-            Additionally, you can **switch between a log-log and a semi-log plot** to analyze the effect of transmissivity, storativity, and $r/B$ on the drawdown behavior. The semi-log plot is especially useful to understand the late time traight line slope under consideration of varying transmissivity, storativity, and $r/B$.
+            Additionally, you can **switch between a log-log and a semi-log plot** to analyze the effect of transmissivity, storativity, and $r/B$ on the drawdown behavior. The semi-log plot is useful for visualizing that late-time drawdown-versus-time data from a semiconfined aquifer form a straight line on a semi-log graph before leakage from adjacent layers becomes significant.
             
             More precise matching can be achieved by **zooming in** and/or by using **typed number input rather than slider input**. Both are selected with a toggle switch.
             

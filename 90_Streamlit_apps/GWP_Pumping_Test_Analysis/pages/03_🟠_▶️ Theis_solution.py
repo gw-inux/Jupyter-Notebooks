@@ -125,7 +125,7 @@ st.markdown("""
             
             A close match indicates that the selected values are a reasonable representation of the aquifer properties.
             
-            Additionally, you can **switch between a log-log and a semi-log plot** to analyze the effect of transmissivity and storativity on the drawdown behavior. The semi-log plot is especially useful to understand the late time traight line slope under consideration of varying transmissivity and storativity.
+            Additionally, you can **switch between a log-log and a semi-log plot** to analyze the effect of transmissivity and storativity values on the drawdown behavior. The semi-log plot is useful for visualizing that late-time drawdown-versus-time data from a confined aquifer form a straight line on a semi-log graph.
             
             More precise matching can be acheived by **zooming in** and/or by using **typed number input rather than slider input**. Both are selected with a toggle switch.
             

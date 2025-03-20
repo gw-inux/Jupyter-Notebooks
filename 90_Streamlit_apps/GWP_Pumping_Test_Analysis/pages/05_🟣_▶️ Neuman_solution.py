@@ -289,7 +289,7 @@ st.markdown("""
             
             After fitting the data to the Neuman curve we can estimate parameter values and use the aquifer thickness to calculate horizontal and vertical hydraulic conductivity of the aquifer.
             
-            Additionally, you can **switch between a log-log and a semi-log plot** to analyze the effect of transmissivity, specific storage, specific yield, and beta on the drawdown behavior. The semi-log plot is especially useful to understand the late time traight line slope under consideration of varying transmissivity, specific storage, specific yield, and beta.
+            Additionally, you can **switch between a log-log and a semi-log plot** to evaluate the effect of the selected parameter values on the drawdown behavior. The semi-log plot is useful for visualizing that the late-portion of the early-time drawdown-versus-time data collected while testing a water table aquifer form a straight line on a semi-log graph before the period of transition from dominance of elastic storage to dominance of pore drainage. The late portion of the late-time data also form a straight line on a semi-log plot until extraneous influences impact the test results.
             
             More precise matching can be achieved by **zooming in** and manually entering **numbers versus using the sliders**. This can be activated using the toggle switch below.
             
