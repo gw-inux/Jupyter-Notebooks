@@ -138,7 +138,7 @@ st.subheader('Interactive Plot of Period of the forcing function and Aquifer Res
 st.markdown("""
             The aquifer response time $\\tau$ is computed as
             """) 
-st.latex(r'''T^* = \frac{1}{4P} \frac{S L^2}{K b} = \frac{T^*}{4P}''')
+st.latex(r'''\tau = \frac{1}{4P} \frac{S L^2}{K b} = \frac{T^*}{4P}''')
             
 st.markdown('''            
             where:
