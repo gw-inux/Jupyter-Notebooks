@@ -2,6 +2,19 @@ import streamlit as st
 import numpy as np
 import matplotlib.pyplot as plt
 
+# Authors, institutions, and year
+year = 2025 
+authors = {
+    "Thomas Reimann": [1],  # Author 1 belongs to Institution 1
+}
+institutions = {
+    1: "TU Dresden, Institute for Groundwater Management",
+}
+index_symbols = ["¹", "²", "³", "⁴", "⁵", "⁶", "⁷", "⁸", "⁹"]
+author_list = [f"{name}{''.join(index_symbols[i-1] for i in indices)}" for name, indices in authors.items()]
+institution_list = [f"{index_symbols[i-1]} {inst}" for i, inst in institutions.items()]
+institution_text = " | ".join(institution_list)
+
 st.title("Interaction Between Groundwater and Surface Water")
 st.subheader("Theory and Concept of River Aquifer Interaction", divider="green")
 
@@ -78,3 +91,11 @@ ax.text(1, -0.005, "Gaining Stream", va='center')
 ax.text(1, 0.005, "Losing Stream", va='center')
 
 st.pyplot(fig)
+
+'---'
+# Render footer with authors, institutions, and license logo in a single line
+columns_lic = st.columns((5,1))
+with columns_lic[0]:
+    st.markdown(f'Developed by {", ".join(author_list)} ({year}). <br> {institution_text}', unsafe_allow_html=True)
+with columns_lic[1]:
+    st.image('FIGS/CC_BY-SA_icon.png')
