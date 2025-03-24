@@ -85,19 +85,27 @@ ax.set_ylabel("Flow Into the Ground-Water System From the Stream ($Q$)", fontsiz
 ax.set_title("Flow Between Groundwater and Stream", fontsize=12)
 ax.set_xlim(0, 20)
 ax.set_ylim(-0.1, 0.1)
-ax.annotate(
+if Q_ref < 0:
+    ax.annotate(
+        '',  # no text
+        xy=(0, Q_ref),  # arrowhead
+        xytext=(h_aq_show, Q_ref),  # arrow start
+        arrowprops=dict(arrowstyle='->', color='blue', lw=1, linestyle='dashed', alpha=0.4)
+    )
+else:
+    ax.annotate(
     '',  # no text
     xy=(0, Q_ref),  # arrowhead
     xytext=(h_aq_show, Q_ref),  # arrow start
-    arrowprops=dict(arrowstyle='->', color='green', lw=1, linestyle='dashed', alpha=0.6)
-)
+    arrowprops=dict(arrowstyle='<-', color='green', lw=1, linestyle='dashed', alpha=0.4)
+    )
 ax.grid(True)
 ax.legend()
 #ax.set_aspect('equal', adjustable='box')
 
 # Add gaining/losing stream annotations
-ax.text(1, -0.005, "Gaining Stream", va='center')
-ax.text(1, 0.005, "Losing Stream", va='center')
+ax.text(0.2, -0.005, "Gaining Stream", va='center',color='blue')
+ax.text(0.2, 0.005, "Losing Stream", va='center',color='green')
 
 st.pyplot(fig)
 
