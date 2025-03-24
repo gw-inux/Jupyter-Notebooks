@@ -66,8 +66,11 @@ with columns1[1]:
 h_aq = np.linspace(0, 20, 200)
 if bottom:
     Q = np.where(h_aq >= h_bot, C * (h_RIV - h_aq), C * (h_RIV - h_bot))
+    Q_ref = C * (h_RIV - h_aq_show) if h_aq_show >= h_bot else C * (h_RIV - h_bot)
 else:
     Q = C * (h_RIV - h_aq)
+    Q_ref = C * (h_RIV - h_aq_show)
+
 # Create the plot
 fig, ax = plt.subplots(figsize=(6, 6))
 #ax.plot(h_aq, Q, label=f'$Q = C(h_{{aq}} - h_{{RIV}})$, C={C}')
@@ -82,6 +85,12 @@ ax.set_ylabel("Flow Into the Ground-Water System From the Stream ($Q$)", fontsiz
 ax.set_title("Flow Between Groundwater and Stream", fontsize=12)
 ax.set_xlim(0, 20)
 ax.set_ylim(-0.1, 0.1)
+ax.annotate(
+    '',  # no text
+    xy=(0, Q_ref),  # arrowhead
+    xytext=(h_aq_show, Q_ref),  # arrow start
+    arrowprops=dict(arrowstyle='->', color='green', lw=1, linestyle='dashed', alpha=0.6)
+)
 ax.grid(True)
 ax.legend()
 #ax.set_aspect('equal', adjustable='box')
