@@ -8,7 +8,7 @@ st.markdown("""
 This app shows how the flow between a stream and an aquifer $Q$ depends on the groundwater head at the stream $h_{aq}$. 
 The relationship follows:  
 $
-Q = C \\cdot (h_{aq} - h_s)
+Q = C \\cdot (h_{RIV} - h_{{aq}})
 $
 """)
 
@@ -18,6 +18,9 @@ $
 log_min1 = -7.0 # T / Corresponds to 10^-7 = 0.0000001
 log_max1 = 1.0  # T / Corresponds to 10^1 = 10
 
+
+bottom = st.toggle('Do you want to consider the river bottom elevation?')
+
 columns1 = st.columns((1,1), gap = 'large')
 with columns1[0]:
     # READ LOG VALUE, CONVERT, AND WRITE VALUE FOR TRANSMISSIVITY
@@ -26,13 +29,18 @@ with columns1[0]:
     C = 10 ** C_slider_value
     container.write("**Conductance in m²/s:** %5.2e" %C)
 with columns1[1]:
-    h_RIV = st.slider("**River head ($h_{RIV}$)**", min_value=0.0, max_value=20.0, value=9.0, step=0.1)
+    h_RIV = st.slider("**River head ($h_{RIV}$)**", min_value=5.0, max_value=20.0, value=9.0, step=0.1)
     h_aq_show  = st.slider("**Aquifer head ($h_{aq}**$) for visualization", min_value=0.0, max_value=20.0, value=10.0, step=0.1)
+    if bottom:
+        stage = st.slider("**River stage ($h_{stage}$)**", min_value=0.1, max_value=5.0, value=2.0, step=0.1)
+        h_bot = h_RIV-stage
 
 # Define aquifer head range
 h_aq = np.linspace(0, 20, 200)
-Q = C * (h_aq - h_RIV)
-
+if bottom:
+    Q = np.where(h_aq >= h_bot, C * (h_RIV - h_aq), C * (h_RIV - h_bot))
+else:
+    Q = C * (h_RIV - h_aq)
 # Create the plot
 fig, ax = plt.subplots(figsize=(6, 6))
 #ax.plot(h_aq, Q, label=f'$Q = C(h_{{aq}} - h_{{RIV}})$, C={C}')
@@ -52,7 +60,7 @@ ax.legend()
 #ax.set_aspect('equal', adjustable='box')
 
 # Add gaining/losing stream annotations
-ax.text(1, 0.01, "Gaining Stream", va='center')
-ax.text(1, -0.01, "Losing Stream", va='center')
+ax.text(1, -0.005, "Gaining Stream", va='center')
+ax.text(1, 0.005, "Losing Stream", va='center')
 
 st.pyplot(fig)
