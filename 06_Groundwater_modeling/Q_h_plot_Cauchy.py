@@ -73,14 +73,13 @@ else:
 
 # Create the plot
 fig, ax = plt.subplots(figsize=(6, 6))
-#ax.plot(h_aq, Q, label=f'$Q = C(h_{{aq}} - h_{{RIV}})$, C={C}')
-ax.plot(h_aq, Q, label=rf"$Q = C(h_{{aq}} - h_{{RIV}})$, C = {C:.2e}")
+ax.plot(h_aq, Q, label=rf"$Q = C(h_{{aq}} - h_{{RIV}})$, C = {C:.2e}",color='blue', linewidth=3)
 ax.axhline(0, color='black', linewidth=1)
 ax.axvline(h_RIV, color='gray', linestyle='--', label=f'$h_{{RIV}}$ = {h_RIV}')
 ax.axvline(h_aq_show, color='red', linestyle='--', label=f'$h_{{aq}}$ = {h_aq_show}')
 
 # Labels and formatting
-ax.set_xlabel("Hydraulic heads and elevations in the River-Aquifer System", fontsize=10)
+ax.set_xlabel("Heads and elevations in the River-Aquifer System (m)", fontsize=10)
 ax.set_ylabel("Flow Into the Ground-Water System From the Stream ($Q$)", fontsize=10)
 ax.set_title("Flow Between Groundwater and Stream", fontsize=12)
 ax.set_xlim(0, 20)
