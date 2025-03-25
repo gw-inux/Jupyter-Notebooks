@@ -94,7 +94,7 @@ if turn:
     
     # Labels and formatting
     ax.set_ylabel("Heads and elevations in the River-Aquifer System (m)", fontsize=10)
-    ax.set_xlabel("Flow Into the Ground-Water System From the Stream $Q$ (m³/s)", fontsize=10)
+    ax.set_xlabel("Flow Into the Ground-Water System From the Stream $Q$ (m³/s)", fontsize=10)
     ax.set_ylim(0, 20)
     ax.set_xlim(-0.1, 0.1)
     if Q_ref < 0:
@@ -152,7 +152,7 @@ else:
         ax.axvline(h_bot, color='grey', linewidth=2, linestyle='--', label=f'$h_{{bot}}$ in m= {h_bot}')
     # Labels and formatting
     ax.set_xlabel("Heads and elevations in the River-Aquifer System (m)", fontsize=10)
-    ax.set_ylabel("Flow Into the Ground-Water System From the Stream $Q$ (m³/s)", fontsize=10)
+    ax.set_ylabel("Flow Into the Ground-Water System From the Stream $Q$ (m³/s)", fontsize=10)
     ax.set_xlim(0, 20)
     ax.set_ylim(-0.1, 0.1)
     if Q_ref < 0:
