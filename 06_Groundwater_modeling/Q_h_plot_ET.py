@@ -2,6 +2,10 @@ import streamlit as st
 import numpy as np
 import matplotlib.pyplot as plt
 
+# TODO:
+# - allow user to plot rate / discharge 
+# - adjust plot for discharge according to the max (rate x area)
+
 # Authors, institutions, and year
 year = 2025 
 authors = {
