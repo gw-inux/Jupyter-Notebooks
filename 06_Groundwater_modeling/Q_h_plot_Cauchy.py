@@ -81,8 +81,6 @@ if turn:
     ax.axhline(h_aq_show, color='red', linewidth=2, linestyle='--', label=f'$h_{{aq}}$ in m= {h_aq_show}')
     if bottom:
         ax.axhline(h_bot, color='grey', linewidth=2, linestyle='--', label=f'$h_{{bot}}$ in m= {h_bot}')    
-    
-    if bottom:
         ax.fill_betweenx(
             y=[h_bot, h_RIV],
             x1=-0.1,  # fill across full x-axis width
@@ -150,6 +148,14 @@ else:
     ax.axvline(h_aq_show, color='red', linewidth=2, linestyle='--', label=f'$h_{{aq}}$ in m= {h_aq_show}')
     if bottom:
         ax.axvline(h_bot, color='grey', linewidth=2, linestyle='--', label=f'$h_{{bot}}$ in m= {h_bot}')
+        ax.fill_betweenx(
+            y=[-0.1, 0.1],
+            x1=h_bot,  # fill across full x-axis width
+            x2=h_RIV,
+            color='lightblue',
+            alpha=0.3,
+            label="River"
+        )
     # Labels and formatting
     ax.set_xlabel("Heads and elevations in the River-Aquifer System (m)", fontsize=10)
     ax.set_ylabel("Flow Into the Ground-Water System From the Stream $Q$ (m³/s)", fontsize=10)
@@ -158,7 +164,7 @@ else:
     if Q_ref < 0:
         ax.annotate(
             '',  # no text
-            xy=(0, Q_ref),  # arrowhead
+            xy=(h_RIV, Q_ref),  # arrowhead
             xytext=(h_aq_show, Q_ref),  # arrow start
             arrowprops=dict(arrowstyle='->', color='blue', lw=3,  alpha=0.4)
         )
