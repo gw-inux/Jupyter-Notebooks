@@ -21,25 +21,28 @@ st.subheader("Theory and Concept of Evapotranspiration in MODFLOW", divider="gre
 st.markdown("""
 This app shows the effect of evapotranspiration in removing water from an aquifer according to Harbaugh (2005). The approach assumes:
 - if heads are above a specific elevation named _ET surface_ ($SURF$), the evapotranspiration rate $RET$ is a user-defined maximum rate $EVTR$
+""")
+st.latex(r'''\text{RET} = \text{EVTR}, \quad h_{i,j,k} > \text{SURF}''')
+st.markdown("""
 - if heads are below the _ET surface_ ($SURF$) and exceeding a specific intervall (i.e., distance from _ET surface_) named the _extinction depth_ or cutoff depth ($EXDP$), the evapotranspiration rate $ETR$ from the groundwater becomes zero.
+""")
+st.latex(r'''\text{RET} = 0, \quad h_{i,j,k} < \text{SURF} - \text{EXDP}''')
+st.markdown("""
 - between these two thresholds, evapotranspiration increase linearly from the _extinction depth_ to the _ET surface_.
 """)
-
-st.latex(r'''\text{RET} = \text{EVTR}, \quad h_{i,j,k} > \text{SURF}''')
 st.latex(r'''\text{RET} = \text{EVTR} \frac{h_{i,j,k} - (\text{SURF} - \text{EXDP})}{\text{EXDP}}, \quad (\text{SURF} - \text{EXDP}) \leq h_{i,j,k} \leq \text{SURF}
 ''')
-st.latex(r'''\text{RET} = 0, \quad h_{i,j,k} < \text{SURF} - \text{EXDP}''')
-
 st.markdown("""
 The volumetric discharge is computed by multiplying the evapotranspiration rate $RET$ by the cell area $\Delta x \Delta y$:
 """)
-
 st.latex(r'''Q_{ET} = RET \Delta x \Delta y''')
 
 
 
 st.subheader("Interactive plot", divider="green")
-
+st.markdown("""
+The interactive plot allows you to investigate $Q_{ET}$ in dependence from the _ET surface_ and the _extinction depth_. You can turn the plot by using the toggle above the input widgets.
+""")
 # Main area inputs
 
 turn = st.toggle('Toggle to turn the plot 90 degrees')
