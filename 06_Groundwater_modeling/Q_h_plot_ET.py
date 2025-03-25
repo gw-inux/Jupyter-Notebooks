@@ -68,8 +68,8 @@ fig, ax = plt.subplots(figsize=(6, 6))
 if turn:
     ax.plot(QET, h_aq, label="$Q_{ET}$",color='blue', linewidth=3)
     ax.axhline(0, color='black', linewidth=5)
-    ax.axhline(SURF, color='green', linestyle='--', label=f'$SURF$ = {SURF}')
-    ax.axhline((SURF-EXDP), color='red', linestyle='--', label=f'$(SURF-EXDP)$ = {(SURF-EXDP)}')
+    ax.axhline(SURF, color='green', linestyle='--', label=f'$SURF$ in m a.s.l.= {SURF}')
+    ax.axhline((SURF-EXDP), color='red', linestyle='--', label=f'$(SURF-EXDP)$ in m = {(SURF-EXDP)}')
     arrow_x = 0.8 * QET_MAX  # horizontal position
     arrow_y_start = SURF
     arrow_y_end = (SURF - EXDP)
@@ -119,13 +119,13 @@ else:
 
 # Labels and formatting
 if turn:
-    ax.set_ylabel("Hydraulic heads in the aquifer system (m below ground surface)", fontsize=10)
-    ax.set_xlabel("Evapotranspiration loss from the aquifer ($Q_{ET}$) in m3/s", fontsize=10)
+    ax.set_ylabel("Heads in the aquifer system in m above sea level (a.s.l)", fontsize=10)
+    ax.set_xlabel("Evapotranspiration loss from the aquifer ($Q_{ET}$) in m³/s", fontsize=10)
     ax.set_ylim(-10,0)
     ax.set_xlim(-0.1*QET_MAX, QET_MAX)
 else:
-    ax.set_xlabel("Hydraulic heads in the aquifer system (m below ground surface)", fontsize=10)
-    ax.set_ylabel("Evapotranspiration loss from the aquifer ($Q_{ET}$) in m3/s", fontsize=10)
+    ax.set_xlabel("Heads in the aquifer system in m above sea level (a.s.l)", fontsize=10)
+    ax.set_ylabel("Evapotranspiration loss from the aquifer ($Q_{ET}$) in m³/s", fontsize=10)
     ax.set_xlim(0,-10)
     ax.set_ylim(-0.1*QET_MAX, QET_MAX)
 ax.set_title("Evapotranspiration losses", fontsize=12)
