@@ -93,8 +93,8 @@ if turn:
 else:
     ax.plot(h_aq, QET, label="$Q_{ET}$",color='blue', linewidth=3)
     ax.axvline(0, color='black', linewidth=5)
-    ax.axvline(SURF, color='green', linestyle='--', label=f'$SURF$ = {SURF}')
-    ax.axvline((SURF-EXDP), color='red', linestyle='--', label=f'$(SURF-EXDP)$ = {(SURF-EXDP)}')
+    ax.axvline(SURF, color='green', linestyle='--', label=f'$SURF$ in m a.s.l.= {SURF}')
+    ax.axvline((SURF-EXDP), color='red', linestyle='--', label=f'$(SURF-EXDP)$ in m = {(SURF-EXDP)}')
     
     arrow_y = 0.8 * QET_MAX  # horizontal position
     arrow_x_start = SURF
