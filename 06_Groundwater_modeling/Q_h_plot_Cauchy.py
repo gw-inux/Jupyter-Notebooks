@@ -47,6 +47,7 @@ log_max1 = 1.0  # T / Corresponds to 10^1 = 10
 
 
 bottom = st.toggle('Do you want to consider the river bottom elevation?')
+turn = st.toggle('Toggle to turn the plot 90 degrees')
 
 columns1 = st.columns((1,1), gap = 'large')
 with columns1[0]:
@@ -73,38 +74,139 @@ else:
 
 # Create the plot
 fig, ax = plt.subplots(figsize=(6, 6))
-ax.plot(h_aq, Q, label=rf"$Q = C(h_{{aq}} - h_{{RIV}})$, C = {C:.2e}",color='blue', linewidth=3)
-ax.axhline(0, color='black', linewidth=1)
-ax.axvline(h_RIV, color='gray', linestyle='--', label=f'$h_{{RIV}}$ = {h_RIV}')
-ax.axvline(h_aq_show, color='red', linestyle='--', label=f'$h_{{aq}}$ = {h_aq_show}')
-
-# Labels and formatting
-ax.set_xlabel("Heads and elevations in the River-Aquifer System (m)", fontsize=10)
-ax.set_ylabel("Flow Into the Ground-Water System From the Stream ($Q$)", fontsize=10)
-ax.set_title("Flow Between Groundwater and Stream", fontsize=12)
-ax.set_xlim(0, 20)
-ax.set_ylim(-0.1, 0.1)
-if Q_ref < 0:
-    ax.annotate(
-        '',  # no text
-        xy=(0, Q_ref),  # arrowhead
-        xytext=(h_aq_show, Q_ref),  # arrow start
-        arrowprops=dict(arrowstyle='->', color='blue', lw=1, linestyle='dashed', alpha=0.4)
-    )
+if turn:
+    ax.plot(Q, h_aq, label=rf"$Q = C(h_{{aq}} - h_{{RIV}})$, C = {C:.2e}",color='blue', linewidth=3)
+    ax.axvline(0, color='black', linewidth=1)
+    ax.axhline(h_RIV, color='blue', linewidth=2, linestyle='--', label=f'$h_{{RIV}}$ in m= {h_RIV}')
+    ax.axhline(h_aq_show, color='red', linewidth=2, linestyle='--', label=f'$h_{{aq}}$ in m= {h_aq_show}')
+    if bottom:
+        ax.axhline(h_bot, color='grey', linewidth=2, linestyle='--', label=f'$h_{{bot}}$ in m= {h_bot}')    
+    
+    if bottom:
+        ax.fill_betweenx(
+            y=[h_bot, h_RIV],
+            x1=-0.1,  # fill across full x-axis width
+            x2= 0.1,
+            color='lightblue',
+            alpha=0.3,
+            label="River"
+        )
+    
+    # Labels and formatting
+    ax.set_ylabel("Heads and elevations in the River-Aquifer System (m)", fontsize=10)
+    ax.set_xlabel("Flow Into the Ground-Water System From the Stream $Q$ (m³/s)", fontsize=10)
+    ax.set_ylim(0, 20)
+    ax.set_xlim(-0.1, 0.1)
+    if Q_ref < 0:
+        ax.annotate(
+            '',  # no text
+            xy=(Q_ref,h_RIV),  # arrowhead
+            xytext=(Q_ref, h_aq_show),  # arrow start
+            arrowprops=dict(arrowstyle='->', color='blue', lw=3,  alpha=0.4)
+        )
+    else:
+        ax.annotate(
+            '',  # no text
+            xy=(Q_ref,h_RIV),  # arrowhead
+            xytext=(Q_ref, h_aq_show),  # arrow start
+            arrowprops=dict(arrowstyle='<-', color='green', lw=3, alpha=0.4)
+        )
+        if bottom and h_aq_show < h_bot:
+            x_min = -0.1
+            x_max =  0.1
+            arrow_xs = np.linspace(x_min + 0.01, x_max - 0.01, 10)  # 10 arrows, evenly spaced
+        
+            for x in arrow_xs:
+                ax.annotate(
+                    '',  # no text
+                    xy=(x, h_bot),        # arrowhead at river bottom
+                    xytext=(x, h_aq_show),# arrow start at aquifer head
+                    arrowprops=dict(
+                        arrowstyle='<-', 
+                        color='brown', 
+                        lw=3, 
+                        alpha=0.1
+                    )
+                )
+        
+            # Add label at far left
+            ax.text(
+                x_min + 0.01,  # slightly inside the plot
+                (h_bot + h_aq_show) / 2,
+                "Unsaturated zone flow",
+                color='brown',
+                fontsize=9,
+                rotation=0,
+                va='center'
+            )
+    # Add gaining/losing stream annotations
+    ax.text(-0.05,1, "Gaining Stream", va='center',color='blue')
+    ax.text(0.005, 1,  "Losing Stream", va='center',color='green')
+        
 else:
-    ax.annotate(
-    '',  # no text
-    xy=(0, Q_ref),  # arrowhead
-    xytext=(h_aq_show, Q_ref),  # arrow start
-    arrowprops=dict(arrowstyle='<-', color='green', lw=1, linestyle='dashed', alpha=0.4)
-    )
+    ax.plot(h_aq, Q, label=rf"$Q = C(h_{{aq}} - h_{{RIV}})$, C = {C:.2e}",color='blue', linewidth=3)
+    ax.axhline(0, color='black', linewidth=1)
+    ax.axvline(h_RIV, color='blue', linewidth=2, linestyle='--', label=f'$h_{{RIV}}$ in m= {h_RIV}')
+    ax.axvline(h_aq_show, color='red', linewidth=2, linestyle='--', label=f'$h_{{aq}}$ in m= {h_aq_show}')
+    if bottom:
+        ax.axvline(h_bot, color='grey', linewidth=2, linestyle='--', label=f'$h_{{bot}}$ in m= {h_bot}')
+    # Labels and formatting
+    ax.set_xlabel("Heads and elevations in the River-Aquifer System (m)", fontsize=10)
+    ax.set_ylabel("Flow Into the Ground-Water System From the Stream $Q$ (m³/s)", fontsize=10)
+    ax.set_xlim(0, 20)
+    ax.set_ylim(-0.1, 0.1)
+    if Q_ref < 0:
+        ax.annotate(
+            '',  # no text
+            xy=(0, Q_ref),  # arrowhead
+            xytext=(h_aq_show, Q_ref),  # arrow start
+            arrowprops=dict(arrowstyle='->', color='blue', lw=3,  alpha=0.4)
+        )
+    else:
+        ax.annotate(
+        '',  # no text
+        xy=(h_RIV, Q_ref),  # arrowhead
+        xytext=(h_aq_show, Q_ref),  # arrow start
+        arrowprops=dict(arrowstyle='<-', color='green', lw=3, alpha=0.4)
+        )
+        if bottom and h_aq_show < h_bot:
+            y_min = -0.1
+            y_max =  0.1
+            arrow_xs = np.linspace(y_min + 0.01, y_max - 0.01, 10)  # 10 arrows, evenly spaced
+        
+            for x in arrow_xs:
+                ax.annotate(
+                    '',  # no text
+                    xy=(h_bot,x),        # arrowhead at river bottom
+                    xytext=(h_aq_show, x),# arrow start at aquifer head
+                    arrowprops=dict(
+                        arrowstyle='<-', 
+                        color='brown', 
+                        lw=3, 
+                        alpha=0.1
+                    )
+                )
+        
+            # Add label at far left
+            ax.text(
+                (h_bot + h_aq_show) / 2,  # slightly inside the plot
+                0.065,
+                "Unsaturated zone flow",
+                color='brown',
+                fontsize=9,
+                rotation=270,
+                va='center'
+            )
+        
+        
+        
+    # Add gaining/losing stream annotations
+    ax.text(15, -0.005, "Gaining Stream", va='center',color='blue')
+    ax.text(15, 0.005, "Losing Stream", va='center',color='green')
+    
+ax.set_title("Flow Between Groundwater and Stream", fontsize=12)
 ax.grid(True)
 ax.legend()
-#ax.set_aspect('equal', adjustable='box')
-
-# Add gaining/losing stream annotations
-ax.text(0.2, -0.005, "Gaining Stream", va='center',color='blue')
-ax.text(0.2, 0.005, "Losing Stream", va='center',color='green')
 
 st.pyplot(fig)
 
