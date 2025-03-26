@@ -189,13 +189,6 @@ languages = {
     "Urdu 🇵🇰": "ur"
 }
 
-
-
-
-
-
-
-
 # Language selection
 columns1 = st.columns((1, 1, 1), gap="large")
 with columns1[1]:

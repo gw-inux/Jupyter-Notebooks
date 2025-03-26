@@ -26,7 +26,7 @@ institution_text = " | ".join(institution_list)  # Institutions in one line
 
 st.title('🎯 The Theis solution for pumping test evaluation')
 
-st.header(':blue[Manually parmater fitting with type-curve matching]')
+st.header(':blue[Manually parameter fitting with type-curve matching]')
 
 st.subheader(':blue-background[Materials and Guidance for Theis Type-curve matching]', divider="blue")
 
