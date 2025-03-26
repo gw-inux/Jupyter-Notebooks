@@ -91,7 +91,7 @@ st.latex(r'''u = \frac{Sr^2}{4Tt}''')
 
 st.markdown("""
             #### Solving the equation
-            This equation is not easy to solve. **Historically**, values for the well function were provided in **tables** or presented as a **type-curve** graph.
+            This equation is not easy to solve. **Historically**, values for the well function were provided in **tables** or presented as a **type-curve** graph. If you are interested in manual type-curve matchin you can find another application that provides all required materials and guidance at [https://theis-manual.streamlit.app/](https://theis-manual.streamlit.app/).
 """
 ) 
 with st.expander(':orange[**Click here**] for further **information about Charles V. Theis** and his solution, including his **original communication** of the solution and a **video interview**'):
