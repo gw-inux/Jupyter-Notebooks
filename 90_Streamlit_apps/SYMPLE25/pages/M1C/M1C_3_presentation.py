@@ -30,11 +30,11 @@ presentation_folder = "90_Streamlit_apps/SYMPLE25/SLIDES/SYMPLE25_M1C_3"
 
 #
 st.title("Presentation Slides")
-st.header(':red-background[Module M1A - Review of key topics]')
-st.subheader('Storage and Flow of water', divider='red')
+st.header(':red-background[Module M1C - Numerical Modeling of Flow]')
+st.subheader('System of Equations and Solvers', divider='red')
 
 st.markdown(""" 
-    You can move through the slides with the left/right button. Alternatively, you can switch through the slides with the slider. Finally, you can use the toggle to switch to an vertical layout to eventually adapt the app to your device. 
+    You can move through the slides with the _Previous_/_Next_ button. Alternatively, you can switch through the slides with the slider. Finally, you can use the toggle to switch to an vertical layout to eventually adapt the app to your device. 
         """)
 
 # Define the default folder - the structure is fix and provided by the convert_ppt_slides.py application
