@@ -33,6 +33,7 @@ mf_tutorial_2D_synth        = st.Page("pages/M1C/Tutorial_2D_Synth.py",        t
 gwf_1D_FD                   = st.Page("pages/M1C/GWF_1D_conf_FD.py",        title="Finite Difference scheme: 📈 1D flow with 2 defined heads")
 gwf_1D_unconf_calib         = st.Page("pages/Calibration/GWF_1D_unconf_analytic_calib.py",        title="Model calibration I: 📈 1D flow with 2 defined heads")
 gwf_1D_unconf_no_flow_calib = st.Page("pages/Calibration/GWF_1D_unconf_analytic_noflow_calib.py", title="Model calibration II: 📈 1D flow with defined head / river")
+M1C_3_presentation          = st.Page("pages/M1C/M1C_3_presentation.py", title="Presentation: 📝 M1C_3")
 
 # About Section
 about = st.Page("pages/About.py", title="About 👈")
@@ -46,7 +47,7 @@ pg = st.navigation(
         "🔶 M1A - Basics": [f2w_conf_unconf,heat_transport_basics,transport_1D_basics,gwf_1D_unconf_basics,radio_decay],
 #       "🔶 M1A - Basics": [M1A_1_presentation, f2w_conf_unconf,heat_transport_basics,transport_1D_basics,gwf_1D_unconf_basics,radio_decay],
         "🔶 M1B - Data processing": [modflow_confined_pumping],
-        "🔶 M1C - Flow modeling": [gwf_1D_FD, gwf_1D_unconf_calib, gwf_1D_unconf_no_flow_calib, mf_tutorial_2D_synth],
+        "🔶 M1C - Flow modeling": [gwf_1D_FD, gwf_1D_unconf_calib, gwf_1D_unconf_no_flow_calib, mf_tutorial_2D_synth, M1C_3_presentation],
         "🔶 M1D - Transport modeling": [],
         "🔶 M1E - Model design": [],
         "🔶 M1F - Conduit Flow Process": [],

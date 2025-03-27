@@ -1,0 +1,298 @@
+[
+    {
+        "image": "images/slide_1.png",
+        "notes": "The lecture from March 14th covered mainly teaching units (TU) 1 and 2. A lot of time was spend with additional explanations about setting up the 1D model in MODELMUSE.\r\rThe subsequent teaching units (TU 2 cont. and following) are partially covered by the lecture on March 28nd but also with the notes on the following slides that are intended for self-study."
+    },
+    {
+        "image": "images/slide_2.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_3.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_4.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_5.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_6.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_7.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_8.png",
+        "notes": "The intention of this part is to make you able to understand possible issues with your numerical model. This understanding will be useful to evaluate and overcome issues with the numerical routines.\rIt is also intended to make you aware about typical parameters of the numerical scheme, e.g., the head closure criterion.\rFinally, the knowledge can help you to increase the efficiency of your numerical model, for example by choosing suitable parameters for the numerical solver or by optimizing the discretization. An efficient computation can be very beneficial for subsequent model use like uncertainty analysis and automatic calibration, where the numerical model is executed several times."
+    },
+    {
+        "image": "images/slide_9.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_10.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_11.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_12.png",
+        "notes": "The subsurface usually exhibits a layered structure, e.g. a sequence of well and poorly conductive layers.  \rThe horizontal extension of layers is significantly larger than the vertical extension. Therefore, vertical averaging of flow is frequently justified.\rThis concept was used for the development of many software packages and most groundwater models therefore consist of a set of model layers. \u201cReal\u201c 3D models are rare.\rA 2D groundwater model consists of a single model layer.\rmore than one model layer: quasi-3D model (or \u201c2D+\u201c).\rModel layers can coincide with hydrogeological layers.\rIf a better vertical resolution is intended, a hydrogeological layer is represented by several model layers. \rVertical water transfer between model layers can be considered.\rIt is not necessary to provide separate layers for aquitards. Rather, it is frequently sufficient to define appropriate vertical conductivities between adjacent model layers (\u201cleaky aquifer\u201c)."
+    },
+    {
+        "image": "images/slide_13.png",
+        "notes": "Short explanation about the 2D finite difference grid. This is very similar to the 1D setup discussed in earlier classes."
+    },
+    {
+        "image": "images/slide_14.png",
+        "notes": "Groundwater flow in FD models occurs in parallel to one of the coordinate axes (double arrows in the figure).\rFD equations are based on the conservation of volume and Darcy\u2018s Law. They contain quantities from five cells (except at domain boundaries or for cells with given head values).\rIn order to evaluate Darcy\u2018s Law it is necessary to compute conductivities or transmissivities for cell edges."
+    },
+    {
+        "image": "images/slide_15.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_16.png",
+        "notes": "Procedure and model input data\rIn order to determine hydraulic head values at time level k only head values from the preceding time level k-1 are used (one-step method).\rmodel input data required:\r\t\u2013\taquifer parameters (storage coefficient, transmissivity) for each cell\r\t\u2013\tinitial values of hydraulic head hij0 for each cell\r\t\u2013\tinformation about sources / sinks (water injection / extraction) or \tboundary \tconditions like groundwater recharge (usually cell-specific)\r\t\u2013\tdiscretisation parameters (cell widths, number of cells, time step length, \tnumber of time steps)"
+    },
+    {
+        "image": "images/slide_17.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_18.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_19.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_20.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_21.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_22.png",
+        "notes": "The aim is to go through all the steps required to build the equation systems, just as the computer would.\rWe consider an idealized 2D catchment with\ra river,\rrecharge,\ra pumping well.\r\rThe question for the model is: Can river water infiltrate the aquifer and reach the pumping well?"
+    },
+    {
+        "image": "images/slide_23.png",
+        "notes": "This is the idealized conceptual model with the boundary conditions.\rFor simplicity, the river is considered as 1st type boundary with a defined head (of course, the simplification is the only reason to choose 1st type for the river)."
+    },
+    {
+        "image": "images/slide_24.png",
+        "notes": "The conceptual model is transferred in a simple numerical model.\rThe numerical model is built from 6 cells, each cell with an index (the number of the cell)\rThe discretization in space is differing for the cells (see the figure)."
+    },
+    {
+        "image": "images/slide_25.png",
+        "notes": "The hydrogeological properties are \u2018heterogeneous\u2019 with two different transmissivities T."
+    },
+    {
+        "image": "images/slide_26.png",
+        "notes": "Step 1\rComputee the water balance for all cells."
+    },
+    {
+        "image": "images/slide_27.png",
+        "notes": "Step 2a:\rSetup the equations for discharge.\rThis is simply Darcy's law.\rConsider for Transmissivity the weighted harmonic mean of the values of the two cells.\rThe slide shows the equation for Q_12 = Flow between cells 1 and 2."
+    },
+    {
+        "image": "images/slide_28.png",
+        "notes": "Step 2b:\raccount for the specific parameter values, and combine all terms.\rThe final equation contains only little terms.\rIn the example, the equations contains the unknow head h_2.\r(This approach highlights the need to be consistent with time and space units throughout the model!)"
+    },
+    {
+        "image": "images/slide_29.png",
+        "notes": "Step 2c\rFor the complete mass balance of cell 2, we also need to calculate Q_52 and Q_32.\rIn addition, we have to compute the flow through the boundary conditions\rQ_r for the recharge and\rQ_p for the pumping well\rFinally, we can combine all equations to calculate the water balance of cell 2. This equation contains the three unknown heads (of cells 2, 3, and 5)."
+    },
+    {
+        "image": "images/slide_30.png",
+        "notes": "Step 2d:\rDo the same procedure (writing down the water balance) for all other cells (of course not for cells 1 and 4, which are the defined head boundary)."
+    },
+    {
+        "image": "images/slide_31.png",
+        "notes": "Step 3: Setting up the equation system\rThis are all equations for the model (4 inner cells)\rEach equation (one equation for each cell) contains the unknow heads\rPlease note: each equation contains all unknowns! Those who are not part of the water balance are simply multiplied by 0.\rThe final set of equations contains:\ra matrix of coefficients (the red part), which contains the information from the parameters, cells sized and so on (see previous slides)\rthe unknown heads (the blue part)\rand the source terms (the green part), which contain the information from boundaries and so on (see previous slides, those terms of the water balance that do not contain an unknow head)\rThe system of equations can be written as matrixes in the form of A x = b (see figure)\rA is usually named LHS (= left hand side)\rb is usually named RHS (= right hand side)"
+    },
+    {
+        "image": "images/slide_32.png",
+        "notes": "Step 3: Setting up the equation system\rHere written as matrixes"
+    },
+    {
+        "image": "images/slide_33.png",
+        "notes": "Step 4: Solve the equation system\rHere, an equation for each unknown head is derived."
+    },
+    {
+        "image": "images/slide_34.png",
+        "notes": "Step 4: Solve the equation system\rSolution by iteration \u2013 using the starting values / values from the previous iteration for the unknown heads (remember the XLS sheet for the 1D numerical solution\u2026)\rThe index j represent the iteration step\rThe solution converge if the maximum difference in head between two iterations is smaller than the user-defined threshold"
+    },
+    {
+        "image": "images/slide_35.png",
+        "notes": "The final heads can be compared to other numerical solutions (e. g., from MODFLOW)"
+    },
+    {
+        "image": "images/slide_36.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_37.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_38.png",
+        "notes": "Computation of the cell water budet\rWater flows according to the hydraulic gradient.\rWith the know heads, also the hydraulic gradients are know.\rAccordingly, we can compute the discharge.\rWe can also compute the complete balance."
+    },
+    {
+        "image": "images/slide_39.png",
+        "notes": "Global water budget\rComputed by the respective terms of the water balance."
+    },
+    {
+        "image": "images/slide_40.png",
+        "notes": "Global water budget\rAnalysis and discussion"
+    },
+    {
+        "image": "images/slide_41.png",
+        "notes": "Transfer of knowledge:\rThe model can be setup in MODELMUSE to compare results\rHeads\rBudget"
+    },
+    {
+        "image": "images/slide_42.png",
+        "notes": "Steps in MODFLOW to build the model"
+    },
+    {
+        "image": "images/slide_43.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_44.png",
+        "notes": "The example:\rillustrate a transient model\rthe blue line represents the water table when pumping occurs\rimagine you have only little computational ressources\r\u2026"
+    },
+    {
+        "image": "images/slide_45.png",
+        "notes": "The example:\r\u2026\rsome cells will run dry (How would you consider these dry cells in the system of equations?)\r(imagine) You run your model with \u2018strange\u2019 parameter combinations, for example a very small transmissivity.\rWhat would happen if \u2013 in your transient model \u2013 you stop pumping?"
+    },
+    {
+        "image": "images/slide_46.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_47.png",
+        "notes": "Example for motivation\rThe figure origin from the MODFLOW-NWT documentation, and it illustrates a very challenging situation for groundwater models.\rThe spatial extent is several kilometers (catchment scale).\rThe model consider a defined head at the lowest point of the aquifer bottom, which serve as outlet.\rImagine: What would happen if the hydraulic conductivity is large? Of course, water (originating from groundwater recharge) would easily move to the outlet.\rBut also with a moderate hydraulic conductivity, the solution is strongly depending on the initial heads (with higher elevated parts starting \u2018dry\u2019)."
+    },
+    {
+        "image": "images/slide_48.png",
+        "notes": "Another example for motivation:\rThe cross section shows a horizontal flow barrier (slurry wall ranging from the surface up to a depth of 120 m).\rThe horizontal flow barrier is intended to \u2018block\u2019 groundwater flow.\rThe colors in the figure represent hydraulic heads, showing\rhigh heads on the left side\rlower heads on the right side\rThe streamlines (in yellow in the figure) also show that no flow occurs from the left side to the right side if the upper part of the right side is \u2018dry\u2019.\rThe numbers in the example are the results from an analytical solution. They show:\rHydraulic heads are correctly computed by MODFLOW-2005\rFlow Q through the barrier is underestimated."
+    },
+    {
+        "image": "images/slide_49.png",
+        "notes": "Another example for motivation (cont.):\rHere, the same situation is computed with MODFLOW-NWT\rThe flowlines indicate that also the \u2018dry\u2019 part of the model is \u2018active\u2019 allowing water to enter these \u2018dry\u2019 cells.\rMODFLOW-NWT correctly compute the discharge through the horizontal flow barrier."
+    },
+    {
+        "image": "images/slide_50.png",
+        "notes": "(Some) solvers in MODFLOW:\rVarious approaches are provided.\rGeneralized approach: MODFLOW is a tool for many situations \u2026\rWhat solver for which situation?\rKnowledge (Knowing that there is more than one solver),\rExperience,\rTrial and error \u2026"
+    },
+    {
+        "image": "images/slide_51.png",
+        "notes": "Example of an approach to deal with \u2018dry\u2019 cells:\r(1) Rewetting option in MODFLOW\rCan result in instabilities\r(2) Modifying the equation for transmissivity:\rEven if the hydraulic head is below the cell bottom, the transmissivity is not \u2018zero\u2019\rBut: the approach can result in numerical issues (instability?)"
+    },
+    {
+        "image": "images/slide_52.png",
+        "notes": "(3) Alternative formulation \u2013 MODFLOW-NWT\rreleased in 2011\rNewton solver and (NWT)\rDifferent formulation of the flow package (UPW)"
+    },
+    {
+        "image": "images/slide_53.png",
+        "notes": "Upstream Weighting Flow (UPW):\rTransmissivity is based on the saturation of the upstream cell\rallows flow in \u2018dry\u2019 cells"
+    },
+    {
+        "image": "images/slide_54.png",
+        "notes": "Newton solver (NWT)\rexcellent explanation in Mehl (2006)\rhttps://doi.org/10.1111/j.1745-6584.2006.00207.x"
+    },
+    {
+        "image": "images/slide_55.png",
+        "notes": "Typical \u2018Cobweb\u2019 pattern\rThis plot demonstrates the behaviour of an so-called Picard-Iteration.\rMost iterative MODFLOW solvers account for Picard-Iterations.\rThey grey function f(h) represents the model\rThe shown function is an example\rThe function is unknow for a real model\rThe general functioning can be described as \u2018starting heads h of the iteration result in a model behaviour f(h) (like fows, discharges..)\rThe behaviour is explained for an example on the following slide."
+    },
+    {
+        "image": "images/slide_56.png",
+        "notes": "Behaviour of the cobweb pattern for Picard-iterations\rThe iteration starts with starting heads (A)\rThe starting heads generate a \u2018model response\u2019 (B)\rThe model response (B) is reflected on the inflection point (C) \u2026\r\u2026 and results in new heads (D)\rThe new heads (D) generate a new model response \u2026.\r\u2026 model response generates new heads \u2026\r\u2026 new heads generate model response \u2026\rThis continues until the difference between two heads is smaller than the closure criteria (or the max number of iterations is reached).\rPerfect closure is achieved if the heads result in a model reaction that confirms the heads (i.e., if the model f(h) hits the 45 degree dotted line)"
+    },
+    {
+        "image": "images/slide_57.png",
+        "notes": "Behaviour of the cobweb pattern for Picard-iterations (example 2)\rIn this example the model behaves different.\rThe steps (nonlinearity) can be caused by nonlinear boundary conditions, e.g., an outflow that is activated if heads reach a specific value (see Mehl 2006 for more explanation)\rUse the scheme by yourself:\r(1) start with an initial head of 6 \r(2) start with an initial head of 3.5"
+    },
+    {
+        "image": "images/slide_58.png",
+        "notes": "Behaviour of the cobweb pattern for Picard-iterations (example 3)\rIn this example the model behaves (again) kdifferent.\rThe steps (nonlinearity) can be caused by nonlinear boundary conditions, e.g., an outflow that is activated if heads reach a specific value (see Mehl 2006 for more explanation)\rUse the scheme by yourself:\r(1) start with an initial head of 6 \r(2) start with an initial head of 0.5"
+    },
+    {
+        "image": "images/slide_59.png",
+        "notes": "Newton-Iteration (Scheme)\rThe basic idea is that the scheme generates the derivative of the model\rbased on starting heads (1.75 in the example) the derivative becomes zero (represented by the horizontal line at f(h) = 0\rThis head (in the example 1) is the new start for the next derivative\rThis continues until the point is found where the model hits the horizontal f(h) = 0 line\rPlease note that in this example, the pattern converges only if the starting heads are > 0.2\rThe plot marks the heads with convergence by the thick black bar on the top (non convergence with the thick black bar on the bottom)"
+    },
+    {
+        "image": "images/slide_60.png",
+        "notes": "Newton-Iteration (Scheme) \u2013 Example\rThis example illustrates that the solution (convergence) is (very) dependent from the initial values.\rIf the scheme use suitable initial values, the convergence can be achieved in an effective manner (i.e., less iterations)"
+    },
+    {
+        "image": "images/slide_61.png",
+        "notes": "MODFLOW-NWT Documentation \u2013 Test example\rThe test example is 1D unconfined flow\rThe solution can be achieved with an analytical solution (shown in the top of the slide)\rThis example is comparable / similar to our 1D-11 cell model and the analytical solutions discussed earlier\rin this example the two defined heads are h1 = 10 m and h2 = 50 m, the distance between the two boundaries is 5,000 m.\rThe red line is the head computed by the analytical solution\rThe blue/violet lines represent the deviation of heads for the MODFLOW-2005 and MODFLOW-NWT solutions"
+    },
+    {
+        "image": "images/slide_62.png",
+        "notes": "MODFLOW-NWT Documentation \u2013 Test example (cont.)\rThe solution of MODFLOW-NWT is \rless precise\rdeviates more if the head gradient is step (left side of the plot)\rthe reason is the upstream weighting (UPW) \rupstream weighting computes the transmissivity based on the (higher) heads in upstream direction\raccordingly, in the example the transmissivity tends to be too large and heads are too small\rThe figure illustrate this with a very coarse grid (cell 1 and 2 with the saturated thickness b that is accounted by MODFLOW-2005 and MODFLOW-NWT)"
+    },
+    {
+        "image": "images/slide_63.png",
+        "notes": "MODFLOW-NWT Documentation \u2013 Test example\rThe table shows the heads and flows."
+    },
+    {
+        "image": "images/slide_64.png",
+        "notes": "MODFLOW-NWT Documentation \u2013 Test example\rThe table shows the heads and flows."
+    },
+    {
+        "image": "images/slide_65.png",
+        "notes": "This part covers the 2D idealized example to introduce MODFLOW with MODELMUSE\rThe tutorial is available as PDF and Streamlit App (in the SYMPLE25 APP)"
+    },
+    {
+        "image": "images/slide_66.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_67.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_68.png",
+        "notes": "Alternative approach to \u2018classical\u2019 Graphical User Interfaces\rScript-based approaches generate the required input files for MODFLOW\rScript-based approaches process the results of the MODFLOW computation\rAn example for a popular script-based approach is FloPy \u2013 A Python library for MODFLOW pre- and postprocessing\rThe workflow with script-based modeling can be very advantageous:\rextremely scaleable (run multiple variants of a model by calling the script with different parameters with insignificant user-effort)\rvery comprehensive (compare a model script from different stages/times to see the differences)\rExtremly efficient (generate all plots and data for postprocessing with no additional effort)"
+    },
+    {
+        "image": "images/slide_69.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_70.png",
+        "notes": "This is the conceptual model of the idealized 2D catchment\rdifferent boundary conditions\rdifferent zones for hydraulic conductivity and recharge\rdifferent observation points for (manual) calibration"
+    },
+    {
+        "image": "images/slide_71.png",
+        "notes": "Task / scenario for application"
+    },
+    {
+        "image": "images/slide_72.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_73.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_74.png",
+        "notes": "No notes"
+    }
+]
