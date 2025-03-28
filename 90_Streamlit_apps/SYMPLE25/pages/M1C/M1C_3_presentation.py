@@ -76,9 +76,12 @@ if slide_data:
     if "slide_index" not in st.session_state:
         st.session_state["slide_index"] = 1
     
-    vertical = st.toggle('Toggle here for vertical layout')    
+    vertical = st.toggle('Toggle here for vertical layout')  
+    
     # Display slides
     num_slides = len(slide_data)
+    
+    #Slider
     slide_index = st.slider("Choose the slide to show (or use the buttons below)", 1, num_slides, st.session_state["slide_index"])
     
     # Navigation buttons
@@ -86,11 +89,9 @@ if slide_data:
     with col1:
         if st.button("👈 Previous", key="prev_button"):
             st.session_state["slide_index"] = max(1, st.session_state["slide_index"] - 1)
-
     with col3:
         if st.button("Next 👉", key="next_button"):
             st.session_state["slide_index"] = min(len(slide_data), st.session_state["slide_index"] + 1)
-
 
     if slide_index != st.session_state["slide_index"]:
         st.session_state["slide_index"] = slide_index
