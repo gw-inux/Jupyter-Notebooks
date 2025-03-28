@@ -73,24 +73,28 @@ else:
 
 # Only continue if slide data was loaded
 if slide_data:
+    
+    # Start with the first slide
     if "slide_index" not in st.session_state:
         st.session_state["slide_index"] = 1
-
+    
+    # Toggle for vertical layout
     vertical = st.toggle('Click here for vertical layout')
+    
     # Navigation buttons
     col1, col2, col3 = st.columns([1, 3, 1])
     with col1:
         if st.button("👈 Previous", key="prev_button"):
             st.session_state["slide_index"] = max(1, st.session_state["slide_index"] - 1)
-
     with col3:
         if st.button("Next 👉", key="next_button"):
             st.session_state["slide_index"] = min(len(slide_data), st.session_state["slide_index"] + 1)
 
     # Display slides
     num_slides = len(slide_data)
-    slide_index = st.slider("Slide", 1, num_slides, st.session_state["slide_index"])
-
+    slide_index = st.slider("**Select the slide** to show (or use the arrows)", 1, num_slides, st.session_state["slide_index"])
+ 
+    # Update slide index
     if slide_index != st.session_state["slide_index"]:
         st.session_state["slide_index"] = slide_index
 
