@@ -1,7 +1,7 @@
 [
     {
         "image": "images/slide_1.png",
-        "notes": "The lecture from March 14th covered mainly teaching units (TU) 1 and 2. A lot of time was spend with additional explanations about setting up the 1D model in MODELMUSE.\r\rThe subsequent teaching units (TU 2 cont. and following) are partially covered by the lecture on March 28nd but also with the notes on the following slides that are intended for self-study."
+        "notes": "The lecture from March 14th covered mainly teaching units (TU) 1. A lot of time was spend with additional explanations about setting up the 1D model in MODELMUSE.\r\rThe subsequent teaching units (TU 2 cont. and following) are partially covered by the lecture on March 28nd but also with the notes on the following slides that are intended for self-study."
     },
     {
         "image": "images/slide_2.png",
@@ -13,23 +13,23 @@
     },
     {
         "image": "images/slide_4.png",
-        "notes": "No notes"
+        "notes": "Example/Application:\rThis is a \u2018simple\u2019 2D spreadsheet solution (e.g., in EXCEL) that demonstrate the basic setup of the equation.\rA XLS file is provided in the course materials that allows you to follow the problem.\rThe example is a good option to build a similar MODFLOW model (e.g., with MODELMUSE) for comparison.\rReference: Fox, P. J., \"Spreadsheet Solution Method for Groundwater Flow Problems,\" Subsurface Fluid- Flow (Ground-Water and Vadose Zone) Modeling, ASTM STP 1288, Joseph D. Ritchey and James 0. Rumbaugh, Eds., American Society for Testing and Materials, 1996."
     },
     {
         "image": "images/slide_5.png",
-        "notes": "No notes"
+        "notes": "Example/Application:\rThis is a highly idealized scenario that allows to demonstrate the fundamental steps in setting up the solution matrix.\rThe solution can be achieved with \u2018Pen and Paper\u2019.\rThis scenario is also very suitable to setup a MODFLOW model for comparison."
     },
     {
         "image": "images/slide_6.png",
-        "notes": "No notes"
+        "notes": "Example/Application:\rThis is a (2D) cross section through a horizontal flow barrier.\rDue to the barrier, parts of the model are \u2018dry\u2019 (upper right part).\rThis example is very suitable to investigate and discuss the difference in different flow formulations that are available in MODFLOW-NWT and MODFLOW-2005."
     },
     {
         "image": "images/slide_7.png",
-        "notes": "No notes"
+        "notes": "Example/Application:\rThis is a idealized 2D model that contains many elements that are of importance for real-world applications: \rvarious boundary conditions,\rvarying geometry,\rzonation of hydrogeological parameters.\rA tutorial and videos demonstrate the required steps to setup this model in MODELMUSE."
     },
     {
         "image": "images/slide_8.png",
-        "notes": "The intention of this part is to make you able to understand possible issues with your numerical model. This understanding will be useful to evaluate and overcome issues with the numerical routines.\rIt is also intended to make you aware about typical parameters of the numerical scheme, e.g., the head closure criterion.\rFinally, the knowledge can help you to increase the efficiency of your numerical model, for example by choosing suitable parameters for the numerical solver or by optimizing the discretization. An efficient computation can be very beneficial for subsequent model use like uncertainty analysis and automatic calibration, where the numerical model is executed several times."
+        "notes": "The intention of this part\r is to make you able to understand possible issues with your numerical model. This understanding will be useful to evaluate and overcome issues with the numerical routines.\rIt is also intended to make you aware about typical parameters of the numerical scheme, e.g., the head closure criterion.\rFinally, the knowledge can help you to increase the efficiency of your numerical model, for example by choosing suitable parameters for the numerical solver or by optimizing the discretization. An efficient computation can be very beneficial for subsequent model use like uncertainty analysis and automatic calibration, where the numerical model is executed several times."
     },
     {
         "image": "images/slide_9.png",
@@ -41,11 +41,11 @@
     },
     {
         "image": "images/slide_11.png",
-        "notes": "No notes"
+        "notes": "The aim of this teaching unit is to understand the main principles of setting up a finite difference equation in 2D.\rApplications / assignments comprise simple spreadsheet analysis. The knowledge will also help you to understand how to implement different kind of boundary conditions. Finally, you can use the examples to evaluate your numerical models."
     },
     {
         "image": "images/slide_12.png",
-        "notes": "The subsurface usually exhibits a layered structure, e.g. a sequence of well and poorly conductive layers.  \rThe horizontal extension of layers is significantly larger than the vertical extension. Therefore, vertical averaging of flow is frequently justified.\rThis concept was used for the development of many software packages and most groundwater models therefore consist of a set of model layers. \u201cReal\u201c 3D models are rare.\rA 2D groundwater model consists of a single model layer.\rmore than one model layer: quasi-3D model (or \u201c2D+\u201c).\rModel layers can coincide with hydrogeological layers.\rIf a better vertical resolution is intended, a hydrogeological layer is represented by several model layers. \rVertical water transfer between model layers can be considered.\rIt is not necessary to provide separate layers for aquitards. Rather, it is frequently sufficient to define appropriate vertical conductivities between adjacent model layers (\u201cleaky aquifer\u201c)."
+        "notes": "The subsurface usually exhibits a layered structure, e.g. a sequence of well and poorly conductive layers.  \rThe horizontal extension of layers is significantly larger than the vertical extension. Therefore, vertical averaging of flow is frequently justified.\rThis concept was used for the development of many software packages and most groundwater models therefore consist of a set of model layers. \u201cReal\u201c 3D models are rare.\rA 2D groundwater model consists of a single model layer.\rmore than one model layer: quasi-3D model (or \u201c2D+\u201c).\r Model layers can coincide with hydrogeological layers.\r If a better vertical resolution is intended, a hydrogeological layer is represented by several model layers. \r Vertical water transfer between model layers can be considered.\r It is not necessary to provide separate layers for aquitards. Rather, it is frequently sufficient to define appropriate vertical conductivities between adjacent model layers (\u201cleaky aquifer\u201c)."
     },
     {
         "image": "images/slide_13.png",
@@ -57,15 +57,15 @@
     },
     {
         "image": "images/slide_15.png",
-        "notes": "No notes"
+        "notes": "This is the publication from Fox (1996) that explains a spreadsheet solution for 2D groundwater flow modelling. An accompanying Excel sheet is provided in the course materials."
     },
     {
         "image": "images/slide_16.png",
-        "notes": "Procedure and model input data\rIn order to determine hydraulic head values at time level k only head values from the preceding time level k-1 are used (one-step method).\rmodel input data required:\r\t\u2013\taquifer parameters (storage coefficient, transmissivity) for each cell\r\t\u2013\tinitial values of hydraulic head hij0 for each cell\r\t\u2013\tinformation about sources / sinks (water injection / extraction) or \tboundary \tconditions like groundwater recharge (usually cell-specific)\r\t\u2013\tdiscretisation parameters (cell widths, number of cells, time step length, \tnumber of time steps)"
+        "notes": "No notes"
     },
     {
         "image": "images/slide_17.png",
-        "notes": "No notes"
+        "notes": "Procedure and model input data\r In order to determine hydraulic head values at time level k only head values from the preceding time level k-1 are used (one-step method).\r model input data required:\r aquifer parameters (storage coefficient, transmissivity) for each cell\r initial values of hydraulic head hij0 for each cell\r information about sources / sinks (water injection / extraction) or boundary conditions like groundwater recharge (usually cell-specific)\r discretisation parameters (cell widths, number of cells, time step length, number of time steps)"
     },
     {
         "image": "images/slide_18.png",
@@ -73,7 +73,7 @@
     },
     {
         "image": "images/slide_19.png",
-        "notes": "No notes"
+        "notes": "This teaching unit aim to present the main principles about how a system of equations is setup (for example in MODFLOW)"
     },
     {
         "image": "images/slide_20.png",
