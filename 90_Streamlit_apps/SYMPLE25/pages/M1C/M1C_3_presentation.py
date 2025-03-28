@@ -75,7 +75,12 @@ else:
 if slide_data:
     if "slide_index" not in st.session_state:
         st.session_state["slide_index"] = 1
-
+    
+    vertical = st.toggle('Toggle here for vertical layout')    
+    # Display slides
+    num_slides = len(slide_data)
+    slide_index = st.slider("Choose the slide to show (or use the buttons below)", 1, num_slides, st.session_state["slide_index"])
+    
     # Navigation buttons
     col1, col2, col3 = st.columns([1, 3, 1])
     with col1:
@@ -86,9 +91,6 @@ if slide_data:
         if st.button("Next 👉", key="next_button"):
             st.session_state["slide_index"] = min(len(slide_data), st.session_state["slide_index"] + 1)
 
-    # Display slides
-    num_slides = len(slide_data)
-    slide_index = st.slider("Slide", 1, num_slides, st.session_state["slide_index"])
 
     if slide_index != st.session_state["slide_index"]:
         st.session_state["slide_index"] = slide_index
@@ -96,7 +98,7 @@ if slide_data:
     selected_slide = slide_data[st.session_state["slide_index"] - 1]
     image_path = os.path.join(images_folder, os.path.basename(selected_slide["image"]))
 
-    if st.toggle('Click here for vertical layout'):
+    if vertical:
         st.image(image_path)
         st.write(f"**Notes:**\n\n{selected_slide['notes']}")
     else:
