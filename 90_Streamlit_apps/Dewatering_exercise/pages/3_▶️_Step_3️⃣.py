@@ -108,8 +108,12 @@ columns = st.columns((1,1), gap = 'large')
 with columns[0]:
     s_U0_value=st.slider('Drawdown s (in m) associated with U = 0', s_min,s_max,0.0,0.01,format="%4.2f" ) 
     s_U1_value=st.slider('Drawdown s (in m) associated with U = 1', s_min,s_max,s_max/2,0.01,format="%4.2f" )
+    s_check=st.slider('Drawdown s (in m) at which to report U', s_min,s_max,s_max/2,0.01,format="%4.2f" )
         
 xvals = [s_min, s_U0_value, s_U1_value, 2*s_max]
+
+u_check = (s_check - s_U0_value) / (s_U1_value - s_U0_value)
+print(u_check)
 
 if s_U0_value == s_U1_value:
     s_U0_value = s_U1_value + 0.1
@@ -117,14 +121,30 @@ if s_U0_value == s_U1_value:
 if s_U0_value < s_U1_value:
     yvals = [0, 0, 1, 1]
     xvals = [s_min, s_U0_value, s_U1_value, 2*s_max]
+    
+    if s_check <= s_U0_value:
+        u_check = 0
+    elif s_check >= s_U1_value:
+        u_check = 1
+        
 else:
     yvals = [1, 1, 0, 0]
     xvals = [s_min, s_U1_value, s_U0_value, 2*s_max]
 
+    if s_check >= s_U0_value:
+        u_check = 0
+    elif s_check <= s_U1_value:
+        u_check = 1
+        
 plt.plot(xvals, yvals, linewidth=3., color='r', label=r'Drawdown prediction')
+plt.plot(s_check, u_check, marker='o', color='b',linestyle ='None', label=r'Data')
+
 plt.xlabel(r'Drawdown, m', fontsize=14)
 plt.ylabel(r'Utility', fontsize=14)
 st.pyplot(fig)
+
+st.write('')   
+st.write("The utility for the selected drawdown is:  %5.2f" %u_check)
 
 st.markdown(
     """
