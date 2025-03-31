@@ -1,0 +1,13 @@
+numpy
+psutil
+matplotlib
+pandas
+scipy
+ipywidgets
+ipynb
+xarray
+rise
+voila
+streamlit
+streamlit_book
+streamlit_extras

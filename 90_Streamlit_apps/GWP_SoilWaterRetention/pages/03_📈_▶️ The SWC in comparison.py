@@ -9,6 +9,23 @@ st.title('Soil Water Retention characteristics')
 
 st.subheader('Comparison of datasets')
 
+# Authors, institutions, and year
+year = 2025 
+authors = {
+    "Thomas Reimann": [1],  # Author 1 belongs to Institution 1
+    "Oriol Bertran": [2],
+   #"Colleague Name": [1],  # Author 2 also belongs to Institution 1
+}
+institutions = {
+    1: "TU Dresden",
+    2: "UPC Universitat Politècnica de Catalunya",
+#   2: "Second Institution / Organization"
+}
+index_symbols = ["¹", "²", "³", "⁴", "⁵", "⁶", "⁷", "⁸", "⁹"]
+author_list = [f"{name}{''.join(index_symbols[i-1] for i in indices)}" for name, indices in authors.items()]
+institution_list = [f"{index_symbols[i-1]} {inst}" for i, inst in institutions.items()]
+institution_text = " | ".join(institution_list)  # Institutions in one line
+
 st.markdown('''
             ### Available data
             The interactive plot allows to compare different data sets. You can choose the data sets with the dropdown menu.
@@ -208,4 +225,12 @@ with columnsN1[1]:
     st.subheader(':orange[**Navigation**]')
 with columnsN1[2]:
     if st.button("Next page"):
-        st.switch_page("pages/04_📈_▶️ SWC Exercise #1.py")
+        st.switch_page("pages/04_📈_▶️ SWC_Exercise_1.py")
+        
+'---'
+# Render footer with authors, institutions, and license logo in a single line
+columns_lic = st.columns((5,1))
+with columns_lic[0]:
+    st.markdown(f'Developed by {", ".join(author_list)} ({year}). <br> {institution_text}', unsafe_allow_html=True)
+with columns_lic[1]:
+    st.image('FIGS/CC_BY-SA_icon.png')

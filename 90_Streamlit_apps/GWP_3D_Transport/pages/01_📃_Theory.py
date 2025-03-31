@@ -1,7 +1,7 @@
 import streamlit as st
 
 st.title('📃 Theory ')
-st.title(' 1D Conservative Transport')
+st.title(' 3D Conservative Transport')
 
 st.markdown(
     """

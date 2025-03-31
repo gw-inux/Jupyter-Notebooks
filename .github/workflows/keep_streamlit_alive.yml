@@ -1,0 +1,31 @@
+name: Keep Streamlit Apps Alive
+
+on:
+  schedule:
+    - cron: '0 3 * * *'   # 5 AM Berlin time (3 AM UTC)
+    - cron: '0 15 * * *'  # 5 PM Berlin time (3 PM UTC)
+  workflow_dispatch:      # Allows manual triggering
+
+jobs:
+  keep-alive:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Define URLs and ping them
+        run: |
+          urls=(
+            "https://gwp-wellcapture.streamlit.app/"
+            "https://gwp-1d-conservative-transport2.streamlit.app/"
+            "https://symple25.streamlit.app/"
+            "https://gwf-1d-unconf-noflow-calib.streamlit.app/"
+            "https://slugtest-unconfined.streamlit.app/"
+            "https://gwp-3d-transport.streamlit.app/"
+            "https://gwp-pumping-test-analysis.streamlit.app/"
+            "https://theis-manual.streamlit.app/"
+          )
+
+          for url in "${urls[@]}"; do
+            echo "Pinging $url..."
+            response=$(curl -s -o /dev/null -w "%{http_code}" "$url")
+            echo "Response Code for $url: $response"
+          done
