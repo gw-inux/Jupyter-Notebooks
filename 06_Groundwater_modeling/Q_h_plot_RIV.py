@@ -77,7 +77,7 @@ def Q_h_plot():
     # Switches
     bottom = st.toggle('Do you want to consider the river bottom elevation?')
     turn = st.toggle('Toggle to turn the plot 90 degrees')
-    st.session_state.number_input = st.toggle("Toggle to use Slider or Number for input of $C$")
+    st.session_state.number_input = st.toggle("Toggle to use Slider or Number for input of $C$, $h_{RIV}$, $h_{aq}$, and $h_{stage}$.")
     
     columns1 = st.columns((1,1), gap = 'large')
     with columns1[0]:
