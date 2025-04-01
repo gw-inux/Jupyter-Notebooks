@@ -6,7 +6,7 @@ if "layout_choice" not in st.session_state:
     st.session_state.layout_choice = "centered"
 
 st.set_page_config(page_title="SYMPLE25 App", page_icon="💦", layout=st.session_state.layout_choice)
-st.sidebar.markdown("## 📚 SYMPLE25 Navigation")
+st.sidebar.markdown("## 🌳 :green[SYMPLE25 Navigation]")
 
 # --- CSS Styling ---
 st.markdown("""
