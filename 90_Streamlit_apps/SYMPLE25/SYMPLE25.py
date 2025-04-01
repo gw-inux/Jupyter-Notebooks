@@ -53,6 +53,8 @@ pages = {
         "Presentation: 📝 M0": "90_Streamlit_apps/SYMPLE25/pages/00_OM/M0_presentation.py",
         "Initial Model: 💧 1D GWF": "90_Streamlit_apps/SYMPLE25/pages/00_OM/1D_GWF_Unconfined Recharge.py",
         "Initial Model: 📈 Well Capture": "90_Streamlit_apps/SYMPLE25/pages/00_OM/WellCapture.py",
+        "--- 📖 Presentations ---": None,
+        "Presentation: 📝 M0": "90_Streamlit_apps/SYMPLE25/pages/00_OM/M0_presentation.py",
     },
     "🔶 M1A - Basics": {
         "Flow to Well": "90_Streamlit_apps/SYMPLE25/pages/M1A/Flow2Well_transient_unconfined_confined_basics.py",
