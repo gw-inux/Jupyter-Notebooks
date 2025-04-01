@@ -135,6 +135,7 @@ if st.session_state.selected_path:
         st.error(f"❌ File not found: `{path}`")
 
 # --- Layout switcher at bottom ---
+st.sidebar.markdown('---')
 layout_options = ["centered", "wide"]
 selected_layout = st.sidebar.radio("Page layout", layout_options, index=layout_options.index(st.session_state.layout_choice))
 if selected_layout != st.session_state.layout_choice:
