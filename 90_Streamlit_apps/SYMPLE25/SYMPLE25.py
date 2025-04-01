@@ -50,7 +50,6 @@ st.markdown("""
 # --- Pages definition ---
 pages = {
     "🔶 Orientation meeting": {
-        "Presentation: 📝 M0": "90_Streamlit_apps/SYMPLE25/pages/00_OM/M0_presentation.py",
         "Initial Model: 💧 1D GWF": "90_Streamlit_apps/SYMPLE25/pages/00_OM/1D_GWF_Unconfined Recharge.py",
         "Initial Model: 📈 Well Capture": "90_Streamlit_apps/SYMPLE25/pages/00_OM/WellCapture.py",
         "--- 📖 Presentations ---": None,
