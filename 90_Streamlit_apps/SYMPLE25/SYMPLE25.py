@@ -1,58 +1,151 @@
 import streamlit as st
+import os
 
+# --- MUST be first: layout setup ---
+if "layout_choice" not in st.session_state:
+    st.session_state.layout_choice = "centered"
 
-st.set_page_config(
-    page_title="SYMPLE25 App",
-    page_icon="💦",
-)
+st.set_page_config(page_title="SYMPLE25 App", page_icon="💦", layout=st.session_state.layout_choice)
+st.sidebar.markdown("## 🌳 :green[SYMPLE25 Navigation]")
 
-st.sidebar.success("☝️ Select a page above. ☝️")
-
-# OVERVIEW SECTION
-symple25app = st.Page("pages/SYMPLE25APP.py", title="SYMPLE25 🌳 App")
-
-# Orientation meeting SECTION
-M0_presentation             = st.Page("pages/00_OM/M0_presentation.py", title="Presentation: 📝 M0")
-motivation                  = st.Page("pages/00_OM/Motivation_Hydrogeology.py", title="Motivation 4 Hydrogeology 🌐")
-gwf_1D_unconf_rech_OM       = st.Page("pages/00_OM/1D_GWF_Unconfined Recharge.py", title="Initial Model: 💧 1D GWF")
-well_capture_OM             = st.Page("pages/00_OM/WellCapture.py", title="Initial Model: 📈 Well Capture")
-
-#M1A - Basics
-M1A_1_presentation          = st.Page("pages/M1A/M1A_1_presentation.py", title="Presentation: 📝 M1A_1")
-f2w_conf_unconf             = st.Page("pages/M1A/Flow2Well_transient_unconfined_confined_basics.py", title="Flow2Well: 📈 1D radial flow to wells")
-heat_transport_basics       = st.Page("pages/M1A/Heat_transport_flow_1D_basics.py", title="Types of movement: 📈 Comparison heat transport and groundwater flow")
-transport_1D_basics         = st.Page("pages/M1A/Transport_1D_AD_basics.py", title="Types of movement: 📈 Example of 1D transport")
-gwf_1D_unconf_basics        = st.Page("pages/M1A/GWF_1D_unconf_analytic_noflow_calib_basics.py", title="Regional Hydrology: 📈 Example of 1D flow")
-radio_decay                 = st.Page("pages/M1A/Radioactive_Decay_basics.py", title="Radioactive Decay: 📈 Example of a mass balance")
-
-#M1B - Data processing
-modflow_confined_pumping    = st.Page("pages/M1B/Theis_pumping_Tutorial.py", title="Pumping test analysis: 📈 MODFLOW tutorial - Pumping from a confined aquifer")
-
-# M1C - Flow modeling
-mf_tutorial_2D_synth        = st.Page("pages/M1C/Tutorial_2D_Synth.py",        title="MODFLOW/MODELMUSE: 📈 Tutorial 2D synthetic model")
-gwf_1D_FD                   = st.Page("pages/M1C/GWF_1D_conf_FD.py",        title="Finite Difference scheme: 📈 1D flow with 2 defined heads")
-gwf_1D_unconf_calib         = st.Page("pages/Calibration/GWF_1D_unconf_analytic_calib.py",        title="Model calibration I: 📈 1D flow with 2 defined heads")
-gwf_1D_unconf_no_flow_calib = st.Page("pages/Calibration/GWF_1D_unconf_analytic_noflow_calib.py", title="Model calibration II: 📈 1D flow with defined head / river")
-M1C_3_presentation          = st.Page("pages/M1C/M1C_3_presentation.py", title="Presentation: 📝 M1C_3")
-
-# About Section
-about = st.Page("pages/About.py", title="About 👈")
-about_symple = st.Page("pages/About_SYMPLE.py", title="About SYMPLE 🌳")
-
-pg = st.navigation(
-    {
-        "💦 Overview": [symple25app],
-#       "🔶 Orientation meeting": [M0_presentation,gwf_1D_unconf_rech_OM, well_capture_OM],
-        "🔶 Orientation meeting": [gwf_1D_unconf_rech_OM, well_capture_OM],
-        "🔶 M1A - Basics": [f2w_conf_unconf,heat_transport_basics,transport_1D_basics,gwf_1D_unconf_basics,radio_decay],
-#       "🔶 M1A - Basics": [M1A_1_presentation, f2w_conf_unconf,heat_transport_basics,transport_1D_basics,gwf_1D_unconf_basics,radio_decay],
-        "🔶 M1B - Data processing": [modflow_confined_pumping],
-        "🔶 M1C - Flow modeling": [gwf_1D_FD, gwf_1D_unconf_calib, gwf_1D_unconf_no_flow_calib, mf_tutorial_2D_synth, M1C_3_presentation],
-        "🔶 M1D - Transport modeling": [],
-        "🔶 M1E - Model design": [],
-        "🔶 M1F - Conduit Flow Process": [],
-        "🔷 General info": [about, about_symple],
+# --- CSS Styling ---
+st.markdown("""
+    <style>
+    section[data-testid="stSidebar"] button {
+        background: none !important;
+        border: none !important;
+        padding: 0.3rem 0.6rem !important;
+        text-align: left !important;
+        font-size: 1rem !important;
+        font-weight: 700 !important;
+        cursor: pointer !important;
+        margin-top: -1rem;
     }
-)
+    section[data-testid="stSidebar"] button:hover {
+        background-color: rgba(44, 123, 229, 0.1) !important;
+        color: inherit !important;
+        border-radius: 5px !important;
+    }
+    .subheader-label {
+        font-style: italic;
+        color: gray;
+        font-size: 1rem;
+        text-decoration: underline;
+        margin-left: 2.5rem;
+        margin-top: -0.5rem;
+        margin-bottom: 0.5rem;
+    }
+    section[data-testid="stSidebar"] .block-container .stButton {
+        margin-top: 0rem !important;
+        margin-bottom: 0rem !important;
+        padding-top: 0rem !important;
+        padding-bottom: 0rem !important;
+    }
+    section[data-testid="stSidebar"] button {
+        line-height: 1.1 !important;
+    }
+    </style>
+""", unsafe_allow_html=True)
 
-pg.run()
+# --- Pages definition ---
+pages = {
+    "🔶 Orientation meeting": {
+    "--- 📖 Initial Model examples ---": None,
+        "1D GWF 💧": "90_Streamlit_apps/SYMPLE25/pages/00_OM/1D_GWF_Unconfined Recharge.py",
+        "Well Capture 🌀": "90_Streamlit_apps/SYMPLE25/pages/00_OM/WellCapture.py",
+        "--- 📖 Presentations ---": None,
+        "Presentation: 📝 M0": "90_Streamlit_apps/SYMPLE25/pages/00_OM/M0_presentation.py",
+    },
+    "🔶 M1A - Basics": {
+        "--- 📖 Parameters ---": None,
+        "_K_ and _S_: Flow to Well": "90_Streamlit_apps/SYMPLE25/pages/M1A/Flow2Well_transient_unconfined_confined_basics.py",
+        "--- 📖 Motion laws ---": None,
+        "Heat Transport": "90_Streamlit_apps/SYMPLE25/pages/M1A/Heat_transport_flow_1D_basics.py",
+        "1D Transport": "90_Streamlit_apps/SYMPLE25/pages/M1A/Transport_1D_AD_basics.py",
+        "1D Flow": "90_Streamlit_apps/SYMPLE25/pages/M1A/GWF_1D_unconf_analytic_noflow_calib_basics.py",
+        "--- 📖 Budgets and Balances ---": None,
+        "Radioactive Decay": "90_Streamlit_apps/SYMPLE25/pages/M1A/Radioactive_Decay_basics.py",
+        "--- 📖 Presentations ---": None,
+        "Presentation: 📝 M1A_1": "90_Streamlit_apps/SYMPLE25/pages/M1A/M1A_1_presentation.py",
+    },
+    "🔶 M1B - Data processing": {
+        "--- 🔨 Hydrogeologic testing ---": None,
+        "Slug test evaluation": "05_Applied_hydrogeology/Slugtest_translate.py",
+        "--- 📖 MODFLOW tutorials ---": None,
+        "MODFLOW Pumping Test": "90_Streamlit_apps/SYMPLE25/pages/M1B/Theis_pumping_Tutorial.py",
+    },
+    "🔶 M1C - Flow modeling": {
+        "1D Confined FD": "90_Streamlit_apps/SYMPLE25/pages/M1C/GWF_1D_conf_FD.py",
+        "Modflow Time Step Multiplier": "06_Groundwater_modeling/Timestep_Multiplier.py",
+        "--- 💻 MODFLOW boundary conditions ---": None,
+        "RIV boundary": "06_Groundwater_modeling/Q_h_plot_RIV.py",
+        "EVT boundary": "06_Groundwater_modeling/Q_h_plot_ET.py",
+        "GHB boundary": "06_Groundwater_modeling/Q_h_plot_GHB.py",
+        "--- 📈 Calibration ---": None,
+        "1D Unconf Calib": "90_Streamlit_apps/SYMPLE25/pages/Calibration/GWF_1D_unconf_analytic_calib.py",
+        "1D NoFlow Calib": "90_Streamlit_apps/SYMPLE25/pages/Calibration/GWF_1D_unconf_analytic_noflow_calib.py",
+        "--- 📖 Presentations ---": None,
+        "Presentation: 📝 M1C_3": "90_Streamlit_apps/SYMPLE25/pages/M1C/M1C_3_presentation.py",
+    },
+    "🔶 M1E - Model design": {
+        "--- 📖 MODFLOW tutorials ---": None,
+        "2D Synthetic": "90_Streamlit_apps/SYMPLE25/pages/M1C/Tutorial_2D_Synth.py",
+    },
+    "🔷 General Info": {
+        "About": "90_Streamlit_apps/SYMPLE25/pages/ORG/About.py",
+        "About SYMPLE": "90_Streamlit_apps/SYMPLE25/pages/ORG/About_SYMPLE.py",
+    }
+}
+
+# --- State tracking ---
+if "active_section" not in st.session_state:
+    st.session_state.active_section = None
+if "selected_path" not in st.session_state:
+    st.session_state.selected_path = "90_Streamlit_apps/SYMPLE25/pages/ORG/SYMPLE25APP.py"
+
+# --- Overview page ---
+if st.sidebar.button("💦 Overview", key="btn_overview"):
+    st.session_state.active_section = None
+    st.session_state.selected_path = "90_Streamlit_apps/SYMPLE25/pages/ORG/SYMPLE25APP.py"
+    st.rerun()
+
+# --- Section menu + subpage logic ---
+for section, subpages in pages.items():
+    if st.sidebar.button(section, key=f"btn_{section}"):
+        st.session_state.active_section = section
+        # Auto-select first real subpage
+        for label, path in subpages.items():
+            if path is not None:
+                st.session_state.selected_path = path
+                break
+        st.rerun()
+
+    if st.session_state.active_section == section:
+        for label, path in subpages.items():
+            if path is None:
+                st.sidebar.markdown(f"<div class='subheader-label'>{label.replace('---', '').strip()}</div>", unsafe_allow_html=True)
+            else:
+                is_selected = st.session_state.selected_path == path
+                display_label = f"👉**{label}**" if is_selected else label
+                indent, content = st.sidebar.columns([0.1, 0.9])
+                with content:
+                    if st.button(display_label, key=f"{section}_{label}"):
+                        st.session_state.selected_path = path
+                        st.rerun()
+
+# --- Run selected page ---
+if st.session_state.selected_path:
+    path = st.session_state.selected_path
+    if os.path.exists(path):
+        with open(path, "r", encoding="utf-8") as f:
+            exec(f.read(), globals())
+    else:
+        st.error(f"❌ File not found: `{path}`")
+
+# --- Layout switcher at bottom ---
+st.sidebar.markdown('---')
+layout_options = ["centered", "wide"]
+selected_layout = st.sidebar.radio("Page layout", layout_options, index=layout_options.index(st.session_state.layout_choice))
+if selected_layout != st.session_state.layout_choice:
+    st.session_state.layout_choice = selected_layout
+    st.rerun()

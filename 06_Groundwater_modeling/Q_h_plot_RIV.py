@@ -77,7 +77,7 @@ def Q_h_plot():
     # Switches
     bottom = st.toggle('Do you want to consider the river bottom elevation?')
     turn = st.toggle('Toggle to turn the plot 90 degrees')
-    st.session_state.number_input = st.toggle("Toggle to use Slider or Number for input of $C$")
+    st.session_state.number_input = st.toggle("Toggle to use Slider or Number for input of $C$, $h_{RIV}$, $h_{aq}$, and $h_{stage}$.")
     
     columns1 = st.columns((1,1), gap = 'large')
     with columns1[0]:
@@ -136,7 +136,7 @@ def Q_h_plot():
         ax.set_ylabel("Heads and elevations in the River-Aquifer System (m)", fontsize=10)
         ax.set_xlabel("Flow Into the Ground-Water System From the Stream $Q$ (m³/s)", fontsize=10)
         ax.set_ylim(0, 20)
-        ax.set_xlim(-0.1, 0.1)
+        ax.set_xlim(0.1, -0.1)
         if Q_ref < 0:
             ax.annotate(
                 '',  # no text
@@ -180,8 +180,8 @@ def Q_h_plot():
                     va='center'
                 )
         # Add gaining/losing stream annotations
-        ax.text(-0.05,1, "Gaining Stream", va='center',color='blue')
-        ax.text(0.005, 1,  "Losing Stream", va='center',color='green')
+        ax.text(-0.005,1, "Gaining Stream", va='center',color='blue')
+        ax.text(0.05, 1,  "Losing Stream", va='center',color='green')
             
     else:
         ax.plot(h_aq, Q, label=rf"$Q = C(h_{{aq}} - h_{{RIV}})$, C = {C:.2e}",color='blue', linewidth=3)
