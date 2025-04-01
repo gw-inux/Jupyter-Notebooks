@@ -98,7 +98,7 @@ if "selected_path" not in st.session_state:
 # --- Overview page ---
 if st.sidebar.button("💦 Overview", key="btn_overview"):
     st.session_state.active_section = None
-    st.session_state.selected_path = "90_Streamlit_apps/SYMPLE25/pages/SYMPLE25APP.py"
+    st.session_state.selected_path = "90_Streamlit_apps/SYMPLE25/pages/ORG/SYMPLE25APP.py"
     st.rerun()
 
 # --- Section menu + subpage logic ---
