@@ -83,8 +83,8 @@ pages = {
         "2D Synthetic": "90_Streamlit_apps/SYMPLE25/pages/M1C/Tutorial_2D_Synth.py",
     },
     "🔷 General Info": {
-        "About": "90_Streamlit_apps/SYMPLE25/pages/About.py",
-        "About SYMPLE": "90_Streamlit_apps/SYMPLE25/pages/About_SYMPLE.py",
+        "About": "90_Streamlit_apps/SYMPLE25/pages/ORG/About.py",
+        "About SYMPLE": "90_Streamlit_apps/SYMPLE25/pages/ORG/About_SYMPLE.py",
     }
 }
 
