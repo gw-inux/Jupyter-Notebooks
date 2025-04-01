@@ -1,6 +1,6 @@
 import streamlit as st
 
-st.title("# SYMPLE25 App! 💦")
+st.title("SYMPLE25 App! 💦")
 st.header('Welcome to the SYMPLE25 ed. collection of educational tools 👋')
 
 st.markdown(
