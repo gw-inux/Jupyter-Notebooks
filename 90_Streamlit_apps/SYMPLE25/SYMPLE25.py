@@ -50,16 +50,20 @@ st.markdown("""
 # --- Pages definition ---
 pages = {
     "🔶 Orientation meeting": {
-        "Initial Model: 💧 1D GWF": "90_Streamlit_apps/SYMPLE25/pages/00_OM/1D_GWF_Unconfined Recharge.py",
-        "Initial Model: 📈 Well Capture": "90_Streamlit_apps/SYMPLE25/pages/00_OM/WellCapture.py",
+    "--- 📖 Initial Model examples ---": None,
+        "1D GWF 💧": "90_Streamlit_apps/SYMPLE25/pages/00_OM/1D_GWF_Unconfined Recharge.py",
+        "Well Capture 🌀": "90_Streamlit_apps/SYMPLE25/pages/00_OM/WellCapture.py",
         "--- 📖 Presentations ---": None,
         "Presentation: 📝 M0": "90_Streamlit_apps/SYMPLE25/pages/00_OM/M0_presentation.py",
     },
     "🔶 M1A - Basics": {
-        "Flow to Well": "90_Streamlit_apps/SYMPLE25/pages/M1A/Flow2Well_transient_unconfined_confined_basics.py",
+        "--- 📖 Parameters ---": None,
+        "_K_ and _S_: Flow to Well": "90_Streamlit_apps/SYMPLE25/pages/M1A/Flow2Well_transient_unconfined_confined_basics.py",
+        "--- 📖 Motion laws ---": None,
         "Heat Transport": "90_Streamlit_apps/SYMPLE25/pages/M1A/Heat_transport_flow_1D_basics.py",
         "1D Transport": "90_Streamlit_apps/SYMPLE25/pages/M1A/Transport_1D_AD_basics.py",
         "1D Flow": "90_Streamlit_apps/SYMPLE25/pages/M1A/GWF_1D_unconf_analytic_noflow_calib_basics.py",
+        "--- 📖 Budgets and Balances ---": None,
         "Radioactive Decay": "90_Streamlit_apps/SYMPLE25/pages/M1A/Radioactive_Decay_basics.py",
         "--- 📖 Presentations ---": None,
         "Presentation: 📝 M1A_1": "90_Streamlit_apps/SYMPLE25/pages/M1A/M1A_1_presentation.py",
@@ -81,6 +85,7 @@ pages = {
         "Presentation: 📝 M1C_3": "90_Streamlit_apps/SYMPLE25/pages/M1C/M1C_3_presentation.py",
     },
     "🔶 M1E - Model design": {
+        "--- 📖 MODFLOW tutorials ---": None,
         "2D Synthetic": "90_Streamlit_apps/SYMPLE25/pages/M1C/Tutorial_2D_Synth.py",
     },
     "🔷 General Info": {
