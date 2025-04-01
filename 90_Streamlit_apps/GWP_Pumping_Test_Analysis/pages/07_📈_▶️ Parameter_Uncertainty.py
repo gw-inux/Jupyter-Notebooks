@@ -8,6 +8,21 @@ import streamlit_book as stb
 from streamlit_extras.stateful_button import button
 from streamlit_extras.stodo import to_do
 
+# Authors, institutions, and year
+year = 2025 
+authors = {
+    "Thomas Reimann": [1],  # Author 1 belongs to Institution 1
+    "Eileen Poeter": [2],
+}
+institutions = {
+    1: "TU Dresden, Institute for Groundwater Management",
+    2: "Colorado School of Mines"
+}
+index_symbols = ["¹", "²", "³", "⁴", "⁵", "⁶", "⁷", "⁸", "⁹"]
+author_list = [f"{name}{''.join(index_symbols[i-1] for i in indices)}" for name, indices in authors.items()]
+institution_list = [f"{index_symbols[i-1]} {inst}" for i, inst in institutions.items()]
+institution_text = " | ".join(institution_list)
+
 st.title('📈 Exercise and Application')
 
 st.header(':red[Explore Uncertainty] associated with using parameter values estimated via Theis Curve fitting to predict drawdown for other pumping rates, times, and distances')
@@ -499,3 +514,11 @@ with columnsN1[1]:
 with columnsN1[2]:
     if st.button("Next page"):
         st.switch_page("pages/08_👉_About.py")
+        
+'---'
+# Render footer with authors, institutions, and license logo in a single line
+columns_lic = st.columns((5,1))
+with columns_lic[0]:
+    st.markdown(f'Developed by {", ".join(author_list)} ({year}). <br> {institution_text}', unsafe_allow_html=True)
+with columns_lic[1]:
+    st.image('FIGS/CC_BY-SA_icon.png')

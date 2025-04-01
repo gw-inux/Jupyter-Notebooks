@@ -8,6 +8,21 @@ import streamlit as st
 import streamlit_book as stb
 from streamlit_extras.stateful_button import button
 
+# Authors, institutions, and year
+year = 2025 
+authors = {
+    "Thomas Reimann": [1],  # Author 1 belongs to Institution 1
+    "Eileen Poeter": [2],
+}
+institutions = {
+    1: "TU Dresden, Institute for Groundwater Management",
+    2: "Colorado School of Mines"
+}
+index_symbols = ["¹", "²", "³", "⁴", "⁵", "⁶", "⁷", "⁸", "⁹"]
+author_list = [f"{name}{''.join(index_symbols[i-1] for i in indices)}" for name, indices in authors.items()]
+institution_list = [f"{index_symbols[i-1]} {inst}" for i, inst in institutions.items()]
+institution_text = " | ".join(institution_list)
+
 st.title('🟠 :red[Theis] parameter estimation')
 
 st.header('for drawdown in :red[confined aquifers]')
@@ -110,9 +125,11 @@ st.markdown("""
             
             A close match indicates that the selected values are a reasonable representation of the aquifer properties.
             
-            More precise matching can be acheived by zooming in and/or by using typed number input rather than slider input. Both are selected with a toggle switch.
+            Additionally, you can **switch between a log-log and a semi-log plot** to analyze the effect of transmissivity and storativity on the drawdown behavior. The semi-log plot is especially useful to understand the late time traight line slope under consideration of varying transmissivity and storativity.
             
-            The scatter plot can be turned on by using a toggle switch. It provides a visual comparison of the data and the fitted curve. A 45 degree line indicates a perfect match between the measured drawdowns and those calculated by the Theis solution for the input values of $T$ and $S$.
+            More precise matching can be acheived by **zooming in** and/or by using **typed number input rather than slider input**. Both are selected with a toggle switch.
+            
+            The **scatter plot** can be turned on by using a toggle switch. It provides a visual comparison of the data and the fitted curve. A 45 degree line indicates a perfect match between the measured drawdowns and those calculated by the Theis solution for the input values of $T$ and $S$.
 """
 )
 # Computation
@@ -202,6 +219,7 @@ def inverse(v):
    
     columns2 = st.columns((1,1), gap = 'large')
     with columns2[0]:
+        semilog = st.toggle("Toggle for **semi log graph**", key = 15+v)
         refine_plot = st.toggle("**Zoom in** on the **data in the graph**", key = 20+v)
         scatter = st.toggle('Show scatter plot', key = 30+v)
         if v==2:
@@ -287,21 +305,34 @@ def inverse(v):
         ax.plot(m_time_s, m_ddown,'go', label=r'measured drawdown - Varnum16/R12')
     else:
         ax.plot(m_time_s, m_ddown,'ro', label=r'measured drawdown - ideal data')
-    plt.yscale("log")
-    plt.xscale("log")
+    if semilog:
+        plt.xscale("log")
+    else:    
+        plt.yscale("log")
+        plt.xscale("log")
     plt.xticks(fontsize=14)
     plt.yticks(fontsize=14)
     if refine_plot:
-        plt.axis([1E0,1E4,1E-2,1E+1])
+        if semilog:
+            plt.axis([1E0,1E4,0,4])
+        else:
+            plt.axis([1E0,1E4,1E-2,1E+1])
     else:
-        plt.axis([1E-1,1E5,1E-4,1E+1])
-        ax.text((0.2),1.8E-4,'Coarse plot - Refine for final fitting')
+        if semilog:
+            plt.axis([1E-1,1E5,0,10])
+            ax.text((0.2),0.8,'Coarse plot - Refine for final fitting')            
+        else:
+            plt.axis([1E-1,1E5,1E-4,1E+1])
+            ax.text((0.2),1.8E-4,'Coarse plot - Refine for final fitting')
     ax.grid(which="both")
     plt.xlabel(r'time t in (s)', fontsize=14)
     plt.ylabel(r'drawdown s in (m)', fontsize=14)
     plt.title('Theis drawdown', fontsize=16)
     plt.legend(fontsize=14)
-    plt.text(0.97, 0.15,out_txt, horizontalalignment='right', transform=ax.transAxes, fontsize=14, verticalalignment='top', bbox=props)
+    if semilog:
+        plt.text(0.3, 0.95,out_txt, horizontalalignment='right', transform=ax.transAxes, fontsize=14, verticalalignment='top', bbox=props)
+    else:
+        plt.text(0.97, 0.15,out_txt, horizontalalignment='right', transform=ax.transAxes, fontsize=14, verticalalignment='top', bbox=props)
     
     if scatter:
         x45 = [0,200]
@@ -418,3 +449,11 @@ with columnsN1[1]:
 with columnsN1[2]:
     if st.button("Next page"):
         st.switch_page("pages/04_🟢_▶️ Hantush_Jacob_solution.py")
+        
+'---'
+# Render footer with authors, institutions, and license logo in a single line
+columns_lic = st.columns((5,1))
+with columns_lic[0]:
+    st.markdown(f'Developed by {", ".join(author_list)} ({year}). <br> {institution_text}', unsafe_allow_html=True)
+with columns_lic[1]:
+    st.image('FIGS/CC_BY-SA_icon.png')

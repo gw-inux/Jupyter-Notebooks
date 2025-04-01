@@ -1,6 +1,8 @@
 import streamlit as st
 import numpy as np
 import streamlit.components.v1 as components
+from bokeh.plotting import figure
+from streamlit_bokeh import streamlit_bokeh
 import os
 import plotly.graph_objects as go
 import matplotlib.pyplot as plt
@@ -110,6 +112,22 @@ with st.expander(':red[**Show/Collapse**] the MATPLOTLIB plot'):
     
     # ✅ Display figure
     st.pyplot(fig)
+    
+st.subheader('Show :green[Streamlit-Bokeh]')
+with st.expander(':red[**Show/Collapse**] the Streamlit-Bokeh plot'):
+
+    # Generate data
+    x = np.linspace(-5, 5, 100)
+    y = a * np.sin(x)
+    
+    # Create Bokeh figure
+    p = figure(title="Sine Function", x_axis_label="x", y_axis_label="f(x)", x_range=(x_min, x_max), y_range=(-5, 5), width=600, height=400)
+    p.grid.grid_line_alpha = 0.3
+    p.line(x, y, legend_label="f(x) = 1.0 * sin(x)", line_width=2)
+    
+    # Display in Streamlit
+    streamlit_bokeh(p, use_container_width=True, key="plot1")
+    
 
 st.subheader('Show :rainbow[BOKEH interactive html]')
 

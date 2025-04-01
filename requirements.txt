@@ -12,3 +12,6 @@ streamlit
 streamlit_book
 streamlit_extras
 deep_translator
+bokeh
+streamlit_bokeh
+fpdf
