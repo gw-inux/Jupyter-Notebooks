@@ -156,7 +156,7 @@ def Q_h_plot():
         ax.set_ylabel("Heads and elevations in the GHB Boundary-Aquifer System (m)", fontsize=10)
         ax.set_xlabel("Flow Into the Ground-Water System From the GHB $Q_B$ (m³/s)", fontsize=10)
         ax.set_ylim(0, 20)
-        ax.set_xlim(-0.05, 0.05)
+        ax.set_xlim(0.05, -0.05)
         if Q_ref < 0:
             ax.annotate(
                 '',  # no text
@@ -172,8 +172,8 @@ def Q_h_plot():
                 arrowprops=dict(arrowstyle='<-', color='green', lw=3, alpha=0.6)
             )
         # Add gaining/losing stream annotations
-        ax.text(-0.04,1, "Gaining GHB boundary", va='center',color='blue')
-        ax.text(0.005, 1,  "Losing GHB boundary", va='center',color='green')
+        ax.text(-0.003,1, "Gaining GHB boundary", va='center',color='blue')
+        ax.text(0.035, 1,  "Losing GHB boundary", va='center',color='green')
             
     else:
         ax.plot(h_aq, Q, label=rf"$Q_B = C_B(H_B - h_{{aq}})$, $C_B$ = {st.session_state.C:.2e}",color='orange', linewidth=3)
