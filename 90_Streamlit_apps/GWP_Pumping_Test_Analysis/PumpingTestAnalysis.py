@@ -31,7 +31,7 @@ st.markdown(
     """
     **Pumping tests** are one of the most **important methods** for acquiring information about groundwater systems. A pumping test provides values of aquifer **transmissivity** $T$ and **storativity**  $S$ and in some settings, other hydraulic parameter values.
     
-    This application is designed for educational purposes to introduce the evaluation of pumping tests for confined, unconfined, and leaky aquifers.
+    This application is designed to introduce the evaluation of pumping tests for confined, unconfined, and leaky aquifers.
 """
 )
 
