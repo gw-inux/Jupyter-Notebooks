@@ -1,6 +1,6 @@
 import streamlit as st
 
-st.title("# About :green[SYMPLE] 🌳")
+st.title("About :green[SYMPLE] 🌳")
 st.header('School of Hydrogeological Modeling', divider="green")
 
 st.markdown(
