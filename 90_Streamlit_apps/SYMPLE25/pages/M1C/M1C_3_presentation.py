@@ -93,6 +93,7 @@ if slide_data:
     with col2:
             st.session_state["slide_index"] = st.number_input('Slide number to show', 1, num_slides)
 
+    # Display slides
     selected_slide = slide_data[st.session_state["slide_index"] - 1]
     image_path = os.path.join(images_folder, os.path.basename(selected_slide["image"]))
 

@@ -26,7 +26,7 @@ institution_text = " | ".join(institution_list)  # Institutions in one line
 
 st.title('🎯 The Theis solution for pumping test evaluation')
 
-st.header(':blue[Manually parameter fitting with type-curve matching]')
+st.header(':blue[Manually fit parameter values via type-curve matching]')
 
 st.subheader(':blue-background[Materials and Guidance for Theis Type-curve matching]', divider="blue")
 
@@ -38,13 +38,13 @@ st.markdown('''
 
 st.subheader(':blue-background[The Theis type-curve]', divider="blue")
 st.markdown('''
-            The **Theis type curve plot** is a fundamental tool in hydrogeology for analyzing **transient groundwater flow** in response to well pumping. It is based on the **Theis solution**, which describes how drawdown evolves over time in a **confined aquifer**.
+            The **Theis type curve plot** is a fundamental tool in hydrogeology for analyzing **transient groundwater flow** in response to well pumping. It is based on the **Theis solution**, which describes how drawdown increases with time around a well that is pumping groundwater from a **confined aquifer**.
             
-            By plotting **dimensionless drawdown** against **dimensionless time** on a logarithmic scale, the type curve provides a theoretical reference for evaluating aquifer properties. This approach is widely used to estimate **transmissivity (T)** and **storativity (S)** by matching field observations to the type curve.
+            Plotting **dimensionless drawdown** against **dimensionless time** on a logarithmic scale, creates the **Theis Type Curve** which provides a theoretical reference for evaluating aquifer properties. This approach is widely used to estimate **transmissivity ($T$)** and **storativity ($S$)** by plotting field measurements of drawdown versus time at locations near a pumping well and **aligning the field-data curve to the Theis type curve with the axes of both graphs parallel**.
             
-            To determine the aquifer properties, the **Theis type curve** must be aligned with the measured data using a **matching point**—a reference point where both curves coincide. In this step, you can **define the matching point manually**, selecting a representative coordinate on the plot to scale the type curve accordingly. Typically, a **representative coordinate** is chosen where the curves overlap well and is often set to **simple values (e.g., 1, 10, or 100)** to make calculations easier and reduce errors in parameter estimation.
+            Once the curves are aligned, **a match point is selected**. The point can be any corresponding point on the graphs of the theoretical and measured-data curves. That is, it need not be at a location on the curves themselves. This is the case because, when the curves are aligned, any point will have the same ratio of associated values on the axes of the theoretical and the field graph. **Typically**, the match point is selcted **where the values on the axes of the theoretical curve are simple round numbers (e.g., 1, 10, or 100)** to make calculations easier and reduce error in reading values from the graphs, thus reduce error in estimating the parameter values.
             
-            Below, you can plot the Theis type curve with a user-defined matching point. You also have the option to download the figure for further study.  
+            The first graph below, is the **Theis type curve. You can select a point that will be used to correspond to a point on a graph of field measured drawdown versus time**. You also have the option to download the figure for further study.  
             '''
 )
 ### 03 INITIAL ASSESSMENTS
@@ -115,7 +115,7 @@ columns1 = st.columns((1,1), gap = 'large')
 with columns1[0]:
     match_u_inv = st.select_slider('Select 1/u for the matchpoint', options= u_inv_values, value=1.0)
 with columns1[1]:
-    match_wu     =st.select_slider('Select w(u) for the matchpoint', options= wu_values, value=1.0)
+    match_wu     =st.select_slider('Select W(u) for the matchpoint', options= wu_values, value=1.0)
         
 matchgrid_x=[match_u_inv, match_u_inv]
 matchgrid_y=[match_wu, match_wu]
@@ -161,7 +161,7 @@ with columns5[1]:
 
 st.subheader(':blue-background[Loading and plotting measured data]', divider="blue")
 st.markdown('''
-            To analyze field data with the **Theis type curve**, you can either **upload your own dataset** or use **predefined measurement data**. Once the data are loaded, you have the option to **download the dataset** for manual type curve matching. The plot can be displayed using **linear or semi-logarithmic axes**, allowing for flexible visualization of the drawdown behavior.  
+            To analyze field data with the **Theis type curve**, you can either **upload your own dataset** or use a **predefined measurement data**. Once the data are loaded, you have the option to **download the dataset to print for manual curve matching**. The plot can be displayed using **linear or semi-logarithmic axes**, allowing for flexible visualization of the drawdown behavior.  
             '''
 )
 
@@ -182,7 +182,7 @@ if (datasource == "Synthetic textbook data"):
     Qs = 0.3/60   # m^3/s
     Qd = Qs*60*60*24 # m^3/d
     st.write('**Pumping rate (m³/s)** for the **pumping test** = % 5.3f'% Qs)
-    st.write('**Distance** (m) from the **well** for the **observation** =  % 6.2f'% r)
+    st.write('**Distance (m)** from the **well** for the **observation** =  % 6.2f'% r)
     st.write('**average Aquifer thickness** (m) = % 6.2f'% b)
 elif(st.session_state.Data =="Load own CSV dataset"):
     # Initialize
@@ -239,7 +239,7 @@ columns6 = st.columns((1,1,1), gap = 'large')
 with columns6[1]:
     # Add download button
     st.download_button(
-        label=":green[**Download**] **measured data**",
+        label=":green[**Download**] **Measured-Data Graph**",
         data=img_buffer,
         file_name="measured_data_Theis.png",
         mime="image/png"
@@ -247,24 +247,26 @@ with columns6[1]:
         
 st.subheader(':red[Type-curve matching and computation of transmissivity $T$ and storativity $S$]')        
 st.markdown('''
-            This subsection provide information about how to perform the type-curve matching. Step-by-step instructions guide you through the method. Further, you can use the application to process the data that you got from the type-curve matching to compute the transmissivity $T$ and the storativity $S$.
+            This section provides **step-by-step instructions describing how to perform a manual curve match**. Further, after reading the match-point vlaues from your curve match, you can use the application to compute the **transmissivity $T$** and the **storativity $S$**.
             '''
 )
-with st.expander(':green[**Click here**] to get detailed **step-by-step instructions** about how to perform the manual Theis type-curve matching'):
+with st.expander(':green[**Click here**] for detailed **step-by-step instructions** about how to perform the manual Theis type-curve matching'):
     to_do(
-        [(st.write, "Safe the Theis type-curve on your local computer. You can start with the provided matching point at $1/u$ = 1 and $w(u)$ = 1.")],"td01",)
+        [(st.write, "Save the Theis type-curve on your local computer using the **Download Theis Type Curve button**. You can start with the provided match point at 1/$u$ = 1 and $W(u)$ = 1.")],"td01",)
     to_do(
-        [(st.write, "Eventually load own measured data (or use the provided idealized data) for plotting. Safe the measured data with the button **Download measured data** on your local computer.")],"td02",)
+        [(st.write, "Next, either load your own field-measured, drawdown-versus-time data (or use the provided ideal data). Then save an image of the measured-data graph on your local computer using the **Download Measured-Data Graph button**.")],"td02",)
     to_do(
-        [(st.write, "Open on your local computer a software to show pictures, for example a word processor. Then load the saved figures (Theis type-curve and measured data) in your word processor.")],"td03",)
+        [(st.write, "On your local computer open software that can display pictures, for example a word processor. Then **load the saved figures (Theis Type-Curve and Measured-Data Graph) in your word processor**.")],"td03",)
     to_do(
-        [(st.write, "Allow the figure with the measured data to be placed _before the text_ such that it can be plotted above the Theis type-curve. The background of the measured data is transparent. Accordingly, you see the Theis type-curve through the measured data")],"td04",)
+        [(st.write, "**Allow the figure with the Measured-Data Graph to be placed _in front of the text_ such that it overlays the Theis Type-Curve**. The background of the Measured-Data Curve is transparent. Accordingly, you will be able to see the Theis type-curve through the measured data")],"td04",)
     to_do(
-        [(st.write, "Move the plot with the measured data such that the dots coincide with the type curve. Take note of the time $t_0$ (in minutes) and the drawdown $s_0$ (in meters) of the measured data plot that corresponds to the matching point of the Theis type-curve plot. The green lines in the Theis type-curve will help you to find the time and drawdown values")],"td05",)
+        [(st.write, "**Move the plot with the measured data such that the dots coincide with the type curve**.")],"td05",)
     to_do(
-        [(st.write, "Finally, you can compute the transmissivity $T$ and the storativity $S$ by help of application by putting the time and drawdown in the input section below.")],"td06",)
+        [(st.write, "**Read the value of time $t_0$ (in minutes) and the drawdown $s_0$ (in meters) from the measured-data graph axes that correspond to the matching point of the Theis type-curve plot**. The green lines in the Theis type-curve will help you to find the time and drawdown values")],"td06",)
+    to_do(
+        [(st.write, "Finally, **compute the transmissivity $T$ and the storativity $S$ using the application by putting the values of time and drawdown in the input section below**.")],"td07",)
 st.markdown('''
-            After selecting the **matching point** on the Theis type curve, the corresponding **time** $t_0$ and **drawdown** $s_0$ from the measured data are determined. Using these values, the transmissivity $T$ and storativity $S$of the aquifer can be computed as follows:
+            After selecting the **match point** on the Theis type curve, the corresponding **time** $t_0$ and **drawdown** $s_0$ from the measured data are determined. Using these values, the **transmissivity $T$ and storativity $S$** of the aquifer can be calclated as follows:
             ''')
 st.latex(r'''T = \frac{Q}{4\pi s_0 W(u)}''')
 
@@ -272,14 +274,14 @@ st.latex(r'''S = \frac{u T t_0}{r^2}''')
             
 st.markdown('''            
             where:
-            - $Q$ is the pumping rate (m³/s),
-            - $s_0$ is the measured drawdown at the matching point (m),
-            - $W(u)$ is the well function value at the matching point,
-            - $u$ is the dimensionless time parameter,
-            - $t_0$ is the corresponding measured time (s),
-            - $r$ is the radial distance from the well (m).
+            - $Q$ is the pumping rate (m³/s)
+            - $s_0$ is the measured drawdown at the matching point (m)
+            - $W(u)$ is the well function value at the matching point
+            - $u$ is the dimensionless time parameter
+            - $t_0$ is the corresponding measured time (s)
+            - $r$ is the radial distance from the well (m)
             
-            By aligning the measured data with the selected **matching point** on the Theis type curve, these equations allow for the estimation of key aquifer properties, enabling a better understanding of groundwater flow dynamics.
+            By aligning the measured data with the selected **match point** on the Theis type curve, these equations allow for estimation of key aquifer properties, enabling a better understanding of groundwater flow dynamics.
             ''')   
         
 
