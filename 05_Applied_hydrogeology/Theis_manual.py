@@ -13,16 +13,16 @@ from streamlit_extras.stodo import to_do
 year = 2025 
 authors = {
     "Thomas Reimann": [1],  # Author 1 belongs to Institution 1
-   #"Colleague Name": [1],  # Author 2 also belongs to Institution 1
+    "Eileen Poeter": [2],
 }
 institutions = {
-    1: "TU Dresden",
-#   2: "Second Institution / Organization"
+    1: "TU Dresden, Institute for Groundwater Management",
+    2: "Colorado School of Mines"
 }
 index_symbols = ["¹", "²", "³", "⁴", "⁵", "⁶", "⁷", "⁸", "⁹"]
 author_list = [f"{name}{''.join(index_symbols[i-1] for i in indices)}" for name, indices in authors.items()]
 institution_list = [f"{index_symbols[i-1]} {inst}" for i, inst in institutions.items()]
-institution_text = " | ".join(institution_list)  # Institutions in one line
+institution_text = " | ".join(institution_list)
 
 st.title('🎯 The Theis solution for pumping test evaluation')
 
