@@ -75,7 +75,7 @@ languages = {
     "🇮🇹 Italian": "it",
     "🇸🇪 Swedish": "sv",
     "🇩🇰 Danish": "da",
-    "🇳🇴 Norwegian": "no"
+    "🇳🇴 Norwegian": "no",
     "🇷🇺 Russian": "ru",
     "🇨🇳 Chinese (Simplified)": "zh-CN",
     "🇮🇳 Hindi": "hi",
