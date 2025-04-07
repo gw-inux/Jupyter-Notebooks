@@ -29,11 +29,6 @@ author_list = [f"{name}{''.join(f'<sup>{i}</sup>' for i in idxs)}" for name, idx
 institution_text = " | ".join([f"<sup>{i}</sup> {inst}" for i, inst in institutions.items()])
 
 ### SlideJet - Present
-
-st.set_page_config(
-    page_title="SlideJet - Present",
-    page_icon="🚀"
-    )
     
 ################
 # ADAPT HERE ###
