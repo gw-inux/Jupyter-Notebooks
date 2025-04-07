@@ -47,13 +47,12 @@ st.set_page_config(
 ################
 
 # Folder to your presentation
-
 presentation_folder = "90_Streamlit_apps/SYMPLE25/SLIDES/SYMPLE25_M1A_1"
 
 # Presettings - Here you can adjust the application to your specific application
 
-header_text = 'SlideJet Presentation'
-subheader_text = 'Overview and Demo'
+header_text = 'Module M1A - Review of Key Topics'
+subheader_text = 'Hydrogeological Properties'
 
 # --- Streamlit App Content ---
 st.title("Presentation Slides")
