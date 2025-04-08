@@ -2,7 +2,7 @@ import streamlit as st
 import os
 
 # --- Application parameters ---
-DEFAULT_START_PAGE = "98_Templates_Demos/Multipage_Template/pages/Multipage_Template_Default_Start.py"
+DEFAULT_START_PAGE = "98_Templates_Demos/Multipage_Template/content/Multipage_Template_Default_Start.py"
 
 # --- MUST be first: layout setup wide / centered ---
 if "layout_choice" not in st.session_state:
@@ -53,22 +53,22 @@ st.markdown("""
 # --- Pages definition / The content of your application / Header are with the target 'None' ---
 pages = {
     "🔶 Section A": {
-        "--- 📖_Subheader A ---": None,
+        "--- 📖 Subheader A ---": None,
         "Subpage Title 1 📖": "90_Streamlit_apps/SYMPLE25/pages/00_OM/1D_GWF_Unconfined Recharge.py",
         "Subpage Title 2 🌀": "90_Streamlit_apps/SYMPLE25/pages/00_OM/WellCapture.py",
-        "--- 📖_Presentations ---": None,
+        "--- 📖 Presentations ---": None,
         "Presentation: 📝 M0": "90_Streamlit_apps/SYMPLE25/pages/00_OM/M0_presentation.py",
     },
     "🔶 Section B": {
-        "--- 📖_Parameters ---": None,
+        "--- 📖 Parameters ---": None,
         "_K_ and _S_: Flow to Well": "90_Streamlit_apps/SYMPLE25/pages/M1A/Flow2Well_transient_unconfined_confined_basics.py",
-        "--- 📖_Motion laws ---": None,
+        "--- 📖 Motion laws ---": None,
         "Heat Transport": "90_Streamlit_apps/SYMPLE25/pages/M1A/Heat_transport_flow_1D_basics.py",
         "1D Transport": "90_Streamlit_apps/SYMPLE25/pages/M1A/Transport_1D_AD_basics.py",
         "1D Flow": "90_Streamlit_apps/SYMPLE25/pages/M1A/GWF_1D_unconf_analytic_noflow_calib_basics.py",
-        "--- 📊_Budgets and Balances ---": None,
+        "--- 📊 Budgets and Balances ---": None,
         "Radioactive Decay": "90_Streamlit_apps/SYMPLE25/pages/M1A/Radioactive_Decay_basics.py",
-        "--- 📖_Presentations ---": None,
+        "--- 📖 Presentations ---": None,
         "Presentation: 📝 M1A_1": "90_Streamlit_apps/SYMPLE25/pages/M1A/M1A_1_presentation.py",
     }
 }

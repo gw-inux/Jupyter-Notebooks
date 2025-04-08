@@ -17,4 +17,4 @@ st.markdown(
 
 left_co, cent_co, last_co = st.columns((20,60,20))
 with cent_co:
-    st.image('90_Streamlit_apps/SYMPLE25/assets/images/Symple_logo.png')
+    st.image('98_Templates_Demos/Multipage_Template/assets/images/iNUX_wLogo.png')
