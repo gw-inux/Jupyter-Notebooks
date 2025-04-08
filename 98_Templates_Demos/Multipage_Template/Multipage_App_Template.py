@@ -2,14 +2,14 @@ import streamlit as st
 import os
 
 # --- Application parameters ---
-DEFAULT_START_PAGE = "90_Streamlit_apps/SYMPLE25/pages/ORG/SYMPLE25APP.py"
+DEFAULT_START_PAGE = "98_Templates_Demos/Multipage_Template/pages/Multipage_Template_Default_Start.py"
 
 # --- MUST be first: layout setup wide / centered ---
 if "layout_choice" not in st.session_state:
     st.session_state.layout_choice = "centered"
 
-st.set_page_config(page_title="SYMPLE25 App", page_icon="💦", layout=st.session_state.layout_choice)
-st.sidebar.markdown("## 🌳 :green[SYMPLE25 Navigation]")
+st.set_page_config(page_title="Multipage_Template_APP", page_icon="💦", layout=st.session_state.layout_choice)
+st.sidebar.markdown("## 🌳 :green[Multipage Template Navigation]")
 
 # --- CSS Styling ---
 st.markdown("""
@@ -52,14 +52,14 @@ st.markdown("""
 
 # --- Pages definition / The content of your application / Header are with the target 'None' ---
 pages = {
-    "🔶 Orientation meeting": {
-    "--- 📖_Initial Model examples ---": None,
-        "1D GWF 💧": "90_Streamlit_apps/SYMPLE25/pages/00_OM/1D_GWF_Unconfined Recharge.py",
-        "Well Capture 🌀": "90_Streamlit_apps/SYMPLE25/pages/00_OM/WellCapture.py",
+    "🔶 Section A": {
+        "--- 📖_Subheader A ---": None,
+        "Subpage Title 1 📖": "90_Streamlit_apps/SYMPLE25/pages/00_OM/1D_GWF_Unconfined Recharge.py",
+        "Subpage Title 2 🌀": "90_Streamlit_apps/SYMPLE25/pages/00_OM/WellCapture.py",
         "--- 📖_Presentations ---": None,
         "Presentation: 📝 M0": "90_Streamlit_apps/SYMPLE25/pages/00_OM/M0_presentation.py",
     },
-    "🔶 M1A - Basics": {
+    "🔶 Section B": {
         "--- 📖_Parameters ---": None,
         "_K_ and _S_: Flow to Well": "90_Streamlit_apps/SYMPLE25/pages/M1A/Flow2Well_transient_unconfined_confined_basics.py",
         "--- 📖_Motion laws ---": None,
@@ -70,33 +70,6 @@ pages = {
         "Radioactive Decay": "90_Streamlit_apps/SYMPLE25/pages/M1A/Radioactive_Decay_basics.py",
         "--- 📖_Presentations ---": None,
         "Presentation: 📝 M1A_1": "90_Streamlit_apps/SYMPLE25/pages/M1A/M1A_1_presentation.py",
-    },
-    "🔶 M1B - Data processing": {
-        "--- 🔨_Hydrogeologic testing ---": None,
-        "Slug test evaluation": "05_Applied_hydrogeology/Slugtest_translate.py",
-        "--- 📋_MODFLOW tutorials ---": None,
-        "MODFLOW Pumping Test": "90_Streamlit_apps/SYMPLE25/pages/M1B/Theis_pumping_Tutorial.py",
-    },
-    "🔶 M1C - Flow modeling": {
-        "1D Confined FD": "90_Streamlit_apps/SYMPLE25/pages/M1C/GWF_1D_conf_FD.py",
-        "Modflow Time Step Multiplier": "06_Groundwater_modeling/Timestep_Multiplier.py",
-        "--- 💻_MODFLOW boundary conditions ---": None,
-        "RIV boundary": "06_Groundwater_modeling/Q_h_plot_RIV.py",
-        "EVT boundary": "06_Groundwater_modeling/Q_h_plot_ET.py",
-        "GHB boundary": "06_Groundwater_modeling/Q_h_plot_GHB.py",
-        "--- 📈_Calibration ---": None,
-        "1D Unconf Calib": "90_Streamlit_apps/SYMPLE25/pages/Calibration/GWF_1D_unconf_analytic_calib.py",
-        "1D NoFlow Calib": "90_Streamlit_apps/SYMPLE25/pages/Calibration/GWF_1D_unconf_analytic_noflow_calib.py",
-        "--- 📖_Presentations ---": None,
-        "Presentation: 📝 M1C_3": "90_Streamlit_apps/SYMPLE25/pages/M1C/M1C_3_presentation.py",
-    },
-    "🔶 M1E - Model design": {
-        "--- 📋_MODFLOW tutorials ---": None,
-        "2D Synthetic": "90_Streamlit_apps/SYMPLE25/pages/M1C/Tutorial_2D_Synth.py",
-    },
-    "🔷 General Info": {
-        "About": "90_Streamlit_apps/SYMPLE25/pages/ORG/About.py",
-        "About SYMPLE": "90_Streamlit_apps/SYMPLE25/pages/ORG/About_SYMPLE.py",
     }
 }
 
