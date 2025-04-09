@@ -17,15 +17,12 @@ if "z_measure" not in st.session_state:
     
 column1 = st.columns((1,1))
 with column1[0]:
-    st.session_state.top_level = st.slider(
-        'Filling level', 0., top_level_max, value=st.session_state.top_level, step=1.
-    )
-with column1[1]:
-    st.session_state.z_measure = st.slider(
-        'z_measure', 0., top_level_max, value=st.session_state.z_measure, step=0.1
-    )
+    st.slider('Filling level', 0.0, top_level_max, top_level_ini, 1.0, key="top_level")
 
-# Use local variables
+with column1[1]:
+    st.slider('z_measure', 0.0, top_level_max, 0.0, 0.1,key="z_measure")
+
+# Use values from session state
 top_level = st.session_state.top_level
 z_measure = st.session_state.z_measure
 
