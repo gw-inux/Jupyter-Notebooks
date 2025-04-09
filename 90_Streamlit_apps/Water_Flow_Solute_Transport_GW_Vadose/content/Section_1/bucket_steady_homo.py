@@ -9,17 +9,25 @@ st.subheader('Heads in water and sand')
 base_level = 0     # cm (bottom of bucket)
 top_level_max = 100.
 top_level_ini = 20.
+# Initialize for the first time
+if "top_level" not in st.session_state:
+    st.session_state.top_level = 20.0
+if "z_measure" not in st.session_state:
+    st.session_state.z_measure = 0.0
+    
 column1 = st.columns((1,1))
 with column1[0]:
-    if "top_level" not in st.session_state:
-        st.session_state.top_level = 20.0
-    top_level = st.slider('Filling level', 0., top_level_max, value=st.session_state.top_level, step=1.)
-    st.session_state.top_level = top_level
+    st.session_state.top_level = st.slider(
+        'Filling level', 0., top_level_max, value=st.session_state.top_level, step=1.
+    )
 with column1[1]:
-    if "z_measure" not in st.session_state:
-        st.session_state.z_measure = 0.0
-    z_measure = st.slider('z_measure', 0., top_level_max, value=st.session_state.z_measure, step=0.1)
-    st.session_state.z_measure = z_measure
+    st.session_state.z_measure = st.slider(
+        'z_measure', 0., top_level_max, value=st.session_state.z_measure, step=0.1
+    )
+
+# Use local variables
+top_level = st.session_state.top_level
+z_measure = st.session_state.z_measure
 
 # --- Generate vertical profile ---
 z = np.linspace(base_level, top_level, 100)  # Full vertical profile
