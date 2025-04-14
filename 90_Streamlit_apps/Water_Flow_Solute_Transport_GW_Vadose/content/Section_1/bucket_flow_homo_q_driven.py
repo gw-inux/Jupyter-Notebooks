@@ -26,7 +26,7 @@ def bucket_flow():
     if "z_measure" not in st.session_state:
         st.session_state.z_measure = 0.0
     if "specific_discharge" not in st.session_state:
-        st.session_state.specific_discharge = 0.05
+        st.session_state.specific_discharge = 0.005
     if f"K_slider_value" not in st.session_state:
         st.session_state[f"K_slider_value"] = -4.0  # Default value (log of K)
     
