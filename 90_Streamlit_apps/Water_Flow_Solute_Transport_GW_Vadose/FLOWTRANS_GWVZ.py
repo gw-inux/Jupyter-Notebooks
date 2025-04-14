@@ -53,23 +53,14 @@ st.markdown("""
 # --- Pages definition / The content of your application / Header are with the target 'None' ---
 pages = {
     "🔶 Section 1": {
-        "--- 📖 Head distribution in a bucket... ---": None,
-        "... full of water/sand 📖": "90_Streamlit_apps/Water_Flow_Solute_Transport_GW_Vadose/content/Section_1/bucket_steady_homo.py",
-        "--- 📖 Heads in a soil column with flow... ---": None,
-        "... driven by a given q 📖": "90_Streamlit_apps/Water_Flow_Solute_Transport_GW_Vadose/content/Section_1/bucket_flow_homo_q_driven.py",
-        "... driven by a given h 📖": "90_Streamlit_apps/Water_Flow_Solute_Transport_GW_Vadose/content/Section_1/bucket_flow_homo_h_driven.py",
+        "--- 📈 Head distribution in a bucket... ---": None,
+        "... full of water/sand 💦": "90_Streamlit_apps/Water_Flow_Solute_Transport_GW_Vadose/content/Section_1/bucket_steady_homo.py",
+        "--- 📈 Heads in a soil column with flow... ---": None,
+        "... driven by a given q 🌀": "90_Streamlit_apps/Water_Flow_Solute_Transport_GW_Vadose/content/Section_1/bucket_flow_homo_q_driven.py",
+        "... driven by a given h 📑": "90_Streamlit_apps/Water_Flow_Solute_Transport_GW_Vadose/content/Section_1/bucket_flow_homo_h_driven.py",
     },
     "🔶 Section 2": {
-        "--- 📖 Parameters ---": None,
-        "_K_ and _S_: Flow to Well": "90_Streamlit_apps/SYMPLE25/pages/M1A/Flow2Well_transient_unconfined_confined_basics.py",
-        "--- 📖 Motion laws ---": None,
-        "Heat Transport": "90_Streamlit_apps/SYMPLE25/pages/M1A/Heat_transport_flow_1D_basics.py",
-        "1D Transport": "90_Streamlit_apps/SYMPLE25/pages/M1A/Transport_1D_AD_basics.py",
-        "1D Flow": "90_Streamlit_apps/SYMPLE25/pages/M1A/GWF_1D_unconf_analytic_noflow_calib_basics.py",
-        "--- 📊 Budgets and Balances ---": None,
-        "Radioactive Decay": "90_Streamlit_apps/SYMPLE25/pages/M1A/Radioactive_Decay_basics.py",
-        "--- 📖 Presentations ---": None,
-        "Presentation: 📝 M1A_1": "90_Streamlit_apps/SYMPLE25/pages/M1A/M1A_1_presentation.py",
+        "Subpage Title 1 📖": "90_Streamlit_apps/SYMPLE25/pages/00_OM/1D_GWF_Unconfined Recharge.py",
     },
     "🔶 Section 3": {
         "--- 📖 Subheader A ---": None,
