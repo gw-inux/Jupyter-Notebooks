@@ -90,6 +90,11 @@ pages = {
         "--- 📖_Presentations ---": None,
         "Presentation: 📝 M1C_3": "90_Streamlit_apps/SYMPLE25/pages/M1C/M1C_3_presentation.py",
     },
+    "🔶 M1D - Transport modeling": {
+        "1D Confined FD": "05_Applied_hydrogeology/Transport_1D_AD_ST.py",
+        "--- 📖_Presentations ---": None,
+        "Presentation: 📝 M1D_1": "90_Streamlit_apps/SYMPLE25/pages/M1D/M1D_1_presentation.py",
+    },
     "🔶 M1E - Model design": {
         "--- 📋_MODFLOW tutorials ---": None,
         "2D Synthetic": "90_Streamlit_apps/SYMPLE25/pages/M1C/Tutorial_2D_Synth.py",

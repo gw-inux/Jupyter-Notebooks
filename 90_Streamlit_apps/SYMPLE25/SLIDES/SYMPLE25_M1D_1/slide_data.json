@@ -1,0 +1,290 @@
+[
+    {
+        "image": "images/slide_1.png",
+        "notes": "- This module covers the basics of numerical solute transport modeling using MODFLOW and MT3D.\r- We will discuss:\r- The relevant transport processes,\r- Their numerical implementation.\r- The module provides an applied overview, with a focus on MODFLOW-based applications.\r- Some examples will revisit topics introduced in earlier Symple25 lectures.\r- There is always space for your own examples:\r- Feel free to reach out to us if you'd like to explore a specific application."
+    },
+    {
+        "image": "images/slide_2.png",
+        "notes": "Schedule:\r- Symple25 includes two lectures focused on the numerical modeling of basic transport processes."
+    },
+    {
+        "image": "images/slide_3.png",
+        "notes": "Model objectives as starting point\rData / information from Ringleb et al. 2016\rwide use of distributed models\rOngoing update and extension"
+    },
+    {
+        "image": "images/slide_4.png",
+        "notes": "Example application tracer test evaluation:\r- This is a short example of a numerical solute transport model application.\r- The example involves the evaluation of a tracer test conducted at a contaminated site in Germany.\r- The tracer test spans:\r    - A spatial scale of a few tens of meters.\r    - A temporal scale of approximately two months."
+    },
+    {
+        "image": "images/slide_5.png",
+        "notes": "Example nitrate transport (1):\r- This is an example of solute transport on a larger spatial scale.\r- The example focuses on the transport of nitrate.\r-The spatial scale extends over several kilometers.\r- The timescale spans many years."
+    },
+    {
+        "image": "images/slide_6.png",
+        "notes": "Example nitrate transport (2):\r- This slide shows the model discretization and the results.\r- The results clearly demonstrate the long timescale covered by the model."
+    },
+    {
+        "image": "images/slide_7.png",
+        "notes": "Example contaminant transport (1):\r- This is an example of a typical application of solute transport modeling.\r- The goal of the example is to simulate an MTBE plume in Long Island, New York."
+    },
+    {
+        "image": "images/slide_8.png",
+        "notes": "Example contaminant transport (2):\r- The figures provide insight into the spatial scale, which spans several hundred meters.\r- The right plot shows concentration patterns over time.\r- It highlights sharp differences in concentrations across a long time scale of several years."
+    },
+    {
+        "image": "images/slide_9.png",
+        "notes": "Example contaminant transport (3):\r- This slide shows the results of the model.\r- It highlights the challenges related to:\r    - The temporal scale,\r    - The spatial scale, and\r    - The sharp concentration gradients."
+    },
+    {
+        "image": "images/slide_10.png",
+        "notes": "This slide presents a few introductory questions to help us understand your initial knowledge of the topic.\r- Whether you're watching the recordings or simply reviewing the slides, feel free to:\r- Answer the questions, and\r- Provide feedback.\rThank you!"
+    },
+    {
+        "image": "images/slide_11.png",
+        "notes": "Publication from L. Konikow (2011)\r- https://ngwa.onlinelibrary.wiley.com/doi/10.1111/j.1745-6584.2010.00764.x\r- https://doi.org/10.1111/j.1745-6584.2010.00764.x\rThis publication offers an excellent overview of solute transport modeling and its associated challenges.\rEven at a first glance, it becomes clear that:\r- The figures illustrate an idealized case, solved with various numerical approaches, highlighting the differences in outcomes.\r- There is a wide range of results, depending on the numerical routines used."
+    },
+    {
+        "image": "images/slide_12.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_13.png",
+        "notes": "Literature is available to support your learning.\r- The textbook by Zheng and Bennett is an excellent resource for transport modeling with MT3DMS.\r- The lecture notes by Wolfgang Sch\u00e4fer are also highly recommended:\r    - They are well-suited for learners and provide a clear and structured overview of the topic."
+    },
+    {
+        "image": "images/slide_14.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_15.png",
+        "notes": "In the second part of the module, we provide an overview of the physical transport processes.\rThese are the processes we will later simulate using numerical solutions."
+    },
+    {
+        "image": "images/slide_16.png",
+        "notes": "The initial assessment is designed to get an impression of your current knowledge about transport processes.\rWhether you're watching the recordings or reviewing the slides, you are welcome to:\rAccess the assessment using the link partici.fi/25381135 or QR code in the slide."
+    },
+    {
+        "image": "images/slide_17.png",
+        "notes": "In hydrogeology, there are two fundamental types of motion:\r- Advective (or convective) movement: transport occurs as the flowing medium carries the solute.\r- Diffusive movement: transport takes place within a stationary medium, driven by (concentration) gradients.\rThese concepts were already introduced for the basics of groundwater flow (remember: Groundwater flow is described by diffusive motion \u2013 driven by pressure gradients).\rNow, we will revisit and build on this topic."
+    },
+    {
+        "image": "images/slide_18.png",
+        "notes": "Transport in groundwater is controlled by a set of different processes (bold those who are considered as conservative)\r- Diffusion\r- Advection\r- Dispersion\r- Retardation\r- Reactions\r- Decay\r\rWe can consider solutes in two broad classes: conservative and reactive: \r- Conservative solutes do not react with the soil and/ or native ground water or undergo biological or radioactive decay. The chloride ion is a good example of a conservative solute.\r- Reactive transport includes all mechanisms that lead to a non-conservative behavior:\r    - Decay, degradation, reactions in general\r    - Adsorption"
+    },
+    {
+        "image": "images/slide_19.png",
+        "notes": "Transport of parcels on a conveyor belt is comparable of advective transport of solutes (= parcels) with the moving groundwater (conveyor belt)"
+    },
+    {
+        "image": "images/slide_20.png",
+        "notes": "Advective transport occurs with the moving medium.\rIn this case, groundwater flows with a discharge Q.\rThe advective mass flow can be calculated by:\rMultiplying the discharge Q by the concentration C."
+    },
+    {
+        "image": "images/slide_21.png",
+        "notes": "In the Symple25 app, under the section M1D, you'll find a small interactive application to explore advective solute transport.\rThe app allows you to:\r- Investigate how changing the effective porosity affects transport.\r- Visualize the breakthrough curve at a specific location or distance from the source.\rFeel free to use this tool to gain a better understanding of what solute transport involves."
+    },
+    {
+        "image": "images/slide_22.png",
+        "notes": "Think about a tracer test and a typical break through curve \u2013 an example is shown on the slide.\rWhy do we get the pronounced tailing even for an (nearly) instantaneous input (check the time axis \u2013 shown is one day = 86400 seconds)"
+    },
+    {
+        "image": "images/slide_23.png",
+        "notes": "Another conservative transport process is mechanical dispersion\rThe figure shows processes that cause dispersion on the pore scale\r\rSee also http://hydrogeologistswithoutborders.org/wordpress/1979-english/chapter-2/#2.13"
+    },
+    {
+        "image": "images/slide_24.png",
+        "notes": "With increasing scale, mechanical dispersion is caused by processes like heterogeneity and geological structures"
+    },
+    {
+        "image": "images/slide_25.png",
+        "notes": "Dispersivity is the parameter to describe dispersion\rDispersivity comes with the dimension length [L];\rRule of thumb for an initial assumption: dispersivity approx. 0,1 x transport distance"
+    },
+    {
+        "image": "images/slide_26.png",
+        "notes": "These data are based on (field) experiments\rDifferent symbols represent different sediments\rAttention: length scale is logarithmic\rDispersivity is scale dependent (i.e. the dispersivity measured in the lab cannot be transferred to a catchment)"
+    },
+    {
+        "image": "images/slide_27.png",
+        "notes": "Diffusion occurs without the need for flow; it can take place in a stationary medium.\rThe slide illustrates how solute concentration spreads over time.\rThis spreading is driven by the concentration gradient, moving from areas of high concentration to low concentration."
+    },
+    {
+        "image": "images/slide_28.png",
+        "notes": "Basic principles of diffusion (cause by Brown\u2019s molecule movement)\rImportant to note that Diffusion coefficients in free water are quite small\r\rThe negative sign indicates that the movement is from greater to lesser concentrations. Note the analogies to Darcy's law (hydraulic flow), Ohm's law (charge transport), and Fourier's Law (heat transport)\r\rDiffusion can lead to a spread of a contaminant in absence of a hydraulic gradient, i.e. if the groundwater is not moving, simply due to a concentration gradient (cf. there is no velocity / discharge term in the equation!)\rDiffusion is slow, yet can be significant over long periods of time\rDiffusion can also affect water in voids which are too small to be significant in flow processes \u201ceffective porosity\u201d (i.e. in immobile water trapped in small pore radii)"
+    },
+    {
+        "image": "images/slide_29.png",
+        "notes": "Concentration profiles of solutes (limited pulse injection) transported by advection and dispersion"
+    },
+    {
+        "image": "images/slide_30.png",
+        "notes": "The transport equation: describes advection (blue box), dispersion (red box), sinks and sources (yellow box) and reactions (green box)\rPlease note that this equation accounts for dispersion along flow (longitudinal \u2013 DL) and perpendicular to flow (transversal \u2013 DT)\rPlease note: so far we didn\u2019t cover reactions (will follow)"
+    },
+    {
+        "image": "images/slide_31.png",
+        "notes": "Common solution for the transport equation\rDescribes concentration as function of space and time\rERF and ERFC are the Gaussian error functions / mathematical formulation."
+    },
+    {
+        "image": "images/slide_32.png",
+        "notes": "Suggestion: use the application in the SYMPLE25 app in section M1D about advective-dispersive transport to investigate the effects of varying n_e and alpha"
+    },
+    {
+        "image": "images/slide_33.png",
+        "notes": "- The slide shows observation profiles.\r- The x-axis represents time.\r- There are two observation locations, labeled 01 and 02.\r- On the right side, you can see the effect of the tracer as it travels over time."
+    },
+    {
+        "image": "images/slide_34.png",
+        "notes": "We will briefly discuss the effects of reactive transport.\rThe focus is mainly on sorption, which leads to retardation of solute movement.\rWe will also look at chemical reactions, including the effects of decay on solute concentration."
+    },
+    {
+        "image": "images/slide_35.png",
+        "notes": "You can explore reactive transport using the Reactive Transport application in the Symple25 app.\rThe application is available under the section M1D."
+    },
+    {
+        "image": "images/slide_36.png",
+        "notes": "This is another short assessment designed to check your current understanding.\rPlease take a moment to complete it before we move on to the next section."
+    },
+    {
+        "image": "images/slide_37.png",
+        "notes": "- The example considers a 1D column with given parameters.\r- An analytical solution is available to describe the concentration as a function of space and time.\r- This simple example allows for a comparison between numerical schemes and the analytical solution."
+    },
+    {
+        "image": "images/slide_38.png",
+        "notes": "In the next section, we will cover the fundamentals of transport computation."
+    },
+    {
+        "image": "images/slide_39.png",
+        "notes": "- This slide shows a highway with different types of traffic.\r- Please consider the following task:\r    - Describe the traffic density.\r    - What would be your idea for observing or measuring traffic density?"
+    },
+    {
+        "image": "images/slide_40.png",
+        "notes": "There are two basic approaches to transport computation:\r- The Eulerian approach\r- The Lagrangian approach\rIn the Lagrangian approach:\r- The observer moves with the fluid.\r- It focuses on tracking particles as they move through space.\rIn the Eulerian approach:\r- The observer remains fixed in space.\r- It focuses on observing changes at a specific location as the fluid flows past.\rIn short:\r- Euler: Observer is at rest.\r- Lagrange: Observer moves with the fluid."
+    },
+    {
+        "image": "images/slide_41.png",
+        "notes": "The example of purely advective solute transport helps illustrate the difference between the Lagrangian and Eulerian approaches.\rIn the Lagrangian approach:\r- The observer moves with the solute.\r- The concentration remains constant, since the observer travels along with it through space.\rIn the Eulerian approach:\r- The observer is stationary.\r- The observer sees the concentration change over time, as shown by the breakthrough curve at a fixed location."
+    },
+    {
+        "image": "images/slide_42.png",
+        "notes": "The solute transport equation is complex, as it includes both:\r- Advective, and\r- Diffusive components.\rThere is a wide range of simulation techniques, based on either the Eulerian or the Lagrangian approach.\rEulerian approaches are typically grid-based, with common methods including:\r- Finite difference schemes\r- Finite element methods\rLagrangian approaches often rely on particle tracking, such as:\r- Random walk simulations\r- Particle tracking methods\rAdditionally, there are mixed or hybrid approaches that aim to combine the strengths of both frameworks. Examples include:\r- The Method of Characteristics\r- The Modified Method of Characteristics\r- The Hybrid Method of Characteristics\rWe will explore these methods in more detail in the following slides."
+    },
+    {
+        "image": "images/slide_43.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_44.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_45.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_46.png",
+        "notes": "FD method\rDouble indexing of nodes (cells) using (i,j)(i, j)(i,j)\rAbbreviation: Cij=C(xi,yj)C_{ij} = C(x_i, y_j)Cij\u200b=C(xi\u200b,yj\u200b)\rThe FD method aims to determine all approximate values CijC_{ij}Cij\u200b of the solute concentration"
+    },
+    {
+        "image": "images/slide_47.png",
+        "notes": "FD explicit (example)\rThe method is prone to numerical dispersion\rTrick: Reduce dispersivity \u03b1\\alpha\u03b1 by this amount\u000b(Note: the result must not become negative, and this trick doesn't work with every method!)\rOscillations (instabilities) occur when weighting factors become negative\rThis leads to a time step limitation"
+    },
+    {
+        "image": "images/slide_48.png",
+        "notes": "Cause of the problems: Different structure of the governing laws for advection and dispersion:\r- Advective mass flux \u223c concentration\r- Dispersive mass flux \u223c concentration gradient"
+    },
+    {
+        "image": "images/slide_49.png",
+        "notes": "This example illustrates the origin of numerical dispersion in finite difference grids.\rA constant velocity of 1.5 meters per day is given.\rThe spatial discretization is defined such that one cell width equals one meter."
+    },
+    {
+        "image": "images/slide_50.png",
+        "notes": "Problems\rA satisfactory simulation of groundwater flow can usually be achieved with simple finite difference (FD) methods.\rHowever, this is no longer true for solute transport simulations.\rReliable FD methods for transport are more complex, due to:\rThe different mathematical structures of the governing equations for advection and dispersion.\rThese structures cannot be approximated with equal accuracy by a single method type.\rTherefore, reliable FD methods for solute transport are often based on a combination of different base methods.\rDetails of these combinations are not covered here.\rThe mentioned problems can be summarized under the terms:\rInstability, and\rNumerical dispersion.\rStability vs. Instability\rStability is a key criterion for evaluating the quality of an FD method.\rAn FD method is unstable if it produces:\rPhysically unrealistic oscillations, which may even amplify over time.\rAn FD method is stable if:\rNo physically unrealistic oscillations occur.\rHowever, stability alone does not guarantee accuracy:\rEven a non-oscillating solution may still be inaccurate."
+    },
+    {
+        "image": "images/slide_51.png",
+        "notes": "Courant Number\rThe Courant number (Co) is the ratio of the transport distance covered in a time step \u0394t to the spatial step size \u0394x:"
+    },
+    {
+        "image": "images/slide_52.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_53.png",
+        "notes": "Basic Concept: Method of Characteristics (MOC)\rThe Method of Characteristics (MOC) is a mixed approach combining:\rThe Eulerian view (fixed in space),\rThe Lagrangian view (moving with the flow).\rThis combination aims to reduce the limitations of purely Eulerian or Lagrangian methods:\rEulerian methods often struggle with advection.\rLagrangian methods often struggle with dispersion.\rMOC combines:\rParticle tracking to simulate advection,\rFinite differences to simulate dispersion.\rInitial Particle Setup\rTo use MOC, you need to define particles and their properties at the start of the simulation (t=0t = 0).\rParticles can be placed:\rIn a regular or random pattern,\rUsing a uniform number per cell, or\rUsing a dynamic approach that adjusts the number based on initial concentration gradients.\rDynamic Particle Distribution\rThe dynamic method places:\rMore particles where concentration changes are high,\rFewer particles where changes are small, to save computation time.\rTo measure how much concentration varies in a cell, we use:\r\u0394cij0=cmax,ij0\u2212cmin,ij0cmax0\u2212cmin0\\Delta c_{ij}^0 = \\frac{c_{\\text{max},ij}^0 - c_{\\text{min},ij}^0}{c_{\\text{max}}^0 - c_{\\text{min}}^0} \rIf this value is above a threshold:\rUse a high particle count (e.g., 25).\rIf below the threshold:\rUse a low count (e.g., 0).\rA typical threshold is 10\u2212510^{-5}, ensuring some particles are placed even in low-gradient areas, helping to improve mass balance accuracy."
+    },
+    {
+        "image": "images/slide_54.png",
+        "notes": "Initial Conditions \u2013 Assigning Concentrations\rIn random walk methods, each particle is assigned a mass at the beginning.\rIn contrast, in the method of characteristics (MOC), each particle is assigned a concentration.\rThe initial concentration Cp0C_{p0} assigned to a particle pp matches the initial cell concentration cij0c_{ij0} in the cell where the particle is located at the start.\rThe same rule applies to new particles introduced later (e.g. during tracer injection or other sources).\rConcentrations at the New Time Step\rMOC simulates advection using a forward particle-tracking approach.\rAfter the advective step:\rThe cell concentrations cij,advc_{ij,\\text{adv}} are calculated as a weighted average of the previous concentrations of the particles now in cell (i,j)(i,j).\rThe weighting factor VpV_p corresponds to the volume of the cell where particle pp originally started.\rNext, dispersion is simulated using a finite difference method, updating the cell concentrations cijkc_{ijk} for the new time step.\rThen, particle concentrations CpkC_{pk} are updated again.\rIt's important to ensure that no negative particle concentrations occur during this update.\rSources and Sinks\rSinks: Represented by removing particles or reducing their concentrations.\rSources: Represented by adding new particles with defined concentrations.\rLimitations of MOC\rThe process of averaging, interpolating, and converting between cell and particle concentrations increases the risk of mass balance errors.\rThis is considered a key drawback of the MOC compared to other numerical methods."
+    },
+    {
+        "image": "images/slide_55.png",
+        "notes": "This slide revisits the example shown at the beginning.\rThe goal of the simulation was to model a tracer test.\rThe test covers a spatial scale of a few meters and a time span of a few days."
+    },
+    {
+        "image": "images/slide_56.png",
+        "notes": "On the left side, we see breakthrough curves:\rIt\u2019s clear that different methods produce very different outcomes.\rOn the right side, a table shows the mass balance error:\rThis illustrates a typical issue with MOC methods\u2014they can show a significant deviation in mass balance."
+    },
+    {
+        "image": "images/slide_57.png",
+        "notes": "This is another assessment to help check your understanding and potentially initiate discussion.\rFeel free to complete the assessment even if you\u2019re just reviewing the slides or watching the recordings."
+    },
+    {
+        "image": "images/slide_58.png",
+        "notes": "The following section focuses on applied solute transport.\rWe will explore the practical aspects and real-world applications related to solute transport processes."
+    },
+    {
+        "image": "images/slide_59.png",
+        "notes": "This slide provides an overview of how to develop a solute transport model based on an existing flow model.\rKey steps include:\rAdapting the flow model to support solute transport.\rAdding boundary conditions relevant to transport.\rIncorporating transport-specific parameters, such as:\rDispersion coefficient\rPorosity\rReaction terms (e.g. sorption or decay)\rThe transport model must then be:\rCalibrated and\rEvaluated using available measurement data.\rThe outcomes may lead to:\rA scientific interpretation or\rA discussion of transport behavior and system understanding.\rResults often highlight the need for additional data, especially regarding:\rBoundary conditions\rTransport parameters"
+    },
+    {
+        "image": "images/slide_60.png",
+        "notes": "This slide shows the solute transport equation once again.\rThe colored terms help differentiate the key processes:\rGreen: Terms related to advective movement\rBlue: Terms representing diffusive movement\rYellow: Reaction terms, which are added to the equation\r\rThe main challenge lies in the combination of advective and diffusive movement within a single equation.\rThese processes have different physical behaviors and mathematical structures, which makes their joint numerical treatment demanding."
+    },
+    {
+        "image": "images/slide_61.png",
+        "notes": "The table provides a comparison of various solution methods implemented in MT3D.\rThe comparison is based on several key criteria:\r- Computational effort or memory demand\r- Presence of numerical dispersion or oscillations\r- Mass balance behavior\r- Maximum allowable time step"
+    },
+    {
+        "image": "images/slide_62.png",
+        "notes": "This table presents a range of characteristic model applications.\rFor each case, it suggests a recommended solution method that is available in MT3D.\rThe goal is to help match the appropriate method to the type of transport scenario being modeled."
+    },
+    {
+        "image": "images/slide_63.png",
+        "notes": "This slide provides an introduction to the TVD (Total Variation Diminishing) method.\rIn contrast to the standard finite difference method, the TVD method is a higher-order scheme.\rIn short, the TVD method is a refined and more accurate version of the finite difference scheme, designed to reduce numerical errors such as oscillations and dispersion."
+    },
+    {
+        "image": "images/slide_64.png",
+        "notes": "The following slides present an example computation for nitrate transport.\rThe scenario is highly idealized to focus on key processes:\rAt the top, you can see different land use types, each contributing a different nitrate input.\rThe objective is to calculate the nitrate concentration at a production well, marked by the red dot.\rThe model parameters used are typical for such settings.\rThe simulation is run over a time span of 100 years to evaluate long-term impacts."
+    },
+    {
+        "image": "images/slide_65.png",
+        "notes": "This slide shows the effects of different solution methods\u2014as implemented in MT3D\u2014on the resulting concentration.\rIt illustrates how the choice of method can influence the outcome, especially in terms of:\rAccuracy\rNumerical dispersion\rStability"
+    },
+    {
+        "image": "images/slide_66.png",
+        "notes": "This slide shows the concentration differences that arise depending on the spatial discretization.\rIt highlights how grid resolution can significantly affect the accuracy and detail of the simulation results."
+    },
+    {
+        "image": "images/slide_67.png",
+        "notes": "This slide shows concentration differences resulting from different dispersivity values.\rOn the right side, there is a plot linking the length of the transport domain to dispersivity.\rThis plot illustrates the uncertainty in estimated dispersivities, especially for larger scales:\rThe values are typically derived from field experiments.\rNote that the scale is logarithmic.\rThere is very limited data available when the transport distance becomes large."
+    },
+    {
+        "image": "images/slide_68.png",
+        "notes": "This final slide shows the effect of a degradation parameter on the computed nitrate concentration.\rIt emphasizes the importance of process identification and process understanding.\rThe simulation demonstrates that degradation can have a substantial impact on the resulting nitrate concentrations.\rThis underlines the need to accurately represent key processes in the model to ensure realistic outcomes."
+    },
+    {
+        "image": "images/slide_69.png",
+        "notes": "This is an excellent manuscript if you wish to read about applied solute transport in detail."
+    },
+    {
+        "image": "images/slide_70.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_71.png",
+        "notes": "This example is the starting point for our applied modeling exercise with MT3D. We build the model by using MODELMUSE."
+    },
+    {
+        "image": "images/slide_72.png",
+        "notes": "Thank you for your attention in this lecture. We are happy to get your feedback."
+    }
+]
