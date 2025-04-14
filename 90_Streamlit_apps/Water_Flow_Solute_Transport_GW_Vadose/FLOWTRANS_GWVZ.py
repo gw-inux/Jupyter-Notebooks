@@ -129,7 +129,7 @@ for section, subpages in pages.items():
                 st.sidebar.markdown(f"<div class='subheader-label'>{label.replace('---', '').strip()}</div>", unsafe_allow_html=True)
             else:
                 is_selected = st.session_state.selected_path == path
-                display_label = f"🟢 **{label}**" if is_selected else label
+                display_label = f"▶️ **{label}**" if is_selected else label
                 indent, content = st.sidebar.columns([0.1, 0.9])
                 with content:
                     if st.button(display_label, key=f"{section}_{label}"):
