@@ -93,6 +93,7 @@ def update_h_aq_show():
 # Initialize session state for value and toggle state
 st.session_state.C_slider_value = -2.0
 st.session_state.K_slider_value = -5.0
+st.session_state.thick = 20.0
 st.session_state.h_ref = 0.0
 st.session_state.h_aq_show = 10.0
 st.session_state.h_RIV = 9.0
@@ -140,6 +141,23 @@ def Q_h_plot():
         # Update the session state values
         st.session_state.h_ref = h_ref
         
+        
+        st.markdown("""
+        <div style="margin-bottom: -30px">
+            <strong>Cell thickness</strong><br><span style='font-weight: normal'>(in m above cell bottom)</span>
+        </div>
+        """, unsafe_allow_html=True)
+        thick_str = st.text_input(label="",value=str(st.session_state.thick),key="thick_input")
+        
+        # Try converting to float and fall back to previous value if conversion fails
+        try:
+            thick = float(thick_str)
+        except ValueError:
+            thick = st.session_state.get("thick", 20.0)
+        
+        # Update the session state values
+        st.session_state.thick = thick        
+        
     with columns1[1]:
         turn = st.toggle('**Turn plot** 90 degrees')
         st.session_state.number_input = st.toggle("**Use Slider or Number** for input.")        
@@ -166,18 +184,18 @@ def Q_h_plot():
                  M_RIV = st.slider      ("**River bed thickness ($M_{RIV}$)**", 0.01, 5.0, st.session_state.M_RIV, 0.01, key="M_RIV_input", on_change=update_M_RIV)                      
     with columns2[1]:
         if st.session_state.number_input:
-            h_RIV = st.number_input("**River head ($h_{RIV}$)**", 0.2+h_ref, 20.0+h_ref, st.session_state.h_RIV, 0.1, key="h_RIV_input", on_change=update_h_RIV)
+            h_RIV = st.number_input("**River head ($h_{RIV}$)**", 0.2+h_ref, thick+h_ref, st.session_state.h_RIV, 0.1, key="h_RIV_input", on_change=update_h_RIV)
         else:
-            h_RIV = st.slider      ("**River head ($h_{RIV}$)**", 0.2+h_ref, 20.0+h_ref, st.session_state.h_RIV, 0.1, key="h_RIV_input", on_change=update_h_RIV)
+            h_RIV = st.slider      ("**River head ($h_{RIV}$)**", 0.2+h_ref, thick+h_ref, st.session_state.h_RIV, 0.1, key="h_RIV_input", on_change=update_h_RIV)
         if st.session_state.number_input:
-            h_aq_show = st.number_input("**Aquifer head ($h_{aq}$**", 0.1+h_ref, 20.0+h_ref, st.session_state.h_aq_show, 0.1, key="h_aq_show_input", on_change=update_h_aq_show)
+            h_aq_show = st.number_input("**Aquifer head ($h_{aq}$**", 0.1+h_ref, thick+h_ref, st.session_state.h_aq_show, 0.1, key="h_aq_show_input", on_change=update_h_aq_show)
         else:
-            h_aq_show = st.slider      ("**Aquifer head ($h_{aq}$**", 0.1+h_ref, 20.0+h_ref, st.session_state.h_aq_show, 0.1, key="h_aq_show_input", on_change=update_h_aq_show)
+            h_aq_show = st.slider      ("**Aquifer head ($h_{aq}$**", 0.1+h_ref, thick+h_ref, st.session_state.h_aq_show, 0.1, key="h_aq_show_input", on_change=update_h_aq_show)
         if bottom:
             if st.session_state.number_input:
-                stage = st.number_input("**River stage ($h_{stage}$)**", 0.1, 5.0, st.session_state.stage, 0.1, key="stage_input", on_change=update_stage)
+                stage = st.number_input("**River stage ($h_{stage}$)**", 0.1, 10.0, st.session_state.stage, 0.1, key="stage_input", on_change=update_stage)
             else:
-                stage = st.slider      ("**River stage ($h_{stage}$)**", 0.1, 5.0, st.session_state.stage, 0.1, key="stage_input", on_change=update_stage)
+                stage = st.slider      ("**River stage ($h_{stage}$)**", 0.1, 10.0, st.session_state.stage, 0.1, key="stage_input", on_change=update_stage)
             h_bot = h_RIV-stage
             if h_bot < h_ref:
                 fix_issue = True
@@ -207,7 +225,7 @@ def Q_h_plot():
             C = 10 ** C_slider_value_new
             container.write("**Conductance in m²/s:** %5.2e" %C) 
     # Define aquifer head range
-    h_aq = np.linspace(0+h_ref, 20+h_ref, 200)
+    h_aq = np.linspace(0+h_ref, thick+h_ref, 200)
     if bottom:
         Q = np.where(h_aq >= h_bot, C * (h_RIV - h_aq), C * (h_RIV - h_bot))
         Q_ref = C * (h_RIV - h_aq_show) if h_aq_show >= h_bot else C * (h_RIV - h_bot)
@@ -235,7 +253,7 @@ def Q_h_plot():
         # Labels and formatting
         ax.set_ylabel("Heads and elevations in the River-Aquifer System (m)", fontsize=10)
         ax.set_xlabel("Flow Into the Ground-Water System From the Stream $Q$ (m³/s)", fontsize=10)
-        ax.set_ylim(0+h_ref, 20+h_ref)
+        ax.set_ylim(0+h_ref, thick+h_ref)
         ax.set_xlim(0.1, -0.1)
         if Q_ref < 0:
             ax.annotate(
@@ -300,7 +318,7 @@ def Q_h_plot():
         # Labels and formatting
         ax.set_xlabel("Heads and elevations in the River-Aquifer System (m)", fontsize=10)
         ax.set_ylabel("Flow Into the Ground-Water System From the Stream $Q$ (m³/s)", fontsize=10)
-        ax.set_xlim(0+h_ref, 20+h_ref)
+        ax.set_xlim(0+h_ref, thick+h_ref)
         ax.set_ylim(-0.1, 0.1)
         if Q_ref < 0:
             ax.annotate(
@@ -344,8 +362,8 @@ def Q_h_plot():
                     va='center'
                 )
         # Add gaining/losing stream annotations
-        ax.text(15+h_ref, -0.005, "Gaining Stream", va='center',color='blue')
-        ax.text(15+h_ref, 0.005, "Losing Stream", va='center',color='green')
+        ax.text((0.75*thick)+h_ref, -0.005, "Gaining Stream", va='center',color='blue')
+        ax.text((0.75*thick)+h_ref, 0.005, "Losing Stream", va='center',color='green')
         
     ax.set_title("Flow Between Groundwater and Stream", fontsize=12)
     ax.grid(True)
