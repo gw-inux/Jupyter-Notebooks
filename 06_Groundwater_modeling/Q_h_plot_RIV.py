@@ -29,7 +29,7 @@ This app shows how the flow between a stream and an aquifer $Q$ depends on the g
 The relationship follows:
 """)
 
-st.latex(r'''Q_{RIV} = C (h_{RIV} - h_{{aq}})''')
+st.latex(r'''Q_{RIV} = C_{RIV} (h_{RIV} - h_{{aq}})''')
 
 st.markdown("""
 where:
@@ -41,7 +41,7 @@ where:
 In case the aquifer head $h_{aq}$ falls below the river bottom elevation $R_{BOT}$, the relationship is:
 """)
 
-st.latex(r'''Q_{RIV} = C (h_{RIV} - R_{{BOT}})''')
+st.latex(r'''Q_{RIV} = C_{RIV} (h_{RIV} - R_{{BOT}})''')
 
 with st.expander('**Click here** if you want to read more about the :green[**general concept**] of the River boundary condition in MODFLOW'):
     st.markdown("""
@@ -115,14 +115,10 @@ def Q_h_plot():
     log_max1 = 1.0  # T / Corresponds to 10^1 = 10
     
     # Switches
-    columns1 = st.columns((1,1,1), gap = 'medium')
+    st.markdown("#### :green[Plot settings and controls]")
+    columns1 = st.columns((1,1), gap = 'medium')
     with columns1[0]:
-        st.markdown("""
-        <div style="margin-bottom: -30px">
-            <strong>Reference elevation</strong><br><span style='font-weight: normal'>(e.g., cell bottom)</span>
-        </div>
-        """, unsafe_allow_html=True)
-        h_ref_str = st.text_input(label="",value=str(st.session_state.h_ref),key="h_ref_input")
+        h_ref_str = st.text_input(label="**Reference elevation** (e.g., cell bottom)",value=str(st.session_state.h_ref),key="h_ref_input")
         
         # Try converting to float and fall back to previous value if conversion fails
         try:
@@ -140,14 +136,7 @@ def Q_h_plot():
         
         # Update the session state values
         st.session_state.h_ref = h_ref
-        
-        
-        st.markdown("""
-        <div style="margin-bottom: -30px">
-            <strong>Cell thickness</strong><br><span style='font-weight: normal'>(in m above cell bottom)</span>
-        </div>
-        """, unsafe_allow_html=True)
-        thick_str = st.text_input(label="",value=str(st.session_state.thick),key="thick_input")
+        thick_str = st.text_input("**Cell thickness** (in m above cell bottom)",value=str(st.session_state.thick),key="thick_input")
         
         # Try converting to float and fall back to previous value if conversion fails
         try:
@@ -158,10 +147,12 @@ def Q_h_plot():
         # Update the session state values
         st.session_state.thick = thick        
         
+    "---"    
+    st.markdown("#### :green[Plot / Model parameters]")
     with columns1[1]:
         turn = st.toggle('**Turn plot** 90 degrees')
         st.session_state.number_input = st.toggle("**Use Slider or Number** for input.")        
-    with columns1[2]:
+    with columns1[1]:
         bottom = st.toggle('Account for river bottom elevation')
         condcomp = st.toggle('Compute $C_{RIV}$ explicitely')
 
@@ -236,7 +227,7 @@ def Q_h_plot():
     # Create the plot
     fig, ax = plt.subplots(figsize=(6, 6))
     if turn:
-        ax.plot(Q, h_aq, label=rf"$Q = C(h_{{aq}} - h_{{RIV}})$, C = {C:.2e}",color='blue', linewidth=3)
+        ax.plot(Q, h_aq, label=rf"$Q = C_{{RIV}}(h_{{aq}} - h_{{RIV}})$, C = {C:.2e}",color='blue', linewidth=3)
         ax.axvline(0, color='black', linewidth=1)
         ax.axhline(h_RIV, color='blue', linewidth=2, linestyle='--', label=f'$h_{{RIV}}$ in m = {h_RIV}')
         ax.axhline(h_aq_show, color='red', linewidth=2, linestyle='--', label=f'$h_{{aq}}$ in m = {h_aq_show}')
