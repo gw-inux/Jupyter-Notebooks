@@ -101,10 +101,7 @@ st.session_state.L_RIV = 100.0
 st.session_state.W_RIV = 10.0
 st.session_state.M_RIV = 1.0
 st.session_state.stage = 2.0
-
-
 st.session_state.number_input = False  # Default to number_input
-
 
 # Main area inputs
 @st.fragment
@@ -113,48 +110,46 @@ def Q_h_plot():
     # Define the minimum and maximum for the logarithmic scale
     log_min1 = -7.0 # T / Corresponds to 10^-7 = 0.0000001
     log_max1 = 1.0  # T / Corresponds to 10^1 = 10
+    log_min2 = -10.0 # T / Corresponds to 10^-7 = 0.0000001
+    log_max2 = -2.0  # T / Corresponds to 10^1 = 10
     
     # Switches
     st.markdown("#### :green[Plot settings and controls]")
     columns1 = st.columns((1,1), gap = 'medium')
     with columns1[0]:
         h_ref_str = st.text_input(label="**Reference elevation** (e.g., cell bottom)",value=str(st.session_state.h_ref),key="h_ref_input")
-        
         # Try converting to float and fall back to previous value if conversion fails
         try:
             h_ref = float(h_ref_str)
         except ValueError:
             h_ref = st.session_state.get("h_ref", 0.0)
-        
         # Update session state manually if needed - Calculate the change in h_ref
         delta_h_ref = h_ref - st.session_state.h_ref
-        
         # Apply the delta only if there's a change
         if delta_h_ref != 0.0:
             st.session_state.h_aq_show += delta_h_ref
             st.session_state.h_RIV += delta_h_ref
-        
         # Update the session state values
         st.session_state.h_ref = h_ref
-        thick_str = st.text_input("**Cell thickness** (in m above cell bottom)",value=str(st.session_state.thick),key="thick_input")
         
+        thick_str = st.text_input("**Cell thickness** (in m above cell bottom)",value=str(st.session_state.thick),key="thick_input")
         # Try converting to float and fall back to previous value if conversion fails
         try:
             thick = float(thick_str)
         except ValueError:
             thick = st.session_state.get("thick", 20.0)
-        
         # Update the session state values
         st.session_state.thick = thick        
-        
-    "---"    
-    st.markdown("#### :green[Plot / Model parameters]")
     with columns1[1]:
         turn = st.toggle('**Turn plot** 90 degrees')
         st.session_state.number_input = st.toggle("**Use Slider or Number** for input.")        
-    with columns1[1]:
         bottom = st.toggle('Account for river bottom elevation')
         condcomp = st.toggle('Compute $C_{RIV}$ explicitely')
+  
+    "---"   
+    
+    st.markdown("#### :green[Plot / Model parameters]")
+
 
     
     columns2 = st.columns((1,1,1), gap = 'medium')
@@ -199,9 +194,9 @@ def Q_h_plot():
             # READ LOG VALUE, CONVERT, AND WRITE VALUE FOR Conductance
             container = st.container()  
             if st.session_state.number_input:
-                K_slider_value_new = st.number_input("_(log of) Riverbed hydr. conductivity in m/s_", log_min1,log_max1, st.session_state.K_slider_value, 0.01, format="%4.2f", key="K_input", on_change=update_K)
+                K_slider_value_new = st.number_input("_(log of) Riverbed hydr. conductivity in m/s_", log_min2,log_max2, st.session_state.K_slider_value, 0.01, format="%4.2f", key="K_input", on_change=update_K)
             else:
-                K_slider_value_new = st.slider      ("_(log of) Riverbed hydr. conductivity in m/s_", log_min1,log_max1, st.session_state.K_slider_value, 0.01, format="%4.2f", key="K_input", on_change=update_K)
+                K_slider_value_new = st.slider      ("_(log of) Riverbed hydr. conductivity in m/s_", log_min2,log_max2, st.session_state.K_slider_value, 0.01, format="%4.2f", key="K_input", on_change=update_K)
             K = 10 ** K_slider_value_new
             container.write("**Riverbed hydr. conductivity in m/s:** %5.2e" %K)                 
                  
