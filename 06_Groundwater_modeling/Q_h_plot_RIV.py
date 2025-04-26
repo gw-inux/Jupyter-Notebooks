@@ -508,8 +508,8 @@ def Q_h_plot():
             ax.axhline(0, color='black', linewidth=1)
             ax.axvline(h_RIV,     color='navy',      linewidth=2,   linestyle='-', label=f'$h_{{RIV}}$ in m = {h_RIV:.2f}')
             ax.axvline(h_aq_show, color='lightblue', linewidth=2.5, linestyle='--', label=f'$h_{{aq}}$ in m = {h_aq_show:.2f}')
-            ax.axvline(h_bed,     color='wheat',     linewidth=2,  linestyle='-', label=f'$h_{{bed}}$ in m = {h_bed:.2f}')
-            ax.axvline(h_bot,     color='dimgrey',      linewidth=2,   linestyle='dotted', label=f'$h_{{bot}}$ in m = {h_bot:.2f}')
+            ax.axvline(h_bed,     color='wheat',     linewidth=2,   linestyle='-', label=f'$h_{{bed}}$ in m = {h_bed:.2f}')
+            ax.axvline(h_bot,     color='dimgrey',   linewidth=2,   linestyle='dotted', label=f'$h_{{bot}}$ in m = {h_bot:.2f}')
             
             # fill ground water
             ax.fill_betweenx(y=[lim2,lim1],x1=h_ref, x2=h_aq_show, color='lightblue', alpha=0.3, label="zone of ground water")  
