@@ -1,98 +1,98 @@
 [
     {
         "image": "images/slide_1.png",
-        "notes": "Interactive understanding of groundwater hydrology and hydrogeology \u2013 Das iNUX Projektl"
+        "notes": "Welcome to this presentation on our Erasmus+ Cooperation Project, Active Understanding of Groundwater Hydrology and Hydrogeology.\u000bThis talk was given at the EGU General Assembly in Vienna on April 28.\u000bThe project is a collaborative effort involving several people and institutions as listed on this slide."
     },
     {
         "image": "images/slide_2.png",
-        "notes": "Motivation\rQuantity and Quality; current numbers for groundwater; also personal and education"
+        "notes": "Slide 2 \u2013 Global Groundwater Availability and Stress:\rThis slide sets the stage for why groundwater management is so important.\u000bThe figure on the left shows the global distribution of water. Only a very small fraction is freshwater \u2014 and most of that is locked in glaciers and ice caps, making it largely unavailable for human use.\u000bThe accessible portion \u2014 the water we can realistically use \u2014 is mainly groundwater.\u000bThe right figure, from 2011, illustrates the global state of groundwater usage.\u000bDark-colored regions indicate areas where groundwater abstraction exceeds mean annual recharge, pointing to unsustainable use. These areas are under significant stress and highlight the urgency of better groundwater management."
     },
     {
         "image": "images/slide_3.png",
-        "notes": "Motivation\rQuantity and Quality; current numbers for groundwater; also personal and education"
+        "notes": "Slide 3 \u2013 Rising Global Water Demand\rThis slide shows the increasing trend in global water abstraction and consumption.\rKey observations:\rWater use has been rising steadily in recent decades.\rFuture projections indicate a continued increase in demand.\rMain drivers of water demand:\rDomestic consumption\rIrrigation and food production\rIndustrial activities\rThis highlights the growing pressure on water resources and the need for sustainable management."
     },
     {
         "image": "images/slide_4.png",
-        "notes": "No notes"
+        "notes": "Slide 4 \u2013 Quoting John Cherry: Groundwater Scarcity\rThis slide reinforces the growing concern about groundwater availability using insights from Professor John Cherry.\rThe figure on the slide shows:\rThe number of months per year with severe water scarcity.\rDark red areas indicate regions under persistent water stress.\rKey message from Cherry's statement:\r\"There is not enough groundwater to satisfy the increasing demand.\"\rAdditional resources:\rA QR code and link are included on the slide.\rThese direct you to the full YouTube presentation by John Cherry \u2014 an excellent talk for further context."
     },
     {
         "image": "images/slide_5.png",
-        "notes": "No notes"
+        "notes": "Slide 5 \u2013 The Geoscience Workforce Gap\rThis slide highlights a different but critical dimension of the groundwater challenge: the human resource gap.\rAccording to the American Geoscience Institute:\rBy 2029, about 27% of the geoscience workforce will retire.\rThis will create a labor gap of approximately 130,000 full-time geoscientists.\rAt the same time:\rThe figure on the right shows a decline in geoscience degrees awarded by U.S. higher education institutions.\rConclusion:\rThere is a growing mismatch between demand and supply of qualified geoscientists.\rThis underscores the urgent need for more efficient and targeted geoscience education."
     },
     {
         "image": "images/slide_6.png",
-        "notes": "Intro / Motivation"
+        "notes": "Slide 6 \u2013 Responding to the Need: The INUX Project\rIn response to the growing educational and workforce gap, a new initiative was launched:\rThe Erasmus+ Cooperation Project named INUX.\rThe project brings together a consortium of leading European universities:\rUniversity Polit\u00e8cnica de Catalunya Barcelona (Spain)\rUniversity of Gothenburg (Sweden)\rUniversity of Graz (Austria)\rTechnical University Dresden (Germany)\rThe goal:\rTo strengthen and innovate groundwater education across Europe.\rTo address both scientific challenges and the shortage of skilled professionals."
     },
     {
         "image": "images/slide_7.png",
-        "notes": "Motivation"
+        "notes": "Slide 7 \u2013 Challenges in Groundwater Education\rThis slide outlines key challenges in teaching hydrogeology and groundwater management.\r1. Qualitative vs. Quantitative Understanding:\rThe figure on the right illustrates the qualitative perspective using drawings and conceptual visuals.\rIn contrast, quantitative understanding requires mathematical modeling and equations.\rBridging these two perspectives is a common educational hurdle.\r2. Rapid Evolution of Methods:\rGroundwater science is evolving quickly, especially with new modeling tools and data analysis techniques.\r3. Demand for Coding Skills:\rThere is an increasing expectation for students to be proficient in coding and numerical modeling."
     },
     {
         "image": "images/slide_8.png",
-        "notes": "Motivation"
+        "notes": "Slide 8 \u2013 Further Challenges in Groundwater Education\rBeyond content and methods, there are pedagogical challenges to consider:\r1. Diverse Learner Backgrounds:\rStudents often come from heterogeneous academic backgrounds.\rThis creates varying levels of prior knowledge, especially in math, physics, and geology.\r2. Need for Time-Efficient Learning:\rModern education must be efficient and focused, especially in graduate and professional programs.\rThere is limited time to cover complex concepts thoroughly.\r3. Emphasis on Applied Learning:\rGroundwater education involves significant learning by doing:\rMeasuring field data\rInterpreting real-world observations\rStudents must develop both practical skills and analytical competence."
     },
     {
         "image": "images/slide_9.png",
-        "notes": "Motivation"
+        "notes": "Slide 9 \u2013 Motivational and Structural Challenges\rIn addition to content and teaching methods, we aim to address several motivational and structural challenges:\r1. Sparking Interest in Hydrogeology:\rThere is a need to attract more students to hydrogeology and groundwater-related fields.\rThe subject must be made engaging and relevant.\r2. Supporting Lifelong Learning:\rWe also want to reach professionals already in the job market.\rThe project supports flexible and modular learning formats for continued education.\r3. Fostering Collaboration:\rThe project aims to initialize and strengthen cooperation across institutions and countries.\r4. Embracing Digitalization:\rWe are integrating digital tools and online platforms to enhance accessibility and engagement in hydrogeology education."
     },
     {
         "image": "images/slide_10.png",
-        "notes": "No notes"
+        "notes": "Slide 10 \u2013 Foundations of Groundwater Education\rThis slide introduces the existing educational foundations in hydrogeology and groundwater management.\rThese include a range of established methods and materials, which form the starting point for our project.\rThe subsequent slides will provide examples and insights into these approaches:\rWhat is currently used\rHow they contribute to learning\rWhat can be built upon or improved"
     },
     {
         "image": "images/slide_11.png",
-        "notes": "No notes"
+        "notes": "Slide 11 \u2013 Interactive Teaching Material\rA key element of modern hydrogeology education is the use of interactive digital tools.\rIn our project, we make extensive use of:\rJupyter Notebooks \u2013 for computational workflows and hands-on coding exercises.\rStreamlit apps \u2013 to create interactive visualizations and simulations.\rThese tools allow learners to:\rManipulate plots and parameters dynamically.\rExplore processes like pumping tests, flow rates, and parameter sensitivity.\rGain deeper understanding through experimentation and immediate feedback."
     },
     {
         "image": "images/slide_12.png",
-        "notes": "No notes"
+        "notes": "Slide 12 \u2013 Video-Based Learning Resources\rIn addition to interactive tools, we incorporate a variety of video materials to support learning:\r1. Field and lab experiment demonstration Videos:\rThese videos show real fieldwork setups and measurements.\rThey help students understand where the data come from that are later used in interactive apps and exercises.\r2. Screencasts:\rWe provide recorded tutorials that walk through:\rHand calculations\rSoftware usage relevant to groundwater modeling\rThese videos support step-by-step learning and can be revisited anytime.\rOverall, video resources help make abstract content more tangible and contextualized."
     },
     {
         "image": "images/slide_13.png",
-        "notes": "No notes"
+        "notes": "Slide 13 \u2013 Question Pools for Assessment\rAnother important educational component in our project is the development of question pools.\rThese serve multiple purposes:\rSelf-assessment for learners to check their understanding.\rFormative and summative assessments, including final exams.\rBenefits of using question pools:\rThey enable reusability and adaptability across courses and institutions.\rCreating them as a community effort makes the process efficient and fosters shared educational resources.\rThis approach supports scalable and flexible assessment strategies."
     },
     {
         "image": "images/slide_14.png",
-        "notes": "No notes"
+        "notes": "Slide 14 \u2013 Slide-Based Teaching and Our Tool: SlideJet\rIn addition to modern tools, we also rely on classical teaching materials like PowerPoint slides.\rThese are typically shared as handouts with speaker notes, helping guide learners during and after lectures.\rTo enhance this format, we developed our own open-source Streamlit app: SlideJet.\rSlideJet allows users to convert PowerPoint presentations into interactive Streamlit slideshows.\rA standout feature: it can automatically translate speaker notes into multiple languages.\rSlideJet is a small but powerful tool that helps bring traditional content into a modern, accessible, and multilingual learning environment."
     },
     {
         "image": "images/slide_15.png",
-        "notes": "No notes"
+        "notes": "Slide 15 \u2013 The Aim of the INUX Project\rThe main goal of the INUX project is to bring together the different educational components into a coherent and collaborative framework.\rKey objectives include:\rStructuring and integrating diverse materials: interactive apps, videos, question pools, slides, and more.\rFacilitating cooperation by forming shared resource pools across institutions.\rProviding clear guidelines and instructions:\rOn how to use, adapt, and develop these materials further.\rEvaluating the impact of these tools in various educational settings:\rTo assess their efficiency\rAnd their usefulness for learners and educators.\rThe vision is to build a sustainable and flexible ecosystem for groundwater education."
     },
     {
         "image": "images/slide_16.png",
-        "notes": "No notes"
+        "notes": "Slide 16 \u2013 The INUX Framework: Regional Strengths, Shared Resources\rThis slide illustrates the core idea of INUX:\u000bLeveraging the strengths of diverse institutions to build a shared, open, and collaborative educational platform.\rProject partners and their regional focus:\rUniversity of Gothenburg \u2013 Scandinavian region; education for geology/natural sciences.\rTechnical University Dresden \u2013 Central Europe; education for engineering-oriented students.\rUniversity of Graz \u2013 Alpine and high-mountain environments.\rUPC Barcelona \u2013 Mediterranean region and climate.\rEach university brings:\rUnique applications, examples, and teaching contexts.\rA different student profile and learning environment.\rCurrent limitation:\rUntil now, students only had access to their own institution\u2019s materials.\rOur vision:\rOpen up all courses, apps, and examples across the partner institutions.\rExtend access to the wider public, in line with the open-source philosophy of the project.\rPromote cross-institutional learning and knowledge sharing."
     },
     {
         "image": "images/slide_17.png",
-        "notes": "No notes"
+        "notes": "Slide 17 \u2013 Example Application: Slug Test Evaluation\rThis slide presents a concrete example of the digital materials developed within the INUX project.\rThe featured tool is a small Streamlit application designed for evaluating slug tests, a common field method in hydrogeology.\rKey features of the app:\rAccessible via QR code on the slide.\rIncludes multilingual translation functionality for speaker notes and interface.\rComes with an introductory video that:\rDemonstrates the field setup.\rExplains how the data are collected, which will be analyzed in the app.\rAn interactive slider allows users to:\rAdapt the model solution in real-time.\rVisually match it to the measured field data.\rThe tool supports applied, intuitive learning through hands-on exploration."
     },
     {
         "image": "images/slide_18.png",
-        "notes": "No notes"
+        "notes": "Slide 18 \u2013 Example from SYMPLE25: 1D Groundwater Flow\rThis slide presents one of the individual learning modules included in the SYMPLE25 app.\rThe topic covered here is one-dimensional groundwater flow \u2014 a fundamental concept in hydrogeology.\rThe sub-app allows learners to:\rInteractively explore how hydraulic gradients drive flow.\rAdjust parameters to understand steady-state and transient behavior.\rConnect theoretical understanding with visual and numerical representation.\rThis is part of SYMPLE25\u2019s modular approach to building up knowledge step by step through targeted apps."
     },
     {
         "image": "images/slide_19.png",
-        "notes": "No notes"
+        "notes": "Slide 19 \u2013 Example Application: SYMPLE25 School\rThis slide showcases another key product of the INUX project: the SYMPLE25 School.\rIt is a one-year continuing education course designed for professionals and lifelong learners.\rThe course is delivered through a streamlined Streamlit app that:\rCombines multiple smaller apps into a single structured learning environment.\rIs organized into sections for easy navigation and modular learning.\rAdditional features:\rSlides from online sessions are integrated directly into the app.\rEach slide includes multilingual speaker notes to support diverse learners.\rA QR code provides direct access to the public demo version of the app.\rSYMPLE25 exemplifies how interactive tools and structured content can support flexible, self-paced education."
     },
     {
         "image": "images/slide_20.png",
-        "notes": "No notes"
+        "notes": "Slide 20 \u2013 SYMPLE25: Tutorials for Self-Paced Learning\rThe SYMPLE25 app also includes structured tutorials to support independent learning.\rEach tutorial consists of:\rA video screencast that demonstrates the use of groundwater-related software tools.\rAn accompanying to-do list that guides learners through practical tasks step by step.\rThis structure enables:\rSelf-paced learning, ideal for professionals with limited time.\rHands-on experience with tools and workflows used in real-world groundwater management.\rThe tutorial format fosters active engagement and helps build practical competencies."
     },
     {
         "image": "images/slide_21.png",
-        "notes": "No notes"
+        "notes": "Slide 21 \u2013 Final Example: Pumping Test Analysis Module\rThis last example features a classical application in hydrogeology:\u000bPumping test analysis.\rThe module is distributed via the Groundwater Project, ensuring open access and global reach.\rIt forms a complete educational unit, including:\rTheoretical background on pumping tests.\rMultiple interactive and static pages covering all key aspects:\rTest setup\rData collection\rParameter estimation\rResult interpretation\rLearners can access the full module using the QR code provided on the slide.\rThis resource combines comprehensive content with interactive learning and supports both teaching and self-study."
     },
     {
         "image": "images/slide_22.png",
-        "notes": "No notes"
+        "notes": "Slide 22 \u2013 Combining Textbook and Field Data\rThis slide provides another insight into the Pumping Test Application Module.\rThe module includes both:\rTextbook datasets \u2013 to teach standard procedures and ensure consistent examples.\rField-measured data \u2013 to expose learners to the complexities of real-world conditions.\rUsing real data helps students:\rUnderstand the strengths and limitations of various analytical methods.\rLearn how to interpret noisy or incomplete data, just as they would in professional practice.\rThis mix of controlled and realistic data enhances critical thinking and applied problem-solving."
     },
     {
         "image": "images/slide_23.png",
-        "notes": "No notes"
+        "notes": "Slide 23 \u2013 Conclusion and Outlook\rTo conclude, we emphasize the open and collaborative nature of the INUX project:\rAll educational materials are open source and freely available.\rThey are ready to be used, adapted, and extended by educators and learners worldwide.\rWe warmly welcome collaboration and contributions:\rWhether you\u2019re an instructor, developer, or student \u2014 your input can help strengthen and grow this initiative.\rMore information is available:\rOn our project webpage\rIn our GitHub repository, where you can access the materials and tools.\rFinally, we invite you to explore the content of the EGU Splinter Meeting, which is:\rPresented in a dedicated Streamlit presentation\rAnd will be published in the GitHub repository shortly."
     },
     {
         "image": "images/slide_24.png",
-        "notes": "No notes"
+        "notes": "Slide 24 \u2013 Acknowledgements\rThank you very much for your time and interest in our presentation.\rWe would like to express our sincere gratitude to:\rAll supporters, sponsors, and project partners\rThe colleagues and collaborators who have contributed to the development of our materials\rThe agencies and institutions that provided funding, infrastructure, and encouragement\rThis project is truly a collaborative effort, and we are thankful for the opportunity to advance hydrogeology education together."
     }
 ]
