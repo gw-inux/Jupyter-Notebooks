@@ -53,6 +53,21 @@ where:
 - $P$ = is the power (exponent) of the nonlinear discharge component of well loss.
 """)
 
+st.subheader('Interactive plot of the $Q-h$ relationship of the MNW package', divider: 'green')
+
+st.markdown("""
+The subsequent interactive plot allows you to investigate the behavior of the Multi-Node-Well (MNW) boundary in MODFLOW. The plot shows the relationship between the cell water level (aquifer head) and the head in the pumping well. The application allows you to evaluate and visualize for a
+- defined discharge (i.e, $Q$ is defined and the head in the well $h_w$ is calculated)
+- defined head (i.e., $h_w$ is defined and the discharge $Q$ in the well is calculated.
+You can use the toggle to switch between both target parameters.
+
+Further, the application allows by toggles:
+- to turn the plot by 90 degrees,
+- to switch between number input or sliders,
+- to plot a second set of parameters for comparison.
+
+The values of the $Q-h$ relationship are shown below the interactive plot.
+""")
 # Functions
 
 # Define the nonlinear equation to solve: Q = Δh / (A + B + C * Q**(p-1))
@@ -111,7 +126,6 @@ def Q_h_plot():
     with columns1[0]:
         turn = st.toggle('Toggle to turn the plot 90 degrees')
         st.session_state.number_input = st.toggle("Toggle to use Slider or Number input.")
-        second = st.toggle("Toggle to define a second parameter set for comparison")
     with columns1[1]:
         st.write('**:green[Target for evaluation/visualization]**')
         h_target = st.toggle('Toggle for Q-target/h-target')
@@ -129,6 +143,7 @@ def Q_h_plot():
             else:
                 Q_show = st.slider      ("**Discharge in the pumping well**", 0.001, 1.0, 0.1, 0.001, key="Q_show_input", on_change=update_Q_show)                
     "---"
+    second = st.toggle("Toggle to define a second parameter set for comparison")
     columns3 = st.columns((1,1,1,1))
     
     with columns3[0]:
@@ -246,7 +261,7 @@ def Q_h_plot():
     ax_schematic.plot([0.5, 1.7], [delta_head, delta_head], 'k--', linewidth=1)
     ax_schematic.text(1.15, delta_head - 0.2, 'Well Head', color='black', fontsize=10)
     ax_schematic.plot([0.0, 1.7], [0, 0], 'b--', linewidth=1)
-    ax_schematic.text(1.15, 0 - 0.2, 'Aquifer Head', color='blue', fontsize=10)
+    ax_schematic.text(1.15, 0 - 0.2, 'Cell (Aquifer) \nWater Head', color='blue', fontsize=10)
      
     # Style
     ax_schematic.set_xlim(0, 2)
