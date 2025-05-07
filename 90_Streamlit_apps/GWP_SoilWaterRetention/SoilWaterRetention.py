@@ -83,7 +83,7 @@ columns_lic = st.columns((5,1))
 with columns_lic[0]:
     st.markdown(f'Developed by {", ".join(author_list)} ({year}). <br> {institution_text}', unsafe_allow_html=True)
 with columns_lic[1]:
-    st.image('figs/CC_BY-SA_icon.png')
+    st.image('FIGS/CC_BY-SA_icon.png')
     
 st.markdown('<span style="font-size: 15px;">*The online version of soilwaterretention is copyrighted by the author and distributed by* The Groundwater Project. *Please use* gw-project.org *links when you want to share* Groundwater Project *materials with others. It is not permissible to make GW-Project documents available on other websites nor to send copies of the files directly to others.*</span>', 
             unsafe_allow_html=True)
