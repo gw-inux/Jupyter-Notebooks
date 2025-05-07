@@ -150,11 +150,11 @@ def Q_h_plot():
     with columns3a[1]:
         st.write('**$B$** \nLinear well-loss coeff. in s/m²')        
     with columns3a[2]:
-        st.write('**Nonlinear well-loss coeff. C in s^P/m^(3P-1)**')        
+        st.write('**$C$** \nNonlinear well-loss coeff. in s^P/m^(3P-1)')        
     with columns3a[3]:
-        st.write('**Power of the nonlinear well-loss P**')        
+        st.write('**$P$** \nPower of the nonlinear well-loss')        
         
-    st.write('**:blue[Dataset 1]**')
+    st.write('**:blue[Dataset 1]** (A, B, C, P)')
     
     columns3 = st.columns((1,1,1,1))
     with columns3[0]:
@@ -179,7 +179,7 @@ def Q_h_plot():
             P = st.slider      ("", 1.0, 4.0, st.session_state.P, 0.1, key="P_input", on_change=update_P, label_visibility="collapsed")
     
     if second:
-        st.write('**:red[Dataset 2]**')
+        st.write('**:red[Dataset 2]** (A, B, C, P)')
         columns4 = st.columns((1,1,1,1))
     
         with columns4[0]:
