@@ -53,7 +53,7 @@ where:
 - $P$ = is the power (exponent) of the nonlinear discharge component of well loss.
 """)
 
-st.subheader('Interactive plot of the $Q-h$ relationship of the MNW package', divider: 'green')
+st.subheader('Interactive plot of the $Q-h$ relationship of the MNW package', divider='green')
 
 st.markdown("""
 The subsequent interactive plot allows you to investigate the behavior of the Multi-Node-Well (MNW) boundary in MODFLOW. The plot shows the relationship between the cell water level (aquifer head) and the head in the pumping well. The application allows you to evaluate and visualize for a
@@ -128,68 +128,80 @@ def Q_h_plot():
         st.session_state.number_input = st.toggle("Toggle to use Slider or Number input.")
     with columns1[1]:
         st.write('**:green[Target for evaluation/visualization]**')
-        h_target = st.toggle('Toggle for Q-target/h-target')
+        h_target = st.toggle('Toggle for **$Q$** or **$h$** target')
 
     columns2 = st.columns((1,1), gap = 'large')              
     with columns2[1]:
         if h_target:
             if st.session_state.number_input:
-                dh_show = st.number_input("**Drawdown in the pumping well**", 0.01, 10.0, 5.0, 0.1, key="dh_show_input", on_change=update_dh_show)
+                dh_show = st.number_input("**Drawdown $$\Delta h$$** in the pumping well", 0.01, 10.0, 5.0, 0.1, key="dh_show_input", on_change=update_dh_show)
             else:
-                dh_show = st.slider      ("**Drawdown in the pumping well**", 0.01, 10.0, 5.0, 0.1, key="dh_show_input", on_change=update_dh_show)
+                dh_show = st.slider      ("**Drawdown $$\Delta h$$** in the pumping well", 0.01, 10.0, 5.0, 0.1, key="dh_show_input", on_change=update_dh_show)
         else:
             if st.session_state.number_input:
-                Q_show = st.number_input("**Discharge in the pumping well**", 0.001, 1.0, 0.1, 0.001, key="Q_show_input", on_change=update_Q_show)
+                Q_show = st.number_input("**Discharge $Q$** in the pumping well", 0.001, 1.0, 0.1, 0.001, key="Q_show_input", on_change=update_Q_show)
             else:
-                Q_show = st.slider      ("**Discharge in the pumping well**", 0.001, 1.0, 0.1, 0.001, key="Q_show_input", on_change=update_Q_show)                
+                Q_show = st.slider      ("**Discharge $Q$** in the pumping well", 0.001, 1.0, 0.1, 0.001, key="Q_show_input", on_change=update_Q_show)                
     "---"
     second = st.toggle("Toggle to define a second parameter set for comparison")
-    columns3 = st.columns((1,1,1,1))
+    columns3a = st.columns((1,1,1,1))
+    with columns3a[0]:
+        st.write('**$A$** \nLinear aquifer-loss coeff. in s/m²')
+    with columns3a[1]:
+        st.write('**$B$** \nLinear well-loss coeff. in s/m²')        
+    with columns3a[2]:
+        st.write('**Nonlinear well-loss coeff. C in s^P/m^(3P-1)**')        
+    with columns3a[3]:
+        st.write('**Power of the nonlinear well-loss P**')        
+        
+    st.write('**:blue[Dataset 1]**')
     
+    columns3 = st.columns((1,1,1,1))
     with columns3[0]:
         if st.session_state.number_input:
-            A = st.number_input("**Linear aquifer-loss coeff. A in s/m²**", 0.01, 10.0, st.session_state.A, 0.1, key="A_input", on_change=update_A)
+            A = st.number_input("", 0.01, 10.0, st.session_state.A, 0.1, key="A_input", on_change=update_A, label_visibility="collapsed")
         else:
-            A = st.slider      ("**Linear aquifer-loss coeff. A in s/m²**", 0.01, 10.0, st.session_state.A, 0.1, key="A_input", on_change=update_A)
+            A = st.slider      ("", 0.01, 10.0, st.session_state.A, 0.1, key="A_input", on_change=update_A, label_visibility="collapsed")
     with columns3[1]:
         if st.session_state.number_input:
-            B = st.number_input("**Linear well-loss coeff. B in s/m²**", 0.01, 10.0, st.session_state.B, 0.1, key="B_input", on_change=update_B)
+            B = st.number_input("", 0.01, 10.0, st.session_state.B, 0.1, key="B_input", on_change=update_B, label_visibility="collapsed")
         else:
-            B = st.slider      ("**Linear well-loss coeff. B in s/m²**", 0.01, 10.0, st.session_state.B, 0.1, key="B_input", on_change=update_B)        
+            B = st.slider      ("", 0.01, 10.0, st.session_state.B, 0.1, key="B_input", on_change=update_B, label_visibility="collapsed")        
     with columns3[2]:
         if st.session_state.number_input:
-            C = st.number_input("**Nonlinear well-loss coeff. C in s^P/m^(3P-1)**", 0.01, 10.0, st.session_state.C, 0.1, key="C_input", on_change=update_C)
+            C = st.number_input("", 0.01, 10.0, st.session_state.C, 0.1, key="C_input", on_change=update_C, label_visibility="collapsed")
         else:
-            C = st.slider      ("**Nonlinear well-loss coeff. C in s^P/m^(3P-1)**", 0.01, 10.0, st.session_state.C, 0.1, key="C_input", on_change=update_C)   
+            C = st.slider      ("", 0.01, 10.0, st.session_state.C, 0.1, key="C_input", on_change=update_C, label_visibility="collapsed")   
     with columns3[3]:
         if st.session_state.number_input:
-            P = st.number_input("**Power of the nonlinear well-loss P**", 1.0, 4.0, st.session_state.P, 0.1, key="P_input", on_change=update_P)
+            P = st.number_input("", 1.0, 4.0, st.session_state.P, 0.1, key="P_input", on_change=update_P, label_visibility="collapsed")
         else:
-            P = st.slider      ("**Power of the nonlinear well-loss P**", 1.0, 4.0, st.session_state.P, 0.1, key="P_input", on_change=update_P)
+            P = st.slider      ("", 1.0, 4.0, st.session_state.P, 0.1, key="P_input", on_change=update_P, label_visibility="collapsed")
     
     if second:
+        st.write('**:red[Dataset 2]**')
         columns4 = st.columns((1,1,1,1))
     
         with columns4[0]:
             if st.session_state.number_input:
-                A2 = st.number_input("**comparison A2**", 0.01, 10.0, st.session_state.A2, 0.1, key="A2_input", on_change=update_A2)
+                A2 = st.number_input("", 0.01, 10.0, st.session_state.A2, 0.1, key="A2_input", on_change=update_A2, label_visibility="collapsed")
             else:
-                A2 = st.slider      ("**comparison A2**", 0.01, 10.0, st.session_state.A2, 0.1, key="A2_input", on_change=update_A2)
+                A2 = st.slider      ("", 0.01, 10.0, st.session_state.A2, 0.1, key="A2_input", on_change=update_A2, label_visibility="collapsed")
         with columns4[1]:
             if st.session_state.number_input:
-                B2 = st.number_input("**comparison B2**", 0.01, 10.0, st.session_state.B2, 0.1, key="B2_input", on_change=update_B2)
+                B2 = st.number_input("", 0.01, 10.0, st.session_state.B2, 0.1, key="B2_input", on_change=update_B2, label_visibility="collapsed")
             else:
-                B2 = st.slider      ("**comparison B2**", 0.01, 10.0, st.session_state.B2, 0.1, key="B2_input", on_change=update_B2)        
+                B2 = st.slider      ("", 0.01, 10.0, st.session_state.B2, 0.1, key="B2_input", on_change=update_B2, label_visibility="collapsed")        
         with columns4[2]:
             if st.session_state.number_input:
-                C2 = st.number_input("**comparison C2**", 0.01, 10.0, st.session_state.C2, 0.1, key="C2_input", on_change=update_C2)
+                C2 = st.number_input("", 0.01, 10.0, st.session_state.C2, 0.1, key="C2_input", on_change=update_C2, label_visibility="collapsed")
             else:
-                C2 = st.slider      ("**comparison C2**", 0.01, 10.0, st.session_state.C2, 0.1, key="C2_input", on_change=update_C2)   
+                C2 = st.slider      ("", 0.01, 10.0, st.session_state.C2, 0.1, key="C2_input", on_change=update_C2, label_visibility="collapsed")   
         with columns4[3]:
             if st.session_state.number_input:
-                P2 = st.number_input("**comparison P2**", 1.0, 4.0, st.session_state.P2, 0.1, key="P2_input", on_change=update_P2)
+                P2 = st.number_input("", 1.0, 4.0, st.session_state.P2, 0.1, key="P2_input", on_change=update_P2, label_visibility="collapsed")
             else:
-                P2 = st.slider      ("**comparison P2**", 1.0, 4.0, st.session_state.P2, 0.1, key="P2_input", on_change=update_P2)
+                P2 = st.slider      ("", 1.0, 4.0, st.session_state.P2, 0.1, key="P2_input", on_change=update_P2, label_visibility="collapsed")
    
     "---"
     aquifer_thickness = 10.0
