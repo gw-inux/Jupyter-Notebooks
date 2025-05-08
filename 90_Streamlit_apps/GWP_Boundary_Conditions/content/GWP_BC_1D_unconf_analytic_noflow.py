@@ -6,7 +6,7 @@ import streamlit as st
 
 
 st.title('Analytical solution for 1D unconfined flow with one defined head boundary/river boundary')
-st.subheader('Understanding :rainbow[Model Calibration]', divider="blue")
+st.subheader('Understanding :blue[Groundwater-Surface Water Interaction]', divider="blue")
 
 lc1, cc1, rc1 = st.columns((1,1,1), gap = 'large')
 with cc1:
@@ -153,7 +153,7 @@ def computation():
             R_print = R*1000*86400*365.25
             st.write("**Recharge (fixed) in mm/a:** %5.2f" %R_print)
         else:
-            R = st.slider('_Recharge input:_',0,400,0,1)
+            R = st.slider('_Recharge input:_',-400,400,0,1)
             st.write("**Recharge in mm/a:** %3i" %R)
             R = R/1000/365.25/86400
     
@@ -166,7 +166,7 @@ def computation():
             st.write("**CRIV:** %5.2e" %cRiv)
             hr_riv = R * L / cRiv / zb + hRiv
      
-    x = np.arange(0, L, L/100)
+    x = np.arange(0, L, L/1000)
     
     if riv:
         phiL = 0.5 * K * (hr_riv - zb) ** 2
@@ -220,7 +220,7 @@ def computation():
     #ax.hlines(y= h_arrow-(h_arrow*0.0005), xmin=L*0.95, xmax=L*0.97, colors='blue')   
     #ax.hlines(y= h_arrow-(h_arrow*0.001), xmin=L*0.955, xmax=L*0.965, colors='blue')
 
-    plt.ylim(148,hr *(1+y_scale/100))
+    plt.ylim(140,hr *(1+y_scale/100))
     plt.xlim(-50,L+50)
     x_pos1 = 400
     x_pos2 = 2500
