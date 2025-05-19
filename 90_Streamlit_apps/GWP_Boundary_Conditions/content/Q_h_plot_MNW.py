@@ -13,17 +13,19 @@ from streamlit_extras.stateful_button import button
 year = 2025 
 authors = {
     "Thomas Reimann": [1],  # Author 1 belongs to Institution 1
+    "Eileen Poeter": [2],
 }
 institutions = {
     1: "TU Dresden, Institute for Groundwater Management",
+    2: "Colorado School of Mines"
 }
 index_symbols = ["¹", "²", "³", "⁴", "⁵", "⁶", "⁷", "⁸", "⁹"]
 author_list = [f"{name}{''.join(index_symbols[i-1] for i in indices)}" for name, indices in authors.items()]
 institution_list = [f"{index_symbols[i-1]} {inst}" for i, inst in institutions.items()]
 institution_text = " | ".join(institution_list)
 
-st.title("Process-based implementation of Flow to Pumping wells")
-st.subheader("Theory and Concept of the Multi-Node-Well package (MNW) in MODFLOW", divider="green")
+st.title("Theory and Concept of the :blue[Multi-Node-Well package (MNW) in MODFLOW]")
+st.subheader("Process-based implementation of Flow to Pumping wells", divider="blue")
 
 st.markdown("""
 This app calculates the flow between a Multi-Node-Well (MNW) and a model cell depending on the system parameters describing the flow in the vicinity of the well and into the well.
@@ -120,7 +122,9 @@ def Q_h_plot():
     # Define the minimum and maximum for the logarithmic scale
     log_min1 = -7.0 # T / Corresponds to 10^-7 = 0.0000001
     log_max1 = 1.0  # T / Corresponds to 10^1 = 10
-    "---"
+    
+    st.markdown("---")
+    
     # Switches
     columns1 = st.columns((1,1), gap = 'large')              
     with columns1[0]:
@@ -142,7 +146,7 @@ def Q_h_plot():
                 Q_show = st.number_input("**Discharge $Q$** in the pumping well", 0.001, 1.0, 0.1, 0.001, key="Q_show_input", on_change=update_Q_show)
             else:
                 Q_show = st.slider      ("**Discharge $Q$** in the pumping well", 0.001, 1.0, 0.1, 0.001, key="Q_show_input", on_change=update_Q_show)                
-    "---"
+    st.markdown("---")
     second = st.toggle("Toggle to define a second parameter set for comparison")
     columns3a = st.columns((1,1,1,1))
     with columns3a[0]:
@@ -203,7 +207,7 @@ def Q_h_plot():
             else:
                 P2 = st.slider      ("", 1.0, 4.0, st.session_state.P2, 0.1, key="P2_input", on_change=update_P2, label_visibility="collapsed")
    
-    "---"
+    st.markdown("---")
     aquifer_thickness = 10.0
     if h_target:
         delta_head = dh_show
@@ -283,7 +287,7 @@ def Q_h_plot():
     
     # --- RIGHT AXIS: Q vs Δh plot ---
     if turn:
-        ax_plot.plot(Q_values, delta_h_range, label="$Q-h$ relation", color='darkblue', linewidth=3)
+        ax_plot.plot(Q_values, delta_h_range, label="$Q-h$ relation", color='darkblue', linewidth=4)
         if h_target:
             ax_plot.plot(Q_show, delta_head, 'ro',markersize=10, label="h_target")
             ax_plot.plot([0, Q_line], [delta_head, delta_head], linestyle='dotted', color='grey', linewidth=2)
@@ -301,7 +305,7 @@ def Q_h_plot():
         ax_plot.set_ylim(10, 0)
         ax_plot.set_xlim(0, 1)
     else:
-        ax_plot.plot(delta_h_range, Q_values, label="Discharge $Q_n$", color='darkblue', linewidth=3)
+        ax_plot.plot(delta_h_range, Q_values, label="Discharge $Q_n$", color='darkblue', linewidth=4)
         if h_target:
             ax_plot.plot(delta_head,Q_show, 'ro',markersize=10, label="h_target")
             ax_plot.plot([delta_head, delta_head], [0, Q_line], linestyle='dotted', color='grey', linewidth=2)
@@ -340,7 +344,7 @@ def Q_h_plot():
 
 Q_h_plot()
 
-'---'
+st.markdown("---")
 # Render footer with authors, institutions, and license logo in a single line
 columns_lic = st.columns((5,1))
 with columns_lic[0]:

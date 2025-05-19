@@ -10,17 +10,19 @@ import matplotlib.pyplot as plt
 year = 2025 
 authors = {
     "Thomas Reimann": [1],  # Author 1 belongs to Institution 1
+    "Eileen Poeter": [2],
 }
 institutions = {
     1: "TU Dresden, Institute for Groundwater Management",
+    2: "Colorado School of Mines"
 }
 index_symbols = ["¹", "²", "³", "⁴", "⁵", "⁶", "⁷", "⁸", "⁹"]
 author_list = [f"{name}{''.join(index_symbols[i-1] for i in indices)}" for name, indices in authors.items()]
 institution_list = [f"{index_symbols[i-1]} {inst}" for i, inst in institutions.items()]
 institution_text = " | ".join(institution_list)
 
-st.title("Consideration of Evapotranspiration on Groundwater Ressources")
-st.subheader("Theory and Concept of Evapotranspiration in MODFLOW", divider="green")
+st.title("Theory and Concept of :rainbow[Evapotranspiration in MODFLOW]")
+st.subheader("Consideration of Evapotranspiration on Groundwater Ressources", divider="rainbow")
 
 st.markdown("""
 This app shows the effect of evapotranspiration in removing water from an aquifer according to Harbaugh (2005) as it is implemented by the EVT package in MODFLOW. The EVT package consider only evapotranspiration from the saturated zone. The approach considers the following parameters/measures:
@@ -174,7 +176,6 @@ def Q_h_plot():
         ax.set_ylim(-0.1*QET_MAX, QET_MAX)
     ax.set_title("Evapotranspiration losses", fontsize=12)
     
-    ax.grid(True)
     ax.legend()
     #ax.set_aspect('equal', adjustable='box')
     

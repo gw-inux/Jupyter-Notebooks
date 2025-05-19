@@ -12,22 +12,29 @@ from streamlit_extras.stateful_button import button
 year = 2025 
 authors = {
     "Thomas Reimann": [1],  # Author 1 belongs to Institution 1
+    "Eileen Poeter": [2],
 }
 institutions = {
     1: "TU Dresden, Institute for Groundwater Management",
+    2: "Colorado School of Mines"
 }
 index_symbols = ["¹", "²", "³", "⁴", "⁵", "⁶", "⁷", "⁸", "⁹"]
 author_list = [f"{name}{''.join(index_symbols[i-1] for i in indices)}" for name, indices in authors.items()]
 institution_list = [f"{index_symbols[i-1]} {inst}" for i, inst in institutions.items()]
 institution_text = " | ".join(institution_list)
 
-st.title("Interaction Between Groundwater and Drains")
-st.subheader("Theory and Concept of the Drain Boundary (DRN) in MODFLOW", divider="green")
+st.title("Theory and Concept of the :green[Drain Boundary (DRN) in MODFLOW]")
+st.subheader("Interaction Between Groundwater and Drains", divider="green")
 
 st.markdown("""
-This app calculates the flow between  a model cell and a Drain (DRN) depending on the drain elevation $H_{drain}$ and the conductance $C_{drain}$ between the boundary and the aquifer cell.
- 
-The relationship follows:
+This app calculates the flow between  a model cell and a Drain (DRN) depending on the drain elevation $H_{drain}$ and the conductance $C_{drain}$ between the boundary and the aquifer cell. The following figure illustrates the setup.""")
+
+left_co, cent_co, last_co = st.columns((10,80,10))
+with cent_co:
+    st.image('06_Groundwater_modeling/FIGS/DRN.png', caption="Schematic illustration of the DRN boundary with a) drain pipe burried in backfill ditch, and b) open drain; modified from  (McDonald and Harbaugh, 1988; https://pubs.usgs.gov/twri/twri6a1/pdf/twri_6-A1_p.pdf)")
+    
+st.markdown("""
+The relationship between the amount of water that flows into the drain and the head in the aquifer is:
 """)
 
 st.latex(r'''Q_{out} = C_{D} (H_{D} - h_{{aq}})''')
@@ -39,12 +46,8 @@ where:
 - $C_{drain}$ is the drain conductance [L2/T], and
 - $h_{aq}$ is the head in the aquifer that interacts with the drain (L).
 
-The following figure illustrates the setup.
-""")
 
-left_co, cent_co, last_co = st.columns((10,80,10))
-with cent_co:
-    st.image('06_Groundwater_modeling/FIGS/DRN.png', caption="Schematic illustration of the DRN boundary with a) drain pipe burried in backfill ditch, and b) open drain; modified from  (McDonald and Harbaugh, 1988; https://pubs.usgs.gov/twri/twri6a1/pdf/twri_6-A1_p.pdf)")
+""")
 
 st.subheader("Interactive plot", divider="green")
 
@@ -114,7 +117,7 @@ def Q_h_plot():
     # Create the plot
     fig, ax = plt.subplots(figsize=(6, 6))
     if turn:
-        ax.plot(Q, h_aq, label=rf"$Q_o = C_D(H_D - h_{{aq}})$, $C_D$ = {st.session_state.CD:.2e}",color='orange', linewidth=3)
+        ax.plot(Q, h_aq, label=rf"$Q_o = C_D(H_D - h_{{aq}})$, $C_D$ = {st.session_state.CD:.2e}",color='green', linewidth=3)
         ax.axvline(0, color='black', linewidth=1)
         ax.axhline(HD, color='green', linewidth=2, linestyle='--', label=f'$H_D$ in m= {HD}')
         ax.axhline(h_aq_show, color='blue', linewidth=2, linestyle='--', label=f'$h_{{aq}}$ in m= {h_aq_show}')
@@ -142,7 +145,7 @@ def Q_h_plot():
         #ax.text(0.035, 1,  "Losing DRN boundary", va='center',color='green')
             
     else:
-        ax.plot(h_aq, Q, label=rf"$Q_o = C_D(H_D - h_{{aq}})$, $C_D$ = {st.session_state.CD:.2e}",color='orange', linewidth=3)
+        ax.plot(h_aq, Q, label=rf"$Q_o = C_D(H_D - h_{{aq}})$, $C_D$ = {st.session_state.CD:.2e}",color='green', linewidth=3)
         ax.axhline(0, color='black', linewidth=1)
         ax.axvline(HD, color='green', linewidth=2, linestyle='--', label=f'$H_D$ in m= {HD}')
         ax.axvline(h_aq_show, color='blue', linewidth=2, linestyle='--', label=f'$h_{{aq}}$ in m= {h_aq_show}')
@@ -170,13 +173,13 @@ def Q_h_plot():
         #ax.text(13, 0.003, "Losing DRN boundary", va='center',color='green')
         
     ax.set_title("Flow Between Groundwater and DRN boundary", fontsize=12)
-    ax.grid(True)
     ax.legend()
     
     st.pyplot(fig)
 
 Q_h_plot()
-'---'
+
+st.markdown('---')
 # Render footer with authors, institutions, and license logo in a single line
 columns_lic = st.columns((5,1))
 with columns_lic[0]:

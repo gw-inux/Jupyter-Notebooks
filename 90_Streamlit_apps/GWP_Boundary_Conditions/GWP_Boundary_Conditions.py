@@ -3,6 +3,7 @@ import os
 
 # --- Application parameters ---
 DEFAULT_START_PAGE = "90_Streamlit_apps/GWP_Boundary_Conditions/content/GWP_Boundary_Conditions_Start.py"
+ABOUT_PAGE = "90_Streamlit_apps/GWP_Boundary_Conditions/content/GWP_About.py"
 
 # --- MUST be first: layout setup wide / centered ---
 if "layout_choice" not in st.session_state:
@@ -19,24 +20,18 @@ st.markdown("""
         border: none !important;
         padding: 0.3rem 0.6rem !important;
         text-align: left !important;
-        font-size: 1rem !important;
+        font-size: 1.2rem !important;
         font-weight: 700 !important;
         cursor: pointer !important;
         margin-top: -1rem;
+        color: black !important;              /* Always black */
     }
+    section[data-testid="stSidebar"] button:focus,
+    section[data-testid="stSidebar"] button:active,
     section[data-testid="stSidebar"] button:hover {
+        color: black !important;              /* Prevent red or theme override */
         background-color: rgba(44, 123, 229, 0.1) !important;
-        color: inherit !important;
         border-radius: 5px !important;
-    }
-    .subheader-label {
-        font-style: italic;
-        color: black;
-        font-size: 1rem;
-        text-decoration: underline;
-        margin-left: 2.5rem;
-        margin-top: -0.5rem;
-        margin-bottom: 0.5rem;
     }
     section[data-testid="stSidebar"] .block-container .stButton {
         margin-top: 0rem !important;
@@ -50,55 +45,52 @@ st.markdown("""
     </style>
 """, unsafe_allow_html=True)
 
-# --- Pages definition / The content of your application / Header are with the target 'None' ---
+
+# --- Flat page definitions ---
 pages = {
-    "🔶 General information": {
-        "Overview 📖": "90_Streamlit_apps/GWP_Boundary_Conditions/content/GWP_BC_1D_unconf_analytic_noflow.py",
-    },
-    "🔶 Boundary Conditions": {
-        "GHB": "90_Streamlit_apps/GWP_Boundary_Conditions/content/Q_h_plot_GHB.py",
-        "RIV": "90_Streamlit_apps/GWP_Boundary_Conditions/content/Q_h_plot_RIV.py",
-        "DRN": "90_Streamlit_apps/GWP_Boundary_Conditions/content/Q_h_plot_DRN.py",
-        "ET": "90_Streamlit_apps/GWP_Boundary_Conditions/content/Q_h_plot_ET.py",
-        "MNW": "90_Streamlit_apps/GWP_Boundary_Conditions/content/Q_h_plot_MNW.py",
-    }
+    "📕 Introduction ": "90_Streamlit_apps/GWP_Boundary_Conditions/content/GWP_BC_QHGeneral.py",
+    "🟠 GHB": "90_Streamlit_apps/GWP_Boundary_Conditions/content/Q_h_plot_GHB.py",
+    "🟣 RIV": "90_Streamlit_apps/GWP_Boundary_Conditions/content/Q_h_plot_RIV.py",
+    "🟢 DRN": "90_Streamlit_apps/GWP_Boundary_Conditions/content/Q_h_plot_DRN.py",
+    "🟡 ET": "90_Streamlit_apps/GWP_Boundary_Conditions/content/Q_h_plot_ET.py",
+    "🔵MNW": "90_Streamlit_apps/GWP_Boundary_Conditions/content/Q_h_plot_MNW.py"
 }
 
 # --- State tracking ---
-if "active_section" not in st.session_state:
-    st.session_state.active_section = None
 if "selected_path" not in st.session_state:
     st.session_state.selected_path = DEFAULT_START_PAGE
 
-# --- Overview page ---
+# Space before the first two buttons
+st.sidebar.markdown("<div style='margin-top: 2.0rem;'></div>", unsafe_allow_html=True)
+
+# --- Overview and About buttons (at top)
 if st.sidebar.button("💦 Overview", key="btn_overview"):
-    st.session_state.active_section = None
     st.session_state.selected_path = DEFAULT_START_PAGE
     st.rerun()
 
-# --- Section menu + subpage logic ---
-for section, subpages in pages.items():
-    if st.sidebar.button(section, key=f"btn_{section}"):
-        st.session_state.active_section = section
-        # Auto-select first real subpage
-        for label, path in subpages.items():
-            if path is not None:
-                st.session_state.selected_path = path
-                break
-        st.rerun()
+if st.sidebar.button("ℹ️ About", key="btn_about"):
+    st.session_state.selected_path = ABOUT_PAGE
+    st.rerun()
 
-    if st.session_state.active_section == section:
-        for label, path in subpages.items():
-            if path is None:
-                st.sidebar.markdown(f"<div class='subheader-label'>{label.replace('---', '').strip()}</div>", unsafe_allow_html=True)
-            else:
-                is_selected = st.session_state.selected_path == path
-                display_label = f"🟢 **{label}**" if is_selected else label
-                indent, content = st.sidebar.columns([0.1, 0.9])
-                with content:
-                    if st.button(display_label, key=f"{section}_{label}"):
-                        st.session_state.selected_path = path
-                        st.rerun()
+st.sidebar.markdown(
+    "<hr style='margin-top: -0.25rem; margin-bottom: -0.25rem;'>",
+    unsafe_allow_html=True
+)
+
+# --- Sidebar navigation ---
+for label, path in pages.items():
+    if "Introduction" in label:
+        st.sidebar.markdown("### Choose from the topics below")
+    is_selected = st.session_state.selected_path == path
+    clean_label = label.strip()
+    display_label = f"{clean_label} 👈" if is_selected else clean_label
+    if st.sidebar.button(display_label, key=f"btn_{label}"):
+        st.session_state.selected_path = path
+        st.rerun()
+        
+    # After rendering "Introduction 📖", insert a section label
+    if "Introduction" in label:
+        st.sidebar.markdown("**Boundary Condition Types**")
 
 # --- Run selected page ---
 if st.session_state.selected_path:

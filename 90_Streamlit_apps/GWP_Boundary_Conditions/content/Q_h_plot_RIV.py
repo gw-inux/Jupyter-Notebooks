@@ -23,8 +23,8 @@ author_list = [f"{name}{''.join(index_symbols[i-1] for i in indices)}" for name,
 institution_list = [f"{index_symbols[i-1]} {inst}" for i, inst in institutions.items()]
 institution_text = " | ".join(institution_list)
 
-st.title("Interaction Between Groundwater and Surface Water")
-st.subheader("Theory and Concept of River/Aquifer Interaction", divider="green")
+st.title("Theory and Concept of the :violet[River Boundary (RIV) in MODFLOW]")
+st.subheader("Description of Groundwater-River Interaction", divider="violet")
 
 st.markdown("""
 This application shows how the flow between a stream and an aquifer, $Q$, depends on the groundwater head in the river $h_{aq}$. 

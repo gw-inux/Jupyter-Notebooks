@@ -12,17 +12,19 @@ from streamlit_extras.stateful_button import button
 year = 2025 
 authors = {
     "Thomas Reimann": [1],  # Author 1 belongs to Institution 1
+    "Eileen Poeter": [2],
 }
 institutions = {
     1: "TU Dresden, Institute for Groundwater Management",
+    2: "Colorado School of Mines"
 }
 index_symbols = ["¹", "²", "³", "⁴", "⁵", "⁶", "⁷", "⁸", "⁹"]
 author_list = [f"{name}{''.join(index_symbols[i-1] for i in indices)}" for name, indices in authors.items()]
 institution_list = [f"{index_symbols[i-1]} {inst}" for i, inst in institutions.items()]
 institution_text = " | ".join(institution_list)
 
-st.title("Interaction Between Groundwater and Surface Water")
-st.subheader("Theory and Concept of the General Head Boundary (GHB) in MODFLOW", divider="green")
+st.title("Theory and Concept of the :orange[General Head Boundary (GHB) in MODFLOW]")
+st.subheader("Interaction Between Groundwater and head-dependent boundaries", divider="orange")
 
 st.markdown("""
 This app calculates the flow between a General Head Boundary (GHB) and a model cell depending on the boundary head $HB$ and the conductance $C_B$ between the boundary and the aquifer cell.
@@ -46,7 +48,7 @@ left_co, cent_co, last_co = st.columns((10,80,10))
 with cent_co:
     st.image('06_Groundwater_modeling/FIGS/GHB.png', caption="Schematic illustration of the GHB boundary, modified from  (McDonald and Harbaugh, 1988; https://pubs.usgs.gov/twri/twri6a1/pdf/twri_6-A1_p.pdf)")
 
-st.subheader("Interactive plot", divider="green")
+st.subheader("Interactive plot", divider="orange")
 
 # Functions
 
@@ -204,7 +206,6 @@ def Q_h_plot():
         ax.text(13, 0.003, "Losing GHB boundary", va='center',color='green')
         
     ax.set_title("Flow Between Groundwater and GHB boundary", fontsize=12)
-    ax.grid(True)
     ax.legend()
     
     st.pyplot(fig)
