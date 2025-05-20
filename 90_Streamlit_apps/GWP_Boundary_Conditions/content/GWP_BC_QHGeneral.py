@@ -81,7 +81,7 @@ with st.expander('Show more about the theory of the :blue[**model and the analyt
     st.markdown("""
             ### Conceptual model
             
-            The conceptual model considers the aquifer as a homogeneous and isotropic structure with a horizontal bottom. The aquifer is bounded by one defined-head boundary on the right side (left side is no flow). From the top, the aquifer receives uniform groundwater recharge.
+            The conceptual model considers the aquifer as a homogeneous and isotropic structure with a horizontal bottom. The aquifer is bounded by one defined-head boundary on the right side (left side is no-flow). From the top, the aquifer receives uniform groundwater recharge.
             """, unsafe_allow_html=True)
 
     st.markdown("""
@@ -158,11 +158,11 @@ def computation():
         with st.expander("Click for **the Q-h plot**:"):
             if riv:
                 bc_type = st.radio("for the following boundary condition:",
-                              ["**None**", ":orange[**No-Flow**]", ":green[**Recharge**]", ":violet[**River**]"], index=0)
+                              ["**None**", ":orange[**No-flow**]", ":green[**Recharge**]", ":violet[**River**]"], index=0)
             else:
                 bc_type = st.radio("for the following boundary condition:",
-                              ["**None**", ":orange[**No-Flow**]", ":green[**Recharge**]", ":blue[**Defined head**]"], index=0)
-            turn = st.toggle('Toggle to turn the plot 90 degrees') 
+                              ["**None**", ":orange[**No-flow**]", ":green[**Recharge**]", ":blue[**Defined head**]"], index=0)
+            turn = st.toggle('Toggle to turn the plot 90 degrees', key="general_turn") 
     # Computation here
     
     x = np.arange(0, L, L/1000)
@@ -217,8 +217,8 @@ def computation():
     ax.plot(x,h)
     ax.fill_between(x,0,h, facecolor='lightblue')
     ax.set_title('Hydraulic head for 1D unconfined flow', fontsize=16, pad=10)
-    ax.set_xlabel(r'x in m', fontsize=14)
-    ax.set_ylabel(r'hydraulic head in m', fontsize=14)
+    ax.set_xlabel(r'x [m]', fontsize=14)
+    ax.set_ylabel(r'hydraulic head [m]', fontsize=14)
     
     # BOUNDARY CONDITIONS hl, hr
     ax.vlines(0, 0, 1000, linewidth = 10, color='lightgrey')
@@ -245,7 +245,7 @@ def computation():
     x_pos1 = 400
     x_pos2 = 2490
     y_pos1 = 158.8
-    ax.text(x_pos1, y_pos1, 'No Flow bc', horizontalalignment='right', bbox=dict(boxstyle="square", facecolor='lightgrey'), fontsize=12)
+    ax.text(x_pos1, y_pos1, 'No-flow bc', horizontalalignment='right', bbox=dict(boxstyle="square", facecolor='lightgrey'), fontsize=12)
     if riv:
         ax.text(x_pos2, y_pos1, 'River bc', horizontalalignment='right', bbox=dict(boxstyle="square", facecolor='fuchsia'), fontsize=12)
     else:
@@ -255,14 +255,14 @@ def computation():
     if turn:
         ax_qh.xaxis.set_major_formatter(FormatStrFormatter('%.1e'))
         ax_qh.set_ylim(140,160)
-        ax_qh.set_ylabel("Head [m]", fontsize=14)
-        ax_qh.set_xlabel("Discharge Q [m³/s]", fontsize=14)
+        ax_qh.set_ylabel("hydraulic head [m]", fontsize=14)
+        ax_qh.set_xlabel("flow into the model Qin [m³/s]", fontsize=14)
     else:
         ax_qh.yaxis.set_major_formatter(FormatStrFormatter('%.1e'))
         ax_qh.set_xlim(140,160)
-        ax_qh.set_xlabel("Head [m]", fontsize=14)
-        ax_qh.set_ylabel("Discharge Q [m³/s]", fontsize=14)
-    if "No-Flow" in bc_type:
+        ax_qh.set_xlabel("hydraulic head [m]", fontsize=14)
+        ax_qh.set_ylabel("flow into the model Qin [m³/s]", fontsize=14)
+    if "No-flow" in bc_type:
         if turn:
             ax_qh.plot(Q_nf, h_nf, color='black', linewidth=3)
             ax_qh.plot(Q_nf_point, h_nf_point, 'ro', markersize=10)

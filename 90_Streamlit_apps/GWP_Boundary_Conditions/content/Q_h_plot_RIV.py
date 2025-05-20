@@ -279,10 +279,10 @@ def Q_h_plot():
         
     with columns1[1]:
         x_range = st.number_input("**Range of Q in the plot**", 0.02, 1.00, 0.05, 0.01)
-        turn = st.toggle('**Turn Graph** 90 degrees')
+        turn = st.toggle('**Turn Graph** 90 degrees', key="RIV_turn")
         st.session_state.number_input = st.toggle("**Use Slider or Number** for input")      
         condcomp = st.toggle('Compute $C_{RIV}$ explicitly')
-        visualize = st.toggle(':rainbow[**Make the plot alive** and visualize the input values]')
+        visualize = st.toggle(':rainbow[**Make the plot alive** and visualize the input values]', key="RIV_vis")
   
     "---"   
     # INPUT for the computation
@@ -415,7 +415,7 @@ def Q_h_plot():
     lim2 = -x_range
         
     # Create the graph
-    fig, ax = plt.subplots(figsize=(10,12))
+    fig, ax = plt.subplots(figsize=(8,10))
     if turn:
         
         
@@ -428,9 +428,9 @@ def Q_h_plot():
         ax.set_xlim(lim1,lim2)
         
 
-        
+        # Visualize is the plot with all the explanations
         if visualize:
-            ax.plot(Q, h_aq, label=rf"$Q$", color='blue', linewidth=3)
+            ax.plot(Q, h_aq, label=rf"$Q$", color='fuchsia', linewidth=3)
             # Plot visuals
             ax.axvline(0, color='black', linewidth=1)
             # Plot visualization
@@ -503,7 +503,7 @@ def Q_h_plot():
         ax.set_ylim(lim2,lim1) 
        
         if visualize:
-            ax.plot(h_aq, Q, label=rf"$Q$", color='blue', linewidth=3)
+            ax.plot(h_aq, Q, label=rf"$Q$", color='fuchsia', linewidth=3)
             # Plot visuals
             ax.axhline(0, color='black', linewidth=1)
             ax.axvline(h_RIV,     color='navy',      linewidth=2,   linestyle='-', label=f'$h_{{RIV}}$ in m = {h_RIV:.2f}')
@@ -536,8 +536,6 @@ def Q_h_plot():
             ax.vlines(x=line_x1, ymin=0.9*lim2 - line_length/2, ymax=0.9*lim2 + line_length/2, color='lightblue', linewidth=2)
             ax.vlines(x=line_x2, ymin=0.9*lim2 - line_length/3, ymax=0.9*lim2 + line_length/3, color='lightblue', linewidth=2)
     
-    
-    
             # Arrows
             if Q_ref < 0:
                 draw_sharp_arrow(ax, start=(h_aq_show, Q_ref), end=(h_RIV,Q_ref), orientation='horizontal', axis_range_x=(lim1, lim2), axis_range_y=(h_ref, thick), color='blue', al=0.4, lw=3, hs=25)
@@ -565,12 +563,13 @@ def Q_h_plot():
             ax.text(thick-(0.25*(thick-h_ref)),  0.05*lim1, "Losing River",  va='center',color='green', fontsize=16)
         else:
             ax.plot(h_aq, Q, label=rf"$Q$", color='black', linewidth=3)
-    # === SHARED FORMATTING === #
+   
+   # === SHARED FORMATTING === #
     ax.set_xlabel(xlabel, fontsize=14, labelpad=15)
     ax.set_ylabel(ylabel, fontsize=14, labelpad=15)
     plt.xticks(fontsize=14)
     plt.yticks(fontsize=14)  
-    ax.set_title("Flow Between Groundwater and River", fontsize=16)
+    ax.set_title("Flow Between Groundwater and River", fontsize=16, pad=10)
     
     #ax.grid(True)
     
@@ -596,7 +595,7 @@ def Q_h_plot():
             loc='lower center',
             bbox_to_anchor=(0.25, -0.28), # slightly to the left
             ncol=2,
-            fontsize=14,
+            fontsize=12,
             frameon=False
         )
         
@@ -607,7 +606,7 @@ def Q_h_plot():
             loc='lower center',
             bbox_to_anchor=(0.80, -0.27), # to the right
             ncol=1,
-            fontsize=14,
+            fontsize=12,
             frameon=False
         )
         

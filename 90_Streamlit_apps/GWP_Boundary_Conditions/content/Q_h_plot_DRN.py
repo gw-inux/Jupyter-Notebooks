@@ -64,8 +64,8 @@ def update_h_aq_show():
     st.session_state.h_aq_show = st.session_state.h_aq_show_input  
     
 # Initialize session state for value and toggle state
-st.session_state.CD_slider_value = -3.0
-st.session_state.HD = 9.0
+st.session_state.CD_slider_value = -2.5
+st.session_state.HD = 8.0
 st.session_state.h_aq_show = 10.0
 
 st.session_state.number_input = False  # Default to number_input
@@ -80,8 +80,9 @@ def Q_h_plot():
     log_max1 = 1.0  # T / Corresponds to 10^1 = 10
     
     # Switches
-    turn = st.toggle('Toggle to turn the plot 90 degrees')
+    turn = st.toggle('Toggle to turn the plot 90 degrees', key="DRN_turn")
     st.session_state.number_input = st.toggle("Toggle to use Slider or Number for input of $C_D$, $H_D$, and $h_{aq}$.")
+    visualize = st.toggle(':rainbow[**Make the plot alive** and visualize the input values]', key="DRN_vis")
     
     columns1 = st.columns((1,1), gap = 'large')
     
@@ -108,72 +109,90 @@ def Q_h_plot():
         else:
             h_aq_show = st.slider      ("**Aquifer head ($h_{aq})$**", 0.0, 20.0, st.session_state.h_aq_show, 0.1, key="h_aq_show_input", on_change=update_h_aq_show)
     
-    # Define aquifer head range
+    # Computation - Define aquifer head range
     h_aq = np.linspace(0, 20, 200)
     
     Q = np.where(h_aq >= HD, st.session_state.CD * (HD - h_aq)*-1, 0)
     Q_ref = st.session_state.CD * (HD - h_aq_show)*-1 if h_aq_show >= HD else 0   
         
     # Create the plot
-    fig, ax = plt.subplots(figsize=(6, 6))
-    if turn:
-        ax.plot(Q, h_aq, label=rf"$Q_o = C_D(H_D - h_{{aq}})$, $C_D$ = {st.session_state.CD:.2e}",color='green', linewidth=3)
-        ax.axvline(0, color='black', linewidth=1)
-        ax.axhline(HD, color='green', linewidth=2, linestyle='--', label=f'$H_D$ in m= {HD}')
-        ax.axhline(h_aq_show, color='blue', linewidth=2, linestyle='--', label=f'$h_{{aq}}$ in m= {h_aq_show}')
-        # Labels and formatting
-        ax.set_ylabel("Heads and elevations in the DRN Boundary-Aquifer System (m)", fontsize=10)
-        ax.set_xlabel("Flow from the Ground-Water System into the DRN  $Q_{out}$ (m³/s)", fontsize=10)
-        ax.set_ylim(0, 20)
-        ax.set_xlim(0.05, -0.05)
-        if Q_ref > 0:
-            ax.annotate(
-                '',  # no text
-                xy=(Q_ref,HD),  # arrowhead
-                xytext=(Q_ref, h_aq_show),  # arrow start
-                arrowprops=dict(arrowstyle='->', color='blue', lw=3,  alpha=0.4)
-            )
+    fig, ax = plt.subplots(figsize=(8, 8))
+    if visualize:
+        if turn:
+            ax.plot(Q, h_aq, label=rf"$Q_o = C_D(H_D - h_{{aq}})$, $C_D$ = {st.session_state.CD:.2e}",color='green', linewidth=3)
+            ax.axvline(0, color='black', linewidth=1)
+            ax.axhline(HD, color='green', linewidth=2, linestyle='--', label=f'$H_D$ in m= {HD}')
+            ax.axhline(h_aq_show, color='blue', linewidth=2, linestyle='--', label=f'$h_{{aq}}$ in m= {h_aq_show}')
+            # Labels and formatting
+            ax.set_ylabel("Heads and elevations in the DRN Boundary-Aquifer System (m)", fontsize=14, labelpad=15)
+            ax.set_xlabel("Flow from the Ground-Water System into the DRN  $Q_{out}$ (m³/s)", fontsize=14, labelpad=15)
+            ax.set_ylim(0, 20)
+            ax.set_xlim(0.05, -0.05)
+            if Q_ref > 0:
+                ax.annotate(
+                    '',  # no text
+                    xy=(Q_ref,HD),  # arrowhead
+                    xytext=(Q_ref, h_aq_show),  # arrow start
+                    arrowprops=dict(arrowstyle='->', color='blue', lw=3,  alpha=0.4)
+                )
+            else:
+                ax.annotate(
+                    '',  # no text
+                    xy=(Q_ref,HD),  # arrowhead
+                    xytext=(Q_ref, h_aq_show),  # arrow start
+                    arrowprops=dict(arrowstyle='<-', color='green', lw=3, alpha=0.6)
+                )
+            # Add gaining/losing stream annotations
+            ax.text(0.037,1, "Gaining DRN boundary", va='center',color='blue')
+            #ax.text(0.035, 1,  "Losing DRN boundary", va='center',color='green')
+                
         else:
-            ax.annotate(
-                '',  # no text
-                xy=(Q_ref,HD),  # arrowhead
-                xytext=(Q_ref, h_aq_show),  # arrow start
-                arrowprops=dict(arrowstyle='<-', color='green', lw=3, alpha=0.6)
-            )
-        # Add gaining/losing stream annotations
-        ax.text(0.037,1, "Gaining DRN boundary", va='center',color='blue')
-        #ax.text(0.035, 1,  "Losing DRN boundary", va='center',color='green')
-            
-    else:
-        ax.plot(h_aq, Q, label=rf"$Q_o = C_D(H_D - h_{{aq}})$, $C_D$ = {st.session_state.CD:.2e}",color='green', linewidth=3)
-        ax.axhline(0, color='black', linewidth=1)
-        ax.axvline(HD, color='green', linewidth=2, linestyle='--', label=f'$H_D$ in m= {HD}')
-        ax.axvline(h_aq_show, color='blue', linewidth=2, linestyle='--', label=f'$h_{{aq}}$ in m= {h_aq_show}')
-        # Labels and formatting
-        ax.set_xlabel("Heads and elevations in the DRN Boundary-Aquifer System (m))", fontsize=10)
-        ax.set_ylabel("Flow from the Ground-Water System into the DRN $Q_{out}$ (m³/s)", fontsize=10)
-        ax.set_xlim(0, 20)
-        ax.set_ylim(-0.05, 0.05)
-        if Q_ref < 0:
-            ax.annotate(
+            ax.plot(h_aq, Q, label=rf"$Q_o = C_D(H_D - h_{{aq}})$, $C_D$ = {st.session_state.CD:.2e}",color='green', linewidth=3)
+            ax.axhline(0, color='black', linewidth=1)
+            ax.axvline(HD, color='green', linewidth=2, linestyle='--', label=f'$H_D$ in m= {HD}')
+            ax.axvline(h_aq_show, color='blue', linewidth=2, linestyle='--', label=f'$h_{{aq}}$ in m= {h_aq_show}')
+            # Labels and formatting
+            ax.set_xlabel("Heads and elevations in the DRN Boundary-Aquifer System (m))", fontsize=14, labelpad=15)
+            ax.set_ylabel("Flow from the Ground-Water System into the DRN $Q_{out}$ (m³/s)", fontsize=14, labelpad=15)
+            ax.set_xlim(0, 20)
+            ax.set_ylim(-0.05, 0.05)
+            if Q_ref < 0:
+                ax.annotate(
+                    '',  # no text
+                    xy=(HD, Q_ref),  # arrowhead
+                    xytext=(h_aq_show, Q_ref),  # arrow start
+                    arrowprops=dict(arrowstyle='->', color='blue', lw=3,  alpha=0.4)
+                )
+            else:
+                ax.annotate(
                 '',  # no text
                 xy=(HD, Q_ref),  # arrowhead
                 xytext=(h_aq_show, Q_ref),  # arrow start
-                arrowprops=dict(arrowstyle='->', color='blue', lw=3,  alpha=0.4)
-            )
+                arrowprops=dict(arrowstyle='<-', color='green', lw=3, alpha=0.6)
+                )
+            # Add losing drn annotations
+            ax.text(13, -0.003, "Gaining DRN boundary", va='center',color='blue')
+    else:
+        if turn:
+            ax.plot(Q, h_aq, label=rf"$Q_o = C_D(H_D - h_{{aq}})$, $C_D$ = {st.session_state.CD:.2e}",color='black', linewidth=3)
+            # Labels and formatting
+            ax.set_ylabel("Heads and elevations in the DRN Boundary-Aquifer System (m)", fontsize=14, labelpad=15)
+            ax.set_xlabel("Flow from the Ground-Water System into the DRN  $Q_{out}$ (m³/s)", fontsize=14, labelpad=15)
+            ax.set_ylim(0, 20)
+            ax.set_xlim(0.05, -0.05)
         else:
-            ax.annotate(
-            '',  # no text
-            xy=(HD, Q_ref),  # arrowhead
-            xytext=(h_aq_show, Q_ref),  # arrow start
-            arrowprops=dict(arrowstyle='<-', color='green', lw=3, alpha=0.6)
-            )
-        # Add gaining/losing stream annotations
-        ax.text(13, -0.003, "Gaining DRN boundary", va='center',color='blue')
-        #ax.text(13, 0.003, "Losing DRN boundary", va='center',color='green')
+            ax.plot(h_aq, Q, label=rf"$Q_o = C_D(H_D - h_{{aq}})$, $C_D$ = {st.session_state.CD:.2e}",color='black', linewidth=3)
+            # Labels and formatting
+            ax.set_xlabel("Heads and elevations in the DRN Boundary-Aquifer System (m)", fontsize=14, labelpad=15)
+            ax.set_ylabel("Flow from the Ground-Water System into the DRN  $Q_{out}$ (m³/s)", fontsize=14, labelpad=15)
+            ax.set_xlim(0, 20)
+            ax.set_ylim(-0.05, 0.05)            
         
-    ax.set_title("Flow Between Groundwater and DRN boundary", fontsize=12)
-    ax.legend()
+    # === SHARED FORMATTING === #     
+    ax.set_title("Flow Between Groundwater and DRN boundary", fontsize=16, pad=10)
+    plt.xticks(fontsize=14)
+    plt.yticks(fontsize=14) 
+    ax.legend(fontsize=14)
     
     st.pyplot(fig)
 

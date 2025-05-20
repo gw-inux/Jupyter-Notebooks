@@ -1,5 +1,6 @@
 import numpy as np
 import matplotlib.pyplot as plt
+from matplotlib.gridspec import GridSpec
 import scipy.special
 import scipy.interpolate as interp
 from scipy.optimize import fsolve
@@ -106,7 +107,7 @@ st.session_state.dh_show = 5.0
 st.session_state.Q_show = 0.1
 st.session_state.A = 5.0
 st.session_state.B = 5.0
-st.session_state.C = 5.0
+st.session_state.C = 0.0
 st.session_state.P = 2.0
 st.session_state.A2 = 5.0
 st.session_state.B2 = 5.0
@@ -128,110 +129,127 @@ def Q_h_plot():
     # Switches
     columns1 = st.columns((1,1), gap = 'large')              
     with columns1[0]:
-        turn = st.toggle('Toggle to turn the plot 90 degrees')
+        turn = st.toggle('Toggle to turn the plot 90 degrees', key="MNW_turn")
         st.session_state.number_input = st.toggle("Toggle to use Slider or Number input.")
+        visualize = st.toggle(':rainbow[**Make the plot alive** and visualize the input values]', key="MNW_vis")
     with columns1[1]:
-        st.write('**:green[Target for evaluation/visualization]**')
-        h_target = st.toggle('Toggle for **$Q$** or **$h$** target')
+        # The additional controls only for visualization
+        if visualize:
+            st.write('**:green[Target for evaluation/visualization]**')
+            h_target = st.toggle('Toggle for **$Q$** or **$h$** target')
 
     columns2 = st.columns((1,1), gap = 'large')              
     with columns2[1]:
-        if h_target:
-            if st.session_state.number_input:
-                dh_show = st.number_input("**Drawdown $$\Delta h$$** in the pumping well", 0.01, 10.0, 5.0, 0.1, key="dh_show_input", on_change=update_dh_show)
+        # The additional controls only for visualization
+        if visualize:
+            if h_target:
+                if st.session_state.number_input:
+                    dh_show = st.number_input("**Drawdown $$\Delta h$$** in the pumping well", 0.01, 10.0, 5.0, 0.1, key="dh_show_input", on_change=update_dh_show)
+                else:
+                    dh_show = st.slider      ("**Drawdown $$\Delta h$$** in the pumping well", 0.01, 10.0, 5.0, 0.1, key="dh_show_input", on_change=update_dh_show)
             else:
-                dh_show = st.slider      ("**Drawdown $$\Delta h$$** in the pumping well", 0.01, 10.0, 5.0, 0.1, key="dh_show_input", on_change=update_dh_show)
-        else:
-            if st.session_state.number_input:
-                Q_show = st.number_input("**Discharge $Q$** in the pumping well", 0.001, 1.0, 0.1, 0.001, key="Q_show_input", on_change=update_Q_show)
-            else:
-                Q_show = st.slider      ("**Discharge $Q$** in the pumping well", 0.001, 1.0, 0.1, 0.001, key="Q_show_input", on_change=update_Q_show)                
+                if st.session_state.number_input:
+                    Q_show = st.number_input("**Discharge $Q$** in the pumping well", 0.001, 1.0, 0.1, 0.001, key="Q_show_input", on_change=update_Q_show)
+                else:
+                    Q_show = st.slider      ("**Discharge $Q$** in the pumping well", 0.001, 1.0, 0.1, 0.001, key="Q_show_input", on_change=update_Q_show)                
+    
     st.markdown("---")
-    second = st.toggle("Toggle to define a second parameter set for comparison")
-    columns3a = st.columns((1,1,1,1))
-    with columns3a[0]:
-        st.write('**$A$** \nLinear aquifer-loss coeff. in s/m²')
-    with columns3a[1]:
-        st.write('**$B$** \nLinear well-loss coeff. in s/m²')        
-    with columns3a[2]:
-        st.write('**$C$** \nNonlinear well-loss coeff. in s^P/m^(3P-1)')        
-    with columns3a[3]:
-        st.write('**$P$** \nPower of the nonlinear well-loss')        
+    with st.expander('Click to modify model parameters and to activate a second dataset for comparison'):
+        # Activate second dataset
+        second = st.toggle("Toggle to define a second parameter set for comparison")
         
-    st.write('**:blue[Dataset 1]** (A, B, C, P)')
-    
-    columns3 = st.columns((1,1,1,1))
-    with columns3[0]:
-        if st.session_state.number_input:
-            A = st.number_input("", 0.01, 10.0, st.session_state.A, 0.1, key="A_input", on_change=update_A, label_visibility="collapsed")
-        else:
-            A = st.slider      ("", 0.01, 10.0, st.session_state.A, 0.1, key="A_input", on_change=update_A, label_visibility="collapsed")
-    with columns3[1]:
-        if st.session_state.number_input:
-            B = st.number_input("", 0.01, 10.0, st.session_state.B, 0.1, key="B_input", on_change=update_B, label_visibility="collapsed")
-        else:
-            B = st.slider      ("", 0.01, 10.0, st.session_state.B, 0.1, key="B_input", on_change=update_B, label_visibility="collapsed")        
-    with columns3[2]:
-        if st.session_state.number_input:
-            C = st.number_input("", 0.01, 10.0, st.session_state.C, 0.1, key="C_input", on_change=update_C, label_visibility="collapsed")
-        else:
-            C = st.slider      ("", 0.01, 10.0, st.session_state.C, 0.1, key="C_input", on_change=update_C, label_visibility="collapsed")   
-    with columns3[3]:
-        if st.session_state.number_input:
-            P = st.number_input("", 1.0, 4.0, st.session_state.P, 0.1, key="P_input", on_change=update_P, label_visibility="collapsed")
-        else:
-            P = st.slider      ("", 1.0, 4.0, st.session_state.P, 0.1, key="P_input", on_change=update_P, label_visibility="collapsed")
-    
-    if second:
-        st.write('**:red[Dataset 2]** (A, B, C, P)')
-        columns4 = st.columns((1,1,1,1))
-    
-        with columns4[0]:
-            if st.session_state.number_input:
-                A2 = st.number_input("", 0.01, 10.0, st.session_state.A2, 0.1, key="A2_input", on_change=update_A2, label_visibility="collapsed")
-            else:
-                A2 = st.slider      ("", 0.01, 10.0, st.session_state.A2, 0.1, key="A2_input", on_change=update_A2, label_visibility="collapsed")
-        with columns4[1]:
-            if st.session_state.number_input:
-                B2 = st.number_input("", 0.01, 10.0, st.session_state.B2, 0.1, key="B2_input", on_change=update_B2, label_visibility="collapsed")
-            else:
-                B2 = st.slider      ("", 0.01, 10.0, st.session_state.B2, 0.1, key="B2_input", on_change=update_B2, label_visibility="collapsed")        
-        with columns4[2]:
-            if st.session_state.number_input:
-                C2 = st.number_input("", 0.01, 10.0, st.session_state.C2, 0.1, key="C2_input", on_change=update_C2, label_visibility="collapsed")
-            else:
-                C2 = st.slider      ("", 0.01, 10.0, st.session_state.C2, 0.1, key="C2_input", on_change=update_C2, label_visibility="collapsed")   
-        with columns4[3]:
-            if st.session_state.number_input:
-                P2 = st.number_input("", 1.0, 4.0, st.session_state.P2, 0.1, key="P2_input", on_change=update_P2, label_visibility="collapsed")
-            else:
-                P2 = st.slider      ("", 1.0, 4.0, st.session_state.P2, 0.1, key="P2_input", on_change=update_P2, label_visibility="collapsed")
-   
-    st.markdown("---")
-    aquifer_thickness = 10.0
-    if h_target:
-        delta_head = dh_show
-        Q_guess = delta_head / (A + B)  # initial guess
-        Q_show, = fsolve(discharge_equation, Q_guess, args=(delta_head, A, B, C, P))
-        if second:
-            delta_head2 = delta_head
-            Q_guess2 = delta_head2 / (A2 + B2)  # initial guess
-            Q_show2, = fsolve(discharge_equation, Q_guess2, args=(delta_head2, A2, B2, C2, P2))
-    else:
-        delta_head = Q_show * (A + B + C * Q_show**(P - 1))
-        if second:
-            Q_show2 = Q_show
-            delta_head2 = Q_show2 * (A2 + B2 + C2 * Q_show2**(P2 - 1))
-    
-    # Define the values for the visual help lines
-    if second:
-        Q_line = max(Q_show, Q_show2)
-        h_line = min(delta_head, delta_head2)
-    else:
-        Q_line = Q_show
-        h_line = delta_head
+        # Parameter Input
+        
+        columns3a = st.columns((1,1,1,1))
+        with columns3a[0]:
+            st.write('**$A$**')
+        with columns3a[1]:
+            st.write('**$B$**')        
+        with columns3a[2]:
+            st.write('**$C$**')        
+        with columns3a[3]:
+            st.write('**$P$**')
+
+        columns3 = st.columns((1,1,1,1))
+        with columns3[0]:
+            st.write('**Linear aquifer-loss** coeff. in s/m²')
+        with columns3[1]:
+            st.write('**Linear well-loss** coeff. in s/m²')        
+        with columns3[2]:
+            st.write('**Nonlinear well-loss** coeff. in s^P/m^(3P-1)')        
+        with columns3[3]:
+            st.write('Power of the nonlinear well-loss')        
             
+        st.write('**:blue[Dataset 1]** (A, B, C, P)')     
+        columns4 = st.columns((1,1,1,1))
+        if st.session_state.number_input:
+            with columns4[0]:
+                A = st.number_input("", 0.00, 10.0, st.session_state.A, 0.1, key="A_input", on_change=update_A, label_visibility="collapsed")
+            with columns4[1]:
+                B = st.number_input("", 0.00, 10.0, st.session_state.B, 0.1, key="B_input", on_change=update_B, label_visibility="collapsed")
+            with columns4[2]:
+                C = st.number_input("", 0.00, 10.0, st.session_state.C, 0.1, key="C_input", on_change=update_C, label_visibility="collapsed")
+            with columns4[3]:
+                P = st.number_input("", 1.0, 4.0,   st.session_state.P, 0.1, key="P_input", on_change=update_P, label_visibility="collapsed")
+        else:
+            with columns4[0]:
+                A = st.slider      ("", 0.00, 10.0, st.session_state.A, 0.1, key="A_input", on_change=update_A, label_visibility="collapsed")
+            with columns4[1]:
+                B = st.slider      ("", 0.00, 10.0, st.session_state.B, 0.1, key="B_input", on_change=update_B, label_visibility="collapsed")        
+            with columns4[2]:
+                C = st.slider      ("", 0.00, 10.0, st.session_state.C, 0.1, key="C_input", on_change=update_C, label_visibility="collapsed")   
+            with columns4[3]:
+                P = st.slider      ("", 1.0, 4.0,   st.session_state.P, 0.1, key="P_input", on_change=update_P, label_visibility="collapsed")
         
+        if second:
+            st.write('**:red[Dataset 2]** (A, B, C, P)')
+            columns5 = st.columns((1,1,1,1))
+            if st.session_state.number_input:
+                with columns5[0]:
+                    A2 = st.number_input("", 0.00, 10.0, st.session_state.A2, 0.1, key="A2_input", on_change=update_A2, label_visibility="collapsed")
+                with columns5[1]:
+                    B2 = st.number_input("", 0.00, 10.0, st.session_state.B2, 0.1, key="B2_input", on_change=update_B2, label_visibility="collapsed")
+                with columns5[2]:
+                    C2 = st.number_input("", 0.00, 10.0, st.session_state.C2, 0.1, key="C2_input", on_change=update_C2, label_visibility="collapsed")
+                with columns5[3]:
+                    P2 = st.number_input("", 1.0, 4.0,   st.session_state.P2, 0.1, key="P2_input", on_change=update_P2, label_visibility="collapsed")
+            else:
+                with columns5[0]:
+                    A2 = st.slider      ("", 0.00, 10.0, st.session_state.A2, 0.1, key="A2_input", on_change=update_A2, label_visibility="collapsed")
+                with columns5[1]:
+                    B2 = st.slider      ("", 0.00, 10.0, st.session_state.B2, 0.1, key="B2_input", on_change=update_B2, label_visibility="collapsed")        
+                with columns5[2]:
+                    C2 = st.slider      ("", 0.00, 10.0, st.session_state.C2, 0.1, key="C2_input", on_change=update_C2, label_visibility="collapsed")   
+                with columns5[3]:
+                    P2 = st.slider      ("", 1.0, 4.0,   st.session_state.P2, 0.1, key="P2_input", on_change=update_P2, label_visibility="collapsed")        
+    
+    aquifer_thickness = 10.0
+    
+    # Visualization if active
+    if visualize:
+        if h_target:
+            delta_head = dh_show
+            Q_guess = delta_head / (A + B)  # initial guess
+            Q_show, = fsolve(discharge_equation, Q_guess, args=(delta_head, A, B, C, P))
+            if second:
+                delta_head2 = delta_head
+                Q_guess2 = delta_head2 / (A2 + B2)  # initial guess
+                Q_show2, = fsolve(discharge_equation, Q_guess2, args=(delta_head2, A2, B2, C2, P2))
+        else:
+            delta_head = Q_show * (A + B + C * Q_show**(P - 1))
+            if second:
+                Q_show2 = Q_show
+                delta_head2 = Q_show2 * (A2 + B2 + C2 * Q_show2**(P2 - 1))
+        
+        # Define the values for the visual help lines
+        if second:
+            Q_line = max(Q_show, Q_show2)
+            h_line = min(delta_head, delta_head2)
+        else:
+            Q_line = Q_show
+            h_line = delta_head
+                
+            
     #Define aquifer head range / Range of head differences Δh
     delta_h_range = np.linspace(0.01, 10, 200)
     Q_values = []
@@ -251,95 +269,125 @@ def Q_h_plot():
             Q_solution2, = fsolve(discharge_equation, Q_initial_guess2, args=(delta_h2, A2, B2, C2, P2))
             Q_values2.append(Q_solution2)   
         
-    # PLOT HERE
-    # Create side-by-side plots
-    fig, (ax_schematic, ax_plot) = plt.subplots(1, 2, figsize=(12, 6), width_ratios=[1, 3])
-    
-    # --- LEFT AXIS: Schematic view (Aquifer head vs Well head) ---
-
-    schematic_width = 1.0
-    
-    # Aquifer: full height blue rectangle
-    ax_schematic.add_patch(plt.Rectangle((0.0, 0), schematic_width*0.5, aquifer_thickness, color='skyblue'))
-    ax_schematic.add_patch(plt.Rectangle((0.6, 0), schematic_width*0.5, aquifer_thickness, color='skyblue'))
-    
-    # Well water level: narrower grey rectangle, Head level indicators (dashed lines) and Labels wellls
-    if second and not h_target:
-        ax_schematic.add_patch(plt.Rectangle((0.50, delta_head),  schematic_width * 0.05, 10-delta_head, color='darkblue'))
-        ax_schematic.add_patch(plt.Rectangle((0.55, delta_head2), schematic_width * 0.05, 10-delta_head2, color='red'))
-        ax_schematic.plot([0.55, 1.7], [delta_head2, delta_head2], 'k--', linewidth=1)
-        ax_schematic.text(1.15, delta_head2 - 0.2, 'Well Head 2', color='red', fontsize=10)
-    else:
-        ax_schematic.add_patch(plt.Rectangle((0.5, delta_head), schematic_width * 0.1, 10-delta_head, color='darkblue'))
-
-    
-    # Head level indicators (dashed lines) and Labels Aquifer and Well 1
-    ax_schematic.plot([0.5, 1.7], [delta_head, delta_head], 'k--', linewidth=1)
-    ax_schematic.text(1.15, delta_head - 0.2, 'Well Head', color='black', fontsize=10)
-    ax_schematic.plot([0.0, 1.7], [0, 0], 'b--', linewidth=1)
-    ax_schematic.text(1.15, 0 - 0.2, 'Cell (Aquifer) \nWater Head', color='blue', fontsize=10)
-     
-    # Style
-    ax_schematic.set_xlim(0, 2)
-    ax_schematic.set_ylim(10, 0)
-    ax_schematic.axis('off')
-    
-    
-    # --- RIGHT AXIS: Q vs Δh plot ---
-    if turn:
-        ax_plot.plot(Q_values, delta_h_range, label="$Q-h$ relation", color='darkblue', linewidth=4)
-        if h_target:
-            ax_plot.plot(Q_show, delta_head, 'ro',markersize=10, label="h_target")
-            ax_plot.plot([0, Q_line], [delta_head, delta_head], linestyle='dotted', color='grey', linewidth=2)
+        
+    if visualize:
+        # PLOT HERE - Create side-by-side plots
+        fig, (ax_schematic, ax_plot) = plt.subplots(1, 2, figsize=(8, 6), width_ratios=[1, 3])
+        fig.subplots_adjust(wspace=0.5)  # Increase horizontal space between ax_schematic and ax_plot
+        
+        # --- LEFT AXIS: Schematic view (Aquifer head vs Well head) ---
+        schematic_width = 1.0
+        # Aquifer: full height blue rectangle
+        ax_schematic.add_patch(plt.Rectangle((0.0, 0), schematic_width*0.5, aquifer_thickness, color='skyblue'))
+        ax_schematic.add_patch(plt.Rectangle((0.6, 0), schematic_width*0.5, aquifer_thickness, color='skyblue'))
+        # Well water level: narrower grey rectangle, Head level indicators (dashed lines) and Labels wellls
+        if second and not h_target:
+            ax_schematic.add_patch(plt.Rectangle((0.50, delta_head),  schematic_width * 0.05, 10-delta_head, color='darkblue'))
+            ax_schematic.add_patch(plt.Rectangle((0.55, delta_head2), schematic_width * 0.05, 10-delta_head2, color='red'))
+            ax_schematic.plot([0.55, 1.7], [delta_head2, delta_head2], 'k--', linewidth=1)
+            ax_schematic.text(1.15, delta_head2 - 0.2, 'Well Head 2', color='red', fontsize=12)
         else:
-            ax_plot.plot(Q_show, delta_head, 'bo',markersize=10, label="Q_target")
-            ax_plot.plot([Q_show, Q_show], [aquifer_thickness, h_line], linestyle='dotted', color='grey', linewidth=2)
-        if second:
-            ax_plot.plot(Q_values2, delta_h_range2, label="$Q-h$ relation 2", linestyle='--', color='red', linewidth=3)
-            if h_target:
-                ax_plot.plot(Q_show2, delta_head2, 'ro',markersize=10)
-            else:
-                ax_plot.plot(Q_show2, delta_head2, 'bo',markersize=10)            
-        ax_plot.set_ylabel("Head Difference Δh = $h_{WELL} - h_{aq}$ (m)", fontsize=14)
-        ax_plot.set_xlabel("Flow from the Ground-Water System to the MNW $Q_W$ (m³/s)", fontsize=14)
-        ax_plot.set_ylim(10, 0)
-        ax_plot.set_xlim(0, 1)
-    else:
-        ax_plot.plot(delta_h_range, Q_values, label="Discharge $Q_n$", color='darkblue', linewidth=4)
-        if h_target:
-            ax_plot.plot(delta_head,Q_show, 'ro',markersize=10, label="h_target")
-            ax_plot.plot([delta_head, delta_head], [0, Q_line], linestyle='dotted', color='grey', linewidth=2)
-        else:
-            ax_plot.plot(delta_head, Q_show,'bo',markersize=10, label="Q_target")
-            ax_plot.plot([aquifer_thickness, h_line], [Q_show, Q_show], linestyle='dotted', color='grey', linewidth=2)
-        if second:
-            ax_plot.plot(delta_h_range2, Q_values2, label="Discharge $Q2_n$", linestyle='--', color='red', linewidth=3)
-            if h_target:
-                ax_plot.plot(delta_head2, Q_show2, 'ro',markersize=10)
-            else:
-                ax_plot.plot(delta_head2, Q_show2, 'bo',markersize=10)  
-        ax_plot.set_xlabel("Head Difference Δh = $h_{WELL} - h_{aq}$ (m)", fontsize=14)
-        ax_plot.set_ylabel("Flow from the Ground-Water System to the MNW $Q_W$ (m³/s)", fontsize=14)
-        ax_plot.set_xlim(0, 10)
-        ax_plot.set_ylim(0, 1)
+            ax_schematic.add_patch(plt.Rectangle((0.5, delta_head), schematic_width * 0.1, 10-delta_head, color='darkblue'))
     
-    ax_plot.set_title("Flow Between Aquifer and Well (MNW Boundary)", fontsize=14)
-    ax_plot.tick_params(axis='both', labelsize=12)
-    ax_plot.legend(fontsize=12)
+        # Head level indicators (dashed lines) and Labels Aquifer and Well 1
+        ax_schematic.plot([0.5, 1.7], [delta_head, delta_head], 'k--', linewidth=1)
+        ax_schematic.text(1.15, delta_head - 0.2, 'Well Head', color='black', fontsize=12)
+        ax_schematic.plot([0.0, 1.7], [0, 0], 'b--', linewidth=1)
+        ax_schematic.text(0.75, 0 - 0.2, 'Cell (aquifer) \nhead', color='blue', fontsize=12)
+        # Style
+        ax_schematic.set_xlim(0, 2)
+        ax_schematic.set_ylim(10, 0)
+        ax_schematic.axis('off')
+        
+        # --- RIGHT AXIS: Q vs Δh plot ---
+        if turn:
+            ax_plot.plot(Q_values, delta_h_range, label="$Q-h$ relation 1", color='darkblue', linewidth=4)
+            if second:
+                ax_plot.plot(Q_values2, delta_h_range2, label="$Q-h$ relation 2", linestyle='--', color='red', linewidth=3)
+            if h_target:
+                ax_plot.plot(Q_show, delta_head, 'ro',markersize=10, label="h_target")
+                ax_plot.plot([0, Q_line], [delta_head, delta_head], linestyle='dotted', color='grey', linewidth=2)
+                if second:
+                    ax_plot.plot(Q_show2, delta_head2, 'ro',markersize=10)
+            else:
+                ax_plot.plot(Q_show, delta_head, 'bo',markersize=10, label="Q_target")
+                ax_plot.plot([Q_show, Q_show], [aquifer_thickness, h_line], linestyle='dotted', color='grey', linewidth=2)
+                if second:
+                    ax_plot.plot(Q_show2, delta_head2, 'bo',markersize=10)            
+            ax_plot.set_ylabel("Head Difference Δh = $h_{WELL} - h_{aq}$ (m)", fontsize=12, labelpad=15)
+            ax_plot.set_xlabel("Flow from the Ground-Water System to the MNW $Q_W$ (m³/s)", fontsize=12, labelpad=15)
+            ax_plot.set_ylim(10, 0)
+            ax_plot.set_xlim(0, 1)
+        else:
+            ax_plot.plot(delta_h_range, Q_values, label="$Q-h$ relation 1", color='darkblue', linewidth=4)
+            if second:
+                ax_plot.plot(delta_h_range2, Q_values2, label="$Q-h$ relation 2", linestyle='--', color='red', linewidth=3)
+            if h_target:
+                ax_plot.plot(delta_head,Q_show, 'ro',markersize=10, label="h_target")
+                ax_plot.plot([delta_head, delta_head], [0, Q_line], linestyle='dotted', color='grey', linewidth=2)
+                if second:
+                    ax_plot.plot(delta_head2, Q_show2, 'ro',markersize=10)
+            else:
+                ax_plot.plot(delta_head, Q_show,'bo',markersize=10, label="Q_target")
+                ax_plot.plot([aquifer_thickness, h_line], [Q_show, Q_show], linestyle='dotted', color='grey', linewidth=2)
+                if second:
+                    ax_plot.plot(delta_head2, Q_show2, 'bo',markersize=10)  
+            ax_plot.set_xlabel("Head Difference Δh = $h_{WELL} - h_{aq}$ (m)", fontsize=12, labelpad=15)
+            ax_plot.set_ylabel("Flow from the Ground-Water System to the MNW $Q_W$ (m³/s)", fontsize=12, labelpad=15)
+            ax_plot.set_xlim(0, 10)
+            ax_plot.set_ylim(0, 1)
+        
+        ax_plot.set_title("Flow Between Aquifer and Well (MNW Boundary)", fontsize=14, pad=20)
+        ax_plot.tick_params(axis='both', labelsize=12)
+        ax_plot.legend(fontsize=12)
+    else:
+        fig, (ax_schematic, ax_plot) = plt.subplots(1, 2, figsize=(8, 6), width_ratios=[1, 3])
+        fig.subplots_adjust(wspace=0.5)
+        
+        ax_schematic.axis('off')  # Hide all axis lines and ticks
+        ax_schematic.set_frame_on(False)  # Hide the frame (border)
+        ax_schematic.set_xticks([])
+        ax_schematic.set_yticks([])
+        
+        # --- RIGHT AXIS: Q vs Δh plot ---
+        if turn:
+            ax_plot.plot(Q_values, delta_h_range, label="$Q-h$ relation 1", color='black', linewidth=4)
+            if second:
+                ax_plot.plot(Q_values2, delta_h_range2, label="$Q-h$ relation 2", linestyle='--', color='red', linewidth=3)           
+            ax_plot.set_ylabel("Head Difference Δh = $h_{WELL} - h_{aq}$ (m)", fontsize=12, labelpad=15)
+            ax_plot.set_xlabel("Flow from the Ground-Water System to the MNW $Q_W$ (m³/s)", fontsize=12, labelpad=15)
+            ax_plot.set_ylim(10, 0)
+            ax_plot.set_xlim(0, 1)
+        else:
+            ax_plot.plot(delta_h_range, Q_values, label="$Q-h$ relation 1", color='black', linewidth=4)
+            if second:
+                ax_plot.plot(delta_h_range2, Q_values2, label="$Q-h$ relation 2", linestyle='--', color='red', linewidth=3)
+            ax_plot.set_xlabel("Head Difference Δh = $h_{WELL} - h_{aq}$ (m)", fontsize=12, labelpad=15)
+            ax_plot.set_ylabel("Flow from the Ground-Water System to the MNW $Q_W$ (m³/s)", fontsize=12, labelpad=15)
+            ax_plot.set_xlim(0, 10)
+            ax_plot.set_ylim(0, 1)
+        
+        ax_plot.set_title("Flow Between Aquifer and Well (MNW Boundary)", fontsize=14, pad=20)
+        ax_plot.tick_params(axis='both', labelsize=12)
+        ax_plot.legend(fontsize=12)
+    
     
     # Show in Streamlit
     st.pyplot(fig)
-    st.write('**Drawdown and flow in the well:**')
-    if h_target:
-        st.write(':grey[**Drawdown in the well**] (in m) = %5.2f' %delta_head)
-        st.write(':blue[**Discharge $Q$ to the well**] (in m³/s) = %5.3f' %Q_show)
-        if second:
-            st.write(':red[**Discharge $Q2$ to the well**] (in m³/s) = %5.3f' %Q_show2)
-    else:
-        st.write(':grey[**Discharge to the well**] (in m³/s) = %5.3f' %Q_show)
-        st.write(':blue[**Drawdown $$\Delta h$$ in the well**] (in m) = %5.2f' %delta_head)
-        if second:
-            st.write(':red[**Drawdown $$\Delta h2$$ in the well**] (in m) = %5.2f' %delta_head2)
+    
+    
+    if visualize:
+        st.write('**Drawdown and flow in the well:**')
+        if h_target:
+            st.write(':grey[**Drawdown in the well**] (in m) = %5.2f' %delta_head)
+            st.write(':blue[**Discharge $Q$ to the well**] (in m³/s) = %5.3f' %Q_show)
+            if second:
+                st.write(':red[**Discharge $Q2$ to the well**] (in m³/s) = %5.3f' %Q_show2)
+        else:
+            st.write(':grey[**Discharge to the well**] (in m³/s) = %5.3f' %Q_show)
+            st.write(':blue[**Drawdown $$\Delta h$$ in the well**] (in m) = %5.2f' %delta_head)
+            if second:
+                st.write(':red[**Drawdown $$\Delta h2$$ in the well**] (in m) = %5.2f' %delta_head2)
         
 
 Q_h_plot()

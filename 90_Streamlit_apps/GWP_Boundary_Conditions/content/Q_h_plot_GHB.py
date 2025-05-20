@@ -69,11 +69,11 @@ def update_h_aq_show():
     st.session_state.h_aq_show = st.session_state.h_aq_show_input  
     
 # Initialize session state for value and toggle state
-st.session_state.C_slider_value = -3.0
-st.session_state.K_slider_value = -4.0
+st.session_state.C_slider_value = -2.5
+st.session_state.K_slider_value = -3.5
 st.session_state.LB = 100.
 st.session_state.AB = 1000.0
-st.session_state.HB = 9.0
+st.session_state.HB = 8.0
 st.session_state.stage = 2.0
 st.session_state.h_aq_show = 10.0
 
@@ -89,9 +89,10 @@ def Q_h_plot():
     log_max1 = 1.0  # T / Corresponds to 10^1 = 10
     
     # Switches
-    turn = st.toggle('Toggle to turn the plot 90 degrees')
+    turn = st.toggle('Toggle to turn the plot 90 degrees', key="GHB_turn")
     st.session_state.number_input = st.toggle("Toggle to use Slider or Number for input of $C_B$, $H_B$, $A_B$, $L_B$, and $h_{aq}$.")
     c_computed = st.toggle('Toggle to compute conductance')
+    visualize = st.toggle(':rainbow[**Make the plot alive** and visualize the input values]', key="GHB_vis")
     
     columns1 = st.columns((1,1), gap = 'large')
     
@@ -148,65 +149,84 @@ def Q_h_plot():
     Q_ref = st.session_state.C * (HB - h_aq_show)
     
     # Create the plot
-    fig, ax = plt.subplots(figsize=(6, 6))
-    if turn:
-        ax.plot(Q, h_aq, label=rf"$Q_B = C_B(H_B - h_{{aq}})$, $C_B$ = {st.session_state.C:.2e}",color='orange', linewidth=3)
-        ax.axvline(0, color='black', linewidth=1)
-        ax.axhline(HB, color='green', linewidth=2, linestyle='--', label=f'$H_B$ in m= {HB}')
-        ax.axhline(h_aq_show, color='blue', linewidth=2, linestyle='--', label=f'$h_{{aq}}$ in m= {h_aq_show}')
-        # Labels and formatting
-        ax.set_ylabel("Heads and elevations in the GHB Boundary-Aquifer System (m)", fontsize=10)
-        ax.set_xlabel("Flow Into the Ground-Water System From the GHB $Q_B$ (m³/s)", fontsize=10)
-        ax.set_ylim(0, 20)
-        ax.set_xlim(0.05, -0.05)
-        if Q_ref < 0:
-            ax.annotate(
-                '',  # no text
-                xy=(Q_ref,HB),  # arrowhead
-                xytext=(Q_ref, h_aq_show),  # arrow start
-                arrowprops=dict(arrowstyle='->', color='blue', lw=3,  alpha=0.4)
-            )
+    fig, ax = plt.subplots(figsize=(8, 8))
+    if visualize:
+        if turn:
+            ax.plot(Q, h_aq, label=rf"$Q_B = C_B(H_B - h_{{aq}})$, $C_B$ = {st.session_state.C:.2e}",color='orange', linewidth=3)
+            ax.axvline(0, color='black', linewidth=1)
+            ax.axhline(HB, color='green', linewidth=2, linestyle='--', label=f'$H_B$ in m= {HB}')
+            ax.axhline(h_aq_show, color='blue', linewidth=2, linestyle='--', label=f'$h_{{aq}}$ in m= {h_aq_show}')
+            # Labels and formatting
+            ax.set_ylabel("Heads and elevations in the GHB Boundary-Aquifer System (m)", fontsize=14, labelpad=15)
+            ax.set_xlabel("Flow Into the Ground-Water System From the GHB $Q_B$ (m³/s)", fontsize=14, labelpad=15)
+            ax.set_ylim(0, 20)
+            ax.set_xlim(0.05, -0.05)
+            if Q_ref < 0:
+                ax.annotate(
+                    '',  # no text
+                    xy=(Q_ref,HB),  # arrowhead
+                    xytext=(Q_ref, h_aq_show),  # arrow start
+                    arrowprops=dict(arrowstyle='->', color='blue', lw=3,  alpha=0.4)
+                )
+            else:
+                ax.annotate(
+                    '',  # no text
+                    xy=(Q_ref,HB),  # arrowhead
+                    xytext=(Q_ref, h_aq_show),  # arrow start
+                    arrowprops=dict(arrowstyle='<-', color='green', lw=3, alpha=0.6)
+                )
+            # Add gaining/losing stream annotations
+            ax.text(-0.003,1, "Gaining GHB boundary", va='center',color='blue',  fontsize=16)
+            ax.text(0.002, 1,  "Losing GHB boundary", va='center', ha='right',color='green',  fontsize=16)
+                
         else:
-            ax.annotate(
-                '',  # no text
-                xy=(Q_ref,HB),  # arrowhead
-                xytext=(Q_ref, h_aq_show),  # arrow start
-                arrowprops=dict(arrowstyle='<-', color='green', lw=3, alpha=0.6)
-            )
-        # Add gaining/losing stream annotations
-        ax.text(-0.003,1, "Gaining GHB boundary", va='center',color='blue')
-        ax.text(0.035, 1,  "Losing GHB boundary", va='center',color='green')
-            
-    else:
-        ax.plot(h_aq, Q, label=rf"$Q_B = C_B(H_B - h_{{aq}})$, $C_B$ = {st.session_state.C:.2e}",color='orange', linewidth=3)
-        ax.axhline(0, color='black', linewidth=1)
-        ax.axvline(HB, color='green', linewidth=2, linestyle='--', label=f'$H_B$ in m= {HB}')
-        ax.axvline(h_aq_show, color='blue', linewidth=2, linestyle='--', label=f'$h_{{aq}}$ in m= {h_aq_show}')
-        # Labels and formatting
-        ax.set_xlabel("Heads and elevations in the GHB Boundary-Aquifer System (m))", fontsize=10)
-        ax.set_ylabel("Flow Into the Ground-Water System From the GHB $Q_B$ (m³/s)", fontsize=10)
-        ax.set_xlim(0, 20)
-        ax.set_ylim(-0.05, 0.05)
-        if Q_ref < 0:
-            ax.annotate(
+            ax.plot(h_aq, Q, label=rf"$Q_B = C_B(H_B - h_{{aq}})$, $C_B$ = {st.session_state.C:.2e}",color='orange', linewidth=3)
+            ax.axhline(0, color='black', linewidth=1)
+            ax.axvline(HB, color='green', linewidth=2, linestyle='--', label=f'$H_B$ in m= {HB}')
+            ax.axvline(h_aq_show, color='blue', linewidth=2, linestyle='--', label=f'$h_{{aq}}$ in m= {h_aq_show}')
+            # Labels and formatting
+            ax.set_xlabel("Heads and elevations in the GHB Boundary-Aquifer System (m)", fontsize=14, labelpad=15)
+            ax.set_ylabel("Flow Into the Ground-Water System From the GHB $Q_B$ (m³/s)", fontsize=14, labelpad=15)
+            ax.set_xlim(0, 20)
+            ax.set_ylim(-0.05, 0.05)
+            if Q_ref < 0:
+                ax.annotate(
+                    '',  # no text
+                    xy=(HB, Q_ref),  # arrowhead
+                    xytext=(h_aq_show, Q_ref),  # arrow start
+                    arrowprops=dict(arrowstyle='->', color='blue', lw=3,  alpha=0.4)
+                )
+            else:
+                ax.annotate(
                 '',  # no text
                 xy=(HB, Q_ref),  # arrowhead
                 xytext=(h_aq_show, Q_ref),  # arrow start
-                arrowprops=dict(arrowstyle='->', color='blue', lw=3,  alpha=0.4)
-            )
-        else:
-            ax.annotate(
-            '',  # no text
-            xy=(HB, Q_ref),  # arrowhead
-            xytext=(h_aq_show, Q_ref),  # arrow start
-            arrowprops=dict(arrowstyle='<-', color='green', lw=3, alpha=0.6)
-            )
-        # Add gaining/losing stream annotations
-        ax.text(13, -0.003, "Gaining GHB boundary", va='center',color='blue')
-        ax.text(13, 0.003, "Losing GHB boundary", va='center',color='green')
-        
-    ax.set_title("Flow Between Groundwater and GHB boundary", fontsize=12)
-    ax.legend()
+                arrowprops=dict(arrowstyle='<-', color='green', lw=3, alpha=0.6)
+                )
+            # Add gaining/losing stream annotations
+            ax.text(19.8, -0.003, "Gaining GHB boundary", va='center', ha='right',color='blue',  fontsize=16)
+            ax.text(19.8, 0.003, "Losing GHB boundary", va='center', ha='right',color='green',  fontsize=16)
+    else:
+        if turn:
+            ax.plot(Q, h_aq, label=rf"$Q_B = C_B(H_B - h_{{aq}})$, $C_B$ = {st.session_state.C:.2e}",color='black', linewidth=3)
+            # Labels and formatting
+            ax.set_ylabel("Heads and elevations in the GHB Boundary-Aquifer System (m)", fontsize=14, labelpad=15)
+            ax.set_xlabel("Flow Into the Ground-Water System From the GHB $Q_B$ (m³/s)", fontsize=14, labelpad=15)
+            ax.set_ylim(0, 20)
+            ax.set_xlim(0.05,-0.05)
+        else:        
+            ax.plot(h_aq, Q, label=rf"$Q_B = C_B(H_B - h_{{aq}})$, $C_B$ = {st.session_state.C:.2e}",color='black', linewidth=3)
+            # Labels and formatting
+            ax.set_xlabel("Heads and elevations in the GHB Boundary-Aquifer System (m)", fontsize=14, labelpad=15)
+            ax.set_ylabel("Flow Into the Ground-Water System From the GHB $Q_B$ (m³/s)", fontsize=14, labelpad=15)
+            ax.set_xlim(0, 20)
+            ax.set_ylim(-0.05, 0.05)
+   
+   # === SHARED FORMATTING === #        
+    ax.set_title("Flow Between Groundwater and GHB boundary", fontsize=16, pad=10)
+    plt.xticks(fontsize=14)
+    plt.yticks(fontsize=14) 
+    ax.legend(fontsize=14)
     
     st.pyplot(fig)
 
