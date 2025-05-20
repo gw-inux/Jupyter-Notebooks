@@ -24,12 +24,10 @@ st.markdown("""
         font-weight: 700 !important;
         cursor: pointer !important;
         margin-top: -1rem;
-        color: black !important;              /* Always black */
     }
     section[data-testid="stSidebar"] button:focus,
     section[data-testid="stSidebar"] button:active,
     section[data-testid="stSidebar"] button:hover {
-        color: black !important;              /* Prevent red or theme override */
         background-color: rgba(44, 123, 229, 0.1) !important;
         border-radius: 5px !important;
     }
