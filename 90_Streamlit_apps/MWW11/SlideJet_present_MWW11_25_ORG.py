@@ -5,6 +5,96 @@ from pathlib import Path
 from PIL import Image
 from deep_translator import GoogleTranslator
 
+import img2pdf
+from pypdf import PdfReader, PdfWriter, Transformation
+from pypdf.annotations import Text, FreeText
+
+def generate_pdf(with_notes=False, text='Download pdf (no notes)'):
+    # Convert all files ending in .png inside a directory
+    imgs = []
+    for fname in os.listdir(images_folder):
+        if not fname.endswith('.png'):
+            continue
+        path = os.path.join(images_folder, fname)
+        if os.path.isdir(path):
+            continue
+        imgs.append(path)
+
+    with open(presentation_folder + '/presentation.pdf','wb') as f:
+        f.write(img2pdf.convert(imgs))
+
+    if with_notes:
+        scale_pdf(presentation_folder + '/presentation.pdf', len(slide_data))
+        add_notes(presentation_folder + '/presentation.pdf', slide_data)
+
+    # Open file in memory to be able to save with download button
+    with open(presentation_folder + '/presentation.pdf', 'rb') as pdf_file:
+        PDFbyte = pdf_file.read()
+
+    # Add download button
+    with pcol3:
+        # Save as presentation.pdf
+        st.download_button(
+            label=text,
+            data=PDFbyte,
+            file_name='presentation.pdf',
+            mime='application/octet-stream',
+            icon=':material/download:',
+            type='primary'
+        )
+
+def add_notes(pdf_path, slide_data):
+    # Fill the writer with the the already generated pdf
+    reader = PdfReader(pdf_path)
+    writer = PdfWriter()
+    writer.append_pages_from_reader(reader)
+    
+    for i in range(len(slide_data)):
+        #annotation = Text(
+        #    text=slide_data[i]['notes'],
+        #    rect=(20, 50, 20, 50) # rect – array of four integers [xLL, yLL, xUR, yUR] specifying the clickable rectangular area
+        #    )
+
+        # Create the annotation and add it
+        annotation = FreeText(
+            text=slide_data[i]['notes'],
+            rect=(reader.pages[i].mediabox.width * 0.76, 0, reader.pages[i].mediabox.width, reader.pages[i].mediabox.height),  # rect – array of four integers [xLL, yLL, xUR, yUR] specifying the clickable rectangular area
+            font="Arial",
+            bold=True,
+            italic=True,
+            font_size="20pt",
+            font_color="#000000",
+            border_color="#000000",
+            background_color="#FFFFFF",
+        )
+
+        # Set annotation flags to 4 for printable annotations.
+        # See "AnnotationFlag" for other options, e.g. hidden etc.
+        annotation.flags = 4
+
+        writer.add_annotation(page_number=i, annotation=annotation)
+
+    # Write the annotated file to disk
+    with open(pdf_path, 'wb') as fp:
+        writer.write(fp)   
+
+def scale_pdf(pdf_path, nr_pages):
+    # Read the input
+    reader = PdfReader(pdf_path)
+    writer = PdfWriter()
+    for i in range(nr_pages):
+        page = reader.pages[i]
+
+        # Scale
+        # page.scale_by(0.5)
+        op = Transformation().scale(sx=0.75, sy=0.75)
+        page.add_transformation(op)
+
+        # Write the result to a file        
+        writer.add_page(page)
+    with open(pdf_path, 'wb')as fp:
+        writer.write(fp)
+
 @st.cache_data(show_spinner=False)
 def translate_notes(text, target_lang):
     try:
@@ -12,7 +102,7 @@ def translate_notes(text, target_lang):
     except Exception as e:
         return f"[Translation failed: {e}]"
 
-# This is a generalized application to present Powerpoint slides and notes as slideshow through Streamlit
+# This is a generalized application to present PowerPoint slides and notes as slideshow through Streamlit
 # You can adapt the script with header and path to a specific presentation. To do this, just replace the initial informations.
 
 # --- Header content Copyright ---
@@ -63,7 +153,7 @@ st.header(f':red-background[{header_text}]')
 st.subheader(subheader_text, divider='red')
 
 st.markdown(""" 
-    You can move through the slides with the left/right button. Alternatively, you can switch through the slides with the slider. Finally, you can use the toggle to switch to an vertical layout to eventually adapt the app to your device. 
+    You can move through the slides with the **+/- button**. Alternatively, you can switch directly to a slide by inserting the slide number. There is an optin to translate the speaker notes of the slides to your favorite language. If you translate the speaker notes, the original text is still available below the translation. Finally, you can use the toggle to switch to a vertical layout to adapt the appearance of the application to your device. 
         """)
 
 # Define the default folder - the structure is fix and provided by the convert_ppt_slides.py application
@@ -194,6 +284,16 @@ if slide_data:
                     st.write(note_text)
             else:
                 st.write(f"**Notes:**\n\n{note_text}")
+
+    ### Download presentation as pdf ###
+    # Navigation buttons
+    pcol1, pcol2, pcol3 = st.columns([3, 1, 3])
+    with pcol1:    
+        if st.button('Prepare pdf (no notes) for download'):
+            generate_pdf()
+        
+        if st.button('Prepare pdf (with notes) for download'):
+            generate_pdf(True, 'Download pdf (with notes)')
 
 else:
     st.warning("No slide data loaded yet.")

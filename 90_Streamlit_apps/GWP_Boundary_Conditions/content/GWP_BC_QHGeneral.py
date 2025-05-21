@@ -232,7 +232,7 @@ def computation():
     #ax.arrow(100,150, 0.1,0.1)
     #ax.hlines(y= h_arrow-(h_arrow*0.0005), xmin=L*0.95, xmax=L*0.97, colors='blue')   
     #ax.hlines(y= h_arrow-(h_arrow*0.001), xmin=L*0.955, xmax=L*0.965, colors='blue')
-    if "No-Flow" in bc_type:
+    if "No-flow" in bc_type:
         ax.plot(0, h_nf_point, 'ro', markersize=10)
     if "Recharge" in bc_type:
         ax.plot(1250, h_rch_point, 'go', markersize=10)

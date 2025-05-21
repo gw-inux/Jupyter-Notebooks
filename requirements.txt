@@ -15,3 +15,5 @@ deep_translator
 bokeh
 streamlit_bokeh
 fpdf
+img2pdf
+pypdf

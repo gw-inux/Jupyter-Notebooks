@@ -104,7 +104,7 @@ def update_P2():
     
 # Initialize session state for value and toggle state
 st.session_state.dh_show = 5.0
-st.session_state.Q_show = 0.1
+st.session_state.Q_show = 0.2
 st.session_state.A = 5.0
 st.session_state.B = 5.0
 st.session_state.C = 0.0
@@ -149,9 +149,9 @@ def Q_h_plot():
                     dh_show = st.slider      ("**Drawdown $$\Delta h$$** in the pumping well", 0.01, 10.0, 5.0, 0.1, key="dh_show_input", on_change=update_dh_show)
             else:
                 if st.session_state.number_input:
-                    Q_show = st.number_input("**Discharge $Q$** in the pumping well", 0.001, 1.0, 0.1, 0.001, key="Q_show_input", on_change=update_Q_show)
+                    Q_show = st.number_input("**Discharge $Q$** in the pumping well", 0.001, 1.0, 0.2, 0.001, key="Q_show_input", on_change=update_Q_show)
                 else:
-                    Q_show = st.slider      ("**Discharge $Q$** in the pumping well", 0.001, 1.0, 0.1, 0.001, key="Q_show_input", on_change=update_Q_show)                
+                    Q_show = st.slider      ("**Discharge $Q$** in the pumping well", 0.001, 1.0, 0.2, 0.001, key="Q_show_input", on_change=update_Q_show)                
     
     st.markdown("---")
     with st.expander('Click to modify model parameters and to activate a second dataset for comparison'):
@@ -284,16 +284,16 @@ def Q_h_plot():
         if second and not h_target:
             ax_schematic.add_patch(plt.Rectangle((0.50, delta_head),  schematic_width * 0.05, 10-delta_head, color='darkblue'))
             ax_schematic.add_patch(plt.Rectangle((0.55, delta_head2), schematic_width * 0.05, 10-delta_head2, color='red'))
-            ax_schematic.plot([0.55, 1.7], [delta_head2, delta_head2], 'k--', linewidth=1)
-            ax_schematic.text(1.15, delta_head2 - 0.2, 'Well Head 2', color='red', fontsize=12)
+            ax_schematic.plot([0.55, 1.7], [delta_head2, delta_head2], 'k--', linewidth=1, color='red')
+            ax_schematic.text(1.85, delta_head2 - 0.1, 'Well \nhead 2', color='red', fontsize=12)
         else:
             ax_schematic.add_patch(plt.Rectangle((0.5, delta_head), schematic_width * 0.1, 10-delta_head, color='darkblue'))
     
         # Head level indicators (dashed lines) and Labels Aquifer and Well 1
-        ax_schematic.plot([0.5, 1.7], [delta_head, delta_head], 'k--', linewidth=1)
-        ax_schematic.text(1.15, delta_head - 0.2, 'Well Head', color='black', fontsize=12)
+        ax_schematic.plot([0.5, 1.7], [delta_head, delta_head], 'k--', linewidth=1, color='darkblue')
+        ax_schematic.text(0.85, delta_head - 0.1, 'Well \nhead 1', color='darkblue', fontsize=12)
         ax_schematic.plot([0.0, 1.7], [0, 0], 'b--', linewidth=1)
-        ax_schematic.text(0.75, 0 - 0.2, 'Cell (aquifer) \nhead', color='blue', fontsize=12)
+        ax_schematic.text(0.5, 0 - 0.2, 'Cell (aquifer) \nhead', color='blue', fontsize=12)
         # Style
         ax_schematic.set_xlim(0, 2)
         ax_schematic.set_ylim(10, 0)
@@ -301,9 +301,9 @@ def Q_h_plot():
         
         # --- RIGHT AXIS: Q vs Δh plot ---
         if turn:
-            ax_plot.plot(Q_values, delta_h_range, label="$Q-h$ relation 1", color='darkblue', linewidth=4)
+            ax_plot.plot(Q_values, delta_h_range, label="$Q-\Delta h$ relation 1", color='darkblue', linewidth=4)
             if second:
-                ax_plot.plot(Q_values2, delta_h_range2, label="$Q-h$ relation 2", linestyle='--', color='red', linewidth=3)
+                ax_plot.plot(Q_values2, delta_h_range2, label="$Q-\Delta h$ relation 2", linestyle='--', color='red', linewidth=3)
             if h_target:
                 ax_plot.plot(Q_show, delta_head, 'ro',markersize=10, label="h_target")
                 ax_plot.plot([0, Q_line], [delta_head, delta_head], linestyle='dotted', color='grey', linewidth=2)
@@ -319,9 +319,9 @@ def Q_h_plot():
             ax_plot.set_ylim(10, 0)
             ax_plot.set_xlim(0, 1)
         else:
-            ax_plot.plot(delta_h_range, Q_values, label="$Q-h$ relation 1", color='darkblue', linewidth=4)
+            ax_plot.plot(delta_h_range, Q_values, label="$Q-\Delta h$ relation 1", color='darkblue', linewidth=4)
             if second:
-                ax_plot.plot(delta_h_range2, Q_values2, label="$Q-h$ relation 2", linestyle='--', color='red', linewidth=3)
+                ax_plot.plot(delta_h_range2, Q_values2, label="$Q-\Delta h$ relation 2", linestyle='--', color='red', linewidth=3)
             if h_target:
                 ax_plot.plot(delta_head,Q_show, 'ro',markersize=10, label="h_target")
                 ax_plot.plot([delta_head, delta_head], [0, Q_line], linestyle='dotted', color='grey', linewidth=2)
@@ -351,17 +351,17 @@ def Q_h_plot():
         
         # --- RIGHT AXIS: Q vs Δh plot ---
         if turn:
-            ax_plot.plot(Q_values, delta_h_range, label="$Q-h$ relation 1", color='black', linewidth=4)
+            ax_plot.plot(Q_values, delta_h_range, label="$Q-\Delta h$ relation 1", color='black', linewidth=4)
             if second:
-                ax_plot.plot(Q_values2, delta_h_range2, label="$Q-h$ relation 2", linestyle='--', color='red', linewidth=3)           
+                ax_plot.plot(Q_values2, delta_h_range2, label="$Q-\Delta h$ relation 2", linestyle='--', color='red', linewidth=3)           
             ax_plot.set_ylabel("Head Difference Δh = $h_{WELL} - h_{aq}$ (m)", fontsize=12, labelpad=15)
             ax_plot.set_xlabel("Flow from the Ground-Water System to the MNW $Q_W$ (m³/s)", fontsize=12, labelpad=15)
             ax_plot.set_ylim(10, 0)
             ax_plot.set_xlim(0, 1)
         else:
-            ax_plot.plot(delta_h_range, Q_values, label="$Q-h$ relation 1", color='black', linewidth=4)
+            ax_plot.plot(delta_h_range, Q_values, label="$Q-\Delta h$ relation 1", color='black', linewidth=4)
             if second:
-                ax_plot.plot(delta_h_range2, Q_values2, label="$Q-h$ relation 2", linestyle='--', color='red', linewidth=3)
+                ax_plot.plot(delta_h_range2, Q_values2, label="$Q-\Delta h$ relation 2", linestyle='--', color='red', linewidth=3)
             ax_plot.set_xlabel("Head Difference Δh = $h_{WELL} - h_{aq}$ (m)", fontsize=12, labelpad=15)
             ax_plot.set_ylabel("Flow from the Ground-Water System to the MNW $Q_W$ (m³/s)", fontsize=12, labelpad=15)
             ax_plot.set_xlim(0, 10)
