@@ -127,9 +127,9 @@ y_scale = 7
 def computation():
     # Input data
     # Define the minimum and maximum for the logarithmic scale
-    log_min = -5.0 # Corresponds to 10^-7 = 0.0000001
+    log_min = -4.0 # Corresponds to 10^-7 = 0.0000001
     log_max = -2.0  # Corresponds to 10^0 = 1
-    log_min2 = -9.0 
+    log_min2 = -5.5 
     log_max2 = -3.0 
 
     columns = st.columns((1,1,1), gap = 'small')
@@ -137,11 +137,11 @@ def computation():
     with columns[0]:
         with st.expander("Click to modify **model parameters**:"):
             # Log slider for K with input and print
-            K_slider_value=st.slider('_(log of) hydr. conductivity input:_', log_min,log_max,-4.0,0.01,format="%4.2f" )
+            K_slider_value=st.slider('_(log of) hydr. conductivity input:_', log_min,log_max,-3.5,0.01,format="%4.2f" )
             K = 10 ** K_slider_value
             st.write("**$K$ in m/s:** %5.2e" %K)
             st.write("")
-            R = st.slider('_Recharge input:_',-400,400,0,1)
+            R = st.slider('_Recharge input:_',-300,300,0,1)
             st.write("**$R$ in mm/a:** %3i" %R)
             R = R/1000/365.25/86400
 
@@ -149,10 +149,11 @@ def computation():
         riv = st.toggle (':violet[**River BC?**]')
         if riv:
             #hRiv = st.slider('River head', hr, hr+5.0, hr, 0.01)
-            cRiv_slider = st.slider('_(log of) $C_{RIV}$ input_', log_min2,log_max2,-5.0,0.01,format="%4.2f")
+            cRiv_slider = st.slider('_(log of) $C_{RIV}$ input_', log_min2,log_max2,-4.0,0.01,format="%4.2f")
             cRiv = 10**cRiv_slider
             st.write("**$C_{RIV}$:** %5.2e" %cRiv)
-            hr_riv = R * L / cRiv / zb + hRiv
+ #           hr_riv = R * L / cRiv / zb + hRiv
+            hr_riv = R * L / cRiv + hRiv
             
     with columns[2]:
         with st.expander("Click for **the Q-h plot**:"):
@@ -221,7 +222,7 @@ def computation():
     ax.set_ylabel(r'hydraulic head [m]', fontsize=14)
     
     # BOUNDARY CONDITIONS hl, hr
-    ax.vlines(0, 0, 1000, linewidth = 10, color='lightgrey')
+    ax.vlines(0, 0, 1000, linewidth = 10, color='darkorange', alpha = 0.7)
     if riv:
         ax.vlines(L, 0, hr, linewidth = 10, color='deepskyblue')
         ax.vlines(L-5, 0, hr_riv, linewidth = 3, color='fuchsia')
@@ -234,22 +235,26 @@ def computation():
     #ax.hlines(y= h_arrow-(h_arrow*0.001), xmin=L*0.955, xmax=L*0.965, colors='blue')
     if "No-flow" in bc_type:
         ax.plot(0, h_nf_point, 'ro', markersize=10)
+        ax.text(75, h_nf_point+1.0, 'Q-h plot for this point', horizontalalignment='left', bbox=dict(boxstyle="square",facecolor='none', edgecolor='darkorange'), fontsize=12)
     if "Recharge" in bc_type:
         ax.plot(1250, h_rch_point, 'go', markersize=10)
+        ax.text(1000, h_rch_point+1.0, 'Q-h plot for this point', bbox=dict(boxstyle="square",facecolor='none', edgecolor='green'), fontsize=12)
     if "Defined head" in bc_type:
         ax.plot(2500, h_defh_point, 'bo', markersize=10)
+        ax.text(2425, h_defh_point+1.0, 'Q-h plot for this point', horizontalalignment='right', bbox=dict(boxstyle="square",facecolor='none', edgecolor='deepskyblue'), fontsize=12)
     if "River" in bc_type:
         ax.plot(2500, h_rob_point, 'o', color='fuchsia', markersize=10)
+        ax.text(2425, h_rob_point+1.0, 'Q-h plot for this point', horizontalalignment='right', bbox=dict(boxstyle="square",facecolor='none', edgecolor='fuchsia'), fontsize=12)
     ax.set_ylim(140,160)
     ax.set_xlim(-30,L+30)
     x_pos1 = 400
     x_pos2 = 2490
     y_pos1 = 158.8
-    ax.text(x_pos1, y_pos1, 'No-flow bc', horizontalalignment='right', bbox=dict(boxstyle="square", facecolor='lightgrey'), fontsize=12)
+    ax.text(x_pos1, y_pos1, 'No-flow bc', horizontalalignment='right', bbox=dict(boxstyle="square", facecolor='darkorange', alpha=0.4), fontsize=12)
     if riv:
-        ax.text(x_pos2, y_pos1, 'River bc', horizontalalignment='right', bbox=dict(boxstyle="square", facecolor='fuchsia'), fontsize=12)
+        ax.text(x_pos2, y_pos1, 'River bc', horizontalalignment='right', bbox=dict(boxstyle="square", facecolor='fuchsia', alpha=0.4), fontsize=12)
     else:
-        ax.text(x_pos2, y_pos1, 'Defined head bc', horizontalalignment='right', bbox=dict(boxstyle="square", facecolor='deepskyblue'), fontsize=12)
+        ax.text(x_pos2, y_pos1, 'Defined head bc', horizontalalignment='right', bbox=dict(boxstyle="square", facecolor='deepskyblue', alpha=0.4), fontsize=12)
         
     # --- Q–h PLOT in 2nd subplot ---
     if turn:
