@@ -27,6 +27,53 @@ st.title("Theory and Concept of the :violet[River Boundary (RIV) in MODFLOW]")
 st.subheader("Description of Groundwater-River Interaction", divider="violet")
 
 st.markdown("""
+### 💡 Motivation: Why River Boundaries?
+
+Let’s begin with two simple questions:
+
+1. **How would you model a river that can recharge the aquifer when water levels are high, but leak to it when the river stage drops?**
+
+2. **What happens when the groundwater level falls below the riverbed? Should flow continue?**
+
+▶️ The **River (RIV) Boundary** in MODFLOW is built for these situations. It allows flow to depend on the difference between river stage and groundwater head. The interactive plot below shows how the river flux responds to these changing conditions. Try adjusting the river conductance to explore the general behavior.
+""")
+
+# Initial plot
+x_multi = 1
+h_RIVi = 8
+h_boti = 6
+
+# Slider input and plot
+columns0 = st.columns((1,2), gap = 'large')
+
+with columns0[0]:
+    #C_RIV
+    # READ LOG VALUE, CONVERT, AND WRITE VALUE FOR Conductance
+    container = st.container()  
+    Ci_slider_value_new = st.slider      ("_(log of) Conductance_", -5.,-0., -2.5, 0.01, format="%4.2f")    
+    Ci = 10 ** Ci_slider_value_new
+    container.write("**$C_{Riv}$ in m²/s:** %5.2e" %Ci) 
+        
+# COMPUTATION
+# Define aquifer head range
+h_aqi = np.linspace(0, 20, 200)
+Qi = np.where(h_aqi >= h_boti, Ci * (h_RIVi - h_aqi), Ci * (h_RIVi - h_boti))
+
+# Create the plot
+with columns0[1]:
+    fig, ax = plt.subplots(figsize=(6, 6))      
+    ax.plot(h_aqi, Qi, color='black', linewidth=4)
+    ax.set_xlabel("Heads and elevations in the RIV Boundary-Aquifer System (m)", fontsize=14, labelpad=15)
+    ax.set_ylabel("Flow Into the Ground-Water System \nfrom the RIV boundary $Q_{RIV}$ (m³/s)", fontsize=14, labelpad=15)
+    ax.set_xlim(0, 20)
+    ax.set_ylim(-0.05, 0.05)
+    ax.set_title("Flow Between Groundwater and RIV boundary", fontsize=16, pad=10)
+    plt.xticks(fontsize=14)
+    plt.yticks(fontsize=14) 
+    st.pyplot(fig)
+
+st.markdown("""
+### 🧪 Theory
 This application shows how the flow between a stream and an aquifer, $Q$, depends on the groundwater head in the river $h_{aq}$. 
 The relationship is as follows:
 """)

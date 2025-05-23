@@ -24,29 +24,100 @@ institution_list = [f"{index_symbols[i-1]} {inst}" for i, inst in institutions.i
 institution_text = " | ".join(institution_list)
 
 st.title("Theory and Concept of the :orange[General Head Boundary (GHB) in MODFLOW]")
-st.subheader("Interaction Between Groundwater and head-dependent boundaries", divider="orange")
+st.subheader("Interaction Between Groundwater and Head-Dependent Boundaries", divider="orange")
 
 st.markdown("""
-This app calculates the flow between a General Head Boundary (GHB) and a model cell depending on the boundary head $HB$ and the conductance $C_B$ between the boundary and the aquifer cell.
- 
-The relationship follows:
+### 💡 Motivation: Why General Head Boundaries?
+
+Before jumping into equations and applications, consider:
+
+1. **How would you represent a distant river or lake that interacts with groundwater but lies outside your model domain?**
+2. **Can a boundary both add to and remove water from the aquifer—depending on heads?**
+
+▶️ The **General Head Boundary (GHB)** addresses these cases. The plot below, based on the MODFLOW documentation (Harbaugh, 2005), shows for the boundary cell how flow $Q_{in}$ depends on aquifer head $h$. The GHB head $H_B$ is defined as 8 m. Try modifying the conductance $C_B$ to see its effect.
 """)
 
-st.latex(r'''Q_B = C_B (H_B - h_{{aq}})''')
+# Initial plot
+# fixed values
+HBi = 8.0
+
+# Initialize session state for value and toggle state
+st.session_state.Ci_slider_value = -2.5
+if "Ci" not in st.session_state:
+    st.session_state.Ci = 10 ** st.session_state.Ci_slider_value
+    
+# Slider input and plot
+columns0 = st.columns((1,2), gap = 'large')
+
+with columns0[0]:
+    # READ LOG VALUE, CONVERT, AND WRITE VALUE FOR TRANSMISSIVITY
+    container = st.container()  
+    Ci_slider_value_new = st.slider("_(log of) Conductance $C_B$ in m²/s_", -5.,-0., -2.5, 0.01, format="%4.2f")    
+    st.session_state.Ci = 10 ** Ci_slider_value_new
+    container.write("**Conductance $C_B$ in m²/s:** %5.2e" %st.session_state.Ci)
+
+# Define aquifer head range
+h_aqi = np.linspace(0, 20, 200)
+Qi = st.session_state.Ci * (HBi - h_aqi)
+
+# Create the plot
+with columns0[1]:
+    fig, ax = plt.subplots(figsize=(6, 6))      
+    ax.plot(h_aqi, Qi, label=rf"$Q_B = C_B(H_B - h_{{aq}})$, $C_B$ = {st.session_state.C:.2e}", color='black', linewidth=4)
+    ax.set_xlabel("Heads and elevations in the GHB Boundary-Aquifer System (m)", fontsize=14, labelpad=15)
+    ax.set_ylabel("Flow Into the Ground-Water System \nfrom the GHB boundary $Q_B$ (m³/s)", fontsize=14, labelpad=15)
+    ax.set_xlim(0, 20)
+    ax.set_ylim(-0.05, 0.05)
+    ax.set_title("Flow Between Groundwater and GHB boundary", fontsize=16, pad=10)
+    plt.xticks(fontsize=14)
+    plt.yticks(fontsize=14) 
+    st.pyplot(fig)
+
 
 st.markdown("""
-where:
-- $Q_B$ is the flow between the GHB and the aquifer, taken as positive if it is directed into the aquifer [L3/T]
-- $H_B$ is the water level (stage) in the general head boundary (L),
-- $C_B$ is the hydraulic conductance of the GHB-aquifer interconnection [L2/T], and
-- $h_{aq}$ is the head in the aquifer that interacts with the river (L).
+### 🎯 Learning Objectives
+By the end of this tool, you will be able to:
+- Explain the conceptual function of a General Head Boundary (GHB) in groundwater models.
+- Apply the analytical equation $Q_B = C_B(H_B - h_{aq})$ to calculate boundary flows.
+- Evaluate the influence of conductance, boundary head, and aquifer head on exchange fluxes.
+- Visualize flow directions and boundary behavior (gaining vs. losing) under different conditions.
+- Understand the physical interpretation of conductance and its dependence on system geometry and hydraulic conductivity.
 
-The following figure illustrates the setup.
+
+### 🧪 Theory
+The General Head Boundary (GHB), also referred to as the Head-Dependent Flux Boundary in MODFLOW, allows for a more realistic simulation of boundary conditions by enabling **exchange with an external reservoir**.
 """)
-
-left_co, cent_co, last_co = st.columns((10,80,10))
-with cent_co:
-    st.image('06_Groundwater_modeling/FIGS/GHB.png', caption="Schematic illustration of the GHB boundary, modified from  (McDonald and Harbaugh, 1988; https://pubs.usgs.gov/twri/twri6a1/pdf/twri_6-A1_p.pdf)")
+with st.expander("Show me more about **the Theory**"):
+    st.markdown("""
+        Unlike defined head boundaries, the GHB responds to changes in aquifer head. It is governed by a linear relationship:
+        
+        $$
+        Q_B = C_B(H_B - h_{aq})
+        $$
+        
+        where:
+        - $Q_B$ is the flow between the GHB and the aquifer, taken as positive if it is directed into the aquifer [L3/T]
+        - $H_B$ is the boundary head [L], representing e.g., an external water level like a distant lake,
+        - $C_B$ is the hydraulic conductance of the GHB-aquifer interconnection [L2/T], which encapsulates **geometry and material properties**, and
+        - $h_{aq}$ is the head [L] in the model cell where the GHB boundary is active.
+        
+        The conductance is
+        
+        $$
+        C_B = \\frac{K A_B}{L_B}
+        $$
+        
+        where:
+        - $K$: Hydraulic conductivity [m/s],
+        - $A_B$: Cross-sectional area of the interconnection [m²],
+        - $L_B$: Length of flow path between aquifer and boundary [m].
+        
+        The following figure illustrates the setup.
+        """)
+        
+    left_co, cent_co, last_co = st.columns((10,80,10))
+    with cent_co:
+        st.image('06_Groundwater_modeling/FIGS/GHB.png', caption="Schematic illustration of the GHB boundary, modified from  (McDonald and Harbaugh, 1988; https://pubs.usgs.gov/twri/twri6a1/pdf/twri_6-A1_p.pdf)")
 
 st.subheader("Interactive plot", divider="orange")
 
@@ -89,10 +160,11 @@ def Q_h_plot():
     log_max1 = 1.0  # T / Corresponds to 10^1 = 10
     
     # Switches
+    visualize = st.toggle(':rainbow[**Make the plot alive** and visualize the input values]', key="GHB_vis")
     turn = st.toggle('Toggle to turn the plot 90 degrees', key="GHB_turn")
     st.session_state.number_input = st.toggle("Toggle to use Slider or Number for input of $C_B$, $H_B$, $A_B$, $L_B$, and $h_{aq}$.")
     c_computed = st.toggle('Toggle to compute conductance')
-    visualize = st.toggle(':rainbow[**Make the plot alive** and visualize the input values]', key="GHB_vis")
+    
     
     columns1 = st.columns((1,1), gap = 'large')
     
