@@ -149,7 +149,7 @@ def computation():
         riv = st.toggle (':violet[**River BC?**]')
         if riv:
             #hRiv = st.slider('River head', hr, hr+5.0, hr, 0.01)
-            cRiv_slider = st.slider('_(log of) $C_{RIV}$ input_', log_min2,log_max2,-4.0,0.01,format="%4.2f")
+            cRiv_slider = st.slider('_(log of) $C_{RIV}$ input_', log_min2,log_max2,-5.0,0.01,format="%4.2f")
             cRiv = 10**cRiv_slider
             st.write("**$C_{RIV}$:** %5.2e" %cRiv)
  #           hr_riv = R * L / cRiv / zb + hRiv
