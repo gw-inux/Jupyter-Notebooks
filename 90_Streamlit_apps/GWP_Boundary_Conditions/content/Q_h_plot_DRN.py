@@ -27,6 +27,52 @@ st.title("Theory and Concept of the :green[Drain Boundary (DRN) in MODFLOW]")
 st.subheader("Interaction Between Groundwater and Drains", divider="green")
 
 st.markdown("""
+### 💡 Motivation: Why Drain Boundaries?
+
+Consider these two questions:
+
+1. **How would you simulate a ditch, tile drain, or trench that only removes water from the aquifer when the water table is high enough?**
+
+2. **What if you want to stop flow when the groundwater falls below a certain level—like the bottom of the drain?**
+
+▶️ The :green[**Drain (DRN) Boundary**] in MODFLOW is designed for such features. It allows water to leave the aquifer only if the head exceeds the drain elevation—**no inflow is ever allowed**. The plot below lets you explore how outflow varies with aquifer head and drain conductance.
+""")
+
+# Initial plot
+
+HDi = 8 
+
+# Slider input and plot
+columns0 = st.columns((1,2), gap = 'large')
+
+with columns0[0]:
+    #C_RIV
+    # READ LOG VALUE, CONVERT, AND WRITE VALUE FOR Conductance
+    container = st.container()  
+    CDi_slider_value_new = st.slider      ("_(log of) Conductance_", -5.,-0., -2.5, 0.01, format="%4.2f")    
+    CDi = 10 ** CDi_slider_value_new
+    container.write("**:green[$C_{DRN}$] in m²/s:** %5.2e" %CDi) 
+
+# Computation 
+h_aqi = np.linspace(0, 20, 200)
+Qi = np.where(h_aqi >= HDi, CDi * (HDi - h_aqi)*-1, 0)
+
+# Create the plot
+with columns0[1]:
+    fig, ax = plt.subplots(figsize=(6, 6))      
+    ax.plot(h_aqi, Qi, color='black', linewidth=4)
+    ax.set_xlabel("Heads and elevations in the DRN Boundary-Aquifer System (m)", fontsize=14, labelpad=15)
+    ax.set_ylabel("Flow out of the Ground-Water System \ninto the DRN boundary $Q_{DRN}$ (m³/s)", fontsize=14, labelpad=15)
+    ax.set_xlim(0, 20)
+    ax.set_ylim(0.05, -0.05)
+    ax.set_title("Flow Between Groundwater and DRN boundary", fontsize=16, pad=10)
+    plt.xticks(fontsize=14)
+    plt.yticks(fontsize=14) 
+    ax.axhline(0, color='grey', linestyle='--', linewidth=0.8)
+    st.pyplot(fig)    
+    
+
+st.markdown("""
 This app calculates the flow between  a model cell and a Drain (DRN) depending on the drain elevation $H_{drain}$ and the conductance $C_{drain}$ between the boundary and the aquifer cell. The following figure illustrates the setup.""")
 
 left_co, cent_co, last_co = st.columns((10,80,10))

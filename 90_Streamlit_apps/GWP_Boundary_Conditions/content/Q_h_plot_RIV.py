@@ -24,7 +24,7 @@ institution_list = [f"{index_symbols[i-1]} {inst}" for i, inst in institutions.i
 institution_text = " | ".join(institution_list)
 
 st.title("Theory and Concept of the :violet[River Boundary (RIV) in MODFLOW]")
-st.subheader("Description of Groundwater-River Interaction", divider="violet")
+st.subheader("Interaction Between Groundwater and River Boundaries", divider="violet")
 
 st.markdown("""
 ### 💡 Motivation: Why River Boundaries?
@@ -35,7 +35,7 @@ Let’s begin with two simple questions:
 
 2. **What happens when the groundwater level falls below the riverbed? Should flow continue?**
 
-▶️ The **River (RIV) Boundary** in MODFLOW is built for these situations. It allows flow to depend on the difference between river stage and groundwater head. The interactive plot below shows how the river flux responds to these changing conditions. Try adjusting the river conductance to explore the general behavior.
+▶️ The :violet[**River (RIV) Boundary**] in MODFLOW is built for these situations. It allows flow to depend on the difference between river stage and groundwater head. The interactive plot below shows how the river flux responds to these changing conditions. Try adjusting the river conductance to explore the general behavior.
 """)
 
 # Initial plot
@@ -52,7 +52,7 @@ with columns0[0]:
     container = st.container()  
     Ci_slider_value_new = st.slider      ("_(log of) Conductance_", -5.,-0., -2.5, 0.01, format="%4.2f")    
     Ci = 10 ** Ci_slider_value_new
-    container.write("**$C_{Riv}$ in m²/s:** %5.2e" %Ci) 
+    container.write("**:violet[$C_{Riv}$] in m²/s:** %5.2e" %Ci) 
         
 # COMPUTATION
 # Define aquifer head range
@@ -70,6 +70,7 @@ with columns0[1]:
     ax.set_title("Flow Between Groundwater and RIV boundary", fontsize=16, pad=10)
     plt.xticks(fontsize=14)
     plt.yticks(fontsize=14) 
+    ax.axhline(0, color='grey', linestyle='--', linewidth=0.8)
     st.pyplot(fig)
 
 st.markdown("""

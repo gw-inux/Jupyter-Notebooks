@@ -34,7 +34,7 @@ Before jumping into equations and applications, consider:
 1. **How would you represent a distant river or lake that interacts with groundwater but lies outside your model domain?**
 2. **Can a boundary both add to and remove water from the aquifer—depending on heads?**
 
-▶️ The **General Head Boundary (GHB)** addresses these cases. The plot below, based on the MODFLOW documentation (Harbaugh, 2005), shows for the boundary cell how flow $Q_{in}$ depends on aquifer head $h$. The GHB head $H_B$ is defined as 8 m. Try modifying the conductance $C_B$ to see its effect.
+▶️ The :orange[**General Head Boundary (GHB)**] addresses these cases. The plot below, based on the MODFLOW documentation (Harbaugh, 2005), shows for the boundary cell how flow $Q_{in}$ depends on aquifer head $h$. The GHB head $H_B$ is defined as 8 m. Try modifying the conductance $C_B$ to see its effect.
 """)
 
 # Initial plot
@@ -54,7 +54,7 @@ with columns0[0]:
     container = st.container()  
     Ci_slider_value_new = st.slider("_(log of) Conductance $C_B$ in m²/s_", -5.,-0., -2.5, 0.01, format="%4.2f")    
     st.session_state.Ci = 10 ** Ci_slider_value_new
-    container.write("**Conductance $C_B$ in m²/s:** %5.2e" %st.session_state.Ci)
+    container.write("**:orange[$C_B$] in m²/s:** %5.2e" %st.session_state.Ci)
 
 # Define aquifer head range
 h_aqi = np.linspace(0, 20, 200)
@@ -71,6 +71,7 @@ with columns0[1]:
     ax.set_title("Flow Between Groundwater and GHB boundary", fontsize=16, pad=10)
     plt.xticks(fontsize=14)
     plt.yticks(fontsize=14) 
+    ax.axhline(0, color='grey', linestyle='--', linewidth=0.8)
     st.pyplot(fig)
 
 
