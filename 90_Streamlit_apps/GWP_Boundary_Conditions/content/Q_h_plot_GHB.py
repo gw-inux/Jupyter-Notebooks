@@ -63,7 +63,7 @@ Qi = st.session_state.Ci * (HBi - h_aqi)
 # Create the plot
 with columns0[1]:
     fig, ax = plt.subplots(figsize=(6, 6))      
-    ax.plot(h_aqi, Qi, label=rf"$Q_B = C_B(H_B - h_{{aq}})$, $C_B$ = {st.session_state.C:.2e}", color='black', linewidth=4)
+    ax.plot(h_aqi, Qi, color='black', linewidth=4)
     ax.set_xlabel("Heads and elevations in the GHB Boundary-Aquifer System (m)", fontsize=14, labelpad=15)
     ax.set_ylabel("Flow Into the Ground-Water System \nfrom the GHB boundary $Q_B$ (m³/s)", fontsize=14, labelpad=15)
     ax.set_xlim(0, 20)
