@@ -201,9 +201,9 @@ def computation():
     # 3 River
     if riv:
         h_rob = np.linspace(140, 160, 20)
-        Q_rob = np.ones_like(h_rob) * cRiv * (h_rob - hRiv)
+        Q_rob = np.ones_like(h_rob) * cRiv * (hRiv-h_rob)
         h_rob_point = zb + np.sqrt(2 * (-R / 2 * (2500 ** 2 - L ** 2) + phiL) / K)
-        Q_rob_point = cRiv * (h_rob_point - hRiv)
+        Q_rob_point = cRiv * (hRiv - h_rob_point)
     
     
     # PLOT FIGURE
