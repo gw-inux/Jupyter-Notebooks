@@ -13,10 +13,10 @@ import streamlit as st
 # Number input
 # Multiple observations
 
-st.title('2D Solute Transport: Slug Injection (Dirac Input)')
-st.subheader('Instantaneous Point Source in Uniform 1D Flow', divider="orange")
+st.title('2D Solute Transport: :orange[Slug Injection (Dirac Input)] in Uniform 1D Flow')
+st.subheader(':orange[Instantaneous solute input through a point source]', divider="orange")
 
-with st.expander('Show theory'):
+with st.expander('**Show theory**'):
     st.markdown("""
     #### 2D transport in a uniform flow field with a pulse source
     """)
@@ -93,7 +93,7 @@ def dirac2D():
         with st.expander("Adjust :green[**plot**]"):
             log_upper = st.toggle("Use log scale for conc.", value=False)
             dynamic = st.toggle("Use dynamic levels for concentration", value=True, disabled=log_upper, help="When enabled, contour levels are based on actual plume concentrations. Disabled when log scale is selected.")
-            cmax_man = st.slider('max conc of plot (g/m3)', 0., 10., 5., 0.1, disabled=log_upper or dynamic, help="Used when log and dynamic scaling are disabled")
+            cmax_man = st.slider('max conc of plot (g/m3)', 0.1, 10., 5., 0.1, disabled=log_upper or dynamic, help="Used when log and dynamic scaling are disabled")
             if log_upper:
                 dynamic = False
             isolines = st.toggle("Show isolines instead of filled contours")
