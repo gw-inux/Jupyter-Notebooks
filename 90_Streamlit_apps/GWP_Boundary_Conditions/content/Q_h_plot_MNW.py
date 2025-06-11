@@ -3,6 +3,7 @@ import matplotlib.pyplot as plt
 from matplotlib.gridspec import GridSpec
 import scipy.special
 import scipy.interpolate as interp
+from scipy.interpolate import interp1d
 from scipy.optimize import fsolve
 import math
 import pandas as pd
@@ -115,6 +116,10 @@ st.session_state.C2 = 5.0
 st.session_state.P2 = 2.0
 st.session_state.number_input = False  # Default to number_input
 
+if 'Q_off' not in st.session_state:
+    st.session_state.Q_off = False
+if 'Q_off2' not in st.session_state:
+    st.session_state.Q_off2 = False
 
 # Main area inputs
 @st.fragment
@@ -149,9 +154,9 @@ def Q_h_plot():
                     dh_show = st.slider      ("**Drawdown $$\Delta h$$** in the pumping well", 0.01, 10.0, 5.0, 0.1, key="dh_show_input", on_change=update_dh_show)
             else:
                 if st.session_state.number_input:
-                    Q_show = st.number_input("**Discharge $Q$** in the pumping well", 0.001, 1.0, 0.2, 0.001, key="Q_show_input", on_change=update_Q_show)
+                    Q_show = st.number_input("**Discharge $Q$** in the pumping well", 0.001, 1.0, 0.5, 0.001, key="Q_show_input", on_change=update_Q_show)
                 else:
-                    Q_show = st.slider      ("**Discharge $Q$** in the pumping well", 0.001, 1.0, 0.2, 0.001, key="Q_show_input", on_change=update_Q_show)                
+                    Q_show = st.slider      ("**Discharge $Q$** in the pumping well", 0.001, 1.0, 0.5, 0.001, key="Q_show_input", on_change=update_Q_show)                            
     
     st.markdown("---")
     with st.expander('Click to modify model parameters and to activate a second dataset for comparison'):
@@ -376,7 +381,54 @@ def Q_h_plot():
     st.pyplot(fig)
     
     
-    if visualize:
+    if visualize:   
+        # --- CONSTANT DISCHARGE PLOT ---
+        h_2nd = np.linspace(0, 20, 20)
+        Q_2nd = np.ones_like(h_2nd) * Q_show
+        h_cell = 10
+        h_well = h_cell - delta_head
+        
+        # Interpolate Q at h_thr using the Q(h_well) relation
+        Q_interp = interp1d(h_cell - delta_h_range, Q_values, kind='linear', fill_value="extrapolate")
+        #Q_thr = Q_interp(h_thr)
+        h_well_range = h_cell - delta_h_range  # h_cell is fixed (currently set to 10)
+        
+        # --- Plot Q vs. h_well ---
+        fig2, ax2 = plt.subplots(figsize=(5, 4))
+        if turn:
+            ax2.plot(Q_2nd, h_2nd, color='black', label=fr"Discharge $Q = {Q_show:.1f}$", linewidth=4)
+            ax2.axhline(y=h_cell, linestyle='dotted', color='blue', linewidth=2, label='$h_{cell}$') # Vertical line for h_cell across the entire Q range
+            #ax2.plot(Q_values, h_well_range, linestyle='dotted', color='purple', linewidth=2, label=r"$Q(h_{well})$")
+            ax2.plot(Q_values, h_well_range, color='darkblue', linewidth=3, label=r"$Q_w(h_{well})$")
+            ax2.plot(Q_show, h_cell, 'bo',markersize=10, label='head in cell')
+            ax2.plot(Q_show, h_well, 'ro',markersize=10, label='head in well')
+            #ax2.axhline(y=h_thr, linestyle='--', color='orange', linewidth=2, label=r"$h_{thr}$")
+            ax2.set_ylabel("Hydraulic Head $h_n$ [L]", fontsize=14)
+            ax2.set_xlabel("Discharge $Q$ [L³/T]", fontsize=14)
+            ax2.set_xlim(0, 1)
+            ax2.set_ylim(0, 20)
+        else:
+            
+            ax2.plot(h_2nd, Q_2nd, color='black', label=fr"Discharge $Q = {Q_show:.1f}$", linewidth=4)
+            ax2.axvline(x=h_cell, linestyle='dotted', color='blue', linewidth=2, label='$h_{cell}$') # Vertical line for h_cell across the entire Q range
+            ax2.plot(h_well_range, Q_values, color='darkblue', linewidth=3, label=r"$Q_w(h_{well})$")
+            ax2.plot(h_cell, Q_show, 'bo',markersize=10, label='head in cell')
+            ax2.plot(h_well, Q_show, 'ro',markersize=10, label='head in well')
+            #ax2.axvline(x=h_thr, linestyle='--', color='orange', linewidth=2, label=r"$h_{thr}$")
+            ax2.set_xlabel("Hydraulic Head $h_n$ [L]", fontsize=14)
+            ax2.set_ylabel("Discharge $Q$ [L³/T]", fontsize=14)
+            ax2.set_ylim(0, 1)
+            ax2.set_xlim(0, 20)
+        
+        ax2.set_title("Q-h Behavior for MNW Boundary", fontsize=16)
+        ax2.tick_params(axis='both', labelsize=12)        
+        ax2.legend(fontsize=12, loc='center left', bbox_to_anchor=(1.02, 0.5), borderaxespad=0)
+        
+        columns_fig2=st.columns((2,6,1))
+        with columns_fig2[1]:
+            st.pyplot(fig2, bbox_inches='tight')    
+        
+        
         st.write('**Drawdown and flow in the well:**')
         if h_target:
             st.write(':grey[**Drawdown in the well**] (in m) = %5.2f' %delta_head)
@@ -388,8 +440,189 @@ def Q_h_plot():
             st.write(':blue[**Drawdown $$\Delta h$$ in the well**] (in m) = %5.2f' %delta_head)
             if second:
                 st.write(':red[**Drawdown $$\Delta h2$$ in the well**] (in m) = %5.2f' %delta_head2)
-        
 
+
+
+        # THIRD PLOT HERE - Q vs h_cell (with head and discharge thresholds)
+        with st.expander('Show the MNW boundary with varying cell heads'):  
+            
+            # Plotting range
+            h_3rd = np.linspace(0, 20, 300)
+            
+            # User INPUT
+            col_input_fig3 = st.columns((1,1))
+            with col_input_fig3[0]:
+                h_cell_slider = st.slider("Head in the Cell $h_{cell}$ [m]", min_value=0.0, max_value=20.0, value=10.0, step=0.1)
+            with col_input_fig3[1]:
+                h_thr = st.slider("Define threshold head $h_{thr}$ [m]", min_value=0.0, max_value=10.0, value=5.0, step=0.1)
+                th = st.toggle("Apply pumping thresholds")
+                if th:
+                    Q_range = st.slider("Discharge cutoff range $[Q_{mn}, Q_{mx}]$ [m³/s]", 0.0, 1.0, (0.1, 0.15), 0.01)
+                    Q_mn, Q_mx = Q_range
+            
+            # Computation of values to show in the plots - Currently only working with Q_target; head_target needs to be implemented for the second parameter set
+            # Compute head difference assuming h_well stays at threshold if h_cell < h_thr
+            delta_h_adjusted = np.clip(h_3rd - h_thr, 0, None)
+            
+            h_well = h_cell_slider - delta_head
+            # Take the discharge that relates to the adjusted delta_h, define a function to interpolate
+            Q_interp_func  = interp1d(delta_h_range, Q_values,  bounds_error=False, fill_value="extrapolate")
+            # Use the interpolated value, but limit it to Q_show if it's larger
+            Q_plot  = np.minimum(Q_interp_func(delta_h_adjusted),  Q_show)
+            if th:
+                Q_plot_mn = np.where(Q_plot <= Q_mn, 0, Q_plot)
+                Q_plot_mx = np.where(Q_plot <= Q_mx, 0, Q_plot)
+            
+            # Generate the point to show
+            if h_well >= h_thr:
+                delta_h_current = h_cell_slider - h_well
+            else:
+                delta_h_current = max(h_cell_slider - h_thr, 0)
+                
+            Q_dot = min(Q_interp_func(delta_h_current), Q_show)                
+            
+            if th:
+                # Hysteresis logic with session state
+                if st.session_state.Q_off:
+                    if Q_dot > Q_mx:
+                        Q_dot_th = Q_dot
+                        st.session_state.Q_off = False
+                    else:
+                        Q_dot_th = 0
+                else:
+                    if Q_dot < Q_mn:
+                        Q_dot_th = 0
+                        st.session_state.Q_off = True
+                    else:
+                        Q_dot_th = Q_dot                
+            
+            # Repeat computation for second parameter set // ToDo: the subseqent second case needs to differentiat according to head / flow target; currently only flow target
+            if second:
+                if h_target:
+                    h_well2 = h_cell_slider - delta_head
+                    Q_interp_func2 = interp1d(delta_h_range, Q_values2, bounds_error=False, fill_value="extrapolate")
+                    Q_plot2 = np.minimum(Q_interp_func2(delta_h_adjusted), Q_show2)
+                    # Generate the point to show
+                    if h_well2 >= h_thr:
+                        delta_h_current2 = h_cell_slider - h_well2
+                    else:
+                        delta_h_current2 = max(h_cell_slider - h_thr, 0)
+                        
+                    Q_dot2 = min(Q_interp_func2(delta_h_current2), Q_show2)                
+                    
+                    if th:
+                        # Hysteresis logic with session state
+                        if st.session_state.Q_off2:
+                            if Q_dot2 > Q_mx:
+                                Q_dot_th2 = Q_dot2
+                                st.session_state.Q_off2 = False
+                            else:
+                                Q_dot_th2 = 0
+                        else:
+                            if Q_dot2 < Q_mn:
+                                Q_dot_th2 = 0
+                                st.session_state.Q_off2 = True
+                            else:
+                                Q_dot_th2 = Q_dot2
+                else:
+                    h_well2 = h_cell_slider - delta_head2
+                    Q_interp_func2 = interp1d(delta_h_range, Q_values2, bounds_error=False, fill_value="extrapolate")
+                    Q_plot2 = np.minimum(Q_interp_func2(delta_h_adjusted), Q_show)
+                    # Generate the point to show
+                    if h_well2 >= h_thr:
+                        delta_h_current2 = h_cell_slider - h_well2
+                    else:
+                        delta_h_current2 = max(h_cell_slider - h_thr, 0)
+                        
+                    Q_dot2 = min(Q_interp_func2(delta_h_current2), Q_show)                
+                    
+                    if th:
+                        # Hysteresis logic with session state
+                        if st.session_state.Q_off2:
+                            if Q_dot2 > Q_mx:
+                                Q_dot_th2 = Q_dot2
+                                st.session_state.Q_off2 = False
+                            else:
+                                Q_dot_th2 = 0
+                        else:
+                            if Q_dot2 < Q_mn:
+                                Q_dot_th2 = 0
+                                st.session_state.Q_off2 = True
+                            else:
+                                Q_dot_th2 = Q_dot2
+
+            
+            # Create the plot
+            fig3, ax3 = plt.subplots(figsize=(10, 10))
+            if turn:
+                if th:
+                    ax3.plot(Q_plot, h_3rd, color='darkblue', linewidth=1, linestyle=':', label=r"$Q(h_{cell})$ with threshold")
+                    ax3.plot(Q_dot_th, h_cell_slider, 'bo', markersize=10, label='head in cell')
+                    if second:
+                        ax3.plot(Q_plot2, h_3rd, color='red', linewidth=1, linestyle=':', label=r"$Q(h_{cell})$ with threshold")
+                        ax3.plot(Q_dot_th2, h_cell_slider, 'bo', markersize=10, label='head in cell')
+                    ax3.plot(Q_plot_mn, h_3rd, color='darkblue', linewidth=3, label=r"$Q(h_{cell})$ with $h_{thr}$ and $Q_{mn}$")
+                    ax3.plot(Q_plot_mx, h_3rd, color='darkblue', linewidth=3, linestyle='--', label=r"$Q(h_{cell})$ with $h_{thr}$ and $Q_{mn}$")
+                else:                
+                    ax3.plot(Q_plot, h_3rd, color='darkblue', linewidth=3, label=r"$Q(h_{cell})$ with threshold")
+                    ax3.plot(Q_dot, h_cell_slider, 'bo', markersize=10, label='head in cell')
+                    if second:
+                        ax3.plot(Q_plot2, h_3rd, color='red', linewidth=2, linestyle=':', label=r"$Q(h_{cell})$ with threshold")
+                        ax3.plot(Q_dot2, h_cell_slider, 'ro', markersize=10, label='head in cell')
+                ax3.axhline(y=h_cell_slider, linestyle='--', color='blue', linewidth=2, label='$h_{cell}$ (user-defined)')
+                ax3.axhline(y=h_thr, linestyle='--', color='orange', linewidth=2, label=r"$h_{thr}$")
+                if h_well >= h_thr:
+                    ax3.plot(Q_dot, h_well, 'ro',markersize=10, label='head in well')
+                else:
+                    ax3.plot(Q_dot, h_thr, 'ro',markersize=10, label='head in well')
+                if second:
+                    if h_well2 >= h_thr:
+                        ax3.plot(Q_dot2, h_well2, 'ro',markersize=10, label='head in well')
+                    else:
+                        ax3.plot(Q_dot2, h_thr, 'ro',markersize=10, label='head in well')                    
+                ax3.set_xlabel("Discharge $Q$ [m³/s]", fontsize=14)
+                ax3.set_ylabel("Hydraulic heads $h$ [m]", fontsize=14)
+                ax3.set_xlim(0, 1)
+                ax3.set_ylim(0, 20)
+            else:
+                if th:
+                    ax3.plot(h_3rd, Q_plot, color='darkblue', linewidth=1, linestyle=':', label=r"$Q(h_{cell})$ with threshold")
+                    ax3.plot(h_cell_slider, Q_dot_th, 'bo', markersize=10, label='head in cell')
+                    if second:
+                        ax3.plot(h_3rd, Q_plot_th, color='red', linewidth=1, linestyle=':', label=r"$Q(h_{cell})$ with threshold")
+                        ax3.plot(h_cell_slider, Q_dot_th2, 'bo', markersize=10, label='head in cell')
+                    ax3.plot(h_3rd, Q_plot_mn,  color='darkblue', linewidth=3, label=r"$Q(h_{cell})$ with $h_{thr}$ and $Q_{mn}$")
+                    ax3.plot(h_3rd, Q_plot_mx,  color='darkblue', linewidth=3, linestyle='--', label=r"$Q(h_{cell})$ with $h_{thr}$ and $Q_{mn}$")  
+                                        
+                else:
+                    ax3.plot(h_3rd, Q_plot, color='darkblue', linewidth=3, label=r"$Q(h_{cell})$ with threshold")
+                    ax3.plot(h_cell_slider, Q_dot, 'bo', markersize=10, label='head in cell')
+                    if second:
+                        ax3.plot(h_3rd, Q_plot2, color='red', linewidth=2, linestyle=':', label=r"$Q(h_{cell})$ with threshold")
+                        ax3.plot(h_cell_slider, Q_dot2, 'ro', markersize=10, label='head in cell')
+                ax3.axvline(x=h_cell_slider, linestyle='--', color='blue', linewidth=2, label='$h_{cell}$ (user-defined)')
+                ax3.axvline(x=h_thr, linestyle='--', color='orange', linewidth=2, label=r"$h_{thr}$")
+
+                if h_well >= h_thr:
+                    ax3.plot(h_well, Q_dot, 'ro',markersize=10, label='head in well')
+                else:
+                    ax3.plot(h_thr, Q_dot, 'ro',markersize=10, label='head in well')
+                if second:
+                    if h_well2 >= h_thr:
+                        ax3.plot(h_well2, Q_dot2, 'ro',markersize=10, label='head in well')
+                    else:
+                        ax3.plot(h_thr, Q_dot2, 'ro',markersize=10, label='head in well')                    
+                ax3.set_xlabel("Hydraulic heads $h$ [m]", fontsize=14)
+                ax3.set_ylabel("Discharge $Q$ [m³/s]", fontsize=14)
+                ax3.set_xlim(0, 20)
+                ax3.set_ylim(0, 1)
+            
+            ax3.set_title("Q-h Behavior for Cell Head (Threshold Considered)", fontsize=16)
+            ax3.tick_params(axis='both', labelsize=12)
+            ax3.legend(fontsize=12)
+            
+            st.pyplot(fig3)
+    
 Q_h_plot()
 
 st.markdown("---")
