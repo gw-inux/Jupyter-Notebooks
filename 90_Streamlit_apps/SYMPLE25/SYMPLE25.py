@@ -19,14 +19,15 @@ st.markdown("""
         border: none !important;
         padding: 0.3rem 0.6rem !important;
         text-align: left !important;
-        font-size: 1rem !important;
+        font-size: 1.2rem !important;
         font-weight: 700 !important;
         cursor: pointer !important;
         margin-top: -1rem;
     }
+    section[data-testid="stSidebar"] button:focus,
+    section[data-testid="stSidebar"] button:active,
     section[data-testid="stSidebar"] button:hover {
         background-color: rgba(44, 123, 229, 0.1) !important;
-        color: inherit !important;
         border-radius: 5px !important;
     }
     .subheader-label {
