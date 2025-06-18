@@ -53,7 +53,7 @@ st.markdown("""
 # --- Pages definition / The content of your application / Header are with the target 'None' ---
 pages = {
     "🔶 Orientation meeting": {
-    "--- 📖_Initial Model examples ---": None,
+        "--- 📖_Initial Model examples ---": None,
         "1D GWF 💧": "90_Streamlit_apps/SYMPLE25/pages/00_OM/1D_GWF_Unconfined Recharge.py",
         "Well Capture 🌀": "90_Streamlit_apps/SYMPLE25/pages/00_OM/WellCapture.py",
         "--- 📖_Presentations ---": None,
@@ -78,6 +78,7 @@ pages = {
         "MODFLOW Pumping Test": "90_Streamlit_apps/SYMPLE25/pages/M1B/Theis_pumping_Tutorial.py",
     },
     "🔶 M1C - Flow modeling": {
+        "--- 🧮_General Numerics ---": None,
         "1D Confined FD": "90_Streamlit_apps/SYMPLE25/pages/M1C/GWF_1D_conf_FD.py",
         "Modflow Time Step Multiplier": "06_Groundwater_modeling/Timestep_Multiplier.py",
         "--- 💻_MODFLOW boundary conditions ---": None,
@@ -91,6 +92,7 @@ pages = {
         "Presentation: 📝 M1C_3": "90_Streamlit_apps/SYMPLE25/pages/M1C/M1C_3_presentation.py",
     },
     "🔶 M1D - Transport modeling": {
+        "--- 📝_Analytical solutions ---": None,
         "1D Transport with Advection/Dispersion": "05_Applied_hydrogeology/Transport_1D_AD_ST.py",
         "2D Transport - Adv./Disp. - Dirac source": "05_Applied_hydrogeology/Transport_2D_Dirac_pulse.py",
         "2D Transport - Adv./Disp. - Contineous source": "05_Applied_hydrogeology/Transport_2D_Continous.py",
@@ -136,7 +138,7 @@ for section, subpages in pages.items():
                 st.sidebar.markdown(f"<div class='subheader-label'>{label.replace('---', '').strip()}</div>", unsafe_allow_html=True)
             else:
                 is_selected = st.session_state.selected_path == path
-                display_label = f"🟢 **{label}**" if is_selected else label
+                display_label = f"👉 {label}" if is_selected else label
                 indent, content = st.sidebar.columns([0.1, 0.9])
                 with content:
                     if st.button(display_label, key=f"{section}_{label}"):
