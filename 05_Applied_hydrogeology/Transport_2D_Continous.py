@@ -175,7 +175,6 @@ def continuous2D():
         ax_bt.set_title("Breakthrough Curves")
         ax_bt.set_xlim(0, tmax)
         ax_bt.set_ylim(0, cmax_bt)
-        ax_bt.grid(True)
         ax_bt.legend(title="Distance", loc="upper right")
         st.pyplot(fig_bt)
 
