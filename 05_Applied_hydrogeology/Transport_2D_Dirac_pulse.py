@@ -6,17 +6,36 @@ import math
 import pandas as pd
 import streamlit as st
 
-
-# ToDo
-# Make fragment with initial values and put computation in loop
-# MODFLOW comparison
-# Number input
-# Multiple observations
-
 st.title('2D Solute Transport: :orange[Slug Injection (Dirac Input)] in Uniform 1D Flow')
 st.subheader(':orange[Instantaneous solute input through a point source]', divider="orange")
 
-with st.expander('**Show theory**'):
+st.markdown("""
+### About :orange[this app]
+This tool simulates conservative solute transport in a **2D horizontal flow** domain following a **Dirac pulse (instantaneous point source) at time zero**.
+
+You can adjust parameters for:
+
+- Source and flow (e.g., released mass, discharge)
+- Transport (dispersivities, porosity)
+- Plot settings (domain size, scale, style)
+
+In addition to the 2D plume visualization, the app provides **breakthrough curves** at defined observation points. Locations can be linearly spaced or manually specified.
+
+Results can be downloaded as **CSV files** for further analysis or comparison with numerical models.
+""")
+
+st.markdown("""
+### About :orange[the model]
+This is a simplified **2D analytical solution** for solute transport in a groundwater system with:
+
+- Uniform flow in the x-direction
+- Dispersion in both x and y (no z)
+- Instantaneous (Dirac pulse) point source of solute with a given mass _M_
+
+Concentrations are shown as contours in the horizontal x-y plane.
+""")
+
+with st.expander('**Show theory and equation**'):
     st.markdown("""
     #### 2D transport in a uniform flow field with a pulse source
     """)
@@ -35,14 +54,7 @@ with st.expander('**Show theory**'):
     C(x, y, t) = \frac{M}{4 \pi m n t \sqrt{D_x D_y}} \cdot \exp\left( -\frac{(x - v t)^2}{4 D_x t} - \frac{y^2}{4 D_y t} \right)
     """)
     
-    
-st.markdown("""
-This app shows the evolution of a solute plume after an **instantaneous (slug) injection** at a point.
-
-- The source releases a given **mass** at time zero.
-- Transport occurs via **advection** and **dispersion** in the x–y plane.
-- The plume shape depends on **velocity** and **dispersivities**.
-""")
+st.subheader(':orange[Interactive plot]', divider="orange")
 
 # Function: 2D Dirac/Slug Concentration
 def concentration_slug(x, y, t, ax, ay, v, M, nf, thick):
@@ -105,9 +117,6 @@ def dirac2D():
     td = st.slider('Time to show (days)', 1., 1800., 100., 1.)
     t = td * 86400
     
-    # Breakthrough curve toggle
-    show_bt = st.toggle("📈 Show breakthrough curves")
-    
     # Velocity and dispersivities
     v = q / n
     ay_disp = ax_disp / rat_x_y
@@ -121,7 +130,8 @@ def dirac2D():
     # for lower plot at 15 m
     ref_distance2 = 15  # meters
     C_ref2 = concentration_slug(ref_distance2, 0, ref_time, ax_disp, ay_disp, v, M, st.session_state.nf, st.session_state.thick)
-    C_ref_max2 = round(np.max(C_ref2))
+    #C_ref_max2 = round(np.max(C_ref2))
+    C_ref_max2 = float(round(np.nanmax(C_ref2))) if np.isfinite(np.nanmax(C_ref2)) else 1.0
     
     # Grid for plume plot
     x_vals = np.linspace(-0.1 * xmax, xmax, 300)
@@ -167,6 +177,9 @@ def dirac2D():
     ax.legend()
     ax.set_title(f"2D Concentration after Dirac Input at t = {int(td)} days", fontsize=16)
     st.pyplot(fig)
+
+    # Breakthrough curve toggle
+    show_bt = st.toggle("📈 Show breakthrough curves")
     
     # Compute breakthrough
     if show_bt:
@@ -201,7 +214,7 @@ def dirac2D():
         with columns2[1]:
             with st.expander("Adjust :green[**plot**]"):
                 tmax = st.slider('max time of plot (d)', 10, 1800, 1800, 1)
-                cmax = st.number_input('max conc of plot (g/m3)', 0, 100, C_ref_max2, 1)
+                cmax = st.number_input('max conc of plot (g/m3)', 0., 100., C_ref_max2, 0.1)
     
         # Time vector
         times_days = np.linspace(0.1, tmax, 300)

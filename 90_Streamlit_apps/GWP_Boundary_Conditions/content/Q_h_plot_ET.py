@@ -25,6 +25,49 @@ st.title("Theory and Concept of :rainbow[Evapotranspiration in MODFLOW]")
 st.subheader("Consideration of Evapotranspiration on Groundwater Ressources", divider="rainbow")
 
 st.markdown("""
+### 💡 Motivation: Why Evapotranspiration (ET) Boundaries?
+
+Think about these questions:
+
+1. **How does groundwater contribute to plant water demand or surface evaporation in shallow water table environments?**
+
+2. **Should evapotranspiration continue if the water table drops well below the root zone or land surface?**
+
+▶️ The **ET Boundary** in MODFLOW captures these dynamics. It simulates water loss from the saturated zone due to evapotranspiration—**but only when the water table is near enough to the surface**. As the groundwater head drops below a defined extinction depth, the ET rate gradually reduces to zero. The interactive plot below helps visualize this relationship. Adjust parameters like ET rate and extinction depth to explore how ET demand interacts with groundwater levels.
+""")
+
+# Initial plot
+# Slider input and plot
+columns0 = st.columns((1,2), gap = 'large')
+
+with columns0[0]:
+    # EXPDi input
+    EXDPi = st.slider("**Extinction depth $EXDP$**", 0.1, 5.0, 4.0, 0.1)  
+
+# Computation 
+QET_MAXi = 0.0005
+h_aqi = np.linspace(-10, 0, 100)
+SURFi = -1.0
+EVTRi = 2.0/86400000
+AREAi = 10000
+RETi = np.where(h_aqi > SURFi, EVTRi, np.where(h_aqi >= (SURFi - EXDPi), EVTRi * (h_aqi - (SURFi - EXDPi)) / EXDPi, 0))
+QETi = RETi*AREAi
+
+# Create the plot
+with columns0[1]:
+    fig, ax = plt.subplots(figsize=(6, 6))      
+    ax.plot(h_aqi, QETi, label="$Q_{ET}$",color='black', linewidth=4)
+    ax.set_xlabel("Elevation below surface (m)", fontsize=14, labelpad=15)
+    ax.set_ylabel("Evapotranspiration loss from the aquifer ($Q_{ET}$) in m³/s", fontsize=14, labelpad=15)
+    ax.set_xlim(0, -10)
+    ax.set_ylim(-0.0001, 0.0005)
+    ax.set_title("Evapotranspiration losses", fontsize=16, pad=10)
+    plt.xticks(fontsize=14)
+    plt.yticks(fontsize=14) 
+    ax.axhline(0, color='grey', linestyle='--', linewidth=0.8)
+    st.pyplot(fig)    
+    
+st.markdown("""
 This app shows the effect of evapotranspiration in removing water from an aquifer according to Harbaugh (2005) as it is implemented by the EVT package in MODFLOW. The EVT package consider only evapotranspiration from the saturated zone. The approach considers the following parameters/measures:
 - $EVTR$ = a user defined maximum evapotranspiration rate,
 - :green[$SURF$ = a specific elevation named _ET surface_ up to which the full evapotranspiration rate is acting],

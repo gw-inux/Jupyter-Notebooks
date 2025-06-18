@@ -30,19 +30,74 @@ st.title("Theory and Concept of the :blue[Multi-Node-Well package (MNW) in MODFL
 st.subheader("Process-based implementation of Flow to Pumping wells", divider="blue")
 
 st.markdown("""
-This app calculates the flow between a Multi-Node-Well (MNW) and a model cell depending on the system parameters describing the flow in the vicinity of the well and into the well.
- 
-In general, the flow into the well is described with a Cell to Well Conductance:
+### 💡 Motivation: Why Multi-Node Wells (MNW)?
+
+Let’s reflect on these questions:
+
+1. **How do well losses affect the actual water level inside a pumping well?**
+
+2. **What happens if the water level in the well drops below a critical threshold? Should pumping continue?**
+
+▶️ The **Multi-Node Well (MNW)** package in MODFLOW supports more realistic simulation of well hydraulics. Even in single-layer systems, it allows you to:
+- Account for **drawdown within the wellbore** due to head losses,
+- Define **limiting water levels** below which pumping stops,
+- Simulate wells that **automatically shut off** or restart depending on drawdown conditions.
+
+The interactive plots below let you explore how discharge, aquifer head, and well thresholds interact—revealing when a well becomes unsustainable under given conditions.
 """)
 
-st.latex(r'''Q_W = C_{CWC} (H_{well} - h_{{aq}})''')
+# Initial plot
+# Slider input and plot
+columns0 = st.columns((1,2), gap = 'large')
+
+with columns0[0]:
+    # CWC
+    # READ LOG VALUE, CONVERT, AND WRITE VALUE FOR Conductance
+    container = st.container()  
+    CWCi_slider_value_new = st.slider      ("_(log of) CWC_", -5.,-0., -2.5, 0.01, format="%4.2f")    
+    CWCi = 10 ** CWCi_slider_value_new
+    container.write("**:violet[$CWC$] in m²/s:** %5.2e" %CWCi) 
+        
+# COMPUTATION
+# Define aquifer head range
+h_aqi = np.linspace(0, 20, 200)
+QPi = np.full_like(h_aqi, 0.02)
+h_ni = 10.0 # Example head for the cell
+h_WELLi = np.linspace(0, 20, 200)
+Qi = (h_WELLi - h_ni) * CWCi
+# Create the plot
+with columns0[1]:
+    fig, ax = plt.subplots(figsize=(6, 6))      
+    ax.plot(h_aqi, QPi, color='black', linewidth=4, label='$Q-h_n$')
+    ax.plot(h_WELLi, Qi, color='black', linestyle='--', linewidth=4, label='$Q-h_{well} with h_n = 10 m$')
+    ax.set_xlabel("Heads and elevations in the MNW Boundary-Aquifer System (m)", fontsize=14, labelpad=15)
+    ax.set_ylabel("Flow Into the Ground-Water System \nfrom the MNW boundary $Q_{MNW}$ (m³/s)", fontsize=14, labelpad=15)
+    ax.set_xlim(0, 20)
+    ax.set_ylim(-0.05, 0.05)
+    ax.set_title("Flow Between Groundwater and MNW boundary", fontsize=16, pad=10)
+    plt.xticks(fontsize=14)
+    plt.yticks(fontsize=14) 
+    ax.axhline(0, color='grey', linestyle='--', linewidth=0.8)
+    ax.axvline(10, color='grey', linestyle='--', linewidth=0.8)
+    ax.legend(fontsize=14)
+    st.pyplot(fig)
+
+
+
+st.markdown("""
+This app calculates the flow between a Multi-Node-Well (MNW) and a model cell depending on the system parameters describing the flow in the vicinity of the well and into the well.
+ 
+In general, the flow into the well that is placed in the n-th cell is described with a cell-to-well conductance:
+""")
+
+st.latex(r'''Q_n = CWC_n (h_{well} - h_n)''')
 
 st.markdown("""
 where:
-- $Q_W$ is the flow between the well and the aquifer, taken as positive if it is directed into the aquifer [L3/T]
-- $H_{well}$ is the water level in the well (L),
-- $C_{CWC}$ is the Cell to Well conductance of the MNW-aquifer interconnection [L2/T], and
-- $h_{aq}$ is the head in the aquifer that interacts with the well (L).
+- $Q_n$ is the flow between the n-th cell and the well, taken as positive if it is directed into the cell [L3/T]
+- $h_{well}$ is the head in the well (L),
+- $CWC_n$ is the n-th cell-to-well conductance [L2/T], and
+- $h_n$ is the head in the n-th cell [L].
 
 Further, the CWC is composed by three terms, describing (1) flow to the well, (2) the skin effect for flow into the well, and (3) the effect of turbulence in the vicinity of the well. Accordingly, the Cell to Well conductance can be defined as:
 """)
@@ -57,20 +112,21 @@ where:
 - $P$ = is the power (exponent) of the nonlinear discharge component of well loss.
 """)
 
-st.subheader('Interactive plot of the $Q-h$ relationship of the MNW package', divider='green')
+st.subheader('Interactive plots to understand the general characteristics of the discharge-head relationships in MNW package', divider='blue')
 
 st.markdown("""
-The subsequent interactive plot allows you to investigate the behavior of the Multi-Node-Well (MNW) boundary in MODFLOW. The plot shows the relationship between the cell water level (aquifer head) and the head in the pumping well. The application allows you to evaluate and visualize for a
-- defined discharge (i.e, $Q$ is defined and the head in the well $h_w$ is calculated)
-- defined head (i.e., $h_w$ is defined and the discharge $Q$ in the well is calculated.
+The subsequent interactive plot allows you to investigate the behavior of the Multi-Node-Well (MNW) boundary in MODFLOW. The plots shows the relationship between the difference of the head in the cell $h_n$ (aquifer head) and the head in the well $h_{well}$. The application allows you to evaluate and visualize for a
+- defined discharge (i.e, $Q_n$ is defined and the head in the well $h_{well}$ is calculated)
+- defined head (i.e., $h_{well}$ is defined and the discharge $Q_n$ in the well is calculated.
 You can use the toggle to switch between both target parameters.
 
 Further, the application allows by toggles:
 - to turn the plot by 90 degrees,
 - to switch between number input or sliders,
 - to plot a second set of parameters for comparison.
+- to show the Q-h relationship of the cell
 
-The values of the $Q-h$ relationship are shown below the interactive plot.
+Additionally, you can investigate the $Q-h$ relationship of the cell by an additional interactive plot.
 """)
 # Functions
 
@@ -90,8 +146,7 @@ def update_B():
 def update_C():
     st.session_state.C = st.session_state.C_input
 def update_P():
-    st.session_state.P = st.session_state.P_input 
-
+    st.session_state.P = st.session_state.P_input
 def update_A2():
     st.session_state.A2 = st.session_state.A2_input
 def update_B2():
@@ -100,8 +155,6 @@ def update_C2():
     st.session_state.C2 = st.session_state.C2_input
 def update_P2():
     st.session_state.P2 = st.session_state.P2_input 
-    
-    
     
 # Initialize session state for value and toggle state
 st.session_state.dh_show = 5.0
@@ -130,36 +183,38 @@ def Q_h_plot():
     log_max1 = 1.0  # T / Corresponds to 10^1 = 10
     
     st.markdown("---")
-    
+    st.markdown("""
+        #### Relationship between pumping rate, head in the aquifer, and head in the well.
+        The subsequent plot illustrate the relationship between the aquifer head and the head in the well in dependence of the wells pumping rate.
+        """)
     # Switches
     columns1 = st.columns((1,1), gap = 'large')              
     with columns1[0]:
-        turn = st.toggle('Toggle to turn the plot 90 degrees', key="MNW_turn")
-        st.session_state.number_input = st.toggle("Toggle to use Slider or Number input.")
-        visualize = st.toggle(':rainbow[**Make the plot alive** and visualize the input values]', key="MNW_vis")
+        with st.expander('Click to **modify the plot and visualization**'):
+            visualize = st.toggle(':rainbow[**Make the plot alive** and visualize the input values]', key="MNW_vis")
+            turn = st.toggle('Toggle to turn the plot 90 degrees', key="MNW_turn")
+            st.session_state.number_input = st.toggle("Toggle to use Slider or Number input.")
+            #Qh_plot = st.toggle('Toogle to additionally show the Q-h plot')
     with columns1[1]:
         # The additional controls only for visualization
         if visualize:
             st.write('**:green[Target for evaluation/visualization]**')
-            h_target = st.toggle('Toggle for **$Q$** or **$h$** target')
+            h_target = st.toggle('Toggle for :blue[**Q-**] or :red[**H-**]target')
 
-    columns2 = st.columns((1,1), gap = 'large')              
-    with columns2[1]:
-        # The additional controls only for visualization
-        if visualize:
             if h_target:
+                st.markdown(":red[**H-target**]")
                 if st.session_state.number_input:
                     dh_show = st.number_input("**Drawdown $$\Delta h$$** in the pumping well", 0.01, 10.0, 5.0, 0.1, key="dh_show_input", on_change=update_dh_show)
                 else:
                     dh_show = st.slider      ("**Drawdown $$\Delta h$$** in the pumping well", 0.01, 10.0, 5.0, 0.1, key="dh_show_input", on_change=update_dh_show)
             else:
+                st.markdown(":blue[**Q-target**]")
                 if st.session_state.number_input:
                     Q_show = st.number_input("**Discharge $Q$** in the pumping well", 0.001, 1.0, 0.5, 0.001, key="Q_show_input", on_change=update_Q_show)
                 else:
                     Q_show = st.slider      ("**Discharge $Q$** in the pumping well", 0.001, 1.0, 0.5, 0.001, key="Q_show_input", on_change=update_Q_show)                            
     
-    st.markdown("---")
-    with st.expander('Click to modify model parameters and to activate a second dataset for comparison'):
+    with st.expander('Click to **modify model parameters** and to activate a second dataset for comparison'):
         # Activate second dataset
         second = st.toggle("Toggle to define a second parameter set for comparison")
         
@@ -230,7 +285,7 @@ def Q_h_plot():
     
     aquifer_thickness = 10.0
     
-    # Visualization if active
+    # Input for visualization
     if visualize:
         if h_target:
             delta_head = dh_show
@@ -254,7 +309,6 @@ def Q_h_plot():
             Q_line = Q_show
             h_line = delta_head
                 
-            
     #Define aquifer head range / Range of head differences Δh
     delta_h_range = np.linspace(0.01, 10, 200)
     Q_values = []
@@ -273,179 +327,175 @@ def Q_h_plot():
             Q_initial_guess2 = delta_h2 / (A2 + B2)  # reasonable initial guess
             Q_solution2, = fsolve(discharge_equation, Q_initial_guess2, args=(delta_h2, A2, B2, C2, P2))
             Q_values2.append(Q_solution2)   
-        
-        
-    if visualize:
-        # PLOT HERE - Create side-by-side plots
-        fig, (ax_schematic, ax_plot) = plt.subplots(1, 2, figsize=(8, 6), width_ratios=[1, 3])
-        fig.subplots_adjust(wspace=0.5)  # Increase horizontal space between ax_schematic and ax_plot
-        
-        # --- LEFT AXIS: Schematic view (Aquifer head vs Well head) ---
-        schematic_width = 1.0
-        # Aquifer: full height blue rectangle
-        ax_schematic.add_patch(plt.Rectangle((0.0, 0), schematic_width*0.5, aquifer_thickness, color='skyblue'))
-        ax_schematic.add_patch(plt.Rectangle((0.6, 0), schematic_width*0.5, aquifer_thickness, color='skyblue'))
-        # Well water level: narrower grey rectangle, Head level indicators (dashed lines) and Labels wellls
-        if second and not h_target:
-            ax_schematic.add_patch(plt.Rectangle((0.50, delta_head),  schematic_width * 0.05, 10-delta_head, color='darkblue'))
-            ax_schematic.add_patch(plt.Rectangle((0.55, delta_head2), schematic_width * 0.05, 10-delta_head2, color='red'))
-            ax_schematic.plot([0.55, 1.7], [delta_head2, delta_head2], 'k--', linewidth=1, color='red')
-            ax_schematic.text(1.85, delta_head2 - 0.1, 'Well \nhead 2', color='red', fontsize=12)
-        else:
-            ax_schematic.add_patch(plt.Rectangle((0.5, delta_head), schematic_width * 0.1, 10-delta_head, color='darkblue'))
-    
-        # Head level indicators (dashed lines) and Labels Aquifer and Well 1
-        ax_schematic.plot([0.5, 1.7], [delta_head, delta_head], 'k--', linewidth=1, color='darkblue')
-        ax_schematic.text(0.85, delta_head - 0.1, 'Well \nhead 1', color='darkblue', fontsize=12)
-        ax_schematic.plot([0.0, 1.7], [0, 0], 'b--', linewidth=1)
-        ax_schematic.text(0.5, 0 - 0.2, 'Cell (aquifer) \nhead', color='blue', fontsize=12)
-        # Style
-        ax_schematic.set_xlim(0, 2)
-        ax_schematic.set_ylim(10, 0)
-        ax_schematic.axis('off')
-        
-        # --- RIGHT AXIS: Q vs Δh plot ---
-        if turn:
-            ax_plot.plot(Q_values, delta_h_range, label="$Q-\Delta h$ relation 1", color='darkblue', linewidth=4)
-            if second:
-                ax_plot.plot(Q_values2, delta_h_range2, label="$Q-\Delta h$ relation 2", linestyle='--', color='red', linewidth=3)
-            if h_target:
-                ax_plot.plot(Q_show, delta_head, 'ro',markersize=10, label="h_target")
-                ax_plot.plot([0, Q_line], [delta_head, delta_head], linestyle='dotted', color='grey', linewidth=2)
-                if second:
-                    ax_plot.plot(Q_show2, delta_head2, 'ro',markersize=10)
-            else:
-                ax_plot.plot(Q_show, delta_head, 'bo',markersize=10, label="Q_target")
-                ax_plot.plot([Q_show, Q_show], [aquifer_thickness, h_line], linestyle='dotted', color='grey', linewidth=2)
-                if second:
-                    ax_plot.plot(Q_show2, delta_head2, 'bo',markersize=10)            
-            ax_plot.set_ylabel("Head Difference Δh = $h_{WELL} - h_{aq}$ (m)", fontsize=12, labelpad=15)
-            ax_plot.set_xlabel("Flow from the Ground-Water System to the MNW $Q_W$ (m³/s)", fontsize=12, labelpad=15)
-            ax_plot.set_ylim(10, 0)
-            ax_plot.set_xlim(0, 1)
-        else:
-            ax_plot.plot(delta_h_range, Q_values, label="$Q-\Delta h$ relation 1", color='darkblue', linewidth=4)
-            if second:
-                ax_plot.plot(delta_h_range2, Q_values2, label="$Q-\Delta h$ relation 2", linestyle='--', color='red', linewidth=3)
-            if h_target:
-                ax_plot.plot(delta_head,Q_show, 'ro',markersize=10, label="h_target")
-                ax_plot.plot([delta_head, delta_head], [0, Q_line], linestyle='dotted', color='grey', linewidth=2)
-                if second:
-                    ax_plot.plot(delta_head2, Q_show2, 'ro',markersize=10)
-            else:
-                ax_plot.plot(delta_head, Q_show,'bo',markersize=10, label="Q_target")
-                ax_plot.plot([aquifer_thickness, h_line], [Q_show, Q_show], linestyle='dotted', color='grey', linewidth=2)
-                if second:
-                    ax_plot.plot(delta_head2, Q_show2, 'bo',markersize=10)  
-            ax_plot.set_xlabel("Head Difference Δh = $h_{WELL} - h_{aq}$ (m)", fontsize=12, labelpad=15)
-            ax_plot.set_ylabel("Flow from the Ground-Water System to the MNW $Q_W$ (m³/s)", fontsize=12, labelpad=15)
-            ax_plot.set_xlim(0, 10)
-            ax_plot.set_ylim(0, 1)
-        
-        ax_plot.set_title("Flow Between Aquifer and Well (MNW Boundary)", fontsize=14, pad=20)
-        ax_plot.tick_params(axis='both', labelsize=12)
-        ax_plot.legend(fontsize=12)
-    else:
-        fig, (ax_schematic, ax_plot) = plt.subplots(1, 2, figsize=(8, 6), width_ratios=[1, 3])
-        fig.subplots_adjust(wspace=0.5)
-        
-        ax_schematic.axis('off')  # Hide all axis lines and ticks
-        ax_schematic.set_frame_on(False)  # Hide the frame (border)
-        ax_schematic.set_xticks([])
-        ax_schematic.set_yticks([])
-        
-        # --- RIGHT AXIS: Q vs Δh plot ---
-        if turn:
-            ax_plot.plot(Q_values, delta_h_range, label="$Q-\Delta h$ relation 1", color='black', linewidth=4)
-            if second:
-                ax_plot.plot(Q_values2, delta_h_range2, label="$Q-\Delta h$ relation 2", linestyle='--', color='red', linewidth=3)           
-            ax_plot.set_ylabel("Head Difference Δh = $h_{WELL} - h_{aq}$ (m)", fontsize=12, labelpad=15)
-            ax_plot.set_xlabel("Flow from the Ground-Water System to the MNW $Q_W$ (m³/s)", fontsize=12, labelpad=15)
-            ax_plot.set_ylim(10, 0)
-            ax_plot.set_xlim(0, 1)
-        else:
-            ax_plot.plot(delta_h_range, Q_values, label="$Q-\Delta h$ relation 1", color='black', linewidth=4)
-            if second:
-                ax_plot.plot(delta_h_range2, Q_values2, label="$Q-\Delta h$ relation 2", linestyle='--', color='red', linewidth=3)
-            ax_plot.set_xlabel("Head Difference Δh = $h_{WELL} - h_{aq}$ (m)", fontsize=12, labelpad=15)
-            ax_plot.set_ylabel("Flow from the Ground-Water System to the MNW $Q_W$ (m³/s)", fontsize=12, labelpad=15)
-            ax_plot.set_xlim(0, 10)
-            ax_plot.set_ylim(0, 1)
-        
-        ax_plot.set_title("Flow Between Aquifer and Well (MNW Boundary)", fontsize=14, pad=20)
-        ax_plot.tick_params(axis='both', labelsize=12)
-        ax_plot.legend(fontsize=12)
-    
-    
-    # Show in Streamlit
-    st.pyplot(fig)
-    
-    
-    if visualize:   
-        # --- CONSTANT DISCHARGE PLOT ---
-        h_2nd = np.linspace(0, 20, 20)
-        Q_2nd = np.ones_like(h_2nd) * Q_show
-        h_cell = 10
-        h_well = h_cell - delta_head
-        
-        # Interpolate Q at h_thr using the Q(h_well) relation
-        Q_interp = interp1d(h_cell - delta_h_range, Q_values, kind='linear', fill_value="extrapolate")
-        #Q_thr = Q_interp(h_thr)
-        h_well_range = h_cell - delta_h_range  # h_cell is fixed (currently set to 10)
-        
-        # --- Plot Q vs. h_well ---
-        fig2, ax2 = plt.subplots(figsize=(5, 4))
-        if turn:
-            ax2.plot(Q_2nd, h_2nd, color='black', label=fr"Discharge $Q = {Q_show:.1f}$", linewidth=4)
-            ax2.axhline(y=h_cell, linestyle='dotted', color='blue', linewidth=2, label='$h_{cell}$') # Vertical line for h_cell across the entire Q range
-            #ax2.plot(Q_values, h_well_range, linestyle='dotted', color='purple', linewidth=2, label=r"$Q(h_{well})$")
-            ax2.plot(Q_values, h_well_range, color='darkblue', linewidth=3, label=r"$Q_w(h_{well})$")
-            ax2.plot(Q_show, h_cell, 'bo',markersize=10, label='head in cell')
-            ax2.plot(Q_show, h_well, 'ro',markersize=10, label='head in well')
-            #ax2.axhline(y=h_thr, linestyle='--', color='orange', linewidth=2, label=r"$h_{thr}$")
-            ax2.set_ylabel("Hydraulic Head $h_n$ [L]", fontsize=14)
-            ax2.set_xlabel("Discharge $Q$ [L³/T]", fontsize=14)
-            ax2.set_xlim(0, 1)
-            ax2.set_ylim(0, 20)
-        else:
+       
+    # FIRST PLOT HERE
+    with st.expander("Show / Hide the Discharge-Drawdown relationship for the MNW boundary", expanded = True):
+        label_head_axis = "Head difference Δh = $h_{WELL} - h_n$ (m)"
+        label_flow_axis = "Flow from the cell to the well (MNW) $Q_n$ (m³/s)"
+        if visualize:
+            # PLOT HERE - Create side-by-side plots
+            fig, (ax_schematic, ax_plot) = plt.subplots(1, 2, figsize=(8, 6), width_ratios=[1, 3])
+            fig.subplots_adjust(wspace=0.5)  # Increase horizontal space between ax_schematic and ax_plot
             
-            ax2.plot(h_2nd, Q_2nd, color='black', label=fr"Discharge $Q = {Q_show:.1f}$", linewidth=4)
-            ax2.axvline(x=h_cell, linestyle='dotted', color='blue', linewidth=2, label='$h_{cell}$') # Vertical line for h_cell across the entire Q range
-            ax2.plot(h_well_range, Q_values, color='darkblue', linewidth=3, label=r"$Q_w(h_{well})$")
-            ax2.plot(h_cell, Q_show, 'bo',markersize=10, label='head in cell')
-            ax2.plot(h_well, Q_show, 'ro',markersize=10, label='head in well')
-            #ax2.axvline(x=h_thr, linestyle='--', color='orange', linewidth=2, label=r"$h_{thr}$")
-            ax2.set_xlabel("Hydraulic Head $h_n$ [L]", fontsize=14)
-            ax2.set_ylabel("Discharge $Q$ [L³/T]", fontsize=14)
-            ax2.set_ylim(0, 1)
-            ax2.set_xlim(0, 20)
+            # --- LEFT AXIS: Schematic view (Aquifer head vs Well head) ---
+            schematic_width = 1.0
+            # Aquifer: full height blue rectangle
+            ax_schematic.add_patch(plt.Rectangle((0.0, 0), schematic_width*0.5, aquifer_thickness, color='skyblue'))
+            ax_schematic.add_patch(plt.Rectangle((0.6, 0), schematic_width*0.5, aquifer_thickness, color='skyblue'))
+            # Well water level: narrower grey rectangle, Head level indicators (dashed lines) and Labels wellls
+            if second and not h_target:
+                ax_schematic.add_patch(plt.Rectangle((0.50, delta_head),  schematic_width * 0.05, 10-delta_head, color='darkblue'))
+                ax_schematic.add_patch(plt.Rectangle((0.55, delta_head2), schematic_width * 0.05, 10-delta_head2, color='red'))
+                ax_schematic.plot([0.55, 1.7], [delta_head2, delta_head2], 'k--', linewidth=1, color='red')
+                ax_schematic.text(1.85, delta_head2 - 0.1, 'Well \nhead 2', color='red', fontsize=12)
+            else:
+                ax_schematic.add_patch(plt.Rectangle((0.5, delta_head), schematic_width * 0.1, 10-delta_head, color='darkblue'))
         
-        ax2.set_title("Q-h Behavior for MNW Boundary", fontsize=16)
-        ax2.tick_params(axis='both', labelsize=12)        
-        ax2.legend(fontsize=12, loc='center left', bbox_to_anchor=(1.02, 0.5), borderaxespad=0)
-        
-        columns_fig2=st.columns((2,6,1))
-        with columns_fig2[1]:
-            st.pyplot(fig2, bbox_inches='tight')    
-        
-        
-        st.write('**Drawdown and flow in the well:**')
-        if h_target:
-            st.write(':grey[**Drawdown in the well**] (in m) = %5.2f' %delta_head)
-            st.write(':blue[**Discharge $Q$ to the well**] (in m³/s) = %5.3f' %Q_show)
-            if second:
-                st.write(':red[**Discharge $Q2$ to the well**] (in m³/s) = %5.3f' %Q_show2)
-        else:
-            st.write(':grey[**Discharge to the well**] (in m³/s) = %5.3f' %Q_show)
-            st.write(':blue[**Drawdown $$\Delta h$$ in the well**] (in m) = %5.2f' %delta_head)
-            if second:
-                st.write(':red[**Drawdown $$\Delta h2$$ in the well**] (in m) = %5.2f' %delta_head2)
-
-
-
-        # THIRD PLOT HERE - Q vs h_cell (with head and discharge thresholds)
-        with st.expander('Show the MNW boundary with varying cell heads'):  
+            # Head level indicators (dashed lines) and Labels Aquifer and Well 1
+            ax_schematic.plot([0.5, 1.7], [delta_head, delta_head], 'k--', linewidth=1, color='darkblue')
+            ax_schematic.text(0.85, delta_head - 0.1, 'Well \nhead 1', color='darkblue', fontsize=12)
+            ax_schematic.plot([0.0, 1.7], [0, 0], 'b--', linewidth=1)
+            ax_schematic.text(0.5, 0 - 0.2, 'Cell (aquifer) \nhead', color='blue', fontsize=12)
+            # Style
+            ax_schematic.set_xlim(0, 2)
+            ax_schematic.set_ylim(10, 0)
+            ax_schematic.axis('off')
             
+            # --- RIGHT AXIS: Q vs Δh plot ---
+            if turn:
+                ax_plot.plot(Q_values, delta_h_range, label="$Q-\Delta h$ relation 1", color='darkblue', linewidth=4)
+                if second:
+                    ax_plot.plot(Q_values2, delta_h_range2, label="$Q-\Delta h$ relation 2", linestyle='--', color='red', linewidth=3)
+                if h_target:
+                    ax_plot.plot(Q_show, delta_head, 'ro',markersize=10, label="h_target")
+                    ax_plot.plot([0, Q_line], [delta_head, delta_head], linestyle='dotted', color='grey', linewidth=2)
+                    if second:
+                        ax_plot.plot(Q_show2, delta_head2, 'ro',markersize=10)
+                else:
+                    ax_plot.plot(Q_show, delta_head, 'bo',markersize=10, label="Q_target")
+                    ax_plot.plot([Q_show, Q_show], [aquifer_thickness, h_line], linestyle='dotted', color='grey', linewidth=2)
+                    if second:
+                        ax_plot.plot(Q_show2, delta_head2, 'bo',markersize=10)            
+                ax_plot.set_ylabel(label_head_axis, fontsize=12, labelpad=15)
+                ax_plot.set_xlabel(label_flow_axis, fontsize=12, labelpad=15)
+                ax_plot.set_ylim(10, 0)
+                ax_plot.set_xlim(0, 1)
+            else:
+                ax_plot.plot(delta_h_range, Q_values, label="$Q-\Delta h$ relation 1", color='darkblue', linewidth=4)
+                if second:
+                    ax_plot.plot(delta_h_range2, Q_values2, label="$Q-\Delta h$ relation 2", linestyle='--', color='red', linewidth=3)
+                if h_target:
+                    ax_plot.plot(delta_head,Q_show, 'ro',markersize=10, label="h_target")
+                    ax_plot.plot([delta_head, delta_head], [0, Q_line], linestyle='dotted', color='grey', linewidth=2)
+                    if second:
+                        ax_plot.plot(delta_head2, Q_show2, 'ro',markersize=10)
+                else:
+                    ax_plot.plot(delta_head, Q_show,'bo',markersize=10, label="Q_target")
+                    ax_plot.plot([aquifer_thickness, h_line], [Q_show, Q_show], linestyle='dotted', color='grey', linewidth=2)
+                    if second:
+                        ax_plot.plot(delta_head2, Q_show2, 'bo',markersize=10)  
+                ax_plot.set_xlabel(label_head_axis, fontsize=12, labelpad=15)
+                ax_plot.set_ylabel(label_flow_axis, fontsize=12, labelpad=15)
+                ax_plot.set_xlim(0, 10)
+                ax_plot.set_ylim(0, 1)
+        else:
+            fig, (ax_schematic, ax_plot) = plt.subplots(1, 2, figsize=(8, 6), width_ratios=[1, 3])
+            fig.subplots_adjust(wspace=0.5)
+            
+            ax_schematic.axis('off')  # Hide all axis lines and ticks
+            ax_schematic.set_frame_on(False)  # Hide the frame (border)
+            ax_schematic.set_xticks([])
+            ax_schematic.set_yticks([])
+            
+            # --- RIGHT AXIS: Q vs Δh plot ---
+            if turn:
+                ax_plot.plot(Q_values, delta_h_range, label="$Q-\Delta h$ relation 1", color='black', linewidth=4)
+                if second:
+                    ax_plot.plot(Q_values2, delta_h_range2, label="$Q-\Delta h$ relation 2", linestyle='--', color='red', linewidth=3)           
+                ax_plot.set_ylabel(label_head_axis, fontsize=12, labelpad=15)
+                ax_plot.set_xlabel(label_flow_axis, fontsize=12, labelpad=15)
+                ax_plot.set_ylim(10, 0)
+                ax_plot.set_xlim(0, 1)
+            else:
+                ax_plot.plot(delta_h_range, Q_values, label="$Q-\Delta h$ relation 1", color='black', linewidth=4)
+                if second:
+                    ax_plot.plot(delta_h_range2, Q_values2, label="$Q-\Delta h$ relation 2", linestyle='--', color='red', linewidth=3)
+                ax_plot.set_xlabel(label_head_axis, fontsize=12, labelpad=15)
+                ax_plot.set_ylabel(label_flow_axis, fontsize=12, labelpad=15)
+                ax_plot.set_xlim(0, 10)
+                ax_plot.set_ylim(0, 1)
+            
+        ax_plot.set_title("Flow between cell and well (MNW Boundary)", fontsize=14, pad=20)
+        ax_plot.tick_params(axis='both', labelsize=12)
+        ax_plot.legend(fontsize=12)    
+        
+        # Show in Streamlit
+        st.pyplot(fig)
+        
+        if visualize:
+            st.write('**Drawdown and flow in the well:**')
+            if h_target:
+                st.write(':grey[**Drawdown in the well**] (in m) = %5.2f' %delta_head)
+                st.write(':blue[**Discharge $Q$ to the well**] (in m³/s) = %5.3f' %Q_show)
+                if second:
+                    st.write(':red[**Discharge $Q2$ to the well**] (in m³/s) = %5.3f' %Q_show2)
+            else:
+                st.write(':grey[**Discharge to the well**] (in m³/s) = %5.3f' %Q_show)
+                st.write(':blue[**Drawdown $$\Delta h$$ in the well**] (in m) = %5.2f' %delta_head)
+                if second:
+                    st.write(':red[**Drawdown $$\Delta h2$$ in the well**] (in m) = %5.2f' %delta_head2)    
+    
+    # SECOND PLOT HERE
+    with st.expander("Show / Hide the Q-h plot for the MNW boundary"):
+        if visualize:   
+            # --- CONSTANT DISCHARGE PLOT ---
+            h_2nd = np.linspace(0, 20, 20)
+            Q_2nd = np.ones_like(h_2nd) * Q_show
+            h_cell = 10
+            h_well = h_cell - delta_head
+            
+            # Interpolate Q at h_thr using the Q(h_well) relation
+            Q_interp = interp1d(h_cell - delta_h_range, Q_values, kind='linear', fill_value="extrapolate")
+            h_well_range = h_cell - delta_h_range  # h_cell is fixed (currently set to 10)
+            
+            # --- Plot Q vs. h_well ---
+            fig2, ax2 = plt.subplots(figsize=(5, 4))
+            if turn:
+                ax2.plot(Q_2nd, h_2nd, color='black', label=fr"Discharge $Q = {Q_show:.1f}$", linewidth=4)
+                ax2.axhline(y=h_cell, linestyle='dotted', color='blue', linewidth=2, label='$h_{cell}$') # Vertical line for h_cell across the entire Q range
+                ax2.plot(Q_values, h_well_range, color='darkblue', linewidth=3, label=r"$Q_w(h_{well})$")
+                ax2.set_ylabel("Hydraulic head $h_n$ [L]", fontsize=14)
+                ax2.set_xlabel("Discharge $Q$ [L³/T]", fontsize=14)
+                ax2.set_xlim(0, 1)
+                ax2.set_ylim(0, 20)
+                if visualize:
+                    ax2.plot(Q_show, h_cell, 'bo',markersize=10, label='head in cell')
+                    ax2.plot(Q_show, h_well, 'ro',markersize=10, label='head in well')    
+            else:
+                ax2.plot(h_2nd, Q_2nd, color='black', label=fr"Discharge $Q = {Q_show:.1f}$", linewidth=4)
+                ax2.axvline(x=h_cell, linestyle='dotted', color='blue', linewidth=2, label='$h_{cell}$') # Vertical line for h_cell across the entire Q range
+                ax2.plot(h_well_range, Q_values, color='darkblue', linewidth=3, label=r"$Q_w(h_{well})$")
+                ax2.set_xlabel("Hydraulic head $h_n$ [L]", fontsize=14)
+                ax2.set_ylabel("Discharge $Q$ [L³/T]", fontsize=14)
+                ax2.set_ylim(0, 1)
+                ax2.set_xlim(0, 20)
+                if visualize:
+                    ax2.plot(h_cell, Q_show, 'bo',markersize=10, label='head in cell')
+                    ax2.plot(h_well, Q_show, 'ro',markersize=10, label='head in well')
+            
+            ax2.set_title("Q-h Behavior for MNW Boundary", fontsize=16)
+            ax2.tick_params(axis='both', labelsize=12)        
+            ax2.legend(fontsize=12, loc='center left', bbox_to_anchor=(1.02, 0.5), borderaxespad=0)
+            
+            columns_fig2=st.columns((1,8,1))
+            with columns_fig2[1]:
+                st.pyplot(fig2, bbox_inches='tight')    
+        else:
+            st.write('Activate the visualization with the toggle **:rainbow[Make the plot alive and visualize the results]** to see this plot')            
+
+    # THIRD PLOT HERE - Q vs h_cell (with head and discharge thresholds)
+    with st.expander('Show the MNW boundary with varying cell heads'):  
+        if visualize:
             # Plotting range
             h_3rd = np.linspace(0, 20, 300)
             
@@ -550,8 +600,7 @@ def Q_h_plot():
                                 st.session_state.Q_off2 = True
                             else:
                                 Q_dot_th2 = Q_dot2
-
-            
+           
             # Create the plot
             fig3, ax3 = plt.subplots(figsize=(10, 10))
             if turn:
@@ -602,7 +651,6 @@ def Q_h_plot():
                         ax3.plot(h_cell_slider, Q_dot2, 'ro', markersize=10, label='head in cell')
                 ax3.axvline(x=h_cell_slider, linestyle='--', color='blue', linewidth=2, label='$h_{cell}$ (user-defined)')
                 ax3.axvline(x=h_thr, linestyle='--', color='orange', linewidth=2, label=r"$h_{thr}$")
-
                 if h_well >= h_thr:
                     ax3.plot(h_well, Q_dot, 'ro',markersize=10, label='head in well')
                 else:
@@ -622,7 +670,8 @@ def Q_h_plot():
             ax3.legend(fontsize=12)
             
             st.pyplot(fig3)
-    
+        else:
+            st.write('Activate the visualization with the toggle **:rainbow[Make the plot alive and visualize the results]** to see this plot')
 Q_h_plot()
 
 st.markdown("---")

@@ -10,11 +10,23 @@ import streamlit as st
 st.title('2D Solute Transport: :green[Continuous Source] in Uniform 1D Flow')
 st.subheader('Solute input through :green[continuous release]', divider="green")
 
-with st.expander('**Show theory**'):
-    st.latex(r""" C(x,y,t) = \frac{C_0}{4} \cdot \operatorname{erfc}\left( \frac{x - v_x t}{2\sqrt{D_x t}} \right) \cdot \left[ \operatorname{erf} \left( \frac{y + \frac{Y}{2}}{2 \sqrt{D_y \frac{x}{v}}} \right) - \operatorname{erf} \left( \frac{y - \frac{Y}{2}}{2 \sqrt{D_y \frac{x}{v}}} \right) \right] """)
+st.markdown("""
+### About :green[this app]
+This tool simulates conservative solute transport in a **2D horizontal flow domain** with a **continuous line source**.
+
+You can adjust parameters for:
+
+- Source and flow (e.g., concentration, width, discharge)
+- Transport (dispersivities, porosity)
+- Plot settings (domain size, style)
+
+In addition to the 2D plume visualization, the app can generate **breakthrough curves** at specified observation points downstream. Locations can be set manually or automatically.
+
+Results can be downloaded as **CSV files** for further analysis or comparison with numerical models.
+""")
 
 st.markdown("""
-### About the model
+### About :green[the model]
 This is a simplified **2D analytical solution** for solute transport in a groundwater system with:
 
 - Uniform flow in the x-direction
@@ -23,8 +35,10 @@ This is a simplified **2D analytical solution** for solute transport in a ground
 
 Concentrations are shown as contours in the horizontal x-y plane.
 """)
+with st.expander('**Show equation**'):
+    st.latex(r""" C(x,y,t) = \frac{C_0}{4} \cdot \operatorname{erfc}\left( \frac{x - v_x t}{2\sqrt{D_x t}} \right) \cdot \left[ \operatorname{erf} \left( \frac{y + \frac{Y}{2}}{2 \sqrt{D_y \frac{x}{v}}} \right) - \operatorname{erf} \left( \frac{y - \frac{Y}{2}}{2 \sqrt{D_y \frac{x}{v}}} \right) \right] """)
 
-"---"
+st.subheader(':green[Interactive plot]', divider="green")
 
 # Function: 2D Concentration
 def concentration_2d(Y, x, y, t, ax, ay, v, C0):
