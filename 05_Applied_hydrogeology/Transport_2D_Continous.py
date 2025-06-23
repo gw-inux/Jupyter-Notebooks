@@ -67,7 +67,7 @@ def continuous2D():
 
     with columns1[1]:
         with st.expander("Adjust :orange[**Transport parameter**]"):  
-            ax_disp = st.slider('Longitudinal dispersivity αₓ (m)', 0.001, 10.0, 1.00, 0.001)
+            ax_disp = st.slider('Longitudinal dispersivity αₓ (m)', 0.001, 100.0, 10.00, 0.001)
             rat_x_y = st.slider('Dispersivity ratio 1/n for x/y', 1, 100, 10, 1)
             n = st.slider('Porosity (-)', 0.01, 0.6, 0.25, 0.01)
 
@@ -123,7 +123,7 @@ def continuous2D():
     ax.set_xlim(-0.1 * xmax, xmax)
     ax.legend()
     ax.set_title(f"2D Concentration at t = {int(td)} days", fontsize=16)
-    ax.grid()
+    #ax.grid()
     st.pyplot(fig)
 
     # --- Breakthrough Curves ---
