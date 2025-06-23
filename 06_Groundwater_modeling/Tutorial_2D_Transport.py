@@ -93,20 +93,23 @@ with cc1:
     st.image('06_Groundwater_modeling/FIGS/2D_idealized_transport_continuous.png', caption="The synthetic catchment for the numerical model.")
 
 # This are the links to the tutorial videos
-videourl1 = 'https://youtu.be/'
-videourl2 = 'https://youtu.be/'
-videourl3 = 'https://youtu.be/'
-videourl4 = 'https://youtu.be/'
-videourl5 = 'https://youtu.be/'
+videourl1 = 'https://youtu.be/3xBCmwiC2vE'
+videourl2 = 'https://youtu.be/D7a0goqD66c'
+videourl3 = 'https://youtu.be/GXLGnDr0Jf0'
+videourl3b = 'https://youtu.be/eVihqCz_6lQ'
+videourl4 = 'https://youtu.be/zVY2GwFgP3c'
+videourl5 = 'https://youtu.be/siDaOcjkm54'
+videourl6 = 'https://youtu.be/f7d1CDT8koQ'
 
 # Create ToDos to proceed with the steps of the exercise
 
 # STEP 1
 
-with st.expander(":red[**Step 1:**] - Expand to see the instructions"):
+with st.expander(":red[**Step 1: Setting up the flow model.**] - Expand to see the instructions"):
     st.markdown("""
-    #### STEP 1: .
-            
+    #### STEP 1: Setting up the flow model.
+    **Aim:** Design an idealized flow model for the confined aquifer resulting in defined uniform flow.
+    
     #### Substep 1
     """)
     to_do(
@@ -118,16 +121,26 @@ with st.expander(":red[**Step 1:**] - Expand to see the instructions"):
         ,"\n - Press “Finish”")],"td02",)
     to_do(
         [(st.write, "select “File” / “Save as” in the menu bar, and then save input data under a file name like “myfirstmodel” (or so) by using the format mmZLib.")], "td03",)
+    
     st.markdown("""
     #### Substep2
     """)
+    st.markdown("""
+    #### Video tutorial of step 1
+    """)
     st.video(videourl1)
+    
+    st.markdown("""
+    #### Conclusion:
+    The flow model is defined. Particle tracking enables the verification of flow. With the listing file, we can understand the model and analyze/quantify the flows. This step covered all steps in the model design for a numerical flow model.
+    """)
     
 # STEP 2
     
-with st.expander(":red[**Step 2:**] - Expand to see the instructions"):
+with st.expander(":red[**Step 2: Setting up the transport model with the FD scheme.**] - Expand to see the instructions"):
     st.markdown("""
-    #### STEP 2:
+    #### STEP 2: Setting up the transport model with the FD scheme
+    **Aim:** Performing an initial solute transport simulation. Running the FD method. Postprocessing the results and analyzing the simulation.
             
     #### Substep 2
     """)
@@ -139,14 +152,22 @@ with st.expander(":red[**Step 2:**] - Expand to see the instructions"):
         [(st.write, "...")],"td06",)
     to_do(
         [(st.write, "...")],"td07",)
-        
+
+    st.markdown("""
+    #### Video tutorial of step 2
+    """)
     st.video(videourl2)    
+ 
+    st.markdown("""
+    #### Conclusions:
+    The computed concentrations and breakthrough curves look reasonable. The mass balance is considered as plausible with minimum discrepancy. The runtime of the numerical transport model can be quantified.
+    """)
 
 # STEP 3
     
-with st.expander(":red[**Step 3:**] - Expand to see the instructions"):
+with st.expander(":red[**Step 3: Setting up the transport model with the MOC scheme**] - Expand to see the instructions"):
     st.markdown("""
-    #### STEP 3:
+    #### STEP 3: Setting up the transport model with the MOC scheme
             
     #### Substep 1
     """)
@@ -225,25 +246,28 @@ with st.expander(":red[**Step 3:**] - Expand to see the instructions"):
         ,"\n - select “MODFLOW Features” and “WEL”."
         ,"\n - set starting time = -1 and ending time = 0."
         ,"\n - select “F()” below “Pumping rate per unit length or area”, type the following expression into the in-put field: -5000/86400, and press “OK” (Please do not forget the negative sign! Input corresponds to a pumping rate of 5000 m³/d.).")],"td23",)        
-        
+
+    st.markdown("""
+    #### Video tutorial of step 3
+    
+    The first video tutorial demonstrate the model design for the 2D solute transport computation with MOC.
+    """)
+    
     st.video(videourl3)
     
-st.markdown("""#### Scenario B - pulse injection (Dirac)
-
-The following two steps will cover :green[**Scenario B - pulse injection (tracer test)**]. The numerical model results will be compared to an analytical solution for a continuous point source that is shown in the subsequent figure, [link to the resource here](https://transport-2d-dirac.streamlit.app/).""")
-
-lc1, cc1, rc1 = st.columns((20,60,20))
-with cc1:
-    st.image('06_Groundwater_modeling/FIGS/2D_idealized_transport_pulse.png', caption="The synthetic catchment for the numerical model.")
-# STEP 4
+    st.markdown(""" 
+    The second video tutorial demonstrate some advanced post processing of the numerical solute transport model.
+    """)
     
-with st.expander(":green[**Step 4: Properties and Simulation**] - Expand to see the instructions"):
+    st.video(videourl3b)
+
+# STEP 4
+with st.expander(":red[**Step 4: Properties and Simulation**] - Expand to see the instructions"):
     st.markdown("""
-            #### STEP 4: Properties and Simulation
-            Once the inital model design is finish, we can define the numerical settings and run the simulation.
+    #### STEP 4:
             
-            #### Define Initial Head
-           """)
+    #### Substep 1
+    """)
     to_do(
         [(st.write, "select “Data” / “Edit Data Sets” / “Required” in the menu bar.")],"td24",)
         
@@ -268,111 +292,62 @@ with st.expander(":green[**Step 4: Properties and Simulation**] - Expand to see 
         
     to_do(
         [(st.write, "close ModelMonitor window .")],"td30",)
-    st.video(videourl4)
+        
+    st.markdown("""
+    #### Video tutorial of step 4
+    """)
+    
+    st.video(videourl4)    
+
+st.markdown("""#### Scenario B - pulse injection (Dirac)
+
+The following two steps will cover :green[**Scenario B - pulse injection (tracer test)**]. The numerical model results will be compared to an analytical solution for a continuous point source that is shown in the subsequent figure, [link to the resource here](https://transport-2d-dirac.streamlit.app/).""")
+
+lc1, cc1, rc1 = st.columns((20,60,20))
+with cc1:
+    st.image('06_Groundwater_modeling/FIGS/2D_idealized_transport_pulse.png', caption="The synthetic catchment for the numerical model.")
+
+    
     
 # STEP 5
     
 with st.expander(":green[**Step 5: Postprocessing**] - Expand to see the instructions"):
     st.markdown("""
-            #### STEP 5: Postprocessing
-            In the fifth and final step we perform the postprocessing of the model computation.
+    #### STEP 5:
             
-            #### Check Model Run
-           """)
-           
+    #### Substep 1
+    """)
     to_do(
-        [(st.write, "Once MODELMONITOR is closed, the listing file is opened; check budget in output listing (it’s located near the end of the file – check closure of water balance and if the budget terms are reasonable).")],"td031",)
+        [(st.write, "...")],"td031",)
 
     to_do(
-        [(st.write, "close output listing and the black “command prompt” window.")],"td032",)
-        
-    st.markdown(""" 
-            #### Plot Heads
-           """) 
-           
-    to_do(
-        [(st.write, "select “Import and display model results” (colored symbol below “Data”).")],"td033",)
-        
-    to_do(
-        [(st.write, "select model file *.fhd.")],"td034",)
-        
-    to_do(
-        [(st.write, "select “Contour grid” and press “OK”.")],"td035",)
-        
-    to_do(
-        [(st.write, "select “Update the existing data sets with new values” (not needed in very first try).")],"td036",)
-        
-    to_do(
-        [(st.write, "check hydraulic head isolines.")],"td037",)  
-        
-    st.markdown(""" 
-            #### Prepare Particle Tracking
-           """)         
-           
-    to_do(
-        [(st.write, "select “Model” / “MODFLOW Output Control” / “Head”, set external file type = binary, and press “OK”.")],"td038",)
-        
-    to_do(
-        [(st.write, "select “Model” / “MODFLOW Packages and Programs” in the menu bar, then go to “Post processors” / “MODPATH”.")],"td039",)
-        
-    to_do(
-        [(st.write, "set: MODPATH version 7; “Output mode” = Pathlines & time series, “Reference time for simulation” = 0, “Tracking direction” = backward, and press “OK”.")],"td040",)
-        
-    to_do(
-        [(st.write, "go to submenu “Version 6 & 7 options and set End of particle tracking (StopOption) stop at termination points.")],"td041",)
-        
-    to_do(
-        [(st.write, "go to submenu “Output times” and set Method of specifying times to “Specified times; set “Number of times” to 4 and define suitable times (time unit is seconds) like 864000, 2592000, 4320000, 8640000 (10, 30, 50, and 100 days).")],"td042",)      
-        
-    st.markdown(""" 
-            #### Carry Out Particle Tracking Using MODPATH
-           """)        
-           
-    to_do(
-        [(st.write, "zoom in near well locations, select “Select objects” (the red cursor), and double-click on point object “well1”."
-        ,"\n - select “MODFLOW Features” / “MODPATH”"
-        ,"\n - select “initial particle placement” and “cylinder”"
-        ,"\n - set number of particles around cylinder = 20 and press “OK”")],"td043",)
-        
-    to_do(
-        [(st.write, "double click on point object “well2”."
-        ,"\n - select “MODFLOW Features” / “MODPATH”"
-        ,"\n - select “initial particle placement” and “cylinder”"
-        ,"\n - set number of particles around cylinder = 20 and press “OK”")],"td044",)
-        
-    to_do(
-        [(st.write, "select “File” / “Save” (no model archive needs to be created).")],"td045",)
-        
-    to_do(
-        [(st.write, "select “Run MODFLOW-2005” by clicking on the green triangle below “Grid” (only necessary for the first run to generate the necessary binary head file).")],"td046",)
-        
-    to_do(
-        [(st.write, "select “Run MODFLOW-2005” by clicking on the black triangle below “Grid” and select “Export MODPATH Input Files”.")],"td047",) 
-        
-    to_do(
-        [(st.write, "confirm the file name to save MODPATH input files (*.mpn) and run MODPATH.")],"td048",)
-        
-    to_do(
-        [(st.write, "check and close output listing, close the black command prompt window.")],"td049",)
-        
-    to_do(
-        [(st.write, "select “Data visualization” (colored symbol to the right of the middle in the second row of symbols)."
-        ,"\n - select “MODPATH Pathlines” / “Basic”"
-        ,"\n - set “MODPATH pathline file” = *.pth"
-        ,"\n - select “Options”"
-        ,"\n - set Color by = “None”, press “Apply”, and press “Close”")],"td050",)
-        
-    to_do(
-        [(st.write, "check pathlines.")],"td051",)
-        
-    to_do(
-        [(st.write, "select “File” / “Save” (no model archive needs to be created), change porosity according to step a), and repeat steps f) – k).")],"td052",) 
+        [(st.write, "...")],"td032",)
         
     st.markdown("""
-            (Please note that another MODFLOW run needs to be carried out before MODPATH is started if other parameters, which affect the flow behavior, were changed.)
-           """) 
-        
+    #### Video tutorial of step 5
+    """)
+            
     st.video(videourl5)
+    
+# STEP 6
+    
+with st.expander(":green[**Step 6: Refining the Dirac-pulse model**] - Expand to see the instructions"):
+    st.markdown("""
+    #### STEP 6: Refining the Dirac-pulse model
+            
+    #### Substep 1
+    """)
+    to_do(
+        [(st.write, "...")],"td033",)
+
+    to_do(
+        [(st.write, "...")],"td034",)
+        
+    st.markdown("""
+    #### Video tutorial of step 6
+    """)
+            
+    st.video(videourl6)
     
 # OPTIONALLY STEPS
     
@@ -381,21 +356,7 @@ with st.expander(":green[**OPTIONALLY Steps: Some further things to do**] - Expa
             #### Optionally STEPs: Some further things To Do
             You can do further optional steps with the finished model.
             
-            #### Optionally Refine Grid
+            #### Optionally use other transport algorithms
            """)
     to_do(
-        [(st.write, "learn about buttons “Delete grid lines”, “Drag grid lines”, “Add vertical grid line”, “Add horizontal grid line” and “Subdivide grid cells” (left group in second row of symbols).")],"td053",)
-    to_do(
-        [(st.write, "zoom in near well locations, select “Subdivide grid cells”, mark both cells containing a well, set “subdivide each column into” = 2, “subdivide each row into” = 2, and press “OK” (Note: The “layers” section has to remain unchanged!).")],"td054",)
-    to_do(
-        [(st.write, "repeat the previous step several times to split a subsequently increasing number of columns and rows.")],"td055",)
-    to_do(
-        [(st.write, "zoom in near well 1, select “Delete grid lines” and click on the intersection of grid lines at the well location.")],"td056",)
-    to_do(
-        [(st.write, "select “Subdivide grid cells”, mark the cell containing well 1, set “subdivide each column into” = 3, “subdivide each row into” = 3, and press “OK”.")],"td057",)
-    to_do(
-        [(st.write, "zoom in near well 2, select “Delete grid lines” and click on the gridline passing through the well location.")],"td058",)
-    to_do(
-        [(st.write, "select “Subdivide grid cells”, mark the cell containing well 2, set “subdivide each row into” = 3, and press “OK”.")],"td059",)
-    to_do(
-        [(st.write, "choose “Restore default 2D view” and learn about buttons to hide/show the 2D gridlines (on the very right in the second row of symbols).")],"td060",)        
+        [(st.write, "...")],"td053",)      
