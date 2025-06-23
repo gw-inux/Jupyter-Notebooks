@@ -86,7 +86,7 @@ st.markdown("""In the following you will find step-by-step instructions to build
 
 #### Scenario A - continuous source
 
-The first three steps will cover :red[**Scenario A - continuous source of solutes**]. The numerical model results will be compared to an analytical solution for a continuous point source that is shown in the subsequent figure, [link to the resource here](www.link.com).""")
+The first three steps will cover :red[**Scenario A - continuous source of solutes**]. The numerical model results will be compared to an analytical solution for a continuous point source that is shown in the subsequent figure, [link to the resource here](https://transport-2d-continuous.streamlit.app/).""")
 
 lc1, cc1, rc1 = st.columns((20,60,20))
 with cc1:
@@ -230,7 +230,7 @@ with st.expander(":red[**Step 3:**] - Expand to see the instructions"):
     
 st.markdown("""#### Scenario B - pulse injection (Dirac)
 
-The following two steps will cover :green[**Scenario B - pulse injection (tracer test)**]. The numerical model results will be compared to an analytical solution for a continuous point source that is shown in the subsequent figure, [link to the resource here](https://transport-2d-continuous.streamlit.app/).""")
+The following two steps will cover :green[**Scenario B - pulse injection (tracer test)**]. The numerical model results will be compared to an analytical solution for a continuous point source that is shown in the subsequent figure, [link to the resource here](https://transport-2d-dirac.streamlit.app/).""")
 
 lc1, cc1, rc1 = st.columns((20,60,20))
 with cc1:

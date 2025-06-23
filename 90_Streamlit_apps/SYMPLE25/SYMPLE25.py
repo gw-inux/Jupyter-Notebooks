@@ -97,6 +97,8 @@ pages = {
         "1D Transport with Advection/Dispersion": "05_Applied_hydrogeology/Transport_1D_AD_ST.py",
         "2D Transport - Adv./Disp. - Dirac source": "05_Applied_hydrogeology/Transport_2D_Dirac_pulse.py",
         "2D Transport - Adv./Disp. - Contineous source": "05_Applied_hydrogeology/Transport_2D_Continous.py",
+        "--- 📋_MODFLOW/MT3D tutorials ---": None,
+        "2D Solute transport tutorial": "06_Groundwater_modeling/Tutorial_2D_Transport.py",
         "--- 📖_Presentations ---": None,
         "Presentation: 📝 M1D_1": "90_Streamlit_apps/SYMPLE25/pages/M1D/M1D_1_presentation.py",
     },
