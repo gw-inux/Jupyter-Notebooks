@@ -79,7 +79,7 @@ def continuous2D():
                 dynamic = False
             isolines = st.toggle("Show isolines instead of filled contours")
             xmax = st.slider('max extension in x-direction', 10, 10000, 1000, 10)
-            ymax = st.slider('max extension in y-direction', 10, 1000, 100, 10)
+            ymax = st.slider('max extension in y-direction', 10, 1000, 300, 10)
     
     td = st.slider('Time (days)', 1., 1800., 100., 1.)
     t = td * 86400

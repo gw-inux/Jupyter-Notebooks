@@ -45,6 +45,12 @@ with st.expander(':green[**Click here for more details of the general descriptio
         \n**:red[Scenario A]:**	Areal source with constant concentration; width of source is 100 m.
         \n**:green[Scenario B]:**	Point source with slug input. Total mass input is 1,000 g in 10 liters.
         
+        #### Mathematical model and analytical solution
+        The mathematical model and the analytical solution for both scenarios is provided by individual Streamlit apps.
+        
+        \n**:red[Scenario A]:** [https://transport-2d-continuous.streamlit.app/](https://transport-2d-continuous.streamlit.app/)
+        \n**:green[Scenario B]:** [https://transport-2d-dirac.streamlit.app/](https://transport-2d-dirac.streamlit.app/)
+        
         #### Numerical model – flow and transport:
         The basic model characteristics are 
         -	Spatial discretization:
@@ -78,13 +84,13 @@ with st.expander(':green[**Click here for more details of the general descriptio
 st.subheader('Step-by-step tutorials to build the model with MODELMUSE', divider = "green")
 st.markdown("""In the following you will find step-by-step instructions to build the flow- and transport model with MODELMUSE. Each step comes with a screencast video that shows the individual steps, and a 'ToDo' list with the essential steps. The full description of the tutorial is provided by a PDF document [for download here](www.link.com).
 
-#### Scenario A - contineous source
+#### Scenario A - continuous source
 
-The first three steps will cover :red[**Scenario A - continous source of solutes**]. The numerical model results will be compared to an analytical solution for a continuous point source that is shown in the subsequent figure, [link to the resource here](www.link.com).""")
+The first three steps will cover :red[**Scenario A - continuous source of solutes**]. The numerical model results will be compared to an analytical solution for a continuous point source that is shown in the subsequent figure, [link to the resource here](www.link.com).""")
 
 lc1, cc1, rc1 = st.columns((20,60,20))
 with cc1:
-    st.image('06_Groundwater_modeling/FIGS/2D_idealized_transport_contineous.png', caption="The synthetic catchment for the numerical model.")
+    st.image('06_Groundwater_modeling/FIGS/2D_idealized_transport_continuous.png', caption="The synthetic catchment for the numerical model.")
 
 # This are the links to the tutorial videos
 videourl1 = 'https://youtu.be/'
@@ -224,7 +230,7 @@ with st.expander(":red[**Step 3:**] - Expand to see the instructions"):
     
 st.markdown("""#### Scenario B - pulse injection (Dirac)
 
-The following two steps will cover :green[**Scenario B - pulse injection (tracer test)**]. The numerical model results will be compared to an analytical solution for a continuous point source that is shown in the subsequent figure, [link to the resource here](www.link.com).""")
+The following two steps will cover :green[**Scenario B - pulse injection (tracer test)**]. The numerical model results will be compared to an analytical solution for a continuous point source that is shown in the subsequent figure, [link to the resource here](https://transport-2d-continuous.streamlit.app/).""")
 
 lc1, cc1, rc1 = st.columns((20,60,20))
 with cc1:
