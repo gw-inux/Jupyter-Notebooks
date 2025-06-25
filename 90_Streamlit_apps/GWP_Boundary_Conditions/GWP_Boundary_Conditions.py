@@ -50,8 +50,8 @@ pages = {
     "🟠 GHB": "90_Streamlit_apps/GWP_Boundary_Conditions/content/Q_h_plot_GHB.py",
     "🟣 RIV": "90_Streamlit_apps/GWP_Boundary_Conditions/content/Q_h_plot_RIV.py",
     "🟢 DRN": "90_Streamlit_apps/GWP_Boundary_Conditions/content/Q_h_plot_DRN.py",
-    "🟡 ET": "90_Streamlit_apps/GWP_Boundary_Conditions/content/Q_h_plot_ET.py",
-    "🔵MNW": "90_Streamlit_apps/GWP_Boundary_Conditions/content/Q_h_plot_MNW.py"
+    "🟡 MNW": "90_Streamlit_apps/GWP_Boundary_Conditions/content/Q_h_plot_MNW.py",
+    "🔵 ET": "90_Streamlit_apps/GWP_Boundary_Conditions/content/Q_h_plot_ET.py"
 }
 
 # --- State tracking ---

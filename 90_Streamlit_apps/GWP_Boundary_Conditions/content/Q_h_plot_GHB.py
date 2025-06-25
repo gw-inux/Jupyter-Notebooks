@@ -24,18 +24,26 @@ institution_list = [f"{index_symbols[i-1]} {inst}" for i, inst in institutions.i
 institution_text = " | ".join(institution_list)
 
 st.title("Theory and Concept of the :orange[General Head Boundary (GHB) in MODFLOW]")
-st.subheader("Interaction Between Groundwater and Head-Dependent Boundaries", divider="orange")
+#st.subheader("Interaction Between Groundwater and Head-Dependent Boundaries", divider="orange")
+st.subheader("Groundwater - :orange[Head-Dependent Boundary] interaction", divider="orange")
 
 st.markdown("""
-### 💡 Motivation: Why General Head Boundaries?
-
-Before jumping into equations and applications, consider:
-
-1. **How would you represent a distant river or lake that interacts with groundwater but lies outside your model domain?**
-2. **Can a boundary both add to and remove water from the aquifer—depending on heads?**
-
-▶️ The :orange[**General Head Boundary (GHB)**] addresses these cases. The plot below, based on the MODFLOW documentation (Harbaugh, 2005), shows for the boundary cell how flow $Q_{in}$ depends on aquifer head $h$. The GHB head $H_B$ is defined as 8 m. Try modifying the conductance $C_B$ to see its effect.
+#### 💡 Motivation: Why General Head Boundaries?
 """)
+
+columns0 = st.columns((1,1), gap = 'large')
+
+with columns0[0]:
+    st.markdown(""" 
+    Before jumping into equations and applications, consider:
+    
+    1. **How would you represent a distant river or lake that interacts with groundwater but lies outside your model domain?**
+    2. **Can a boundary both add to and remove water from the aquifer—depending on heads?**
+    
+    ▶️ The :orange[**General Head Boundary (GHB)**] addresses these cases. The following interactive plot, based on the MODFLOW documentation (Harbaugh, 2005), shows for the boundary cell how flow $Q_{in}$ depends on aquifer head $h_{aq}$. The GHB head $H_B$ is defined as 8 m. Try modifying the conductance $C_B$ to see its effect.
+    """)
+    
+    st.latex(r'''Q_B = C_B(H_B - h_{aq})''')
 
 # Initial plot
 # fixed values
@@ -45,24 +53,19 @@ HBi = 8.0
 st.session_state.Ci_slider_value = -2.5
 if "Ci" not in st.session_state:
     st.session_state.Ci = 10 ** st.session_state.Ci_slider_value
-    
-# Slider input and plot
-columns0 = st.columns((1,2), gap = 'large')
 
-with columns0[0]:
+with columns0[1]:
     # READ LOG VALUE, CONVERT, AND WRITE VALUE FOR TRANSMISSIVITY
     container = st.container()  
     Ci_slider_value_new = st.slider("_(log of) Conductance $C_B$ in m²/s_", -5.,-0., -2.5, 0.01, format="%4.2f")    
     st.session_state.Ci = 10 ** Ci_slider_value_new
     container.write("**:orange[$C_B$] in m²/s:** %5.2e" %st.session_state.Ci)
 
-# Define aquifer head range
-h_aqi = np.linspace(0, 20, 200)
-Qi = st.session_state.Ci * (HBi - h_aqi)
+    # Define aquifer head range
+    h_aqi = np.linspace(0, 20, 200)
+    Qi = st.session_state.Ci * (HBi - h_aqi)
 
-# Create the plot
-with columns0[1]:
-    fig, ax = plt.subplots(figsize=(6, 6))      
+    fig, ax = plt.subplots(figsize=(5, 5))      
     ax.plot(h_aqi, Qi, color='black', linewidth=4)
     ax.set_xlabel("Heads and elevations in the GHB Boundary-Aquifer System (m)", fontsize=14, labelpad=15)
     ax.set_ylabel("Flow Into the Ground-Water System \nfrom the GHB boundary $Q_B$ (m³/s)", fontsize=14, labelpad=15)
@@ -74,18 +77,17 @@ with columns0[1]:
     ax.axhline(0, color='grey', linestyle='--', linewidth=0.8)
     st.pyplot(fig)
 
-
 st.markdown("""
-### 🎯 Learning Objectives
+#### Learning Objectives
 By the end of this tool, you will be able to:
 - Explain the conceptual function of a General Head Boundary (GHB) in groundwater models.
 - Apply the analytical equation $Q_B = C_B(H_B - h_{aq})$ to calculate boundary flows.
 - Evaluate the influence of conductance, boundary head, and aquifer head on exchange fluxes.
 - Visualize flow directions and boundary behavior (gaining vs. losing) under different conditions.
 - Understand the physical interpretation of conductance and its dependence on system geometry and hydraulic conductivity.
-
-
-### 🧪 Theory
+""")
+st.subheader('🧪 Theory and Background', divider="orange")
+st.markdown("""
 The General Head Boundary (GHB), also referred to as the Head-Dependent Flux Boundary in MODFLOW, allows for a more realistic simulation of boundary conditions by enabling **exchange with an external reservoir**.
 """)
 with st.expander("Show me more about **the Theory**"):

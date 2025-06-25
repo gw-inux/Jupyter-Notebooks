@@ -24,24 +24,25 @@ institution_list = [f"{index_symbols[i-1]} {inst}" for i, inst in institutions.i
 institution_text = " | ".join(institution_list)
 
 st.title("Theory and Concept of the :green[Drain Boundary (DRN) in MODFLOW]")
-st.subheader("Interaction Between Groundwater and Drains", divider="green")
+st.subheader("Groundwater - :green[Drain] interaction", divider="green")
 
 st.markdown("""
     #### 💡 Motivation: Why Drain Boundaries?
-    
+    """)
+
+columns0 = st.columns((1,1), gap='large')
+with columns0[0]:
+    st.markdown("""      
     Consider these two questions:
     
     1. **How would you simulate a ditch, tile drain, or trench that only removes water from the aquifer when the water table is high enough?**
     
-    2. **What if you want to stop flow when the groundwater falls below a certain level—like the bottom of the drain?** """)
-
-columns0 = st.columns((1,1), gap='large')
-with columns0[0]:
-    st.markdown("""
+    2. **What if you want to stop flow when the groundwater falls below a certain level—like the bottom of the drain?** 
+    
     ▶️ The :green[**Drain (DRN) Boundary**] in MODFLOW is designed for such features. It allows water to leave the aquifer only if the head in the cell $h_n$ exceeds the drain elevation $H_D$ —**no inflow is ever allowed**. The outflow $Q_{out}$ is computed with the drain conductance $C_D$ as: """)
     
     st.latex(r'''Q_{out} = C_{D} (H_{D} - h_{{aq}})''')
-    
+with columns0[1]:    
     # Slider input and plot
     # C_DRN
     # READ LOG VALUE, CONVERT, AND WRITE VALUE FOR Conductance
@@ -56,7 +57,7 @@ Qi = np.where(h_aqi >= HDi, CDi * (HDi - h_aqi)*-1, 0)
 
 # Create the plot
 with columns0[1]:
-    fig, ax = plt.subplots(figsize=(6, 6))      
+    fig, ax = plt.subplots(figsize=(5, 5))      
     ax.plot(h_aqi, Qi, color='black', linewidth=4)
     ax.set_xlabel("Heads and elevations in the DRN Boundary-Aquifer System (m)", fontsize=14, labelpad=15)
     ax.set_ylabel("Flow out of the Ground-Water System \ninto the DRN boundary $Q_{DRN}$ (m³/s)", fontsize=14, labelpad=15)
@@ -70,12 +71,22 @@ with columns0[1]:
     
     st.markdown("""**FIG:** Explore with the initial plot how outflow varies for changes of the drain conductance.
     """)
+#TODO
+st.markdown("""
+#### Learning Objectives
+By the end of this tool, you will be able to:
+- Explain the conceptual function of a General Head Boundary (GHB) in groundwater models.
+- Apply the analytical equation $Q_B = C_B(H_B - h_{aq})$ to calculate boundary flows.
+- Evaluate the influence of conductance, boundary head, and aquifer head on exchange fluxes.
+- Visualize flow directions and boundary behavior (gaining vs. losing) under different conditions.
+- Understand the physical interpretation of conductance and its dependence on system geometry and hydraulic conductivity.
+""")
 
-st.subheader('Theory and Background', divider="green")
+st.subheader('🧪 Theory and Background', divider="green")
 st.markdown("""
 This app calculates the flow between  a model cell and a drain (DRN) depending on the drain elevation $H_D$ and the conductance $C_D$ between the boundary and the aquifer cell. The following figure illustrates the setup.""")
   
-with st.expander('Click here to read more about the theory'):
+with st.expander("Show me more about **the Theory**"):
     st.markdown("""
     This app calculates the flow between  a model cell and a drain (DRN) depending on the drain elevation $H_D$ and the conductance $C_D$ between the boundary and the aquifer cell. The following figure illustrates the setup.""")
     

@@ -21,41 +21,43 @@ author_list = [f"{name}{''.join(index_symbols[i-1] for i in indices)}" for name,
 institution_list = [f"{index_symbols[i-1]} {inst}" for i, inst in institutions.items()]
 institution_text = " | ".join(institution_list)
 
-st.title("Theory and Concept of :rainbow[Evapotranspiration in MODFLOW]")
-st.subheader("Consideration of Evapotranspiration on Groundwater Ressources", divider="rainbow")
+st.title("Theory and Concept of :blue[Evapotranspiration in MODFLOW]")
+st.subheader("Consideration of :blue[Evapotranspiration] on Groundwater", divider="blue")
 
 st.markdown("""
-### 💡 Motivation: Why Evapotranspiration (ET) Boundaries?
-
-Think about these questions:
-
-1. **How does groundwater contribute to plant water demand or surface evaporation in shallow water table environments?**
-
-2. **Should evapotranspiration continue if the water table drops well below the root zone or land surface?**
-
-▶️ The **ET Boundary** in MODFLOW captures these dynamics. It simulates water loss from the saturated zone due to evapotranspiration—**but only when the water table is near enough to the surface**. As the groundwater head drops below a defined extinction depth, the ET rate gradually reduces to zero. The interactive plot below helps visualize this relationship. Adjust parameters like ET rate and extinction depth to explore how ET demand interacts with groundwater levels.
+#### 💡 Motivation: Why Evapotranspiration (ET) Boundaries?
 """)
 
 # Initial plot
 # Slider input and plot
-columns0 = st.columns((1,2), gap = 'large')
+columns0 = st.columns((1,1), gap = 'large')
 
 with columns0[0]:
-    # EXPDi input
-    EXDPi = st.slider("**Extinction depth $EXDP$**", 0.1, 5.0, 4.0, 0.1)  
+    st.markdown("""   
+    Think about these questions:
+    
+    1. **How does groundwater contribute to plant water demand or surface evaporation in shallow water table environments?**
+    
+    2. **Should evapotranspiration continue if the water table drops well below the root zone or land surface?**
+    
+    ▶️ The **ET Boundary** in MODFLOW captures these dynamics. It simulates water loss from the saturated zone due to evapotranspiration—**but only when the water table is near enough to the surface**. As the groundwater head drops below a defined extinction depth, the ET rate gradually reduces to zero. The interactive plot below helps visualize this relationship. Adjust parameters like ET rate and extinction depth to explore how ET demand interacts with groundwater levels.
+    """)
 
-# Computation 
-QET_MAXi = 0.0005
-h_aqi = np.linspace(-10, 0, 100)
-SURFi = -1.0
-EVTRi = 2.0/86400000
-AREAi = 10000
-RETi = np.where(h_aqi > SURFi, EVTRi, np.where(h_aqi >= (SURFi - EXDPi), EVTRi * (h_aqi - (SURFi - EXDPi)) / EXDPi, 0))
-QETi = RETi*AREAi
-
-# Create the plot
 with columns0[1]:
-    fig, ax = plt.subplots(figsize=(6, 6))      
+    # EXPDi input
+    EXDPi = st.slider("**Extinction depth (EXDP)**", 0.1, 5.0, 4.0, 0.1)  
+
+    # Computation 
+    QET_MAXi = 0.0005
+    h_aqi = np.linspace(-10, 0, 100)
+    SURFi = -1.0
+    EVTRi = 2.0/86400000
+    AREAi = 10000
+    RETi = np.where(h_aqi > SURFi, EVTRi, np.where(h_aqi >= (SURFi - EXDPi), EVTRi * (h_aqi - (SURFi - EXDPi)) / EXDPi, 0))
+    QETi = RETi*AREAi
+
+    # Create the plot
+    fig, ax = plt.subplots(figsize=(5, 5    ))      
     ax.plot(h_aqi, QETi, label="$Q_{ET}$",color='black', linewidth=4)
     ax.set_xlabel("Elevation below surface (m)", fontsize=14, labelpad=15)
     ax.set_ylabel("Evapotranspiration loss from the aquifer ($Q_{ET}$) in m³/s", fontsize=14, labelpad=15)
@@ -67,34 +69,48 @@ with columns0[1]:
     ax.axhline(0, color='grey', linestyle='--', linewidth=0.8)
     st.pyplot(fig)    
     
+#TODO
 st.markdown("""
-This app shows the effect of evapotranspiration in removing water from an aquifer according to Harbaugh (2005) as it is implemented by the EVT package in MODFLOW. The EVT package consider only evapotranspiration from the saturated zone. The approach considers the following parameters/measures:
-- $EVTR$ = a user defined maximum evapotranspiration rate,
-- :green[$SURF$ = a specific elevation named _ET surface_ up to which the full evapotranspiration rate is acting],
-- $RET$ = the depth-specific evapotranspiration rate,
-- :orange[$EXDP$ = _extinction depth_ or cutoff depth ($EXDP$), where the evapotranspiration rate $ETR$ from the groundwater becomes zero.]
-
-The approach assumes:
-- if heads are above the _ET surface_ ($SURF$), the evapotranspiration rate $RET$ is the user-defined maximum rate $EVTR$
+#### Learning Objectives
+By the end of this tool, you will be able to:
+- Explain the conceptual function of a General Head Boundary (GHB) in groundwater models.
+- Apply the analytical equation $Q_B = C_B(H_B - h_{aq})$ to calculate boundary flows.
+- Evaluate the influence of conductance, boundary head, and aquifer head on exchange fluxes.
+- Visualize flow directions and boundary behavior (gaining vs. losing) under different conditions.
+- Understand the physical interpretation of conductance and its dependence on system geometry and hydraulic conductivity.
 """)
-st.latex(r'''\text{RET} = \text{EVTR}, \quad h_{i,j,k} > \text{SURF}''')
+
+st.subheader('🧪 Theory and Background', divider="blue")
 st.markdown("""
-- if heads are below the _ET surface_ ($SURF$) and exceeding the _extinction depth_ or cutoff depth ($EXDP$), the evapotranspiration rate $ETR$ from the groundwater becomes zero.
+This app shows the effect of evapotranspiration in removing water from an aquifer according to Harbaugh (2005) as it is implemented by the EVT package in MODFLOW.
 """)
-st.latex(r'''\text{RET} = 0, \quad h_{i,j,k} < \text{SURF} - \text{EXDP}''')
-st.markdown("""
-- between these two thresholds, evapotranspiration increase linearly from the _extinction depth_ to the _ET surface_.
-""")
-st.latex(r'''\text{RET} = \text{EVTR} \frac{h_{i,j,k} - (\text{SURF} - \text{EXDP})}{\text{EXDP}}, \quad (\text{SURF} - \text{EXDP}) \leq h_{i,j,k} \leq \text{SURF}
-''')
-st.markdown("""
-The volumetric discharge is computed by multiplying the evapotranspiration rate $RET$ by the cell area $\Delta x \Delta y$:
-""")
-st.latex(r'''Q_{ET} = RET \Delta x \Delta y''')
+with st.expander("Show me more about **the Theory**"):
+    st.markdown("""
+    The EVT package consider only evapotranspiration from the saturated zone. The approach considers the following parameters/measures:
+    - $EVTR$ = a user defined maximum evapotranspiration rate,
+    - :green[$SURF$ = a specific elevation named _ET surface_ up to which the full evapotranspiration rate is acting],
+    - $RET$ = the depth-specific evapotranspiration rate,
+    - :orange[$EXDP$ = _extinction depth_ or cutoff depth ($EXDP$), where the evapotranspiration rate $ETR$ from the groundwater becomes zero.]
+    
+    The approach assumes:
+    - if heads are above the _ET surface_ ($SURF$), the evapotranspiration rate $RET$ is the user-defined maximum rate $EVTR$
+    """)
+    st.latex(r'''\text{RET} = \text{EVTR}, \quad h_{i,j,k} > \text{SURF}''')
+    st.markdown("""
+    - if heads are below the _ET surface_ ($SURF$) and exceeding the _extinction depth_ or cutoff depth ($EXDP$), the evapotranspiration rate $ETR$ from the groundwater becomes zero.
+    """)
+    st.latex(r'''\text{RET} = 0, \quad h_{i,j,k} < \text{SURF} - \text{EXDP}''')
+    st.markdown("""
+    - between these two thresholds, evapotranspiration increase linearly from the _extinction depth_ to the _ET surface_.
+    """)
+    st.latex(r'''\text{RET} = \text{EVTR} \frac{h_{i,j,k} - (\text{SURF} - \text{EXDP})}{\text{EXDP}}, \quad (\text{SURF} - \text{EXDP}) \leq h_{i,j,k} \leq \text{SURF}
+    ''')
+    st.markdown("""
+    The volumetric discharge is computed by multiplying the evapotranspiration rate $RET$ by the cell area $\Delta x \Delta y$:
+    """)
+    st.latex(r'''Q_{ET} = RET \Delta x \Delta y''')
 
-
-
-st.subheader("Interactive plot", divider="green")
+st.subheader("Interactive plot", divider="blue")
 st.markdown("""
 The interactive plot allows you to investigate $Q_{ET}$ in dependence from the _ET surface_ and the _extinction depth_. You can turn the plot by using the toggle above the input widgets.
 """)

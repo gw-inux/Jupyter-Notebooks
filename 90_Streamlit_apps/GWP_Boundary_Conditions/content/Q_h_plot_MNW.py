@@ -26,31 +26,33 @@ author_list = [f"{name}{''.join(index_symbols[i-1] for i in indices)}" for name,
 institution_list = [f"{index_symbols[i-1]} {inst}" for i, inst in institutions.items()]
 institution_text = " | ".join(institution_list)
 
-st.title("Theory and Concept of the :blue[Multi-Node-Well package (MNW) in MODFLOW]")
-st.subheader("Process-based implementation of Flow to Pumping wells", divider="blue")
+st.title("Theory and Concept of the :rainbow[Multi-Node-Well Boundary (MNW)]")
+st.subheader("Process-based implementation of Flow to Pumping wells", divider="rainbow")
 
 st.markdown("""
-### 💡 Motivation: Why Multi-Node Wells (MNW)?
-
-Let’s reflect on these questions:
-
-1. **How do well losses affect the actual water level inside a pumping well?**
-
-2. **What happens if the water level in the well drops below a critical threshold? Should pumping continue?**
-
-▶️ The **Multi-Node Well (MNW)** package in MODFLOW supports more realistic simulation of well hydraulics. Even in single-layer systems, it allows you to:
-- Account for **drawdown within the wellbore** due to head losses,
-- Define **limiting water levels** below which pumping stops,
-- Simulate wells that **automatically shut off** or restart depending on drawdown conditions.
-
-The interactive plots below let you explore how discharge, aquifer head, and well thresholds interact—revealing when a well becomes unsustainable under given conditions.
+#### 💡 Motivation: Why Multi-Node Wells (MNW)?
 """)
 
 # Initial plot
 # Slider input and plot
-columns0 = st.columns((1,2), gap = 'large')
-
+columns0 = st.columns((1,1), gap = 'large')
 with columns0[0]:
+    st.markdown("""  
+    Let’s reflect on these questions:
+    
+    1. **How do well losses affect the actual water level inside a pumping well?**
+    
+    2. **What happens if the water level in the well drops below a critical threshold? Should pumping continue?**
+    
+    ▶️ The **Multi-Node Well (MNW)** package in MODFLOW supports more realistic simulation of well hydraulics. Even in single-layer systems, it allows you to:
+    - Account for **drawdown within the wellbore** due to head losses,
+    - Define **limiting water levels** below which pumping stops,
+    - Simulate wells that **automatically shut off** or restart depending on drawdown conditions.
+    
+    The following interactive plots let you explore how discharge, aquifer head, and well thresholds interact—revealing when a well becomes unsustainable under given conditions.
+    """)
+
+with columns0[1]:
     # CWC
     # READ LOG VALUE, CONVERT, AND WRITE VALUE FOR Conductance
     container = st.container()  
@@ -58,15 +60,15 @@ with columns0[0]:
     CWCi = 10 ** CWCi_slider_value_new
     container.write("**:violet[$CWC$] in m²/s:** %5.2e" %CWCi) 
         
-# COMPUTATION
-# Define aquifer head range
-h_aqi = np.linspace(0, 20, 200)
-QPi = np.full_like(h_aqi, 0.02)
-h_ni = 10.0 # Example head for the cell
-h_WELLi = np.linspace(0, 20, 200)
-Qi = (h_WELLi - h_ni) * CWCi
-# Create the plot
-with columns0[1]:
+    # COMPUTATION
+    # Define aquifer head range
+    h_aqi = np.linspace(0, 20, 200)
+    QPi = np.full_like(h_aqi, 0.02)
+    h_ni = 10.0 # Example head for the cell
+    h_WELLi = np.linspace(0, 20, 200)
+    Qi = (h_WELLi - h_ni) * CWCi
+    
+    # Create the plot
     fig, ax = plt.subplots(figsize=(6, 6))      
     ax.plot(h_aqi, QPi, color='black', linewidth=4, label='$Q-h_n$')
     ax.plot(h_WELLi, Qi, color='black', linestyle='--', linewidth=4, label='$Q-h_{well} with h_n = 10 m$')
@@ -82,37 +84,50 @@ with columns0[1]:
     ax.legend(fontsize=14)
     st.pyplot(fig)
 
+#TODO
+st.markdown("""
+#### Learning Objectives
+By the end of this tool, you will be able to:
+- Explain the conceptual function of a General Head Boundary (GHB) in groundwater models.
+- Apply the analytical equation $Q_B = C_B(H_B - h_{aq})$ to calculate boundary flows.
+- Evaluate the influence of conductance, boundary head, and aquifer head on exchange fluxes.
+- Visualize flow directions and boundary behavior (gaining vs. losing) under different conditions.
+- Understand the physical interpretation of conductance and its dependence on system geometry and hydraulic conductivity.
+""")
 
-
+st.subheader('🧪 Theory and Background', divider="rainbow")
 st.markdown("""
 This app calculates the flow between a Multi-Node-Well (MNW) and a model cell depending on the system parameters describing the flow in the vicinity of the well and into the well.
- 
-In general, the flow into the well that is placed in the n-th cell is described with a cell-to-well conductance:
 """)
+with st.expander("Show me more about **the Theory**"):
+    st.markdown("""
+    This app calculates the flow between a Multi-Node-Well (MNW) and a model cell depending on the system parameters describing the flow in the vicinity of the well and into the well.
+     
+    In general, the flow into the well that is placed in the n-th cell is described with a cell-to-well conductance:
+    """)
+    st.latex(r'''Q_n = CWC_n (h_{well} - h_n)''')
+    
+    st.markdown("""
+    where:
+    - $Q_n$ is the flow between the n-th cell and the well, taken as positive if it is directed into the cell [L3/T]
+    - $h_{well}$ is the head in the well (L),
+    - $CWC_n$ is the n-th cell-to-well conductance [L2/T], and
+    - $h_n$ is the head in the n-th cell [L].
+    
+    Further, the CWC is composed by three terms, describing (1) flow to the well, (2) the skin effect for flow into the well, and (3) the effect of turbulence in the vicinity of the well. Accordingly, the Cell to Well conductance can be defined as:
+    """)
+    
+    st.latex(r'''CWC_n = [ A + B + C Q_n^{(p-1)}]^{-1}''')
+    
+    st.markdown("""
+    where:
+    - $A$ = Linear aquifer-loss coefficient; Represents head loss due to flow through the aquifer to the well [T/L²].
+    - $B$ = Linear well-loss coefficient. Accounts for head loss associated with linear flow components in the well [T/L²].
+    - $C$ = Nonlinear well-loss coefficient, Governs the nonlinear (e.g., turbulent) head loss in the well. [T^P/L^(3P-1)], and
+    - $P$ = is the power (exponent) of the nonlinear discharge component of well loss.
+    """)
 
-st.latex(r'''Q_n = CWC_n (h_{well} - h_n)''')
-
-st.markdown("""
-where:
-- $Q_n$ is the flow between the n-th cell and the well, taken as positive if it is directed into the cell [L3/T]
-- $h_{well}$ is the head in the well (L),
-- $CWC_n$ is the n-th cell-to-well conductance [L2/T], and
-- $h_n$ is the head in the n-th cell [L].
-
-Further, the CWC is composed by three terms, describing (1) flow to the well, (2) the skin effect for flow into the well, and (3) the effect of turbulence in the vicinity of the well. Accordingly, the Cell to Well conductance can be defined as:
-""")
-
-st.latex(r'''CWC_n = [ A + B + C Q_n^{(p-1)}]^{-1}''')
-
-st.markdown("""
-where:
-- $A$ = Linear aquifer-loss coefficient; Represents head loss due to flow through the aquifer to the well [T/L²].
-- $B$ = Linear well-loss coefficient. Accounts for head loss associated with linear flow components in the well [T/L²].
-- $C$ = Nonlinear well-loss coefficient, Governs the nonlinear (e.g., turbulent) head loss in the well. [T^P/L^(3P-1)], and
-- $P$ = is the power (exponent) of the nonlinear discharge component of well loss.
-""")
-
-st.subheader('Interactive plots to understand the general characteristics of the discharge-head relationships in MNW package', divider='blue')
+st.subheader('Interactive plots to understand the general characteristics of the discharge-head relationships in MNW package', divider='rainbow')
 
 st.markdown("""
 The subsequent interactive plot allows you to investigate the behavior of the Multi-Node-Well (MNW) boundary in MODFLOW. The plots shows the relationship between the difference of the head in the cell $h_n$ (aquifer head) and the head in the well $h_{well}$. The application allows you to evaluate and visualize for a

@@ -24,18 +24,10 @@ institution_list = [f"{index_symbols[i-1]} {inst}" for i, inst in institutions.i
 institution_text = " | ".join(institution_list)
 
 st.title("Theory and Concept of the :violet[River Boundary (RIV) in MODFLOW]")
-st.subheader("Interaction Between Groundwater and River Boundaries", divider="violet")
+st.subheader("Groundwater - :violet[River Boundary] interaction", divider="violet")
 
 st.markdown("""
-### 💡 Motivation: Why River Boundaries?
-
-Let’s begin with two simple questions:
-
-1. **How would you model a river that can recharge the aquifer when water levels are high, but leak to it when the river stage drops?**
-
-2. **What happens when the groundwater level falls below the riverbed? Should flow continue?**
-
-▶️ The :violet[**River (RIV) Boundary**] in MODFLOW is built for these situations. It allows flow to depend on the difference between river stage and groundwater head. The interactive plot below shows how the river flux responds to these changing conditions. Try adjusting the river conductance to explore the general behavior.
+#### 💡 Motivation: Why River Boundaries?
 """)
 
 # Initial plot
@@ -44,24 +36,34 @@ h_RIVi = 8
 h_boti = 6
 
 # Slider input and plot
-columns0 = st.columns((1,2), gap = 'large')
-
+columns0 = st.columns((1,1), gap = 'large')
 with columns0[0]:
+    st.markdown("""
+    Let’s begin with two simple questions:
+    
+    1. **How would you model a river that can recharge the aquifer when water levels are high, but leak to it when the river stage drops?**
+    
+    2. **What happens when the groundwater level falls below the riverbed? Should flow continue?**
+    
+    ▶️ The :violet[**River (RIV) Boundary**] in MODFLOW is built for these situations. It allows flow to depend on the difference between river stage and groundwater head. The interactive plot below shows how the river flux responds to these changing conditions. Try adjusting the river conductance to explore the general behavior.
+    """)
+    st.latex(r'''Q_{RIV} = C_{RIV} (h_{RIV} - h_{{aq}})''')
+    
+with columns0[1]:
     #C_RIV
     # READ LOG VALUE, CONVERT, AND WRITE VALUE FOR Conductance
     container = st.container()  
     Ci_slider_value_new = st.slider      ("_(log of) Conductance_", -5.,-0., -2.5, 0.01, format="%4.2f")    
     Ci = 10 ** Ci_slider_value_new
     container.write("**:violet[$C_{Riv}$] in m²/s:** %5.2e" %Ci) 
-        
-# COMPUTATION
-# Define aquifer head range
-h_aqi = np.linspace(0, 20, 200)
-Qi = np.where(h_aqi >= h_boti, Ci * (h_RIVi - h_aqi), Ci * (h_RIVi - h_boti))
+            
+    # COMPUTATION
+    # Define aquifer head range
+    h_aqi = np.linspace(0, 20, 200)
+    Qi = np.where(h_aqi >= h_boti, Ci * (h_RIVi - h_aqi), Ci * (h_RIVi - h_boti))
 
-# Create the plot
-with columns0[1]:
-    fig, ax = plt.subplots(figsize=(6, 6))      
+    # Create the plot
+    fig, ax = plt.subplots(figsize=(5, 5))      
     ax.plot(h_aqi, Qi, color='black', linewidth=4)
     ax.set_xlabel("Heads and elevations in the RIV Boundary-Aquifer System (m)", fontsize=14, labelpad=15)
     ax.set_ylabel("Flow Into the Ground-Water System \nfrom the RIV boundary $Q_{RIV}$ (m³/s)", fontsize=14, labelpad=15)
@@ -73,36 +75,51 @@ with columns0[1]:
     ax.axhline(0, color='grey', linestyle='--', linewidth=0.8)
     st.pyplot(fig)
 
+#TODO
 st.markdown("""
-### 🧪 Theory
-This application shows how the flow between a stream and an aquifer, $Q$, depends on the groundwater head in the river $h_{aq}$. 
-The relationship is as follows:
+#### Learning Objectives
+By the end of this tool, you will be able to:
+- Explain the conceptual function of a General Head Boundary (GHB) in groundwater models.
+- Apply the analytical equation $Q_B = C_B(H_B - h_{aq})$ to calculate boundary flows.
+- Evaluate the influence of conductance, boundary head, and aquifer head on exchange fluxes.
+- Visualize flow directions and boundary behavior (gaining vs. losing) under different conditions.
+- Understand the physical interpretation of conductance and its dependence on system geometry and hydraulic conductivity.
 """)
 
-st.latex(r'''Q_{RIV} = C_{RIV} (h_{RIV} - h_{{aq}})''')
-
+st.subheader('🧪 Theory and Background', divider="violet")
 st.markdown("""
-where:
-- $Q_{RIV}$ is the flow between the river and the aquifer (positive if it is directed into the aquifer) [L3/T]
-- $h_{RIV}$ is the water level (head) of the river (L),
-- $C_{RIV}$ is the hydraulic conductance of the river bed [L2/T], and
-- $h_{aq}$ is the head in the aquifer beneath the river bed (L).
-
-If the aquifer head $h_{aq}$ is below the elevation of the bottom of the river bed, $R_{BOT}$, the relationship is as follows:
+This application shows how the flow between a stream and an aquifer.
 """)
 
-st.markdown("""
-This application shows how the flow between a stream and an aquifer, $Q$, depends on the groundwater head in the river $h_{aq}$. 
-The relationship is as follows:
-""")
-
-
-st.latex(r'''Q_{RIV} = C_{RIV} (h_{RIV} - R_{{BOT}})''')
-
-st.write(':blue[**It is important to compare the calculated flow between the river and aquifer to the flow in the segment of river being modeled.**] :green[The amount of water lost or gained needs to be concistent with observed river flow over the length of the segment such that it is reasonable to assume a constant river head.]')
-
-
-st.write(':blue[**If there is a significant gain or loss of flow, the river head may rise or fall, but the MODFLOW RIV package will continue to use the same river head.**] :green[If the modeler wants to represent feedback between the amount of water lost or gained and the elevation of the river head, the STR  (stream package) can be used. The concepts for flow between the river and the aquifer do not change from what is presented here.]')
+with st.expander("Show me more about **the Theory**"):
+    st.markdown("""
+    The flow between a stream and an aquifer, $Q$, depends on the groundwater head in the river $h_{aq}$. 
+    The relationship is as follows:
+    """)
+    st.latex(r'''Q_{RIV} = C_{RIV} (h_{RIV} - h_{{aq}})''')
+    
+    st.markdown("""
+    where:
+    - $Q_{RIV}$ is the flow between the river and the aquifer (positive if it is directed into the aquifer) [L3/T]
+    - $h_{RIV}$ is the water level (head) of the river (L),
+    - $C_{RIV}$ is the hydraulic conductance of the river bed [L2/T], and
+    - $h_{aq}$ is the head in the aquifer beneath the river bed (L).
+    
+    If the aquifer head $h_{aq}$ is below the elevation of the bottom of the river bed, $R_{BOT}$, the relationship is as follows:
+    """)
+    
+    st.markdown("""
+    This application shows how the flow between a stream and an aquifer, $Q$, depends on the groundwater head in the river $h_{aq}$. 
+    The relationship is as follows:
+    """)
+    
+    
+    st.latex(r'''Q_{RIV} = C_{RIV} (h_{RIV} - R_{{BOT}})''')
+    
+    st.write(':blue[**It is important to compare the calculated flow between the river and aquifer to the flow in the segment of river being modeled.**] :green[The amount of water lost or gained needs to be concistent with observed river flow over the length of the segment such that it is reasonable to assume a constant river head.]')
+    
+    
+    st.write(':blue[**If there is a significant gain or loss of flow, the river head may rise or fall, but the MODFLOW RIV package will continue to use the same river head.**] :green[If the modeler wants to represent feedback between the amount of water lost or gained and the elevation of the river head, the STR  (stream package) can be used. The concepts for flow between the river and the aquifer do not change from what is presented here.]')
 
 
 with st.expander('**Click here** to read about the :green[**heads used**] in the River Boundary condition of MODFLOW'):
