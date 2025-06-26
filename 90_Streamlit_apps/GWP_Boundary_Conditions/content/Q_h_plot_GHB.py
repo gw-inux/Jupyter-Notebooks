@@ -72,7 +72,7 @@ with columns0[1]:
     container = st.container()  
     Ci_slider_value_new = st.slider("_(log of) Conductance $C_B$ in m²/s_", -5.,-0., -2.5, 0.01, format="%4.2f")    
     st.session_state.Ci = 10 ** Ci_slider_value_new
-    container.write("**:orange[$C_B$] in m²/s:** %5.2e" %st.session_state.Ci)
+    container.write("**:orange[$C_B$]** in m²/s: %5.2e" %st.session_state.Ci)
 
     # Define aquifer head range
     h_aqi = np.linspace(0, 20, 200)
@@ -80,11 +80,11 @@ with columns0[1]:
 
     fig, ax = plt.subplots(figsize=(5, 5))      
     ax.plot(h_aqi, Qi, color='black', linewidth=4)
-    ax.set_xlabel("Heads and elevations in the GHB Boundary-Aquifer System (m)", fontsize=14, labelpad=15)
-    ax.set_ylabel("Flow Into the Ground-Water System \nfrom the GHB boundary $Q_B$ (m³/s)", fontsize=14, labelpad=15)
+    ax.set_xlabel("Heads and elevations in the GHB-Aquifer System (m)", fontsize=14, labelpad=15)
+    ax.set_ylabel("Flow Into the Groundwater \nfrom the GHB $Q_B$ (m³/s)", fontsize=14, labelpad=15)
     ax.set_xlim(0, 20)
     ax.set_ylim(-0.05, 0.05)
-    ax.set_title("Flow Between Groundwater and GHB boundary", fontsize=16, pad=10)
+    ax.set_title("Flow Between Groundwater and GHB", fontsize=16, pad=10)
     plt.xticks(fontsize=14)
     plt.yticks(fontsize=14) 
     ax.axhline(0, color='grey', linestyle='--', linewidth=0.8)
@@ -351,6 +351,17 @@ def Q_h_plot():
 
 Q_h_plot()
 
+st.subheader('✅ Conclusion', divider = 'orange')
+st.markdown("""
+The General Head Boundary (GHB) offers a flexible way to simulate interactions with external water bodies or regions not explicitly modeled — such as distant lakes, rivers, or adjacent aquifer systems. Its formulation as a **head-dependent boundary** enables both **inflow and outflow**, depending on the head difference between the model cell and the boundary.
+
+The GHB condition captures the essential physics of cross-boundary exchange using only a few parameters: the **boundary head**, **aquifer head**, and **conductance**, which reflects the geometry and hydraulic properties of the connection.
+
+By analyzing **Q–h plots**, you've gained a clearer understanding of how conductance controls the slope of the exchange curve and how head differences dictate the flow direction. This conceptual insight is essential for setting realistic boundary conditions in MODFLOW models.
+
+You're now ready to assess your understanding of GHB behavior in the final quiz.
+""")
+
 with st.expander('**Show the final assessment** - to self-check your understanding'):
     st.markdown("""
     #### 🧠 Final assessment
@@ -380,7 +391,9 @@ with st.expander('**Show the final assessment** - to self-check your understandi
                 success=quest_final[i].get("success", "✅ Correct."),
                 error=quest_final[i].get("error", "❌ Not quite.")
             )
+            
 st.markdown('---')
+
 # Render footer with authors, institutions, and license logo in a single line
 columns_lic = st.columns((5,1))
 with columns_lic[0]:

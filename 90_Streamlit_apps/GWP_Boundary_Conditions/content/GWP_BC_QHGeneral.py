@@ -409,6 +409,18 @@ def computation():
     
 computation()
 
+st.subheader('✅ Conclusion', divider = 'blue')
+st.markdown("""
+Boundary conditions are the foundation of any groundwater model — they define how water enters, leaves, or interacts with the simulated domain. Each boundary type, whether defined head, defined flow, or head-dependent, represents a different physical assumption and has specific implications for model behavior.
+
+This general module introduced the concept of **Q–h plots** as a powerful visual and conceptual tool. These plots help clarify the distinct flow–head relationships of different boundary types and support better understanding of model response and boundary sensitivity.
+
+By exploring these relationships interactively, you've developed a more intuitive grasp of how boundary conditions function, how they differ, and why appropriate conceptualization is essential in MODFLOW modeling.
+
+In the following boundary-specific sections of the module, you will now dive deeper into each condition — with visualizations, theory, and targeted assessments. But prior moving on, take the final assessment.
+""")
+
+
 with st.expander('**Show the final assessment** - to self-check your understanding'):
     st.markdown("""
     #### 🧠 Final assessment

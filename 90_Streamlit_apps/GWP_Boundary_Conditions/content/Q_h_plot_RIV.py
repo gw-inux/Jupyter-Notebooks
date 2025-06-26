@@ -7,7 +7,20 @@ import pandas as pd
 import streamlit as st
 import streamlit_book as stb
 from streamlit_extras.stateful_button import button
+import json
+from streamlit_book import multiple_choice
 
+# path to questions for the assessments (direct path)
+path_quest_ini   = "90_Streamlit_apps/GWP_Boundary_Conditions/questions/initial_riv.json"
+path_quest_final = "90_Streamlit_apps/GWP_Boundary_Conditions/questions/final_riv.json"
+
+# Load questions
+with open(path_quest_ini, "r", encoding="utf-8") as f:
+    quest_ini = json.load(f)
+    
+with open(path_quest_final, "r", encoding="utf-8") as f:
+    quest_final = json.load(f)
+    
 # Authors, institutions, and year
 year = 2025 
 authors = {
@@ -39,15 +52,16 @@ h_boti = 6
 columns0 = st.columns((1,1), gap = 'large')
 with columns0[0]:
     st.markdown("""
-    Let’s begin with two simple questions:
+    Let’s begin with some simple questions:
+    - Can a river both **gain from** and **lose to** the aquifer?
+    - How does **stream stage** influence exchange flow?
+    - What happens if the **aquifer drops below the riverbed**?
     
-    1. **How would you model a river that can recharge the aquifer when water levels are high, but leak to it when the river stage drops?**
-    
-    2. **What happens when the groundwater level falls below the riverbed? Should flow continue?**
-    
-    ▶️ The :violet[**River (RIV) Boundary**] in MODFLOW is built for these situations. It allows flow to depend on the difference between river stage and groundwater head. The interactive plot below shows how the river flux responds to these changing conditions. Try adjusting the river conductance to explore the general behavior.
+    ▶️ The :violet[**River (RIV) Boundary**] in MODFLOW handles these dynamics by simulating a **head-dependent flow** that includes a check for streambed drying. The relationship between aquifer head $h_{aq}$ and river head $h_{RIV}$ is defined via a **conductance term** $C_{RIV}$. The interactive plot below shows how the flow from the flux between river and groundwater $Q_{RIV}$ responds to these changing conditions. Try adjusting the river conductance to explore the general behavior.
     """)
     st.latex(r'''Q_{RIV} = C_{RIV} (h_{RIV} - h_{{aq}})''')
+
+    
     
 with columns0[1]:
     #C_RIV
@@ -55,7 +69,7 @@ with columns0[1]:
     container = st.container()  
     Ci_slider_value_new = st.slider      ("_(log of) Conductance_", -5.,-0., -2.5, 0.01, format="%4.2f")    
     Ci = 10 ** Ci_slider_value_new
-    container.write("**:violet[$C_{Riv}$] in m²/s:** %5.2e" %Ci) 
+    container.write("**:violet[$C_{Riv}$]** in m²/s: %5.2e" %Ci) 
             
     # COMPUTATION
     # Define aquifer head range
@@ -65,30 +79,61 @@ with columns0[1]:
     # Create the plot
     fig, ax = plt.subplots(figsize=(5, 5))      
     ax.plot(h_aqi, Qi, color='black', linewidth=4)
-    ax.set_xlabel("Heads and elevations in the RIV Boundary-Aquifer System (m)", fontsize=14, labelpad=15)
-    ax.set_ylabel("Flow Into the Ground-Water System \nfrom the RIV boundary $Q_{RIV}$ (m³/s)", fontsize=14, labelpad=15)
+    ax.set_xlabel("Heads and elevations in the RIV-Aquifer System (m)", fontsize=14, labelpad=15)
+    ax.set_ylabel("Flow Into the Groundwater \nfrom the RIV boundary $Q_{RIV}$ (m³/s)", fontsize=14, labelpad=15)
     ax.set_xlim(0, 20)
     ax.set_ylim(-0.05, 0.05)
-    ax.set_title("Flow Between Groundwater and RIV boundary", fontsize=16, pad=10)
+    ax.set_title("Flow Between Groundwater and RIV", fontsize=16, pad=10)
     plt.xticks(fontsize=14)
     plt.yticks(fontsize=14) 
     ax.axhline(0, color='grey', linestyle='--', linewidth=0.8)
     st.pyplot(fig)
 
-#TODO
 st.markdown("""
-####  🎓 Learning Objectives
-By the end of this tool, you will be able to:
-- Explain the conceptual function of a General Head Boundary (GHB) in groundwater models.
-- Apply the analytical equation $Q_B = C_B(H_B - h_{aq})$ to calculate boundary flows.
-- Evaluate the influence of conductance, boundary head, and aquifer head on exchange fluxes.
-- Visualize flow directions and boundary behavior (gaining vs. losing) under different conditions.
-- Understand the physical interpretation of conductance and its dependence on system geometry and hydraulic conductivity.
+#### 🎓 Learning Objectives
+
+By the end of this section, you will be able to:
+
+- Explain the conceptual and mathematical formulation of the RIV boundary condition in MODFLOW.
+- Apply the RIV flow equation to simulate groundwater–river exchange and identify gaining or losing conditions.
+- Evaluate how river stage, aquifer head, riverbed elevation, and conductance control the direction and magnitude of exchange.
+- Interpret Q–h plots that illustrate the flow regime, including drying conditions when aquifer heads drop below the riverbed.
 """)
 
+
+with st.expander('**Show the initial assessment** - to assess your existing knowledge'):
+    st.markdown("""
+    #### 📋 Initial assessment
+    You can use the initial questions to assess your existing knowledge.
+    """)
+
+    # Render questions in a 2x2 grid (row-wise, aligned)
+    for row in [(0, 1), (2, 3)]:
+        col1, col2 = st.columns(2)
+    
+        with col1:
+            i = row[0]
+            st.markdown(f"**Q{i+1}. {quest_ini[i]['question']}**")
+            multiple_choice(
+                question=" ",  # suppress repeated question display
+                options_dict=quest_ini[i]["options"],
+                success=quest_ini[i].get("success", "✅ Correct."),
+                error=quest_ini[i].get("error", "❌ Not quite.")
+            )
+    
+        with col2:
+            i = row[1]
+            st.markdown(f"**Q{i+1}. {quest_ini[i]['question']}**")
+            multiple_choice(
+                question=" ",
+                options_dict=quest_ini[i]["options"],
+                success=quest_ini[i].get("success", "✅ Correct."),
+                error=quest_ini[i].get("error", "❌ Not quite.")
+            )
+            
 st.subheader('🧪 Theory and Background', divider="violet")
 st.markdown("""
-This application shows how the flow between a stream and an aquifer.
+In groundwater modeling, simulating the interaction between an aquifer and a river is essential for understanding stream depletion, baseflow contribution, and groundwater–surface water exchange. But how do we realistically represent a river in a groundwater model?
 """)
 
 with st.expander("Show me more about **the Theory**"):
@@ -694,7 +739,48 @@ def Q_h_plot():
         st.write("- Flow between river and aquifer **$Q_{RIV}$ = % 10.2E"% Q_ref," m³/s**")
 
 Q_h_plot()
-'---'
+
+st.subheader('✅ Conclusion', divider = 'violet')
+st.markdown("""
+The River (RIV) boundary condition is a powerful tool in MODFLOW for simulating dynamic interactions between surface water and groundwater. Unlike simpler boundary types, the RIV condition allows for **bidirectional flow** and introduces a **cutoff mechanism** when the aquifer head drops below the riverbed — capturing realistic drying behavior.
+
+By adjusting parameters like **river stage**, **bed elevation**, and **conductance**, modelers can explore a wide range of hydrologic conditions — from **gaining** to **losing streams**, or even **no-flow scenarios**. Understanding these behaviors through Q–h plots supports stronger conceptual models and more reliable groundwater–surface water integration.
+
+You're now ready to test your understanding in the final assessment.
+""")
+
+with st.expander('**Show the final assessment** - to self-check your understanding'):
+    st.markdown("""
+    #### 🧠 Final assessment
+    These questions test your conceptual understanding after working with the app.
+    """)
+
+    # Render questions in a 2x3 grid (row-wise)
+    for row in [(0, 1), (2, 3), (4, 5)]:
+        col1, col2 = st.columns(2)
+
+        with col1:
+            i = row[0]
+            st.markdown(f"**Q{i+1}. {quest_final[i]['question']}**")
+            multiple_choice(
+                question=" ",
+                options_dict=quest_final[i]["options"],
+                success=quest_final[i].get("success", "✅ Correct."),
+                error=quest_final[i].get("error", "❌ Not quite.")
+            )
+
+        with col2:
+            i = row[1]
+            st.markdown(f"**Q{i+1}. {quest_final[i]['question']}**")
+            multiple_choice(
+                question=" ",
+                options_dict=quest_final[i]["options"],
+                success=quest_final[i].get("success", "✅ Correct."),
+                error=quest_final[i].get("error", "❌ Not quite.")
+            )
+            
+st.markdown('---')
+
 # Render footer with authors, institutions, and license logo in a single line
 columns_lic = st.columns((5,1))
 with columns_lic[0]:

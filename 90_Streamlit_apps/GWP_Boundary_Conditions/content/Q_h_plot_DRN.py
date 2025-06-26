@@ -7,6 +7,19 @@ import pandas as pd
 import streamlit as st
 import streamlit_book as stb
 from streamlit_extras.stateful_button import button
+import json
+from streamlit_book import multiple_choice
+
+# path to questions for the assessments (direct path)
+path_quest_ini   = "90_Streamlit_apps/GWP_Boundary_Conditions/questions/initial_drn.json"
+path_quest_final = "90_Streamlit_apps/GWP_Boundary_Conditions/questions/final_drn.json"
+
+# Load questions
+with open(path_quest_ini, "r", encoding="utf-8") as f:
+    quest_ini = json.load(f)
+    
+with open(path_quest_final, "r", encoding="utf-8") as f:
+    quest_final = json.load(f)
 
 # Authors, institutions, and year
 year = 2025 
@@ -49,7 +62,7 @@ with columns0[1]:
     container = st.container()  
     CDi_slider_value_new = st.slider      ("_(log of) Conductance_", -5.,-0., -2.5, 0.01, format="%4.2f")    
     CDi = 10 ** CDi_slider_value_new
-    container.write("**:green[$C_D$] in m²/s:** %5.2e" %CDi) 
+    container.write("**:green[$C_D$]** in m²/s: %5.2e" %CDi) 
 # Computation 
 HDi = 8 
 h_aqi = np.linspace(0, 20, 200)
@@ -59,11 +72,11 @@ Qi = np.where(h_aqi >= HDi, CDi * (HDi - h_aqi)*-1, 0)
 with columns0[1]:
     fig, ax = plt.subplots(figsize=(5, 5))      
     ax.plot(h_aqi, Qi, color='black', linewidth=4)
-    ax.set_xlabel("Heads and elevations in the DRN Boundary-Aquifer System (m)", fontsize=14, labelpad=15)
+    ax.set_xlabel("Heads and elevations in the DRN-Aquifer System (m)", fontsize=14, labelpad=15)
     ax.set_ylabel("Flow out of the Ground-Water System \ninto the DRN boundary $Q_{DRN}$ (m³/s)", fontsize=14, labelpad=15)
     ax.set_xlim(0, 20)
     ax.set_ylim(0.05, -0.05)
-    ax.set_title("Flow Between Groundwater and DRN boundary", fontsize=16, pad=10)
+    ax.set_title("Flow Between Groundwater and DRN", fontsize=16, pad=10)
     plt.xticks(fontsize=14)
     plt.yticks(fontsize=14) 
     ax.axhline(0, color='grey', linestyle='--', linewidth=0.8)
@@ -82,6 +95,36 @@ By the end of this tool, you will be able to:
 - Understand the physical interpretation of conductance and its dependence on system geometry and hydraulic conductivity.
 """)
 
+with st.expander('**Show the initial assessment** - to assess your existing knowledge'):
+    st.markdown("""
+    #### 📋 Initial assessment
+    You can use the initial questions to assess your existing knowledge.
+    """)
+
+    # Render questions in a 2x2 grid (row-wise, aligned)
+    for row in [(0, 1), (2, 3)]:
+        col1, col2 = st.columns(2)
+    
+        with col1:
+            i = row[0]
+            st.markdown(f"**Q{i+1}. {quest_ini[i]['question']}**")
+            multiple_choice(
+                question=" ",  # suppress repeated question display
+                options_dict=quest_ini[i]["options"],
+                success=quest_ini[i].get("success", "✅ Correct."),
+                error=quest_ini[i].get("error", "❌ Not quite.")
+            )
+    
+        with col2:
+            i = row[1]
+            st.markdown(f"**Q{i+1}. {quest_ini[i]['question']}**")
+            multiple_choice(
+                question=" ",
+                options_dict=quest_ini[i]["options"],
+                success=quest_ini[i].get("success", "✅ Correct."),
+                error=quest_ini[i].get("error", "❌ Not quite.")
+            )
+            
 st.subheader('🧪 Theory and Background', divider="green")
 st.markdown("""
 This app calculates the flow between  a model cell and a drain (DRN) depending on the drain elevation $H_D$ and the conductance $C_D$ between the boundary and the aquifer cell. The following figure illustrates the setup.""")
@@ -259,7 +302,48 @@ def Q_h_plot():
 
 Q_h_plot()
 
+st.subheader('✅ Conclusion', divider = 'green')
+st.markdown("""
+The Drain (DRN) boundary condition simulates discharge to external drains, ditches, or trenches — but only when groundwater levels are high enough to activate flow. This boundary introduces a **physical cutoff** based on the **drain elevation**, making it conceptually different from other head-dependent boundaries.
+
+By exploring Q–h plots, you’ve seen how the discharge remains zero until the aquifer head exceeds the drain elevation, after which it increases linearly based on the conductance. This behavior supports the simulation of seepage faces and artificial drainage systems without over-extracting water from the model.
+
+With this understanding, you’re ready to evaluate your knowledge in the final assessment.
+""")
+
+
+with st.expander('**Show the final assessment** - to self-check your understanding'):
+    st.markdown("""
+    #### 🧠 Final assessment
+    These questions test your conceptual understanding after working with the app.
+    """)
+
+    # Render questions in a 2x3 grid (row-wise)
+    for row in [(0, 1), (2, 3), (4, 5)]:
+        col1, col2 = st.columns(2)
+
+        with col1:
+            i = row[0]
+            st.markdown(f"**Q{i+1}. {quest_final[i]['question']}**")
+            multiple_choice(
+                question=" ",
+                options_dict=quest_final[i]["options"],
+                success=quest_final[i].get("success", "✅ Correct."),
+                error=quest_final[i].get("error", "❌ Not quite.")
+            )
+
+        with col2:
+            i = row[1]
+            st.markdown(f"**Q{i+1}. {quest_final[i]['question']}**")
+            multiple_choice(
+                question=" ",
+                options_dict=quest_final[i]["options"],
+                success=quest_final[i].get("success", "✅ Correct."),
+                error=quest_final[i].get("error", "❌ Not quite.")
+            )
+            
 st.markdown('---')
+
 # Render footer with authors, institutions, and license logo in a single line
 columns_lic = st.columns((5,1))
 with columns_lic[0]:
