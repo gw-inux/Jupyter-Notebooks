@@ -1,6 +1,6 @@
 [
   {
-    "question": "Which statements about General Head Boundaries (GHB) are correct?",
+    "question": "Which statements about General Head Boundaries (GHB) are correct? (Mark ALL correct answers)",
     "options": {
       "GHBs allow both inflow and outflow depending on head conditions.": true,
       "GHBs impose a fixed head at the model boundary.": false,
@@ -11,7 +11,7 @@
     "error": "❌ Not quite. GHBs are dynamic and respond to changing heads."
   },
   {
-    "question": "What does the conductance $C_B$ represent in the GHB equation?",
+    "question": "What does the conductance $C_B$ represent in the GHB equation? (Mark ALL correct answers)",
     "options": {
       "It combines the effects of boundary geometry and material properties.": true,
       "It is the slope of the Q–h relationship.": true,
@@ -22,7 +22,7 @@
     "error": "❌ Conductance is not a head; it is related to K, A, and L."
   },
   {
-    "question": "Which of the following leads to zero flow across a GHB?",
+    "question": "Which of the following leads to zero flow across a GHB? (Mark ALL correct answers)",
     "options": {
       "When aquifer head equals boundary head.": true,
       "When conductance is very large.": false,
@@ -33,7 +33,7 @@
     "error": "❌ Flow only occurs with a head difference and nonzero conductance."
   },
   {
-    "question": "How does increasing $C_B$ affect the Q–h plot?",
+    "question": "How does increasing $C_B$ affect the Q–h plot? (Mark ALL correct answers)",
     "options": {
       "It increases the slope of the Q–h line.": true,
       "It shifts the boundary head $H_B$.": false,

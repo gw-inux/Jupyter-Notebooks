@@ -1,6 +1,6 @@
 [
   {
-    "question": "What is a primary function of boundary conditions in groundwater models?",
+    "question": "What is a primary function of boundary conditions in groundwater models? (Mark ALL correct answers)",
     "options": {
       "They define how water enters or exits the model domain.": true,
       "They represent external controls such as rivers or impermeable barriers.": true,
@@ -11,7 +11,7 @@
     "error": "❌ Not quite. Recharge is a boundary condition, but time step is not."
   },
   {
-    "question": "Which of the following are examples of Dirichlet boundary conditions?",
+    "question": "Which of the following are examples of Dirichlet boundary conditions? (Mark ALL correct answers)",
     "options": {
       "A boundary with fixed hydraulic head": true,
       "A boundary with no flow allowed": false,
@@ -22,7 +22,7 @@
     "error": "❌ Incorrect. Only fixed head boundaries are Dirichlet."
   },
   {
-    "question": "In a model with uniform recharge and a no-flow boundary on the left, which statements are true?",
+    "question": "In a model with uniform recharge and a no-flow boundary on the left, which statements are true? (Mark ALL correct answers)",
     "options": {
       "Water is forced to flow towards the right boundary.": true,
       "Groundwater can exit through the no-flow boundary.": false,
@@ -33,7 +33,7 @@
     "error": "❌ Not quite. No-flow blocks exit, and recharge isn’t just at boundaries."
   },
   {
-    "question": "What information does a Q–h plot provide?",
+    "question": "What information does a Q–h plot provide? (Mark ALL correct answers)",
     "options": {
       "The relationship between flow (Q) and hydraulic head (h) at a boundary.": true,
       "Whether a boundary behaves like a sink or source under changing conditions.": true,

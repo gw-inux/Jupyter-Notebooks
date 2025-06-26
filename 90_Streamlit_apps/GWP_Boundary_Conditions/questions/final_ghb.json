@@ -1,6 +1,6 @@
 [
   {
-    "question": "Which statements best describe how a General Head Boundary (GHB) behaves?",
+    "question": "Which statements best describe how a General Head Boundary (GHB) behaves? (Mark ALL correct answers)",
     "options": {
       "The flow direction depends on the difference between $H_B$ and $h_{aq}$.": true,
       "A GHB always enforces a constant discharge.": false,
@@ -11,7 +11,7 @@
     "error": "❌ GHBs allow variable flow and are not restricted to a model's top layer."
   },
   {
-    "question": "Which expression correctly defines the flow across a GHB?",
+    "question": "Which expression correctly defines the flow across a GHB? (Mark ALL correct answers)",
     "options": {
       "$Q_B = C_B(H_B - h_{aq})$": true,
       "$Q_B = K (H_B - h_{aq})$": false,
@@ -22,7 +22,7 @@
     "error": "❌ Review the GHB equation. It's based on conductance and the head difference."
   },
   {
-    "question": "What happens when the aquifer head $h_{aq}$ equals the boundary head $H_B$?",
+    "question": "What happens when the aquifer head $h_{aq}$ equals the boundary head $H_B$? (Mark ALL correct answers)",
     "options": {
       "The flow $Q_B$ becomes zero.": true,
       "The boundary acts as a recharge zone.": false,
@@ -33,7 +33,7 @@
     "error": "❌ No head difference means no flow across the boundary."
   },
   {
-    "question": "Increasing the conductance $C_B$ in a GHB has which effects?",
+    "question": "Increasing the conductance $C_B$ in a GHB has which effects? (Mark ALL correct answers)",
     "options": {
       "Increases flow for the same head difference.": true,
       "Changes the direction of flow.": false,
@@ -44,7 +44,7 @@
     "error": "❌ Conductance does not affect flow direction or boundary head directly."
   },
   {
-    "question": "Which parameters jointly control the flow through a GHB?",
+    "question": "Which parameters jointly control the flow through a GHB? (Mark ALL correct answers)",
     "options": {
       "Boundary head $H_B$": true,
       "Aquifer head $h_{aq}$": true,
@@ -55,7 +55,7 @@
     "error": "❌ Recharge affects heads, but not directly the GHB flow equation."
   },
   {
-    "question": "When is a GHB considered 'gaining' from the aquifer's perspective?",
+    "question": "When is a GHB considered 'gaining' from the aquifer's perspective? (Mark ALL correct answers)",
     "options": {
       "When $H_B > h_{aq}$": true,
       "When $h_{aq} > H_B$": false,

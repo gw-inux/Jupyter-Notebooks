@@ -1,6 +1,6 @@
 [
   {
-    "question": "What does the Drain (DRN) boundary condition simulate in a groundwater model?",
+    "question": "What does the Drain (DRN) boundary condition simulate in a groundwater model? (Mark ALL correct answers)",
     "options": {
       "A seepage face or outflow point that drains excess water.": true,
       "A river that can gain and lose water.": false,
@@ -11,7 +11,7 @@
     "error": "❌ Not quite. A DRN boundary discharges groundwater and has a flow cutoff at the drain elevation."
   },
   {
-    "question": "Under which condition does a DRN boundary stop discharging water?",
+    "question": "Under which condition does a DRN boundary stop discharging water? (Mark ALL correct answers)",
     "options": {
       "When the aquifer head drops below the drain elevation.": true,
       "When the aquifer head equals the drain elevation.": true,
@@ -22,7 +22,7 @@
     "error": "❌ Rethink. Flow is zero when aquifer head is at or below the drain elevation, or conductance is zero."
   },
   {
-    "question": "What distinguishes the DRN boundary from the General Head Boundary (GHB)?",
+    "question": "What distinguishes the DRN boundary from the General Head Boundary (GHB)? (Mark ALL correct answers)",
     "options": {
       "DRN allows only one-directional flow.": true,
       "DRN includes a physical cutoff based on elevation.": true,
@@ -33,7 +33,7 @@
     "error": "❌ Not quite. DRNs differ from GHBs in directionality and behavior below cutoff elevation."
   },
   {
-    "question": "Which of the following is required to define a DRN boundary?",
+    "question": "Which of the following is required to define a DRN boundary? (Mark ALL correct answers)",
     "options": {
       "Drain elevation": true,
       "Aquifer head": true,

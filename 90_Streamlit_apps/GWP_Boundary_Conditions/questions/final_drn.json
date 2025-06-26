@@ -1,6 +1,6 @@
 [
   {
-    "question": "Which equation describes flow from the aquifer to the drain in a DRN boundary condition?",
+    "question": "Which equation describes flow from the aquifer to the drain in a DRN boundary condition? (Mark ALL correct answers)",
     "options": {
       "A) $Q = C (h_{aq} - h_{dr})$ if $h_{aq} > h_{dr}$": true,
       "B) $Q = 0$ if $h_{aq} \\leq h_{dr}$": true,
@@ -11,7 +11,7 @@
     "error": "❌ Not quite. DRN flow is head-dependent and one-sided, with a cutoff."
   },
   {
-    "question": "Which parameter controls the magnitude of discharge through the DRN boundary?",
+    "question": "Which parameter controls the magnitude of discharge through the DRN boundary? (Mark ALL correct answers)",
     "options": {
       "A) Conductance": true,
       "B) Drain elevation": false,
@@ -22,7 +22,7 @@
     "error": "❌ Flow depends on conductance and head difference — not porosity or elevation alone."
   },
   {
-    "question": "When is the DRN boundary inactive in a MODFLOW simulation?",
+    "question": "When is the DRN boundary inactive in a MODFLOW simulation? (Mark ALL correct answers)",
     "options": {
       "A) When the aquifer head is below the drain elevation.": true,
       "B) When the aquifer head equals the drain elevation.": true,
@@ -33,7 +33,7 @@
     "error": "❌ Flow only occurs when aquifer head is above the drain elevation."
   },
   {
-    "question": "Which conditions can cause a DRN boundary to remove too much water from the model?",
+    "question": "Which conditions can cause a DRN boundary to remove too much water from the model? (Mark ALL correct answers)",
     "options": {
       "A) An unrealistically high conductance": true,
       "B) Too many DRN cells along model edges": true,
@@ -44,7 +44,7 @@
     "error": "❌ Watch out. The issue usually lies with conductance, placement, or elevation settings."
   },
   {
-    "question": "What is the conceptual analogy for a DRN boundary in the real world?",
+    "question": "What is the conceptual analogy for a DRN boundary in the real world? (Mark ALL correct answers)",
     "options": {
       "A) An open ditch draining water when groundwater is near the surface.": true,
       "B) A river recharging and draining the aquifer.": false,
@@ -55,7 +55,7 @@
     "error": "❌ DRNs resemble drains or ditches, not rivers or impermeable boundaries."
   },
   {
-    "question": "Why is the Q–h plot for a DRN boundary flat at low heads?",
+    "question": "Why is the Q–h plot for a DRN boundary flat at low heads? (Mark ALL correct answers)",
     "options": {
       "A) Because no flow occurs when $h_{aq} \\leq h_{dr}$": true,
       "B) Because DRNs always simulate fixed flow": false,

@@ -1,6 +1,6 @@
 [
   {
-    "question": "What is a primary advantage of using MNW over WEL in groundwater modeling?",
+    "question": "What is a primary advantage of using MNW over WEL in groundwater modeling? (Mark ALL correct answers)",
     "options": {
       "A) It allows distributed flow over multiple layers": true,
       "B) It includes skin and well loss effects": true,
@@ -11,7 +11,7 @@
     "error": "❌ WEL is simpler. MNW models multiple nodes and head-dependent limits."
   },
   {
-    "question": "Which factors influence the conductance in a Multi-Node Well?",
+    "question": "Which factors influence the conductance in a Multi-Node Well? (Mark ALL correct answers)",
     "options": {
       "A) Hydraulic conductivity of the aquifer": true,
       "B) Well radius and skin effects": true,
@@ -22,7 +22,7 @@
     "error": "❌ MNW conductance depends on well and aquifer properties, not surface features."
   },
   {
-    "question": "What happens to the Q–h curve of a MNW when a maximum pumping rate is applied?",
+    "question": "What happens to the Q–h curve of a MNW when a maximum pumping rate is applied? (Mark ALL correct answers)",
     "options": {
       "A) The curve flattens at the Qmax value": true,
       "B) Flow increases indefinitely with head": false,
@@ -33,7 +33,7 @@
     "error": "❌ Think of operational limits — flow won’t just grow forever."
   },
   {
-    "question": "In MODFLOW, which parameter causes an MNW to stop pumping due to head constraints?",
+    "question": "In MODFLOW, which parameter causes an MNW to stop pumping due to head constraints? (Mark ALL correct answers)",
     "options": {
       "A) Hlim (limiting head)": true,
       "B) Qmax": false,
@@ -44,7 +44,7 @@
     "error": "❌ MNW shutdowns are triggered by limiting heads, not just flux rates."
   },
   {
-    "question": "How is skin effect incorporated in an MNW?",
+    "question": "How is skin effect incorporated in an MNW? (Mark ALL correct answers)",
     "options": {
       "A) As an additional resistance around the wellbore": true,
       "B) As an increase in conductance": false,
@@ -55,7 +55,7 @@
     "error": "❌ Skin effect adds resistance, not conductance or gradients."
   },
   {
-    "question": "How can Q–h plots help interpret MNW model behavior?",
+    "question": "How can Q–h plots help interpret MNW model behavior? (Mark ALL correct answers)",
     "options": {
       "A) By identifying operational limits": true,
       "B) By showing where the well is dry": true,

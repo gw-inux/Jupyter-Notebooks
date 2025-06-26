@@ -1,6 +1,6 @@
 [
   {
-    "question": "Which variables are required to compute the flow between the river and aquifer in the RIV boundary condition?",
+    "question": "Which variables are required to compute the flow between the river and aquifer in the RIV boundary condition? (Mark ALL correct answers)",
     "options": {
       "Aquifer head": true,
       "River stage": true,
@@ -11,7 +11,7 @@
     "error": "❌ Not quite. The RIV equation uses river stage, aquifer head, and riverbed conductance."
   },
   {
-    "question": "What is the effect of increasing the riverbed conductance in a RIV boundary condition?",
+    "question": "What is the effect of increasing the riverbed conductance in a RIV boundary condition? (Mark ALL correct answers)",
     "options": {
       "It increases the sensitivity of flow to the head difference.": true,
       "It reduces the maximum exchange flow possible.": false,
@@ -22,7 +22,7 @@
     "error": "❌ The correct choices indicate increased sensitivity and permeability — not fixed-head behavior."
   },
   {
-    "question": "When does flow between the aquifer and river stop in the RIV boundary?",
+    "question": "When does flow between the aquifer and river stop in the RIV boundary? (Mark ALL correct answers)",
     "options": {
       "When the aquifer head drops below the riverbed bottom elevation": true,
       "When the river stage is zero": false,
@@ -33,7 +33,7 @@
     "error": "❌ Recheck. Flow stops when aquifer head is below the riverbed or when conductance is zero."
   },
   {
-    "question": "How does the MODFLOW RIV boundary simulate a gaining stream?",
+    "question": "How does the MODFLOW RIV boundary simulate a gaining stream? (Mark ALL correct answers)",
     "options": {
       "The aquifer head is above the river stage.": true,
       "Flow is directed from aquifer to river.": true,
@@ -44,7 +44,7 @@
     "error": "❌ Not quite. Gaining occurs when the aquifer head is above the river stage."
   },
   {
-    "question": "What happens to the exchange flow as aquifer head approaches the riverbed elevation from above?",
+    "question": "What happens to the exchange flow as aquifer head approaches the riverbed elevation from above? (Mark ALL correct answers)",
     "options": {
       "Flow rate decreases and approaches zero.": true,
       "The riverbed becomes dry.": false,
@@ -55,7 +55,7 @@
     "error": "❌ Careful — flow tapers off but doesn't reverse or disable the boundary unless below riverbed."
   },
   {
-    "question": "Which statement about RIV boundaries is true?",
+    "question": "Which statement about RIV boundaries is true? (Mark ALL correct answers)",
     "options": {
       "They simulate both gaining and losing conditions depending on head difference.": true,
       "They allow water exchange only in one direction.": false,

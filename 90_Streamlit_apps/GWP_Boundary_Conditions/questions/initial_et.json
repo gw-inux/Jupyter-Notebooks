@@ -1,6 +1,6 @@
 [
   {
-    "question": "What does the ET boundary condition in MODFLOW simulate?",
+    "question": "What does the ET boundary condition in MODFLOW simulate? (Mark ALL correct answers)",
     "options": {
       "A) Loss of water from the water table due to plant uptake and evaporation": true,
       "B) River infiltration": false,
@@ -11,7 +11,7 @@
     "error": "❌ ET represents water losses from the water table, not recharge or river inputs."
   },
   {
-    "question": "At what condition is the actual ET rate equal to the potential ET rate?",
+    "question": "At what condition is the actual ET rate equal to the potential ET rate? (Mark ALL correct answers)",
     "options": {
       "A) When the water table is at or above the ET surface": true,
       "B) When the water table is below the extinction depth": false,
@@ -22,7 +22,7 @@
     "error": "❌ This only happens when the water table is at or above the defined ET surface."
   },
   {
-    "question": "How does actual ET change as groundwater becomes deeper?",
+    "question": "How does actual ET change as groundwater becomes deeper? (Mark ALL correct answers)",
     "options": {
       "A) It decreases linearly until the extinction depth is reached": true,
       "B) It increases exponentially": false,
@@ -33,7 +33,7 @@
     "error": "❌ The ET rate drops linearly with depth until it reaches zero."
   },
   {
-    "question": "What does the extinction depth represent?",
+    "question": "What does the extinction depth represent? (Mark ALL correct answers)",
     "options": {
       "A) Maximum rooting depth where plants can still access groundwater": true,
       "B) Depth of the impermeable layer": false,

@@ -1,6 +1,6 @@
 [
   {
-    "question": "Which of the following processes describe how rivers can interact with groundwater?",
+    "question": "Which of the following processes describe how rivers can interact with groundwater? (Mark ALL correct answers)",
     "options": {
       "A river can gain water from the aquifer.": true,
       "A river can lose water to the aquifer.": true,
@@ -11,7 +11,7 @@
     "error": "❌ Some of your choices were incorrect. A river may gain, lose, or stop interacting depending on the hydraulic gradient and bed elevation."
   },
   {
-    "question": "What physical property primarily controls the rate of exchange between river and aquifer?",
+    "question": "What physical property primarily controls the rate of exchange between river and aquifer? (Mark ALL correct answers)",
     "options": {
       "River conductance": true,
       "River width": false,
@@ -22,7 +22,7 @@
     "error": "❌ The correct factors include river conductance and the hydraulic gradient."
   },
   {
-    "question": "What happens if the groundwater level falls below the riverbed bottom in a RIV boundary?",
+    "question": "What happens if the groundwater level falls below the riverbed bottom in a RIV boundary? (Mark ALL correct answers)",
     "options": {
       "The flow from river to aquifer continues as before.": false,
       "The flow becomes zero.": true,
@@ -33,7 +33,7 @@
     "error": "❌ In MODFLOW, the RIV boundary cuts off flow if the aquifer is below the riverbed."
   },
   {
-    "question": "What distinguishes the RIV boundary from the General Head Boundary (GHB)?",
+    "question": "What distinguishes the RIV boundary from the General Head Boundary (GHB)? (Mark ALL correct answers)",
     "options": {
       "RIV includes a physical cutoff when the aquifer head is below the riverbed.": true,
       "RIV allows flow in both directions.": false,

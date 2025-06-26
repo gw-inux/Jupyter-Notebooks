@@ -1,6 +1,6 @@
 [
   {
-    "question": "What distinguishes a Multi-Node Well (MNW) from a standard WEL in MODFLOW?",
+    "question": "What distinguishes a Multi-Node Well (MNW) from a standard WEL in MODFLOW? (Mark ALL correct answers)",
     "options": {
       "A) MNW can connect to multiple model cells": true,
       "B) MNW supports head-dependent flow": true,
@@ -11,7 +11,7 @@
     "error": "❌ MNW goes beyond WEL by allowing flow to multiple cells and applying head-based conditions."
   },
   {
-    "question": "Which of the following are head-related constraints used in MNW simulations?",
+    "question": "Which of the following are head-related constraints used in MNW simulations? (Mark ALL correct answers)",
     "options": {
       "A) Maximum drawdown": true,
       "B) Constant recharge rate": false,
@@ -22,7 +22,7 @@
     "error": "❌ Head constraints and pumping limits are central to MNW, not recharge or thickness."
   },
   {
-    "question": "What behavior can be observed in Q–h plots for MNW?",
+    "question": "What behavior can be observed in Q–h plots for MNW? (Mark ALL correct answers)",
     "options": {
       "A) A flat plateau at maximum pumping rate": true,
       "B) A slope representing head-dependent inflow": true,
@@ -33,7 +33,7 @@
     "error": "❌ Look closely — MNW plots reflect multiple flow regimes, not just linear behavior."
   },
   {
-    "question": "Why might an MNW stop pumping during a simulation?",
+    "question": "Why might an MNW stop pumping during a simulation? (Mark ALL correct answers)",
     "options": {
       "A) Head drops below the pump intake": true,
       "B) Conductance becomes negative": false,
