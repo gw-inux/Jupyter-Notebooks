@@ -1,0 +1,46 @@
+[
+  {
+    "question": "What distinguishes a Multi-Node Well (MNW) from a standard WEL in MODFLOW?",
+    "options": {
+      "A) MNW can connect to multiple model cells": true,
+      "B) MNW supports head-dependent flow": true,
+      "C) WEL can simulate variable conductance": false,
+      "D) MNW supports physical and operational constraints": true
+    },
+    "success": "✅ Correct — MNW offers advanced features like head-dependency and constraints across nodes.",
+    "error": "❌ MNW goes beyond WEL by allowing flow to multiple cells and applying head-based conditions."
+  },
+  {
+    "question": "Which of the following are head-related constraints used in MNW simulations?",
+    "options": {
+      "A) Maximum drawdown": true,
+      "B) Constant recharge rate": false,
+      "C) Pumping limits (Qmax)": true,
+      "D) Minimum cell thickness": false
+    },
+    "success": "✅ Exactly. MNW can enforce pumping constraints based on head or capacity.",
+    "error": "❌ Head constraints and pumping limits are central to MNW, not recharge or thickness."
+  },
+  {
+    "question": "What behavior can be observed in Q–h plots for MNW?",
+    "options": {
+      "A) A flat plateau at maximum pumping rate": true,
+      "B) A slope representing head-dependent inflow": true,
+      "C) Negative flows when head drops below zero": false,
+      "D) Cutoff when head reaches minimum limit": true
+    },
+    "success": "✅ Well done. MNW plots combine linear segments and flat zones due to operational constraints.",
+    "error": "❌ Look closely — MNW plots reflect multiple flow regimes, not just linear behavior."
+  },
+  {
+    "question": "Why might an MNW stop pumping during a simulation?",
+    "options": {
+      "A) Head drops below the pump intake": true,
+      "B) Conductance becomes negative": false,
+      "C) The maximum pumping rate is exceeded": true,
+      "D) The aquifer goes dry": true
+    },
+    "success": "✅ Yes — dry cells, limits, or heads below constraints can all trigger pump shutdown.",
+    "error": "❌ MNW simulates physical well behavior, including limits that can shut off flow."
+  }
+]

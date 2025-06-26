@@ -10,7 +10,20 @@ import pandas as pd
 import streamlit as st
 import streamlit_book as stb
 from streamlit_extras.stateful_button import button
+import json
+from streamlit_book import multiple_choice
 
+# path to questions for the assessments (direct path)
+path_quest_ini   = "90_Streamlit_apps/GWP_Boundary_Conditions/questions/initial_mnw.json"
+path_quest_final = "90_Streamlit_apps/GWP_Boundary_Conditions/questions/final_mnw.json"
+
+# Load questions
+with open(path_quest_ini, "r", encoding="utf-8") as f:
+    quest_ini = json.load(f)
+    
+with open(path_quest_final, "r", encoding="utf-8") as f:
+    quest_final = json.load(f)
+    
 # Authors, institutions, and year
 year = 2025 
 authors = {
@@ -87,14 +100,43 @@ with columns0[1]:
 #TODO
 st.markdown("""
 ####  🎓 Learning Objectives
-By the end of this tool, you will be able to:
-- Explain the conceptual function of a General Head Boundary (GHB) in groundwater models.
-- Apply the analytical equation $Q_B = C_B(H_B - h_{aq})$ to calculate boundary flows.
-- Evaluate the influence of conductance, boundary head, and aquifer head on exchange fluxes.
-- Visualize flow directions and boundary behavior (gaining vs. losing) under different conditions.
-- Understand the physical interpretation of conductance and its dependence on system geometry and hydraulic conductivity.
+By the end of this section, learners will be able to:
+- Understand the conceptual and practical differences between Multi-Node Wells (MNW) and traditional Well (WEL) boundaries in MODFLOW.
+- Describe how head-dependent flow and constraints such as pump limits and cell drawdowns are represented in the MNW package.
+- Interpret Q–h relationships for MNWs and how they reflect physical and operational limits of well systems.
+- Evaluate the influence of well efficiency, skin effects, and conductance on MNW flow behavior.
 """)
 
+with st.expander('**Show the initial assessment** - to assess your existing knowledge'):
+    st.markdown("""
+    #### 📋 Initial assessment
+    You can use the initial questions to assess your existing knowledge.
+    """)
+
+    # Render questions in a 2x2 grid (row-wise, aligned)
+    for row in [(0, 1), (2, 3)]:
+        col1, col2 = st.columns(2)
+    
+        with col1:
+            i = row[0]
+            st.markdown(f"**Q{i+1}. {quest_ini[i]['question']}**")
+            multiple_choice(
+                question=" ",  # suppress repeated question display
+                options_dict=quest_ini[i]["options"],
+                success=quest_ini[i].get("success", "✅ Correct."),
+                error=quest_ini[i].get("error", "❌ Not quite.")
+            )
+    
+        with col2:
+            i = row[1]
+            st.markdown(f"**Q{i+1}. {quest_ini[i]['question']}**")
+            multiple_choice(
+                question=" ",
+                options_dict=quest_ini[i]["options"],
+                success=quest_ini[i].get("success", "✅ Correct."),
+                error=quest_ini[i].get("error", "❌ Not quite.")
+            )
+            
 st.subheader('🧪 Theory and Background', divider="rainbow")
 st.markdown("""
 This app calculates the flow between a Multi-Node-Well (MNW) and a model cell depending on the system parameters describing the flow in the vicinity of the well and into the well.
@@ -689,7 +731,48 @@ def Q_h_plot():
             st.write('Activate the visualization with the toggle **:rainbow[Make the plot alive and visualize the results]** to see this plot')
 Q_h_plot()
 
-st.markdown("---")
+st.subheader('✅ Conclusion', divider = 'rainbow')
+st.markdown("""
+The Multi-Node Well (MNW) boundary in MODFLOW adds realism to well simulations by distributing flow across multiple model cells and introducing operational and physical constraints. This boundary goes beyond fixed pumping rates by simulating **head-dependent flow**, **skin effects**, and **pumping limits** — key factors in representing real-world wells.
+
+Through Q–h plots, you explored how MNW behavior transitions between active pumping, flow cutoffs, and constraint-induced flattening. Understanding these flow regimes supports better interpretation, calibration, and reliability in groundwater modeling projects.
+
+You're now ready to assess your understanding in the final quiz.
+""")
+
+
+with st.expander('**Show the final assessment** - to self-check your understanding'):
+    st.markdown("""
+    #### 🧠 Final assessment
+    These questions test your conceptual understanding after working with the app.
+    """)
+
+    # Render questions in a 2x3 grid (row-wise)
+    for row in [(0, 1), (2, 3), (4, 5)]:
+        col1, col2 = st.columns(2)
+
+        with col1:
+            i = row[0]
+            st.markdown(f"**Q{i+1}. {quest_final[i]['question']}**")
+            multiple_choice(
+                question=" ",
+                options_dict=quest_final[i]["options"],
+                success=quest_final[i].get("success", "✅ Correct."),
+                error=quest_final[i].get("error", "❌ Not quite.")
+            )
+
+        with col2:
+            i = row[1]
+            st.markdown(f"**Q{i+1}. {quest_final[i]['question']}**")
+            multiple_choice(
+                question=" ",
+                options_dict=quest_final[i]["options"],
+                success=quest_final[i].get("success", "✅ Correct."),
+                error=quest_final[i].get("error", "❌ Not quite.")
+            )
+            
+st.markdown('---')
+
 # Render footer with authors, institutions, and license logo in a single line
 columns_lic = st.columns((5,1))
 with columns_lic[0]:

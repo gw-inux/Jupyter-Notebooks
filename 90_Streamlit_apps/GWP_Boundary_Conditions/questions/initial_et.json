@@ -1,0 +1,46 @@
+[
+  {
+    "question": "What does the ET boundary condition in MODFLOW simulate?",
+    "options": {
+      "A) Loss of water from the water table due to plant uptake and evaporation": true,
+      "B) River infiltration": false,
+      "C) Recharge from rainfall": false,
+      "D) Head-dependent discharge from shallow groundwater": true
+    },
+    "success": "✅ Correct. ET simulates shallow groundwater losses via evapotranspiration.",
+    "error": "❌ ET represents water losses from the water table, not recharge or river inputs."
+  },
+  {
+    "question": "At what condition is the actual ET rate equal to the potential ET rate?",
+    "options": {
+      "A) When the water table is at or above the ET surface": true,
+      "B) When the water table is below the extinction depth": false,
+      "C) When the aquifer is fully saturated": false,
+      "D) When the drawdown is zero": false
+    },
+    "success": "✅ Yes! At shallow depths, actual ET equals the maximum potential rate.",
+    "error": "❌ This only happens when the water table is at or above the defined ET surface."
+  },
+  {
+    "question": "How does actual ET change as groundwater becomes deeper?",
+    "options": {
+      "A) It decreases linearly until the extinction depth is reached": true,
+      "B) It increases exponentially": false,
+      "C) It stays constant": false,
+      "D) It stops when water table falls below the extinction depth": true
+    },
+    "success": "✅ Good job. Actual ET decreases with depth and ceases at extinction depth.",
+    "error": "❌ The ET rate drops linearly with depth until it reaches zero."
+  },
+  {
+    "question": "What does the extinction depth represent?",
+    "options": {
+      "A) Maximum rooting depth where plants can still access groundwater": true,
+      "B) Depth of the impermeable layer": false,
+      "C) Minimum saturated thickness": false,
+      "D) Depth at which recharge occurs": false
+    },
+    "success": "✅ Exactly. The extinction depth defines the lower limit for ET activity.",
+    "error": "❌ Extinction depth is a plant-access limit, not a structural boundary."
+  }
+]

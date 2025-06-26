@@ -1,7 +1,20 @@
 import streamlit as st
 import numpy as np
 import matplotlib.pyplot as plt
+import json
+from streamlit_book import multiple_choice
 
+# path to questions for the assessments (direct path)
+path_quest_ini   = "90_Streamlit_apps/GWP_Boundary_Conditions/questions/initial_et.json"
+path_quest_final = "90_Streamlit_apps/GWP_Boundary_Conditions/questions/final_et.json"
+
+# Load questions
+with open(path_quest_ini, "r", encoding="utf-8") as f:
+    quest_ini = json.load(f)
+    
+with open(path_quest_final, "r", encoding="utf-8") as f:
+    quest_final = json.load(f)
+    
 # TODO:
 # - allow user to plot rate / discharge 
 # - adjust plot for discharge according to the max (rate x area)
@@ -72,14 +85,43 @@ with columns0[1]:
 #TODO
 st.markdown("""
 ####  🎓 Learning Objectives
-By the end of this tool, you will be able to:
-- Explain the conceptual function of a General Head Boundary (GHB) in groundwater models.
-- Apply the analytical equation $Q_B = C_B(H_B - h_{aq})$ to calculate boundary flows.
-- Evaluate the influence of conductance, boundary head, and aquifer head on exchange fluxes.
-- Visualize flow directions and boundary behavior (gaining vs. losing) under different conditions.
-- Understand the physical interpretation of conductance and its dependence on system geometry and hydraulic conductivity.
+By the end of this section, learners will be able to:
+- Explain the conceptual function of the ET (Evapotranspiration) boundary condition in groundwater models.
+- Apply the ET equation to describe how potential evapotranspiration varies with water table depth.
+- Analyze the influence of ET surface, extinction depth, and aquifer head on actual evapotranspiration rates.
+- Interpret the shape of Q–h plots for ET boundaries and understand the limitations of this conceptualization.
 """)
 
+with st.expander('**Show the initial assessment** - to assess your existing knowledge'):
+    st.markdown("""
+    #### 📋 Initial assessment
+    You can use the initial questions to assess your existing knowledge.
+    """)
+
+    # Render questions in a 2x2 grid (row-wise, aligned)
+    for row in [(0, 1), (2, 3)]:
+        col1, col2 = st.columns(2)
+    
+        with col1:
+            i = row[0]
+            st.markdown(f"**Q{i+1}. {quest_ini[i]['question']}**")
+            multiple_choice(
+                question=" ",  # suppress repeated question display
+                options_dict=quest_ini[i]["options"],
+                success=quest_ini[i].get("success", "✅ Correct."),
+                error=quest_ini[i].get("error", "❌ Not quite.")
+            )
+    
+        with col2:
+            i = row[1]
+            st.markdown(f"**Q{i+1}. {quest_ini[i]['question']}**")
+            multiple_choice(
+                question=" ",
+                options_dict=quest_ini[i]["options"],
+                success=quest_ini[i].get("success", "✅ Correct."),
+                error=quest_ini[i].get("error", "❌ Not quite.")
+            )
+            
 st.subheader('🧪 Theory and Background', divider="blue")
 st.markdown("""
 This app shows the effect of evapotranspiration in removing water from an aquifer according to Harbaugh (2005) as it is implemented by the EVT package in MODFLOW.
@@ -246,7 +288,49 @@ def Q_h_plot():
     st.pyplot(fig)
 
 Q_h_plot()
-'---'
+
+st.subheader('✅ Conclusion', divider = 'blue')
+st.markdown("""
+The Evapotranspiration (ET) boundary in MODFLOW captures the loss of shallow groundwater to the atmosphere through plant uptake and surface evaporation. It simulates a **head-dependent** process that operates when the water table is within a defined range between the **ET surface** and **extinction depth**.
+
+Using Q–h plots, you’ve visualized how actual ET varies with groundwater depth — from full potential extraction to zero loss. This boundary type is especially relevant in arid or irrigated regions where shallow groundwater contributes to ET.
+
+Understanding ET behavior improves model realism and helps identify where water table dynamics can critically affect water balance and sustainability.
+""")
+
+
+with st.expander('**Show the final assessment** - to self-check your understanding'):
+    st.markdown("""
+    #### 🧠 Final assessment
+    These questions test your conceptual understanding after working with the app.
+    """)
+
+    # Render questions in a 2x3 grid (row-wise)
+    for row in [(0, 1), (2, 3), (4, 5)]:
+        col1, col2 = st.columns(2)
+
+        with col1:
+            i = row[0]
+            st.markdown(f"**Q{i+1}. {quest_final[i]['question']}**")
+            multiple_choice(
+                question=" ",
+                options_dict=quest_final[i]["options"],
+                success=quest_final[i].get("success", "✅ Correct."),
+                error=quest_final[i].get("error", "❌ Not quite.")
+            )
+
+        with col2:
+            i = row[1]
+            st.markdown(f"**Q{i+1}. {quest_final[i]['question']}**")
+            multiple_choice(
+                question=" ",
+                options_dict=quest_final[i]["options"],
+                success=quest_final[i].get("success", "✅ Correct."),
+                error=quest_final[i].get("error", "❌ Not quite.")
+            )
+            
+st.markdown('---')
+
 # Render footer with authors, institutions, and license logo in a single line
 columns_lic = st.columns((5,1))
 with columns_lic[0]:
