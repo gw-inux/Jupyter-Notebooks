@@ -7,7 +7,20 @@ import pandas as pd
 import streamlit as st
 import streamlit_book as stb
 from streamlit_extras.stateful_button import button
+import json
+from streamlit_book import multiple_choice
 
+# path to questions for the assessments (direct path)
+path_quest_ini   = "90_Streamlit_apps/GWP_Boundary_Conditions/questions/initial_ghb.json"
+path_quest_final = "90_Streamlit_apps/GWP_Boundary_Conditions/questions/final_ghb.json"
+
+# Load questions
+with open(path_quest_ini, "r", encoding="utf-8") as f:
+    quest_ini = json.load(f)
+    
+with open(path_quest_final, "r", encoding="utf-8") as f:
+    quest_final = json.load(f)
+    
 # Authors, institutions, and year
 year = 2025 
 authors = {
@@ -38,9 +51,9 @@ with columns0[0]:
     Before jumping into equations and applications, consider:
     
     1. **How would you represent a distant river or lake that interacts with groundwater but lies outside your model domain?**
-    2. **Can a boundary both add to and remove water from the aquifer—depending on heads?**
+    2. **Can a boundary both add to and remove water from the aquifer — depending on heads?**
     
-    ▶️ The :orange[**General Head Boundary (GHB)**] addresses these cases. The following interactive plot, based on the MODFLOW documentation (Harbaugh, 2005), shows for the boundary cell how flow $Q_{in}$ depends on aquifer head $h_{aq}$. The GHB head $H_B$ is defined as 8 m. Try modifying the conductance $C_B$ to see its effect.
+    ▶️ The :orange[**General Head Boundary (GHB)**] addresses these situations. It allows for dynamic, head-dependent exchange with an external water body. The interactive plot below illustrates how the flow $Q_B$ depends on the aquifer head $h_{aq}$ for a fixed boundary head $H_B$ and conductance $C_B$. _The interactive plot is based on the MODFLOW documentation (Harbaugh, 2005) and consider $H_B$ as 8 m. Modify the conductance $C_B$ to see its effect.
     """)
     
     st.latex(r'''Q_B = C_B(H_B - h_{aq})''')
@@ -78,14 +91,45 @@ with columns0[1]:
     st.pyplot(fig)
 
 st.markdown("""
-#### Learning Objectives
-By the end of this tool, you will be able to:
-- Explain the conceptual function of a General Head Boundary (GHB) in groundwater models.
-- Apply the analytical equation $Q_B = C_B(H_B - h_{aq})$ to calculate boundary flows.
-- Evaluate the influence of conductance, boundary head, and aquifer head on exchange fluxes.
+#### 🎓 Learning Objectives
+By the end of this section of the module, you will be able to:
+
+- Explain the conceptual function and mathematical formulation of a General Head Boundary (GHB).
+- Apply the GHB equation $Q_B = C_B(H_B - h_{aq})$ to calculate boundary flows and analyze flow directions.
+- Evaluate how conductance, aquifer head, and boundary head jointly affect the groundwater–boundary exchange.
 - Visualize flow directions and boundary behavior (gaining vs. losing) under different conditions.
-- Understand the physical interpretation of conductance and its dependence on system geometry and hydraulic conductivity.
 """)
+
+with st.expander('**Show the initial assessment** - to assess your existing knowledge'):
+    st.markdown("""
+    #### 📋 Initial assessment
+    You can use the initial questions to assess your existing knowledge.
+    """)
+
+    # Render questions in a 2x2 grid (row-wise, aligned)
+    for row in [(0, 1), (2, 3)]:
+        col1, col2 = st.columns(2)
+    
+        with col1:
+            i = row[0]
+            st.markdown(f"**Q{i+1}. {quest_ini[i]['question']}**")
+            multiple_choice(
+                question=" ",  # suppress repeated question display
+                options_dict=quest_ini[i]["options"],
+                success=quest_ini[i].get("success", "✅ Correct."),
+                error=quest_ini[i].get("error", "❌ Not quite.")
+            )
+    
+        with col2:
+            i = row[1]
+            st.markdown(f"**Q{i+1}. {quest_ini[i]['question']}**")
+            multiple_choice(
+                question=" ",
+                options_dict=quest_ini[i]["options"],
+                success=quest_ini[i].get("success", "✅ Correct."),
+                error=quest_ini[i].get("error", "❌ Not quite.")
+            )
+
 st.subheader('🧪 Theory and Background', divider="orange")
 st.markdown("""
 The General Head Boundary (GHB), also referred to as the Head-Dependent Flux Boundary in MODFLOW, allows for a more realistic simulation of boundary conditions by enabling **exchange with an external reservoir**.
@@ -306,7 +350,37 @@ def Q_h_plot():
     st.pyplot(fig)
 
 Q_h_plot()
-'---'
+
+with st.expander('**Show the final assessment** - to self-check your understanding'):
+    st.markdown("""
+    #### 🧠 Final assessment
+    These questions test your conceptual understanding after working with the app.
+    """)
+
+    # Render questions in a 2x3 grid (row-wise)
+    for row in [(0, 1), (2, 3), (4, 5)]:
+        col1, col2 = st.columns(2)
+
+        with col1:
+            i = row[0]
+            st.markdown(f"**Q{i+1}. {quest_final[i]['question']}**")
+            multiple_choice(
+                question=" ",
+                options_dict=quest_final[i]["options"],
+                success=quest_final[i].get("success", "✅ Correct."),
+                error=quest_final[i].get("error", "❌ Not quite.")
+            )
+
+        with col2:
+            i = row[1]
+            st.markdown(f"**Q{i+1}. {quest_final[i]['question']}**")
+            multiple_choice(
+                question=" ",
+                options_dict=quest_final[i]["options"],
+                success=quest_final[i].get("success", "✅ Correct."),
+                error=quest_final[i].get("error", "❌ Not quite.")
+            )
+st.markdown('---')
 # Render footer with authors, institutions, and license logo in a single line
 columns_lic = st.columns((5,1))
 with columns_lic[0]:

@@ -1,0 +1,46 @@
+[
+  {
+    "question": "Which statements about General Head Boundaries (GHB) are correct?",
+    "options": {
+      "GHBs allow both inflow and outflow depending on head conditions.": true,
+      "GHBs impose a fixed head at the model boundary.": false,
+      "GHBs can be used to represent a lake connected to the aquifer.": true,
+      "GHBs always remove water from the system.": false
+    },
+    "success": "✅ Correct! GHBs simulate two-way interaction with external systems like lakes or rivers.",
+    "error": "❌ Not quite. GHBs are dynamic and respond to changing heads."
+  },
+  {
+    "question": "What does the conductance $C_B$ represent in the GHB equation?",
+    "options": {
+      "It combines the effects of boundary geometry and material properties.": true,
+      "It is the slope of the Q–h relationship.": true,
+      "It is the boundary head value.": false,
+      "It has units of length (m).": false
+    },
+    "success": "✅ Well done! Conductance is a key parameter controlling flow magnitude.",
+    "error": "❌ Conductance is not a head; it is related to K, A, and L."
+  },
+  {
+    "question": "Which of the following leads to zero flow across a GHB?",
+    "options": {
+      "When aquifer head equals boundary head.": true,
+      "When conductance is very large.": false,
+      "When conductance is zero.": true,
+      "When $H_B > h_{aq}$.": false
+    },
+    "success": "✅ Correct! Flow stops when there's no head difference or conductance is zero.",
+    "error": "❌ Flow only occurs with a head difference and nonzero conductance."
+  },
+  {
+    "question": "How does increasing $C_B$ affect the Q–h plot?",
+    "options": {
+      "It increases the slope of the Q–h line.": true,
+      "It shifts the boundary head $H_B$.": false,
+      "It causes greater flow for the same head difference.": true,
+      "It changes the direction of flow.": false
+    },
+    "success": "✅ Correct! Higher conductance means more flow for a given head difference.",
+    "error": "❌ Remember, conductance affects slope, not head or direction."
+  }
+]

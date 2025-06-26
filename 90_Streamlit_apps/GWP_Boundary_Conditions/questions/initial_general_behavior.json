@@ -1,0 +1,46 @@
+[
+  {
+    "question": "What is a primary function of boundary conditions in groundwater models?",
+    "options": {
+      "They define how water enters or exits the model domain.": true,
+      "They represent external controls such as rivers or impermeable barriers.": true,
+      "They determine the time step of the numerical solver.": false,
+      "They can include fixed recharge across the model top.": true
+    },
+    "success": "✅ Correct! Boundary conditions include inflow, outflow, and recharge. Time step is unrelated.",
+    "error": "❌ Not quite. Recharge is a boundary condition, but time step is not."
+  },
+  {
+    "question": "Which of the following are examples of Dirichlet boundary conditions?",
+    "options": {
+      "A boundary with fixed hydraulic head": true,
+      "A boundary with no flow allowed": false,
+      "A boundary where flow depends on head difference and conductance": false,
+      "A lake with a constant water level adjacent to the model": true
+    },
+    "success": "✅ Correct! Dirichlet conditions fix the head at the boundary.",
+    "error": "❌ Incorrect. Only fixed head boundaries are Dirichlet."
+  },
+  {
+    "question": "In a model with uniform recharge and a no-flow boundary on the left, which statements are true?",
+    "options": {
+      "Water is forced to flow towards the right boundary.": true,
+      "Groundwater can exit through the no-flow boundary.": false,
+      "The no-flow boundary can represent a symmetry line or impermeable wall.": true,
+      "Recharge enters only at the boundary.": false
+    },
+    "success": "✅ Correct! No-flow boundaries restrict movement. Recharge is distributed, not boundary-specific.",
+    "error": "❌ Not quite. No-flow blocks exit, and recharge isn’t just at boundaries."
+  },
+  {
+    "question": "What information does a Q–h plot provide?",
+    "options": {
+      "The relationship between flow (Q) and hydraulic head (h) at a boundary.": true,
+      "Whether a boundary behaves like a sink or source under changing conditions.": true,
+      "The hydraulic gradient within the entire aquifer.": false,
+      "The position of the water table over time.": false
+    },
+    "success": "✅ Correct! Q–h plots illustrate boundary-specific relationships.",
+    "error": "❌ Not quite. Q–h plots describe flow-head behavior at boundaries, not gradients or time."
+  }
+]

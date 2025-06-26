@@ -5,6 +5,19 @@ from matplotlib.gridspec import GridSpec
 from matplotlib.ticker import FormatStrFormatter
 import numpy as np
 import streamlit as st
+import json
+from streamlit_book import multiple_choice
+
+# path to questions for the assessments (direct path)
+path_quest_ini   = "90_Streamlit_apps/GWP_Boundary_Conditions/questions/initial_general_behavior.json"
+path_quest_final = "90_Streamlit_apps/GWP_Boundary_Conditions/questions/final_general_behavior.json"
+
+# Load questions
+with open(path_quest_ini, "r", encoding="utf-8") as f:
+    quest_ini = json.load(f)
+    
+with open(path_quest_final, "r", encoding="utf-8") as f:
+    quest_final = json.load(f)
 
 # Authors, institutions, and year
 year = 2025 
@@ -24,11 +37,53 @@ institution_text = " | ".join(institution_list)
 st.title('General behavior of boundary conditions in groundwater models')
 st.subheader('Understanding :blue[the Q-h plot for different boundary conditions]', divider="blue")
 
-st.markdown("""This interactive app demonstrates the fundamental types of boundary conditions in groundwater modeling using a well-known 1D analytical solution for unconfined flow with recharge. It allows users to explore how different boundary types—defined head, defined flow, and head-dependent flow—influence the hydraulic head distribution. A key focus is placed on understanding the resulting Q–h relationships, which are central to the conceptualization and interpretation of boundary conditions in groundwater models like MODFLOW.
+st.markdown("""
+#### 💡 Motivation - Boundary conditions and Q-h plots in groundwater modeling
+Understanding how different boundary conditions influence groundwater flow is fundamental to building reliable conceptual and numerical models. Boundary conditions control how water enters, leaves, or interacts with the groundwater system — whether through defined heads, specified flows, or head-dependent exchanges such as rivers or drains. However, the behavior of these boundaries can be misinterpreted or misunderstood, especially in the early stages of model development.
+
+This app provides an intuitive visual and interactive exploration of **Q–h plots** — a powerful conceptual tool to classify and compare the response of boundary conditions in groundwater models. By simulating a simple 1D unconfined aquifer with recharge and various boundary types, users gain insight into the essential principles that govern groundwater model boundaries and their practical implications in tools like MODFLOW.
+
+To support this learning, this initial part of the module applies a well-known analytical solution for 1D unconfined groundwater flow with recharge. It illustrates how different boundary types — defined head, defined flow, and head-dependent flow — influence the resulting hydraulic head distribution. A key focus is placed on understanding the resulting Q–h relationships, which are central to the conceptualization and interpretation of boundary conditions in groundwater models like MODFLOW.
+
+#### 🎓 Learning Objectives
+By engaging with this section of the interactive module, you will be able to:
+
+1. **Differentiate between defined head, defined flow, and head-dependent flow boundary conditions** and explain their conceptual roles in groundwater models.
+
+2. **Interpret Q–h plots** to characterize the functional behavior of various boundary conditions and understand how they respond to changes in system inputs.
+
+3. **Assess the influence of recharge and hydraulic conductivity** on the groundwater head distribution and the resulting flow dynamics at model boundaries.
 """)
 
-with st.expander('Initial assessment'):
-    st.write('Here we will add 3-4 MC questions')
+with st.expander('**Show the initial assessment** - to assess your existing knowledge'):
+    st.markdown("""
+    #### 📋 Initial assessment
+    You can use the initial questions to assess your existing knowledge.
+    """)
+
+    # Render questions in a 2x2 grid (row-wise, aligned)
+    for row in [(0, 1), (2, 3)]:
+        col1, col2 = st.columns(2)
+    
+        with col1:
+            i = row[0]
+            st.markdown(f"**Q{i+1}. {quest_ini[i]['question']}**")
+            multiple_choice(
+                question=" ",  # suppress repeated question display
+                options_dict=quest_ini[i]["options"],
+                success=quest_ini[i].get("success", "✅ Correct."),
+                error=quest_ini[i].get("error", "❌ Not quite.")
+            )
+    
+        with col2:
+            i = row[1]
+            st.markdown(f"**Q{i+1}. {quest_ini[i]['question']}**")
+            multiple_choice(
+                question=" ",
+                options_dict=quest_ini[i]["options"],
+                success=quest_ini[i].get("success", "✅ Correct."),
+                error=quest_ini[i].get("error", "❌ Not quite.")
+            )
 
 st.subheader('💡 Types of Boundary Conditions in Groundwater Modeling and Q-h plots for description', divider='blue')
 st.markdown("""
@@ -79,29 +134,47 @@ with cc1:
 
 with st.expander('Show more about the theory of the :blue[**model and the analytical solution**]'):
     st.markdown("""
-            ### Conceptual model
+            #### Conceptual model
             
-            The conceptual model considers the aquifer as a homogeneous and isotropic structure with a horizontal bottom. The aquifer is bounded by one defined-head boundary on the right side (left side is no-flow). From the top, the aquifer receives uniform groundwater recharge.
+            The conceptual model considers the aquifer as a homogeneous and isotropic structure with a horizontal bottom. The aquifer is bounded by one defined-head boundary on the right side, while the left side is a no-flow boundary. From the top, the aquifer receives uniform groundwater recharge.
+
+            This simple setting enables a clear understanding of boundary condition behavior, allowing analysis of groundwater flow and head distribution under different external constraints
             """, unsafe_allow_html=True)
 
     st.markdown("""
-            ### Mathematical model
+            #### Mathematical model
             
-            The equation for 1D groundwater flow in a homogeneous aquifer is
+            The governing equation for steady-state 1D groundwater flow in an unconfined, homogeneous aquifer with recharge is:
             """, unsafe_allow_html=True)
             
     st.latex(r'''\frac{d}{dx}=(-hK\frac{dh}{dx})=R''')
 
     st.markdown("""
             with
-            - _x_ is spatial coordinate along flow,
-            - _h_ is hydraulic head,
-            - _K_ is hydraulic conductivity,
-            - _R_ is recharge.
+            - _x_: spatial coordinate along the horizontal flow direction,
+            - _h_: hydraulic head [m],
+            - _K_: hydraulic conductivity [m/s],
+            - _R_: recharge [m/s].
             
-            A solution for the equation can be obtained with... TODO
-            
+            In an unconfined aquifer, transmissivity varies with saturated thickness, and therefore with head. Assuming Dupuit’s approximation (horizontal flow lines, vertical equipotential lines), we can rewrite the equation as:          
             """, unsafe_allow_html=True)
+    st.latex(r'''-K\frac{d}{dx}=(h\frac{dh}{dx})=R''')        
+    st.markdown("""
+            Integrating once with respect to _x_:        
+            """, unsafe_allow_html=True)            
+    st.latex(r'''-K \cdot h \frac{dh}{dx} = R x + C_1''')
+    st.markdown("""
+            Solving for $dx/dh$, then separating variables and integrating again leads to the analytical solution:
+            """, unsafe_allow_html=True)  
+    st.latex(r'''h(x) = \sqrt{ -\frac{R}{K} \left( \frac{x^2}{2} - Lx \right) + h_L^2 }''')
+    st.markdown("""
+            where:
+            - _h(x)_: hydraulic head at location _x_,
+            - _L_: domain length [m],
+            - _h<sub>L</sub>_: head at the defined-head boundary at _x_ = _L_.
+            
+            This solution is used in the app to dynamically compute and visualize how different boundary conditions and recharge rates affect the hydraulic head distribution and the Q–h relationship.
+            """, unsafe_allow_html=True)  
             
 st.markdown("---")
 
@@ -336,6 +409,35 @@ def computation():
     
 computation()
 
+with st.expander('**Show the final assessment** - to self-check your understanding'):
+    st.markdown("""
+    #### 🧠 Final assessment
+    These questions test your conceptual understanding after working with the app.
+    """)
+
+    # Render questions in a 2x3 grid (row-wise)
+    for row in [(0, 1), (2, 3), (4, 5)]:
+        col1, col2 = st.columns(2)
+
+        with col1:
+            i = row[0]
+            st.markdown(f"**Q{i+1}. {quest_final[i]['question']}**")
+            multiple_choice(
+                question=" ",
+                options_dict=quest_final[i]["options"],
+                success=quest_final[i].get("success", "✅ Correct."),
+                error=quest_final[i].get("error", "❌ Not quite.")
+            )
+
+        with col2:
+            i = row[1]
+            st.markdown(f"**Q{i+1}. {quest_final[i]['question']}**")
+            multiple_choice(
+                question=" ",
+                options_dict=quest_final[i]["options"],
+                success=quest_final[i].get("success", "✅ Correct."),
+                error=quest_final[i].get("error", "❌ Not quite.")
+            )
 st.markdown('---')
 
 # Render footer with authors, institutions, and license logo in a single line

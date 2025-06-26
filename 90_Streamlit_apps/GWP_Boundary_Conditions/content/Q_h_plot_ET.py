@@ -71,7 +71,7 @@ with columns0[1]:
     
 #TODO
 st.markdown("""
-#### Learning Objectives
+####  🎓 Learning Objectives
 By the end of this tool, you will be able to:
 - Explain the conceptual function of a General Head Boundary (GHB) in groundwater models.
 - Apply the analytical equation $Q_B = C_B(H_B - h_{aq})$ to calculate boundary flows.
