@@ -105,7 +105,7 @@ videourl6 = 'https://youtu.be/f7d1CDT8koQ'
 
 # STEP 1
 st.markdown("""
-#### STEP 1: Setting up the flow model.
+#### :red[STEP 1:] Setting up the flow model.
 **Aim:** Design an idealized flow model for the confined aquifer resulting in defined uniform flow.
 """)
 with st.expander(":red[**Expand to see the instructions and screencast video for STEP 1**]"):
@@ -214,7 +214,7 @@ with st.expander(":red[**Expand to see the instructions and screencast video for
     
 # STEP 2
 st.markdown("""
-#### STEP 2: Setting up the transport model with the FD scheme
+#### :red[STEP 2:] Setting up the transport model with the FD scheme
 **Aim:** Setting up the transport model with the FD scheme: Performing an initial solute transport simulation. Running the FD method. Postprocessing the results and analyzing the simulation.
 """)  
 with st.expander(":red[**Expand to see the instructions and screencast video for STEP 2**]"):
@@ -242,12 +242,13 @@ with st.expander(":red[**Expand to see the instructions and screencast video for
     """)
 
 # STEP 3
-    
-with st.expander(":red[**Step 3: Setting up the transport model with the MOC scheme**] - Expand to see the instructions"):
+st.markdown("""
+#### :red[STEP 3:] Running the transport simulation with the MOC scheme
+**Aim:** Changing the solution algorithm to the MOC scheme: Performing an solute transport simulation with MOC. Optimizing the MOC method. Postprocessing the results and analyzing the simulation.
+""")  
+with st.expander(":red[**Expand to see the instructions and screencast video for STEP 3**]"):
     st.markdown("""
-    #### STEP 3: Setting up the transport model with the MOC scheme
-            
-    #### Substep 1
+    More about step 3
     """)
     to_do(
         [(st.write, "...")],"td08",)
@@ -339,12 +340,14 @@ with st.expander(":red[**Step 3: Setting up the transport model with the MOC sch
     
     st.video(videourl3b)
 
+st.markdown("""
+#### :red[STEP 4:] Refining the grid size and re-running the FD and MOC simulations.
+**Aim:** Adapting the spatial discretization. Running the simulation with FD and MOC. Understand the effect of the grid size on the results of the computation. Postprocessing the results and analyzing the simulation.
+""")  
 # STEP 4
-with st.expander(":red[**Step 4: Properties and Simulation**] - Expand to see the instructions"):
+with st.expander(":red[**Expand to see the instructions and screencast video for STEP 4**]"):
     st.markdown("""
-    #### STEP 4:
-            
-    #### Substep 1
+    More about step 4
     """)
     to_do(
         [(st.write, "select “Data” / “Edit Data Sets” / “Required” in the menu bar.")],"td24",)
