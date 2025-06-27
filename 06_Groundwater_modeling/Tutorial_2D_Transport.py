@@ -11,7 +11,13 @@ st.subheader('Overview and orientationg', divider="green")
 st.markdown(""" The **aim of the tutorial** is to provide an applied introduction in solute transport modeling with MODFLOW and MT3D. The applications consider two typical scenarios for an idealized groundwater catchment:
 \n**:red[Scenario A]: Prediction of a :red[contamination from a continuous releasing source]** and
 \n**:green[Scenario B]: Computation of a :green[solute pulse from a point source], and traveling of the solutes through the system**.
+""")
 
+lc0, cc0, rc0 = st.columns((20,60,20))
+with cc0:
+    st.image('06_Groundwater_modeling/FIGS/2D_idealized_transport.png', caption=":red[Scenario A:] The idealized situation for continous solute input.")
+    st.image('06_Groundwater_modeling/FIGS/2D_idealized_tracer.png', caption=":green[Scenario B:]The idealized situation for a tracer test.")
+st.markdown("""
 Both scenarios are idealized in such a way that solute transport can be also computed with analytical solutions. This approach allows the user to understand the system, and to compare the results from the numerical model with the ‘precise’ analytical solution. Accordingly, the user gets a proper understanding of the benefits and limitations of the different methods. The scenarios and models are subsequently described.
 
 **This app contains** materials, explanations, descriptions (as To-Do list), and videos on how to setup a MODFLOW/MT3D model for a 2D idealized catchment (see the following figure). The individual steps of the modeling process are provided in the following boxes that you can expand by clicking.
@@ -19,11 +25,6 @@ Both scenarios are idealized in such a way that solute transport can be also com
 #### Ressources used for the tutorial
 - The PDF File with the step-by-step tutorial will be available on GitHub (_link to be provided_)
 - The MODELMUSE model files (....gpt) will be available on GitHub (_link to be provided_)""")
-
-lc0, cc0, rc0 = st.columns((20,60,20))
-with cc0:
-    st.image('06_Groundwater_modeling/FIGS/2D_idealized_transport.png', caption="The synthetic catchment for the numerical model.")
-
 st.subheader('General description of the model', divider = "green")
 st.markdown("""The question and purpoose of the model, the conceptual model, and the numerical model are described in the subsequent section.""")
 with st.expander(':green[**Click here for more details of the general description of the model**]'):
@@ -340,11 +341,13 @@ with st.expander(":red[**Expand to see the instructions and screencast video for
     
     st.video(videourl3b)
 
+# STEP 4
+
 st.markdown("""
 #### :red[STEP 4:] Refining the grid size and re-running the FD and MOC simulations.
 **Aim:** Adapting the spatial discretization. Running the simulation with FD and MOC. Understand the effect of the grid size on the results of the computation. Postprocessing the results and analyzing the simulation.
 """)  
-# STEP 4
+
 with st.expander(":red[**Expand to see the instructions and screencast video for STEP 4**]"):
     st.markdown("""
     More about step 4
@@ -391,12 +394,13 @@ with cc1:
     
     
 # STEP 5
-    
-with st.expander(":green[**Step 5: Postprocessing**] - Expand to see the instructions"):
+st.markdown("""
+#### :green[STEP 5:] Adapting the existing model to simulate a tracer test - solute input as Dirac pulse. Running the FD and MOC simulations.
+**Aim:** Adapt an model to reflect a different scenario. Implement an injection well for the Dirac pulse scenario. 
+""")  
+with st.expander(":green[**Expand to see the instructions and screencast video for STEP 5**]"):
     st.markdown("""
-    #### STEP 5:
-            
-    #### Substep 1
+    More about step 5
     """)
     to_do(
         [(st.write, "...")],"td031",)
@@ -411,12 +415,13 @@ with st.expander(":green[**Step 5: Postprocessing**] - Expand to see the instruc
     st.video(videourl5)
     
 # STEP 6
-    
-with st.expander(":green[**Step 6: Refining the Dirac-pulse model**] - Expand to see the instructions"):
+st.markdown("""
+#### :green[STEP 6:] Refining the existing model for the tracer test and re-running the FD and MOC simulations.
+**Aim:** Understand the effect of the spatial discretization. Adapt the Dirac pulse model and evaluate the performance and accuracy by comparing the results with an analytical solution. 
+""")  
+with st.expander(":green[**Expand to see the instructions and screencast video for STEP 6**]"):
     st.markdown("""
-    #### STEP 6: Refining the Dirac-pulse model
-            
-    #### Substep 1
+    More about step 6
     """)
     to_do(
         [(st.write, "...")],"td033",)
