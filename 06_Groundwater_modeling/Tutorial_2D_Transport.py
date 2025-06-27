@@ -84,7 +84,7 @@ with st.expander(':green[**Click here for more details of the general descriptio
 st.subheader('Step-by-step tutorials to build the model with MODELMUSE', divider = "green")
 st.markdown("""In the following you will find step-by-step instructions to build the flow- and transport model with MODELMUSE. Each step comes with a screencast video that shows the individual steps, and a 'ToDo' list with the essential steps. The full description of the tutorial is provided by a PDF document [for download here](www.link.com).
 
-#### Scenario A - continuous source
+### :red[Scenario A - continuous source]
 
 The first three steps will cover :red[**Scenario A - continuous source of solutes**]. The numerical model results will be compared to an analytical solution for a continuous point source that is shown in the subsequent figure, [link to the resource here](https://transport-2d-continuous.streamlit.app/).""")
 
@@ -104,12 +104,12 @@ videourl6 = 'https://youtu.be/f7d1CDT8koQ'
 # Create ToDos to proceed with the steps of the exercise
 
 # STEP 1
-
-with st.expander(":red[**Step 1: Setting up the flow model.**] - Expand to see the instructions"):
-    st.markdown("""
-    ### STEP 1: Setting up the flow model.
-    **Aim:** Design an idealized flow model for the confined aquifer resulting in defined uniform flow.
-    
+st.markdown("""
+#### STEP 1: Setting up the flow model.
+**Aim:** Design an idealized flow model for the confined aquifer resulting in defined uniform flow.
+""")
+with st.expander(":red[**Expand to see the instructions and screencast video for STEP 1**]"):
+    st.markdown("""  
     This step walks you through the complete setup of a confined aquifer model using **ModelMuse** and prepares it for **particle tracking** with MODPATH.
     
     #### Directory Setup (Recommended)
@@ -213,13 +213,13 @@ with st.expander(":red[**Step 1: Setting up the flow model.**] - Expand to see t
     """)
     
 # STEP 2
-    
-with st.expander(":red[**Step 2: Setting up the transport model with the FD scheme.**] - Expand to see the instructions"):
+st.markdown("""
+#### STEP 2: Setting up the transport model with the FD scheme
+**Aim:** Setting up the transport model with the FD scheme: Performing an initial solute transport simulation. Running the FD method. Postprocessing the results and analyzing the simulation.
+""")  
+with st.expander(":red[**Expand to see the instructions and screencast video for STEP 2**]"):
     st.markdown("""
-    #### STEP 2: Setting up the transport model with the FD scheme
-    **Aim:** Performing an initial solute transport simulation. Running the FD method. Postprocessing the results and analyzing the simulation.
-            
-    #### Substep 2
+    More about step2
     """)
     to_do(
         [(st.write, "...")],"td04",)
@@ -377,7 +377,7 @@ with st.expander(":red[**Step 4: Properties and Simulation**] - Expand to see th
     
     st.video(videourl4)    
 
-st.markdown("""#### Scenario B - pulse injection (Dirac)
+st.markdown("""### :green[Scenario B - pulse injection (Dirac)]
 
 The following two steps will cover :green[**Scenario B - pulse injection (tracer test)**]. The numerical model results will be compared to an analytical solution for a continuous point source that is shown in the subsequent figure, [link to the resource here](https://transport-2d-dirac.streamlit.app/).""")
 
