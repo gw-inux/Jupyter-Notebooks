@@ -93,7 +93,7 @@ with cc1:
     st.image('06_Groundwater_modeling/FIGS/2D_idealized_transport_continuous.png', caption="The synthetic catchment for the numerical model.")
 
 # This are the links to the tutorial videos
-videourl1 = 'https://youtu.be/3xBCmwiC2vE'
+videourl1 = 'https://youtu.be/nurSikcY4LQ'
 videourl2 = 'https://youtu.be/D7a0goqD66c'
 videourl3 = 'https://youtu.be/GXLGnDr0Jf0'
 videourl3b = 'https://youtu.be/eVihqCz_6lQ'
