@@ -107,32 +107,109 @@ videourl6 = 'https://youtu.be/f7d1CDT8koQ'
 
 with st.expander(":red[**Step 1: Setting up the flow model.**] - Expand to see the instructions"):
     st.markdown("""
-    #### STEP 1: Setting up the flow model.
+    ### STEP 1: Setting up the flow model.
     **Aim:** Design an idealized flow model for the confined aquifer resulting in defined uniform flow.
     
-    #### Substep 1
+    This step walks you through the complete setup of a confined aquifer model using **ModelMuse** and prepares it for **particle tracking** with MODPATH.
+    
+    #### Directory Setup (Recommended)
+
+    Organize your simulation files by creating separate folders:
+    ```
+    /Coarse/ - coarse_FD/
+             - coarse_MOC/
+    /Fine/   - fine_FD/
+             - fine_MOC/
+    ```
+    This helps in comparing different solver methods and grid resolutions.
+    
+    #### Initial model design
     """)
+#    st.markdown("#### 1. Launch and Configure ModelMuse")
+#    to_do([
+#        (st.write, "Open **ModelMuse**."),
+#        (st.write, "Select **Create New MODFLOW Model**, then click **Next**."),
+#        (st.write, "Keep default units (meters, seconds). Under description, type `2D Transport Model`. Click **Next**."),
+#    ], "td001")
+
     to_do(
-        [(st.write, "Start MODELMUSE and “Create new MODFLOW model” and press “Next” until you can specify the grid.")],"td01",)
+        [(st.write, "1. Launch and Configure ModelMuse."
+        ,"\n - Open **ModelMuse**."
+        ,"\n - Select **Create New MODFLOW Model**, then click **Next**."
+        ,"\n - Keep default units (meters, seconds). Under description, type `2D Transport Model`. Click **Next**.")],"td001",)
+
     to_do(
-        [(st.write, "specify initial grid (difficult to be changed later!)."
-        ,"\n - note: grid origin is at the upper left(!) corner, and length unit is meters (default)"
-        ,"\n - set further input data: number of columns = 25, number of rows = 11, number of layers = 1, model_top = 0, upper aquifer = -10"
-        ,"\n - Press “Finish”")],"td02",)
+        [(st.write, "2. Model selection and initial grid definition"
+        ,"\n - Select 'MODFLOW version: MODFLOW-2005'"
+        ,"\n - Columns: 25 (Width = 100), Rows: 11 (Width = 100), Layers: 1."
+        ,"\n - Model Top = 0, Aquifer Base = -10"
+        ,"\n - Click **Finish** to generate the grid.")],"td002",)
+        
     to_do(
-        [(st.write, "select “File” / “Save as” in the menu bar, and then save input data under a file name like “myfirstmodel” (or so) by using the format mmZLib.")], "td03",)
+        [(st.write, "3. Time and Solver Settings."
+        ,"\n - Go to **Model > MODFLOW Time**:"
+        ,"\n - Starting Time: `0`, Ending Time: `86400000`"
+        ,"\n - Max First Time Step Length: `86400000` → Click **OK**.")], "td003")
+
+    to_do(
+        [(st.write, "4. Activate Packages and Set K"
+        ,"\n - Go to **Model > MODFLOW Packages and Programs**."
+        ,"\n - Enable **Specified Head (CHD)** under Boundary Conditions → Click **OK**."
+        ,"\n - Go to **Data > Edit Data Sets > Required > Hydrology**, set `Kx = 0.001` → Apply and Close.")], "td004")
+
+    to_do(
+        [(st.write, "5. Boundary Conditions"
+        ,"\n - **Left boundary:** Use line tool to create vertical line on left edge, name it `left_CHD`."
+        ,"\n - Go to MODFLOW Features > CHD → Set Start/End Time: `0` to `86400000`, Head: `22` → OK."
+        ,"\n - **Right boundary:** Same process, name `right_CHD`."
+        ,"\n - Set Start/End Head to `10`. MODFLOW Features > CHD → OK.")], "td005")
+
+    st.markdown("#### ⚠️ Note on Warnings")
+    st.info("ModelMuse might show a **georeferencing warning**. You can safely ignore this if you're working with conceptual models.")
     
     st.markdown("""
-    #### Substep2
+    #### Running the model and postprocessing of results
     """)
-    st.markdown("""
-    #### Video tutorial of step 1
+    
+    to_do(
+        [(st.write, "6. Run MODFLOW"
+        ,"\n - Click green triangle to run MODFLOW."
+        ,"\n - Save as `coarse.nam` in the appropriate folder."
+        ,"\n - Verify results via ModelMonitor (green smiley = success), then review listing file.")], "td006")
+
+    to_do(
+        [(st.write, "7. Configure MODPATH"
+        ,"\n - Go to **Model > MODFLOW Packages and Programs > Post Processors**."
+        ,"\n - Enable **MODPATH**. Set Version: 6, Output Mode: Pathlines, Direction: Forward."
+        ,"\n - Under Version Options: `StopOption = Stop at termination points (Steady State)`.")], "td007")
+
+    to_do(
+        [(st.write, "8. Place Particles"
+        ,"\n - Select object tool, double-click `left_CHD`."
+        ,"\n - Go to MODFLOW Features > MODPATH, choose `Grid` placement → OK.")], "td008")
+
+    to_do(
+        [(st.write, "9. Output + Final Run"
+        ,"\n - Go to **MODFLOW Output Control > Head**, set to **Binary**."
+        ,"\n - Save model (Ctrl+S), then click triangle to re-run."
+        ,"\n - Ignore MODPATH v7 warning if prompted — we use v6.")], "td009")
+
+    to_do(
+        [(st.write, "10. Visualize Pathlines"
+        ,"\n - Click **Data Visualization > MODPATH Pathlines**."
+        ,"\n - Load the `.path` file → Apply → Close.")], "td010")
+
+    st.markdown("""#### Video tutorial for Step 1
+    The video shows all steps as a screencast. 
     """)
+
     st.video(videourl1)
     
     st.markdown("""
     #### Conclusion:
     The flow model is defined. Particle tracking enables the verification of flow. With the listing file, we can understand the model and analyze/quantify the flows. This step covered all steps in the model design for a numerical flow model.
+    
+    You've now created and simulated a simple MODFLOW-2005 flow model with defined head boundaries (CHD package) and particle tracking using MODPATH. This uniform flow model forms the foundation for the subsequent solute transport analysis.
     """)
     
 # STEP 2
@@ -155,6 +232,7 @@ with st.expander(":red[**Step 2: Setting up the transport model with the FD sche
 
     st.markdown("""
     #### Video tutorial of step 2
+    The video shows all steps as a screencast. 
     """)
     st.video(videourl2)    
  

@@ -50,9 +50,9 @@ def concentration_2d(Y, x, y, t, ax, ay, v, C0):
         erf2 = special.erf((y - Y/2) / (2 * np.sqrt(Dy * x / v)))
         return (C0 / 4 ) * erfc_term * (erf1 - erf2)
 
-MOD = False # Flag to account for MODFLOW input
+#MOD = False # Flag to account for MODFLOW input
 
-st.session_state.MOD = MOD
+#st.session_state.MOD = MOD
 
 @st.fragment
 def continuous2D():
@@ -63,7 +63,7 @@ def continuous2D():
             Y = st.slider('Source width Y (m)', 1, 100, 10, 1)
             qd = st.slider('Specific discharge q (m/d)', 0.001, 1.0, 0.25, 0.001, format='%5.3f')
             q = qd / 86400
-            st.session_state.MOD = st.toggle('Toggle here for source equivalent to model cell')
+            #st.session_state.MOD = st.toggle('Toggle here for source equivalent to model cell')
 
     with columns1[1]:
         with st.expander("Adjust :orange[**Transport parameter**]"):  
