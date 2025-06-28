@@ -13,9 +13,10 @@ st.markdown(""" The **aim of the tutorial** is to provide an applied introductio
 \n**:green[Scenario B]: Computation of a :green[solute pulse from a point source], and traveling of the solutes through the system**.
 """)
 
-lc0, cc0, rc0 = st.columns((20,60,20))
-with cc0:
+lc0, rc0 = st.columns((1,1))
+with lc0:
     st.image('06_Groundwater_modeling/FIGS/2D_idealized_transport.png', caption=":red[Scenario A:] The idealized situation for continous solute input.")
+with rc0:
     st.image('06_Groundwater_modeling/FIGS/2D_idealized_tracer.png', caption=":green[Scenario B:]The idealized situation for a tracer test.")
 st.markdown("""
 Both scenarios are idealized in such a way that solute transport can be also computed with analytical solutions. This approach allows the user to understand the system, and to compare the results from the numerical model with the ‘precise’ analytical solution. Accordingly, the user gets a proper understanding of the benefits and limitations of the different methods. The scenarios and models are subsequently described.
@@ -24,70 +25,97 @@ Both scenarios are idealized in such a way that solute transport can be also com
             
 #### Ressources used for the tutorial
 - The PDF File with the step-by-step tutorial will be available on GitHub (_link to be provided_)
-- The MODELMUSE model files (....gpt) will be available on GitHub (_link to be provided_)""")
+- The MODELMUSE model files (*.gpt) are available on GitHub
+    - MODELMUSE file for steps 1-3: [coarse.gpt]('06_Groundwater_modeling/DATA/2D_Transport/coarse.gpt')
+    - MODELMUSE file for step 4: [fine.gpt]('06_Groundwater_modeling/DATA/2D_Transport/fine.gpt')
+    - MODELMUSE file for step 5: [Dirac.gpt]('06_Groundwater_modeling/DATA/2D_Transport/Dirac.gpt')
+    - MODELMUSE file for step 6: [Dirac_Refined.gpt]('06_Groundwater_modeling/DATA/2D_Transport/Dirac_Refined.gpt')
+- The Spreasheet for Postprocessing
+    - Microsoft Excel file with data: [2DTransport_Tutorial.xlsx]('06_Groundwater_modeling/DATA/2D_Transport/2DTransport_Tutorial.xlsx')
+    - Microsoft Excel file without data: [2DTransport_Tutorial_empty.xlsx]('06_Groundwater_modeling/DATA/2D_Transport/2DTransport_Tutorial_empty.xlsx')
+""")
 st.subheader('General description of the model', divider = "green")
 st.markdown("""The question and purpoose of the model, the conceptual model, and the numerical model are described in the subsequent section.""")
+
 with st.expander(':green[**Click here for more details of the general description of the model**]'):
+    
     st.markdown("""
-        #### Question/Purpose of the model:
-        \n**:red[Scenario A]:**	The general aims is the prediction and management of a contamination plume with constant release of solutes. To simulate the spreading of a solute from a point source in a confined, homogeneous and isotropic aquifer. The solute is introduced with a constant concentration. Observations exist in 100, 300, 500, and 1000 m distances.
-        
-        The situation is idealized and can be compared with the results of an analytical solution (2D solute transport from a continuous source with advection and dispersion). The analytical solution allows users to investigate the effects of different settings of the numerical model, like solution scheme and discretization.
-        \n**:green[Scenario B]:**	The general aim of this version is to use the numerical models to simulate a tracer test to characterize the aquifer. The solute is injected with a given mass over a very short term. The injection is a point source, i.e., the tracer is inserted through a point source as a Dirac impulse (10 liters in 10 seconds, containing 1,000 g NaCl). The observation is in a distance of 30 m.
-        
-        #### Conceptual model:
-        The confined aquifer is homogeneous and isotropic and sufficiently extents in horizontal direction. The thickness of the confined aquifer is constant. Groundwater flows in a steady and uniform flow field with a defined specific velocity _q_ with the hydraulic gradient _i_ = 0.005 and the hydraulic conductivity _K_ = 0.001 m/s:
-        
-        $q = -Ki$
-        
-        = 5E-6 m/s (0.432 m/d)
-        
-        The solute is introduced for the two situations:
-        \n**:red[Scenario A]:**	Areal source with constant concentration; width of source is 100 m.
-        \n**:green[Scenario B]:**	Point source with slug input. Total mass input is 1,000 g in 10 liters.
-        
-        #### Mathematical model and analytical solution
-        The mathematical model and the analytical solution for both scenarios is provided by individual Streamlit apps.
-        
-        \n**:red[Scenario A]:** [https://transport-2d-continuous.streamlit.app/](https://transport-2d-continuous.streamlit.app/)
-        \n**:green[Scenario B]:** [https://transport-2d-dirac.streamlit.app/](https://transport-2d-dirac.streamlit.app/)
-        
-        #### Numerical model – flow and transport:
-        The basic model characteristics are 
-        -	Spatial discretization:
-            - One layer 2D domain
-            - Model top at 0 m with an qquifer thickness of 10 m.
-            - horizontal dimension 2500 x 1100 m2
-            - initial cell size 100 x 100 m2
-            - Aquifer thickness 10 m.
-        -	Hydraulic conductivity K = 1E-3 m/s.
-        -	Two defined head boundary conditions to establish the uniform flow field (west and east border). 
-        
-        \n**:red[Scenario A]:**
-        -	Temporal discretization: one period, duration 86,400,000 seconds (1,000 days), steady state
-        -	Source of contamination from x = 300 to 400 m (central row)
-        -	Source as defined concentration boundary with c = 1 g/m3
-        -	Observations in 100, 300, 500, and 1,000 m distance from the contamination.
-        -	Investigation/Prediction of the contamination for the next 1000 days
-        
-        \n**:green[Scenario B]:**
-        -	Temporal discretization: three periods
-            - Period 1: duration 1 s, steady-state
-            - Period 2 (injection): duration 10 s, transient
-            - Period 3 (solute traveling): duration 4319990 s, transient
-        -   Injection through a WEL boundary (injection well)
-            - placed at x = 400 m (central row),
-            - infiltration rate 0.001 m3/s for 10 seconds 
-        - Injection concentration = 100,000 g/m3 (total mass 1,000 g)
-        
-        """)
+    #### Question/Purpose of the model
+    
+    **🟥 Scenario A:** The general aim is the prediction and management of a contamination plume with constant release of solutes. To simulate the spreading of a solute from a point source in a confined, homogeneous and isotropic aquifer. The solute is introduced with a constant concentration. Observations exist at 100, 300, 500, and 1000 m distances.
+    
+    The situation is idealized and can be compared with the results of an analytical solution (2D solute transport from a continuous source with advection and dispersion). The analytical solution allows users to investigate the effects of different settings of the numerical model, like solution scheme and discretization.
+    
+    **🟩 Scenario B:** The general aim of this version is to use the numerical model to simulate a tracer test to characterize the aquifer. The solute is injected with a given mass over a very short term. The injection is a point source, i.e., the tracer is inserted through a point source as a Dirac impulse (10 liters in 10 seconds, containing 1,000 g NaCl). The observation is at a distance of 30 m.
+    
+    ---
+    
+    #### Conceptual model
+    
+    The confined aquifer is homogeneous and isotropic and sufficiently extends in the horizontal direction. The thickness of the confined aquifer is constant. Groundwater flows in a steady and uniform flow field with a defined specific velocity *q*, based on:
+    
+    Hydraulic gradient: *i* = 0.005  
+    Hydraulic conductivity: *K* = 0.001 m/s
+    
+    Equation:
+    
+    $$
+    q = -Ki = -0.001 \\times 0.005 = 5 \\times 10^{-6} \\text{ m/s} \\; (0.432 \\text{ m/d})
+    $$
+    
+    Solute input configurations:
+    - **🟥 Scenario A:** Areal source with constant concentration; width of source is 100 m.
+    - **🟩 Scenario B:** Point source with slug input. Total mass input is 1,000 g in 10 liters.
+    
+    ---
+    
+    #### Mathematical model and analytical solution
+    
+    The analytical solutions for both scenarios are provided in two dedicated Streamlit apps:
+    
+    - **🟥 Scenario A:** [transport-2d-continuous.streamlit.app](https://transport-2d-continuous.streamlit.app/)
+    - **🟩 Scenario B:** [transport-2d-dirac.streamlit.app](https://transport-2d-dirac.streamlit.app/)
+    
+    ---
+    
+    #### Numerical model – flow and transport
+    
+    **Model characteristics:**
+    - One-layer 2D domain
+    - Model top at 0 m, aquifer thickness: 10 m
+    - Horizontal extent: 2500 m × 1100 m
+    - Initial cell size: 100 m × 100 m
+    - Hydraulic conductivity *K* = 1×10⁻³ m/s
+    - Specified-head boundaries on west and east edges
+    
+    ---
+    
+    **🟥 Scenario A:**
+    - Temporal discretization: 1 period (steady state), duration 86,400,000 s (1,000 days)
+    - Contamination source from *x* = 300 to 400 m (central row)
+    - Defined concentration boundary: *c* = 1 g/m³
+    - Observations at 100, 300, 500, and 1,000 m downstream
+    - Purpose: Predict solute transport over 1,000 days
+    
+    **🟩 Scenario B:**
+    - Temporal discretization: 3 periods  
+      - Period 1: 1 s (steady-state)  
+      - Period 2: 10 s (injection, transient)  
+      - Period 3: 4,319,990 s (transport, transient)
+    - Injection via WEL boundary (point source at *x* = 400 m, central row)
+      - Infiltration rate: 0.001 m³/s for 10 s
+      - Injection concentration: 100,000 g/m³ (i.e., 1,000 g in 10 L)
+    """)
+
 
 st.subheader('Step-by-step tutorials to build the model with MODELMUSE', divider = "green")
 st.markdown("""In the following you will find step-by-step instructions to build the flow- and transport model with MODELMUSE. Each step comes with a screencast video that shows the individual steps, and a 'ToDo' list with the essential steps. The full description of the tutorial is provided by a PDF document [for download here](www.link.com).
 
 ### :red[Scenario A - continuous source]
 
-The first three steps will cover :red[**Scenario A - continuous source of solutes**]. The numerical model results will be compared to an analytical solution for a continuous point source that is shown in the subsequent figure, [link to the resource here](https://transport-2d-continuous.streamlit.app/).""")
+The first four steps will cover :red[**Scenario A - continuous source of solutes**]. The numerical model results will be compared to an analytical solution for a continuous point source that is shown in the subsequent figure.
+
+💥 Try the [Streamlit App for 2D Transport with a continuous source here](https://transport-2d-continuous.streamlit.app/).""")
 
 lc1, cc1, rc1 = st.columns((20,60,20))
 with cc1:
@@ -97,10 +125,11 @@ with cc1:
 videourl1 = 'https://youtu.be/nurSikcY4LQ'
 videourl2 = 'https://youtu.be/D7a0goqD66c'
 videourl3 = 'https://youtu.be/GXLGnDr0Jf0'
-videourl3b = 'https://youtu.be/eVihqCz_6lQ'
-videourl4 = 'https://youtu.be/zVY2GwFgP3c'
-videourl5 = 'https://youtu.be/siDaOcjkm54'
-videourl6 = 'https://youtu.be/f7d1CDT8koQ'
+videourl3b = 'https://youtu.be/Opl3YpbiX-g'
+videourl4 = 'https://youtu.be/NQHGZfaThXs'
+videourl4b = 'https://youtu.be/U13EwH-cubY'
+videourl5 = 'https://youtu.be/gNfuM5iWFMs'
+videourl6 = 'https://youtu.be/tQXZmCfXEd8'
 
 # Create ToDos to proceed with the steps of the exercise
 
@@ -379,13 +408,22 @@ with st.expander(":red[**Expand to see the instructions and screencast video for
         
     st.markdown("""
     #### Video tutorial of step 4
+    
+    The first video tutorial demonstrate the model design and the computation for FD and MOC.
     """)
     
     st.video(videourl4)    
+    
+    st.markdown(""" 
+    The second video tutorial demonstrate some advanced post processing of the numerical solute transport model.
+    """)
+    st.video(videourl4b)  
 
 st.markdown("""### :green[Scenario B - pulse injection (Dirac)]
 
-The following two steps will cover :green[**Scenario B - pulse injection (tracer test)**]. The numerical model results will be compared to an analytical solution for a continuous point source that is shown in the subsequent figure, [link to the resource here](https://transport-2d-dirac.streamlit.app/).""")
+The following two steps will cover :green[**Scenario B - pulse injection (tracer test)**]. The numerical model results will be compared to an analytical solution for a continuous point source that is shown in the subsequent figure.
+
+💥 Try the [Streamlit App for 2D Transport for a Dirac injection pulse here](https://transport-2d-dirac.streamlit.app/).""")
 
 lc1, cc1, rc1 = st.columns((20,60,20))
 with cc1:
