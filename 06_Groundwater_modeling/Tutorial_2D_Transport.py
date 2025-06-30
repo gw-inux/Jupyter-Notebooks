@@ -1,6 +1,19 @@
 # Loading the required Python libraries
 import streamlit as st
 from streamlit_extras.stodo import to_do
+import json
+from streamlit_book import multiple_choice
+
+# path to questions for the assessments (direct path)
+path_quest_ini   = "06_Groundwater_modeling/QUESTIONS/initial_general_behavior.json"
+path_quest_final = "06_Groundwater_modeling/QUESTIONS/final_general_behavior.json"
+
+# Load questions
+with open(path_quest_ini, "r", encoding="utf-8") as f:
+    quest_ini = json.load(f)
+    
+with open(path_quest_final, "r", encoding="utf-8") as f:
+    quest_final = json.load(f)
 
 st.title('Tutorial – Numerical computation of solute transport: Demonstration of MT3D applications')
 
@@ -26,13 +39,13 @@ Both scenarios are idealized in such a way that solute transport can be also com
 #### Ressources used for the tutorial
 - The PDF File with the step-by-step tutorial will be available on GitHub (_link to be provided_)
 - The MODELMUSE model files (*.gpt) are available on GitHub
-    - MODELMUSE file for steps 1-3: [coarse.gpt]('06_Groundwater_modeling/DATA/2D_Transport/coarse.gpt')
-    - MODELMUSE file for step 4: [fine.gpt]('06_Groundwater_modeling/DATA/2D_Transport/fine.gpt')
-    - MODELMUSE file for step 5: [Dirac.gpt]('06_Groundwater_modeling/DATA/2D_Transport/Dirac.gpt')
-    - MODELMUSE file for step 6: [Dirac_Refined.gpt]('06_Groundwater_modeling/DATA/2D_Transport/Dirac_Refined.gpt')
+    - MODELMUSE file for steps 1-3: [coarse.gpt]('https://github.com/gw-inux/Jupyter-Notebooks/tree/main/06_Groundwater_modeling/DATA/2D_Transport/coarse.gpt')
+    - MODELMUSE file for step 4: [fine.gpt]('https://github.com/gw-inux/Jupyter-Notebooks/tree/main/06_Groundwater_modeling/DATA/2D_Transport/fine.gpt')
+    - MODELMUSE file for step 5: [Dirac.gpt]('https://github.com/gw-inux/Jupyter-Notebooks/tree/main/06_Groundwater_modeling/DATA/2D_Transport/Dirac.gpt')
+    - MODELMUSE file for step 6: [Dirac_Refined.gpt]('https://github.com/gw-inux/Jupyter-Notebooks/tree/main/06_Groundwater_modeling/DATA/2D_Transport/Dirac_Refined.gpt')
 - The Spreasheet for Postprocessing
-    - Microsoft Excel file with data: [2DTransport_Tutorial.xlsx]('06_Groundwater_modeling/DATA/2D_Transport/2DTransport_Tutorial.xlsx')
-    - Microsoft Excel file without data: [2DTransport_Tutorial_empty.xlsx]('06_Groundwater_modeling/DATA/2D_Transport/2DTransport_Tutorial_empty.xlsx')
+    - Microsoft Excel file with data: [2DTransport_Tutorial.xlsx]('https://github.com/gw-inux/Jupyter-Notebooks/tree/main/06_Groundwater_modeling/DATA/2D_Transport/2DTransport_Tutorial.xlsx')
+    - Microsoft Excel file without data: [2DTransport_Tutorial_empty.xlsx]('https://github.com/gw-inux/Jupyter-Notebooks/tree/main/06_Groundwater_modeling/DATA/2D_Transport/2DTransport_Tutorial_empty.xlsx')
 """)
 st.subheader('General description of the model', divider = "green")
 st.markdown("""The question and purpoose of the model, the conceptual model, and the numerical model are described in the subsequent section.""")
@@ -107,6 +120,35 @@ with st.expander(':green[**Click here for more details of the general descriptio
       - Injection concentration: 100,000 g/m³ (i.e., 1,000 g in 10 L)
     """)
 
+with st.expander('**Show the initial assessment** - to assess your existing knowledge'):
+    st.markdown("""
+    #### 📋 Initial assessment
+    You can use the initial questions to assess your existing knowledge.
+    """)
+
+    # Render questions in a 2x2 grid (row-wise, aligned)
+    for row in [(0, 1), (2, 3)]:
+        col1, col2 = st.columns(2)
+    
+        with col1:
+            i = row[0]
+            st.markdown(f"**Q{i+1}. {quest_ini[i]['question']}**")
+            multiple_choice(
+                question=" ",  # suppress repeated question display
+                options_dict=quest_ini[i]["options"],
+                success=quest_ini[i].get("success", "✅ Correct."),
+                error=quest_ini[i].get("error", "❌ Not quite.")
+            )
+    
+        with col2:
+            i = row[1]
+            st.markdown(f"**Q{i+1}. {quest_ini[i]['question']}**")
+            multiple_choice(
+                question=" ",
+                options_dict=quest_ini[i]["options"],
+                success=quest_ini[i].get("success", "✅ Correct."),
+                error=quest_ini[i].get("error", "❌ Not quite.")
+            )
 
 st.subheader('Step-by-step tutorials to build the model with MODELMUSE', divider = "green")
 st.markdown("""In the following you will find step-by-step instructions to build the flow- and transport model with MODELMUSE. Each step comes with a screencast video that shows the individual steps, and a 'ToDo' list with the essential steps. The full description of the tutorial is provided by a PDF document [for download here](www.link.com).

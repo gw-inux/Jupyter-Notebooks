@@ -1,0 +1,46 @@
+[
+  {
+    "question": "What are typical purposes of solute transport modeling in groundwater systems? (Mark ALL correct answers)",
+    "options": {
+      "A) To understand how contaminants migrate through aquifers.": true,
+      "B) To visualize streamflow direction in surface waters.": false,
+      "C) To predict future contamination levels at observation points.": true,
+      "D) To simulate long-term aquifer compaction due to pumping.": false
+    },
+    "success": "✅ Correct. Solute transport models are designed to predict and analyze contaminant migration.",
+    "error": "❌ Not quite. Focus on groundwater transport processes, not surface water or compaction."
+  },
+  {
+    "question": "Which factors typically influence solute transport in confined aquifers? (Mark ALL correct answers)",
+    "options": {
+      "A) Advection due to groundwater flow.": true,
+      "B) Hydraulic conductivity and gradient.": true,
+      "C) Water table fluctuations.": false,
+      "D) Hydrodynamic dispersion.": true
+    },
+    "success": "✅ Well done. Advection, K, gradient, and dispersion all govern solute movement.",
+    "error": "❌ Confined aquifers are not impacted by water table fluctuations. Focus on flow and spreading mechanisms."
+  },
+  {
+    "question": "What characterizes a Dirac-type tracer input in solute transport modeling? (Mark ALL correct answers)",
+    "options": {
+      "A) A continuous solute source over time.": false,
+      "B) An instantaneous injection with finite mass.": true,
+      "C) A source with constant concentration.": false,
+      "D) A one-time pulse input that mimics a tracer experiment.": true
+    },
+    "success": "✅ Correct. A Dirac input is a short, concentrated pulse with a defined mass.",
+    "error": "❌ Remember that Dirac inputs are used to simulate instantaneous tracer releases."
+  },
+  {
+    "question": "Why might an analytical solution be used alongside a numerical model? (Mark ALL correct answers)",
+    "options": {
+      "A) To calibrate MT3D input files automatically.": false,
+      "B) To validate the correctness of a numerical model setup.": true,
+      "C) To explore parameter sensitivity under simplified assumptions.": true,
+      "D) To replace the need for boundary conditions in MODFLOW.": false
+    },
+    "success": "✅ Exactly. Analytical models support validation and conceptual understanding.",
+    "error": "❌ Analytical models are not replacements for boundary conditions or calibration tools — they support verification."
+  }
+]
