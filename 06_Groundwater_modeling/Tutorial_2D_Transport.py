@@ -39,13 +39,13 @@ Both scenarios are idealized in such a way that solute transport can be also com
 #### Ressources used for the tutorial
 - The PDF File with the step-by-step tutorial will be available on GitHub (_link to be provided_)
 - The MODELMUSE model files (*.gpt) are available on GitHub
-    - MODELMUSE file for steps 1-3: [coarse.gpt]('https://github.com/gw-inux/Jupyter-Notebooks/tree/main/06_Groundwater_modeling/DATA/2D_Transport/coarse.gpt')
-    - MODELMUSE file for step 4: [fine.gpt]('https://github.com/gw-inux/Jupyter-Notebooks/tree/main/06_Groundwater_modeling/DATA/2D_Transport/fine.gpt')
-    - MODELMUSE file for step 5: [Dirac.gpt]('https://github.com/gw-inux/Jupyter-Notebooks/tree/main/06_Groundwater_modeling/DATA/2D_Transport/Dirac.gpt')
-    - MODELMUSE file for step 6: [Dirac_Refined.gpt]('https://github.com/gw-inux/Jupyter-Notebooks/tree/main/06_Groundwater_modeling/DATA/2D_Transport/Dirac_Refined.gpt')
-- The Spreasheet for Postprocessing
-    - Microsoft Excel file with data: [2DTransport_Tutorial.xlsx]('https://github.com/gw-inux/Jupyter-Notebooks/tree/main/06_Groundwater_modeling/DATA/2D_Transport/2DTransport_Tutorial.xlsx')
-    - Microsoft Excel file without data: [2DTransport_Tutorial_empty.xlsx]('https://github.com/gw-inux/Jupyter-Notebooks/tree/main/06_Groundwater_modeling/DATA/2D_Transport/2DTransport_Tutorial_empty.xlsx')
+    - MODELMUSE file for steps 1–3: [coarse.gpt](https://github.com/gw-inux/Jupyter-Notebooks/tree/main/06_Groundwater_modeling/DATA/2D_Transport/coarse.gpt)
+    - MODELMUSE file for step 4: [fine.gpt](https://github.com/gw-inux/Jupyter-Notebooks/tree/main/06_Groundwater_modeling/DATA/2D_Transport/fine.gpt)
+    - MODELMUSE file for step 5: [Dirac.gpt](https://github.com/gw-inux/Jupyter-Notebooks/tree/main/06_Groundwater_modeling/DATA/2D_Transport/Dirac.gpt)
+    - MODELMUSE file for step 6: [Dirac_Refined.gpt](https://github.com/gw-inux/Jupyter-Notebooks/tree/main/06_Groundwater_modeling/DATA/2D_Transport/Dirac_Refined.gpt)
+- The spreadsheet for postprocessing:
+    - With data: [2DTransport_Tutorial.xlsx](https://github.com/gw-inux/Jupyter-Notebooks/tree/main/06_Groundwater_modeling/DATA/2D_Transport/2DTransport_Tutorial.xlsx)
+    - Without data: [2DTransport_Tutorial_empty.xlsx](https://github.com/gw-inux/Jupyter-Notebooks/tree/main/06_Groundwater_modeling/DATA/2D_Transport/2DTransport_Tutorial_empty.xlsx)
 """)
 st.subheader('General description of the model', divider = "green")
 st.markdown("""The question and purpoose of the model, the conceptual model, and the numerical model are described in the subsequent section.""")
