@@ -19,7 +19,7 @@ st.title('Tutorial – Numerical computation of solute transport: Demonstration 
 
 st.header('2D solute transport in a uniform groundwater flow field using :green[MODFLOW-2005, MT3D, and MODELMUSE]')
 
-st.subheader('Overview and orientationg', divider="green")
+st.subheader('Overview and orientation', divider="green")
 
 st.markdown(""" The **aim of the tutorial** is to provide an applied introduction in solute transport modeling with MODFLOW and MT3D. The applications consider two typical scenarios for an idealized groundwater catchment:
 \n**:red[Scenario A]: Prediction of a :red[contamination from a continuous releasing source]** and
