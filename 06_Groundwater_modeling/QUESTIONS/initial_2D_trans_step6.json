@@ -1,46 +1,46 @@
 [
   {
-    "question": "Which of the following statements about the FD (finite difference) scheme are true? (Mark ALL correct answers)",
+    "question": "What is the purpose of refining the model in Step 6?",
     "options": {
-      "A) FD can introduce numerical dispersion": true,
-      "B) FD is highly accurate for sharp concentration fronts": false,
-      "C) FD uses grid-based discretization of the advection-dispersion equation": true,
-      "D) FD computes transport along streamlines directly": false
+      "A) To simulate a new contamination source": false,
+      "B) To improve accuracy and compare with the analytical solution": true,
+      "C) To change from a confined to an unconfined aquifer model": false,
+      "D) To remove the dispersion process": false
     },
-    "success": "✅ Correct! FD operates on a grid and often causes numerical dispersion.",
-    "error": "❌ FD simulates transport on a grid and is prone to numerical dispersion, especially near sharp fronts."
+    "success": "✅ Correct! The refinement improves accuracy and allows verification against the analytical solution.",
+    "error": "❌ The goal is to improve accuracy and allow comparison with the analytical solution."
   },
   {
-    "question": "Which of the following are true about the MOC method in MT3D? (Mark ALL correct answers)",
+    "question": "What should be typically  adapted when refining the model grid in the grphical user interface MODELMUSE?",
     "options": {
-      "A) MOC traces particles along flow paths": true,
-      "B) MOC requires grid-based concentration values at every node": false,
-      "C) MOC is better suited for advection-dominated transport": true,
-      "D) MOC has a higher risk of mass balance errors": true
+      "A) The temporal resolution only": false,
+      "B) The injection and observation positions": true,
+      "C) The hydraulic conductivity": false,
+      "D) The source concentration": false
     },
-    "success": "✅ Yes — MOC is particle-based and well-suited for advection, though mass balance issues may arise.",
-    "error": "❌ MOC follows particle paths, does not compute grid concentrations directly, and can lead to mass balance discrepancies."
+    "success": "✅ Correct! The spatial refinement requires repositioning of the injection and observation points.",
+    "error": "❌ Refining the grid affects spatial locations, so injection and observation points must be adapted."
   },
   {
-    "question": "What effect does setting the dispersion coefficient (alpha) to zero have in MOC?",
+    "question": "What effect is expected when refining the spatial grid size in a numerical model?",
     "options": {
-      "A) It disables all dispersion processes": true,
-      "B) It creates a uniform concentration field": false,
-      "C) It allows for direct comparison with pure advection": true,
-      "D) It improves mass balance": false
+      "A) Higher numerical dispersion": false,
+      "B) No change in result accuracy": false,
+      "C) Improved result accuracy and reduced numerical dispersion": true,
+      "D) Model instability due to small cells": false
     },
-    "success": "✅ Correct — setting alpha to zero allows you to isolate advective transport.",
-    "error": "❌ Alpha = 0 removes dispersion, which is useful for evaluating advection-only behavior."
+    "success": "✅ Correct! Refining the grid reduces numerical dispersion and improves precision.",
+    "error": "❌ Refining grid size helps reduce numerical dispersion and improve simulation accuracy."
   },
   {
-    "question": "Which of the following influence the precision of a MOC simulation? (Mark ALL correct answers)",
+    "question": "What is the resulting Péclet number when cell size = 2 m and dispersivity = 5 m?",
     "options": {
-      "A) Number of initial particles": true,
-      "B) Grid spacing": false,
-      "C) Time step size": true,
-      "D) Number of moving particles per cell": true
+      "A) Pe = 0.4": true,
+      "B) Pe = 2.5": false,
+      "C) Pe = 5.0": false,
+      "D) Pe = 10.0": false
     },
-    "success": "✅ Well done — particle count and time stepping strongly affect MOC results.",
-    "error": "❌ Grid spacing is less relevant in MOC; particle settings and timestep are critical."
+    "success": "✅ Correct! Pe = Δx / α_L = 2 / 5 = 0.4.",
+    "error": "❌ Remember: Péclet number is computed as cell size divided by dispersivity."
   }
 ]

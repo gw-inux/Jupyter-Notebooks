@@ -1,46 +1,46 @@
 [
   {
-    "question": "Which of the following statements about the FD (finite difference) scheme are true? (Mark ALL correct answers)",
+    "question": "What is a tracer used for in hydrogeology?",
     "options": {
-      "A) FD can introduce numerical dispersion": true,
-      "B) FD is highly accurate for sharp concentration fronts": false,
-      "C) FD uses grid-based discretization of the advection-dispersion equation": true,
-      "D) FD computes transport along streamlines directly": false
+      "A) To clean aquifers.": false,
+      "B) To characterize flow and transport properties.": true,
+      "C) To visualize sediment layers.": false,
+      "D) To model pumping tests.": false
     },
-    "success": "✅ Correct! FD operates on a grid and often causes numerical dispersion.",
-    "error": "❌ FD simulates transport on a grid and is prone to numerical dispersion, especially near sharp fronts."
+    "success": "✅ Correct! Tracers are used to study flow and transport behavior.",
+    "error": "❌ Not quite. Tracers are primarily used to characterize flow and transport."
   },
   {
-    "question": "Which of the following are true about the MOC method in MT3D? (Mark ALL correct answers)",
+    "question": "What does a Dirac impulse represent in solute transport modeling?",
     "options": {
-      "A) MOC traces particles along flow paths": true,
-      "B) MOC requires grid-based concentration values at every node": false,
-      "C) MOC is better suited for advection-dominated transport": true,
-      "D) MOC has a higher risk of mass balance errors": true
+      "A) A constant source of solute over time.": false,
+      "B) A sudden pulse of solute added at one moment.": true,
+      "C) A boundary condition with constant head.": false,
+      "D) A linear increase of concentration over time.": false
     },
-    "success": "✅ Yes — MOC is particle-based and well-suited for advection, though mass balance issues may arise.",
-    "error": "❌ MOC follows particle paths, does not compute grid concentrations directly, and can lead to mass balance discrepancies."
+    "success": "✅ Yes, a Dirac impulse is an instantaneous solute injection.",
+    "error": "❌ Try again. A Dirac impulse is not a continuous source."
   },
   {
-    "question": "What effect does setting the dispersion coefficient (alpha) to zero have in MOC?",
+    "question": "Which transport processes dominate the movement of a conservative tracer?",
     "options": {
-      "A) It disables all dispersion processes": true,
-      "B) It creates a uniform concentration field": false,
-      "C) It allows for direct comparison with pure advection": true,
-      "D) It improves mass balance": false
+      "A) Advection": true,
+      "B) Dispersion": true,
+      "C) Sorption": false,
+      "D) Degradation": false
     },
-    "success": "✅ Correct — setting alpha to zero allows you to isolate advective transport.",
-    "error": "❌ Alpha = 0 removes dispersion, which is useful for evaluating advection-only behavior."
+    "success": "✅ Correct! Advection and dispersion dominate for conservative tracers.",
+    "error": "❌ Conservative tracers are not subject to sorption or degradation."
   },
   {
-    "question": "Which of the following influence the precision of a MOC simulation? (Mark ALL correct answers)",
+    "question": "What is the expected impact of a small Peclet number?",
     "options": {
-      "A) Number of initial particles": true,
-      "B) Grid spacing": false,
-      "C) Time step size": true,
-      "D) Number of moving particles per cell": true
+      "A) Dominance of diffusion/dispersion": true,
+      "B) Clear advective transport": false,
+      "C) Numerical instabilities in MOC": false,
+      "D) Reduced transport velocity": false
     },
-    "success": "✅ Well done — particle count and time stepping strongly affect MOC results.",
-    "error": "❌ Grid spacing is less relevant in MOC; particle settings and timestep are critical."
+    "success": "✅ Yes, low Peclet number implies dispersion dominates.",
+    "error": "❌ Consider how Peclet number is defined as Pe = (v·L)/D."
   }
 ]

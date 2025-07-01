@@ -4,6 +4,21 @@ from streamlit_extras.stodo import to_do
 import json
 from streamlit_book import multiple_choice
 
+# Authors, institutions, and year
+year = 2025 
+authors = {
+    "Thomas Reimann": [1],  # Author 1 belongs to Institution 1
+    "Navneet Sinha": [1],
+}
+institutions = {
+    1: "TU Dresden, Institute for Groundwater Management"
+}
+index_symbols = ["¹", "²", "³", "⁴", "⁵", "⁶", "⁷", "⁸", "⁹"]
+author_list = [f"{name}{''.join(index_symbols[i-1] for i in indices)}" for name, indices in authors.items()]
+institution_list = [f"{index_symbols[i-1]} {inst}" for i, inst in institutions.items()]
+institution_text = " | ".join(institution_list)
+
+
 def render_assessment(filename, title="📋 Assessment", max_questions=4):
 
     with open(filename, "r", encoding="utf-8") as f:
@@ -137,6 +152,8 @@ with st.expander('**Show the initial assessment** - to assess your existing know
 
 st.subheader('Step-by-step tutorials to build the model with MODELMUSE', divider = "green")
 st.markdown("""In the following you will find step-by-step instructions to build the flow- and transport model with MODELMUSE. Each step comes with a screencast video that shows the individual steps, and a 'ToDo' list with the essential steps. The full description of the tutorial is provided by a PDF document [for download here](www.link.com).
+
+---
 
 ### :red[Scenario A - continuous source]
 
@@ -475,7 +492,9 @@ with st.expander("🛠️ :red[**Expand to see the instructions and screencast v
 with st.expander("📋 **Final Assessment – Step 4**"):
     render_assessment("06_Groundwater_modeling/QUESTIONS/final_2D_trans_step4.json", "Final Assessment for Step 4", max_questions=6)
     
-st.markdown("""### :green[Scenario B - pulse injection (Dirac)]
+st.markdown("""
+---
+### :green[Scenario B - pulse injection (Dirac)]
 
 The following two steps will cover :green[**Scenario B - pulse injection (tracer test)**]. The numerical model results will be compared to an analytical solution for a continuous point source that is shown in the subsequent figure.
 
@@ -492,7 +511,11 @@ st.markdown("""
 #### :green[STEP 5:] Adapting the existing model to simulate a tracer test - solute input as Dirac pulse. Running the FD and MOC simulations.
 **Aim:** Adapt an model to reflect a different scenario. Implement an injection well for the Dirac pulse scenario. 
 """)  
-with st.expander(":green[**Expand to see the instructions and screencast video for STEP 5**]"):
+
+with st.expander("🧠 **Initial Assessment – Step 5**"):
+    render_assessment("06_Groundwater_modeling/QUESTIONS/initial_2D_trans_step5.json", "Initial Assessment for Step 5")
+
+with st.expander("🛠️ :green[**Expand to see the instructions and screencast video for STEP 5**]"):
     st.markdown("""
     More about step 5
     """)
@@ -507,13 +530,20 @@ with st.expander(":green[**Expand to see the instructions and screencast video f
     """)
             
     st.video(videourl5)
+
+with st.expander("📋 **Final Assessment – Step 5**"):
+    render_assessment("06_Groundwater_modeling/QUESTIONS/final_2D_trans_step5.json", "Final Assessment for Step 5", max_questions=6)
     
 # STEP 6
 st.markdown("""
 #### :green[STEP 6:] Refining the existing model for the tracer test and re-running the FD and MOC simulations.
 **Aim:** Understand the effect of the spatial discretization. Adapt the Dirac pulse model and evaluate the performance and accuracy by comparing the results with an analytical solution. 
 """)  
-with st.expander(":green[**Expand to see the instructions and screencast video for STEP 6**]"):
+
+with st.expander("🧠 **Initial Assessment – Step 6**"):
+    render_assessment("06_Groundwater_modeling/QUESTIONS/initial_2D_trans_step6.json", "Initial Assessment for Step 6")
+
+with st.expander("🛠️ :green[**Expand to see the instructions and screencast video for STEP 6**]"):
     st.markdown("""
     More about step 6
     """)
@@ -528,15 +558,57 @@ with st.expander(":green[**Expand to see the instructions and screencast video f
     """)
             
     st.video(videourl6)
-    
+
+with st.expander("📋 **Final Assessment – Step 6**"):
+    render_assessment("06_Groundwater_modeling/QUESTIONS/final_2D_trans_step6.json", "Final Assessment for Step 6", max_questions=6)
+  
 # OPTIONALLY STEPS
     
 with st.expander(":green[**OPTIONALLY Steps: Some further things to do**] - Expand to see the instructions"):
     st.markdown("""
-            #### Optionally STEPs: Some further things To Do
-            You can do further optional steps with the finished model.
+            #### Optionally STEPs: Further Investigations
             
-            #### Optionally use other transport algorithms
-           """)
-    to_do(
-        [(st.write, "...")],"td053",)      
+            These steps are designed to expand your modeling skills and deepen your understanding of solute transport processes, numerical methods, and model performance. They complement the main tutorial and offer opportunities for independent exploration.
+            
+            **1. Compare alternative numerical solution methods**
+            **Aim:** Explore the differences between available advection schemes in MT3D and understand their effects on model behavior.
+            - Switch between FD, MOC, TVD, MMOC, and HMOC schemes in the ADV package.
+            - Compare plume shapes, breakthrough curves (with the spreadsheet and the analytical solution), and mass balance errors.
+            - Evaluate numerical dispersion and runtime across methods.
+            
+            **2. Introduce heterogeneity in hydraulic conductivity**
+            **Aim:** Investigate how spatial heterogeneity influences flow paths and solute transport.
+            - Create zones or layers with varying hydraulic conductivity.
+            - Implement block-wise structures or similar.
+            - Visualize plume deformation and preferential pathways; also by using MODPATH.
+            - Compare with results from a homogeneous setup.
+            
+            **3. Evaluate model performance under varying grid resolutions**
+            **Aim:** Quantify the effect of discretization on numerical dispersion and computational cost.
+            - Test multiple cell sizes (e.g., 100 m → 10 m → 2 m).
+            - Monitor Peclet number and mass balance errors.
+            - Use the analytical solution to quantify numerical error.
+            - Plot error vs. cell size for FD and MOC.
+            
+            **4. Implement vertical layering (pseudo-3D)**
+            **Aim:** Simulate simplified vertical transport and understand layer interactions.
+            - Add a second or third model layer.
+            - Vary vertical conductivity and dispersion.
+            - Simulate upward or downward leakage.
+            - Assess if the added complexity improves realism.
+            
+            **5. Design and interpret synthetic monitoring networks**
+            **Aim:** Improve skills in selecting and interpreting monitoring locations.
+            - Place observation wells at strategic distances and angles.
+            - Analyze breakthrough curves and concentration time series.
+            - Evaluate the representativeness of monitoring data relative to the full plume.
+           """)     
+           
+st.markdown('---')
+
+# Render footer with authors, institutions, and license logo in a single line
+columns_lic = st.columns((5,1))
+with columns_lic[0]:
+    st.markdown(f'Developed by {", ".join(author_list)} ({year}). <br> {institution_text}', unsafe_allow_html=True)
+with columns_lic[1]:
+    st.image('90_Streamlit_apps/GWP_Boundary_Conditions/assets/images/CC_BY-SA_icon.png')

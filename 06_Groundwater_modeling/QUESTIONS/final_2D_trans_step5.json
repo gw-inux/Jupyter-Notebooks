@@ -1,68 +1,46 @@
 [
   {
-    "question": "What are key benefits of using the MOC approach in solute transport modeling? (Mark ALL correct answers)",
+    "question": "What is the main difference between FD and MOC in simulating the Dirac tracer input?",
     "options": {
-      "A) It avoids numerical dispersion": true,
-      "B) It works efficiently with sharp concentration fronts": true,
-      "C) It always provides mass-balanced results": false,
-      "D) It is ideal for advection-dominated transport": true
+      "A) FD has more numerical dispersion.": true,
+      "B) MOC shows sharper concentration peaks.": true,
+      "C) FD shows faster runtimes.": true,
+      "D) MOC does not need any spatial discretization.": false
     },
-    "success": "✅ Correct — MOC is ideal for advection and avoids smearing of sharp fronts.",
-    "error": "❌ MOC has strengths in advection-dominant cases, but can have mass balance issues."
+    "success": "✅ Well done. MOC is sharper but requires more effort.",
+    "error": "❌ Check differences in how FD and MOC solve transport equations."
   },
   {
-    "question": "What must be adjusted to refine MOC transport simulation accuracy? (Mark ALL correct answers)",
+    "question": "What parameters were changed in the dispersion settings for Step 5?",
     "options": {
-      "A) Number of initially placed particles": true,
-      "B) Cell thickness": false,
-      "C) Number of moving particles": true,
-      "D) Time stepping scheme": true
+      "A) Dispersion was reduced to 5 m due to shorter transport distance.": true,
+      "B) Dispersion was set to 20 m to simulate long-distance effects.": false,
+      "C) Dispersion remained unchanged.": false,
+      "D) Dispersion was disabled entirely.": false
     },
-    "success": "✅ Exactly — particle control and timestep are crucial for MOC refinement.",
-    "error": "❌ Cell thickness is not relevant; it's about particles and time resolution."
+    "success": "✅ Correct. The scale-dependence of dispersion was applied here.",
+    "error": "❌ Try again. Dispersion depends on transport distance."
   },
   {
-    "question": "What happens if dispersion is removed from a MOC simulation?",
+    "question": "Why is the WEL package used in this step?",
     "options": {
-      "A) Only advection remains": true,
-      "B) Solute spreads more widely": false,
-      "C) Comparison to analytical advection solution becomes easier": true,
-      "D) Simulation becomes unstable": false
+      "A) To simulate injection of the tracer.": true,
+      "B) To model variable recharge.": false,
+      "C) To define drain boundaries.": false,
+      "D) To reduce computational time.": false
     },
-    "success": "✅ Correct. This isolates advective behavior and helps model calibration.",
-    "error": "❌ Removing dispersion isolates advection — a useful comparison case."
+    "success": "✅ Exactly. The well simulates the point-source injection.",
+    "error": "❌ Think about how the tracer is introduced into the system."
   },
   {
-    "question": "Which challenges are associated with the MOC method? (Mark ALL correct answers)",
+    "question": "How does MOC improve the accuracy for the Dirac impulse?",
     "options": {
-      "A) Numerical dispersion": false,
-      "B) Mass balance error": true,
-      "C) Long computation times": true,
-      "D) Difficulty in modeling diffusive spreading": true
+      "A) Uses particles instead of grids.": true,
+      "B) Tracks solute movement precisely.": true,
+      "C) Is not affected by Peclet number.": true,
+      "D) Replaces dispersion with degradation.": false
     },
-    "success": "✅ Yes — MOC avoids numerical dispersion but may struggle with diffusion and runtime.",
-    "error": "❌ MOC trades dispersion-free transport for mass balance and computational trade-offs."
-  },
-  {
-    "question": "Which of the following statements is true for comparing MOC vs FD in MT3D?",
-    "options": {
-      "A) FD has sharper fronts than MOC": false,
-      "B) MOC is better for pulse injection tracking": true,
-      "C) FD is faster for large domains": true,
-      "D) MOC ensures perfect mass conservation": false
-    },
-    "success": "✅ Good. MOC tracks sharp pulses better; FD is faster but less precise.",
-    "error": "❌ Consider both the physics and the computational implications of each method."
-  },
-  {
-    "question": "How do you verify if the MOC simulation results are plausible? (Mark ALL correct answers)",
-    "options": {
-      "A) Compare to analytical solution": true,
-      "B) Evaluate breakthrough curves at observation wells": true,
-      "C) Visualize particle paths only": false,
-      "D) Check the mass balance in the listing file": true
-    },
-    "success": "✅ Excellent. You should validate with multiple tools — plots, curves, and balances.",
-    "error": "❌ Don’t rely on just one output — validation includes curves, analytics, and mass checks."
+    "success": "✅ MOC can simulate sharp pulses more realistically.",
+    "error": "❌ Revisit the characteristics of MOC."
   }
 ]
