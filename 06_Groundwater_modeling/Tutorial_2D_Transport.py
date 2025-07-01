@@ -564,7 +564,13 @@ with st.expander("📋 **Final Assessment – Step 6**"):
   
 # OPTIONALLY STEPS
     
-with st.expander(":green[**OPTIONALLY Steps: Some further things to do**] - Expand to see the instructions"):
+# STEP 6
+st.markdown("""
+---
+#### :rainbow[OPTIONALLY STEPs:] Some further things to do.
+**Aim:** Starting with own investigations. Extending the existing modles and solutions. 
+""")  
+with st.expander(":rainbow[**Expand to see the instructions**]"):
     st.markdown("""
             #### Optionally STEPs: Further Investigations
             
