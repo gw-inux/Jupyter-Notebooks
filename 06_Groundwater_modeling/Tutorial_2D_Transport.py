@@ -62,18 +62,21 @@ Both scenarios are idealized in such a way that solute transport can be also com
 **This app contains** materials, explanations, descriptions (as To-Do list), and videos on how to setup a MODFLOW/MT3D model for a 2D idealized catchment (see the following figure). The individual steps of the modeling process are provided in the following boxes that you can expand by clicking.
             
 #### 📦 Resources used for the tutorial
-The following files are provided for use throughout the tutorial. You can download them directly using the links below. They include MODELMUSE model files for different modeling steps and supporting spreadsheets for analysis and postprocessing.
-
-- 📄 PDF file with step-by-step instructions (_link to be provided_)
-- 💻 MODELMUSE model files:
-    - [coarse.gpt](https://raw.githubusercontent.com/gw-inux/Jupyter-Notebooks/main/06_Groundwater_modeling/DATA/2D_Transport/coarse.gpt) — for steps 1–3
-    - [fine.gpt](https://raw.githubusercontent.com/gw-inux/Jupyter-Notebooks/main/06_Groundwater_modeling/DATA/2D_Transport/fine.gpt) — for step 4
-    - [Dirac.gpt](https://raw.githubusercontent.com/gw-inux/Jupyter-Notebooks/main/06_Groundwater_modeling/DATA/2D_Transport/Dirac.gpt) — for step 5
-    - [Dirac_Refined.gpt](https://raw.githubusercontent.com/gw-inux/Jupyter-Notebooks/main/06_Groundwater_modeling/DATA/2D_Transport/Dirac_Refined.gpt) — for step 6
-- 📊 Spreadsheet for postprocessing:
-    - [2DTransport_Tutorial.xlsx (with data)](https://raw.githubusercontent.com/gw-inux/Jupyter-Notebooks/main/06_Groundwater_modeling/DATA/2D_Transport/2DTransport_Tutorial.xlsx)
-    - [2DTransport_Tutorial_empty.xlsx (empty template)](https://raw.githubusercontent.com/gw-inux/Jupyter-Notebooks/main/06_Groundwater_modeling/DATA/2D_Transport/2DTransport_Tutorial_empty.xlsx)
+The following files are provided for use throughout the tutorial...
 """)
+
+with st.expander('**... click here to see and access the ressources**'):
+    st.markdown("""You can download the ressources directly using the links below. They include MODELMUSE model files for different modeling steps and supporting spreadsheets for analysis and postprocessing
+    \n- 📄 PDF file with step-by-step instructions (_link to be provided_)
+    - 💻 MODELMUSE model files:
+        - [coarse.gpt](https://raw.githubusercontent.com/gw-inux/Jupyter-Notebooks/main/06_Groundwater_modeling/DATA/2D_Transport/coarse.gpt) — for steps 1–3
+        - [fine.gpt](https://raw.githubusercontent.com/gw-inux/Jupyter-Notebooks/main/06_Groundwater_modeling/DATA/2D_Transport/fine.gpt) — for step 4
+        - [Dirac.gpt](https://raw.githubusercontent.com/gw-inux/Jupyter-Notebooks/main/06_Groundwater_modeling/DATA/2D_Transport/Dirac.gpt) — for step 5
+        - [Dirac_Refined.gpt](https://raw.githubusercontent.com/gw-inux/Jupyter-Notebooks/main/06_Groundwater_modeling/DATA/2D_Transport/Dirac_Refined.gpt) — for step 6
+    - 📊 Spreadsheet for postprocessing:
+        - [2DTransport_Tutorial.xlsx (with data)](https://raw.githubusercontent.com/gw-inux/Jupyter-Notebooks/main/06_Groundwater_modeling/DATA/2D_Transport/2DTransport_Tutorial.xlsx)
+        - [2DTransport_Tutorial_empty.xlsx (empty template)](https://raw.githubusercontent.com/gw-inux/Jupyter-Notebooks/main/06_Groundwater_modeling/DATA/2D_Transport/2DTransport_Tutorial_empty.xlsx)""")
+
 st.subheader('General description of the model', divider = "green")
 st.markdown("""The question and purpoose of the model, the conceptual model, and the numerical model are described in the subsequent section.""")
 
