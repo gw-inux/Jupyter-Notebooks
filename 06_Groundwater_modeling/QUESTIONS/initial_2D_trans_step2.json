@@ -1,0 +1,46 @@
+[
+  {
+    "question": "What characterizes a breakthrough curve in a conservative solute transport simulation? (Mark ALL correct answers)",
+    "options": {
+      "A) It shows the temporal change of concentration at a fixed location.": true,
+      "B) It indicates spatial distribution at one specific time step.": false,
+      "C) It allows analyzing arrival time and peak concentration.": true,
+      "D) It is used to visualize model grid structure.": false
+    },
+    "success": "✅ Correct – Breakthrough curves show concentration vs. time at observation points and reveal transport dynamics.",
+    "error": "❌ A breakthrough curve shows temporal changes at a point, not spatial profiles or grid structure."
+  },
+  {
+    "question": "What would a breakthrough curve look like for pure advection without dispersion? (Mark ALL correct answers)",
+    "options": {
+      "A) A vertical step at arrival time.": true,
+      "B) A smooth sigmoidal increase.": false,
+      "C) An instantaneous rise followed by constant concentration.": true,
+      "D) A bell-shaped Gaussian distribution.": false
+    },
+    "success": "✅ Exactly – Advection-only results in a sharp front and constant plateau.",
+    "error": "❌ Think about how solute moves in pure advection: sharp front, no spreading."
+  },
+  {
+    "question": "How does dispersion affect the shape of the concentration breakthrough curve? (Mark ALL correct answers)",
+    "options": {
+      "A) It flattens and spreads the curve.": true,
+      "B) It delays arrival time.": false,
+      "C) It reduces peak concentration.": true,
+      "D) It sharpens the concentration front.": false
+    },
+    "success": "✅ Correct – Dispersion spreads solute and reduces peaks.",
+    "error": "❌ Dispersion causes flattening and spreading, not sharpening or delay."
+  },
+  {
+    "question": "Which factors influence the numerical results of the FD method? (Mark ALL correct answers)",
+    "options": {
+      "A) Grid resolution": true,
+      "B) Courant number": true,
+      "C) Initial concentration only": false,
+      "D) Time step size": true
+    },
+    "success": "✅ Correct – Numerical stability and accuracy depend on resolution, Courant number, and time step.",
+    "error": "❌ FD accuracy depends on discretization parameters like time step and grid size."
+  }
+]

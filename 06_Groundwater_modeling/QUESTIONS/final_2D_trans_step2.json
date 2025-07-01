@@ -1,0 +1,68 @@
+[
+  {
+    "question": "What settings are required to simulate conservative solute transport in MT3D using the FD scheme? (Mark ALL correct answers)",
+    "options": {
+      "A) Activate BTN, ADV, DSP, SSM, and GCC packages": true,
+      "B) Set ADV to MOC method": false,
+      "C) Set ADV to Finite Difference (FD)": true,
+      "D) Deactivate dispersion": false
+    },
+    "success": "✅ Correct – FD transport requires specific packages and FD solver setting.",
+    "error": "❌ FD transport setup needs appropriate packages and ADV solver selection."
+  },
+  {
+    "question": "What input is needed to define a continuous point source in MT3D? (Mark ALL correct answers)",
+    "options": {
+      "A) A point object linked to SSM": true,
+      "B) A well boundary with constant flow": false,
+      "C) Constant concentration value in SSM input": true,
+      "D) Observation location defined before source": false
+    },
+    "success": "✅ Exactly – Source definition requires object + concentration setting via SSM.",
+    "error": "❌ Remember: MT3D source definition is handled via SSM objects with assigned concentration."
+  },
+  {
+    "question": "Which parameters affect the simulation of dispersion? (Mark ALL correct answers)",
+    "options": {
+      "A) Longitudinal dispersivity": true,
+      "B) Transverse dispersivity": true,
+      "C) Flow direction": true,
+      "D) Grid cell thickness": false
+    },
+    "success": "✅ Correct – Dispersion depends on alpha_L, alpha_T, and flow direction.",
+    "error": "❌ Grid thickness is not relevant in 2D; dispersion is controlled by directional parameters."
+  },
+  {
+    "question": "What can you infer from a nearly symmetric breakthrough curve? (Mark ALL correct answers)",
+    "options": {
+      "A) Dominant dispersion effect": true,
+      "B) Numerical artifacts in advection": false,
+      "C) Purely advective behavior": false,
+      "D) Observation far from source": true
+    },
+    "success": "✅ Yes – Symmetry suggests well-developed dispersion, often at distance.",
+    "error": "❌ Symmetric curves result from dispersion, not numerical issues or pure advection."
+  },
+  {
+    "question": "What indicates a good mass balance in MT3D simulations? (Mark ALL correct answers)",
+    "options": {
+      "A) Low discrepancy (<1%) in listing file": true,
+      "B) Zero head residual": false,
+      "C) Consistent total mass in and out": true,
+      "D) Symmetric particle paths": false
+    },
+    "success": "✅ Mass balance should show small error and consistent mass accounting.",
+    "error": "❌ Mass balance is about input–output consistency, not flow paths or heads."
+  },
+  {
+    "question": "How can you postprocess MT3D results effectively? (Mark ALL correct answers)",
+    "options": {
+      "A) Use MTO file to export observations": true,
+      "B) Analyze CMD log for runtime": true,
+      "C) Visualize .UCN concentrations": true,
+      "D) Use MODPATH pathlines": false
+    },
+    "success": "✅ Correct – MTO and UCN allow postprocessing; MODPATH is not for MT3D.",
+    "error": "❌ MODPATH tracks particles, not solute concentrations."
+  }
+]

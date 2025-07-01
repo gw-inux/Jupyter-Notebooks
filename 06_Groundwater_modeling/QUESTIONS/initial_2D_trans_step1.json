@@ -1,0 +1,46 @@
+[
+  {
+    "question": "What are typical characteristics of a confined aquifer in numerical groundwater modeling? (Mark ALL correct answers)",
+    "options": {
+      "A) It is fully saturated and bounded by impermeable layers above and below.": true,
+      "B) The water table is simulated explicitly using a transient approach.": false,
+      "C) Head changes affect pressure but not saturation.": true,
+      "D) Recharge and evapotranspiration are dominant processes.": false
+    },
+    "success": "✅ Correct. Confined aquifers are fully saturated, and head variations represent pressure changes, not water table movement.",
+    "error": "❌ Not quite. Confined systems differ from unconfined ones — saturation remains, and the water table is not part of the simulation."
+  },
+  {
+    "question": "Which boundary condition is best suited to impose a constant hydraulic gradient in a MODFLOW model? (Mark ALL correct answers)",
+    "options": {
+      "A) Constant Head (CHD)": true,
+      "B) General Head Boundary (GHB)": false,
+      "C) No-flow boundary": false,
+      "D) Specified Flux (WEL)": false
+    },
+    "success": "✅ Exactly. A constant head (CHD) on two opposite sides defines a fixed gradient across the domain.",
+    "error": "❌ CHD is the correct choice — other boundaries either do not control head directly or simulate different physical processes."
+  },
+  {
+    "question": "What is the purpose of MODPATH in this step of the tutorial? (Mark ALL correct answers)",
+    "options": {
+      "A) To simulate the time-dependent spreading of solutes.": false,
+      "B) To visualize groundwater flow paths using particles.": true,
+      "C) To verify that the uniform flow field behaves as expected.": true,
+      "D) To track solute decay reactions along flowlines.": false
+    },
+    "success": "✅ Well done. MODPATH tracks particle trajectories to visualize and verify the flow field.",
+    "error": "❌ MODPATH is used to analyze flow direction and pathlines — not solute transport or reactions."
+  },
+  {
+    "question": "Which of the following settings directly influence the direction and speed of groundwater flow in a MODFLOW model? (Mark ALL correct answers)",
+    "options": {
+      "A) Hydraulic conductivity distribution": true,
+      "B) Grid resolution (cell size)": false,
+      "C) Boundary head values": true,
+      "D) Layer thickness in confined aquifers": true
+    },
+    "success": "✅ Correct. Flow depends on K, boundary gradients, and aquifer geometry — but not on discretization size.",
+    "error": "❌ Cell size affects numerical precision, but not physical flow. Focus on K, boundary conditions, and geometry."
+  }
+]

@@ -1,0 +1,46 @@
+[
+  {
+    "question": "What does the Peclet number describe in the context of solute transport? (Mark ALL correct answers)",
+    "options": {
+      "A) Ratio of advective to dispersive transport": true,
+      "B) It helps determine numerical stability of FD methods": false,
+      "C) A Peclet number ≫ 1 indicates dispersion dominates": false,
+      "D) A Peclet number ≪ 1 indicates advection dominates": false
+    },
+    "success": "✅ Correct — The Peclet number compares advection and dispersion. A value ~1 indicates balanced transport.",
+    "error": "❌ Peclet describes the ratio of advection to dispersion, not stability or which dominates."
+  },
+  {
+    "question": "Which strategy is used in this step to improve model accuracy? (Mark ALL correct answers)",
+    "options": {
+      "A) Reducing the time step": false,
+      "B) Refining the spatial grid in the area of the plume": true,
+      "C) Switching to steady-state flow mode": false,
+      "D) Replacing point source with a rectangular area source": true
+    },
+    "success": "✅ Yes — spatial refinement and modifying the source geometry are key for improving model accuracy.",
+    "error": "❌ The focus is on refining space and redefining the source, not time stepping or flow mode."
+  },
+  {
+    "question": "How does reducing cell size affect the Peclet number in the FD scheme?",
+    "options": {
+      "A) It decreases the Peclet number": true,
+      "B) It increases the Peclet number": false,
+      "C) It has no impact on Peclet": false,
+      "D) It causes model instability": false
+    },
+    "success": "✅ Correct — Reducing grid size lowers the Peclet number and improves accuracy.",
+    "error": "❌ Smaller cells reduce Peclet and help minimize numerical dispersion."
+  },
+  {
+    "question": "Why is an FD and MOC comparison useful in solute transport modeling?",
+    "options": {
+      "A) It helps analyze the influence of dispersion": true,
+      "B) It allows evaluating numerical diffusion": true,
+      "C) It validates aquifer thickness input": false,
+      "D) It improves model calibration": true
+    },
+    "success": "✅ Well done — comparing MOC and FD reveals strengths and weaknesses in numerical accuracy.",
+    "error": "❌ Think about how these two methods behave differently regarding transport precision."
+  }
+]

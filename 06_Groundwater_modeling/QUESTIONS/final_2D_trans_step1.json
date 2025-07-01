@@ -1,0 +1,68 @@
+[
+  {
+    "question": "How do isocontour lines (lines of equal head) typically appear in top view for confined vs. unconfined aquifers? (Mark ALL correct answers)",
+    "options": {
+      "A) In confined aquifers, isocontour lines are generally straight and parallel in uniform flow fields.": true,
+      "B) In unconfined aquifers, isocontour lines reflect changes in saturated thickness and often curve.": true,
+      "C) Confined aquifers always have circular isocontours regardless of flow field.": false,
+      "D) Isocontours in unconfined aquifers are straight due to fixed water table elevation.": false
+    },
+    "success": "✅ Correct – Confined aquifers show regular, linear gradients; unconfined systems often show curvature due to variable saturated thickness.",
+    "error": "❌ Review the visual differences – confined aquifers often show linear gradients, while unconfined aquifers display curvature due to varying saturation."
+  },
+  {
+    "question": "Why is the CHD (Constant Head) boundary condition suitable for the Step 1 model? (Mark ALL correct answers)",
+    "options": {
+      "A) It simulates a known hydraulic head at the boundary.": true,
+      "B) It is the only boundary condition usable in MODFLOW.": false,
+      "C) It ensures a fixed flow direction.": true,
+      "D) It allows recharge zones to vary dynamically.": false
+    },
+    "success": "✅ Correct – CHD sets fixed heads, ideal for defining steady flow across a domain.",
+    "error": "❌ CHD is used to enforce a constant hydraulic head, which controls the flow field."
+  },
+  {
+    "question": "What information can you extract from the MODFLOW listing file after running the flow model? (Mark ALL correct answers)",
+    "options": {
+      "A) Cell-by-cell flow budget": true,
+      "B) Total solute mass balance": false,
+      "C) Water level changes over time": true,
+      "D) Total inflow and outflow": true
+    },
+    "success": "✅ Exactly – The listing file summarizes flow budgets and head distributions.",
+    "error": "❌ The listing file does not include solute transport results – only flow data."
+  },
+  {
+    "question": "What is the primary role of MODPATH in this step? (Mark ALL correct answers)",
+    "options": {
+      "A) It simulates particle movement in a flow field.": true,
+      "B) It estimates solute concentration over time.": false,
+      "C) It visualizes groundwater flow direction.": true,
+      "D) It verifies boundary conditions.": false
+    },
+    "success": "✅ Correct – MODPATH helps visualize and understand flow through particle tracking.",
+    "error": "❌ MODPATH is a particle-tracking tool used for verifying flow paths, not concentration."
+  },
+  {
+    "question": "What does a uniform flow field in a confined aquifer imply? (Mark ALL correct answers)",
+    "options": {
+      "A) Constant hydraulic gradient across the domain": true,
+      "B) Changing flow directions at boundaries": false,
+      "C) Parallel isopotential lines": true,
+      "D) Varying Kx values across the grid": false
+    },
+    "success": "✅ Well done – Uniform flow means constant gradient and consistent properties.",
+    "error": "❌ Uniform flow fields require consistent K values and constant gradient."
+  },
+  {
+    "question": "Which of the following is a benefit of using particle tracking in flow model verification? (Mark ALL correct answers)",
+    "options": {
+      "A) Identifies unexpected flow paths": true,
+      "B) Provides direct visualization of solute transport": false,
+      "C) Helps detect setup errors in boundary conditions": true,
+      "D) Calculates contaminant concentrations": false
+    },
+    "success": "✅ Exactly – Particles reveal the flow structure and confirm model correctness.",
+    "error": "❌ MODPATH visualizes flow paths, but not concentration or chemical transport."
+  }
+]

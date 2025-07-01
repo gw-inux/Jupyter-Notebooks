@@ -1,0 +1,68 @@
+[
+  {
+    "question": "How does refining spatial discretization affect the FD transport solution? (Mark ALL correct answers)",
+    "options": {
+      "A) Reduces numerical dispersion": true,
+      "B) Increases runtime": true,
+      "C) Makes MOC redundant": false,
+      "D) Improves precision of breakthrough curves": true
+    },
+    "success": "✅ Correct — finer grid improves precision, reduces dispersion, but comes at a computational cost.",
+    "error": "❌ Precision and runtime are both affected — think about what refining space means."
+  },
+  {
+    "question": "What is the ideal Peclet number to avoid numerical dispersion in FD simulations?",
+    "options": {
+      "A) 10": false,
+      "B) 1": true,
+      "C) 0.1": false,
+      "D) 100": false
+    },
+    "success": "✅ Correct — a Peclet number near 1 ensures balanced advection and dispersion.",
+    "error": "❌ The closer to 1, the better the FD scheme minimizes numerical dispersion."
+  },
+  {
+    "question": "In what way is the MOC scheme less sensitive to grid size than FD?",
+    "options": {
+      "A) MOC tracks particle paths directly": true,
+      "B) MOC computes concentration gradients across the grid": false,
+      "C) MOC uses finite element basis functions": false,
+      "D) MOC avoids numerical dispersion": true
+    },
+    "success": "✅ Exactly — MOC tracks advective movement, avoiding grid-based dispersion issues.",
+    "error": "❌ Think about how particles move in MOC versus how concentrations are computed in FD."
+  },
+  {
+    "question": "Why is it helpful to temporarily set dispersivity (alpha) to 0 in MOC computations? (Mark ALL correct answers)",
+    "options": {
+      "A) To simulate pure advection": true,
+      "B) To assess the effect of dispersion settings": true,
+      "C) To reduce mass balance errors": false,
+      "D) To validate against an analytical advection-only solution": true
+    },
+    "success": "✅ Yes — running MOC without dispersion helps isolate and validate pure advection behavior.",
+    "error": "❌ The purpose is to see how MOC behaves with only advection — not about reducing mass balance errors."
+  },
+  {
+    "question": "What challenges can occur when using MOC at high resolution? (Mark ALL correct answers)",
+    "options": {
+      "A) Longer computation times": true,
+      "B) Increased numerical dispersion": false,
+      "C) Mass balance discrepancies": true,
+      "D) Particle overcrowding": true
+    },
+    "success": "✅ Yes — MOC is precise but computationally intensive, and large particle numbers may stress the model.",
+    "error": "❌ Consider computational effort and the need for careful particle settings."
+  },
+  {
+    "question": "After refinement, what indicates a successful FD model setup? (Mark ALL correct answers)",
+    "options": {
+      "A) Mass balance error < 1%": true,
+      "B) Breakthrough curve shape matches MOC or analytical": true,
+      "C) Peclet number ≫ 10": false,
+      "D) Runtime exceeds MOC by 10×": false
+    },
+    "success": "✅ Good job — agreement with analytical/MOC and low mass balance error show success.",
+    "error": "❌ Think about precision, mass balance, and comparison — not just runtime."
+  }
+]

@@ -4,16 +4,26 @@ from streamlit_extras.stodo import to_do
 import json
 from streamlit_book import multiple_choice
 
-# path to questions for the assessments (direct path)
-path_quest_ini   = "06_Groundwater_modeling/QUESTIONS/initial_general_behavior.json"
-path_quest_final = "06_Groundwater_modeling/QUESTIONS/final_general_behavior.json"
+def render_assessment(filename, title="📋 Assessment", max_questions=4):
 
-# Load questions
-with open(path_quest_ini, "r", encoding="utf-8") as f:
-    quest_ini = json.load(f)
-    
-with open(path_quest_final, "r", encoding="utf-8") as f:
-    quest_final = json.load(f)
+    with open(filename, "r", encoding="utf-8") as f:
+        questions = json.load(f)
+
+    st.markdown(f"#### {title}")
+    for idx in range(0, min(len(questions), max_questions), 2):
+        col1, col2 = st.columns(2)
+        for col, i in zip((col1, col2), (idx, idx+1)):
+            if i < len(questions):
+                with col:
+                    q = questions[i]
+                    st.markdown(f"**Q{i+1}. {q['question']}**")
+                    multiple_choice(
+                        question=" ",
+                        options_dict=q["options"],
+                        success=q.get("success", "✅ Correct."),
+                        error=q.get("error", "❌ Not quite.")
+                    )
+
 
 st.title('Tutorial – Numerical computation of solute transport: Demonstration of MT3D applications')
 
@@ -28,9 +38,9 @@ st.markdown(""" The **aim of the tutorial** is to provide an applied introductio
 
 lc0, rc0 = st.columns((1,1))
 with lc0:
-    st.image('06_Groundwater_modeling/FIGS/2D_idealized_transport.png', caption=":red[Scenario A:] The idealized situation for continous solute input.")
+    st.image('06_Groundwater_modeling/FIGS/2D_idealized_transport.png', caption=":red[**Scenario A:**] The idealized situation for continous solute input.")
 with rc0:
-    st.image('06_Groundwater_modeling/FIGS/2D_idealized_tracer.png', caption=":green[Scenario B:]The idealized situation for a tracer test.")
+    st.image('06_Groundwater_modeling/FIGS/2D_idealized_tracer.png', caption=":green[**Scenario B:**]The idealized situation for a tracer test.")
 st.markdown("""
 Both scenarios are idealized in such a way that solute transport can be also computed with analytical solutions. This approach allows the user to understand the system, and to compare the results from the numerical model with the ‘precise’ analytical solution. Accordingly, the user gets a proper understanding of the benefits and limitations of the different methods. The scenarios and models are subsequently described.
 
@@ -41,13 +51,13 @@ The following files are provided for use throughout the tutorial. You can downlo
 
 - 📄 PDF file with step-by-step instructions (_link to be provided_)
 - 💻 MODELMUSE model files:
-    - [📥 coarse.gpt](https://raw.githubusercontent.com/gw-inux/Jupyter-Notebooks/main/06_Groundwater_modeling/DATA/2D_Transport/coarse.gpt) — for steps 1–3
-    - [📥 fine.gpt](https://raw.githubusercontent.com/gw-inux/Jupyter-Notebooks/main/06_Groundwater_modeling/DATA/2D_Transport/fine.gpt) — for step 4
-    - [📥 Dirac.gpt](https://raw.githubusercontent.com/gw-inux/Jupyter-Notebooks/main/06_Groundwater_modeling/DATA/2D_Transport/Dirac.gpt) — for step 5
-    - [📥 Dirac_Refined.gpt](https://raw.githubusercontent.com/gw-inux/Jupyter-Notebooks/main/06_Groundwater_modeling/DATA/2D_Transport/Dirac_Refined.gpt) — for step 6
+    - [coarse.gpt](https://raw.githubusercontent.com/gw-inux/Jupyter-Notebooks/main/06_Groundwater_modeling/DATA/2D_Transport/coarse.gpt) — for steps 1–3
+    - [fine.gpt](https://raw.githubusercontent.com/gw-inux/Jupyter-Notebooks/main/06_Groundwater_modeling/DATA/2D_Transport/fine.gpt) — for step 4
+    - [Dirac.gpt](https://raw.githubusercontent.com/gw-inux/Jupyter-Notebooks/main/06_Groundwater_modeling/DATA/2D_Transport/Dirac.gpt) — for step 5
+    - [Dirac_Refined.gpt](https://raw.githubusercontent.com/gw-inux/Jupyter-Notebooks/main/06_Groundwater_modeling/DATA/2D_Transport/Dirac_Refined.gpt) — for step 6
 - 📊 Spreadsheet for postprocessing:
-    - [📥 2DTransport_Tutorial.xlsx (with data)](https://raw.githubusercontent.com/gw-inux/Jupyter-Notebooks/main/06_Groundwater_modeling/DATA/2D_Transport/2DTransport_Tutorial.xlsx)
-    - [📥 2DTransport_Tutorial_empty.xlsx (empty template)](https://raw.githubusercontent.com/gw-inux/Jupyter-Notebooks/main/06_Groundwater_modeling/DATA/2D_Transport/2DTransport_Tutorial_empty.xlsx)
+    - [2DTransport_Tutorial.xlsx (with data)](https://raw.githubusercontent.com/gw-inux/Jupyter-Notebooks/main/06_Groundwater_modeling/DATA/2D_Transport/2DTransport_Tutorial.xlsx)
+    - [2DTransport_Tutorial_empty.xlsx (empty template)](https://raw.githubusercontent.com/gw-inux/Jupyter-Notebooks/main/06_Groundwater_modeling/DATA/2D_Transport/2DTransport_Tutorial_empty.xlsx)
 """)
 st.subheader('General description of the model', divider = "green")
 st.markdown("""The question and purpoose of the model, the conceptual model, and the numerical model are described in the subsequent section.""")
@@ -121,36 +131,9 @@ with st.expander(':green[**Click here for more details of the general descriptio
       - Infiltration rate: 0.001 m³/s for 10 s
       - Injection concentration: 100,000 g/m³ (i.e., 1,000 g in 10 L)
     """)
-
 with st.expander('**Show the initial assessment** - to assess your existing knowledge'):
-    st.markdown("""
-    #### 📋 Initial assessment
-    You can use the initial questions to assess your existing knowledge.
-    """)
+    render_assessment("06_Groundwater_modeling/QUESTIONS/initial_general_behavior.json", title="📋 Initial assessment")
 
-    # Render questions in a 2x2 grid (row-wise, aligned)
-    for row in [(0, 1), (2, 3)]:
-        col1, col2 = st.columns(2)
-    
-        with col1:
-            i = row[0]
-            st.markdown(f"**Q{i+1}. {quest_ini[i]['question']}**")
-            multiple_choice(
-                question=" ",  # suppress repeated question display
-                options_dict=quest_ini[i]["options"],
-                success=quest_ini[i].get("success", "✅ Correct."),
-                error=quest_ini[i].get("error", "❌ Not quite.")
-            )
-    
-        with col2:
-            i = row[1]
-            st.markdown(f"**Q{i+1}. {quest_ini[i]['question']}**")
-            multiple_choice(
-                question=" ",
-                options_dict=quest_ini[i]["options"],
-                success=quest_ini[i].get("success", "✅ Correct."),
-                error=quest_ini[i].get("error", "❌ Not quite.")
-            )
 
 st.subheader('Step-by-step tutorials to build the model with MODELMUSE', divider = "green")
 st.markdown("""In the following you will find step-by-step instructions to build the flow- and transport model with MODELMUSE. Each step comes with a screencast video that shows the individual steps, and a 'ToDo' list with the essential steps. The full description of the tutorial is provided by a PDF document [for download here](www.link.com).
@@ -182,7 +165,10 @@ st.markdown("""
 #### :red[STEP 1:] Setting up the flow model.
 **Aim:** Design an idealized flow model for the confined aquifer resulting in defined uniform flow.
 """)
-with st.expander(":red[**Expand to see the instructions and screencast video for STEP 1**]"):
+with st.expander('🧠 **Show the initial assessment to prepare for STEP 1** - to assess your existing knowledge'):
+    render_assessment("06_Groundwater_modeling/QUESTIONS/initial_2D_trans_step1.json", title="📋 Step 1 – Initial assessment")
+
+with st.expander("🛠️ :red[**Expand to see the instructions and screencast video for STEP 1**]"):
     st.markdown("""  
     This step walks you through the complete setup of a confined aquifer model using **ModelMuse** and prepares it for **particle tracking** with MODPATH.
     
@@ -285,13 +271,24 @@ with st.expander(":red[**Expand to see the instructions and screencast video for
     
     You've now created and simulated a simple MODFLOW-2005 flow model with defined head boundaries (CHD package) and particle tracking using MODPATH. This uniform flow model forms the foundation for the subsequent solute transport analysis.
     """)
-    
+ 
+with st.expander('**📋 Final assessment – Review what you learned in Step 1**'):
+    render_assessment(
+        filename="06_Groundwater_modeling/QUESTIONS/final_2D_trans_step1.json",
+        title="📋 Final assessment",
+        max_questions=6
+    )
+ 
 # STEP 2
 st.markdown("""
 #### :red[STEP 2:] Setting up the transport model with the FD scheme
 **Aim:** Setting up the transport model with the FD scheme: Performing an initial solute transport simulation. Running the FD method. Postprocessing the results and analyzing the simulation.
 """)  
-with st.expander(":red[**Expand to see the instructions and screencast video for STEP 2**]"):
+
+with st.expander("🧠 **Initial Assessment – Step 2**"):
+    render_assessment("06_Groundwater_modeling/QUESTIONS/initial_2D_trans_step2.json", "Initial Assessment for Step 2")
+
+with st.expander("🛠️ :red[**Expand to see the instructions and screencast video for STEP 2**]"):
     st.markdown("""
     More about step2
     """)
@@ -315,12 +312,19 @@ with st.expander(":red[**Expand to see the instructions and screencast video for
     The computed concentrations and breakthrough curves look reasonable. The mass balance is considered as plausible with minimum discrepancy. The runtime of the numerical transport model can be quantified.
     """)
 
+with st.expander("📋 **Final Assessment – Step 2**"):
+    render_assessment("06_Groundwater_modeling/QUESTIONS/final_2D_trans_step2.json", "Final Assessment for Step 2", max_questions=6)
+    
 # STEP 3
 st.markdown("""
 #### :red[STEP 3:] Running the transport simulation with the MOC scheme
 **Aim:** Changing the solution algorithm to the MOC scheme: Performing an solute transport simulation with MOC. Optimizing the MOC method. Postprocessing the results and analyzing the simulation.
 """)  
-with st.expander(":red[**Expand to see the instructions and screencast video for STEP 3**]"):
+
+with st.expander("🧠 **Initial Assessment – Step 3**"):
+    render_assessment("06_Groundwater_modeling/QUESTIONS/initial_2D_trans_step3.json", "Initial Assessment for Step 3")
+
+with st.expander("🛠️ :red[**Expand to see the instructions and screencast video for STEP 3**]"):
     st.markdown("""
     More about step 3
     """)
@@ -414,6 +418,8 @@ with st.expander(":red[**Expand to see the instructions and screencast video for
     
     st.video(videourl3b)
 
+with st.expander("📋 **Final Assessment – Step 3**"):
+    render_assessment("06_Groundwater_modeling/QUESTIONS/final_2D_trans_step3.json", "Final Assessment for Step 3", max_questions=6)
 # STEP 4
 
 st.markdown("""
@@ -421,7 +427,10 @@ st.markdown("""
 **Aim:** Adapting the spatial discretization. Running the simulation with FD and MOC. Understand the effect of the grid size on the results of the computation. Postprocessing the results and analyzing the simulation.
 """)  
 
-with st.expander(":red[**Expand to see the instructions and screencast video for STEP 4**]"):
+with st.expander("🧠 **Initial Assessment – Step 4**"):
+    render_assessment("06_Groundwater_modeling/QUESTIONS/initial_2D_trans_step4.json", "Initial Assessment for Step 4")
+
+with st.expander("🛠️ :red[**Expand to see the instructions and screencast video for STEP 4**]"):
     st.markdown("""
     More about step 4
     """)
@@ -463,6 +472,9 @@ with st.expander(":red[**Expand to see the instructions and screencast video for
     """)
     st.video(videourl4b)  
 
+with st.expander("📋 **Final Assessment – Step 4**"):
+    render_assessment("06_Groundwater_modeling/QUESTIONS/final_2D_trans_step4.json", "Final Assessment for Step 4", max_questions=6)
+    
 st.markdown("""### :green[Scenario B - pulse injection (Dirac)]
 
 The following two steps will cover :green[**Scenario B - pulse injection (tracer test)**]. The numerical model results will be compared to an analytical solution for a continuous point source that is shown in the subsequent figure.
