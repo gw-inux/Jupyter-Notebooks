@@ -161,7 +161,7 @@ The first four steps will cover :red[**Scenario A - continuous source of solutes
 
 💥 Try the [Streamlit App for 2D Transport with a continuous source here](https://transport-2d-continuous.streamlit.app/).""")
 
-lc1, cc1, rc1 = st.columns((20,60,20))
+lc1, cc1, rc1 = st.columns((1,10,1))
 with cc1:
     st.image('06_Groundwater_modeling/FIGS/2D_idealized_transport_continuous.png', caption="The synthetic catchment for the numerical model.")
 
@@ -500,7 +500,7 @@ The following two steps will cover :green[**Scenario B - pulse injection (tracer
 
 💥 Try the [Streamlit App for 2D Transport for a Dirac injection pulse here](https://transport-2d-dirac.streamlit.app/).""")
 
-lc1, cc1, rc1 = st.columns((20,60,20))
+lc1, cc1, rc1 = st.columns((1,10,1))
 with cc1:
     st.image('06_Groundwater_modeling/FIGS/2D_idealized_transport_pulse.png', caption="The synthetic catchment for the numerical model.")
 
