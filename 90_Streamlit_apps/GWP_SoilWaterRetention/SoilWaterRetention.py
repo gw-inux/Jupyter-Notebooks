@@ -5,11 +5,10 @@ st.set_page_config(
     page_icon="💦",
 )
 
-st.write("# SoilWaterRetention App! :droplet:")
-
 st.sidebar.success("☝️ Select a page above. ☝️")
 
-st.header('Welcome 👋')
+st.title('Welcome 👋')
+st.header('to the :blue[**SoilWaterRetention Module**]! :droplet:', divider='blue')
 
 # Authors, institutions, and year
 year = 2025 
@@ -29,33 +28,60 @@ author_list = [f"{name}{''.join(index_symbols[i-1] for i in indices)}" for name,
 institution_list = [f"{index_symbols[i-1]} {inst}" for i, inst in institutions.items()]
 institution_text = " | ".join(institution_list)  # Institutions in one line
 
-st.markdown(
-    """
-    This app is designed to introduce the soil water retention behavior and to describe the water distribution in the unsaturated zone. 
+st.markdown("""#### 🌱 Why is water held within soils?
+When rain falls on dry ground, where does the water go? How tightly is it held by the soil? Can plants still access it — or is it lost to evaporation or drainage?
+
+These questions are central to understanding how water behaves in the **unsaturated zone** — the part of the subsurface between the ground surface and the water table. The answers have profound implications for **agriculture**, **ecosystem resilience**, **groundwater recharge**, and our ability to **adapt to drought and climate change**.
+
+This interactive module introduces the science behind soil water retention and helps you explore the underlying processes using the **van Genuchten–Mualem model**, one of the most widely used formulations in vadose zone hydrology.
     """
     )
 
 left_co, cent_co, last_co = st.columns((20,60,20))
 with cent_co:
-    st.image('90_Streamlit_apps/GWP_SoilWaterRetention/assets/images/freeze_cherry.png', caption="Characteristic curve relating moisture content to pressure head for a naturally ocurring sand soil. Adapted from Freeze and Cherry (1979)")
+    st.image('90_Streamlit_apps/GWP_SoilWaterRetention/assets/images/SW_intro.png', caption="Sketch through the underground with the unsaturated and the saturated zone.")
 
-st.markdown(
-    """
-    `Skills`
+st.markdown("""
+    #### 📘 What this module covers
+    
+    This module explains how water is held in unsaturated soils, focusing on the **van Genuchten–Mualem model**. You’ll explore the physics of retention, interact with parameter controls, and practice interpreting and calibrating real soil data with advanced modeling concepts.
+    
+    The module is designed as an step by step guide for those who are new to the topic but also for those who want to refresh their knowledge.
 
-    Upon completing this app, you will be able to understand:
+    #### 🎯 Learning Objectives
+    
+    By the end of this module, you will be able to:
+    
+    - Understand and explain key processes governing water retention in the unsaturated zone.
+    - Reflect on key concepts related to transport in unsaturated soil, including surface tension, wettability, capillary pressure, and retention curves.
+    - Understand how the parameters defining the retention curve influence its shape and depend on soil characteristics.
+    - Interpret and apply the van Genuchten–Mualem model.
+    - Analyze how soil properties influence water content and flow.
+    - Fit retention curves to observed or synthetic datasets using interactive tools.
 
-    - The meaning of unsaturated zone.
-    - Key concepts related to transport in unsaturated soil, including surface tension, wettability, capillary pressure, and retention curves.
-    - The constitutive equations that define soil-water retention curve models.
-    - How the parameters defining the retention curve influence its shape and depend on soil characteristics.
-
-    `Suggested Readings`
+    #### 🗂️ Module Structure
+    
+    - **📚 Theory**  
+      Learn the fundamentals of unsaturated flow: capillary pressure, surface tension, retention curves, and the van Genuchten formulation.
+    
+    - **📈 The SWC interactive**  
+      Adjust model parameters and observe how water retention curves respond in real time.
+    
+    - **📊 The SWC in comparison**  
+      Compare how different soil textures (e.g., sand vs. loam) affect water retention.
+    
+    - **🧪 SWC Exercise 1**  
+      Fit the van Genuchten model to measured retention data for two soils.
+    
+    - **🧪 SWC Exercise 2**  
+      Try to match synthetic or real datasets with your own parameter combinations.
+      
+    #### Suggested Readings
 
     **Books**:
 
-    - [Cherry, J. A., & Freeze, R. A. (1979). Groundwater (p. 370). Englewood Cliffs, NJ: Prentice-Hall.](https://gw-project.org/books/groundwater/) (**Chapter 2.6:** *Unsaturated Flow and the Water Table*, p. 38)
-    - Custodio, E., & Llamas, M. R. (1983). Hidrología subterránea. (**Chapter 8.8:** *Capilaridad y flujo multifase*, p. 553 & **Chapter 8.9:** *Movimiento del agua en los medios porosos no saturados y teoría de la infiltración*, p. 564)    - Bear, J., & Cheng, A. H. D. (2010). Modeling groundwater flow and contaminant transport (Vol. 23, p. 834). Dordrecht: Springer. (**Chapter 9.4:** *Unsaturated Flow*, p. 474)
+    - [Freeze, R. A. & Cherry, J. A., (1979). Groundwater (p. 370). Englewood Cliffs, NJ: Prentice-Hall.](https://gw-project.org/books/groundwater/) (**Chapter 2.6:** *Unsaturated Flow and the Water Table*, p. 38)
+    - Custodio, E., & Llamas, M. R. (1983). Hidrología subterránea. (**Chapter 8.8:** *Capilaridad y flujo multifase*, p. 553 & **Chapter 8.9:** *Movimiento del agua en los medios porosos no saturados y teoría de la infiltración*, p. 564)
     - Bear, J., & Cheng, A. H. D. (2010). Modeling groundwater flow and contaminant transport (Vol. 23, p. 834). Dordrecht: Springer. (**Chapter 6:** *Unsaturated Flow Models*, p. 251)
     - Bear, J. (2013). Dynamics of fluids in porous media. Courier Corporation. (**Chapter 9.4:** *Unsaturated Flow*, p. 474)
     - Stephens, D. B. (2018). Vadose zone hydrology. CRC press.

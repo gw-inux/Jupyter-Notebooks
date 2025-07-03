@@ -5,8 +5,8 @@ import matplotlib.pyplot as plt
 import streamlit as st
 import streamlit_book as stb
 
-st.title('Soil Water Retention characteristics')
-
+st.title('📈 The SWC interactive')
+st.header('Soil Water Retention characteristics')
 st.subheader(':red-background[Understanding the soil water retention curve]', divider="red")
 
 # Authors, institutions, and year
@@ -25,27 +25,32 @@ author_list = [f"{name}{''.join(index_symbols[i-1] for i in indices)}" for name,
 institution_list = [f"{index_symbols[i-1]} {inst}" for i, inst in institutions.items()]
 institution_text = " | ".join(institution_list)  # Institutions in one line
 
-# Initial assessment
+def render_assessment(filename, title="📋 Assessment", max_questions=4):
 
-columnsQ1 = st.columns((1,1), gap = 'large')
+    with open(filename, "r", encoding="utf-8") as f:
+        questions = json.load(f)
 
-with columnsQ1[0]:
-    stb.single_choice(":red[**How is saturation defined?**]",
-                  ["Total volume divided by water volume.", "Pore volume divided by water volume.", "Volume of solids divided by water volume.",
-                  "Water volume divided by Pore volume."],
-                  1,success='CORRECT!   ...', error='Not quite. ... If required, you can read again about saturation _S_ in the following ressources _reference to GWP books...')
-    stb.single_choice(":red[**Question2?**]",
-                  ["Answer1.", "Answer2", "Answer3", "Answer4"],
-                  1,success='CORRECT!   ...', error='Not quite. ... If required, you can read again about transmissivity _T_ in the following ressources _reference to GWP books...')
-                  
-with columnsQ1[1]:
-    stb.single_choice(":red[**Question3?**]",
-                  ["Answer1.", "Answer2", "Answer3", "Answer4"],
-                  1,success='CORRECT!   ...', error='Not quite. ... If required, you can read again about transmissivity _T_ in the following ressources _reference to GWP books...')             
-    stb.single_choice(":red[**Question4?**]",
-                  ["Answer1.", "Answer2", "Answer3", "Answer4"],
-                  1,success='CORRECT!   ...', error='Not quite. ... If required, you can read again about transmissivity _T_ in the following ressources _reference to GWP books...')
-"---"
+    st.markdown(f"#### {title}")
+    for idx in range(0, min(len(questions), max_questions), 2):
+        col1, col2 = st.columns(2)
+        for col, i in zip((col1, col2), (idx, idx+1)):
+            if i < len(questions):
+                with col:
+                    q = questions[i]
+                    st.markdown(f"**Q{i+1}. {q['question']}**")
+                    multiple_choice(
+                        question=" ",
+                        options_dict=q["options"],
+                        success=q.get("success", "✅ Correct."),
+                        error=q.get("error", "❌ Not quite.")
+                    )
+
+st.markdown("""
+            #### Motivation
+            """     
+)
+st.subheader('Interactive plot of the Soil Water Retention Curve', divider = 'red')
+
 st.markdown("""
             ### Computation of the soil water retention
             Subsequently, the Soil Water Retention is computed with Python routines. The interactive plot demonstrate the response of the soil water retention behavior on parameter changes.            
@@ -53,17 +58,19 @@ st.markdown("""
             """     
 )
 
-columns = st.columns((1,1), gap = 'large')
+# Input data
+columns = st.columns((1,3))
 with columns[0]:
-    tr    = st.slider('residual water content (-)', 0.01, 0.4, 0.05, 0.01)
-    ts    = st.slider('saturated water content (-)', 0.15, 0.7, 0.30, 0.01)   
-with columns[1]:
-    alpha = st.slider('alpha (1/cm)', 0.01, 1., 0.1, 0.01)
-    n     = st.slider('n (-)', 1.01, 3., 1.2, 0.01)
+    with st.expander('**SWRC parameter**'):
+        tr    = st.slider('residual water content (-)', 0.01, 0.4, 0.05, 0.01)
+        ts    = st.slider('saturated water content (-)', 0.15, 0.7, 0.30, 0.01)   
+        alpha = st.slider('alpha (1/cm)', 0.01, 1., 0.1, 0.01)
+        n     = st.slider('n (-)', 1.01, 3., 1.2, 0.01)
+    with st.expander('**Plot controls**'):
+        FKplot  = st.toggle('Show Field Capacity FC')
+        PWPplot = st.toggle('Show Permanent Wilting Point PWP')
+        plot4   = st.toggle('Plot the relative permeability $k_r$')
   
-plot4 = st.toggle('Plot k_r 1')
-
-
 x_max = 300
     
 # intermediate results 
@@ -90,30 +97,38 @@ for x in range (0, x_max):
     p_plot.append(p)
     kr_plot.append(kr)
         
-fig = plt.figure(figsize=(9,6))
+fig = plt.figure(figsize=(6,5))
 ax  = fig.add_subplot()
-ax.plot(t_plot, p_plot, 'r', markersize=3)
-ax.vlines(x= tr, ymin=1e-1, ymax=1e+5, linestyle='--')      
-ax.hlines(y= 10**4.2, xmin=0, xmax=PWP, colors='g')    #upper green line
-ax.vlines(x= PWP, ymin=1e-1, ymax=10**4.2, colors='g')
-ax.hlines(y= 10**1.8, xmin=0, xmax=FC, colors='b')     #bottom green line
-ax.vlines(x= FC, ymin=1e-1, ymax=10**1.8, colors='b')
+ax.plot(t_plot, p_plot, 'b', markersize=3, linewidth=3)
+ax.vlines(x= tr, ymin=1e-1, ymax=1e+5, colors='b', linewidth=1, linestyle='-.', label = 'residual water content')      
+if PWPplot:
+    ax.hlines(y= 10**4.2, xmin=0, xmax=PWP, colors='r', linewidth=1)    #upper green line
+    ax.vlines(x= PWP, ymin=1e-1, ymax=10**4.2, colors='r',linestyle=':', linewidth=2.0, label = 'Permanent wilting point PWP')
+if FKplot:
+    ax.hlines(y= 10**1.8, xmin=0, xmax=FC, colors='g', linewidth=1)     #bottom green line
+    ax.vlines(x= FC, ymin=1e-1, ymax=10**1.8, colors='g',linestyle='--', linewidth=2.0, label = 'Field capacity FK')
 ax.set(xlabel='water content [-]', ylabel ='suction head [cm]', xlim = [0, 0.7], ylim = [1e-1,1e+5], yscale = 'log' )
 ax.grid(which="both", color='grey',linewidth=0.5)
-st.pyplot(fig)
+ax.legend(loc='lower center', bbox_to_anchor=(0.5, 1.1), borderaxespad=0, ncol=1, frameon=False, fontsize = 12)   
 
-if plot4 == 1:
-    fig = plt.figure(figsize=(6,4))
+    
+with columns[1]:
+    st.pyplot(fig)
+
+with st.expander('**Click here to see the computed data**'):
+    st.write('Van Genuchten             m:', '{:.5f}'.format(m) )
+    st.write('Permanent Wilting Point PWP:', '{:.2f}'.format(PWP) )
+    st.write('Field Capacity           FC:', '{:.2f}'.format(FC) )
+    st.write('Eff. Field Capacity     eFC:', '{:.2f}'.format(eFC) ) 
+
+if plot4:
+    fig = plt.figure(figsize=(6,5))
     ax  = fig.add_subplot()
     ax.plot(t_plot, kr_plot, 'b', markersize = 3)
-    ax.set(xlabel='water content [-]', ylabel='rel hydraulic conductivity [cm/d]', xlim = [0, 0.7], ylim = [0,1] )
+    ax.set(xlabel='water content [-]', ylabel='rel hydraulic conductivity [-]', xlim = [0, 0.7], ylim = [0,1] )
     ax.grid(which="major", color='grey',linewidth=0.5)
-    st.pyplot(fig)
-    
-st.write('Van Genuchten             m:', '{:.5f}'.format(m) )
-st.write('Permanent Wilting Point PWP:', '{:.2f}'.format(PWP) )
-st.write('Field Capacity           FC:', '{:.2f}'.format(FC) )
-st.write('Eff. Field Capacity     eFC:', '{:.2f}'.format(eFC) )
+    with columns[1]:
+        st.pyplot(fig)
 
 "---"
 # Navigation at the bottom of the side - useful for mobile phone users     

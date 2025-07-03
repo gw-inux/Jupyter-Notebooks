@@ -4,8 +4,12 @@ import numpy as np
 import matplotlib.pyplot as plt
 import streamlit as st
 import streamlit_book as stb
+import json
+from streamlit_book import multiple_choice
 
-st.title('Soil Water Retention curves 💦')
+st.title('🧪 SWC Exercise 1')
+st.header('Soil Water Retention Curves')
+st.subheader(':violet-background[Fitting Model Parameters to measured data]', divider="violet")
 
 # Authors, institutions, and year
 year = 2025 
@@ -21,14 +25,6 @@ index_symbols = ["¹", "²", "³", "⁴", "⁵", "⁶", "⁷", "⁸", "⁹"]
 author_list = [f"{name}{''.join(index_symbols[i-1] for i in indices)}" for name, indices in authors.items()]
 institution_list = [f"{index_symbols[i-1]} {inst}" for i, inst in institutions.items()]
 institution_text = " | ".join(institution_list)  # Institutions in one line
-
-st.subheader(':rainbow-background[Soil Water Retention curves: explanation & exercise]', divider="rainbow")
-
-st.markdown(""" 
-            ### Some initial thoughts for the investigation
-            This notebook illustrate the soil water retention curves with examples and exercises based on :blue-background[[van Genuchten (1980)](https://www.researchgate.net/publication/250125437_A_Closed-form_Equation_for_Predicting_the_Hydraulic_Conductivity_of_Unsaturated_Soils1)].
-"""
-)
 
 # FUNCTIONS
 def m_val(n):
@@ -181,71 +177,44 @@ def soil_water_diffusivity(Ks, n, ts, tr, T):
     D_T = I * L * P                                        
 
     return D_T
+    
+def render_assessment(filename, title="📋 Assessment", max_questions=4):
 
-#  
-#Example from Van Genuchten 1980
-#
+    with open(filename, "r", encoding="utf-8") as f:
+        questions = json.load(f)
 
-# Given parameters:
-tr = 0.10       # residual water content
-ts = 0.50       # saturated water content
-alpha = 0.005   # l/cm
-n = 2.0         # shape parameter
-Ks = 100        # cm/day
+    st.markdown(f"#### {title}")
+    for idx in range(0, min(len(questions), max_questions), 2):
+        col1, col2 = st.columns(2)
+        for col, i in zip((col1, col2), (idx, idx+1)):
+            if i < len(questions):
+                with col:
+                    q = questions[i]
+                    st.markdown(f"**Q{i+1}. {q['question']}**")
+                    multiple_choice(
+                        question=" ",
+                        options_dict=q["options"],
+                        success=q.get("success", "✅ Correct."),
+                        error=q.get("error", "❌ Not quite.")
+                    )
 
-#-- Generate pressure head values:
-h_values = np.logspace(0, 6, 100)  
-
-#-- Calculate water content values
-t_values = [soil_water_content(tr, ts, alpha, h, n) for h in h_values]
-T_values = [water_content(alpha, h, n) for h in h_values]
-
-#-- Calculate dimensionless water content and relative hydraulic conductivity
-Kr_T, Kr_h = zip(*[relative_hydraulic_conductivity(alpha, n, h, T) for h, T in zip(h_values, T_values)])
-Kr_T = list(Kr_T)  
-Kr_h = list(Kr_h) 
-
-#-- Calculate the soil-water diffusivity
-D_T = [soil_water_diffusivity(Ks, n, ts, tr, T) for T in T_values]
-
-#-- Plot the 3 figures
-fig, (ax1, ax2, ax3, ax4) = plt.subplots(1, 4, figsize=(15, 5))
-
-# ax1: Water content vs. Pressure head
-ax1.plot(t_values, np.abs(h_values))
-ax1.set_xlim(0, 0.6)
-ax1.set_ylim(np.abs(h_values[0]), np.abs(h_values[-1]))
-ax1.set_yscale('log')
-ax1.set_xlabel(r'Water Content, $\Theta$')
-ax1.set_ylabel(r'Pressure Head, $h$ [cm]')
-
-# ax2: Water content vs. Relative Hydraulic Conductivity expressed in terms of water content
-ax2.plot(t_values, Kr_T) 
-ax2.set_yscale('log')
-ax2.set_ylim(0.000001, 1)
-ax2.set_xlim(0, 0.6)
-ax2.set_xlabel(r'Water Content, $\Theta$')
-ax2.set_ylabel(r'Relative Hydraulic Conductivity, $K_{r}$($\Theta$)')
-
-# ax2: Water content vs. Relative Hydraulic Conductivity expressed in terms of pressure head
-ax3.plot(np.abs(h_values), Kr_T) 
-ax3.set_xscale('log')
-ax3.set_yscale('log')
-ax3.set_xlim(1, 10000)
-ax3.set_ylim(0.000001, 1)
-ax3.set_xlabel('Pressure Head, $h$ [cm] ')
-ax3.set_ylabel(r'Relative Hydraulic Conductivity, $K_{r}($h$)$')
-
-# ax4: Water content vs. Diffusivity
-ax4.plot(t_values, D_T)
-ax4.set_xlim(0, 0.6)
-ax4.set_yscale('log')
-ax4.set_ylim(1, 1000000)
-ax4.set_xlabel(r'Water Content, $\Theta$')
-ax4.set_ylabel(r'Diffusivity, $D$')
-
-#plt.tight_layout()
-st.pyplot(fig)
+st.markdown(""" 
+            - How can we describe real soil water retention behavior using a mathematical model?
+            - Which van Genuchten parameters best fit the observed retention characteristics of a given soil?
+            
+            In this exercise, you are given measured retention data for a soil sample. Your task is to adjust the van Genuchten parameters (θr, θs, α, and n) to visually fit the model curve to the data points. This hands-on exploration helps you understand the role of each parameter and develop practical skills in interpreting and calibrating soil water retention models.
+            
+            #### 🎯 Learning Objectives
+            After completing this exercise, learners will be able to:
+            - Interpret observed soil water retention data and understand its structure (water content θ vs. pressure head).
+            - Apply the van Genuchten model to simulate soil water retention behavior.
+            - Calibrate van Genuchten parameters (θr, θs, α, n) visually based on measurement data.
+            - Analyze how different parameters influence the shape and fit of the retention curve.
+"""
+)
+with st.expander('🧠 **Click here for some initial questions** - to assess wether you are ready for the exercise'):
+    render_assessment("90_Streamlit_apps/GWP_SoilWaterRetention/assets/questions/ex01_ass_01.json", title="Exercise 1 – Initial assessment")
+    
 
 #
 # Example for retention curves - Interactive plots
@@ -256,44 +225,44 @@ st.pyplot(fig)
 # From the table to a dataframe     #
 #-----------------------------------#
 
-#-- Sand Soil --#
-sandSoil = pd.DataFrame()
-sandSoil["Suction Pressure [hPa]"] = [1, 2, 3, 4, 8, 12, 17, 23, 32, 46, 65, 98, 148, 328, 726, 1217, 
+#-- Soil 1 --#
+Soil1 = pd.DataFrame()
+Soil1["Suction Pressure [hPa]"] = [1, 2, 3, 4, 8, 12, 17, 23, 32, 46, 65, 98, 148, 328, 726, 1217, 
                                       2175, 4330, 7576, 16796, 41464, 95973]
-sandSoil["Water Content"] = [0.368, 0.365, 0.358, 0.348, 0.321, 0.293, 0.267, 0.240, 0.213, 0.185, 0.160, 
+Soil1["Water Content"] = [0.368, 0.365, 0.358, 0.348, 0.321, 0.293, 0.267, 0.240, 0.213, 0.185, 0.160, 
                              0.137, 0.119, 0.090, 0.074, 0.065, 0.059, 0.054, 0.051, 0.048, 0.046, 0.045]
 
 #-- Silt Soil --#
-siltSoil = pd.DataFrame()
-siltSoil["Suction Pressure [hPa]"] = [1, 2, 6, 25, 49, 118, 235, 354, 488, 765, 1033, 1456, 2656, 4351, 
+Soil2 = pd.DataFrame()
+Soil2["Suction Pressure [hPa]"] = [1, 2, 6, 25, 49, 118, 235, 354, 488, 765, 1033, 1456, 2656, 4351, 
                                       6830, 13582, 26438, 45248, 98112, 199482, 396999, 958958]
-siltSoil["Water Content"] = [0.422, 0.422, 0.421, 0.417, 0.412, 0.395, 0.366, 0.342, 0.319, 0.285, 0.260, 
+Soil2["Water Content"] = [0.422, 0.422, 0.421, 0.417, 0.412, 0.395, 0.366, 0.342, 0.319, 0.285, 0.260, 
                              0.236, 0.195, 0.167, 0.143, 0.113, 0.089, 0.074, 0.057, 0.045, 0.035, 0.026]
 
 
 #-----------------------------------#
 # Resolution and plot               # 
 #-----------------------------------#
-
+st.subheader('Exercise - Fitting the model to measured data', divider = 'violet')
 st.markdown(
             """
-            ### Exercise
             Given the suction pressure and water content data for two soil types—sand and silt—determine the best-fitting parameters.
             """
 )
 
 data = {
-        "Sand Soil |ψ| [hPa]": [1, 2, 3, 4, 8, 12, 17, 23, 32, 46, 65, 98, 148, 328, 726, 1217, 2175, 4330, 7576, 16796, 41464, 95973],
+        "Soil 1 |ψ| [hPa]": [1, 2, 3, 4, 8, 12, 17, 23, 32, 46, 65, 98, 148, 328, 726, 1217, 2175, 4330, 7576, 16796, 41464, 95973],
         "θ (Sand)": [0.368, 0.365, 0.358, 0.348, 0.321, 0.293, 0.267, 0.240, 0.213, 0.185, 0.160, 0.137, 0.119, 0.090, 0.074, 0.065, 0.059, 0.054, 0.051, 0.048, 0.046, 0.045],
-        "Silt Soil |ψ| [hPa]": [1, 2, 6, 25, 49, 118, 235, 354, 488, 765, 1033, 1456, 2656, 4351, 6830, 13582, 26438, 45248, 98112, 199482, 396999, 958958],
+        "Soil 2 |ψ| [hPa]": [1, 2, 6, 25, 49, 118, 235, 354, 488, 765, 1033, 1456, 2656, 4351, 6830, 13582, 26438, 45248, 98112, 199482, 396999, 958958],
         "θ (Silt)": [0.422, 0.422, 0.421, 0.417, 0.412, 0.395, 0.366, 0.342, 0.319, 0.285, 0.260, 0.236, 0.195, 0.167, 0.143, 0.113, 0.089, 0.074, 0.057, 0.045, 0.035, 0.026]
         }
 
 # Convert to DataFrame
 df = pd.DataFrame(data)
 
-# Display the table with markdown
-st.markdown(df.style.hide(axis="index").to_html(), unsafe_allow_html=True)
+with st.expander('Click here if you want to see the table with the measurements'):
+    # Display the table with markdown
+    st.markdown(df.style.hide(axis="index").to_html(), unsafe_allow_html=True)
 
 st.markdown(
             """
@@ -308,34 +277,34 @@ st.markdown(
 columns_i1 = st.columns((1,1), gap = 'large')
 
 with columns_i1[0]:
-    tr_sand = st.slider(f':green-background[θr sand]',0.0,0.5,0.2,0.001)
-    ts_sand = st.slider(f':green-background[θs sand]',0.0,0.5,0.2,0.001)
-    alpha_sand = st.slider(f':green-background[α sand]',0.0,0.1,0.05,0.0001)
-    n_sand = st.slider(f':green-background[n sand]',0.0,5.0,2.5,0.05)
+    tr_soil1 = st.slider(f':green-background[θr soil1]',0.0,0.5,0.2,0.001)
+    ts_soil1 = st.slider(f':green-background[θs soil1]',0.0,0.5,0.2,0.001)
+    alpha_soil1 = st.slider(f':green-background[α soil1]',0.0,0.1,0.05,0.0001)
+    n_soil1 = st.slider(f':green-background[n soil1]',0.0,5.0,2.5,0.05)
 
 with columns_i1[1]:
-    tr_silt = st.slider(f':blue-background[θr silt]',0.0,0.5,0.3,0.001)
-    ts_silt = st.slider(f':blue-background[θs silt]',0.0,0.5,0.3,0.001)
-    alpha_silt = st.slider(f':blue-background[α silt]',0.0,0.1,0.05,0.0001)
-    n_silt = st.slider(f':blue-background[n silt]',0.0,5.0,2.5,0.05)   
+    tr_soil2 = st.slider(f':blue-background[θr soil2]',0.0,0.5,0.3,0.001)
+    ts_soil2 = st.slider(f':blue-background[θs soil2]',0.0,0.5,0.3,0.001)
+    alpha_soil2 = st.slider(f':blue-background[α soil2]',0.0,0.1,0.05,0.0001)
+    n_soil2 = st.slider(f':blue-background[n soil2]',0.0,5.0,2.5,0.05)   
 
 #-- Generating the range of head values
 h_values = np.logspace(0, 6, 100)
       
 #-- Calculating the soil-water content for both soild
-t_sand = [soil_water_content(tr_sand, ts_sand, alpha_sand, h, n_sand) for h in h_values]
-t_silt = [soil_water_content(tr_silt, ts_silt, alpha_silt, h, n_silt) for h in h_values]
+t_soil1 = [soil_water_content(tr_soil1, ts_soil1, alpha_soil1, h, n_soil1) for h in h_values]
+t_soil2 = [soil_water_content(tr_soil2, ts_soil2, alpha_soil2, h, n_soil2) for h in h_values]
     
 #-- Plotting the results
 fig, ax = plt.subplots(figsize=(9, 5))
-ax.plot(sandSoil["Water Content"], sandSoil["Suction Pressure [hPa]"], 'o', mfc='none', 
-        c="green", label="Observations Sand Soil")
-ax.plot(siltSoil["Water Content"], siltSoil["Suction Pressure [hPa]"], 'o', mfc='none',
-        c="blue", label="Observations Silt Soil")   
-ax.plot(t_sand, h_values, 
-        c="green", label="Model Sand Soil")
-ax.plot(t_silt, h_values, 
-        c="blue", label="Model Silt Soil")
+ax.plot(Soil1["Water Content"], Soil1["Suction Pressure [hPa]"], 'o', mfc='none', 
+        c="green", label="Observations Soil 1")
+ax.plot(Soil2["Water Content"], Soil2["Suction Pressure [hPa]"], 'o', mfc='none',
+        c="blue", label="Observations Soil 2")   
+ax.plot(t_soil1, h_values, 
+        c="green", label="Model Soil 1")
+ax.plot(t_soil2, h_values, 
+        c="blue", label="Model Soil 2")
 ax.set_xlim(0, 0.5)
 ax.set_ylim(1, 1000000)
 ax.set_yscale('log')
@@ -346,6 +315,12 @@ fig.tight_layout()
 #box = ax.get_position()
 #ax.set_position([box.x0, box.y0, box.width * 0.8, box.height])
 st.pyplot(fig)
+
+with st.expander(':violet[**Click here to submit and assess your analysis**]'):
+    render_assessment("90_Streamlit_apps/GWP_SoilWaterRetention/assets/questions/ex01_ass_02.json", title="Exercise 1 – Submit and assess your analysis")
+"---"
+with st.expander('🧠 **Click here for some final questions** - to assess your learning success'):
+    render_assessment("90_Streamlit_apps/GWP_SoilWaterRetention/assets/questions/ex01_ass_03.json", title="Exercise 1 – Final assessment")
 
 "---"
 # Navigation at the bottom of the side - useful for mobile phone users     
