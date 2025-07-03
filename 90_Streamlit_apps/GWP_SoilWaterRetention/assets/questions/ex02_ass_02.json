@@ -1,0 +1,46 @@
+[
+{
+"question": "A) Based on the app, what soil behavior leads to a high effective field capacity (eFC)? (Mark ALL correct answers)",
+"options": {
+"A) High θ_s and low θ_r": true,
+"B) Large difference between FC and PWP": true,
+"C) High n and low α": false,
+"D) Very steep SWRC near saturation": false
+},
+"success": "✅ Correct. High eFC results from wide separation between FC and PWP with ample pore storage.",
+"error": "❌ eFC relates to water availability range, not just steepness or n."
+},
+{
+"question": "A) What does a rapid drop in k_r indicate in coarse soils? (Mark ALL correct answers)",
+"options": {
+"A) High water retention": false,
+"B) Fast loss of conductivity upon desaturation": true,
+"C) Steep SWRC": true,
+"D) Strong capillary forces": false
+},
+"success": "✅ Right. k_r drops fast in sandy soils due to rapid drainage.",
+"error": "❌ Capillary retention is stronger in fine soils, not coarse ones."
+},
+{
+"question": "A) Which of the following statements are true about the α parameter? (Mark ALL correct answers)",
+"options": {
+"A) High α shifts the curve to lower suction": true,
+"B) It reflects air-entry value": true,
+"C) α does not affect FC or PWP": false,
+"D) It is inversely related to soil pore size": false
+},
+"success": "✅ Good job. α controls air-entry and suction thresholds.",
+"error": "❌ α influences curve position and thus FC and PWP."
+},
+{
+"question": "A) When fitting Dataset 3, what features suggest a fine-textured soil? (Mark ALL correct answers)",
+"options": {
+"A) Gentle slope in SWRC": true,
+"B) High water retention at high suction": true,
+"C) Sharp drop in k_r": false,
+"D) θ_s close to 0.55": true
+},
+"success": "✅ Well spotted. Fine soils retain more water and drain slowly.",
+"error": "❌ Steep k_r drops are more common in sands."
+}
+]

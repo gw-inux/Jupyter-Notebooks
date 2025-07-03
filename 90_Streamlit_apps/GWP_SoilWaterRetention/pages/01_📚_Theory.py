@@ -38,25 +38,6 @@ def m_val(n):
     m = 1 - (1/n)
     return m
 
-def dimensionless_water_content(t, tr, ts):
-    """Function that calculates the dimensionless water content. 
-    Based on van Genuchten, 1980 (Eq. 2) 
-    Parameters
-    ----------
-    t : float
-        soil-water content
-    tr : float
-        residual values of soil-water content
-    ts : float
-        saturated values of soil-water content
-    Returns
-    -------
-    float
-        dimensionless water content
-    """ 
-    T_dim = (t - tr)/(ts - tr)      
-    return T_dim
-
 
 def water_content(alpha, h, n):  
     """Function that calculates the water content.  
@@ -204,8 +185,18 @@ st.header('The concepts 📖')
 #-----------------------------------------------#
 # UNSATURATED ZONE                              #
 #-----------------------------------------------#
-st.subheader('An initial overview about the unsaturated Zone', divider = 'blue')
-st.markdown("""In contrast to the *Saturated Zone*, where the porous medium is fully saturated with a single fluid of uniform properties (density, viscosity, and composition), the *Unsaturated Zone* contains—at least—two immiscible fluids that coexist: a wetting and non-wetting, such as water and air, respectively (**Figure 1a**). As shown in **Figure 1b**, the moisture content in the *Unsaturated Zone* is therefore less than 100%. The pressure head under saturated conditions is greater than one, equal to zero at the groundwater table, and negative in the unsaturated zone (**Figure 1c**).""")
+st.subheader(':blue-background[An initial overview about the unsaturated Zone]', divider = 'blue')
+st.markdown("""
+#### 💡 Motivation and Introducuion
+
+- Why does water cling to tiny pores in soil and resist gravity?  
+- What makes sandy soils drain quickly while clay holds on to every drop?  
+- How can we translate invisible capillary forces into meaningful quantities for water management?
+
+This section of the module covers the physics behind water in unsaturated soils. You’ll explore how surface tension, wettability, and capillary pressure shape the movement and retention of water — and why these principles are foundational in hydrology, agriculture, and groundwater modeling. By understanding these mechanisms, you’ll be better equipped to predict infiltration, plant water availability, and the impact of soil texture on water storage and movement within the **unsaturates zone**.
+
+In contrast to the *Saturated Zone*, where the porous medium is fully saturated with a single fluid of uniform properties (density, viscosity, and composition), the **Unsaturated Zone** contains—at least—two immiscible fluids that coexist: a wetting and non-wetting, such as water and air, respectively (**Figure 1a**). As shown in **Figure 1b**, the moisture content in the *Unsaturated Zone* is therefore less than 100%. The pressure head under saturated conditions is greater than one, equal to zero at the groundwater table, and negative in the unsaturated zone (**Figure 1c**).
+""")
 
 left_co, cent_co, last_co = st.columns((10, 80, 10))
 with cent_co:
@@ -213,7 +204,17 @@ with cent_co:
     st.markdown(
         r"Fig. 1- Groundwater conditions near the ground surface. (a) Saturated and unsaturated zone; (b) profile of moisture content versus depth; (c) pressure-head and. Adapted from Freeze and Cherry (1979)"
     )
+st.markdown("""
+#### 🎯 Learning Objectives – Theory module
 
+By the end of this section, you will be able to:
+
+- Explain the physical origin of surface tension and wettability and their influence on water behavior in soil pores.
+- Describe the concept of capillary pressure and its relationship with pore size and water retention.
+- Acknowledge the van Genuchten’s formulation to calculate water content, hydraulic conductivity, and diffusivity.
+- Distinguish between water content, relative conductivity, and diffusivity — and understand how they change with soil texture.
+- Recognize how unsaturated zone theory underpins applications in irrigation, groundwater recharge, and soil management.
+""")
 #-----------------------------------------------#
 # SURFACE TENSION AND WETTABILITY               #
 #-----------------------------------------------#
@@ -436,28 +437,79 @@ with st.expander(':rainbow[**Click here to read more about the theoretical aspec
         """
     )
     st.video(videourl3)
-
+    
 with st.expander('🧠 **Show some questions for self-assessment** - to assess your understanding'):
     render_assessment("90_Streamlit_apps/GWP_SoilWaterRetention/assets/questions/theory_ass_03.json", title="Capillary pressure – self assessment")
+    
+st.subheader("Applications in Agriculture 🌱", divider="blue")
+st.markdown("""
+    Understanding the soil water retention curve is essential for effective **irrigation planning**, **crop management**, and **drought risk assessment**. Key agricultural concepts includes **Field capacity, Permanent Wilting Point, and more.
+    """
+)
+
+with st.expander(':rainbow[**Click here to read more about the applications in agriculture**]'):
+    st.markdown("""
+    
+    - **Field Capacity ($\\theta_{fc}$)**  
+      The water content at which excess gravitational water has drained and the soil holds water against gravity. Typically defined at a pressure head of –100 to –300 cm.
+    
+    - **Permanent Wilting Point ($\\theta_{wp}$)**  
+      The lower limit of plant-available water. Below this moisture level, plants cannot exert enough suction to extract water from the soil. Defined at around –15,000 cm of pressure head.
+    
+    - **effective Field capacity**
+      
+      The difference between field capacity and wilting point, sometimes also refered to as Available Water Capacity (AWC)
+      $$
+      \\text{eFC} = \\theta_{fc} - \\theta_{wp}
+      $$  
+      This is the amount of water accessible to plants.
+    
+    These quantities help farmers and agronomists optimize irrigation schedules, improve yield, and prevent water stress. They also aid in designing retention strategies for drought-resilient agriculture.
+    """)
+
+with st.expander('🧠 **Show some questions for self-assessment** - to assess your understanding'):
+    render_assessment("90_Streamlit_apps/GWP_SoilWaterRetention/assets/questions/theory_ass_04.json", title="Capillary pressure – self assessment")
     
 #-----------------------------------------------#
 # The formulation                               #
 #-----------------------------------------------#
-st.markdown("---")
+
 st.header('The Formulation :abacus:')
+
 st.markdown(
-    """   
-    In this following section, we show the constitutive equations that define soil-water retention curve models, specifically focusing on the formulation by [van Genuchten (1980)](https://www.researchgate.net/publication/250125437_A_Closed-form_Equation_for_Predicting_the_Hydraulic_Conductivity_of_Unsaturated_Soils1).
+    """
+    In this section, we introduce key parameters that describe how water behaves in unsaturated soils. We have a closer look on **Water content ($\\theta$)**, **Relative hydraulic conductivity ($K_r$)**, **Hydraulic diffusivity ($D$)**. Together, these functions define the **soil water retention behavior** and are central to solving flow and transport equations in the vadose zone.
+    """
+)
+
+st.subheader('Parameters and Equations', divider = 'blue')
+st.markdown(
+    """
+    #### Water content
     
-    #### Water content $\\Theta$
+    Tells us *how much water* is present in the soil at a given time. It's essential for quantifying storage, plant availability, and evaporation potential.
     """
 )
 with st.expander("**Click here to see further details**"):
     st.markdown(
         """       
-        It is required to derive a relationship between water content and pressure head.
+        It is required to derive a relationship between water content and pressure head. To interpret the retention and conductivity functions, it's important to understand the physical meaning of the involved parameters, accordingly, you will find some definition and explanation next to the used parameters.
         
-        **Dimensionless water content**
+        **Water content**
+        
+        Water content refers to the volume of water $V_w$ held in the soil per unit volume of soil $V_t$. It is expressed as:
+        """
+    )
+    st.latex(r"\theta = \frac{V_w}{V_t}")
+    st.markdown(
+        """
+        In the context of unsaturated soils, $\\theta$ ranges between the residual water content ($\\theta_r$), below which water is no longer mobile or plant-accessible, and the saturated water content ($\\theta_s$), where all pores are filled with water.
+        
+        Understanding how $\\theta$ varies with pressure head or suction is key to modeling soil-water behavior, especially for predicting plant-available water and infiltration dynamics. The van Genuchten model describes this relationship through a nonlinear function known as the retention curve.
+
+        **Dimensionless Water Content**
+        
+        The dimensionless water content **$\\Theta$** is a normalized form of water content between 0 and 1:
         """
     )
     st.latex(r"\Theta = \frac{\theta - \theta_{r}}{\theta_{s} - \theta_{r}}")
@@ -465,10 +517,13 @@ with st.expander("**Click here to see further details**"):
     st.markdown(
         """
         where,  
+        
+        - **$\\theta_{s}$** (*Saturated water content*): The maximum volumetric water content the soil can hold; corresponds to fully saturated pores.
     
-        - $\\theta$ soil-water content  
-        - $\\theta_{s}$ saturated soil-water content  
-        - $\\theta_{r}$ residual soil-water content  
+        - **$\\theta_{r}$** (*Residual water content*): The minimum water content remaining in the soil after extensive drying—water is held tightly and is unavailable to plants.
+    
+         - **$\\theta$** (*Water content*): The actual volumetric water content under current conditions.
+    
     
         **Dimensionless water content related to the pressure head**
         """
@@ -479,11 +534,11 @@ with st.expander("**Click here to see further details**"):
         """
         where,  
     
-        - $h$ pressure head, assumed positive
-        - $\\alpha$ related to the inverse of air entry suction
-        - $n$ measure of pore-size distribution
+        - **$h$** (*Pressure head*): Describes the suction required to remove water from the soil; positive in the unsaturated zone, expressed in cm of water.
+        - **$\\alpha$** (*Inverse of air-entry suction*): Controls when the largest pores begin to drain. Larger $\\alpha$ values indicate coarser soils that release water at lower suction.
+        - **$n$** (*Pore size distribution*): A shape parameter reflecting how evenly pore sizes are distributed. Higher values mean a narrower distribution of pore sizes.
     
-        By substituting the first equation into the second, we derive the retention curve as
+        By substituting the first equation into the second, we derive the Soil Water Retention Curve as
         """
     )
     
@@ -493,15 +548,19 @@ with st.expander("**Click here to see further details**"):
         """
         where,  
         
-        $m = 1 - \\frac{1}{n}$ 
+        - **$m$** (*Model exponent*): Given by $m = 1 - \\frac{1}{n}$, this controls the steepness of the retention curve.
         
         The parameter $m$ controls the curvature or steepness of the soil-water retention curve.
+        
+        The SWRC finally allows to related water content with pressure head, and is essential to describe the soil water in the unsaturated zone.
         """
     )
-    
+
 st.markdown(
     """
     #### Relative Hydraulic Conductivity $K_{r}$
+    
+    Describes *how easily water moves* through unsaturated soil. It decreases as the soil dries and is critical for modeling infiltration, drainage, and irrigation performance.
     """
 )
 with st.expander("**Click here to see further details**"):
@@ -523,6 +582,8 @@ with st.expander("**Click here to see further details**"):
 st.markdown(
     """
     #### Hydraulic Diffusivity $D$
+    
+    The hydraulic diffusivity **$D(\\Theta)$** describes how water content gradients propagate through soil over time. It combines changes in water content and conductivity to capture how *quickly moisture redistributes* in the soil. It governs the speed of drying or wetting fronts.
     """
 )
 with st.expander("**Click here to see further details**"):
@@ -532,22 +593,21 @@ with st.expander("**Click here to see further details**"):
         """
         where,  
         
-        $K_{s}$ hydraulic conductivity at saturation, $K/K_{r}$
+        - **$K_s$** (*Saturated hydraulic conductivity*): The rate at which water moves through fully saturated soil, expressed in cm/day or mm/h.
+        - **$K_r$** (*Relative hydraulic conductivity*): The fraction of $K_s$ available under current moisture conditions. Two equivalent expressions exist: in terms of $\\Theta$ and in terms of $h$.
         """
     )
+    
+    st.subheader('Vizualisation of the relationsships for different soil materials', divider = 'blue')
 st.markdown(
-    """    
-    ---
-    
-    #### Plots of the relationsships for different soil materials
-    
+    """       
     The subsequent plots show the relationships between the different measures. You can choose to plot the relationsships for different soil materials.
     """
 )
 columns = st.columns((2,1), gap = 'large')
 with columns[0]:
     st.markdown(""" 
-            This notebook illustrate the soil water retention curves with examples and exercises based on :blue-background[[van Genuchten (1980)](https://www.researchgate.net/publication/250125437_A_Closed-form_Equation_for_Predicting_the_Hydraulic_Conductivity_of_Unsaturated_Soils1)].
+            The plots illustrate the soil water retention curve and the relationships between water content, hydraulic conductivity, and diffusivity based on :blue-background[[van Genuchten (1980)](https://www.researchgate.net/publication/250125437_A_Closed-form_Equation_for_Predicting_the_Hydraulic_Conductivity_of_Unsaturated_Soils1)].
 """
 )
 
@@ -646,6 +706,15 @@ ax4.set_ylabel(r'Diffusivity, $D$')
 
 #plt.tight_layout()
 st.pyplot(fig)
+
+st.subheader('🧾 Conclusion and Final Assessment', divider = 'blue')
+st.markdown("""
+    Understanding the physical principles of soil water retention is essential for quantifying water availability in unsaturated soils. Concepts such as capillarity, wettability, and retention curves provide the theoretical backbone for modeling water movement and storage. This foundation prepares you to interpret real-world soil behavior and to apply mathematical models with confidence and clarity.
+    """
+)
+
+with st.expander('🧠 **Show the final assessment** - to evaluate your understanding'):
+    render_assessment("90_Streamlit_apps/GWP_SoilWaterRetention/assets/questions/theory_ass_05.json", title="Theory section - final assessment", max_questions=6)
 
 "---"
 # Navigation at the bottom of the side - useful for mobile phone users     

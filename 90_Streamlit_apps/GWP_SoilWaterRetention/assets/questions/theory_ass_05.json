@@ -1,0 +1,69 @@
+[
+  {
+    "question": "Which physical mechanisms contribute to the formation of capillary pressure in unsaturated soils?",
+    "options": {
+      "Cohesive forces between water molecules": true,
+      "Adhesive forces between water and soil grains": true,
+      "Gravitational pull acting on the water mass": false,
+      "Electrostatic repulsion between air molecules": false
+    },
+    "success": "✅ Correct! Capillary pressure arises from cohesive and adhesive forces at curved interfaces.",
+    "error": "❌ Not quite. Think about how water interacts with itself and with the soil surfaces."
+  },
+  {
+    "question": "What happens to the capillary rise when the radius of a pore decreases?",
+    "options": {
+      "Capillary rise increases": true,
+      "Capillary rise decreases": false,
+      "Capillary pressure increases": true,
+      "Capillary pressure decreases": false
+    },
+    "success": "✅ Correct! Smaller pores result in higher capillary rise and stronger suction.",
+    "error": "❌ Not quite. Try recalling the Young–Laplace equation and its relationship to pore radius."
+  },
+  {
+    "question": "Which of the following statements about field capacity and wilting point are correct?",
+    "options": {
+      "Field capacity corresponds to the water content after gravity drainage slows down": true,
+      "Wilting point indicates the minimum water content for plant survival": true,
+      "Field capacity is defined at -15,000 cm pressure head": false,
+      "Wilting point is defined at -100 to -300 cm pressure head": false
+    },
+    "success": "✅ Yes! Field capacity and wilting point define the plant-available water range.",
+    "error": "❌ Not quite. Be careful with the pressure head values associated with each term."
+  },
+  {
+    "question": "How does the relative hydraulic conductivity $K_r$ typically behave as soils dry?",
+    "options": {
+      "It increases": false,
+      "It decreases": true,
+      "It remains constant": false,
+      "It approaches zero in very dry soils": true
+    },
+    "success": "✅ Correct. As soils dry, water pathways shrink, and $K_r$ drops significantly.",
+    "error": "❌ Not quite. Think about how water moves in dry vs. wet conditions."
+  },
+  {
+    "question": "Which parameters are required to describe the van Genuchten water retention curve?",
+    "options": {
+      "$\\theta_r$ (residual water content)": true,
+      "$\\theta_s$ (saturated water content)": true,
+      "$\\alpha$ (inverse air-entry suction)": true,
+      "$n$ (pore-size distribution)": true,
+      "$K_s$ (saturated hydraulic conductivity)": false
+    },
+    "success": "✅ Exactly. All except $K_s$ describe the retention curve itself.",
+    "error": "❌ Not quite. Focus on the equation for the water retention curve."
+  },
+  {
+    "question": "Which processes can lead to hysteresis in the soil water retention curve?",
+    "options": {
+      "Differences between drainage and imbibition paths": true,
+      "Pore structure changes during wetting and drying": true,
+      "Gravity acting on water in coarse soils": false,
+      "Entrapment of air bubbles during infiltration": true
+    },
+    "success": "✅ Correct. Hysteresis arises due to pore-scale effects and phase entrapment.",
+    "error": "❌ Try again. Not all of these directly relate to hysteresis mechanisms."
+  }
+]

@@ -3,6 +3,8 @@ import numpy as np
 import matplotlib.pyplot as plt
 import streamlit as st
 import streamlit_book as stb
+import json
+from streamlit_book import multiple_choice
 
 st.title('🧪 SWC Exercise 2')
 st.header('Soil Water Retention Curves')
@@ -24,14 +26,62 @@ author_list = [f"{name}{''.join(index_symbols[i-1] for i in indices)}" for name,
 institution_list = [f"{index_symbols[i-1]} {inst}" for i, inst in institutions.items()]
 institution_text = " | ".join(institution_list)  # Institutions in one line
 
-# Initial assessment
+def render_assessment(filename, title="📋 Assessment", max_questions=4):
 
-st.markdown("""
-            ### Computation of the soil water retention
-            Subsequently, the Soil Water Retention is computed with Python routines. The interactive plot demonstrate the response of the soil water retention behavior on parameter changes.            
+    with open(filename, "r", encoding="utf-8") as f:
+        questions = json.load(f)
+
+    st.markdown(f"#### {title}")
+    for idx in range(0, min(len(questions), max_questions), 2):
+        col1, col2 = st.columns(2)
+        for col, i in zip((col1, col2), (idx, idx+1)):
+            if i < len(questions):
+                with col:
+                    q = questions[i]
+                    st.markdown(f"**Q{i+1}. {q['question']}**")
+                    multiple_choice(
+                        question=" ",
+                        options_dict=q["options"],
+                        success=q.get("success", "✅ Correct."),
+                        error=q.get("error", "❌ Not quite.")
+                    )
+
+st.markdown(""" 
+            #### 💡 Motivation
+            In agricultural and environmental applications, understanding soil hydraulic behavior is essential for effective water management. 
             
-            """     
-)
+            This exercise challenges you to fit the van Genuchten model to real soil retention data and interpret key hydraulic properties.
+            
+            You will evaluate how field capacity (FC), permanent wilting point (PWP), and relative permeability influence plant water availability and infiltration.
+            
+            #### 🎯 Learning Objectives  
+            After completing this exercise, you will be able to:  
+            - Fit van Genuchten parameters (θ<sub>r</sub>, θ<sub>s</sub>, α, n) to observed soil retention data.  
+            - Calculate and interpret **PWP**, **FC**, and **effective field capacity (eFC)** for different soils.  
+            - Compute and evaluate **relative hydraulic conductivity (k<sub>r</sub>)** curves.  
+            - Differentiate between soil types based on retention and conductivity characteristics.  
+            - Assess implications of SWRC behavior for **agriculture** and **unsaturated flow modeling**.  
+""")
+
+with st.expander('🧠 **Click here for some initial questions** - to assess wether you are ready for the exercise'):
+    render_assessment("90_Streamlit_apps/GWP_SoilWaterRetention/assets/questions/ex02_ass_01.json", title="Exercise 1 – Initial assessment")
+
+st.subheader('Exercise - Fitting the model to measured data', divider = 'rainbow')
+st.markdown("""  
+#### 📌 Tasks  
+- Fit the curve to each dataset (Dataset 1–3) and describe the best-fitting soil type (e.g., sand, silt, clay).  
+- Estimate and compare the **effective field capacity (eFC)** of the soils.  
+- Interpret how **k<sub>r</sub>** changes across the datasets.  
+- Which soil is best suited for crop water availability? Which drains the fastest?  
+
+#### 📝 Instructions  
+- Use the toggles to select different soil datasets.  
+- Adjust the van Genuchten parameters until your model fits the observed data visually.  
+- Explore the effect of parameters on PWP, FC, and effective FC.  
+- Optionally visualize the relative permeability curve.  
+- Use the plots and indicators to answer the questions in the final assessment.
+""")
+
 
 columns = st.columns((1,1,1), gap = 'large')
 with columns[0]:
@@ -120,6 +170,16 @@ st.write('Permanent Wilting Point PWP:', '{:.2f}'.format(PWP) )
 st.write('Field Capacity           FC:', '{:.2f}'.format(FC) )
 st.write('Eff. Field Capacity     eFC:', '{:.2f}'.format(eFC) )
 
+st.subheader('🧾 Conclusion and Final Assessment', divider='rainbow')
+st.markdown("""  
+This exercise guided you through fitting the van Genuchten retention model to real data from different soils.  
+By analyzing the resulting curves and indicators (PWP, FC, eFC, k<sub>r</sub>), you explored how hydraulic properties affect plant-available water and soil behavior.  
+
+Such analyses are fundamental for irrigation planning, land evaluation, and understanding unsaturated flow in the vadose zone.  
+""", unsafe_allow_html=True)
+
+with st.expander('🧠 **Click here for some final questions** - to assess your learning success'):
+    render_assessment("90_Streamlit_apps/GWP_SoilWaterRetention/assets/questions/ex02_ass_02.json", title="Exercise 2 – Final assessment")
 "---"
 # Navigation at the bottom of the side - useful for mobile phone users     
         

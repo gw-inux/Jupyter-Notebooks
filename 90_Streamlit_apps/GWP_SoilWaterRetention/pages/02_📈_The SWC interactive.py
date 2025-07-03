@@ -4,6 +4,8 @@ import numpy as np
 import matplotlib.pyplot as plt
 import streamlit as st
 import streamlit_book as stb
+import json
+from streamlit_book import multiple_choice
 
 st.title('📈 The SWC interactive')
 st.header('Soil Water Retention characteristics')
@@ -46,15 +48,74 @@ def render_assessment(filename, title="📋 Assessment", max_questions=4):
                     )
 
 st.markdown("""
-            #### Motivation
+            #### 💡 Motivation
+            - How do changes in **soil parameters** shape the water retention behavior?  
+            - What causes certain soils to **drain faster** or **retain water longer**?  
+            - How does **relative hydraulic conductivity** change as the soil dries up?
+            
+            This interactive section of the module helps you explore the core mechanics of **soil water retention curves** by adjusting key parameters like residual water content, saturated content, and the shape factors $\\alpha$ and $n$. You will analyze how these parameters influence:
+            - the **shape** of the retention curve,
+            - the **position** of field capacity (FC) and permanent wilting point (PWP),
+            - and the **relative hydraulic conductivity** $k_r(\\theta)$.
+            
+            The goal is not only to observe—but to **understand** how soil-specific properties control water availability, movement, and management potential.
+            
+            #### 🎯 Learning Objectives
+            After completing this interactive section, you will be able to:
+
+            - Explain the meaning and role of the van Genuchten parameters ($\\theta_r$, $\\theta_s$, $\\alpha$, $n$).
+            - Interpret how these parameters affect the **soil water retention curve**.
+            - Identify and explain the **field capacity (FC)**, **permanent wilting point (PWP)**, and **effective field capacity (eFC)**.
+            - Describe and interpret the curve for **relative hydraulic conductivity**.
+            - Analyze the influence of individual parameters on **plant-available water** and **hydraulic behavior**.
             """     
 )
-st.subheader('Interactive plot of the Soil Water Retention Curve', divider = 'red')
+with st.expander('🧠 **Show some questions for self-assessment** - to assess your initial understanding'):
+    render_assessment("90_Streamlit_apps/GWP_SoilWaterRetention/assets/questions/interactive_ass_01.json", title="Initial assessment")
+
+st.subheader('📈 Interactive plot of the Soil Water Retention Curve', divider = 'red')
 
 st.markdown("""
-            ### Computation of the soil water retention
-            Subsequently, the Soil Water Retention is computed with Python routines. The interactive plot demonstrate the response of the soil water retention behavior on parameter changes.            
-            
+            Subsequently, the Soil Water Retention is computed with Python routines. The interactive plot demonstrate the response of the soil water retention behavior on parameter changes. The instructions guide you through the process of investigating the interactive plot.           
+            """     
+)
+with st.expander("**Click here for instructions about how to work with this interactive tool**"):
+    st.markdown("""
+        #### 🛠️ Instructions: How to work with this interactive tool
+        
+        Use this interactive app to explore how soil properties shape the water retention curve and plant-available water. Follow the steps below:
+        
+        1. **Start with the default settings** to get familiar with the retention curve shape and axis labels.
+        
+        2. **Adjust the parameters one at a time**:
+           - **Residual water content** $\\theta_r$: affects the lower bound of water retention.
+           - **Saturated water content** $\\theta_s$: shifts the upper bound of the curve.
+           - **$\\alpha$**: influences the steepness and air-entry point.
+           - **$n$**: controls the sharpness of the curve transition.
+        
+        3. **Observe how the retention curve changes** as you modify each parameter. Focus on:
+           - The **horizontal position** and **slope** of the curve.
+           - The **pressure head** at which the curve begins to drop.
+        
+        4. **Activate the field capacity (FC)** and **permanent wilting point (PWP)** markers using the toggles:
+           - Use these thresholds to analyze **plant-available water**.
+           - Observe how changes in $\\alpha$ and $n$ affect FC and PWP positions.
+        
+        5. **Toggle the relative hydraulic conductivity curve ($k_r$)** and inspect how water movement capacity changes with saturation.
+        
+        6. **Use the computed values below the plot** to verify your understanding:
+           - Compare **PWP, FC, and effective field capacity (eFC)** as parameters change.
+        
+        7. **Try to maximize eFC** (effective plant-available water) through parameter combinations — can you find an “optimal” soil?
+        
+        8. **Reflect on real-world relevance**:
+           - Which parameter combinations would represent **sandy**, **loamy**, or **clayey** soils?
+           - How would this affect **irrigation planning** or **crop growth**?
+        """)
+
+st.markdown("""
+            #### The computation of the SWRC and the relative hydraulic conductivity
+            This are the plots. Expand the menues to see the parameters and plot controls.             
             """     
 )
 
@@ -130,6 +191,13 @@ if plot4:
     with columns[1]:
         st.pyplot(fig)
 
+st.subheader('🧾 Conclusion and Final Assessment', divider='blue')
+st.markdown("""
+    In this section, you explored how soil parameters shape the water retention curve and influence plant-available water. By interacting with the model, you gained hands-on insight into the roles of $\\theta_r$, $\\theta_s$, $\\alpha$, and $n$, as well as how field capacity, wilting point, and relative conductivity respond to changing soil conditions. These insights are critical for informed decisions in agriculture, irrigation, and soil management.
+    """
+)
+with st.expander('🧠 **Show questions for the final assessment** - to assess your learning success'):
+    render_assessment("90_Streamlit_apps/GWP_SoilWaterRetention/assets/questions/interactive_ass_02.json", title="Final assessment", max_questions=6)
 "---"
 # Navigation at the bottom of the side - useful for mobile phone users     
         

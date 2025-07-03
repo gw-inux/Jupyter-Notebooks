@@ -4,6 +4,8 @@ import numpy as np
 import matplotlib.pyplot as plt
 import streamlit as st
 import streamlit_book as stb
+import json
+from streamlit_book import multiple_choice
 
 st.title('📊 The SWC in comparison')
 st.header('Soil Water Retention characteristics')
@@ -26,8 +28,49 @@ author_list = [f"{name}{''.join(index_symbols[i-1] for i in indices)}" for name,
 institution_list = [f"{index_symbols[i-1]} {inst}" for i, inst in institutions.items()]
 institution_text = " | ".join(institution_list)  # Institutions in one line
 
+def render_assessment(filename, title="📋 Assessment", max_questions=4):
+
+    with open(filename, "r", encoding="utf-8") as f:
+        questions = json.load(f)
+
+    st.markdown(f"#### {title}")
+    for idx in range(0, min(len(questions), max_questions), 2):
+        col1, col2 = st.columns(2)
+        for col, i in zip((col1, col2), (idx, idx+1)):
+            if i < len(questions):
+                with col:
+                    q = questions[i]
+                    st.markdown(f"**Q{i+1}. {q['question']}**")
+                    multiple_choice(
+                        question=" ",
+                        options_dict=q["options"],
+                        success=q.get("success", "✅ Correct."),
+                        error=q.get("error", "❌ Not quite.")
+                    )
+
 st.markdown("""
-            #### Available data
+            #### 💡 Motivation for comparing Soil Water Retention Curves
+            
+            Different soil textures exhibit distinct water retention behaviors, which influence agricultural productivity, drainage, and plant-available water. In this section, you will compare soil water retention characteristics (SWRCs) for two soil types side-by-side using real or synthetic data. Understanding these differences helps you make informed decisions in land management, irrigation design, and soil classification.
+            
+            Key questions to consider:
+            - How do field capacity and wilting point differ across soils?
+            - Which soils retain more water in the plant-available range?
+            - How do changes in van Genuchten parameters shape the retention curve?.
+            
+            #### 🎯 Learning Objectives
+            After completing this interactive section of the module, you will be able to:
+            - Interpret differences in SWRCs between soil textures based on van Genuchten parameters.
+            - Compare field capacity (FC), permanent wilting point (PWP), and effective field capacity (eFC) between two datasets.
+            - Assess how changes in α and n influence the shape and steepness of retention curves.
+            - Analyze and compare relative hydraulic conductivity curves derived from SWRCs.
+            """     
+)
+with st.expander('🧠 **Show some questions for self-assessment** - to assess your initial understanding'):
+    render_assessment("90_Streamlit_apps/GWP_SoilWaterRetention/assets/questions/comparison_ass_01.json", title="Initial assessment")
+
+st.subheader('Available data sets', divider = 'green')
+st.markdown("""
             The interactive plot allows to compare different data sets. Various data sets are available.
             """
 )
@@ -75,10 +118,20 @@ soil_profiles = {
 "14) Synthetic DS2": {"θr": 0.070, "θs": 0.48, "α": 0.220, "n": 1.15, "Ks": 100.0, "color": "crimson"}
 }
 
+st.subheader('📊 Interactive plot to compare Soil Water Retention Curves for different media', divider = 'green')
 st.markdown("""
-            #### Interactive plot
             The interactive plot allows to compare different data sets. Various data sets are available.
             """
+)
+with st.expander("**Click here for instructions about how to work with this interactive tool**"):
+    st.markdown("""
+        #### 🛠️ Instructions How to Use the Interactive Plot 
+        - Select two different datasets for comparison using the dropdowns. You can also define your own parameter values.
+        - Toggle the plot options to show Field Capacity (FC), Permanent Wilting Point (PWP), and Relative Permeability.
+        - Observe how the two soil types behave differently in terms of water retention and desaturation patterns.
+        - Compare the computed FC, PWP, and effective field capacity (eFC) values shown below the plot.
+        - Reflect on how parameter differences relate to real-world soil texture and functionality.
+    """
 )
 
 columns = st.columns((1,1,1), gap = 'large')
@@ -225,6 +278,13 @@ if plot4:
     plt.legend()
     st.pyplot(fig)
     
+st.subheader('🧾 Conclusion and Final Assessment', divider='green')
+st.markdown("""
+    This section allowed you to visually explore how soil texture and van Genuchten parameters influence soil water retention. By comparing two datasets side-by-side, you gained deeper insight into differences in water availability, retention dynamics, and hydraulic behavior across soils. Such comparisons are essential when selecting appropriate soil models for hydrologic, agricultural, or ecological applications.
+    """
+)
+with st.expander('🧠 **Show questions for the final assessment** - to assess your learning success'):
+    render_assessment("90_Streamlit_apps/GWP_SoilWaterRetention/assets/questions/comparison_ass_02.json", title="Final assessment", max_questions=6)
 "---"
 # Navigation at the bottom of the side - useful for mobile phone users     
         

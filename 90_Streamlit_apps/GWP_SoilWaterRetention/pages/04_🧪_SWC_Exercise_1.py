@@ -199,6 +199,7 @@ def render_assessment(filename, title="📋 Assessment", max_questions=4):
                     )
 
 st.markdown(""" 
+            #### 💡 Motivation
             - How can we describe real soil water retention behavior using a mathematical model?
             - Which van Genuchten parameters best fit the observed retention characteristics of a given soil?
             
@@ -246,7 +247,7 @@ Soil2["Water Content"] = [0.422, 0.422, 0.421, 0.417, 0.412, 0.395, 0.366, 0.342
 st.subheader('Exercise - Fitting the model to measured data', divider = 'violet')
 st.markdown(
             """
-            Given the suction pressure and water content data for two soil types—sand and silt—determine the best-fitting parameters.
+            **Your task**: Given the suction pressure and water content data for two soil types—sand and silt—determine the best-fitting parameters.
             """
 )
 
@@ -318,7 +319,16 @@ st.pyplot(fig)
 
 with st.expander(':violet[**Click here to submit and assess your analysis**]'):
     render_assessment("90_Streamlit_apps/GWP_SoilWaterRetention/assets/questions/ex01_ass_02.json", title="Exercise 1 – Submit and assess your analysis")
-"---"
+
+st.subheader('🧾 Conclusion and Final Assessment', divider='violet')
+st.markdown("""  
+In this exercise, you explored how to fit van Genuchten model parameters to measured soil retention data for two contrasting soils. By adjusting the parameters θ<sub>r</sub>, θ<sub>s</sub>, α, and n, you gained insight into how each one affects the shape and steepness of the soil water retention curve.
+
+You also developed hands-on calibration skills and visually assessed the model fit—a fundamental task in soil physics and unsaturated zone hydrology.
+
+Keep in mind that real-world fitting often involves optimization techniques, but this exercise builds the essential intuition needed to understand how retention behavior varies across soil types.
+""", unsafe_allow_html=True)
+
 with st.expander('🧠 **Click here for some final questions** - to assess your learning success'):
     render_assessment("90_Streamlit_apps/GWP_SoilWaterRetention/assets/questions/ex01_ass_03.json", title="Exercise 1 – Final assessment")
 
