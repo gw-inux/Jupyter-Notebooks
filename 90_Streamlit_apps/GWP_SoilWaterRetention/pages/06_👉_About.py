@@ -1,6 +1,6 @@
 import streamlit as st
 
-st.header('👉 About WellCapture')
+st.header('👉 About The Soil Water Retention Module')
 st.markdown(
     """
     ### Description
@@ -55,6 +55,6 @@ with cent_co2:
 columnsN1 = st.columns((1,1,1), gap = 'large')
 with columnsN1[0]:
     if st.button("Previous page"):
-        st.switch_page("pages/05_📈_▶️ SWC Exercise #2.py")
+        st.switch_page("pages/05_🧪_SWRC_Exercise_2.py")
 with columnsN1[1]:
     st.subheader(':orange[**Navigation**]')

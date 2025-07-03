@@ -6,9 +6,9 @@ import streamlit_book as stb
 import json
 from streamlit_book import multiple_choice
 
-st.title('🧪 SWC Exercise 2')
+st.title('🧪 SWRC Exercise 2')
 st.header('Soil Water Retention Curves')
-st.subheader(':rainbow-background[Fitting Model Parameters to measured data]', divider="rainbow")
+st.subheader(':rainbow-background[SWRC Analysis for Agriculture and Flow]', divider="rainbow")
 
 # Authors, institutions, and year
 year = 2025 
@@ -189,7 +189,7 @@ with st.expander('🧠 **Click here for some final questions** - to assess your 
 columnsN1 = st.columns((1,1,1), gap = 'large')
 with columnsN1[0]:
     if st.button("Previous page"):
-        st.switch_page("pages/04_📈_▶️ SWC_Exercise_1.py")
+        st.switch_page("pages/04_🧪_SWRC_Exercise_1.py")
 with columnsN1[1]:
     st.subheader(':orange[**Navigation**]')
 with columnsN1[2]:

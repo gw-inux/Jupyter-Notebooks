@@ -7,7 +7,7 @@ import streamlit_book as stb
 import json
 from streamlit_book import multiple_choice
 
-st.title('📈 The SWC interactive')
+st.title('📈 The SWRC interactive')
 st.header('Soil Water Retention characteristics')
 st.subheader(':red-background[Understanding the soil water retention curve]', divider="red")
 
@@ -204,12 +204,12 @@ with st.expander('🧠 **Show questions for the final assessment** - to assess y
 columnsN1 = st.columns((1,1,1), gap = 'large')
 with columnsN1[0]:
     if st.button("Previous page"):
-        st.switch_page("pages/02_📈_▶️ Transient_Flow to a Well.py")
+        st.switch_page("pages/01_📚_Theory.py")
 with columnsN1[1]:
     st.subheader(':orange[**Navigation**]')
 with columnsN1[2]:
     if st.button("Next page"):
-        st.switch_page("pages/03_📈_▶️ The SWC in comparison.py")
+        st.switch_page("pages/03_📊_The SWRC in comparison.py")
         
 '---'
 # Render footer with authors, institutions, and license logo in a single line

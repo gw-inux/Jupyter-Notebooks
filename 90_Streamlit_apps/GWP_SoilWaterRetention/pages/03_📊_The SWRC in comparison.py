@@ -7,7 +7,7 @@ import streamlit_book as stb
 import json
 from streamlit_book import multiple_choice
 
-st.title('📊 The SWC in comparison')
+st.title('📊 The SWRC in comparison')
 st.header('Soil Water Retention characteristics')
 st.subheader(':green-background[Comparison of datasets]', divider="green")
 
@@ -291,12 +291,12 @@ with st.expander('🧠 **Show questions for the final assessment** - to assess y
 columnsN1 = st.columns((1,1,1), gap = 'large')
 with columnsN1[0]:
     if st.button("Previous page"):
-        st.switch_page("pages/02_📈_▶️ The SWC interactive.py")
+        st.switch_page("pages/02_📈_The SWRC interactive.py")
 with columnsN1[1]:
     st.subheader(':orange[**Navigation**]')
 with columnsN1[2]:
     if st.button("Next page"):
-        st.switch_page("pages/04_📈_▶️ SWC_Exercise_1.py")
+        st.switch_page("pages/04_🧪_SWRC_Exercise_1.py")
         
 '---'
 # Render footer with authors, institutions, and license logo in a single line

@@ -62,19 +62,20 @@ st.markdown("""
     #### 🗂️ Module Structure
     
     - **📚 Theory**  
-      Learn the fundamentals of unsaturated flow: capillary pressure, surface tension, retention curves, and the van Genuchten formulation.
+      Learn the fundamentals of unsaturated flow: capillary pressure, surface tension, soil water retention, and the van Genuchten–Mualem model.
     
-    - **📈 The SWC interactive**  
-      Adjust model parameters and observe how water retention curves respond in real time.
+    - **📈 The SWRC Interactive**  
+      Explore how model parameters (θᵣ, θₛ, α, n) shape soil water retention curves in real time.
     
-    - **📊 The SWC in comparison**  
-      Compare how different soil textures (e.g., sand vs. loam) affect water retention.
+    - **📊 The SWRC in Comparison**  
+      Compare water retention behavior across different soil textures (e.g., sand, loam, silt).
     
-    - **🧪 SWC Exercise 1**  
-      Fit the van Genuchten model to measured retention data for two soils.
+    - **🧪 SWRC Exercise 1**  
+      Fit the van Genuchten model to measured retention data and interpret parameter influences on curve shape.
     
-    - **🧪 SWC Exercise 2**  
-      Try to match synthetic or real datasets with your own parameter combinations.
+    - **🧪 SWRC Exercise 2**  
+      Interpret synthetic datasets to identify soil types and evaluate agricultural suitability and flow implications.
+    
       
     #### Suggested Readings
 
