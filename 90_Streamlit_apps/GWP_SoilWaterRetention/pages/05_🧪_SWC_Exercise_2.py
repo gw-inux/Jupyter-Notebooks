@@ -170,6 +170,9 @@ st.write('Permanent Wilting Point PWP:', '{:.2f}'.format(PWP) )
 st.write('Field Capacity           FC:', '{:.2f}'.format(FC) )
 st.write('Eff. Field Capacity     eFC:', '{:.2f}'.format(eFC) )
 
+with st.expander(':rainbow[**Click here to submit and assess your analysis**]'):
+    render_assessment("90_Streamlit_apps/GWP_SoilWaterRetention/assets/questions/ex02_ass_02.json", title="Exercise 2 – Submit and assess your analysis", max_questions=5)
+    
 st.subheader('🧾 Conclusion and Final Assessment', divider='rainbow')
 st.markdown("""  
 This exercise guided you through fitting the van Genuchten retention model to real data from different soils.  
@@ -179,7 +182,7 @@ Such analyses are fundamental for irrigation planning, land evaluation, and unde
 """, unsafe_allow_html=True)
 
 with st.expander('🧠 **Click here for some final questions** - to assess your learning success'):
-    render_assessment("90_Streamlit_apps/GWP_SoilWaterRetention/assets/questions/ex02_ass_02.json", title="Exercise 2 – Final assessment")
+    render_assessment("90_Streamlit_apps/GWP_SoilWaterRetention/assets/questions/ex02_ass_03.json", title="Exercise 2 – Final assessment", max_questions=6)
 "---"
 # Navigation at the bottom of the side - useful for mobile phone users     
         
