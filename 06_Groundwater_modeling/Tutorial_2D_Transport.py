@@ -640,6 +640,12 @@ with st.expander("🛠️ :red[**Expand to see the instructions and screencast v
 		Porosity (n): 0.25
 		Dispersivity ratio (αx/αy): 10
 		Time: 1000 days"""),
+		(st.write," Under `Adjust Plot` menu set:"),
+		(st.code, """
+		• Max Conc of plot (g/m³): 1
+		• Max extension in x direction: 2100
+		• Max extension in y direction: 550
+		• Toggle: Show isolines instead of contour """),
 
         (st.write, "- Take a screenshot of the resulting plot once it appears."),],"td026")
 
@@ -652,10 +658,10 @@ with st.expander("🛠️ :red[**Expand to see the instructions and screencast v
          "\n - Map the anchor points as follows:"),
         
         (st.code, """
-		Top-Left Anchor Point:
-		Image: (0, 400) → Model: (400, 0)
-		Bottom-Right Anchor Point:
-		Image: (2000, -400) → Model: (2400, -1100)"""),
+		Bottom-Left Anchor Point:
+		Image: (0, -550) → Model: (400, 1100)
+		Top-Right Anchor Point:
+		Image: (2100, 550) → Model: (2500, 0)"""),
 
         (st.write, "- Press `OK` to place the image."
                    "\n - Optional: Toggle grid lines using the `Show/Hide 2D Grid Lines` icon."),],"td027")
@@ -679,7 +685,28 @@ with st.expander("🛠️ :red[**Expand to see the instructions and screencast v
     [
         (st.write, "**Step 3.12 – Save Your Work**"
          "\n - Press `Ctrl + S` to save your model setup."),],"td029")
+    
+
+    to_do(
+    [
+    	(st.write, "**Step 3.13 – Quantitative Comparison of Breakthrough Curves**\n\nSo far, you've overlaid the analytical image on your numerical model to evaluate results visually. Now we'll compare **concentration vs. time** data directly using observation points and Excel plots."),
         
+		(st.write, "🔹 **Export Analytical Data from the Streamlit App**"
+         "\n - In the Streamlit analytical app, define observation points at the same distances used in your numerical model."
+         "\n - Once set, download the resulting CSV containing time series concentration data."),
+
+		(st.write, "🔹 **Organize the Data in Excel**"
+         "\n - Open the provided Excel analysis sheet."
+         "\n - Paste the downloaded analytical CSV data into the dedicated `Analytical` section."
+         "\n - Open your numerical model's `.MTO` file and copy the data."
+         "\n - Paste it into the `Numerical` section of the same Excel sheet."),
+		
+		(st.write, "🔹 **Compare the Results**"
+         "\n - Use the preconfigured Excel plots to compare breakthrough curves at each observation point."
+         "\n - Analyze the overlap and discrepancies between the numerical and analytical results."),
+
+        (st.write, "💡 **This step allows you to validate your model quantitatively** and assess the impact of grid size, dispersion, and solver type.")],"td029a")
+
     
     st.markdown("""
     #### Video tutorial of step 3
@@ -792,6 +819,51 @@ with st.expander("🛠️ :red[**Expand to see the instructions and screencast v
         (st.write, "- Export MT3D Input Files as `Fine.mtnam`. Monitor simulation."),
         (st.write, "- Visualize `.ucn` result and import as: `Fine_MOC`."),
         (st.write, "- Paste `.MTO` output in Excel under `Fine` sheet to compare with analytical solution."),], "td034")
+		
+    to_do(
+    [
+        (st.write, "**Step 4.6 – Breakthrough Curve Comparison with Refined Grid**"
+         "\n - Use the Streamlit analytical app to define observation points based on the refined source boundary."
+         "\n - Download the resulting CSV with analytical concentrations."
+         "\n - Paste the data into the `Fine` sheet in the provided Excel template."
+         "\n - Copy `.MTO` output from both FD and MOC simulations into the same sheet."
+         "\n - Use the plots to compare numerical and analytical breakthrough curves.")],"td034b")
+
+    st.markdown(""" **Zero Dispersion Case with MOC (Refined Grid)** """)
+	
+    to_do(
+    [
+        (st.write, "**Step 4.7 – Zero Dispersion Case with MOC (Refined Grid)**"),
+        
+        (st.write, "🔹 **Set Longitudinal Dispersivity to Zero**"
+         "\n - Go to `Data > Edit Data Sets > Required`."
+         "\n - Expand `MT3DMS`, `MT3D-USGS`, or `GWT`."
+         "\n - Locate `Longitudinal_Dispersivity` and set it to **0**."
+         "\n - Leave all other model settings unchanged."),
+
+        (st.write, "🔹 **Run the Model**"
+         "\n - Run MODFLOW again in `Fine/Fine_MOC/` as `Fine.nam`."
+         "\n - Export MT3D input files as `Fine.mtnam` in the same folder."
+         "\n - Monitor the simulation and check the listing file for errors."),
+
+        (st.write, "🔹 **Compare with Analytical Solution**"
+         "\n - Launch the Streamlit app for continuous transport."
+         "\n - Set Longitudinal Dispersivity to 0."
+         "\n - Observe the sharp solute front in the analytical result."),
+
+        (st.write, "🔹 **Visualize Numerical Results in ModelMuse**"
+         "\n - Import the `.UCN` file from this run."
+         "\n - View isoconcentration contours."
+         "\n - Toggle off background image if needed for clarity."),
+
+        (st.write, "🔹 **Analyze Breakthrough Curves**"
+         "\n - Load the `.MTO` file into the Excel sheet."
+         "\n - Paste it into the appropriate `Fine` section."
+         "\n - Observe sharp concentration jumps – indicating pure advection."),
+
+        (st.write, "🔹 **(Optional)** Reset `Longitudinal_Dispersivity` back to **10 m** for future runs.")],"td034c")
+
+
 
         
     st.markdown("""
@@ -823,10 +895,9 @@ with cc1:
     st.image('06_Groundwater_modeling/FIGS/2D_idealized_transport_pulse.png', caption="The synthetic catchment for the numerical model.")
 	
 	
-#Video 4b,5 and 6 Remain. Rest all are updated. 03 July 2025. Navneet Sinha	
 
-    
-    
+
+     
 # STEP 5
 st.markdown("""
 #### :green[STEP 5:] Adapting the existing model to simulate a tracer test - solute input as Dirac pulse. Running the FD and MOC simulations.
@@ -838,13 +909,136 @@ with st.expander("🧠 **Initial Assessment – Step 5**"):
 
 with st.expander("🛠️ :green[**Expand to see the instructions and screencast video for STEP 5**]"):
     st.markdown("""
-    More about step 5
+    In this section we simulate a Dirac pulse—a brief injection of solute mass over a short
+ duration—and analyze its transport behavior using both Finite Difference (FD) and Method
+ of Characteristics (MOC) solvers. The results will be compared against an analytical solution
+ generated through a specialized Streamlit application.
     """)
-    to_do(
-        [(st.write, "...")],"td091",)
 
     to_do(
-        [(st.write, "...")],"td092",)
+    [
+        (st.write, "**Step 5.1 – Setup for Dirac Pulse Injection**"),
+        
+        (st.write, "🔹 **Duplicate Refined Model**"
+         "\n - Save your refined model into a new folder: `Dirac_FD/`."
+         "\n - Save as: `Dirac.nam` to preserve previous configurations."),
+
+        (st.write, "🔹 **Configure Flow Time Discretization (3 Periods)**"
+		"\n - Go to `Model > MODFLOW Time` and set `Number of Stress Periods = 3`."
+		"\n - Use the following values:"),
+		(st.code, """
+		Period 1 (Steady-State):
+		Start Time: -1
+		End Time: 0
+		Max Step Length: 1
+		Time Step Multiplier: 1
+		
+		Period 2 (Injection):
+		Start Time: 0
+		End Time: 10
+		Max Step Length: 10
+		Time Step Multiplier: 1
+		
+		Period 3 (Transport):
+		Start Time: 10
+		End Time: 4320000
+		Max Step Length: 7200
+		Time Step Multiplier: 1.2
+		"""),
+		(st.write, "🔹 **Configure Transport Time Discretization (3 Periods)**"
+		"\n - Go to `Model > MODFLOW Time` > `MT3DMS` or `MT3D-USGS`."
+		"\n - Set `Number of MT3DMS Periods = 3`, and use the following values:"),
+		
+		(st.code, """
+		Period 1 (Steady-State):
+		Start Time: -1
+		End Time:  0
+		Initial Time Step: 86400
+		Max Transport Steps: 1000
+		Time Step Multiplier: 1
+		Max Step Size: 0
+		
+		Period 2 (Injection):
+		Start Time: 0
+		End Time: 10
+		Initial Time Step: 10
+		Max Transport Steps: 1000
+		Time Step Multiplier: 1
+		Max Step Size: 0
+		
+		Period 3 (Transport):
+		Start Time: 10
+		End Time: 4320000
+		Initial Time Step: 7200
+		Max Transport Steps: 1000
+		Time Step Multiplier: 1
+		Max Step Size: 0
+		"""),
+		(st.write, "🔹 **Set Longitudinal Dispersivity**"),
+		(st.code, "Longitudinal_Dispersivity = 5"),
+
+
+        (st.write, "🔹 **Update Boundary Conditions**"
+         "\n - Edit both CHD boundary objects."
+         "\n - Set time range: `-1 to 4320000` seconds."),
+
+        (st.write, "🔹 **Define Injection Well Source**"
+         "\n - Enable `Well` package under Boundary Conditions."
+         "\n - Disable `MODPATH` (under Post Processors)."
+         "\n - Create a new point object named `solute_injection` at (400, -550)."
+         "\n - In the WELL tab, enter this schedule:"),
+        (st.code, """
+		Start     End     Rate (m³/s)
+		-1        0       0
+		0         10      0.001
+		10        4320000 0
+		"""),
+		
+		(st.write, " - Under `SSM`, enter concentration schedule:"),
+		
+		(st.code, """
+		Start     End     Concentration (mg/L)
+		-1        0       0
+		0         10      100000
+		10        4320000 0
+		"""),
+        
+        (st.write, "🔹 **Place Observation Point**"
+         "\n - Add a point object at (430, -550) and name it `Obs30`."
+         "\n - Under `MT3DMS_Observation_Location`, set to `TRUE`."),
+
+        (st.write, "🔹 **Select FD Solver and Run Simulation**"
+         "\n - Go to `ADV > Advection1 > Scheme = Standard Finite Difference`."
+         "\n - Save and run MODFLOW in `Dirac/Dirac_FD/` as `Dirac.nam`."
+         "\n - Export MT3D input as `Dirac.mtnam` and run it."),
+
+        (st.write, "🔹 **Visualize and Analyze FD Results**"
+         "\n - Load final `.UCN` file and observe solute pulse movement."
+         "\n - Paste `.MTO` data into `Dirac` worksheet in Excel."
+         "\n - Review breakthrough curve (FD simulation)."),
+
+        (st.write, "🔹 **Repeat for MOC Solver**"
+         "\n - Change advection scheme to `MOC`."
+         "\n - Save and run in `Dirac/Dirac_MOC/`, same file names."
+         "\n - Export MT3D, run, and paste `.MTO` data into Excel."),
+		 
+		(st.write, "🔹 **Compare with Analytical Solution using Streamlit App**"
+		  "\n - Enter the following parameters in the Streamlit app:"),
+
+        (st.code, """\
+		Released Mass: 1000 g
+		Specific Discharge: 0.432 m/d
+		Source equivalent to model cell: ✅ (enabled for 10 m aquifer thickness)
+		Longitudinal Dispersivity: 5 m
+		Breakthrough Curve Extraction Distance: 30 m
+		Maximum Time: 100 days
+		Concentration Range: 1 g/m³
+		"""),
+
+        (st.write, "🔹 **Interpret Results**"
+         "\n - MOC curve matches analytical closely with a sharp front."
+         "\n - FD shows numerical dispersion and smearing."),],"td091")
+
         
     st.markdown("""
     #### Video tutorial of step 5
@@ -866,13 +1060,84 @@ with st.expander("🧠 **Initial Assessment – Step 6**"):
 
 with st.expander("🛠️ :green[**Expand to see the instructions and screencast video for STEP 6**]"):
     st.markdown("""
-    More about step 6
+    In this section we continue our work with the Dirac point source model, introducing a refined
+ computational grid to better capture near-source transport dynamics. We will focus on
+ increasing grid resolution in the inlet and observation zone, and then compare the results from
+ two advection schemes: Standard Finite Difference (FD) and the Method of Characteristics
+ (MOC). 
     """)
-    to_do(
-        [(st.write, "...")],"td093",)
+
 
     to_do(
-        [(st.write, "...")],"td094",)
+[
+    (st.write, "**Step 6.1 – Refined Grid Simulation for Dirac Pulse**"),
+
+    (st.write, "🔹 **Save a New Model Version**"
+     "\n - Save the current model into a new folder: `Dirac_refined/`."
+     "\n - Use `File > Save As` to make a clean copy."),
+
+    (st.write, "🔹 **Refine Grid in Source and Observation Zone**"
+     "\n - Click the `Subdivide Grid Cells` icon."
+     "\n -  Using your cursor, select the area of the model where the plume is expected to spread—this corresponds to rows 17 to 21 and columns 22 to 36."
+     "\n - In the dialog, apply the following values:"),
+    (st.code, """\
+	From Row: 17
+	Through Row: 21
+	Subdivide each row into: 5
+	
+	From Column: 22
+	Through Column: 36
+	Subdivide each column into: 5
+	"""),
+    
+	(st.write, "- **This reduces the cell size from 10 m to 2 m in region where refinement is applied.**"),
+
+    (st.write, "🔹 **Define Source and Observation Points**"
+     "\n - Use the `Vertices` tab to enter precise coordinates:"),
+    
+	(st.code, """\
+	Source:    (400, -550)
+	Obs30:     (430, -550)
+	Obs50:     (450, -550)
+	Obs100:    (500, -550)
+	"""),
+
+    (st.write, "🔹 **Run Simulation with Finite Difference (FD)**"
+     "\n - Set advection scheme to `Standard Finite Difference`."
+     "\n - Save model in `dirac_refined_fd/` and run MODFLOW."
+     "\n - Export MT3D input files and run MT3DMS."
+     "\n - Check listing file: mass balance error should be minimal."),
+
+    (st.write, "🔹 **Run Simulation with MOC**"
+     "\n - Change advection scheme to `Method of Characteristics (MOC)`."
+     "\n - Save model in `dirac_refined_moc/`."
+     "\n - Run MODFLOW and MT3DMS again."),
+    
+
+    (st.write, "🔹 **Post-Processing and Comparison**"
+     "\n - Import `.UCN` files for each run and select final time step."
+     "\n - Copy `.MTO` files into the `Dirac_refined` sheet in Excel."
+     "\n - Ensure observation points align correctly."),
+
+    (st.write, "🔹 **Compare with Analytical Solution**"
+     "\n - Open the 2D Dirac Streamlit App and enter:"),
+    
+	(st.code, """\
+	Breakthrough Distance: 30 m
+	Released Mass: 1000 g
+	Specific Discharge: 0.432 m/d
+	Longitudinal Dispersivity: 5 m
+	Source equivalent to model cell: ✅
+	Max Time: 100 days
+	Concentration Range: 1 g/m³
+	"""),
+    
+	(st.write, "- Download CSV and paste into Excel alongside FD and MOC results."),
+
+    (st.write, "🔹 **Interpretation**"
+     "\n - MOC shows near-perfect match with analytical, minor oscillations."
+     "\n - FD shows moderate dispersion with a smeared pulse.")],"td092")
+
         
     st.markdown("""
     #### Video tutorial of step 6
