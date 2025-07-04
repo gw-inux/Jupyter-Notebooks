@@ -76,6 +76,7 @@ st.markdown("""
     - **🧪 SWRC Exercise 2**  
       Interpret synthetic datasets to identify soil types and evaluate agricultural suitability and flow implications.
     
+    :information_source: To navigate the soilwaterretention tool you can use menu items at the sidebar
       
     #### Suggested Readings
 
@@ -93,15 +94,6 @@ st.markdown("""
     - [Mualem, Y. (1976). A new model for predicting the hydraulic conductivity of unsaturated porous media. Water resources research, 12(3), 513-522.](https://agupubs.onlinelibrary.wiley.com/doi/epdf/10.1029/WR012i003p00513)
     - [Van Genuchten, M. T. (1980). A closed‐form equation for predicting the hydraulic conductivity of unsaturated soils. Soil science society of America journal, 44(5), 892-898.)](https://www.researchgate.net/publication/250125437_A_Closed-form_Equation_for_Predicting_the_Hydraulic_Conductivity_of_Unsaturated_Soils1)
     """
-)
-
-
-st.markdown(
-    """    
-    :information_source: To navigate the soilwaterretention tool you can use menu items at the sidebar:
-    - Learn about the underlying theory
-    - Run the soilwaterretention tool from the different pages in the sidebar menu
-"""
 )
 
 '---'
