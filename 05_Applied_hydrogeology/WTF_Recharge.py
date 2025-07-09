@@ -9,6 +9,7 @@ st.set_page_config(page_title="Water Table Fluctuation (WTF) Method")
 
 # --------- TITLE ---------
 st.title("Water Table Fluctuation (WTF) Method")
+st.subheader('Theory')
 st.markdown(
     "Analyze a head time series using falling-limb extrapolation" \
     " and the WTF recharge estimate (multiple peaks)."
