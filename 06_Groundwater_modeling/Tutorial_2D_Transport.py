@@ -238,10 +238,10 @@ with st.expander("🛠️ :red[**Expand to see the instructions and screencast v
     to_do(
         [(st.write, "**Step1.3 Time and Solver Settings.**"
          ,"\n - Go to :red[_Model > MODFLOW Time`:"),
-         (st.code, """ 
-		 Starting Time: 0
-		 Ending Time: 86400000
-		 Max First Time Step Length: 86400000"""),
+         (st.code, """
+         Starting Time: 0
+         Ending Time: 86400000
+         Max First Time Step Length: 86400000"""),
          (st.write, "- Click :red[_OK_]."),], "td003")
 
 
