@@ -227,8 +227,7 @@ with st.expander("🛠️ :red[**Expand to see the instructions and screencast v
     to_do(
         [(st.write, "**Step1.2 Model selection and initial grid definition**"
         ,"\n - Select :red[_MODFLOW version: MODFLOW-2005_]"),
-        (st.code, """
-		Number of Columns: 25       Width of each column: 100
+        (st.code, """Number of Columns: 25       Width of each column: 100
 		Number of Rows: 11          Width of each row: 100
 		Number of Layers: 1
 		Model Top = 0
