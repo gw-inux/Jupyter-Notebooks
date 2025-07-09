@@ -226,53 +226,53 @@ with st.expander("🛠️ :red[**Expand to see the instructions and screencast v
 
     to_do(
         [(st.write, "**Step1.2 Model selection and initial grid definition**"
-        ,"\n - Select `MODFLOW version: MODFLOW-2005`"),
+        ,"\n - Select :red[_MODFLOW version: MODFLOW-2005`"),
         (st.code, """
 		Number of Columns: 25       Width of each column: 100
 		Number of Rows: 11          Width of each row: 100
 		Number of Layers: 1
 		Model Top = 0
 		Aquifer Base = -10"""),
-        (st.write, "- Click `Finish` to generate the grid."),],"td002",)
+        (st.write, "- Click :red[_Finish_] to generate the grid."),],"td002",)
         
     to_do(
         [(st.write, "**Step1.3 Time and Solver Settings.**"
-         ,"\n - Go to `Model > MODFLOW Time`:"),
+         ,"\n - Go to :red[_Model > MODFLOW Time`:"),
          (st.code, """ 
 		 Starting Time: 0
 		 Ending Time: 86400000
 		 Max First Time Step Length: 86400000"""),
-         (st.write, "- Click `OK`."),], "td003")
+         (st.write, "- Click :red[_OK_]."),], "td003")
 
 
 
 
     to_do(
         [(st.write, "**Step1.4 Activate Packages and Set K**"
-        ,"\n - Go to `Model > MODFLOW Packages and Programs`."
-        ,"\n - Under `Boundary Conditions`, select `Specified Head > CHD`  and Click `OK`."
-        ,"\n - Go to `Data > Edit Data Sets > Required > Hydrology`"),
+        ,"\n - Go to :red[_Model > MODFLOW Packages and Programs_]."
+        ,"\n - Under :red[_Boundary Conditions`, select :red[_Specified Head > CHD_]  and Click :red[_OK_]."
+        ,"\n - Go to :red[_Data > Edit Data Sets > Required > Hydrology`"),
 		 (st.code, """set Kx = 0.001"""),
-		 (st.write,"- Click `Apply` and Click `Close`.")], "td004")
+		 (st.write,"- Click :red[_Apply_] and Click :red[_Close_].")], "td004")
 
     to_do(
    	   [(st.write, "**Step1.5 Boundary Conditions**"
-         ,"\n - **Left boundary:** Use the line tool to create a vertical line on the left edge, name it `left_CHD`."
-         ,"\n - Go to `MODFLOW Features > CHD`."),
+         ,"\n - **Left boundary:** Use the line tool to create a vertical line on the left edge, name it :red[_left_CHD_]."
+         ,"\n - Go to :red[_MODFLOW Features > CHD_]."),
         (st.code, """
 		Start Time: 0
 		End Time: 86400000
 		Starting Head: 22
 		Ending Head: 22"""),
-        (st.write, "- Click `OK`."
-         ,"\n - **Right boundary:** Repeat the same steps, name it `right_CHD`."
-		 ,"\n - Go to `MODFLOW Features > CHD`"),
+        (st.write, "- Click :red[_OK_]."
+         ,"\n - **Right boundary:** Repeat the same steps, name it :red[_right_CHD_]."
+		 ,"\n - Go to :red[_MODFLOW Features > CHD`"),
 		(st.code, """
 		Start Time: 0
 		End Time: 86400000
 		Starting Head: 10
 		Ending Head: 10"""),
-		(st.write,"- Click `OK`.")],"td005")
+		(st.write,"- Click :red[_OK_].")],"td005")
 
 
     st.markdown("#### ⚠️ Note on Warnings")
@@ -285,38 +285,38 @@ with st.expander("🛠️ :red[**Expand to see the instructions and screencast v
     to_do(
         [(st.write, " **Step1.6 Run MODFLOW**"
         ,"\n - Click green triangle to run MODFLOW."
-        ,"\n - Save as `coarse.nam` in the appropriate folder."
+        ,"\n - Save as :red[_coarse.nam_] in the appropriate folder."
         ,"\n - Verify results via ModelMonitor (green smiley = success), then review listing file.")], "td006")
 
     to_do(
         [(st.write, "**Step1.7 Configure MODPATH**"
-        ,"\n - Go to `Model > MODFLOW Packages and Programs > Post Processors>MODPATH`."
-        ,"\n - `Enable MODPATH`."),
+        ,"\n - Go to :red[_Model > MODFLOW Packages and Programs > Post Processors>MODPATH_]."
+        ,"\n - :red[_Enable MODPATH_]."),
 		(st.code, """
 		Set Version: 6
 		Reference Time: 0 
 		Output Mode: Pathlines
 		Tracking Direction: Forward """),
-		(st.write, " Under the tab  `Version 6 & 7 Options`"
-		,"\n - Select from the dropdown `StopOption = Stop at termination points (Steady State)`."
-		,"\n - Click `OK` ")], "td007")
+		(st.write, " Under the tab  :red[_Version 6 & 7 Options`"
+		,"\n - Select from the dropdown :red[_StopOption = Stop at termination points (Steady State)_]."
+		,"\n - Click :red[_OK_] ")], "td007")
 
     to_do(
         [(st.write, " **Step1.8 Place Particles**"
-        ,"\n - Select object tool, double-click `left_CHD`."
-        ,"\n - Go to `MODFLOW Features > MODPATH`, choose `Inititial Particle Placement` set it to `Grid`"
-		,"\n - Click `OK`.")], "td008")
+        ,"\n - Select object tool, double-click :red[_left_CHD_]."
+        ,"\n - Go to :red[_MODFLOW Features > MODPATH`, choose :red[_Inititial Particle Placement_] set it to :red[_Grid`"
+		,"\n - Click :red[_OK_].")], "td008")
 
     to_do(
         [(st.write, " **Step1.9 Output + Final Run**"
-        ,"\n - Go to `MODFLOW Output Control > Head` set `External File Type`  to `Binary`."
-        ,"\n - Save model `(Ctrl+S)`, then click triangle to re-run."
+        ,"\n - Go to :red[_MODFLOW Output Control > Head_] set :red[_External File Type_]  to :red[_Binary_]."
+        ,"\n - Save model :red[_(Ctrl+S)`, then click triangle to re-run."
         ,"\n - Ignore MODPATH v7 warning if prompted since we are using v6.")], "td009")
 
     to_do(
         [(st.write, " **Step1.10 Visualize Pathlines**"
         ,"\n - Click **Data Visualization > MODPATH Pathlines**."
-        ,"\n - Load the `.path` Click `Apply` Click `Close`.")], "td010")
+        ,"\n - Load the :red[_.path_] Click :red[_Apply_] Click :red[_Close_].")], "td010")
 
     st.markdown("""#### Video tutorial for Step 1
     The video shows all steps as a screencast. 
