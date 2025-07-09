@@ -219,7 +219,7 @@ with st.expander("🛠️ :red[**Expand to see the instructions and screencast v
     to_do(
         [(st.write, "**Step1.1 Launch and Configure ModelMuse.**"
         ,"\n - Open **ModelMuse**."
-        ,"\n - Select :red[_Create New MODFLOW Model_]then click :red[_Next_]."
+        ,"\n - Select :red[_Create New MODFLOW Model_] then click :red[_Next_]."
         ,"\n - Keep default units (meters and seconds)."
 		,"\n - Under description, type :red[_2D Transport Model_]."
 		,"\n - Click :red[_Next_].")],"td001",)
