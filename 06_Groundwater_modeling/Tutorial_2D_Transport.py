@@ -226,7 +226,7 @@ with st.expander("🛠️ :red[**Expand to see the instructions and screencast v
 
     to_do(
         [(st.write, "**Step1.2 Model selection and initial grid definition**"
-        ,"\n - Select :red[_MODFLOW version: MODFLOW-2005`"),
+        ,"\n - Select :red[_MODFLOW version: MODFLOW-2005_]"),
         (st.code, """
 		Number of Columns: 25       Width of each column: 100
 		Number of Rows: 11          Width of each row: 100
@@ -251,7 +251,7 @@ with st.expander("🛠️ :red[**Expand to see the instructions and screencast v
         [(st.write, "**Step1.4 Activate Packages and Set K**"
         ,"\n - Go to :red[_Model > MODFLOW Packages and Programs_]."
         ,"\n - Under :red[_Boundary Conditions`, select :red[_Specified Head > CHD_]  and Click :red[_OK_]."
-        ,"\n - Go to :red[_Data > Edit Data Sets > Required > Hydrology`"),
+        ,"\n - Go to :red[_Data > Edit Data Sets > Required > Hydrology_]"),
 		 (st.code, """set Kx = 0.001"""),
 		 (st.write,"- Click :red[_Apply_] and Click :red[_Close_].")], "td004")
 
@@ -266,7 +266,7 @@ with st.expander("🛠️ :red[**Expand to see the instructions and screencast v
 		Ending Head: 22"""),
         (st.write, "- Click :red[_OK_]."
          ,"\n - **Right boundary:** Repeat the same steps, name it :red[_right_CHD_]."
-		 ,"\n - Go to :red[_MODFLOW Features > CHD`"),
+		 ,"\n - Go to :red[_MODFLOW Features > CHD_]"),
 		(st.code, """
 		Start Time: 0
 		End Time: 86400000
@@ -297,14 +297,14 @@ with st.expander("🛠️ :red[**Expand to see the instructions and screencast v
 		Reference Time: 0 
 		Output Mode: Pathlines
 		Tracking Direction: Forward """),
-		(st.write, " Under the tab  :red[_Version 6 & 7 Options`"
+		(st.write, " Under the tab  :red[_Version 6 & 7 Options_]"
 		,"\n - Select from the dropdown :red[_StopOption = Stop at termination points (Steady State)_]."
 		,"\n - Click :red[_OK_] ")], "td007")
 
     to_do(
         [(st.write, " **Step1.8 Place Particles**"
         ,"\n - Select object tool, double-click :red[_left_CHD_]."
-        ,"\n - Go to :red[_MODFLOW Features > MODPATH`, choose :red[_Inititial Particle Placement_] set it to :red[_Grid`"
+        ,"\n - Go to :red[_MODFLOW Features > MODPATH`, choose :red[_Inititial Particle Placement_] set it to :red[_Grid_]"
 		,"\n - Click :red[_OK_].")], "td008")
 
     to_do(
