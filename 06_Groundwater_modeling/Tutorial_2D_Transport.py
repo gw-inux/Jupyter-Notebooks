@@ -39,8 +39,6 @@ def render_assessment(filename, title="📋 Assessment", max_questions=4):
                         error=q.get("error", "❌ Not quite.")
                     )
 
-def markdown_lines(*lines):
-    return "\n".join(lines)
 
 st.title('Tutorial – Numerical computation of solute transport: Demonstration of MT3D applications')
 
@@ -219,23 +217,12 @@ with st.expander("🛠️ :red[**Expand to see the instructions and screencast v
     """)
 
     to_do(
-#        [(st.write, "**Step1.1 Launch and Configure ModelMuse.**"
-#        ,"\n - Open **ModelMuse**."
-#        ,"\n - Select `Create New MODFLOW Model` then click `Next`."
-#        ,"\n - Keep default units (meters and seconds)."
-#		,"\n - Under description, type `2D Transport Model`."
-#		,"\n - Click `Next`.")],"td001",)
-        [(st.write,
-        markdown_lines(
-            "**Step 1.1 Launch and Configure ModelMuse.**",
-            "- Open **ModelMuse**.",
-            "- Select `Create New MODFLOW Model` then click `Next`.",
-            "- Keep default units (meters and seconds).",
-            "- Under description, type `2D Transport Model`.",
-            "- Click `Next`."
-        ))],
-        "td001"
-    )
+        [(st.write, "**Step1.1 Launch and Configure ModelMuse.**"
+        ,"\n - Open **ModelMuse**."
+        ,"\n - Select :red[_Create New MODFLOW Model_]then click :red[_Next_]."
+        ,"\n - Keep default units (meters and seconds)."
+		,"\n - Under description, type :red[_2D Transport Model_]."
+		,"\n - Click :red[_Next_].")],"td001",)
 
     to_do(
         [(st.write, "**Step1.2 Model selection and initial grid definition**"
