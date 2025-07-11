@@ -46,7 +46,7 @@ st.header('2D solute transport in a uniform groundwater flow field using :green[
 
 st.subheader('Overview and orientation', divider="green")
 
-st.markdown(""" The **aim of the tutorial** is to provide an applied introduction in solute transport modeling with MODFLOW and MT3D. The applications consider two typical scenarios for an idealized groundwater catchment:
+st.markdown(""" The **aim of the tutorial** is to provide an applied introduction to solute transport modeling using MODFLOW and MT3D. It covers two typical scenarios within an idealized groundwater catchment:
 \n**:red[Scenario A]: Prediction of a :red[contamination from a continuous releasing source]** and
 \n**:green[Scenario B]: Computation of a :green[solute pulse from a point source], and traveling of the solutes through the system**.
 """)
@@ -57,18 +57,27 @@ with lc0:
 with rc0:
     st.image('06_Groundwater_modeling/FIGS/2D_idealized_tracer.png', caption=":green[**Scenario B:**]The idealized situation for a tracer test.")
 st.markdown("""
-Both scenarios are idealized in such a way that solute transport can be also computed with analytical solutions. This approach allows the user to understand the system, and to compare the results from the numerical model with the ‘precise’ analytical solution. Accordingly, the user gets a proper understanding of the benefits and limitations of the different methods. The scenarios and models are subsequently described.
+Both scenarios are idealized in such a way that solute transport can also be computed with analytical solutions. This approach allows the user to understand the system and to compare the results from the numerical model with the ‘precise’ analytical solution. Accordingly, the user gains a proper understanding of the benefits and limitations of the different methods. The scenarios and models are subsequently described.
 
-**This app contains** materials, explanations, descriptions (as To-Do list), and videos on how to setup a MODFLOW/MT3D model for a 2D idealized catchment (see the following figure). The individual steps of the modeling process are provided in the following boxes that you can expand by clicking.
+**This app contains:**
+- Accompanying tutorial materials (e.g. excel sheet, gpt files, tutorial pdf, etc)  
+- Explanations  
+- Descriptions (as To-Do lists)  
+- Videos on how to set up a MODFLOW and MT3D model for a 2D idealized catchment *(see the following figure)*.
+
+
+The individual steps of the modeling process are provided in the following boxes, which you can expand by clicking.
+
+
             
 #### 📦 Resources used for the tutorial
 The following files are provided for use throughout the tutorial...
 """)
 
-with st.expander('**... click here to see and access the ressources**'):
+with st.expander('**... click here to see and access the resources**'):
     st.markdown("""
-    You can download the ressources directly using the links below. They include MODELMUSE model files for different modeling steps and supporting spreadsheets for analysis and postprocessing
-    - 📄 PDF file with step-by-step instructions (_link to be provided_)
+    You can download the resources directly using the links below. They include MODELMUSE model files for different modeling steps and supporting spreadsheets for analysis and postprocessing
+    - 📄 PDF file with step-by-step instructions
         - [2D_Transport_Step_01.pdf](https://raw.githubusercontent.com/gw-inux/Jupyter-Notebooks/main/06_Groundwater_modeling/DATA/2D_Transport/2D_Transport_Step_01.pdf) — for step1
         - [2D_Transport_Step_02.pdf](https://raw.githubusercontent.com/gw-inux/Jupyter-Notebooks/main/06_Groundwater_modeling/DATA/2D_Transport/2D_Transport_Step_02.pdf) — for step2
         - [2D_Transport_Step_03.pdf](https://raw.githubusercontent.com/gw-inux/Jupyter-Notebooks/main/06_Groundwater_modeling/DATA/2D_Transport/2D_Transport_Step_03.pdf) — for step3
@@ -87,18 +96,18 @@ with st.expander('**... click here to see and access the ressources**'):
         - [2DTransport_Tutorial_empty.xlsx (empty template)](https://raw.githubusercontent.com/gw-inux/Jupyter-Notebooks/main/06_Groundwater_modeling/DATA/2D_Transport/2DTransport_Tutorial_empty.xlsx)""")
 
 st.subheader('General description of the model', divider = "green")
-st.markdown("""The question and purpoose of the model, the conceptual model, and the numerical model are described in the subsequent section.""")
+st.markdown("""The question and purpoose of the model, the conceptual model, and the numerical model are described in the subsequent sections.""")
 
 with st.expander(':green[**Click here for more details of the general description of the model**]'):
     
     st.markdown("""
     #### Question/Purpose of the model
     
-    **🟥 Scenario A:** The general aim is the prediction and management of a contamination plume with constant release of solutes. To simulate the spreading of a solute from a point source in a confined, homogeneous and isotropic aquifer. The solute is introduced with a constant concentration. Observations exist at 100, 300, 500, and 1000 m distances.
+    **🟥 Scenario A:** The general aim is the prediction and management of a contamination plume with constant release of solutes.The goal is to simulate the spreading of a solute from a point source in a confined, homogeneous, and isotropic aquifer. The solute is introduced with a constant concentration. Observations are made at distances of 100, 300, 500, and 1000 m.
     
-    The situation is idealized and can be compared with the results of an analytical solution (2D solute transport from a continuous source with advection and dispersion). The analytical solution allows users to investigate the effects of different settings of the numerical model, like solution scheme and discretization.
+    The situation is idealized and can be compared with the results of an analytical solution (2D solute transport from a continuous source with advection and dispersion). The analytical solution allows users to investigate the effects of different settings of the numerical model, such as the solution scheme and discretization.
     
-    **🟩 Scenario B:** The general aim of this version is to use the numerical model to simulate a tracer test to characterize the aquifer. The solute is injected with a given mass over a very short term. The injection is a point source, i.e., the tracer is inserted through a point source as a Dirac impulse (10 liters in 10 seconds, containing 1,000 g NaCl). The observation is at a distance of 30 m.
+    **🟩 Scenario B:** The general aim of this version is to use the numerical model to simulate a tracer test to characterize the aquifer. The solute is injected with a given mass over a very short period. The injection is a point source, i.e., the tracer is inserted through a point source as a Dirac impulse (10 liters in 10 seconds, containing 1,000 g NaCl). The observation is made at a distance of 30 m.
     
     ---
     
@@ -200,7 +209,7 @@ with st.expander('🧠 **Show the initial assessment to prepare for STEP 1** - t
 with st.expander("🛠️ :red[**Expand to see the instructions and screencast video for STEP 1**]"):
     st.markdown("""  
     This step walks you through the complete setup of a confined aquifer model using **ModelMuse** and prepares it for **particle tracking** with MODPATH.
-    The following instructions are als available as [PDF Dokument for download.](https://raw.githubusercontent.com/gw-inux/Jupyter-Notebooks/main/06_Groundwater_modeling/DATA/2D_Transport/2D_Transport_Step_01.pdf)
+    The following instructions are available as [PDF Document for download.](https://raw.githubusercontent.com/gw-inux/Jupyter-Notebooks/main/06_Groundwater_modeling/DATA/2D_Transport/2D_Transport_Step_01.pdf)
     
     #### Directory Setup (Recommended)
 
@@ -217,7 +226,7 @@ with st.expander("🛠️ :red[**Expand to see the instructions and screencast v
     """)
 
     to_do(
-        [(st.write, "**Step1.1 Launch and Configure ModelMuse.**"
+        [(st.write, "**Step 1.1 Launch and Configure ModelMuse.**"
         ,"\n - Open **ModelMuse**."
         ,"\n - Select :red[_Create New MODFLOW Model_] then click :red[_Next_]."
         ,"\n - Keep default units (meters and seconds)."
@@ -225,7 +234,7 @@ with st.expander("🛠️ :red[**Expand to see the instructions and screencast v
         ,"\n - Click :red[_Next_].")],"td001",)
 
     to_do(
-        [(st.write, "**Step1.2 Model selection and initial grid definition**"
+        [(st.write, "**Step 1.2 Model selection and initial grid definition**"
         ,"\n - Select :red[_MODFLOW version: MODFLOW-2005_]"),
         (st.code, """
         Number of Columns: 25       Width of each column: 100
@@ -236,8 +245,8 @@ with st.expander("🛠️ :red[**Expand to see the instructions and screencast v
         (st.write, "- Click :red[_Finish_] to generate the grid."),],"td002",)
         
     to_do(
-        [(st.write, "**Step1.3 Time and Solver Settings.**"
-         ,"\n - Go to :red[_Model > MODFLOW Time`:"),
+        [(st.write, "**Step 1.3 Time and Solver Settings.**"
+         ,"\n - Go to :red[_Model > MODFLOW Time_]:"),
          (st.code, """
          Starting Time: 0
          Ending Time: 86400000
@@ -248,15 +257,15 @@ with st.expander("🛠️ :red[**Expand to see the instructions and screencast v
 
 
     to_do(
-        [(st.write, "**Step1.4 Activate Packages and Set K**"
+        [(st.write, "**Step 1.4 Activate Packages and Set K**"
         ,"\n - Go to :red[_Model > MODFLOW Packages and Programs_]."
-        ,"\n - Under :red[_Boundary Conditions`, select :red[_Specified Head > CHD_]  and Click :red[_OK_]."
+        ,"\n - Under :red[_Boundary Conditions_], select :red[_Specified Head > CHD_]  and Click :red[_OK_]."
         ,"\n - Go to :red[_Data > Edit Data Sets > Required > Hydrology_]"),
         (st.code, """set Kx = 0.001"""),
         (st.write,"- Click :red[_Apply_] and Click :red[_Close_].")], "td004")
 
     to_do(
-   	   [(st.write, "**Step1.5 Boundary Conditions**"
+   	   [(st.write, "**Step 1.5 Boundary Conditions**"
          ,"\n - **Left boundary:** Use the line tool to create a vertical line on the left edge, name it :red[_left_CHD_]."
          ,"\n - Go to :red[_MODFLOW Features > CHD_]."),
         (st.code, """
@@ -283,13 +292,13 @@ with st.expander("🛠️ :red[**Expand to see the instructions and screencast v
     """)
     
     to_do(
-        [(st.write, " **Step1.6 Run MODFLOW**"
+        [(st.write, " **Step 1.6 Run MODFLOW**"
         ,"\n - Click green triangle to run MODFLOW."
         ,"\n - Save as :red[_coarse.nam_] in the appropriate folder."
-        ,"\n - Verify results via ModelMonitor (green smiley = success), then review listing file.")], "td006")
+        ,"\n - Verify results via :red[_ModelMonitor_] (green smiley = success), then review listing file.")], "td006")
 
     to_do(
-        [(st.write, "**Step1.7 Configure MODPATH**"
+        [(st.write, "**Step 1.7 Configure MODPATH**"
         ,"\n - Go to :red[_Model > MODFLOW Packages and Programs > Post Processors>MODPATH_]."
         ,"\n - :red[_Enable MODPATH_]."),
         (st.code, """
@@ -302,20 +311,20 @@ with st.expander("🛠️ :red[**Expand to see the instructions and screencast v
         ,"\n - Click :red[_OK_] ")], "td007")
 
     to_do(
-        [(st.write, " **Step1.8 Place Particles**"
+        [(st.write, " **Step 1.8 Place Particles**"
         ,"\n - Select object tool, double-click :red[_left_CHD_]."
-        ,"\n - Go to :red[_MODFLOW Features > MODPATH`, choose :red[_Inititial Particle Placement_] set it to :red[_Grid_]"
+        ,"\n - Go to :red[_MODFLOW Features > MODPATH_], choose :red[_Inititial Particle Placement_] set it to :red[_Grid_]"
 		,"\n - Click :red[_OK_].")], "td008")
 
     to_do(
-        [(st.write, " **Step1.9 Output + Final Run**"
+        [(st.write, " **Step 1.9 Output + Final Run**"
         ,"\n - Go to :red[_MODFLOW Output Control > Head_] set :red[_External File Type_]  to :red[_Binary_]."
-        ,"\n - Save model :red[_(Ctrl+S)`, then click triangle to re-run."
+        ,"\n - Save model :red[_(Ctrl+S)_], then click triangle to re-run."
         ,"\n - Ignore MODPATH v7 warning if prompted since we are using v6.")], "td009")
 
     to_do(
-        [(st.write, " **Step1.10 Visualize Pathlines**"
-        ,"\n - Click **Data Visualization > MODPATH Pathlines**."
+        [(st.write, " **Step 1.10 Visualize Pathlines**"
+        ,"\n - Click :red[_Data Visualization > MODPATH Pathlines_]."
         ,"\n - Load the :red[_.path_] Click :red[_Apply_] Click :red[_Close_].")], "td010")
 
     st.markdown("""#### Video tutorial for Step 1
@@ -341,149 +350,155 @@ with st.expander('**📋 Final assessment – Review what you learned in Step 1*
 # STEP 2
 st.markdown("""
 #### :red[STEP 2:] Setting up the transport model with the FD scheme
-**Aim:** Setting up the transport model with the FD scheme: Performing an initial solute transport simulation. Running the FD method. Postprocessing the results and analyzing the simulation.
-""")  
+
+**Aim:**
+- Setting up the transport model with the FD scheme.
+- Performing an initial solute transport simulation.
+- Running the FD method. Postprocessing the results and analyzing the simulation.
+""")
+  
 
 with st.expander("🧠 **Initial Assessment – Step 2**"):
     render_assessment("06_Groundwater_modeling/QUESTIONS/initial_2D_trans_step2.json", "Initial Assessment for Step 2")
 
 with st.expander("🛠️ :red[**Expand to see the instructions and screencast video for STEP 2**]"):
     st.markdown("""
-    The following instructions are als available as [PDF Dokument for download.](https://raw.githubusercontent.com/gw-inux/Jupyter-Notebooks/main/06_Groundwater_modeling/DATA/2D_Transport/2D_Transport_Step_02.pdf)
+    The following instructions are available as [PDF Document for download.](https://raw.githubusercontent.com/gw-inux/Jupyter-Notebooks/main/06_Groundwater_modeling/DATA/2D_Transport/2D_Transport_Step_02.pdf)
     
     **Setting Up the Transport Model**
     """)
     to_do(
     [
         (st.write, "**Step 2.1 – Activating Solute Transport Packages**"
-         "\n - Navigate to: `Model > MODFLOW Packages and Programs > Groundwater Transport (Expand)`."
-         "\n - Select `MT3DMS or MT3D-USGS`."
-         "\n - From the list, enable the following packages: `BTN`, `ADV`, `DSP`, `SSM`, `GCG`."
+         "\n - Navigate to: :red[_Model > MODFLOW Packages and Programs > Groundwater Transport (Expand)_]."
+         "\n - Select :red[_MT3DMS or MT3D-USGS_]."
+         "\n - From the list, enable the following packages: :red[_BTN_], :red[_ADV_], :red[_DSP_], :red[_SSM_], :red[_GCG_] ."
          "\n - Update key settings in these packages as follows:"),
         
         (st.code, """
-        BTN Package:
-        - Under MT3D Options, set MT3D version to: MT3DMS
-        ADV Package:
-        - Advection 1 > Advection Solution Scheme: Standard Finite Difference"""),
+		BTN Package:
+		- Under MT3D Options, set MT3D version to: MT3DMS
+		ADV Package:
+		- Advection 1 > Advection Solution Scheme: Standard Finite Difference"""),
 
         (st.write, "- Note: Other solution schemes will be explored in future steps."
-                   "\n - Click `OK` to close the packages window."),],"td011")
+           "\n - Click :red[_OK_] to close the packages window."),],"td011")
 
     to_do(
     [
-        (st.write, "**Step 2.2 – Configuring Transport Model Time Discretization**"
-         "\n - When prompted to configure MT3D time settings, proceed as follows:"
-         "\n - Go to `Model > MODFLOW Time`."
-         "\n - Choose `MT3DMS` or `MT3D-USGS`."
-         "\n - Set the following parameters:"),
-        
+    (st.write, "**Step 2.2 – Configuring Transport Model Time Discretization**"
+     "\n - When prompted to configure MT3D time settings, proceed as follows:"
+     "\n - Go to :red[_Model > MODFLOW Time_]."
+     "\n - Choose :red[_MT3DMS_] or :red[_MT3D-USGS_]."
+     "\n - Set the following parameters:"), 
+
         (st.code, """
-        Starting Time: 0
-        Ending Time: 86400000
-        Initial Time Step: 86400
-        Max Transport Steps per Flow Step: 1000"""),
+		Starting Time: 0
+		Ending Time: 86400000
+		Initial Time Step: 86400
+		Max Transport Steps per Flow Step: 1000"""),
 
-        (st.write, "- Click `OK` to apply the settings."),],"td012")
-
-    to_do(
-    [
-        (st.write, "**Step 2.3 – Defining Contaminant Source and Observation Points**"
-         "\n\n🔴 **Source Definition**"
-         "\n - Click `Create point object` (dot icon below the scissors)."
-         "\n - Place the source at: `6th row, 4th column`."
-         "\n - Name the object: `source`."
-         "\n - Go to `MODFLOW Features > SSM`, then configure the following:"),
-        
-        (st.code, """
-        ✔ Check: Specified Concentration
-        ✔ Starting Time: 0
-        ✔ Ending Time: 86400000✔ Chem concentration: 1
-        
-        💡 If text fields appear inactive:
-        - Double-click to activate.
-        - Or: Set “Number of times” to 1 in the bottom-left to enable input."""),
-
-        (st.write, "- Click `OK` to save the source configuration."
-                   "\n\n🔎 **Observation Points**"
-                   "\n - Place observation points in `6th row` at the following columns:"
-                   "\n   - Col 5 → 100 m"
-                   "\n   - Col 7 → 300 m"
-                   "\n   - Col 9 → 500 m"
-                   "\n   - Col 14 → 1000 m"
-                   "\n - Repeat the following for each point:"),
-        
-        (st.code, """
-        1. Select: Create point object
-        2. Click on the appropriate cell
-        3. Name the object (e.g., Obs100)
-        4. Go to: Data Sets > Required > MT3DMS or MT3D-USGS
-        5. Check: MT3DMS_Observation_Location → set to TRUE
-        6. Click OK""")],"td013")
+    (st.write, "- Click :red[_OK_] to apply the settings."),],"td012")
 
     to_do(
     [
-        (st.write, "**Step 2.4 – Setting Longitudinal Dispersivity**"
-         "\n - Go to `Data > Edit Data Sets > Required`."
-         "\n - Expand `MT3DMS, MT3D-USGS or GWT`."
-         "\n - Locate `Longitudinal_Dispersivity` and set the value:"),
-        
-        (st.code, "Longitudinal_Dispersivity = 10"),
+    (st.write, "**Step 2.3 – Defining Contaminant Source and Observation Points**"
+     "\n\n🔴 **Source Definition**"
+     "\n - Click :red[_Create point object_] (dot icon below the scissors)."
+     "\n - Place the source at: :red[_6th row, 4th column_]."
+     "\n - Name the object: :red[_source_]."
+     "\n - Go to :red[_MODFLOW Features > SSM_], then configure the following:"),
+    
+    (st.code, """
+	✔ Check: Specified Concentration
+	✔ Starting Time: 0
+	✔ Ending Time: 86400000
+	✔ Chem concentration: 1
 
-        (st.write, "- Click `Apply`, then click `Close`."),],"td014")
+	If text fields appear inactive:
+	- Double click to activate.
+	- Or: Set “Number of times” to 1 in the bottom-left to enable input."""),
 
-    to_do(
-    [
-        (st.write, "**Step 2.5 – Executing the Simulation**"
-         "\n\n⚠️ **Note:** Before running the transport model, re-run the flow model to generate the `.ftl` (Flow Transport Link) file. This is required due to new boundary and source inputs."
-         
-         "\n\n▶️ **Running MODFLOW**"
-         "\n - Click the green triangle below the Grid toolbar."
-         "\n - Navigate to: `Coarse/coarse_FD/`."
-         "\n - Save the model as: `coarse.nam`."
-         "\n - Run the simulation."
-         
-         "\n\n💧 **Running MT3DMS**"
-         "\n - Click the dropdown next to the green triangle."
-         "\n - Select `Export MT3D Input Files`."
-         "\n - Save as: `coarse.mtnam`."
-         "\n - Use ModelMonitor to check for success."
-         "\n - Review the listing file and close the command window."),
-        
-        (st.markdown, "**✅ Checklist:**"),
-        
-        (st.code, """
-        ✔ Check percent discrepancy in `.lst` file
-        ✔ Note simulation run time
-        ✔ Review `.MTO` file for observation data:
-        Format: [Time step, Cumulative time, Layer (K), Row (I), Column (J), Concentration]""")],"td015")
-
-    to_do(
-    [
-        (st.write, "**Step 2.6 – Comparing Against Analytical Solution**"
-         "\n - Open the provided Excel sheet."
-         "\n - Go to the `Coarse` worksheet."
-         "\n - Copy and paste contents of the `.mto` file into the appropriate section."
-         "\n - View the superimposed plot of numerical vs. analytical results at all observation points."),],"td016"
-)
+    (st.write, "- Click :red[_OK_] to save the source configuration."
+               "\n\n🔎 **Observation Points**"
+               "\n - Place observation points in :red[_6th row_] at the following columns:"
+               "\n   - Col 5 → 100 m"
+               "\n   - Col 7 → 300 m"
+               "\n   - Col 9 → 500 m"
+               "\n   - Col 14 → 1000 m"
+               "\n - Repeat the following for each point:"),
+    
+    (st.code, """
+	1. Select: Create point object
+	2. Click on the appropriate cell
+	3. Name the object (e.g., Obs100)
+	4. Go to: Data Sets > Required > MT3DMS or MT3D-USGS
+	5. Check: MT3DMS_Observation_Location → set to TRUE
+	6. Click OK""")],"td013")
 
     to_do(
     [
-        (st.write, "**Step 2.7 – Visualizing the Results**"
-         "\n - Click `Import and display result` (colored icon next to the green run button)."
-         "\n - Navigate to `Coarse_FD/` and double-click the `.ucn` file."
-         "\n - Select the **final transport time step**."
-         "\n - In the `Select Model Results to Import` window:"
-         "\n   - Initially, the `Classification` dropdown shows `Model Result`, and the adjacent `Prefix` field is disabled."),
-        
-        (st.code, """
-        1. Change Classification = User Define
-        2. Enter Prefix: FD_Coarse
-        3. Select: Contour Grid
-        4. Click OK"""),
+    (st.write, "**Step 2.4 – Setting Longitudinal Dispersivity**"
+     "\n - Go to :red[_Data > Edit Data Sets > Required_]."
+     "\n - Expand :red[_MT3DMS, MT3D-USGS or GWT_]."
+     "\n - Locate :red[_Longitudinal_Dispersivity_] and set the value:"),
+    
+    (st.code, "Longitudinal_Dispersivity = 10"),
 
-        (st.write, "💡 **Note:** `.UCN` files store full-domain concentration data in binary format, "
-                   "while `.MTO` files contain data only at specified observation points.")],"td017")
+    (st.write, "- Click :red[_Apply_], then click :red[_Close_]."),],"td014")
+
+    to_do(
+    [
+    (st.write, "**Step 2.5 – Executing the Simulation**"
+     "\n\n⚠️ **Note:** Before running the transport model, re-run the flow model to generate the :red[_.ftl_] (Flow Transport Link) file. This is required due to new boundary and source inputs."
+     
+     "\n\n▶️ **Running MODFLOW**"
+     "\n - Click the green triangle below the Grid toolbar."
+     "\n - Navigate to: :red[_Coarse/coarse_FD/_]."
+     "\n - Save the model as: :red[_coarse.nam_]."
+     "\n - Run the simulation."
+     
+     "\n\n💧 **Running MT3DMS**"
+     "\n - Click the dropdown next to the green triangle."
+     "\n - Select :red[_Export MT3D Input Files_]."
+     "\n - Save as: :red[_coarse.mtnam_]."
+     "\n - Use :red[_ModelMonitor_] to check for success."
+     "\n - Review the listing file and close the command window."),
+    
+    (st.markdown, "**✅ Checklist:**"),
+    
+    (st.code, """
+	✔ Check percent discrepancy in `.lst` file
+	✔ Note simulation run time
+	✔ Review `.MTO` file for observation data:
+	Format: [Time step, Cumulative time, Layer (K), Row (I), Column (J), Concentration]""")],"td015")
+
+    to_do(
+    [
+    (st.write, "**Step 2.6 – Comparing Against Analytical Solution**"
+     "\n - Open the provided Excel sheet."
+     "\n - Go to the :red[_Coarse_] worksheet."
+     "\n - Copy and paste contents of the :red[_.mto_] file into the appropriate section."
+     "\n - View the superimposed plot of numerical vs. analytical results at all observation points."),],"td016")
+
+    to_do(
+    [
+    (st.write, "**Step 2.7 – Visualizing the Results**"
+     "\n - Click :red[_Import and display result_] (colored icon next to the green run button)."
+     "\n - Navigate to :red[_Coarse_FD/_] and double-click the :red[_.ucn_] file."
+     "\n - Select the **final transport time step**."
+     "\n - In the :red[_Select Model Results to Import_] window:"
+     "\n   - Initially, the :red[_Classification_] dropdown shows :red[_Model Result_], and the adjacent :red[_Prefix_] field is disabled."),
+    
+    (st.code, """
+	1. Change Classification = User Define
+	2. Enter Prefix: FD_Coarse
+	3. Select: Contour Grid
+	4. Click OK"""),
+
+    (st.write, "💡 **Note:** :red[_.UCN_] files store full-domain concentration data in binary format, "
+               "while :red[_.MTO_] files contain data only at specified observation points.")],"td017")
+
 
 
     st.markdown("""
@@ -499,6 +514,15 @@ with st.expander("🛠️ :red[**Expand to see the instructions and screencast v
 
 with st.expander("📋 **Final Assessment – Step 2**"):
     render_assessment("06_Groundwater_modeling/QUESTIONS/final_2D_trans_step2.json", "Final Assessment for Step 2", max_questions=6)
+
+
+
+
+
+
+
+
+
     
 # STEP 3
 st.markdown("""
@@ -511,205 +535,199 @@ with st.expander("🧠 **Initial Assessment – Step 3**"):
 
 with st.expander("🛠️ :red[**Expand to see the instructions and screencast video for STEP 3**]"):
     st.markdown("""In the previous step, the transport model used the **Standard Finite Difference (FD)** solver. We now shift focus to the **Method of Characteristics (MOC)**, which is designed to reduce numerical dispersion. By disabling physical dispersion (setting dispersivity to 0), we can isolate solver effects and fine-tune key parameters like particle count and movement limits. This helps us compare MOC results with analytical benchmarks.
-    
-    The following instructions are als available as [PDF Dokuments for download: Step3 (modeling)](https://raw.githubusercontent.com/gw-inux/Jupyter-Notebooks/main/06_Groundwater_modeling/DATA/2D_Transport/2D_Transport_Step_03.pdf) and [Step3b (postprocessing)](https://raw.githubusercontent.com/gw-inux/Jupyter-Notebooks/main/06_Groundwater_modeling/DATA/2D_Transport/2D_Transport_Step_03b.pdf)
+	The following instructions are als available as PDF Document for download: [Step 3a (Modeling)](https://raw.githubusercontent.com/gw-inux/Jupyter-Notebooks/main/06_Groundwater_modeling/DATA/2D_Transport/2D_Transport_Step_03.pdf) and [Step 3b (Post Processing)](https://raw.githubusercontent.com/gw-inux/Jupyter-Notebooks/main/06_Groundwater_modeling/DATA/2D_Transport/2D_Transport_Step_03b.pdf)
     """)
 
     to_do(
     [
-        (st.write, "**Step 3.1 – Changing the Solver to MOC**"
-         "\n - Navigate to: `Model > MODFLOW Packages and Programs > Groundwater Transport > MT3DMS or MT3D-USGS > ADV`."
-         "\n - In the `Advection1` section, change the `Advection Solution Scheme` to: `Method of Characteristics (MOC)`."
-         "\n - Click `OK` to apply the changes."),],"td018")
+    (st.write, "**Step 3.1 – Changing the Solver to MOC**"
+     "\n - Navigate to: :red[_Model > MODFLOW Packages and Programs > Groundwater Transport > MT3DMS or MT3D-USGS > ADV_]."
+     "\n - In the :red[_Advection1_] section, change the :red[_Advection Solution Scheme_] to: :red[_Method of Characteristics (MOC)_]."
+     "\n - Click :red[_OK_] to apply the changes."),],"td018")
 
         
     to_do(
     [
-        (st.write, "**Step 3.2 – Running MODFLOW and MT3DMS with MOC Solver**"
-         "\n\n▶️ **Running MODFLOW**"
-         "\n - Click the green triangle below the Grid icon."
-         "\n - Save the model in `Coarse/coarse_MOC/` as `coarse.nam`."
-         "\n - Confirm and run the simulation."
+    (st.write, "**Step 3.2 – Running MODFLOW and MT3DMS with MOC Solver**"
+     "\n\n▶️ **Running MODFLOW**"
+     "\n - Click the green triangle below the Grid icon."
+     "\n - Save the model in :red[_Coarse/coarse_MOC/_] as :red[_coarse.nam_]."
+     "\n - Confirm and run the simulation."
 
-         "\n\n💧 **Running MT3DMS**"
-         "\n - Click the dropdown next to the green triangle."
-         "\n - Select `Export MT3D Input Files`."
-         "\n - Save the input as `coarse.mtnam` in `Coarse/coarse_MOC/`."
-         "\n\n✅ **Checklist:**"),
-        
-        (st.code, """
-        ✔ Verify percent discrepancy in `.lst` file
-        ✔ Record simulation runtime for comparison""")],"td019")
-
-        
-    to_do(
-    [
-        (st.write, "**Step 3.3 – Visualizing the Results**"
-         "\n - Click `Import and display result` (colored icon next to the simulation run button)."
-         "\n - Navigate to `Coarse_MOC/` and select the `.ucn` file."
-         "\n - Choose the **final transport time step**."
-         "\n - In the `Select Model Results to Import` window:"
-         "\n   - Classification will default to `Model Result`, and the `Prefix` field will be inactive."),
-        
-        (st.code, """
-        1. Change Classification = User Define
-        2. Enter Prefix: Coarse_MOC
-        3. Select: Contour Grid
-        4. Click OK""")],"td020")
+     "\n\n💧 **Running MT3DMS**"
+     "\n - Click the dropdown next to the green triangle."
+     "\n - Select :red[_Export MT3D Input Files_]."
+     "\n - Save the input as :red[_coarse.mtnam_] in :red[_Coarse/coarse_MOC/_]."
+     "\n\n✅ **Checklist:**"),
+    
+    (st.code, """
+    ✔ Verify percent discrepancy in `.lst` file
+    ✔ Record simulation runtime for comparison""")],"td019")
 
         
     to_do(
     [
-        (st.write, "**Step 3.4 – Comparing Against Analytical Solution**"
-         "\n - Open the `.MTO` file in `Coarse_MOC/` and copy its contents."
-         "\n - Launch the Excel analysis sheet and go to the `Coarse` worksheet."
-         "\n - Paste the data to view the overlaid numerical vs. analytical plots for all observation points."),],"td021")
+    (st.write, "**Step 3.3 – Visualizing the Results**"
+     "\n - Click :red[_Import and display result_] (colored icon next to the simulation run button)."
+     "\n - Navigate to :red[_Coarse_MOC/_] and select the :red[_.ucn_] file."
+     "\n - Choose the **final transport time step**."
+     "\n - In the :red[_Select Model Results to Import_] window:"
+     "\n   - Classification will default to :red[_Model Result_], and the :red[_Prefix_] field will be inactive."),
+    
+    (st.code, """
+    1. Change Classification = User Define
+    2. Enter Prefix: Coarse_MOC
+    3. Select: Contour Grid
+    4. Click OK""")],"td020")
+
+        
+    to_do(
+    [
+    (st.write, "**Step 3.4 – Comparing Against Analytical Solution**"
+     "\n - Open the :red[_.MTO_] file in :red[_Coarse_MOC/_] and copy its contents."
+     "\n - Launch the Excel analysis sheet and go to the :red[_Coarse_] worksheet."
+     "\n - Paste the data to view the overlaid numerical vs. analytical plots for all observation points."),],"td021")
 
         
 
     
     st.markdown(""" 
-    ####  Optimizing the MOC Solver
+    #### Optimizing the MOC Solver
     """)
-    to_do(
-    [
-        (st.write, "**Step 3.5 – Iteration 1: Increasing Particle Settings**"
-         "\n - Navigate to: `Model > MODFLOW Packages and Programs > Groundwater Transport > MT3DMS or MT3D-USGS > ADV`."
-         "\n - Under `Advection1`, adjust the following:"),
-        
-        (st.code, """
-        Initial particles per cell (DCEPS / NPH): 10 → 16
-        Maximum total moving particles (MXPART): 75,000 → 250,000"""),
-
-        (st.write, "- Under `Advection2`, increase:"),
-        
-        (st.code, "Maximum particles per cell (NPMAX): 20 → 200"),
-
-        (st.write, "- Click `OK` to apply the changes."
-                   "\n - 💡 Since the solver type hasn’t changed, re-running the flow model is not required."
-                   "\n - ✅ Repeat: `Running MT3DMS`, `Visualizing Results`, and `Comparing Against Analytical Solution`."),],"td022")
-
-        
-    to_do(
-    [
-        (st.write, "**Step 3.6 – Iteration 2: Disabling Dispersion**"
-         "\n - Go to: `Data > Edit Data Sets > Required`."
-         "\n - Expand `MT3DMS`, `MT3D-USGS`, or `GWT`."
-         "\n - Locate `Longitudinal Dispersivity` and set it to:"),
-        
-        (st.code, "Longitudinal_Dispersivity = 0"),
-
-        (st.write, "- ✅ Repeat: `Running MT3DMS`, `Visualizing Results`, and `Comparing Against Analytical Solution`."),],"td023")
-
-        
-    to_do(
-    [
-        (st.write, "**Step 3.7 – Iteration 3: Further Increasing Particle Density**"
-         "\n - Navigate again to: `ADV > Advection1`."
-         "\n - Update the following:"),
-        
-        (st.code, "Initial particles per cell (DCEPS / NPH): 16 → 32"),
-
-        (st.write, "- ✅ Repeat: `Running MT3DMS`, `Visualizing Results`, and `Comparing Against Analytical Solution`."),],"td024")
-
 
     to_do(
     [
-        (st.write, "**Step 3.8 – Iteration 4: Re-enabling Dispersion**"
-         "\n - Go to: `Data > Edit Data Sets > Required`."
-         "\n - Expand `MT3DMS`, `MT3D-USGS`, or `GWT`."
-         "\n - Reset the following:"),
-        
-        (st.code, "Longitudinal_Dispersivity = 10"),
-
-        (st.write, "- ✅ Repeat: `Running MT3DMS`, `Visualizing Results`, and `Comparing Against Analytical Solution`."
-                   "\n - 💾 Press `Ctrl + S` to save the model."),],"td025")
+    (st.write, "**Step 3.5 – Iteration 1: Increasing Particle Settings**"
+     "\n - Navigate to: :red[_Model > MODFLOW Packages and Programs > Groundwater Transport > MT3DMS or MT3D-USGS > ADV_]."
+     "\n - Under :red[_Advection1_], adjust the following:"),
     
+    (st.code, """
+    Initial particles per cell (DCEPS / NPH): 10 → 16
+    Maximum total moving particles (MXPART): 75,000 → 250,000"""),
+
+    (st.write, "- Under :red[_Advection2_], increase:"),
     
+    (st.code, "Maximum particles per cell (NPMAX): 20 → 200"),
+
+    (st.write, "- Click :red[_OK_] to apply the changes."
+               "\n - Since the solver type hasn’t changed, re-running the flow model is not required."
+               "\n - Repeat: :red[_Running MT3DMS_], :red[_Visualizing Results_], and :red[_Comparing Against Analytical Solution_]."),],"td022")
+
+    to_do(
+    [
+    (st.write, "**Step 3.6 – Iteration 2: Disabling Dispersion**"
+     "\n - Go to: :red[_Data > Edit Data Sets > Required_]."
+     "\n - Expand :red[_MT3DMS_, _MT3D-USGS_, or _GWT_]."
+     "\n - Locate :red[_Longitudinal Dispersivity_] and set it to:"),
+    
+    (st.code, "Longitudinal_Dispersivity = 0"),
+
+    (st.write, "- Repeat: :red[_Running MT3DMS_], :red[_Visualizing Results_], and :red[_Comparing Against Analytical Solution_]."),],"td023")
+
+    to_do(
+    [
+    (st.write, "**Step 3.7 – Iteration 3: Further Increasing Particle Density**"
+     "\n - Navigate again to: :red[_ADV > Advection1_]."
+     "\n - Update the following:"),
+    
+    (st.code, "Initial particles per cell (DCEPS / NPH): 16 → 32"),
+
+    (st.write, "- Repeat: :red[_Running MT3DMS_], :red[_Visualizing Results_], and :red[_Comparing Against Analytical Solution_]."),],"td024")
+
+    to_do(
+    [
+    (st.write, "**Step 3.8 – Iteration 4: Re-enabling Dispersion**"
+     "\n - Go to: :red[_Data > Edit Data Sets > Required_]."
+     "\n - Expand :red[_MT3DMS_, _MT3D-USGS_, or _GWT_]."
+     "\n - Reset the following:"),
+    
+    (st.code, "Longitudinal_Dispersivity = 10"),
+
+    (st.write, "- Repeat: :red[_Running MT3DMS_], :red[_Visualizing Results_], and :red[_Comparing Against Analytical Solution_]."
+               "\n - Press :red[_Ctrl + S_] to save the model."),],"td025")
+
     st.markdown(""" 
     #### Post-Processing and Visualization
     """)
-        
-    to_do(
-    [
-        (st.write, "**Step 3.9 – Using the Streamlit App for Analytical Visualization**"
-         "\n - Launch the analytical app: *2D Solute Transport: Continuous Source in Uniform 1D Flow* using the provided link."
-         "\n - Input the same parameters as your numerical model."),
-        
-        (st.code, """
-        Source concentration: 1 g/m³
-        Source width (Y): 100 m
-        Longitudinal dispersivity (αx): 10 m
-        Specific discharge (q): 0.432 m/day
-        Porosity (n): 0.25
-        Dispersivity ratio (αx/αy): 10
-        Time: 1000 days"""),
-        (st.write," Under `Adjust Plot` menu set:"),
-        (st.code, """
-        • Max Conc of plot (g/m³): 1
-        • Max extension in x direction: 2100
-        • Max extension in y direction: 550
-        • Toggle: Show isolines instead of contour """),
-
-        (st.write, "- Take a screenshot of the resulting plot once it appears."),],"td026")
-
-        
-    to_do(
-    [
-        (st.write, "**Step 3.10 – Importing the Analytical Image into ModelMuse**"
-         "\n - Open your model in ModelMuse."
-         "\n - Go to `File > Import > Image` and select the screenshot you saved."
-         "\n - Map the anchor points as follows:"),
-        
-        (st.code, """
-        Bottom-Left Anchor Point:
-        Image: (0, -550) → Model: (400, 1100)
-        Top-Right Anchor Point:
-        Image: (2100, 550) → Model: (2500, 0)"""),
-
-        (st.write, "- Press `OK` to place the image."
-                   "\n - Optional: Toggle grid lines using the `Show/Hide 2D Grid Lines` icon."),],"td027")
-
-        
-    to_do(
-    [
-        (st.write, "**Step 3.11 – Visualizing and Comparing Analytical & Numerical Results**"
-         "\n\n🔁 **Overlaying Results**"
-         "\n - Click `Data Visualization` (colored icon in toolbar)."
-         "\n - If `MODPATH Pathlines` is enabled, uncheck `Show Pathlines` and press `OK`."
-
-         "\n\n📊 **Comparing with Analytical Solution**"
-         "\n - Go to `Data Visualization > Contour Data > User Defined > 3D Data`."
-         "\n - Select the relevant dataset (e.g., `FD_Coarse`)."
-         "\n - Click `Apply`, then `Close`."
-
-         "\n\n💡 *Tip:* Use this overlay to evaluate where your numerical result diverges from the analytical benchmark."),],"td028")
 
     to_do(
     [
-        (st.write, "**Step 3.12 – Save Your Work**"
-         "\n - Press `Ctrl + S` to save your model setup."),],"td029")
+    (st.write, "**Step 3.9 – Using the Streamlit App for Analytical Visualization**"
+     "\n - Launch the analytical app: *2D Solute Transport: Continuous Source in Uniform 1D Flow* using the provided link."
+     "\n - Input the same parameters as your numerical model."),
     
+    (st.code, """
+    Source concentration: 1 g/m³
+    Source width (Y): 100 m
+    Longitudinal dispersivity (αx): 10 m
+    Specific discharge (q): 0.432 m/day
+    Porosity (n): 0.25
+    Dispersivity ratio (αx/αy): 10
+    Time: 1000 days"""),
+    (st.write," Under :red[_Adjust Plot_] menu set:"),
+    (st.code, """
+    • Max Conc of plot (g/m³): 1
+    • Max extension in x direction: 2100
+    • Max extension in y direction: 550
+    • Toggle: Show isolines instead of contour """),
+
+    (st.write, "- Take a screenshot of the resulting plot once it appears."),],"td026")
 
     to_do(
     [
-         (st.write, "**Step 3.13 – Quantitative Comparison of Breakthrough Curves**\n\nSo far, you've overlaid the analytical image on your numerical model to evaluate results visually. Now we'll compare **concentration vs. time** data directly using observation points and Excel plots."),
-        
-        (st.write, "🔹 **Export Analytical Data from the Streamlit App**"
-         "\n - In the Streamlit analytical app, define observation points at the same distances used in your numerical model."
-         "\n - Once set, download the resulting CSV containing time series concentration data."),
+    (st.write, "**Step 3.10 – Importing the Analytical Image into ModelMuse**"
+     "\n - Open your model in ModelMuse."
+     "\n - Go to :red[_File > Import > Image_] and select the screenshot you saved."
+     "\n - Map the anchor points as follows:"),
+    
+    (st.code, """
+    Bottom-Left Anchor Point:
+    Image: (0, -550) → Model: (400, 1100)
+    Top-Right Anchor Point:
+    Image: (2100, 550) → Model: (2500, 0)"""),
 
-        (st.write, "🔹 **Organize the Data in Excel**"
-         "\n - Open the provided Excel analysis sheet."
-         "\n - Paste the downloaded analytical CSV data into the dedicated `Analytical` section."
-         "\n - Open your numerical model's `.MTO` file and copy the data."
-         "\n - Paste it into the `Numerical` section of the same Excel sheet."),
-		
-		(st.write, "🔹 **Compare the Results**"
-         "\n - Use the preconfigured Excel plots to compare breakthrough curves at each observation point."
-         "\n - Analyze the overlap and discrepancies between the numerical and analytical results."),
+    (st.write, "- Press :red[_OK_] to place the image."
+               "\n - Optional: Toggle grid lines using the :red[_Show/Hide 2D Grid Lines_] icon."),],"td027")
 
-        (st.write, "💡 **This step allows you to validate your model quantitatively** and assess the impact of grid size, dispersion, and solver type.")],"td029a")
+    to_do(
+    [
+    (st.write, "**Step 3.11 – Visualizing and Comparing Analytical & Numerical Results**"
+     "\n\n🔁 **Overlaying Results**"
+     "\n - Click :red[_Data Visualization_] (colored icon in toolbar)."
+     "\n - If :red[_MODPATH Pathlines_] is enabled, uncheck :red[_Show Pathlines_] and press :red[_OK_]."
+
+     "\n\n📊 **Comparing with Analytical Solution**"
+     "\n - Go to :red[_Data Visualization > Contour Data > User Defined > 3D Data_]."
+     "\n - Select the relevant dataset (e.g., :red[_FD_Coarse_])."
+     "\n - Click :red[_Apply_], then :red[_Close_]."
+
+     "\n\n💡 *Tip:* Use this overlay to evaluate where your numerical result diverges from the analytical benchmark."),],"td028")
+
+    to_do(
+    [
+    (st.write, "**Step 3.12 – Save Your Work**"
+     "\n - Press :red[_Ctrl + S_] to save your model setup."),],"td029")
+
+    to_do(
+[
+    (st.write, "**Step 3.13 – Quantitative Comparison of Breakthrough Curves**\n\nSo far, you've overlaid the analytical image on your numerical model to evaluate results visually. Now we'll compare **concentration vs. time** data directly using observation points and Excel plots."),
+    
+    (st.write, "🔹 **Export Analytical Data from the Streamlit App**"
+     "\n - In the Streamlit analytical app, define observation points at the same distances used in your numerical model."
+     "\n - Once set, download the resulting CSV containing time series concentration data."),
+
+    (st.write, "🔹 **Organize the Data in Excel**"
+     "\n - Open the provided Excel analysis sheet."
+     "\n - Paste the downloaded analytical CSV data into the dedicated :red[_Analytical_] section."
+     "\n - Open your numerical model’s :red[_.MTO_] file and copy the data."
+     "\n - Paste it into the :red[_Numerical_] section of the same Excel sheet."),
+    
+    (st.write, "🔹 **Compare the Results**"
+     "\n - Use the preconfigured Excel plots to compare breakthrough curves at each observation point."
+     "\n - Analyze the overlap and discrepancies between the numerical and analytical results."),
+
+    (st.write, "💡 **This step allows you to validate your model quantitatively** and assess the impact of grid size, dispersion, and solver type.")],"td029a")
+
 
     
     st.markdown("""
@@ -729,12 +747,24 @@ with st.expander("🛠️ :red[**Expand to see the instructions and screencast v
 with st.expander("📋 **Final Assessment – Step 3**"):
     render_assessment("06_Groundwater_modeling/QUESTIONS/final_2D_trans_step3.json", "Final Assessment for Step 3", max_questions=6)
 	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 # STEP 4
 
 st.markdown("""
 #### :red[STEP 4:] Refining the grid size and re-running the FD and MOC simulations.
 **Aim:** Adapting the spatial discretization. Running the simulation with FD and MOC. Understand the effect of the grid size on the results of the computation. Postprocessing the results and analyzing the simulation.
-The following instructions are als available as [PDF Dokuments for download: Step4 (modeling)](https://raw.githubusercontent.com/gw-inux/Jupyter-Notebooks/main/06_Groundwater_modeling/DATA/2D_Transport/2D_Transport_Step_04.pdf) and [Step4b (postprocessing)](https://raw.githubusercontent.com/gw-inux/Jupyter-Notebooks/main/06_Groundwater_modeling/DATA/2D_Transport/2D_Transport_Step_04b.pdf)
+The following instructions are als available as [PDF Document for download: Step4 (modeling)](https://raw.githubusercontent.com/gw-inux/Jupyter-Notebooks/main/06_Groundwater_modeling/DATA/2D_Transport/2D_Transport_Step_04.pdf) and [Step4b (postprocessing)](https://raw.githubusercontent.com/gw-inux/Jupyter-Notebooks/main/06_Groundwater_modeling/DATA/2D_Transport/2D_Transport_Step_04b.pdf)
 """)  
 
 with st.expander("🧠 **Initial Assessment – Step 4**"):
@@ -746,115 +776,114 @@ with st.expander("🛠️ :red[**Expand to see the instructions and screencast v
     """)
     to_do(
     [
-        (st.write, "**Step 4.1 – Refine the Grid**"
-         "\n - Click the `Subdivide Grid Cells` icon."
-         "\n - Select **rows 5–7 and columns 3–25** where the plume spreads."
-         "\n - In the dialog box, set:"),
-        (st.code, """
-		From Column: 3 → Through Column: 25
-		Subdivide each column into: 10
-		From Row: 5 → Through Row: 7
-		Subdivide each row into: 10"""),
-		(st.write, "- Click `OK` to apply. Region is now 10m × 10m cells."),], "td030")
-    to_do(
-    [
-        (st.write, "**Step 4.2 – Redefine the Source**"
-         "\n - Use the `Create Rectangle Object` tool."
-         "\n - Draw and name the object `source`."
-         "\n - Under `Vertices`, enter:"),
-        (st.code, """
-		(300, -500)
-		(400, -500)
-		(400, -600)
-		(300, -600)
-		(300, -500) (to close the rectangle)"""),
-        (st.write, "- Go to `MODFLOW Features > SSM`. Set:"),
-        (st.code, """
-		Check Specified Concentration
-		Starting Time: 0
-		Ending Time: 86400000
-		Chem Concentration: 1
-		"""),
-        (st.write, "- Set `Number of times` = 1 if fields are inactive. Click `OK`."),], "td031")
-
+    (st.write, "**Step 4.1 – Refine the Grid**"
+     "\n - Click the :red[_Subdivide Grid Cells_] icon."
+     "\n - Select **rows 5–7 and columns 3–25** where the plume spreads."
+     "\n - In the dialog box, set:"),
+    (st.code, """
+    From Column: 3 → Through Column: 25
+    Subdivide each column into: 10
+    From Row: 5 → Through Row: 7
+    Subdivide each row into: 10"""),
+    (st.write, "- Click :red[_OK_] to apply. Region is now 10m × 10m cells."),], "td030")
 
     to_do(
     [
-        (st.write, "**Step 4.3 – Update Observation Points**"
-         "\n - Adjust x-coordinates by +50 m (y remains unchanged):"),
-        (st.code, """
-		Obs100:  x = 450 → 500
-		Obs300:  x = 650 → 700
-		Obs500:  x = 850 → 900
-		Obs1000: x = 1350 → 1400"""),
-        (st.write, "- For each point, open `Vertices` tab and update x-coordinates."),], "td032")
+    (st.write, "**Step 4.2 – Redefine the Source**"
+     "\n - Use the :red[_Create Rectangle Object_] tool."
+     "\n - Draw and name the object :red[_source_]."
+     "\n - Under :red[_Vertices_], enter:"),
+    (st.code, """
+    (300, -500)
+    (400, -500)
+    (400, -600)
+    (300, -600)
+    (300, -500) (to close the rectangle)"""),
+    (st.write, "- Go to :red[_MODFLOW Features > SSM_]. Set:"),
+    (st.code, """
+    Check Specified Concentration
+    Starting Time: 0
+    Ending Time: 86400000
+    Chem Concentration: 1
+    """),
+    (st.write, "- Set :red[_Number of times_] = 1 if fields are inactive. Click :red[_OK_]."),], "td031")
 
+    to_do(
+    [
+    (st.write, "**Step 4.3 – Update Observation Points**"
+     "\n - Adjust x-coordinates by +50 m (y remains unchanged):"),
+    (st.code, """
+    Obs100:  x = 450 → 500
+    Obs300:  x = 650 → 700
+    Obs500:  x = 850 → 900
+    Obs1000: x = 1350 → 1400"""),
+    (st.write, "- For each point, open :red[_Vertices_] tab and update x-coordinates."),], "td032")
 
 # FD Solver
 
     to_do(
     [
-        (st.write, "**Step 4.4 – Run with Finite Difference Solver**"
-         "\n - Change solver to `Standard Finite Difference` under ADV."),
-        (st.write, "- Run MODFLOW in `Fine/Fine_FD/`, name as `Fine.nam`."),
-        (st.write, "- Export MT3D Input Files as `Fine.mtnam`. Monitor simulation."),
-        (st.write, "- Visualize `.ucn` result and import as:`Fine_FD`."),
-        (st.write, "- Paste `.MTO` output in Excel under `Fine` sheet to compare with analytical solution."),], "td033")
-
+    (st.write, "**Step 4.4 – Run with Finite Difference Solver**"
+     "\n - Change solver to :red[_Standard Finite Difference_] under ADV."),
+    (st.write, "- Run MODFLOW in :red[_Fine/Fine_FD/_], name as :red[_Fine.nam_]."),
+    (st.write, "- Export MT3D Input Files as :red[_Fine.mtnam_]. Monitor simulation."),
+    (st.write, "- Visualize :red[_.ucn_] result and import as: :red[_Fine_FD_]."),
+    (st.write, "- Paste :red[_.MTO_] output in Excel under :red[_Fine_] sheet to compare with analytical solution."),], "td033")
 
 # MOC Solver
 
     to_do(
     [
-        (st.write, "**Step 4.5 – Run with Method of Characteristics Solver**"
-         "\n - Change solver to `Method of Characteristics (MOC)` under ADV."),
-        (st.write, "- Run MODFLOW in `Fine/Fine_MOC/`, name as `Fine.nam`."),
-        (st.write, "- Export MT3D Input Files as `Fine.mtnam`. Monitor simulation."),
-        (st.write, "- Visualize `.ucn` result and import as: `Fine_MOC`."),
-        (st.write, "- Paste `.MTO` output in Excel under `Fine` sheet to compare with analytical solution."),], "td034")
-		
+    (st.write, "**Step 4.5 – Run with Method of Characteristics Solver**"
+     "\n - Change solver to :red[_Method of Characteristics (MOC)_] under ADV."),
+    (st.write, "- Run MODFLOW in :red[_Fine/Fine_MOC/_], name as :red[_Fine.nam_]."),
+    (st.write, "- Export MT3D Input Files as :red[_Fine.mtnam_]. Monitor simulation."),
+    (st.write, "- Visualize :red[_.ucn_] result and import as: :red[_Fine_MOC_]."),
+    (st.write, "- Paste :red[_.MTO_] output in Excel under :red[_Fine_] sheet to compare with analytical solution."),], "td034")
+
     to_do(
     [
-        (st.write, "**Step 4.6 – Breakthrough Curve Comparison with Refined Grid**"
-         "\n - Use the Streamlit analytical app to define observation points based on the refined source boundary."
-         "\n - Download the resulting CSV with analytical concentrations."
-         "\n - Paste the data into the `Fine` sheet in the provided Excel template."
-         "\n - Copy `.MTO` output from both FD and MOC simulations into the same sheet."
-         "\n - Use the plots to compare numerical and analytical breakthrough curves.")],"td034b")
+    (st.write, "**Step 4.6 – Breakthrough Curve Comparison with Refined Grid**"
+     "\n - Use the Streamlit analytical app to define observation points based on the refined source boundary."
+     "\n - Download the resulting CSV with analytical concentrations."
+     "\n - Paste the data into the :red[_Fine_] sheet in the provided Excel template."
+     "\n - Copy :red[_.MTO_] output from both FD and MOC simulations into the same sheet."
+     "\n - Use the plots to compare numerical and analytical breakthrough curves.")],"td034b")
 
     st.markdown(""" **Zero Dispersion Case with MOC (Refined Grid)** """)
-	
+
     to_do(
     [
-        (st.write, "**Step 4.7 – Zero Dispersion Case with MOC (Refined Grid)**"),
-        
-        (st.write, "🔹 **Set Longitudinal Dispersivity to Zero**"
-         "\n - Go to `Data > Edit Data Sets > Required`."
-         "\n - Expand `MT3DMS`, `MT3D-USGS`, or `GWT`."
-         "\n - Locate `Longitudinal_Dispersivity` and set it to **0**."
-         "\n - Leave all other model settings unchanged."),
+    (st.write, "**Step 4.7 – Zero Dispersion Case with MOC (Refined Grid)**"),
 
-        (st.write, "🔹 **Run the Model**"
-         "\n - Run MODFLOW again in `Fine/Fine_MOC/` as `Fine.nam`."
-         "\n - Export MT3D input files as `Fine.mtnam` in the same folder."
-         "\n - Monitor the simulation and check the listing file for errors."),
+    (st.write, "🔹 **Set Longitudinal Dispersivity to Zero**"
+     "\n - Go to :red[_Data > Edit Data Sets > Required_]."
+     "\n - Expand :red[_MT3DMS_], :red[_MT3D-USGS_], or :red[_GWT_]."
+     "\n - Locate :red[_Longitudinal_Dispersivity_] and set it to **0**."
+     "\n - Leave all other model settings unchanged."),
 
-        (st.write, "🔹 **Compare with Analytical Solution**"
-         "\n - Launch the Streamlit app for continuous transport."
-         "\n - Set Longitudinal Dispersivity to 0."
-         "\n - Observe the sharp solute front in the analytical result."),
+    (st.write, "🔹 **Run the Model**"
+     "\n - Run MODFLOW again in :red[_Fine/Fine_MOC/_] as :red[_Fine.nam_]."
+     "\n - Export MT3D input files as :red[_Fine.mtnam_] in the same folder."
+     "\n - Monitor the simulation and check the listing file for errors."),
 
-        (st.write, "🔹 **Visualize Numerical Results in ModelMuse**"
-         "\n - Import the `.UCN` file from this run."
-         "\n - View isoconcentration contours."
-         "\n - Toggle off background image if needed for clarity."),
+    (st.write, "🔹 **Compare with Analytical Solution**"
+     "\n - Launch the Streamlit app for continuous transport."
+     "\n - Set Longitudinal Dispersivity to 0."
+     "\n - Observe the sharp solute front in the analytical result."),
 
-        (st.write, "🔹 **Analyze Breakthrough Curves**"
-         "\n - Load the `.MTO` file into the Excel sheet."
-         "\n - Paste it into the appropriate `Fine` section."
-         "\n - Observe sharp concentration jumps – indicating pure advection."),
+    (st.write, "🔹 **Visualize Numerical Results in ModelMuse**"
+     "\n - Import the :red[_.UCN_] file from this run."
+     "\n - View isoconcentration contours."
+     "\n - Toggle off background image if needed for clarity."),
 
-        (st.write, "🔹 **(Optional)** Reset `Longitudinal_Dispersivity` back to **10 m** for future runs.")],"td034c")
+    (st.write, "🔹 **Analyze Breakthrough Curves**"
+     "\n - Load the :red[_.MTO_] file into the Excel sheet."
+     "\n - Paste it into the appropriate :red[_Fine_] section."
+     "\n - Observe sharp concentration jumps – indicating pure advection."),
+
+    (st.write, "🔹 **(Optional)** Reset :red[_Longitudinal_Dispersivity_] back to **10 m** for future runs.")],"td034c")
+
 
 
 
@@ -902,144 +931,143 @@ with st.expander("🧠 **Initial Assessment – Step 5**"):
 
 with st.expander("🛠️ :green[**Expand to see the instructions and screencast video for STEP 5**]"):
     st.markdown("""
-        In this section we simulate a Dirac pulse—a brief injection of solute mass over a short duration—and analyze its transport behavior using both Finite Difference (FD) and Method of Characteristics (MOC) solvers. The results will be compared against an analytical solution generated through a specialized Streamlit application.
- 
-        The following instructions are als available as [PDF Dokument for download.](https://raw.githubusercontent.com/gw-inux/Jupyter-Notebooks/main/06_Groundwater_modeling/DATA/2D_Transport/2D_Transport_Step_05.pdf)
+    In this section we simulate a Dirac pulse—a brief injection of solute mass over a short
+    duration—and analyze its transport behavior using both Finite Difference (FD) and Method
+    of Characteristics (MOC) solvers. The results will be compared against an analytical solution
+    generated through a specialized Streamlit application.
+    The following instructions are als available as [PDF Document for download.](https://raw.githubusercontent.com/gw-inux/Jupyter-Notebooks/main/06_Groundwater_modeling/DATA/2D_Transport/2D_Transport_Step_05.pdf)
     """)
 
     to_do(
     [
-        (st.write, "**Step 5.1 – Setup for Dirac Pulse Injection**"),
-        
-        (st.write, "🔹 **Duplicate Refined Model**"
-         "\n - Save your refined model into a new folder: `Dirac_FD/`."
-         "\n - Save as: `Dirac.nam` to preserve previous configurations."),
+    (st.write, "**Step 5.1 – Setup for Dirac Pulse Injection**"),
 
-        (st.write, "🔹 **Configure Flow Time Discretization (3 Periods)**"
-		"\n - Go to `Model > MODFLOW Time` and set `Number of Stress Periods = 3`."
-		"\n - Use the following values:"),
-		(st.code, """
-		Period 1 (Steady-State):
-		Start Time: -1
-		End Time: 0
-		Max Step Length: 1
-		Time Step Multiplier: 1
-		
-		Period 2 (Injection):
-		Start Time: 0
-		End Time: 10
-		Max Step Length: 10
-		Time Step Multiplier: 1
-		
-		Period 3 (Transport):
-		Start Time: 10
-		End Time: 4320000
-		Max Step Length: 7200
-		Time Step Multiplier: 1.2
-		"""),
-		(st.write, "🔹 **Configure Transport Time Discretization (3 Periods)**"
-		"\n - Go to `Model > MODFLOW Time` > `MT3DMS` or `MT3D-USGS`."
-		"\n - Set `Number of MT3DMS Periods = 3`, and use the following values:"),
-		
-		(st.code, """
-		Period 1 (Steady-State):
-		Start Time: -1
-		End Time:  0
-		Initial Time Step: 86400
-		Max Transport Steps: 1000
-		Time Step Multiplier: 1
-		Max Step Size: 0
-		
-		Period 2 (Injection):
-		Start Time: 0
-		End Time: 10
-		Initial Time Step: 10
-		Max Transport Steps: 1000
-		Time Step Multiplier: 1
-		Max Step Size: 0
-		
-		Period 3 (Transport):
-		Start Time: 10
-		End Time: 4320000
-		Initial Time Step: 7200
-		Max Transport Steps: 1000
-		Time Step Multiplier: 1
-		Max Step Size: 0
-		"""),
-		(st.write, "🔹 **Set Longitudinal Dispersivity**"),
-		(st.code, "Longitudinal_Dispersivity = 5"),
+    (st.write, "🔹 **Duplicate Refined Model**"
+     "\n - Save your refined model into a new folder: :green[_Dirac_FD/_]."
+     "\n - Save as: :green[_Dirac.nam_] to preserve previous configurations."),
 
+    (st.write, "🔹 **Configure Flow Time Discretization (3 Periods)**"
+     "\n - Go to :green[_Model > MODFLOW Time_] and set :green[_Number of Stress Periods = 3_]."
+     "\n - Use the following values:"),
+    (st.code, """
+    Period 1 (Steady-State):
+    Start Time: -1
+    End Time: 0
+    Max Step Length: 1
+    Time Step Multiplier: 1
 
-        (st.write, "🔹 **Update Boundary Conditions**"
-         "\n - Edit both CHD boundary objects."
-         "\n - Set time range: `-1 to 4320000` seconds."),
+    Period 2 (Injection):
+    Start Time: 0
+    End Time: 10
+    Max Step Length: 10
+    Time Step Multiplier: 1
 
-        (st.write, "🔹 **Define Injection Well Source**"
-         "\n - Enable `Well` package under Boundary Conditions."
-         "\n - Disable `MODPATH` (under Post Processors)."
-         "\n - Create a new point object named `solute_injection` at (400, -550)."
-         "\n - In the WELL tab, enter this schedule:"),
-        (st.code, """
-		Start     End     Rate (m³/s)
-		-1        0       0
-		0         10      0.001
-		10        4320000 0
-		"""),
-		
-		(st.write, " - Under `SSM`, enter concentration schedule:"),
-		
-		(st.code, """
-		Start     End     Concentration (mg/L)
-		-1        0       0
-		0         10      100000
-		10        4320000 0
-		"""),
-        
-        (st.write, "🔹 **Place Observation Point**"
-         "\n - Add a point object at (430, -550) and name it `Obs30`."
-         "\n - Under `MT3DMS_Observation_Location`, set to `TRUE`."),
+    Period 3 (Transport):
+    Start Time: 10
+    End Time: 4320000
+    Max Step Length: 7200
+    Time Step Multiplier: 1.2
+    """),
+    (st.write, "🔹 **Configure Transport Time Discretization (3 Periods)**"
+     "\n - Go to :green[_Model > MODFLOW Time_] > :green[_MT3DMS_] or :green[_MT3D-USGS_]."
+     "\n - Set :green[_Number of MT3DMS Periods = 3_], and use the following values:"),
+    (st.code, """
+    Period 1 (Steady-State):
+    Start Time: -1
+    End Time:  0
+    Initial Time Step: 86400
+    Max Transport Steps: 1000
+    Time Step Multiplier: 1
+    Max Step Size: 0
 
-        (st.write, "🔹 **Select FD Solver and Run Simulation**"
-         "\n - Go to `ADV > Advection1 > Scheme = Standard Finite Difference`."
-         "\n - Save and run MODFLOW in `Dirac/Dirac_FD/` as `Dirac.nam`."
-         "\n - Export MT3D input as `Dirac.mtnam` and run it."),
+    Period 2 (Injection):
+    Start Time: 0
+    End Time: 10
+    Initial Time Step: 10
+    Max Transport Steps: 1000
+    Time Step Multiplier: 1
+    Max Step Size: 0
 
-        (st.write, "🔹 **Visualize and Analyze FD Results**"
-         "\n - Load final `.UCN` file and observe solute pulse movement."
-         "\n - Paste `.MTO` data into `Dirac` worksheet in Excel."
-         "\n - Review breakthrough curve (FD simulation)."),
+    Period 3 (Transport):
+    Start Time: 10
+    End Time: 4320000
+    Initial Time Step: 7200
+    Max Transport Steps: 1000
+    Time Step Multiplier: 1
+    Max Step Size: 0
+    """),
 
-        (st.write, "🔹 **Repeat for MOC Solver**"
-         "\n - Change advection scheme to `MOC`."
-         "\n - Save and run in `Dirac/Dirac_MOC/`, same file names."
-         "\n - Export MT3D, run, and paste `.MTO` data into Excel."),
-		 
-		(st.write, "🔹 **Compare with Analytical Solution using Streamlit App**"
-		  "\n - Enter the following parameters in the Streamlit app:"),
+    (st.write, "🔹 **Set Longitudinal Dispersivity**"),
+    (st.code, "Longitudinal_Dispersivity = 5"),
 
-        (st.code, """\
-		Released Mass: 1000 g
-		Specific Discharge: 0.432 m/d
-		Source equivalent to model cell: ✅ (enabled for 10 m aquifer thickness)
-		Longitudinal Dispersivity: 5 m
-		Breakthrough Curve Extraction Distance: 30 m
-		Maximum Time: 100 days
-		Concentration Range: 1 g/m³
-		"""),
+    (st.write, "🔹 **Update Boundary Conditions**"
+     "\n - Edit both CHD boundary objects."
+     "\n - Set time range: :green[_-1 to 4320000_] seconds."),
 
-        (st.write, "🔹 **Interpret Results**"
-         "\n - MOC curve matches analytical closely with a sharp front."
-         "\n - FD shows numerical dispersion and smearing."),],"td091")
+    (st.write, "🔹 **Define Injection Well Source**"
+     "\n - Enable :green[_Well_] package under Boundary Conditions."
+     "\n - Disable :green[_MODPATH_] (under Post Processors)."
+     "\n - Create a new point object named :green[_solute_injection_] at (400, -550)."
+     "\n - In the WELL tab, enter this schedule:"),
+    (st.code, """
+    Start     End     Rate (m³/s)
+    -1        0       0
+    0         10      0.001
+    10        4320000 0
+    """),
 
-        
+    (st.write, " - Under :green[_SSM_], enter concentration schedule:"),
+    (st.code, """
+    Start     End     Concentration (mg/L)
+    -1        0       0
+    0         10      100000
+    10        4320000 0
+    """),
+
+    (st.write, "🔹 **Place Observation Point**"
+     "\n - Add a point object at (430, -550) and name it :green[_Obs30_]."
+     "\n - Under :green[_MT3DMS_Observation_Location_], set to :green[_TRUE_]."),
+
+    (st.write, "🔹 **Select FD Solver and Run Simulation**"
+     "\n - Go to :green[_ADV > Advection1 > Scheme = Standard Finite Difference_]."
+     "\n - Save and run MODFLOW in :green[_Dirac/Dirac_FD/_] as :green[_Dirac.nam_]."
+     "\n - Export MT3D input as :green[_Dirac.mtnam_] and run it."),
+
+    (st.write, "🔹 **Visualize and Analyze FD Results**"
+     "\n - Load final :green[_.UCN_] file and observe solute pulse movement."
+     "\n - Paste :green[_.MTO_] data into :green[_Dirac_] worksheet in Excel."
+     "\n - Review breakthrough curve (FD simulation)."),
+
+    (st.write, "🔹 **Repeat for MOC Solver**"
+     "\n - Change advection scheme to :green[_MOC_]."
+     "\n - Save and run in :green[_Dirac/Dirac_MOC/_], same file names."
+     "\n - Export MT3D, run, and paste :green[_.MTO_] data into Excel."),
+
+    (st.write, "🔹 **Compare with Analytical Solution using Streamlit App**"
+     "\n - Enter the following parameters in the Streamlit app:"),
+    (st.code, """
+    Released Mass: 1000 g
+    Specific Discharge: 0.432 m/d
+    Source equivalent to model cell: ✅ (enabled for 10 m aquifer thickness)
+    Longitudinal Dispersivity: 5 m
+    Breakthrough Curve Extraction Distance: 30 m
+    Maximum Time: 100 days
+    Concentration Range: 1 g/m³
+    """),
+
+    (st.write, "🔹 **Interpret Results**"
+     "\n - MOC curve matches analytical closely with a sharp front."
+     "\n - FD shows numerical dispersion and smearing."),],"td091")
+
     st.markdown("""
     #### Video tutorial of step 5
     """)
-            
+
     st.video(videourl5)
 
 with st.expander("📋 **Final Assessment – Step 5**"):
     render_assessment("06_Groundwater_modeling/QUESTIONS/final_2D_trans_step5.json", "Final Assessment for Step 5", max_questions=6)
+
     
 # STEP 6
 st.markdown("""
@@ -1052,67 +1080,66 @@ with st.expander("🧠 **Initial Assessment – Step 6**"):
 
 with st.expander("🛠️ :green[**Expand to see the instructions and screencast video for STEP 6**]"):
     st.markdown("""
-        In this section we continue our work with the Dirac point source model, introducing a refined computational grid to better capture near-source transport dynamics. We will focus on increasing grid resolution in the inlet and observation zone, and then compare the results from two advection schemes: Standard Finite Difference (FD) and the Method of Characteristics (MOC). 
- 
-         The following instructions are als available as [PDF Dokument for download.](https://raw.githubusercontent.com/gw-inux/Jupyter-Notebooks/main/06_Groundwater_modeling/DATA/2D_Transport/2D_Transport_Step_05.pdf)
+    In this section we continue our work with the Dirac point source model, introducing a refined
+ computational grid to better capture near-source transport dynamics. We will focus on
+ increasing grid resolution in the inlet and observation zone, and then compare the results from
+ two advection schemes: Standard Finite Difference (FD) and the Method of Characteristics
+ (MOC). The following instructions are als available as [PDF Document for download.](https://raw.githubusercontent.com/gw-inux/Jupyter-Notebooks/main/06_Groundwater_modeling/DATA/2D_Transport/2D_Transport_Step_05.pdf)
     """)
 
 
     to_do(
-[
+    [
     (st.write, "**Step 6.1 – Refined Grid Simulation for Dirac Pulse**"),
 
     (st.write, "🔹 **Save a New Model Version**"
-     "\n - Save the current model into a new folder: `Dirac_refined/`."
-     "\n - Use `File > Save As` to make a clean copy."),
+             "\n - Save the current model into a new folder: :green[_Dirac_refined/_]."
+             "\n - Use :green[_File > Save As_] to make a clean copy."),
 
     (st.write, "🔹 **Refine Grid in Source and Observation Zone**"
-     "\n - Click the `Subdivide Grid Cells` icon."
-     "\n -  Using your cursor, select the area of the model where the plume is expected to spread—this corresponds to rows 17 to 21 and columns 22 to 36."
-     "\n - In the dialog, apply the following values:"),
+             "\n - Click the :green[_Subdivide Grid Cells_] icon."
+             "\n -  Using your cursor, select the area of the model where the plume is expected to spread—this corresponds to rows 17 to 21 and columns 22 to 36."
+             "\n - In the dialog, apply the following values:"),
     (st.code, """\
-	From Row: 17
-	Through Row: 21
-	Subdivide each row into: 5
-	
-	From Column: 22
-	Through Column: 36
-	Subdivide each column into: 5
-	"""),
-    
-	(st.write, "- **This reduces the cell size from 10 m to 2 m in region where refinement is applied.**"),
+    From Row: 17
+    Through Row: 21
+    Subdivide each row into: 5
+
+    From Column: 22
+    Through Column: 36
+    Subdivide each column into: 5
+    """),
+
+    (st.write, "- **This reduces the cell size from 10 m to 2 m in region where refinement is applied.**"),
 
     (st.write, "🔹 **Define Source and Observation Points**"
-     "\n - Use the `Vertices` tab to enter precise coordinates:"),
-    
-	(st.code, """\
-	Source:    (400, -550)
-	Obs30:     (430, -550)
-	Obs50:     (450, -550)
-	Obs100:    (500, -550)
-	"""),
+             "\n - Use the :green[_Vertices_] tab to enter precise coordinates:"),
+    (st.code, """\
+    Source:    (400, -550)
+    Obs30:     (430, -550)
+    Obs50:     (450, -550)
+    Obs100:    (500, -550)
+    """),
 
     (st.write, "🔹 **Run Simulation with Finite Difference (FD)**"
-     "\n - Set advection scheme to `Standard Finite Difference`."
-     "\n - Save model in `dirac_refined_fd/` and run MODFLOW."
-     "\n - Export MT3D input files and run MT3DMS."
-     "\n - Check listing file: mass balance error should be minimal."),
+    "\n - Set advection scheme to :green[_Standard Finite Difference_]."
+    "\n - Save model in :green[_dirac_refined_fd/_] and run MODFLOW."
+    "\n - Export MT3D input files and run MT3DMS."
+    "\n - Check listing file: mass balance error should be minimal."),
 
     (st.write, "🔹 **Run Simulation with MOC**"
-     "\n - Change advection scheme to `Method of Characteristics (MOC)`."
-     "\n - Save model in `dirac_refined_moc/`."
-     "\n - Run MODFLOW and MT3DMS again."),
-    
+    "\n - Change advection scheme to :green[_Method of Characteristics (MOC)_]."
+    "\n - Save model in :green[_dirac_refined_moc/_]."
+    "\n - Run MODFLOW and MT3DMS again."),
 
     (st.write, "🔹 **Post-Processing and Comparison**"
-     "\n - Import `.UCN` files for each run and select final time step."
-     "\n - Copy `.MTO` files into the `Dirac_refined` sheet in Excel."
-     "\n - Ensure observation points align correctly."),
+    "\n - Import :green[_.UCN_] files for each run and select final time step."
+    "\n - Copy :green[_.MTO_] files into the :green[_Dirac_refined_] sheet in Excel."
+    "\n - Ensure observation points align correctly."),
 
     (st.write, "🔹 **Compare with Analytical Solution**"
-     "\n - Open the 2D Dirac Streamlit App and enter:"),
-    
-	(st.code, """\
+	"\n - Open the 2D Dirac Streamlit App and enter:"),
+    (st.code, """\
 	Breakthrough Distance: 30 m
 	Released Mass: 1000 g
 	Specific Discharge: 0.432 m/d
@@ -1121,12 +1148,13 @@ with st.expander("🛠️ :green[**Expand to see the instructions and screencast
 	Max Time: 100 days
 	Concentration Range: 1 g/m³
 	"""),
-    
-	(st.write, "- Download CSV and paste into Excel alongside FD and MOC results."),
+
+    (st.write, "- Download CSV and paste into Excel alongside FD and MOC results."),
 
     (st.write, "🔹 **Interpretation**"
-     "\n - MOC shows near-perfect match with analytical, minor oscillations."
-     "\n - FD shows moderate dispersion with a smeared pulse.")],"td092")
+	"\n - MOC shows near-perfect match with analytical, minor oscillations."
+	"\n - FD shows moderate dispersion with a smeared pulse.")],"td092")
+    
 
         
     st.markdown("""
