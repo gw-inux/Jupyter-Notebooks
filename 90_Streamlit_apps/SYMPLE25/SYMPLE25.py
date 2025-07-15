@@ -100,7 +100,7 @@ pages = {
         "--- 📋_MODFLOW/MT3D tutorials ---": None,
         "2D Solute transport tutorial": "06_Groundwater_modeling/Tutorial_2D_Transport.py",
         "--- 📖_Presentations ---": None,
-        "Presentation: 📝 M1D_1": "90_Streamlit_apps/SYMPLE25/pages/M1D/M1D_1_presentation.py",
+        "Presentation: 📝 M1D_1": "90_Streamlit_apps/SYMPLE25/presentations/SlideJet_present_M1D_1.py",
     },
     "🔶 M1E - Model design": {
         "--- 📋_MODFLOW tutorials ---": None,
