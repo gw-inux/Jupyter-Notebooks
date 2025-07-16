@@ -35,7 +35,7 @@ st.markdown("""
         color: black;
         font-size: 1rem;
         text-decoration: underline;
-        margin-left: 1.5rem;
+        margin-left: 0.5rem;
         margin-top: -0.5rem;
         margin-bottom: 0.5rem;
     }
@@ -61,49 +61,47 @@ pages = {
         "Presentation: 📝 M0": "90_Streamlit_apps/SYMPLE25/presentations/SlideJet_present_M0.py",
     },
     "🔶 M1A - Basics": {
-        "--- 📖_Parameters ---": None,
+        "--- Parameters 📖---": None,
         "_K_ and _S_: Flow to Well": "90_Streamlit_apps/SYMPLE25/pages/M1A/Flow2Well_transient_unconfined_confined_basics.py",
-        "--- 📖_Motion laws ---": None,
+        "--- Motion laws 📖 ---": None,
         "Heat Transport": "90_Streamlit_apps/SYMPLE25/pages/M1A/Heat_transport_flow_1D_basics.py",
         "1D Transport": "90_Streamlit_apps/SYMPLE25/pages/M1A/Transport_1D_AD_basics.py",
         "1D Flow": "90_Streamlit_apps/SYMPLE25/pages/M1A/GWF_1D_unconf_analytic_noflow_calib_basics.py",
-        "--- 📊_Budgets and Balances ---": None,
+        "--- Budgets and Balances 📊 ---": None,
         "Radioactive Decay": "90_Streamlit_apps/SYMPLE25/pages/M1A/Radioactive_Decay_basics.py",
-        "--- 📖_Presentations ---": None,
-        "Presentation: 📝 M1A_1": "90_Streamlit_apps/SYMPLE25/pages/M1A/M1A_1_presentation.py",
     },
     "🔶 M1B - Data processing": {
-        "--- 🔨_Hydrogeologic testing ---": None,
+        "--- Hydrogeologic testing 🔨---": None,
         "Slug test evaluation": "05_Applied_hydrogeology/Slugtest_translate.py",
-        "--- 📋_MODFLOW tutorials ---": None,
+        "--- MODFLOW tutorials 📋 ---": None,
         "MODFLOW Pumping Test": "90_Streamlit_apps/SYMPLE25/pages/M1B/Theis_pumping_Tutorial.py",
     },
     "🔶 M1C - Flow modeling": {
-        "--- 🧮_General Numerics ---": None,
+        "--- General Numerics 🧮---": None,
         "1D Confined FD": "90_Streamlit_apps/SYMPLE25/pages/M1C/GWF_1D_conf_FD.py",
         "Modflow Time Step Multiplier": "06_Groundwater_modeling/Timestep_Multiplier.py",
-        "--- 💻_MODFLOW boundary conditions ---": None,
+        "--- MODFLOW boundary conditions 💻---": None,
         "RIV boundary": "06_Groundwater_modeling/Q_h_plot_RIV.py",
         "EVT boundary": "06_Groundwater_modeling/Q_h_plot_ET.py",
         "GHB boundary": "06_Groundwater_modeling/Q_h_plot_GHB.py",
-        "--- 📈_Calibration ---": None,
+        "--- Calibration 📈 ---": None,
         "1D Unconf Calib": "90_Streamlit_apps/SYMPLE25/pages/Calibration/GWF_1D_unconf_analytic_calib.py",
         "1D NoFlow Calib": "90_Streamlit_apps/SYMPLE25/pages/Calibration/GWF_1D_unconf_analytic_noflow_calib.py",
-        "--- 📖_Presentations ---": None,
+        "--- Presentations 📖---": None,
         "Presentation: 📝 M1C_3": "90_Streamlit_apps/SYMPLE25/pages/M1C/M1C_3_presentation.py",
     },
     "🔶 M1D - Transport modeling": {
-        "--- 📝_Analytical solutions ---": None,
+        "--- Analytical solutions 📝---": None,
         "1D Transport with Advection/Dispersion": "05_Applied_hydrogeology/Transport_1D_AD_ST.py",
         "2D Transport - Adv./Disp. - Dirac source": "05_Applied_hydrogeology/Transport_2D_Dirac_pulse.py",
         "2D Transport - Adv./Disp. - Continuous source": "05_Applied_hydrogeology/Transport_2D_Continous.py",
-        "--- 📋_MODFLOW/MT3D tutorials ---": None,
+        "--- MODFLOW/MT3D tutorials 📋---": None,
         "2D Solute transport tutorial": "06_Groundwater_modeling/Tutorial_2D_Transport.py",
-        "--- 📖_Presentations ---": None,
+        "--- Presentations 📖---": None,
         "Presentation: 📝 M1D_1": "90_Streamlit_apps/SYMPLE25/presentations/SlideJet_present_M1D_1.py",
     },
     "🔶 M1E - Model design": {
-        "--- 📋_MODFLOW tutorials ---": None,
+        "--- MODFLOW tutorials 📋 ---": None,
         "2D Synthetic": "90_Streamlit_apps/SYMPLE25/pages/M1C/Tutorial_2D_Synth.py",
     },
     "🔷 General Info": {
