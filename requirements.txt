@@ -17,3 +17,7 @@ streamlit_bokeh
 fpdf
 img2pdf
 pypdf
+PyYAML
+markdown
+Pillow
+reportlab
