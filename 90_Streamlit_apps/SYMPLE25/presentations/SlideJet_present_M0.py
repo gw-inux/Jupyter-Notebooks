@@ -364,7 +364,7 @@ if st.session_state[slide_data_key]:
         st.write(f"**Notes:**\n\n{note_text}")
 
     # --- Download buttons ---
-    '---'
+    st.markdown('---')
     st.markdown(""" 
     #### Download:
     _Subsequently you can generate a PDF file :green[with] or :orange[without] notes for download. After selection, the file will be generated and subsequently provided for local download._
@@ -380,7 +380,7 @@ if st.session_state[slide_data_key]:
 else:
     st.warning("The presentation is not loaded yet.")
 
-'---'
+st.markdown('---')
 st.markdown(":grey[**Presentation Management**]")
 
 with st.expander('🔄 :red[**CLICK HERE**] if you want to load another presentation'):
