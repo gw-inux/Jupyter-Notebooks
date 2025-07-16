@@ -35,7 +35,7 @@ st.markdown("""
         color: black;
         font-size: 1rem;
         text-decoration: underline;
-        margin-left: 2.5rem;
+        margin-left: 1.5rem;
         margin-top: -0.5rem;
         margin-bottom: 0.5rem;
     }
@@ -54,10 +54,10 @@ st.markdown("""
 # --- Pages definition / The content of your application / Header are with the target 'None' ---
 pages = {
     "🔶 Orientation meeting": {
-        "--- 📖_Initial Model examples ---": None,
+        "--- Initial Model examples 📖---": None,
         "1D GWF 💧": "90_Streamlit_apps/SYMPLE25/pages/00_OM/1D_GWF_Unconfined Recharge.py",
         "Well Capture 🌀": "90_Streamlit_apps/SYMPLE25/pages/00_OM/WellCapture.py",
-        "--- 📖_Presentations ---": None,
+        "--- Presentations 📖 ---": None,
         "Presentation: 📝 M0": "90_Streamlit_apps/SYMPLE25/presentations/SlideJet_present_M0.py",
     },
     "🔶 M1A - Basics": {
