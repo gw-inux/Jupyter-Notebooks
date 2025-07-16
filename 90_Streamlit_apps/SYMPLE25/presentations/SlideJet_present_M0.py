@@ -15,6 +15,7 @@ from reportlab.lib.styles import getSampleStyleSheet, ParagraphStyle
 from reportlab.platypus.doctemplate import SimpleDocTemplate
 from reportlab.lib import colors
 from reportlab.lib.units import cm
+from pathlib import Path
 
 # This is a generalized application to present PowerPoint slides and notes as slideshow through Streamlit.
 # You can adapt the script with defining another YAML file (The YAML contain the paths, headers, and other information).
@@ -351,7 +352,7 @@ if st.session_state.slide_data is None:
                     st.session_state.slide_data = json.load(f)
 
                 first_image = st.session_state.slide_data[0]["image"]
-                image_path = os.path.join(st.session_state.images_folder, os.path.basename(first_image))
+                image_path = Path(os.path.join(st.session_state.images_folder, os.path.basename(first_image))).as_posix()
                 if not os.path.exists(image_path):
                     st.warning(f"Image `{image_path}` not found. Please check your images folder.")
             except Exception as e:
