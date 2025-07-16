@@ -6,13 +6,9 @@ import yaml
 import markdown
 from PIL import Image
 from deep_translator import GoogleTranslator
-from pypdf import PdfReader, PdfWriter, Transformation, PageObject, PaperSize
-from pypdf.generic import RectangleObject
-from pypdf.annotations import FreeText
 from reportlab.lib.pagesizes import A4
-from reportlab.platypus import Paragraph, SimpleDocTemplate, Frame, Spacer, PageBreak, Image as RLImage
+from reportlab.platypus import Paragraph, SimpleDocTemplate, Spacer, PageBreak, Image as RLImage
 from reportlab.lib.styles import getSampleStyleSheet, ParagraphStyle
-from reportlab.platypus.doctemplate import SimpleDocTemplate
 from reportlab.lib import colors
 from reportlab.lib.units import cm
 
@@ -25,173 +21,40 @@ from reportlab.lib.units import cm
 # PART OF A MULTIPAGE-APP? REMOVE THE FOLLOWING LINE
 #st.set_page_config(page_title="SlideJet - Present", page_icon="🚀")
 #
+# --- Default YAML path, use / ---
+DEFAULT_YAML = "90_Streamlit_apps/SYMPLE25/presentations/SYMPLE25_M0_INTRO_slidejet_config.yaml"
+
+# --- Proxy ID --- This should be a unique ID if the app is used multiple times in a multipage app (string required)
+app_id = "M0"
+#
 ###########################
 
-# --- Print Title
-st.title("Presentation Slides")
+# --- FUNCTIONS ---
 
 def validate_config(config):
+    # Checks if the YAML config is complete. Warns the user if essential parts are missing.
     required_keys = ["presentation_folder", "header_text", "subheader_text"]
     missing = [key for key in required_keys if key not in config]
     if missing:
         raise ValueError(f"Missing required keys in YAML: {', '.join(missing)}")
 
-
-# --- Initialize reset mode ---
-if "reset_mode" not in st.session_state:
-    st.session_state.reset_mode = False
-    
-# --- Default YAML path, use / ---
-DEFAULT_YAML = "90_Streamlit_apps/SYMPLE25/presentations/SYMPLE25_M0_INTRO_slidejet_config.yaml"
-
-# --- Configuration loading / depending if it's the start or a reset ---
-if "config" not in st.session_state or st.session_state.config is None:
-
-    if st.session_state.reset_mode:
-        # User wants to load a new YAML, show uploader
-        st.session_state.config = None
-        st.warning("Please upload a new SlideJet YAML file.")
-        uploaded_yaml = st.file_uploader("Upload your slidejet_config.yaml", type=["yaml", "yml"])
-
-        if uploaded_yaml is not None:
-            try:
-                st.session_state.config = yaml.safe_load(uploaded_yaml)
-                validate_config(st.session_state.config)
-            except yaml.YAMLError as e:
-                st.error(f"YAML parsing error: {e}")
-                st.stop()
-            except ValueError as e:
-                st.error(str(e))
-                st.stop()
-            st.session_state.reset_mode = False  # Done loading new config
-            st.rerun()  # Restart to apply
-
-        if st.session_state.config is None:
-            st.stop()
-
-    else:
-        # Normal start: Try to load default YAML
-        if os.path.exists(DEFAULT_YAML):
-            with open(DEFAULT_YAML, "r") as f:
-                st.session_state.config = yaml.safe_load(f)
-        else:
-            st.session_state.config = None
-
-        if st.session_state.config is None:
-            st.warning("No default YAML found. Please upload a SlideJet YAML file.")
-            uploaded_yaml = st.file_uploader("Upload your slidejet_config.yaml", type=["yaml", "yml"])
-
-            if uploaded_yaml is not None:
-                try:
-                    st.session_state.config = yaml.safe_load(uploaded_yaml)
-                    validate_config(st.session_state.config)
-                except yaml.YAMLError as e:
-                    st.error(f"YAML parsing error: {e}")
-                    st.stop()
-                except ValueError as e:
-                    st.error(str(e))
-                    st.stop()
-            if st.session_state.config is None:
-                st.stop()
-
-
-
-# Use config
-config = st.session_state.config
-presentation_folder = config["presentation_folder"]
-header_text = config["header_text"]
-subheader_text = config["subheader_text"]
-
-# --- Authors and license ---
-year = 2025 
-authors = {"Thomas Reimann": [1], "Nils Wallenberg": [2]}
-institutions = {1: "TU Dresden", 2: "University of Gothenburg"}
-
-author_list = [f"{name}{''.join(f'<sup>{i}</sup>' for i in idxs)}" for name, idxs in authors.items()]
-institution_text = " | ".join([f"<sup>{i}</sup> {inst}" for i, inst in institutions.items()])
-
-# --- Functions ---
-@st.cache_data(show_spinner=False)
 def translate_notes(text, target_lang):
+    # Translate the text with GOOGLE translate
     try:
         return GoogleTranslator(source='auto', target=target_lang).translate(text)
     except Exception as e:
         return f"[Translation failed: {e}]"
-
-def patch_translations_if_missing(slide_data, target_lang, translate_func):
-    if not target_lang:
-        return slide_data
-    for slide in slide_data:
-        if "translated_notes" not in slide:
-            try:
-                slide["translated_notes"] = translate_func(slide["notes"], target_lang)
-            except Exception as e:
-                slide["translated_notes"] = f"[Translation failed: {e}]"
-    return slide_data
-
-def add_notes(pdf_path, slide_data, target_lang):
-    reader = PdfReader(pdf_path)
-    writer = PdfWriter()
-    writer.append_pages_from_reader(reader)
-
-    for i, slide in enumerate(slide_data):
-        notes_to_add = slide['notes']
-        if target_lang and "translated_notes" in slide:
-            notes_to_add += "\n\n" + slide["translated_notes"]
-        elif target_lang:
-            trans_notes = translate_notes(notes_to_add, target_lang)
-            notes_to_add += "\n\n" + trans_notes
-
-        annotation = FreeText(
-            text=notes_to_add,
-            rect=(60, 25, 0.9 * reader.pages[i].mediabox.width, reader.pages[i].mediabox.height * 0.5),
-            font="Arial", bold=False, italic=False, font_size="11pt",
-            font_color="#000000", border_color="#FFFFFF", background_color="#FFFFFF",
-        )
-        annotation.flags = 4
-        writer.add_annotation(i, annotation)
-
-    with open(pdf_path, 'wb') as fp:
-        writer.write(fp)
-
-def pdf_as_portrait(pdf_path, nr_pages):
-    reader = PdfReader(pdf_path)
-    writer = PdfWriter()
-    for i in range(nr_pages):
-        page = reader.pages[i]
-        A4_w, A4_h = PaperSize.A4.width, PaperSize.A4.height
-        h, w = float(page.mediabox.height), float(page.mediabox.width)
-        margin_pt = 2.5 * 72 / 2.54
-
-        scale_factor = min((A4_w - 2 * margin_pt) / w, (A4_h - margin_pt) / h)
-        x_offset = (A4_w - w * scale_factor) / 2
-        y_offset = A4_h - h * scale_factor - margin_pt
-
-        transform = Transformation().scale(scale_factor, scale_factor).translate(x_offset, y_offset)
-        page.add_transformation(transform)
-
-        page_A4 = PageObject.create_blank_page(width=A4_w, height=A4_h)
-        page.cropbox = RectangleObject((0, 0, A4_w, A4_h))
-        page.mediabox = RectangleObject((0, 0, A4_w, A4_h))
-        page_A4.merge_page(page)
-        writer.add_page(page_A4)
-
-    with open(pdf_path, 'wb') as fp:
-        writer.write(fp)
 
 def generate_pdf(slides, img_folder, pres_folder, trans_lan, with_notes=False, text='Download PDF'):
     imgs = [os.path.join(img_folder, os.path.basename(slide['image'])) for slide in slides]
     
     if with_notes:
         # Prepare notes (translated if selected)
-        notes = []
         for slide in slides:
             note = slide['notes']
             if trans_lan:
                 if "translated_notes" not in slide:
                     slide["translated_notes"] = translate_notes(note, trans_lan)
-                note = slide["translated_notes"]
-            notes.append(note)
         
         # Output file name with language and notes indicator
         pres_name = os.path.basename(pres_folder)
@@ -308,7 +171,7 @@ def add_notes_with_overlay(slides, images, output_pdf, trans_lan=None, font_size
 
         # Convert markdown to HTML then Paragraph
         html_note = markdown.markdown(combined_md).replace("\n", "<br/>")
-        elements.append(Paragraph(html_note, notes_style, encoding='utf8'))
+        elements.append(Paragraph(html_note, notes_style))
 
         # Page break after each slide
         #elements.append(Spacer(1, 2*cm))
@@ -316,50 +179,130 @@ def add_notes_with_overlay(slides, images, output_pdf, trans_lan=None, font_size
 
     doc.build(elements)
 
+# --- Print Title
+st.title("Presentation Slides")
+
+# --- Define keys ---
+reset_key = f"{app_id}_reset_mode"
+config_key = f"{app_id}_config"
+slide_data_key = f"{app_id}_slide_data"
+presentation_folder_key = f"{app_id}_presentation_folder"
+images_folder_key = f"{app_id}_images_folder"
+header_text_key = f"{app_id}_header_text"
+subheader_text_key = f"{app_id}_subheader_text"
+
+
+# --- Initialize reset mode ---
+if reset_key not in st.session_state:
+    st.session_state[reset_key] = False
+
+# --- Configuration loading / depending if it's the start or a reset ---
+if config_key not in st.session_state or st.session_state[config_key] is None:
+
+    if st.session_state[reset_key]:
+        # User wants to load a new YAML, show uploader
+        st.session_state[config_key] = None
+        st.warning("Please upload a new SlideJet YAML file.")
+        uploaded_yaml = st.file_uploader("Upload your slidejet_config.yaml", type=["yaml", "yml"])
+
+        if uploaded_yaml is not None:
+            try:
+                st.session_state[config_key] = yaml.safe_load(uploaded_yaml)
+                validate_config(st.session_state[config_key])
+            except yaml.YAMLError as e:
+                st.error(f"YAML parsing error: {e}")
+                st.stop()
+            except ValueError as e:
+                st.error(str(e))
+                st.stop()
+            st.session_state[reset_key] = False  # Done loading new config
+            st.rerun()  # Restart to apply
+
+        if st.session_state[config_key] is None:
+            st.stop()
+
+    else:
+        # Normal start: Try to load default YAML
+        if os.path.exists(DEFAULT_YAML):
+            with open(DEFAULT_YAML, "r") as f:
+                st.session_state[config_key] = yaml.safe_load(f)
+        else:
+            st.session_state[config_key] = None
+
+        if st.session_state[config_key] is None:
+            st.warning("No default YAML found. Please upload a SlideJet YAML file.")
+            uploaded_yaml = st.file_uploader("Upload your slidejet_config.yaml", type=["yaml", "yml"])
+
+            if uploaded_yaml is not None:
+                try:
+                    st.session_state[config_key] = yaml.safe_load(uploaded_yaml)
+                    validate_config(st.session_state[config_key])
+                except yaml.YAMLError as e:
+                    st.error(f"YAML parsing error: {e}")
+                    st.stop()
+                except ValueError as e:
+                    st.error(str(e))
+                    st.stop()
+
+# Use config
+config = st.session_state[config_key]
+# Store the config values into specific session keys
+st.session_state[presentation_folder_key] = config["presentation_folder"]
+st.session_state[header_text_key] = config["header_text"]
+st.session_state[subheader_text_key] = config["subheader_text"]
+
 # --- Streamlit App Content ---
 
 # --- Initialize session state ---
-if "confirm_reset" not in st.session_state:
-    st.session_state.confirm_reset = False
-if "slide_data" not in st.session_state:
-    st.session_state.slide_data = None
-if "presentation_folder" not in st.session_state or st.session_state.presentation_folder is None:
-    st.session_state.presentation_folder = presentation_folder
-if "images_folder" not in st.session_state or st.session_state.images_folder is None:
-    st.session_state.images_folder = os.path.join(st.session_state.presentation_folder, "images")
+if slide_data_key not in st.session_state:
+    st.session_state[slide_data_key] = None
+if presentation_folder_key not in st.session_state or st.session_state[presentation_folder_key] is None:
+    st.session_state[presentation_folder_key] = presentation_folder
+if images_folder_key not in st.session_state or st.session_state[images_folder_key] is None:
+    st.session_state[images_folder_key] = os.path.join(st.session_state[presentation_folder_key], "images")
 
 # --- Load slides ---
-JSON_file = os.path.join(st.session_state.presentation_folder, "slide_data.json")
+JSON_file = os.path.join(st.session_state[presentation_folder_key], "slide_data.json")
 
-if st.session_state.slide_data is None:
+if st.session_state[slide_data_key] is None:
     if os.path.exists(JSON_file):
         with open(JSON_file, "r") as f:
-            st.session_state.slide_data = json.load(f)
+            st.session_state[slide_data_key] = json.load(f)
     else:
-        config_file = st.file_uploader("**Default presentation not found.** This likely happens if the path to the files is corrupt or missing. Please provide the correct path to the *.json file by an YAML file.Please upload your slidejet_config.yaml file.", type=["yaml", "yml"])
+        config_file = st.file_uploader("**Default presentation not found.** This likely happens if the path to the files is corrupt or missing. Please upload your slidejet_config.yaml file.", type=["yaml", "yml"])
+        
         if config_file is not None:
             try:
-                config = yaml.safe_load(config_file)
-                st.session_state.presentation_folder = config["presentation_folder"]
-                st.session_state.images_folder = config["images_folder"]
-                st.session_state.header_text = config.get("header_text", header_text)
-                st.session_state.subheader_text = config.get("subheader_text", subheader_text)
-
-                JSON_file = os.path.join(st.session_state.presentation_folder, "slide_data.json")
-
+                st.session_state[config_key] = yaml.safe_load(config_file)
+                validate_config(st.session_state[config_key])
+            except Exception as e:
+                st.error(f"Error loading config: {e}")
+                st.stop()
+            
+            config = st.session_state[config_key]
+            st.session_state[presentation_folder_key] = config["presentation_folder"]
+            st.session_state[images_folder_key] = os.path.join(config["presentation_folder"], "images")
+            st.session_state[header_text_key] = config.get("header_text", "Presentation Title")
+            st.session_state[subheader_text_key] = config.get("subheader_text", "Subtitle")
+        
+            JSON_file = os.path.join(st.session_state[presentation_folder_key], "slide_data.json")
+            try:
                 with open(JSON_file, "r") as f:
-                    st.session_state.slide_data = json.load(f)
-
-                first_image = st.session_state.slide_data[0]["image"]
-                image_path = os.path.join(st.session_state.images_folder, os.path.basename(first_image))
+                    st.session_state[slide_data_key] = json.load(f)
+            
+                # This belongs in the SUCCESS block
+                first_image = st.session_state[slide_data_key][0]["image"]
+                image_path = os.path.join(st.session_state[images_folder_key], os.path.basename(first_image))
                 if not os.path.exists(image_path):
                     st.warning(f"Image `{image_path}` not found. Please check your images folder.")
+            
             except Exception as e:
-                st.error(f"Error loading config or slide data: {e}")
+                st.error(f"Error loading slide_data.json: {e}")
+                st.stop()
 
 # --- Print Title and Header 
-st.header(f':red-background[{st.session_state.get("header_text", header_text)}]')
-st.subheader(st.session_state.get("subheader_text", subheader_text), divider='red')
+st.header(f':red-background[{st.session_state[header_text_key]}]')
+st.subheader(st.session_state[subheader_text_key], divider='red')
 
 # --- Language selection ---
 languages = {
@@ -395,27 +338,24 @@ st.markdown("""
 """)
 
 # --- Show slides ---
-if st.session_state.slide_data:
+if st.session_state[slide_data_key]:
     if "slide_index" not in st.session_state:
         st.session_state["slide_index"] = 1
 
     selected_lang_display = st.selectbox("**Speaker notes can be translated.** Please choose the language:", options=language_names)
     target_lang = None if selected_lang_display == "🌐 Original Notes" else languages[selected_lang_display]
 
-    num_slides = len(st.session_state.slide_data)
+    num_slides = len(st.session_state[slide_data_key])
     lc, cc, rc = st.columns((1,3,1))
     with cc:
         st.session_state["slide_index"] = st.number_input(f'**Select slide to show** (1–{num_slides})', 1, num_slides)
 
-    selected_slide = st.session_state.slide_data[st.session_state["slide_index"] - 1]
-    image_path = os.path.join(st.session_state.images_folder, os.path.basename(selected_slide["image"]))
+    selected_slide = st.session_state[slide_data_key][st.session_state["slide_index"] - 1]
+    image_path = os.path.join(st.session_state[images_folder_key], os.path.basename(selected_slide["image"]))
     st.image(image_path)
 
     note_text = selected_slide["notes"]
     if target_lang:
-#        if "translated_notes" not in selected_slide:
-#            selected_slide["translated_notes"] = translate_notes(note_text, target_lang)
-#        st.write(f"**Translated Notes** ({selected_lang_display})\n\n{selected_slide['translated_notes']}")
         translated = translate_notes(note_text, target_lang)
         st.write(f"**Translated Notes** ({selected_lang_display})\n\n{translated}")
         with st.expander("Show original notes"):
@@ -432,10 +372,10 @@ if st.session_state.slide_data:
     pcol1, pcol2, pcol3 = st.columns([5, 1, 5])
     with pcol1:
         if st.button('Prepare pdf :green[(**with notes**)] for download'):
-            generate_pdf(st.session_state.slide_data, st.session_state.images_folder, st.session_state.presentation_folder, target_lang, with_notes=True, text='Download pdf (with notes)')
+            generate_pdf(st.session_state[slide_data_key], st.session_state[images_folder_key], st.session_state[presentation_folder_key], target_lang, with_notes=True, text='Download pdf (with notes)')
     with pcol3:
         if st.button('Prepare pdf :orange[(**without notes**)] for download'):
-            generate_pdf(st.session_state.slide_data, st.session_state.images_folder, st.session_state.presentation_folder, target_lang)
+            generate_pdf(st.session_state[slide_data_key], st.session_state[images_folder_key], st.session_state[presentation_folder_key], target_lang)
 
 else:
     st.warning("The presentation is not loaded yet.")
@@ -443,26 +383,29 @@ else:
 '---'
 st.markdown(":grey[**Presentation Management**]")
 
-if "confirm_reset" not in st.session_state:
-    st.session_state.confirm_reset = False
-
 with st.expander('🔄 :red[**CLICK HERE**] if you want to load another presentation'):
     st.warning("Are you sure you want to load another presentation? **If yes**, you will be able to select another presentation through a YAML-file. However, **this will remove the current presentation** from memory.")
 
     col1, col2, col3 = st.columns((3,4,2))
     with col2:
         if st.button("✅ Yes, load new presentation"):
-            st.session_state.reset_mode = True
-            st.session_state.confirm_reset = False
-            st.session_state.config = None
-            st.session_state.slide_data = None
-            st.session_state.presentation_folder = None
-            st.session_state.images_folder = None
+            st.session_state[reset_key] = True
+            st.session_state[config_key] = None
+            st.session_state[slide_data_key] = None
+            st.session_state[presentation_folder_key] = None
+            st.session_state[images_folder_key] = None
             st.rerun()
 
-# --- Footer ---
+# --- Footer (Authors and Copyright)---
 '---'
+year = 2025 
+authors = {"Thomas Reimann": [1], "Nils Wallenberg": [2]}
+institutions = {1: "TU Dresden", 2: "University of Gothenburg"}
+
+author_list = [f"{name}{''.join(f'<sup>{i}</sup>' for i in idxs)}" for name, idxs in authors.items()]
+institution_text = " | ".join([f"<sup>{i}</sup> {inst}" for i, inst in institutions.items()])
 columns_lic = st.columns((2,1))
+
 with columns_lic[0]:
     st.markdown(f'**SlideJet developed by** <br> {", ".join(author_list)} ({year}). <br> {institution_text}', unsafe_allow_html=True)
 with columns_lic[1]:
