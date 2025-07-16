@@ -15,7 +15,6 @@ from reportlab.lib.styles import getSampleStyleSheet, ParagraphStyle
 from reportlab.platypus.doctemplate import SimpleDocTemplate
 from reportlab.lib import colors
 from reportlab.lib.units import cm
-from pathlib import Path
 
 # This is a generalized application to present PowerPoint slides and notes as slideshow through Streamlit.
 # You can adapt the script with defining another YAML file (The YAML contain the paths, headers, and other information).
@@ -42,8 +41,8 @@ def validate_config(config):
 if "reset_mode" not in st.session_state:
     st.session_state.reset_mode = False
     
-# --- Default YAML path ---
-DEFAULT_YAML = "90_Streamlit_apps/SYMPLE25/presentations/SYMPLE25_M0_INTRO_slidejet_config.yaml"
+# --- Default YAML path, use \ ---
+DEFAULT_YAML = "90_Streamlit_apps\SYMPLE25\presentations\SYMPLE25_M0_INTRO_slidejet_config.yaml"
 
 # --- Configuration loading / depending if it's the start or a reset ---
 if "config" not in st.session_state or st.session_state.config is None:
@@ -352,7 +351,7 @@ if st.session_state.slide_data is None:
                     st.session_state.slide_data = json.load(f)
 
                 first_image = st.session_state.slide_data[0]["image"]
-                image_path = Path(os.path.join(st.session_state.images_folder, os.path.basename(first_image))).as_posix()
+                image_path = os.path.join(st.session_state.images_folder, os.path.basename(first_image))
                 if not os.path.exists(image_path):
                     st.warning(f"Image `{image_path}` not found. Please check your images folder.")
             except Exception as e:
