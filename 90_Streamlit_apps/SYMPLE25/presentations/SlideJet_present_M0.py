@@ -41,7 +41,7 @@ def validate_config(config):
 if "reset_mode" not in st.session_state:
     st.session_state.reset_mode = False
     
-# --- Default YAML path, use \ ---
+# --- Default YAML path, use / ---
 DEFAULT_YAML = "90_Streamlit_apps/SYMPLE25/presentations/SYMPLE25_M0_INTRO_slidejet_config.yaml"
 
 # --- Configuration loading / depending if it's the start or a reset ---
