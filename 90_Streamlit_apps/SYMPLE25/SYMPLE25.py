@@ -69,6 +69,10 @@ pages = {
         "1D Flow": "90_Streamlit_apps/SYMPLE25/pages/M1A/GWF_1D_unconf_analytic_noflow_calib_basics.py",
         "--- Budgets and Balances 📊 ---": None,
         "Radioactive Decay": "90_Streamlit_apps/SYMPLE25/pages/M1A/Radioactive_Decay_basics.py",
+        "--- Presentations 📖---": None,
+        "Presentation: 📝 M1A_1": "90_Streamlit_apps/SYMPLE25/presentations/SlideJet_present_M1A_1.py",
+        "Presentation: 📝 M1A_2": "90_Streamlit_apps/SYMPLE25/presentations/SlideJet_present_M1A_2.py",
+        "Presentation: 📝 M1A_3": "90_Streamlit_apps/SYMPLE25/presentations/SlideJet_present_M1A_3.py",
     },
     "🔶 M1B - Data processing": {
         "--- Hydrogeologic testing 🔨---": None,

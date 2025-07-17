@@ -1,0 +1,530 @@
+[
+    {
+        "image": "images/slide_1.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_2.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_3.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_4.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_5.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_6.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_7.png",
+        "notes": "The question and purpose is usually the initial point of the groundwater modeling workflow. Typical questions and purposes, also listed in the interest of SYMPLE24 attendees are e.g., contaminant transport, prediction of future groundwater state, groundwater management.\r\rQuestion and purpose is ideally the first step \u2013 not an existing conceptual or mathematical model (with a numerical solution), because a conceptual model that was maybe derived for groundwater management does possibly not account for required detailed geological structures or boundary conditions that are required for a transport model to predict contaminant transport."
+    },
+    {
+        "image": "images/slide_8.png",
+        "notes": "The conceptual model provide a qualitative representation of the area under investigation. It shows the \rstructure,\rboundary conditions,\rrelevant processes,\r(if possible) uncertainties,\rin a usually graphic format."
+    },
+    {
+        "image": "images/slide_9.png",
+        "notes": "The mathematical model provide a suitable equation to quantify the intended processes (like groundwater flow) under consideration of the structure and extend of the conceptual model (parameters and boundary conditions).\r\rThe mathematical model can be solved with analytical and numerical methods."
+    },
+    {
+        "image": "images/slide_10.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_11.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_12.png",
+        "notes": "Be careful: As always, these cross sections are vertically exaggerated, i.e. everything looks rather dramatic.\r\rWater table gradients are rarely that steep in nature, at least not in materials that we would call aquifers and in natural environments. Things may be different near infrastructure or in very fine sediments.\r\rRemember: This situation is only possible with recharge"
+    },
+    {
+        "image": "images/slide_13.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_14.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_15.png",
+        "notes": "Example of open pit mining\rClose proximity of active mines (#1; groundwater head significantly lower) and recultivated mines (#2)\rMethods to manage and handle this situation are necessary  (i.e. to prevent significant groundwater flow from recultivated mines into active mines)"
+    },
+    {
+        "image": "images/slide_16.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_17.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_18.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_19.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_20.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_21.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_22.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_23.png",
+        "notes": "Here an example for an idealized situation that is investigated by analytical solutions of a groundwater flow equation"
+    },
+    {
+        "image": "images/slide_24.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_25.png",
+        "notes": "Another example: given equation in software reports / documentations (here the state-of-the-art groundwater flow model MODFLOW)"
+    },
+    {
+        "image": "images/slide_26.png",
+        "notes": "Example for a simplified variant of the groundwater flow equation in a scientific publication"
+    },
+    {
+        "image": "images/slide_27.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_28.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_29.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_30.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_31.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_32.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_33.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_34.png",
+        "notes": "Various simplifications of the general 3D groundwater flow equation are possible\rRegarding dimensionality: terms are skipped (e.g. those related to z-direction for 2D horizontal flow problems)"
+    },
+    {
+        "image": "images/slide_35.png",
+        "notes": "Various simplifications of the general 3D groundwater flow equation are possible\rRegarding dimensionality: terms are skipped (e.g. those related to z-direction for 2D horizontal flow problems)"
+    },
+    {
+        "image": "images/slide_36.png",
+        "notes": "Sinks and sources are added as term to the left hand side\rSinks and sources for example\rWells\rRecharge\rRivers\rLakes\rEtc.\rSeveral sources can be added up (W1 + W2 + W3 \u2026)"
+    },
+    {
+        "image": "images/slide_37.png",
+        "notes": "If the equation considered a situation, which is independent from time = steady state, the term with Storage and time can be skipped (no storage change for steady state conditions)"
+    },
+    {
+        "image": "images/slide_38.png",
+        "notes": "If heterogeneity appears, K is a function of space (K(x,y) instead of K"
+    },
+    {
+        "image": "images/slide_39.png",
+        "notes": "For isotropic conditions, K is not longer dependent from direction \u2013 K instead of Kx"
+    },
+    {
+        "image": "images/slide_40.png",
+        "notes": "(isotropic) K moved to the right hand side"
+    },
+    {
+        "image": "images/slide_41.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_42.png",
+        "notes": "For steady state and isotropic conditions, the right hand side would be 0/K = 0\rYou can investigate / play with this through the following example: https://mybinder.org/v2/gh/ThoReimann/HydroTeaching/master (BASICS / DITCH)"
+    },
+    {
+        "image": "images/slide_43.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_44.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_45.png",
+        "notes": "Some simplifications are commonly named after those who developed the equations / solutions"
+    },
+    {
+        "image": "images/slide_46.png",
+        "notes": "Some simplifications are commonly named after those who developed the equations / solutions"
+    },
+    {
+        "image": "images/slide_47.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_48.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_49.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_50.png",
+        "notes": "Here an example for an idealized situation that is investigated by analytical solutions of a groundwater flow equation"
+    },
+    {
+        "image": "images/slide_51.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_52.png",
+        "notes": "Situation: steady flow in a confined aquifer (here \u2018per meter width\u2019)\rHead is provided by two piezometers / distance L between piezometers\rFor this situation the general groundwater flow equation can be significantly simplified\r\r\rThis is the most simple situation that one can imaging for groundwater flow:\rIt is an analog of the Darcy-Experiment and thus Darcy\u2019s law does directly apply.\rNo fancy math needed, but anyway \u2026"
+    },
+    {
+        "image": "images/slide_53.png",
+        "notes": "Steady flow in confined aquifer from Laplace equation (1D) (eq. 4.43, 4.66  in Fetter)\rLaplace equation for 1D steady state flow;\rto derive the functions h(x) that are solutions to this differential equation,  we need to integrate 2 times with respect to x (second derivative occurs)\rEach integration comes with integration constants C"
+    },
+    {
+        "image": "images/slide_54.png",
+        "notes": "Constants C1 and C2 are derived by considering the boundary conditions for the problem (which is the measured head = fixed head at x = 0 and x = L)"
+    },
+    {
+        "image": "images/slide_55.png",
+        "notes": "(h2-h1)/L = hydraulic gradient I\rHydraulic gradient = q/K (Darcys law)\rWe can see that the change of h in direction of x (h as a function of x) is a linear function, i.e. a straight line\rWith this equation we can determine h at location x in a confined aquifer (homogenous, uniform thickness \u2026) if we know the head at a location x0 , its hydraulic conductivity K and the flux q"
+    },
+    {
+        "image": "images/slide_56.png",
+        "notes": "This example deals with a similar situation but this time the aquifer is unconfined\rConsequence: change of head h in the direction of x\rDupuit assumption: vertical flow is negligible so that the problem reduces to a 1D-problem (see next slide with more information about Dupuit assumptions)"
+    },
+    {
+        "image": "images/slide_57.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_58.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_59.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_60.png",
+        "notes": "Analytical solution\rthe analytical solution compute the hydraulic head along the flow direction x\ra Jupyter Notebook is available for own investigation \u2013 see electronic course material"
+    },
+    {
+        "image": "images/slide_61.png",
+        "notes": "Analytical solution\rthe analytical solution compute the hydraulic head along the flow direction x\ra Jupyter Notebook is available for own investigation \u2013 see electronic course material"
+    },
+    {
+        "image": "images/slide_62.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_63.png",
+        "notes": "(Analytical) solutions can be applied to practical problems (under consideration of assumptions and limitations)\rCompare the introductionary example with the slurry wall\rThe workflow reflects the general steps when applying an analytical solution to a specific problem"
+    },
+    {
+        "image": "images/slide_64.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_65.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_66.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_67.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_68.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_69.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_70.png",
+        "notes": "Siutation with gap at bottom\rdiscuss Dupuit\rhighlight the need for suitable solutions (numerical)"
+    },
+    {
+        "image": "images/slide_71.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_72.png",
+        "notes": "With underflow the situation doesn\u2019t satisfy the Dupuit assumption anymore (Dupuit assumption e.g., only horizontal flow)\r\rThe previously used analytical solution (which is based on the Dupuit assumptions) is not longer suitable.\r\rIn this case, a numerical model is required to get reasonable results."
+    },
+    {
+        "image": "images/slide_73.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_74.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_75.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_76.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_77.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_78.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_79.png",
+        "notes": "This figure demonstrate the heterogeneity on a relatively small scale\rIt is very obvious, that point samples (e.g. core samples) that are analyzed in the lab by e.g. permeameter will not adequately describe the formation"
+    },
+    {
+        "image": "images/slide_80.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_81.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_82.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_83.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_84.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_85.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_86.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_87.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_88.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_89.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_90.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_91.png",
+        "notes": "This abstract from Bredehoeft (2005) highlights the importance of the conceptual model\rThe conceptual model represents the current state of knowledge\rWith more data, the conceptual model can change in the future"
+    },
+    {
+        "image": "images/slide_92.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_93.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_94.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_95.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_96.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_97.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_98.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_99.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_100.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_101.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_102.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_103.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_104.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_105.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_106.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_107.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_108.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_109.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_110.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_111.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_112.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_113.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_114.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_115.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_116.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_117.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_118.png",
+        "notes": "In MODFLOW, hydraulic interaction between groundwater and surface water is treated by employing the \u201criver boundary condition\u201c, which represents a boundary condition of the third kind (= relationship between hydraulic head and discharge at the boundary, see previous page).\r\rThe corresponding relationship needs values for river stage, river bottom ele-vation, and streambed conductance (to be explained later). \rFrom this, the software is able to de-termine the hydraulic head and the specific discharge.\rIn a first step, rivers are subdivided in-to segments called \u201creaches\u201c.\rEach of them corresponds to a model cell.\rVery short segments can be neglected (see figure)."
+    },
+    {
+        "image": "images/slide_119.png",
+        "notes": "Sketches on the right are valid for each model cell which is connec-ted to a river reach.\rFor now, it is assumed that there is no unsaturated zone between the river and the groundwater table, i.e. both are in direct hyd-raulic contact.\rThe presence of an unsaturated zone will be discussed later."
+    },
+    {
+        "image": "images/slide_120.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_121.png",
+        "notes": "Properties of CRiv: \rinput parameter for groundwater models,\rdimension L\u00b2/T,\rfrequently determined via model calibration (= fitting model results to measured values, usually groundwater levels)."
+    },
+    {
+        "image": "images/slide_122.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_123.png",
+        "notes": "For each cell with  groundwater-surface wa-ter interaction, numerical modelling tools determi-ne one point on the graph (snapped line). \rVertical projections of this point onto the coor-dinate axes yield hydrau-lic head h and flow rate QRiv."
+    },
+    {
+        "image": "images/slide_124.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_125.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_126.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_127.png",
+        "notes": "Excercise\r1) third type bc (due to possible colmation)\r2) second type bc (no flow)\r3) second type bc (no flow at groundwater divide)\r4) second type bc (recharge) \u2013 the number in the figure refers to the symbol W\r5) second type bc (groundwater divide)\r6) third type bc (see 1))"
+    },
+    {
+        "image": "images/slide_128.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_129.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_130.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_131.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_132.png",
+        "notes": "No notes"
+    }
+]
