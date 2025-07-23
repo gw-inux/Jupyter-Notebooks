@@ -12,11 +12,15 @@ from streamlit_book import multiple_choice
 
 # path to questions for the assessments (direct path)
 path_quest_ini   = "90_Streamlit_apps/GWP_Boundary_Conditions/questions/initial_ghb.json"
+path_quest_exer = "90_Streamlit_apps/GWP_Boundary_Conditions/questions/exer_ghb.json"
 path_quest_final = "90_Streamlit_apps/GWP_Boundary_Conditions/questions/final_ghb.json"
 
 # Load questions
 with open(path_quest_ini, "r", encoding="utf-8") as f:
     quest_ini = json.load(f)
+    
+with open(path_quest_exer, "r", encoding="utf-8") as f:
+    quest_exer = json.load(f)
     
 with open(path_quest_final, "r", encoding="utf-8") as f:
     quest_final = json.load(f)
@@ -132,7 +136,7 @@ with st.expander('**Show the initial assessment** - to assess your existing know
 
 st.subheader('🧪 Theory and Background', divider="orange")
 st.markdown("""
-The General Head Boundary (GHB), also referred to as the Head-Dependent Flux Boundary in MODFLOW, allows for a more realistic simulation of boundary conditions by enabling **exchange with an external reservoir**.
+The General Head Boundary (GHB), also referred to as the Head-Dependent Flux Boundary in MODFLOW, allows for a more realistic simulation of boundary conditions by enabling **exchange with an external reservoir**. In groundwater models, General Head Boundaries are used to simulate hydraulic interaction with an external water body or zones with a defined (fixed) head. The conductance term determines how easily water can flow across the boundary.
 """)
 with st.expander("Show me more about **the Theory**"):
     st.markdown("""
@@ -166,8 +170,100 @@ with st.expander("Show me more about **the Theory**"):
     with cent_co:
         st.image('06_Groundwater_modeling/FIGS/GHB.png', caption="Schematic illustration of the GHB boundary, modified from  (McDonald and Harbaugh, 1988; https://pubs.usgs.gov/twri/twri6a1/pdf/twri_6-A1_p.pdf)")
 
-st.subheader("Interactive plot", divider="orange")
+st.subheader("Interactive plot and Exercise", divider="orange")
+st.markdown("""
+    The interactive plot shows how the flow $Q_B$ across a General Head Boundary depends on the difference between aquifer head ($h_{aq}$) and boundary head ($H_B$), and on the conductance ($C_B$). 
+    
+    Use the sliders or number inputs to adjust these parameters. You can also toggle between direct conductance input or compute it from hydraulic properties. The plot updates dynamically and supports different viewing orientations.
+    
+    - You can investigate the plot on your own. Some :blue[**INITIAL INSTRUCTIONS**] may guide you.
+    - An :rainbow[**EXERCISE**] allows you to apply the plot and to deepen your understanding. This exercise invites you to investigate how the conductance parameter and the difference in head affect the boundary flux. Use the interactive GHB plot to explore how variations in conductance influence the exchange flux between an aquifer and a connected boundary condition, and to interpret physical meaning based on Q–h plots.
+""")
 
+with st.expander('Show the :blue[**INITIAL INSTRUCTIONS**]'):
+    st.markdown("""
+    🧭 **Getting Started with the Interactive Plot**
+    
+    Before starting the exercise, follow these quick steps to explore GHB behavior:
+
+    **1. Set a Reference Case**
+
+    * Set **boundary head \$H\_B\$ = 10.0 m**.
+    * Vary **aquifer head \$h\_{aq}\$** between 5 and 15 m.
+    * Observe how **flow \$Q\_B\$** changes:
+
+    **2. Test Different Conductance Values**
+
+    * Use the slider to vary \$C\_B\$.
+    * Note how the **slope of the \$Q\$–\$h\$ curve** changes.
+
+    **3. Optional: Compute Conductance**
+
+    * Toggle “Compute conductance”.
+    * Enter \$K\$, \$A\_B\$, and \$L\_B\$ to calculate \$C\_B = \frac{K A\_B}{L\_B}\$.
+    * Note how the **slope of the \$Q\$–\$h\$ curve** changes.
+
+    These steps help you build intuition for how GHB parameters control flow — a key foundation for the exercise.
+    """)
+
+with st.expander('Show the :rainbow[**EXERCISE**]'):
+    
+    st.markdown("""
+    
+    ✅ **Expected Learning Outcomes**
+    
+    By completing this exercise, you will:
+    
+    * Understand how GHB flux is driven by head difference and conductance.
+    * Interpret Q–h plots in relation to the hydrogeologic behavior.
+    * Develop the ability to use the app for conceptual testing and scenario analysis.
+   
+    🛠️ **Instructions**
+    
+    Use the interactive GHB plot and complete the following:
+    
+    1. **Initial Exploration**
+    
+    * Set the boundary head (`H_B`) to **10 m**.
+    * Vary the aquifer head (`h_aq`) from **5 m to 15 m**.
+    * Observe and describe how the flux (`Q`) changes.
+    * Record:
+    
+      * The sign of the flux for different `h_aq` values.
+      * The value of `Q` when `h_aq = h_GHB`.
+    
+    2. **Conductance Effect**
+    
+    * (Keep `H_B` at 10 m)
+    * Choose three different conductance values (e.g., **3E-2, 3E-3, and 3E-4 m²/s**).
+    * For each conductance value:
+    
+      * Plot (e.g., on a separate paper) `Q_B` vs `h_aq` for `h_aq` in the range from 5 to 15 m.
+      * Compare the slope and shape of the resulting lines.
+      * Eventually repeat with an increased/decreased `H_B`
+    
+    3. **Realistic Scenarios**
+    
+    * Imagine a GHB represents a canal system connected to the aquifer. The canal water level is 10 m.
+    * Assume the aquifer head starts at 8 m.
+    * Evaluate how much water would enter the aquifer for:
+    
+      * A poorly connected canal (low conductance).
+      * A well-connected canal (high conductance).
+    * Discuss the implications for water management.
+    
+    
+    #### 📝 **Answer the Following Questions**
+    
+    1. When does the GHB act as a **source** to the aquifer, and when as a **sink**?
+    2. What happens to the flux if the conductance is set to zero? What if it's extremely high?
+    3. How does increasing conductance influence the sensitivity of flux to aquifer head changes?
+    4. Why might a modeler choose a GHB over a fixed head or river boundary?
+    5. Based on your observations, how would you calibrate the conductance value using field data?
+    
+    """)
+
+st.markdown('---')
 # Functions
 
 # Callback function to update session state
@@ -207,60 +303,69 @@ def Q_h_plot():
     log_max1 = 1.0  # T / Corresponds to 10^1 = 10
     
     # Switches
-    visualize = st.toggle(':rainbow[**Make the plot alive** and visualize the input values]', key="GHB_vis")
-    turn = st.toggle('Toggle to turn the plot 90 degrees', key="GHB_turn")
-    st.session_state.number_input = st.toggle("Toggle to use Slider or Number for input of $C_B$, $H_B$, $A_B$, $L_B$, and $h_{aq}$.")
-    c_computed = st.toggle('Toggle to compute conductance')
+
     
     
-    columns1 = st.columns((1,1), gap = 'large')
+    columns1 = st.columns((1,1,1), gap = 'small')
     
     # Initialize st.session_state.C
     if "C" not in st.session_state:
         st.session_state.C = 10 ** st.session_state.C_slider_value
     
     with columns1[0]:
-        # READ LOG VALUE, CONVERT, AND WRITE VALUE FOR TRANSMISSIVITY
-        if c_computed:
-            container = st.container()  
-            if st.session_state.number_input:
-                K_slider_value_new = st.number_input("_(log of) Hydraulic conductivity $K_B$ in m/s_", log_min1,log_max1, st.session_state.K_slider_value, 0.01, format="%4.2f", key="K_input", on_change=update_K)
-            else:
-                K_slider_value_new = st.slider      ("_(log of) Hydraulic conductivity $K_B$ in m/s_", log_min1,log_max1, st.session_state.K_slider_value, 0.01, format="%4.2f", key="K_input", on_change=update_K)   
-            K = 10 ** K_slider_value_new
-            container.write("**Hydraulic conductivity $K_B$ in m/s:** %5.2e" %K)
-            if st.session_state.number_input:
-                LB = st.number_input("**GHB lenght ($L_B$)**", 1.0, 10000.0, st.session_state.LB, 1., key="LB_input", on_change=update_LB)
-            else:
-                LB = st.slider      ("**GHB lenght ($L_B$)**", 1.0, 10000.0, st.session_state.LB, 1., key="LB_input", on_change=update_LB)
-            if st.session_state.number_input:
-                AB = st.number_input("**GHB area ($A_B$)**", 1.0, 100000.0, st.session_state.AB, 1., key="AB_input", on_change=update_AB)
-            else:
-                AB = st.slider      ("**GHB area ($A_B$)**", 1.0, 100000.0, st.session_state.AB, 1., key="AB_input", on_change=update_AB)
-            st.session_state.C = K * AB / LB
+        with st.expander('Modify the plot control'):
+            visualize = st.toggle(':rainbow[**Make the plot alive** and visualize the input values]', key="GHB_vis")
+            turn = st.toggle('Toggle to turn the plot 90 degrees', key="GHB_turn")
+            st.session_state.number_input = st.toggle("Toggle to use Slider or Number for input of $C_B$, $H_B$, $A_B$, $L_B$, and $h_{aq}$.")
             
-            # Update C_slider_value based on computed values
-            st.session_state.C_slider_value = np.log10(st.session_state.C)
-        else:
-            container = st.container()  
-            if st.session_state.number_input:
-                C_slider_value_new = st.number_input("_(log of) Conductance $C_B$ in m²/s_", log_min1,log_max1, st.session_state.C_slider_value, 0.01, format="%4.2f", key="C_input", on_change=update_C)
-            else:
-                C_slider_value_new = st.slider      ("_(log of) Conductance $C_B$ in m²/s_", log_min1,log_max1, st.session_state.C_slider_value, 0.01, format="%4.2f", key="C_input", on_change=update_C)    
-            st.session_state.C = 10 ** C_slider_value_new
-            container.write("**Conductance $C_B$ in m²/s:** %5.2e" %st.session_state.C)
             
-            # Update K_slider_value based on computed values
-            st.session_state.K_slider_value = np.log10(st.session_state.C * st.session_state.LB / st.session_state.AB)
     with columns1[1]:
-        if st.session_state.number_input:
-            HB = st.number_input("**GHB head ($HB$)**", 5.0, 20.0, st.session_state.HB, 0.1, key="HB_input", on_change=update_HB)
-        else:
-            HB = st.slider      ("**GHB head ($HB$)**", 5.0, 20.0, st.session_state.HB, 0.1, key="HB_input", on_change=update_HB)
-        if st.session_state.number_input:
-            h_aq_show = st.number_input("**Aquifer head ($h_{aq}$)**", 0.0, 20.0, st.session_state.h_aq_show, 0.1, key="h_aq_show_input", on_change=update_h_aq_show)
-        else:
-            h_aq_show = st.slider      ("**Aquifer head ($h_{aq})$**", 0.0, 20.0, st.session_state.h_aq_show, 0.1, key="h_aq_show_input", on_change=update_h_aq_show)
+        with st.expander('Modify heads and elevations'):
+            if st.session_state.number_input:
+                HB = st.number_input("**GHB head ($H_B$)**", 5.0, 20.0, st.session_state.HB, 0.1, key="HB_input", on_change=update_HB)
+            else:
+                HB = st.slider      ("**GHB head ($H_B$)**", 5.0, 20.0, st.session_state.HB, 0.1, key="HB_input", on_change=update_HB)
+            if st.session_state.number_input:
+                h_aq_show = st.number_input("**Aquifer head ($h_{aq}$)**", 0.0, 20.0, st.session_state.h_aq_show, 0.1, key="h_aq_show_input", on_change=update_h_aq_show)
+            else:
+                h_aq_show = st.slider      ("**Aquifer head ($h_{aq})$**", 0.0, 20.0, st.session_state.h_aq_show, 0.1, key="h_aq_show_input", on_change=update_h_aq_show)            
+            
+    with columns1[2]:
+        with st.expander('Modify the conductance'):
+            # READ LOG VALUE, CONVERT, AND WRITE VALUE FOR TRANSMISSIVITY
+            c_computed = st.toggle('Toggle to compute conductance')
+            if c_computed:
+                container = st.container()  
+                if st.session_state.number_input:
+                    K_slider_value_new = st.number_input("_(log of) Hydraulic conductivity $K_B$ in m/s_", log_min1,log_max1, st.session_state.K_slider_value, 0.01, format="%4.2f", key="K_input", on_change=update_K)
+                else:
+                    K_slider_value_new = st.slider      ("_(log of) Hydraulic conductivity $K_B$ in m/s_", log_min1,log_max1, st.session_state.K_slider_value, 0.01, format="%4.2f", key="K_input", on_change=update_K)   
+                K = 10 ** K_slider_value_new
+                container.write("**Hydraulic conductivity $K_B$ in m/s:** %5.2e" %K)
+                if st.session_state.number_input:
+                    LB = st.number_input("**GHB lenght ($L_B$)**", 1.0, 10000.0, st.session_state.LB, 1., key="LB_input", on_change=update_LB)
+                else:
+                    LB = st.slider      ("**GHB lenght ($L_B$)**", 1.0, 10000.0, st.session_state.LB, 1., key="LB_input", on_change=update_LB)
+                if st.session_state.number_input:
+                    AB = st.number_input("**GHB area ($A_B$)**", 1.0, 100000.0, st.session_state.AB, 1., key="AB_input", on_change=update_AB)
+                else:
+                    AB = st.slider      ("**GHB area ($A_B$)**", 1.0, 100000.0, st.session_state.AB, 1., key="AB_input", on_change=update_AB)
+                st.session_state.C = K * AB / LB
+                
+                # Update C_slider_value based on computed values
+                st.session_state.C_slider_value = np.log10(st.session_state.C)
+            else:
+                container = st.container()  
+                if st.session_state.number_input:
+                    C_slider_value_new = st.number_input("_(log of) Conductance $C_B$ in m²/s_", log_min1,log_max1, st.session_state.C_slider_value, 0.01, format="%4.2f", key="C_input", on_change=update_C)
+                else:
+                    C_slider_value_new = st.slider      ("_(log of) Conductance $C_B$ in m²/s_", log_min1,log_max1, st.session_state.C_slider_value, 0.01, format="%4.2f", key="C_input", on_change=update_C)    
+                st.session_state.C = 10 ** C_slider_value_new
+                container.write("**Conductance $C_B$ in m²/s:** %5.2e" %st.session_state.C)
+                
+                # Update K_slider_value based on computed values
+                st.session_state.K_slider_value = np.log10(st.session_state.C * st.session_state.LB / st.session_state.AB)
+
     
     # Define aquifer head range
     h_aq = np.linspace(0, 20, 200)
@@ -351,6 +456,38 @@ def Q_h_plot():
 
 Q_h_plot()
 
+with st.expander('**Show the :rainbow[**EXERCISE**] assessment** - to self-check your understanding'):
+    st.markdown("""
+    #### 🧠 Excercise assessment
+    These questions test your understanding after doing the exercise.
+    """)
+
+    # Render questions in a 2x3 grid (row-wise)
+    for row in [(0, 1), (2, 3), (4, 5)]:
+        col1, col2 = st.columns(2)
+
+        with col1:
+            i = row[0]
+            st.markdown(f"**Q{i+1}. {quest_exer[i]['question']}**")
+            multiple_choice(
+                question=" ",
+                options_dict=quest_exer[i]["options"],
+                success=quest_exer[i].get("success", "✅ Correct."),
+                error=quest_exer[i].get("error", "❌ Not quite.")
+            )
+
+        with col2:
+            i = row[1]
+            st.markdown(f"**Q{i+1}. {quest_exer[i]['question']}**")
+            multiple_choice(
+                question=" ",
+                options_dict=quest_exer[i]["options"],
+                success=quest_exer[i].get("success", "✅ Correct."),
+                error=quest_exer[i].get("error", "❌ Not quite.")
+            )
+
+
+
 st.subheader('✅ Conclusion', divider = 'orange')
 st.markdown("""
 The General Head Boundary (GHB) offers a flexible way to simulate interactions with external water bodies or regions not explicitly modeled — such as distant lakes, rivers, or adjacent aquifer systems. Its formulation as a **head-dependent boundary** enables both **inflow and outflow**, depending on the head difference between the model cell and the boundary.
@@ -362,7 +499,7 @@ By analyzing **Q–h plots**, you've gained a clearer understanding of how condu
 You're now ready to assess your understanding of GHB behavior in the final quiz.
 """)
 
-with st.expander('**Show the final assessment** - to self-check your understanding'):
+with st.expander('**Show the :red[final assessment]** - to self-check your understanding'):
     st.markdown("""
     #### 🧠 Final assessment
     These questions test your conceptual understanding after working with the app.

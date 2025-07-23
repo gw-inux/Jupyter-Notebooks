@@ -26,11 +26,11 @@
     "options": {
       "The hydraulic head generally increases across the domain.": true,
       "The discharge at the defined-head or river boundary increases.": true,
-      "The conductance of the river boundary decreases.": false,
-      "The position of the no-flow boundary changes.": false
+      "The transmissivity of the aquifer increases.": false,
+      "The position of the defined head boundary shifts further into the domain.": false
     },
-    "success": "✅ Correct! Recharge increases head and thus outflow, but boundary conditions and geometry remain fixed.",
-    "error": "❌ Not quite. Recharge changes system input, not conductance or boundary placement."
+    "success": "✅ Correct! Recharge increases head and thus outflow, but aquifer properties and boundary locations stay the same.",
+    "error": "❌ Not quite. Recharge affects system input and outflow, but it does not alter aquifer properties or boundary positions."
   },
   {
     "question": "In which of the following cases does the Q–h plot appear as a vertical line? (Mark ALL correct answers)",
@@ -46,13 +46,13 @@
   {
     "question": "Which statements correctly describe the influence of hydraulic conductivity (K) in the 1D model? (Mark ALL correct answers)",
     "options": {
-      "Higher K values result in flatter hydraulic head gradients.": true,
-      "Lower K values result in steeper head gradients for the same recharge.": true,
-      "K affects the shape of the Q–h plot at a defined-head boundary.": false,
-      "K has no influence on the computed discharge in the system.": false
+      "Higher K values lead to flatter hydraulic head gradients under steady recharge.": true,
+      "For the same head difference, higher K results in greater discharge.": true,
+      "K influences the shape of the Q–h plot at a boundary with fixed head.": false,
+      "K does not affect the discharge through the aquifer system.": false
     },
-    "success": "✅ Correct! K controls the aquifer’s ability to transmit water and affects head gradients and flow distribution.",
-    "error": "❌ Not quite. K does affect gradients and system behavior — but not the Q–h curve of a Dirichlet boundary."
+    "success": "✅ Correct! K determines how easily water flows through the aquifer, affecting both head gradients and total discharge, but not the Q–h shape at a fixed-head boundary.",
+    "error": "❌ Not quite. K strongly influences both head gradients and discharge, but it does not affect the Q–h curve shape at a Dirichlet boundary."
   },
   {
     "question": "In a 1D model with recharge and a no-flow boundary, which of the following are true? (Mark ALL correct answers)",

@@ -1,0 +1,68 @@
+[
+  {
+    "question": "What happens to the flow $Q_B$ when the aquifer head $h_{aq}$ is lower than the boundary head $H_B$? (Mark ALL correct answers)",
+    "options": {
+      "A) The flow is directed into the aquifer.": true,
+      "B) The flow is directed out of the aquifer.": false,
+      "C) The flow becomes zero.": false,
+      "D) The GHB acts as a source to the aquifer.": true
+    },
+    "success": "✅ Correct. A head difference with $h_{aq} < H_B$ causes positive flow into the aquifer.",
+    "error": "❌ Check the sign of $Q_B = C_B(H_B - h_{aq})$ when $h_{aq} < H_B$."
+  },
+  {
+    "question": "How does the slope of the $Q_B$–$h_{aq}$ plot respond to increasing conductance $C_B$? (Mark ALL correct answers)",
+    "options": {
+      "A) The slope increases.": true,
+      "B) The slope remains constant.": false,
+      "C) The flow becomes more sensitive to head differences.": true,
+      "D) The slope decreases.": false
+    },
+    "success": "✅ Exactly. A higher $C_B$ results in a steeper response of $Q_B$ to head changes.",
+    "error": "❌ Recall that $Q_B$ is directly proportional to $C_B$ times the head difference."
+  },
+  {
+    "question": "What is true when $h_{aq} = H_B$? (Mark ALL correct answers)",
+    "options": {
+      "A) The flow $Q_B$ is zero.": true,
+      "B) The boundary acts as a source.": false,
+      "C) The boundary acts as a sink.": false,
+      "D) There is no net exchange across the boundary.": true
+    },
+    "success": "✅ Correct. Equal heads mean no driving force — no flow occurs.",
+    "error": "❌ Review the condition when $H_B = h_{aq}$. There is no head gradient to cause flow."
+  },
+  {
+    "question": "Which parameters influence the calculated flow $Q_B$ across a GHB? (Mark ALL correct answers)",
+    "options": {
+      "A) Aquifer head $h_{aq}$": true,
+      "B) Boundary head $H_B$": true,
+      "C) Conductance $C_B$": true,
+      "D) Recharge elsewhere in the model": false
+    },
+    "success": "✅ Well done. $Q_B$ is determined by $C_B(H_B - h_{aq})$.",
+    "error": "❌ Only parameters in the GHB equation directly affect the calculated flow."
+  },
+  {
+    "question": "What is the purpose of toggling the 'Compute conductance' option? (Mark ALL correct answers)",
+    "options": {
+      "A) To manually enter $C_B$ values": false,
+      "B) To calculate $C_B$ from $K$, $A_B$, and $L_B$": true,
+      "C) To simulate a realistic boundary setup": true,
+      "D) To remove the head difference from the equation": false
+    },
+    "success": "✅ Correct. This feature helps calculate conductance from physical properties.",
+    "error": "❌ Remember: the toggle switches from direct $C_B$ input to computation based on geometry and material properties."
+  },
+  {
+    "question": "Which of the following can you control in the interactive plot? (Mark ALL correct answers)",
+    "options": {
+      "A) The boundary head $H_B$": true,
+      "B) The aquifer head $h_{aq}$": true,
+      "C) The recharge rate applied to the aquifer": false,
+      "D) The boundary conductance": true
+    },
+    "success": "✅ Yes. These are all configurable in the interactive tool — except recharge.",
+    "error": "❌ Recharge is not part of the GHB configuration in this app."
+  }
+]

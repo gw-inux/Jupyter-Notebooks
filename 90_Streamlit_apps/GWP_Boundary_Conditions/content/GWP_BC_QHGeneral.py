@@ -35,7 +35,8 @@ institution_list = [f"{index_symbols[i-1]} {inst}" for i, inst in institutions.i
 institution_text = " | ".join(institution_list)
 
 st.title('General behavior of boundary conditions in groundwater models')
-st.subheader('Understanding :blue[the Q-h plot for different boundary conditions]', divider="blue")
+st.subheader('Understanding :blue[the relationship between flow _Q_ and hydraulic head _h_ using Q–h plots for different boundary conditions]', divider="blue")
+
 
 # --- MOTIVATION ---
 st.markdown("""
@@ -135,9 +136,9 @@ with st.expander("Show more :blue[**explanation about Q-h plots**] to describe b
     The subsequent figure presents various Q-h plots to describe the boundary conditions in MODFLOW. The subsequent sections of this module allow to investigate and use the specific boundary conditions with interactive plots.
     """
     )
-    lc1, cc1, rc1 = st.columns((20,60,20))
+    lc1, cc1, rc1 = st.columns((10,60,10))
     with cc1:
-        st.image('90_Streamlit_apps/GWP_Boundary_Conditions/assets/images/Q_h_plots_MF2005.png', caption="Q-h plots to describe the behavior of boundary conditions. onceptual model for a groundwater system with one no-flow boundary, from  (Harbaugh, 2005; https://pubs.usgs.gov/tm/2005/tm6A16/).")
+        st.image('90_Streamlit_apps/GWP_Boundary_Conditions/assets/images/Q_h_plots_MF6.png', caption="Q-h plots to describe the behavior of boundary conditions. onceptual model for a groundwater system with one no-flow boundary, from  [Langevin et al., 2017](https://doi.org/10.3133/tm6A55.)")
     
 
 # --- EXPLANATORY EXAMPLES ---
@@ -223,7 +224,6 @@ with st.expander('Show more about the theory of the :blue[**model and the analyt
             These solutions are subsequently used in the interactive plots to dynamically compute and visualize how different boundary conditions and recharge rates affect the hydraulic head distribution and the Q–h relationship.
             """, unsafe_allow_html=True)  
             
-st.markdown("---")
 
 st.subheader('Computation and visualization', divider='blue')
 st.markdown("""Subsequently, the solutions are computed and results are visualized. You can modify the parameters to investigate the functional behavior. In general, you can modify the
@@ -402,6 +402,8 @@ if show_plot1:
             ax_qh.set_ylabel("flow into the model Qin [m³/s]", fontsize=14)
         if "No-flow" in bc_type:
             if turn:
+                ax_qh.xaxis.set_major_formatter(FormatStrFormatter('%.1e'))
+                ax_qh.xaxis.set_major_locator(plt.MaxNLocator(3))  # Limit to 3 ticks
                 ax_qh.plot(Q_nf, h_nf, color='black', linewidth=3)
                 ax_qh.plot(Q_nf_point, h_nf_point, 'ro', markersize=10)
                 ax_qh.set_title("h-Q plot: Defined flow boundary (No-Flow)", fontsize=16, pad=15, color='orange')
@@ -417,6 +419,8 @@ if show_plot1:
                 ax_qh.axvline(150, color='grey', linestyle='--', linewidth=0.8)
         elif "Recharge" in bc_type:
             if turn:
+                ax_qh.xaxis.set_major_formatter(FormatStrFormatter('%.1e'))
+                ax_qh.xaxis.set_major_locator(plt.MaxNLocator(3))  # Limit to 3 ticks
                 ax_qh.plot(Q_rch, h_rch, color='black', linewidth=3)
                 ax_qh.plot(Q_rch_point, h_rch_point, 'go', markersize=10)
                 ax_qh.set_title("h-Q plot: Defined flow boundary (Recharge) at x = 1250 m", fontsize=16, pad=15, color = 'green')
@@ -432,6 +436,8 @@ if show_plot1:
                 ax_qh.axvline(150, color='grey', linestyle='--', linewidth=0.8)
         elif "Defined head" in bc_type:      
             if turn:
+                ax_qh.xaxis.set_major_formatter(FormatStrFormatter('%.1e'))
+                ax_qh.xaxis.set_major_locator(plt.MaxNLocator(3))  # Limit to 3 ticks
                 ax_qh.plot(Q_defh, h_defh, color='black', linewidth=3)
                 ax_qh.plot(Q_defh_point, h_defh_point, 'bo', markersize=10)
                 ax_qh.set_title("h-Q plot: Defined head boundary", fontsize=16, pad=15, color = 'blue')
@@ -447,6 +453,8 @@ if show_plot1:
                 ax_qh.axvline(150, color='grey', linestyle='--', linewidth=0.8)
         elif "River" in bc_type:      
             if turn:
+                ax_qh.xaxis.set_major_formatter(FormatStrFormatter('%.1e'))
+                ax_qh.xaxis.set_major_locator(plt.MaxNLocator(3))  # Limit to 3 ticks
                 ax_qh.plot(Q_rob, h_rob, color='black', linewidth=3)
                 ax_qh.plot(Q_rob_point, h_rob_point, 'o', color='fuchsia', markersize=10)
                 ax_qh.set_title("h-Q plot: River boundary", fontsize=16, pad=15, color = 'violet')
@@ -684,6 +692,8 @@ if show_plot2:
             ax_qh.set_ylabel("flow into the model Qin [m³/s]", fontsize=14)
         if "Recharge" in bc_type2:
             if turn2:
+                ax_qh.xaxis.set_major_formatter(FormatStrFormatter('%.1e'))
+                ax_qh.xaxis.set_major_locator(plt.MaxNLocator(3))  # Limit to 3 ticks
                 ax_qh.plot(Q2_rch, h2_rch, color='black', linewidth=3)
                 ax_qh.plot(Q2_rch_point, h2_rch_point, 'go', markersize=10)
                 ax_qh.set_title("h-Q plot: Defined flow boundary (Recharge) at x = 1250 m", fontsize=16, pad=15, color = 'green')
@@ -699,6 +709,8 @@ if show_plot2:
                 ax_qh.axvline(150, color='grey', linestyle='--', linewidth=0.8)
         elif "Defined head left" in bc_type2:      
             if turn2:
+                ax_qh.xaxis.set_major_formatter(FormatStrFormatter('%.1e'))
+                ax_qh.xaxis.set_major_locator(plt.MaxNLocator(3))  # Limit to 3 ticks
                 ax_qh.plot(Q2_defh, h2_defh_l, color='black', linewidth=3)
                 ax_qh.plot(Q2_defh_point_l, h2_defh_point_l, 'bo', markersize=10)
                 ax_qh.set_title("h-Q plot: Defined head boundary left", fontsize=16, pad=15, color = 'blue')
@@ -714,6 +726,8 @@ if show_plot2:
                 ax_qh.axvline(150, color='grey', linestyle='--', linewidth=0.8)
         elif "Defined head right" in bc_type2:      
             if turn2:
+                ax_qh.xaxis.set_major_formatter(FormatStrFormatter('%.1e'))
+                ax_qh.xaxis.set_major_locator(plt.MaxNLocator(3))  # Limit to 3 ticks
                 ax_qh.plot(Q2_defh, h2_defh_r, color='black', linewidth=3)
                 ax_qh.plot(Q2_defh_point_r, h2_defh_point_r, 'bo', markersize=10)
                 ax_qh.set_title("h-Q plot: Defined head boundary right", fontsize=16, pad=15, color = 'blue')
