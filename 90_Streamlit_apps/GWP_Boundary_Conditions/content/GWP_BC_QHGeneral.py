@@ -524,17 +524,13 @@ if show_plot2:
         
         # Groundwater divide
         if R2 >= 0:
-            st.write('R > 0')
             max_y2 = max(h2)
             max_x2 = x2[h2.argmax()]
             R2_min_ms=K2*abs(hl2**2-hr2**2)/L2**2
-            st.write(max_y2, max_x2,R2_min_ms)
         else:
-            st.write('R < 0')
             max_y2 = min(h2)
             max_x2 = x2[h2.argmin()]
             R2_min_ms=K2*abs(hl2**2-hr2**2)/L2**2*-1.0
-            st.write(max_y2, max_x2,R2_min_ms)
         
         
         # --- Q-h relationship functions ---
@@ -555,17 +551,14 @@ if show_plot2:
         if R2 < 0.0:
             # Divide
             if R2<R2_min_ms:
-                st.write('divide')
                 Q2_defh_point_r = AR_r*R2*-1
                 Q2_defh_point_l = AR_l*R2*-1
             # No divide
             else:
                 if hr2>hl2:
-                    st.write('hr2>hl2')
                     Q2_defh_point_r = (K2/2/L2*(hl2**2-hr2**2)-(R2*L2/2))*-1
                     Q2_defh_point_l = K2/2/L2*(hl2**2-hr2**2)+(R2*L2/2)
                 else:
-                    st.write('else')
                     Q2_defh_point_r = (K2/2/L2*(hl2**2-hr2**2)+(R2*L2/2))*-1
                     Q2_defh_point_l = K2/2/L2*(hl2**2-hr2**2)-(R2*L2/2)
         # Positive recharge and divide            
@@ -576,11 +569,9 @@ if show_plot2:
             # No divide
             else:
                 if hr2>hl2:
-                    st.write('hr2>hl2')
                     Q2_defh_point_r = (K2/2/L2*(hl2**2-hr2**2)-(R2*L2/2))*-1
                     Q2_defh_point_l = K2/2/L2*(hl2**2-hr2**2)+(R2*L2/2)
                 else:
-                    st.write('else') 
                     Q2_defh_point_r = (K2/2/L2*(hl2**2-hr2**2)+(R2*L2/2))*-1
                     Q2_defh_point_l = K2/2/L2*(hl2**2-hr2**2)-(R2*L2/2)       
         
