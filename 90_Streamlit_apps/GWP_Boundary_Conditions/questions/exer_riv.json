@@ -1,0 +1,68 @@
+[
+  {
+    "question": "Q1. Under which condition is the flow through the river boundary considered 'constant' (i.e., flow is not depended from aquifer head)? (Mark ALL correct answers)",
+    "options": {
+      "A) When aquifer head is lower than river bottom elevation": true,
+      "B) When river stage is below river bottom": false,
+      "C) When aquifer head equals river bottom elevation": false,
+      "D) When the riverbed conductance is zero": false
+    },
+    "success": "✅ Correct. Constant flow occurs if the aquifer is below the river bottom.",
+    "error": "❌ Recheck when MODFLOW define flow to a fixed value — it depends on aquifer heads."
+  },
+  {
+    "question": "Q2. What happens when the aquifer head is higher than the river stage and both are above the river bottom? (Mark ALL correct answers)",
+    "options": {
+      "A) The river recharges the aquifer": false,
+      "B) The aquifer discharges into the river": true,
+      "C) Flow is proportional to conductance and head difference": true,
+      "D) No flow occurs in this condition": false
+    },
+    "success": "✅ Correct. This is a typical 'losing river' case, where the aquifer discharges to the river.",
+    "error": "❌ Flow direction depends on the relative heads — think of which side is higher."
+  },
+  {
+    "question": "Q3. Which of the following factors influence the maximum flow from river to aquifer in MODFLOW’s RIV package? (Mark ALL correct answers)",
+    "options": {
+      "A) The river stage": true,
+      "B) The aquifer head": true,
+      "C) The river bottom elevation": true,
+      "D) The riverbed conductance": true
+    },
+    "success": "✅ Correct. All four parameters affect the flow. Conductance scales the head difference, and the bottom acts as a lower bound.",
+    "error": "❌ All listed parameters are involved in determining flow magnitude and direction."
+  },
+  {
+    "question": "Q4. In a scenario where the riverbed conductance is low, what is the expected behavior? (Mark ALL correct answers)",
+    "options": {
+      "A) Very little flow between river and aquifer": true,
+      "B) Flow increases sharply with small head differences": false,
+      "C) The Q–h curve is steep": false,
+      "D) The exchange flux is small even with large head differences": true
+    },
+    "success": "✅ Correct. A low conductance limits the flow, resulting in a flat Q–h slope.",
+    "error": "❌ Review the role of conductance — it determines the ease of flow across the interface."
+  },
+  {
+    "question": "Q5. Why does MODFLOW limit river recharge below the river bottom? (Mark ALL correct answers)",
+    "options": {
+      "A) It prevents unrealistic downward seepage from the river": true,
+      "B) Because the model assumes river water can only infiltrate to the depth of the riverbed": true,
+      "C) It simplifies model equations": false,
+      "D) The aquifer cannot transmit water above the river": false
+    },
+    "success": "✅ Correct. MODFLOW restricts river recharge below the bottom to reflect physical limitations.",
+    "error": "❌ The restriction is due to physical representation, not purely numerical simplification."
+  },
+  {
+    "question": "Q6. When the aquifer head equals the river stage, and both are above the bottom, what is the flow? (Mark ALL correct answers)",
+    "options": {
+      "A) Zero": true,
+      "B) Maximum": false,
+      "C) Depends on conductance": false,
+      "D) The system is in hydraulic equilibrium": true
+    },
+    "success": "✅ Correct. No flow occurs when heads are equal — the system is balanced.",
+    "error": "❌ Think of the head difference — if it's zero, the driving force is also zero."
+  }
+]

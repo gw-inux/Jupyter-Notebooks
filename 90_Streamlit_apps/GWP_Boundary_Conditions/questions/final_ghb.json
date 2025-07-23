@@ -1,6 +1,6 @@
 [
   {
-    "question": "Which statements best describe how a General Head Boundary (GHB) behaves? (Mark ALL correct answers)",
+    "question": "Which statements describe how a General Head Boundary (GHB) behaves? (Mark ALL correct answers)",
     "options": {
       "A) The flow direction depends on the difference between $H_B$ and $h_{aq}$.": true,
       "B) A GHB always enforces a constant discharge.": false,

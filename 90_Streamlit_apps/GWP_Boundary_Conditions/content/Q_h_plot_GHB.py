@@ -170,7 +170,7 @@ with st.expander("Show me more about **the Theory**"):
     with cent_co:
         st.image('06_Groundwater_modeling/FIGS/GHB.png', caption="Schematic illustration of the GHB boundary, modified from  (McDonald and Harbaugh, 1988; https://pubs.usgs.gov/twri/twri6a1/pdf/twri_6-A1_p.pdf)")
 
-st.subheader("📈 Interactive plot and Exercise", divider="orange")
+st.subheader("📈 Interactive Plot and Exercise", divider="orange")
 st.markdown("""
     The interactive plot shows how the flow $Q_B$ across a General Head Boundary depends on the difference between aquifer head ($h_{aq}$) and boundary head ($H_B$), and on the conductance ($C_B$). 
     
@@ -190,7 +190,10 @@ with st.expander('Show the :blue[**INITIAL INSTRUCTIONS**]'):
 
     * Set **boundary head $H_B$ = 10.0 m**.
     * Vary **aquifer head $h_{aq}$** between 5 and 15 m.
-    * Observe how **flow $Q_B$** changes:
+    * Observe how **flow $Q_B$** changes.
+    * Investigate that 
+        * A gaining GHB removes water from the aquifer (Q < 0) and
+        * A losing GHB adds water to the aquifer (Q > 0).  
 
     **2. Test Different Conductance Values**
 
@@ -250,17 +253,7 @@ with st.expander('Show the :rainbow[**EXERCISE**]'):
     
       * A poorly connected canal (low conductance).
       * A well-connected canal (high conductance).
-    * Discuss the implications for water management.
-    
-    
-    #### 📝 **Answer the Following Questions**
-    
-    1. When does the GHB act as a **source** to the aquifer, and when as a **sink**?
-    2. What happens to the flux if the conductance is set to zero? What if it's extremely high?
-    3. How does increasing conductance influence the sensitivity of flux to aquifer head changes?
-    4. Why might a modeler choose a GHB over a fixed head or river boundary?
-    5. Based on your observations, how would you calibrate the conductance value using field data?
-    
+    * Discuss the implications for water management.    
     """)
 
 st.markdown('---')
@@ -302,11 +295,12 @@ def Q_h_plot():
     log_min1 = -7.0 # T / Corresponds to 10^-7 = 0.0000001
     log_max1 = 1.0  # T / Corresponds to 10^1 = 10
     
-    # Switches
+    # Input widgets
 
-    
+    st.markdown("#### :orange[Model parameters]")
     
     columns1 = st.columns((1,1,1), gap = 'small')
+    
     
     # Initialize st.session_state.C
     if "C" not in st.session_state:
@@ -451,7 +445,7 @@ def Q_h_plot():
             ax.set_ylim(-0.05, 0.05)
    
    # === SHARED FORMATTING === #        
-    ax.set_title("Flow Between Groundwater and GHB boundary", fontsize=16, pad=10)
+    ax.set_title("Flow Between Groundwater and GHB", fontsize=16, pad=10)
     plt.xticks(fontsize=14)
     plt.yticks(fontsize=14) 
     ax.legend(fontsize=14)

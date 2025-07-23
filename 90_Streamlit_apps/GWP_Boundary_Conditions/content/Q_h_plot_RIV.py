@@ -12,11 +12,15 @@ from streamlit_book import multiple_choice
 
 # path to questions for the assessments (direct path)
 path_quest_ini   = "90_Streamlit_apps/GWP_Boundary_Conditions/questions/initial_riv.json"
+path_quest_exer =  "90_Streamlit_apps/GWP_Boundary_Conditions/questions/exer_riv.json"
 path_quest_final = "90_Streamlit_apps/GWP_Boundary_Conditions/questions/final_riv.json"
 
 # Load questions
 with open(path_quest_ini, "r", encoding="utf-8") as f:
     quest_ini = json.load(f)
+    
+with open(path_quest_exer, "r", encoding="utf-8") as f:
+    quest_exer = json.load(f)
     
 with open(path_quest_final, "r", encoding="utf-8") as f:
     quest_final = json.load(f)
@@ -252,7 +256,96 @@ with st.expander('**Click here** to read how flow is calculated when the :green[
     This head difference is multiplied by Conductance to determine Flow Rate from the River to the Aquifer
     """)
 
-st.subheader("Interactive Graph", divider="green")
+st.subheader("Interactive Plot and Exercise", divider="green")
+st.markdown("""
+The interactive plot shows how the flow $Q_{RIV}$ across a River Boundary depends on the **difference between aquifer head** ($h_{aq}$) and **river stage** ($h_{stage}$), while being constrained by the **river bottom elevation** ($h_{bot}$) and scaled by the **riverbed conductance** ($C_{RIV}$).
+
+Use the sliders or number inputs to adjust these parameters. You can also toggle between direct conductance input or compute it from hydraulic and geometrical properties. The plot updates dynamically and supports different viewing orientations.
+
+- You can investigate the plot on your own. Some :blue[INITIAL INSTRUCTIONS] may guide you.
+- An :rainbow[EXERCISE] allows you to apply the plot and deepen your understanding. This exercise invites you to explore how river–aquifer exchange is controlled by **river stage, aquifer hydraulic head, conductance, and bottom elevation**. Use the interactive RIV plot to examine how these factors influence the exchange flux, and interpret the **physical meaning based on Q–h plots**, especially the transitions between **gaining**, **losing**, and **decoupled** river conditions.
+""")
+
+with st.expander('Show the :blue[**INITIAL INSTRUCTIONS**]'):
+    st.markdown("""
+    **Getting Started with the Interactive Plot**
+    
+    Before starting the exercise, follow these quick steps to explore RIV behavior:
+    
+    **1. Set a Reference Case**
+    * Set river stage $h_{stage} = 10.0$ m
+    * Set river bottom elevation $h_{bot} = 9.0$ m
+    * Vary aquifer head $h_{aq}$ between 8 and 12 m
+    * Observe how the flow $Q_{RIV}$ changes:
+        * When $h_{aq} > h_{stage}$, the aquifer discharges to the river (losing river).
+        * When $h_{aq} < h_{stage}$ but $h_{aq} > h_{bot}$, the river recharges the aquifer (gaining river).
+        * When $h_{aq} < h_{bot}$, the river is not longer in direct contact with the aquifer. Flow through an unsaturated zone occurs, which is driven between the head gradient between river stage and river bottom. In this case, outflow from the river is kept constant.
+    
+    **2. Test Different Conductance Values**
+    * Use the slider to vary $C_{RIV}$
+    * Note how the slope of the $Q$–$h$ curve changes — higher conductance allows more exchange.
+    
+    **3. Compute Conductance**
+    * Toggle “Compute conductance”
+    * Enter $K$, $A_{riv}$, and $L_{RIV}$ to calculate $C_{RIV} = \\frac{KA_{RIV}}{L_{RIV}}$
+    * Observe how the conductance value influences the Q–h relationship.
+    * Set $h_{aq}$ < $h_{bot}$ and compute $C_{RIV}$ directly. Investigate the effect of the river bottom elevation $h_{bot}$ and river bed thickness $M_{RIV}$
+    
+    These steps help you build intuition for how RIV parameters control flow, a key foundation for the exercise. Feel free to further investigate the interactive plot on your own.
+    """)
+
+with st.expander('Show the :rainbow[**EXERCISE**]'):
+    
+    st.markdown("""
+    
+    🎯 **Expected Learning Outcomes**
+    
+    By completing this exercise, you will:
+    
+    * Understand how river–aquifer exchange is controlled by stage, aquifer head, bottom elevation, and conductance.
+    * Interpret Q–h plots in relation to gaining, losing, or inactive river segments.
+    * Identify conditions that limit or enable flow across the riverbed.
+    * Develop the ability to test and visualize river boundary behavior through scenario analysis.
+
+    🛠️ **Instructions**
+
+    Use the interactive RIV plot and complete the following steps:
+    1. **Initial Exploration**
+    
+    * Set the **river stage** (`h_stage`) to **10 m**
+    * Set the **river bottom elevation** (`h_bot`) to **9 m**
+    * Vary the **aquifer head** (`h_aq`) from **8 m to 12 m**
+    * Observe and describe how the flow (`Q_RIV`) changes.
+    
+    📝 Record:
+    
+        * Whether the river is gaining or losing in each case.
+        * The conditions where no flow occurs.
+        * The transition points between gaining/losing/inactive behavior.
+
+    2. **Effect of Conductance**
+
+    * Keep `h_stage = 10 m` and `h_bot = 9 m`
+    * Choose three different conductance values (e.g., **1E-2, 1E-3, and 1E-4 m²/s**)
+    * For each case:
+        * Plot `Q_RIV` vs `h_aq` from 8 m to 12 m (on paper or spreadsheet)
+        * Compare the slope of the curves and the magnitude of flow
+        * Observe how low/high conductance limits flow exchange
+    
+    3. **Realistic Scenarios: Recession Flow**
+    
+    * Imagine a river with stage **decreasing** from **11 m** to **9 m** (e.g., during a dry spell)
+    * Set river bottom to **8.5 m**
+    * Aquifer head is fixed at **9.2 m**
+    
+    💭 Explore:
+    
+        * How does the direction and magnitude of flow change as the river stage drops?
+        * How does the bottom elevation restrict or allow recharge?
+        * Discuss which condition (stage or bottom) dominates the system behavior    
+    """)
+
+st.markdown('---')
 
 # Functions
 
@@ -355,49 +448,44 @@ def Q_h_plot():
     log_max2 = -2.0  # T / Corresponds to 10^1 = 10
     x_multi = 1
     
-    # INPUT for graph controls
-    st.markdown("#### :green[Graph Controls]")
-    columns1 = st.columns((1,1), gap = 'medium')
-    with columns1[0]:
-        st.text_input(
-            "**Lowest elevation to show on graph in m**",
-            value=str(st.session_state.h_ref),
-            key="h_ref_input",
-            on_change=update_elevation_input,
-            args=("h_ref_input",)
-        )
-        
-        st.text_input(
-            "**Highest elevation to show on graph in m**",
-            value=str(st.session_state.thick),
-            key="thick_input",
-            on_change=update_elevation_input,
-            args=("thick_input",)
-        )
-        
-        # --- VALIDATION ---
-        h_ref = st.session_state.h_ref
-        thick = st.session_state.thick
-        
-        if thick <= h_ref+0.1:
-            st.error(
-                f"🚫 Highest elevation must be greater than lowest elevation.\n\n"
-                f"Lowest entered: **{h_ref:.2f} m**\n"
-                f"Suggested highest: **{h_ref + 20.0:.2f} m**"
-            )
-            st.stop()    
-        
-    with columns1[1]:
-        x_range = st.number_input("**Range of Q in the plot**", 0.02, 1.00, 0.05, 0.01)
-        turn = st.toggle('**Turn Graph** 90 degrees', key="RIV_turn")
-        st.session_state.number_input = st.toggle("**Use Slider or Number** for input")      
-        condcomp = st.toggle('Compute $C_{RIV}$ explicitly')
-        visualize = st.toggle(':rainbow[**Make the plot alive** and visualize the input values]', key="RIV_vis")
-  
-    "---"   
     # INPUT for the computation
     st.markdown("#### :green[Model parameters]")
-
+    columns1 = st.columns((1,1,1), gap = 'small')
+    
+    with columns1[0]:
+        with st.expander('Modify the plot control'):
+            st.text_input(
+                "**Lowest elevation to show on graph in m**",
+                value=str(st.session_state.h_ref),
+                key="h_ref_input",
+                on_change=update_elevation_input,
+                args=("h_ref_input",)
+            )
+            
+            st.text_input(
+                "**Highest elevation to show on graph in m**",
+                value=str(st.session_state.thick),
+                key="thick_input",
+                on_change=update_elevation_input,
+                args=("thick_input",)
+            )
+            
+            # --- VALIDATION ---
+            h_ref = st.session_state.h_ref
+            thick = st.session_state.thick
+            
+            if thick <= h_ref+0.1:
+                st.error(
+                    f"🚫 Highest elevation must be greater than lowest elevation.\n\n"
+                    f"Lowest entered: **{h_ref:.2f} m**\n"
+                    f"Suggested highest: **{h_ref + 20.0:.2f} m**"
+                )
+                st.stop()    
+            x_range = st.number_input("**Range of Q in the plot**", 0.02, 1.00, 0.05, 0.01)
+            turn = st.toggle('**Turn Graph** 90 degrees', key="RIV_turn")
+            st.session_state.number_input = st.toggle("**Use Slider or Number** for input")      
+            visualize = st.toggle(':rainbow[**Make the plot alive** and visualize the input values]', key="RIV_vis")
+    
     # Make sure that heads and elevations are inside the plot
     if st.session_state.h_aq_show < 0.1+h_ref:
         st.session_state.h_aq_show = 0.1+h_ref
@@ -405,10 +493,9 @@ def Q_h_plot():
         st.session_state.h_RIV = 0.1+h_ref
     if st.session_state.h_bot < 0.1+h_ref:
         st.session_state.h_bot = 0.1+h_ref        
-    columns2 = st.columns((1,1,1))
-                        
-    with columns2[1]:
-        with st.expander('**Modify heads and elevations**'):
+    
+    with columns1[1]:
+        with st.expander('Modify heads and elevations'):
             #h_aq
             if st.session_state.number_input:
                 h_aq_show = st.number_input("**Aquifer head in m ($h_{aq}$)**", 0.1+h_ref, thick, st.session_state.h_aq_show, 0.1, key="h_aq_show_input", on_change=update_h_aq_show)
@@ -424,10 +511,11 @@ def Q_h_plot():
                 h_bot = st.number_input("**Bottom of river bed in m ($h_{bot}$)**", 0.1+h_ref, thick, st.session_state.h_bot, 0.1, key="h_bot_input", on_change=update_h_bot)
             else:
                 h_bot = st.slider      ("**Bottom of river bed in m ($h_{bot}$)**", 0.1+h_ref, thick, st.session_state.h_bot, 0.1, key="h_bot_input", on_change=update_h_bot)
-  
-    with columns2[0]:
-        if condcomp:
-            with st.expander('**Compute conductance with the following geometry**'):
+            
+    with columns1[2]:
+        with st.expander('Modify the conductance'):
+            condcomp = st.toggle('Compute $C_{RIV}$ explicitly')
+            if condcomp:
                 #L_RIV
                 if st.session_state.number_input:
                      L_RIV = st.number_input("**River length in m ($L_{RIV}$)**", 1.0, 1000.0, st.session_state.L_RIV, 0.1, key="L_RIV_input", on_change=update_L_RIV)
@@ -445,10 +533,6 @@ def Q_h_plot():
                 else:
                      M_RIV = st.slider      ("**River bed thickness in m ($M_{RIV}$)**", 0.01, 5.0, st.session_state.M_RIV, 0.1, key="M_RIV_input", on_change=update_M_RIV)
                      h_bed = h_bot + M_RIV
- 
-    with columns2[2]:
-        if condcomp:
-            with st.expander('**Modify riverbed hydraulic conductivity**'):            
                 #K_RIV            
                 # READ LOG VALUE, CONVERT, AND WRITE VALUE FOR Conductance
                 container = st.container()  
@@ -457,11 +541,10 @@ def Q_h_plot():
                 else:
                     K_slider_value_new = st.slider      ("_(log of) Riverbed hydraulic conductivity_", log_min2,log_max2, st.session_state.K_slider_value, 0.01, format="%4.2f", key="K_input", on_change=update_K)
                 K = 10 ** K_slider_value_new
-                container.write("**$K_v$ in m/s:** %5.2e" %K)                 
-                 
-            C = L_RIV * W_RIV * K / M_RIV
-        else:
-            with st.expander('**Modify river conductance**'):  
+                container.write("**$K_v$ in m/s:** %5.2e" %K)  
+                
+                C = L_RIV * W_RIV * K / M_RIV
+            else:
                 #C_RIV
                 # READ LOG VALUE, CONVERT, AND WRITE VALUE FOR Conductance
                 container = st.container()  
@@ -470,7 +553,7 @@ def Q_h_plot():
                 else:
                     C_slider_value_new = st.slider      ("_(log of) Conductance_", log_min1,log_max1, st.session_state.C_slider_value, 0.01, format="%4.2f", key="C_input", on_change=update_C)    
                 C = 10 ** C_slider_value_new
-                container.write("**$C_{Riv}$ in m²/s:** %5.2e" %C) 
+                container.write("**$C_{Riv}$ in m²/s:** %5.2e" %C)         
             
     # INPUT PROCESSING
     # calculate top of river bed
@@ -509,25 +592,12 @@ def Q_h_plot():
     Q = np.where(h_aq >= h_bot, C * (h_RIV - h_aq), C * (h_RIV - h_bot))
     Q_ref = C * (h_RIV - h_aq_show) if h_aq_show >= h_bot else C * (h_RIV - h_bot)
     
-#    limQ0 = C * (h_RIV - h_bot)
-#    limQ1 = abs(Q_ref) + 0.2 * abs(Q_ref)
-#    limQ2 = -limQ1
-#    lim1 = limQ1
-#    lim2 = limQ2
-#    if limQ0 > limQ1:
-#        lim1 = (abs(limQ0) + 0.2 * abs(limQ0))
-#        lim2 = -lim1
-#    if limQ0 < limQ2:
-#        lim2 = limQ0 + 0.2 * limQ0
-#        lim1 = -lim2
-    
     lim1 = x_range
     lim2 = -x_range
         
     # Create the graph
     fig, ax = plt.subplots(figsize=(8,10))
     if turn:
-        
         
         # Shown always
         xlabel = "Flow into the Ground-Water System From the River $Q$ (m³/s)"
@@ -537,7 +607,6 @@ def Q_h_plot():
         ax.set_ylim(h_ref, thick)
         ax.set_xlim(lim1,lim2)
         
-
         # Visualize is the plot with all the explanations
         if visualize:
             ax.plot(Q, h_aq, label=rf"$Q$", color='fuchsia', linewidth=3)
@@ -739,6 +808,36 @@ def Q_h_plot():
         st.write("- Flow between river and aquifer **$Q_{RIV}$ = % 10.2E"% Q_ref," m³/s**")
 
 Q_h_plot()
+
+with st.expander('**Show the :rainbow[**EXERCISE**] assessment** - to self-check your understanding'):
+    st.markdown("""
+    #### 🧠 Excercise assessment
+    These questions test your understanding after doing the exercise.
+    """)
+
+    # Render questions in a 2x3 grid (row-wise)
+    for row in [(0, 1), (2, 3), (4, 5)]:
+        col1, col2 = st.columns(2)
+
+        with col1:
+            i = row[0]
+            st.markdown(f"**Q{i+1}. {quest_exer[i]['question']}**")
+            multiple_choice(
+                question=" ",
+                options_dict=quest_exer[i]["options"],
+                success=quest_exer[i].get("success", "✅ Correct."),
+                error=quest_exer[i].get("error", "❌ Not quite.")
+            )
+
+        with col2:
+            i = row[1]
+            st.markdown(f"**Q{i+1}. {quest_exer[i]['question']}**")
+            multiple_choice(
+                question=" ",
+                options_dict=quest_exer[i]["options"],
+                success=quest_exer[i].get("success", "✅ Correct."),
+                error=quest_exer[i].get("error", "❌ Not quite.")
+            )
 
 st.subheader('✅ Conclusion', divider = 'violet')
 st.markdown("""

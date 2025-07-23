@@ -13,21 +13,21 @@
   {
     "question": "What is the effect of increasing the riverbed conductance in a RIV boundary condition? (Mark ALL correct answers)",
     "options": {
-      "It increases the sensitivity of flow to the head difference.": true,
+      "It increases the sensitivity of flow to the head difference.": false,
       "It reduces the maximum exchange flow possible.": false,
       "It simulates a more permeable river–aquifer connection.": true,
       "It makes the river behave like a fixed head boundary.": false
     },
     "success": "✅ Correct. Higher conductance implies more exchange per unit head difference.",
-    "error": "❌ The correct choices indicate increased sensitivity and permeability — not fixed-head behavior."
+    "error": "❌ The correct choices indicate increased permeability — not fixed-head behavior and increased sensitivity (because double head difference still means double boundary flow)."
   },
   {
     "question": "When does flow between the aquifer and river stop in the RIV boundary? (Mark ALL correct answers)",
     "options": {
-      "When the aquifer head drops below the riverbed bottom elevation": true,
+      "When the aquifer head drops below the riverbed bottom elevation": false,
       "When the river stage is zero": false,
       "When the conductance is set to zero": true,
-      "When the aquifer head equals the river stage": false
+      "When the aquifer head equals the river stage": true
     },
     "success": "✅ Well done. Flow stops either when the aquifer drops below the riverbed or if conductance is zero.",
     "error": "❌ Recheck. Flow stops when aquifer head is below the riverbed or when conductance is zero."
@@ -44,15 +44,15 @@
     "error": "❌ Not quite. Gaining occurs when the aquifer head is above the river stage."
   },
   {
-    "question": "What happens to the exchange flow as aquifer head approaches the riverbed elevation from above? (Mark ALL correct answers)",
+    "question": "What happens to the exchange flow as aquifer head approaches the river stage elevation from above? (Mark ALL correct answers)",
     "options": {
       "Flow rate decreases and approaches zero.": true,
       "The riverbed becomes dry.": false,
       "MODFLOW disables the RIV boundary.": false,
       "Exchange flow becomes negative.": false
     },
-    "success": "✅ Exactly. The flow becomes minimal as the aquifer approaches the riverbed.",
-    "error": "❌ Careful — flow tapers off but doesn't reverse or disable the boundary unless below riverbed."
+    "success": "✅ Exactly. The flow becomes minimal as the aquifer approaches the river stage elevation.",
+    "error": "❌ Careful — flow tapers off but doesn't reverse or disable the boundary."
   },
   {
     "question": "Which statement about RIV boundaries is true? (Mark ALL correct answers)",

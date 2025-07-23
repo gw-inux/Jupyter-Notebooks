@@ -41,9 +41,16 @@ st.subheader('Understanding :blue[the relationship between flow _Q_ and hydrauli
 # --- MOTIVATION ---
 st.markdown("""
 #### 💡 Motivation - Boundary conditions and Q-h plots in groundwater modeling
-Understanding how different boundary conditions influence groundwater flow is fundamental to building reliable conceptual and numerical models. Boundary conditions control how water enters, leaves, or interacts with the groundwater system, whether through defined heads, specified flows, or head-dependent exchanges such as rivers or drains. However, the behavior of these boundaries can be misinterpreted or misunderstood, especially in the early stages of model development.
+Understanding how different boundary conditions influence groundwater flow is fundamental to building reliable groundwater models. Boundary conditions control how water enters, leaves, or interacts with the groundwater system, whether through defined heads, specified flows, or head-dependent exchanges such as rivers or drains. However, the behavior of these boundaries can be misinterpreted or misunderstood, especially in the early stages of model development.
 
-This app provides an intuitive visual and interactive exploration of **Q–h plots**, a powerful conceptual tool to classify and compare the response of boundary conditions in groundwater models. By simulating a simple 1D unconfined aquifer with recharge and various boundary types, users gain insight into the essential principles that govern groundwater model boundaries and their practical implications in tools like MODFLOW.
+This app provides an intuitive visual and interactive exploration of **Q–h plots** (see the following Figure) , a powerful conceptual tool to classify and compare the response of boundary conditions in groundwater models.
+""")
+
+left_co, cent_co, last_co = st.columns((20,80,20))
+with cent_co:
+    st.image('90_Streamlit_apps/GWP_Boundary_Conditions/assets/images/gwp_boundary_Qh_scheme.png',caption="Schematic representation of an unconfined aquifer with a river boundary on the right side together with the associated Q-h plot.")
+
+st.markdown(""" By simulating a simple 1D unconfined aquifer with recharge and various boundary types, users gain insight into the essential principles that govern groundwater model boundaries and their practical implications in tools like MODFLOW.
 
 To support this learning, this initial part of the module applies a well-known analytical solution for 1D unconfined groundwater flow with recharge. It illustrates how different boundary types like defined head, defined flow, and head-dependent flow influence the resulting hydraulic head distribution. A key focus is placed on understanding the resulting Q–h relationships, which are central to the conceptualization and interpretation of boundary conditions in groundwater models like MODFLOW.
 
