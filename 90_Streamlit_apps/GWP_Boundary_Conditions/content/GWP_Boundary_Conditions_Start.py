@@ -24,9 +24,9 @@ st.markdown(
 Groundwater models are only as accurate as their boundary conditions. This interactive module is designed to deepen your understanding of how different types of boundary conditions — defined head, defined flow, and head-dependent flux — influence groundwater flow systems.
 """)
 
-left_co, cent_co, last_co = st.columns((20,80,20))
+left_co, cent_co, last_co = st.columns((5,80,5))
 with cent_co:
-    st.image('90_Streamlit_apps/GWP_Boundary_Conditions/assets/images/wss-cycle-groundwater-flow-diagram.jpg',caption="PLACEHOLDER FOR Sketch that shows boundary conditions appearing in a natural flow system.")
+    st.image('90_Streamlit_apps/GWP_Boundary_Conditions/assets/images/gwp_boundary_title.png',caption="Schematic representation of groundwater flow. Physical features of the area like the lake, stream, and pumping well are represented by boundary conditions. Figure modified from [Grannemann et al. 2000](https://mi.water.usgs.gov/pubs/WRIR/WRIR00-4008/).")
 
 st.markdown(
     """

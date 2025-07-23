@@ -95,7 +95,7 @@ with columns0[1]:
     st.pyplot(fig)
 
 st.markdown("""
-#### 🎓 Learning Objectives
+#### 🎯 Learning Objectives
 By the end of this section of the module, you will be able to:
 
 - Explain the conceptual function and mathematical formulation of a General Head Boundary (GHB).
@@ -170,7 +170,7 @@ with st.expander("Show me more about **the Theory**"):
     with cent_co:
         st.image('06_Groundwater_modeling/FIGS/GHB.png', caption="Schematic illustration of the GHB boundary, modified from  (McDonald and Harbaugh, 1988; https://pubs.usgs.gov/twri/twri6a1/pdf/twri_6-A1_p.pdf)")
 
-st.subheader("Interactive plot and Exercise", divider="orange")
+st.subheader("📈 Interactive plot and Exercise", divider="orange")
 st.markdown("""
     The interactive plot shows how the flow $Q_B$ across a General Head Boundary depends on the difference between aquifer head ($h_{aq}$) and boundary head ($H_B$), and on the conductance ($C_B$). 
     
@@ -182,35 +182,35 @@ st.markdown("""
 
 with st.expander('Show the :blue[**INITIAL INSTRUCTIONS**]'):
     st.markdown("""
-    🧭 **Getting Started with the Interactive Plot**
+    **Getting Started with the Interactive Plot**
     
     Before starting the exercise, follow these quick steps to explore GHB behavior:
 
     **1. Set a Reference Case**
 
-    * Set **boundary head \$H\_B\$ = 10.0 m**.
-    * Vary **aquifer head \$h\_{aq}\$** between 5 and 15 m.
-    * Observe how **flow \$Q\_B\$** changes:
+    * Set **boundary head $H_B$ = 10.0 m**.
+    * Vary **aquifer head $h_{aq}$** between 5 and 15 m.
+    * Observe how **flow $Q_B$** changes:
 
     **2. Test Different Conductance Values**
 
-    * Use the slider to vary \$C\_B\$.
-    * Note how the **slope of the \$Q\$–\$h\$ curve** changes.
+    * Use the slider to vary $C_B$.
+    * Note how the **slope of the $Q$–$h$ curve** changes.
 
     **3. Optional: Compute Conductance**
 
     * Toggle “Compute conductance”.
-    * Enter \$K\$, \$A\_B\$, and \$L\_B\$ to calculate \$C\_B = \frac{K A\_B}{L\_B}\$.
-    * Note how the **slope of the \$Q\$–\$h\$ curve** changes.
+    * Enter $K$, $A_B$, and $L_B$ to calculate $C_B = \\frac{K A_B}{L_B}$.
+    * Note how the **slope of the $Q$–$h$ curve** changes.
 
-    These steps help you build intuition for how GHB parameters control flow — a key foundation for the exercise.
+    These steps help you build intuition for how GHB parameters control flow, a key foundation for the exercise. Feel free to further investigate the interactive plot on your own.
     """)
 
 with st.expander('Show the :rainbow[**EXERCISE**]'):
     
     st.markdown("""
     
-    ✅ **Expected Learning Outcomes**
+    🎯 **Expected Learning Outcomes**
     
     By completing this exercise, you will:
     

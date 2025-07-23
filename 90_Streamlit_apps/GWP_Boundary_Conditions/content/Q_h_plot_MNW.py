@@ -99,7 +99,7 @@ with columns0[1]:
 
 #TODO
 st.markdown("""
-####  🎓 Learning Objectives
+####  🎯 Learning Objectives
 By the end of this section, learners will be able to:
 - Understand the conceptual and practical differences between Multi-Node Wells (MNW) and traditional Well (WEL) boundaries in MODFLOW.
 - Describe how head-dependent flow and constraints such as pump limits and cell drawdowns are represented in the MNW package.

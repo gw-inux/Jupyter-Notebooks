@@ -90,7 +90,7 @@ with columns0[1]:
     st.pyplot(fig)
 
 st.markdown("""
-#### 🎓 Learning Objectives
+#### 🎯 Learning Objectives
 
 By the end of this section, you will be able to:
 

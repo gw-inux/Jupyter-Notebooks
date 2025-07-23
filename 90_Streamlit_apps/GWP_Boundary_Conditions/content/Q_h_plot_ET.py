@@ -84,7 +84,7 @@ with columns0[1]:
     
 #TODO
 st.markdown("""
-####  🎓 Learning Objectives
+####  🎯 Learning Objectives
 By the end of this section, learners will be able to:
 - Explain the conceptual function of the ET (Evapotranspiration) boundary condition in groundwater models.
 - Apply the ET equation to describe how potential evapotranspiration varies with water table depth.

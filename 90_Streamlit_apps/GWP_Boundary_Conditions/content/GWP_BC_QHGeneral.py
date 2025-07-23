@@ -47,7 +47,7 @@ This app provides an intuitive visual and interactive exploration of **Q–h plo
 
 To support this learning, this initial part of the module applies a well-known analytical solution for 1D unconfined groundwater flow with recharge. It illustrates how different boundary types like defined head, defined flow, and head-dependent flow influence the resulting hydraulic head distribution. A key focus is placed on understanding the resulting Q–h relationships, which are central to the conceptualization and interpretation of boundary conditions in groundwater models like MODFLOW.
 
-#### 🎓 Learning Objectives
+#### 🎯 Learning Objectives
 By engaging with this section of the interactive module, you will be able to:
 
 1. **Differentiate between defined head, defined flow, and head-dependent flow boundary conditions** and explain their conceptual roles in groundwater models.
@@ -88,7 +88,7 @@ with st.expander('**Show the initial assessment** - to assess your existing know
             )
 
 # --- TYPES OF BOUNDARY CONDITIONS ---
-st.subheader('💡 Theory: Types of Boundary Conditions in Groundwater Modeling and Q-h plots for description', divider='blue')
+st.subheader('🧪 Theory: Types of Boundary Conditions in Groundwater Modeling and Q-h plots for description', divider='blue')
 st.markdown("""
 In groundwater flow modeling, boundary conditions define how water enters, exits, or is restricted at the limits of the modeled domain. Understanding the different types of boundary conditions, and how they control the relationship between flow rate (Q) and hydraulic head (h), is essential for setting up realistic models and interpreting system behavior.
 
@@ -225,7 +225,7 @@ with st.expander('Show more about the theory of the :blue[**model and the analyt
             """, unsafe_allow_html=True)  
             
 
-st.subheader('Computation and visualization', divider='blue')
+st.subheader('📈 Computation and visualization', divider='blue')
 st.markdown("""Subsequently, the solutions are computed and results are visualized. You can modify the parameters to investigate the functional behavior. In general, you can modify the
 - groundwater **recharge _R_** (in mm/a) and
 - the **hydraulic conductivity _K_** (in m/s).
@@ -496,8 +496,8 @@ if show_plot2:
         
         # Interactive widgets
         # Define the minimum and maximum for the logarithmic scale
-        log_min2 = -7.0 # Corresponds to 10^-7 = 0.0000001
-        log_max2 = 0.0  # Corresponds to 10^0 = 1
+        log_min2 = -5.0 # Corresponds to 10^-7 = 0.0000001
+        log_max2 = -2.0  # Corresponds to 10^0 = 1
         
         columns = st.columns((1,1,1), gap = 'small')
 
