@@ -256,7 +256,7 @@ with st.expander('**Click here** to read how flow is calculated when the :green[
     This head difference is multiplied by Conductance to determine Flow Rate from the River to the Aquifer
     """)
 
-st.subheader("Interactive Plot and Exercise", divider="green")
+st.subheader("Interactive Plot and Exercise", divider="violet")
 st.markdown("""
 The interactive plot shows how the flow $Q_{RIV}$ across a River Boundary depends on the **difference between aquifer head** ($h_{aq}$) and **river stage** ($h_{stage}$), while being constrained by the **river bottom elevation** ($h_{bot}$) and scaled by the **riverbed conductance** ($C_{RIV}$).
 
@@ -449,7 +449,7 @@ def Q_h_plot():
     x_multi = 1
     
     # INPUT for the computation
-    st.markdown("#### :green[Model parameters]")
+    st.markdown("#### :violet[Model parameters]")
     columns1 = st.columns((1,1,1), gap = 'small')
     
     with columns1[0]:
