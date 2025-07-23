@@ -1,14 +1,51 @@
 [
   {
-    "question": "What happens to the flow $Q_B$ when the aquifer head $h_{aq}$ is lower than the boundary head $H_B$? (Mark ALL correct answers)",
+    "question": "When does the General Head Boundary (GHB) act as a source, and when as a sink? (Mark ALL correct answers)",
     "options": {
-      "A) The flow is directed into the aquifer.": true,
-      "B) The flow is directed out of the aquifer.": false,
-      "C) The flow becomes zero.": false,
-      "D) The GHB acts as a source to the aquifer.": true
+      "A) When the aquifer head is equal to the boundary head, the GHB is a source.": false,
+      "B) The GHB acts as a source when the boundary head is higher than the aquifer head.": true,
+      "C) The GHB acts as a sink when the aquifer head is higher than the boundary head.": true,
+      "D) The GHB always acts as a sink, regardless of the head difference.": false,
+      "E) The GHB is inactive if heads are equal.": true
     },
-    "success": "✅ Correct. A head difference with $h_{aq} < H_B$ causes positive flow into the aquifer.",
-    "error": "❌ Check the sign of $Q_B = C_B(H_B - h_{aq})$ when $h_{aq} < H_B$."
+    "success": "✅ Correct. The GHB can switch between source and sink depending on head difference, and becomes inactive when heads are equal.",
+    "error": "❌ Review the role of head differences. The GHB acts as a source or sink depending on which head is higher."
+  },
+  {
+    "question": "What happens to the boundary flux Q_B if the conductance C_B is set to zero or extremely high? (Mark ALL correct answers)",
+    "options": {
+      "A) With C_B = 0, there is no exchange flux through the GHB.": true,
+      "B) An extremely high C_B forces the aquifer head to equal the boundary head.": true,
+      "C) With C_B = 0, the aquifer head equals the boundary head.": false,
+      "D) A very high C_B leads to unrealistic head gradients in the aquifer.": false,
+      "E) Q_B increases proportionally with C_B, assuming a fixed head difference.": true
+    },
+    "success": "✅ Well reasoned. A zero conductance blocks flow, and high conductance amplifies the flux and head coupling.",
+    "error": "❌ Check the influence of the conductance value on the head difference and resulting flow."
+  },
+  {
+    "question": "How does increasing conductance C_B influence the sensitivity of flux to aquifer head changes? (Mark ALL correct answers)",
+    "options": {
+      "A) Sensitivity decreases with higher conductance.": false,
+      "B) Sensitivity increases with higher conductance.": true,
+      "C) The GHB flux becomes more responsive to small head changes.": true,
+      "D) High conductance causes the GHB to behave more like a fixed-head boundary.": true,
+      "E) Sensitivity is independent of conductance.": false
+    },
+    "success": "✅ Excellent. Higher conductance enhances sensitivity and mimics fixed-head behavior.",
+    "error": "❌ Revisit how conductance affects the slope of the Q-h relationship and system responsiveness."
+  },
+  {
+    "question": "Why might a modeler choose a GHB over a defined(fixed)-head condition? (Mark ALL correct answers)",
+    "options": {
+      "A) To simulate a semi-permeable lateral boundary with a known head.": true,
+      "B) Because GHB allows for both inflow and outflow depending on the aquifer head.": true,
+      "C) To model evapotranspiration losses from the unsaturated zone.": false,
+      "D) Because GHB can mimic leakage from adjacent aquifers.": true,
+      "E) To represent a boundary with a fixed flow rate.": false
+    },
+    "success": "✅ Correct. The GHB is flexible and suitable for simulating dynamic inflow/outflow at semi-permeable boundaries.",
+    "error": "❌ Think about the physical situations GHBs are designed to represent and how they differ from other boundary types."
   },
   {
     "question": "How does the slope of the $Q_B$–$h_{aq}$ plot respond to increasing conductance $C_B$? (Mark ALL correct answers)",
@@ -31,38 +68,7 @@
     },
     "success": "✅ Correct. Equal heads mean no driving force — no flow occurs.",
     "error": "❌ Review the condition when $H_B = h_{aq}$. There is no head gradient to cause flow."
-  },
-  {
-    "question": "Which parameters influence the calculated flow $Q_B$ across a GHB? (Mark ALL correct answers)",
-    "options": {
-      "A) Aquifer head $h_{aq}$": true,
-      "B) Boundary head $H_B$": true,
-      "C) Conductance $C_B$": true,
-      "D) Recharge elsewhere in the model": false
-    },
-    "success": "✅ Well done. $Q_B$ is determined by $C_B(H_B - h_{aq})$.",
-    "error": "❌ Only parameters in the GHB equation directly affect the calculated flow."
-  },
-  {
-    "question": "What is the purpose of toggling the 'Compute conductance' option? (Mark ALL correct answers)",
-    "options": {
-      "A) To manually enter $C_B$ values": false,
-      "B) To calculate $C_B$ from $K$, $A_B$, and $L_B$": true,
-      "C) To simulate a realistic boundary setup": true,
-      "D) To remove the head difference from the equation": false
-    },
-    "success": "✅ Correct. This feature helps calculate conductance from physical properties.",
-    "error": "❌ Remember: the toggle switches from direct $C_B$ input to computation based on geometry and material properties."
-  },
-  {
-    "question": "Which of the following can you control in the interactive plot? (Mark ALL correct answers)",
-    "options": {
-      "A) The boundary head $H_B$": true,
-      "B) The aquifer head $h_{aq}$": true,
-      "C) The recharge rate applied to the aquifer": false,
-      "D) The boundary conductance": true
-    },
-    "success": "✅ Yes. These are all configurable in the interactive tool — except recharge.",
-    "error": "❌ Recharge is not part of the GHB configuration in this app."
   }
 ]
+
+

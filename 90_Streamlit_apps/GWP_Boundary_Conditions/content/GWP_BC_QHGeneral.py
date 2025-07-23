@@ -114,7 +114,7 @@ with st.expander("Show more :blue[**explanation about the boundary condition typ
     
     **Examples in the subsequent interactive plots:**
     - Example one: The left boundary (x = 0) is a no-flow boundary, simulating a symmetry line or impermeable barrier. The recharge on the top is a defined flow bounary.
-    - Example two: The recharge on the top is a defined flow bounary.
+    - Example two: The recharge on the top is a defined flow boundary.
     
     **Effect** of the no-flow boundary in the example: Water cannot flow out; it forces groundwater to move in one direction—towards the right.
     **Effect** of the defined flow boundary in the example (recharge): Water enters the system with a defined flow rate. In response, water flow towards the system outlet is initiated.
@@ -123,7 +123,7 @@ with st.expander("Show more :blue[**explanation about the boundary condition typ
     **Definition:** The flow across the boundary is proportional to the difference between the aquifer head and an external water level (e.g., river stage), controlled by a conductance factor.
     
     **Examples in the subsequent interactive plots:**
-    - Example one and two: The defined head boundaries becomes head-dependent when the River BC toggle is activated.
+    - Example one and two: The defined head boundaries becomes head-dependent when the River BC toggle is activated (under the assumption that the river is in contact with the aquifer - without a unsaturated zone between).
     
     **Effect:** Simulates partial connection to a river or drain. The boundary acts as a “leaky” outlet where both head and flow can change dynamically.
     
