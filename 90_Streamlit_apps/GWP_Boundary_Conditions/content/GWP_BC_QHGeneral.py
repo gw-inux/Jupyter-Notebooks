@@ -104,35 +104,34 @@ A **Q–h plot** displays this relationship graphically, helping to illustrate h
 )
 with st.expander("Show more :blue[**explanation about the boundary condition types**]"):
     st.markdown("""
-    Groundwater models use different boundary condition types to represent various hydrological settings and processes. Each type defines a specific characteristic for how flow and head interact at the boundary, reflecting the physical behavior of natural or engineered systems. Following, there is some explanation. Examples can be investigate with the two interactive plots in the subsequent section of this app (continue scrolling down to the bottom).
+    Groundwater models use different boundary condition types to represent various hydrological settings and processes. Each type defines a specific characteristic for how flow and head interact at the boundary, reflecting the physical behavior of natural or engineered systems. Following, there is some explanation. The use cases can be investigate with two example configurations of an one-dimensional unconfined aquifer (:green[**Scenarion 1**] and :red[**Scenario 2**]) that were implemented in two interactive plots. The interactive plots are presented in the subsequent section of this app (continue scrolling down to the bottom).
     
     #### 1. Defined Head Boundary (Dirichlet condition)
     
     **Definition:** Hydraulic head is fixed at a specific value.
     
-    **Examples in the subsequent interactive plots:**
-    - Example one: The right boundary (x = L) with fixed water level (e.g., 150 m).
-    - Example two:
+    **Example application in the subsequent interactive plots:**
+    - :green[**Scenarion 1**]: The right boundary (_x_ = _L_) with user-defined water level (e.g., 150 m).
+    - :red[**Scenario 2**]: The left and right boundary (x = 0 and _x_ = _L_).
     
-    **Effect:** Simulates a strong external control like a large river or lake. Water flows to this boundary depending on the head difference and recharge.
+    **Effect:** Simulates a strong external control like a large river/lake without colmation or the sea. Water flows through this boundary is driven by the hydraulic gradient. The hydraulic head is always defined and the boundary can serve as unlimited sink/source of water (e.g., imagine placing a high-capacity pumping well next to a defined head boundary. In this case, the boundary would always provide the required amount of water).
     
     #### 2. Defined-Flow Boundary (Neumann condition, special case is the Neumann conditions with zero flux)
-    **Definition:** A defined flow of water crosses this boundary. A special case is the no-flow boundary with zero flow; the normal component of the flow is zero.
+    **Definition:** A defined flow of water crosses this boundary. A special case is the no-flow boundary with zero flow; the normal component of the flow is zero. Typical elements that are represented by this boundary condition are abstraction and infiltration wells and groundwater recharge.
     
-    **Examples in the subsequent interactive plots:**
-    - Example one: The left boundary (x = 0) is a no-flow boundary, simulating a symmetry line or impermeable barrier. The recharge on the top is a defined flow bounary.
-    - Example two: The recharge on the top is a defined flow boundary.
+    **Example application in the subsequent interactive plots:**
+    - :green[**Scenarion 1**]: The left boundary (x = 0) is a no-flow boundary, simulating an impermeable barrier. The recharge on the top is a defined flow bounary.
+    - :red[**Scenario 2**]: In this scenario, the recharge on the top is a defined flow boundary.
     
-    **Effect** of the no-flow boundary in the example: Water cannot flow out; it forces groundwater to move in one direction—towards the right.
-    **Effect** of the defined flow boundary in the example (recharge): Water enters the system with a defined flow rate. In response, water flow towards the system outlet is initiated.
+    **Effect** of the defined flow boundary in the example (recharge): Water enters/leaves the system with a defined flow rate. *Effect** of a no-flow boundary in the example: Water cannot flow out/enter the system.
     
     #### 3. Head-Dependent Flux Boundary (Robin condition)
-    **Definition:** The flow across the boundary is proportional to the difference between the aquifer head and an external water level (e.g., river stage), controlled by a conductance factor.
+    **Definition:** The flow across the boundary is proportional to the difference between the aquifer head and an external water level (e.g., river stage, boundary head, drain elevation), controlled by a conductance factor.
     
-    **Examples in the subsequent interactive plots:**
-    - Example one and two: The defined head boundaries becomes head-dependent when the River BC toggle is activated (under the assumption that the river is in contact with the aquifer - without a unsaturated zone between).
+    **Example application in the subsequent interactive plots:**
+    - :green[**Scenarion 1**]: The defined head boundary on the right becomes head-dependent when the River BC toggle is activated (under the assumption that the river is in contact with the aquifer and no unsaturated zone is established between river and aquifer).
     
-    **Effect:** Simulates partial connection to a river or drain. The boundary acts as a “leaky” outlet where both head and flow can change dynamically.
+    **Effect:** Simulates partial connection to a river or drain. Depending on the head difference between boundary and aquifer, the boundary can act as sink or source. In other words, the boundary acts as a “leaky” in-/outlet where both head and flow can change dynamically over time.
     
     _Note_: In some references this kind of boundary condition is denoted as Cauchy boundary. However, the mathematically correct terminology is Robin boundary. For more information, please refer to [Jazayeri and Werner (2019): Boundary Condition Nomenclature Confusion in Groundwater Flow Modeling](https://ngwa.onlinelibrary.wiley.com/doi/abs/10.1111/gwat.12893)
     """)
@@ -151,32 +150,34 @@ with st.expander("Show more :blue[**explanation about Q-h plots**] to describe b
 # --- EXPLANATORY EXAMPLES ---
 st.subheader('💫 Examples to illustrate the idea of illustrating boundary conditions with Q-h plots', divider='blue')
 st.markdown("""
- In this app, we illustrate the effects of different boundary conditions using two examples of 1D unconfined groundwater flow:
- - :green[**Example 1**]: with a **no-flow** boundary on one side and a **defined head** or a **head-dependent flow** boundary (e.g., river) on the other, and 
- - :red[**Example 2**]: with **two defined head** boundaries.
+ In this app, we illustrate the effects of different boundary conditions using two example scenarios of 1D unconfined groundwater flow:
+ 
+ - :green[**Scenarion 1**]: with a **no-flow** boundary on one side and a **defined head** or a **head-dependent flow** boundary (e.g., river) on the other, and 
+ - :red[**Scenario 2**]: with **two defined head** boundaries.
+ 
  In both examples, the defined head boundaries can optionally be treated as head-dependent boundaries to simulate typical boundaries like rivers and lakes in a more realistic way.
 """
 )
 
 lc1, rc1 = st.columns((1,1.4),gap = 'large')
 with lc1:
-    st.image('90_Streamlit_apps/GWP_Boundary_Conditions/assets/images/GWF_EX01.jpg', caption=":green[**Example 1**]:Conceptual model for an unconfined groundwater system with **two defined head boundaries**.")
+    st.image('90_Streamlit_apps/GWP_Boundary_Conditions/assets/images/GWF_EX01.jpg', caption=":green[**Scenarion 1**]:Conceptual model for an one dimensional unconfined groundwater system with **one defined head boundary and one no-flow boundary**.")
 with rc1:
-    st.image('90_Streamlit_apps/GWP_Boundary_Conditions/assets/images/GWF_EX02.png', caption=":red[**Example 2**]: Conceptual model for an unconfined groundwater system with **one defined head boundary and one no-flow boundary**.")
+    st.image('90_Streamlit_apps/GWP_Boundary_Conditions/assets/images/GWF_EX02.png', caption=":red[**Scenario 2**]: Conceptual model for an one dimensional unconfined groundwater system with **two defined head boundaries**.")
     
 with st.expander('Show more about the theory of the :blue[**model and the analytical solution**]'):
     st.markdown("""
             #### Conceptual model
             
-            The conceptual model for both examples, shown in the figure above, consider the aquifer as a homogeneous and isotropic structure with a horizontal bottom. From the top, the aquifer receives uniform groundwater recharge.
+            The conceptual model for both scenarios, shown in the figure above, consider the aquifer as a homogeneous and isotropic structure with a horizontal bottom. From the top, the aquifer receives uniform groundwater recharge.
             """, unsafe_allow_html=True)
     st.markdown("""
-            In :green[**example 1**], the aquifer is bounded by
+            In :green[**Scenario 1**], the aquifer is bounded by
             - one defined-head **or** a head-dependent flow boundary on the right side, while
             - the left side is a no-flow boundary.
             """, unsafe_allow_html=True)
     st.markdown("""
-            In :red[**example 2**], the aquifer is bounded
+            In :red[**Scenario 2**], the aquifer is bounded
             - on both sides by defined-head boundaries.
             """, unsafe_allow_html=True)
     st.markdown("""
@@ -185,7 +186,7 @@ with st.expander('Show more about the theory of the :blue[**model and the analyt
     st.markdown("""
             #### Mathematical model
             
-            The governing equation for steady-state 1D groundwater flow in an unconfined, homogeneous aquifer with recharge for :green[**example 1**] and :red[**example 2**] is:
+            The governing equation for steady-state 1D groundwater flow in an unconfined, homogeneous aquifer with recharge for :green[**Scenario 1**] and :red[**Scenario 2**] is:
             """, unsafe_allow_html=True)
   
     st.latex(r'''\frac{d}{dx}(-hK\frac{dh}{dx})=R''')
@@ -200,23 +201,23 @@ with st.expander('Show more about the theory of the :blue[**model and the analyt
     st.markdown("""
             The equation can be solved by using suitable boundary conditions:
             
-            :green[**Example 1**]: $h(0) = h_0$ and $h(2L) = h_0$, because the no-flow boundary is treated as a symmetry axis. This mirrors the hydraulic head $h_0$ across the boundary, resulting in identical head values at a distance of $2L$
+            :green[**Scenario 1**]: $h(0) = h_0$ and $h(2L) = h_0$, because the no-flow boundary is treated as a symmetry axis. This mirrors the hydraulic head $h_0$ across the boundary, resulting in identical head values at a distance of $2L$
             
-            :red[**Example 2**]: $h(0) = h_0$ and $h(L) = h_L$
+            :red[**Scenario 2**]: $h(0) = h_0$ and $h(L) = h_L$
             
             """, unsafe_allow_html=True)
       
     st.markdown("""
             With some mathematical operations, see for example [Bakker and Post, 2022](https://doi.org/10.1201/9781315206134), the following analytical solutions can be derived:
             
-            :green[**Example 1**]:
+            :green[**Scenario 1**]:
             
             """, unsafe_allow_html=True)  
     
     st.latex(r'''h(x) = \sqrt{h_0^2 + \frac{R}{K} \cdot x \cdot (2L - x)}''')
     
     st.markdown("""
-            :red[**Example 2**]:
+            :red[**Scenario 2**]:
             """, unsafe_allow_html=True)  
             
     st.latex(r'''h(x) = \sqrt{h_0^2 - (h_0^2 - h_L^2)\cdot \frac{x}{L} + \frac{R}{K} \cdot x \cdot (L - x)}''')
@@ -233,13 +234,13 @@ with st.expander('Show more about the theory of the :blue[**model and the analyt
             
 
 st.subheader('📈 Computation and visualization', divider='blue')
-st.markdown("""Subsequently, the solutions are computed and results are visualized. You can modify the parameters to investigate the functional behavior. In general, you can modify the
+st.markdown("""Subsequently, the solutions are computed and results are visualized. You can vary the parameters to investigate the functional behavior. In general, you can modify the
 - groundwater **recharge _R_** (in mm/a) and
 - the **hydraulic conductivity _K_** (in m/s).
 
 At the right side of the control panel you can plot the **Q-h relationship** for different boundary conditions. The position within the model plot that refers to the Q-h plot is marked by a colored circle. Additionally you con toggle to turn the Q-h plots 90 degrees clockwise (transfer to h-Q plots) for a more intuitive view.
 
-Further modifications depends on your choice of :green[**Example 1**] or :red[**Example 2**]. 
+Further modifications depends on your choice of :green[**Scenario 1**] or :red[**Scenario 2**]. 
 """)
 
 st.markdown("---")
@@ -247,9 +248,9 @@ st.markdown("---")
 # --- INTERACTIVE PLOT EXAMPLE 1 ---
 colplot1, colplot2 = st.columns((1,1))
 with colplot1:
-    show_plot1 = st.button("**Show the :rainbow[interactive] plot for :green[Example 1]**")
+    show_plot1 = st.button("**Show the :rainbow[interactive] plot for :green[SCENARIO 1]**")
 with colplot2:
-    show_plot2 = st.button("**Show the :rainbow[interactive] plot for :red[Example 2]**")
+    show_plot2 = st.button("**Show the :rainbow[interactive] plot for :red[SCENARIO 2]**")
 
 if show_plot1:    
     st.markdown("""
@@ -358,7 +359,7 @@ if show_plot1:
         fig.subplots_adjust(hspace=0.35)  # consistent layout
         ax.plot(x,h)
         ax.fill_between(x,0,h, facecolor='lightblue')
-        ax.set_title('Hydraulic head for 1D unconfined flow (Example 1)', color = 'green', fontsize=16, pad=10)
+        ax.set_title('Hydraulic head for 1D unconfined flow (Scenario 1)', color = 'green', fontsize=16, pad=10)
         ax.set_xlabel(r'x [m]', fontsize=14)
         ax.set_ylabel(r'hydraulic head [m]', fontsize=14)
         
@@ -615,7 +616,7 @@ if show_plot2:
         ax_qh = fig.add_subplot(gs[1,1])
         fig.subplots_adjust(hspace=0.35)  # consistent layout
         ax.plot(x2,h2)
-        ax.set_title('Hydraulic head for 1D unconfined flow (Example 2)', color = 'red', fontsize=16, pad=10)
+        ax.set_title('Hydraulic head for 1D unconfined flow (Scenario 2)', color = 'red', fontsize=16, pad=10)
         ax.set_xlabel(r'x [m]', fontsize=14)
         ax.set_ylabel(r'hydraulic head [m]', fontsize=14)
         ax.fill_between(x2,0,h2, facecolor='lightblue')
