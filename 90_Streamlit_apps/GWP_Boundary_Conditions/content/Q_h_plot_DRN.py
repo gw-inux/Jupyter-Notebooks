@@ -232,7 +232,7 @@ def Q_h_plot():
             ax.set_ylabel("Heads and elevations in the DRN Boundary-Aquifer System (m)", fontsize=14, labelpad=15)
             ax.set_xlabel("Flow from the Ground-Water System into the DRN  $Q_{out}$ (m³/s)", fontsize=14, labelpad=15)
             ax.set_ylim(0, 20)
-            ax.set_xlim(0.05, -0.05)
+            ax.set_xlim(-0.05, 0.05)
             if Q_ref > 0:
                 ax.annotate(
                     '',  # no text
@@ -260,7 +260,7 @@ def Q_h_plot():
             ax.set_xlabel("Heads and elevations in the DRN Boundary-Aquifer System (m))", fontsize=14, labelpad=15)
             ax.set_ylabel("Flow from the Ground-Water System into the DRN $Q_{out}$ (m³/s)", fontsize=14, labelpad=15)
             ax.set_xlim(0, 20)
-            ax.set_ylim(-0.05, 0.05)
+            ax.set_ylim(0.05, -0.05)
             if Q_ref > 0:
                 ax.annotate(
                     '',  # no text
@@ -284,14 +284,14 @@ def Q_h_plot():
             ax.set_ylabel("Heads and elevations in the DRN Boundary-Aquifer System (m)", fontsize=14, labelpad=15)
             ax.set_xlabel("Flow from the Ground-Water System into the DRN  $Q_{out}$ (m³/s)", fontsize=14, labelpad=15)
             ax.set_ylim(0, 20)
-            ax.set_xlim(0.05, -0.05)
+            ax.set_xlim(-0.05, 0.05)
         else:
             ax.plot(h_aq, Q, label=rf"$Q_o = C_D(H_D - h_{{aq}})$, $C_D$ = {st.session_state.CD:.2e}",color='black', linewidth=3)
             # Labels and formatting
             ax.set_xlabel("Heads and elevations in the DRN Boundary-Aquifer System (m)", fontsize=14, labelpad=15)
             ax.set_ylabel("Flow from the Ground-Water System into the DRN  $Q_{out}$ (m³/s)", fontsize=14, labelpad=15)
             ax.set_xlim(0, 20)
-            ax.set_ylim(-0.05, 0.05)            
+            ax.set_ylim(0.05, -0.05)            
         
     # === SHARED FORMATTING === #     
     ax.set_title("Flow Between Groundwater and DRN boundary", fontsize=16, pad=10)
