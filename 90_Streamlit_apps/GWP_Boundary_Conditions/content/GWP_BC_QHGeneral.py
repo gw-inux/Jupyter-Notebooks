@@ -43,7 +43,7 @@ st.markdown("""
 #### 💡 Motivation - Boundary conditions and Q-h plots in groundwater modeling
 Understanding how different boundary conditions influence groundwater flow is fundamental to building reliable groundwater models. Boundary conditions control how water enters, leaves, or interacts with the groundwater system, whether through defined heads, specified flows, or head-dependent exchanges such as rivers or drains. However, the behavior of these boundaries can be misinterpreted or misunderstood, especially in the early stages of model development.
 
-This app provides an intuitive visual and interactive exploration of **Q–h plots**, graphical representations of the relationship between discharge (_Q_) and hydraulic head (_h_) at boundary conditions (also see the following Figure). These Q-h plots are powerful conceptual tools to classify and compare the response of boundary conditions in groundwater models.
+This app provides an intuitive visual and interactive exploration of :orange[**Q–h plots**], graphical representations of the :orange[**relationship between discharge (_Q_) and hydraulic head (_h_) at boundary conditions**], also see the following figure. These Q-h plots are powerful conceptual tools to classify and compare the response of boundary conditions in groundwater models.
 """)
 
 left_co, cent_co, last_co = st.columns((20,80,20))
