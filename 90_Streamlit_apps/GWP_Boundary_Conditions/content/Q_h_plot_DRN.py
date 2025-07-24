@@ -88,11 +88,12 @@ with columns0[1]:
 st.markdown("""
 ####  🎯 Learning Objectives
 By the end of this tool, you will be able to:
-- Explain the conceptual function of a General Head Boundary (GHB) in groundwater models.
-- Apply the analytical equation $Q_B = C_B(H_B - h_{aq})$ to calculate boundary flows.
-- Evaluate the influence of conductance, boundary head, and aquifer head on exchange fluxes.
-- Visualize flow directions and boundary behavior (gaining vs. losing) under different conditions.
-- Understand the physical interpretation of conductance and its dependence on system geometry and hydraulic conductivity.
+- Explain the conceptual role of the Drain (DRN) boundary in simulating groundwater discharge to drainage features such as tile drains, trenches, or natural depressions.
+- Apply the analytical relationship $Q_D = C_D(h_{aq}-H_D)$ to calculate boundary flows.
+- Identify conditions under which the DRN boundary is active or inactive, and understand the role of the drain elevation in limiting flow.
+- Evaluate the influence of aquifer head, drain elevation, and conductance on the magnitude and direction of drainage.
+- Interpret Q–h plots to analyze the linear and threshold-based behavior of the DRN boundary.
+- Understand how the conductance term reflects the geometry and properties of the connection between the aquifer and the drain system.
 """)
 
 with st.expander('**Show the initial assessment** - to assess your existing knowledge'):
@@ -140,7 +141,7 @@ with st.expander("Show me more about **the Theory**"):
     The relationship between the amount of water that flows into the drain and the head in the aquifer is:
     """)
     
-    st.latex(r'''Q_{out} = C_D (H_D - h_n)''')
+    st.latex(r'''Q_{out} = C_D (h_n-H_D)''')
     
     st.markdown("""
     where:
