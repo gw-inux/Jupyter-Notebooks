@@ -19,7 +19,8 @@ st.header('👉 About the Boundary Condition Module')
 st.markdown(
     """
     ### Description
-    The Pumping Test Analysis interactive tool calculates the drawdown response for a pumping well in a homogeneous, isotropic aquifer. The application is designed to introduce the evaluation of pumping tests for confined, unconfined, and leaky aquifers.
+    The Boundary Condition Analysis interactive tool provides a conceptual understanding of how different boundary types influence groundwater flow. The application uses **Q–h plots**, graphical representations of the relationship between discharge (_Q_) and hydraulic head (_h_), to illustrate the behavior of defined head, no-flow, and head-dependent boundaries such as rivers and general head boundaries. A one-dimensional unconfined aquifer serves as an example to demonstrate how these boundary conditions control flow directions and magnitudes.
+
     
     ### Development
     Innovative and digital learning and teaching materials are currently enhanced and transferred to various partners across Europe by the EU cooperation project [iNUX](https://www.gw-inux.org/). The iNUX project is funded by the ERASMUS+ program of the European Union.
