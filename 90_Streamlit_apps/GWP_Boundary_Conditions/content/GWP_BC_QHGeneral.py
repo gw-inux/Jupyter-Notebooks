@@ -104,14 +104,14 @@ A **Q–h plot** displays this relationship graphically, helping to illustrate h
 )
 with st.expander("Show more :blue[**explanation about the boundary condition types**]"):
     st.markdown("""
-    Groundwater models use different boundary condition types to represent various hydrological settings and processes. Each type defines a specific characteristic for how flow and head interact at the boundary, reflecting the physical behavior of natural or engineered systems. Following, there is some explanation. The use cases can be investigate with two example configurations of an one-dimensional unconfined aquifer (:green[**Scenarion 1**] and :red[**Scenario 2**]) that were implemented in two interactive plots. The interactive plots are presented in the subsequent section of this app (continue scrolling down to the bottom).
+    Groundwater models use different boundary condition types to represent various hydrological settings and processes. Each type defines a specific characteristic for how flow and head interact at the boundary, reflecting the physical behavior of natural or engineered systems. Following, there is some explanation. The use cases can be investigate with two example configurations of an one-dimensional unconfined aquifer (:green[**Scenario 1**] and :red[**Scenario 2**]) that were implemented in two interactive plots. The interactive plots are presented in the subsequent section of this app (continue scrolling down to the bottom).
     
     #### 1. Defined Head Boundary (Dirichlet condition)
     
     **Definition:** Hydraulic head is fixed at a specific value.
     
     **Example application in the subsequent interactive plots:**
-    - :green[**Scenarion 1**]: The right boundary (_x_ = _L_) with user-defined water level (e.g., 150 m).
+    - :green[**Scenario 1**]: The right boundary (_x_ = _L_) with user-defined water level (e.g., 150 m).
     - :red[**Scenario 2**]: The left and right boundary (x = 0 and _x_ = _L_).
     
     **Effect:** Simulates a strong external control like a large river/lake without colmation or the sea. Water flows through this boundary is driven by the hydraulic gradient. The hydraulic head is always defined and the boundary can serve as unlimited sink/source of water (e.g., imagine placing a high-capacity pumping well next to a defined head boundary. In this case, the boundary would always provide the required amount of water).
@@ -120,7 +120,7 @@ with st.expander("Show more :blue[**explanation about the boundary condition typ
     **Definition:** A defined flow of water crosses this boundary. A special case is the no-flow boundary with zero flow; the normal component of the flow is zero. Typical elements that are represented by this boundary condition are abstraction and infiltration wells and groundwater recharge.
     
     **Example application in the subsequent interactive plots:**
-    - :green[**Scenarion 1**]: The left boundary (x = 0) is a no-flow boundary, simulating an impermeable barrier. The recharge on the top is a defined flow bounary.
+    - :green[**Scenario 1**]: The left boundary (x = 0) is a no-flow boundary, simulating an impermeable barrier. The recharge on the top is a defined flow bounary.
     - :red[**Scenario 2**]: In this scenario, the recharge on the top is a defined flow boundary.
     
     **Effect** of the defined flow boundary in the example (recharge): Water enters/leaves the system with a defined flow rate. *Effect** of a no-flow boundary in the example: Water cannot flow out/enter the system.
@@ -129,7 +129,7 @@ with st.expander("Show more :blue[**explanation about the boundary condition typ
     **Definition:** The flow across the boundary is proportional to the difference between the aquifer head and an external water level (e.g., river stage, boundary head, drain elevation), controlled by a conductance factor.
     
     **Example application in the subsequent interactive plots:**
-    - :green[**Scenarion 1**]: The defined head boundary on the right becomes head-dependent when the River BC toggle is activated (under the assumption that the river is in contact with the aquifer and no unsaturated zone is established between river and aquifer).
+    - :green[**Scenario 1**]: The defined head boundary on the right becomes head-dependent when the River BC toggle is activated (under the assumption that the river is in contact with the aquifer and no unsaturated zone is established between river and aquifer).
     
     **Effect:** Simulates partial connection to a river or drain. Depending on the head difference between boundary and aquifer, the boundary can act as sink or source. In other words, the boundary acts as a “leaky” in-/outlet where both head and flow can change dynamically over time.
     
@@ -144,7 +144,7 @@ with st.expander("Show more :blue[**explanation about Q-h plots**] to describe b
     )
     lc1, cc1, rc1 = st.columns((10,60,10))
     with cc1:
-        st.image('90_Streamlit_apps/GWP_Boundary_Conditions/assets/images/Q_h_plots_MF6.png', caption="Q-h plots to describe the behavior of boundary conditions. onceptual model for a groundwater system with one no-flow boundary, from  [Langevin et al., 2017](https://doi.org/10.3133/tm6A55.)")
+        st.image('90_Streamlit_apps/GWP_Boundary_Conditions/assets/images/Q_h_plots_MF6.png', caption="Q-h plots to describe the behavior of boundary conditions, from  [Langevin et al., 2017](https://doi.org/10.3133/tm6A55.)")
     
 
 # --- EXPLANATORY EXAMPLES ---
@@ -152,7 +152,7 @@ st.subheader('💫 Examples to illustrate the idea of illustrating boundary cond
 st.markdown("""
  In this app, we illustrate the effects of different boundary conditions using two example scenarios of 1D unconfined groundwater flow:
  
- - :green[**Scenarion 1**]: with a **no-flow** boundary on one side and a **defined head** or a **head-dependent flow** boundary (e.g., river) on the other, and 
+ - :green[**Scenario 1**]: with a **no-flow** boundary on one side and a **defined head** or a **head-dependent flow** boundary (e.g., river) on the other, and 
  - :red[**Scenario 2**]: with **two defined head** boundaries.
  
  In both examples, the defined head boundaries can optionally be treated as head-dependent boundaries to simulate typical boundaries like rivers and lakes in a more realistic way.
@@ -161,7 +161,7 @@ st.markdown("""
 
 lc1, rc1 = st.columns((1,1.4),gap = 'large')
 with lc1:
-    st.image('90_Streamlit_apps/GWP_Boundary_Conditions/assets/images/GWF_EX01.jpg', caption=":green[**Scenarion 1**]:Conceptual model for an one dimensional unconfined groundwater system with **one defined head boundary and one no-flow boundary**.")
+    st.image('90_Streamlit_apps/GWP_Boundary_Conditions/assets/images/GWF_EX01.jpg', caption=":green[**Scenario 1**]:Conceptual model for an one dimensional unconfined groundwater system with **one defined head boundary and one no-flow boundary**.")
 with rc1:
     st.image('90_Streamlit_apps/GWP_Boundary_Conditions/assets/images/GWF_EX02.png', caption=":red[**Scenario 2**]: Conceptual model for an one dimensional unconfined groundwater system with **two defined head boundaries**.")
     
@@ -322,7 +322,7 @@ if show_plot1:
         Q_defh = np.linspace((-400/1000/365.25/86400*2500), (400/1000/365.25/86400*2500), 10)
         h_defh = np.ones_like(Q_defh)* hr
         h_defh_point = hr
-        Q_defh_point = R*2500
+        Q_defh_point = R*2500*-1
         
         # 2a. Defined Flow Boundary (Q = 0)
         h_nf = np.linspace(140, 160, 20)
