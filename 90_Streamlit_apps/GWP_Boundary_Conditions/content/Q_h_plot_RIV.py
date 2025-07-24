@@ -61,7 +61,7 @@ with columns0[0]:
     - How does **stream stage** influence exchange flow?
     - What happens if the **aquifer drops below the riverbed**?
     
-    ▶️ The :violet[**River (RIV) Boundary**] in MODFLOW handles these dynamics by simulating a **head-dependent flow** that includes a check for streambed drying. The relationship between aquifer head $h_{aq}$ and river head $h_{RIV}$ is defined via a **conductance term** $C_{RIV}$. The interactive plot below shows how the flow from the flux between river and groundwater $Q_{RIV}$ responds to these changing conditions. Try adjusting the river conductance to explore the general behavior.
+    ▶️ The :violet[**River (RIV) Boundary**] in MODFLOW handles these dynamics by simulating a **head-dependent flow** that includes a check for streambed drying. The relationship between aquifer head $h_{aq}$ and river head $h_{RIV}$ is defined via a **conductance term** $C_{RIV}$. The following interactive plot below shows how the flow from the flux between river and groundwater $Q_{RIV}$ responds to these changing conditions. The interactive plot is based on the MODFLOW documentation (Harbaugh, 2005) and consider **$h_{RIV}$ as 8 m** with a **river bottom elevation of 6 m**.Try adjusting the river conductance to explore the general behavior.
     """)
     st.latex(r'''Q_{RIV} = C_{RIV} (h_{RIV} - h_{{aq}})''')
 
@@ -600,8 +600,8 @@ def Q_h_plot():
     if turn:
         
         # Shown always
-        xlabel = "Flow into the Ground-Water System From the River $Q$ (m³/s)"
-        ylabel = "Heads and elevations in the River-Aquifer System (m)"
+        xlabel = "Flow into the Ground-Water System From the River $Q_{RIV}$ (m³/s)"
+        ylabel = "Heads and Elevations in the River-Aquifer System (m)"
         
         # Range of plot
         ax.set_ylim(h_ref, thick)

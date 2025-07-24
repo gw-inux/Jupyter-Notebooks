@@ -57,7 +57,7 @@ with columns0[0]:
     1. **How would you represent a distant river or lake that interacts with groundwater but lies outside your model domain?**
     2. **Can a boundary both add to and remove water from the aquifer — depending on heads?**
     
-    ▶️ The :orange[**General Head Boundary (GHB)**] addresses these situations. It allows for dynamic, head-dependent exchange with an external water body. The following interactive plot illustrates how the flow $Q_B$ depends on the aquifer head $h_{aq}$ for a fixed boundary head $H_B$ and conductance $C_B$. _The interactive plot is based on the MODFLOW documentation (Harbaugh, 2005) and consider **$H_B$ as 8 m**. Modify the conductance $C_B$ to see its effect.
+    ▶️ The :orange[**General Head Boundary (GHB)**] addresses these situations. It allows for dynamic, head-dependent exchange with an external water body. The following interactive plot illustrates how the flow $Q_B$ depends on the aquifer head $h_{aq}$ for a fixed boundary head $H_B$ and conductance $C_B$. The interactive plot is based on the MODFLOW documentation (Harbaugh, 2005) and consider **$H_B$ as 8 m**. Modify the conductance $C_B$ to see its effect.
     """)
     
     st.latex(r'''Q_B = C_B(H_B - h_{aq})''')
