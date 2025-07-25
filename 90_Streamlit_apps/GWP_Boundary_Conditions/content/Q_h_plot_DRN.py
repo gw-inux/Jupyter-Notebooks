@@ -12,11 +12,15 @@ from streamlit_book import multiple_choice
 
 # path to questions for the assessments (direct path)
 path_quest_ini   = "90_Streamlit_apps/GWP_Boundary_Conditions/questions/initial_drn.json"
+path_quest_exer =  "90_Streamlit_apps/GWP_Boundary_Conditions/questions/exer_drn.json"
 path_quest_final = "90_Streamlit_apps/GWP_Boundary_Conditions/questions/final_drn.json"
 
 # Load questions
 with open(path_quest_ini, "r", encoding="utf-8") as f:
     quest_ini = json.load(f)
+    
+with open(path_quest_exer, "r", encoding="utf-8") as f:
+    quest_exer = json.load(f)
     
 with open(path_quest_final, "r", encoding="utf-8") as f:
     quest_final = json.load(f)
@@ -153,7 +157,86 @@ with st.expander("Show me more about **the Theory**"):
     
     """)
 
-st.subheader("Interactive plot", divider="green")
+st.subheader("Interactive Plot and Exercise", divider="green")
+st.markdown("""
+The interactive plot illustrates how the flow $Q_{DRN}$ across a Drain Boundary is driven by the **difference between aquifer head** ($h_{aq}$) and **drain elevation** ($H_D$), while being scaled by the **drain conductance** ($C_D$). Flow only occurs when the aquifer head exceeds the drain elevation, meaning the boundary acts as a one-way outlet.
+
+Use the sliders or number inputs to adjust the parameters. You can toggle between direct conductance input or compute it based on hydraulic and geometrical properties. The plot updates dynamically and supports different viewing orientations.
+
+* You can explore the plot independently. Some :blue[INITIAL INSTRUCTIONS] may assist you.
+* An :rainbow[EXERCISE] invites you to investigate how **drain elevation, aquifer head, and conductance** govern outflow. Use the DRN plot to interpret the **Q–h relationship**, and understand under which conditions the drain is **active** or **inactive**, and how this affects groundwater discharge.
+""")
+with st.expander('Show the :blue[**INITIAL INSTRUCTIONS**]'):
+    st.markdown("""
+    **Getting Started with the Interactive Plot**
+    
+    Before starting the exercise, follow these quick steps to explore **DRN** behavior:
+    
+    **1. Set a Reference Case**
+    
+    * Set **drain elevation** $H_D$ to 10.0 m.
+    * Vary **aquifer head** $h_{aq}$ between 8 and 12 m.
+    * Observe how the flow $Q_D$ changes:
+        * When $h_{aq} > H_D$, the aquifer drains — flow leaves the aquifer through the drain.
+        * When $h_{aq} \leq H_D$, no flow occurs — the drain is inactive.
+        
+    **2. Test Different Conductance Values**
+    
+    * Use the slider to vary $C_D$
+    * Note how the **slope of the Q–h curve** changes — higher conductance leads to stronger response of outflow to head differences.
+    
+    These steps help you build intuition for how DRN parameters govern flow — especially the **threshold behavior** and **linear relationship** between head difference and outflow. Feel free to further investigate the interactive plot on your own.
+    """)
+
+with st.expander('Show the :rainbow[**EXERCISE**]'):
+    
+    st.markdown("""   
+    🎯 **Expected Learning Outcomes**
+    
+    By completing this exercise, you will:
+    
+    - Understand how drain–aquifer interaction is controlled by aquifer head, drain elevation, and conductance.
+    - Interpret the boundary characteristics with a Q–h plot.
+    - Recognize the threshold behavior of the DRN package and its role as a one-way boundary.
+    - Evaluate how conductance controls the rate of drainage above threshold.
+    - Analyze realistic scenarios (e.g., recession limbs of a hydrograph) and the implications for boundary fluxes.
+    
+    🛠️ **Instructions**
+    
+    Use the interactive DRN plot and complete the following steps:
+    
+    1. Initial Exploration
+    
+    - Set the drain elevation ($H_D$) to 10 m
+    - Vary the aquifer head ($h_{aq}$) from 8 m to 12 m
+    - Observe how the flow ($Q_D$) responds to changes in head
+
+    📝 **Record:**
+    - The threshold value at which the drain becomes active
+    - The linearity of the Q–h relationship once the threshold is exceeded
+    - The behavior of the drain when $h_{aq} \leq H_D$
+
+    2. **Effect of Conductance**
+    - Keep $H_D$ = 10 m
+    - Choose three different conductance values (e.g., 1E-2, 1E-3, and 1E-4 m²/s)
+
+    For each case:
+    - Plot $Q_D$ vs $h_{aq}$ from 8 m to 12 m
+    - Compare the slope of the Q–h curves
+    - Discuss the sensitivity of flow to conductance changes
+
+    3. **Realistic Scenario: Recession Segment**
+    - Fix the aquifer head at 10.3 m
+    - Vary drain elevation from 9.5 m to 10.5 m
+    - Consider this as a stylized representation of a falling stream stage in a head-controlled system
+
+    💡 **Explore:**
+    - When does the drain become inactive?
+    - How quickly does the flow decrease as $H_D$ rises above $h_{aq}$?
+    - What are the management implications for shallow drainage systems during dry periods?
+    """)
+    
+st.markdown("---")
 
 # Functions
 
@@ -183,28 +266,19 @@ def Q_h_plot():
     log_min1 = -7.0 # T / Corresponds to 10^-7 = 0.0000001
     log_max1 = 1.0  # T / Corresponds to 10^1 = 10
     
-    columns1 = st.columns((1,1), gap = 'large')
+    columns1 = st.columns((1,1,1), gap = 'small')
     # Switches
     with columns1[0]:
-        with st.expander("**Modify the plot**"):
-            visualize = st.toggle(':rainbow[**Make the plot alive** and visualize the input values]', key="DRN_vis")
+        with st.expander("Modify the plot control"):
             turn = st.toggle('Toggle to turn the plot 90 degrees', key="DRN_turn")
             st.session_state.number_input = st.toggle("Toggle to use Slider or Number for input of $C_D$, $H_D$, and $h_{aq}$.")
+            visualize = st.toggle(':rainbow[**Make the plot alive** and visualize the input values]', key="DRN_vis")
 
     # Initialize st.session_state.C
     if "CD" not in st.session_state:
         st.session_state.CD = 10 ** st.session_state.CD_slider_value
-    
     with columns1[1]:
-        with st.expander("**Modify the parameters**"):
-            # READ LOG VALUE, CONVERT, AND WRITE VALUE FOR TRANSMISSIVITY
-            container = st.container()  
-            if st.session_state.number_input:
-                CD_slider_value_new = st.number_input("_(log of) Conductance $C_D$ in m²/s_", log_min1,log_max1, st.session_state.CD_slider_value, 0.01, format="%4.2f", key="CD_input", on_change=update_CD)
-            else:
-                CD_slider_value_new = st.slider      ("_(log of) Conductance $C_D$ in m²/s_", log_min1,log_max1, st.session_state.CD_slider_value, 0.01, format="%4.2f", key="CD_input", on_change=update_CD)    
-            st.session_state.CD = 10 ** CD_slider_value_new
-            container.write("**Conductance $C_D$ in m²/s:** %5.2e" %st.session_state.CD)
+        with st.expander('Modify heads and elevations'):
             if st.session_state.number_input:
                 HD = st.number_input("**drain elevation ($H_D$)**", 5.0, 20.0, st.session_state.HD, 0.1, key="HD_input", on_change=update_HD)
             else:
@@ -213,6 +287,18 @@ def Q_h_plot():
                 h_aq_show = st.number_input("**Aquifer head ($h_{aq}$)**", 0.0, 20.0, st.session_state.h_aq_show, 0.1, key="h_aq_show_input", on_change=update_h_aq_show)
             else:
                 h_aq_show = st.slider      ("**Aquifer head ($h_{aq})$**", 0.0, 20.0, st.session_state.h_aq_show, 0.1, key="h_aq_show_input", on_change=update_h_aq_show)
+    
+    with columns1[2]:
+        with st.expander('Modify the conductance'):
+            # READ LOG VALUE, CONVERT, AND WRITE VALUE FOR TRANSMISSIVITY
+            container = st.container()  
+            if st.session_state.number_input:
+                CD_slider_value_new = st.number_input("_(log of) Conductance $C_D$ in m²/s_", log_min1,log_max1, st.session_state.CD_slider_value, 0.01, format="%4.2f", key="CD_input", on_change=update_CD)
+            else:
+                CD_slider_value_new = st.slider      ("_(log of) Conductance $C_D$ in m²/s_", log_min1,log_max1, st.session_state.CD_slider_value, 0.01, format="%4.2f", key="CD_input", on_change=update_CD)    
+            st.session_state.CD = 10 ** CD_slider_value_new
+            container.write("**Conductance $C_D$ in m²/s:** %5.2e" %st.session_state.CD)
+
     
     # Computation - Define aquifer head range
     h_aq = np.linspace(0, 20, 200)
@@ -224,7 +310,8 @@ def Q_h_plot():
     fig, ax = plt.subplots(figsize=(8, 8))
     if visualize:
         if turn:
-            ax.plot(Q, h_aq, label=rf"$Q_o = C_D(H_D - h_{{aq}})$, $C_D$ = {st.session_state.CD:.2e}",color='green', linewidth=3)
+            ax.plot(Q, h_aq, label=rf"$Q_D = C_D(H_D - h_{{aq}})$, $C_D$ = {st.session_state.CD:.2e}",color='green', linewidth=3)
+            ax.plot([], [], ' ', label=fr"$Q_D$ = {Q_ref:.2e} m³/s")
             ax.axvline(0, color='black', linewidth=1)
             ax.axhline(HD, color='green', linewidth=2, linestyle='--', label=f'$H_D$ in m= {HD}')
             ax.axhline(h_aq_show, color='blue', linewidth=2, linestyle='--', label=f'$h_{{aq}}$ in m= {h_aq_show}')
@@ -252,7 +339,8 @@ def Q_h_plot():
             #ax.text(0.035, 1,  "Losing DRN boundary", va='center',color='green')
                 
         else:
-            ax.plot(h_aq, Q, label=rf"$Q_o = C_D(H_D - h_{{aq}})$, $C_D$ = {st.session_state.CD:.2e}",color='green', linewidth=3)
+            ax.plot(h_aq, Q, label=rf"$Q_D = C_D(H_D - h_{{aq}})$, $C_D$ = {st.session_state.CD:.2e}",color='green', linewidth=3)
+            ax.plot([], [], ' ', label=fr"$Q_D$ = {Q_ref:.2e} m³/s")
             ax.axhline(0, color='black', linewidth=1)
             ax.axvline(HD, color='green', linewidth=2, linestyle='--', label=f'$H_D$ in m= {HD}')
             ax.axvline(h_aq_show, color='blue', linewidth=2, linestyle='--', label=f'$h_{{aq}}$ in m= {h_aq_show}')
@@ -302,6 +390,36 @@ def Q_h_plot():
     st.pyplot(fig)
 
 Q_h_plot()
+
+with st.expander('**Show the :rainbow[**EXERCISE**] assessment** - to self-check your understanding'):
+    st.markdown("""
+    #### 🧠 Excercise assessment
+    These questions test your understanding after doing the exercise.
+    """)
+
+    # Render questions in a 2x3 grid (row-wise)
+    for row in [(0, 1), (2, 3), (4, 5)]:
+        col1, col2 = st.columns(2)
+
+        with col1:
+            i = row[0]
+            st.markdown(f"**Q{i+1}. {quest_exer[i]['question']}**")
+            multiple_choice(
+                question=" ",
+                options_dict=quest_exer[i]["options"],
+                success=quest_exer[i].get("success", "✅ Correct."),
+                error=quest_exer[i].get("error", "❌ Not quite.")
+            )
+
+        with col2:
+            i = row[1]
+            st.markdown(f"**Q{i+1}. {quest_exer[i]['question']}**")
+            multiple_choice(
+                question=" ",
+                options_dict=quest_exer[i]["options"],
+                success=quest_exer[i].get("success", "✅ Correct."),
+                error=quest_exer[i].get("error", "❌ Not quite.")
+            )
 
 st.subheader('✅ Conclusion', divider = 'green')
 st.markdown("""

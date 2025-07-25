@@ -1,0 +1,68 @@
+[
+  {
+    "question": "Which statements correctly describe how the Drain Boundary (DRN) behaves? (Mark ALL correct answers)",
+    "options": {
+      "A) The drain only allows flow when the aquifer head exceeds the drain elevation.": true,
+      "B) The DRN boundary condition allows for both inflow and outflow.": false,
+      "C) Below the drain elevation, the boundary becomes inactive and does not influence the model.": true,
+      "D) The DRN boundary enforces a constant discharge regardless of head conditions.": false
+    },
+    "success": "✅ Correct! DRN acts as a one-way valve — flow is only allowed from aquifer to drain when $h_{aq} > h_{DRN}$.",
+    "error": "❌ Not quite. Remember: DRN is inactive when $h_{aq} ≤ h_{DRN}$ and does not permit inflow into the aquifer."
+  },
+  {
+    "question": "The aquifer head is situated above the drain elevation. What happens when you increase the drain elevation while keeping aquifer head constant? (Mark ALL correct answers)",
+    "options": {
+      "A) The flow decreases as the head difference reduces.": true,
+      "B) The slope of the Q–h curve increases.": false,
+      "C) The boundary may become inactive if $H_D$ exceeds $h_{aq}$.": true,
+      "D) The conductance of the boundary increases.": false
+    },
+    "success": "✅ Well done. A higher drain elevation reduces the head difference and may deactivate the boundary.",
+    "error": "❌ Reconsider how head difference and threshold behavior define the flow rate in DRN boundaries."
+  },
+  {
+    "question": "How does the conductance $C_D$ influence the Q–h relationship? (Mark ALL correct answers)",
+    "options": {
+      "A) It determines the slope of the Q–h curve when the drain is active.": true,
+      "B) A higher conductance results in higher flow for a given head difference.": true,
+      "C) Conductance has no effect when the boundary is inactive.": true,
+      "D) Conductance controls the threshold at which the drain becomes active.": false
+    },
+    "success": "✅ Exactly. Conductance controls flow once active — but the activation threshold is set by $h_{DRN}$ alone.",
+    "error": "❌ Not quite. Conductance shapes flow magnitude above threshold but does not influence activation."
+  },
+  {
+    "question": "What are key differences between DRN and RIV boundaries? (Mark ALL correct answers)",
+    "options": {
+      "A) DRN boundaries only allow flow out of the aquifer, while RIV can represent both inflow and outflow.": true,
+      "B) RIV includes a bottom elevation to limit the flow, DRN does not.": true,
+      "C) Both boundary types allow inflow into the aquifer.": false,
+      "D) DRN is suitable to represent perched drainage or trench outflow.": true
+    },
+    "success": "✅ Correct. DRN is a one-way outflow mechanism, unlike the bidirectional behavior of RIV.",
+    "error": "❌ Review the structural and functional differences between DRN and RIV."
+  },
+  {
+    "question": "Which conditions will lead to zero flow across a DRN boundary? (Mark ALL correct answers)",
+    "options": {
+      "A) $h_{aq} = H_D$": true,
+      "B) $h_{aq} < H_D$": true,
+      "C) $h_{aq} > H_D$": false,
+      "D) When conductance is zero": true
+    },
+    "success": "✅ Yes. Zero flow occurs when head difference is non-positive or when conductance is zero.",
+    "error": "❌ Be sure to distinguish between threshold behavior (head) and proportionality (conductance)."
+  },
+  {
+    "question": "In a scenario with $h_{aq}$ = 10.5 m, what is the impact of increasing $H_D$ from 9.0 to 10.6 m? (Mark ALL correct answers)",
+    "options": {
+      "A) The flow decreases steadily as $H_D$ approaches $h_{aq}$.": true,
+      "B) Flow becomes zero once $H_D > h_{aq}$.": true,
+      "C) The slope of the Q–h curve increases.": false,
+      "D) The conductance increases automatically.": false
+    },
+    "success": "✅ Good analysis. The DRN deactivates once drain elevation exceeds aquifer head.",
+    "error": "❌ Review how raising the drain elevation affects the activation threshold and flow."
+  }
+]
