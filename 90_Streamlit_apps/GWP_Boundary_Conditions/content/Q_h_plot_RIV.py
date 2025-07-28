@@ -84,7 +84,7 @@ with columns0[1]:
     fig, ax = plt.subplots(figsize=(5, 5))      
     ax.plot(h_aqi, Qi, color='black', linewidth=4)
     ax.set_xlabel("Heads and elevations in the RIV-Aquifer System (m)", fontsize=14, labelpad=15)
-    ax.set_ylabel("Flow Into the Groundwater \nfrom the RIV boundary $Q_{RIV}$ (m³/s)", fontsize=14, labelpad=15)
+    ax.set_ylabel("Flow into the Groundwater \nfrom the RIV boundary $Q_{RIV}$ (m³/s)", fontsize=14, labelpad=15)
     ax.set_xlim(0, 20)
     ax.set_ylim(-0.05, 0.05)
     ax.set_title("Flow Between Groundwater and RIV", fontsize=16, pad=10)
