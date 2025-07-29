@@ -453,7 +453,7 @@ def Q_h_plot():
     columns1 = st.columns((1,1,1), gap = 'small')
     
     with columns1[0]:
-        with st.expander('Modify the plot control'):
+        with st.expander('Modify the **Plot Control**'):
             st.text_input(
                 "**Lowest elevation to show on graph in m**",
                 value=str(st.session_state.h_ref),
@@ -482,9 +482,9 @@ def Q_h_plot():
                 )
                 st.stop()    
             x_range = st.number_input("**Range of Q in the plot**", 0.02, 1.00, 0.05, 0.01)
-            turn = st.toggle('**Turn Graph** 90 degrees', key="RIV_turn")
+            turn = st.toggle('**Turn Graph** 90 degrees', key="RIV_turn", value=True)
             st.session_state.number_input = st.toggle("**Use Slider or Number** for input")      
-            visualize = st.toggle(':rainbow[**Make the plot alive** and visualize the input values]', key="RIV_vis")
+            visualize = st.toggle(':rainbow[**Make the plot alive** and visualize the input values]', key="RIV_vis", value=True)
     
     # Make sure that heads and elevations are inside the plot
     if st.session_state.h_aq_show < 0.1+h_ref:

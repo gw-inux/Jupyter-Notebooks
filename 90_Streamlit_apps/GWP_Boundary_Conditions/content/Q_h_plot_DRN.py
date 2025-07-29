@@ -270,9 +270,9 @@ def Q_h_plot():
     # Switches
     with columns1[0]:
         with st.expander("Modify the plot control"):
-            turn = st.toggle('Toggle to turn the plot 90 degrees', key="DRN_turn")
+            turn = st.toggle('Toggle to turn the plot 90 degrees', key="DRN_turn", value=True)
             st.session_state.number_input = st.toggle("Toggle to use Slider or Number for input of $C_D$, $H_D$, and $h_{aq}$.")
-            visualize = st.toggle(':rainbow[**Make the plot alive** and visualize the input values]', key="DRN_vis")
+            visualize = st.toggle(':rainbow[**Make the plot alive** and visualize the input values]', key="DRN_vis", value=True)
 
     # Initialize st.session_state.C
     if "CD" not in st.session_state:

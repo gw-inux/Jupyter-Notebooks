@@ -6,11 +6,15 @@ from streamlit_book import multiple_choice
 
 # path to questions for the assessments (direct path)
 path_quest_ini   = "90_Streamlit_apps/GWP_Boundary_Conditions/questions/initial_et.json"
+path_quest_exer   = "90_Streamlit_apps/GWP_Boundary_Conditions/questions/exer_et.json"
 path_quest_final = "90_Streamlit_apps/GWP_Boundary_Conditions/questions/final_et.json"
 
 # Load questions
 with open(path_quest_ini, "r", encoding="utf-8") as f:
     quest_ini = json.load(f)
+    
+with open(path_quest_exer, "r", encoding="utf-8") as f:
+    quest_exer = json.load(f)
     
 with open(path_quest_final, "r", encoding="utf-8") as f:
     quest_final = json.load(f)
@@ -151,11 +155,85 @@ with st.expander("Show me more about **the Theory**"):
     The volumetric discharge is computed by multiplying the evapotranspiration rate $RET$ by the cell area $\Delta x \Delta y$:
     """)
     st.latex(r'''Q_{ET} = RET \Delta x \Delta y''')
-
-st.subheader("Interactive plot", divider="blue")
+    
+st.subheader("Interactive Plot and Exercise", divider="blue")
 st.markdown("""
-The interactive plot allows you to investigate $Q_{ET}$ in dependence from the _ET surface_ and the _extinction depth_. You can turn the plot by using the toggle above the input widgets.
+The interactive plot illustrates how the evapotranspiration loss $Q_{ET}$ varies with **groundwater head** ($h_{aq}$), depending on the defined **ET surface** ($SURF$), **extinction depth** ($EXDP$), and the **maximum ET rate** ($EVTR$). ET occurs only when the groundwater is within range of the surface — it drops linearly to zero below the extinction depth.
+
+Use the sliders or number inputs to adjust parameters. You can also rotate the plot for a vertical or horizontal representation.
+
+* You can explore the plot independently. Some :blue[INITIAL INSTRUCTIONS] may assist you.
+* An :rainbow[EXERCISE] invites you to explore how **$SURF$, $EXDP$, and $EVTR$** influence the Q–h relationship and under what conditions ET becomes fully active, partially active, or negligible.
 """)
+
+with st.expander('Show the :blue[**INITIAL INSTRUCTIONS**]'):
+    st.markdown("""
+    **Getting Started with the Interactive Plot**
+    
+    Before jumping into the exercise, follow these steps to understand how evapotranspiration (ET) interacts with the water table:
+    
+    **1. Visualize a Reference Case**
+    
+    * Set the **ET surface ($SURF$)** to –1.0 m a.s.l.
+    * Set **extinction depth ($EXDP$)** to 3.0 m
+    * Use an **ET rate ($EVTR$)** of 2.0 mm/day
+    * Adjust the head from –5.0 m to 0.0 m and observe how $Q_{ET}$ changes:
+      - Full ET occurs when $h_{aq} > SURF$
+      - ET decreases linearly as $h_{aq}$ falls below $SURF$
+      - ET becomes zero below $SURF - EXDP$
+
+    **2. Analyze the Influence of EXDP**
+    
+    * Increase $EXDP$ gradually and observe how the slope of the Q–h curve flattens
+    * Notice how the extinction point shifts further downward
+
+    These quick tests build a foundation for the full exercise — feel free to explore additional combinations interactively.
+    """)
+
+with st.expander('Show the :rainbow[**EXERCISE**]'):
+    st.markdown("""   
+    🎯 **Expected Learning Outcomes**
+    
+    By completing this exercise, you will:
+    
+    - Understand the threshold-controlled behavior of the ET boundary condition
+    - Distinguish between potential and actual ET based on groundwater head
+    - Evaluate how extinction depth and surface elevation influence loss patterns
+    - Relate evapotranspiration losses to aquifer sustainability
+    
+    🛠️ **Instructions**
+    
+    Use the interactive ET plot and complete the following steps:
+    
+    1. **Initial Setup**
+    
+    * Set $SURF$ = –1.0 m
+    * Set $EXDP$ = 3.0 m
+    * Use $EVTR$ = 2.0 mm/day
+    * Vary aquifer head from –5.0 m to 0.0 m
+    
+    **Observe and record:**
+    - The head at which ET reaches its maximum value
+    - The head at which ET drops to zero
+    - The shape of the Q–h curve between these thresholds
+    
+    2. **Test Sensitivity to Extinction Depth**
+    
+    * Keep $SURF$ fixed
+    * Test $EXDP$ = 1.0, 3.0, and 5.0 m
+    * Compare how the slope of the ET curve changes
+    
+    3. **Explore Surface Level Effects**
+    
+    * Fix $EXDP$ = 3.0 m
+    * Set $SURF$ = –0.5 m, –1.0 m, –2.0 m
+    * Observe how this shifts the entire ET response curve along the vertical axis
+    
+    💡 **Reflection:**
+    - When is groundwater significantly contributing to ET?
+    - What happens to ET during droughts or drawdowns?
+    - How can extinction depth help represent different vegetation types or soil conditions?
+    """)
 
 # Functions
 
@@ -180,27 +258,32 @@ st.session_state.number_input = False  # Default to number_input
 # Main area inputs
 @st.fragment
 def Q_h_plot():
-
-    turn = st.toggle('Toggle to turn the plot 90 degrees', key="ET_turn")
-    st.session_state.number_input = st.toggle("Toggle to use Slider or Number for input of $SURF$, $EXDP$, and $EVTR$.")
-    visualize = st.toggle(':rainbow[**Make the plot alive** and visualize the input values]', key="ET_vis")
     
-    columns1 = st.columns((1,1), gap = 'large')
+    columns1 = st.columns((1,1,1), gap = 'small')
+    # Switches
     with columns1[0]:
-        if st.session_state.number_input:
-            SURF = st.number_input("**ET surface $SURF$**", -3.0, 0.0, st.session_state.SURF, 0.1,key="SURF_input", on_change=update_SURF)
-            EXDP = st.number_input("**Extinction depth $EXDP$**", 0.1, 5.0, st.session_state.EXDP, 0.1,key="EXDP_input", on_change=update_EXDP)
-        else:
-            SURF = st.slider("**ET surface $SURF$**", -3.0, 0.0, st.session_state.SURF, 0.1,key="SURF_input", on_change=update_SURF)
-            EXDP = st.slider("**Extinction depth $EXDP$**", 0.1, 5.0, st.session_state.EXDP, 0.1,key="EXDP_input", on_change=update_EXDP)
-    
+        with st.expander("Modify the plot control"):
+            turn = st.toggle('Toggle to turn the plot 90 degrees', key="ET_turn", value=True)
+            st.session_state.number_input = st.toggle("Toggle to use Slider or Number for input of $SURF$, $EXDP$, and $EVTR$.")
+            visualize = st.toggle(':rainbow[**Make the plot alive** and visualize the input values]', key="ET_vis", value=True)
+
     with columns1[1]:
-        if st.session_state.number_input:
-            EVTR_input = st.number_input("**Maximum Evapotranspiration rate ($EVTR$ in mm/d)**", 0.1, 20.0, st.session_state.EVTR_input, 0.1,key="EVTR_input_input", on_change=update_EVTR_input)
-        else:
-            EVTR_input = st.slider("**Maximum Evapotranspiration rate ($EVTR$ in mm/d)**", 0.1, 20.0, st.session_state.EVTR_input, 0.1,key="EVTR_input_input", on_change=update_EVTR_input)
-        EVTR = EVTR_input/86400000
-        AREA = st.number_input("**Cell Area ($\\Delta x \\Delta y$) in m2**", min_value=1.0, max_value=40000.0, value=10000.0, step=100.0)
+        with st.expander('Modify heads and elevations'):
+            if st.session_state.number_input:
+                SURF = st.number_input("**ET surface $SURF$**", -3.0, 0.0, st.session_state.SURF, 0.1,key="SURF_input", on_change=update_SURF)
+                EXDP = st.number_input("**Extinction depth $EXDP$**", 0.1, 5.0, st.session_state.EXDP, 0.1,key="EXDP_input", on_change=update_EXDP)
+            else:
+                SURF = st.slider("**ET surface $SURF$**", -3.0, 0.0, st.session_state.SURF, 0.1,key="SURF_input", on_change=update_SURF)
+                EXDP = st.slider("**Extinction depth $EXDP$**", 0.1, 5.0, st.session_state.EXDP, 0.1,key="EXDP_input", on_change=update_EXDP)
+    
+    with columns1[2]:
+        with st.expander('Modify ET rate and area'):
+            if st.session_state.number_input:
+                EVTR_input = st.number_input("**Maximum Evapotranspiration rate ($EVTR$ in mm/d)**", 0.1, 20.0, st.session_state.EVTR_input, 0.1,key="EVTR_input_input", on_change=update_EVTR_input)
+            else:
+                EVTR_input = st.slider("**Maximum Evapotranspiration rate ($EVTR$ in mm/d)**", 0.1, 20.0, st.session_state.EVTR_input, 0.1,key="EVTR_input_input", on_change=update_EVTR_input)
+            EVTR = EVTR_input/86400000
+            AREA = st.number_input("**Cell Area ($\\Delta x \\Delta y$) in m2**", min_value=1.0, max_value=40000.0, value=10000.0, step=100.0)
     
     QET_MAX = 0.0005
     
@@ -213,7 +296,7 @@ def Q_h_plot():
     fig, ax = plt.subplots(figsize=(8, 8))
     if visualize:
         if turn:
-            ax.plot(QET, h_aq, label="$Q_{ET}$",color='gold', linewidth=4)
+            ax.plot(QET, h_aq, label="$Q_{ET}$",color='blue', linewidth=4)
             ax.axhline(0, color='black', linewidth=5)
             ax.axhline(SURF, color='green', linestyle='--', label=f'$SURF$ in m a.s.l.= {SURF:5.2f}')
             ax.axhline((SURF-EXDP), color='red', linestyle='--', label=f'$(SURF-EXDP)$ in m = {(SURF-EXDP):5.2f}')
@@ -237,7 +320,7 @@ def Q_h_plot():
                 ha='center'
             )
         else:
-            ax.plot(h_aq, QET, label="$Q_{ET}$",color='gold', linewidth=4)
+            ax.plot(h_aq, QET, label="$Q_{ET}$",color='blue', linewidth=4)
             ax.axvline(0, color='black', linewidth=5)
             ax.axvline(SURF, color='green', linestyle='--', label=f'$SURF$ in m a.s.l.= {SURF:5.2f}')
             ax.axvline((SURF-EXDP), color='red', linestyle='--', label=f'$(SURF-EXDP)$ in m = {(SURF-EXDP):5.2f}')
@@ -288,6 +371,36 @@ def Q_h_plot():
     st.pyplot(fig)
 
 Q_h_plot()
+
+with st.expander('**Show the :rainbow[**EXERCISE**] assessment** - to self-check your understanding'):
+    st.markdown("""
+    #### 🧠 Excercise assessment
+    These questions test your understanding after doing the exercise.
+    """)
+
+    # Render questions in a 2x3 grid (row-wise)
+    for row in [(0, 1), (2, 3), (4, 5)]:
+        col1, col2 = st.columns(2)
+
+        with col1:
+            i = row[0]
+            st.markdown(f"**Q{i+1}. {quest_exer[i]['question']}**")
+            multiple_choice(
+                question=" ",
+                options_dict=quest_exer[i]["options"],
+                success=quest_exer[i].get("success", "✅ Correct."),
+                error=quest_exer[i].get("error", "❌ Not quite.")
+            )
+
+        with col2:
+            i = row[1]
+            st.markdown(f"**Q{i+1}. {quest_exer[i]['question']}**")
+            multiple_choice(
+                question=" ",
+                options_dict=quest_exer[i]["options"],
+                success=quest_exer[i].get("success", "✅ Correct."),
+                error=quest_exer[i].get("error", "❌ Not quite.")
+            )
 
 st.subheader('✅ Conclusion', divider = 'blue')
 st.markdown("""

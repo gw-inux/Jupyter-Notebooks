@@ -1,0 +1,68 @@
+[
+  {
+    "question": "1) Which conditions lead to increased drawdown for a fixed pumping rate in a Multi-Node Well (MNW)? (Mark ALL correct answers)",
+    "options": {
+      "A) Higher linear resistance (larger A)": true,
+      "B) Higher nonlinear loss coefficient (larger B)": true,
+      "C) Lower exponent P in the nonlinear term": false,
+      "D) Reduced conductance due to clogging": true
+    },
+    "success": "✅ Correct. All listed except a lower P lead to increased drawdown for the same discharge.",
+    "error": "❌ Drawdown increases with higher A, B, and lower effective conductance. Lower P reduces drawdown."
+  },
+  {
+    "question": "2) In Q-target mode, what does the model solve for? (Mark ALL correct answers)",
+    "options": {
+      "A) The well head corresponding to the given discharge": true,
+      "B) The required drawdown to achieve the selected Q": true,
+      "C) A fixed head in the aquifer cell": false,
+      "D) The discharge at a given well head": false
+    },
+    "success": "✅ Yes. In Q-target, the model computes the drawdown (and thus well head) needed to produce Q.",
+    "error": "❌ In Q-target mode, the discharge is fixed — the drawdown and well head are computed."
+  },
+  {
+    "question": "3) What is the role of exponent P in the nonlinear CWC formulation? (Mark ALL correct answers)",
+    "options": {
+      "A) It controls how strongly drawdown increases with discharge": true,
+      "B) It appears in a power term applied to Q": true,
+      "C) It has no effect at low discharge values": false,
+      "D) It determines the transition between linear and nonlinear flow behavior": true
+    },
+    "success": "✅ Correct. P defines the nonlinearity; the higher it is, the faster drawdown increases with Q.",
+    "error": "❌ All but the third option are correct. P affects behavior even at low Q, though less noticeably."
+  },
+  {
+    "question": "4) Which combination of parameter changes leads to a steeper Q–Δh curve? (Mark ALL correct answers)",
+    "options": {
+      "A) Increasing both A and B": true,
+      "B) Increasing P while keeping A and B constant": true,
+      "C) Decreasing A and B": false,
+      "D) Reducing the aquifer head": false
+    },
+    "success": "✅ Yes. Higher A, B, and P result in stronger head losses, steepening the Q–Δh response.",
+    "error": "❌ Only increasing resistance terms (A, B, P) steepens the Q–Δh curve."
+  },
+  {
+    "question": "5) When comparing two parameter sets, why might their Q–Δh curves diverge only at higher discharge values? (Mark ALL correct answers)",
+    "options": {
+      "A) Because nonlinear terms become more dominant at high Q": true,
+      "B) Because both parameter sets may have the same linear resistance A": true,
+      "C) Because drawdown becomes less sensitive to P at high Q": false,
+      "D) Because the aquifer head decreases with increasing discharge": false
+    },
+    "success": "✅ Correct. At low Q, differences are minor; at high Q, nonlinear losses (B, P) dominate the divergence.",
+    "error": "❌ Only nonlinear terms cause divergence at high Q. Aquifer head is fixed in this plot."
+  },
+  {
+    "question": "6) What are correct interpretations of the second parameter set in the interactive MNW plot? (Mark ALL correct answers)",
+    "options": {
+      "A) It allows users to compare alternative well designs or conditions.": true,
+      "B) It is only used for calibration against observed data.": false,
+      "C) It helps visualize the influence of parameter changes on drawdown.": true,
+      "D) It represents a second well in the same cell.": false
+    },
+    "success": "✅ Exactly. The second set is a comparison tool to explore parameter sensitivity and design impact.",
+    "error": "❌ It's used for comparison — not calibration or multi-well representation."
+  }
+]

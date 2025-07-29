@@ -1,68 +1,68 @@
 [
   {
-    "question": "What is a primary advantage of using MNW over WEL in groundwater modeling? (Mark ALL correct answers)",
+    "question": "A) What is a primary advantage of using MNW over WEL in groundwater modeling? (Mark ALL correct answers)",
     "options": {
       "A) It allows distributed flow over multiple layers": true,
-      "B) It includes skin and well loss effects": true,
-      "C) It simplifies pumping without parameters": false,
-      "D) It enforces pumping constraints": true
+      "B) It includes skin and nonlinear well loss effects": true,
+      "C) It abstracts pumping without accounting for drawdown": false,
+      "D) It enforces physical and operational pumping constraints": true
     },
-    "success": "✅ Great — MNW includes realistic physics and constraints.",
-    "error": "❌ WEL is simpler. MNW models multiple nodes and head-dependent limits."
+    "success": "✅ Great — MNW captures realistic well behavior including layered flow, head losses, and control limits.",
+    "error": "❌ Unlike WEL, MNW handles complex multi-node flow and constraints explicitly."
   },
   {
-    "question": "Which factors influence the conductance in a Multi-Node Well? (Mark ALL correct answers)",
+    "question": "B) Which factors influence the cell-to-well conductance (CWC) in a Multi-Node Well? (Mark ALL correct answers)",
     "options": {
-      "A) Hydraulic conductivity of the aquifer": true,
-      "B) Well radius and skin effects": true,
-      "C) Drain elevation": false,
-      "D) Cross-sectional area of flow": true
+      "A) Hydraulic conductivity of the surrounding formation": true,
+      "B) Wellbore radius and skin resistance": true,
+      "C) Drain elevation in the model domain": false,
+      "D) Cross-sectional flow area between cell and well": true
     },
-    "success": "✅ Correct. Conductance reflects physical geometry and material properties.",
-    "error": "❌ MNW conductance depends on well and aquifer properties, not surface features."
+    "success": "✅ Correct. Conductance depends on geometric and hydraulic properties around the well.",
+    "error": "❌ CWC reflects subsurface and borehole properties, not unrelated boundary elevations."
   },
   {
-    "question": "What happens to the Q–h curve of a MNW when a maximum pumping rate is applied? (Mark ALL correct answers)",
+    "question": "C) What happens to the Q–h curve of a MNW when a maximum pumping rate (QMAX) is imposed? (Mark ALL correct answers)",
     "options": {
-      "A) The curve flattens at the Qmax value": true,
-      "B) Flow increases indefinitely with head": false,
-      "C) Flow reverses direction": false,
-      "D) Flow stops if head is too low": true
+      "A) The Q–h curve levels off at QMAX": true,
+      "B) Flow continues increasing with increasing drawdown": false,
+      "C) Flow may be capped regardless of available head": true,
+      "D) Flow stops entirely once QMAX is exceeded": false
     },
-    "success": "✅ Exactly. The curve reflects constraints and head-based behavior.",
-    "error": "❌ Think of operational limits — flow won’t just grow forever."
+    "success": "✅ Exactly — the Q–h curve reflects constraints like QMAX and limits actual abstraction.",
+    "error": "❌ The curve is truncated, not reversed or endlessly increasing."
   },
   {
-    "question": "In MODFLOW, which parameter causes an MNW to stop pumping due to head constraints? (Mark ALL correct answers)",
+    "question": "D) In MODFLOW, which conditions may cause a MNW to stop pumping due to head constraints? (Mark ALL correct answers)",
     "options": {
-      "A) Hlim (limiting head)": true,
-      "B) Qmax": false,
-      "C) Recharge rate": false,
-      "D) Minimum saturated thickness": true
+      "A) When the well head drops below the limiting head (Hlim)": true,
+      "B) When QMAX is reached": false,
+      "C) When the cell becomes partially unsaturated": true,
+      "D) When recharge is increased": false
     },
-    "success": "✅ Spot on. MNW can stop pumping if the cell head drops below Hlim or becomes unsaturated.",
-    "error": "❌ MNW shutdowns are triggered by limiting heads, not just flux rates."
+    "success": "✅ Spot on. MNW may stop pumping when physical or hydraulic head constraints are violated.",
+    "error": "❌ Shutdowns relate to local head conditions, not flux limits or recharge rates."
   },
   {
-    "question": "How is skin effect incorporated in an MNW? (Mark ALL correct answers)",
+    "question": "E) How is the skin effect incorporated in MNW behavior? (Mark ALL correct answers)",
     "options": {
-      "A) As an additional resistance around the wellbore": true,
-      "B) As an increase in conductance": false,
-      "C) Through the use of hydraulic gradient multipliers": false,
-      "D) As a correction to head loss": true
+      "A) As additional resistance surrounding the well": true,
+      "B) As a direct increase in conductance": false,
+      "C) As a term contributing to drawdown": true,
+      "D) As a correction factor in recharge zones": false
     },
-    "success": "✅ Skin effect reduces flow — it’s a resistance term included in conductance calculations.",
-    "error": "❌ Skin effect adds resistance, not conductance or gradients."
+    "success": "✅ Correct. Skin increases resistance and contributes to head loss.",
+    "error": "❌ Skin increases drawdown — it does not boost conductance or affect recharge."
   },
   {
-    "question": "How can Q–h plots help interpret MNW model behavior? (Mark ALL correct answers)",
+    "question": "F) How can Q–h plots assist in interpreting MNW model behavior? (Mark ALL correct answers)",
     "options": {
-      "A) By identifying operational limits": true,
-      "B) By showing where the well is dry": true,
-      "C) By optimizing recharge boundaries": false,
-      "D) By visualizing transitions in flow regimes": true
+      "A) By identifying operational and physical pumping limits": true,
+      "B) By indicating when threshold heads are reached": true,
+      "C) By optimizing boundary conditions like recharge": false,
+      "D) By visualizing flow regime transitions and limitations": true
     },
-    "success": "✅ Well done. Q–h plots make MNW behavior easier to interpret and debug.",
-    "error": "❌ Focus on what Q–h plots reveal about flow constraints and system response."
+    "success": "✅ Well done. Q–h plots help understand how pumping responds to drawdown, thresholds, and constraints.",
+    "error": "❌ These plots are used to diagnose well response, not to calibrate recharge boundaries."
   }
 ]
