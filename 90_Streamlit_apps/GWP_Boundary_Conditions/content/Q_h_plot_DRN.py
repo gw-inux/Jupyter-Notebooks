@@ -335,7 +335,7 @@ def Q_h_plot():
                     arrowprops=dict(arrowstyle='<-', color='green', lw=3, alpha=0.6)
                 )
             # Add gaining/losing stream annotations
-            ax.text(0.037,1, "Gaining DRN boundary", va='center',color='blue')
+            ax.text(0.005,1, "Gaining DRN boundary", va='center',color='blue')
             #ax.text(0.035, 1,  "Losing DRN boundary", va='center',color='green')
                 
         else:
@@ -364,7 +364,7 @@ def Q_h_plot():
                 arrowprops=dict(arrowstyle='<-', color='green', lw=3, alpha=0.6)
                 )
             # Add losing drn annotations
-            ax.text(13, -0.003, "Gaining DRN boundary", va='center',color='blue')
+            ax.text(0.5, 0.003, "Gaining DRN boundary", va='center',color='blue')
     else:
         if turn:
             ax.plot(Q, h_aq, label=rf"$Q_o = C_D(H_D - h_{{aq}})$, $C_D$ = {st.session_state.CD:.2e}",color='black', linewidth=3)

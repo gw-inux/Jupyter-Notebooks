@@ -70,13 +70,13 @@ with columns0[0]:
     2. **What happens if the water level in the well drops below a critical threshold? Should pumping continue?**
     
     ▶️ The **Multi-Node Well (MNW)** package in MODFLOW supports more realistic simulation of well hydraulics. Even in single-layer systems, it allows you to:
-    - Account for **drawdown within the wellbore** ($h_{cell}-h_{well}$)due to head losses,
+    - Account for **drawdown within the wellbore** ($h_{cell}-h_{well}$) due to head losses,
     - Define **limiting water levels** below which pumping stops,
     - Simulate wells that **automatically shut off** or restart depending on drawdown conditions.
     
-    The following interactive plots let you explore how discharge, aquifer head, and well thresholds interact—revealing when a well becomes unsustainable under given conditions.
+    The following interactive plots let you explore how discharge, cell head, and cell-to-well conductance _CWC_ interact and result in a specific drawdown in the well.
     
-    The **WEL**-toggle allows you to see the equivalent plot for WEL boundary in MODFLOW (Neuman bounday with defined flow).
+    In contrast, the **WEL boundary in MODFLOW** is a regular Neumann-type boundary condition (2nd type boundary with defined flow). The **WEL**-toggle allows you to see the equivalent _Q-h_-plot for a WEL boundary in MODFLOW where the defined flow _Q_ is independet from the hydraulic head _h_.
     """)
 
 with columns0[1]:
@@ -134,7 +134,7 @@ with columns0[1]:
     st.pyplot(fig)
     
     st.markdown("""
-    Please note that for this plot the head in the cell around the pumping well is defined as $h_{cell}$ = 10 m _(black dotted line)_.
+    Please note that for this plot the head in the cell around the pumping well is **defined as $h_{cell}$ = 10 m** _(black dotted line)_.
     
     The :grey[dashed line $Q$-$h_{well}$] illustrate the relationship between discharge and hydraulic head in well relative to the head in the cell (drawdown) whereas the black and grey dotted lines indicate the hydraulic heads in the cell and the well respectively.
     """)

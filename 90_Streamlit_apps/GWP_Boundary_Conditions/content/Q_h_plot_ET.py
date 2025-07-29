@@ -57,7 +57,7 @@ with columns0[0]:
     
     2. **Should evapotranspiration continue if the water table drops well below the root zone or land surface?**
     
-    ▶️ The **ET Boundary** in MODFLOW captures these dynamics. It simulates water loss from the saturated zone due to evapotranspiration—**but only when the water table is near enough to the surface**. As the groundwater head drops below a defined extinction depth, the ET rate gradually reduces to zero. The interactive plot below helps visualize this relationship. Adjust parameters like ET rate and extinction depth to explore how ET demand interacts with groundwater levels.
+    ▶️ The **ET Boundary** in MODFLOW captures these dynamics. It simulates water loss from the saturated zone due to evapotranspiration, **but only when the water table is near enough to the surface**. As the groundwater head drops below a defined extinction depth, the ET rate gradually reduces to zero. The interactive plot below helps visualize this relationship. Adjust parameters like ET rate and extinction depth to explore how ET demand interacts with groundwater levels.
     """)
 
 with columns0[1]:
@@ -85,6 +85,10 @@ with columns0[1]:
     plt.yticks(fontsize=14) 
     ax.axhline(0, color='grey', linestyle='--', linewidth=0.8)
     st.pyplot(fig)    
+    
+    st.markdown("""   
+    _Please note that the horizontal axis in the plot refers to elevation and not head_.
+    """)
     
 #TODO
 st.markdown("""
@@ -262,28 +266,28 @@ def Q_h_plot():
     columns1 = st.columns((1,1,1), gap = 'small')
     # Switches
     with columns1[0]:
-        with st.expander("Modify the plot control"):
+        with st.expander("Modify the Plot Control"):
             turn = st.toggle('Toggle to turn the plot 90 degrees', key="ET_turn", value=True)
-            st.session_state.number_input = st.toggle("Toggle to use Slider or Number for input of $SURF$, $EXDP$, and $EVTR$.")
+            st.session_state.number_input = st.toggle("Toggle to use Slider or Number for input of _SURF_, _EXDP_, and _EVTR_.")
             visualize = st.toggle(':rainbow[**Make the plot alive** and visualize the input values]', key="ET_vis", value=True)
 
     with columns1[1]:
         with st.expander('Modify heads and elevations'):
             if st.session_state.number_input:
-                SURF = st.number_input("**ET surface $SURF$**", -3.0, 0.0, st.session_state.SURF, 0.1,key="SURF_input", on_change=update_SURF)
-                EXDP = st.number_input("**Extinction depth $EXDP$**", 0.1, 5.0, st.session_state.EXDP, 0.1,key="EXDP_input", on_change=update_EXDP)
+                SURF = st.number_input("**ET surface _SURF_**", -3.0, 0.0, st.session_state.SURF, 0.1,key="SURF_input", on_change=update_SURF)
+                EXDP = st.number_input("**Extinction depth _EXDP_**", 0.1, 5.0, st.session_state.EXDP, 0.1,key="EXDP_input", on_change=update_EXDP)
             else:
-                SURF = st.slider("**ET surface $SURF$**", -3.0, 0.0, st.session_state.SURF, 0.1,key="SURF_input", on_change=update_SURF)
-                EXDP = st.slider("**Extinction depth $EXDP$**", 0.1, 5.0, st.session_state.EXDP, 0.1,key="EXDP_input", on_change=update_EXDP)
+                SURF = st.slider("**ET surface _SURF_**", -3.0, 0.0, st.session_state.SURF, 0.1,key="SURF_input", on_change=update_SURF)
+                EXDP = st.slider("**Extinction depth _EXDP_**", 0.1, 5.0, st.session_state.EXDP, 0.1,key="EXDP_input", on_change=update_EXDP)
     
     with columns1[2]:
         with st.expander('Modify ET rate and area'):
             if st.session_state.number_input:
-                EVTR_input = st.number_input("**Maximum Evapotranspiration rate ($EVTR$ in mm/d)**", 0.1, 20.0, st.session_state.EVTR_input, 0.1,key="EVTR_input_input", on_change=update_EVTR_input)
+                EVTR_input = st.number_input("**Maximum Evapotranspiration rate (_EVTR_ in mm/d)**", 0.1, 20.0, st.session_state.EVTR_input, 0.1,key="EVTR_input_input", on_change=update_EVTR_input)
             else:
-                EVTR_input = st.slider("**Maximum Evapotranspiration rate ($EVTR$ in mm/d)**", 0.1, 20.0, st.session_state.EVTR_input, 0.1,key="EVTR_input_input", on_change=update_EVTR_input)
+                EVTR_input = st.slider("**Maximum ET rate** (_EVTR_ in mm/d)", 0.1, 20.0, st.session_state.EVTR_input, 0.1,key="EVTR_input_input", on_change=update_EVTR_input)
             EVTR = EVTR_input/86400000
-            AREA = st.number_input("**Cell Area ($\\Delta x \\Delta y$) in m2**", min_value=1.0, max_value=40000.0, value=10000.0, step=100.0)
+            AREA = st.number_input("**Area in $m^2$** (e.g., $\\Delta x \\Delta y$)", min_value=1.0, max_value=40000.0, value=10000.0, step=100.0)
     
     QET_MAX = 0.0005
     
@@ -298,8 +302,8 @@ def Q_h_plot():
         if turn:
             ax.plot(QET, h_aq, label="$Q_{ET}$",color='blue', linewidth=4)
             ax.axhline(0, color='black', linewidth=5)
-            ax.axhline(SURF, color='green', linestyle='--', label=f'$SURF$ in m a.s.l.= {SURF:5.2f}')
-            ax.axhline((SURF-EXDP), color='red', linestyle='--', label=f'$(SURF-EXDP)$ in m = {(SURF-EXDP):5.2f}')
+            ax.axhline(SURF, color='green', linestyle='--', label=f'$SURF$ in m = {SURF:5.2f} m')
+            ax.axhline((SURF-EXDP), color='red', linestyle='--', label=f'$(SURF-EXDP)$ in m = {(SURF-EXDP):5.2f} m')
             arrow_x = 0.8 * QET_MAX  # horizontal position
             arrow_y_start = SURF
             arrow_y_end = (SURF - EXDP)
@@ -322,8 +326,8 @@ def Q_h_plot():
         else:
             ax.plot(h_aq, QET, label="$Q_{ET}$",color='blue', linewidth=4)
             ax.axvline(0, color='black', linewidth=5)
-            ax.axvline(SURF, color='green', linestyle='--', label=f'$SURF$ in m a.s.l.= {SURF:5.2f}')
-            ax.axvline((SURF-EXDP), color='red', linestyle='--', label=f'$(SURF-EXDP)$ in m = {(SURF-EXDP):5.2f}')
+            ax.axvline(SURF, color='green', linestyle='--', label=f'$SURF$ in m = {SURF:5.2f} m')
+            ax.axvline((SURF-EXDP), color='red', linestyle='--', label=f'$(SURF-EXDP)$ in m = {(SURF-EXDP):5.2f} m')
             
             arrow_y = 0.8 * QET_MAX  # horizontal position
             arrow_x_start = SURF
@@ -352,18 +356,34 @@ def Q_h_plot():
         
     # Labels and formatting
     if turn:
-        ax.set_ylabel("Heads in the aquifer system in m above sea level (a.s.l)", fontsize=14, labelpad=15)
-        ax.set_xlabel("Evapotranspiration loss from the aquifer ($Q_{ET}$) in m³/s", fontsize=14, labelpad=15)
+        ax.set_ylabel("Elevations in the aquifer system in m above reference level", fontsize=14, labelpad=15)
+        ax.set_xlabel("Evapotranspiration loss from the aquifer area ($Q_{ET}$) in m³/s", fontsize=14, labelpad=15)
         ax.set_ylim(-10,0)
         ax.set_xlim(-0.1*QET_MAX, QET_MAX)
+        
+        # Add second x-axis (for mm/day)
+        secax = ax.secondary_xaxis('top', functions=(
+            lambda x: x / AREA * 86400 * 1000,        # m³/s -> mm/d
+            lambda x: x * AREA / (86400 * 1000)       # mm/d -> m³/s
+        ))
+        secax.set_xlabel("Evapotranspiration loss rate from the aquifer ($RET$) in mm/d", color = 'grey', fontsize=14, labelpad=15)
+        secax.tick_params(axis='x', labelsize=14)
     else:
-        ax.set_xlabel("Heads in the aquifer system in m above sea level (a.s.l)", fontsize=14, labelpad=15)
-        ax.set_ylabel("Evapotranspiration loss from the aquifer ($Q_{ET}$) in m³/s", fontsize=14, labelpad=15)
+        ax.set_xlabel("Elevations in the aquifer system in m above reference level", fontsize=14, labelpad=15)
+        ax.set_ylabel("Evapotranspiration loss from the aquifer area ($Q_{ET}$) in m³/s", fontsize=14, labelpad=15)
         ax.set_xlim(0,-10)
         ax.set_ylim(-0.1*QET_MAX, QET_MAX)
+        # Add second y-axis (for mm/day)
+        secax = ax.secondary_yaxis('right', functions=(
+            lambda y: y / AREA * 86400 * 1000,        # m³/s -> mm/d
+            lambda y: y * AREA / (86400 * 1000)       # mm/d -> m³/s
+        ))
+        secax.set_ylabel("Evapotranspiration loss rate from the aquifer ($RET$) in mm/d", color = 'grey', fontsize=14, labelpad=15)
+        secax.tick_params(axis='y', labelsize=14)
+
     
     # === SHARED FORMATTING === #
-    ax.set_title("Evapotranspiration losses", fontsize=16, pad=10)
+    ax.set_title("Evapotranspiration losses", fontsize=16, pad=20)
     plt.xticks(fontsize=14)
     plt.yticks(fontsize=14) 
     ax.legend(fontsize=14)
