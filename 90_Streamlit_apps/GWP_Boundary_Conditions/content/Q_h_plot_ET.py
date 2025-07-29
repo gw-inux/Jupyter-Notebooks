@@ -338,9 +338,9 @@ def Q_h_plot():
         
         **1. Visualize a Reference Case**
         
-        * Set the **ET surface (_**SURF**_)** to –1.0 m below reference.
-        * Set **extinction depth (_**EXDP**_)** to 3.0 m
-        * Use an **ET rate (_**EVTR**_)** of 2.0 mm/day
+        * Set the **ET surface** (_**SURF**_) to –1.0 m below reference.
+        * Set **extinction depth** (_**EXDP**_) to 3.0 m
+        * Use an **ET rate** (_**EVTR**_) of 2.0 mm/day
         * Image the hydraulic head ranging from –5.0 m to 0.0 m below surface and acknowledge how $Q_{ET}$ changes:
           - Full ET occurs when $h_{aq}$ > _**SURF**_
           - ET decreases linearly as $h_{aq}$ falls below _**SURF**_
