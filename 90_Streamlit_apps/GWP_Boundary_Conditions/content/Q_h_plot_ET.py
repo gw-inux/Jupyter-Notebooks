@@ -338,20 +338,20 @@ def Q_h_plot():
         
         **1. Visualize a Reference Case**
         
-        * Set the **ET surface ($SURF$)** to –1.0 m a.s.l.
-        * Set **extinction depth ($EXDP$)** to 3.0 m
-        * Use an **ET rate ($EVTR$)** of 2.0 mm/day
-        * Adjust the head from –5.0 m to 0.0 m and observe how $Q_{ET}$ changes:
-          - Full ET occurs when $h_{aq} > SURF$
-          - ET decreases linearly as $h_{aq}$ falls below $SURF$
-          - ET becomes zero below $SURF - EXDP$
+        * Set the **ET surface (_**SURF**_)** to –1.0 m below reference.
+        * Set **extinction depth (_**EXDP**_)** to 3.0 m
+        * Use an **ET rate (_**EVTR**_)** of 2.0 mm/day
+        * Image the hydraulic head ranging from –5.0 m to 0.0 m below surface and acknowledge how $Q_{ET}$ changes:
+          - Full ET occurs when $h_{aq}$ > _**SURF**_
+          - ET decreases linearly as $h_{aq}$ falls below _**SURF**_
+          - ET becomes zero below _**SURF**_ - _**EXDP**_
     
-        **2. Analyze the Influence of EXDP**
+        **2. Analyze the Influence of _EXDP_**
         
-        * Increase $EXDP$ gradually and observe how the slope of the Q–h curve flattens
+        * Increase _**EXDP**_ gradually and observe how the slope of the _Q–h_ curve flattens
         * Notice how the extinction point shifts further downward
     
-        These quick tests build a foundation for the full exercise — feel free to explore additional combinations interactively.
+        These quick tests build a foundation for the full exercise. Feel free to explore additional combinations interactively.
         """)
     
     with st.expander('Show the :rainbow[**EXERCISE**]'):
@@ -361,7 +361,6 @@ def Q_h_plot():
         By completing this exercise, you will:
         
         - Understand the threshold-controlled behavior of the ET boundary condition
-        - Distinguish between potential and actual ET based on groundwater head
         - Evaluate how extinction depth and surface elevation influence loss patterns
         - Relate evapotranspiration losses to aquifer sustainability
         
@@ -371,10 +370,10 @@ def Q_h_plot():
         
         1. **Initial Setup**
         
-        * Set $SURF$ = –1.0 m
-        * Set $EXDP$ = 3.0 m
-        * Use $EVTR$ = 2.0 mm/day
-        * Vary aquifer head from –5.0 m to 0.0 m
+        * Set _**SURF**_ = –1.0 m
+        * Set _**EXDP**_ = 3.0 m
+        * Use _**EVTR**_ = 2.0 mm/day
+        * Imagine the aquifer head range from –5.0 m to 0.0 m
         
         **Observe and record:**
         - The head at which ET reaches its maximum value
@@ -383,14 +382,14 @@ def Q_h_plot():
         
         2. **Test Sensitivity to Extinction Depth**
         
-        * Keep $SURF$ fixed
-        * Test $EXDP$ = 1.0, 3.0, and 5.0 m
+        * Keep _**SURF**_ fixed
+        * Test _**EXDP**_ = 1.0, 3.0, and 5.0 m
         * Compare how the slope of the ET curve changes
         
         3. **Explore Surface Level Effects**
         
-        * Fix $EXDP$ = 3.0 m
-        * Set $SURF$ = –0.5 m, –1.0 m, –2.0 m
+        * Fix _**EXDP**_ = 3.0 m
+        * Set _**SURF**_ = –0.5 m, –1.0 m, –2.0 m
         * Observe how this shifts the entire ET response curve along the vertical axis
         
         💡 **Reflection:**
