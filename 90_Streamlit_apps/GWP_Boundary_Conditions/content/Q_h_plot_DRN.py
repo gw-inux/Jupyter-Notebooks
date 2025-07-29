@@ -166,77 +166,6 @@ Use the sliders or number inputs to adjust the parameters. You can toggle betwee
 * You can explore the plot independently. Some :blue[INITIAL INSTRUCTIONS] may assist you.
 * An :rainbow[EXERCISE] invites you to investigate how **drain elevation, aquifer head, and conductance** govern outflow. Use the DRN plot to interpret the **Q–h relationship**, and understand under which conditions the drain is **active** or **inactive**, and how this affects groundwater discharge.
 """)
-with st.expander('Show the :blue[**INITIAL INSTRUCTIONS**]'):
-    st.markdown("""
-    **Getting Started with the Interactive Plot**
-    
-    Before starting the exercise, follow these quick steps to explore **DRN** behavior:
-    
-    **1. Set a Reference Case**
-    
-    * Set **drain elevation** $H_D$ to 10.0 m.
-    * Vary **aquifer head** $h_{aq}$ between 8 and 12 m.
-    * Observe how the flow $Q_D$ changes:
-        * When $h_{aq} > H_D$, the aquifer drains — flow leaves the aquifer through the drain.
-        * When $h_{aq} \leq H_D$, no flow occurs — the drain is inactive.
-        
-    **2. Test Different Conductance Values**
-    
-    * Use the slider to vary $C_D$
-    * Note how the **slope of the Q–h curve** changes — higher conductance leads to stronger response of outflow to head differences.
-    
-    These steps help you build intuition for how DRN parameters govern flow — especially the **threshold behavior** and **linear relationship** between head difference and outflow. Feel free to further investigate the interactive plot on your own.
-    """)
-
-with st.expander('Show the :rainbow[**EXERCISE**]'):
-    
-    st.markdown("""   
-    🎯 **Expected Learning Outcomes**
-    
-    By completing this exercise, you will:
-    
-    - Understand how drain–aquifer interaction is controlled by aquifer head, drain elevation, and conductance.
-    - Interpret the boundary characteristics with a Q–h plot.
-    - Recognize the threshold behavior of the DRN package and its role as a one-way boundary.
-    - Evaluate how conductance controls the rate of drainage above threshold.
-    - Analyze realistic scenarios (e.g., recession limbs of a hydrograph) and the implications for boundary fluxes.
-    
-    🛠️ **Instructions**
-    
-    Use the interactive DRN plot and complete the following steps:
-    
-    1. Initial Exploration
-    
-    - Set the drain elevation ($H_D$) to 10 m
-    - Vary the aquifer head ($h_{aq}$) from 8 m to 12 m
-    - Observe how the flow ($Q_D$) responds to changes in head
-
-    📝 **Record:**
-    - The threshold value at which the drain becomes active
-    - The linearity of the Q–h relationship once the threshold is exceeded
-    - The behavior of the drain when $h_{aq} \leq H_D$
-
-    2. **Effect of Conductance**
-    - Keep $H_D$ = 10 m
-    - Choose three different conductance values (e.g., 1E-2, 1E-3, and 1E-4 m²/s)
-
-    For each case:
-    - Plot $Q_D$ vs $h_{aq}$ from 8 m to 12 m
-    - Compare the slope of the Q–h curves
-    - Discuss the sensitivity of flow to conductance changes
-
-    3. **Realistic Scenario: Recession Segment**
-    - Fix the aquifer head at 10.3 m
-    - Vary drain elevation from 9.5 m to 10.5 m
-    - Consider this as a stylized representation of a falling stream stage in a head-controlled system
-
-    💡 **Explore:**
-    - When does the drain become inactive?
-    - How quickly does the flow decrease as $H_D$ rises above $h_{aq}$?
-    - What are the management implications for shallow drainage systems during dry periods?
-    """)
-    
-st.markdown("---")
 
 # Functions
 
@@ -266,6 +195,9 @@ def Q_h_plot():
     log_min1 = -7.0 # T / Corresponds to 10^-7 = 0.0000001
     log_max1 = 1.0  # T / Corresponds to 10^1 = 10
     
+    st.markdown("""
+       #### :green[INPUT CONTROLS]
+        """)
     columns1 = st.columns((1,1,1), gap = 'small')
     # Switches
     with columns1[0]:
@@ -382,12 +314,82 @@ def Q_h_plot():
             ax.set_ylim(0.05, -0.05)            
         
     # === SHARED FORMATTING === #     
-    ax.set_title("Flow Between Groundwater and DRN boundary", fontsize=16, pad=10)
+    ax.set_title("Flow Between Groundwater and DRN boundary", fontsize=16, pad=20)
     plt.xticks(fontsize=14)
     plt.yticks(fontsize=14) 
     ax.legend(fontsize=14)
     
     st.pyplot(fig)
+    
+    with st.expander('Show the :blue[**INITIAL INSTRUCTIONS**]'):
+        st.markdown("""
+        **Getting Started with the Interactive Plot**
+        
+        Before starting the exercise, follow these quick steps to explore **DRN** behavior:
+        
+        **1. Set a Reference Case**
+        
+        * Set **drain elevation** $H_D$ to 10.0 m.
+        * Vary **aquifer head** $h_{aq}$ between 8 and 12 m.
+        * Observe how the flow $Q_D$ changes:
+            * When $h_{aq} > H_D$, the aquifer drains — flow leaves the aquifer through the drain.
+            * When $h_{aq} \leq H_D$, no flow occurs — the drain is inactive.
+            
+        **2. Test Different Conductance Values**
+        
+        * Use the slider to vary $C_D$
+        * Note how the **slope of the Q–h curve** changes — higher conductance leads to stronger response of outflow to head differences.
+        
+        These steps help you build intuition for how DRN parameters govern flow — especially the **threshold behavior** and **linear relationship** between head difference and outflow. Feel free to further investigate the interactive plot on your own.
+        """)
+    
+    with st.expander('Show the :rainbow[**EXERCISE**]'):
+        
+        st.markdown("""   
+        🎯 **Expected Learning Outcomes**
+        
+        By completing this exercise, you will:
+        
+        - Understand how drain–aquifer interaction is controlled by aquifer head, drain elevation, and conductance.
+        - Interpret the boundary characteristics with a Q–h plot.
+        - Recognize the threshold behavior of the DRN package and its role as a one-way boundary.
+        - Evaluate how conductance controls the rate of drainage above threshold.
+        - Analyze realistic scenarios (e.g., recession limbs of a hydrograph) and the implications for boundary fluxes.
+        
+        🛠️ **Instructions**
+        
+        Use the interactive DRN plot and complete the following steps:
+        
+        1. Initial Exploration
+        
+        - Set the drain elevation ($H_D$) to 10 m
+        - Vary the aquifer head ($h_{aq}$) from 8 m to 12 m
+        - Observe how the flow ($Q_D$) responds to changes in head
+    
+        📝 **Record:**
+        - The threshold value at which the drain becomes active
+        - The linearity of the Q–h relationship once the threshold is exceeded
+        - The behavior of the drain when $h_{aq} \leq H_D$
+    
+        2. **Effect of Conductance**
+        - Keep $H_D$ = 10 m
+        - Choose three different conductance values (e.g., 1E-2, 1E-3, and 1E-4 m²/s)
+    
+        For each case:
+        - Plot $Q_D$ vs $h_{aq}$ from 8 m to 12 m
+        - Compare the slope of the Q–h curves
+        - Discuss the sensitivity of flow to conductance changes
+    
+        3. **Realistic Scenario: Recession Segment**
+        - Fix the aquifer head at 10.3 m
+        - Vary drain elevation from 9.5 m to 10.5 m
+        - Consider this as a stylized representation of a falling stream stage in a head-controlled system
+    
+        💡 **Explore:**
+        - When does the drain become inactive?
+        - How quickly does the flow decrease as $H_D$ rises above $h_{aq}$?
+        - What are the management implications for shallow drainage systems during dry periods?
+        """)
 
 Q_h_plot()
 

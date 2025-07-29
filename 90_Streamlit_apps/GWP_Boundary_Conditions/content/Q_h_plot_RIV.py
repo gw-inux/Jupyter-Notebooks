@@ -266,87 +266,6 @@ Use the sliders or number inputs to adjust these parameters. You can also toggle
 - An :rainbow[EXERCISE] allows you to apply the plot and deepen your understanding. This exercise invites you to explore how river–aquifer exchange is controlled by **river stage, aquifer hydraulic head, conductance, and bottom elevation**. Use the interactive RIV plot to examine how these factors influence the exchange flux, and interpret the **physical meaning based on Q–h plots**, especially the transitions between **gaining**, **losing**, and **decoupled** river conditions.
 """)
 
-with st.expander('Show the :blue[**INITIAL INSTRUCTIONS**]'):
-    st.markdown("""
-    **Getting Started with the Interactive Plot**
-    
-    Before starting the exercise, follow these quick steps to explore RIV behavior:
-    
-    **1. Set a Reference Case**
-    * Set river stage $h_{stage} = 10.0$ m
-    * Set river bottom elevation $h_{bot} = 9.0$ m
-    * Vary aquifer head $h_{aq}$ between 8 and 12 m
-    * Observe how the flow $Q_{RIV}$ changes:
-        * When $h_{aq} > h_{stage}$, the aquifer discharges to the river (losing river).
-        * When $h_{aq} < h_{stage}$ but $h_{aq} > h_{bot}$, the river recharges the aquifer (gaining river).
-        * When $h_{aq} < h_{bot}$, the river is not longer in direct contact with the aquifer. Flow through an unsaturated zone occurs, which is driven between the head gradient between river stage and river bottom. In this case, outflow from the river is kept constant.
-    
-    **2. Test Different Conductance Values**
-    * Use the slider to vary $C_{RIV}$
-    * Note how the slope of the $Q$–$h$ curve changes — higher conductance allows more exchange.
-    
-    **3. Compute Conductance**
-    * Toggle “Compute conductance”
-    * Enter $K$, $A_{riv}$, and $L_{RIV}$ to calculate $C_{RIV} = \\frac{KA_{RIV}}{L_{RIV}}$
-    * Observe how the conductance value influences the Q–h relationship.
-    * Set $h_{aq}$ < $h_{bot}$ and compute $C_{RIV}$ directly. Investigate the effect of the river bottom elevation $h_{bot}$ and river bed thickness $M_{RIV}$
-    
-    These steps help you build intuition for how RIV parameters control flow, a key foundation for the exercise. Feel free to further investigate the interactive plot on your own.
-    """)
-
-with st.expander('Show the :rainbow[**EXERCISE**]'):
-    
-    st.markdown("""
-    
-    🎯 **Expected Learning Outcomes**
-    
-    By completing this exercise, you will:
-    
-    * Understand how river–aquifer exchange is controlled by stage, aquifer head, bottom elevation, and conductance.
-    * Interpret Q–h plots in relation to gaining, losing, or inactive river segments.
-    * Identify conditions that limit or enable flow across the riverbed.
-    * Develop the ability to test and visualize river boundary behavior through scenario analysis.
-
-    🛠️ **Instructions**
-
-    Use the interactive RIV plot and complete the following steps:
-    1. **Initial Exploration**
-    
-    * Set the **river stage** (`h_stage`) to **10 m**
-    * Set the **river bottom elevation** (`h_bot`) to **9 m**
-    * Vary the **aquifer head** (`h_aq`) from **8 m to 12 m**
-    * Observe and describe how the flow (`Q_RIV`) changes.
-    
-    📝 Record:
-    
-        * Whether the river is gaining or losing in each case.
-        * The conditions where no flow occurs.
-        * The transition points between gaining/losing/inactive behavior.
-
-    2. **Effect of Conductance**
-
-    * Keep `h_stage = 10 m` and `h_bot = 9 m`
-    * Choose three different conductance values (e.g., **1E-2, 1E-3, and 1E-4 m²/s**)
-    * For each case:
-        * Plot `Q_RIV` vs `h_aq` from 8 m to 12 m (on paper or spreadsheet)
-        * Compare the slope of the curves and the magnitude of flow
-        * Observe how low/high conductance limits flow exchange
-    
-    3. **Realistic Scenarios: Recession Flow**
-    
-    * Imagine a river with stage **decreasing** from **11 m** to **9 m** (e.g., during a dry spell)
-    * Set river bottom to **8.5 m**
-    * Aquifer head is fixed at **9.2 m**
-    
-    💭 Explore:
-    
-        * How does the direction and magnitude of flow change as the river stage drops?
-        * How does the bottom elevation restrict or allow recharge?
-        * Discuss which condition (stage or bottom) dominates the system behavior    
-    """)
-
-st.markdown('---')
-
 # Functions
 
 # Callback function to update session state
@@ -441,6 +360,10 @@ st.session_state.number_input = False  # Default to number_input
 @st.fragment
 def Q_h_plot():
     
+    st.markdown("""
+       #### :violet[INPUT CONTROLS]
+        """)
+    
     # Define the minimum and maximum for the logarithmic scale
     log_min1 = -7.0 # T / Corresponds to 10^-7 = 0.0000001
     log_max1 = 1.0  # T / Corresponds to 10^1 = 10
@@ -449,7 +372,6 @@ def Q_h_plot():
     x_multi = 1
     
     # INPUT for the computation
-    st.markdown("#### :violet[Model parameters]")
     columns1 = st.columns((1,1,1), gap = 'small')
     
     with columns1[0]:
@@ -800,12 +722,92 @@ def Q_h_plot():
     columns3 = st.columns((1,10,1), gap = 'medium')
 
     with columns3[1]:
-        st.write("**Parameters and Results**")
-        st.write("- Aquifer (MODFLOW) hydraulic head **$h_{aq}$ = %5.2f" %h_aq_show," m**")
-        st.write("- River hydraulic head **$h_{RIV}$ = %5.2f" %h_RIV," m**")
-        st.write("- River bottom elevation **$h_{bot}$ = %5.2f" %h_bot," m**")
-        st.write("- Riverbed conductance **$C_{RIV}$ = % 10.2E"% C, " m²/s**")
-        st.write("- Flow between river and aquifer **$Q_{RIV}$ = % 10.2E"% Q_ref," m³/s**")
+        with st.expander('Click here to show **Parameters and Results**'):
+            st.write("**Parameters and Results**")
+            st.write("- Aquifer (MODFLOW) hydraulic head **$h_{aq}$ = %5.2f" %h_aq_show," m**")
+            st.write("- River hydraulic head **$h_{RIV}$ = %5.2f" %h_RIV," m**")
+            st.write("- River bottom elevation **$h_{bot}$ = %5.2f" %h_bot," m**")
+            st.write("- Riverbed conductance **$C_{RIV}$ = % 10.2E"% C, " m²/s**")
+            st.write("- Flow between river and aquifer **$Q_{RIV}$ = % 10.2E"% Q_ref," m³/s**")
+    
+    with st.expander('Show the :blue[**INITIAL INSTRUCTIONS**]'):
+        st.markdown("""
+        **Getting Started with the Interactive Plot**
+        
+        Before starting the exercise, follow these quick steps to explore RIV behavior:
+        
+        **1. Set a Reference Case**
+        * Set river stage $h_{stage} = 10.0$ m
+        * Set river bottom elevation $h_{bot} = 9.0$ m
+        * Vary aquifer head $h_{aq}$ between 8 and 12 m
+        * Observe how the flow $Q_{RIV}$ changes:
+            * When $h_{aq} > h_{stage}$, the aquifer discharges to the river (losing river).
+            * When $h_{aq} < h_{stage}$ but $h_{aq} > h_{bot}$, the river recharges the aquifer (gaining river).
+            * When $h_{aq} < h_{bot}$, the river is not longer in direct contact with the aquifer. Flow through an unsaturated zone occurs, which is driven between the head gradient between river stage and river bottom. In this case, outflow from the river is kept constant.
+        
+        **2. Test Different Conductance Values**
+        * Use the slider to vary $C_{RIV}$
+        * Note how the slope of the $Q$–$h$ curve changes — higher conductance allows more exchange.
+        
+        **3. Compute Conductance**
+        * Toggle “Compute conductance”
+        * Enter $K$, $A_{riv}$, and $L_{RIV}$ to calculate $C_{RIV} = \\frac{KA_{RIV}}{L_{RIV}}$
+        * Observe how the conductance value influences the Q–h relationship.
+        * Set $h_{aq}$ < $h_{bot}$ and compute $C_{RIV}$ directly. Investigate the effect of the river bottom elevation $h_{bot}$ and river bed thickness $M_{RIV}$
+        
+        These steps help you build intuition for how RIV parameters control flow, a key foundation for the exercise. Feel free to further investigate the interactive plot on your own.
+        """)
+    
+    with st.expander('Show the :rainbow[**EXERCISE**]'):
+        
+        st.markdown("""
+        
+        🎯 **Expected Learning Outcomes**
+        
+        By completing this exercise, you will:
+        
+        * Understand how river–aquifer exchange is controlled by stage, aquifer head, bottom elevation, and conductance.
+        * Interpret Q–h plots in relation to gaining, losing, or inactive river segments.
+        * Identify conditions that limit or enable flow across the riverbed.
+        * Develop the ability to test and visualize river boundary behavior through scenario analysis.
+    
+        🛠️ **Instructions**
+    
+        Use the interactive RIV plot and complete the following steps:
+        1. **Initial Exploration**
+        
+        * Set the **river stage** (`h_stage`) to **10 m**
+        * Set the **river bottom elevation** (`h_bot`) to **9 m**
+        * Vary the **aquifer head** (`h_aq`) from **8 m to 12 m**
+        * Observe and describe how the flow (`Q_RIV`) changes.
+        
+        📝 Record:
+        
+            * Whether the river is gaining or losing in each case.
+            * The conditions where no flow occurs.
+            * The transition points between gaining/losing/inactive behavior.
+    
+        2. **Effect of Conductance**
+    
+        * Keep `h_stage = 10 m` and `h_bot = 9 m`
+        * Choose three different conductance values (e.g., **1E-2, 1E-3, and 1E-4 m²/s**)
+        * For each case:
+            * Plot `Q_RIV` vs `h_aq` from 8 m to 12 m (on paper or spreadsheet)
+            * Compare the slope of the curves and the magnitude of flow
+            * Observe how low/high conductance limits flow exchange
+        
+        3. **Realistic Scenarios: Recession Flow**
+        
+        * Imagine a river with stage **decreasing** from **11 m** to **9 m** (e.g., during a dry spell)
+        * Set river bottom to **8.5 m**
+        * Aquifer head is fixed at **9.2 m**
+        
+        💭 Explore:
+        
+            * How does the direction and magnitude of flow change as the river stage drops?
+            * How does the bottom elevation restrict or allow recharge?
+            * Discuss which condition (stage or bottom) dominates the system behavior    
+        """)
 
 Q_h_plot()
 

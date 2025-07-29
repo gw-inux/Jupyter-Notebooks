@@ -180,83 +180,6 @@ st.markdown("""
     - An :rainbow[**EXERCISE**] allows you to apply the plot and to deepen your understanding. This exercise invites you to investigate how the conductance parameter and the difference in head affect the boundary flux. Use the interactive GHB plot to explore how variations in conductance influence the exchange flux between an aquifer and a connected boundary condition, and to interpret physical meaning based on Q–h plots.
 """)
 
-with st.expander('Show the :blue[**INITIAL INSTRUCTIONS**]'):
-    st.markdown("""
-    **Getting Started with the Interactive Plot**
-    
-    Before starting the exercise, follow these quick steps to explore GHB behavior:
-
-    **1. Set a Reference Case**
-
-    * Set **boundary head $H_B$ = 10.0 m**.
-    * Vary **aquifer head $h_{aq}$** between 5 and 15 m.
-    * Observe how **flow $Q_B$** changes.
-    * Investigate that 
-        * A gaining GHB removes water from the aquifer (Q < 0) and
-        * A losing GHB adds water to the aquifer (Q > 0).  
-
-    **2. Test Different Conductance Values**
-
-    * Use the slider to vary $C_B$.
-    * Note how the **slope of the $Q$–$h$ curve** changes.
-
-    **3. Optional: Compute Conductance**
-
-    * Toggle “Compute conductance”.
-    * Enter $K$, $A_B$, and $L_B$ to calculate $C_B = \\frac{K A_B}{L_B}$.
-    * Note how the **slope of the $Q$–$h$ curve** changes.
-
-    These steps help you build intuition for how GHB parameters control flow, a key foundation for the exercise. Feel free to further investigate the interactive plot on your own.
-    """)
-
-with st.expander('Show the :rainbow[**EXERCISE**]'):
-    
-    st.markdown("""
-    
-    🎯 **Expected Learning Outcomes**
-    
-    By completing this exercise, you will:
-    
-    * Understand how GHB flux is driven by head difference and conductance.
-    * Interpret Q–h plots in relation to the hydrogeologic behavior.
-    * Develop the ability to use the app for conceptual testing and scenario analysis.
-   
-    🛠️ **Instructions**
-    
-    Use the interactive GHB plot and complete the following:
-    
-    1. **Initial Exploration**
-    
-    * Set the boundary head (`H_B`) to **10 m**.
-    * Vary the aquifer head (`h_aq`) from **5 m to 15 m**.
-    * Observe and describe how the flux (`Q`) changes.
-    * Record:
-    
-      * The sign of the flux for different `h_aq` values.
-      * The value of `Q` when `h_aq = h_GHB`.
-    
-    2. **Conductance Effect**
-    
-    * (Keep `H_B` at 10 m)
-    * Choose three different conductance values (e.g., **3E-2, 3E-3, and 3E-4 m²/s**).
-    * For each conductance value:
-    
-      * Plot (e.g., on a separate paper) `Q_B` vs `h_aq` for `h_aq` in the range from 5 to 15 m.
-      * Compare the slope and shape of the resulting lines.
-      * Eventually repeat with an increased/decreased `H_B`
-    
-    3. **Realistic Scenarios**
-    
-    * Imagine a GHB represents a canal system connected to the aquifer. The canal water level is 10 m.
-    * Assume the aquifer head starts at 8 m.
-    * Evaluate how much water would enter the aquifer for:
-    
-      * A poorly connected canal (low conductance).
-      * A well-connected canal (high conductance).
-    * Discuss the implications for water management.    
-    """)
-
-st.markdown('---')
 # Functions
 
 # Callback function to update session state
@@ -291,13 +214,15 @@ st.session_state.number_input = False  # Default to number_input
 @st.fragment
 def Q_h_plot():
     
+    st.markdown("""
+       #### :orange[INPUT CONTROLS]
+        """)
+    
     # Define the minimum and maximum for the logarithmic scale
     log_min1 = -7.0 # T / Corresponds to 10^-7 = 0.0000001
     log_max1 = 1.0  # T / Corresponds to 10^1 = 10
     
     # Input widgets
-
-    st.markdown("#### :orange[Model parameters]")
     
     columns1 = st.columns((1,1,1), gap = 'small')
     
@@ -450,6 +375,83 @@ def Q_h_plot():
     ax.legend(fontsize=14)
     
     st.pyplot(fig)
+    
+    with st.expander('Show the :blue[**INITIAL INSTRUCTIONS**]'):
+        st.markdown("""
+        **Getting Started with the Interactive Plot**
+        
+        Before starting the exercise, follow these quick steps to explore GHB behavior:
+    
+        **1. Set a Reference Case**
+    
+        * Set **boundary head $H_B$ = 10.0 m**.
+        * Vary **aquifer head $h_{aq}$** between 5 and 15 m.
+        * Observe how **flow $Q_B$** changes.
+        * Investigate that 
+            * A gaining GHB removes water from the aquifer (Q < 0) and
+            * A losing GHB adds water to the aquifer (Q > 0).  
+    
+        **2. Test Different Conductance Values**
+    
+        * Use the slider to vary $C_B$.
+        * Note how the **slope of the $Q$–$h$ curve** changes.
+    
+        **3. Optional: Compute Conductance**
+    
+        * Toggle “Compute conductance”.
+        * Enter $K$, $A_B$, and $L_B$ to calculate $C_B = \\frac{K A_B}{L_B}$.
+        * Note how the **slope of the $Q$–$h$ curve** changes.
+    
+        These steps help you build intuition for how GHB parameters control flow, a key foundation for the exercise. Feel free to further investigate the interactive plot on your own.
+        """)
+    
+    with st.expander('Show the :rainbow[**EXERCISE**]'):
+        
+        st.markdown("""
+        
+        🎯 **Expected Learning Outcomes**
+        
+        By completing this exercise, you will:
+        
+        * Understand how GHB flux is driven by head difference and conductance.
+        * Interpret Q–h plots in relation to the hydrogeologic behavior.
+        * Develop the ability to use the app for conceptual testing and scenario analysis.
+       
+        🛠️ **Instructions**
+        
+        Use the interactive GHB plot and complete the following:
+        
+        1. **Initial Exploration**
+        
+        * Set the boundary head (`H_B`) to **10 m**.
+        * Vary the aquifer head (`h_aq`) from **5 m to 15 m**.
+        * Observe and describe how the flux (`Q`) changes.
+        * Record:
+        
+          * The sign of the flux for different `h_aq` values.
+          * The value of `Q` when `h_aq = h_GHB`.
+        
+        2. **Conductance Effect**
+        
+        * (Keep `H_B` at 10 m)
+        * Choose three different conductance values (e.g., **3E-2, 3E-3, and 3E-4 m²/s**).
+        * For each conductance value:
+        
+          * Plot (e.g., on a separate paper) `Q_B` vs `h_aq` for `h_aq` in the range from 5 to 15 m.
+          * Compare the slope and shape of the resulting lines.
+          * Eventually repeat with an increased/decreased `H_B`
+        
+        3. **Realistic Scenarios**
+        
+        * Imagine a GHB represents a canal system connected to the aquifer. The canal water level is 10 m.
+        * Assume the aquifer head starts at 8 m.
+        * Evaluate how much water would enter the aquifer for:
+        
+          * A poorly connected canal (low conductance).
+          * A well-connected canal (high conductance).
+        * Discuss the implications for water management.    
+        """)
+
 
 Q_h_plot()
 
