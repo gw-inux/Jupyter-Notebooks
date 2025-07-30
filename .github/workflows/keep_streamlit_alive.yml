@@ -26,6 +26,6 @@ jobs:
 
           for url in "${urls[@]}"; do
             echo "Pinging $url..."
-            response=$(curl -s -L -o /dev/null -w "%{http_code}" "$url")
+            response=$(curl -s -L --max-redirs 5 -o /dev/null -w "%{http_code}" "$url")
             echo "Response Code for $url: $response"
           done
