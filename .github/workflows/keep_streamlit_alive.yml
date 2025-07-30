@@ -29,11 +29,10 @@ jobs:
             response=$(curl -s -L --max-redirs 5 -o /dev/null -w "%{http_code}" "$url")
             echo "Response Code for $url: $response"
           done
-       
-        - name: Push empty commit (to keep Streamlit alive)
+
+      - name: Push empty commit (to keep Streamlit alive)
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git commit --allow-empty -m "chore: keep alive" || echo "No changes to commit"
           git push
-
