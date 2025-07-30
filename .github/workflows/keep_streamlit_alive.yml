@@ -11,8 +11,11 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
       - name: Define URLs and ping them
-         run: |
+        run: |
           urls=(
             "https://gwp-wellcapture.streamlit.app/"
             "https://gwp-1d-conservative-transport2.streamlit.app/"
