@@ -12,7 +12,7 @@ jobs:
 
     steps:
       - name: Define URLs and ping them
-        run: |
+         run: |
           urls=(
             "https://gwp-wellcapture.streamlit.app/"
             "https://gwp-1d-conservative-transport2.streamlit.app/"
@@ -26,8 +26,14 @@ jobs:
 
           for url in "${urls[@]}"; do
             echo "Pinging $url..."
-            response=$(curl -s -L --max-redirs 5 -o /dev/null -w "%{http_code}" "$url")
-            echo "Response Code for $url: $response"
+            response=$(curl -s -L --max-redirs 5 -o /dev/null -w "%{http_code}" "$url" || echo "curl_failed")
+            if [[ "$response" == "curl_failed" ]]; then
+              echo "Failed to reach $url"
+            elif [[ "$response" != "200" ]]; then
+              echo "Non-200 response from $url: $response"
+            else
+              echo "Response Code for $url: $response"
+            fi
           done
 
       - name: Push empty commit (to keep Streamlit alive)
