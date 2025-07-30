@@ -1,37 +1,56 @@
 name: Keep Streamlit Apps Alive
 
+permissions:
+  contents: write   # Allow GITHUB_TOKEN to push commits
+
 on:
   schedule:
-    - cron: '0 3 * * *'
-    - cron: '0 15 * * *'
-  workflow_dispatch:
+    - cron: '0 3 * * *'   # 5 AM Berlin time (3 AM UTC)
+    - cron: '0 15 * * *'  # 5 PM Berlin time (3 PM UTC)
+  workflow_dispatch:      # Allows manual triggering
 
 jobs:
   keep-alive:
     runs-on: ubuntu-latest
 
     steps:
+      # Checkout the repository
       - name: Checkout repo
         uses: actions/checkout@v4
         with:
-          fetch-depth: 0   # Needed to push commits
+          fetch-depth: 0   # Ensure full history for pushing
 
+      # Ping all Streamlit apps to keep them alive
       - name: Define URLs and ping them
         run: |
           urls=(
             "https://gwp-wellcapture.streamlit.app/"
-            ...
+            "https://gwp-1d-conservative-transport2.streamlit.app/"
+            "https://symple25.streamlit.app/"
+            "https://gwf-1d-unconf-noflow-calib.streamlit.app/"
+            "https://slugtest-unconfined.streamlit.app/"
+            "https://gwp-3d-transport.streamlit.app/"
+            "https://gwp-pumping-test-analysis.streamlit.app/"
+            "https://theis-manual.streamlit.app/"
           )
+
           for url in "${urls[@]}"; do
             echo "Pinging $url..."
             response=$(curl -s -L --max-redirs 5 -o /dev/null -w "%{http_code}" "$url" || echo "curl_failed")
-            echo "Response for $url: $response"
+            if [[ "$response" == "curl_failed" ]]; then
+              echo "⚠️ Failed to reach $url"
+            elif [[ "$response" != "200" ]]; then
+              echo "⚠️ Non-200 response from $url: $response"
+            else
+              echo "✅ Response Code for $url: $response"
+            fi
           done
 
+      # Push an empty commit to a dedicated branch (keeps apps redeployed)
       - name: Push empty commit (to keep Streamlit alive)
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git checkout main
+          git checkout -B keep-alive
           git commit --allow-empty -m "chore: keep alive" || echo "No changes to commit"
-          git push origin main
+          git push origin keep-alive
