@@ -1,5 +1,8 @@
 name: Keep Streamlit Apps Alive
 
+permissions:
+  contents: write   # Allow GITHUB_TOKEN to push commits
+
 on:
   schedule:
     - cron: '0 3 * * *'   # 5 AM Berlin time (3 AM UTC)
@@ -11,6 +14,13 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      # Checkout the repository
+      - name: Checkout repo
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0   # Ensure full history for pushing
+
+      # Ping all Streamlit apps to keep them alive
       - name: Define URLs and ping them
         run: |
           urls=(
@@ -26,6 +36,21 @@ jobs:
 
           for url in "${urls[@]}"; do
             echo "Pinging $url..."
-            response=$(curl -s -o /dev/null -w "%{http_code}" "$url")
-            echo "Response Code for $url: $response"
+            response=$(curl -s -L --max-redirs 5 -o /dev/null -w "%{http_code}" "$url" || echo "curl_failed")
+            if [[ "$response" == "curl_failed" ]]; then
+              echo "⚠️ Failed to reach $url"
+            elif [[ "$response" != "200" ]]; then
+              echo "⚠️ Non-200 response from $url: $response"
+            else
+              echo "✅ Response Code for $url: $response"
+            fi
           done
+
+      # Push an empty commit to a dedicated branch (keeps apps redeployed)
+      - name: Push empty commit (to keep Streamlit alive)
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git checkout -B keep-alive
+          git commit --allow-empty -m "chore: keep alive" || echo "No changes to commit"
+          git push origin keep-alive
