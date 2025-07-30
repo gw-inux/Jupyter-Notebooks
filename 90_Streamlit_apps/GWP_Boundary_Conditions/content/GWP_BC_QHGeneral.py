@@ -820,7 +820,39 @@ if show_plot2:
         
         with st.expander('Show the 🧪:red[**INITIAL INSTRUCTIONS**] about how to use the interactive plot'):
             st.markdown("""
-            **Getting Started with the Interactive Plot** Instructions for Scenario 2: 
+            **Getting Started with the Interactive Plot** Instructions for Scenario 2: Recharge, Groundwater Divide, and Boundary Flow Response
+            
+            Scenario 2 allows you to explore the development of a groundwater divide under recharge conditions, and to investigate how hydraulic conductivity, boundary elevations, and model parameters influence both flow dynamics and Q–h relationships.
+            
+            **1. Modify Model Parameters**
+            - Click "Modify Model Parameters" in the Control Panel to begin.
+            - Increase the Recharge:
+              - A red vertical line will appear in the plot, marking the location of the groundwater divide.
+              - Adjust the Hydraulic Conductivity:
+                - 🔽 Lower values create steeper gradients and form a distinct “groundwater mound”.
+                - Use a hydraulic conductivity to clearly visualize this effect.
+            
+            **2. Investigate Flow and Divide Behavior**
+            - The plot dynamically shows outflow values across the boundary conditions.
+            - Click the middle tab in the Input Controls to access Boundary Condition Parameters.
+            - Modify the elevation of the left defined head boundary:
+              - 🔼 Increasing the left head: Shifts the groundwater divide to the left. This also increases the hydraulic gradient and flow at the right boundary. The flow at the boundary increase because the area (right from the divide) that collects recharge is increased. 
+              - 🔽 Decreasing the left head: Moves the divide to the right. Accordingly, reduces the contributing recharge area to the right boundary and lowers outflow.
+            
+            **3. Explore the Q–h Plot Dynamics**
+            - Activate the Q–h Plot for the Right Defined Head Boundary:
+              - A blue dot in the main plot highlights the boundary condition point.
+              - The Q–h plot shows this as a blue dot at a fixed head of 150 m.
+            - As you adjust the left defined head, observe how the blue dot moves:
+              - 🔼 When the left head increases, the groundwater divide moves to the left and more recharge flows to the right boundary → the blue dot moves down, indicating higher flow.
+              - 🔽 When the left head decreases, the contributing area shrinks → the blue dot moves up, reflecting reduced flow.
+            
+            **4. Run Comparative Experiments**
+            - Switch between the different Q–h plots to track how other boundaries behave.
+            - Vary the following parameters to better understand interactions:
+              - Recharge
+              - Hydraulic Conductivity
+              - Left Boundary Head
             """)
     
     computation2()
