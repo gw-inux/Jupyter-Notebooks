@@ -245,8 +245,8 @@ def Q_h_plot():
             ax.plot(Q, h_aq, label=rf"$Q_D = C_D(H_D - h_{{aq}})$, $C_D$ = {st.session_state.CD:.2e}",color='green', linewidth=3)
             ax.plot([], [], ' ', label=fr"$Q_D$ = {Q_ref:.2e} m³/s")
             ax.axvline(0, color='black', linewidth=1)
-            ax.axhline(HD, color='green', linewidth=2, linestyle='--', label=f'$H_D$ in m= {HD}')
-            ax.axhline(h_aq_show, color='blue', linewidth=2, linestyle='--', label=f'$h_{{aq}}$ in m= {h_aq_show}')
+            ax.axhline(HD, color='green', linewidth=2, linestyle='--', label=f'$H_D$ in m= {HD:.2f}')
+            ax.axhline(h_aq_show, color='blue', linewidth=2, linestyle='--', label=f'$h_{{aq}}$ in m= {h_aq_show:.2f}')
             # Labels and formatting
             ax.set_ylabel("Heads and elevations in the DRN Boundary-Aquifer System (m)", fontsize=14, labelpad=15)
             ax.set_xlabel("Flow from the Ground-Water System into the DRN  $Q_{out}$ (m³/s)", fontsize=14, labelpad=15)
@@ -259,13 +259,13 @@ def Q_h_plot():
                     xytext=(Q_ref, h_aq_show),  # arrow start
                     arrowprops=dict(arrowstyle='->', color='blue', lw=3,  alpha=0.4)
                 )
-            else:
-                ax.annotate(
-                    '',  # no text
-                    xy=(Q_ref,HD),  # arrowhead
-                    xytext=(Q_ref, h_aq_show),  # arrow start
-                    arrowprops=dict(arrowstyle='<-', color='green', lw=3, alpha=0.6)
-                )
+#            else:
+#                ax.annotate(
+#                    '',  # no text
+#                    xy=(Q_ref,HD),  # arrowhead
+#                    xytext=(Q_ref, h_aq_show),  # arrow start
+#                    arrowprops=dict(arrowstyle='<-', color='green', lw=3, alpha=0.6)
+#                )
             # Add gaining/losing stream annotations
             ax.text(0.005,1, "Gaining DRN boundary", va='center',color='blue')
             #ax.text(0.035, 1,  "Losing DRN boundary", va='center',color='green')
@@ -274,8 +274,8 @@ def Q_h_plot():
             ax.plot(h_aq, Q, label=rf"$Q_D = C_D(H_D - h_{{aq}})$, $C_D$ = {st.session_state.CD:.2e}",color='green', linewidth=3)
             ax.plot([], [], ' ', label=fr"$Q_D$ = {Q_ref:.2e} m³/s")
             ax.axhline(0, color='black', linewidth=1)
-            ax.axvline(HD, color='green', linewidth=2, linestyle='--', label=f'$H_D$ in m= {HD}')
-            ax.axvline(h_aq_show, color='blue', linewidth=2, linestyle='--', label=f'$h_{{aq}}$ in m= {h_aq_show}')
+            ax.axvline(HD, color='green', linewidth=2, linestyle='--', label=f'$H_D$ in m= {HD:.2f}')
+            ax.axvline(h_aq_show, color='blue', linewidth=2, linestyle='--', label=f'$h_{{aq}}$ in m= {h_aq_show:.2f}')
             # Labels and formatting
             ax.set_xlabel("Heads and elevations in the DRN Boundary-Aquifer System (m))", fontsize=14, labelpad=15)
             ax.set_ylabel("Flow from the Ground-Water System into the DRN $Q_{out}$ (m³/s)", fontsize=14, labelpad=15)
@@ -288,13 +288,13 @@ def Q_h_plot():
                     xytext=(h_aq_show, Q_ref),  # arrow start
                     arrowprops=dict(arrowstyle='->', color='blue', lw=3,  alpha=0.4)
                 )
-            else:
-                ax.annotate(
-                '',  # no text
-                xy=(HD, Q_ref),  # arrowhead
-                xytext=(h_aq_show, Q_ref),  # arrow start
-                arrowprops=dict(arrowstyle='<-', color='green', lw=3, alpha=0.6)
-                )
+#            else:
+#                ax.annotate(
+#                '',  # no text
+#                xy=(HD, Q_ref),  # arrowhead
+#                xytext=(h_aq_show, Q_ref),  # arrow start
+#                arrowprops=dict(arrowstyle='<-', color='green', lw=3, alpha=0.6)
+#                )
             # Add losing drn annotations
             ax.text(0.5, 0.003, "Gaining DRN boundary", va='center',color='blue')
     else:

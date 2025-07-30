@@ -1,6 +1,6 @@
 [
   {
-    "question": "A) Under which conditions does the ET boundary in MODFLOW become active? (Mark ALL correct answers)",
+    "question": "1) Under which conditions does the ET boundary in MODFLOW become active? (Mark ALL correct answers)",
     "options": {
       "A) When the groundwater head is above the extinction depth": true,
       "B) When the groundwater head is below the extinction depth": false,
@@ -11,18 +11,18 @@
     "error": "❌ Not quite. ET only occurs between the extinction depth and the ET surface."
   },
   {
-    "question": "B) How does increasing the extinction depth affect the ET–head relationship? (Mark ALL correct answers)",
+    "question": "2) How does increasing the extinction depth affect the ET–head relationship? (Mark ALL correct answers)",
     "options": {
       "A) It increases the range of heads where ET occurs": true,
-      "B) It makes the slope of the Q–h curve steeper": false,
+      "B) It affects the slope of the Q–h curve": true,
       "C) It shifts the extinction point downward": true,
       "D) It reduces the maximum ET rate": false
     },
     "success": "✅ Yes. Greater EXDP means a wider range of partial ET but doesn’t affect the maximum rate.",
-    "error": "❌ Check again. EXDP changes the shape and range of the curve — not the maximum rate."
+    "error": "❌ Check again. EXDP changes the shape and range of the Q-h curve — not the maximum ET rate."
   },
   {
-    "question": "C) What happens to actual ET if the groundwater head is below the extinction depth? (Mark ALL correct answers)",
+    "question": "3) What happens to actual ET if the groundwater head is below the extinction depth? (Mark ALL correct answers)",
     "options": {
       "A) It is reduced to zero": true,
       "B) It equals the maximum rate": false,
@@ -33,7 +33,7 @@
     "error": "❌ Not quite. ET is only active within the defined head range."
   },
   {
-    "question": "D) Which parameter directly controls the **maximum value** of groundwater ET losses in MODFLOW? (Mark ALL correct answers)",
+    "question": "4) Which parameter directly controls the **maximum value** of groundwater ET losses (RET) in MODFLOW? (Mark ALL correct answers)",
     "options": {
       "A) EVTR": true,
       "B) SURF": false,
@@ -44,9 +44,9 @@
     "error": "❌ EVTR and area define the peak loss. SURF and EXDP shape the domain."
   },
   {
-    "question": "E) What is the **role of SURF** (ET surface) in the MODFLOW EVT package? (Mark ALL correct answers)",
+    "question": "5) What is the **role of SURF** (ET surface) in the MODFLOW EVT package? (Mark ALL correct answers)",
     "options": {
-      "A) It defines the elevation at which ET begins to decline": false,
+      "A) It defines the elevation at which ET begins to decline": true,
       "B) It defines the elevation at which the full ET rate is applied": true,
       "C) It marks the top of the linear transition zone": true,
       "D) It limits the maximum ET rate": false
@@ -55,7 +55,7 @@
     "error": "❌ SURF doesn’t define the rate — it defines where that rate applies."
   },
   {
-    "question": "F) Which scenarios would justify a large extinction depth in an ET boundary? (Mark ALL correct answers)",
+    "question": "6) Which scenarios would justify a large extinction depth in an ET boundary? (Mark ALL correct answers)",
     "options": {
       "A) Deep-rooted vegetation such as phreatophytes": true,
       "B) ET dominated by surface evaporation from bare soil": false,

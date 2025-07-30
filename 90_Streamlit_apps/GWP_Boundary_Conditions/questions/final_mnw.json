@@ -1,6 +1,6 @@
 [
   {
-    "question": "A) What is a primary advantage of using MNW over WEL in groundwater modeling? (Mark ALL correct answers)",
+    "question": "1) What is a primary advantage of using MNW over WEL in groundwater modeling? (Mark ALL correct answers)",
     "options": {
       "A) It allows distributed flow over multiple layers": true,
       "B) It includes skin and nonlinear well loss effects": true,
@@ -11,40 +11,40 @@
     "error": "❌ Unlike WEL, MNW handles complex multi-node flow and constraints explicitly."
   },
   {
-    "question": "B) Which factors influence the cell-to-well conductance (CWC) in a Multi-Node Well? (Mark ALL correct answers)",
+    "question": "2) Which factors influence the cell-to-well conductance (CWC) in a Multi-Node Well? (Mark ALL correct answers)",
     "options": {
       "A) Hydraulic conductivity of the surrounding formation": true,
       "B) Wellbore radius and skin resistance": true,
-      "C) Drain elevation in the model domain": false,
+      "C) The riverbed conductance of nearby rivers in the model domain": false,
       "D) Cross-sectional flow area between cell and well": true
     },
     "success": "✅ Correct. Conductance depends on geometric and hydraulic properties around the well.",
     "error": "❌ CWC reflects subsurface and borehole properties, not unrelated boundary elevations."
   },
   {
-    "question": "C) What happens to the Q–h curve of a MNW when a maximum pumping rate (QMAX) is imposed? (Mark ALL correct answers)",
+    "question": "3) What happens to the Q–h behavior of an MNW when a restart threshold (Qmx) is defined? (Mark ALL correct answers)",
     "options": {
-      "A) The Q–h curve levels off at QMAX": true,
-      "B) Flow continues increasing with increasing drawdown": false,
-      "C) Flow may be capped regardless of available head": true,
-      "D) Flow stops entirely once QMAX is exceeded": false
+      "A) Pumping remains inactive until Q exceeds Qmx.": true,
+      "B) Qmx defines the minimum discharge needed to resume pumping after shutdown.": true,
+      "C) Discharge continues increasing even if the well is inactive.": false,
+      "D) The Q–h curve shows a step change at the Qmx limit.": false
     },
-    "success": "✅ Exactly — the Q–h curve reflects constraints like QMAX and limits actual abstraction.",
-    "error": "❌ The curve is truncated, not reversed or endlessly increasing."
+    "success": "✅ Correct. Qmx ensures that pumping only restarts when sufficient head is restored and a minimum Q is met.",
+    "error": "❌ Qmx defines restart behavior — it does not allow flow increase while the well is inactive, and it does not create a visible step in the Q–h curve."
   },
   {
-    "question": "D) In MODFLOW, which conditions may cause a MNW to stop pumping due to head constraints? (Mark ALL correct answers)",
+    "question": "4) In MODFLOW, which conditions may cause a MNW to stop pumping due to head constraints? (Mark ALL correct answers)",
     "options": {
-      "A) When the well head drops below the limiting head (Hlim)": true,
-      "B) When QMAX is reached": false,
-      "C) When the cell becomes partially unsaturated": true,
+      "A) When the well head drops below the limiting head ($h_{thr}$)": true,
+      "B) When Qmx is reached": false,
+      "C) When the cell head drops,achieving the limiting head, and the active pumping rate is < Qmn": true,
       "D) When recharge is increased": false
     },
     "success": "✅ Spot on. MNW may stop pumping when physical or hydraulic head constraints are violated.",
     "error": "❌ Shutdowns relate to local head conditions, not flux limits or recharge rates."
   },
   {
-    "question": "E) How is the skin effect incorporated in MNW behavior? (Mark ALL correct answers)",
+    "question": "5) How is the skin effect incorporated in MNW behavior? (Mark ALL correct answers)",
     "options": {
       "A) As additional resistance surrounding the well": true,
       "B) As a direct increase in conductance": false,
@@ -55,7 +55,7 @@
     "error": "❌ Skin increases drawdown — it does not boost conductance or affect recharge."
   },
   {
-    "question": "F) How can Q–h plots assist in interpreting MNW model behavior? (Mark ALL correct answers)",
+    "question": "6) How can Q–h plots assist in interpreting MNW model behavior? (Mark ALL correct answers)",
     "options": {
       "A) By identifying operational and physical pumping limits": true,
       "B) By indicating when threshold heads are reached": true,

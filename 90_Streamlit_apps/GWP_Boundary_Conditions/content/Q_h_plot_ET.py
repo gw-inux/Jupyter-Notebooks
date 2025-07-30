@@ -214,6 +214,11 @@ def Q_h_plot():
             else:
                 SURF = st.slider("**ET surface _SURF_**", -3.0, 0.0, st.session_state.SURF, 0.1,key="SURF_input", on_change=update_SURF)
                 EXDP = st.slider("**Extinction depth _EXDP_**", 0.1, 5.0, st.session_state.EXDP, 0.1,key="EXDP_input", on_change=update_EXDP)
+            eval_h = st.toggle('Toggle to evaluate ET for a specific elevation', value=True)
+            if eval_h:
+                eval_head = st.number_input("**Evaluate ET at a specific elevation**", -10.0, 0.0, -2.0, 0.1)
+
+            
     
     with columns1[2]:
         with st.expander('Modify ET rate and area'):
@@ -230,6 +235,10 @@ def Q_h_plot():
     h_aq = np.linspace(-10, 0, 100)
     RET = np.where(h_aq > SURF, EVTR, np.where(h_aq >= (SURF - EXDP), EVTR * (h_aq - (SURF - EXDP)) / EXDP, 0))
     QET = RET*AREA
+    # Compute RET and QET for specific evaluation elevation
+    RET_eval = EVTR if eval_head > SURF else (EVTR * (eval_head - (SURF - EXDP)) / EXDP if eval_head >= (SURF - EXDP) else 0)
+    QET_eval = RET_eval * AREA
+
     
     # Create the plot
     fig, ax = plt.subplots(figsize=(8, 8))
@@ -261,6 +270,16 @@ def Q_h_plot():
              
             # Add head annotations
             ax.text(QET_MAX*0.9, SURF+0.2, "SURF", va='center',color='green',  fontsize=14)
+            
+            # Add evaluation point marker and label 
+            ax.plot(
+                QET_eval, eval_head,
+                marker='o',
+                markersize=12,
+                markeredgecolor='black',
+                markerfacecolor='lightblue',
+                label=f'$Q_{{ET}}$ at {eval_head:.2f} m = {QET_eval:.2e} m³/s'
+            )            
         else:
             ax.plot(h_aq, QET, label="$Q_{ET}$",color='blue', linewidth=4)
             ax.axvline(0, color='black', linewidth=5)
@@ -288,6 +307,16 @@ def Q_h_plot():
             )
             # Add head annotations
             ax.text(SURF-0.15, QET_MAX*0.95, "SURF", va='center',color='green',  fontsize=14)
+            
+            # Add evaluation point marker and label
+            ax.plot(
+                eval_head, QET_eval, 
+                marker='o',
+                markersize=12,
+                markeredgecolor='black',
+                markerfacecolor='lightblue',
+                label=f'$Q_{{ET}}$ at {eval_head:.2f} m = {QET_eval:.2e} m³/s'
+            )   
     else:
         if turn:
             ax.plot(QET, h_aq, label="$Q_{ET}$",color='black', linewidth=4)
