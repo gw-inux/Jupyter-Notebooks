@@ -23,6 +23,7 @@ with open(path_quest_final, "r", encoding="utf-8") as f:
 year = 2025 
 authors = {
     "Thomas Reimann": [1],  # Author 1 belongs to Institution 1
+    "Rudolf Liedl": [1],
     "Eileen Poeter": [2],
 }
 institutions = {
@@ -245,6 +246,7 @@ Further modifications depends on your choice of :green[**Scenario 1**] or :red[*
 
 st.markdown("---")
 
+
 # --- INTERACTIVE PLOT EXAMPLE 1 ---
 colplot1, colplot2 = st.columns((1,1))
 with colplot1:
@@ -255,7 +257,10 @@ with colplot2:
 if show_plot1:    
     st.markdown("""
     :green[**Additional Instructions for Example 1:**]
-    You can toggle between a defined head and a river boundary condition on the right side of the model. If the river boundary is choose, you can modify the river-aquifer conductance.   
+    
+    You can toggle between a defined head and a river boundary condition on the right side of the model. If the river boundary is choose, you can modify the river-aquifer conductance. 
+    
+    _Further **instructions** how to use the interactive plot are availble below the figure._   
     """
     )
     st.markdown("---") 
@@ -274,6 +279,10 @@ if show_plot1:
         log_max = -2.0  # Corresponds to 10^0 = 1
         log_min2 = -5.5 
         log_max2 = -3.0 
+        
+        st.markdown("""
+       #### :green[INPUT CONTROLS]
+        """)
     
         columns = st.columns((1,1,1), gap = 'small')
     
@@ -479,9 +488,41 @@ if show_plot1:
         else:
             # Draw a blank subplot (white background, no ticks, no frame)
             ax_qh.axis('off')
-        
-        st.markdown("---")    
+ 
         st.pyplot(fig)
+        
+        with st.expander('Show the 🧪:green[**INITIAL INSTRUCTIONS**] about how to use the interactive plot'):
+            st.markdown("""
+            **Getting Started with the Interactive Plot** Instructions for Scenario 1: Exploring Model Behavior and Q–h Relationships
+            
+            Use the interactive tools in :green[**Scenario 1**] to investigate how model parameters and boundary conditions affect hydraulic head distributions and boundary flows. Follow the steps below to explore key relationships and system behavior.
+            
+            **1. Modify Model Parameters**
+            - Open the Control Panel and click "Modify Model Parameters".
+            - Begin by increasing (decreasing) the Recharge rate.
+            - Observe how the hydraulic head distribution increases throughout the domain.
+            - Next, adjust the Hydraulic Conductivity:
+               - 🔽 Lower values result in higher heads (reduced transmissivity).
+               - 🔼 Higher values result in lower heads (increased transmissivity).
+            - Proceed with a higher hydraulic conductivity and note the changes in head profiles.
+            
+            **2. Activate and Explore the Q–h Plot**
+            - Navigate to the Input Menu and click "Click for the Q–h plot".
+            - Select one of the available Q–h plots to display. Start with the No-Flow Boundary:
+            - The red dot in the Q-h plot represents the Q–h state at a specific point in the model (upper figure).
+            - This point corresponds to the selected boundary condition and dynamically updates.
+            
+            **3. Analyze Parameter Sensitivity**
+            - Vary the recharge and observe how the red dot shifts vertically:
+                - For the No-Flow Boundary, the flow remains constant at zero, while the head adjusts with changing parameters.
+                - Change hydraulic conductivity and again observe the effect on head and the red dot location.
+            
+            **4. Explore Defined-Head and River Boundaries**
+            - Return to the Input Menu, activate the River boundary, and then activate the Q-h plot for the River Boundary.
+            - While the River Boundary is active:
+              - Adjust Recharge and note how both hydraulic head and flow change.
+              - Modify the River Conductance: Observe that head changes, but the flow remains stable. This reflects how the river conductance governs the hydraulic connection.
+            """)
         
     computation1()
 
@@ -489,7 +530,10 @@ if show_plot2:
     
     st.markdown("""
     :red[**Additional Instructions for Example 2:**]
+    
     You can modify the defined head elevation at the left side (the right side hydraulic head is defined as 150 m). The interactive plot will indicate the boundary flow (in- and outflow) for both defined head boundaries.   
+    
+    _Further **instructions** how to use the interactive plot are availble below the figure._ 
     """
     )
     st.markdown("---") 
@@ -506,6 +550,10 @@ if show_plot2:
         # Define the minimum and maximum for the logarithmic scale
         log_min2 = -5.0 # Corresponds to 10^-7 = 0.0000001
         log_max2 = -2.0  # Corresponds to 10^0 = 1
+        
+        st.markdown("""
+       #### :red[INPUT CONTROLS]
+        """)
         
         columns = st.columns((1,1,1), gap = 'small')
 
@@ -767,9 +815,13 @@ if show_plot2:
         else:
             # Draw a blank subplot (white background, no ticks, no frame)
             ax_qh.axis('off')
-
-        st.markdown("---") 
+        
         st.pyplot(fig)
+        
+        with st.expander('Show the 🧪:red[**INITIAL INSTRUCTIONS**] about how to use the interactive plot'):
+            st.markdown("""
+            **Getting Started with the Interactive Plot** Instructions for Scenario 2: 
+            """)
     
     computation2()
 
