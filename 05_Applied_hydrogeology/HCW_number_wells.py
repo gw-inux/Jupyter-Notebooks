@@ -57,15 +57,21 @@ st.markdown("""
 #### :blue[INPUT parameters]
 """)
 
-L = st.number_input("Hydraulic distance to boundary $L$ [m]", 10, 1000, 250, 10)
-m = st.number_input("Aquifer thickness $M$ [m]", 2.0, 100.0, 10.0, 0.1)
-sigma = st.number_input("Distance between vertical wells σ [m]", 5, 500, 80, 5)
-r_d = st.number_input("Well radius $r_d$ [m]", 0.1, 5.0, 1.0, 0.1)
+columns = st.columns((1,1))
+
+with columns[0]:
+    L = st.number_input("Hydraulic distance to boundary $L$ [m]", 10, 1000, 250, 10)
+    m = st.number_input("Aquifer thickness $M$ [m]", 2.0, 100.0, 10.0, 0.1)
+    sigma = st.number_input("Distance between vertical wells σ [m]", 5, 500, 80, 5)
+    
+with columns[1]:
+    r_d = st.number_input("Well radius $r_d$ [m]", 0.1, 5.0, 1.0, 0.1)
+    intended_l = st.number_input("Intended screen length $l_{HCW}$ [m]", 10, 500, 300, 5)
 
 # Range for l (length of horizontal collector well screens)
 l_min = 0
 l_max = 500
-intended_l = st.number_input("Intended screen length $l_{HCW}$ [m]", 10, 500, 300, 5)
+
 
 # Create array of l values
 l_values = np.linspace(l_min, l_max, 200)
@@ -127,7 +133,11 @@ if show_2nd:
 
     m2_min = 3
     m2_max = 100
-    intended_m2 = st.number_input("Intended aquifer thickness $M$ [m]", 3, 100, 10, 1)
+    
+    columns2 = st.columns((1,1))
+
+    with columns2[0]:
+        intended_m2 = st.number_input("Intended aquifer thickness $M$ [m]", 3, 100, 10, 1)
     
     m2_values = np.linspace(m2_min, m2_max, 200)
     nc2_values = []
