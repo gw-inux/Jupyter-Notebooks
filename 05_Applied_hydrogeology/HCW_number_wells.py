@@ -75,13 +75,15 @@ fig, ax = plt.subplots(figsize=(8,5))
 ax.plot(l_values, nc_values, label="$n_c$ vs screen length")
 if not np.isnan(nc_intended):
     ax.scatter([intended_l], [nc_intended], color='red', label=f"Intended l={intended_l} m, $n_c$ = {nc_intended:.2f}")
-ax.set_xlabel("HCW screen length l [m]")
-ax.set_ylabel("Number of wells $n_c$ [-]")
+ax.set_xlabel("HCW screen length l [m]", fontsize=14)
+ax.set_ylabel("Number of wells $n_c$ [-]", fontsize=14)
 ax.set_xlim(0, 500)
 ax.set_ylim(0, 50)
+ax.set_title("Number of vertical wells that can be replaced by a HCW", fontsize=16, pad=10)
 ax.grid(True)
-ax.legend()
+ax.legend(fontsize=14)
 
+st.markdown('---')
 st.pyplot(fig)
 
 # Show result
