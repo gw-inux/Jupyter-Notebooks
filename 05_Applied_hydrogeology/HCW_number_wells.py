@@ -128,7 +128,7 @@ if show_2nd:
     
     # Input widgets
     st.markdown("""
-    #### :green[INPUT parameters for plot 2]
+    #### additional :green[INPUT parameters for plot 2]
     """)
 
     m2_min = 3
