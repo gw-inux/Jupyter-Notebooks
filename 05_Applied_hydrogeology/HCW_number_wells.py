@@ -120,7 +120,7 @@ st.markdown("---")
 # --- 2nd plot with variable aquifer thickness
 st.subheader('Interactive plot 2 with variable aquifer thickness $M$', divider = 'blue')
 
-show_2nd = st.toggle(':red[Toogle here] to **SHOW the influence of the AQUIFER THICKNESS on the computation**')
+show_2nd = st.toggle(':red[Toggle here] to **SHOW the influence of the AQUIFER THICKNESS on the computation**')
 
 if show_2nd:
     # Re-Use the parameters but make the aquifer thickness the variable parameter and fix the HCW_screen_lenght to intended_l
