@@ -39,12 +39,12 @@ columns = st.columns((1,6,1))
 with columns[1]:
     st.markdown(
     """
-👉 :green[**Use the sidebar to navigate through examples and boundary types.**]
+👉 :green[**Use the sidebar to navigate through examples and boundary types.**] 👈
 """
 )
 st.markdown(
     """
-There you will find specific sections that cover the specific boundary conditions that are available in MODFLOW, the USGS grounwater flow model:
+There you will find specific sections that cover the specific boundary conditions, available in MODFLOW, the USGS groundwater flow model:
 - :orange[**GHB:**] The **General Head** Boundary package to simulate head dependent flux in or out of the model.
 - :violet[**RIV:**] The **River** Boundary package to simulate head dependent flux in or out of the model.
 - :green[**DRN:**] The **Drain** package to simulate head dependent flux out of the model.

@@ -61,7 +61,7 @@ with columns0[0]:
     - How does **stream stage** influence exchange flow?
     - What happens if the **aquifer drops below the riverbed**?
     
-    ▶️ The :violet[**River (RIV) Boundary**] in MODFLOW handles these dynamics by simulating a **head-dependent flow** that includes a check for streambed drying. The relationship between aquifer head $h_{aq}$ and river head $h_{RIV}$ is defined via a **conductance term** $C_{RIV}$. The following interactive plot below shows how the flow from the flux between river and groundwater $Q_{RIV}$ responds to these changing conditions. The interactive plot is based on the MODFLOW documentation (Harbaugh, 2005) and consider **$h_{RIV}$ as 8 m** with a **river bottom elevation of 6 m**.Try adjusting the river conductance to explore the general behavior.
+    ▶️ The :violet[**River (RIV) Boundary**] in MODFLOW handles these dynamics by simulating a **head-dependent flow** that includes a check for streambed drying. The relationship between aquifer head $h_{aq}$ and river head $h_{RIV}$ is defined via a **conductance term** $C_{RIV}$. The following interactive plot shows how the flow between river and groundwater $Q_{RIV}$ responds to these changing conditions. The interactive plot is based on the MODFLOW documentation (Harbaugh, 2005) and consider **$h_{RIV}$ as 8 m** with a **river bottom elevation of 6 m**.Try adjusting the river conductance to explore the general behavior.
     """)
     st.latex(r'''Q_{RIV} = C_{RIV} (h_{RIV} - h_{{aq}})''')
 
@@ -92,6 +92,10 @@ with columns0[1]:
     plt.yticks(fontsize=14) 
     ax.axhline(0, color='grey', linestyle='--', linewidth=0.8)
     st.pyplot(fig)
+    
+    st.markdown("""
+    This **initial plot** is designed to bridge the gap between traditional Q-h plots on paper and the :rainbow[**interactive plots**] provided further down in the app. These allow you to explore the _Q_-_h_ relationships more intuitively, supported by interactive controls and guided instructions.
+    """)
 
 st.markdown("""
 #### 🎯 Learning Objectives
@@ -99,11 +103,10 @@ st.markdown("""
 By the end of this section, you will be able to:
 
 - Explain the conceptual and mathematical formulation of the RIV boundary condition in MODFLOW.
-- Apply the RIV flow equation to simulate groundwater–river exchange and identify gaining or losing conditions.
+- Apply the RIV flow equation to simulate groundwater–river exchange and identify when groundwater would be discharging into a river (gaining stream) and when river water would be recharging the groundwater system (losing stream).
 - Evaluate how river stage, aquifer head, riverbed elevation, and conductance control the direction and magnitude of exchange.
-- Interpret Q–h plots that illustrate the flow regime, including drying conditions when aquifer heads drop below the riverbed.
+- Interpret _Q_–_h_ plots that illustrate the flow regime, including unsaturated conditions when aquifer heads drop below the riverbed.
 """)
-
 
 with st.expander('**Show the initial assessment** - to assess your existing knowledge'):
     st.markdown("""
@@ -249,9 +252,11 @@ with st.expander('**Click here** to read how flow is calculated when the :green[
         st.image('06_Groundwater_modeling/FIGS/RIV_CONCEPT_UNSAT_2.png', caption="Concept of the River boundary when the aquifer head falls below the river bottom (modified from McDonald and Harbaugh, 1988; https://pubs.usgs.gov/twri/twri6a1/pdf/twri_6-A1_p.pdf)")
 
     st.markdown("""
-    When the aqufier head is lower than the river bottom, the head difference across the river bed is: 
+    When the aquifer head is lower than the river bottom, the head difference across the river bed is: 
 
-    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Elevation of the River Surface – Elevation of the River Bottom
+    - Elevation of the River Surface $h_{Riv}$ – Elevation of the River Bottom $h_{bot}$
+
+    - :red[This difference remains a constant.]
 
     This head difference is multiplied by Conductance to determine Flow Rate from the River to the Aquifer
     """)
@@ -263,7 +268,7 @@ The interactive plot shows how the flow $Q_{RIV}$ across a River Boundary depend
 Use the sliders or number inputs to adjust these parameters. You can also toggle between direct conductance input or compute it from hydraulic and geometrical properties. The plot updates dynamically and supports different viewing orientations.
 
 - You can investigate the plot on your own. Some :blue[INITIAL INSTRUCTIONS] may guide you.
-- An :rainbow[EXERCISE] allows you to apply the plot and deepen your understanding. This exercise invites you to explore how river–aquifer exchange is controlled by **river stage, aquifer hydraulic head, conductance, and bottom elevation**. Use the interactive RIV plot to examine how these factors influence the exchange flux, and interpret the **physical meaning based on Q–h plots**, especially the transitions between **gaining**, **losing**, and **decoupled** river conditions.
+- An :rainbow[EXERCISE] allows you to apply the plot and deepen your understanding. This exercise invites you to explore how river–aquifer exchange is controlled by **river stage, aquifer hydraulic head, conductance, and bottom elevation**. Use the interactive RIV plot to examine how these factors influence the exchange flow, and interpret the **physical meaning based on Q–h plots**, especially the transitions between **gaining**, **losing**, and **decoupled** river conditions.
 """)
 
 # Functions
@@ -570,9 +575,12 @@ def Q_h_plot():
             if Q_ref < 0:
                 draw_sharp_arrow(ax, start=(Q_ref, h_aq_show), end=(Q_ref, h_RIV), orientation='vertical', axis_range_x=(lim1, lim2), axis_range_y=(h_ref, thick), color='blue', al=0.4, lw=3, hs=25)
             else:
-                draw_sharp_arrow(ax, start=(Q_ref,h_RIV ), end=(Q_ref, h_aq_show), orientation='vertical', axis_range_x=(lim1, lim2), axis_range_y=(h_ref, thick), color='green', al=0.4, lw=3, hs=25)
                 # Unsaturated zone flow arrows
                 if h_aq_show < h_bot:
+                    # Arrow indicating Q
+                    draw_sharp_arrow(ax, start=(Q_ref,h_RIV ), end=(Q_ref, h_bot), orientation='vertical', axis_range_x=(lim1, lim2), axis_range_y=(h_ref, thick), color='green', al=0.4, lw=3, hs=25)
+                    
+                    # Unsat flow arrows
                     x_min = lim2
                     x_max = lim1
                 
@@ -589,10 +597,11 @@ def Q_h_plot():
                         rotation=0,
                         va='center'
                     )
-                    
+                else:
+                    draw_sharp_arrow(ax, start=(Q_ref,h_RIV ), end=(Q_ref, h_aq_show), orientation='vertical', axis_range_x=(lim1, lim2), axis_range_y=(h_ref, thick), color='green', al=0.4, lw=3, hs=25)                    
             # Add gaining/losing river annotations
-            ax.text(-0.025*lim1, h_ref+(thick-h_ref)*0.97, "Gaining River", va='center',color='blue',  fontsize=16)
-            ax.text(0.4   *lim1, h_ref+(thick-h_ref)*0.97, "Losing River",  va='center',color='green', fontsize=16)
+            ax.text(-0.04*lim1, h_ref+(thick-h_ref)*0.97, "Flow INTO the River", va='center',color='blue',  fontsize=16)
+            ax.text(0.82   *lim1, h_ref+(thick-h_ref)*0.97, "Flow OUT of the River",  va='center',color='green', fontsize=16)
         else:
             ax.plot(Q, h_aq, label=rf"$Q$", color='black', linewidth=3)            
     else:
@@ -641,8 +650,11 @@ def Q_h_plot():
             if Q_ref < 0:
                 draw_sharp_arrow(ax, start=(h_aq_show, Q_ref), end=(h_RIV,Q_ref), orientation='horizontal', axis_range_x=(lim1, lim2), axis_range_y=(h_ref, thick), color='blue', al=0.4, lw=3, hs=25)
             else:
-                draw_sharp_arrow(ax, start=(h_RIV, Q_ref), end=(h_aq_show,Q_ref), orientation='horizontal', axis_range_x=(lim1, lim2), axis_range_y=(h_ref, thick), color='green', al=0.4, lw=3, hs=25)
                 if h_aq_show < h_bot:
+                    # Q arrow
+                    draw_sharp_arrow(ax, start=(h_RIV, Q_ref), end=(h_bot,Q_ref), orientation='horizontal', axis_range_x=(lim1, lim2), axis_range_y=(h_ref, thick), color='green', al=0.4, lw=3, hs=25)
+                    # unsat arrow
+                    
                     y_min = lim2
                     y_max = lim1
                 
@@ -658,10 +670,11 @@ def Q_h_plot():
                         rotation=270,
                         va='center'
                     )
-            
+                else:
+                    draw_sharp_arrow(ax, start=(h_RIV, Q_ref), end=(h_aq_show,Q_ref), orientation='horizontal', axis_range_x=(lim1, lim2), axis_range_y=(h_ref, thick), color='green', al=0.4, lw=3, hs=25)
             # Add gaining/losing river annotations
-            ax.text(thick-(0.25*(thick-h_ref)), -0.05*lim1, "Gaining River", va='center',color='blue',  fontsize=16)
-            ax.text(thick-(0.25*(thick-h_ref)),  0.05*lim1, "Losing River",  va='center',color='green', fontsize=16)
+            ax.text(thick-(0.4*(thick-h_ref)), -0.05*lim1, "Flow INTO the River", va='center',color='blue',  fontsize=16)
+            ax.text(thick-(0.4*(thick-h_ref)),  0.05*lim1, "Flow OUT of the River",  va='center',color='green', fontsize=16)
         else:
             ax.plot(h_aq, Q, label=rf"$Q$", color='black', linewidth=3)
    
@@ -717,6 +730,10 @@ def Q_h_plot():
         fig.subplots_adjust(bottom=0.25)  # Increase if legend is large
     "---"
     st.pyplot(fig)
+    if visualize:
+        st.markdown("""
+        _The arrow in the plot indicates the head difference $h_{Riv}$-$h_{aq}$ respectively $h_{Riv}$-$h_{bot}$ and points to the resulting flow $Q_{Riv}$_
+        """)
 
     "---"
     columns3 = st.columns((1,10,1), gap = 'medium')
@@ -843,7 +860,7 @@ with st.expander('**Show the :rainbow[**EXERCISE**] assessment** - to self-check
 
 st.subheader('✅ Conclusion', divider = 'violet')
 st.markdown("""
-The River (RIV) boundary condition is a powerful tool in MODFLOW for simulating dynamic interactions between surface water and groundwater. Unlike simpler boundary types, the RIV condition allows for **bidirectional flow** and introduces a **cutoff mechanism** when the aquifer head drops below the riverbed — capturing realistic drying behavior.
+The River (RIV) boundary condition is a powerful tool in MODFLOW for simulating dynamic interactions between surface water and groundwater. Unlike simpler boundary types, the RIV condition allows for **bidirectional flow** and introduces a **cutoff mechanism** when the aquifer head drops below the riverbed. In this case, RIV can capture the realistic behavior that occurs when a partially saturated zone separats the water table from the river bottom.
 
 By adjusting parameters like **river stage**, **bed elevation**, and **conductance**, modelers can explore a wide range of hydrologic conditions — from **gaining** to **losing streams**, or even **no-flow scenarios**. Understanding these behaviors through Q–h plots supports stronger conceptual models and more reliable groundwater–surface water integration.
 

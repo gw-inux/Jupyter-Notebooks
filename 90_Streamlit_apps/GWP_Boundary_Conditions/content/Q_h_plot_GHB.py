@@ -93,6 +93,10 @@ with columns0[1]:
     plt.yticks(fontsize=14) 
     ax.axhline(0, color='grey', linestyle='--', linewidth=0.8)
     st.pyplot(fig)
+    
+    st.markdown("""
+    This **initial plot** is designed to bridge the gap between traditional Q-h plots on paper and the :rainbow[**interactive plots**] provided further down in the app. These allow you to explore the _Q_-_h_ relationships more intuitively, supported by interactive controls and guided instructions.
+    """)
 
 st.markdown("""
 #### 🎯 Learning Objectives
@@ -101,7 +105,7 @@ By the end of this section of the module, you will be able to:
 - Explain the conceptual function and mathematical formulation of a General Head Boundary (GHB).
 - Apply the GHB equation $Q_B = C_B(H_B - h_{aq})$ to calculate boundary flows and analyze flow directions.
 - Evaluate how conductance, aquifer head, and boundary head jointly affect the groundwater–boundary exchange.
-- Visualize flow directions and boundary behavior (gaining vs. losing) under different conditions.
+- Visualize groundwater exchange at the  boundary ( flow out of the model boundary or into the model).
 """)
 
 with st.expander('**Show the initial assessment** - to assess your existing knowledge'):
@@ -240,13 +244,13 @@ def Q_h_plot():
     with columns1[1]:
         with st.expander('Modify heads and elevations'):
             if st.session_state.number_input:
-                HB = st.number_input("**GHB head ($H_B$)**", 5.0, 20.0, st.session_state.HB, 0.1, key="HB_input", on_change=update_HB)
+                HB = st.number_input("**:green[GHB head ($H_B$)]**", 5.0, 20.0, st.session_state.HB, 0.1, key="HB_input", on_change=update_HB)
             else:
-                HB = st.slider      ("**GHB head ($H_B$)**", 5.0, 20.0, st.session_state.HB, 0.1, key="HB_input", on_change=update_HB)
+                HB = st.slider      ("**:green[GHB head ($H_B$)]**", 5.0, 20.0, st.session_state.HB, 0.1, key="HB_input", on_change=update_HB)
             if st.session_state.number_input:
-                h_aq_show = st.number_input("**Aquifer head ($h_{aq}$)**", 0.0, 20.0, st.session_state.h_aq_show, 0.1, key="h_aq_show_input", on_change=update_h_aq_show)
+                h_aq_show = st.number_input("**:blue[Aquifer head ($h_{aq}$)]**", 0.0, 20.0, st.session_state.h_aq_show, 0.1, key="h_aq_show_input", on_change=update_h_aq_show)
             else:
-                h_aq_show = st.slider      ("**Aquifer head ($h_{aq})$**", 0.0, 20.0, st.session_state.h_aq_show, 0.1, key="h_aq_show_input", on_change=update_h_aq_show)            
+                h_aq_show = st.slider      ("**:blue[Aquifer head ($h_{aq})$]**", 0.0, 20.0, st.session_state.h_aq_show, 0.1, key="h_aq_show_input", on_change=update_h_aq_show)            
             
     with columns1[2]:
         with st.expander('Modify the conductance'):
@@ -294,15 +298,15 @@ def Q_h_plot():
     fig, ax = plt.subplots(figsize=(8, 8))
     if visualize:
         if turn:
-            ax.plot(Q, h_aq, label=rf"$Q_B = C_B(H_B - h_{{aq}})$, $C_B$ = {st.session_state.C:.2e}",color='orange', linewidth=3)
+            ax.plot(Q, h_aq, label=rf"$Q_B = C_B(H_B - h_{{aq}})$, $C_B$ = {st.session_state.C:.2e} m²/s",color='orange', linewidth=3)
             ax.plot([], [], ' ', label=fr"$Q_B$ = {Q_ref:.2e} m³/s")
             ax.axvline(0, color='black', linewidth=1)
             ax.axhline(HB, color='green', linewidth=2, linestyle='--', label=f'$H_B$ in m= {HB}')
             ax.axhline(h_aq_show, color='blue', linewidth=2, linestyle='--', label=f'$h_{{aq}}$ in m= {h_aq_show}')
             
             # Labels and formatting
-            ax.set_ylabel("Heads in the GHB Boundary-Aquifer System (m)", fontsize=14, labelpad=15)
-            ax.set_xlabel("Flow Into the Ground-Water System From the GHB $Q_B$ (m³/s)", fontsize=14, labelpad=15)
+            ax.set_ylabel("Heads in the GHB-Model System (m)", fontsize=14, labelpad=15)
+            ax.set_xlabel("Flow Into the Ground-Water System from the GHB $Q_B$ (m³/s)", fontsize=14, labelpad=15)
             ax.set_ylim(0, 20)
             ax.set_xlim(0.05, -0.05)
             if Q_ref < 0:
@@ -320,19 +324,19 @@ def Q_h_plot():
                     arrowprops=dict(arrowstyle='<-', color='green', lw=3, alpha=0.6)
                 )
             # Add gaining/losing stream annotations
-            ax.text(-0.003,1, "Gaining GHB", va='center',color='blue',  fontsize=16)
-            ax.text(0.002, 1,  "Losing GHB", va='center', ha='right',color='green',  fontsize=16)
+            ax.text(-0.003,1, "Flow OUT of the model", va='center',color='blue',  fontsize=16)
+            ax.text(0.002, 1,  "Flow INTO the model", va='center', ha='right',color='green',  fontsize=16)
                 
         else:
-            ax.plot(h_aq, Q, label=rf"$Q_B = C_B(H_B - h_{{aq}})$, $C_B$ = {st.session_state.C:.2e}",color='orange', linewidth=3)
+            ax.plot(h_aq, Q, label=rf"$Q_B = C_B(H_B - h_{{aq}})$, $C_B$ = {st.session_state.C:.2e} m²/s",color='orange', linewidth=3)
             ax.plot([], [], ' ', label=fr"$Q_B$ = {Q_ref:.2e} m³/s")
             ax.axhline(0, color='black', linewidth=1)
             ax.axvline(HB, color='green', linewidth=2, linestyle='--', label=f'$H_B$ in m= {HB}')
             ax.axvline(h_aq_show, color='blue', linewidth=2, linestyle='--', label=f'$h_{{aq}}$ in m= {h_aq_show}')
 
             # Labels and formatting
-            ax.set_xlabel("Heads in the GHB Boundary-Aquifer System (m)", fontsize=14, labelpad=15)
-            ax.set_ylabel("Flow Into the Ground-Water System From the GHB $Q_B$ (m³/s)", fontsize=14, labelpad=15)
+            ax.set_xlabel("Heads in the GHB-Model System (m)", fontsize=14, labelpad=15)
+            ax.set_ylabel("Flow Into the Ground-Water System from the GHB $Q_B$ (m³/s)", fontsize=14, labelpad=15)
             ax.set_xlim(0, 20)
             ax.set_ylim(-0.05, 0.05)
             if Q_ref < 0:
@@ -350,8 +354,8 @@ def Q_h_plot():
                 arrowprops=dict(arrowstyle='<-', color='green', lw=3, alpha=0.6)
                 )
             # Add gaining/losing stream annotations
-            ax.text(19.8, -0.003, "Gaining GHB", va='center', ha='right',color='blue',  fontsize=16)
-            ax.text(19.8, 0.003, "Losing GHB", va='center', ha='right',color='green',  fontsize=16)
+            ax.text(19.8, -0.003, "Flow OUT of the model", va='center', ha='right',color='blue',  fontsize=16)
+            ax.text(19.8, 0.003, "Flow INTO the model", va='center', ha='right',color='green',  fontsize=16)
     else:
         if turn:
             ax.plot(Q, h_aq, label=rf"$Q_B = C_B(H_B - h_{{aq}})$, $C_B$ = {st.session_state.C:.2e}",color='black', linewidth=3)
