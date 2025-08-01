@@ -33,15 +33,15 @@
     "error": "❌ Not quite. Recharge affects system input and outflow, but it does not alter aquifer properties or boundary positions."
   },
   {
-    "question": "In which of the following cases does the Q–h plot appear as a vertical line? (Mark ALL correct answers)",
+    "question": "In which of the following cases does the Q–h plot appear as a horizontal line (Q represented by the y-axis)? (Mark ALL correct answers)",
     "options": {
       "Defined-head boundary.": false,
       "No-flow boundary.": true,
       "Recharge point with constant flux.": true,
       "Head-dependent boundary with high conductance.": false
     },
-    "success": "✅ Correct! Neumann (defined-flow) boundaries have fixed Q, so the Q–h plot is vertical.",
-    "error": "❌ Not quite. Vertical Q–h lines occur when flow is fixed regardless of head — typical for no-flow and recharge."
+    "success": "✅ Correct! Neumann (defined-flow) boundaries have fixed Q, so the Q–h plot is horizontal.",
+    "error": "❌ Not quite. Horizontal Q–h lines occur when flow is fixed regardless of head — typical for no-flow and recharge."
   },
   {
     "question": "Which statements correctly describe the influence of hydraulic conductivity (K) in the 1D model? (Mark ALL correct answers)",
@@ -58,8 +58,8 @@
     "question": "In a 1D model with recharge and a no-flow boundary, which of the following are true? (Mark ALL correct answers)",
     "options": {
       "Flow is directed away from the no-flow boundary.": true,
-      "Recharge causes a rising water table towards the no-flow boundary.": true,
-      "The Q–h plot at the no-flow boundary shows a flat line.": false,
+      "Recharge causes an inclining water table towards the no-flow boundary.": true,
+      "The Q–h plot at the no-flow boundary doesn't exist.": false,
       "Head-dependent flow occurs at the no-flow boundary.": false
     },
     "success": "✅ Correct! No-flow boundaries force one-directional flow; recharge raises head, but no flow occurs at the boundary.",

@@ -14,7 +14,7 @@
     "question": "What does the conductance $C_B$ represent in the GHB equation? (Mark ALL correct answers)",
     "options": {
       "It combines the effects of boundary geometry and material properties.": true,
-      "It is the slope of the Q–h relationship.": true,
+      "It is a parameter related to the slope of the Q–h relationship.": true,
       "It is the boundary head value.": false,
       "It has units of length (m).": false
     },

@@ -1,6 +1,6 @@
 [
   {
-    "question": "1) What is the purpose of a threshold head ($h_{thr}$) in MNW simulations? (Mark ALL correct answers)",
+    "question": "What is the purpose of a threshold head ($h_{thr}$) in MNW simulations? (Mark ALL correct answers)",
     "options": {
       "A) To prevent excessive drawdown in the well.": true,
       "B) To define a target drawdown for optimization.": false,
@@ -11,7 +11,7 @@
     "error": "❌ $h_{thr}$ is not a target — it’s a hard lower bound for well protection."
   },
   {
-    "question": "2) What happens when the computed $h_{well}$ falls below $h_{thr}$? (Mark ALL correct answers)",
+    "question": "What happens when the computed $h_{well}$ falls below $h_{thr}$? (Mark ALL correct answers)",
     "options": {
       "A) The discharge Q is reduced automatically.": true,
       "B) The aquifer head is lowered.": false,
@@ -22,7 +22,7 @@
     "error": "❌ Aquifer head and parameters stay constant — only Q is limited."
   },
   {
-    "question": "3) Under which conditions does the MNW model resume pumping using the Qmx limit? (Mark ALL correct answers)",
+    "question": "Under which conditions does the MNW model resume pumping using the Qmx limit? (Mark ALL correct answers)",
     "options": {
       "A) When the cell head rises and the computed Q exceeds Qmx.": true,
       "B) When the pumping rate surpasses the threshold needed for restart.": true,
@@ -33,7 +33,7 @@
     "error": "❌ Qmx only becomes relevant when the well is inactive and conditions improve sufficiently to restart pumping."
   },
   {
-    "question": "4) How does the nonlinear exponent $P$ influence the discharge–drawdown curve? (Mark ALL correct answers)",
+    "question": "How does the nonlinear exponent $P$ influence the discharge–drawdown curve? (Mark ALL correct answers)",
     "options": {
       "A) Larger P causes faster increase in drawdown at higher Q.": true,
       "B) P has no effect on threshold head activation.": false,
@@ -44,7 +44,7 @@
     "error": "❌ P is central to curve shape and influences threshold-limiting Q."
   },
   {
-    "question": "5) What happens when the well head reaches the threshold head and the discharge falls below Qmn? (Mark ALL correct answers)",
+    "question": "What happens when the well head reaches the threshold head and the discharge falls below Qmn? (Mark ALL correct answers)",
     "options": {
       "A) Pumping is stopped to protect the well.": true,
       "B) The system maintains discharge at Qmn.": false,
@@ -55,7 +55,7 @@
     "error": "❌ Qmn defines the lowest allowable pumping rate — below this, the pump shuts off."
   },
   {
-    "question": "6) When and how does the MNW model resume pumping after a shutdown due to low head? (Mark ALL correct answers)",
+    "question": "When and how does the MNW model resume pumping after a shutdown due to low head? (Mark ALL correct answers)",
     "options": {
       "A) Pumping resumes when Q exceeds Qmx.": true,
       "B) The cell head must recover above the threshold head.": true,

@@ -36,12 +36,12 @@
     "question": "Which conditions can cause a DRN boundary to remove too much water from the model? (Mark ALL correct answers)",
     "options": {
       "A) An unrealistically high conductance": true,
-      "B) Too many DRN cells along model edges": true,
+      "B) If the drain diameter is too large": false,
       "C) Drain elevations set too low": true,
       "D) Aquifer transmissivity set too high": false
     },
     "success": "✅ Exactly. Poor parameterization of DRNs can lead to over-drainage.",
-    "error": "❌ Watch out. The issue usually lies with conductance, placement, or elevation settings."
+    "error": "❌ Watch out. The issue usually lies with conductance or elevation settings. The drain diameter is not considered by DRN"
   },
   {
     "question": "What is the conceptual analogy for a DRN boundary in the real world? (Mark ALL correct answers)",
@@ -55,12 +55,12 @@
     "error": "❌ DRNs resemble drains or ditches, not rivers or impermeable boundaries."
   },
   {
-    "question": "Why is the Q–h plot for a DRN boundary flat at low heads? (Mark ALL correct answers)",
+    "question": "Why does the Q–h plot for a DRN boundary becomes horizontal if the head is decreasing below a threshold? (Mark ALL correct answers)",
     "options": {
-      "A) Because no flow occurs when $h_{aq} \\leq h_{dr}$": true,
+      "A) Because boundary flow is zero when $h_{aq} \\leq h_{dr}$": true,
       "B) Because DRNs always simulate fixed flow": false,
-      "C) Because conductance drops to zero at low heads": false,
-      "D) Because the boundary switches to a no-flow condition": true
+      "C) Because conductance drops to zero if the head falls below a threshold": false,
+      "D) Because the boundary switches to a no-flow condition if the head falls below a threshold": true
     },
     "success": "✅ Correct. The flat region reflects zero discharge when the head is below the cutoff.",
     "error": "❌ The flat part of the Q–h plot results from the cutoff behavior — no flow occurs when $h_{aq} \\leq h_{dr}$."

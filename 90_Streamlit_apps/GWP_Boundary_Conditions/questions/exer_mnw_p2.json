@@ -1,6 +1,6 @@
 [
   {
-    "question": "1) Which statements best describe how MNW differs from a WEL boundary? (Mark ALL correct answers)",
+    "question": "Which statements best describe how MNW differs from a WEL boundary? (Mark ALL correct answers)",
     "options": {
       "A) MNW calculates head based on Q and resistance, while WEL fixes Q directly.": true,
       "B) WEL includes nonlinear losses, MNW does not.": false,
@@ -11,7 +11,7 @@
     "error": "❌ WEL fixes Q, while MNW dynamically links Q and h based on resistance."
   },
   {
-    "question": "2) In this plot 2, what is true about the cell head $h_{Cell}$? (Mark ALL correct answers)",
+    "question": "In this plot 2, what is true about the cell head $h_{Cell}$? (Mark ALL correct answers)",
     "options": {
       "A) It is fixed during all computations.": true,
       "B) It varies with drawdown in the well.": false,
@@ -22,7 +22,7 @@
     "error": "❌ $h_{Cell}$ is fixed — only $h_{well}$ and Q change depending on mode."
   },
   {
-    "question": "3) What happens if the exponent $P$ in the nonlinear CWC is increased? (Mark ALL correct answers)",
+    "question": "What happens if the exponent $P$ in the nonlinear CWC is increased? (Mark ALL correct answers)",
     "options": {
       "A) Drawdown increases faster with Q.": true,
       "B) The Q–h curve becomes more nonlinear.": true,
@@ -33,7 +33,7 @@
     "error": "❌ Increasing P does not linearize or reduce resistance — quite the opposite."
   },
   {
-    "question": "4) In which way does MNW behavior resemble a RIV boundary? (Mark ALL correct answers)",
+    "question": "In which way does MNW behavior resemble a RIV boundary? (Mark ALL correct answers)",
     "options": {
       "A) Both involve head-dependent flow exchange.": true,
       "B) Both use nonlinear resistance to compute discharge.": false,
@@ -44,7 +44,7 @@
     "error": "❌ RIV is linear; MNW can simulate nonlinear response with B and P."
   },
   {
-    "question": "5) What happens when $A = 0$, $B = 0$, and only nonlinear resistance remains? (Mark ALL correct answers)",
+    "question": "What happens when $A = 0$, $B = 0$, and only nonlinear resistance remains? (Mark ALL correct answers)",
     "options": {
       "A) The Q-h-curve (flow) depends entirely on $C$ and $P$.": true,
       "B) There is no drawdown response.": false,
@@ -55,7 +55,7 @@
     "error": "❌ A = 0 is valid — flow is still simulated, just with nonlinear control only."
   },
   {
-    "question": "6) Which conditions cause MNW to behave most like a constant-head (DRN) boundary? (Mark ALL correct answers)",
+    "question": "Which conditions cause MNW to behave most like a constant-head (DRN) boundary? (Mark ALL correct answers)",
     "options": {
       "A) When $C$ and $P$ is small and $A$ and $B$ are large (near-linear).": true,
       "B) When $h_{well}$ is held fixed and Q computed.": true,

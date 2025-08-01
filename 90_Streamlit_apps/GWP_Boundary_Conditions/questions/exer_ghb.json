@@ -1,6 +1,6 @@
 [
   {
-    "question": "When does the General Head Boundary (GHB) act as a source, and when as a sink? (Mark ALL correct answers)",
+    "question": "When does the General Head Boundary (GHB) results in inflow to an aquifer (i.e., acts as source), and when in outflow (i.e., acts as sink)? (Mark ALL correct answers)",
     "options": {
       "A) When the aquifer head is equal to the boundary head, the GHB is a source.": false,
       "B) The GHB acts as a source when the boundary head is higher than the aquifer head.": true,
