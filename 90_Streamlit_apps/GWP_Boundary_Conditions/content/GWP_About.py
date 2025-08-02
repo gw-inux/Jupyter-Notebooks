@@ -66,7 +66,7 @@ with cent_co3:
     
 st.subheader('Acknowledgment', divider='green')
 st.markdown("""
-We sincerely thank Prof. William W. Woessner for the constructive feedback, which greatly helped improve the clarity and educational value of this module.""")
+We sincerely thank Rudolf Liedl and William W. Woessner for the constructive feedback, which greatly helped improve the clarity and educational value of this module.""")
 st.markdown("---")
 left_co4, cent_co4, last_co4 = st.columns((1,8,1))
 with cent_co4:
