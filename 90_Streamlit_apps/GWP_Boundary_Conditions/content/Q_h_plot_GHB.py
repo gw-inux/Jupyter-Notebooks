@@ -73,10 +73,29 @@ if "Ci" not in st.session_state:
 
 with columns0[1]:
     # READ LOG VALUE, CONVERT, AND WRITE VALUE FOR TRANSMISSIVITY
-    container = st.container()  
-    Ci_slider_value_new = st.slider("_(log of) Conductance $C_B$ in m²/s_", -5.,-0., -2.5, 0.01, format="%4.2f")    
-    st.session_state.Ci = 10 ** Ci_slider_value_new
-    container.write("**:orange[$C_B$]** in m²/s: %5.2e" %st.session_state.Ci)
+#    container = st.container()  
+#    Ci_slider_value_new = st.slider("_(log of) Conductance $C_B$ in m²/s_", -5.,-0., -2.5, 0.01, format="%4.2f")    
+#    st.session_state.Ci = 10 ** Ci_slider_value_new
+#    container.write("**:orange[$C_B$]** in m²/s: %5.2e" %st.session_state.Ci)
+    
+    # Log slider
+    log_min = -5
+    log_max = -0
+    default_Ci = 3e-3
+    step = 0.01
+    log_values = np.arange(log_min, log_max + step, step)
+    Ci_values = np.power(10.0, log_values)
+    Ci_labels = [f"{c:.2e}" for c in Ci_values]
+    
+    # --- Find closest matching label for default_Ci
+    closest_idx = (np.abs(Ci_values - default_Ci)).argmin()
+    Ci_default_label = f"{Ci_values[closest_idx]:.2e}"
+    
+    # --- Slider for C (shown as labels)
+    Ci_slider_label = st.select_slider("**Conductance :orange[$C_B$]** in m²/s", Ci_labels, Ci_default_label)
+
+    # --- Convert back to float
+    st.session_state.Ci = float(Ci_slider_label)
 
     # Define aquifer head range
     h_aqi = np.linspace(0, 20, 200)
