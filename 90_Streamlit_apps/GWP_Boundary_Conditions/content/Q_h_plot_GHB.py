@@ -53,7 +53,6 @@ def prep_log_slider(default_val: float, log_min: float, log_max: float, step: fl
     default_label : str
         Closest label to the given default_val.
     """
-
     # --- Generate value list and labels
     log_values = np.arange(log_min, log_max + step, step)
     values = 10 ** log_values
@@ -65,6 +64,19 @@ def prep_log_slider(default_val: float, log_min: float, log_max: float, step: fl
     default_label = labels[idx_closest]
 
     return labels, default_label
+    
+def get_label(val: float, labels: list[str]) -> str:
+    """Given a float value and a list of scientific notation labels, return the closest label."""
+    label_vals = [float(l) for l in labels]
+    idx = np.abs(np.array(label_vals) - val).argmin()
+    return labels[idx]
+
+def get_step(val: float) -> float:
+    """Return a step that modifies the first digit after the decimal point in scientific notation."""
+    if val == 0:
+        return 1e-8  # fallback
+    exponent = int(np.floor(np.log10(abs(val))))
+    return 10 ** (exponent - 1)
 
 st.title("Theory and Concept of the :orange[General Head Boundary (GHB) in MODFLOW]")
 #st.subheader("Interaction Between Groundwater and Head-Dependent Boundaries", divider="orange")
@@ -214,8 +226,22 @@ st.markdown("""
 # Callback function to update session state
 def update_C():
     st.session_state.C_slider_value = st.session_state.C_input
+def update_C_GHB():
+    """Handles both number input (float) and select_slider (str)"""
+    raw_val = st.session_state.C_input
+    if isinstance(raw_val, str):
+        st.session_state.C_GHB = float(raw_val)  # from select_slider
+    elif isinstance(raw_val, float):
+        st.session_state.C_GHB = raw_val         # from number_input
 def update_K():
     st.session_state.K_slider_value = st.session_state.K_input
+def update_K_GHB():
+    """Handles both number input (float) and select_slider (str)"""
+    raw_val = st.session_state.K_input
+    if isinstance(raw_val, str):
+        st.session_state.K_GHB = float(raw_val)  # from select_slider
+    elif isinstance(raw_val, float):
+        st.session_state.K_GHB = raw_val         # from number_input
 def update_LB():
     st.session_state.LB = st.session_state.LB_input
 def update_AB():
@@ -229,7 +255,11 @@ def update_h_aq_show():
     
 # Initialize session state for value and toggle state
 st.session_state.C_slider_value = -2.5
+st.session_state.C_GHB = 3e-3
+st.session_state.C_GHB_label = "3e-3"
 st.session_state.K_slider_value = -3.5
+st.session_state.K_GHB = 1e-4
+st.session_state.K_GHB_label = "1e-4"
 st.session_state.LB = 100.
 st.session_state.AB = 1000.0
 st.session_state.HB = 8.0
@@ -282,48 +312,50 @@ def Q_h_plot():
             # READ LOG VALUE, CONVERT, AND WRITE VALUE FOR TRANSMISSIVITY
             c_computed = st.toggle('Toggle to compute conductance')
             if c_computed:
-                container = st.container()  
+                # LOG Slider/number input for K
                 if st.session_state.number_input:
-                    K_slider_value_new = st.number_input("_(log of) Hydraulic conductivity $K_B$ in m/s_", log_min1,log_max1, st.session_state.K_slider_value, 0.01, format="%4.2f", key="K_input", on_change=update_K)
+                    st.number_input("**Hydr. conductivity** $K_B$ (m/s)", 10**log_min1, 10**log_max1, st.session_state.K_GHB, get_step(st.session_state.K_GHB), format="%.2e", key="K_input", on_change=update_K_GHB)
                 else:
-                    K_slider_value_new = st.slider      ("_(log of) Hydraulic conductivity $K_B$ in m/s_", log_min1,log_max1, st.session_state.K_slider_value, 0.01, format="%4.2f", key="K_input", on_change=update_K)   
-                K = 10 ** K_slider_value_new
-                container.write("**Hydraulic conductivity $K_B$ in m/s:** %5.2e" %K)
+                    labels, _ = prep_log_slider(default_val=1e-4, log_min=log_min1, log_max=log_max1)
+                    # Ensure label string matches st.session_state.K_GHB
+                    st.session_state.K_GHB_label = get_label(st.session_state.K_GHB, labels)
+                    st.select_slider("**Hydr. conductivity** $K_B$ (m/s)", labels, value = st.session_state.K_GHB_label, key="K_input", on_change=update_K_GHB)
                 if st.session_state.number_input:
-                    LB = st.number_input("**GHB lenght ($L_B$)**", 1.0, 10000.0, st.session_state.LB, 1., key="LB_input", on_change=update_LB)
+                    LB = st.number_input("**GHB lenght** $L_B$ (m)", 1.0, 10000.0, st.session_state.LB, 1., key="LB_input", on_change=update_LB)
                 else:
-                    LB = st.slider      ("**GHB lenght ($L_B$)**", 1.0, 10000.0, st.session_state.LB, 1., key="LB_input", on_change=update_LB)
+                    LB = st.slider      ("**GHB lenght** $L_B$ (m)", 1.0, 10000.0, st.session_state.LB, 1., key="LB_input", on_change=update_LB)
                 if st.session_state.number_input:
-                    AB = st.number_input("**GHB area ($A_B$)**", 1.0, 100000.0, st.session_state.AB, 1., key="AB_input", on_change=update_AB)
+                    AB = st.number_input("**GHB area** $A_B$(m²)", 1.0, 100000.0, st.session_state.AB, 1., key="AB_input", on_change=update_AB)
                 else:
-                    AB = st.slider      ("**GHB area ($A_B$)**", 1.0, 100000.0, st.session_state.AB, 1., key="AB_input", on_change=update_AB)
-                st.session_state.C = K * AB / LB
+                    AB = st.slider      ("**GHB area** $A_B$(m²)", 1.0, 100000.0, st.session_state.AB, 1., key="AB_input", on_change=update_AB)
+                #st.session_state.C = K * AB / LB
+                st.session_state.C_GHB = st.session_state.K_GHB * AB / LB
                 
                 # Update C_slider_value based on computed values
                 st.session_state.C_slider_value = np.log10(st.session_state.C)
             else:
-                container = st.container()  
                 if st.session_state.number_input:
-                    C_slider_value_new = st.number_input("_(log of) Conductance $C_B$ in m²/s_", log_min1,log_max1, st.session_state.C_slider_value, 0.01, format="%4.2f", key="C_input", on_change=update_C)
+                    st.number_input("**Conductance** $C_B$ (m²/s)", 10**log_min1, 10**log_max1, st.session_state.C_GHB, get_step(st.session_state.C_GHB), format="%.2e", key="C_input", on_change=update_C_GHB)
                 else:
-                    C_slider_value_new = st.slider      ("_(log of) Conductance $C_B$ in m²/s_", log_min1,log_max1, st.session_state.C_slider_value, 0.01, format="%4.2f", key="C_input", on_change=update_C)    
-                st.session_state.C = 10 ** C_slider_value_new
-                container.write("**Conductance $C_B$ in m²/s:** %5.2e" %st.session_state.C)
+                    labels, _ = prep_log_slider(default_val=3e-3, log_min=log_min1, log_max=log_max1)
+                    # Ensure label string matches st.session_state.K_GHB
+                    st.session_state.C_GHB_label = get_label(st.session_state.C_GHB, labels)
+                    st.select_slider("**Conductance** $C_B$ (m²/s)", labels, value = st.session_state.C_GHB_label, key="C_input", on_change=update_C_GHB)
                 
-                # Update K_slider_value based on computed values
-                st.session_state.K_slider_value = np.log10(st.session_state.C * st.session_state.LB / st.session_state.AB)
+                # Update K_GHB_value based on computed values
+                st.session_state.K_GHB = st.session_state.C_GHB * st.session_state.LB / st.session_state.AB
 
     
     # Define aquifer head range
     h_aq = np.linspace(0, 20, 200)
-    Q = st.session_state.C * (HB - h_aq)
-    Q_ref = st.session_state.C * (HB - h_aq_show)
+    Q = st.session_state.C_GHB * (HB - h_aq)
+    Q_ref = st.session_state.C_GHB * (HB - h_aq_show)
     
     # Create the plot
     fig, ax = plt.subplots(figsize=(8, 8))
     if visualize:
         if turn:
-            ax.plot(Q, h_aq, label=rf"$Q_B = C_B(H_B - h_{{aq}})$, $C_B$ = {st.session_state.C:.2e} m²/s",color='orange', linewidth=3)
+            ax.plot(Q, h_aq, label=rf"$Q_B = C_B(H_B - h_{{aq}})$, $C_B$ = {st.session_state.C_GHB:.2e} m²/s",color='orange', linewidth=3)
             ax.plot([], [], ' ', label=fr"$Q_B$ = {Q_ref:.2e} m³/s")
             ax.axvline(0, color='black', linewidth=1)
             ax.axhline(HB, color='green', linewidth=2, linestyle='--', label=f'$H_B$ in m= {HB}')
@@ -353,7 +385,7 @@ def Q_h_plot():
             ax.text(0.002, 1,  "Flow INTO the model", va='center', ha='right',color='green',  fontsize=16)
                 
         else:
-            ax.plot(h_aq, Q, label=rf"$Q_B = C_B(H_B - h_{{aq}})$, $C_B$ = {st.session_state.C:.2e} m²/s",color='orange', linewidth=3)
+            ax.plot(h_aq, Q, label=rf"$Q_B = C_B(H_B - h_{{aq}})$, $C_B$ = {st.session_state.C_GHB:.2e} m²/s",color='orange', linewidth=3)
             ax.plot([], [], ' ', label=fr"$Q_B$ = {Q_ref:.2e} m³/s")
             ax.axhline(0, color='black', linewidth=1)
             ax.axvline(HB, color='green', linewidth=2, linestyle='--', label=f'$H_B$ in m= {HB}')
