@@ -40,6 +40,32 @@ author_list = [f"{name}{''.join(index_symbols[i-1] for i in indices)}" for name,
 institution_list = [f"{index_symbols[i-1]} {inst}" for i, inst in institutions.items()]
 institution_text = " | ".join(institution_list)
 
+# --- functions
+
+def prep_log_slider(default_val: float, log_min: float, log_max: float, step: float = 0.01, digits: int = 2):
+    """
+    Prepares labels and default for a log-scale select_slider.
+
+    Returns:
+    --------
+    labels : list of str
+        Formatted string labels in scientific notation.
+    default_label : str
+        Closest label to the given default_val.
+    """
+
+    # --- Generate value list and labels
+    log_values = np.arange(log_min, log_max + step, step)
+    values = 10 ** log_values
+    fmt = f"{{0:.{digits}e}}"
+    labels = [fmt.format(v) for v in values]
+
+    # --- Find closest label for default
+    idx_closest = np.abs(values - default_val).argmin()
+    default_label = labels[idx_closest]
+
+    return labels, default_label
+
 st.title("Theory and Concept of the :orange[General Head Boundary (GHB) in MODFLOW]")
 #st.subheader("Interaction Between Groundwater and Head-Dependent Boundaries", divider="orange")
 st.subheader("Groundwater - :orange[Head-Dependent Boundary] interaction", divider="orange")
@@ -72,31 +98,11 @@ if "Ci" not in st.session_state:
     st.session_state.Ci = 10 ** st.session_state.Ci_slider_value
 
 with columns0[1]:
-    # READ LOG VALUE, CONVERT, AND WRITE VALUE FOR TRANSMISSIVITY
-#    container = st.container()  
-#    Ci_slider_value_new = st.slider("_(log of) Conductance $C_B$ in m²/s_", -5.,-0., -2.5, 0.01, format="%4.2f")    
-#    st.session_state.Ci = 10 ** Ci_slider_value_new
-#    container.write("**:orange[$C_B$]** in m²/s: %5.2e" %st.session_state.Ci)
+    # Conductance
+    labels, default_label = prep_log_slider(default_val = 3e-3, log_min = -5, log_max = 0)
+    selected_Ci = st.select_slider("**Conductance :orange[$C_B$]** in m²/s", labels, default_label, key = "GHB_Ci")
+    st.session_state.Ci = float(selected_Ci)
     
-    # Log slider
-    log_min = -5
-    log_max = -0
-    default_Ci = 3e-3
-    step = 0.01
-    log_values = np.arange(log_min, log_max + step, step)
-    Ci_values = np.power(10.0, log_values)
-    Ci_labels = [f"{c:.2e}" for c in Ci_values]
-    
-    # --- Find closest matching label for default_Ci
-    closest_idx = (np.abs(Ci_values - default_Ci)).argmin()
-    Ci_default_label = f"{Ci_values[closest_idx]:.2e}"
-    
-    # --- Slider for C (shown as labels)
-    Ci_slider_label = st.select_slider("**Conductance :orange[$C_B$]** in m²/s", Ci_labels, Ci_default_label)
-
-    # --- Convert back to float
-    st.session_state.Ci = float(Ci_slider_label)
-
     # Define aquifer head range
     h_aqi = np.linspace(0, 20, 200)
     Qi = st.session_state.Ci * (HBi - h_aqi)
