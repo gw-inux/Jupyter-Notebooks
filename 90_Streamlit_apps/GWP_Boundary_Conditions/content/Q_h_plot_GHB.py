@@ -355,7 +355,8 @@ def Q_h_plot():
     fig, ax = plt.subplots(figsize=(8, 8))
     if visualize:
         if turn:
-            ax.plot(Q, h_aq, label=rf"$Q_B = C_B(H_B - h_{{aq}})$, $C_B$ = {st.session_state.C_GHB:.2e} m²/s",color='orange', linewidth=3)
+            ax.plot(Q, h_aq, label=rf"$Q_B = C_B(H_B - h_{{aq}})$",color='orange', linewidth=3)
+            ax.plot([], [], ' ', label=fr"$C_B$ = {st.session_state.C_GHB:.2e} m²/s")
             ax.plot([], [], ' ', label=fr"$Q_B$ = {Q_ref:.2e} m³/s")
             ax.axvline(0, color='black', linewidth=1)
             ax.axhline(HB, color='green', linewidth=2, linestyle='--', label=f'$H_B$ in m= {HB}')
@@ -371,21 +372,22 @@ def Q_h_plot():
                     '',  # no text
                     xy=(Q_ref,HB),  # arrowhead
                     xytext=(Q_ref, h_aq_show),  # arrow start
-                    arrowprops=dict(arrowstyle='->', color='blue', lw=3,  alpha=0.4)
+                    arrowprops=dict(arrowstyle='-|>', color='blue', lw=2.5,  alpha=0.8, mutation_scale=15)
                 )
             else:
                 ax.annotate(
                     '',  # no text
                     xy=(Q_ref,HB),  # arrowhead
                     xytext=(Q_ref, h_aq_show),  # arrow start
-                    arrowprops=dict(arrowstyle='<-', color='green', lw=3, alpha=0.6)
+                    arrowprops=dict(arrowstyle='<|-', color='green', lw=2.5, alpha=0.8, mutation_scale=15)
                 )
             # Add gaining/losing stream annotations
             ax.text(-0.003,1, "Flow OUT of the model", va='center',color='blue',  fontsize=16)
             ax.text(0.002, 1,  "Flow INTO the model", va='center', ha='right',color='green',  fontsize=16)
                 
         else:
-            ax.plot(h_aq, Q, label=rf"$Q_B = C_B(H_B - h_{{aq}})$, $C_B$ = {st.session_state.C_GHB:.2e} m²/s",color='orange', linewidth=3)
+            ax.plot(h_aq, Q, label=rf"$Q_B = C_B(H_B - h_{{aq}})$",color='orange', linewidth=3)
+            ax.plot([], [], ' ', label=fr"$C_B$ = {st.session_state.C_GHB:.2e} m²/s")
             ax.plot([], [], ' ', label=fr"$Q_B$ = {Q_ref:.2e} m³/s")
             ax.axhline(0, color='black', linewidth=1)
             ax.axvline(HB, color='green', linewidth=2, linestyle='--', label=f'$H_B$ in m= {HB}')
@@ -401,14 +403,14 @@ def Q_h_plot():
                     '',  # no text
                     xy=(HB, Q_ref),  # arrowhead
                     xytext=(h_aq_show, Q_ref),  # arrow start
-                    arrowprops=dict(arrowstyle='->', color='blue', lw=3,  alpha=0.4)
+                    arrowprops=dict(arrowstyle='-|>', color='blue', lw=2.5,  alpha=0.8, mutation_scale=15)
                 )
             else:
                 ax.annotate(
                 '',  # no text
                 xy=(HB, Q_ref),  # arrowhead
                 xytext=(h_aq_show, Q_ref),  # arrow start
-                arrowprops=dict(arrowstyle='<-', color='green', lw=3, alpha=0.6)
+                arrowprops=dict(arrowstyle='<|-', color='green', lw=2.5,  alpha=0.8, mutation_scale=15)
                 )
             # Add gaining/losing stream annotations
             ax.text(19.8, -0.003, "Flow OUT of the model", va='center', ha='right',color='blue',  fontsize=16)
@@ -436,6 +438,11 @@ def Q_h_plot():
     ax.legend(fontsize=14)
     
     st.pyplot(fig)
+    
+    if visualize:
+        st.markdown("""
+        _The arrow in the plot indicates the head difference $H_{B}$-$h_{aq}$ and points to the resulting flow $Q_{GHB}$_
+        """)
     
     with st.expander('Show the :blue[**INITIAL INSTRUCTIONS**]'):
         st.markdown("""
