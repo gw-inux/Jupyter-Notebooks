@@ -41,6 +41,18 @@ def prep_log_slider(default_val: float, log_min: float, log_max: float, step: fl
     default_label = labels[idx_closest]
 
     return labels, default_label
+ 
+def update_index():
+    selected_label = st.session_state.bc_index_input
+
+    # Reconstruct current options list from riv
+    if st.session_state.get("riv", False):
+        options = ["**None**", ":orange[**No-flow**]", ":green[**Recharge**]", ":violet[**River**]"]
+    else:
+        options = ["**None**", ":orange[**No-flow**]", ":green[**Recharge**]", ":blue[**Specified head**]"]
+
+    st.session_state.bc_index = options.index(selected_label)
+
     
 # Authors, institutions, and year
 year = 2025 
@@ -72,7 +84,8 @@ This app provides an intuitive visual and interactive exploration of :blue[**_Q_
 
 left_co, cent_co, last_co = st.columns((20,80,20))
 with cent_co:
-    st.image('90_Streamlit_apps/GWP_Boundary_Conditions/assets/images/gwp_boundary_Qh_scheme.png',caption="Schematic representation of an unconfined aquifer with a river boundary on the right side together with the associated Q-h plot.")
+    st.image('90_Streamlit_apps/GWP_Boundary_Conditions/assets/images/gwp_boundary_Qh_scheme.png')
+    st.markdown("""**Figure:** Schematic representation of an unconfined aquifer with a river boundary on the right side together with the associated _Q_-_h_ plot.""")
 
 st.markdown(""" By simulating a simple 1D unconfined aquifer with recharge and various boundary types, users gain insight into the essential principles that govern groundwater model boundaries and their practical implications in tools like MODFLOW.
 
@@ -183,11 +196,13 @@ st.markdown("""
 """
 )
 
-lc1, rc1 = st.columns((1,1.4),gap = 'large')
+lc1, rc1 = st.columns((1,1.45),gap = 'medium')
 with lc1:
-    st.image('90_Streamlit_apps/GWP_Boundary_Conditions/assets/images/GWF_EX01.jpg', caption=":green[**Scenario 1**]:Conceptual model for an one dimensional unconfined groundwater system with **one specified head boundary and one no-flow boundary**.")
+    st.image('90_Streamlit_apps/GWP_Boundary_Conditions/assets/images/GWF_EX01.jpg')
+    st.markdown("""**Figure:** :green[**Scenario 1**]:Conceptual model for an one dimensional unconfined groundwater system with **one specified head boundary and one no-flow boundary**.""")
 with rc1:
-    st.image('90_Streamlit_apps/GWP_Boundary_Conditions/assets/images/GWF_EX02.png', caption=":red[**Scenario 2**]: Conceptual model for an one dimensional unconfined groundwater system with **two specified head boundaries**.")
+    st.image('90_Streamlit_apps/GWP_Boundary_Conditions/assets/images/GWF_EX02.png')
+    st.markdown("""**Figure:** :red[**Scenario 2**]: Conceptual model for an one dimensional unconfined groundwater system with **two specified head boundaries**.""")
     
 with st.expander('Show more about the theory of the :blue[**model and the analytical solution**]'):
     st.markdown("""
@@ -294,6 +309,9 @@ if show_plot1:
     hRiv = 150
     y_scale = 7
     
+    st.session_state.bc_index = 0
+    st.session_state.bc_type = "**None**"
+    
     @st.fragment
     def computation1():
         # Input data
@@ -322,7 +340,7 @@ if show_plot1:
     
         with columns[1]:
             with st.expander("Click to modify **boundary condition parameters**:"):
-                riv = st.toggle (':violet[**River BC?**]')
+                riv = st.toggle (':violet[**River BC?**]', key = 'riv_toggle')
                 if riv:
                     # Log slider for river conductance                    
                     labels, default_label = prep_log_slider(default_val = 1e-5, log_min = log_min2, log_max = log_max2)
@@ -333,11 +351,12 @@ if show_plot1:
         with columns[2]:
             with st.expander("Click for **the _Q_-_h_ plot**:"):
                 if riv:
-                    bc_type = st.radio("for the following boundary condition:",
-                                  ["**None**", ":orange[**No-flow**]", ":green[**Recharge**]", ":violet[**River**]"], index=0)
+                    options = ["**None**", ":orange[**No-flow**]", ":green[**Recharge**]", ":violet[**River**]"]
+                    bc_type = st.radio("for the following boundary condition:", options , index=st.session_state.bc_index, key= "bc_index_input" , on_change = update_index)
                 else:
-                    bc_type = st.radio("for the following boundary condition:",
-                                  ["**None**", ":orange[**No-flow**]", ":green[**Recharge**]", ":blue[**Specified head**]"], index=0)
+                    options = ["**None**", ":orange[**No-flow**]", ":green[**Recharge**]", ":blue[**Specified head**]"]
+                    bc_type = st.radio("for the following boundary condition:", options , index=st.session_state.bc_index, key= "bc_index_input" , on_change = update_index)
+                # Get the selected index
                 turn = st.toggle('Toggle to turn the plot 90 degrees', key="general_turn") 
         
         # --- Computation here
@@ -523,6 +542,8 @@ if show_plot1:
             ax_qh.axis('off')
  
         st.pyplot(fig)
+        if "No-flow" in bc_type:
+            st.markdown("""_The dashed line in the plot represents the specified head at the right boundary with $h_{2500}$ = 150 m._""")
         
         with st.expander('Show the 🧪:green[**INITIAL INSTRUCTIONS**] about how to use the interactive plot'):
             st.markdown("""
