@@ -30,7 +30,7 @@ st.markdown(
     """
     Innovative and digital learning and teaching materials are currently enhanced and transferred to various partners across Europe by the EU cooperation project [iNUX](https://www.gw-inux.org/). The iNUX project is funded by the ERASMUS+ program of the European Union.
     
-    The Boundary Condition Module was developed by Thomas Reimann, Eileen Poeter, and the iNUX Team as a Streamlit application and adapted to the Groundwater Project interactive education format. It was released in June of 2025. All Groundwater Project books are available for free download.
+    The Boundary Condition Module was developed by Thomas Reimann, Eileen Poeter, and the iNUX Team as a Streamlit application and adapted to the Groundwater Project interactive education format. It was released in August of 2025. All Groundwater Project books are available for free download.
     """
 )
 left_co1, cent_co1 = st.columns((20,60))

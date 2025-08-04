@@ -42,7 +42,7 @@ st.title("Theory and Concept of :blue[Evapotranspiration in MODFLOW]")
 st.subheader("Consideration of :blue[Evapotranspiration] on Groundwater", divider="blue")
 
 st.markdown("""
-#### 💡 Motivation: Why Evapotranspiration (ET) Boundaries?
+#### 💡 Motivation: Why Evapotranspiration (EVT) Boundaries?
 """)
 
 # Initial plot
@@ -57,7 +57,7 @@ with columns0[0]:
     
     2. **Should evapotranspiration continue if the water table drops well below the root zone or land surface?**
     
-    ▶️ The **ET Boundary** in MODFLOW captures these dynamics. It simulates water loss from the saturated zone due to evapotranspiration, **but only when the water table is near enough to the surface**. As the groundwater head drops below a defined extinction depth, the ET rate gradually reduces to zero. The following interactive plot helps to visualize this relationship. Adjust parameters like ET rate and extinction depth to explore how ET demand interacts with groundwater levels.
+    ▶️ The **EVT Boundary** in MODFLOW captures these dynamics. It simulates water loss from the saturated zone due to evapotranspiration, **but only when the water table is near enough to the surface**. As the groundwater head drops below a defined extinction depth, the ET rate gradually reduces to zero. The following interactive plot helps to visualize this relationship. Adjust parameters like ET rate and extinction depth to explore how ET demand interacts with groundwater levels.
     """)
 
 with columns0[1]:
@@ -94,10 +94,10 @@ with columns0[1]:
 st.markdown("""
 ####  🎯 Learning Objectives
 By the end of this section, learners will be able to:
-- Explain the conceptual function of the ET (Evapotranspiration) boundary condition in groundwater models.
+- Explain the conceptual function of the EVT (Evapotranspiration) boundary condition in groundwater models.
 - Apply the ET equation to describe how evapotranspiration varies with water table depth.
 - Analyze the influence of the ET surface, the extinction depth, and the aquifer head on the actual evapotranspiration rates.
-- Interpret the shape of _Q–h_-plots for the ET boundary and understand the limitations of this conceptualization.
+- Interpret the shape of _Q–h_-plots for the EVT boundary and understand the limitations of this conceptualization.
 """)
 
 with st.expander('**Show the initial assessment** - to assess your existing knowledge'):
