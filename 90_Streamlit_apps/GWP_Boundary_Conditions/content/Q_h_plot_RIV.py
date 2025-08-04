@@ -573,7 +573,7 @@ def Q_h_plot():
         
         # Visualize is the plot with all the explanations
         if visualize:
-            ax.plot(Q, h_aq, label=rf"$Q$", color='fuchsia', linewidth=3)
+            ax.plot(Q, h_aq, label=rf"$Q$ in m³/s = {Q_ref:.2e}", color='fuchsia', linewidth=3)
             # Plot visuals
             ax.axvline(0, color='black', linewidth=1)
             # Plot visualization
@@ -769,7 +769,7 @@ def Q_h_plot():
     st.pyplot(fig)
     if visualize:
         st.markdown("""
-        _The arrow in the plot indicates the head difference $h_{Riv}$-$h_{aq}$ respectively $h_{Riv}$-$h_{bot}$ and points to the resulting flow $Q_{Riv}$_
+        _The arrow in the plot indicates the head difference $h_{Riv}$-$h_{aq}$ respectively $h_{Riv}$-$h_{bot}$ and points to the resulting flow $Q_{Riv}$._
         """)
 
     "---"

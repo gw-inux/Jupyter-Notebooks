@@ -60,7 +60,7 @@
       "A) A linear reduction of ET with declining head": true,
       "B) Nonlinear seepage losses": false,
       "C) Maximum ET rate": false,
-      "D) Head-dependent extraction": true
+      "D) Head-dependent evapotranspiration": true
     },
     "success": "✅ Exactly. This slope shows how ET is reduced as the water table drops.",
     "error": "❌ The slope reflects the transition zone — not max or nonlinear behavior."

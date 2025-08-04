@@ -2,9 +2,9 @@
   {
     "question": "Which equation describes flow from the aquifer to the drain in a DRN boundary condition? (Mark ALL correct answers)",
     "options": {
-      "A) $Q = C (h_{aq} - h_{dr})$ if $h_{aq} > h_{dr}$": true,
-      "B) $Q = 0$ if $h_{aq} \\leq h_{dr}$": true,
-      "C) $Q = C (h_{dr} - h_{aq})$": false,
+      "A) $Q = C (h_{aq} - H_{D})$ if $h_{aq} > H_{D}$": true,
+      "B) $Q = 0$ if $h_{aq} \\leq H_{D}$": true,
+      "C) $Q = C (H_{D} - h_{aq})$": false,
       "D) $Q$ is always constant": false
     },
     "success": "✅ Correct. The DRN flow equation is active only when aquifer head is above the drain elevation.",
@@ -14,7 +14,7 @@
     "question": "Which parameter controls the magnitude of discharge through the DRN boundary? (Mark ALL correct answers)",
     "options": {
       "A) Conductance": true,
-      "B) Drain elevation": false,
+      "B) Drain elevation": true,
       "C) Aquifer porosity": false,
       "D) Difference in head": true
     },
@@ -27,9 +27,9 @@
       "A) When the aquifer head is below the drain elevation.": true,
       "B) When the aquifer head equals the drain elevation.": true,
       "C) When the aquifer head is above the drain elevation.": false,
-      "D) When the drain stage is higher than the aquifer head.": true
+      "D) When the drain conductance is set to zero.": true
     },
-    "success": "✅ Correct. The DRN boundary does not discharge unless $h_{aq} > h_{dr}$.",
+    "success": "✅ Correct. The DRN boundary does not discharge unless $h_{aq} >= H_{D}$.",
     "error": "❌ Flow only occurs when aquifer head is above the drain elevation."
   },
   {

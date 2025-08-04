@@ -106,8 +106,8 @@ HBi = 8.0
 
 # Initialize session state for value and toggle state
 st.session_state.Ci_slider_value = -2.5
-if "Ci" not in st.session_state:
-    st.session_state.Ci = 10 ** st.session_state.Ci_slider_value
+if "Ci_GHB" not in st.session_state:
+    st.session_state.Ci_GHB = 3e-3
 
 with columns0[1]:
     # Conductance
@@ -359,8 +359,8 @@ def Q_h_plot():
             ax.plot([], [], ' ', label=fr"$C_B$ = {st.session_state.C_GHB:.2e} m²/s")
             ax.plot([], [], ' ', label=fr"$Q_B$ = {Q_ref:.2e} m³/s")
             ax.axvline(0, color='black', linewidth=1)
-            ax.axhline(HB, color='green', linewidth=2, linestyle='--', label=f'$H_B$ in m= {HB}')
-            ax.axhline(h_aq_show, color='blue', linewidth=2, linestyle='--', label=f'$h_{{aq}}$ in m= {h_aq_show}')
+            ax.axhline(HB, color='green', linewidth=2, linestyle='--', label=f'$H_B$ in m= {HB:.2f}')
+            ax.axhline(h_aq_show, color='blue', linewidth=2, linestyle='--', label=f'$h_{{aq}}$ in m= {h_aq_show:.2f}')
             
             # Labels and formatting
             ax.set_ylabel("Heads in the GHB-Model System (m)", fontsize=14, labelpad=15)
@@ -441,7 +441,7 @@ def Q_h_plot():
     
     if visualize:
         st.markdown("""
-        _The arrow in the plot indicates the head difference $H_{B}$-$h_{aq}$ and points to the resulting flow $Q_{GHB}$_
+        _The arrow in the plot indicates the head difference $H_{B}$-$h_{aq}$ and points to the resulting flow $Q_{GHB}$._
         """)
     
     with st.expander('Show the :blue[**INITIAL INSTRUCTIONS**]'):

@@ -58,7 +58,7 @@
     "question": "In a scenario with $h_{aq}$ = 10.5 m, what is the impact of increasing $H_D$ from 9.0 to 10.6 m? (Mark ALL correct answers)",
     "options": {
       "A) The flow decreases steadily as $H_D$ approaches $h_{aq}$.": true,
-      "B) Flow becomes zero once $H_D > h_{aq}$.": true,
+      "B) Flow becomes zero once $H_D >= h_{aq}$.": true,
       "C) The slope of the Q–h curve increases.": false,
       "D) The conductance increases automatically.": false
     },

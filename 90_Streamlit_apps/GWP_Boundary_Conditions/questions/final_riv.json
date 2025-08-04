@@ -11,12 +11,12 @@
     "error": "❌ Not quite. The RIV equation uses river stage, aquifer head, and riverbed conductance."
   },
   {
-    "question": "What is the effect of increasing the riverbed conductance in a RIV boundary condition? (Mark ALL correct answers)",
+    "question": "How does increasing the riverbed conductance ($C_{Riv}$) affect flow behavior in a RIV boundary condition? (Mark ALL correct answers)",
     "options": {
       "It increases the sensitivity of flow to the head difference.": false,
       "It reduces the maximum exchange flow possible.": false,
-      "It simulates a more permeable river–aquifer connection.": true,
-      "It makes the river behave like a fixed head boundary.": false
+      "It represents a more hydraulically connected river–aquifer interface.": true,
+      "It makes the river behave increasingly like a constant head boundary.": true
     },
     "success": "✅ Correct. Higher conductance implies more exchange per unit head difference.",
     "error": "❌ The correct choices indicate increased permeability — not fixed-head behavior and increased sensitivity (because double head difference still means double boundary flow)."
