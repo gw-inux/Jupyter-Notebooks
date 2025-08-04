@@ -44,14 +44,20 @@ def prep_log_slider(default_val: float, log_min: float, log_max: float, step: fl
  
 def update_index():
     selected_label = st.session_state.bc_index_input
-
-    # Reconstruct current options list from riv
-    if st.session_state.get("riv", False):
-        options = ["**None**", ":orange[**No-flow**]", ":green[**Recharge**]", ":violet[**River**]"]
+    if   selected_label == "**None**":
+        index = 0
+    elif selected_label == ":orange[**No-flow**]":
+        index = 1
+    elif selected_label == ":green[**Recharge**]":
+        index = 2
+    elif selected_label == ":violet[**River**]":
+        index = 3
+    elif selected_label == ":blue[**Specified head**]":
+        index = 3
     else:
-        options = ["**None**", ":orange[**No-flow**]", ":green[**Recharge**]", ":blue[**Specified head**]"]
-
-    st.session_state.bc_index = options.index(selected_label)
+        index = 0
+    
+    st.session_state.bc_index = index
 
     
 # Authors, institutions, and year
