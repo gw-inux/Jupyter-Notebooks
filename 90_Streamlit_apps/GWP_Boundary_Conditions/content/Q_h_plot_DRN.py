@@ -123,7 +123,10 @@ with columns0[1]:
     ax.axhline(0, color='grey', linestyle='--', linewidth=0.8)
     st.pyplot(fig)    
     
-    st.markdown("""**FIG:** Explore with the initial plot how outflow varies for changes of the drain conductance.
+    st.markdown("""
+        **FIG:** Explore with the initial plot how outflow varies for changes of the :green[drain conductance].
+
+        This **initial plot** is designed to bridge the gap between traditional Q-h plots on paper and the :rainbow[**interactive plots**] provided further down in the app. These allow you to explore the _Q_-_h_ relationships more intuitively, supported by interactive controls and guided instructions.
     """)
 #TODO
 st.markdown("""

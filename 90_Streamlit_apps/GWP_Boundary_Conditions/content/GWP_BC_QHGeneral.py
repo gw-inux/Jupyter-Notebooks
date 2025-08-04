@@ -279,7 +279,7 @@ with colplot2:
 
 if show_plot1:    
     st.markdown("""
-    :green[**Additional Instructions for Example 1:**]
+    :green[**Additional Instructions for Scenario 1:**]
     
     You can toggle between a specified head and a head-dependent river boundary condition on the right side of the model. If the river boundary is chosen, you can modify the river-aquifer conductance. 
     
@@ -526,7 +526,7 @@ if show_plot1:
         
         with st.expander('Show the 🧪:green[**INITIAL INSTRUCTIONS**] about how to use the interactive plot'):
             st.markdown("""
-            **Getting Started with the Interactive Plot** Instructions for Scenario 1: Exploring Model Behavior and _Q_-_h_ Relationships
+            **Getting Started with the Interactive Plot** Instructions for :green[**Scenario 1**]: Exploring Model Behavior and _Q_-_h_ Relationships
             
             Use the interactive tools in :green[**Scenario 1**] to investigate how model parameters and boundary conditions affect hydraulic head distributions and boundary flows. Follow the steps below to explore key relationships and system behavior.
             
@@ -562,7 +562,7 @@ if show_plot1:
 if show_plot2:
     
     st.markdown("""
-    :red[**Additional Instructions for Example 2:**]
+    :red[**Additional Instructions for Scenario 2:**]
     
     You can modify the specified head elevation at the left side (the right side hydraulic head is defined as fixed to 150 m). The interactive plot will indicate the boundary flow (in- and outflow) for both specified head boundaries.   
     
@@ -852,9 +852,9 @@ if show_plot2:
         
         with st.expander('Show the 🧪:red[**INITIAL INSTRUCTIONS**] about how to use the interactive plot'):
             st.markdown("""
-            **Getting Started with the Interactive Plot** Instructions for Scenario 2: Recharge, Groundwater Divide, and Boundary Flow Response
+            **Getting Started with the Interactive Plot** Instructions for :red[**Scenario 2**]: Recharge, Groundwater Divide, and Boundary Flow Response
             
-            Scenario 2 allows you to explore the development of a groundwater divide under recharge conditions, and to investigate how hydraulic conductivity, boundary elevations, and model parameters influence both flow dynamics and _Q_-_h_ relationships.
+            :red[**Scenario 2**] allows you to explore the development of a groundwater divide under recharge conditions, and to investigate how hydraulic conductivity, boundary elevations, and model parameters influence both flow dynamics and _Q_-_h_ relationships.
             
             **1. Modify Model Parameters**
             - Click "Modify Model Parameters" in the Control Panel to begin.

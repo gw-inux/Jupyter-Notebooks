@@ -95,9 +95,12 @@ columns0 = st.columns((1,1), gap = 'large')
 with columns0[0]:
     st.markdown("""
     Let’s begin with some simple questions:
-    - Can a river both **gain from** and **lose to** the aquifer?
+    - Can groundwater both **discharge** into a river and **receive recharge** from a river?
     - How does **stream stage** influence exchange flow?
     - What happens if the **aquifer drops below the riverbed**?
+    
+    
+    groundwater would be discharging into a river (gaining stream) and when river water would be recharging the groundwater system (losing stream)
     
     ▶️ The :violet[**River (RIV) Boundary**] in MODFLOW handles these dynamics by simulating a **head-dependent flow** that includes a check for streambed drying. The relationship between aquifer head $h_{aq}$ and river head $h_{RIV}$ is defined via a **conductance term** $C_{RIV}$. The following interactive plot shows how the flow between river and groundwater $Q_{RIV}$ responds to these changing conditions. The interactive plot is based on the MODFLOW documentation (Harbaugh, 2005) and consider **$h_{RIV}$ as 8 m** with a **river bottom elevation of 6 m**.Try adjusting the river conductance to explore the general behavior.
     """)
@@ -131,6 +134,8 @@ with columns0[1]:
     st.pyplot(fig)
     
     st.markdown("""
+    **FIG:** Explore with the initial plot how outflow varies for changes of the :violet[river conductance].
+    
     This **initial plot** is designed to bridge the gap between traditional Q-h plots on paper and the :rainbow[**interactive plots**] provided further down in the app. These allow you to explore the _Q_-_h_ relationships more intuitively, supported by interactive controls and guided instructions.
     """)
 
@@ -182,7 +187,7 @@ In groundwater modeling, simulating the interaction between an aquifer and a riv
 
 with st.expander("Show me more about **the Theory**"):
     st.markdown("""
-    The flow between a stream and an aquifer, $Q$, depends on the groundwater head in the river $h_{aq}$. 
+    The flow between a stream and an aquifer, $Q_{RIV}$, depends on the groundwater head in the river $h_{aq}$. 
     The relationship is as follows:
     """)
     st.latex(r'''Q_{RIV} = C_{RIV} (h_{RIV} - h_{{aq}})''')
@@ -191,20 +196,18 @@ with st.expander("Show me more about **the Theory**"):
     where:
     - $Q_{RIV}$ is the flow between the river and the aquifer (positive if it is directed into the aquifer) [L3/T]
     - $h_{RIV}$ is the water level (head) of the river (L),
-    - $C_{RIV}$ is the hydraulic conductance of the river bed [L2/T], and
+    - $C_{RIV}$ is the hydraulic conductance of the river bed [L²/T], and
     - $h_{aq}$ is the head in the aquifer beneath the river bed (L).
     
     If the aquifer head $h_{aq}$ is below the elevation of the bottom of the river bed, $R_{BOT}$, the relationship is as follows:
     """)
     
-    st.markdown("""
-    This application shows how the flow between a stream and an aquifer, $Q$, depends on the groundwater head in the river $h_{aq}$. 
-    The relationship is as follows:
-    """)
-    
-    
     st.latex(r'''Q_{RIV} = C_{RIV} (h_{RIV} - R_{{BOT}})''')
-    
+   
+    st.markdown("""
+    where:
+    - $R_{BOT}$ is the elevation of the river bed bottom [L].
+    """)
     st.write(':blue[**It is important to compare the calculated flow between the river and aquifer to the flow in the segment of river being modeled.**] :green[The amount of water lost or gained needs to be concistent with observed river flow over the length of the segment such that it is reasonable to assume a constant river head.]')
     
     
@@ -216,15 +219,15 @@ with st.expander('**Click here** to read about the :green[**heads used**] in the
     ### Heads used in the River Boundary of MODFLOW
     """)
     st.markdown("""
-    MODFLOW assumes the river bed permeability is substantially lower than the aquifer permeability.
+    MODFLOW assumes that the river bed permeability is substantially lower than the aquifer permeability.
 
     Consequently, all the head loss between the river and the aquifer occurs between the top and bottom of the river bed.
 
     MODFLOW requires input values for:
 
-    > Elevation of the River head (called Stage in MODFLOW, is labeled River Surface in this image). Because the river is an open body of water it is assumed the River head occurs at the top of the river bed.
+    - Elevation of the River head $h_{RIV}$ (called Stage in MODFLOW, is labeled River Surface in this image). Because the river is an open body of water it is assumed the River head occurs at the top of the river bed.
 
-    > River bottom elevation (called Rbot in MODFLOW, is the bottom of the hatched zone in this image).  
+    - River bottom elevation (called $R_{bot}$ in MODFLOW, is the bottom of the hatched zone in this image).  
     """)
     left_co1, cent_co1, last_co1 = st.columns((10,80,10))
     with cent_co1:
@@ -255,9 +258,9 @@ with st.expander('**Click here** to read how :green[**conductance is calculated*
     st.markdown("""
     where: 
 
-    - $K_v$ is vertical hydraulic conductivity of the river bed
-    - $A$ is plan view area of the river bed (LW)
-    - $M$ is thickness of the river bed (the distance over which the gradient is calculated)
+    - $K_v$ is vertical hydraulic conductivity of the river bed [L/T]
+    - $A$ is plan view area of the river bed (=$LW$) [L²]
+    - $M$ is thickness of the river bed (the distance over which the gradient is calculated) [L]
     """)
     
     
@@ -270,13 +273,13 @@ with st.expander('**Click here** to read how :green[**conductance is calculated*
     st.markdown("""
     $\Delta h$ is the difference between the Head in the Stream and Head in the Aquifer (discussed above in the section about the heads used in the River Boundary condition of MODFLOW)
 
-    In general, MODFLOW calculates flow as
+    In general, MODFLOW calculates flow $Q$ with a conductance $C$ as
     """)
-    st.latex(r'''Q = \text{Conductance} \Delta h''')
+    st.latex(r'''Q = C \Delta h''')
 
 with st.expander('**Click here** to read how flow is calculated when the :green[**aquifer head is lower then the river bottom**]'):
     st.markdown("""
-    ### A "Disconnected" River occurs when the Aquifer Head is Lower than the River Bottom    """)
+    ### A "Disconnected" River occurs when the Aquifer Head is Lower than the River Bottom""")
     
     st.markdown("""
     MODFLOW assumes the river bed permeability is substantially lower than the aquifer permeability, so the river bed remains saturated when the aquifer head is below the river bottom.
@@ -289,23 +292,23 @@ with st.expander('**Click here** to read how flow is calculated when the :green[
         st.image('06_Groundwater_modeling/FIGS/RIV_CONCEPT_UNSAT_2.png', caption="Concept of the River boundary when the aquifer head falls below the river bottom (modified from McDonald and Harbaugh, 1988; https://pubs.usgs.gov/twri/twri6a1/pdf/twri_6-A1_p.pdf)")
 
     st.markdown("""
-    When the aquifer head is lower than the river bottom, the head difference across the river bed is: 
+    When the aquifer head $h_{aq}$ is lower than the river bottom $R_{bot}$, the head difference across the river bed is: 
 
-    - Elevation of the River Surface $h_{Riv}$ – Elevation of the River Bottom $h_{bot}$
+    - Elevation of the River Surface $h_{Riv}$ – Elevation of the River Bottom $R_{bot}$
 
     - :red[This difference remains a constant.]
 
-    This head difference is multiplied by Conductance to determine Flow Rate from the River to the Aquifer
+    This head difference is multiplied by conductance to determine the flow rate from the river to the aquifer
     """)
 
 st.subheader("Interactive Plot and Exercise", divider="violet")
 st.markdown("""
-The interactive plot shows how the flow $Q_{RIV}$ across a River Boundary depends on the **difference between aquifer head** ($h_{aq}$) and **river stage** ($h_{stage}$), while being constrained by the **river bottom elevation** ($h_{bot}$) and scaled by the **riverbed conductance** ($C_{RIV}$).
+The interactive plot shows how the flow $Q_{RIV}$ across a River Boundary depends on the **difference between aquifer head** ($h_{aq}$) and **river head** ($h_{riv}$), while being constrained by the **river bottom elevation** ($R_{bot}$) and scaled by the **riverbed conductance** ($C_{RIV}$).
 
 Use the sliders or number inputs to adjust these parameters. You can also toggle between direct conductance input or compute it from hydraulic and geometrical properties. The plot updates dynamically and supports different viewing orientations.
 
 - You can investigate the plot on your own. Some :blue[INITIAL INSTRUCTIONS] may guide you.
-- An :rainbow[EXERCISE] allows you to apply the plot and deepen your understanding. This exercise invites you to explore how river–aquifer exchange is controlled by **river stage, aquifer hydraulic head, conductance, and bottom elevation**. Use the interactive RIV plot to examine how these factors influence the exchange flow, and interpret the **physical meaning based on Q–h plots**, especially the transitions between **gaining**, **losing**, and **decoupled** river conditions.
+- An :rainbow[EXERCISE] allows you to apply the plot and deepen your understanding. This exercise invites you to explore how river–aquifer exchange is controlled by **river stage, aquifer hydraulic head, conductance, and bottom elevation**. Use the interactive RIV plot to examine how these factors influence the exchange flow, and interpret the **physical meaning based on _Q_–_h_ plots**, especially the transitions between **gaining**, **losing**, and **decoupled** river conditions.
 """)
 
 # Functions
@@ -483,9 +486,9 @@ def Q_h_plot():
                 h_RIV = st.slider      (":violet[**River head** $h_{RIV}$ (m)]", 0.1+h_ref, thick, st.session_state.h_RIV, 0.1, key="h_RIV_input", on_change=update_h_RIV)
             #h_bot
             if st.session_state.number_input:
-                h_bot = st.number_input(":orange[**River bed bottom** $h_{bot}$ (m)]", 0.1+h_ref, thick, st.session_state.h_bot, 0.1, key="h_bot_input", on_change=update_h_bot)
+                h_bot = st.number_input(":orange[**River bed bottom** $R_{bot}$ (m)]", 0.1+h_ref, thick, st.session_state.h_bot, 0.1, key="h_bot_input", on_change=update_h_bot)
             else:
-                h_bot = st.slider      (":orange[**River bed bottom** $h_{bot}$ (m)]", 0.1+h_ref, thick, st.session_state.h_bot, 0.1, key="h_bot_input", on_change=update_h_bot)
+                h_bot = st.slider      (":orange[**River bed bottom** $R_{bot}$ (m)]", 0.1+h_ref, thick, st.session_state.h_bot, 0.1, key="h_bot_input", on_change=update_h_bot)
             #h_aq
             if st.session_state.number_input:
                 h_aq_show = st.number_input(":blue[**Aquifer head** $h_{aq}$ (m)]", 0.1+h_ref, thick, st.session_state.h_aq_show, 0.1, key="h_aq_show_input", on_change=update_h_aq_show)
@@ -594,7 +597,7 @@ def Q_h_plot():
             ax.axhline(h_RIV,     color='navy',      linewidth=2,   linestyle='-', label=f'$h_{{RIV}}$ in m = {h_RIV:.2f}')
             ax.axhline(h_aq_show, color='lightblue', linewidth=2.5, linestyle='--', label=f'$h_{{aq}}$ in m = {h_aq_show:.2f}')
             ax.axhline(h_bed,     color='wheat',      linewidth=2,   linestyle='-', label=f'$h_{{bed}}$ in m = {h_bed:.2f}')
-            ax.axhline(h_bot,     color='dimgrey',      linewidth=2,   linestyle='dotted', label=f'$h_{{bot}}$ in m = {h_bot:.2f}')    
+            ax.axhline(h_bot,     color='dimgrey',      linewidth=2,   linestyle='dotted', label=f'$R_{{bot}}$ in m = {h_bot:.2f}')    
     
             # fill ground water
             ax.fill_betweenx(y=[h_ref, h_aq_show], x1=lim2, x2=lim1, color='lightblue', alpha=0.3, label="zone of ground water")  
@@ -670,7 +673,7 @@ def Q_h_plot():
             ax.axvline(h_RIV,     color='navy',      linewidth=2,   linestyle='-', label=f'$h_{{RIV}}$ in m = {h_RIV:.2f}')
             ax.axvline(h_aq_show, color='lightblue', linewidth=2.5, linestyle='--', label=f'$h_{{aq}}$ in m = {h_aq_show:.2f}')
             ax.axvline(h_bed,     color='wheat',     linewidth=2,   linestyle='-', label=f'$h_{{bed}}$ in m = {h_bed:.2f}')
-            ax.axvline(h_bot,     color='dimgrey',   linewidth=2,   linestyle='dotted', label=f'$h_{{bot}}$ in m = {h_bot:.2f}')
+            ax.axvline(h_bot,     color='dimgrey',   linewidth=2,   linestyle='dotted', label=f'$R_{{bot}}$ in m = {h_bot:.2f}')
             
             # fill ground water
             ax.fill_betweenx(y=[lim2,lim1],x1=h_ref, x2=h_aq_show, color='lightblue', alpha=0.3, label="zone of ground water")  
@@ -794,7 +797,7 @@ def Q_h_plot():
             st.write("**Parameters and Results**")
             st.write("- Aquifer (MODFLOW) hydraulic head **$h_{aq}$ = %5.2f" %h_aq_show," m**")
             st.write("- River hydraulic head **$h_{RIV}$ = %5.2f" %h_RIV," m**")
-            st.write("- River bottom elevation **$h_{bot}$ = %5.2f" %h_bot," m**")
+            st.write("- River bottom elevation **$R_{bot}$ = %5.2f" %h_bot," m**")
             st.write("- Riverbed conductance **$C_{RIV}$ = % 10.2E"% st.session_state.C_RIV, " m²/s**")
             st.write("- Flow between river and aquifer **$Q_{RIV}$ = % 10.2E"% Q_ref," m³/s**")
     
@@ -805,13 +808,13 @@ def Q_h_plot():
         Before starting the exercise, follow these quick steps to explore RIV behavior:
         
         **1. Set a Reference Case**
-        * Set river stage $h_{stage} = 10.0$ m
-        * Set river bottom elevation $h_{bot} = 9.0$ m
+        * Set river head $h_{riv} = 10.0$ m
+        * Set river bottom elevation $R_{bot} = 9.0$ m
         * Vary aquifer head $h_{aq}$ between 8 and 12 m
         * Observe how the flow $Q_{RIV}$ changes:
-            * When $h_{aq} > h_{stage}$, the aquifer discharges to the river (losing river).
-            * When $h_{aq} < h_{stage}$ but $h_{aq} > h_{bot}$, the river recharges the aquifer (gaining river).
-            * When $h_{aq} < h_{bot}$, the river is not longer in direct contact with the aquifer. Flow through an unsaturated zone occurs, which is driven between the head gradient between river stage and river bottom. In this case, outflow from the river is kept constant.
+            * When $h_{aq} > h_{riv}$, the aquifer discharges to the river (losing river).
+            * When $h_{aq} < h_{riv}$ but $h_{aq} > R_{bot}$, the river recharges the aquifer (gaining river).
+            * When $h_{aq} < R_{bot}$, the river is not longer in direct contact with the aquifer. Flow through an unsaturated zone occurs, which is driven between the head gradient between river stage and river bottom. In this case, outflow from the river is kept constant.
         
         **2. Test Different Conductance Values**
         * Use the slider to vary $C_{RIV}$
@@ -820,8 +823,8 @@ def Q_h_plot():
         **3. Compute Conductance**
         * Toggle “Compute conductance”
         * Enter $K$, $A_{riv}$, and $L_{RIV}$ to calculate $C_{RIV} = \\frac{KA_{RIV}}{L_{RIV}}$
-        * Observe how the conductance value influences the Q–h relationship.
-        * Set $h_{aq}$ < $h_{bot}$ and compute $C_{RIV}$ directly. Investigate the effect of the river bottom elevation $h_{bot}$ and river bed thickness $M_{RIV}$
+        * Observe how the conductance value influences the _Q_–_h_ relationship.
+        * Set $h_{aq}$ < $R_{bot}$ and compute $C_{RIV}$ directly. Investigate the effect of the river bottom elevation $R_{bot}$ and river bed thickness $M_{RIV}$
         
         These steps help you build intuition for how RIV parameters control flow, a key foundation for the exercise. Feel free to further investigate the interactive plot on your own.
         """)
@@ -835,7 +838,7 @@ def Q_h_plot():
         By completing this exercise, you will:
         
         * Understand how river–aquifer exchange is controlled by stage, aquifer head, bottom elevation, and conductance.
-        * Interpret Q–h plots in relation to gaining, losing, or inactive river segments.
+        * Interpret _Q_–_h_ plots in relation to gaining, losing, or inactive river segments.
         * Identify conditions that limit or enable flow across the riverbed.
         * Develop the ability to test and visualize river boundary behavior through scenario analysis.
     
@@ -844,10 +847,10 @@ def Q_h_plot():
         Use the interactive RIV plot and complete the following steps:
         1. **Initial Exploration**
         
-        * Set the **river stage** (`h_stage`) to **10 m**
-        * Set the **river bottom elevation** (`h_bot`) to **9 m**
-        * Vary the **aquifer head** (`h_aq`) from **8 m to 12 m**
-        * Observe and describe how the flow (`Q_RIV`) changes.
+        * Set the **river head** ($h_{riv}$) to **10 m**
+        * Set the **river bottom elevation** ($R_{bot}$) to **9 m**
+        * Vary the **aquifer head** ($h_{aq}$) from **8 m to 12 m**
+        * Observe and describe how the flow ($Q_{riv}$) changes.
         
         📝 Record:
         
@@ -857,16 +860,16 @@ def Q_h_plot():
     
         2. **Effect of Conductance**
     
-        * Keep `h_stage = 10 m` and `h_bot = 9 m`
+        * Keep $h_{riv}$ = 10 m and $R_{bot}$ = 9 m
         * Choose three different conductance values (e.g., **1E-2, 1E-3, and 1E-4 m²/s**)
         * For each case:
-            * Plot `Q_RIV` vs `h_aq` from 8 m to 12 m (on paper or spreadsheet)
+            * Plot $Q_{RIV}$ vs $h_{aq}$ from 8 m to 12 m (on paper or spreadsheet)
             * Compare the slope of the curves and the magnitude of flow
             * Observe how low/high conductance limits flow exchange
         
         3. **Realistic Scenarios: Recession Flow**
         
-        * Imagine a river with stage **decreasing** from **11 m** to **9 m** (e.g., during a dry spell)
+        * Imagine a river with stage $h_{riv}$ **decreasing** from **11 m** to **9 m** (e.g., during a dry spell)
         * Set river bottom to **8.5 m**
         * Aquifer head is fixed at **9.2 m**
         
@@ -913,7 +916,7 @@ st.subheader('✅ Conclusion', divider = 'violet')
 st.markdown("""
 The River (RIV) boundary condition is a powerful tool in MODFLOW for simulating dynamic interactions between surface water and groundwater. Unlike simpler boundary types, the RIV condition allows for **bidirectional flow** and introduces a **cutoff mechanism** when the aquifer head drops below the riverbed. In this case, RIV can capture the realistic behavior that occurs when a partially saturated zone separates the water table from the river bottom.
 
-By adjusting parameters like **river stage**, **bed elevation**, and **conductance**, modelers can explore a wide range of hydrologic conditions — from **gaining** to **losing streams**, or even **no-flow scenarios**. Understanding these behaviors through Q–h plots supports stronger conceptual models and more reliable groundwater–surface water integration.
+By adjusting parameters like **river stage**, **bed elevation**, and **conductance**, modelers can explore a wide range of hydrologic conditions, from **gaining** to **losing streams**, or even **no-flow scenarios**. Understanding these behaviors through Q–h plots supports stronger conceptual models and more reliable groundwater–surface water integration.
 
 You're now ready to test your understanding in the final assessment.
 """)

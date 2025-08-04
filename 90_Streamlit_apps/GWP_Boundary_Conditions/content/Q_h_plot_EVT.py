@@ -88,6 +88,8 @@ with columns0[1]:
     
     st.markdown("""   
     _Please note that the horizontal axis in the plot refers to elevation and not head_.
+    
+    This **initial plot** is designed to bridge the gap between traditional Q-h plots on paper and the :rainbow[**interactive plots**] provided further down in the app. These allow you to explore the _Q_-_h_ relationships more intuitively, supported by interactive controls and guided instructions.
     """)
     
 #TODO

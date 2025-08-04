@@ -132,6 +132,8 @@ with columns0[1]:
     st.pyplot(fig)
     
     st.markdown("""
+    **FIG:** Explore with the initial plot how outflow varies for changes of the :orange[GHB conductance].
+    
     This **initial plot** is designed to bridge the gap between traditional Q-h plots on paper and the :rainbow[**interactive plots**] provided further down in the app. These allow you to explore the _Q_-_h_ relationships more intuitively, supported by interactive controls and guided instructions.
     """)
 
@@ -200,9 +202,9 @@ with st.expander("Show me more about **the Theory**"):
         $$
         
         where:
-        - $K$: Hydraulic conductivity [m/s],
-        - $A_B$: Cross-sectional area of the interconnection [m²],
-        - $L_B$: Length of flow path between aquifer and boundary [m].
+        - $K$: Hydraulic conductivity [L/T],
+        - $A_B$: Cross-sectional area of the interconnection [L²],
+        - $L_B$: Length of flow path between aquifer and boundary [L].
         
         The following figure illustrates the setup.
         """)
@@ -292,9 +294,9 @@ def Q_h_plot():
     with columns1[1]:
         with st.expander('Modify :blue[**Heads** & **Elevations**]'):
             if st.session_state.number_input:
-                HB = st.number_input("**:green[GHB head ($H_B$)]**", 5.0, 20.0, st.session_state.HB, 0.1, key="HB_input", on_change=update_HB)
+                HB = st.number_input(":green[**GHB head** $H_B$ (m)]", 5.0, 20.0, st.session_state.HB, 0.1, key="HB_input", on_change=update_HB)
             else:
-                HB = st.slider      ("**:green[GHB head ($H_B$)]**", 5.0, 20.0, st.session_state.HB, 0.1, key="HB_input", on_change=update_HB)
+                HB = st.slider      (":green[**GHB head** $H_B$ (m)]", 5.0, 20.0, st.session_state.HB, 0.1, key="HB_input", on_change=update_HB)
             if st.session_state.number_input:
                 h_aq_show = st.number_input(":blue[**Aquifer head** $h_{aq}$ (m)]", 0.0, 20.0, st.session_state.h_aq_show, 0.1, key="h_aq_show_input", on_change=update_h_aq_show)
             else:
@@ -318,9 +320,9 @@ def Q_h_plot():
                 else:
                     LB = st.slider      ("**GHB lenght** $L_B$ (m)", 1.0, 10000.0, st.session_state.LB, 1., key="LB_input", on_change=update_LB)
                 if st.session_state.number_input:
-                    AB = st.number_input("**GHB area** $A_B$(m²)", 1.0, 100000.0, st.session_state.AB, 1., key="AB_input", on_change=update_AB)
+                    AB = st.number_input("**GHB area** $A_B$ (m²)", 1.0, 100000.0, st.session_state.AB, 1., key="AB_input", on_change=update_AB)
                 else:
-                    AB = st.slider      ("**GHB area** $A_B$(m²)", 1.0, 100000.0, st.session_state.AB, 1., key="AB_input", on_change=update_AB)
+                    AB = st.slider      ("**GHB area** $A_B$ (m²)", 1.0, 100000.0, st.session_state.AB, 1., key="AB_input", on_change=update_AB)
                 st.session_state.C_GHB = st.session_state.K_GHB * st.session_state.AB / st.session_state.LB
             else:
                 if st.session_state.number_input:
@@ -360,18 +362,18 @@ def Q_h_plot():
                     '',  # no text
                     xy=(Q_ref,HB),  # arrowhead
                     xytext=(Q_ref, h_aq_show),  # arrow start
-                    arrowprops=dict(arrowstyle='-|>', color='blue', lw=2.5,  alpha=0.8, mutation_scale=15)
+                    arrowprops=dict(arrowstyle='-|>', color='green', lw=2.5,  alpha=0.8, mutation_scale=15)
                 )
             else:
                 ax.annotate(
                     '',  # no text
                     xy=(Q_ref,HB),  # arrowhead
                     xytext=(Q_ref, h_aq_show),  # arrow start
-                    arrowprops=dict(arrowstyle='<|-', color='green', lw=2.5, alpha=0.8, mutation_scale=15)
+                    arrowprops=dict(arrowstyle='<|-', color='blue', lw=2.5, alpha=0.8, mutation_scale=15)
                 )
             # Add gaining/losing stream annotations
-            ax.text(-0.003,1, "Flow OUT of the model", va='center',color='blue',  fontsize=16)
-            ax.text(0.002, 1,  "Flow INTO the model", va='center', ha='right',color='green',  fontsize=16)
+            ax.text(-0.003,1, "Flow OUT of the model", va='center',color='green',  fontsize=16)
+            ax.text(0.002, 1,  "Flow INTO the model", va='center', ha='right',color='blue',  fontsize=16)
                 
         else:
             ax.plot(h_aq, Q, label=rf"$Q_B = C_B(H_B - h_{{aq}})$",color='orange', linewidth=3)
@@ -391,18 +393,18 @@ def Q_h_plot():
                     '',  # no text
                     xy=(HB, Q_ref),  # arrowhead
                     xytext=(h_aq_show, Q_ref),  # arrow start
-                    arrowprops=dict(arrowstyle='-|>', color='blue', lw=2.5,  alpha=0.8, mutation_scale=15)
+                    arrowprops=dict(arrowstyle='-|>', color='green', lw=2.5,  alpha=0.8, mutation_scale=15)
                 )
             else:
                 ax.annotate(
                 '',  # no text
                 xy=(HB, Q_ref),  # arrowhead
                 xytext=(h_aq_show, Q_ref),  # arrow start
-                arrowprops=dict(arrowstyle='<|-', color='green', lw=2.5,  alpha=0.8, mutation_scale=15)
+                arrowprops=dict(arrowstyle='<|-', color='blue', lw=2.5,  alpha=0.8, mutation_scale=15)
                 )
             # Add gaining/losing stream annotations
-            ax.text(19.8, -0.003, "Flow OUT of the model", va='center', ha='right',color='blue',  fontsize=16)
-            ax.text(19.8, 0.003, "Flow INTO the model", va='center', ha='right',color='green',  fontsize=16)
+            ax.text(19.8, -0.003, "Flow OUT of the model", va='center', ha='right',color='green',  fontsize=16)
+            ax.text(19.8, 0.003, "Flow INTO the model", va='center', ha='right',color='blue',  fontsize=16)
     else:
         if turn:
             ax.plot(Q, h_aq, label=rf"$Q_B = C_B(H_B - h_{{aq}})$, $C_B$ = {st.session_state.C:.2e}",color='black', linewidth=3)

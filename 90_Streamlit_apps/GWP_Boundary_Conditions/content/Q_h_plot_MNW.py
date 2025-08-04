@@ -175,6 +175,8 @@ with columns0[1]:
     Please note that for this plot the head in the cell around the pumping well is **defined as $h_{cell}$ = 10 m** _(black dotted line)_.
     
     The :grey[dashed line $Q$-$h_{well}$] illustrate the relationship between discharge and hydraulic head in well relative to the head in the cell (drawdown) whereas the black and grey dotted lines indicate the hydraulic heads in the cell and the well respectively.
+    
+    This **initial plot** is designed to bridge the gap between traditional Q-h plots on paper and the :rainbow[**interactive plots**] provided further down in the app. These allow you to explore the _Q_-_h_ relationships more intuitively, supported by interactive controls and guided instructions.
     """)
 
 #TODO
