@@ -19,6 +19,29 @@ with open(path_quest_ini, "r", encoding="utf-8") as f:
 with open(path_quest_final, "r", encoding="utf-8") as f:
     quest_final = json.load(f)
 
+def prep_log_slider(default_val: float, log_min: float, log_max: float, step: float = 0.01, digits: int = 2):
+    """
+    Prepares labels and default for a log-scale select_slider.
+
+    Returns:
+    --------
+    labels : list of str
+        Formatted string labels in scientific notation.
+    default_label : str
+        Closest label to the given default_val.
+    """
+    # --- Generate value list and labels
+    log_values = np.arange(log_min, log_max + step, step)
+    values = 10 ** log_values
+    fmt = f"{{0:.{digits}e}}"
+    labels = [fmt.format(v) for v in values]
+
+    # --- Find closest label for default
+    idx_closest = np.abs(values - default_val).argmin()
+    default_label = labels[idx_closest]
+
+    return labels, default_label
+    
 # Authors, institutions, and year
 year = 2025 
 authors = {
@@ -277,7 +300,7 @@ if show_plot1:
         # Define the minimum and maximum for the logarithmic scale
         log_min = -4.0 # Corresponds to 10^-7 = 0.0000001
         log_max = -2.0  # Corresponds to 10^0 = 1
-        log_min2 = -5.5 
+        log_min2 = -6.0 
         log_max2 = -3.0 
         
         st.markdown("""
@@ -289,21 +312,22 @@ if show_plot1:
         with columns[0]:
             with st.expander("Click to modify **model parameters**:"):
                 # Log slider for K with input and print
-                K_slider_value=st.slider('_(log of) hydr. conductivity input:_', log_min,log_max,-3.5,0.01,format="%4.2f" )
-                K = 10 ** K_slider_value
-                st.write("**$K$ in m/s:** %5.2e" %K)
+                labels, default_label = prep_log_slider(default_val = 1e-3, log_min = log_min, log_max = log_max)
+                selected_K = st.select_slider("**Hydr. conductivity** $K$ in m/s", labels, default_label, key = "K_1")
+                K = float(selected_K)
+                # Recharge
                 st.write("")
-                R = st.slider('_Recharge input:_',-300,300,0,1)
-                st.write("**$R$ in mm/a:** %3i" %R)
+                R = st.slider('**Recharge** $R$ in mm/a',-300,300,0,1)
                 R = R/1000/365.25/86400
     
         with columns[1]:
             with st.expander("Click to modify **boundary condition parameters**:"):
                 riv = st.toggle (':violet[**River BC?**]')
                 if riv:
-                    cRiv_slider = st.slider('_(log of) $C_{RIV}$ input_', log_min2,log_max2,-5.0,0.01,format="%4.2f")
-                    cRiv = 10**cRiv_slider
-                    st.write("**$C_{RIV}$:** %5.2e" %cRiv)
+                    # Log slider for river conductance                    
+                    labels, default_label = prep_log_slider(default_val = 1e-5, log_min = log_min2, log_max = log_max2)
+                    selected_cRiv = st.select_slider("**RIV conductance** $C_{RIV}$ in m²/s", labels, default_label, key = "cRiv")
+                    cRiv = float(selected_cRiv)
                     hr_riv = R * L / cRiv + hRiv
                 
         with columns[2]:
@@ -393,6 +417,15 @@ if show_plot1:
         if "River" in bc_type:
             ax.plot(2500, h_rob_point, 'o', color='fuchsia', markersize=10)
             ax.text(2425, h_rob_point+1.0, 'Q-h plot for this point', horizontalalignment='right', bbox=dict(boxstyle="square",facecolor='none', edgecolor='fuchsia'), fontsize=12)
+        
+        # MAKE 'WATER'-TRIANGLE
+        x2400 = np.argmin(np.abs(x - 2400))
+        h_arrow = h[x2400] #water level at arrow
+        L2 = 2500
+        ax.arrow(L2*0.96,(h_arrow+(h_arrow*0.002)), 0, -0.01, fc="k", ec="k", head_width=(L2*0.015), head_length=(h_arrow*0.0015))
+        ax.hlines(y= h_arrow-(h_arrow*0.0005), xmin=L2*0.95, xmax=L2*0.97, colors='blue')   
+        ax.hlines(y= h_arrow-(h_arrow*0.001), xmin=L2*0.955, xmax=L2*0.965, colors='blue')
+        
         
         # Format plot
         ax.set_ylim(140,160)
@@ -560,17 +593,16 @@ if show_plot2:
         with columns[0]:
             with st.expander("Click to modify **model parameters**:"):
                 # Log slider for K with input and print
-                K2_slider_value=st.slider('_(log of) hydr. conductivity input:_', log_min2,log_max2,-3.5,0.01,format="%4.2f" )
-                K2 = 10 ** K2_slider_value
-                st.write("**$K$ in m/s:** %5.2e" %K2)
+                labels, default_label = prep_log_slider(default_val = 1e-3, log_min = log_min2, log_max = log_max2)
+                selected_K2 = st.select_slider("**Hydr. conductivity** $K$ in m/s", labels, default_label, key = "K_2")
+                K2 = float(selected_K2)
                 st.write("")
-                R2 = st.slider('_Recharge input:_',-300,300,0,1)
-                st.write("**$R$ in mm/a:** %3i" %R2)
+                R2 = st.slider('**Recharge** $R$ in mm/a',-300,300,0,1)
                 R2 = R2/1000/365.25/86400
         
         with columns[1]:
             with st.expander("Click to modify **boundary condition parameters**:"):
-                hl2=st.slider('LEFT specified head', 145.,155.,150.,.1)
+                hl2=st.slider('**LEFT specified head** $h_0$ in m ', 145.,155.,150.,.1)
                 riv2 = False
         
         with columns[2]:
