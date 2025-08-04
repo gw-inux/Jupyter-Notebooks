@@ -51,6 +51,44 @@ author_list = [f"{name}{''.join(index_symbols[i-1] for i in indices)}" for name,
 institution_list = [f"{index_symbols[i-1]} {inst}" for i, inst in institutions.items()]
 institution_text = " | ".join(institution_list)
 
+# --- functions
+
+def prep_log_slider(default_val: float, log_min: float, log_max: float, step: float = 0.01, digits: int = 2):
+    """
+    Prepares labels and default for a log-scale select_slider.
+
+    Returns:
+    --------
+    labels : list of str
+        Formatted string labels in scientific notation.
+    default_label : str
+        Closest label to the given default_val.
+    """
+    # --- Generate value list and labels
+    log_values = np.arange(log_min, log_max + step, step)
+    values = 10 ** log_values
+    fmt = f"{{0:.{digits}e}}"
+    labels = [fmt.format(v) for v in values]
+
+    # --- Find closest label for default
+    idx_closest = np.abs(values - default_val).argmin()
+    default_label = labels[idx_closest]
+
+    return labels, default_label
+    
+def get_label(val: float, labels: list[str]) -> str:
+    """Given a float value and a list of scientific notation labels, return the closest label."""
+    label_vals = [float(l) for l in labels]
+    idx = np.abs(np.array(label_vals) - val).argmin()
+    return labels[idx]
+
+def get_step(val: float) -> float:
+    """Return a step that modifies the first digit after the decimal point in scientific notation."""
+    if val == 0:
+        return 1e-8  # fallback
+    exponent = int(np.floor(np.log10(abs(val))))
+    return 10 ** (exponent - 1)
+
 st.title("Theory and Concept of the :rainbow[Multi-Node-Well Boundary (MNW)]")
 st.subheader("Process-based implementation of Flow to Pumping wells", divider="rainbow")
 
@@ -83,11 +121,11 @@ with columns0[1]:
     # CWC
     # READ LOG VALUE, CONVERT, AND WRITE VALUE FOR Conductance
     col_ini = st.columns((3,1.2))
-    with col_ini[0]:
-        container = st.container()  
-        CWCi_slider_value_new = st.slider      ("_(log of) CWC_", -5.,-0., -2.5, 0.01, format="%4.2f")    
-        CWCi = 10 ** CWCi_slider_value_new
-        container.write("**:grey[$CWC$] in m²/s:** %5.2e" %CWCi) 
+    with col_ini[0]:      
+        labels, default_label = prep_log_slider(default_val = 3e-3, log_min = -5, log_max = 0)
+        selected_Ci = st.select_slider("**Conductance :grey[$CWC$]** in m²/s", labels, default_label, key = "MNW_CWCi")
+        st.session_state.CWCi = float(selected_Ci)
+        
     with col_ini[1]:
         WEL_equi = st.toggle('**WEL**')
         
@@ -97,7 +135,7 @@ with columns0[1]:
     QPi = np.full_like(h_aqi, -0.02)
     h_ni = 10.0 # Example head for the cell
     h_WELLi = np.linspace(0, 20, 200)
-    Qi = (h_WELLi - h_ni) * CWCi
+    Qi = (h_WELLi - h_ni) * st.session_state.CWCi
     
     # Create the plot
     fig, ax = plt.subplots(figsize=(5, 5))      
@@ -109,11 +147,11 @@ with columns0[1]:
     else:
         ax.plot(h_WELLi, Qi, color='lightgrey', linestyle='--', linewidth=3, label='$Q$-$h_{well}$')
         # Determine the y-values for h = 10
-        Qi_10 = (10.0 - h_ni) * CWCi
+        Qi_10 = (10.0 - h_ni) * st.session_state.CWCi
         QPi_10 = -0.02     
     
         # Draw vertical line at Qi and h_intersect
-        h_is = h_ni + (-0.02 / CWCi)
+        h_is = h_ni + (-0.02 / st.session_state.CWCi)
         ax.plot([h_is, h_is], [QPi_10, -0.05], color='lightgrey',linestyle=':', linewidth=3)
     
         ax.set_xlabel("Heads in the MNW-Aquifer System (m)", fontsize=14, labelpad=15)

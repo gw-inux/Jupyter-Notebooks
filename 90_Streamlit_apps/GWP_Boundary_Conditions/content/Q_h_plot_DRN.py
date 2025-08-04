@@ -40,6 +40,44 @@ author_list = [f"{name}{''.join(index_symbols[i-1] for i in indices)}" for name,
 institution_list = [f"{index_symbols[i-1]} {inst}" for i, inst in institutions.items()]
 institution_text = " | ".join(institution_list)
 
+# --- functions
+
+def prep_log_slider(default_val: float, log_min: float, log_max: float, step: float = 0.01, digits: int = 2):
+    """
+    Prepares labels and default for a log-scale select_slider.
+
+    Returns:
+    --------
+    labels : list of str
+        Formatted string labels in scientific notation.
+    default_label : str
+        Closest label to the given default_val.
+    """
+    # --- Generate value list and labels
+    log_values = np.arange(log_min, log_max + step, step)
+    values = 10 ** log_values
+    fmt = f"{{0:.{digits}e}}"
+    labels = [fmt.format(v) for v in values]
+
+    # --- Find closest label for default
+    idx_closest = np.abs(values - default_val).argmin()
+    default_label = labels[idx_closest]
+
+    return labels, default_label
+    
+def get_label(val: float, labels: list[str]) -> str:
+    """Given a float value and a list of scientific notation labels, return the closest label."""
+    label_vals = [float(l) for l in labels]
+    idx = np.abs(np.array(label_vals) - val).argmin()
+    return labels[idx]
+
+def get_step(val: float) -> float:
+    """Return a step that modifies the first digit after the decimal point in scientific notation."""
+    if val == 0:
+        return 1e-8  # fallback
+    exponent = int(np.floor(np.log10(abs(val))))
+    return 10 ** (exponent - 1)
+    
 st.title("Theory and Concept of the :green[Drain Boundary (DRN) in MODFLOW]")
 st.subheader("Groundwater - :green[Drain] interaction", divider="green")
 
@@ -63,14 +101,13 @@ with columns0[1]:
     # Slider input and plot
     # C_DRN
     # READ LOG VALUE, CONVERT, AND WRITE VALUE FOR Conductance
-    container = st.container()  
-    CDi_slider_value_new = st.slider      ("_(log of) Conductance_", -5.,-0., -2.5, 0.01, format="%4.2f")    
-    CDi = 10 ** CDi_slider_value_new
-    container.write("**:green[$C_D$]** in m²/s: %5.2e" %CDi) 
+    labels, default_label = prep_log_slider(default_val = 3e-3, log_min = -5, log_max = 0)
+    selected_Ci = st.select_slider("**Conductance :green[$C_{D}$]** in m²/s", labels, default_label, key = "DRN_Ci")
+    st.session_state.Ci_DRN = float(selected_Ci)
 # Computation 
 HDi = 8 
 h_aqi = np.linspace(0, 20, 200)
-Qi = np.where(h_aqi >= HDi, CDi * (HDi - h_aqi)*-1, 0)
+Qi = np.where(h_aqi >= HDi, st.session_state.Ci_DRN * (HDi - h_aqi)*-1, 0)
 
 # Create the plot
 with columns0[1]:

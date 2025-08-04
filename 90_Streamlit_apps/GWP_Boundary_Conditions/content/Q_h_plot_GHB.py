@@ -113,11 +113,11 @@ with columns0[1]:
     # Conductance
     labels, default_label = prep_log_slider(default_val = 3e-3, log_min = -5, log_max = 0)
     selected_Ci = st.select_slider("**Conductance :orange[$C_B$]** in m²/s", labels, default_label, key = "GHB_Ci")
-    st.session_state.Ci = float(selected_Ci)
+    st.session_state.Ci_GHB = float(selected_Ci)
     
     # Define aquifer head range
     h_aqi = np.linspace(0, 20, 200)
-    Qi = st.session_state.Ci * (HBi - h_aqi)
+    Qi = st.session_state.Ci_GHB * (HBi - h_aqi)
 
     fig, ax = plt.subplots(figsize=(5, 5))      
     ax.plot(h_aqi, Qi, color='black', linewidth=4)
