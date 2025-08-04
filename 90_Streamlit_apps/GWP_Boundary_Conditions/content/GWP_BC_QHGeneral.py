@@ -597,7 +597,7 @@ if show_plot2:
                 selected_K2 = st.select_slider("**Hydr. conductivity** $K$ in m/s", labels, default_label, key = "K_2")
                 K2 = float(selected_K2)
                 st.write("")
-                R2 = st.slider('**Recharge** $R$ in mm/a',-300,300,0,1)
+                R2 = st.slider('**Recharge** $R$ in mm/a ',-300,300,0,1)
                 R2 = R2/1000/365.25/86400
         
         with columns[1]:
