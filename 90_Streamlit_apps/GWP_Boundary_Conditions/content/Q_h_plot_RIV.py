@@ -313,10 +313,24 @@ Use the sliders or number inputs to adjust these parameters. You can also toggle
 # Callback function to update session state
 def update_C():
     st.session_state.C_slider_value = st.session_state.C_input
-def update_h_RIV():
-    st.session_state.h_RIV = st.session_state.h_RIV_input
+def update_C_RIV():
+    """Handles both number input (float) and select_slider (str)"""
+    raw_val = st.session_state.C_input
+    if isinstance(raw_val, str):
+        st.session_state.C_RIV = float(raw_val)  # from select_slider
+    elif isinstance(raw_val, float):
+        st.session_state.C_RIV = raw_val         # from number_input
 def update_K():
     st.session_state.K_slider_value = st.session_state.K_input
+def update_K_RIV():
+    """Handles both number input (float) and select_slider (str)"""
+    raw_val = st.session_state.K_input
+    if isinstance(raw_val, str):
+        st.session_state.K_RIV = float(raw_val)  # from select_slider
+    elif isinstance(raw_val, float):
+        st.session_state.K_RIV = raw_val         # from number_input
+def update_h_RIV():
+    st.session_state.h_RIV = st.session_state.h_RIV_input
 def update_L_RIV():
     st.session_state.L_RIV = st.session_state.L_RIV_input
 def update_W_RIV():
@@ -385,9 +399,10 @@ def draw_sharp_arrow(ax, start, end, orientation='vertical',
     
 
 # Initialize session state for value and toggle state
-st.session_state.C_slider_value = -2.0
-st.session_state.C_initial = 10 ** st.session_state.C_slider_value
-st.session_state.K_slider_value = -5.0
+st.session_state.C_RIV = 1e-2
+st.session_state.C_RIV_label = "1e-2"
+st.session_state.K_RIV = 1e-5
+st.session_state.K_RIV_label = "1e-5"
 st.session_state.thick = 20.0
 st.session_state.h_ref = 0.0
 st.session_state.h_aq_show = 10.0
@@ -397,6 +412,7 @@ st.session_state.W_RIV = 10.0
 st.session_state.M_RIV = 1.0
 st.session_state.h_bot = 7.0
 st.session_state.number_input = False  # Default to number_input
+st.session_state.condcomp = False
 
 # Main area inputs
 @st.fragment
@@ -478,8 +494,8 @@ def Q_h_plot():
             
     with columns1[2]:
         with st.expander('Modify the conductance'):
-            condcomp = st.toggle('Compute $C_{RIV}$ explicitly')
-            if condcomp:
+            condcomp = st.toggle('Compute $C_{RIV}$ explicitly', key='condcomp')
+            if st.session_state.condcomp:
                 #L_RIV
                 if st.session_state.number_input:
                      L_RIV = st.number_input("**River length in m ($L_{RIV}$)**", 1.0, 1000.0, st.session_state.L_RIV, 0.1, key="L_RIV_input", on_change=update_L_RIV)
@@ -497,27 +513,26 @@ def Q_h_plot():
                 else:
                      M_RIV = st.slider      ("**River bed thickness in m ($M_{RIV}$)**", 0.01, 5.0, st.session_state.M_RIV, 0.1, key="M_RIV_input", on_change=update_M_RIV)
                      h_bed = h_bot + M_RIV
-                #K_RIV            
-                # READ LOG VALUE, CONVERT, AND WRITE VALUE FOR Conductance
-                container = st.container()  
+                # LOG Slider/number input for K_RIV
                 if st.session_state.number_input:
-                    K_slider_value_new = st.number_input("_(log of) Riverbed hydraulic conductivity_", log_min2,log_max2, st.session_state.K_slider_value, 0.01, format="%4.2f", key="K_input", on_change=update_K)
+                    st.number_input("**Riverbed hydraulic conductivity** $K_v$ (m/s)", 10**log_min2, 10**log_max2, st.session_state.K_RIV, get_step(st.session_state.K_RIV), format="%.2e", key="K_input", on_change=update_K_RIV)
                 else:
-                    K_slider_value_new = st.slider      ("_(log of) Riverbed hydraulic conductivity_", log_min2,log_max2, st.session_state.K_slider_value, 0.01, format="%4.2f", key="K_input", on_change=update_K)
-                K = 10 ** K_slider_value_new
-                container.write("**$K_v$ in m/s:** %5.2e" %K)  
-                
-                C = L_RIV * W_RIV * K / M_RIV
+                    labels, _ = prep_log_slider(default_val=1e-4, log_min=log_min2, log_max=log_max2)
+                    # Ensure label string matches st.session_state.K_GHB
+                    st.session_state.K_RIV_label = get_label(st.session_state.K_RIV, labels)
+                    st.select_slider("**Riverbed hydraulic conductivity** $K_v$ (m/s)", labels, value = st.session_state.K_RIV_label, key="K_input", on_change=update_K_RIV)              
+                st.session_state.C_RIV = st.session_state.L_RIV * st.session_state.W_RIV * st.session_state.K_RIV / st.session_state.M_RIV
             else:
                 #C_RIV
-                # READ LOG VALUE, CONVERT, AND WRITE VALUE FOR Conductance
-                container = st.container()  
                 if st.session_state.number_input:
-                    C_slider_value_new = st.number_input("_(log of) Conductance_", log_min1,log_max1, st.session_state.C_slider_value, 0.01, format="%4.2f", key="C_input", on_change=update_C)
+                    st.number_input("**Conductance** $C_{Riv}$ (m²/s)", 10**log_min1, 10**log_max1, st.session_state.C_RIV, get_step(st.session_state.C_RIV), format="%.2e", key="C_input", on_change=update_C_RIV)
                 else:
-                    C_slider_value_new = st.slider      ("_(log of) Conductance_", log_min1,log_max1, st.session_state.C_slider_value, 0.01, format="%4.2f", key="C_input", on_change=update_C)    
-                C = 10 ** C_slider_value_new
-                container.write("**$C_{Riv}$ in m²/s:** %5.2e" %C)         
+                    labels, _ = prep_log_slider(default_val=1e-2, log_min=log_min1, log_max=log_max1)
+                    # Ensure label string matches st.session_state.K_GHB
+                    st.session_state.C_RIV_label = get_label(st.session_state.C_RIV, labels)
+                    st.select_slider("**Conductance** $C_{Riv}$ (m²/s)", labels, value = st.session_state.C_RIV_label, key="C_input", on_change=update_C_RIV)
+                # Update K_GHB_value based on computed values
+                st.session_state.K_RIV = st.session_state.C_RIV * st.session_state.M_RIV / st.session_state.L_RIV / st.session_state.W_RIV        
             
     # INPUT PROCESSING
     # calculate top of river bed
@@ -553,8 +568,8 @@ def Q_h_plot():
     # COMPUTATION
     # Define aquifer head range
     h_aq = np.linspace(0+h_ref, thick+h_ref, 200)
-    Q = np.where(h_aq >= h_bot, C * (h_RIV - h_aq), C * (h_RIV - h_bot))
-    Q_ref = C * (h_RIV - h_aq_show) if h_aq_show >= h_bot else C * (h_RIV - h_bot)
+    Q = np.where(h_aq >= h_bot, st.session_state.C_RIV * (h_RIV - h_aq), st.session_state.C_RIV * (h_RIV - h_bot))
+    Q_ref = st.session_state.C_RIV * (h_RIV - h_aq_show) if h_aq_show >= h_bot else st.session_state.C_RIV * (h_RIV - h_bot)
     
     lim1 = x_range
     lim2 = -x_range
@@ -781,7 +796,7 @@ def Q_h_plot():
             st.write("- Aquifer (MODFLOW) hydraulic head **$h_{aq}$ = %5.2f" %h_aq_show," m**")
             st.write("- River hydraulic head **$h_{RIV}$ = %5.2f" %h_RIV," m**")
             st.write("- River bottom elevation **$h_{bot}$ = %5.2f" %h_bot," m**")
-            st.write("- Riverbed conductance **$C_{RIV}$ = % 10.2E"% C, " m²/s**")
+            st.write("- Riverbed conductance **$C_{RIV}$ = % 10.2E"% st.session_state.C_RIV, " m²/s**")
             st.write("- Flow between river and aquifer **$Q_{RIV}$ = % 10.2E"% Q_ref," m³/s**")
     
     with st.expander('Show the :blue[**INITIAL INSTRUCTIONS**]'):

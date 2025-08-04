@@ -224,8 +224,6 @@ st.markdown("""
 # Functions
 
 # Callback function to update session state
-def update_C():
-    st.session_state.C_slider_value = st.session_state.C_input
 def update_C_GHB():
     """Handles both number input (float) and select_slider (str)"""
     raw_val = st.session_state.C_input
@@ -233,8 +231,6 @@ def update_C_GHB():
         st.session_state.C_GHB = float(raw_val)  # from select_slider
     elif isinstance(raw_val, float):
         st.session_state.C_GHB = raw_val         # from number_input
-def update_K():
-    st.session_state.K_slider_value = st.session_state.K_input
 def update_K_GHB():
     """Handles both number input (float) and select_slider (str)"""
     raw_val = st.session_state.K_input
@@ -254,10 +250,8 @@ def update_h_aq_show():
     st.session_state.h_aq_show = st.session_state.h_aq_show_input  
     
 # Initialize session state for value and toggle state
-st.session_state.C_slider_value = -2.5
 st.session_state.C_GHB = 3e-3
 st.session_state.C_GHB_label = "3e-3"
-st.session_state.K_slider_value = -3.5
 st.session_state.K_GHB = 1e-4
 st.session_state.K_GHB_label = "1e-4"
 st.session_state.LB = 100.
@@ -265,9 +259,8 @@ st.session_state.AB = 1000.0
 st.session_state.HB = 8.0
 st.session_state.stage = 2.0
 st.session_state.h_aq_show = 10.0
-
 st.session_state.number_input = False  # Default to number_input
-
+st.session_state.c_computed = False
 
 # Main area inputs
 @st.fragment
@@ -310,8 +303,8 @@ def Q_h_plot():
     with columns1[2]:
         with st.expander('Modify the conductance'):
             # READ LOG VALUE, CONVERT, AND WRITE VALUE FOR TRANSMISSIVITY
-            c_computed = st.toggle('Toggle to compute conductance')
-            if c_computed:
+            c_computed = st.toggle('Toggle to compute conductance', key='c_computed')
+            if st.session_state.c_computed:
                 # LOG Slider/number input for K
                 if st.session_state.number_input:
                     st.number_input("**Hydr. conductivity** $K_B$ (m/s)", 10**log_min1, 10**log_max1, st.session_state.K_GHB, get_step(st.session_state.K_GHB), format="%.2e", key="K_input", on_change=update_K_GHB)
@@ -328,11 +321,7 @@ def Q_h_plot():
                     AB = st.number_input("**GHB area** $A_B$(m²)", 1.0, 100000.0, st.session_state.AB, 1., key="AB_input", on_change=update_AB)
                 else:
                     AB = st.slider      ("**GHB area** $A_B$(m²)", 1.0, 100000.0, st.session_state.AB, 1., key="AB_input", on_change=update_AB)
-                #st.session_state.C = K * AB / LB
-                st.session_state.C_GHB = st.session_state.K_GHB * AB / LB
-                
-                # Update C_slider_value based on computed values
-                st.session_state.C_slider_value = np.log10(st.session_state.C)
+                st.session_state.C_GHB = st.session_state.K_GHB * st.session_state.AB / st.session_state.LB
             else:
                 if st.session_state.number_input:
                     st.number_input("**Conductance** $C_B$ (m²/s)", 10**log_min1, 10**log_max1, st.session_state.C_GHB, get_step(st.session_state.C_GHB), format="%.2e", key="C_input", on_change=update_C_GHB)
@@ -341,7 +330,6 @@ def Q_h_plot():
                     # Ensure label string matches st.session_state.K_GHB
                     st.session_state.C_GHB_label = get_label(st.session_state.C_GHB, labels)
                     st.select_slider("**Conductance** $C_B$ (m²/s)", labels, value = st.session_state.C_GHB_label, key="C_input", on_change=update_C_GHB)
-                
                 # Update K_GHB_value based on computed values
                 st.session_state.K_GHB = st.session_state.C_GHB * st.session_state.LB / st.session_state.AB
 
@@ -435,7 +423,7 @@ def Q_h_plot():
     ax.set_title("Flow Between Groundwater and GHB", fontsize=16, pad=10)
     plt.xticks(fontsize=14)
     plt.yticks(fontsize=14) 
-    ax.legend(fontsize=14)
+    ax.legend(loc="upper left", fontsize=14)
     
     st.pyplot(fig)
     

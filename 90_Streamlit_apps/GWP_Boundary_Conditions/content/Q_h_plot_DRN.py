@@ -207,8 +207,13 @@ Use the sliders or number inputs to adjust the parameters. You can toggle betwee
 # Functions
 
 # Callback function to update session state
-def update_CD():
-    st.session_state.CD_slider_value = st.session_state.CD_input
+def update_C_DRN():
+    """Handles both number input (float) and select_slider (str)"""
+    raw_val = st.session_state.C_input
+    if isinstance(raw_val, str):
+        st.session_state.C_DRN = float(raw_val)  # from select_slider
+    elif isinstance(raw_val, float):
+        st.session_state.C_DRN = raw_val         # from number_input
 def update_HD():
     st.session_state.HD = st.session_state.HD_input
 def update_stage():
@@ -217,10 +222,10 @@ def update_h_aq_show():
     st.session_state.h_aq_show = st.session_state.h_aq_show_input  
     
 # Initialize session state for value and toggle state
-st.session_state.CD_slider_value = -2.5
+st.session_state.C_DRN = 1e-2
+st.session_state.C_DRN_label = "1e-2"
 st.session_state.HD = 8.0
 st.session_state.h_aq_show = 10.0
-
 st.session_state.number_input = False  # Default to number_input
 
 
@@ -243,9 +248,6 @@ def Q_h_plot():
             st.session_state.number_input = st.toggle("Toggle to use Slider or Number for input of $C_D$, $H_D$, and $h_{aq}$.")
             visualize = st.toggle(':rainbow[**Make the plot alive** and visualize the input values]', key="DRN_vis", value=True)
 
-    # Initialize st.session_state.C
-    if "CD" not in st.session_state:
-        st.session_state.CD = 10 ** st.session_state.CD_slider_value
     with columns1[1]:
         with st.expander('Modify heads and elevations'):
             if st.session_state.number_input:
@@ -260,26 +262,27 @@ def Q_h_plot():
     with columns1[2]:
         with st.expander('Modify the conductance'):
             # READ LOG VALUE, CONVERT, AND WRITE VALUE FOR TRANSMISSIVITY
-            container = st.container()  
+            #C_RIV
             if st.session_state.number_input:
-                CD_slider_value_new = st.number_input("_(log of) Conductance $C_D$ in m²/s_", log_min1,log_max1, st.session_state.CD_slider_value, 0.01, format="%4.2f", key="CD_input", on_change=update_CD)
+                st.number_input("**Conductance** $C_D$ (m²/s)", 10**log_min1, 10**log_max1, st.session_state.C_DRN, get_step(st.session_state.C_DRN), format="%.2e", key="C_input", on_change=update_C_DRN)
             else:
-                CD_slider_value_new = st.slider      ("_(log of) Conductance $C_D$ in m²/s_", log_min1,log_max1, st.session_state.CD_slider_value, 0.01, format="%4.2f", key="CD_input", on_change=update_CD)    
-            st.session_state.CD = 10 ** CD_slider_value_new
-            container.write("**Conductance $C_D$ in m²/s:** %5.2e" %st.session_state.CD)
-
+                labels, _ = prep_log_slider(default_val=1e-2, log_min=log_min1, log_max=log_max1)
+                # Ensure label string matches st.session_state.K_GHB
+                st.session_state.C_DRN_label = get_label(st.session_state.C_DRN, labels)
+                st.select_slider("**Conductance** $C_D$ (m²/s)", labels, value = st.session_state.C_DRN_label, key="C_input", on_change=update_C_DRN)
     
     # Computation - Define aquifer head range
     h_aq = np.linspace(0, 20, 200)
     
-    Q = np.where(h_aq >= HD, st.session_state.CD * (HD - h_aq)*-1, 0)
-    Q_ref = st.session_state.CD * (HD - h_aq_show)*-1 if h_aq_show >= HD else 0   
+    Q = np.where(h_aq >= HD, st.session_state.C_DRN * (HD - h_aq)*-1, 0)
+    Q_ref = st.session_state.C_DRN * (HD - h_aq_show)*-1 if h_aq_show >= HD else 0   
         
     # Create the plot
     fig, ax = plt.subplots(figsize=(8, 8))
     if visualize:
         if turn:
-            ax.plot(Q, h_aq, label=rf"$Q_D = C_D(H_D - h_{{aq}})$, $C_D$ = {st.session_state.CD:.2e}",color='green', linewidth=3)
+            ax.plot(Q, h_aq, label=rf"$Q_D = C_D(H_D - h_{{aq}})$",color='green', linewidth=3)
+            ax.plot([], [], ' ', label=fr"$C_D$ = {st.session_state.C_DRN:.2e}")
             ax.plot([], [], ' ', label=fr"$Q_D$ = {Q_ref:.2e} m³/s")
             ax.axvline(0, color='black', linewidth=1)
             ax.axhline(HD, color='green', linewidth=2, linestyle='--', label=f'$H_D$ in m= {HD:.2f}')
@@ -308,7 +311,8 @@ def Q_h_plot():
             #ax.text(0.035, 1,  "Losing DRN boundary", va='center',color='green')
                 
         else:
-            ax.plot(h_aq, Q, label=rf"$Q_D = C_D(H_D - h_{{aq}})$, $C_D$ = {st.session_state.CD:.2e}",color='green', linewidth=3)
+            ax.plot(h_aq, Q, label=rf"$Q_D = C_D(H_D - h_{{aq}})$",color='green', linewidth=3)
+            ax.plot([], [], ' ', label=fr"$C_D$ = {st.session_state.C_DRN:.2e}")
             ax.plot([], [], ' ', label=fr"$Q_D$ = {Q_ref:.2e} m³/s")
             ax.axhline(0, color='black', linewidth=1)
             ax.axvline(HD, color='green', linewidth=2, linestyle='--', label=f'$H_D$ in m= {HD:.2f}')
@@ -336,14 +340,14 @@ def Q_h_plot():
             ax.text(0.5, 0.003, "Gaining DRN boundary", va='center',color='blue')
     else:
         if turn:
-            ax.plot(Q, h_aq, label=rf"$Q_o = C_D(H_D - h_{{aq}})$, $C_D$ = {st.session_state.CD:.2e}",color='black', linewidth=3)
+            ax.plot(Q, h_aq, label=rf"$Q_o = C_D(H_D - h_{{aq}})$, $C_D$ = {st.session_state.C_DRN:.2e}",color='black', linewidth=3)
             # Labels and formatting
             ax.set_ylabel("Heads and elevations in the DRN Boundary-Aquifer System (m)", fontsize=14, labelpad=15)
             ax.set_xlabel("Flow from the Ground-Water System into the DRN  $Q_{out}$ (m³/s)", fontsize=14, labelpad=15)
             ax.set_ylim(0, 20)
             ax.set_xlim(-0.05, 0.05)
         else:
-            ax.plot(h_aq, Q, label=rf"$Q_o = C_D(H_D - h_{{aq}})$, $C_D$ = {st.session_state.CD:.2e}",color='black', linewidth=3)
+            ax.plot(h_aq, Q, label=rf"$Q_o = C_D(H_D - h_{{aq}})$, $C_D$ = {st.session_state.C_DRN:.2e}",color='black', linewidth=3)
             # Labels and formatting
             ax.set_xlabel("Heads and elevations in the DRN Boundary-Aquifer System (m)", fontsize=14, labelpad=15)
             ax.set_ylabel("Flow from the Ground-Water System into the DRN  $Q_{out}$ (m³/s)", fontsize=14, labelpad=15)
@@ -354,7 +358,7 @@ def Q_h_plot():
     ax.set_title("Flow Between Groundwater and DRN boundary", fontsize=16, pad=20)
     plt.xticks(fontsize=14)
     plt.yticks(fontsize=14) 
-    ax.legend(fontsize=14)
+    ax.legend(loc="upper left", fontsize=14)
     
     st.pyplot(fig)
     
