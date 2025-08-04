@@ -284,24 +284,24 @@ def Q_h_plot():
         st.session_state.C = 10 ** st.session_state.C_slider_value
     
     with columns1[0]:
-        with st.expander('Modify the plot control'):
+        with st.expander('Modify the **Plot Control**'):
             turn = st.toggle('Toggle to turn the plot 90 degrees', key="GHB_turn", value=True)
             st.session_state.number_input = st.toggle("Toggle to use Slider or Number for input of $C_B$, $H_B$, $A_B$, $L_B$, and $h_{aq}$.")
             visualize = st.toggle(':rainbow[**Make the plot alive** and visualize the input values]', key="GHB_vis", value=True)
             
     with columns1[1]:
-        with st.expander('Modify heads and elevations'):
+        with st.expander('Modify :blue[**Heads** & **Elevations**]'):
             if st.session_state.number_input:
                 HB = st.number_input("**:green[GHB head ($H_B$)]**", 5.0, 20.0, st.session_state.HB, 0.1, key="HB_input", on_change=update_HB)
             else:
                 HB = st.slider      ("**:green[GHB head ($H_B$)]**", 5.0, 20.0, st.session_state.HB, 0.1, key="HB_input", on_change=update_HB)
             if st.session_state.number_input:
-                h_aq_show = st.number_input("**:blue[Aquifer head ($h_{aq}$)]**", 0.0, 20.0, st.session_state.h_aq_show, 0.1, key="h_aq_show_input", on_change=update_h_aq_show)
+                h_aq_show = st.number_input(":blue[**Aquifer head** $h_{aq}$ (m)]", 0.0, 20.0, st.session_state.h_aq_show, 0.1, key="h_aq_show_input", on_change=update_h_aq_show)
             else:
-                h_aq_show = st.slider      ("**:blue[Aquifer head ($h_{aq})$]**", 0.0, 20.0, st.session_state.h_aq_show, 0.1, key="h_aq_show_input", on_change=update_h_aq_show)            
+                h_aq_show = st.slider      (":blue[**Aquifer head** $h_{aq}$ (m)]", 0.0, 20.0, st.session_state.h_aq_show, 0.1, key="h_aq_show_input", on_change=update_h_aq_show)            
             
     with columns1[2]:
-        with st.expander('Modify the conductance'):
+        with st.expander('Modify the :orange[**Conductance**]'):
             # READ LOG VALUE, CONVERT, AND WRITE VALUE FOR TRANSMISSIVITY
             c_computed = st.toggle('Toggle to compute conductance', key='c_computed')
             if st.session_state.c_computed:

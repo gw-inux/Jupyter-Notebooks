@@ -461,7 +461,7 @@ def Q_h_plot():
                     f"Suggested highest: **{h_ref + 20.0:.2f} m**"
                 )
                 st.stop()    
-            x_range = st.number_input("**Range of Q in the plot**", 0.02, 1.00, 0.05, 0.01)
+            x_range = st.number_input("**Range of Q (m³/s) in the plot**", 0.02, 1.00, 0.05, 0.01)
             turn = st.toggle('**Turn Graph** 90 degrees', key="RIV_turn", value=True)
             st.session_state.number_input = st.toggle("**Use Slider or Number** for input")      
             visualize = st.toggle(':rainbow[**Make the plot alive** and visualize the input values]', key="RIV_vis", value=True)
@@ -475,43 +475,42 @@ def Q_h_plot():
         st.session_state.h_bot = 0.1+h_ref        
     
     with columns1[1]:
-        with st.expander('Modify heads and elevations'):
-            #h_aq
-            if st.session_state.number_input:
-                h_aq_show = st.number_input("**Aquifer head in m ($h_{aq}$)**", 0.1+h_ref, thick, st.session_state.h_aq_show, 0.1, key="h_aq_show_input", on_change=update_h_aq_show)
-            else:
-                h_aq_show = st.slider      ("**Aquifer head in m ($h_{aq}$)**", 0.1+h_ref, thick, st.session_state.h_aq_show, 0.1, key="h_aq_show_input", on_change=update_h_aq_show)
+        with st.expander('Modify :blue[**Heads** & **Elevations**]'):
             #h_RIV
             if st.session_state.number_input:
-                h_RIV = st.number_input("**River head in m ($h_{RIV}$)**", 0.1+h_ref, thick, st.session_state.h_RIV, 0.1, key="h_RIV_input", on_change=update_h_RIV)
+                h_RIV = st.number_input(":violet[**River head** $h_{RIV}$ (m)]", 0.1+h_ref, thick, st.session_state.h_RIV, 0.1, key="h_RIV_input", on_change=update_h_RIV)
             else:
-                h_RIV = st.slider      ("**River head in m ($h_{RIV}$)**", 0.1+h_ref, thick, st.session_state.h_RIV, 0.1, key="h_RIV_input", on_change=update_h_RIV)
+                h_RIV = st.slider      (":violet[**River head** $h_{RIV}$ (m)]", 0.1+h_ref, thick, st.session_state.h_RIV, 0.1, key="h_RIV_input", on_change=update_h_RIV)
             #h_bot
             if st.session_state.number_input:
-                h_bot = st.number_input("**Bottom of river bed in m ($h_{bot}$)**", 0.1+h_ref, thick, st.session_state.h_bot, 0.1, key="h_bot_input", on_change=update_h_bot)
+                h_bot = st.number_input(":orange[**River bed bottom** $h_{bot}$ (m)]", 0.1+h_ref, thick, st.session_state.h_bot, 0.1, key="h_bot_input", on_change=update_h_bot)
             else:
-                h_bot = st.slider      ("**Bottom of river bed in m ($h_{bot}$)**", 0.1+h_ref, thick, st.session_state.h_bot, 0.1, key="h_bot_input", on_change=update_h_bot)
-            
+                h_bot = st.slider      (":orange[**River bed bottom** $h_{bot}$ (m)]", 0.1+h_ref, thick, st.session_state.h_bot, 0.1, key="h_bot_input", on_change=update_h_bot)
+            #h_aq
+            if st.session_state.number_input:
+                h_aq_show = st.number_input(":blue[**Aquifer head** $h_{aq}$ (m)]", 0.1+h_ref, thick, st.session_state.h_aq_show, 0.1, key="h_aq_show_input", on_change=update_h_aq_show)
+            else:
+                h_aq_show = st.slider      (":blue[**Aquifer head** $h_{aq}$ (m)]", 0.1+h_ref, thick, st.session_state.h_aq_show, 0.1, key="h_aq_show_input", on_change=update_h_aq_show)            
     with columns1[2]:
-        with st.expander('Modify the conductance'):
+        with st.expander('Modify the :violet[**Conductance**]'):
             condcomp = st.toggle('Compute $C_{RIV}$ explicitly', key='condcomp')
             if st.session_state.condcomp:
                 #L_RIV
                 if st.session_state.number_input:
-                     L_RIV = st.number_input("**River length in m ($L_{RIV}$)**", 1.0, 1000.0, st.session_state.L_RIV, 0.1, key="L_RIV_input", on_change=update_L_RIV)
+                     L_RIV = st.number_input("**River length** $L_{RIV}$(m)", 1.0, 1000.0, st.session_state.L_RIV, 0.1, key="L_RIV_input", on_change=update_L_RIV)
                 else:
-                     L_RIV = st.slider      ("**River length in m ($L_{RIV}$)**", 1.0, 1000.0, st.session_state.L_RIV, 0.1, key="L_RIV_input", on_change=update_L_RIV)
+                     L_RIV = st.slider      ("**River length** $L_{RIV}$(m)", 1.0, 1000.0, st.session_state.L_RIV, 0.1, key="L_RIV_input", on_change=update_L_RIV)
                 #W_RIV
                 if st.session_state.number_input:
-                     W_RIV = st.number_input("**River width in m ($W_{RIV}$)**", 1.0, 200.0, st.session_state.W_RIV, 0.1, key="W_RIV_input", on_change=update_W_RIV)
+                     W_RIV = st.number_input("**River width** $W_{RIV}$ (m)", 1.0, 200.0, st.session_state.W_RIV, 0.1, key="W_RIV_input", on_change=update_W_RIV)
                 else:
-                     W_RIV = st.slider      ("**River width in m ($W_{RIV}$)**", 1.0, 200.0, st.session_state.W_RIV, 0.1, key="W_RIV_input", on_change=update_W_RIV)
+                     W_RIV = st.slider      ("**River width** $W_{RIV}$ (m)", 1.0, 200.0, st.session_state.W_RIV, 0.1, key="W_RIV_input", on_change=update_W_RIV)
                 #M_RIV
                 if st.session_state.number_input:
-                     M_RIV = st.number_input("**River bed thickness in m ($M_{RIV}$)**", 0.01, 5.0, st.session_state.M_RIV, 0.1, key="M_RIV_input", on_change=update_M_RIV)
+                     M_RIV = st.number_input("**River bed thickness** $M_{RIV}$ (m)", 0.01, 5.0, st.session_state.M_RIV, 0.1, key="M_RIV_input", on_change=update_M_RIV)
                      h_bed = h_bot + M_RIV
                 else:
-                     M_RIV = st.slider      ("**River bed thickness in m ($M_{RIV}$)**", 0.01, 5.0, st.session_state.M_RIV, 0.1, key="M_RIV_input", on_change=update_M_RIV)
+                     M_RIV = st.slider      ("**River bed thickness** $M_{RIV}$ (m)", 0.01, 5.0, st.session_state.M_RIV, 0.1, key="M_RIV_input", on_change=update_M_RIV)
                      h_bed = h_bot + M_RIV
                 # LOG Slider/number input for K_RIV
                 if st.session_state.number_input:

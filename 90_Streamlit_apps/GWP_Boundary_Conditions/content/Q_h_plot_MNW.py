@@ -360,7 +360,7 @@ def Q_h_plot():
             visualize = st.toggle(':rainbow[**Make the plot alive**] and visualize the input values', key="MNW_vis", value=True)
     
     with columns1[1]:
-        with st.expander('Modify **Heads** & **Discharge**'):
+        with st.expander('Modify :blue[**Heads** & **Discharge**]'):
         # The additional controls only for visualization
             if visualize:
                 st.write('**:green[Target for evaluation/visualization]**')

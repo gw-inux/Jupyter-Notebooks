@@ -201,19 +201,19 @@ def Q_h_plot():
     columns1 = st.columns((1,1,1), gap = 'small')
     # Switches
     with columns1[0]:
-        with st.expander("Modify the Plot Control"):
+        with st.expander("Modify the **Plot Control**"):
             turn = st.toggle('Toggle to turn the plot 90 degrees', key="ET_turn", value=True)
             st.session_state.number_input = st.toggle("Toggle to use Slider or Number for input of _SURF_, _EXDP_, and _EVTR_.")
             visualize = st.toggle(':rainbow[**Make the plot alive** and visualize the input values]', key="ET_vis", value=True)
 
     with columns1[1]:
-        with st.expander('Modify heads and elevations'):
+        with st.expander('Modify :blue[**Heads** & **Elevations**]'):
             if st.session_state.number_input:
-                SURF = st.number_input("**ET surface _SURF_**", -3.0, 0.0, st.session_state.SURF, 0.1,key="SURF_input", on_change=update_SURF)
-                EXDP = st.number_input("**Extinction depth _EXDP_**", 0.1, 5.0, st.session_state.EXDP, 0.1,key="EXDP_input", on_change=update_EXDP)
+                SURF = st.number_input(":green[**ET surface** _SURF_ (m)]", -3.0, 0.0, st.session_state.SURF, 0.1,key="SURF_input", on_change=update_SURF)
+                EXDP = st.number_input(":orange[**Extinction depth** _EXDP_ (m)]", 0.1, 5.0, st.session_state.EXDP, 0.1,key="EXDP_input", on_change=update_EXDP)
             else:
-                SURF = st.slider("**ET surface _SURF_**", -3.0, 0.0, st.session_state.SURF, 0.1,key="SURF_input", on_change=update_SURF)
-                EXDP = st.slider("**Extinction depth _EXDP_**", 0.1, 5.0, st.session_state.EXDP, 0.1,key="EXDP_input", on_change=update_EXDP)
+                SURF = st.slider(":green[**ET surface** _SURF_ (m)]", -3.0, 0.0, st.session_state.SURF, 0.1,key="SURF_input", on_change=update_SURF)
+                EXDP = st.slider(":orange[**Extinction depth** _EXDP_ (m)]", 0.1, 5.0, st.session_state.EXDP, 0.1,key="EXDP_input", on_change=update_EXDP)
             eval_h = st.toggle('Toggle to evaluate ET for a specific elevation', value=True)
             if eval_h:
                 eval_head = st.number_input("**Evaluate ET at a specific elevation**", -10.0, 0.0, -2.0, 0.1)
@@ -221,11 +221,11 @@ def Q_h_plot():
             
     
     with columns1[2]:
-        with st.expander('Modify ET rate and area'):
+        with st.expander('Modify **ET rate and Area**'):
             if st.session_state.number_input:
-                EVTR_input = st.number_input("**Maximum Evapotranspiration rate (_EVTR_ in mm/d)**", 0.1, 20.0, st.session_state.EVTR_input, 0.1,key="EVTR_input_input", on_change=update_EVTR_input)
+                EVTR_input = st.number_input("**Maximum ET rate** _EVTR_ (mm/d)", 0.1, 20.0, st.session_state.EVTR_input, 0.1,key="EVTR_input_input", on_change=update_EVTR_input)
             else:
-                EVTR_input = st.slider("**Maximum ET rate** (_EVTR_ in mm/d)", 0.1, 20.0, st.session_state.EVTR_input, 0.1,key="EVTR_input_input", on_change=update_EVTR_input)
+                EVTR_input = st.slider("**Maximum ET rate** _EVTR_ (mm/d)", 0.1, 20.0, st.session_state.EVTR_input, 0.1,key="EVTR_input_input", on_change=update_EVTR_input)
             EVTR = EVTR_input/86400000
             AREA = st.number_input("**Area in $m^2$** (e.g., $\\Delta x \\Delta y$)", min_value=1.0, max_value=40000.0, value=10000.0, step=100.0)
     

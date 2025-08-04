@@ -243,24 +243,24 @@ def Q_h_plot():
     columns1 = st.columns((1,1,1), gap = 'small')
     # Switches
     with columns1[0]:
-        with st.expander("Modify the plot control"):
+        with st.expander("Modify the **Plot Control**"):
             turn = st.toggle('Toggle to turn the plot 90 degrees', key="DRN_turn", value=True)
             st.session_state.number_input = st.toggle("Toggle to use Slider or Number for input of $C_D$, $H_D$, and $h_{aq}$.")
             visualize = st.toggle(':rainbow[**Make the plot alive** and visualize the input values]', key="DRN_vis", value=True)
 
     with columns1[1]:
-        with st.expander('Modify heads and elevations'):
+        with st.expander('Modify :blue[**Heads** & **Elevations**]'):
             if st.session_state.number_input:
-                HD = st.number_input("**drain elevation ($H_D$)**", 5.0, 20.0, st.session_state.HD, 0.1, key="HD_input", on_change=update_HD)
+                HD = st.number_input(":green[**Drain elevation** $H_D$ (m)]", 5.0, 20.0, st.session_state.HD, 0.1, key="HD_input", on_change=update_HD)
             else:
-                HD = st.slider      ("**drain elevation ($H_D$)**", 5.0, 20.0, st.session_state.HD, 0.1, key="HD_input", on_change=update_HD)
+                HD = st.slider      (":green[**Drain elevation** $H_D$ (m)]", 5.0, 20.0, st.session_state.HD, 0.1, key="HD_input", on_change=update_HD)
             if st.session_state.number_input:
-                h_aq_show = st.number_input("**Aquifer head ($h_{aq}$)**", 0.0, 20.0, st.session_state.h_aq_show, 0.1, key="h_aq_show_input", on_change=update_h_aq_show)
+                h_aq_show = st.number_input(":blue[**Aquifer head** $h_{aq}$ (m)]", 0.0, 20.0, st.session_state.h_aq_show, 0.1, key="h_aq_show_input", on_change=update_h_aq_show)
             else:
-                h_aq_show = st.slider      ("**Aquifer head ($h_{aq})$**", 0.0, 20.0, st.session_state.h_aq_show, 0.1, key="h_aq_show_input", on_change=update_h_aq_show)
+                h_aq_show = st.slider      (":blue[**Aquifer head** $h_{aq}$ (m)]", 0.0, 20.0, st.session_state.h_aq_show, 0.1, key="h_aq_show_input", on_change=update_h_aq_show)
     
     with columns1[2]:
-        with st.expander('Modify the conductance'):
+        with st.expander('Modify the :green[**Conductance**]'):
             # READ LOG VALUE, CONVERT, AND WRITE VALUE FOR TRANSMISSIVITY
             #C_RIV
             if st.session_state.number_input:
