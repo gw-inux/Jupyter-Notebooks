@@ -94,7 +94,7 @@ with columns0[0]:
     
     2. **What if you want to stop flow when the groundwater falls below a certain level—like the bottom of the drain?** 
     
-    ▶️ The :green[**Drain (DRN) Boundary**] in MODFLOW is designed for such features. It allows water to leave the aquifer only if the head in the cell $h_n$ exceeds the drain elevation $H_D$ —**no inflow is ever allowed**. The outflow $Q_{out}$ is computed with the drain conductance $C_D$ as: """)
+    ▶️ The :green[**Drain (DRN) Boundary**] in MODFLOW is designed for such features. It allows water to leave the aquifer only if the head in the cell $h_n$ exceeds the drain elevation $H_D$ —**no inflow from the drain in the model is ever allowed** (_The Drain Return Package (DRT) can be used when flow from the drain into the model may occur._). The outflow $Q_{out}$ is computed with the drain conductance $C_D$ as: """)
     
     st.latex(r'''Q_{out} = C_{D} (H_{D} - h_{{aq}})''')
 with columns0[1]:    
@@ -300,7 +300,7 @@ def Q_h_plot():
                     '',  # no text
                     xy=(Q_ref,HD),  # arrowhead
                     xytext=(Q_ref, h_aq_show),  # arrow start
-                    arrowprops=dict(arrowstyle='->', color='blue', lw=3,  alpha=0.4)
+                    arrowprops=dict(arrowstyle='-|>', color='blue', lw=2.5,  alpha=0.8, mutation_scale=15)
                 )
 #            else:
 #                ax.annotate(
@@ -310,7 +310,10 @@ def Q_h_plot():
 #                    arrowprops=dict(arrowstyle='<-', color='green', lw=3, alpha=0.6)
 #                )
             # Add gaining/losing stream annotations
-            ax.text(0.005,1, "Gaining DRN boundary", va='center',color='blue')
+            if h_aq_show > HD:
+                ax.text(0.005,1, "Gaining DRN boundary", fontsize=14, va='center',color='blue')
+            else:
+                ax.text(0.005,1, "DRN inactive", fontsize=14, va='center',color='red')
             #ax.text(0.035, 1,  "Losing DRN boundary", va='center',color='green')
                 
         else:
@@ -330,17 +333,10 @@ def Q_h_plot():
                     '',  # no text
                     xy=(HD, Q_ref),  # arrowhead
                     xytext=(h_aq_show, Q_ref),  # arrow start
-                    arrowprops=dict(arrowstyle='->', color='blue', lw=3,  alpha=0.4)
+                    arrowprops=dict(arrowstyle='-|>', color='blue', lw=2.5,  alpha=0.8, mutation_scale=15)
                 )
-#            else:
-#                ax.annotate(
-#                '',  # no text
-#                xy=(HD, Q_ref),  # arrowhead
-#                xytext=(h_aq_show, Q_ref),  # arrow start
-#                arrowprops=dict(arrowstyle='<-', color='green', lw=3, alpha=0.6)
-#                )
             # Add losing drn annotations
-            ax.text(0.5, 0.003, "Gaining DRN boundary", va='center',color='blue')
+            ax.text(0.5, 0.003, "Gaining DRN boundary", fontsize=14, va='center',color='blue')
     else:
         if turn:
             ax.plot(Q, h_aq, label=rf"$Q_o = C_D(H_D - h_{{aq}})$, $C_D$ = {st.session_state.C_DRN:.2e}",color='black', linewidth=3)
