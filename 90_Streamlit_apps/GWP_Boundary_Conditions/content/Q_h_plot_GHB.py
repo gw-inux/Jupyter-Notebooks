@@ -454,7 +454,34 @@ def Q_h_plot():
         * Toggle “Compute conductance”.
         * Enter $K$, $A_B$, and $L_B$ to calculate $C_B = \\frac{K A_B}{L_B}$.
         * Note how the **slope of the $Q$–$h$ curve** changes.
-    
+        
+        **4. Understand the Role of Head-Dependent Boundaries in Applied Groundwater Modelling**
+        
+        Depending on the modeling objective, head-dependent boundaries like GHB can be considered in two different ways:
+        
+        **a) During Calibration or Model Setup:** Assume that the discharge is specified (e.g., the boundary is the only outlet of the model) and conductance is calibrated. **This situation is considered and discussed in the :red[📕 **Introduction**] section of this module - see the :green[**Initial Instructions** (Step 5.) od **Scenario 1**].
+        
+        Here, we account for a second way to consider head dependent boundary conditions, which is 
+            
+        **b) The Model is calibrated and the Conductance is specified:** Assume that the model hast different outlets (e.g., abstraction wells, rivers, drains). Accordingly, the **heads in the model will vary** as a result of the model parameters and stresses. In consequence, the (previously calibrated and then specified conductance) will steer how much water flows across the boundary. Here we investigate this behavior for the :orange[**General Head Boundary GHB**]. Other head dependent boundaries like :violet[**RIV**] and :green[**DRN**] work in principle similar.
+        
+        - Start with the following setting:
+            - Conductance $C_B$ = 3e-3 m²/s
+            - Head elevation of the boundary - here $H_B$ = 8.0 m.
+            - Head in the model (aquifer) at the boundary $h_{aq}$ = 10 m.
+        - Determine the flow at the boundary $Q_B$ and understand if the flow is into the model or out of the model.
+        - Modify the conductance $C_B$
+            - and mention the change in flow.
+            - Increase the conductance $C_B$ to the maximum value and compute the discharge in Liters per second.
+        - Modify the head(elevation) of the GHB $H_B$
+            - Lower the head
+            - Increase the head but stay below the aquifer head
+            - Increase the head above the aquifer head. What happens with the flow at the boundary?
+        - Modify the head(elevation) of the model at the boundary $h_aq$
+            - increase the head
+            - lower the head below the GHB head            
+        
+           
         These steps help you build intuition for how GHB parameters control flow, a key foundation for the exercise. Feel free to further investigate the interactive plot on your own.
         """)
     

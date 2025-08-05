@@ -588,7 +588,7 @@ if show_plot1:
             **5. Understand the Role of Head-Dependent Boundaries in Applied Groundwater Modelling** 
             Head-dependent boundaries (such as River, General Head, or Drain boundaries) are commonly used to simulate interactions between an aquifer and external systems, where the flow across the boundary is not fixed, but governed by a conductance term and the difference in head between the groundwater at the boundary and the boundary elevation or head (_see the sections :orange[**GHB**], :violet[**RIV**], :green[**DRN**] of this module for more information_).
             
-            These boundaries can be interpreted in two fundamentally different ways depending on the modeling context:
+            These boundaries (or their use) can be interpreted in two fundamentally different ways depending on the modeling context:
             
             **a) During Calibration or Model Setup:** Assume that the discharge is specified (e.g., the boundary is the only outlet of the model) and conductance is calibrated.
             
@@ -602,7 +602,7 @@ if show_plot1:
             
             A second way to interpret is 
             
-            **b) The Model is calibrated and the Conductance is specified:** Assume that the model hast different outlets (e.g., abstraction wells, rivers, drains). Accordingly, the heads in the model will be a result of the model parameters and stresses. Accordingly, the (previously calibrated and then specified conductance) will steer how much water flows across the boundary. This case will be covered by the :orange[**GHB**], :violet[**RIV**], :green[**DRN**] sections of the module - see the instructions there.
+            **b) The Model is calibrated and the Conductance is specified:** Assume that the model hast different outlets (e.g., abstraction wells, rivers, drains). Accordingly, the heads in the model will be a result of the model parameters and stresses. In consequence, the (previously calibrated and then specified conductance) will steer how much water flows across the boundary. This case will be covered by the :orange[**GHB**], :violet[**RIV**], :green[**DRN**] sections of the module - see the instructions there.
             """)
         
     computation1()
