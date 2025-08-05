@@ -55,15 +55,23 @@ with columns0[0]:
     
     1. **How does groundwater contribute to plant water demand or surface evaporation in shallow water table environments? Is there evapotranspiration from groundwater?**
     
-    2. **Should evapotranspiration continue if the water table drops well below the root zone or land surface?**
+    2. **Should evapotranspiration (ET) continue if the water table drops well below the root zone or land surface?**
     
-    ▶️ The **EVT Boundary** in MODFLOW captures these dynamics. It simulates water loss from the saturated zone due to evapotranspiration, **but only when the water table is near enough to the surface**. As the groundwater head drops below a defined extinction depth, the ET rate gradually reduces to zero. The following interactive plot helps to visualize this relationship. Adjust parameters like ET rate and extinction depth to explore how ET demand interacts with groundwater levels.
+    ▶️ The **EVT Boundary** in MODFLOW captures these dynamics. It simulates water loss from the saturated zone due to evapotranspiration, **but only when the water table is near enough to the surface**.
+    
+    As the groundwater head drops below a defined elevation, the ET rate gradually reduces to zero over an distance that is called Extinction Depth ***EXDP***. The following interactive plot helps to (initially) visualize this relationship. Adjust the extinction depth to explore how ET demand varies with depth.
     """)
 
 with columns0[1]:
-    # EXPDi input
-    EXDPi = st.slider("**Extinction depth (EXDP)**", 0.1, 5.0, 4.0, 0.1)  
-
+#    # EXPDi / EVTRi input
+#    col_ini = st.columns((1,1))
+#    with col_ini[0]:
+#        EXDPi = st.slider("**Extinction depth (EXDP)**", 0.1, 5.0, 4.0, 0.1)  
+#    with col_ini[1]:
+#        EVTRi = st.slider("**Max. ET rate**", 0.0, 4.0/86400000, 2.0/86400000, .1/86400000) 
+    # EXPDi / EVTRi input
+    EXDPi = st.slider("**Extinction depth (EXDP)**", 0.1, 5.0, 4.0, 0.1)
+    
     # Computation 
     QET_MAXi = 0.0005
     h_aqi = np.linspace(-10, 0, 100)
@@ -142,7 +150,7 @@ with st.expander("Show me more about **the Theory**"):
     - _**EVTR**_ = a user defined maximum evapotranspiration rate,
     - :green[_**SURF**_ = a specific elevation named _ET surface_ up to which the full evapotranspiration rate is acting],
     - _**RET**_ = the depth-specific evapotranspiration rate,
-    - :orange[_**EXDP**_ = _extinction depth_ or cutoff depth (_**EXDP**_), where the evapotranspiration rate _**ETR**_ from the groundwater becomes zero.]
+    - :orange[_**EXDP**_ = _extinction depth_ or cutoff depth (_**EXDP**_), where the evapotranspiration rate _**ETR**_ from the groundwater becomes zero. (_Note: ***EXDP*** is the distance from ***SURF*** and not an elevation._)]
     
     The approach assumes:
     - if heads are above the _ET surface_ (_**SURF**_), the evapotranspiration rate _**RET**_ is the user-defined maximum rate _**EVTR**_.
