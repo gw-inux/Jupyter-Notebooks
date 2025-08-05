@@ -96,7 +96,7 @@ with columns0[0]:
     
     ▶️ The :green[**Drain (DRN) Boundary**] in MODFLOW is designed for such features. It allows water to leave the aquifer only if the head in the cell $h_n$ exceeds the drain elevation $H_D$ —**no inflow from the drain in the model is ever allowed** (_The Drain Return Package (DRT) can be used when flow from the drain into the model may occur._). The outflow $Q_{out}$ is computed with the drain conductance $C_D$ as: """)
     
-    st.latex(r'''Q_{out} = C_{D} (H_{D} - h_{{aq}})''')
+    st.latex(r'''Q_{out} = C_{D} (h_{aq} - H_{D})''')
 with columns0[1]:    
     # Slider input and plot
     # C_DRN
@@ -133,7 +133,7 @@ st.markdown("""
 ####  🎯 Learning Objectives
 By the end of this tool, you will be able to:
 - Explain the conceptual role of the Drain (DRN) boundary in simulating groundwater discharge to drainage features such as tile drains, trenches, or natural depressions.
-- Apply the analytical relationship $Q_D = C_D(h_{aq}-H_D)$ to calculate boundary flows.
+- Apply the analytical relationship $Q_{out} = C_D(h_{aq}-H_D)$ to calculate boundary flows.
 - Identify conditions under which the DRN boundary is active or inactive, and understand the role of the drain elevation in limiting flow.
 - Evaluate the influence of aquifer head, drain elevation, and conductance on the magnitude and direction of drainage.
 - Interpret Q–h plots to analyze the linear and threshold-based behavior of the DRN boundary.
@@ -185,14 +185,14 @@ with st.expander("Show me more about **the Theory**"):
     The relationship between the amount of water that flows into the drain and the head in the aquifer is:
     """)
     
-    st.latex(r'''Q_{out} = C_D (h_n-H_D)''')
+    st.latex(r'''Q_{out} = C_D (h_{aq}-H_D)''')
     
     st.markdown("""
     where:
     - $Q_{out}$ is the flow from the aquifer into the drain [L3/T]
     - $H_D$ is the drain elevation (L),
     - $C_D$ is the drain conductance [L2/T], and
-    - $h_n$ is the head in the cell that interacts with the drain (L).
+    - $h_{aq}$ is the head in the cell that interacts with the drain (L).
     
     
     """)
@@ -309,12 +309,12 @@ def Q_h_plot():
 #                    xytext=(Q_ref, h_aq_show),  # arrow start
 #                    arrowprops=dict(arrowstyle='<-', color='green', lw=3, alpha=0.6)
 #                )
-            # Add gaining/losing stream annotations
+            # Add gaining annotations
             if h_aq_show > HD:
-                ax.text(0.005,1, "Gaining DRN boundary", fontsize=14, va='center',color='blue')
+                ax.text(0.005,1, "Gaining DRN boundary", fontsize=14, va='center', color='blue')
             else:
-                ax.text(0.005,1, "DRN inactive", fontsize=14, va='center',color='red')
-            #ax.text(0.035, 1,  "Losing DRN boundary", va='center',color='green')
+                ax.text(0.005,1, "DRN inactive", fontsize=14, va='center', color='red')
+            
                 
         else:
             ax.plot(h_aq, Q, label=rf"$Q_D = C_D(H_D - h_{{aq}})$",color='green', linewidth=3)
@@ -335,8 +335,11 @@ def Q_h_plot():
                     xytext=(h_aq_show, Q_ref),  # arrow start
                     arrowprops=dict(arrowstyle='-|>', color='blue', lw=2.5,  alpha=0.8, mutation_scale=15)
                 )
-            # Add losing drn annotations
-            ax.text(0.5, 0.003, "Gaining DRN boundary", fontsize=14, va='center',color='blue')
+            # Add gaining drn annotations
+            if h_aq_show > HD:
+                ax.text(0.5, 0.003, "Gaining DRN boundary", fontsize=14, va='center',color='blue')
+            else:
+                ax.text(0.5, 0.003, "DRN inactive", fontsize=14, va='center', color='red')
     else:
         if turn:
             ax.plot(Q, h_aq, label=rf"$Q_o = C_D(H_D - h_{{aq}})$, $C_D$ = {st.session_state.C_DRN:.2e}",color='black', linewidth=3)
@@ -360,6 +363,10 @@ def Q_h_plot():
     ax.legend(loc="upper left", fontsize=14)
     
     st.pyplot(fig)
+    if visualize:
+        st.markdown("""
+        _The arrow in the plot indicates the head difference $h_{aq}-H_{D}$ and points to the resulting flow $Q_{out}$._
+        """)
     
     with st.expander('Show the :blue[**INITIAL INSTRUCTIONS**]'):
         st.markdown("""
