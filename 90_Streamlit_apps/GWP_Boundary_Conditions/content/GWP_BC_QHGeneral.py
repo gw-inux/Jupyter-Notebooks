@@ -101,9 +101,11 @@ with cent_co:
     st.image('90_Streamlit_apps/GWP_Boundary_Conditions/assets/images/gwp_boundary_Qh_scheme.png')
     st.markdown("""**Figure:** Schematic representation of an unconfined aquifer with a river boundary on the right side together with the associated _Q_-_h_ plot.""")
 
-st.markdown(""" By simulating a simple 1D unconfined aquifer with recharge and various boundary types, users gain insight into the essential principles that govern groundwater model boundaries and their practical implications in tools like MODFLOW.
+st.markdown(""" By simulating a simple 1D unconfined aquifer with recharge and various boundary types, users gain insight into the essential principles that govern groundwater model boundaries and their practical implications in tools like the numerical groundwater flow model MODFLOW.
 
-To support this learning, this initial part of the module applies a well-known analytical solution for 1D unconfined groundwater flow with recharge. It illustrates how different boundary types like specified head, specified flow, and head-dependent flow influence the resulting hydraulic head distribution. A key focus is placed on understanding the resulting _Q_-_h_ relationships, which are central to the conceptualization and interpretation of boundary conditions in groundwater models like MODFLOW.
+To support the understanding, this 📕 :red[**Introduction**] part of the module applies well-known analytical solutions for 1D unconfined groundwater flow with recharge. It illustrates how different boundary types like specified head, specified flow, and head-dependent flow influence the resulting hydraulic head distribution. A key focus is placed on understanding the resulting ***Q-h*** relationships, which are central to the conceptualization and interpretation of boundary conditions in groundwater models like MODFLOW.
+
+The subsequent parts of the module provide more details about specific boundary conditions with a focus on MODFLOW, namely the general head boundary (:orange[**GHB**]), the river boundary (:violet[**RIV**], the drain boundary (:green[**DRN**]), the multi-node-well boundary (:grey[**MNW**]), and the evapotranspiration (:blue[**EVT**]). Use the menu on the left side to access these sections.
 
 #### 🎯 Learning Objectives
 By engaging with this section of the interactive module, you will be able to:
