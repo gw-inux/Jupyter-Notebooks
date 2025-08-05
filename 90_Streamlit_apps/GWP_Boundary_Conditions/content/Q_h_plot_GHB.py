@@ -280,11 +280,6 @@ def Q_h_plot():
     
     columns1 = st.columns((1,1,1), gap = 'small')
     
-    
-    # Initialize st.session_state.C
-    if "C" not in st.session_state:
-        st.session_state.C = 10 ** st.session_state.C_slider_value
-    
     with columns1[0]:
         with st.expander('Modify the **Plot Control**'):
             turn = st.toggle('Toggle to turn the plot 90 degrees', key="GHB_turn", value=True)
@@ -407,14 +402,14 @@ def Q_h_plot():
             ax.text(19.8, 0.003, "Flow INTO the model", va='center', ha='right',color='blue',  fontsize=16)
     else:
         if turn:
-            ax.plot(Q, h_aq, label=rf"$Q_B = C_B(H_B - h_{{aq}})$, $C_B$ = {st.session_state.C:.2e}",color='black', linewidth=3)
+            ax.plot(Q, h_aq, label=rf"$Q_B = C_B(H_B - h_{{aq}})$, $C_B$ = {st.session_state.C_GHB:.2e}",color='black', linewidth=3)
             # Labels and formatting
             ax.set_ylabel("Heads in the GHB Boundary-Aquifer System (m)", fontsize=14, labelpad=15)
             ax.set_xlabel("Flow Into the Ground-Water System From the GHB $Q_B$ (m³/s)", fontsize=14, labelpad=15)
             ax.set_ylim(0, 20)
             ax.set_xlim(0.05,-0.05)
         else:        
-            ax.plot(h_aq, Q, label=rf"$Q_B = C_B(H_B - h_{{aq}})$, $C_B$ = {st.session_state.C:.2e}",color='black', linewidth=3)
+            ax.plot(h_aq, Q, label=rf"$Q_B = C_B(H_B - h_{{aq}})$, $C_B$ = {st.session_state.C_GHB:.2e}",color='black', linewidth=3)
             # Labels and formatting
             ax.set_xlabel("Heads in the GHB Boundary-Aquifer System (m)", fontsize=14, labelpad=15)
             ax.set_ylabel("Flow Into the Ground-Water System From the GHB $Q_B$ (m³/s)", fontsize=14, labelpad=15)
