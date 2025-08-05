@@ -8,7 +8,7 @@
       "D) $Q$ is always constant": false
     },
     "success": "✅ Correct. The DRN flow equation is active only when aquifer head is above the drain elevation.",
-    "error": "❌ Not quite. DRN flow is head-dependent and one-sided, with a cutoff."
+    "error": "❌ Not quite. DRN flow is head-dependent and one-sided, with a cutoff. Also, the equation is slightly different from the typical MODFLOW convention where positive flow is considered as entering the model."
   },
   {
     "question": "Which parameter controls the magnitude of discharge through the DRN boundary? (Mark ALL correct answers)",
@@ -57,12 +57,12 @@
   {
     "question": "Why does the Q–h plot for a DRN boundary becomes horizontal if the head is decreasing below a threshold? (Mark ALL correct answers)",
     "options": {
-      "A) Because boundary flow is zero when $h_{aq} \\leq h_{dr}$": true,
+      "A) Because boundary flow is zero when $h_{aq} \\leq H_{D}$": true,
       "B) Because DRNs always simulate fixed flow": false,
       "C) Because conductance drops to zero if the head falls below a threshold": false,
       "D) Because the boundary switches to a no-flow condition if the head falls below a threshold": true
     },
     "success": "✅ Correct. The flat region reflects zero discharge when the head is below the cutoff.",
-    "error": "❌ The flat part of the Q–h plot results from the cutoff behavior — no flow occurs when $h_{aq} \\leq h_{dr}$."
+    "error": "❌ The flat part of the Q–h plot results from the cutoff behavior — no flow occurs when $h_{aq} \\leq H_{D}$."
   }
 ]

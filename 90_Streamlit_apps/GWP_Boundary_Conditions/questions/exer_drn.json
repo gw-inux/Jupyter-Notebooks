@@ -7,8 +7,8 @@
       "C) Below the drain elevation, the boundary becomes inactive and does not influence the model.": true,
       "D) The DRN boundary enforces a constant discharge regardless of head conditions.": false
     },
-    "success": "✅ Correct! DRN acts as a one-way valve — flow is only allowed from aquifer to drain when $h_{aq} > h_{DRN}$.",
-    "error": "❌ Not quite. Remember: DRN is inactive when $h_{aq} ≤ h_{DRN}$ and does not permit inflow into the aquifer."
+    "success": "✅ Correct! DRN acts as a one-way valve — flow is only allowed from aquifer to drain when $h_{aq} > H_{D}$.",
+    "error": "❌ Not quite. Remember: DRN is inactive when $h_{aq} ≤ H_{D}$ and does not permit inflow into the aquifer."
   },
   {
     "question": "The aquifer head is situated above the drain elevation. What happens when you increase the drain elevation while keeping aquifer head constant? (Mark ALL correct answers)",
@@ -29,7 +29,7 @@
       "C) Conductance has no effect when the boundary is inactive.": true,
       "D) Conductance controls the threshold at which the drain becomes active.": false
     },
-    "success": "✅ Exactly. Conductance controls flow once active — but the activation threshold is set by $h_{DRN}$ alone.",
+    "success": "✅ Exactly. Conductance controls flow once active — but the activation threshold is set by $H_{D}$ alone.",
     "error": "❌ Not quite. Conductance shapes flow magnitude above threshold but does not influence activation."
   },
   {
