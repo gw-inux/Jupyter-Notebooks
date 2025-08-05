@@ -544,10 +544,12 @@ if show_plot1:
                 ax_qh.axhline(0, color='grey', linestyle='--', linewidth=0.8)
                 ax_qh.axvline(150, color='grey', linestyle='--', linewidth=0.8)
         else:
-            # Draw a blank subplot (white background, no ticks, no frame)
+            ax_qh.set_ylim(-1,1)
+            ax_qh.text(150,0.75,"No Q–h plot selected.\n\nScroll down for Initial Instructions \n\nor select a Q–h plot type in the INPUT CONTROLS (right-hand menu).", ha='center', va='center', fontsize=13, wrap=True)
             ax_qh.axis('off')
  
         st.pyplot(fig)
+
         if "No-flow" in bc_type:
             st.markdown("""_The dashed line in the plot represents the specified head at the right boundary with $h_{2500}$ = 150 m._""")
         
@@ -581,7 +583,26 @@ if show_plot1:
             - Return to the Input Menu, activate the River boundary, and then activate the _Q_-_h_ plot for the River Boundary.
             - While the River Boundary is active:
               - Adjust Recharge and note how both hydraulic head and flow change.
-              - Modify the River Conductance: Observe that head changes, but the flow remains stable. This reflects how the river conductance governs the hydraulic connection.
+              - Modify the River Conductance (_please note: the unit of the conductance in this example m²/s, more explanation about this in the :violet[**RIV**] section of the module._): Observe the head changes in the model and the different appearance of the ***Q-h*** plot. This already reflects some characteristics of head-dependent boundaries. The subsequent step will extent the application and application of these boundary conditions.
+              
+            **5. Understand the Role of Head-Dependent Boundaries in Applied Groundwater Modelling** 
+            Head-dependent boundaries (such as River, General Head, or Drain boundaries) are commonly used to simulate interactions between an aquifer and external systems, where the flow across the boundary is not fixed, but governed by a conductance term and the difference in head between the groundwater at the boundary and the boundary elevation or head (_see the sections :orange[**GHB**], :violet[**RIV**], :green[**DRN**] of this module for more information_).
+            
+            These boundaries can be interpreted in two fundamentally different ways depending on the modeling context:
+            
+            **a) During Calibration or Model Setup:** Assume that the discharge is specified (e.g., the boundary is the only outlet of the model) and conductance is calibrated.
+            
+            To explore this behavior:
+            - Set the recharge to a value of (approximately) 200 mm/a.
+            - Use the toggle to show the ***Q-h*** plot of the specified head boundary (on the right side). The blue dot represents the outflow at the boundary.
+            - Modify the hydraulic conductivity and the recharge to see how the Q-h plot reacts (focus on the blue dot that represents the head and flow at the boundary)
+            - Now toggle in the middle section of the :green[INPUT CONTROLS] for the :violet[River BC]. Make sure that the ***Q-h*** plot for the River boundary is active. The magenta-dot represents the outflow and head at the boundary.
+            - Acknowledge the difference between the Specified head and the River boundary: set and reset the :violet[River BC] toggle and study the ***Q-h*** plot. The flow, which is solely a function of the recharge, is identical but the head at the boundary is increased if the :violet[River BC] is active (the same would be the case for other head-dependent boundary conditions like :orange[**GHB**] or :green[**DRN**].
+            - Now, modify the conductance $C_{Riv}$ and observe how the heads in the model and the ***Q–h*** relationship changes.
+            
+            A second way to interpret is 
+            
+            **b) The Model is calibrated and the Conductance is specified:** Assume that the model hast different outlets (e.g., abstraction wells, rivers, drains). Accordingly, the heads in the model will be a result of the model parameters and stresses. Accordingly, the (previously calibrated and then specified conductance) will steer how much water flows across the boundary. This case will be covered by the :orange[**GHB**], :violet[**RIV**], :green[**DRN**] sections of the module - see the instructions there.
             """)
         
     computation1()
