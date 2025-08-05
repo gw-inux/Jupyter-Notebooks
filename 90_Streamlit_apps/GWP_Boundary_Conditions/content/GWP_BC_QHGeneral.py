@@ -10,11 +10,19 @@ from streamlit_book import multiple_choice
 
 # path to questions for the assessments (direct path)
 path_quest_ini   = "90_Streamlit_apps/GWP_Boundary_Conditions/questions/initial_general_behavior.json"
+path_quest_exer_sc1   = "90_Streamlit_apps/GWP_Boundary_Conditions/questions/exer_general_sc1.json"
+path_quest_exer_sc2   = "90_Streamlit_apps/GWP_Boundary_Conditions/questions/exer_general_sc2.json"
 path_quest_final = "90_Streamlit_apps/GWP_Boundary_Conditions/questions/final_general_behavior.json"
 
 # Load questions
 with open(path_quest_ini, "r", encoding="utf-8") as f:
     quest_ini = json.load(f)
+
+with open(path_quest_exer_sc1, "r", encoding="utf-8") as f:
+    quest_exer_sc1 = json.load(f)
+    
+with open(path_quest_exer_sc2, "r", encoding="utf-8") as f:
+    quest_exer_sc2 = json.load(f)
     
 with open(path_quest_final, "r", encoding="utf-8") as f:
     quest_final = json.load(f)
@@ -304,7 +312,7 @@ if show_plot1:
     
     You can toggle between a specified head and a head-dependent river boundary condition on the right side of the model. If the river boundary is chosen, you can modify the river-aquifer conductance. 
     
-    _Further **instructions** how to use the interactive plot are availble below the figure._   
+    _Further **instructions** how to use the interactive plot and a **short assessment for self-evaluation** are availble below the figure._   
     """
     )
     st.markdown("---") 
@@ -604,6 +612,36 @@ if show_plot1:
             
             **b) The Model is calibrated and the Conductance is specified:** Assume that the model hast different outlets (e.g., abstraction wells, rivers, drains). Accordingly, the heads in the model will be a result of the model parameters and stresses. In consequence, the (previously calibrated and then specified conductance) will steer how much water flows across the boundary. This case will be covered by the :orange[**GHB**], :violet[**RIV**], :green[**DRN**] sections of the module - see the instructions there.
             """)
+            
+        with st.expander('Show the :green[**SCENARIO 1**] :rainbow[**assessment**] - to self-check your understanding'):
+            st.markdown("""
+            #### 🧠 Scenario 1 assessment
+            These questions test your understanding after investigating scenario 1.
+            """)
+        
+            # Render questions in a 2x2 grid (row-wise, aligned)
+            for row in [(0, 1), (2, 3)]:
+                col1, col2 = st.columns(2)
+            
+                with col1:
+                    i = row[0]
+                    st.markdown(f"**Q{i+1}. {quest_exer_sc1[i]['question']}**")
+                    multiple_choice(
+                        question=" ",  # suppress repeated question display
+                        options_dict=quest_exer_sc1[i]["options"],
+                        success=quest_exer_sc1[i].get("success", "✅ Correct."),
+                        error=quest_exer_sc1[i].get("error", "❌ Not quite.")
+                    )
+            
+                with col2:
+                    i = row[1]
+                    st.markdown(f"**Q{i+1}. {quest_exer_sc1[i]['question']}**")
+                    multiple_choice(
+                        question=" ",
+                        options_dict=quest_exer_sc1[i]["options"],
+                        success=quest_exer_sc1[i].get("success", "✅ Correct."),
+                        error=quest_exer_sc1[i].get("error", "❌ Not quite.")
+                    )
         
     computation1()
 
@@ -614,7 +652,7 @@ if show_plot2:
     
     You can modify the specified head elevation at the left side (the right side hydraulic head is defined as fixed to 150 m). The interactive plot will indicate the boundary flow (in- and outflow) for both specified head boundaries.   
     
-    _Further **instructions** how to use the interactive plot are availble below the figure._ 
+    _Further **instructions** how to use the interactive plot and a **short assessment for self-evaluation** are availble below the figure._  
     """
     )
     st.markdown("---") 
@@ -934,6 +972,36 @@ if show_plot2:
               - Hydraulic Conductivity
               - Left Boundary Head
             """)
+        
+        with st.expander('Show the :red[**SCENARIO 2**] :rainbow[**assessment**] - to self-check your understanding'):
+            st.markdown("""
+            #### 🧠 Scenario 2 assessment
+            These questions test your understanding after investigating scenario 1.
+            """)
+        
+            # Render questions in a 2x2 grid (row-wise, aligned)
+            for row in [(0, 1), (2, 3)]:
+                col1, col2 = st.columns(2)
+            
+                with col1:
+                    i = row[0]
+                    st.markdown(f"**Q{i+1}. {quest_exer_sc2[i]['question']}**")
+                    multiple_choice(
+                        question=" ",  # suppress repeated question display
+                        options_dict=quest_exer_sc2[i]["options"],
+                        success=quest_exer_sc2[i].get("success", "✅ Correct."),
+                        error=quest_exer_sc2[i].get("error", "❌ Not quite.")
+                    )
+            
+                with col2:
+                    i = row[1]
+                    st.markdown(f"**Q{i+1}. {quest_exer_sc2[i]['question']}**")
+                    multiple_choice(
+                        question=" ",
+                        options_dict=quest_exer_sc2[i]["options"],
+                        success=quest_exer_sc2[i].get("success", "✅ Correct."),
+                        error=quest_exer_sc2[i].get("error", "❌ Not quite.")
+                    )
     
     computation2()
 
