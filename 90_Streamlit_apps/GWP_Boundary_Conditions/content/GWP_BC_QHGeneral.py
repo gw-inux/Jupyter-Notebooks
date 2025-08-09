@@ -195,11 +195,15 @@ with st.expander("Show more :blue[**explanation about _Q_-_h_ plots**] that desc
     st.markdown("""
     The relationship between discharge (_Q_) and hydraulic head (_h_) at model boundaries provides a powerful way to conceptualize and compare different types of boundary conditions in groundwater flow modeling. _Q_-_h_ plots visually illustrate how flow into or out of a model domain responds to parameter changes, highlighting the fundamental behavior of specified-head, specified-flow, and head-dependent flux boundaries. These plots serve as intuitive tools to understand how boundary conditions influence system response, and how they are implemented in models like MODFLOW.
     
-    The following figure from the [MODFLOW6 documentaion (Langevin et al., 2017)](https://doi.org/10.3133/tm6A55) presents various _Q_-_h_ plots to describe the boundary conditions in MODFLOW. :red[This plots are very powerful but not easy to understand.] You can toggle for :green[an adapted version of the plots that provides more information and explanation.] 
+    The following figure from the [MODFLOW6 documentaion (Langevin et al., 2017)](https://doi.org/10.3133/tm6A55) presents various _Q_-_h_ plots to describe the boundary conditions in MODFLOW. :red[This plots are very powerful but not easy to understand.] You can toggle for :green[an adapted version of the plots that provides more information and explanation.]
+    
+    :blue[**The subsequent sections of this module allow investigation of these _Q_-_h_ plots**] :rainbow[**with color coded sections**] :blue[**for various boundary conditions**] **(_these are accessible via links on the left menu of this module_).**
     """
     )
-    lc1, cc1, rc1 = st.columns((10,60,10))
     modified_plot = st.toggle('**Toggle here** to see the :green[**adapted version**].')
+    
+    lc1, cc1, rc1 = st.columns((10,60,10))
+    
     with cc1:
         if modified_plot:
             st.image('90_Streamlit_apps/GWP_Boundary_Conditions/assets/images/Q_h_plots_MF2005_v2.png', caption="Q-h plots describing the behavior of boundary conditions, :green[**adapted from**] [from Langevin et al., 2017](https://doi.org/10.3133/tm6A55.)")
