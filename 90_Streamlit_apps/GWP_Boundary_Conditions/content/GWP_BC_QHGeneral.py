@@ -169,7 +169,7 @@ with st.expander("Show more :blue[**explanation about the boundary condition typ
     
     **Example application in the scenarios with interactive plots:**
     - :green[**Scenario 1**]: The right boundary (_x_ = _L_) has a specified head of 150 m.
-    - :red[**Scenario 2**]: The left and right boundary (x = 0 and _x_ = _L_) have specified head of 155 and 150 m, repsectively.
+    - :red[**Scenario 2**]: The right boundary (_x_ = _L_) has a specified head of 150 m. The left boundary (_x_ = _0_) has a user-defined specified head that can range between 145 m and 155 m.
     
     #### 2. Specified-Flow Boundary (Neumann condition)
     **Definition:** A specified flow of water crosses this boundary. Typical elements that are represented by a specified-flow boundary condition include distributed recharge for which a rate is provided and multiplied by the surface are to obtain the flow rate, and wells for which a volumetric withdrawal or injection rate is specified. A special case of a specified-flow boundary is the no-flow boundary that has zero flow normal to the boundary.
