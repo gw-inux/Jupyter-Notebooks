@@ -2,8 +2,8 @@ import streamlit as st
 import os
 
 # --- Application parameters ---
-DEFAULT_START_PAGE = "C:/_1_GitHub/Jupyter-Notebooks/90_Streamlit_apps/GWP_Boundary_Conditions/content/GWP_Boundary_Conditions_Start.py"
-ABOUT_PAGE = "C:/_1_GitHub/Jupyter-Notebooks/90_Streamlit_apps/GWP_Boundary_Conditions/content/GWP_About.py"
+DEFAULT_START_PAGE = "90_Streamlit_apps/GWP_Boundary_Conditions/content/GWP_Boundary_Conditions_Start.py"
+ABOUT_PAGE = "90_Streamlit_apps/GWP_Boundary_Conditions/content/GWP_About.py"
 
 # --- MUST be first: layout setup wide / centered ---
 if "layout_choice" not in st.session_state:
