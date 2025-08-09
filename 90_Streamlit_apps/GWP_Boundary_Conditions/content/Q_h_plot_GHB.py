@@ -11,9 +11,9 @@ import json
 from streamlit_book import multiple_choice
 
 # path to questions for the assessments (direct path)
-path_quest_ini   = "C:/_1_GitHub/Jupyter-Notebooks/90_Streamlit_apps/GWP_Boundary_Conditions/questions/initial_ghb.json"
-path_quest_exer = "C:/_1_GitHub/Jupyter-Notebooks/90_Streamlit_apps/GWP_Boundary_Conditions/questions/exer_ghb.json"
-path_quest_final = "C:/_1_GitHub/Jupyter-Notebooks/90_Streamlit_apps/GWP_Boundary_Conditions/questions/final_ghb.json"
+path_quest_ini   = "90_Streamlit_apps/GWP_Boundary_Conditions/questions/initial_ghb.json"
+path_quest_exer = "90_Streamlit_apps/GWP_Boundary_Conditions/questions/exer_ghb.json"
+path_quest_final = "90_Streamlit_apps/GWP_Boundary_Conditions/questions/final_ghb.json"
 
 # Load questions
 with open(path_quest_ini, "r", encoding="utf-8") as f:
