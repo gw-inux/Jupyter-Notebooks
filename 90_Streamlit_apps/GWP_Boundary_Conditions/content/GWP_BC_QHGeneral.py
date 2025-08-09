@@ -9,10 +9,10 @@ import json
 from streamlit_book import multiple_choice
 
 # path to questions for the assessments (direct path)
-path_quest_ini   = "C:/_1_GitHub/Jupyter-Notebooks/90_Streamlit_apps/GWP_Boundary_Conditions/questions/initial_general_behavior.json"
-path_quest_exer_sc1   = "C:/_1_GitHub/Jupyter-Notebooks/90_Streamlit_apps/GWP_Boundary_Conditions/questions/exer_general_sc1.json"
-path_quest_exer_sc2   = "C:/_1_GitHub/Jupyter-Notebooks/90_Streamlit_apps/GWP_Boundary_Conditions/questions/exer_general_sc2.json"
-path_quest_final = "C:/_1_GitHub/Jupyter-Notebooks/90_Streamlit_apps/GWP_Boundary_Conditions/questions/final_general_behavior.json"
+path_quest_ini   = "90_Streamlit_apps/GWP_Boundary_Conditions/questions/initial_general_behavior.json"
+path_quest_exer_sc1   = "90_Streamlit_apps/GWP_Boundary_Conditions/questions/exer_general_sc1.json"
+path_quest_exer_sc2   = "90_Streamlit_apps/GWP_Boundary_Conditions/questions/exer_general_sc2.json"
+path_quest_final = "90_Streamlit_apps/GWP_Boundary_Conditions/questions/final_general_behavior.json"
 
 # Load questions
 with open(path_quest_ini, "r", encoding="utf-8") as f:
@@ -98,7 +98,7 @@ This app provides an intuitive visual and interactive exploration of :blue[**_Q_
 
 left_co, cent_co, last_co = st.columns((20,80,20))
 with cent_co:
-    st.image('C:/_1_GitHub/Jupyter-Notebooks/90_Streamlit_apps/GWP_Boundary_Conditions/assets/images/gwp_boundary_Qh_scheme_v2.png')
+    st.image('90_Streamlit_apps/GWP_Boundary_Conditions/assets/images/gwp_boundary_Qh_scheme_v2.png')
     st.markdown("""Schematic representation of an unconfined aquifer with a river boundary on the right side together with the associated _Q_-_h_ plot.""")
 
 st.markdown(""" By simulating a simple 1D unconfined aquifer with recharge and various boundary types, users of this module can gain insight into the essential principles that govern groundwater model boundaries and their practical implications in tools like the numerical groundwater flow model MODFLOW.
@@ -200,7 +200,7 @@ with st.expander("Show more :blue[**explanation about _Q_-_h_ plots**] that desc
     )
     lc1, cc1, rc1 = st.columns((10,60,10))
     with cc1:
-        st.image('C:/_1_GitHub/Jupyter-Notebooks/90_Streamlit_apps/GWP_Boundary_Conditions/assets/images/Q_h_plots_MF6.png', caption="Q-h plots describing the behavior of boundary conditions, [from Langevin et al., 2017](https://doi.org/10.3133/tm6A55.)")
+        st.image('90_Streamlit_apps/GWP_Boundary_Conditions/assets/images/Q_h_plots_MF6.png', caption="Q-h plots describing the behavior of boundary conditions, [from Langevin et al., 2017](https://doi.org/10.3133/tm6A55.)")
     
 
 # --- EXPLANATORY EXAMPLES ---
@@ -216,10 +216,10 @@ st.markdown("""
 
 lc1, rc1 = st.columns((1,1.45),gap = 'medium')
 with lc1:
-    st.image('C:/_1_GitHub/Jupyter-Notebooks/90_Streamlit_apps/GWP_Boundary_Conditions/assets/images/GWF_EX01.jpg')
+    st.image('90_Streamlit_apps/GWP_Boundary_Conditions/assets/images/GWF_EX01.jpg')
     st.markdown("""Conceptual model of :green[**Scenario 1**]: a one dimensional unconfined groundwater system with **one no-flow boundary and one specified head (or optionally a head-dependent flux) boundary**.""")
 with rc1:
-    st.image('C:/_1_GitHub/Jupyter-Notebooks/90_Streamlit_apps/GWP_Boundary_Conditions/assets/images/GWF_EX02.png')
+    st.image('90_Streamlit_apps/GWP_Boundary_Conditions/assets/images/GWF_EX02.png')
     st.markdown("""Conceptual model of :red[**Scenario 2**]: a one dimensional unconfined groundwater system with **two specified head boundaries**.""")
     
 with st.expander('Show more about the theory of the :blue[**model and the analytical solution**]'):
@@ -1056,4 +1056,4 @@ columns_lic = st.columns((5,1))
 with columns_lic[0]:
     st.markdown(f'Developed by {", ".join(author_list)} ({year}). <br> {institution_text}', unsafe_allow_html=True)
 with columns_lic[1]:
-    st.image('C:/_1_GitHub/Jupyter-Notebooks/90_Streamlit_apps/GWP_Boundary_Conditions/assets/images/CC_BY-SA_icon.png')
+    st.image('90_Streamlit_apps/GWP_Boundary_Conditions/assets/images/CC_BY-SA_icon.png')
