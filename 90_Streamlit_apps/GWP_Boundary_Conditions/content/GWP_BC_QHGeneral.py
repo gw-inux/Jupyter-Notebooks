@@ -219,7 +219,7 @@ with lc1:
     st.image('90_Streamlit_apps/GWP_Boundary_Conditions/assets/images/GWF_EX01.jpg')
     st.markdown("""Conceptual model of :green[**Scenario 1**]: a one dimensional unconfined groundwater system with **one no-flow boundary and one specified head (or optionally a head-dependent flux) boundary**.""")
 with rc1:
-    st.image('90_Streamlit_apps/GWP_Boundary_Conditions/assets/images/GWF_EX02.png')
+    st.image('90_Streamlit_apps/GWP_Boundary_Conditions/assets/images/GWF_EX02.jpg')
     st.markdown("""Conceptual model of :red[**Scenario 2**]: a one dimensional unconfined groundwater system with **two specified head boundaries**.""")
     
 with st.expander('Show more about the theory of the :blue[**model and the analytical solution**]'):
