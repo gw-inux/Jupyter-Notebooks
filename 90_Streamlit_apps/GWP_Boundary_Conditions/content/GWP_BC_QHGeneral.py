@@ -285,10 +285,10 @@ with st.expander('Show more about the theory of the :blue[**model and the analyt
     
     st.markdown("""
             where:
-            - _h(x)_: hydraulic head at location _x_ [m],
+            - _h(x)_: hydraulic head at location _x_ (m),
             - _L_: domain length [m],
-            - _h<sub>o</sub>_: head at the specified-head boundary at _x_ = _0_ [m].
-            - _h<sub>L</sub>_: head at the specified-head boundary at _x_ = _L_ [m].
+            - _h<sub>0</sub>_: head at the specified-head boundary at _x_ = _0_ (m).
+            - _h<sub>L</sub>_: head at the specified-head boundary at _x_ = _L_ (m).
             
             These solutions are subsequently used in the interactive plots to dynamically compute and visualize how different boundary conditions and recharge rates affect the hydraulic head distribution and the _Q_-_h_ relationship.
             """, unsafe_allow_html=True)  
