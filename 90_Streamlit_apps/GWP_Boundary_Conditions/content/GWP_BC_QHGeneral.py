@@ -286,7 +286,7 @@ with st.expander('Show more about the theory of the :blue[**model and the analyt
     st.markdown("""
             where:
             - _h(x)_: hydraulic head at location _x_ (m),
-            - _L_: domain length [m],
+            - _L_: domain length (m),
             - _h<sub>0</sub>_: head at the specified-head boundary at _x_ = _0_ (m).
             - _h<sub>L</sub>_: head at the specified-head boundary at _x_ = _L_ (m).
             
