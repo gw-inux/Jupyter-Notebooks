@@ -250,21 +250,21 @@ with st.expander('Show more about the theory of the :blue[**model and the analyt
 
     st.markdown("""
             with
-            - _x_: spatial coordinate along the horizontal flow direction [m],
-            - _h_: hydraulic head [m],
-            - _K_: hydraulic conductivity [m/s],
-            - _R_: recharge [m/s].
+            - _x_: spatial coordinate along the horizontal flow direction (m),
+            - _h_: hydraulic head (m),
+            - _K_: hydraulic conductivity (m/s),
+            - _R_: recharge (m/s).
             """)
     st.markdown("""
             The equation can be solved by using suitable boundary conditions:
             
             :green[**Scenario 1**]:
-            - at $x=0$, $dh/dx=0$ and
-            - at $x=L$, $h=h_L$
+            - at $x=0$ the flow is defined as $dh/dx=0$ and
+            - at $x=L$ the head is defined as $h=h_L$
             
             :red[**Scenario 2**]:
-            - at $x=0$, $h=h_0$ and
-            - at $x=L$, $h=h_L$
+            - at $x=0$ the head is defined as $h=h_0$ and
+            - at $x=L$ the head is defined as $h=h_L$
             
             """, unsafe_allow_html=True)
       
