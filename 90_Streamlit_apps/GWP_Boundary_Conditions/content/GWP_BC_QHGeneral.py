@@ -258,9 +258,13 @@ with st.expander('Show more about the theory of the :blue[**model and the analyt
     st.markdown("""
             The equation can be solved by using suitable boundary conditions:
             
-            :green[**Scenario 1**]: at $x=0$, $dh/dx=0$ and at $x=L$, $h=h_o$
+            :green[**Scenario 1**]:
+            - at $x=0$, $dh/dx=0$ and
+            - at $x=L$, $h=h_L$
             
-            :red[**Scenario 2**]: at $x=0$, $h=h_L$ and at $x=L$, $h=h_o$
+            :red[**Scenario 2**]:
+            - at $x=0$, $h=h_0$ and
+            - at $x=L$, $h=h_L$
             
             """, unsafe_allow_html=True)
       
