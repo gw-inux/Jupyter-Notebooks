@@ -46,7 +46,7 @@ st.markdown("""
 
 # --- Flat page definitions ---
 pages = {
-    "📕 Introduction ": "C:/_1_GitHub/Jupyter-Notebooks/90_Streamlit_apps/GWP_Boundary_Conditions/content/GWP_BC_QHGeneral.py",
+    "📕 Introduction ": "90_Streamlit_apps/GWP_Boundary_Conditions/content/GWP_BC_QHGeneral.py",
     "🟠 GHB": "90_Streamlit_apps/GWP_Boundary_Conditions/content/Q_h_plot_GHB.py",
     "🟣 RIV": "90_Streamlit_apps/GWP_Boundary_Conditions/content/Q_h_plot_RIV.py",
     "🟢 DRN": "90_Streamlit_apps/GWP_Boundary_Conditions/content/Q_h_plot_DRN.py",
