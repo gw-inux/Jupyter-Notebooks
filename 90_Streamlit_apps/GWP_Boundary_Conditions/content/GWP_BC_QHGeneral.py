@@ -201,7 +201,7 @@ with st.expander("Show more :blue[**explanation about _Q_-_h_ plots**] that desc
     modified_plot = st.toggle('**Toggle here** to see the :green[**adapted version**].')
     
     st.markdown("""
-    :blue[**The subsequent sections of this module allow investigation of these _Q_-_h_ plots**] :rainbow[**with color coded sections**] :blue[**for various boundary conditions**] **(_these are accessible via links on the left menu of this module_).**
+    :blue[**The subsequent parts of this module allow investigation of these _Q_-_h_ plots**] :rainbow[**with color coded sections**] :blue[**for various boundary conditions**] **(_these are accessible via links on the left menu of this module_).**
     """
     )
     lc1, cc1, rc1 = st.columns((10,60,10))
