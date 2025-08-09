@@ -275,13 +275,13 @@ with st.expander('Show more about the theory of the :blue[**model and the analyt
             
             """, unsafe_allow_html=True)  
     
-    st.latex(r'''h(x) = \sqrt{h_o^2 + \frac{R}{K}  x  (2L - x)}''')
+    st.latex(r'''h(x) = \sqrt{h_0^2 + \frac{R}{K}  x  (2L - x)}''')
     
     st.markdown("""
             :red[**Scenario 2**]:
             """, unsafe_allow_html=True)  
             
-    st.latex(r'''h(x) = \sqrt{h_o^2 - (h_o^2 - h_L^2) \frac{x}{L} + \frac{R}{K}  x  (L - x)}''')
+    st.latex(r'''h(x) = \sqrt{h_0^2 - (h_0^2 - h_L^2) \frac{x}{L} + \frac{R}{K}  x  (L - x)}''')
     
     st.markdown("""
             where:
