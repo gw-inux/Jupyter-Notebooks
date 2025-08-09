@@ -14,11 +14,11 @@ import json
 from streamlit_book import multiple_choice
 
 # path to questions for the assessments (direct path)
-path_quest_ini   = "90_Streamlit_apps/GWP_Boundary_Conditions/questions/initial_mnw.json"
-path_quest_plot1 = "90_Streamlit_apps/GWP_Boundary_Conditions/questions/exer_mnw_p1.json"
-path_quest_plot2 = "90_Streamlit_apps/GWP_Boundary_Conditions/questions/exer_mnw_p2.json"
-path_quest_plot3 = "90_Streamlit_apps/GWP_Boundary_Conditions/questions/exer_mnw_p3.json"
-path_quest_final = "90_Streamlit_apps/GWP_Boundary_Conditions/questions/final_mnw.json"
+path_quest_ini   = "C:/_1_GitHub/Jupyter-Notebooks/90_Streamlit_apps/GWP_Boundary_Conditions/questions/initial_mnw.json"
+path_quest_plot1 = "C:/_1_GitHub/Jupyter-Notebooks/90_Streamlit_apps/GWP_Boundary_Conditions/questions/exer_mnw_p1.json"
+path_quest_plot2 = "C:/_1_GitHub/Jupyter-Notebooks/90_Streamlit_apps/GWP_Boundary_Conditions/questions/exer_mnw_p2.json"
+path_quest_plot3 = "C:/_1_GitHub/Jupyter-Notebooks/90_Streamlit_apps/GWP_Boundary_Conditions/questions/exer_mnw_p3.json"
+path_quest_final = "C:/_1_GitHub/Jupyter-Notebooks/90_Streamlit_apps/GWP_Boundary_Conditions/questions/final_mnw.json"
 
 # Load questions
 with open(path_quest_ini, "r", encoding="utf-8") as f:

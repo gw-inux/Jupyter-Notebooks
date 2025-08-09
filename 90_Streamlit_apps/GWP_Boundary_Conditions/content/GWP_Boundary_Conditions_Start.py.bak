@@ -45,11 +45,11 @@ with columns[1]:
 st.markdown(
     """
 The sidebar links to sections that cover the specific boundary conditions that are available in MODFLOW, the USGS groundwater flow model:
-- :orange[**GHB:**] The **General Head** Boundary package to simulate head dependent flux in or out of the model.
-- :violet[**RIV:**] The **River** Boundary package to simulate head dependent flux in or out of the model.
-- :green[**DRN:**] The **Drain** package to simulate head dependent flux out of the model.
-- :rainbow[**MNW:**] The **Multi-Node-Well** package to simulate head dependent flux in or out of wells.
-- :blue[**EVT:**] The **Evapotranspiration** package to simulate flux out of the model.
+- :orange[**GHB:**] The **General Head** Boundary package to simulate head dependent flow in or out of the model.
+- :violet[**RIV:**] The **River** Boundary package to simulate head dependent fllow in or out of the model.
+- :green[**DRN:**] The **Drain** package to simulate head dependent flow out of the model.
+- :rainbow[**MNW:**] The **Multi-Node-Well** package to simulate head dependent flow in or out of wells.
+- :blue[**EVT:**] The **Evapotranspiration** package to simulate flow out of the model.
 """
 ) 
 st.markdown('---')

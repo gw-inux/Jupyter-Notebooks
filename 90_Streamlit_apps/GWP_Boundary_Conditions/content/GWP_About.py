@@ -21,7 +21,7 @@ st.subheader('Description', divider = 'green')
 
 st.markdown(
     """
-    The Boundary Condition Analysis interactive tool provides a conceptual understanding of how different boundary types influence groundwater flow. The application uses **Q–h plots**, graphical representations of the relationship between discharge (_Q_) and hydraulic head (_h_), to illustrate the behavior of defined head, no-flow, and head-dependent boundaries such as rivers and general head boundaries. A one-dimensional unconfined aquifer serves as an example to demonstrate how these boundary conditions control flow directions and magnitudes.
+    The Boundary Condition Module includes interactive tools to facilitate conceptual understanding of how different boundary types influence groundwater flow. The application uses **Q–h plots**, graphical representations of the relationship between discharge (_Q_) and hydraulic head (_h_), to illustrate the behavior of defined head, no-flow, and head-dependent flux boundaries such as surface water bodies and drains. A one-dimensional unconfined aquifer serves as an example to demonstrate how the boundary conditions control flow directions and magnitudes.
     """
 )
 st.subheader('Development', divider = 'green')
@@ -35,28 +35,28 @@ st.markdown(
 )
 left_co1, cent_co1 = st.columns((20,60))
 with left_co1:
-    st.image('90_Streamlit_apps/GWP_Boundary_Conditions/assets/images/iNUX_wLogo.png')
+    st.image('C:/_1_GitHub/Jupyter-Notebooks/90_Streamlit_apps/GWP_Boundary_Conditions/assets/images/iNUX_wLogo.png')
 with cent_co1:
-    st.image('90_Streamlit_apps/GWP_Boundary_Conditions/assets/images/1200px-Erasmus+_Logo.svg.png')
+    st.image('C:/_1_GitHub/Jupyter-Notebooks/90_Streamlit_apps/GWP_Boundary_Conditions/assets/images/1200px-Erasmus+_Logo.svg.png')
 
 st.subheader('About the Developers', divider = 'green')
     
 left_co2, cent_co2 = st.columns((20,60))
 with left_co2:
-    st.image('90_Streamlit_apps/GWP_Boundary_Conditions/assets/images/thomasreimann.png')
+    st.image('C:/_1_GitHub/Jupyter-Notebooks/90_Streamlit_apps/GWP_Boundary_Conditions/assets/images/thomasreimann.png')
 with cent_co2:
     st.markdown(
         """
-        :blue[**Thomas Reimann**] is a researcher and lecturer at the Institute for Groundwater Management at TU Dresden, Germany. With nearly 20 years of experience, Thomas’ work focus on groundwater engineering, often in combination with distributed numerical models in different environments, e.g., karst systems or open-pit mining for soft coal. He received a diploma in water management with a focus on groundwater engineering from TU Dresden in 2003. In 2012 he was promoted to Dr.-Ing. (Ph.D.) in groundwater management for research in karst systems by TU Dresden.
+        :blue[**Thomas Reimann**] is a researcher and lecturer at the Institute for Groundwater Management at TU Dresden, Germany. With nearly 20 years of experience, Thomas’ work focuses on groundwater engineering, often in combination with distributed numerical models in different environments, e.g., karst systems or open-pit mining for soft coal. He received a diploma in water management with a focus on groundwater engineering from TU Dresden in 2003. In 2012 he was promoted to Dr.-Ing. (Ph.D.) in groundwater management for research in karst systems by TU Dresden.
         
-        Thomas is a specialist in applying and adapting distributed numerical models for use in research and industry. He enhanced the distributed numerical discrete-continuum model MODFLOW Conduit Flow Process (CFP) by various boundary conditions, flow- and transport processes as CFPv2. Current research projects comprise Karst system characterization with inverse groundwater modeling, groundwater management in open-pit mining environments, and Managed Aquifer Recharge.
+        Thomas is a specialist in applying and adapting distributed numerical models for use in research and industry. He enhanced the distributed numerical discrete-continuum model MODFLOW Conduit Flow Process (CFP) with various boundary conditions, as well as flow and transport processes in CFPv2. Current research projects comprise Karst system characterization with inverse groundwater modeling, groundwater management in open-pit mining environments, and Managed Aquifer Recharge.
         
-        Besides research, he has been actively teaching groundwater management and groundwater modeling since 2003 at TU Dresden and as a guest lecturer for Hydrogeology since 2017 at the University of Gothenburg (Sweden). The ongoing teaching activities use various innovative digital methods to improve the learning process, which was honored by the TU Dresden teaching award in 2017.
+        Besides research, he has been actively teaching groundwater management and groundwater modeling since 2003 at TU Dresden and as a guest lecturer for Hydrogeology since 2017 at the University of Gothenburg (Sweden). His ongoing teaching activities use various innovative digital methods to improve the learning process, which was honored by the TU Dresden teaching award in 2017.
         """
     )
 left_co3, cent_co3 = st.columns((20,60))
 with left_co3:
-    st.image('90_Streamlit_apps/GWP_Boundary_Conditions/assets/images/eileen.poeter.jpg')
+    st.image('C:/_1_GitHub/Jupyter-Notebooks/90_Streamlit_apps/GWP_Boundary_Conditions/assets/images/eileen.poeter.jpg')
 with cent_co3:
     st.markdown(
         """
@@ -77,6 +77,13 @@ with cent_co4:
         :green[Please help us by using the following link when sharing this tool with others.]   
 
         https://interactive-education.gw-project.org/
+
+        :orange[If you find our materials useful, please donate.]   
+
+        https://gw-project.org/donate/
+        
+        :blue[If you find our materials useful, please let us know by emailing webmaster@gw-project.org.]  
+                 
         """   
     )
     
@@ -98,4 +105,4 @@ columns_lic = st.columns((5,1))
 with columns_lic[0]:
     st.markdown(f'Developed by {", ".join(author_list)} ({year}). <br> {institution_text}', unsafe_allow_html=True)
 with columns_lic[1]:
-    st.image('90_Streamlit_apps/GWP_Boundary_Conditions/assets/images/CC_BY-SA_icon.png')
+    st.image('C:/_1_GitHub/Jupyter-Notebooks/90_Streamlit_apps/GWP_Boundary_Conditions/assets/images/CC_BY-SA_icon.png')

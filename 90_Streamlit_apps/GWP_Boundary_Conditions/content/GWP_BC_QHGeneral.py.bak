@@ -295,9 +295,9 @@ st.markdown("""Subsequently, the solutions are computed and results are visualiz
 - **recharge _R_** (in mm/a) and
 - **hydraulic conductivity _K_** (in m/s).
 
-On the right side of the control panel you can select which **_Q_-_h_ relationship** you would like to plot for different model boundaries. The position within the model plot for the head represented in the _Q_-_h_ plot is marked by a colored circle. Additionally you can toggle to turn the _Q_-_h_ plots 90 degrees clockwise (transfer to _h_-_Q_ plots) for a more intuitive view.
+At the right side of the control panel you can plot the **_Q_-_h_ relationship** for different boundary conditions. The position within the model plot that refers to the _Q_-_h_ plot is marked by a colored circle. Additionally you con toggle to turn the _Q_-_h_ plots 90 degrees clockwise (transfer to _h_-_Q_ plots) for a more intuitive view.
 
-Further modifications depend on your choice of :green[**Scenario 1**] or :red[**Scenario 2**]. 
+Further modifications depends on your choice of :green[**Scenario 1**] or :red[**Scenario 2**]. 
 """)
 
 # --- INTERACTIVE PLOT EXAMPLE 1 ---

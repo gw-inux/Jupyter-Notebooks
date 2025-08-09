@@ -40,7 +40,7 @@
       "The hydraulic gradient within the entire aquifer.": false,
       "The position of the water table over time.": false
     },
-    "success": "✅ Correct! Q–h plots illustrate boundary-specific relationships and indicate whether water enters or exits the system.",
-    "error": "❌ Not quite. Q–h plots describe flow-head behavior at specific boundaries, not gradients over the entire system nor water level in the model."
+    "success": "✅ Correct! Q–h plots illustrate boundary-specific relationships.",
+    "error": "❌ Not quite. Q–h plots describe flow-head behavior at boundaries, not gradients or time."
   }
 ]
