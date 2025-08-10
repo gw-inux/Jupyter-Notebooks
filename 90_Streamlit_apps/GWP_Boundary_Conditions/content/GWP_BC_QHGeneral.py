@@ -320,13 +320,11 @@ with colplot1:
 with colplot2:
     show_plot2 = st.button("**Show the :rainbow[interactive] plot for :red[SCENARIO 2]**")
 
-st.markdown("---")
-
 if show_plot1:    
     st.markdown("""
-    :green[**Additional Instructions for Scenario 1:**]
+    #### :green[**Additional Instructions for Scenario 1:**]
     
-    You can toggle between a specified head and a head-dependent river boundary condition on the right side of the model. If the river boundary is chosen, you can modify the river-aquifer conductance. 
+    You can toggle between a :blue[specified head] and a :violet[head-dependent river boundary] condition on the right side of the model. If the :violet[river] boundary is chosen, you can modify the river-aquifer conductance. 
     
     _Further **instructions** how to use the interactive plot and a **short assessment for self-evaluation** are availble below the figure._   
     """
@@ -664,9 +662,9 @@ if show_plot1:
 if show_plot2:
     
     st.markdown("""
-    :red[**Additional Instructions for Scenario 2:**]
+    #### :red[**Additional Instructions for Scenario 2:**]
     
-    You can modify the specified head elevation at the left side (the right side hydraulic head is defined as fixed to 150 m). The interactive plot will indicate the boundary flow (in- and outflow) for both specified head boundaries.   
+    You can modify the :blue[specified head] elevation at the left side (the right side hydraulic head is defined as fixed to 150 m). The interactive plot will indicate the boundary flow (in- and outflow) for both :blue[specified head boundaries].   
     
     _Further **instructions** how to use the interactive plot and a **short assessment for self-evaluation** are availble below the figure._  
     """
