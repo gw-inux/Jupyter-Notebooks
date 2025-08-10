@@ -11,9 +11,9 @@ import json
 from streamlit_book import multiple_choice
 
 # path to questions for the assessments (direct path)
-path_quest_ini   = "90_Streamlit_apps/GWP_Boundary_Conditions/questions/initial_drn.json"
-path_quest_exer =  "90_Streamlit_apps/GWP_Boundary_Conditions/questions/exer_drn.json"
-path_quest_final = "90_Streamlit_apps/GWP_Boundary_Conditions/questions/final_drn.json"
+path_quest_ini   = "C:/_1_GitHub/Jupyter-Notebooks/90_Streamlit_apps/GWP_Boundary_Conditions/questions/initial_drn.json"
+path_quest_exer =  "C:/_1_GitHub/Jupyter-Notebooks/90_Streamlit_apps/GWP_Boundary_Conditions/questions/exer_drn.json"
+path_quest_final = "C:/_1_GitHub/Jupyter-Notebooks/90_Streamlit_apps/GWP_Boundary_Conditions/questions/final_drn.json"
 
 # Load questions
 with open(path_quest_ini, "r", encoding="utf-8") as f:
@@ -180,7 +180,7 @@ with st.expander("Show me more about **the Theory**"):
     
     left_co, cent_co, last_co = st.columns((10,80,10))
     with cent_co:
-        st.image('06_Groundwater_modeling/FIGS/DRN.png', caption="Schematic illustration of the DRN boundary with a) drain pipe burried in backfill ditch, and b) open drain; modified from  (McDonald and Harbaugh, 1988; https://pubs.usgs.gov/twri/twri6a1/pdf/twri_6-A1_p.pdf)")
+        st.image('C:\_1_GitHub\Jupyter-Notebooks\06_Groundwater_modeling/FIGS/DRN.png', caption="Schematic illustration of the DRN boundary with a) drain pipe burried in backfill ditch, and b) open drain; modified from  (McDonald and Harbaugh, 1988; https://pubs.usgs.gov/twri/twri6a1/pdf/twri_6-A1_p.pdf)")
     st.markdown("""
     The relationship between the amount of water that flows into the drain and the head in the aquifer is:
     """)

@@ -495,12 +495,12 @@ if show_plot1:
             ax_qh.xaxis.set_major_formatter(FormatStrFormatter('%.1e'))
             ax_qh.set_ylim(140,160)
             ax_qh.set_ylabel("hydraulic head (m)", fontsize=14)
-            ax_qh.set_xlabel("+ is flow INTO system Qin (m³/s)", fontsize=14)
+            ax_qh.set_xlabel("+ is flow INTO system Qin (m³/s/m2)", fontsize=14)
         else:
             ax_qh.yaxis.set_major_formatter(FormatStrFormatter('%.1e'))
             ax_qh.set_xlim(140,160)
             ax_qh.set_xlabel("hydraulic head (m)", fontsize=14)
-            ax_qh.set_ylabel("+ is flow INTO system Qin (m³/s)", fontsize=14)
+            ax_qh.set_ylabel("+ is flow INTO system Qin (m³/s/m2)", fontsize=14)
         if "No-flow" in bc_type:
             if turn:
                 ax_qh.xaxis.set_major_formatter(FormatStrFormatter('%.1e'))

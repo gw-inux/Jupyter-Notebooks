@@ -35,15 +35,15 @@ st.markdown(
 )
 left_co1, cent_co1 = st.columns((20,60))
 with left_co1:
-    st.image('90_Streamlit_apps/GWP_Boundary_Conditions/assets/images/iNUX_wLogo.png')
+    st.image('C:/_1_GitHub/Jupyter-Notebooks/90_Streamlit_apps/GWP_Boundary_Conditions/assets/images/iNUX_wLogo.png')
 with cent_co1:
-    st.image('90_Streamlit_apps/GWP_Boundary_Conditions/assets/images/1200px-Erasmus+_Logo.svg.png')
+    st.image('C:/_1_GitHub/Jupyter-Notebooks/90_Streamlit_apps/GWP_Boundary_Conditions/assets/images/1200px-Erasmus+_Logo.svg.png')
 
 st.subheader('About the Developers', divider = 'green')
     
 left_co2, cent_co2 = st.columns((20,60))
 with left_co2:
-    st.image('90_Streamlit_apps/GWP_Boundary_Conditions/assets/images/thomasreimann.png')
+    st.image('C:/_1_GitHub/Jupyter-Notebooks/90_Streamlit_apps/GWP_Boundary_Conditions/assets/images/thomasreimann.png')
 with cent_co2:
     st.markdown(
         """
@@ -56,7 +56,7 @@ with cent_co2:
     )
 left_co3, cent_co3 = st.columns((20,60))
 with left_co3:
-    st.image('90_Streamlit_apps/GWP_Boundary_Conditions/assets/images/eileen.poeter.jpg')
+    st.image('C:/_1_GitHub/Jupyter-Notebooks/90_Streamlit_apps/GWP_Boundary_Conditions/assets/images/eileen.poeter.jpg')
 with cent_co3:
     st.markdown(
         """
@@ -105,4 +105,4 @@ columns_lic = st.columns((5,1))
 with columns_lic[0]:
     st.markdown(f'Developed by {", ".join(author_list)} ({year}). <br> {institution_text}', unsafe_allow_html=True)
 with columns_lic[1]:
-    st.image('90_Streamlit_apps/GWP_Boundary_Conditions/assets/images/CC_BY-SA_icon.png')
+    st.image('C:/_1_GitHub/Jupyter-Notebooks/90_Streamlit_apps/GWP_Boundary_Conditions/assets/images/CC_BY-SA_icon.png')

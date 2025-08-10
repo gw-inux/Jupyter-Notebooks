@@ -11,9 +11,9 @@ import json
 from streamlit_book import multiple_choice
 
 # path to questions for the assessments (direct path)
-path_quest_ini   = "90_Streamlit_apps/GWP_Boundary_Conditions/questions/initial_riv.json"
-path_quest_exer =  "90_Streamlit_apps/GWP_Boundary_Conditions/questions/exer_riv.json"
-path_quest_final = "90_Streamlit_apps/GWP_Boundary_Conditions/questions/final_riv.json"
+path_quest_ini   = "C:/_1_GitHub/Jupyter-Notebooks/90_Streamlit_apps/GWP_Boundary_Conditions/questions/initial_riv.json"
+path_quest_exer =  "C:/_1_GitHub/Jupyter-Notebooks/90_Streamlit_apps/GWP_Boundary_Conditions/questions/exer_riv.json"
+path_quest_final = "C:/_1_GitHub/Jupyter-Notebooks/90_Streamlit_apps/GWP_Boundary_Conditions/questions/final_riv.json"
 
 # Load questions
 with open(path_quest_ini, "r", encoding="utf-8") as f:
@@ -231,7 +231,7 @@ with st.expander('**Click here** to read about the :green[**heads used**] in the
     """)
     left_co1, cent_co1, last_co1 = st.columns((10,80,10))
     with cent_co1:
-        st.image('06_Groundwater_modeling/FIGS/RIV_CONCEPT_2.png', caption="Concept of the River boundary (modified from McDonald and Harbaugh, 1988; https://pubs.usgs.gov/twri/twri6a1/pdf/twri_6-A1_p.pdf)")
+        st.image('C:\_1_GitHub\Jupyter-Notebooks\06_Groundwater_modeling/FIGS/RIV_CONCEPT_2.png', caption="Concept of the River boundary (modified from McDonald and Harbaugh, 1988; https://pubs.usgs.gov/twri/twri6a1/pdf/twri_6-A1_p.pdf)")
     st.markdown("""
     Aquifer head elevation is calculated by MODFLOW in response to all the model inputs (labeled Head in Cell in this image). It is assumed the aquifer head is uniform throughout the cell and thus occurs at the elevation of the river bottom.
 
@@ -267,7 +267,7 @@ with st.expander('**Click here** to read how :green[**conductance is calculated*
     
     left_co2, cent_co2, last_co2 = st.columns((10,80,10))
     with cent_co2:
-        st.image('06_Groundwater_modeling/FIGS/RIV_COND_2.png', caption="Calculation of the Riverbed conductance (from McDonald and Harbaugh, 1988; https://pubs.usgs.gov/twri/twri6a1/pdf/twri_6-A1_p.pdf)")
+        st.image('C:\_1_GitHub\Jupyter-Notebooks\06_Groundwater_modeling/FIGS/RIV_COND_2.png', caption="Calculation of the Riverbed conductance (from McDonald and Harbaugh, 1988; https://pubs.usgs.gov/twri/twri6a1/pdf/twri_6-A1_p.pdf)")
 
     
     st.markdown("""
@@ -289,7 +289,7 @@ with st.expander('**Click here** to read how flow is calculated when the :green[
     """)
     left_co3, cent_co3, last_co3 = st.columns((10,80,10))
     with cent_co3:
-        st.image('06_Groundwater_modeling/FIGS/RIV_CONCEPT_UNSAT_2.png', caption="Concept of the River boundary when the aquifer head falls below the river bottom (modified from McDonald and Harbaugh, 1988; https://pubs.usgs.gov/twri/twri6a1/pdf/twri_6-A1_p.pdf)")
+        st.image('C:\_1_GitHub\Jupyter-Notebooks\06_Groundwater_modeling/FIGS/RIV_CONCEPT_UNSAT_2.png', caption="Concept of the River boundary when the aquifer head falls below the river bottom (modified from McDonald and Harbaugh, 1988; https://pubs.usgs.gov/twri/twri6a1/pdf/twri_6-A1_p.pdf)")
 
     st.markdown("""
     When the aquifer head $h_{aq}$ is lower than the river bottom $R_{bot}$, the head difference across the river bed is: 
