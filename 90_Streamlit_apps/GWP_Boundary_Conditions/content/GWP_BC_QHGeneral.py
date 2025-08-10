@@ -470,12 +470,12 @@ if show_plot1:
             ax.text(2425, h_rob_point+1.0, 'Q-h plot for this point', horizontalalignment='right', bbox=dict(boxstyle="square",facecolor='none', edgecolor='fuchsia'), fontsize=12)
         
         # MAKE 'WATER'-TRIANGLE
-        x2400 = np.argmin(np.abs(x - 2400))
-        h_arrow = h[x2400] #water level at arrow
+        x1500 = np.argmin(np.abs(x - 1500))
+        h_arrow = h[x1500] #water level at arrow
         L2 = 2500
-        ax.arrow(L2*0.96,(h_arrow+(h_arrow*0.002)), 0, -0.01, fc="k", ec="k", head_width=(L2*0.015), head_length=(h_arrow*0.0015))
-        ax.hlines(y= h_arrow-(h_arrow*0.0005), xmin=L2*0.95, xmax=L2*0.97, colors='blue')   
-        ax.hlines(y= h_arrow-(h_arrow*0.001), xmin=L2*0.955, xmax=L2*0.965, colors='blue')
+        ax.arrow(L2*0.6,(h_arrow+(h_arrow*0.0030)), 0, -0.01, fc="k", ec="k", head_width=(L2*0.015), head_length=(h_arrow*0.0025))
+        ax.hlines(y= h_arrow-(h_arrow*0.0010), xmin=L2*0.59, xmax=L2*0.61, colors='blue')   
+        ax.hlines(y= h_arrow-(h_arrow*0.0022), xmin=L2*0.595, xmax=L2*0.605, colors='blue')
         
         
         # Format plot
@@ -847,10 +847,13 @@ if show_plot2:
             ax.text(x2_pos2, y2_pos1, 'RIGHT specified head bc', horizontalalignment='right', bbox=dict(boxstyle="square", facecolor='deepskyblue', alpha=0.4), fontsize=12)
             
         # MAKE 'WATER'-TRIANGLE
-        h_arrow = (hl2**2-(hl2**2-hr2**2)/L2*(L2*0.96)+(R2/K2*(L2*0.96)*(L2-(L2*0.96))))**0.5  #water level at arrow
-        ax.arrow(L2*0.96,(h_arrow+(h_arrow*0.002)), 0, -0.01, fc="k", ec="k", head_width=(L2*0.015), head_length=(h_arrow*0.0015))
-        ax.hlines(y= h_arrow-(h_arrow*0.0005), xmin=L2*0.95, xmax=L2*0.97, colors='blue')   
-        ax.hlines(y= h_arrow-(h_arrow*0.001), xmin=L2*0.955, xmax=L2*0.965, colors='blue')
+        h_arrow = (hl2**2-(hl2**2-hr2**2)/L2*(L2*0.6)+(R2/K2*(L2*0.6)*(L2-(L2*0.6))))**0.5  #water level at arrow
+        #ax.arrow(L2*0.6,(h_arrow+(h_arrow*0.002)), 0, -0.01, fc="k", ec="k", head_width=(L2*0.015), head_length=(h_arrow*0.0015))
+        #ax.hlines(y= h_arrow-(h_arrow*0.0005), xmin=L2*0.95, xmax=L2*0.97, colors='blue')   
+        #ax.hlines(y= h_arrow-(h_arrow*0.001), xmin=L2*0.955, xmax=L2*0.965, colors='blue')
+        ax.arrow(L2*0.6,(h_arrow+(h_arrow*0.0030)), 0, -0.01, fc="k", ec="k", head_width=(L2*0.015), head_length=(h_arrow*0.0025))
+        ax.hlines(y= h_arrow-(h_arrow*0.0010), xmin=L2*0.59, xmax=L2*0.61, colors='blue')   
+        ax.hlines(y= h_arrow-(h_arrow*0.0022), xmin=L2*0.595, xmax=L2*0.605, colors='blue')
         
         #ARROWS FOR RECHARGE 
         if R2 != 0:
