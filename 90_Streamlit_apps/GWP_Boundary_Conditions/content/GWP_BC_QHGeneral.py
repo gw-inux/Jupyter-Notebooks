@@ -84,7 +84,7 @@ author_list = [f"{name}{''.join(index_symbols[i-1] for i in indices)}" for name,
 institution_list = [f"{index_symbols[i-1]} {inst}" for i, inst in institutions.items()]
 institution_text = " | ".join(institution_list)
 
-st.title('General behavior of boundary conditions in groundwater models')
+st.title('General Behavior of Boundary Conditions in Groundwater Models 💦')
 st.subheader('Understanding :blue[the relationship between flow _Q_ and hydraulic head _h_ using _Q_-_h_ plots for different boundary conditions]', divider="blue")
 
 
