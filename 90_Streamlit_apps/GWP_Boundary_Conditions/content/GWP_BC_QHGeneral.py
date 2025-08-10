@@ -350,8 +350,8 @@ if show_plot1:
         # Define the minimum and maximum for the logarithmic scale
         log_min = -4.0 # Corresponds to 10^-7 = 0.0000001
         log_max = -2.0  # Corresponds to 10^0 = 1
-        log_min2 = -6.0 
-        log_max2 = -3.0 
+        log_min2 = -5.30103
+        log_max2 = -2.30103
         
         st.markdown("""
        #### :green[INPUT CONTROLS]
@@ -375,7 +375,7 @@ if show_plot1:
                 riv = st.toggle (':violet[**River BC?**]', key = 'riv_toggle')
                 if riv:
                     # Log slider for river conductance                    
-                    labels, default_label = prep_log_slider(default_val = 1e-5, log_min = log_min2, log_max = log_max2)
+                    labels, default_label = prep_log_slider(default_val = 1e-4, log_min = log_min2, log_max = log_max2)
                     selected_cRiv = st.select_slider("**RIV conductance** $C_{RIV}$ in m²/s", labels, default_label, key = "cRiv")
                     cRiv = float(selected_cRiv)
                     hr_riv = R * L / cRiv + hRiv
@@ -495,12 +495,12 @@ if show_plot1:
             ax_qh.xaxis.set_major_formatter(FormatStrFormatter('%.1e'))
             ax_qh.set_ylim(140,160)
             ax_qh.set_ylabel("hydraulic head (m)", fontsize=14)
-            ax_qh.set_xlabel("+ is flow INTO system Qin (m³/s)", fontsize=14)
+            ax_qh.set_xlabel("+ is flow INTO the model \n$Q_{in}$ (m³/s)", fontsize=14)
         else:
             ax_qh.yaxis.set_major_formatter(FormatStrFormatter('%.1e'))
             ax_qh.set_xlim(140,160)
             ax_qh.set_xlabel("hydraulic head (m)", fontsize=14)
-            ax_qh.set_ylabel("+ is flow INTO system Qin (m³/s)", fontsize=14)
+            ax_qh.set_ylabel("+ is flow INTO the model \n$Q_{in}$ (m³/s)", fontsize=14)
         if "No-flow" in bc_type:
             if turn:
                 ax_qh.xaxis.set_major_formatter(FormatStrFormatter('%.1e'))
@@ -524,14 +524,14 @@ if show_plot1:
                 ax_qh.xaxis.set_major_locator(plt.MaxNLocator(3))  # Limit to 3 ticks
                 ax_qh.plot(Q_rch, h_rch, color='black', linewidth=3)
                 ax_qh.plot(Q_rch_point, h_rch_point, 'go', markersize=10)
-                ax_qh.set_title("h-Q plot: Specified flow boundary (Recharge) at x = 1250 m", fontsize=16, pad=15, color = 'green')
+                ax_qh.set_title("h-Q plot: Specified flow boundary (Recharge) per m² at x = 1250 m", fontsize=16, pad=15, color = 'green')
                 ax_qh.set_xlim(-(400/1000/365.25/86400),(400/1000/365.25/86400))
                 ax_qh.axvline(0, color='grey', linestyle='--', linewidth=0.8)
                 ax_qh.axhline(150, color='grey', linestyle='--', linewidth=0.8)
             else:            
                 ax_qh.plot(h_rch, Q_rch, color='black', linewidth=3)
                 ax_qh.plot(h_rch_point, Q_rch_point, 'go', markersize=10)
-                ax_qh.set_title("Q–h plot: Specified flow boundary (Recharge) at x = 1250 m", fontsize=16, pad=15, color = 'green')
+                ax_qh.set_title("Q–h plot: Specified flow boundary (Recharge) per m² at x = 1250 m", fontsize=16, pad=15, color = 'green')
                 ax_qh.set_ylim(-(400/1000/365.25/86400),(400/1000/365.25/86400))
                 ax_qh.axhline(0, color='grey', linestyle='--', linewidth=0.8)
                 ax_qh.axvline(150, color='grey', linestyle='--', linewidth=0.8)
@@ -876,26 +876,26 @@ if show_plot2:
             ax_qh.xaxis.set_major_formatter(FormatStrFormatter('%.1e'))
             ax_qh.set_ylim(140,160)
             ax_qh.set_ylabel("hydraulic head (m)", fontsize=14)
-            ax_qh.set_xlabel("flow INTO the model Qin (m³/s)", fontsize=14)
+            ax_qh.set_xlabel("+ is flow INTO the model \n$Q_{in}$ (m³/s)", fontsize=14)
         else:
             ax_qh.yaxis.set_major_formatter(FormatStrFormatter('%.1e'))
             ax_qh.set_xlim(140,160)
             ax_qh.set_xlabel("hydraulic head (m)", fontsize=14)
-            ax_qh.set_ylabel("flow INTO the model Qin (m³/s)", fontsize=14)
+            ax_qh.set_ylabel("+ is flow INTO the model \n$Q_{in}$ (m³/s)", fontsize=14)
         if "Recharge" in bc_type2:
             if turn2:
                 ax_qh.xaxis.set_major_formatter(FormatStrFormatter('%.1e'))
                 ax_qh.xaxis.set_major_locator(plt.MaxNLocator(3))  # Limit to 3 ticks
                 ax_qh.plot(Q2_rch, h2_rch, color='black', linewidth=3)
                 ax_qh.plot(Q2_rch_point, h2_rch_point, 'go', markersize=10)
-                ax_qh.set_title("h-Q plot: Specified flow boundary (Recharge) at x = 1250 m", fontsize=16, pad=15, color = 'green')
+                ax_qh.set_title("h-Q plot: Specified flow boundary (Recharge) per m² at x = 1250 m", fontsize=16, pad=15, color = 'green')
                 ax_qh.set_xlim(-(400/1000/365.25/86400),(400/1000/365.25/86400))
                 ax_qh.axvline(0, color='grey', linestyle='--', linewidth=0.8)
                 ax_qh.axhline(150, color='grey', linestyle='--', linewidth=0.8)
             else:            
                 ax_qh.plot(h2_rch, Q2_rch, color='black', linewidth=3)
                 ax_qh.plot(h2_rch_point, Q2_rch_point, 'go', markersize=10)
-                ax_qh.set_title("Q–h plot: Specified flow boundary (Recharge) at x = 1250 m", fontsize=16, pad=15, color = 'green')
+                ax_qh.set_title("Q–h plot: Specified flow boundary (Recharge) per m² at x = 1250 m", fontsize=16, pad=15, color = 'green')
                 ax_qh.set_ylim(-(400/1000/365.25/86400),(400/1000/365.25/86400))
                 ax_qh.axhline(0, color='grey', linestyle='--', linewidth=0.8)
                 ax_qh.axvline(150, color='grey', linestyle='--', linewidth=0.8)
