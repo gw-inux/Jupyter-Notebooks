@@ -85,7 +85,7 @@ institution_list = [f"{index_symbols[i-1]} {inst}" for i, inst in institutions.i
 institution_text = " | ".join(institution_list)
 
 st.title('General Behavior of Boundary Conditions in :blue[Groundwater Models]')
-st.subheader('Understanding :blue[the relationship between flow _Q_ and hydraulic head _h_ using _Q_-_h_ plots for different boundary conditions]', divider="blue")
+st.subheader('Understanding the :blue[relationship between flow _Q_ and hydraulic head _h_ using _Q_-_h_ plots] for different boundary conditions', divider="blue")
 
 
 # --- MOTIVATION ---
