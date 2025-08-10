@@ -15,8 +15,8 @@ author_list = [f"{name}{''.join(index_symbols[i-1] for i in indices)}" for name,
 institution_list = [f"{index_symbols[i-1]} {inst}" for i, inst in institutions.items()]
 institution_text = " | ".join(institution_list)
 
-st.title("Welcome to the Boundary Condition Module! 💦")
-st.header('A Multipage App for Boundary Conditions in Groundwater Flow Models! 👋', divider= 'green')
+st.title("Welcome to the Boundary Condition Module 💦")
+st.header('A Multipage Application Elucidating Boundary Conditions in Groundwater Flow Models 👋', divider= 'green')
 
 st.subheader('Overview')
 st.markdown(
