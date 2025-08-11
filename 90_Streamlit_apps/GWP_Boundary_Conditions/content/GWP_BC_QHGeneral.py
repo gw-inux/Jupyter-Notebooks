@@ -949,8 +949,11 @@ if show_plot2:
 #                ax_qh.axhline(0, color='grey', linestyle='--', linewidth=0.8)
 #                ax_qh.axvline(150, color='grey', linestyle='--', linewidth=0.8)
         else:
-            # Draw a blank subplot (white background, no ticks, no frame)
+            ax_qh.set_ylim(-1,1)
+            ax_qh.text(150,0.75,"No Q–h plot selected.\n\nScroll down for Initial Instructions \n\nor select a Q–h plot type in the INPUT CONTROLS (right-hand menu).", ha='center', va='center', fontsize=13, wrap=True)
             ax_qh.axis('off')
+            # Draw a blank subplot (white background, no ticks, no frame)
+            #ax_qh.axis('off')
         
         st.pyplot(fig)
         
