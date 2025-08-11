@@ -13,7 +13,7 @@
   {
     "question": "How does increasing the riverbed conductance ($C_{Riv}$) affect flow behavior in a RIV boundary condition? (Mark ALL correct answers)",
     "options": {
-      "It increases the sensitivity of flow to the head difference.": false,
+      "It increases the sensitivity of flow to the head difference.": true,
       "It reduces the maximum exchange flow possible.": false,
       "It represents a more hydraulically connected river–aquifer interface.": true,
       "It makes the river behave increasingly like a constant head boundary.": true
