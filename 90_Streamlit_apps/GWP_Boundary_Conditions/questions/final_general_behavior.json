@@ -1,14 +1,14 @@
 [
   {
-    "question": "Why is a defined-head boundary represented as a horizontal line in a Q–h plot? (Mark ALL correct answers)",
+    "question": "Why is a specified-head boundary represented as a vertical line in a Q–h plot? (Mark ALL correct answers)",
     "options": {
       "A) Because the head remains constant regardless of flow rate.": true,
       "B) Because the flow rate remains constant.": false,
       "C) Because the aquifer has no recharge.": false,
       "D) Because it reflects external control, like a large river or lake.": true
     },
-    "success": "✅ Correct! For a Dirichlet condition, head is fixed; Q varies. It often reflects external controls like rivers.",
-    "error": "❌ Not correct. For a Dirichlet condition, the head is fixed, not the flow, and the value of recharge does not influence the value of specified head."
+    "success": "✅ Correct! For a Dirichlet condition, head is specified; Q varies. It often reflects external controls like large lakes that are in direct contact with the aquifer.",
+    "error": "❌ Not correct. For a Dirichlet condition, the head is specified, not the flow, and the value of recharge does not influence the value of specified head."
   },
   {
     "question": "Which characteristics best describe a head-dependent boundary (Robin condition)? (Mark ALL correct answers)",
