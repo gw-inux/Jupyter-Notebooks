@@ -1,0 +1,500 @@
+import numpy as np
+import matplotlib.pyplot as plt
+import scipy.special
+import scipy.interpolate as interp
+import math
+import pandas as pd
+import streamlit as st
+import streamlit_book as stb
+from streamlit_extras.stateful_button import button
+
+# Authors, institutions, and year
+year = 2025 
+authors = {
+    "Thomas Reimann": [1],  # Author 1 belongs to Institution 1
+}
+institutions = {
+    1: "TU Dresden, Institute for Groundwater Management",
+}
+index_symbols = ["¹", "²", "³", "⁴", "⁵", "⁶", "⁷", "⁸", "⁹"]
+author_list = [f"{name}{''.join(index_symbols[i-1] for i in indices)}" for name, indices in authors.items()]
+institution_list = [f"{index_symbols[i-1]} {inst}" for i, inst in institutions.items()]
+institution_text = " | ".join(institution_list)
+
+st.title("Interaction Between Groundwater and Surface Water")
+st.subheader("Theory and Concept of River/Aquifer Interaction", divider="green")
+
+st.markdown("""
+This application shows how the flow between a stream and an aquifer, $Q$, depends on the groundwater head in the river $h_{aq}$. 
+The relationship is as follows:
+""")
+
+st.latex(r'''Q_{RIV} = C_{RIV} (h_{RIV} - h_{{aq}})''')
+
+st.markdown("""
+where:
+- $Q_{RIV}$ is the flow between the river and the aquifer (positive if it is directed into the aquifer) [L3/T]
+- $h_{RIV}$ is the water level (head) of the river (L),
+- $C_{RIV}$ is the hydraulic conductance of the river bed [L2/T], and
+- $h_{aq}$ is the head in the aquifer beneath the river bed (L).
+
+If the aquifer head $h_{aq}$ is below the elevation of the bottom of the river bed, $R_{BOT}$, the relationship is as follows:
+""")
+
+st.markdown("""
+This application shows how the flow between a stream and an aquifer, $Q$, depends on the groundwater head in the river $h_{aq}$. 
+The relationship is as follows:
+""")
+
+
+st.latex(r'''Q_{RIV} = C_{RIV} (h_{RIV} - R_{{BOT}})''')
+
+st.write(':blue[**It is important to compare the calculated flow between the river and aquifer to the flow in the segment of river being modeled.**] :green[The amount of water lost or gained needs to be concistent with observed river flow over the length of the segment such that it is reasonable to assume a constant river head.]')
+
+
+st.write(':blue[**If there is a significant gain or loss of flow, the river head may rise or fall, but the MODFLOW RIV package will continue to use the same river head.**] :green[If the modeler wants to represent feedback between the amount of water lost or gained and the elevation of the river head, the STR  (stream package) can be used. The concepts for flow between the river and the aquifer do not change from what is presented here.]')
+
+
+with st.expander('**Click here** to read about the :green[**heads used**] in the River Boundary condition of MODFLOW'):
+    st.markdown("""
+    ### Heads used in the River Boundary of MODFLOW
+    """)
+    st.markdown("""
+    MODFLOW assumes the river bed permeability is substantially lower than the aquifer permeability.
+
+    Consequently, all the head loss between the river and the aquifer occurs between the top and bottom of the river bed.
+
+    MODFLOW requires input values for:
+
+    > Elevation of the River head (called Stage in MODFLOW, is labeled River Surface in this image). Because the river is an open body of water it is assumed the River head occurs at the top of the river bed.
+
+    > River bottom elevation (called Rbot in MODFLOW, is the bottom of the hatched zone in this image).  
+    """)
+    left_co1, cent_co1, last_co1 = st.columns((10,80,10))
+    with cent_co1:
+        st.image('C:/_1_GitHub/Jupyter-Notebooks/06_Groundwater_modeling/FIGS/RIV_CONCEPT_2.png', caption="Concept of the River boundary (modified from McDonald and Harbaugh, 1988; https://pubs.usgs.gov/twri/twri6a1/pdf/twri_6-A1_p.pdf)")
+    st.markdown("""
+    Aquifer head elevation is calculated by MODFLOW in response to all the model inputs (labeled Head in Cell in this image). It is assumed the aquifer head is uniform throughout the cell and thus occurs at the elevation of the river bottom.
+
+    When the aquifer head is above the river bottom, the head difference across the river bed is: (Stage – Head in Cell). When this value is negative, water is flowing from the aquifer to the river.
+
+    This head difference is multiplied by Conductance to determine Flow Rate between the River and the Aquifer.
+ 
+    """)
+
+with st.expander('**Click here** to read how :green[**conductance is calculated**]'):
+    st.markdown("""
+    ### Calculating MODFLOW River Boundary Conductance
+    """)
+    
+    st.markdown("""
+    MODFLOW requires input of Conductance.
+
+    Conductance includes all of Darcy's Law except the head difference between the river and the aquifer. 
+    
+    > Q = Kv A dh / dl
+    
+    > Conductance = Kv A / M = Kv L W /M
+
+    where: 
+
+    Kv is vertical hydraulic conductivity of the river bed
+
+    A is plan view area of the river bed (LW)
+
+    M is thickness of the river bed (the distance over which the gradient is calculated)
+    """)
+    
+    
+    left_co2, cent_co2, last_co2 = st.columns((10,80,10))
+    with cent_co2:
+        st.image('C:/_1_GitHub/Jupyter-Notebooks/06_Groundwater_modeling/FIGS/RIV_COND_2.png', caption="Calculation of the Riverbed conductance (from McDonald and Harbaugh, 1988; https://pubs.usgs.gov/twri/twri6a1/pdf/twri_6-A1_p.pdf)")
+
+    
+    st.markdown("""
+    dh is the difference between the Head in the Stream and Head in the Aquifer (discussed above in the section about the heads used in the River Boundary condition of MODFLOW)
+
+    MODFLOW calculates flow as
+    
+    > Q &nbsp; = &nbsp; Conductance &nbsp; dh
+ 
+    """)
+
+
+with st.expander('**Click here** to read how flow is calculated when the :green[**aquifer head is lower then the river bottom**]'):
+    st.markdown("""
+    ### A "Disconnected" River occurs when the Aquifer Head is Lower than the River Bottom    """)
+    
+    st.markdown("""
+    MODFLOW assumes the river bed permeability is substantially lower than the aquifer permeability, so the river bed remains saturated when the aquifer head is below the river bottom.
+
+    Thus, when the aqufier head is lower than the river bottom, the pressure head at the bottom of the lower permeability material is defined as zero (ignoring matric tension) so, the hydraulic head is equal to the elevation of the river bottom. 
+
+    """)
+    left_co3, cent_co3, last_co3 = st.columns((10,80,10))
+    with cent_co3:
+        st.image('C:/_1_GitHub/Jupyter-Notebooks/06_Groundwater_modeling/FIGS/RIV_CONCEPT_UNSAT_2.png', caption="Concept of the River boundary when the aquifer head falls below the river bottom (modified from McDonald and Harbaugh, 1988; https://pubs.usgs.gov/twri/twri6a1/pdf/twri_6-A1_p.pdf)")
+
+    st.markdown("""
+    When the aqufier head is lower than the river bottom, the head difference across the river bed is: 
+
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Elevation of the River Surface – Elevation of the River Bottom
+
+    This head difference is multiplied by Conductance to determine Flow Rate from the River to the Aquifer
+    """)
+
+st.subheader("Interactive Graph", divider="green")
+
+# Functions
+
+# Callback function to update session state
+def update_C():
+    st.session_state.C_slider_value = st.session_state.C_input
+def update_h_RIV():
+    st.session_state.h_RIV = st.session_state.h_RIV_input
+def update_K():
+    st.session_state.K_slider_value = st.session_state.K_input
+def update_L_RIV():
+    st.session_state.L_RIV = st.session_state.L_RIV_input
+def update_W_RIV():
+    st.session_state.W_RIV = st.session_state.W_RIV_input
+def update_M_RIV():
+    st.session_state.M_RIV = st.session_state.M_RIV_input
+def update_h_bot():
+   st.session_state.h_bot = st.session_state.h_bot_input
+def update_h_aq_show():
+    st.session_state.h_aq_show = st.session_state.h_aq_show_input  
+    
+# Initialize session state for value and toggle state
+st.session_state.C_slider_value = -2.0
+st.session_state.K_slider_value = -5.0
+st.session_state.thick = 20.0
+st.session_state.h_ref = 0.0
+st.session_state.h_aq_show = 10.0
+st.session_state.h_RIV = 9.0
+st.session_state.L_RIV = 100.0
+st.session_state.W_RIV = 10.0
+st.session_state.M_RIV = 1.0
+st.session_state.h_bot = 7.0
+st.session_state.number_input = False  # Default to number_input
+
+# Main area inputs
+@st.fragment
+def Q_h_plot():
+    
+    # Define the minimum and maximum for the logarithmic scale
+    log_min1 = -7.0 # T / Corresponds to 10^-7 = 0.0000001
+    log_max1 = 1.0  # T / Corresponds to 10^1 = 10
+    log_min2 = -10.0 # T / Corresponds to 10^-7 = 0.0000001
+    log_max2 = -2.0  # T / Corresponds to 10^1 = 10
+    
+    # Switches
+    st.markdown("#### :green[Graph Controls]")
+    columns1 = st.columns((1,1), gap = 'medium')
+    with columns1[0]:
+        h_ref_str = st.text_input(label="**Lowest elevation to show on graph in m** (needs to be lower than the lowest head and lower than the river bottom to see all the information)",value=str(st.session_state.h_ref),key="h_ref_input")
+        # Try converting to float and fall back to previous value if conversion fails
+        try:
+            h_ref = float(h_ref_str)
+        except ValueError:
+            h_ref = st.session_state.get("h_ref", 0.0)
+        # Update session state manually if needed - Calculate the change in h_ref
+        delta_h_ref = h_ref - st.session_state.h_ref
+        # Update the session state values
+        st.session_state.h_ref = h_ref
+        
+        thick_str = st.text_input("**Highest elevation to show on graph in m** (needs to be higher than the highest head to see all the information)",value=str(st.session_state.thick),key="thick_input")
+        # Try converting to float and fall back to previous value if conversion fails
+        try:
+            thick = float(thick_str)
+        except ValueError:
+            thick = st.session_state.get("thick", 20.0)
+        # Update the session state values
+        st.session_state.thick = thick        
+    with columns1[1]:
+        turn = st.toggle('**Turn Graph** 90 degrees')
+        st.session_state.number_input = st.toggle("**Use Slider or Number** for input")      
+        condcomp = st.toggle('Compute $C_{RIV}$ explicitly')
+  
+    "---"   
+    
+    st.markdown("#### :green[Model parameters]")
+
+
+    
+    columns2 = st.columns((1,1,1), gap = 'medium')
+                        
+    with columns2[1]:
+        if st.session_state.number_input:
+            h_RIV = st.number_input("**River head in m ($h_{RIV}$)**", 0.1+h_ref, thick, st.session_state.h_RIV, 0.1, key="h_RIV_input", on_change=update_h_RIV)
+        else:
+            h_RIV = st.slider      ("**River head in m ($h_{RIV}$)**", 0.1+h_ref, thick, st.session_state.h_RIV, 0.1, key="h_RIV_input", on_change=update_h_RIV)
+        if st.session_state.number_input:
+            h_aq_show = st.number_input("**Aquifer head in m ($h_{aq}$)**", 0.1+h_ref, thick, st.session_state.h_aq_show, 0.1, key="h_aq_show_input", on_change=update_h_aq_show)
+        else:
+            h_aq_show = st.slider      ("**Aquifer head in m ($h_{aq}$)**", 0.1+h_ref, thick, st.session_state.h_aq_show, 0.1, key="h_aq_show_input", on_change=update_h_aq_show)
+        if st.session_state.number_input:
+            h_bot = st.number_input("**Bottom of river bed in m ($h_{bot}$)**", 0.1+h_ref, thick, st.session_state.h_bot, 0.1, key="h_bot_input", on_change=update_h_bot)
+        else:
+            h_bot = st.slider      ("**Bottom of river bed in m ($h_{bot}$)**", 0.1+h_ref, thick, st.session_state.h_bot, 0.1, key="h_bot_input", on_change=update_h_bot)
+  
+    with columns2[0]:
+        if condcomp:
+            st.write ('**Compute conductance with the following geometry**')
+            if st.session_state.number_input:
+                 L_RIV = st.number_input("**River length in m ($L_{RIV}$)**", 1.0, 1000.0, st.session_state.L_RIV, 0.1, key="L_RIV_input", on_change=update_L_RIV)
+            else:
+                 L_RIV = st.slider      ("**River length in m ($L_{RIV}$)**", 1.0, 1000.0, st.session_state.L_RIV, 0.1, key="L_RIV_input", on_change=update_L_RIV)
+            if st.session_state.number_input:
+                 W_RIV = st.number_input("**River width in m ($W_{RIV}$)**", 1.0, 200.0, st.session_state.W_RIV, 0.1, key="W_RIV_input", on_change=update_W_RIV)
+            else:
+                 W_RIV = st.slider      ("**River width in m ($W_{RIV}$)**", 1.0, 200.0, st.session_state.W_RIV, 0.1, key="W_RIV_input", on_change=update_W_RIV)
+            if st.session_state.number_input:
+                 M_RIV = st.number_input("**River bed thickness in m ($M_{RIV}$)**", 0.01, 5.0, st.session_state.M_RIV, 0.01, key="M_RIV_input", on_change=update_M_RIV)
+                 h_bed = h_bot + M_RIV
+            else:
+                 M_RIV = st.slider      ("**River bed thickness in m ($M_{RIV}$)**", 0.01, 5.0, st.session_state.M_RIV, 0.01, key="M_RIV_input", on_change=update_M_RIV)
+                 h_bed = h_bot + M_RIV
+ 
+    with columns2[2]:
+        if condcomp:                   
+            # READ LOG VALUE, CONVERT, AND WRITE VALUE FOR Conductance
+            container = st.container()  
+            if st.session_state.number_input:
+                K_slider_value_new = st.number_input("_(log of) Riverbed hydraulic conductivity_", log_min2,log_max2, st.session_state.K_slider_value, 0.01, format="%4.2f", key="K_input", on_change=update_K)
+            else:
+                K_slider_value_new = st.slider      ("_(log of) Riverbed hydraulic conductivity_", log_min2,log_max2, st.session_state.K_slider_value, 0.01, format="%4.2f", key="K_input", on_change=update_K)
+            K = 10 ** K_slider_value_new
+            container.write("**Riverbed hydraulic conductivity in m/s:** %5.2e" %K)                 
+                 
+            C = L_RIV * W_RIV * K / M_RIV
+        else:
+            # READ LOG VALUE, CONVERT, AND WRITE VALUE FOR Conductance
+            container = st.container()  
+            if st.session_state.number_input:
+                C_slider_value_new = st.number_input("_(log of) Conductance_", log_min1,log_max1, st.session_state.C_slider_value, 0.01, format="%4.2f", key="C_input", on_change=update_C)
+            else:
+                C_slider_value_new = st.slider      ("_(log of) Conductance_", log_min1,log_max1, st.session_state.C_slider_value, 0.01, format="%4.2f", key="C_input", on_change=update_C)    
+            C = 10 ** C_slider_value_new
+            container.write("**Conductance in m²/s:** %5.2e" %C) 
+    # calculate top of river bed
+    if condcomp:
+        h_bed = h_bot + M_RIV
+    else:
+        h_bed = h_bot
+    
+    if h_RIV < h_ref:
+        st.write(':red[**Visualization issue: River head is below lowest elevation shown on the graph.**] :green[Adjust in Graph Controls.]')
+        
+    if h_aq_show < h_ref:
+        st.write(':red[**Visualization issue: Aquifer head is below lowest elevation shown on the graph.**] :green[Adjust in Graph Controls.]')
+        
+    if h_bot < h_ref:
+        st.write(':red[**Visualization issue: River bottom is below lowest elevation shown on the graph.**] :green[Adjust in Graph Controls.]')
+        
+    if h_RIV > thick:
+        st.write(':red[**Visualization issue: River head is above highest elevation shown on the graph.**] :green[Adjust in Graph Controls.]')
+        
+    if h_aq_show > thick:
+        st.write(':red[**Visualization issue: Aquifer head is above highest elevation shown on the graph.**] :green[Adjust in Graph Controls.]')
+        
+    if h_bot > thick:
+        st.write(':red[**Visualization issue: River bottom is above highest elevation shown on the graph.**] :green[Adjust in Graph Controls.]')
+        
+    if h_RIV < h_bed:
+        st.write(':red[**Illogical physical representation. River head is below the top of the river bed. The value of flow will be in error because the gradient will be calculated as if dh occurs across the entire thickness of the river bed, but it does not. Also there is no open water to provide the leakage through the river bed.**] :green[Adjust River Head, River Bottom, and/or River Bed Thickness.]')
+        
+    if h_RIV < h_bot:
+        st.write(':red[**Illogical physical representation. River head is below the bottom of the river.**] :green[Adjust River Head, River Bottom, and/or River Bed Thickness.]')
+        
+
+    # Define aquifer head range
+    h_aq = np.linspace(0+h_ref, thick+h_ref, 200)
+    Q = np.where(h_aq >= h_bot, C * (h_RIV - h_aq), C * (h_RIV - h_bot))
+    Q_ref = C * (h_RIV - h_aq_show) if h_aq_show >= h_bot else C * (h_RIV - h_bot)
+    
+    limQ0 = C * (h_RIV - h_bot)
+    limQ1 = abs(Q_ref) + 0.2 * abs(Q_ref)
+    limQ2 = -limQ1
+    lim1 = limQ1
+    lim2 = limQ2
+    if limQ0 > limQ1:
+        lim1 = (abs(limQ0) + 0.2 * abs(limQ0))
+        lim2 = -lim1
+    if limQ0 < limQ2:
+        lim2 = limQ0 + 0.2 * limQ0
+        lim1 = -lim2
+        
+    # Create the graph
+    fig, ax = plt.subplots(figsize=(6, 6))
+    if turn:
+        ax.plot(Q, h_aq, label=rf"$Q = C_{{RIV}}(h_{{aq}} - h_{{RIV}})$, C = {C:.2e}",color='blue', linewidth=3)
+        ax.axvline(0, color='black', linewidth=1)
+        ax.axhline(h_RIV, color='blue', linewidth=3, linestyle='--', label=f'$h_{{RIV}}$ in m = {h_RIV:.2f}')
+        ax.axhline(h_aq_show, color='red', linewidth=2.5, linestyle='--', label=f'$h_{{aq}}$ in m = {h_aq_show:.2f}')
+        ax.axhline(h_bed, color='cyan', linewidth=2, linestyle='--', label=f'$h_{{bed}}$ in m = {h_bed:.2f}')
+        ax.axhline(h_bot, color='grey', linewidth=1.5, linestyle='--', label=f'$h_{{bot}}$ in m = {h_bot:.2f}')    
+        ax.fill_betweenx(
+            y=[h_bed, h_RIV],
+            x1=lim2,  # fill across full x-axis width
+            x2=lim1,
+            color='lightblue',
+            alpha=0.3,
+            label="zone of river water"
+        )
+        ax.fill_betweenx(
+            y=[h_bot, h_bed],
+            x1=lim2,  # fill across full x-axis width
+            x2=lim1,
+            color='yellow',
+            alpha=0.3,
+            label="zone of river bed"
+        )
+        # Labels and formatting
+        ax.set_ylabel("Heads and elevations in the River-Aquifer System (m)", fontsize=10)
+        ax.set_xlabel("Flow into the Ground-Water System From the River $Q$ (m³/s)", fontsize=10)
+        ax.set_ylim(h_ref, thick)
+        ax.set_xlim(lim1,lim2)
+        if Q_ref < 0:
+            ax.annotate(
+                '',  # no text
+                xy=(Q_ref,h_RIV),  # arrowhead
+                xytext=(Q_ref, h_aq_show),  # arrow start
+                arrowprops=dict(arrowstyle='->', color='blue', lw=5,  alpha=0.4)
+            )
+        else:
+            ax.annotate(
+                '',  # no text
+                xy=(Q_ref,h_RIV),  # arrowhead
+                xytext=(Q_ref, h_aq_show),  # arrow start
+                arrowprops=dict(arrowstyle='<-', color='green', lw=5, alpha=0.6)
+            )
+            if h_aq_show < h_bot:
+                x_min = lim2
+                x_max = lim1
+                arrow_xs = np.linspace(x_min, x_max, 10)  # 10 arrows, evenly spaced
+            
+                for x in arrow_xs:
+                    ax.annotate(
+                        '',  # no text
+                        xy=(x, h_bot),        # arrowhead at river bottom
+                        xytext=(x, h_aq_show),# arrow start at aquifer head
+                        arrowprops=dict(
+                            arrowstyle='<-', 
+                            color='brown', 
+                            lw=3, 
+                            alpha=0.1
+                        )
+                    )
+                # Add label at far left
+                ax.text(
+                    0.3*lim1,  # slightly inside the graph
+                    (h_bot + h_aq_show) / 2,
+                    "Unsaturated zone flow",
+                    color='brown',
+                    fontsize=9,
+                    rotation=0,
+                    va='center'
+                )
+        # Add gaining/losing river annotations
+        ax.text(-0.025*lim1,h_ref+(thick-h_ref)*0.03, "Gaining River", va='center',color='blue')
+        ax.text(0.4*lim1, h_ref+(thick-h_ref)*0.03,  "Losing River", va='center',color='green')
+            
+    else:
+        ax.plot(h_aq, Q, label=rf"$Q = C(h_{{aq}} - h_{{RIV}})$, C = {C:.2e}",color='blue', linewidth=3)
+        ax.axhline(0, color='black', linewidth=1)
+        ax.axvline(h_RIV, color='blue', linewidth=3, linestyle='--', label=f'$h_{{RIV}}$ in m = {h_RIV:.2f}')
+        ax.axvline(h_aq_show, color='red', linewidth=2.5, linestyle='--', label=f'$h_{{aq}}$ in m = {h_aq_show:.2f}')
+        ax.axvline(h_bed, color='cyan', linewidth=2, linestyle='--', label=f'$h_{{bed}}$ in m = {h_bed:.2f}')
+        ax.axvline(h_bot, color='grey', linewidth=1.5, linestyle='--', label=f'$h_{{bot}}$ in m = {h_bot:.2f}')
+        ax.fill_betweenx(
+            y=[lim2,lim1],
+            x1=h_bed,  # fill across full x-axis width
+            x2=h_RIV,
+            color='lightblue',
+            alpha=0.3,
+            label="zone of river water"
+        )
+        ax.fill_betweenx(
+            y=[lim2,lim1],
+            x1=h_bot,  # fill across full x-axis width
+            x2=h_bed,
+            color='yellow',
+            alpha=0.3,
+            label="zone of river bed"
+        )
+        # Labels and formatting
+        ax.set_xlabel("Heads and elevations in the River-Aquifer System (m)", fontsize=10)
+        ax.set_ylabel("Flow Into the Ground-Water System From the River $Q$ (m³/s)", fontsize=10)
+        ax.set_xlim(h_ref, thick)
+        ax.set_ylim(lim2,lim1)
+        if Q_ref < 0:
+            ax.annotate(
+                '',  # no text
+                xy=(h_RIV, Q_ref),  # arrowhead
+                xytext=(h_aq_show, Q_ref),  # arrow start
+                arrowprops=dict(arrowstyle='->', color='blue', lw=5,  alpha=0.4)
+            )
+        else:
+            ax.annotate(
+            '',  # no text
+            xy=(h_RIV, Q_ref),  # arrowhead
+            xytext=(h_aq_show, Q_ref),  # arrow start
+            arrowprops=dict(arrowstyle='<-', color='green', lw=5, alpha=0.6)
+            )
+            if h_aq_show < h_bot:
+                y_min = lim2
+                y_max = lim1
+                arrow_xs = np.linspace(y_min, y_max, 10)  # 10 arrows, evenly spaced
+            
+                for x in arrow_xs:
+                    ax.annotate(
+                        '',  # no text
+                        xy=(h_bot,x),        # arrowhead at river bottom
+                        xytext=(h_aq_show, x),# arrow start at aquifer head
+                        arrowprops=dict(
+                            arrowstyle='<-', 
+                            color='brown', 
+                            lw=3, 
+                            alpha=0.1
+                        )
+                    )
+                # Add label at far left
+                ax.text(
+                    (h_bot + h_aq_show) / 2,  # slightly inside the graph
+                    0.01*lim1,
+                    "Unsaturated zone flow",
+                    color='brown',
+                    fontsize=9,
+                    rotation=270,
+                    va='center'
+                )
+        # Add gaining/losing river annotations
+        ax.text(thick-(0.25*(thick-h_ref)), -0.05*lim1, "Gaining River", va='center',color='blue')
+        ax.text(thick-(0.25*(thick-h_ref)), 0.05*lim1, "Losing River", va='center',color='green')
+        
+    ax.set_title("Flow Between Groundwater and River", fontsize=12)
+    ax.grid(True)
+    ax.legend()
+    
+    st.pyplot(fig)
+
+    columns3 = st.columns((1,10,1), gap = 'medium')
+
+    with columns3[1]:
+        st.write("**Parameters and Results**")
+        st.write("- Aquifer (MODFLOW) hydraulic head **$h_{aq}$ = %5.2f" %h_aq_show," m**")
+        st.write("- River hydraulic head **$h_{RIV}$ = %5.2f" %h_RIV," m**")
+        st.write("- River bottom elevation **$h_{bot}$ = %5.2f" %h_bot," m**")
+        st.write("- Riverbed conductance **$C_{RIV}$ = % 10.2E"% C, " m²/s**")
+        st.write("- Flow between river and aquifer **$Q_{RIV}$ = % 10.2E"% Q_ref," m³/s**")
+
+Q_h_plot()
+'---'
+# Render footer with authors, institutions, and license logo in a single line
+columns_lic = st.columns((5,1))
+with columns_lic[0]:
+    st.markdown(f'Developed by {", ".join(author_list)} ({year}). <br> {institution_text}', unsafe_allow_html=True)
+with columns_lic[1]:
+    st.image('C:/_1_GitHub/Jupyter-Notebooks/06_Groundwater_modeling/FIGS/CC_BY-SA_icon.png')
+
