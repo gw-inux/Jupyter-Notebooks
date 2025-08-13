@@ -719,7 +719,8 @@ if show_plot2:
                 else:
                     bc_type2 = st.radio("for the following boundary condition:",
                                   ["**None**", ":green[**Recharge**]", ":blue[**Specified head left**]",":blue[**Specified head right**]"], index=0)
-                turn2 = st.toggle('Toggle to turn the plot 90 degrees', key="general_turn2")         
+                turn2 = st.toggle('Toggle to turn the plot 90 degrees', key="general_turn2")
+                large_range_Q = st.toggle('Toggle to increase the range of the Q-axis', key="general_large_range_Q")             
         
         x2 = np.arange(0, L2,L2/1000)
         h2=(hl2**2-(hl2**2-hr2**2)/L2*x2+(R2/K2*x2*(L2-x2)))**0.5
@@ -738,7 +739,10 @@ if show_plot2:
         # --- Q-h relationship functions ---
         
         # 1. Specified Head Boundary
-        Q2_defh = np.linspace((-400/1000/365.25/86400*2500), (400/1000/365.25/86400*2500), 10)
+        if large_range_Q:
+            Q2_defh = np.linspace((-400/1000/365.25/86400*250000), (400/1000/365.25/86400*250000), 10)
+        else:
+            Q2_defh = np.linspace((-400/1000/365.25/86400*2500), (400/1000/365.25/86400*2500), 10)
         h2_defh_l = np.ones_like(Q2_defh)* hl2
         h2_defh_r = np.ones_like(Q2_defh)* hr2
         # Point heads
@@ -908,14 +912,20 @@ if show_plot2:
                 ax_qh.plot(Q2_defh, h2_defh_l, color='black', linewidth=3)
                 ax_qh.plot(Q2_defh_point_l, h2_defh_point_l, 'bo', markersize=10)
                 ax_qh.set_title("h-Q plot: Specified head boundary left", fontsize=16, pad=15, color = 'blue')
-                ax_qh.set_xlim(-(400/1000/365.25/86400*2500),(400/1000/365.25/86400*2500))
+                if large_range_Q:
+                    ax_qh.set_xlim(-(400/1000/365.25/86400*250000),(400/1000/365.25/86400*250000))
+                else:
+                    ax_qh.set_xlim(-(400/1000/365.25/86400*2500),(400/1000/365.25/86400*2500))
                 ax_qh.axvline(0, color='grey', linestyle='--', linewidth=0.8)
                 ax_qh.axhline(150, color='grey', linestyle='--', linewidth=0.8)
             else: 
                 ax_qh.plot(h2_defh_l, Q2_defh, color='black', linewidth=3)
                 ax_qh.plot(h2_defh_point_l, Q2_defh_point_l, 'bo', markersize=10)
                 ax_qh.set_title("Q–h plot: Specified head boundary left", fontsize=16, pad=15, color = 'blue')
-                ax_qh.set_ylim(-(400/1000/365.25/86400*2500),(400/1000/365.25/86400*2500))
+                if large_range_Q:
+                    ax_qh.set_ylim(-(400/1000/365.25/86400*250000),(400/1000/365.25/86400*250000))
+                else:
+                    ax_qh.set_ylim(-(400/1000/365.25/86400*2500),(400/1000/365.25/86400*2500))
                 ax_qh.axhline(0, color='grey', linestyle='--', linewidth=0.8)
                 ax_qh.axvline(150, color='grey', linestyle='--', linewidth=0.8)
         elif "Specified head right" in bc_type2:      
@@ -925,14 +935,20 @@ if show_plot2:
                 ax_qh.plot(Q2_defh, h2_defh_r, color='black', linewidth=3)
                 ax_qh.plot(Q2_defh_point_r, h2_defh_point_r, 'bo', markersize=10)
                 ax_qh.set_title("h-Q plot: Specified head boundary right", fontsize=16, pad=15, color = 'blue')
-                ax_qh.set_xlim(-(400/1000/365.25/86400*2500),(400/1000/365.25/86400*2500))
+                if large_range_Q:
+                    ax_qh.set_xlim(-(400/1000/365.25/86400*250000),(400/1000/365.25/86400*250000))
+                else:
+                    ax_qh.set_xlim(-(400/1000/365.25/86400*2500),(400/1000/365.25/86400*2500))
                 ax_qh.axvline(0, color='grey', linestyle='--', linewidth=0.8)
                 ax_qh.axhline(150, color='grey', linestyle='--', linewidth=0.8)
             else: 
                 ax_qh.plot(h2_defh_r, Q2_defh, color='black', linewidth=3)
                 ax_qh.plot(h2_defh_point_r, Q2_defh_point_r, 'bo', markersize=10)
                 ax_qh.set_title("Q–h plot: Specified head boundary right", fontsize=16, pad=15, color = 'blue')
-                ax_qh.set_ylim(-(400/1000/365.25/86400*2500),(400/1000/365.25/86400*2500))
+                if large_range_Q:
+                    ax_qh.set_ylim(-(400/1000/365.25/86400*250000),(400/1000/365.25/86400*250000))
+                else:
+                    ax_qh.set_ylim(-(400/1000/365.25/86400*2500),(400/1000/365.25/86400*2500))
                 ax_qh.axhline(0, color='grey', linestyle='--', linewidth=0.8)
                 ax_qh.axvline(150, color='grey', linestyle='--', linewidth=0.8)                
 #        elif "River" in bc_type:      
