@@ -114,11 +114,11 @@ distanz = 750
 # --- Vertical structure between the wells ---
 # Random width/depth
 structure_width = np.random.uniform(30.0, 250.0)
-structure_depth = np.random.uniform(2.0, 8.0)
+structure_depth = np.random.uniform(3.0, 8.0)
 structure_center_x = np.random.uniform(-50., 50.)  # midpoint between wells
 
 #Random pumping
-Q1 = np.random.uniform(0.002,0.020)
+Q1 = np.random.uniform(0.002,0.015)
 
 # Reset on first run
 Q2_ini = 0.0
