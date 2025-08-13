@@ -51,7 +51,7 @@ def compute_s(T, S, t, Q, r):
 def update_Q2():
     st.session_state.Q2 = st.session_state.Q2_input
     
-st.title('Pumping with two well :rainbow[**JUNIOR Edititon**]')
+st.title('Pumping with two wells :rainbow[**JUNIOR Edititon**]')
 
 st.subheader('Prevent the nature conservation area from :orange[running dry]', divider="blue")
 
