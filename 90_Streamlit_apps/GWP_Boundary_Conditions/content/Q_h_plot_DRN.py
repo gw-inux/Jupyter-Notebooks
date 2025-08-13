@@ -180,7 +180,7 @@ with st.expander("Show me more about **the Theory**"):
     
     left_co, cent_co, last_co = st.columns((10,80,10))
     with cent_co:
-        st.image('C:\_1_GitHub\Jupyter-Notebooks\06_Groundwater_modeling/FIGS/DRN.png', caption="Schematic illustration of the DRN boundary with a) drain pipe burried in backfill ditch, and b) open drain; modified from  (McDonald and Harbaugh, 1988; https://pubs.usgs.gov/twri/twri6a1/pdf/twri_6-A1_p.pdf)")
+        st.image('90_Streamlit_apps/GWP_Boundary_Conditions/assets/images/DRN.png', caption="Schematic illustration of the DRN boundary with a) drain pipe burried in backfill ditch, and b) open drain; modified from  (McDonald and Harbaugh, 1988; https://pubs.usgs.gov/twri/twri6a1/pdf/twri_6-A1_p.pdf)")
     st.markdown("""
     The relationship between the amount of water that flows into the drain and the head in the aquifer is:
     """)
