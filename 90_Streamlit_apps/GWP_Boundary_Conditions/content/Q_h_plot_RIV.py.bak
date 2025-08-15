@@ -146,7 +146,6 @@ By the end of this section, you will be able to:
 - Apply the RIV flow equation to simulate groundwater–river exchange and identify when groundwater would be discharging into a river (gaining stream) and when river water would be recharging the groundwater system (losing stream).
 - Evaluate how river stage, aquifer head, riverbed elevation, and conductance control the direction and magnitude of exchange.
 - Interpret _Q_–_h_ plots that illustrate the flow regime, including unsaturated conditions when aquifer heads drop below the riverbed.
-- Understand that the flow rate from a losing stream with a bottom above the water table is only valid for streambeds with hydraulic conductivity lower then the hydraulic conductivity of the aquifer.
 """)
 
 with st.expander('**Show the initial assessment** - to assess your existing knowledge'):
