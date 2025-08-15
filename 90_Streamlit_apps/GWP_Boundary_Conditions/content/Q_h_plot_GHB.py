@@ -1,5 +1,6 @@
 import numpy as np
 import matplotlib.pyplot as plt
+from matplotlib.patches import Rectangle
 import scipy.special
 import scipy.interpolate as interp
 import math
@@ -286,6 +287,7 @@ def Q_h_plot():
         with st.expander('Modify the **Plot Controls**'):
             turn = st.toggle('Toggle to turn the plot 90 degrees', key="GHB_turn", value=True)
             st.session_state.number_input = st.toggle("Toggle to use Slider or Number for input of $C_B$, $H_B$, $A_B$, $L_B$, and $h_{aq}$.")
+            relax_Q = st.toggle('Toggle to increase the Q-range shown by the plot')
             visualize = st.toggle(':rainbow[**Make the plot live** and visualize the input values]', key="GHB_vis", value=True)
             
     with columns1[1]:
@@ -343,8 +345,8 @@ def Q_h_plot():
     if visualize:
         if turn:
             ax.plot(Q, h_aq, label=rf"$Q_B = C_B(H_B - h_{{aq}})$",color='orange', linewidth=3)
-            ax.plot([], [], ' ', label=fr"$Q_B$ = {Q_ref:.2e} m³/s")
             ax.plot([], [], ' ', label=fr"$C_B$ = {st.session_state.C_GHB:.2e} m²/s")
+            ax.plot([], [], ' ', label=fr"$Q_B$ = {Q_ref:.2e} m³/s")
             ax.axvline(0, color='black', linewidth=1)
             ax.axhline(HB, color='green', linewidth=2, linestyle='--', label=f'$H_B$ in m= {HB:.2f}')
             ax.axhline(h_aq_show, color='blue', linewidth=2, linestyle='--', label=f'$h_{{aq}}$ in m= {h_aq_show:.2f}')
@@ -353,7 +355,10 @@ def Q_h_plot():
             ax.set_ylabel("Heads in the GHB-Model System (m)", fontsize=14, labelpad=15)
             ax.set_xlabel("Flow Into the Ground-Water System from the GHB $Q_B$ (m³/s)", fontsize=14, labelpad=15)
             ax.set_ylim(0, 20)
-            ax.set_xlim(0.05, -0.05)
+            if relax_Q:
+                ax.set_xlim(5,-5)
+            else:
+                ax.set_xlim(0.05, -0.05)
             if Q_ref < 0:
                 ax.annotate(
                     '',  # no text
@@ -369,9 +374,19 @@ def Q_h_plot():
                     arrowprops=dict(arrowstyle='<|-', color='blue', lw=2.5, alpha=0.8, mutation_scale=15)
                 )
             # Add gaining/losing stream annotations
-            ax.text(-0.003,1, "Flow OUT of the model", va='center',color='green',  fontsize=16)
-            ax.text(0.002, 1,  "Flow INTO the model", va='center', ha='right',color='blue',  fontsize=16)
-                
+            if relax_Q:
+                ax.text(-0.3,1, "Flow OUT of the model", va='center',color='green',  fontsize=16)
+                ax.text(0.2, 1,  "Flow INTO the model", va='center', ha='right',color='blue',  fontsize=16)
+            else:
+                ax.text(-0.003,1, "Flow OUT of the model", va='center',color='green',  fontsize=16)
+                ax.text(0.002, 1,  "Flow INTO the model", va='center', ha='right',color='blue',  fontsize=16)
+            # Add red rectangle if Q out of the plot
+            if Q_ref < -0.05 and not relax_Q:
+                rect = Rectangle((min(0.05, -0.05), 0.0), abs(-0.05 - 0.05), 20.0, linewidth=5, edgecolor='red', facecolor='none')
+                ax.add_patch(rect)
+            elif Q_ref < -5:
+                rect = Rectangle((min(5, -5), 0.0), abs(-5 - 5), 20.0, linewidth=5, edgecolor='red', facecolor='none')
+                ax.add_patch(rect)      
         else:
             ax.plot(h_aq, Q, label=rf"$Q_B = C_B(H_B - h_{{aq}})$",color='orange', linewidth=3)
             ax.plot([], [], ' ', label=fr"$C_B$ = {st.session_state.C_GHB:.2e} m²/s")
@@ -384,7 +399,10 @@ def Q_h_plot():
             ax.set_xlabel("Heads in the GHB-Model System (m)", fontsize=14, labelpad=15)
             ax.set_ylabel("Flow Into the Ground-Water System from the GHB $Q_B$ (m³/s)", fontsize=14, labelpad=15)
             ax.set_xlim(0, 20)
-            ax.set_ylim(-0.05, 0.05)
+            if relax_Q:
+                ax.set_ylim(-5, 5)
+            else:
+                ax.set_ylim(-0.05, 0.05)
             if Q_ref < 0:
                 ax.annotate(
                     '',  # no text
@@ -400,8 +418,19 @@ def Q_h_plot():
                 arrowprops=dict(arrowstyle='<|-', color='blue', lw=2.5,  alpha=0.8, mutation_scale=15)
                 )
             # Add gaining/losing stream annotations
-            ax.text(19.8, -0.003, "Flow OUT of the model", va='center', ha='right',color='green',  fontsize=16)
-            ax.text(19.8, 0.003, "Flow INTO the model", va='center', ha='right',color='blue',  fontsize=16)
+            if relax_Q:
+                ax.text(19.8, -0.3, "Flow OUT of the model", va='center', ha='right',color='green',  fontsize=16)
+                ax.text(19.8, 0.3, "Flow INTO the model", va='center', ha='right',color='blue',  fontsize=16)
+            else:
+                ax.text(19.8, -0.003, "Flow OUT of the model", va='center', ha='right',color='green',  fontsize=16)
+                ax.text(19.8, 0.003, "Flow INTO the model", va='center', ha='right',color='blue',  fontsize=16)
+            # Add red rectangle if Q out of the plot
+            if Q_ref < -0.05 and not relax_Q:
+                rect = Rectangle((0.0, min(0.05, -0.05)), 20.0, abs(-0.05 - 0.05), linewidth=5, edgecolor='red', facecolor='none')
+                ax.add_patch(rect)  
+            elif Q_ref < -5:     
+                rect = Rectangle((0.0, min(5, -5)), 20.0, abs(-5 - 5), linewidth=5, edgecolor='red', facecolor='none')
+                ax.add_patch(rect)                 
     else:
         if turn:
             ax.plot(Q, h_aq, label=rf"$Q_B = C_B(H_B - h_{{aq}})$, $C_B$ = {st.session_state.C_GHB:.2e}",color='black', linewidth=3)
@@ -422,14 +451,24 @@ def Q_h_plot():
     ax.set_title("Flow Between Groundwater and GHB", fontsize=16, pad=10)
     plt.xticks(fontsize=14)
     plt.yticks(fontsize=14) 
-    ax.legend(loc="upper left", fontsize=14)
+    legend = ax.legend(loc="upper left", fontsize=14)
+    # Mark Q_B in red if out of visible range
+    if Q_ref < -0.05:
+        for text in legend.get_texts():
+            if "$Q_B$" in text.get_text():
+                text.set_color('red')
     
     st.pyplot(fig)
     
     if visualize:
-        st.markdown("""
-        _The green arrow indicates the head difference $H_{B}$-$h_{aq}$ and points to the value of flow $Q_{GHB}$ on the axis._
-        """)
+        if (Q_ref < -0.05 and not relax_Q) or Q_ref < -5:
+            st.markdown("""
+            :red[_The green arrow, indicating the head difference $H_{B}$-$h_{aq}$ and pointing to the value of flow $Q_{GHB}$ on the axis, is out of the visible range for the plot. The value for $Q_{GHB}$ is still shown in the legend._]
+            """)
+        else:
+            st.markdown("""
+            _The green arrow indicates the head difference $H_{B}$-$h_{aq}$ and points to the value of flow $Q_{GHB}$ on the axis._
+            """)
     
     with st.expander('Show the :blue[**INITIAL INSTRUCTIONS**]'):
         st.markdown("""

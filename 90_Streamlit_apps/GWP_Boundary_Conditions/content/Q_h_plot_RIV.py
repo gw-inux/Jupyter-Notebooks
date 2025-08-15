@@ -107,9 +107,10 @@ with columns0[0]:
     
     
 with columns0[1]:
-    #C_RIV
+    # This is the initial plot. It allows users to relate the Qh plots with the MODFLOW documentation. All plots in GHB/RIV/DRN/MNW have the same axis limitations and conductance.
+    # C_RIV
     # READ LOG VALUE, CONVERT, AND WRITE VALUE FOR Conductance
-    labels, default_label = prep_log_slider(default_val = 3e-3, log_min = -4, log_max = -2)
+    labels, default_label = prep_log_slider(default_val = 3e-3, log_min = -5, log_max = -0)
     selected_Ci = st.select_slider("**Conductance :violet[$C_{Riv}$]** in m²/s", labels, default_label, key = "RIV_Ci")
     st.session_state.Ci_RIV = float(selected_Ci)
             
@@ -124,7 +125,7 @@ with columns0[1]:
     ax.set_xlabel("Head/Elevation in the RIV-Aquifer System (m)", fontsize=14, labelpad=15)
     ax.set_ylabel("Flow into the Groundwater \nfrom the RIV boundary $Q_{RIV}$ (m³/s)", fontsize=14, labelpad=15)
     ax.set_xlim(0, 20)
-    ax.set_ylim(-0.1, 0.1)
+    ax.set_ylim(-0.05, 0.05)
     ax.set_title("Flow Between Groundwater and RIV", fontsize=16, pad=10)
     plt.xticks(fontsize=14)
     plt.yticks(fontsize=14) 
