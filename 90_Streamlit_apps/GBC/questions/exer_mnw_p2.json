@@ -1,0 +1,68 @@
+[
+  {
+    "question": "Which statements best describe how MNW differs from a WEL boundary? (Mark ALL correct answers)",
+    "options": {
+      "A) MNW calculates head based on Q and resistance, while WEL fixes Q directly.": true,
+      "B) WEL includes nonlinear losses, MNW does not.": false,
+      "C) MNW models drawdown dynamically using CWC parameters.": true,
+      "D) WEL adjusts the aquifer head based on drawdown.": false
+    },
+    "success": "✅ Correct. MNW allows dynamic head computation; WEL is a fixed-flux condition.",
+    "error": "❌ WEL fixes Q, while MNW dynamically links Q and h based on resistance."
+  },
+  {
+    "question": "In this plot 2, what is true about the cell head $h_{Cell}$? (Mark ALL correct answers)",
+    "options": {
+      "A) It is fixed during all computations.": true,
+      "B) It varies with drawdown in the well.": false,
+      "C) It provides the reference head for computing drawdown.": true,
+      "D) It is computed from boundary conditions.": false
+    },
+    "success": "✅ Correct. In Plot 2, $h_{Cell}$ is fixed and used as a reference for Δh.",
+    "error": "❌ $h_{Cell}$ is fixed — only $h_{well}$ and Q change depending on mode."
+  },
+  {
+    "question": "What happens if the exponent $P$ in the nonlinear CWC is increased? (Mark ALL correct answers)",
+    "options": {
+      "A) Drawdown increases faster with Q.": true,
+      "B) The Q–h curve becomes more nonlinear.": true,
+      "C) Resistance becomes more linear.": false,
+      "D) Discharge increases at lower drawdown.": false
+    },
+    "success": "✅ Exactly. Higher P makes the system more nonlinear and amplifies drawdown.",
+    "error": "❌ Increasing P does not linearize or reduce resistance — quite the opposite."
+  },
+  {
+    "question": "In which way does MNW behavior resemble a RIV boundary? (Mark ALL correct answers)",
+    "options": {
+      "A) Both involve head-dependent flow exchange.": true,
+      "B) Both use nonlinear resistance to compute discharge.": false,
+      "C) Both simulate variable Q depending on head difference.": true,
+      "D) Both are symmetric in gain/loss direction.": true
+    },
+    "success": "✅ Correct. MNW and RIV both compute Q from head differences — though MNW adds nonlinearity.",
+    "error": "❌ RIV is linear; MNW can simulate nonlinear response with B and P."
+  },
+  {
+    "question": "What happens when $A = 0$, $B = 0$, and only nonlinear resistance remains? (Mark ALL correct answers)",
+    "options": {
+      "A) The Q-h-curve (flow) depends entirely on $C$ and $P$.": true,
+      "B) There is no drawdown response.": false,
+      "C) The Q–h-curve becomes more curved at higher Q.": true,
+      "D) The model cannot simulate flow.": false
+    },
+    "success": "✅ Yes. Removing A and B makes the curve purely nonlinear, dominated by C and P.",
+    "error": "❌ A = 0 is valid — flow is still simulated, just with nonlinear control only."
+  },
+  {
+    "question": "Which conditions cause MNW to behave most like a constant-head (DRN) boundary? (Mark ALL correct answers)",
+    "options": {
+      "A) When $C$ and $P$ is small and $A$ and $B$ are large (near-linear).": true,
+      "B) When $h_{well}$ is held fixed and Q computed.": true,
+      "C) When turbulence dominates at high Q.": false,
+      "D) When aquifer head is allowed to vary.": false
+    },
+    "success": "✅ Correct. DRN-like behavior appears in MNW when losses are linear and $h_{well}$ is the input.",
+    "error": "❌ Nonlinear turbulence and varying aquifer head move the MNW away from DRN behavior."
+  }
+]

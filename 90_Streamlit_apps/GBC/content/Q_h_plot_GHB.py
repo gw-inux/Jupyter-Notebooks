@@ -83,7 +83,7 @@ st.title("Theory and Concept of the :orange[General Head Boundary (GHB) in MODFL
 st.subheader("Groundwater - :orange[Head-Dependent Boundary] interaction", divider="orange")
 
 st.markdown("""
-#### 💡 Motivation: Why use General Head Boundaries?
+#### 💡 Motivation: Why General Head Boundaries?
 """)
 
 columns0 = st.columns((1,1), gap = 'large')
@@ -95,7 +95,7 @@ with columns0[0]:
     1. **How would you represent a distant river or lake that interacts with groundwater but lies outside your model domain?**
     2. **Can a boundary both add to and remove water from the aquifer — depending on heads?**
     
-    ▶️ The :orange[**General Head Boundary (GHB)**] addresses these situations. It allows for dynamic, head-dependent exchange with an external water body. The following interactive plot below illustrates how the flow $Q_B$ depends on the aquifer head $h_{aq}$ for a fixed boundary head $H_B$ and conductance $C_B$. The interactive plot is based on the MODFLOW documentation (Harbaugh, 2005) and assumes that the boundary head **$H_B$ is 8 m**. Modify the conductance $C_B$ to see its effect.
+    ▶️ The :orange[**General Head Boundary (GHB)**] addresses these situations. It allows for dynamic, head-dependent exchange with an external water body. The following interactive plot illustrates how the flow $Q_B$ depends on the aquifer head $h_{aq}$ for a fixed boundary head $H_B$ and conductance $C_B$. The interactive plot is based on the MODFLOW documentation (Harbaugh, 2005) and consider **$H_B$ as 8 m**. Modify the conductance $C_B$ to see its effect.
     """)
     
     st.latex(r'''Q_B = C_B(H_B - h_{aq})''')
@@ -132,9 +132,9 @@ with columns0[1]:
     st.pyplot(fig)
     
     st.markdown("""
-    **Figure:** You can use this initial plot to explore how changes in :orange[GHB conductance] changes flow at the boundary.
+    **FIG:** Explore with the initial plot how outflow varies for changes of the :orange[GHB conductance].
     
-    This **initial plot** is designed to bridge the gap between traditional $Q$-$h$ plots on paper and the :rainbow[**interactive plots**] provided further down in this app, that allow you to explore the $Q$-$h$ relationships more intuitively, supported by interactive controls and guided instructions.
+    This **initial plot** is designed to bridge the gap between traditional Q-h plots on paper and the :rainbow[**interactive plots**] provided further down in the app. These allow you to explore the _Q_-_h_ relationships more intuitively, supported by interactive controls and guided instructions.
     """)
 
 st.markdown("""
@@ -144,7 +144,7 @@ By the end of this section of the module, you will be able to:
 - Explain the conceptual function and mathematical formulation of a General Head Boundary (GHB).
 - Apply the GHB equation $Q_B = C_B(H_B - h_{aq})$ to calculate boundary flows and analyze flow directions.
 - Evaluate how conductance, aquifer head, and boundary head jointly affect the groundwater–boundary exchange.
-- Visualize groundwater exchange at the  boundary (flow into or out of the model at the boundary).
+- Visualize groundwater exchange at the  boundary ( flow out of the model boundary or into the model).
 """)
 
 with st.expander('**Show the initial assessment** - to assess your existing knowledge'):
@@ -179,20 +179,20 @@ with st.expander('**Show the initial assessment** - to assess your existing know
 
 st.subheader('🧪 Theory and Background', divider="orange")
 st.markdown("""
-The General Head Boundary (GHB), also referred to as the Head-Dependent Flux Boundary in MODFLOW, allows for a more realistic simulation of boundary conditions by enabling **exchange of water between the groundwater system and an external reservoir**. In groundwater models, General Head Boundaries are used to simulate hydraulic interaction with external water bodies or groundwater zones adjacent to the model domain by defining ("fixing") the head of the external feature. The conductance term determines how easily water can flow across the boundary.
+The General Head Boundary (GHB), also referred to as the Head-Dependent Flux Boundary in MODFLOW, allows for a more realistic simulation of boundary conditions by enabling **exchange with an external reservoir**. In groundwater models, General Head Boundaries are used to simulate hydraulic interaction with an external water body or zones with a defined (fixed) head. The conductance term determines how easily water can flow across the boundary.
 """)
 with st.expander("Show me more about **the Theory**"):
     st.markdown("""
-        GHB boundaries differ from specified head boundaries for which the head is specified within the model domain and flow in or out of the model depends on head in the surrounding nodes, and the conductance between those nodes and the specified head node. The GHB response is an extension from a model node where head changes during the model simulation. The value of head in the aquifer then determines the flow rate and direction as described by the following linear relationship:
+        Unlike defined head boundaries, the GHB responds to changes in aquifer head. It is governed by a linear relationship:
         
         $$
         Q_B = C_B(H_B - h_{aq})
         $$
         
         where:
-        - $Q_B$ is the flow between the GHB and the aquifer, taken as positive if it is directed into the aquifer [L³/T]
+        - $Q_B$ is the flow between the GHB and the aquifer, taken as positive if it is directed into the aquifer [L3/T]
         - $H_B$ is the boundary head [L], representing e.g., an external water level like a distant lake,
-        - $C_B$ is the hydraulic conductance of the GHB-aquifer interconnection [L²/T], which encapsulates **geometry and material properties**, and
+        - $C_B$ is the hydraulic conductance of the GHB-aquifer interconnection [L2/T], which encapsulates **geometry and material properties**, and
         - $h_{aq}$ is the head [L] in the model cell where the GHB boundary is active.
         
         The conductance is
@@ -217,12 +217,10 @@ st.subheader("📈 Interactive Plot and Exercise", divider="orange")
 st.markdown("""
     The interactive plot shows how the flow $Q_B$ across a General Head Boundary depends on the difference between aquifer head ($h_{aq}$) and boundary head ($H_B$), and on the conductance ($C_B$). 
     
-    Below, under INPUT CONTROLS, in the "Modify Plot Controls" drop-down menu, you can toggle to: 1) turn the plot 90 degrees, 2) choose between slider or typed input to adjust the parameter values, and 3) make the plot "live", meaning it will redraw as soon as new values are entered. Under "Modify Head Elevations", you can adjust the value of aquifer head and GHB head. Finally, under "Modify the Conductance" you can toggle between direct conductance input or computing it from geometric and hydraulic properties. The plot updates dynamically and supports different viewing orientations.
-
-    The interactive plot includes a legend that provides the parameter values. It also graphically displays the $Q$-$h$ relationship, each parameter value, and a green arrow that indicates the head difference $H_{B}$-$h_{aq}$ and points to the value of flow $Q_{GHB}$ on the axis.
+    Use the sliders or number inputs to adjust these parameters. You can also toggle between direct conductance input or compute it from hydraulic properties. The plot updates dynamically and supports different viewing orientations.
     
-    - You can investigate the plot on your own, perhaps using some of the :blue[**INITIAL INSTRUCTIONS**] provided below the plot to guide you.
-    - A subsequent :rainbow[**EXERCISE**] invites you to use the interactive plot to investigate how the conductance value and the difference in head affect the boundary flux, as well as to interpret the physical meaning of the situation based on Q–h plots.
+    - You can investigate the plot on your own. Some :blue[**INITIAL INSTRUCTIONS**] may guide you.
+    - An :rainbow[**EXERCISE**] allows you to apply the plot and to deepen your understanding. This exercise invites you to investigate how the conductance parameter and the difference in head affect the boundary flux. Use the interactive GHB plot to explore how variations in conductance influence the exchange flux between an aquifer and a connected boundary condition, and to interpret physical meaning based on Q–h plots.
 """)
 
 # Functions
@@ -283,13 +281,13 @@ def Q_h_plot():
     columns1 = st.columns((1,1,1), gap = 'small')
     
     with columns1[0]:
-        with st.expander('Modify the **Plot Controls**'):
+        with st.expander('Modify the **Plot Control**'):
             turn = st.toggle('Toggle to turn the plot 90 degrees', key="GHB_turn", value=True)
             st.session_state.number_input = st.toggle("Toggle to use Slider or Number for input of $C_B$, $H_B$, $A_B$, $L_B$, and $h_{aq}$.")
-            visualize = st.toggle(':rainbow[**Make the plot live** and visualize the input values]', key="GHB_vis", value=True)
+            visualize = st.toggle(':rainbow[**Make the plot alive** and visualize the input values]', key="GHB_vis", value=True)
             
     with columns1[1]:
-        with st.expander('Modify :blue[**Head Elevations**]'):
+        with st.expander('Modify :blue[**Heads** & **Elevations**]'):
             if st.session_state.number_input:
                 HB = st.number_input(":green[**GHB head** $H_B$ (m)]", 5.0, 20.0, st.session_state.HB, 0.1, key="HB_input", on_change=update_HB)
             else:
@@ -313,9 +311,9 @@ def Q_h_plot():
                     st.session_state.K_GHB_label = get_label(st.session_state.K_GHB, labels)
                     st.select_slider("**Hydr. conductivity** $K_B$ (m/s)", labels, value = st.session_state.K_GHB_label, key="K_input", on_change=update_K_GHB)
                 if st.session_state.number_input:
-                    LB = st.number_input("**GHB length** $L_B$ (m)", 1.0, 10000.0, st.session_state.LB, 1., key="LB_input", on_change=update_LB)
+                    LB = st.number_input("**GHB lenght** $L_B$ (m)", 1.0, 10000.0, st.session_state.LB, 1., key="LB_input", on_change=update_LB)
                 else:
-                    LB = st.slider      ("**GHB length** $L_B$ (m)", 1.0, 10000.0, st.session_state.LB, 1., key="LB_input", on_change=update_LB)
+                    LB = st.slider      ("**GHB lenght** $L_B$ (m)", 1.0, 10000.0, st.session_state.LB, 1., key="LB_input", on_change=update_LB)
                 if st.session_state.number_input:
                     AB = st.number_input("**GHB area** $A_B$ (m²)", 1.0, 100000.0, st.session_state.AB, 1., key="AB_input", on_change=update_AB)
                 else:
@@ -343,8 +341,8 @@ def Q_h_plot():
     if visualize:
         if turn:
             ax.plot(Q, h_aq, label=rf"$Q_B = C_B(H_B - h_{{aq}})$",color='orange', linewidth=3)
-            ax.plot([], [], ' ', label=fr"$Q_B$ = {Q_ref:.2e} m³/s")
             ax.plot([], [], ' ', label=fr"$C_B$ = {st.session_state.C_GHB:.2e} m²/s")
+            ax.plot([], [], ' ', label=fr"$Q_B$ = {Q_ref:.2e} m³/s")
             ax.axvline(0, color='black', linewidth=1)
             ax.axhline(HB, color='green', linewidth=2, linestyle='--', label=f'$H_B$ in m= {HB:.2f}')
             ax.axhline(h_aq_show, color='blue', linewidth=2, linestyle='--', label=f'$h_{{aq}}$ in m= {h_aq_show:.2f}')
@@ -428,14 +426,14 @@ def Q_h_plot():
     
     if visualize:
         st.markdown("""
-        _The green arrow indicates the head difference $H_{B}$-$h_{aq}$ and points to the value of flow $Q_{GHB}$ on the axis._
+        _The arrow in the plot indicates the head difference $H_{B}$-$h_{aq}$ and points to the resulting flow $Q_{GHB}$._
         """)
     
     with st.expander('Show the :blue[**INITIAL INSTRUCTIONS**]'):
         st.markdown("""
         **Getting Started with the Interactive Plot**
         
-        Before starting the exercise, it is helpful to follow these quick steps to explore GHB behavior:
+        Before starting the exercise, follow these quick steps to explore GHB behavior:
     
         **1. Set a Reference Case**
     
@@ -454,42 +452,37 @@ def Q_h_plot():
         **3. Optional: Compute Conductance**
     
         * Toggle “Compute conductance”.
-        * Enter values for $K$, $A_B$, and $L_B$ to calculate $C_B = \\frac{K A_B}{L_B}$.
+        * Enter $K$, $A_B$, and $L_B$ to calculate $C_B = \\frac{K A_B}{L_B}$.
         * Note how the **slope of the $Q$–$h$ curve** changes.
         
         **4. Understand the Role of Head-Dependent Boundaries in Applied Groundwater Modelling**
         
         Depending on the modeling objective, head-dependent boundaries like GHB can be considered in two different ways:
         
-        **a) During Model Calibration or Setup:** Assume that the discharge is known from field data and the specified head boundary is the only outlet of the model. Then, given head values in the aquifer, the values of aquifer hydraulic conductivity and river conductance can be calibrated. **This situation is discussed in the introduction** and can be access by clicking on the **:red[📕 Introduction] button** on the left menu, then scrolling down and choosing **Show the :rainbow[interactive] plot for Scenario 1**, then scrolling down below the plot to open the :green[**Initial Instructions**] and finally **scrolling down to Step 5**.
+        **a) During Calibration or Model Setup:** Assume that the discharge is specified (e.g., the boundary is the only outlet of the model) and conductance is calibrated. **This situation is considered and discussed in the :red[📕 **Introduction**] section of this module - see the :green[**Initial Instructions** (Step 5.) od **Scenario 1**].
         
-        Here, we account for a second way to use a GHB head dependent boundary condition:
+        Here, we account for a second way to consider head dependent boundary conditions, which is 
+            
+        **b) The Model is calibrated and the Conductance is specified:** Assume that the model hast different outlets (e.g., abstraction wells, rivers, drains). Accordingly, the **heads in the model will vary** as a result of the model parameters and stresses. In consequence, the (previously calibrated and then specified conductance) will steer how much water flows across the boundary. Here we investigate this behavior for the :orange[**General Head Boundary GHB**]. Other head dependent boundaries like :violet[**RIV**] and :green[**DRN**] work in principle similar.
         
-       **b) Once the Model is Calibrated such that the Recharge and Conductance are specified:** If other outlets are added to the system (e.g., abstraction wells, drains) the heads in the model will be a result of all the model boundary conditions and parameter values. In consequence, the previously calibrated, and then specified, conductance will control how much of the recharge flows to the :orange[**GHB**] boundary. The discharge will also depend on the location and properties of the other outlets. Here we investigate this behavior for the :orange[**General Head Boundary GHB**]. Other head dependent boundaries like :violet[**RIV**] and :green[**DRN**] follow similar principles.
-           
-        These steps are designed to help you build intuition for how GHB parameters control flow, a key foundation for the subsequent exercise. 
-        
-        - Start with the following settings:
-            - Conductance $C_B$ = 3x10⁻³ m²/s
-            - Head elevation of the boundary $H_B$ = 8.0 m
-            - Head in the model (aquifer) at the boundary $h_{aq}$ = 10 m
-        - Determine the flow at the boundary $Q_B$ and understand if the flow is into the model or out of the model
+        - Start with the following setting:
+            - Conductance $C_B$ = 3e-3 m²/s
+            - Head elevation of the boundary - here $H_B$ = 8.0 m.
+            - Head in the model (aquifer) at the boundary $h_{aq}$ = 10 m.
+        - Determine the flow at the boundary $Q_B$ and understand if the flow is into the model or out of the model.
         - Modify the conductance $C_B$
-            - Make note of the slope of the $Q$-$h$ plot and the change in flow
-            - Increase the conductance $C_B$ to the maximum value and compute the discharge in Liters per second
-            - Return the conductance $C_B$ to 3x10⁻³ m²/s
+            - and mention the change in flow.
+            - Increase the conductance $C_B$ to the maximum value and compute the discharge in Liters per second.
         - Modify the head(elevation) of the GHB $H_B$
             - Lower the head
-            - Make note of the slope of the $Q$-$h$ plot and the change in flow
             - Increase the head but stay below the aquifer head
-            - Make note of the slope of the $Q$-$h$ plot and the change in flow
             - Increase the head above the aquifer head. What happens with the flow at the boundary?
-            - Return the head elevation of the boundary $H_B$ to 8.0 m
-        - Modify the head (elevation) in the model next to the boundary $h_aq$
-            - Increase the head and make note of the slope of the $Q$-$h$ plot and the change in flow
-            - Lower the head below the GHB head and make note of the slope of the $Q$-$h$ plot and the change in flow           
+        - Modify the head(elevation) of the model at the boundary $h_aq$
+            - increase the head
+            - lower the head below the GHB head            
         
-        Feel free to further investigate the interactive plot on your own.
+           
+        These steps help you build intuition for how GHB parameters control flow, a key foundation for the exercise. Feel free to further investigate the interactive plot on your own.
         """)
     
     with st.expander('Show the :rainbow[**EXERCISE**]'):
@@ -510,35 +503,33 @@ def Q_h_plot():
         
         1. **Initial Exploration**
         
-        * Start with the conductance $C_B$ = 3x10⁻³ m²/s
-        * Set the boundary head (`H_B`) to **10 m**
-        * Observe and describe how the flux (`Q`) changes
-        * Vary the aquifer head (`h_aq`) from **5 m to 15 m**
-        * Observe and describe how the flux (`Q`) changes
+        * Set the boundary head (`H_B`) to **10 m**.
+        * Vary the aquifer head (`h_aq`) from **5 m to 15 m**.
+        * Observe and describe how the flux (`Q`) changes.
         * Record:
-          * The sign of the flux for different `h_aq` values
-          * The value of `Q` when `h_aq = h_GHB`
-        * Return the aquifer head (`h_aq`) **8 m**
+        
+          * The sign of the flux for different `h_aq` values.
+          * The value of `Q` when `h_aq = h_GHB`.
         
         2. **Conductance Effect**
         
-        * Keep `H_B` at 10 m
-        * Choose three different conductance values (e.g., **3x10⁻², 3x10⁻³, and 3x10⁻⁴ m²/s**)
+        * (Keep `H_B` at 10 m)
+        * Choose three different conductance values (e.g., **3E-2, 3E-3, and 3E-4 m²/s**).
         * For each conductance value:
-          * Plot (e.g., on a piece of paper) `Q_B` vs `h_aq` for `h_aq` in the range from 5 to 15 m
-          * Compare the slope and shape of the resulting lines
-        * Repeat for each an increased/decreased `H_B` (e.g., **5, 9, and 20 m**)
-          * Plot `Q_B` vs `h_aq` for a range of `H_B`
-          * Compare the slope and shape of the resulting lines
+        
+          * Plot (e.g., on a separate paper) `Q_B` vs `h_aq` for `h_aq` in the range from 5 to 15 m.
+          * Compare the slope and shape of the resulting lines.
+          * Eventually repeat with an increased/decreased `H_B`
         
         3. **Realistic Scenarios**
         
         * Imagine a GHB represents a canal system connected to the aquifer. The canal water level is 10 m.
         * Assume the aquifer head starts at 8 m.
         * Evaluate how much water would enter the aquifer for:
-          * A poorly connected canal (low conductance)
-          * A well-connected canal (high conductance)
-        * Consider the implications for water management 
+        
+          * A poorly connected canal (low conductance).
+          * A well-connected canal (high conductance).
+        * Discuss the implications for water management.    
         """)
 
 
@@ -546,8 +537,8 @@ Q_h_plot()
 
 with st.expander('**Show the :rainbow[**EXERCISE**] assessment** - to self-check your understanding'):
     st.markdown("""
-    #### 🧠 Exercise assessment
-    These questions test your understanding after doing the GHB exercise.
+    #### 🧠 Excercise assessment
+    These questions test your understanding after doing the exercise.
     """)
 
     # Render questions in a 2x3 grid (row-wise)
@@ -582,9 +573,9 @@ The General Head Boundary (GHB) offers a flexible way to simulate interactions w
 
 The GHB condition captures the essential physics of cross-boundary exchange using only a few parameters: the **boundary head**, **aquifer head**, and **conductance**, which reflects the geometry and hydraulic properties of the connection.
 
-Analyzing **Q–h plots**, provides a clearer understanding of how conductance controls the slope of the exchange curve and how head differences dictate the flow direction. This conceptual insight is essential for setting realistic boundary conditions in MODFLOW models.
+By analyzing **Q–h plots**, you've gained a clearer understanding of how conductance controls the slope of the exchange curve and how head differences dictate the flow direction. This conceptual insight is essential for setting realistic boundary conditions in MODFLOW models.
 
-Now you can assess your understanding of GHB behavior in the final quiz.
+You're now ready to assess your understanding of GHB behavior in the final quiz.
 """)
 
 with st.expander('**Show the :red[final assessment]** - to self-check your understanding'):

@@ -1,0 +1,68 @@
+[
+  {
+    "question": "What is the purpose of a threshold head ($h_{thr}$) in MNW simulations? (Mark ALL correct answers)",
+    "options": {
+      "A) To prevent excessive drawdown in the well.": true,
+      "B) To define a target drawdown for optimization.": false,
+      "C) To trigger a reduction in Q when $h_{well}$ falls below $h_{thr}$.": true,
+      "D) To set the minimum allowable value for $h_{cell}$.": false
+    },
+    "success": "✅ Correct. The threshold head is a control to protect the well from overdraw.",
+    "error": "❌ $h_{thr}$ is not a target — it’s a hard lower bound for well protection."
+  },
+  {
+    "question": "What happens when the computed $h_{well}$ falls below $h_{thr}$? (Mark ALL correct answers)",
+    "options": {
+      "A) The discharge Q is reduced automatically.": true,
+      "B) The aquifer head is lowered.": false,
+      "C) The simulation holds $h_{well} = h_{thr}$.": true,
+      "D) The CWC parameters are reset.": false
+    },
+    "success": "✅ Correct. The system adjusts Q to keep the well head at threshold.",
+    "error": "❌ Aquifer head and parameters stay constant — only Q is limited."
+  },
+  {
+    "question": "Under which conditions does the MNW model resume pumping using the Qmx limit? (Mark ALL correct answers)",
+    "options": {
+      "A) When the cell head rises and the computed Q exceeds Qmx.": true,
+      "B) When the pumping rate surpasses the threshold needed for restart.": true,
+      "C) When the pumping rate, based on the CWC equation, is too high.": false,
+      "D) When $h_{well}$ exceeds $h_{cell}$.": false
+    },
+    "success": "✅ Correct. Qmx defines the minimum discharge required to restart pumping after it was stopped due to head constraints.",
+    "error": "❌ Qmx only becomes relevant when the well is inactive and conditions improve sufficiently to restart pumping."
+  },
+  {
+    "question": "How does the nonlinear exponent $P$ influence the discharge–drawdown curve? (Mark ALL correct answers)",
+    "options": {
+      "A) Larger P causes faster increase in drawdown at higher Q.": true,
+      "B) P has no effect on threshold head activation.": false,
+      "C) A higher P shifts the Q–h curve to reach $h_{min}$ earlier.": true,
+      "D) Smaller P values make the system more nonlinear.": false
+    },
+    "success": "✅ Correct. P amplifies nonlinear resistance and affects when threshold is reached.",
+    "error": "❌ P is central to curve shape and influences threshold-limiting Q."
+  },
+  {
+    "question": "What happens when the well head reaches the threshold head and the discharge falls below Qmn? (Mark ALL correct answers)",
+    "options": {
+      "A) Pumping is stopped to protect the well.": true,
+      "B) The system maintains discharge at Qmn.": false,
+      "C) The well enters an inactive state.": true,
+      "D) The threshold head is ignored in favor of Q.": false
+    },
+    "success": "✅ Correct. If Q < Qmn under threshold head conditions, pumping stops and the well becomes inactive.",
+    "error": "❌ Qmn defines the lowest allowable pumping rate — below this, the pump shuts off."
+  },
+  {
+    "question": "When and how does the MNW model resume pumping after a shutdown due to low head? (Mark ALL correct answers)",
+    "options": {
+      "A) Pumping resumes when Q exceeds Qmx.": true,
+      "B) The cell head must recover above the threshold head.": true,
+      "C) The system ignores Qmx after the first shutdown.": false,
+      "D) Qmx sets the minimum flow required to restart pumping.": true
+    },
+    "success": "✅ Excellent. MNW enforces restart only when both head and Q conditions improve above defined limits.",
+    "error": "❌ Qmx is the key condition for restarting pumping after protective shutdown."
+  }
+]

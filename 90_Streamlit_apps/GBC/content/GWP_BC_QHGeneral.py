@@ -238,7 +238,7 @@ with st.expander('Show more about the theory of the :blue[**model and the analyt
     st.markdown("""
             #### Conceptual model
             
-            The conceptual model for both scenarios is shown in the figure above. It assumes the aquifer is a homogeneous and isotropic structure with a horizontal bottom at an elevation of zero such that the heads determine the aquifer thickness. The aquifer receives uniform recharge across the top surface.
+            The conceptual model for both scenarios shown in the figure above assume the aquifer is a homogeneous and isotropic structure with a horizontal bottom that receives uniform recharge across the top surface.
             """, unsafe_allow_html=True)
     st.markdown("""
             In :green[**Scenario 1**], the aquifer is bounded by
@@ -312,7 +312,7 @@ st.markdown("""Subsequently, the solutions are computed and results are visualiz
 - **hydraulic conductivity _K_** (in m/s), 
 - with additional modifications depending on your choice of :green[**Scenario 1**] or :red[**Scenario 2**]. 
 
-On the right side of the control panel, you can select which **_Q_-_h_ relationship** you would like to plot for different model boundaries. The position within the model plot for the head represented in the _Q_-_h_ plot is marked by a colored circle. Additionally, you can toggle to turn the _Q_-_h_ plots 90 degrees clockwise to view _h_-_Q_ plots which are more intuitive for most of us.
+On the right side of the control panel you can select which **_Q_-_h_ relationship** you would like to plot for different model boundaries. The position within the model plot for the head represented in the _Q_-_h_ plot is marked by a colored circle. Additionally you can toggle to turn the _Q_-_h_ plots 90 degrees clockwise to view _h_-_Q_ plots which are more intuitive for most of us.
 
 
 """)
@@ -617,7 +617,7 @@ if show_plot1:
             
             The use of these boundaries can be considered in two fundamentally different ways depending on the modeling context, first:
             
-            **a) During Model Calibration or Model Setup:** One might have field data indicating the groundwater discharge to the river (for example 1.6x10⁻⁵ m³/s per meter length of river). Given that the river is the only outlet of the model, the recharge rate can be calculated by dividing the discharge by the surface area of the model (2550 m by 1 m). Then, the hydraulic conductivity and conductance can be adjusted until the model heads match the measured field heads.
+            **a) During Model Calibration or Model Setup:** One might have field data indicating the groundwater discharge to the river (for example 1.6x10^-5 m^3/s per meter length of river). Given that the river is the only outlet of the model, the recharge rate can be calculated by dividing the discharge by the surface area of the model (2550 m by 1 m). Then, the hydraulic conductivity and conductance can be adjusted until the model heads match the measured field heads.
             
             To explore this behavior:
             - Set the recharge to a value of (approximately) 200 mm/a.

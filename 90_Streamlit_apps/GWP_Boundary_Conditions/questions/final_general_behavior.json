@@ -2,67 +2,67 @@
   {
     "question": "Why is a specified-head boundary represented as a vertical line in a Q–h plot? (Mark ALL correct answers)",
     "options": {
-      "A) Because the head remains constant regardless of flow rate.": true,
-      "B) Because the flow rate remains constant.": false,
-      "C) Because the aquifer has no recharge.": false,
-      "D) Because it reflects external control, like a large river or lake.": true
+      "Because the head remains constant regardless of flow rate.": true,
+      "Because the flow rate remains constant.": false,
+      "Because the aquifer has no recharge.": false,
+      "Because it reflects external control, like a large river or lake.": true
     },
     "success": "✅ Correct! For a Dirichlet condition, head is specified; Q varies. It often reflects external controls like large lakes that are in direct contact with the aquifer.",
-    "error": "❌ Not correct. For a Dirichlet condition, the head is specified, not the flow, and the value of recharge does not influence the value of specified head."
+    "error": "❌ Reconsider your answer. For a Dirichlet condition, the head is specified, not the flow, and the value of recharge does not influence the value of specified head."
   },
   {
     "question": "Which characteristics best describe a head-dependent boundary (Robin condition)? (Mark ALL correct answers)",
     "options": {
-      "A) The flow depends on the difference between aquifer head and external head.": true,
-      "B) It involves a conductance term that controls how easily flow occurs.": true,
-      "C) The head is always equal to the river stage.": false,
-      "D) It results in zero flow under all conditions.": false
+      "The flow depends on the difference between aquifer head and external head.": true,
+      "It involves a conductance term that controls how easily flow occurs.": true,
+      "The head is always equal to the river stage.": false,
+      "It results in zero flow under all conditions.": false
     },
     "success": "✅ Correct! Head-dependent flux is based on the head difference times a conductance value that controls how easily flow occurs.",
-    "error": "❌ Incorrect. Only when head in the aquifer and boundary are equal is the flow zero — not always. Also, the head is only equal to the river stage if there is no source of water to flow out of the boundary."
+    "error": "❌ Reconsider your answer. Only when head in the aquifer and boundary are equal is the flow zero — not always. Also, the head is only equal to the river stage if there is no source of water to flow out of the boundary."
   },
   {
-    "question": "What happens in the model if recharge is increased while keeping boundary types unchanged? (Mark ALL correct answers)",
+    "question": "What happens in a groundwater model if recharge is increased while keeping boundary types unchanged? (Mark ALL correct answers)",
     "options": {
-      "A) The hydraulic head generally increases across the domain.": true,
-      "B) The discharge at the defined-head or river boundary increases.": true,
-      "C) The hydraulic conductivity of the aquifer increases.": false,
-      "D) The position of the defined head boundary shifts further into the domain.": false
+      "The hydraulic head generally increases across the domain.": true,
+      "The discharge at the defined-head or river boundary increases.": true,
+      "The hydraulic conductivity of the aquifer increases.": false,
+      "The position of the defined head boundary shifts further into the domain.": false
     },
     "success": "✅ Correct! Recharge increases head and thus outflow, but aquifer properties and boundary locations stay the same.",
-    "error": "❌ Not correct. Recharge affects system input and outflow, but it does not alter aquifer properties or boundary positions."
+    "error": "❌ Reconsider your answer. Recharge affects system input and outflow, but it does not alter aquifer properties or boundary positions."
   },
   {
     "question": "In which of the following cases does the Q–h plot appear as a horizontal line (i.e., when Q represented by the y-axis)? (Mark ALL correct answers)",
     "options": {
-      "A) Defined-head boundary.": false,
-      "B) No-flow boundary.": true,
-      "C) Recharge boundary with constant flux.": true,
-      "D) Head-dependent boundary with high conductance.": false
+      "Defined-head boundary.": false,
+      "No-flow boundary.": true,
+      "Recharge boundary with constant flux.": true,
+      "Head-dependent boundary with high conductance.": false
     },
     "success": "✅ Correct! Neumann (defined-flow) boundaries have fixed Q, so the Q–h plot is horizontal.",
-    "error": "❌ Incorrect. Horizontal Q–h lines occur when flow is fixed regardless of head — which is the case for no-flow and recharge boundaries."
+    "error": "❌ Reconsider your answer. Horizontal Q–h lines occur when flow is fixed regardless of head — which is the case for no-flow and recharge boundaries."
   },
   {
-    "question": "Which statements correctly describe the influence of hydraulic conductivity (K) in the 1D model? (Mark ALL correct answers)",
+    "question": "Which statements correctly describe the influence of hydraulic conductivity (K) in a 1D groundwater model? (Mark ALL correct answers)",
     "options": {
-      "A) Higher K values lead to flatter hydraulic head gradients under steady recharge.": true,
-      "B) K influences the shape of the Q–h plot at a boundary with specified head.": false,
-      "C) Higher K results in greater discharge in models where boundary conditions allow through flow.": true,
-      "D) K does not affect the discharge through the aquifer system with uniform recharge and only one outflow boundary.": true
+      "Higher K values lead to flatter hydraulic head gradients under steady recharge.": true,
+      "K influences the shape of the Q–h plot at a boundary with specified head.": false,
+      "Higher K results in greater discharge in models where boundary conditions allow through flow.": true,
+      "K does not affect the discharge through the aquifer system with uniform recharge and only one outflow boundary.": true
     },
     "success": "✅ Correct! K determines how easily water flows through the aquifer, affecting head gradients, and in cases where boundaries allow through flow of groundwater higher K increases inflow and outflow, but K does not the shape of the Q–h plot at a fixed-head boundary.",
-    "error": "❌ Not correct. K strongly influences head gradients and flow rates in a model with boundaries that allow through flow, but not the shape of the Q–h curve at a Dirichlet boundary which is determined by the definition of a specified head boundary, not by the aquifer parameter values."
+    "error": "❌ Reconsider your answer. K strongly influences head gradients and flow rates in a model with boundaries that allow through flow, but not the shape of the Q–h curve at a Dirichlet boundary which is determined by the definition of a specified head boundary, not by the aquifer parameter values."
   },
   {
     "question": "In a 1D model with recharge, a no-flow boundary, and a specified head boundary, which of the following are true? (Mark ALL correct answers)",
     "options": {
-      "A) Flow is directed away from the no-flow boundary.": true,
-      "B) Recharge causes an inclining water table towards the no-flow boundary.": true,
-      "C) The Q–h plot at the no-flow boundary doesn't exist.": false,
-      "D) Head-dependent flow occurs at the no-flow boundary.": false
+      "Flow is directed away from the no-flow boundary.": true,
+      "Positive recharge causes the water table to slope away from the no-flow boundary.": true,
+      "The Q–h plot at the no-flow boundary doesn't exist.": false,
+      "Head-dependent flow occurs at the no-flow boundary.": false
     },
     "success": "✅ Correct! No-flow boundaries force one-directional flow; recharge raises head, but no flow occurs at the boundary.",
-    "error": "❌ Not correct. Q–h at no-flow is vertical (Q = 0, and h is variable) and no head-dependent exchange of water occurs there."
+    "error": "❌ Reconsider your answer. Q–h at no-flow is vertical (Q = 0, and h is variable) and no head-dependent exchange of water occurs there."
   }
 ]
