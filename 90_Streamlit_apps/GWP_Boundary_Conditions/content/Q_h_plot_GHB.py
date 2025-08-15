@@ -381,10 +381,10 @@ def Q_h_plot():
                 ax.text(-0.003,1, "Flow OUT of the model", va='center',color='green',  fontsize=16)
                 ax.text(0.002, 1,  "Flow INTO the model", va='center', ha='right',color='blue',  fontsize=16)
             # Add red rectangle if Q out of the plot
-            if Q_ref < -0.05 and not relax_Q:
+            if (Q_ref < -0.05 or Q_ref > 0.05) and not relax_Q:
                 rect = Rectangle((min(0.05, -0.05), 0.0), abs(-0.05 - 0.05), 20.0, linewidth=5, edgecolor='red', facecolor='none')
                 ax.add_patch(rect)
-            elif Q_ref < -5:
+            elif (Q_ref < -5 or Q_ref > 5):
                 rect = Rectangle((min(5, -5), 0.0), abs(-5 - 5), 20.0, linewidth=5, edgecolor='red', facecolor='none')
                 ax.add_patch(rect)      
         else:
@@ -425,10 +425,10 @@ def Q_h_plot():
                 ax.text(19.8, -0.003, "Flow OUT of the model", va='center', ha='right',color='green',  fontsize=16)
                 ax.text(19.8, 0.003, "Flow INTO the model", va='center', ha='right',color='blue',  fontsize=16)
             # Add red rectangle if Q out of the plot
-            if Q_ref < -0.05 and not relax_Q:
+            if (Q_ref < -0.05 or Q_ref > 0.05) and not relax_Q:
                 rect = Rectangle((0.0, min(0.05, -0.05)), 20.0, abs(-0.05 - 0.05), linewidth=5, edgecolor='red', facecolor='none')
                 ax.add_patch(rect)  
-            elif Q_ref < -5:     
+            elif (Q_ref < -5 or Q_ref > 5):     
                 rect = Rectangle((0.0, min(5, -5)), 20.0, abs(-5 - 5), linewidth=5, edgecolor='red', facecolor='none')
                 ax.add_patch(rect)                 
     else:
@@ -453,7 +453,7 @@ def Q_h_plot():
     plt.yticks(fontsize=14) 
     legend = ax.legend(loc="upper left", fontsize=14)
     # Mark Q_B in red if out of visible range
-    if Q_ref < -0.05:
+    if (Q_ref < -0.05 or Q_ref > 0.05):
         for text in legend.get_texts():
             if "$Q_B$" in text.get_text():
                 text.set_color('red')
@@ -461,13 +461,13 @@ def Q_h_plot():
     st.pyplot(fig)
     
     if visualize:
-        if (Q_ref < -0.05 and not relax_Q) or Q_ref < -5:
+        if ((Q_ref < -0.05 or Q_ref > 0.05) and not relax_Q) or (Q_ref < -5 or Q_ref > 5):
             st.markdown("""
-            :red[_The green arrow, indicating the head difference $H_{B}$-$h_{aq}$ and pointing to the value of flow $Q_{GHB}$ on the axis, is out of the visible range for the plot. The value for $Q_{GHB}$ is still shown in the legend._]
+            :red[_The green arrow, indicating the head difference $H_{B}$-$h_{aq}$ and pointing to the value of flow $Q_B$ on the axis, is out of the visible range for the plot. The value for $Q_B$ is still shown in the legend. A toggle in “Modify the Plot Controls” can be used to increase the range._]
             """)
         else:
             st.markdown("""
-            _The green arrow indicates the head difference $H_{B}$-$h_{aq}$ and points to the value of flow $Q_{GHB}$ on the axis._
+            _The :green[green arrow] indicates the head difference $H_{B}$-$h_{aq}$ and points to the value of flow $Q_B$ on the axis._
             """)
     
     with st.expander('Show the :blue[**INITIAL INSTRUCTIONS**]'):
