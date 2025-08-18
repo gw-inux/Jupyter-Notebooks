@@ -1,0 +1,112 @@
+[
+  {
+    "question": "Which of the following assumptions underlie the Theis solution for confined aquifers? (Mark ALL correct answers)",
+    "options": {
+      "A) The aquifer is homogeneous and isotropic": true,
+      "B) The aquifer has infinite lateral extent": true,
+      "C) The well is of finite diameter and partially penetrates the aquifer": false,
+      "D) The well fully penetrates the aquifer": true
+    },
+    "success": "✅ Correct. The Theis solution assumes a homogeneous, isotropic, infinite, confined aquifer and a fully penetrating well of infinitesimal diameter.",
+    "error": "❌ Not quite. Recall that the Theis assumptions exclude partial penetration and finite well diameters."
+  },
+  {
+    "question": "What does the parameter transmissivity (T) represent in groundwater flow analysis?",
+    "options": {
+      "A) The ability of an aquifer to transmit water": true,
+      "B) The volume of water released from storage per unit decline in head": false,
+      "C) The hydraulic head within the aquifer": false,
+      "D) The product of hydraulic conductivity and aquifer thickness": true
+    },
+    "success": "✅ Correct. Transmissivity quantifies the ease of groundwater flow across the aquifer thickness, T = K·b.",
+    "error": "❌ Not correct. Storativity relates to storage, not transmissivity."
+  },
+  {
+    "question": "Which condition best describes transient groundwater flow?",
+    "options": {
+      "A) Hydraulic head varies with location but not with time": false,
+      "B) Hydraulic head varies with time at a given location": true,
+      "C) Flow is steady, but aquifer properties change with depth": false,
+      "D) A system under pumping that produces time-dependent drawdown": true
+    },
+    "success": "✅ Correct. Transient flow is characterized by time-varying heads, e.g. during pumping tests.",
+    "error": "❌ Incorrect. Spatial variation alone describes steady but non-uniform conditions, not transient flow."
+  },
+  {
+    "question": "What is the dimensionless variable u in the Theis equation defined as?",
+    "options": {
+      "A) u = Q / (4πTt)": false,
+      "B) u = Sr² / (4Tt)": true,
+      "C) u = T / S": false,
+      "D) u = r² / (Kt)": false
+    },
+    "success": "✅ Correct. u = (Sr²) / (4Tt) combines aquifer storage, transmissivity, distance, and time into a dimensionless form.",
+    "error": "❌ Wrong. Recall the exact relationship of u with S, r, T, and t."
+  },
+  {
+    "question": "Why is it recommended to always plot pumping test data in graphical form, even when using computer codes?",
+    "options": {
+      "A) To verify if data align with theoretical type curves": true,
+      "B) To identify potential measurement errors or anomalies": true,
+      "C) Because computer algorithms are unreliable": false,
+      "D) Because type-curve matching requires manual plotting": false
+    },
+    "success": "✅ Correct. Visualizing data helps detect anomalies and provides insights into aquifer behavior.",
+    "error": "❌ Incorrect. The reason is not distrust of computers but the interpretative value of plotting."
+  },
+  {
+    "question": "Which analogy was crucial for Charles V. Theis in developing his 1935 pumping test solution?",
+    "options": {
+      "A) Analogy between groundwater flow and solute transport": false,
+      "B) Analogy between groundwater flow and heat conduction": true,
+      "C) Analogy between surface runoff and infiltration": false,
+      "D) Analogy between confined and unconfined aquifers": false
+    },
+    "success": "✅ Correct. Theis recognized the analogy between heat conduction and transient groundwater flow.",
+    "error": "❌ Not quite. The key analogy was with heat transfer, not with transport or recharge."
+  },
+  {
+    "question": "Which of the following are limitations of the Theis solution? (Mark ALL correct answers)",
+    "options": {
+      "A) It does not consider leakage from adjacent aquifers": true,
+      "B) It does not consider delayed gravity response in unconfined aquifers": true,
+      "C) It assumes the aquifer is infinite, homogeneous, and isotropic": true,
+      "D) It can only be applied to steady-state conditions": false
+    },
+    "success": "✅ Correct. Theis is limited to confined, homogeneous, isotropic aquifers and excludes leakage and delayed response.",
+    "error": "❌ Incorrect. Theis describes transient flow, but with restrictive assumptions."
+  },
+  {
+    "question": "Which extension of the Theis solution addresses leaky aquifers?",
+    "options": {
+      "A) Hantush–Jacob (1955)": true,
+      "B) Neuman (1972)": false,
+      "C) Thiem (1906)": false,
+      "D) Dupuit (1863)": false
+    },
+    "success": "✅ Correct. Hantush–Jacob extended Theis to account for leakage through aquitards.",
+    "error": "❌ Wrong. Neuman focused on unconfined aquifers with delayed gravity response."
+  },
+  {
+    "question": "In an unconfined aquifer, which extension accounts for delayed water level response?",
+    "options": {
+      "A) Hantush–Jacob (1955)": false,
+      "B) Neuman (1972)": true,
+      "C) Theis (1935)": false,
+      "D) Jacob straight-line method": false
+    },
+    "success": "✅ Correct. Neuman’s solution addressed the delayed drainage of pores in unconfined aquifers.",
+    "error": "❌ Incorrect. Only Neuman’s 1972 work extends Theis to delayed gravity response."
+  },
+  {
+    "question": "Why is storativity (S) important in pumping test analysis?",
+    "options": {
+      "A) It controls how much water is released from storage per unit head decline": true,
+      "B) It influences the dimensionless parameter u in the Theis equation": true,
+      "C) It determines the transmissivity of the aquifer": false,
+      "D) It affects the shape of the drawdown–time curve during a pumping test": true
+    },
+    "success": "✅ Correct. Storativity links aquifer storage to head decline and shapes the drawdown response.",
+    "error": "❌ Not correct. Transmissivity, not storativity, quantifies aquifer transmission capacity."
+  }
+]

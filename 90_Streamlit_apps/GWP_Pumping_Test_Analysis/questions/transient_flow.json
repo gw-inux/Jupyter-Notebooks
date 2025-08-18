@@ -1,0 +1,112 @@
+[
+  {
+    "question": "Under which conditions is the Theis solution applicable?",
+    "options": {
+      "A) Steady-state flow in confined aquifers": false,
+      "B) Transient flow in confined aquifers": true,
+      "C) Steady-state flow in unconfined aquifers": false,
+      "D) Transient flow in unconfined aquifers": false
+    },
+    "success": "✅ Correct. The Theis solution is valid for transient flow in confined aquifers.",
+    "error": "❌ Incorrect. Remember: Theis describes transient conditions in confined aquifers only."
+  },
+  {
+    "question": "What happens to the cone of depression over time if there is no recharge?",
+    "options": {
+      "A) It reaches a steady state": false,
+      "B) It continues to expand with time": true,
+      "C) It remains constant": false,
+      "D) It decreases with time": false
+    },
+    "success": "✅ Correct. Without recharge, drawdown continues to increase with time.",
+    "error": "❌ Incorrect. Only recharge or boundaries can stabilize the cone of depression."
+  },
+  {
+    "question": "How does increasing storativity (S) affect drawdown at a fixed time and distance?",
+    "options": {
+      "A) Drawdown decreases (slower response)": true,
+      "B) Drawdown increases (faster response)": false,
+      "C) Storativity only affects steady-state flow": false,
+      "D) Drawdown is not affected by storativity": false
+    },
+    "success": "✅ Correct. Higher storativity buffers the drawdown response, reducing drawdown.",
+    "error": "❌ Incorrect. Storativity strongly influences transient drawdown."
+  },
+  {
+    "question": "How does drawdown at a point evolve with time during pumping in a confined aquifer?",
+    "options": {
+      "A) It decreases": false,
+      "B) It increases": true,
+      "C) It remains constant": false,
+      "D) It is independent of pumping rate": false
+    },
+    "success": "✅ Correct. Drawdown increases with time as pumping continues.",
+    "error": "❌ Incorrect. Confined aquifer drawdown does not decrease unless pumping stops."
+  },
+  {
+    "question": "If transmissivity (T) is underestimated, how will predicted drawdown differ from reality?",
+    "options": {
+      "A) Too small everywhere": false,
+      "B) Correct, unchanged": false,
+      "C) Too large near the well, too small at larger distances": true,
+      "D) Too large everywhere": false
+    },
+    "success": "✅ Correct. Low T means predicted gradients are too high near the well, underestimating drawdown further away.",
+    "error": "❌ Incorrect. Check the effect of transmissivity on near-field and far-field drawdown."
+  },
+  {
+    "question": "What is the effect of increasing pumping rate Q while holding T, S, r, and t constant?",
+    "options": {
+      "A) Drawdown decreases": false,
+      "B) Drawdown remains constant": false,
+      "C) Drawdown increases proportionally": true,
+      "D) Drawdown becomes independent of Q": false
+    },
+    "success": "✅ Correct. Drawdown scales linearly with Q in the Theis solution.",
+    "error": "❌ Incorrect. Q is directly proportional to drawdown."
+  },
+  {
+    "question": "How does increasing distance from the well affect drawdown at fixed Q, T, S, and t?",
+    "options": {
+      "A) Drawdown increases with distance": false,
+      "B) Drawdown decreases with distance": true,
+      "C) Drawdown remains constant with distance": false,
+      "D) Drawdown oscillates with distance": false
+    },
+    "success": "✅ Correct. Drawdown attenuates with increasing radial distance.",
+    "error": "❌ Incorrect. The cone of depression diminishes with distance from the well."
+  },
+  {
+    "question": "Which parameters directly influence the dimensionless variable u in the Theis solution?",
+    "options": {
+      "A) Storativity S": true,
+      "B) Distance r": true,
+      "C) Transmissivity T": true,
+      "D) Pumping rate Q": false
+    },
+    "success": "✅ Correct. u = (Sr²) / (4Tt), independent of Q.",
+    "error": "❌ Incorrect. Q affects drawdown magnitude, not u."
+  },
+  {
+    "question": "If storativity is very low, how does drawdown develop in early pumping times?",
+    "options": {
+      "A) Rapid, large drawdown response": true,
+      "B) Minimal drawdown response": false,
+      "C) No effect until steady state": false,
+      "D) Identical to high storativity case": false
+    },
+    "success": "✅ Correct. Low S means more rapid drawdown buildup.",
+    "error": "❌ Incorrect. Recall that storativity governs how much head change is needed to release water."
+  },
+  {
+    "question": "Why does the interactive plot sometimes turn white (no curves)?",
+    "options": {
+      "A) Pumping rate is zero": false,
+      "B) Drawdown exceeded aquifer head (non-physical situation)": true,
+      "C) Transmissivity is infinite": false,
+      "D) Storativity is zero": false
+    },
+    "success": "✅ Correct. Drawdown greater than the available head produces invalid results (white area).",
+    "error": "❌ Incorrect. This occurs when model parameters yield physically impossible drawdown."
+  }
+]

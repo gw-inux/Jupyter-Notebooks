@@ -1,0 +1,116 @@
+[
+  {
+    "question": "For which conditions and assumptions is the Theis solution appropriate? (Mark ALL correct answers)",
+    "options": {
+      "A) Transient flow in a confined aquifer": true,
+      "B) Aquifer is laterally infinite": true,
+      "C) Homogeneous and isotropic aquifer": true,
+      "D) Fully penetrating well of infinitesimal diameter": true,
+      "E) Pumping rate varies arbitrarily with time": false,
+      "F) Unconfined aquifer with delayed drainage": false
+    },
+    "success": "✅ Correct. Theis assumes transient flow in a confined, infinite, homogeneous, isotropic aquifer with a fully penetrating, infinitesimal well and constant discharge.",
+    "error": "❌ Recheck the classic Theis assumptions: confined, infinite, homogeneous/isotropic, fully penetrating, constant Q."
+  },
+  {
+    "question": "Which aquifer properties can be estimated by fitting the Theis curve to pumping test drawdown data? (Mark ALL correct answers)",
+    "options": {
+      "A) Transmissivity T": true,
+      "B) Storativity S": true,
+      "C) Hydraulic conductivity anisotropy ratio": false,
+      "D) Specific yield (Sy)": false
+    },
+    "success": "✅ Correct. Theis fitting yields T and S for confined conditions.",
+    "error": "❌ Only T and S are obtained directly from a Theis fit under confined assumptions."
+  },
+  {
+    "question": "Identify the correct mathematical elements of the Theis solution. (Mark ALL correct answers)",
+    "options": {
+      "A) s(r,t) = Q / (4πT) · W(u)": true,
+      "B) u = (r² S) / (4 T t)": true,
+      "C) W(u) = ∫_u^∞ (e^{-x} / x) dx": true,
+      "D) s(r,t) = (Q / 2πKb) ln r": false
+    },
+    "success": "✅ Correct. Theis uses s = (Q/4πT)W(u) with u = r²S/(4Tt) and the exponential integral well function.",
+    "error": "❌ The logarithmic form in D is not the transient Theis solution."
+  },
+  {
+    "question": "Which variables directly influence the dimensionless parameter u in the Theis solution? (Mark ALL correct answers)",
+    "options": {
+      "A) Radial distance r": true,
+      "B) Storativity S": true,
+      "C) Transmissivity T": true,
+      "D) Time since pumping began t": true,
+      "E) Pumping rate Q": false
+    },
+    "success": "✅ Correct. u depends on r, S, T, and t; it is independent of Q.",
+    "error": "❌ Remember: Q scales drawdown magnitude, not u."
+  },
+  {
+    "question": "How does transmissivity T affect the cone of depression and predicted drawdown patterns? (Mark ALL correct answers)",
+    "options": {
+      "A) Higher T produces a broader, shallower cone near the well": true,
+      "B) Lower T yields steeper gradients and larger near-well drawdown": true,
+      "C) Higher T always increases drawdown at all distances": false,
+      "D) T has no effect on drawdown distribution": false
+    },
+    "success": "✅ Correct. T controls how readily flow occurs: high T spreads drawdown; low T concentrates it near the well.",
+    "error": "❌ T strongly affects both the shape and spatial distribution of drawdown."
+  },
+  {
+    "question": "Which statements about storativity S in a confined aquifer are correct? (Mark ALL correct answers)",
+    "options": {
+      "A) Larger S leads to slower head response and smaller early-time drawdown": true,
+      "B) S governs the amount of water released per unit head decline": true,
+      "C) S primarily controls late-time straight-line slope on semi-log plots": true,
+      "D) S determines the aquifer’s ability to transmit water": false
+    },
+    "success": "✅ Correct. S controls storage-driven response and influences early/late time behavior; transmission is governed by T.",
+    "error": "❌ Don’t conflate storage (S) with transmission capacity (T)."
+  },
+  {
+    "question": "About plotting choices in Theis analysis, which statements are correct? (Mark ALL correct answers)",
+    "options": {
+      "A) A semi-log plot of s vs. log t often shows late-time straight-line behavior": true,
+      "B) The Cooper–Jacob method relies on the semi-log straight line at late time": true,
+      "C) A log-log plot can help visualize both early and late time on one figure": true,
+      "D) Arithmetic-arithmetic plots are generally preferred for parameter estimation": false
+    },
+    "success": "✅ Correct. Semi-log supports Cooper–Jacob; log-log is useful for full-range visualization.",
+    "error": "❌ Arithmetic plots are not typically preferred for Theis parameter estimation."
+  },
+  {
+    "question": "Late-time mismatch between Theis curves and field data may indicate which issues? (Mark ALL correct answers)",
+    "options": {
+      "A) Leakage through an aquitard (semi-confined behavior)": true,
+      "B) Recharge or barrier boundaries influencing drawdown": true,
+      "C) Variable pumping rate during the test": true,
+      "D) Perfect adherence to Theis assumptions": false
+    },
+    "success": "✅ Correct. Leakage, boundaries, and variable Q commonly cause late-time deviations from Theis.",
+    "error": "❌ Late-time deviation usually means Theis assumptions are not fully satisfied."
+  },
+  {
+    "question": "What does the 45° reference line in the measured-vs-computed scatter plot convey, and how is fit quality assessed? (Mark ALL correct answers)",
+    "options": {
+      "A) Points on the 45° line indicate perfect agreement": true,
+      "B) Systematic deviation above/below the line indicates bias in the fit": true,
+      "C) The line is used to compute RMSE directly without residuals": false,
+      "D) Scatter close to the line suggests a good overall fit": true
+    },
+    "success": "✅ Correct. Proximity to the 45° line indicates agreement; systematic offsets reveal bias.",
+    "error": "❌ RMSE is computed from residuals, not read off the line."
+  },
+  {
+    "question": "Why is a perfect Theis fit rarely achievable for field data? (Mark ALL correct answers)",
+    "options": {
+      "A) Small variations in pumping rate are inevitable": true,
+      "B) Wellbore storage and partial penetration can affect early-time data": true,
+      "C) Heterogeneity and boundaries often violate Theis assumptions": true,
+      "D) Evapotranspiration and other external stresses can influence heads": true,
+      "E) Because Theis is a steady-state solution": false
+    },
+    "success": "✅ Correct. Real systems rarely meet ideal assumptions; external stresses and operational factors add departures.",
+    "error": "❌ Theis is transient, not steady-state; reconsider the real-world departures from the ideal model."
+  }
+]

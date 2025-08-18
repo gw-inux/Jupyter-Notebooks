@@ -1,0 +1,112 @@
+[
+  {
+    "question": "What type of aquifer and conditions does the original Theis (1935) solution describe?",
+    "options": {
+      "A) Steady-state flow in confined aquifer": false,
+      "B) Transient flow in confined aquifer": true,
+      "C) Transient flow in unconfined aquifer": false,
+      "D) Steady-state flow in leaky aquifer": false
+    },
+    "success": "✅ Correct. The Theis solution is for transient flow in a fully confined aquifer.",
+    "error": "❌ Incorrect. Remember that the original Theis formulation was considered for confined aquifers under transient flow."
+  },
+  {
+    "question": "Which parameters are estimated by fitting Theis curves to drawdown data?",
+    "options": {
+      "A) Hydraulic conductivity and aquifer thickness": false,
+      "B) Transmissivity and storativity": true,
+      "C) Specific yield and porosity": false,
+      "D) Recharge rate and well efficiency": false
+    },
+    "success": "✅ Correct. Fitting Theis curves yields transmissivity (T) and storativity (S).",
+    "error": "❌ Incorrect. Other properties are derived later but not directly from Theis fitting."
+  },
+  {
+    "question": "What is the mathematical form of the Theis solution?",
+    "options": {
+      "A) s(r,t) = Q / (2πKb) * log(r)": false,
+      "B) s(r,t) = Q / (4πT) W(u)": true,
+      "C) s(r,t) = Q / (4πr²)": false,
+      "D) s(r,t) = T/S * r": false
+    },
+    "success": "✅ Correct. Theis uses the well function W(u).",
+    "error": "❌ Incorrect. Recall the role of W(u) in the Theis formulation."
+  },
+  {
+    "question": "Which variables define the dimensionless parameter u in the Theis solution?",
+    "options": {
+      "A) r, S, T, t": true,
+      "B) Q, T, r": false,
+      "C) K, b, Q": false,
+      "D) h, Δs, r": false
+    },
+    "success": "✅ Correct. u = (r² S) / (4 T t).",
+    "error": "❌ Incorrect. Q is not part of u."
+  },
+  {
+    "question": "How does transmissivity (T) affect the cone of depression shape?",
+    "options": {
+      "A) Higher T → narrower and deeper cone": false,
+      "B) Higher T → broader and shallower cone": true,
+      "C) Lower T → broader and shallower cone": false,
+      "D) T does not affect the cone of depression": false
+    },
+    "success": "✅ Correct. High transmissivity spreads drawdown more broadly with less depth near the well.",
+    "error": "❌ Incorrect. Review the role of T in drawdown distribution."
+  },
+  {
+    "question": "What does storativity (S) control in a confined aquifer?",
+    "options": {
+      "A) The rate at which water is transmitted": false,
+      "B) The amount of water released per unit head decline": true,
+      "C) The thickness of the aquifer": false,
+      "D) The well efficiency": false
+    },
+    "success": "✅ Correct. S quantifies how much water is released or stored due to head change.",
+    "error": "❌ Incorrect. Transmission is controlled by T, not S."
+  },
+  {
+    "question": "Which plot type reveals late-time straight-line behavior in Theis analysis?",
+    "options": {
+      "A) Log-log plot": false,
+      "B) Semi-log plot": true,
+      "C) Arithmetic plot": false,
+      "D) Histogram": false
+    },
+    "success": "✅ Correct. Late-time drawdown vs. log(time) is linear.",
+    "error": "❌ Incorrect. The straight-line method is based on semi-log behavior."
+  },
+  {
+    "question": "What does a mismatch between Theis curve and late-time field data often indicate?",
+    "options": {
+      "A) Constant pumping rate": false,
+      "B) Leakage through aquitards or boundary effects": true,
+      "C) Measurement accuracy was too high": false,
+      "D) Theis curve is only valid for steady state": false
+    },
+    "success": "✅ Correct. Deviation at late time often reflects leakage or boundaries.",
+    "error": "❌ Incorrect. Recall that Theis assumptions exclude leakage and boundaries."
+  },
+  {
+    "question": "What is the purpose of the scatter plot with a 45° line in the app?",
+    "options": {
+      "A) To show the pumping rate trend": false,
+      "B) To compare measured vs. computed drawdown": true,
+      "C) To verify aquifer thickness": false,
+      "D) To compute storativity directly": false
+    },
+    "success": "✅ Correct. Points along the 45° line indicate a good match.",
+    "error": "❌ Incorrect. The scatter plot is for fit evaluation, not aquifer thickness."
+  },
+  {
+    "question": "Why is it not possible to obtain a perfect fit of Theis solution to field data?",
+    "options": {
+      "A) Pumping rates are never exactly constant": true,
+      "B) Wellbore storage, aquifer boundaries, and heterogeneity exist": true,
+      "C) Aquifers are infinite and homogeneous in reality": false,
+      "D) Evapotranspiration and external stresses may distort signals": true
+    },
+    "success": "✅ Correct. Field data deviate from ideal assumptions for multiple reasons.",
+    "error": "❌ Incorrect. Consider the practical issues in real aquifer systems."
+  }
+]
