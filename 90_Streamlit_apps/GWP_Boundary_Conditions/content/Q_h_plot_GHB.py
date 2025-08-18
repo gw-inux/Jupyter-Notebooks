@@ -122,7 +122,7 @@ with columns0[1]:
 
     fig, ax = plt.subplots(figsize=(5, 5))      
     ax.plot(h_aqi, Qi, color='black', linewidth=4)
-    ax.set_xlabel("Heads in the GHB-Aquifer System (m)", fontsize=14, labelpad=15)
+    ax.set_xlabel("Head in the GHB-aquifer system (m)", fontsize=14, labelpad=15)
     ax.set_ylabel("Flow into the groundwater \nfrom the GHB $Q_{GHB}$ (m³/s)", fontsize=14, labelpad=15)
     ax.set_xlim(0, 20)
     ax.set_ylim(-0.05, 0.05)
