@@ -1,0 +1,68 @@
+[
+  {
+    "question": "What physical principle explains why freshwater floats above saltwater? (Mark ALL correct answers)",
+    "options": {
+      "A) Density difference": true,
+      "B) Temperature difference": false,
+      "C) Salinity gradient": true,
+      "D) Capillarity": false
+    },
+    "success": "✅ Correct. The difference in density due to salinity causes freshwater to float above denser saltwater.",
+    "error": "❌ Remember: it’s the density difference from salinity that drives buoyancy, not temperature or capillarity."
+  },
+  {
+    "question": "According to the Ghyben–Herzberg equation, if the freshwater head above sea level (h) is 1 m, approximately how deep is the freshwater–saltwater interface below sea level? (Mark ALL correct answers)",
+    "options": {
+      "A) ~10 m": false,
+      "B) ~25 m": false,
+      "C) ~40 m": true,
+      "D) ~100 m": false
+    },
+    "success": "✅ Correct. With typical densities, 1 m of freshwater head corresponds to about 40 m of interface depth.",
+    "error": "❌ Review the Ghyben–Herzberg factor: for typical density contrast, depth ≈ 40 × head."
+  },
+  {
+    "question": "Which of the following are assumptions of the Ghyben–Herzberg principle? (Mark ALL correct answers)",
+    "options": {
+      "A) Hydrostatic equilibrium": true,
+      "B) Homogeneous, isotropic aquifer": true,
+      "C) No mixing zone between fresh and salt water": true,
+      "D) Dynamic pumping conditions": false
+    },
+    "success": "✅ Correct. The model assumes static conditions, uniform aquifer properties, and a sharp interface.",
+    "error": "❌ Remember that G–H is a static, sharp-interface model, not a pumping or dispersion model."
+  },
+  {
+    "question": "If freshwater density is 1000 kg/m³ and saltwater density is 1028 kg/m³, what is the multiplication factor for converting freshwater head to interface depth? (Mark ALL correct answers)",
+    "options": {
+      "A) 35.7": true,
+      "B) 38.0": false,
+      "C) 40.0": false,
+      "D) 42.0": false
+    },
+    "success": "✅ Correct. Factor = 1000 / (1028 – 1000) ≈ 35.7.",
+    "error": "❌ Check the formula: factor = ρ_f / (ρ_s – ρ_f)."
+  },
+  {
+    "question": "Why does the Ghyben–Herzberg relation often overestimate the interface depth in real aquifers? (Mark ALL correct answers)",
+    "options": {
+      "A) It ignores dispersion and mixing zones": true,
+      "B) It assumes homogeneous aquifer properties": true,
+      "C) It accounts for tidal effects": false,
+      "D) It includes dynamic pumping effects": false
+    },
+    "success": "✅ Correct. Real aquifers have mixing zones and heterogeneity, making the sharp-interface estimate optimistic.",
+    "error": "❌ Remember: the G–H equation is idealized — no dispersion, heterogeneity, or pumping effects are included."
+  },
+  {
+    "question": "If h = 2 m and densities are 1000 kg/m³ (freshwater) and 1025 kg/m³ (saltwater), what is the interface depth below sea level? (Mark ALL correct answers)",
+    "options": {
+      "A) 40 m": false,
+      "B) 50 m": false,
+      "C) 80 m": true,
+      "D) 100 m": false
+    },
+    "success": "✅ Correct. With a 40× factor, 2 m head corresponds to ~80 m depth.",
+    "error": "❌ Apply the G–H factor: depth = (ρ_f / (ρ_s – ρ_f)) × h."
+  }
+]
