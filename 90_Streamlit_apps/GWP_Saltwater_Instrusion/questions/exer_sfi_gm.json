@@ -1,0 +1,56 @@
+[
+  {
+    "question": "Which factors directly control the *rate* at which the freshwater–saltwater interface moves inland under sea-level rise? (Mark ALL correct answers)",
+    "options": {
+      "A) Transmissivity (T)": true,
+      "B) Storage coefficient (S)": true,
+      "C) Aquifer length scale (L)": true,
+      "D) Color of the aquifer sediments": false
+    },
+    "success": "✅ Correct. Higher T and lower S accelerate movement, and L sets the spatial response scale.",
+    "error": "❌ Remember: rate depends on T, S, and L — not on irrelevant physical traits like color."
+  },
+  {
+    "question": "In the Glover–Morgan equation, what does the term $X_f$ represent? (Mark ALL correct answers)",
+    "options": {
+      "A) The maximum possible inland displacement after full adjustment": true,
+      "B) The initial interface position": false,
+      "C) The displacement at time zero": false,
+      "D) The rate of displacement per year": false
+    },
+    "success": "✅ Correct. $X_f$ is the final equilibrium displacement after the boundary change.",
+    "error": "❌ Recall: $X_f$ is the asymptotic value reached as time → ∞."
+  },
+  {
+    "question": "Why might the Glover–Morgan model underestimate intrusion in real-world cases? (Mark ALL correct answers)",
+    "options": {
+      "A) It assumes a sharp interface": true,
+      "B) It neglects dispersion and mixing": true,
+      "C) It ignores pumping effects": true,
+      "D) It accounts for heterogeneity": false
+    },
+    "success": "✅ Correct. Real aquifers have dispersion, heterogeneity, and other stresses that speed intrusion.",
+    "error": "❌ Review the simplifying assumptions — they often cause underestimation in complex systems."
+  },
+  {
+    "question": "If transmissivity increases while all else stays the same, what happens to the inland movement rate predicted by Glover–Morgan? (Mark ALL correct answers)",
+    "options": {
+      "A) Movement rate increases": true,
+      "B) Movement rate decreases": false,
+      "C) No change": false
+    },
+    "success": "✅ Correct. Higher T allows the aquifer to respond more quickly to head changes.",
+    "error": "❌ Higher T means water can move more easily, speeding up the interface adjustment."
+  },
+  {
+    "question": "Which assumption is common to both Ghyben–Herzberg and Glover–Morgan models? (Mark ALL correct answers)",
+    "options": {
+      "A) Sharp interface between fresh and salt water": true,
+      "B) Homogeneous aquifer": true,
+      "C) Dynamic pumping effects included": false,
+      "D) Hydrostatic equilibrium at all times": false
+    },
+    "success": "✅ Correct. Both models assume homogeneity and a sharp interface.",
+    "error": "❌ Review the foundational assumptions of both models — they are idealized."
+  }
+]
