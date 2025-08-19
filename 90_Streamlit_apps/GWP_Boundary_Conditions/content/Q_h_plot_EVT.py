@@ -93,7 +93,7 @@ with columns0[1]:
     fig, ax = plt.subplots(figsize=(5, 5    ))      
     ax.plot(h_aqi, QETi, label="$Q_{ET}$",color='black', linewidth=4)
     ax.set_xlabel("Head/Elevation in the EVT-aquifer system (m)", fontsize=14, labelpad=15)
-    ax.set_ylabel("ET loss from the aquifer ($Q_{ET}$) in m³/s/km²", fontsize=14, labelpad=15)
+    ax.set_ylabel("ET loss from the aquifer ($Q_{ET}$) in m³/km²/s", fontsize=14, labelpad=15)
     ax.set_xlim(0, 10)
     ax.set_ylim(-0.02, 0.1)
     ax.set_title("Evapotranspiration losses", fontsize=16, pad=10)
@@ -232,11 +232,14 @@ def update_EXDP():
     st.session_state.EXDP = st.session_state.EXDP_input
 def update_EVTR_input():
     st.session_state.EVTR_input = st.session_state.EVTR_input_input
+def update_h_aq_show():
+    st.session_state.h_aq_show = st.session_state.h_aq_show_input  
     
 # Initialize session state for value and toggle state
 st.session_state.SURF = 9.0
 st.session_state.EXDP = 4.0
 st.session_state.EVTR_input = 2000.
+st.session_state.h_aq_show = 8.0
 
 st.session_state.number_input = False  # Default to number_input
 
@@ -256,9 +259,9 @@ def Q_h_plot():
             st.session_state.number_input = st.toggle("Toggle to use Slider or Number for input of _SURF_, _EXDP_, and _EVTR_.")
             visualize = st.toggle(':rainbow[**Make the plot alive** and visualize the input values]', key="ET_vis", value=True)
             # Time unit for rate - the user can choose between seconds, days, years through dropdown
-            # rate_unit =
-            # Area for Q_ET - the user can choose between m2, ha (100 x 100 m2), km2
-            # area_unit =            
+            rate_unit = st.selectbox("Select unit for ET rate:", ["mm/yr", "mm/day", "m/s"], index=1)
+            # Unit selection for area
+            #area_unit = st.selectbox("Select area unit:", ["km²", "ha", "m²"], index=0)          
 
     with columns1[1]:
         with st.expander('Modify :blue[**Heads** & **Elevations**]'):
@@ -268,9 +271,10 @@ def Q_h_plot():
             else:
                 SURF = st.slider(":green[**ET surface** _SURF_ (m)]", 7.0, 10.0, st.session_state.SURF, 0.1,key="SURF_input", on_change=update_SURF)
                 EXDP = st.slider(":orange[**Extinction depth** _EXDP_ (m)]", 0.1, 5.0, st.session_state.EXDP, 0.1,key="EXDP_input", on_change=update_EXDP)
-            eval_h = st.toggle('Toggle to evaluate ET for a specific elevation', value=True)
-            if eval_h:
-                eval_head = st.number_input("**Evaluate ET at this elevation**", 0.0, 10.0, 8.0, 0.1)
+            if st.session_state.number_input:
+                h_aq_show = st.number_input(":blue[**Aquifer head** $h_{aq}$ (m)]", 0.0, 10.0, st.session_state.h_aq_show, 0.1, key="h_aq_show_input", on_change=update_h_aq_show)
+            else:
+                h_aq_show = st.slider      (":blue[**Aquifer head** $h_{aq}$ (m)]", 0.0, 10.0, st.session_state.h_aq_show, 0.1, key="h_aq_show_input", on_change=update_h_aq_show)      
 
     with columns1[2]:
 #        with st.expander('Modify **ET rate & Cell Area**'):
@@ -290,9 +294,8 @@ def Q_h_plot():
     RET = np.where(h_aq > SURF, EVTR, np.where(h_aq >= (SURF - EXDP), EVTR * (h_aq - (SURF - EXDP)) / EXDP, 0))
     QET = RET*AREA
     # Compute RET and QET for specific evaluation elevation
-    if eval_h:
-        RET_eval = EVTR if eval_head > SURF else (EVTR * (eval_head - (SURF - EXDP)) / EXDP if eval_head >= (SURF - EXDP) else 0)
-        QET_eval = RET_eval * AREA
+    RET_eval = EVTR if st.session_state.h_aq_show > SURF else (EVTR * (st.session_state.h_aq_show - (SURF - EXDP)) / EXDP if st.session_state.h_aq_show >= (SURF - EXDP) else 0)
+    QET_eval = RET_eval * AREA
 
     # Create the plot
     fig, ax = plt.subplots(figsize=(8, 8))
@@ -317,7 +320,7 @@ def Q_h_plot():
                 arrow_x + 0.05 * QET_MAX,
                 (arrow_y_start + arrow_y_end) / 2,
                 "EXDP",
-                color='black',
+                color='orange',
                 fontsize=14,
                 ha='left'
             )
@@ -326,22 +329,22 @@ def Q_h_plot():
             ax.text(QET_MAX*0.9, SURF+0.2, "SURF", va='center',color='green',  fontsize=14)
             
             # Add evaluation point marker and label 
-            if eval_h:
-                ax.plot(
-                    QET_eval, eval_head,
-                    marker='o',
-                    markersize=12,
-                    markeredgecolor='black',
-                    markerfacecolor='lightblue',
-                    label=f'$Q_{{ET}}$ at {eval_head:.2f} m = {QET_eval:.2e} m³/s'
-                )            
+            ax.axhline(st.session_state.h_aq_show, color='blue', linewidth=2, linestyle='--', label=f'$h_{{aq}}$ = {st.session_state.h_aq_show:.2f} m')
+            ax.plot(
+                QET_eval, st.session_state.h_aq_show,
+                marker='o',
+                markersize=12,
+                markeredgecolor='black',
+                markerfacecolor='lightblue',
+                label=f'$Q_{{ET}}$ at $h_{{aq}}$ = {QET_eval:.2e} m³/km²/s'
+            )            
         else:
             ax.plot(h_aq, QET, label="$Q_{ET}$",color='blue', linewidth=4)
             ax.axvline(0, color='black', linewidth=5)
             ax.axvline(SURF, color='green', linestyle='--', label=f'$SURF$ in m = {SURF:5.2f} m')
             ax.axvline((SURF-EXDP), color='red', linestyle='--', label=f'$(SURF-EXDP)$ in m = {(SURF-EXDP):5.2f} m')
             
-            arrow_y = 0.8 * QET_MAX  # horizontal position
+            arrow_y = -0.05 * QET_MAX  # horizontal position
             arrow_x_start = SURF
             arrow_x_end = (SURF - EXDP)
             ax.annotate(
@@ -356,23 +359,23 @@ def Q_h_plot():
                 (arrow_x_start + arrow_x_end) / 2,
                 arrow_y + 0.02 * QET_MAX,  # slight vertical offset
                 "EXDP",
-                color='black',
+                color='orange',
                 fontsize=14,
                 ha='center'
             )
             # Add head annotations
-            ax.text(SURF-0.15, QET_MAX*0.95, "SURF", va='center',color='green',  fontsize=14)
+            ax.text(SURF+0.15, QET_MAX*-0.05, "SURF", va='center',color='green',  fontsize=14)
             
             # Add evaluation point marker and label
-            if eval_h:
-                ax.plot(
-                    eval_head, QET_eval, 
-                    marker='o',
-                    markersize=12,
-                    markeredgecolor='black',
-                    markerfacecolor='lightblue',
-                    label=f'$Q_{{ET}}$ at {eval_head:.2f} m = {QET_eval:.2e} m³/s'
-                )   
+            ax.axvline(st.session_state.h_aq_show, color='blue', linewidth=2, linestyle='--', label=f'$h_{{aq}}$ = {st.session_state.h_aq_show:.2f} m')
+            ax.plot(
+                st.session_state.h_aq_show, QET_eval, 
+                marker='o',
+                markersize=12,
+                markeredgecolor='black',
+                markerfacecolor='lightblue',
+                label=f'$Q_{{ET}}$ at $h_{{aq}}$ = {QET_eval:.2e} m³/km²/s'
+            )   
     else:
         if turn:
             ax.plot(QET, h_aq, label="$Q_{ET}$",color='black', linewidth=4)
@@ -382,32 +385,55 @@ def Q_h_plot():
     # Labels and formatting
     if turn:
         ax.set_ylabel("Heads and elevations in the aquifer system in m above reference level", fontsize=14, labelpad=15)
-        ax.set_xlabel("ET loss from the aquifer ($Q_{ET}$) in m³/s/km²", fontsize=14, labelpad=15)
+        ax.set_xlabel("ET loss from the aquifer ($Q_{ET}$) in m³/km²/s", fontsize=14, labelpad=15)
         ax.set_ylim(0,10)
         ax.set_xlim(-0.1*QET_MAX, QET_MAX)
-        
-        # Add second x-axis (for mm/day)
-        secax = ax.secondary_xaxis('top', functions=(
-            lambda x: x / 1000 * 86400,        # m³/s/km² -> mm/d
-            lambda x: x * 1000 / 86400         # mm/d -> m³/s/km²
-        ))
-        secax.set_xlabel("Evapotranspiration loss rate from the aquifer ($RET$) in mm/d", color = 'grey', fontsize=14, labelpad=15)
+        # Add second x-axis for different units
+        if rate_unit == "mm/yr":
+            secax = ax.secondary_xaxis('top', functions=(
+                lambda x: x / 1000 * 86400 * 365.25,      # m³/km²/s -> mm/yr
+                lambda x: x * 1000 / 86400 / 365.25       # mm/yr -> m³/km²/s
+            ))
+            secax.set_xlabel("Evapotranspiration loss rate from the aquifer ($RET$) in mm/yr", color = 'grey', fontsize=14, labelpad=15)
+        elif rate_unit == "mm/day":
+            secax = ax.secondary_xaxis('top', functions=(
+                lambda x: x / 1000 * 86400,        # m³/km²/s -> mm/d
+                lambda x: x * 1000 / 86400         # mm/d -> m³/km²/s
+            ))
+            secax.set_xlabel("Evapotranspiration loss rate from the aquifer ($RET$) in mm/d", color = 'grey', fontsize=14, labelpad=15)
+        elif rate_unit == "m/s":
+            secax = ax.secondary_xaxis('top', functions=(
+                lambda x: x / 1000000,        # m³/km²/s -> m/s
+                lambda x: x * 1000000         # m/s -> m³/km²/s
+            ))
+            secax.set_xlabel("Evapotranspiration loss rate from the aquifer ($RET$) in m/s", color = 'grey', fontsize=14, labelpad=15)
         secax.tick_params(axis='x', labelsize=14)
     else:
         ax.set_xlabel("Heads and elevations in the aquifer system in m above reference level", fontsize=14, labelpad=15)
-        ax.set_ylabel("ET loss from the aquifer ($Q_{ET}$) in m³/s/km²", fontsize=14, labelpad=15)
+        ax.set_ylabel("ET loss from the aquifer ($Q_{ET}$) in m³/km²/s", fontsize=14, labelpad=15)
         ax.set_xlim(0,10)
         ax.set_ylim(-0.1*QET_MAX, QET_MAX)
-        # Add second y-axis (for mm/day)
-        secax = ax.secondary_yaxis('right', functions=(
-            lambda y: y / 1000 * 86400,        # m³/s/km² -> mm/d
-            lambda y: y * 1000 / 86400         # mm/d -> m³/s/km²
-        ))
-        secax.set_ylabel("Evapotranspiration loss rate from the aquifer ($RET$) in mm/d", color = 'grey', fontsize=14, labelpad=15)
+        # Add second y-axis
+        if rate_unit == "mm/yr":
+            secax = ax.secondary_yaxis('right', functions=(
+                lambda y: y / 1000 * 86400 * 365.25,      # m³/km²/s -> mm/yr
+                lambda y: y * 1000 / 86400 / 365.25       # mm/yr -> m³/km²/s
+            ))
+            secax.set_ylabel("Evapotranspiration loss rate from the aquifer ($RET$) in mm/yr", color = 'grey', fontsize=14, labelpad=15)
+        if rate_unit == "mm/day":
+            secax = ax.secondary_yaxis('right', functions=(
+                lambda y: y / 1000 * 86400,        # m³/km²/s -> mm/d
+                lambda y: y * 1000 / 86400         # mm/d -> m³/km²/s
+            ))
+            secax.set_ylabel("Evapotranspiration loss rate from the aquifer ($RET$) in mm/d", color = 'grey', fontsize=14, labelpad=15)
+        if rate_unit == "m/s":
+            secax = ax.secondary_yaxis('right', functions=(
+                lambda y: y / 1000000,        # m³/km²/s -> mm/d
+                lambda y: y * 1000000         # mm/d -> m³/km²/s
+            ))
+            secax.set_ylabel("Evapotranspiration loss rate from the aquifer ($RET$) in m/s", color = 'grey', fontsize=14, labelpad=15)
         secax.tick_params(axis='y', labelsize=14)
 
-
-    
     # === SHARED FORMATTING === #
     ax.set_title("Evapotranspiration losses", fontsize=16, pad=20)
     plt.xticks(fontsize=14)
