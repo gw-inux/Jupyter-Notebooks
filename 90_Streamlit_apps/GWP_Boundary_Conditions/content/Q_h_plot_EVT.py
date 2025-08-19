@@ -387,7 +387,7 @@ def Q_h_plot():
         ax.set_ylabel("Heads and elevations in the aquifer system in m above reference level", fontsize=14, labelpad=15)
         ax.set_xlabel("ET loss from the aquifer ($Q_{ET}$) in m³/km²/s", fontsize=14, labelpad=15)
         ax.set_ylim(0,10)
-        ax.set_xlim(-0.1*QET_MAX, QET_MAX)
+        ax.set_xlim(-0.1*QET_MAX, 1.1*QET_MAX)
         # Add second x-axis for different units
         if rate_unit == "mm/yr":
             secax = ax.secondary_xaxis('top', functions=(
@@ -412,7 +412,7 @@ def Q_h_plot():
         ax.set_xlabel("Heads and elevations in the aquifer system in m above reference level", fontsize=14, labelpad=15)
         ax.set_ylabel("ET loss from the aquifer ($Q_{ET}$) in m³/km²/s", fontsize=14, labelpad=15)
         ax.set_xlim(0,10)
-        ax.set_ylim(-0.1*QET_MAX, QET_MAX)
+        ax.set_ylim(-0.1*QET_MAX, 1.1*QET_MAX)
         # Add second y-axis
         if rate_unit == "mm/yr":
             secax = ax.secondary_yaxis('right', functions=(
