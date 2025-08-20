@@ -103,7 +103,7 @@ with columns0[1]:
     # Slider input and plot
     # C_DRN
     # READ LOG VALUE, CONVERT, AND WRITE VALUE FOR Conductance
-    labels, default_label = prep_log_slider(default_val = 3e-3, log_min = -5, log_max = 0)
+    labels, default_label = prep_log_slider(default_val = 3e-3, log_min = -4, log_max = -1)
     selected_Ci = st.select_slider("**Conductance :green[$C_{D}$]** in m²/s", labels, default_label, key = "DRN_Ci")
     st.session_state.Ci_DRN = float(selected_Ci)
 # Computation 

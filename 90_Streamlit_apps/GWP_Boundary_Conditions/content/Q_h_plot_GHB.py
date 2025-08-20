@@ -112,7 +112,7 @@ if "Ci_GHB" not in st.session_state:
 
 with columns0[1]:
     # Conductance
-    labels, default_label = prep_log_slider(default_val = 3e-3, log_min = -5, log_max = 0)
+    labels, default_label = prep_log_slider(default_val = 3e-3, log_min = -4, log_max = -1)
     selected_Ci = st.select_slider("**Conductance :orange[$C_B$]** in m²/s", labels, default_label, key = "GHB_Ci")
     st.session_state.Ci_GHB = float(selected_Ci)
     
@@ -133,7 +133,7 @@ with columns0[1]:
     st.pyplot(fig)
     
     st.markdown("""
-    **Figure:** You can use this initial plot to explore how changes in :orange[GHB conductance] changes flow at the boundary.
+    **Initial Plot** for exploring how changes in :orange[GHB conductance] changes flow at the boundary.
     
     This **initial plot** is designed to bridge the gap between traditional $Q$-$h$ plots on paper and the :rainbow[**interactive plots**] provided further down in this app, that allow you to explore the $Q$-$h$ relationships more intuitively, supported by interactive controls and guided instructions.
     """)

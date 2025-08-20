@@ -1,6 +1,7 @@
 import numpy as np
 import matplotlib.pyplot as plt
 from matplotlib.gridspec import GridSpec
+from matplotlib.patches import Rectangle
 import scipy.special
 import scipy.interpolate as interp
 from scipy.interpolate import interp1d
@@ -93,7 +94,7 @@ st.title("Theory and Concept of the :rainbow[Multi-Node-Well Boundary (MNW)]")
 st.subheader("Process-based implementation of Flow to Pumping wells", divider="rainbow")
 
 st.markdown("""
-#### 💡 Motivation: Why Multi-Node Wells (MNW)?
+#### 💡 Motivation: Why use Multi-Node Wells (MNW)?
 """)
 
 # Initial plot
@@ -103,18 +104,23 @@ with columns0[0]:
     st.markdown("""  
     Let’s reflect on these questions:
     
-    1. **How do well losses affect the actual water level inside a pumping well?**
+    1. **How do well losses affect the water level inside a pumping well?**
     
     2. **What happens if the water level in the well drops below a critical threshold? Should pumping continue?**
     
-    ▶️ The **Multi-Node Well (MNW)** package in MODFLOW supports more realistic simulation of well hydraulics. Even in single-layer systems, it allows you to:
-    - Account for **drawdown within the wellbore** ($h_{aq}-h_{well}$) due to head losses,
-    - Define **limiting water levels** below which pumping stops,
-    - Simulate wells that **automatically shut off** or restart depending on drawdown conditions.
+    3. **What happens if a well penetrates more than one flow zone with different groundwater heads?**
     
-    The following interactive plots let you explore how discharge, cell head, and cell-to-well conductance _CWC_ interact and result in a specific drawdown in the well.
+    4. **Is there flow within a well bore even when the pump is not running?**
     
-    In contrast, the **WEL boundary in MODFLOW** is a regular Neumann-type boundary condition (2nd type boundary with defined flow). The **WEL**-toggle allows you to see the equivalent _Q-h_-plot for a WEL boundary in MODFLOW where the defined flow _Q_ is independet from the hydraulic head _h_.
+    ▶️ The :rainbow[**Multi-Node Well (MNW)**] package in MODFLOW supports more realistic simulation of well hydraulics, even in single-layer groundwater systems. MNW allows you to:
+    - account for **additional drawdown within the wellbore** ($h_{aq}-h_{well}$) **due to head losses**,
+    - define **limiting water levels** below which pumping stops,
+    - simulate wells that **automatically shut off** or restart depending on drawdown conditions, and
+    - simulate **flow between subsurface layers through the well bore**.
+    
+    The interactive plots in this section let you explore how pumping discharge, aquifer head, well-threshold head, and the conductance that defines Aquifer-Cell-to-Well connectivity _CWC_ interact to determine flow and drawdown within the well.
+    
+    In contrast, the **WEL boundary in MODFLOW** is a Neumann-type boundary condition with defined flow. Within this section of the module, the **WEL** toggle allows you to view the equivalent _Q-h_-plot for a WEL boundary in MODFLOW where the flow _Q_ is defined by the modeler and is independent of the hydraulic head _h_ in the aquifer cell where the well is located except in the extreme case when the aquifer head falls below the bottom of the cell.
     """)
 
 with columns0[1]:
@@ -122,7 +128,7 @@ with columns0[1]:
     # READ LOG VALUE, CONVERT, AND WRITE VALUE FOR Conductance
     col_ini = st.columns((3,1.2))
     with col_ini[0]:      
-        labels, default_label = prep_log_slider(default_val = 3e-3, log_min = -5, log_max = 0)
+        labels, default_label = prep_log_slider(default_val = 3e-3, log_min = -4, log_max = -1)
         selected_Ci = st.select_slider("**Conductance :grey[$CWC$]** in m²/s", labels, default_label, key = "MNW_CWCi")
         st.session_state.CWCi = float(selected_Ci)
         
@@ -132,7 +138,7 @@ with columns0[1]:
     # COMPUTATION
     # Define aquifer head range
     h_aqi = np.linspace(0, 20, 200)
-    QPi = np.full_like(h_aqi, -0.02)
+    QPi = np.full_like(h_aqi, -0.01)
     h_ni = 10.0 # Example head for the cell
     h_WELLi = np.linspace(0, 20, 200)
     Qi = (h_WELLi - h_ni) * st.session_state.CWCi
@@ -141,42 +147,59 @@ with columns0[1]:
     fig, ax = plt.subplots(figsize=(5, 5))      
     ax.plot(h_aqi, QPi, color='black', linewidth=4, label='$Q$-$h_{aq}$')
     if WEL_equi:
-        ax.set_xlabel("Heads in the WEL-Aquifer System (m)", fontsize=14, labelpad=15)
-        ax.set_ylabel("Flow into the Groundwater \nfrom the WEL boundary $Q_{WEL}$ (m³/s)", fontsize=14, labelpad=15)
+        ax.set_xlabel("Head in the WEL-aquifer system (m)", fontsize=14, labelpad=15)
+        ax.set_ylabel("Flow into the groundwater \nfrom the WEL boundary $Q_{WEL}$ (m³/s)", fontsize=14, labelpad=15)
         ax.set_title("Flow Between Groundwater and WEL", fontsize=16, pad=10)
     else:
         ax.plot(h_WELLi, Qi, color='lightgrey', linestyle='--', linewidth=3, label='$Q$-$h_{well}$')
         # Determine the y-values for h = 10
         Qi_10 = (10.0 - h_ni) * st.session_state.CWCi
-        QPi_10 = -0.02     
+        QPi_10 = -0.01     
     
         # Draw vertical line at Qi and h_intersect
-        h_is = h_ni + (-0.02 / st.session_state.CWCi)
+        h_is = h_ni + (-0.01 / st.session_state.CWCi)
         ax.plot([h_is, h_is], [QPi_10, -0.05], color='lightgrey',linestyle=':', linewidth=3)
     
-        ax.set_xlabel("Heads in the MNW-Aquifer System (m)", fontsize=14, labelpad=15)
-        ax.set_ylabel("Flow into the Groundwater \nfrom the MNW boundary $Q_{MNW}$ (m³/s)", fontsize=14, labelpad=15)
+        ax.set_xlabel("Head in the MNW-aquifer system (m)", fontsize=14, labelpad=15)
+        ax.set_ylabel("Flow into the groundwater \nfrom the MNW boundary $Q_{MNW}$ (m³/s)", fontsize=14, labelpad=15)
         ax.set_title("Flow Between Groundwater and MNW", fontsize=16, pad=10)
         ax.axhline(0, color='grey', linestyle='--', linewidth=0.8)
     
     # Draw vertical line at QPi and h = 10
-    ax.plot([10, 10], [-0.02, -0.05], color='black',linestyle=':', linewidth=3)
+    ax.plot([10, 10], [-0.01, -0.05], color='black',linestyle=':', linewidth=3)
     ax.axvline(10, color='grey', linestyle='--', linewidth=0.8)
     ax.set_xlim(0, 20)
     ax.set_ylim(-0.05, 0.05)
     
     plt.xticks(fontsize=14)
-    plt.yticks(fontsize=14) 
-
+    plt.yticks(fontsize=14)
+    if h_is < 0:
+        ax.text(1,-0.045, "Well is dry", fontsize=16, va='center', color='red')
+        rect = Rectangle((0.0, -0.05), 20, 0.1, linewidth=5, edgecolor='red', facecolor='none')
+        ax.add_patch(rect) 
     ax.legend(loc="upper left", fontsize=14)
     st.pyplot(fig)
     
     st.markdown("""
-    Please note that for this plot the head in the cell around the pumping well is **defined as $h_{aq}$ = 10 m** _(black dotted line)_.
+    **Initial Plot** for exploring how changes in :rainbow[MNW well conductance] changes flow between the well and the aquifer. The :grey[grey dashed line is $Q_{MWN}$ as a function of $h_{well}$] and illustrates the relationship between well discharge and hydraulic head in the well relative to the head in the cell $h_{aq}$ (drawdown).
     
-    The :grey[dashed line $Q$-$h_{aq}$] illustrate the relationship between discharge and hydraulic head in well relative to the head in the cell (drawdown) whereas the black and grey dotted lines indicate the hydraulic heads in the cell and the well respectively.
+    The dotted lines indicate hydraulic head in the aquifer cell (black) and the well (grey), respectively. The head in the cell containing the pumping well is **constant in this plot at $h_{aq}$ = 10 m** _(black dotted line)_. Further, it is assumed that the cell bottom is at 0 m. In consequence, if the head in the well $h_{well}$ < 0 m, the well is considered as :red[dry]. 
     
     This **initial plot** is designed to bridge the gap between traditional Q-h plots on paper and the :rainbow[**interactive plots**] provided further down in the app. These allow you to explore the _Q_-_h_ relationships more intuitively, supported by interactive controls and guided instructions.
+    """)
+
+st.markdown("""
+####  💻 How MNW may be Applied in Field-Scale Groundwater Modeling
+
+In contrast to the WEL boundary, the MNW package allows modeling of wells that extend through multiple model cells. It also accounts for different types of linear and nonlinear well losses, leading to a hydraulic head in the well that may differ from the hydraulic head in the model cells. In addition, MNW enables the definition of pumping schedules that depend on the hydraulic head in the well.
+""")
+with st.expander("Show me more about **the :rainbow[application of MNW in Field-Scale Groundwater Modeling]**"):
+    st.markdown("""
+    The MNW package allows wells to extend through multiple model cells. The well may be vertical or horizontal. This allows for water to flow from one layer or zone of the model to another through a well bore, driven by the head difference between the zones. In contrast, the WEL package consider the well only in one cell. 
+    
+    Whether the MNW well extends through many cells or is place in only one cell, parameters can be specified that limit flow into or out of the well depending on the head in the well. Parameter values that reflect the hydraulic connectivity between the well bore and the aquifer are specified. With this, MNW can account for linear and nonlinear well losses. If the connectivity is high, drawdown in the well is what would be expected in order to drive flow through the aquifer to the well. As the connectivity decreases (i.e., lower conductance) the head in the well will reflect additional drawdown as required to drive the water through the resistive well skin, further head loss results from turbulence, e.g., when water enters the well and when water flows along the borehole toward the pump through a tangle of pipes and wires within the well bore.
+    
+    As the water level in the well declines, the pump may be affected (i.e., the pump is running dry). Accordingly, the flow rate is reduced below the desired flow rate specified in the input. The MNW package makes the appropriate adjustments to the flow rate and keeps track of the flow rate reductions through out the model for all the MNW wells.
     """)
 
 #TODO
@@ -186,7 +209,7 @@ By the end of this section, learners will be able to:
 - Understand the conceptual and practical differences between Multi-Node Wells (MNW) and traditional Well (WEL) boundaries in MODFLOW.
 - Evaluate the influence of well efficiency, skin effects, and conductance on MNW flow behavior.
 - Interpret Q–h relationships for MNWs and how they reflect physical and operational limits of well systems.
-- Describe how head-dependent flow and constraints such as pump limits and cell drawdowns are represented in the MNW package.
+- Describe how head-dependent flow and constraints such as pump limitations and cell drawdowns are represented in the MNW package.
 """)
 
 with st.expander('**Show the initial assessment** - to assess your existing knowledge'):
@@ -233,12 +256,12 @@ with st.expander("Show me more about **the Theory**"):
     
     st.markdown("""
     where:
-    - $Q_n$ is the flow between the n-th cell and the well, taken as positive if it is directed into the cell [L3/T]
+    - $Q_n$ is the flow between the n-th cell and the well, taken as positive if it is directed into the cell [L³/T]
     - $h_{well}$ is the head in the well (L),
-    - $CWC_n$ is the n-th cell-to-well conductance [L2/T], and
-    - $h_{aq,n}$ is the (aquifer) head in the n-th cell of the model [L]. (_Note: This head depends on model parameters and boundary stresses (such as pumping), and it may vary across different states or time steps._)
+    - $CWC_n$ is the n-th cell-to-well conductance [L²/T], and
+    - $h_{aq,n}$ is the (aquifer) head in the n-th cell of the model [L]. (_This head depends on model parameters and stresses (e.g., pumping, recharge), and it may vary with times step in transient flow and reach a different steady state deoending on all the model inputs._)
     
-    Further, the CWC is composed by three terms, describing (1) flow to the well, (2) the skin effect for flow into the well, and (3) the effect of turbulence in the vicinity of the well. Accordingly, the Cell to Well conductance can be defined as:
+    Further, the CWC is composed of three terms, describing (1) flow to the well, (2) the skin effect that influences ease of flow through the well wall, and (3) the effect of turbulence within and in the vicinity of the well. Accordingly, the Cell to Well conductance can be defined as:
     """)
     
     st.latex(r'''CWC_n = [ A + B + C Q_n^{(p-1)}]^{-1}''')
@@ -247,14 +270,17 @@ with st.expander("Show me more about **the Theory**"):
     where:
     - $A$ = Linear aquifer-loss coefficient; Represents head loss due to flow through the aquifer to the well [T/L²].
     - $B$ = Linear well-loss coefficient. Accounts for head loss associated with linear flow components in the well [T/L²].
-    - $C$ = Nonlinear well-loss coefficient, Governs the nonlinear (e.g., turbulent) head loss in the well. [T^P/L^(3P-1)], and
+    - $C$ = Nonlinear well-loss coefficient. Accounts for the nonlinear (e.g., turbulent) head loss in the well, with the unit as:
+    """)
+    st.latex(r'''[T^{p}/L^{3p-1}].''')
+    st.markdown("""
     - $P$ = is the power (exponent) of the nonlinear discharge component of well loss.
     """)
 
 st.subheader('Interactive plots to understand the general characteristics of the discharge-head relationships in MNW package', divider='rainbow')
 
 st.markdown("""
-The subsequent interactive plots allows you to investigate different aspects of the Multi-Node-Well (MNW) boundary in MODFLOW.
+The subsequent interactive plots allow you to investigate different aspects of the Multi-Node-Well (MNW) boundary in MODFLOW.
 
 :blue[**PLOT 1 - Hydraulic heads in the MNW boundary**]:
 Illustrates the additional drawdown in the well due to the Cell-to-Well conductance CWC. Two parameter sets for the CWC can be used.
@@ -263,7 +289,7 @@ Illustrates the additional drawdown in the well due to the Cell-to-Well conducta
 
 :red[**PLOT 3 - Q-h bevaior for the cell head with thresholds**]: Illustrates the effect of threshold on the abstraction rate.
 
-_For all plots, the application allows by toggles:_
+_For all plots, the application includes toggles for the following:_
 - to turn the plots by 90 degrees,
 - to switch between number input or sliders.
 """)
@@ -356,7 +382,7 @@ def Q_h_plot():
     columns1 = st.columns((1,1,1), gap = 'small')              
     
     with columns1[0]:
-        with st.expander("Modify the **Plot Control**"):
+        with st.expander("Modify the **Plot Controls**"):
             turn = st.toggle('Toggle to turn the plot 90 degrees', key="MNW_turn", value=True)
             st.session_state.number_input = st.toggle("Toggle to use Slider or Number input.")
             visualize = st.toggle(':rainbow[**Make the plot alive**] and visualize the input values', key="MNW_vis", value=True)
@@ -514,7 +540,7 @@ def Q_h_plot():
     if show_plot1:
         st.subheader('🔵 Plot 1', divider = 'blue')
         st.markdown("""
-        :blue[**Plot 1**: Pumping and drawdown in the well.] The figure shows the relationship between **pumping rate _Q_**, and the resulting **drawdown** between the (aquifer) head in the cell and the head in the well. Up to **two parameter sets of the CWC** can be considered. (_Note: For a real model, the aquifer head in the cell depends on model parameters and boundary stresses (such as pumping), and it may vary across different states or time steps. Here, it is assumed to be given._)
+        :blue[**Plot 1**: Pumping and drawdown in a well.] This figure shows the relationship between **pumping rate _Q_**, and the resulting **drawdown** between the aquifer head in the cell containing the well and the head in the well. Up to **two parameter sets of the CWC** can be considered. (_For a model representing a field setting, the aquifer head in the cell varies with time depending on model parameters and boundary stresses (such as: other wells pumping, variable recharge; stream seepage). Here, one value of head is assigned to the aquifer cell and calculations are made for parameter variations assuming that aquife head is constant._)
         """)
             
         label_head_axis = "Head difference $\Delta h = h_{Well} - h_{aq}$ (m)"

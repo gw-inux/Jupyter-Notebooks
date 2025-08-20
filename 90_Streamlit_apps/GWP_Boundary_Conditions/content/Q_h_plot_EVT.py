@@ -103,7 +103,7 @@ with columns0[1]:
     st.pyplot(fig)    
     
     st.markdown("""   
-    _The maximum ET rate for this example is defined as 2,000 mm per year and the maximum ET surface elevation is defined as 9 m_.
+    **Initial Plot** for exploring how changes in :blue[EVT extinction depth] changes evapotranspiration. _The maximum ET rate for this example is defined as 2,000 mm per year and the maximum ET surface elevation is defined as 9 m_.
     
     This **initial plot** is designed to bridge the gap between traditional $Q$-$h$ plots on paper and the :rainbow[**interactive plots**] provided further down in this app, that allow you to explore the $Q$-$h$ relationships more intuitively, supported by interactive controls and guided instructions.
     """)

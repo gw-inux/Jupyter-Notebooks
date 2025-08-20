@@ -110,7 +110,7 @@ with columns0[1]:
     # This is the initial plot. It allows users to relate the Qh plots with the MODFLOW documentation. All plots in GHB/RIV/DRN/MNW have the same axis limitations and conductance.
     # C_RIV
     # READ LOG VALUE, CONVERT, AND WRITE VALUE FOR Conductance
-    labels, default_label = prep_log_slider(default_val = 3e-3, log_min = -5, log_max = -0)
+    labels, default_label = prep_log_slider(default_val = 3e-3, log_min = -4, log_max = -1)
     selected_Ci = st.select_slider("**Conductance :violet[$C_{Riv}$]** in m²/s", labels, default_label, key = "RIV_Ci")
     st.session_state.Ci_RIV = float(selected_Ci)
             
