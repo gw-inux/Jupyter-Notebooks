@@ -8,39 +8,39 @@
       "A constant head boundary.": false
     },
     "success": "✅ Correct. DRN boundaries simulate outflow points that discharge only when the aquifer head is above the drain elevation.",
-    "error": "❌ Not quite. A DRN boundary discharges groundwater and has a flow cutoff at the drain elevation."
+    "error": "❌ Some of your choices are not correct. A DRN boundary can only discharge groundwater and will not discharge if aquifer head is below the drain elevation."
   },
   {
-    "question": "Under which condition does a DRN boundary stop discharging water? (Mark ALL correct answers)",
+    "question": "Under what condition does a DRN boundary stop discharging water? (Mark ALL correct answers)",
     "options": {
       "When the aquifer head drops below the drain elevation.": true,
       "When the aquifer head equals the drain elevation.": true,
       "When the conductance is zero.": true,
       "When the aquifer is fully saturated.": false
     },
-    "success": "✅ Yes. The flow stops when aquifer head is below or equal to the drain elevation, or if conductance is zero.",
-    "error": "❌ Rethink. Flow is zero when aquifer head is at or below the drain elevation, or conductance is zero."
+    "success": "✅ Yes. Outflow stops when aquifer head is below or equal to the drain elevation, or if conductance is zero.",
+    "error": "❌ Some of your choices are not correct. Outflow is zero when aquifer head is at or below the drain elevation and/or when conductance is zero."
   },
   {
     "question": "What distinguishes the DRN boundary from the General Head Boundary (GHB)? (Mark ALL correct answers)",
     "options": {
-      "DRN allows only one-directional flow.": true,
-      "DRN includes a physical cutoff based on elevation.": true,
-      "GHB can gain or lose water, but DRN only removes it.": true,
+      "DRN boundary allows only one-directional flow.": true,
+      "DRN boundary includes a physical cutoff for outflow based on elevation.": true,
+      "A GHB can provide or remove water, but a DRN boundary only removes water.": true,
       "Both boundaries behave identically in all cases.": false
     },
-    "success": "✅ Well done. DRN boundaries are one-directional with a cutoff. GHBs are fully head-dependent and bidirectional.",
-    "error": "❌ Not quite. DRNs differ from GHBs in directionality and behavior below cutoff elevation."
+    "success": "✅ Well done. DRN boundaries are one-directional with an outflow cutoff at a specified elevation. GHBs are fully head-dependent and bidirectional.",
+    "error": "❌ Some of your choices are not correct. DRNs differ from GHBs in both the possible direction of flow and in the ability to cut off flow when aquifer head falls below a specified elevation."
   },
   {
-    "question": "Which of the following is required to define a DRN boundary? (Mark ALL correct answers)",
+    "question": "Which of the following is required to calculate flow at a DRN boundary? (Mark ALL correct answers)",
     "options": {
       "Drain elevation": true,
       "Aquifer head": true,
       "Conductance": true,
       "Recharge rate": false
     },
-    "success": "✅ Correct. DRNs require elevation, aquifer head, and conductance — not recharge.",
-    "error": "❌ Review needed. Recharge is not a direct input to DRN boundaries."
+    "success": "✅ Correct. The determination of outflow from a DRN requires drain elevation, aquifer head, and drain conductance — not recharge.",
+    "error": "❌ Some of your choices are not correct. The recharge rate is not relevant to calculating outflow at a DRN boundary, but all of the other parameters listed are needed."
   }
 ]

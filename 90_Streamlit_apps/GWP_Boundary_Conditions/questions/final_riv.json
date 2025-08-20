@@ -7,19 +7,19 @@
       "Riverbed conductance": true,
       "Aquifer transmissivity": false
     },
-    "success": "✅ Correct. The flow is calculated using aquifer head, river stage, and conductance — not transmissivity.",
-    "error": "❌ Not quite. The RIV equation uses river stage, aquifer head, and riverbed conductance."
+    "success": "✅ Correct. The flow is calculated using aquifer head, river stage, and riverbed properties to determine the water exchange rate. Aquifer properties are not involved in calculating exchange between the aquifer and the river, but head in the aquifer is controlled by the geometry, hydraulic properties, and boundary conditions of the model.",
+    "error": "❌ Some of your choices are not correct. The RIV equation uses river stage, aquifer head, and riverbed properties to determine the water exchange rate. Aquifer properties are not involved in calculating exchange between the aquifer and the river, but head in the aquifer is controlled by the geometry, hydraulic properties, and boundary conditions of the model."
   },
   {
     "question": "How does increasing the riverbed conductance ($C_{Riv}$) affect flow behavior in a RIV boundary condition? (Mark ALL correct answers)",
     "options": {
-      "It increases the sensitivity of flow to the head difference.": true,
+      "It increases the sensitivity of flow to head difference.": true,
       "It reduces the maximum exchange flow possible.": false,
       "It represents a more hydraulically connected river–aquifer interface.": true,
       "It makes the river behave increasingly like a constant head boundary.": true
     },
-    "success": "✅ Correct. Higher conductance implies more exchange per unit head difference.",
-    "error": "❌ The correct choices indicate increased permeability — not fixed-head behavior and increased sensitivity (because double head difference still means double boundary flow)."
+    "success": "✅ Correct. Higher conductance means better connection with the boundary. A higher conductance results in more flow per unit head difference. A very high conductance will cause head in the aquifer to be nearly the same as the boundary head because a large amount of flow will occur for even small head differences.",
+    "error": "❌ All responses that indicate increased flow, connection, and sensitivity are correct. Increased sensitivity occurs because higher conductance means the change in flow rate is larger for a given head difference."
   },
   {
     "question": "When does flow between the aquifer and river stop in the RIV boundary? (Mark ALL correct answers)",
@@ -29,8 +29,8 @@
       "When the conductance is set to zero": true,
       "When the aquifer head equals the river stage": true
     },
-    "success": "✅ Well done. Flow stops either when the aquifer drops below the riverbed or if conductance is zero.",
-    "error": "❌ Recheck. Flow stops when aquifer head is below the riverbed or when conductance is zero."
+    "success": "✅ Well done. Flow stops if the aquifer head equals the river stage and/or if conductance is zero. Flow is constant, not zero, when the aquifer head is lower than the riverbed bottom. Flow is dependent on the difference between river stage and aquifer head not on the value of river stage.",
+    "error": "❌ Some of your choices are not correct. Flow stops if the aquifer head equals the river stage and/or if conductance is zero. Flow is constant, not zero, when the aquifer head is lower than the riverbed bottom. Flow is dependent on the difference between river stage and aquifer head not on the value of river stage."
   },
   {
     "question": "How does the MODFLOW RIV boundary simulate a gaining stream? (Mark ALL correct answers)",
@@ -41,7 +41,7 @@
       "The river is always gaining if the aquifer is saturated.": false
     },
     "success": "✅ Correct. A gaining stream receives flow when the aquifer head is above the river stage.",
-    "error": "❌ Not quite. Gaining occurs when the aquifer head is above the river stage."
+    "error": "❌ Some of your choices are not correct. A stream gains when the aquifer head is above the river stage and in that case, flow is directed from the aquifer to the stream. It is true that the boundary head does not depend on the aquifer head, but that does not cause simulation of a gaining stream. A saturated aquifer may have a head below the stream stage and so will not always cause a stream to gain."
   },
   {
     "question": "What happens to the exchange flow as aquifer head approaches the river stage elevation from above? (Mark ALL correct answers)",
@@ -51,8 +51,8 @@
       "MODFLOW disables the RIV boundary.": false,
       "Exchange flow becomes negative.": false
     },
-    "success": "✅ Exactly. The flow becomes minimal as the aquifer approaches the river stage elevation.",
-    "error": "❌ Careful — flow tapers off but doesn't reverse or disable the boundary."
+    "success": "✅ Exactly. The flow becomes minimal as the aquifer approaches the river stage elevation. It does not become negative because it is negative when water is exiting the grouandwtare system. When less water exits the flow is still negative. ",
+    "error": "❌ Some of your choices are not correct. Flow tapers off but does not reverse and the boundary is not disabled."
   },
   {
     "question": "Which statement about RIV boundaries is true? (Mark ALL correct answers)",
@@ -63,6 +63,6 @@
       "They override the water budget if drying occurs.": false
     },
     "success": "✅ Correct. RIV boundaries are bidirectional and governed by head difference and conductance.",
-    "error": "❌ Try again. RIV allows bidirectional flow and uses conductance to model exchange."
+    "error": "❌ Some of your choices are not correct. RIV allows bidirectional flow and uses conductance to model exchange. The flow at boundaries is included in the water budget but conditions at boundaries cannot _override_ the budget."
   }
 ]

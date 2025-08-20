@@ -7,8 +7,8 @@
       "C) WEL can simulate variable conductance": false,
       "D) MNW supports physical and operational constraints": true
     },
-    "success": "✅ Correct — MNW offers advanced features like head-dependency and constraints across nodes.",
-    "error": "❌ MNW goes beyond WEL by allowing flow to multiple cells and applying head-based conditions."
+    "success": "✅ Correct — MNW offers advanced features like head-dependency, physical, and operational constraints.",
+    "error": "❌ Some of your choices are not correct. MNW goes beyond WEL by allowing one well to be connected to multiple cells and includes head-dependency, physical, and operational constraints."
   },
   {
     "question": "Which of the following are head-related constraints used in MNW simulations? (Mark ALL correct answers)",
@@ -18,8 +18,8 @@
       "C) Pumping limits (Qmax)": true,
       "D) Minimum cell thickness": false
     },
-    "success": "✅ Exactly. MNW can enforce pumping constraints based on head or capacity.",
-    "error": "❌ Head constraints and pumping limits are central to MNW, not recharge or thickness."
+    "success": "✅ Exactly. MNW can enforce pumping constraints based on head or flow capacity.",
+    "error": "❌ Some of your choices are not correct. Head constraints and pumping limits are central to MNW, not recharge or thickness."
   },
   {
     "question": "What behavior can be observed in Q–h plots for MNW? (Mark ALL correct answers)",
@@ -30,7 +30,7 @@
       "D) A horizontal line representing the well head": false
     },
     "success": "✅ Well done. MNW plots combine diagonal lines representing head-dependent flow with horizontal lines representing specified flow boundaries.",
-    "error": "❌ Look closely — MNW plots different characteristics reflecting the aquifer(cell) head and the well head."
+    "error": "❌ Some of your choices are not correct. MNW plots show different characteristics reflecting the aquifer(cell) head and the well head."
   },
   {
     "question": "Why might an MNW stop pumping during a simulation? (Mark ALL correct answers)",
@@ -41,6 +41,6 @@
       "D) The aquifer goes dry": true
     },
     "success": "✅ Yes — dry cells, limits, or heads below constraints can all trigger pump shutdown.",
-    "error": "❌ MNW simulates physical well behavior, including limits that can shut off flow."
+    "error": "❌ Some of your choices are not correct. MNW simulates physical well behavior, including limits that can shut off flow."
   }
 ]

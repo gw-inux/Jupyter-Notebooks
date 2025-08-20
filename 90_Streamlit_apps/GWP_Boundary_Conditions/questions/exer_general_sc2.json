@@ -9,7 +9,7 @@
       "E) None of the above": false
     },
     "success": "✅ Correct! Increasing $R$ is the only way to increase hydraulic heads in this situation.",
-    "error": "❌ Reconsider your answer. With both boundaries having the same specified head the only way to raise heads is to increase Recharge $R$. The hydraulic conductivity does not change the heads because there is no flow in the aquifer. Only changing recharge will result in flow. Increasing recharge will increase of hydraulic heads. Lowering recharge to a negative value will cause flow in from the boundaries and out through the top surface but this will lower heads."
+    "error": "❌ Some of your choices are not correct. With both boundaries having the same specified head the only way to raise heads is to increase Recharge $R$. The hydraulic conductivity does not change the heads because there is no flow in the aquifer. Only changing recharge will result in flow. Increasing recharge will increase of hydraulic heads. Lowering recharge to a negative value will cause flow in from the boundaries and out through the top surface but this will lower heads."
   },
   {
     "question": "The model includes **specified head boundaries** with different values on the left and right sides, with a **uniform groundwater recharge of 200 mm/a**. A groundwater divide has formed within the domain. Which of the following variations could lead to a shift in the position of the groundwater divide? (Mark ALL correct answers)",
@@ -20,20 +20,20 @@
       "D) None of the above – the groundwater divide is static.": false
     },
     "success": "✅ Correct! When the left and right heads are not equal, the groundwater divide depends on the gradients which are controlled by hydraulic conductivity, specified head values and recharge rate. Changing $K$, $R$, and/or boundary heads will shift its position.",
-    "error": "❌ Reconsider your answer. The position of the divide is not static — it responds to system parameters like $R$, $K$, and boundary heads."
+    "error": "❌ Some of your choices are not correct. The position of the divide is not static — it responds to system parameters like $R$, $K$, and boundary heads."
   },
   {
     "question": "The model uses **two specified head boundaries** on the left and right side. The head at the left boundary is 152 m and at the right boundary is 150 m. There is no groundwater recharge. What happens if the boundary head at the left side is decreased to 150.5 m? (Mark ALL correct answers)",
     "options": {
-      "A) The outflow at the right side increases.": false,
-      "B) The outflow at the right side decreases.": true,
-      "C) The inflow at the left side increases.": false,
-      "D) The inflow at the left side decreases.": true,
+      "A) The outflow at the right boundary increases.": false,
+      "B) The outflow at the right boundary decreases.": true,
+      "C) The inflow at the left boundary increases.": false,
+      "D) The inflow at the left boundary decreases.": true,
       "E) The inflow and outflow at both boundaries will not change.": false,
       "F) A groundwater divide is established.": false
     },
     "success": "✅ Correct! A lower head difference means a lower gradient and thus reduced inflow and outflow.",
-    "error": "❌ Reconsider your answer. With no recharge and decreased head difference, the flow rates must decrease symmetrically. And, with no recharge, a divide will not form."
+    "error": "❌ Some of your choices are not correct. With no recharge and decreased head difference, the flow rates must decrease symmetrically. And, with no recharge, a divide will not form."
   },
   {
     "question": "The model uses **two specified head boundaries** on the left and right side. The head at the left boundary is 150.5 m and at the right boundary is 150 m. There is **250 mm/a groundwater recharge**. **Both boundaries show outflow**. Which of the following statements is **true?** (Mark ALL correct answers)",
@@ -44,7 +44,7 @@
       "D) A decrease of the hydraulic conductivity results in an increase of outflow at the left boundary.": true,
       "E) A decrease of the hydraulic conductivity results in an increase of outflow at the right boundary.": false
     },
-    "success": "✅ Correct! The vertical Q–h plot at the left reflects constant head with variable flow. A groundwater divide forms due to recharge, and lower $K$ will result in a shift of the groundwater divide, resulting in an larger area for recharge contributing to the outflow at the left specified head boundary.",
-    "error": "❌ Reconsider your answer. Consider the behavior of Q–h plots at specified-head boundaries and how $K$ affects the position of the groundwater divide, thus affecting the area that collects recharge for outflow."
+    "success": "✅ Correct! The vertical Q–h plot at the left reflects constant head with variable flow. A groundwater divide forms due to recharge, and lower $K$ will result in a shift of the groundwater divide, resulting in a larger area for recharge contributing to the outflow at the left specified head boundary.",
+    "error": "❌ Some of your choices are not correct. Consider the behavior of Q–h plots at specified-head boundaries and how $K$ affects the position of the groundwater divide, thus affecting the area that collects recharge for outflow."
   }
 ]

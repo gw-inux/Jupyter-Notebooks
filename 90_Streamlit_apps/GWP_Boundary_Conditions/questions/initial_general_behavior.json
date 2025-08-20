@@ -8,7 +8,7 @@
       "They can include fixed recharge across the model top.": true
     },
     "success": "✅ Correct! Boundary conditions include inflow, outflow, and recharge. Time step is unrelated.",
-    "error": "❌ Reconsider your answer. Boundary conditions define entry and exit of water, they represent external controls, and can include recharge, but they do not control time steps."
+    "error": "❌ Some of your choices are not correct. Boundary conditions define entry and exit of water, they represent external controls, and can include recharge, but they do not control time steps."
   },
   {
     "question": "Which of the following are examples of Dirichlet boundary conditions? (Mark ALL correct answers)",
@@ -19,7 +19,7 @@
       "A lake with a constant water level adjacent to the model": true
     },
     "success": "✅ Correct! Dirichlet conditions fix the head at the boundary and can represent surface water bodies.",
-    "error": "❌ Reconsider your answer. Only fixed head boundaries are Dirichlet type boundaries and they can represent water level in water bodies connected to the model."
+    "error": "❌ Some of your choices are not correct. Only fixed head boundaries are Dirichlet type boundaries and they can represent water level in water bodies connected to the model."
   },
   {
     "question": "In a one-dimensional model with uniform recharge and a no-flow boundary on the left, which statements are true? (Mark ALL correct answers)",
@@ -30,7 +30,7 @@
       "Recharge enters only at one location.": false
     },
     "success": "✅ Correct! Water can only move to the right because it cannot flow out at a no-flow boundary. The no-flow boundary can represent a low permeability material or a hydraulic divide. Recharge is distributed over the model surface.",
-    "error": "❌ Reconsider your answer. A no-flow boundary blocks outflow so water must move to the right. The no-flow boundary can represent a low permeability material or a hydraulic divide. Uniform recharge is distributed over the surface, not localized at a point."
+    "error": "❌ Some of your choices are not correct. A no-flow boundary blocks outflow so water must move to the right. The no-flow boundary can represent a low permeability material or a hydraulic divide. Uniform recharge is distributed over the surface, not localized at a point."
   },
   {
     "question": "What information does a Q–h plot provide? (Mark ALL correct answers)",
@@ -41,6 +41,6 @@
       "The position of the water table over time.": false
     },
     "success": "✅ Correct! Q–h plots illustrate boundary-specific relationships and indicate whether water enters or exits the system.",
-    "error": "❌ Reconsider your answer. Q–h plots describe flow-head behavior at specific boundaries, not gradients over the entire system nor water level in the model."
+    "error": "❌ Some of your choices are not correct. Q–h plots describe flow-head behavior at specific boundaries, not gradients over the entire system nor water level in the model."
   }
 ]

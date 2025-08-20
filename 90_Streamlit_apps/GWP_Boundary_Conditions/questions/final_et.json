@@ -1,14 +1,14 @@
 [
   {
-    "question": "Which equation best describes actual ET in MODFLOW? (Mark ALL correct answers)",
+    "question": "Which equation best describes the rate of ET used in MODFLOW? (Mark ALL correct answers)",
     "options": {
       "A) ET = ETmax if head ≥ ET surface": true,
-      "B) ET = ETmax × (head - extinction depth) / (ET surface - extinction depth)": true,
+      "B) ET = ETmax  (head - extinction depth) / (ET surface - extinction depth)": true,
       "C) ET = 0 if head < extinction depth": true,
       "D) ET = constant at all heads": false
     },
     "success": "✅ Correct. The ET function is piecewise linear, with full, partial, or no ET.",
-    "error": "❌ Actual ET depends on groundwater depth relative to ET surface and extinction depth."
+    "error": "❌ Some of your choices are not correct. Actual ET depends on groundwater depth relative to ET surface and extinction depth."
   },
   {
     "question": "Which parameters define the shape of the ET Q–h curve? (Mark ALL correct answers)",
@@ -18,11 +18,11 @@
       "C) Aquifer transmissivity": false,
       "D) Maximum ET rate (ETmax)": true
     },
-    "success": "✅ That’s right. These values control the location and slope of the ET segment.",
-    "error": "❌ Transmissivity doesn’t shape the Q–h curve for ET."
+    "success": "✅ That’s right. These values control the location and slope of the ET Q-h plot segments.",
+    "error": "❌ Some of your choices are not correct. Transmissivity doesn’t shape the Q–h curve for ET."
   },
   {
-    "question": "What happens to actual ET when the water table is below the extinction depth? (Mark ALL correct answers)",
+    "question": "What happens to the ET rate when the water table is below the extinction depth? (Mark ALL correct answers)",
     "options": {
       "A) ET = 0": true,
       "B) ET = ETmax": false,
@@ -30,29 +30,29 @@
       "D) ET increases due to capillarity": false
     },
     "success": "✅ Correct. No ET occurs below the extinction depth.",
-    "error": "❌ Actual ET stops once groundwater is too deep."
+    "error": "❌ Some of your choices are not correct. Actual ET stops once the groundwater head is below the extinction depth."
   },
   {
     "question": "Why is the ET Q–h plot flat for high heads? (Mark ALL correct answers)",
     "options": {
-      "A) Because actual ET equals potential ET when water is near the surface": true,
+      "A) Because the ET rate equals maximum ET rate when water is near the surface": true,
       "B) Because of hydraulic resistance in the unsaturated zone": false,
       "C) Because recharge dominates at shallow depths": false,
-      "D) Because aquifer head doesn’t influence ET at those depths": true
+      "D) Because aquifer head doesn’t influence ET at shallow depths": true
     },
-    "success": "✅ That’s it. The flat region means ET is maxed out near the ET surface.",
-    "error": "❌ When water is shallow, ET rate is unaffected by further head increases."
+    "success": "✅ That’s it. The flat region means ET is at its maximum because head is at, or above, the ET surface.",
+    "error": "❌ Some of your choices are not correct. When water is shallow, ET rate is unaffected by further head increases because head is at, or above, the ET surface."
   },
   {
     "question": "What is the conceptual role of the extinction depth in groundwater models? (Mark ALL correct answers)",
     "options": {
-      "A) It defines when evapotranspiration ceases": true,
-      "B) It sets the bottom of the ET boundary condition": true,
+      "A) It defines a head elevation below which evapotranspiration ceases": true,
+      "B) It sets the lowest elevation for ET occurrence in the EVT boundary condition": true,
       "C) It marks the end of unsaturated zone storage": false,
-      "D) It models where roots can no longer access water": true
+      "D) It represents the depth at which roots can no longer access water": true
     },
     "success": "✅ Yes — extinction depth defines where ET can no longer extract water.",
-    "error": "❌ The extinction depth relates to vegetation, not unsaturated storage."
+    "error": "❌ Some of your choices are not correct. The extinction depth is the elevation at which vegetation can no longer access water, not unsaturated storage."
   },
   {
     "question": "What does the sloped section of the Q–h plot represent for ET? (Mark ALL correct answers)",
@@ -62,7 +62,7 @@
       "C) Maximum ET rate": false,
       "D) Head-dependent evapotranspiration": true
     },
-    "success": "✅ Exactly. This slope shows how ET is reduced as the water table drops.",
-    "error": "❌ The slope reflects the transition zone — not max or nonlinear behavior."
+    "success": "✅ Exactly. This slope shows how the ET rate declines as the water table declines.",
+    "error": "❌ Some of your choices are not correct. The slope reflects the transition zone in which ET is changing with depth — not that maximum ET nor nonlinear behavior."
   }
 ]

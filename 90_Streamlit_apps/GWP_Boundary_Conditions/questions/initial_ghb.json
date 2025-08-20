@@ -8,7 +8,7 @@
       "GHBs always remove water from the system.": false
     },
     "success": "✅ Correct! GHBs simulate two-way interaction with external systems like lakes or rivers. The head of a GHB is _not at the model boundary, rather it is removed from the model boundary by a conductance layer with the head being at some distance from the model_.",
-    "error": "❌ Reconsider your answer. GHBs are dynamic and allow both inflow and outflow depending on changing heads. The head of a GHB is _not at the model boundary, rather it is removed from the model boundary by a conductance layer with the head being at some distance from the model_."
+    "error": "❌ Some of your choices are not correct. GHBs are dynamic and allow both inflow and outflow depending on changing heads. The head of a GHB is _not at the model boundary, rather it is removed from the model boundary by a conductance layer with the head being at some distance from the model_."
   },
   {
     "question": "What does the conductance $C_B$ represent in the GHB equation? (Mark ALL correct answers)",
@@ -19,7 +19,7 @@
       "It has units of length (m).": false
     },
     "success": "✅ Well done! Conductance is a key parameter combining the geometry and properties of an external feature to control flow magnitude.",
-    "error": "❌ Reconsider your answer. Conductance is not a head; and it has units of length squared over time as determined by (K Area)/L."
+    "error": "❌ Some of your choices are not correct. Conductance is not a head; and it has units of length squared over time as determined by (K Area)/L."
   },
   {
     "question": "Which of the following leads to zero flow across a GHB? (Mark ALL correct answers)",
@@ -30,7 +30,7 @@
       "When $H_B > h_{aq}$.": false
     },
     "success": "✅ Correct! Flow does not occur when there is no head difference or conductance is zero.",
-    "error": "❌ Reconsider your answer. Flow only occurs when there is a head difference and a non-zero conductance."
+    "error": "❌ Some of your choices are not correct. Flow only occurs when there is a head difference and a non-zero conductance."
   },
   {
     "question": "How does increasing $C_B$ affect the Q–h plot? (Mark ALL correct answers)",
@@ -41,6 +41,6 @@
       "It changes the direction of flow.": false
     },
     "success": "✅ Correct! Higher conductance means more flow for a given head difference.",
-    "error": "❌ Reconsider your answer. Conductance affects the slope of a Q–h plot, but not head or or direction of flow."
+    "error": "❌ Some of your choices are not correct. Conductance affects the slope of a Q–h plot, but not head or direction of flow."
   }
 ]

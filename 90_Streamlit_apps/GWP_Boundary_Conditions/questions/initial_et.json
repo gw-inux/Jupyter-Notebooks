@@ -1,46 +1,46 @@
 [
   {
-    "question": "What does the ET boundary condition in MODFLOW simulate? (Mark ALL correct answers)",
+    "question": "What is simulated by the ET boundary condition in MODFLOW? (Mark ALL correct answers)",
     "options": {
       "A) Loss of water from the water table due to plant uptake and evaporation": true,
       "B) River infiltration": false,
       "C) Recharge from rainfall": false,
       "D) Head-dependent discharge from shallow groundwater": true
     },
-    "success": "✅ Correct. ET simulates shallow groundwater losses via evapotranspiration.",
-    "error": "❌ ET represents water losses from the water table, not recharge or river inputs."
+    "success": "✅ Correct. EVT simulates shallow groundwater losses via evapotranspiration, not recharge or river seepage.",
+    "error": "❌ Some of your choices are not correct. ET represents water losses from shallow groundwater, not recharge or river seepage."
   },
   {
-    "question": "At what condition is the actual ET rate equal to the potential ET rate? (Mark ALL correct answers)",
+    "question": "Under what condition is the actual ET rate equal to the maximum ET rate? (Mark ALL correct answers)",
     "options": {
       "A) When the water table is at or above the ET surface": true,
       "B) When the water table is below the extinction depth": false,
       "C) When the aquifer is fully saturated": false,
       "D) When the drawdown is zero": false
     },
-    "success": "✅ Yes! At shallow depths, actual ET equals the maximum potential rate.",
-    "error": "❌ This only happens when the water table is at or above the defined ET surface."
+    "success": "✅ Yes! At shallow depths, actual ET occurs at the maximum rate.",
+    "error": "❌ Some of your choices are not correct. Evapotranspiration only occurs when the water table is at or above the defined ET surface."
   },
   {
-    "question": "How does actual ET change as groundwater becomes deeper? (Mark ALL correct answers)",
+    "question": "How does the rate of ET change in the EVT boundary conditions as groundwater becomes deeper? (Mark ALL correct answers)",
     "options": {
       "A) It decreases linearly until the extinction depth is reached": true,
       "B) It increases exponentially": false,
       "C) It stays constant": false,
       "D) It stops when water table falls below the extinction depth": true
     },
-    "success": "✅ Good job. Actual ET decreases with depth and ceases at extinction depth.",
-    "error": "❌ The ET rate drops linearly with depth until it reaches zero."
+    "success": "✅ Good job. Actual ET decreases with depth and ceases at the extinction depth.",
+    "error": "❌ Some of your choices are not correct. The ET rate drops linearly with depth until it reaches zero."
   },
   {
     "question": "What does the extinction depth represent? (Mark ALL correct answers)",
     "options": {
-      "A) Maximum rooting depth where plants can still access groundwater": true,
-      "B) Depth of the impermeable layer": false,
+      "A) Maximum root depth where plants can access groundwater": true,
+      "B) Depth of bedrock": false,
       "C) Minimum saturated thickness": false,
       "D) Depth at which recharge occurs": false
     },
-    "success": "✅ Exactly. The extinction depth defines the lower limit for ET activity.",
-    "error": "❌ Extinction depth is a plant-access limit, not a structural boundary."
+    "success": "✅ Exactly. The extinction depth defines the lower limit for ET activity which is typically the bottom of the root zone.",
+    "error": "❌ Some of your choices are not correct. Extinction depth is a plant-access limit, not a structural or hydrologic  boundary."
   }
 ]

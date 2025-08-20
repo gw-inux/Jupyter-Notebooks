@@ -8,7 +8,7 @@
       "GHBs are only used at the top of the model.": false
     },
     "success": "✅ Correct. GHBs simulate dynamic exchange driven by head differences.",
-    "error": "❌ Reconsider your answer. GHBs allow variable flow and are not restricted to a model's top layer."
+    "error": "❌ Some of your choices are not correct. GHBs allow variable flow and are not restricted to a model's top layer."
   },
   {
     "question": "Which expression correctly defines the flow across a GHB? (Mark ALL correct answers)",
@@ -19,7 +19,7 @@
       "$Q_B = H_B / C_B$": false
     },
     "success": "✅ Well done. The GHB flow equation linearly links flow to the head difference.",
-    "error": "❌ Reconsider your answer. Review the GHB equation. It's based on conductance and the head difference."
+    "error": "❌ Some of your choices are not correct. Review the GHB equation. It's based on conductance and the head difference."
   },
   {
     "question": "What happens when the aquifer head $h_{aq}$ equals the boundary head $H_B$? (Mark ALL correct answers)",
@@ -30,7 +30,7 @@
       "The conductance drops to zero.": false
     },
     "success": "✅ Correct. When heads are equal, there is no driving force for flow.",
-    "error": "❌ Reconsider your answer. No head difference means no flow across the boundary."
+    "error": "❌ Some of your choices are not correct. No head difference means no flow across the boundary."
   },
   {
     "question": "Increasing the conductance $C_B$ in a GHB has what impacts on the system? (Mark ALL correct answers)",
@@ -41,7 +41,7 @@
       "Alters the external boundary head $H_B$.": false
     },
     "success": "✅ Yes. Conductance controls the steepness of the Q–h relation and flow magnitude.",
-    "error": "❌ Reconsider your answer. Conductance does not affect flow direction or boundary head."
+    "error": "❌ Some of your choices are not correct. Conductance does not affect flow direction or boundary head."
   },
   {
     "question": "Which parameters jointly and directly control the flow through a GHB? (Mark ALL correct answers)",
@@ -52,7 +52,7 @@
       "Conductance $C_B$": true
     },
     "success": "✅ Correct. Flow is governed by conductance and the head difference.",
-    "error": "❌ Reconsider your answer. Recharge affects heads, and may influence the flow at GHB boundaries, but is not directly in the GHB flow equation."
+    "error": "❌ Some of your choices are not correct. Recharge affects heads, and may influence the flow at GHB boundaries, but is not directly in the GHB flow equation."
   },
   {
     "question": "When is a GHB considered 'gaining' from the aquifer's perspective? (Mark ALL correct answers)",
@@ -63,6 +63,6 @@
       "When flow enters the aquifer": true
     },
     "success": "✅ Exactly. The GHB adds water to the aquifer when its head is higher than the aquifer head resulting in more flow entering the groundwater system.",
-    "error": "❌ Reconsider your answer. A gaining boundary is a source of water to the system, meaning water flows into the aquifer from the boundary."
+    "error": "❌ Some of your choices are not correct. A gaining boundary is a source of water to the system, meaning water flows into the aquifer from the boundary."
   }
 ]

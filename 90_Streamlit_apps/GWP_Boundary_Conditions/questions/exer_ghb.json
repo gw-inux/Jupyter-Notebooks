@@ -9,7 +9,7 @@
       "The GHB is inactive if heads are equal.": true
     },
     "success": "✅ Correct. The GHB can switch between source and sink depending on head difference, and becomes inactive when heads are equal.",
-    "error": "❌ Reconsider your answer. Review the role of head differences. The GHB acts as a source or sink depending on which head is higher."
+    "error": "❌ Some of your choices are not correct. Review the role of head differences. The GHB acts as a source or sink depending on which head is higher."
   },
   {
     "question": "What happens to the boundary flux Q_B if the conductance C_B is set to zero or extremely high? (Mark ALL correct answers)",
@@ -21,7 +21,7 @@
       "Q_B increases proportionally with C_B, assuming a fixed head difference.": true
     },
     "success": "✅ Well reasoned. A zero conductance blocks flow, and high conductance amplifies the flux and head coupling.",
-    "error": "❌ Reconsider your answer. Check the influence of the conductance value on the head difference and resulting flow."
+    "error": "❌ Some of your choices are not correct. Check the influence of the conductance value on the head difference and resulting flow."
   },
   {
     "question": "How does increasing conductance C_B influence the sensitivity of flux to aquifer head changes? (Mark ALL correct answers)",
@@ -33,7 +33,7 @@
       "Sensitivity is independent of conductance.": false
     },
     "success": "✅ Excellent. Higher conductance enhances sensitivity and causes the GHB to mimic specified-head behavior.",
-    "error": "❌ Reconsider your answer. Revisit how conductance affects the slope of the Q-h relationship and system responsiveness."
+    "error": "❌ Some of your choices are not correct. Revisit how conductance affects the slope of the Q-h relationship and system responsiveness."
   },
   {
     "question": "Why might a modeler choose a GHB over a specified-head condition? (Mark ALL correct answers)",
@@ -44,7 +44,7 @@
       "To represent a boundary with a fixed flow rate.": false
     },
     "success": "✅ Correct. The GHB is flexible and suitable for simulating dynamic inflow/outflow at semi-permeable boundaries.",
-    "error": "❌ Reconsider your answer. Think about the physical situations GHBs are designed to represent and how they differ from other boundary types."
+    "error": "❌ Some of your choices are not correct. Think about the physical situations GHBs are designed to represent and how they differ from other boundary types."
   },
   {
     "question": "How does the slope of the $Q_B$–$h_{aq}$ plot respond to increasing conductance $C_B$? (Mark ALL correct answers)",
@@ -55,7 +55,7 @@
       "The slope decreases.": false
     },
     "success": "✅ Correct. A higher $C_B$ results in a large change in $Q_B$ for the same head change.",
-    "error": "❌ Reconsider your answer. Recall that $Q_B$ is directly proportional to $C_B$ times the head difference."
+    "error": "❌ Some of your choices are not correct. Recall that $Q_B$ is directly proportional to $C_B$ times the head difference."
   },
   {
     "question": "What is true when $h_{aq} = H_B$? (Mark ALL correct answers)",
@@ -66,7 +66,7 @@
       "There is no net exchange across the boundary.": true
     },
     "success": "✅ Correct. Equal heads mean no driving force, so no flow occurs.",
-    "error": "❌ Reconsider your answer. Review the condition when $H_B = h_{aq}$. There is no head gradient to cause flow."
+    "error": "❌ Some of your choices are not correct. Review the condition when $H_B = h_{aq}$. There is no head gradient to cause flow."
   }
 ]
 

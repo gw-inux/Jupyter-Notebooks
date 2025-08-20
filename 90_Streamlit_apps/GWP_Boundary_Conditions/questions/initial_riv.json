@@ -5,10 +5,10 @@
       "A river can gain water from the aquifer.": true,
       "A river can lose water to the aquifer.": true,
       "A river always maintains a fixed exchange rate with the aquifer.": false,
-      "A river can maintain a fixed exchange rate if the aquifer head falls too low.": true
+      "A river can maintain a fixed exchange rate if the aquifer head falls below the bottom of the riverbed.": true
     },
     "success": "✅ Correct. River–aquifer interaction can include gaining, losing, and drying scenarios.",
-    "error": "❌ Some of your choices were incorrect. A river may gain, lose, or interact with a fixed exchange rate depending on the hydraulic gradient and bed elevation."
+    "error": "❌ Some of your choices are not correct. A river may gain, lose, or interact with a fixed exchange rate depending on the hydraulic gradient and bed elevation."
   },
   {
     "question": "What physical property controls the rate of exchange between river and aquifer? (Mark ALL correct answers)",
@@ -19,7 +19,7 @@
       "Difference between river stage and aquifer head": true
     },
     "success": "✅ Right. The conductance and head difference control the exchange flow.",
-    "error": "❌ The correct factors include river conductance, river geometry, and the hydraulic gradient."
+    "error": "❌ Some of your choices are not correct. The correct factors include river conductance, river geometry, and the hydraulic gradient."
   },
   {
     "question": "What happens if the groundwater level falls below the riverbed bottom in a RIV boundary? (Mark ALL correct answers)",
@@ -27,20 +27,20 @@
       "The flow from river to aquifer continues as before.": false,
       "The flow becomes zero.": false,
       "The river is assumed dry at that location.": false,
-      "A constant flow into the aquifer is applied instead.": true
+      "There is a constant flow into the aquifer.": true
     },
-    "success": "✅ Exactly. Once the aquifer head drops below the riverbed bottom, flow is halted in MODFLOW’s RIV package.",
-    "error": "❌ In MODFLOW, the RIV boundary cuts off flow if the aquifer is below the riverbed."
+    "success": "✅ Exactly. Once the aquifer head drops below the riverbed bottom, flow is equal to the product of conductance and the difference between the river stage and the riverbed bottom.",
+    "error": "❌ Some of your choices are not correct. In MODFLOW, flow from the river to the aquifer is constant when the aquifer head is below the riverbed bottom."
   },
   {
     "question": "What distinguishes the RIV boundary from the General Head Boundary (GHB)? (Mark ALL correct answers)",
     "options": {
-      "RIV includes a physical cutoff when the aquifer head is below the riverbed.": true,
+      "RIV includes a maximum inflow when the aquifer head is below the riverbed bottom.": true,
       "RIV allows flow in both directions.": false,
       "RIV is independent of aquifer properties.": false,
       "RIV uses stage, bed elevation, and conductance to control flow.": true
     },
-    "success": "✅ Correct. The RIV boundary introduces a cutoff not present in GHB and considers bed elevation.",
-    "error": "❌ RIV flow includes a physical check on the aquifer level and uses river stage and bed elevation."
+    "success": "✅ Correct. The RIV boundary introduces a maximum inflow rate based on riverbed bottom elevation that is not present in GHB.",
+    "error": "❌ Some of your choices are not correct. RIV flow includes a physical limit on inflow to the aquifer based on riverbed bottom elevation. Although RIV allows both inflow and outflow that does not make it unique from a GHB"
   }
 ]
