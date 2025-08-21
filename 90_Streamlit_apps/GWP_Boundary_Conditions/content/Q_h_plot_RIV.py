@@ -436,7 +436,7 @@ def Q_h_plot():
     columns1 = st.columns((1,1,1), gap = 'small')
     
     with columns1[0]:
-        with st.expander('Modify the **Plot Control**'):
+        with st.expander('Modify the **Plot Controls**'):
             st.text_input(
                 "**Lowest elevation to show on graph in m**",
                 value=str(st.session_state.h_ref),
