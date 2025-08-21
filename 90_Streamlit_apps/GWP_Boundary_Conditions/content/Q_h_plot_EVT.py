@@ -113,6 +113,9 @@ st.markdown("""
 
 The EVT package is particularly relevant in applied groundwater modeling at the field scale, especially in settings with shallow groundwater close to the surface, where evapotranspiration can represent a significant component of groundwater discharge.
 """)
+left_co, cent_co, last_co = st.columns((10,40,10))
+with cent_co:
+    st.image('90_Streamlit_apps/GWP_Boundary_Conditions/assets/images/EVT_cartoon2.png', caption="Illustration of the concept for evapotranspiration consideration in MODFLOW.")
 with st.expander("Show me more about **the :blue[application of EVT in Field-Scale Groundwater Modeling]**"):
     st.markdown("""
     In field-scale groundwater models the EVT boundary may be used to define an elevation for the ET surface at every node of the model. Each is accompanied by a value for extinction depth and a maximum ET rate that typically vary from cell to cell depending on the local conditions (e.g., type of soil, vegetation root depth). Often the ET surface elevation is the ground surface elevation or slightly below it such that the maximum evapotranspiration occurs when the water table is at or just below the surface. The water loss may reflect uptake by vegetation or direct evaporation from the water table. 
@@ -174,8 +177,8 @@ with st.expander("Show me more about **the Theory**"):
     The EVT package considers evapotranspiration from the saturated zone. The following figure illustrates the setup.
     """)
         
-    left_co, cent_co, last_co = st.columns((10,40,10))
-    with cent_co:
+    left_co2, cent_co2, last_co2 = st.columns((10,40,10))
+    with cent_co2:
         st.image('90_Streamlit_apps/GWP_Boundary_Conditions/assets/images/gwp_boundary_EVT.png', caption="Schematic illustration of the EVT boundary, modified from the [MODFLOW6 documentaion (Langevin et al., 2017)](https://doi.org/10.3133/tm6A55)")
     
     st.markdown("""
