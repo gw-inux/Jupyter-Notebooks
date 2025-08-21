@@ -120,7 +120,7 @@ with columns0[0]:
     
     The interactive plots in this section let you explore how pumping discharge, aquifer head, well-threshold head, and the conductance that defines Aquifer-Cell-to-Well connectivity _CWC_ interact to determine flow and drawdown within the well.
     
-    In contrast, the **WEL boundary in MODFLOW** is a Neumann-type boundary condition with defined flow. Within this section of the module, the **WEL** toggle allows you to view the equivalent _Q-h_-plot for a WEL boundary in MODFLOW where the flow _Q_ is defined by the modeler and is independent of the hydraulic head _h_ in the aquifer cell where the well is located except in the extreme case when the aquifer head falls below the bottom of the cell.
+    In contrast, the **WEL boundary in MODFLOW** is a Neumann-type boundary condition with defined flow. Within this section of the module, the :blue[**WEL** toggle] allows you to view the equivalent _Q-h_-plot for a WEL boundary in MODFLOW where the flow _Q_ is defined by the modeler and is independent of the hydraulic head _h_ in the aquifer cell where the well is located except in the extreme case when the aquifer head falls below the bottom of the cell. Of course, the hydraulic head in the aquifer cell will be affected by the flow _Q_ of the well (i.e., it will reflect the cone of drawdown).
     """)
 
 with columns0[1]:
@@ -133,7 +133,7 @@ with columns0[1]:
         st.session_state.CWCi = float(selected_Ci)
         
     with col_ini[1]:
-        WEL_equi = st.toggle('**WEL**')
+        WEL_equi = st.toggle(':blue[**WEL**]')
         
     # COMPUTATION
     # Define aquifer head range
@@ -145,45 +145,50 @@ with columns0[1]:
     
     # Create the plot
     fig, ax = plt.subplots(figsize=(5, 5))      
-    ax.plot(h_aqi, QPi, color='black', linewidth=4, label='$Q$-$h_{aq}$')
+    ax.plot(h_aqi, QPi, color='blue', linewidth=3, label='$Q$-$h_{aq}$')
+    # Draw vertical line at QPi and h = 10
+    ax.plot([10, 10], [-0.01, -0.05], color='blue',linestyle=':', linewidth=3, label='$h_{aq}$ = 10 m')
     if WEL_equi:
         ax.set_xlabel("Head in the WEL-aquifer system (m)", fontsize=14, labelpad=15)
         ax.set_ylabel("Flow into the groundwater \nfrom the WEL boundary $Q_{WEL}$ (m³/s)", fontsize=14, labelpad=15)
         ax.set_title("Flow Between Groundwater and WEL", fontsize=16, pad=10)
     else:
-        ax.plot(h_WELLi, Qi, color='lightgrey', linestyle='--', linewidth=3, label='$Q$-$h_{well}$')
+        ax.plot(h_WELLi, Qi, color='black', linewidth=3, label='$Q$-$h_{well}$')
         # Determine the y-values for h = 10
         Qi_10 = (10.0 - h_ni) * st.session_state.CWCi
         QPi_10 = -0.01     
     
         # Draw vertical line at Qi and h_intersect
         h_is = h_ni + (-0.01 / st.session_state.CWCi)
-        ax.plot([h_is, h_is], [QPi_10, -0.05], color='lightgrey',linestyle=':', linewidth=3)
     
         ax.set_xlabel("Head in the MNW-aquifer system (m)", fontsize=14, labelpad=15)
         ax.set_ylabel("Flow into the groundwater \nfrom the MNW boundary $Q_{MNW}$ (m³/s)", fontsize=14, labelpad=15)
         ax.set_title("Flow Between Groundwater and MNW", fontsize=16, pad=10)
         ax.axhline(0, color='grey', linestyle='--', linewidth=0.8)
-    
-    # Draw vertical line at QPi and h = 10
-    ax.plot([10, 10], [-0.01, -0.05], color='black',linestyle=':', linewidth=3)
+       
+        # Red note/rectangle if well is dry       
+        if h_is < 0:
+            ax.plot([h_is, h_is], [QPi_10, -0.05], color='red',linestyle=':', linewidth=3, label=f'$h_{{well}}$ = dry')
+            ax.text(1,-0.045, "Well is dry", fontsize=16, va='center', color='red')
+            rect = Rectangle((0.0, -0.05), 20, 0.1, linewidth=5, edgecolor='red', facecolor='none')
+            ax.add_patch(rect) 
+        else:
+            ax.plot([h_is, h_is], [QPi_10, -0.05], color='black',linestyle=':', linewidth=3, label=f'$h_{{well}}$ = {h_is:5.2f}')
     ax.axvline(10, color='grey', linestyle='--', linewidth=0.8)
     ax.set_xlim(0, 20)
     ax.set_ylim(-0.05, 0.05)
     
     plt.xticks(fontsize=14)
     plt.yticks(fontsize=14)
-    if h_is < 0:
-        ax.text(1,-0.045, "Well is dry", fontsize=16, va='center', color='red')
-        rect = Rectangle((0.0, -0.05), 20, 0.1, linewidth=5, edgecolor='red', facecolor='none')
-        ax.add_patch(rect) 
     ax.legend(loc="upper left", fontsize=14)
     st.pyplot(fig)
     
     st.markdown("""
-    **Initial Plot** for exploring how changes in :rainbow[MNW well conductance] changes flow between the well and the aquifer. The :grey[grey dashed line is $Q_{MWN}$ as a function of $h_{well}$] and illustrates the relationship between well discharge and hydraulic head in the well relative to the head in the cell $h_{aq}$ (drawdown).
+    **Initial Plot** for exploring how changes in :rainbow[MNW well conductance ***CWC***] changes the **head in the well** for a given flow rate $Q$ in the :blue[well] and a given :blue[aquifer head $h_{aq}$ in the cell that contain the well].
     
-    The dotted lines indicate hydraulic head in the aquifer cell (black) and the well (grey), respectively. The head in the cell containing the pumping well is **constant in this plot at $h_{aq}$ = 10 m** _(black dotted line)_. Further, it is assumed that the cell bottom is at 0 m. In consequence, if the head in the well $h_{well}$ < 0 m, the well is considered as :red[dry]. 
+    The **solid black line is $h_{well}$ as a function of the flow rate $Q$ and the well conductance _CWC_**. It illustrates for a specific :blue[well discharge $Q$ (in the initial plot assumed to be 0.01 m3/s)] the hydraulic **head in the well** $h_{well}$ relative to the :blue[head in the cell $h_{aq}$] (drawdown).
+    
+    The dotted lines indicate :blue[hydraulic head in the aquifer cell (blue)] and the **well (black)**, respectively. The head in the cell containing the pumping well is **constant in this plot at $h_{aq}$ = 10 m** :blue[_(blue dotted line)_]. Further, it is assumed that the cell bottom is at 0 m. In consequence, if the head in the well $h_{well}$ < 0 m, the well is considered as :red[dry]. 
     
     This **initial plot** is designed to bridge the gap between traditional Q-h plots on paper and the :rainbow[**interactive plots**] provided further down in the app. These allow you to explore the _Q_-_h_ relationships more intuitively, supported by interactive controls and guided instructions.
     """)
