@@ -263,7 +263,7 @@ with st.expander("Show me more about **the Theory**"):
     The CWC is composed of three terms, describing (1) flow to the well, (2) the skin effect that influences ease of flow through the well wall, and (3) the effect of turbulence within and in the vicinity of the well. Accordingly, the aquifer-to-well conductance $CWC$ is defined as:
     """)
     
-    st.latex(r'''CWC = [ A + B + C Q^{(p-1)}]^{-1}''')
+    st.latex(r'''CWC = [ A + B + C Q^{(P-1)}]^{-1}''')
     
     st.markdown("""
     where:
@@ -271,7 +271,7 @@ with st.expander("Show me more about **the Theory**"):
     - $B$ = Linear well-loss coefficient that accounts for head loss associated with linear flow components in the well [T/L²].
     - $C$ = Nonlinear well-loss coefficient that accounts for the nonlinear (e.g., turbulent) head loss in the well, with units of:
     """)
-    st.latex(r'''T^{p}/L^{3p-1}''')
+    st.latex(r'''T^{P}/L^{3P-1}''')
     st.markdown("""
     - $P$ = is the power (exponent) of the nonlinear discharge component of well loss.
     """)
@@ -322,7 +322,7 @@ def update_P2():
     
 # Initialize session state for value and toggle state
 st.session_state.dh_show = 5.0
-st.session_state.Q_show = 0.2
+st.session_state.Q_show = 0.5
 st.session_state.A = 5.0
 st.session_state.B = 5.0
 st.session_state.C = 0.0
@@ -396,15 +396,15 @@ def Q_h_plot():
                 if h_target:
                     st.markdown(":red[**H-target**]")
                     if st.session_state.number_input:
-                        dh_show = st.number_input("**Drawdown $$\Delta h$$** in withdrawal well", 0.01, 10.0, 5.0, 0.1, key="dh_show_input", on_change=update_dh_show)
+                        dh_show = st.number_input("**Drawdown $$\Delta h$$** in withdrawal well", 0.01, 10.0, st.session_state.dh_show, 0.1, key="dh_show_input", on_change=update_dh_show)
                     else:
-                        dh_show = st.slider      ("**Drawdown $$\Delta h$$** in withdrawal well", 0.01, 10.0, 5.0, 0.1, key="dh_show_input", on_change=update_dh_show)
+                        dh_show = st.slider      ("**Drawdown $$\Delta h$$** in withdrawal well", 0.01, 10.0, st.session_state.dh_show, 0.1, key="dh_show_input", on_change=update_dh_show)
                 else:
                     st.markdown(":blue[**Q-target**]")
                     if st.session_state.number_input:
-                        Q_show = st.number_input("**Withdrawal rate $Q$** in the well", 0.001, 1.0, 0.5, 0.001, key="Q_show_input", on_change=update_Q_show)
+                        Q_show = st.number_input("**Withdrawal rate $Q$** in the well", 0.001, 1.0, st.session_state.Q_show, 0.001, key="Q_show_input", on_change=update_Q_show)
                     else:
-                        Q_show = st.slider      ("**Withdrawal rate $Q$** in the well", 0.001, 1.0, 0.5, 0.001, key="Q_show_input", on_change=update_Q_show)   
+                        Q_show = st.slider      ("**Withdrawal rate $Q$** in the well", 0.001, 1.0, st.session_state.Q_show, 0.001, key="Q_show_input", on_change=update_Q_show)   
             if show_plot3:
                 h_cell_slider = st.slider("**Aquifer head** $h_{aq}$ [m]", min_value=0.0, max_value=20.0, value=10.0, step=0.1)
                 h_thr = st.slider("**Threshold head** $h_{thr}$ [m]", min_value=0.0, max_value=10.0, value=5.0, step=0.1)
@@ -421,7 +421,7 @@ def Q_h_plot():
         # Activate second dataset
         if show_plot1 or show_plot3:
             st.session_state.second = st.toggle("Toggle to define a second parameter set for comparison")
-        st.latex(r'''CWC = [ A + B + C Q^{(p-1)}]^{-1}''')
+        st.latex(r'''CWC = [ A + B + C Q^{(P-1)}]^{-1}''')
         # Parameter Input
         
         columns3a = st.columns((1,1,1,1))
@@ -448,18 +448,18 @@ def Q_h_plot():
         columns4 = st.columns((1,1,1,1))
         if st.session_state.number_input:
             with columns4[0]:
-                A = st.number_input("", 0.00, 10.0, st.session_state.A, 0.1, key="A_input", on_change=update_A, label_visibility="collapsed")
+                A = st.number_input("", 0.001, 10.0, st.session_state.A, 0.1, key="A_input", on_change=update_A, label_visibility="collapsed")
             with columns4[1]:
-                B = st.number_input("", 0.00, 10.0, st.session_state.B, 0.1, key="B_input", on_change=update_B, label_visibility="collapsed")
+                B = st.number_input("", 0.001, 10.0, st.session_state.B, 0.1, key="B_input", on_change=update_B, label_visibility="collapsed")
             with columns4[2]:
                 C = st.number_input("", 0.00, 10.0, st.session_state.C, 0.1, key="C_input", on_change=update_C, label_visibility="collapsed")
             with columns4[3]:
                 P = st.number_input("", 1.0, 4.0,   st.session_state.P, 0.1, key="P_input", on_change=update_P, label_visibility="collapsed")
         else:
             with columns4[0]:
-                A = st.slider      ("", 0.00, 10.0, st.session_state.A, 0.1, key="A_input", on_change=update_A, label_visibility="collapsed")
+                A = st.slider      ("", 0.001, 10.0, st.session_state.A, 0.1, key="A_input", on_change=update_A, label_visibility="collapsed")
             with columns4[1]:
-                B = st.slider      ("", 0.00, 10.0, st.session_state.B, 0.1, key="B_input", on_change=update_B, label_visibility="collapsed")        
+                B = st.slider      ("", 0.001, 10.0, st.session_state.B, 0.1, key="B_input", on_change=update_B, label_visibility="collapsed")        
             with columns4[2]:
                 C = st.slider      ("", 0.00, 10.0, st.session_state.C, 0.1, key="C_input", on_change=update_C, label_visibility="collapsed")   
             with columns4[3]:
@@ -470,18 +470,18 @@ def Q_h_plot():
             columns5 = st.columns((1,1,1,1))
             if st.session_state.number_input:
                 with columns5[0]:
-                    A2 = st.number_input("", 0.00, 10.0, st.session_state.A2, 0.1, key="A2_input", on_change=update_A2, label_visibility="collapsed")
+                    A2 = st.number_input("", 0.001, 10.0, st.session_state.A2, 0.1, key="A2_input", on_change=update_A2, label_visibility="collapsed")
                 with columns5[1]:
-                    B2 = st.number_input("", 0.00, 10.0, st.session_state.B2, 0.1, key="B2_input", on_change=update_B2, label_visibility="collapsed")
+                    B2 = st.number_input("", 0.001, 10.0, st.session_state.B2, 0.1, key="B2_input", on_change=update_B2, label_visibility="collapsed")
                 with columns5[2]:
                     C2 = st.number_input("", 0.00, 10.0, st.session_state.C2, 0.1, key="C2_input", on_change=update_C2, label_visibility="collapsed")
                 with columns5[3]:
                     P2 = st.number_input("", 1.0, 4.0,   st.session_state.P2, 0.1, key="P2_input", on_change=update_P2, label_visibility="collapsed")
             else:
                 with columns5[0]:
-                    A2 = st.slider      ("", 0.00, 10.0, st.session_state.A2, 0.1, key="A2_input", on_change=update_A2, label_visibility="collapsed")
+                    A2 = st.slider      ("", 0.001, 10.0, st.session_state.A2, 0.1, key="A2_input", on_change=update_A2, label_visibility="collapsed")
                 with columns5[1]:
-                    B2 = st.slider      ("", 0.00, 10.0, st.session_state.B2, 0.1, key="B2_input", on_change=update_B2, label_visibility="collapsed")        
+                    B2 = st.slider      ("", 0.001, 10.0, st.session_state.B2, 0.1, key="B2_input", on_change=update_B2, label_visibility="collapsed")        
                 with columns5[2]:
                     C2 = st.slider      ("", 0.00, 10.0, st.session_state.C2, 0.1, key="C2_input", on_change=update_C2, label_visibility="collapsed")   
                 with columns5[3]:
@@ -584,14 +584,14 @@ def Q_h_plot():
                     if st.session_state.second:
                         ax_plot.plot(Q_show2, delta_head2, 'ro',markersize=10)
                 else:
-                    ax_plot.plot(Q_show, delta_head, 'bo',markersize=10, label="Q_target")
+                    ax_plot.plot(Q_show, delta_head, 'o',markersize=10, markerfacecolor='lightblue', markeredgecolor='blue', label="Q_target")
                     ax_plot.plot([Q_show, Q_show], [aquifer_thickness, h_line], linestyle='dotted', color='grey', linewidth=2)
                     if st.session_state.second:
-                        ax_plot.plot(Q_show2, delta_head2, 'bo',markersize=10)            
+                        ax_plot.plot(Q_show2, delta_head2, 'o', markersize=10, markerfacecolor='lightblue', markeredgecolor='blue')            
                 ax_plot.set_ylabel(label_head_axis, fontsize=12, labelpad=15)
                 ax_plot.set_xlabel(label_flow_axis, fontsize=12, labelpad=15)
-                ax_plot.set_ylim(10, 0)
-                ax_plot.set_xlim(0, 1)
+                ax_plot.set_ylim(10.1, 0)
+                ax_plot.set_xlim(0, 1.01)
             else:
                 ax_plot.plot(delta_h_range, Q_values, label="$Q$-$\Delta h$ relation 1", color='darkblue', linewidth=4)
                 if st.session_state.second:
@@ -602,14 +602,14 @@ def Q_h_plot():
                     if st.session_state.second:
                         ax_plot.plot(delta_head2, Q_show2, 'ro',markersize=10)
                 else:
-                    ax_plot.plot(delta_head, Q_show,'bo',markersize=10, label="Q_target")
+                    ax_plot.plot(delta_head, Q_show,'bo',markersize=10, markerfacecolor='lightblue', markeredgecolor='blue', label="Q_target")
                     ax_plot.plot([aquifer_thickness, h_line], [Q_show, Q_show], linestyle='dotted', color='grey', linewidth=2)
                     if st.session_state.second:
-                        ax_plot.plot(delta_head2, Q_show2, 'bo',markersize=10)  
+                        ax_plot.plot(delta_head2, Q_show2, 'bo',markersize=10, markerfacecolor='lightblue', markeredgecolor='blue')  
                 ax_plot.set_xlabel(label_head_axis, fontsize=12, labelpad=15)
                 ax_plot.set_ylabel(label_flow_axis, fontsize=12, labelpad=15)
-                ax_plot.set_xlim(0, 10)
-                ax_plot.set_ylim(0, 1)
+                ax_plot.set_xlim(0, 10.1)
+                ax_plot.set_ylim(0, 1.01)
         else:
             fig, (ax_schematic, ax_plot) = plt.subplots(1, 2, figsize=(8, 6), width_ratios=[1, 3])
             fig.subplots_adjust(wspace=0.5)
@@ -651,13 +651,17 @@ def Q_h_plot():
             if h_target:
                 st.write(':grey[**Drawdown in the well**] (in m) = %5.2f' %delta_head)
                 st.write(':blue[**Discharge $Q$ to the well**] (in m³/s) = %5.3f' %Q_show)
+                st.write(':blue[***CWC1***] (in m²/s) = %5.2f' %(st.session_state.A + st.session_state.B + st.session_state.C * Q_show**(st.session_state.P - 1)))
                 if st.session_state.second:
                     st.write(':red[**Discharge $Q2$ to the well**] (in m³/s) = %5.3f' %Q_show2)
+                    st.write(':red[***CWC2***] (in m²/s) = %5.2f' %(st.session_state.A2 + st.session_state.B2 + st.session_state.C2 * Q_show2**(st.session_state.P2 - 1)))
             else:
                 st.write(':grey[**Discharge to the well**] (in m³/s) = %5.3f' %Q_show)
                 st.write(':blue[**Drawdown $$\Delta h$$ in the well**] (in m) = %5.2f' %delta_head)
+                st.write(':blue[***CWC1***] (in m²/s) = %5.2f' %(st.session_state.A + st.session_state.B + st.session_state.C * Q_show**(st.session_state.P - 1)))
                 if st.session_state.second:
-                    st.write(':red[**Drawdown $$\Delta h2$$ in the well**] (in m) = %5.2f' %delta_head2)    
+                    st.write(':red[**Drawdown $$\Delta h2$$ in the well**] (in m) = %5.2f' %delta_head2)
+                    st.write(':red[***CWC2***] (in m²/s) = %5.2f' %(st.session_state.A2 + st.session_state.B2 + st.session_state.C2 * Q_show2**(st.session_state.P2 - 1)))                    
     
         # --- PLOT 1 EXPLANATION ---  
         with st.expander('Click here to read more :blue[**About this Plot**]'):
@@ -716,7 +720,7 @@ def Q_h_plot():
             🛠️ **Tasks**
             
             1. **Explore Q–Δh Relationship**
-               * Set: $A = 0.5$, $B = 0.05$, $C = 1.0$, $P = 2.0$
+               * Set: $A = 4.0$, $B = 5.0$, $C = 1.0$, $P = 2.0$
                * Use :blue[**Q-target**] mode
                * Vary $Q$ from 0.01 to 0.5 m³/s
                * 📝 Record where the curve steepens and explain the influence of the different parameters in CWC ($A$, $B$, $C$, and $P$)
@@ -726,15 +730,15 @@ def Q_h_plot():
                * Enable the **second parameter set** 
                * Vary $A$, then systematically change $B$, $C$, and $P$ (ultimately setting all values to 4) and compare responses
                * 💭 Reflect on the role of linear vs. nonlinear resistance.
-                   * Switch on/off the linear resistance by setting A and B to zero.
+                   * Switch on/off the linear resistance by setting A and B to near zero.
                    * Switch on/off the nonlinear resistance by setting C to 0.
                * 💭 Reflect on what parameter values would represent well-aging?
             
             3. **Reverse Analysis with H-target**
-               * Switch to :red[**H-target**]
+               * Switch to :red[**H-target**] and make sure to use the initial parameter set: $A = 4.0$, $B = 5.0$, $C = 1.0$, $P = 2.0$
                * Set Δh = 2.0, 4.0, 6.0 m
                * Compare resulting $Q$ values across different parameter sets (e.g., to reflect an aged well).
-               * At what Δh value does $Q$ exceed $0.4$ m³/s? How much does well-aging affect the efficiency?
+               * At what Δh value does $Q$ exceed $0.2$ m³/s? How much does well-aging affect the efficiency?
             
             _Use this exploration to build deeper insight into how MNW wells behave under variable design conditions._
             """)
@@ -794,7 +798,7 @@ def Q_h_plot():
             # --- Plot Q vs. h_well ---
             fig2, ax2 = plt.subplots(figsize=(6, 5))
             if turn:
-                ax2.plot(Q_2nd, h_2nd, color='black', label=fr"$Q$-$h_{{aq}}$ plot with $Q = {Q_show:.2f}$", linewidth=4)
+                ax2.plot(Q_2nd, h_2nd, color='black', label=fr"$Q$-$h_{{aq}}$ plot with $Q = {Q_show:.2f}$ m³/s", linewidth=4)
                 ax2.plot(Q_values_2nd, h_well_range, linestyle='--', color='lightgrey', linewidth=3, label=r"$Q$-$h_{Well}$")
                 ax2.axhline(y=h_cell, linestyle='dotted', color='black', linewidth=2)
                 ax2.set_ylabel("Hydraulic head $h_n$ [L]", fontsize=14)
@@ -802,8 +806,8 @@ def Q_h_plot():
                 ax2.set_xlim(-1, 1)
                 ax2.set_ylim(0, 20)
                 if visualize:
-                    ax2.plot(Q_show*-1, h_cell,'o', color='skyblue', markersize=10, label='head in cell')
-                    ax2.plot(Q_show*-1, h_well,'o', color='blue',markersize=10, label='head in well')    
+                    ax2.plot(Q_show*-1, h_cell,'o', color='skyblue', markersize=12, label=f'head in cell = {h_cell:.2f} m')
+                    ax2.plot(Q_show*-1, h_well,'o', color='blue',markersize=10, label=f'head in well = {h_well:.2f} m')    
             else:
                 ax2.plot(h_2nd, Q_2nd, color='black', label=fr"$Q$-$h_{{aq}}$ plot with $Q = {Q_show:.2f}$", linewidth=4)
                 ax2.plot(h_well_range, Q_values_2nd, linestyle='--', color='lightgrey', linewidth=3, label=r"$Q$-$h_{Well}$")
@@ -813,8 +817,8 @@ def Q_h_plot():
                 ax2.set_ylim(-1, 1)
                 ax2.set_xlim(0, 20)
                 if visualize:
-                    ax2.plot(h_cell, Q_show*-1, 'o',color='skyblue', markersize=10, label='head in cell')
-                    ax2.plot(h_well, Q_show*-1, 'o',color='blue', markersize=10, label='head in well')
+                    ax2.plot(h_cell, Q_show*-1, 'o',color='skyblue', markersize=12, label=f'head in cell = {h_cell:.2f} m')
+                    ax2.plot(h_well, Q_show*-1, 'o',color='blue', markersize=10, label=f'head in well = {h_well:.2f} m')
             
             ax2.set_title("Q-h Behavior for the MNW Boundary", fontsize=16, pad=20)
             ax2.tick_params(axis='both', labelsize=12)        
