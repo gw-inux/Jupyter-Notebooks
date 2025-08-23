@@ -116,7 +116,7 @@ with columns0[1]:
     fig, ax = plt.subplots(figsize=(5, 5))      
     ax.plot(h_aqi, Qi, color='black', linewidth=4)
     ax.set_xlabel("Head/Elevation in the DRN-aquifer system (m)", fontsize=14, labelpad=15)
-    ax.set_ylabel("Flow into * the groundwater \nfrom the DRN boundary $Q_{D}$ (m³/s)", fontsize=14, labelpad=15)
+    ax.set_ylabel("Flow into the groundwater \nfrom the DRN boundary $Q_{D}$ (m³/s)", fontsize=14, labelpad=15)
     ax.set_xlim(0, 20)
     ax.set_ylim(-0.05, 0.05)
     ax.set_title("Flow Between Groundwater and DRN", fontsize=16, pad=10)
@@ -135,7 +135,7 @@ with columns0[1]:
 #TODO
 st.markdown("""
 ####  🎯 Learning Objectives
-By the end of this section, you will be able to:
+This section is designed with the intent that, by studying it, you will be able to do the following:
 
 - Explain the conceptual role of the Drain (DRN) boundary in simulating groundwater discharge to drainage features such as tile drains, trenches, or natural depressions.
 - Apply the analytical relationship $Q_{D} = C_D(H_D-h_{aq})$ to calculate boundary flows.
@@ -260,7 +260,7 @@ def Q_h_plot():
         with st.expander("Modify the **Plot Controls**"):
             turn = st.toggle('Toggle to turn the plot 90 degrees', key="DRN_turn", value=True)
             st.session_state.number_input = st.toggle("Toggle to use Slider or Number for input of $C_D$, $H_D$, and $h_{aq}$.")
-            visualize = st.toggle(':rainbow[**Make the plot alive** and visualize the input values]', key="DRN_vis", value=True)
+            visualize = st.toggle(':rainbow[**Make the plot live** and visualize the input values]', key="DRN_vis", value=True)
 
     with columns1[1]:
         with st.expander('Modify :blue[**Heads** & **Elevations**]'):

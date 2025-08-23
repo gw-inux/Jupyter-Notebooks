@@ -39,7 +39,7 @@ institution_list = [f"{index_symbols[i-1]} {inst}" for i, inst in institutions.i
 institution_text = " | ".join(institution_list)
 
 st.title("Theory and Concept of :blue[Evapotranspiration in MODFLOW]")
-st.subheader("Consideration of :blue[Evapotranspiration] on Groundwater", divider="blue")
+st.subheader("Groundwater - :blue[Evapotranspiration] interaction", divider="blue")
 
 st.markdown("""
 #### 💡 Motivation: Why use Evapotranspiration (EVT) Boundaries?
@@ -111,14 +111,14 @@ with columns0[1]:
 st.markdown("""
 ####  💻 How EVT may be Applied in Field-Scale Groundwater Modeling
 
-The EVT package is particularly relevant in applied groundwater modeling at the field scale, especially in settings with shallow groundwater close to the surface, where evapotranspiration can represent a significant component of groundwater discharge.
+The EVT package is particularly relevant in applied groundwater modeling at the field scale, especially in settings with shallow groundwater, where evapotranspiration can represent a significant component of groundwater discharge.
 """)
 left_co, cent_co, last_co = st.columns((10,40,10))
 with cent_co:
-    st.image('90_Streamlit_apps/GWP_Boundary_Conditions/assets/images/EVT_cartoon2.png', caption="Illustration of the concept for evapotranspiration consideration in MODFLOW.")
+    st.image('90_Streamlit_apps/GWP_Boundary_Conditions/assets/images/EVT_cartoon2.png', caption="Illustration of the concept for evapotranspiration from groundwater in MODFLOW.")
 with st.expander("Show me more about **the :blue[application of EVT in Field-Scale Groundwater Modeling]**"):
     st.markdown("""
-    In field-scale groundwater models the EVT boundary may be used to define an elevation for the ET surface at every node of the model. Each is accompanied by a value for extinction depth and a maximum ET rate that typically vary from cell to cell depending on the local conditions (e.g., type of soil, vegetation root depth). Often the ET surface elevation is the ground surface elevation or slightly below it such that the maximum evapotranspiration occurs when the water table is at or just below the surface. The water loss may reflect uptake by vegetation or direct evaporation from the water table. 
+    In field-scale groundwater models the EVT boundary may be used to define an elevation for the ET surface at every node of the model. Each is accompanied by a value for extinction depth and a maximum ET rate that typically vary from cell to cell depending on the local conditions (e.g., type of soil, vegetation root depth). Often the ET surface elevation is the ground surface elevation or slightly below it such that the maximum evapotranspiration occurs when the water table is at or just below the surface. The water loss may reflect uptake by vegetation or direct evaporation from the water table. The complete hydrologic budget will include evaptranspiration of soil moisture, whereas the EVT boundary considers only the evapotranspiration from the saturated portion of the subsurface.
     
     As the groundwater model simulation proceeds through time, water levels in each cell rise and/or fall in response to stresses in the system and water is discharged as evapotranspiration from each model node based on the groundwater head at the node. There are connections between the rate of evapotranspiration at each node and other stresses in the model. As evapotranspiration occurs, water levels decline and the rate of evapotranspiration decreases. When a drought occurs, there is less recharge from precipitation and surface water seepage, so water levels decline and the volume previously lost to evapotranspiration is reduced. If irrigation pumping lowers groundwater heads, then there is less evapotranspiration.
     """)
@@ -126,7 +126,7 @@ with st.expander("Show me more about **the :blue[application of EVT in Field-Sca
 #TODO
 st.markdown("""
 ####  🎯 Learning Objectives
-By the end of this section, learners will be able to:
+This section is designed with the intent that, by studying it, you will be able to do the following:
 
 - Explain the conceptual function of the EVT (Evapotranspiration) boundary condition in groundwater models.
 - Apply the ET equation to describe how evapotranspiration varies with water table depth.
@@ -260,7 +260,7 @@ def Q_h_plot():
         with st.expander("Modify the **Plot Controls**"):
             turn = st.toggle('Toggle to turn the plot 90 degrees', key="ET_turn", value=True)
             st.session_state.number_input = st.toggle("Toggle to use Slider or Number for input of _SURF_, _EXDP_, and _EVTR_.")
-            visualize = st.toggle(':rainbow[**Make the plot alive** and visualize the input values]', key="ET_vis", value=True)
+            visualize = st.toggle(':rainbow[**Make the plot live** and visualize the input values]', key="ET_vis", value=True)
             # Time unit for rate - the user can choose between seconds, days, years through dropdown
             rate_unit = st.selectbox("Select unit for ET rate:", ["mm/yr", "mm/day", "m/s"], index=1)
             # Unit selection for area

@@ -140,7 +140,7 @@ with columns0[1]:
 
 st.markdown("""
 #### 🎯 Learning Objectives
-By the end of this section of the module, you will be able to:
+This section is designed with the intent that, by studying it, you will be able to do the following:
 
 - Explain the conceptual function and mathematical formulation of a General Head Boundary (GHB).
 - Apply the GHB equation $Q_B = C_B(H_B - h_{aq})$ to calculate boundary flows and analyze flow directions.

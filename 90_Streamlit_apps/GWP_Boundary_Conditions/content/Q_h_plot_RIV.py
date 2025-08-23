@@ -141,7 +141,7 @@ with columns0[1]:
 st.markdown("""
 #### 🎯 Learning Objectives
 
-By the end of this section, you will be able to:
+This section is designed with the intent that, by studying it, you will be able to do the following:
 
 - Explain the conceptual and mathematical formulation of the RIV boundary condition in MODFLOW.
 - Apply the RIV flow equation to simulate groundwater–river exchange and identify when groundwater would be discharging into a river (gaining stream) and when river water would be recharging the groundwater system (losing stream).
@@ -467,7 +467,7 @@ def Q_h_plot():
             x_range = st.number_input("**Range of Q (m³/s) in the plot**", 0.02, 1.00, 0.05, 0.01)
             turn = st.toggle('**Turn Graph** 90 degrees', key="RIV_turn", value=True)
             st.session_state.number_input = st.toggle("**Use Slider or Number** for input")      
-            visualize = st.toggle(':rainbow[**Make the plot alive** and visualize the input values]', key="RIV_vis", value=True)
+            visualize = st.toggle(':rainbow[**Make the plot live** and visualize the input values]', key="RIV_vis", value=True)
     
     # Make sure that heads and elevations are inside the plot
     if st.session_state.h_aq_show < 0.1+h_ref:
