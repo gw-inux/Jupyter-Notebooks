@@ -348,7 +348,7 @@ def Q_h_plot():
 
     col_plot = st.columns((1,1,1), gap = 'small')              
     with col_plot[1]:
-        plot_choice = st.selectbox( "**SELECT a plot to display:**", ["🔵 Plot 1", "🟢 Plot 2", "🔴 Plot 3"])
+        plot_choice = st.selectbox( "**SELECT a plot to display:**", ["🔵 Plot 1", "🟢 Plot 2", "🔴 Plot 3"], index=0)
         
     if plot_choice == '🔵 Plot 1':
         show_plot1 = True
@@ -1061,32 +1061,32 @@ def Q_h_plot():
                     ax3.plot(Q_plot, h_3rd, color='black', linewidth=1, linestyle=':')
                     ax3.plot(Q_plot_mn, h_3rd, color='black', linewidth=3, label=r"$Q$-$h_{aq}$ with threshold")
                     ax3.plot(Q_plot_mx, h_3rd, color='black', linewidth=3, linestyle='--')                                      
-                    ax3.plot(Q_dot_th, h_cell_slider, 'o', color = 'lightblue', markersize=10, label='$h_{aq}$')
+                    ax3.plot(Q_dot_th, h_cell_slider, 'o', color = 'dodgerblue', markersize=10, label=f'$h_{{aq}}$ = {h_cell_slider:.2f} m')
                     if st.session_state.second:
                         ax3.plot(Q_plot2, h_3rd, color='red', linewidth=1, linestyle=':', label=r"$Q$-$h_{aq}$ with threshold CWC2")
-                        ax3.plot(Q_dot_th2, h_cell_slider, 'o', color = 'lightblue',  markersize=10, label='$h_{aq}$')
+                        ax3.plot(Q_dot_th2, h_cell_slider, 'o', color = 'dodgerblue',  markersize=10, label=f'$h_{{aq}}$ = {h_cell_slider:.2f} m')
                 else:                
                     ax3.axvline(x=Q_show, linestyle='--', color='lightgrey', linewidth=1)
                     ax3.plot(Q_plot, h_3rd, color='black', linewidth=4, label=r"$Q$-$h_{aq}$ with threshold")               
-                    ax3.plot(Q_dot, h_cell_slider, 'o', color = 'lightblue', markersize=10, label='$h_{aq}$')
+                    ax3.plot(Q_dot, h_cell_slider, 'o', color = 'dodgerblue', markersize=10, label=f'$h_{{aq}}$ = {h_cell_slider:.2f} m')
                     if st.session_state.second:
                         ax3.plot(Q_plot2, h_3rd, color='red', linewidth=2, linestyle=':', label=r"$Q(h_{aq})$ with threshold")
-                        ax3.plot(Q_dot2, h_cell_slider, 'o', color = 'lightblue', markersize=10, label='$h_{aq}$')
-                ax3.axhline(y=h_cell_slider, linestyle='--', color='lightblue', linewidth=2)
+                        ax3.plot(Q_dot2, h_cell_slider, 'o', color = 'dodgerblue', markersize=10, label=f'$h_{{aq}}$ = {h_cell_slider:.2f} m')
+                ax3.axhline(y=h_cell_slider, linestyle='--', color='dodgerblue', linewidth=2)
                 ax3.axhline(y=h_thr, linestyle='--', color='orange', linewidth=2)
                 if h_well >= h_thr:
-                    ax3.plot(Q_dot, h_well, 'o', color = 'blue', markersize=10, label='$h_{Well}$')
+                    ax3.plot(Q_dot, h_well, 'o', color = 'mediumblue', markersize=10, label=f'$h_{{Well}}$ = {h_well:.2f} m')
                 else:
                     ax3.plot(Q_dot, h_thr, 'ro',markersize=10, label='$h_{Well}$ (threshold)')  
                 if st.session_state.second:
                     if h_well2 >= h_thr:
-                        ax3.plot(Q_dot2, h_well2, 'o', color = 'blue', markersize=10, label='$h_{Well} CWC2$')
+                        ax3.plot(Q_dot2, h_well2, 'o', color = 'mediumblue', markersize=10, label='$h_{Well} CWC2$')
                     else:
                         ax3.plot(Q_dot2, h_thr, 'ro',markersize=10, label='$h_{Well}$ CWC2 (threshold)')       
             
                 # Add head annotations
-                ax3.text(0.65, h_cell_slider+1.1, "hydraulic head \nin the cell $h_{aq}$", va='center',color='lightblue',  fontsize=14)
-                ax3.text(0.65, h_thr-0.9, "threshold head $h_{thr}$",  va='center',color='red', fontsize=14)                        
+                ax3.text(0.65, h_cell_slider+1.3, "hydraulic head \nin the cell $h_{aq}$", va='center',color='dodgerblue',  fontsize=14)
+                ax3.text(0.57, h_thr-0.9, "threshold head $h_{thr}$",  va='center',color='red', fontsize=14)                        
                 
                 ax3.set_xlabel("Withdrawal rate $Q$ (m³/s)", fontsize=14)
                 ax3.set_ylabel("Hydraulic heads $h$ (m)", fontsize=14)
@@ -1098,32 +1098,30 @@ def Q_h_plot():
                     ax3.plot(h_3rd, Q_plot, color='black', linewidth=1, linestyle=':')
                     ax3.plot(h_3rd, Q_plot_mn,  color='black', linewidth=3, label=r"$Q$-$h_{aq}$ with threshold")
                     ax3.plot(h_3rd, Q_plot_mx,  color='black', linewidth=3, linestyle='--')
-                    ax3.plot(h_cell_slider, Q_dot_th, 'o', color='lightblue', markersize=10, label='$h_{aq}$')
+                    ax3.plot(h_cell_slider, Q_dot_th, 'o', color='dodgerblue', markersize=10, label=f'$h_{{aq}}$ = {h_cell_slider:.2f} m')
                     if st.session_state.second:
                         ax3.plot(h_3rd, Q_plot_th, color='red', linewidth=1, linestyle=':', label=r"$Q$-$h_{aq}$ with threshold CWC2")
-                        ax3.plot(h_cell_slider, Q_dot_th2, 'o', color='lightblue', markersize=10, label='$h_{aq}$ CWC2')
-  
-                                        
+                        ax3.plot(h_cell_slider, Q_dot_th2, 'o', color='dodgerblue', markersize=10, label='$h_{aq}$ CWC2')        
                 else:
                     ax3.plot(h_3rd, Q_plot, color='black', linewidth=4, label=r"$Q$-$h_{aq}$ with threshold")
-                    ax3.plot(h_cell_slider, Q_dot, 'o', color='lightblue', markersize=10, label='$h_{aq}$')
+                    ax3.plot(h_cell_slider, Q_dot, 'o', color='dodgerblue', markersize=10, label=f'$h_{{aq}}$ = {h_cell_slider:.2f} m')
                     if st.session_state.second:
                         ax3.plot(h_3rd, Q_plot2, color='red', linewidth=2, linestyle=':', label=r"$Q(h_{aq})$ with threshold")
                         ax3.plot(h_cell_slider, Q_dot2, 'ro', markersize=10, label='$h_{aq}$ CWC2')
-                ax3.axvline(x=h_cell_slider, linestyle='--', color='lightblue', linewidth=2)
+                ax3.axvline(x=h_cell_slider, linestyle='--', color='dodgerblue', linewidth=2)
                 ax3.axvline(x=h_thr, linestyle='--', color='orange', linewidth=2)
                 if h_well >= h_thr:
-                    ax3.plot(h_well, Q_dot, 'o', color = 'blue', markersize=10, label='$h_{Well}$')
+                    ax3.plot(h_well, Q_dot, 'o', color = 'mediumblue', markersize=10, label=f'$h_{{Well}}$ = {h_well:.2f} m')
                 else:
                     ax3.plot(h_thr, Q_dot, 'ro',markersize=10, label='$h_{Well}$ (threshold)')
                 if st.session_state.second:
                     if h_well2 >= h_thr:
-                        ax3.plot(h_well2, Q_dot2, 'o', color = 'blue', markersize=10, label='$h_{Well} CWC2$')
+                        ax3.plot(h_well2, Q_dot2, 'o', color = 'mediumblue', markersize=10, label='$h_{Well} CWC2$')
                     else:
                         ax3.plot(h_thr, Q_dot2, 'ro',markersize=10, label='$h_{Well}$ CWC2 (threshold)')           
                         
                 # Add head annotations
-                ax3.text(h_cell_slider+0.5, 0.93, "hydraulic head \nin the cell $h_{aq}$", va='center',color='lightblue',  fontsize=14)
+                ax3.text(h_cell_slider+0.5, 0.93, "hydraulic head \nin the cell $h_{aq}$", va='center',color='dodgerblue',  fontsize=14)
                 ax3.text(h_thr-4.5, 0.93, "threshold \nhead $h_{thr}$",  va='center',color='red', fontsize=14)     
                 
                 ax3.set_xlabel("Hydraulic heads $h$ [m]", fontsize=14)
