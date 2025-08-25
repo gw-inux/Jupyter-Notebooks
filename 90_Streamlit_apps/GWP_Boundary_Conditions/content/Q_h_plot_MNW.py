@@ -307,6 +307,10 @@ def update_dh_show():
     st.session_state.dh_show = st.session_state.dh_show_input
 def update_Q_show():
     st.session_state.Q_show = st.session_state.Q_show_input
+def update_h_cell_slider():
+    st.session_state.h_cell_slider = st.session_state.h_cell_slider_input
+def update_h_thr():
+    st.session_state.h_thr = st.session_state.h_thr_input
 def update_A():
     st.session_state.A = st.session_state.A_input
 def update_B():
@@ -327,6 +331,8 @@ def update_P2():
 # Initialize session state for value and toggle state
 st.session_state.dh_show = 5.0
 st.session_state.Q_show = 0.5
+st.session_state.h_cell_slider = 12.0
+st.session_state.h_thr = 5.0
 st.session_state.A = 5.0
 st.session_state.B = 5.0
 st.session_state.C = 0.0
@@ -412,8 +418,14 @@ def Q_h_plot():
                     else:
                         Q_show = st.slider      ("**Withdrawal rate $Q$** in the well", 0.001, 1.0, st.session_state.Q_show, 0.001, key="Q_show_input", on_change=update_Q_show)   
             if show_plot3:
-                h_cell_slider = st.slider("**Aquifer head** $h_{aq}$ [m]", min_value=0.0, max_value=20.0, value=10.0, step=0.1)
-                h_thr = st.slider("**Threshold head** $h_{thr}$ [m]", min_value=0.0, max_value=10.0, value=5.0, step=0.1)
+                if st.session_state.number_input:
+                    h_cell_slider = st.number_input("**Aquifer head** $h_{aq}$ [m]", 0.0, 20.0, st.session_state.h_cell_slider, 0.1, key="h_cell_slider_input", on_change=update_h_cell_slider)
+                else:
+                    h_cell_slider = st.slider      ("**Aquifer head** $h_{aq}$ [m]", 0.0, 20.0, st.session_state.h_cell_slider, 0.1, key="h_cell_slider_input", on_change=update_h_cell_slider)
+                if st.session_state.number_input:
+                    h_thr = st.number_input("**Threshold head** $h_{thr}$ [m]", 0.0, 10.0, st.session_state.h_thr, 0.1, key="h_thr_input", on_change=update_h_thr)
+                else:
+                    h_thr = st.slider      ("**Threshold head** $h_{thr}$ [m]", 0.0, 10.0, st.session_state.h_thr, 0.1, key="h_thr_input", on_change=update_h_thr)                 
                 th = st.toggle("Apply withdrawal thresholds")
                 if th:
                     Q_range = st.slider("Discharge cutoff range $[Q_{mn}, Q_{mx}]$ [m³/s]", 0.0, st.session_state.Q_show, (0.1*st.session_state.Q_show, 0.15*st.session_state.Q_show), 0.01)
@@ -1092,12 +1104,12 @@ def Q_h_plot():
                 if h_well >= h_thr:
                     ax3.plot(-Q_dot, h_well, 'o', color = 'mediumblue', markersize=10, label=f'$h_{{Well}}$ = {h_well:.2f} m')
                 else:
-                    ax3.plot(-Q_dot, h_thr, 'ro',markersize=10, label='$h_{Well}$ (threshold)')  
+                    ax3.plot(-Q_dot, h_thr, 'ro',markersize=10, label=f'$h_{{Well}}$  = {h_thr:.2f} m  = $h_{{thr}}$ (threshold)')  
                 if st.session_state.second:
                     if h_well2 >= h_thr:
                         ax3.plot(-Q_dot2, h_well2, 'o', color = 'mediumblue', markersize=10, label='$h_{Well} CWC2$')
                     else:
-                        ax3.plot(-Q_dot2, h_thr, 'ro',markersize=10, label='$h_{Well}$ CWC2 (threshold)')       
+                        ax3.plot(-Q_dot2, h_thr, 'ro',markersize=10, label=f'$h_{{Well}}$ CWC2  = {h_thr:.2f} m  = $h_{{thr}}$ (threshold)')       
             
                 # Add head annotations
                 ax3.text(-0.65, h_cell_slider+1.3, "hydraulic head \nin the cell $h_{aq}$", va='center',color='dodgerblue',  fontsize=14)
@@ -1128,12 +1140,12 @@ def Q_h_plot():
                 if h_well >= h_thr:
                     ax3.plot(h_well, -Q_dot, 'o', color = 'mediumblue', markersize=10, label=f'$h_{{Well}}$ = {h_well:.2f} m')
                 else:
-                    ax3.plot(h_thr, -Q_dot, 'ro',markersize=10, label='$h_{Well}$ (threshold)')
+                    ax3.plot(h_thr, -Q_dot, 'ro',markersize=10, label=f'$h_{{Well}}$  = {h_thr:.2f} m  = $h_{{thr}}$ (threshold)')
                 if st.session_state.second:
                     if h_well2 >= h_thr:
                         ax3.plot(h_well2, -Q_dot2, 'o', color = 'mediumblue', markersize=10, label='$h_{Well} CWC2$')
                     else:
-                        ax3.plot(h_thr, -Q_dot2, 'ro',markersize=10, label='$h_{Well}$ CWC2 (threshold)')           
+                        ax3.plot(h_thr, -Q_dot2, 'ro',markersize=10, label=f'$h_{{Well}}$ CWC2 = {h_thr:.2f} m  = $h_{{thr}}$ (threshold)')           
                         
                 # Add head annotations
                 ax3.text(h_cell_slider+0.5, -0.93, "hydraulic head \nin the cell $h_{aq}$", va='center',color='dodgerblue',  fontsize=14)
