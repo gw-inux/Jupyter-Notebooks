@@ -15,32 +15,32 @@
     "options": {
       "A) Maximum drawdown": true,
       "B) Constant recharge rate": false,
-      "C) Pumping limits (Qmax)": true,
+      "C) Pump discharge limits (Qmax)": true,
       "D) Minimum cell thickness": false
     },
     "success": "✅ Exactly. MNW can enforce pumping constraints based on head or flow capacity.",
-    "error": "❌ Some of your choices are not correct. Head constraints and pumping limits are central to MNW, not recharge or thickness."
+    "error": "❌ Some of your choices are not correct. Head constraints and pumping limits are central to regulating discharge in MNW wells, not recharge or thickness."
   },
   {
     "question": "What behavior can be observed in Q–h plots for MNW? (Mark ALL correct answers)",
     "options": {
-      "A) A horizontal line representing the aquifer (cell) head": true,
+      "A) A vertical line representing the aquifer head": true,
       "B) A slope representing head-dependent flow into the well": true,
-      "C) Negative flows when head drops below zero": false,
-      "D) A horizontal line representing the well head": false
+      "C) Negative discharge when head drops below the pump intake": false,
+      "D) A horizontal line representing the specified discharge from the well": true
     },
     "success": "✅ Well done. MNW plots combine diagonal lines representing head-dependent flow with horizontal lines representing specified flow boundaries.",
-    "error": "❌ Some of your choices are not correct. MNW plots show different characteristics reflecting the aquifer(cell) head and the well head."
+    "error": "❌ Some of your choices are not correct. MNW plots relate the aquifer head and well head with the specified flow and reduced flow. Discharge is zero when head is bleow the pump intake "
   },
   {
-    "question": "Why might an MNW stop pumping during a simulation? (Mark ALL correct answers)",
+    "question": "Why might an MNW well discharge decrease or cease during a model simulation? (Mark ALL correct answers)",
     "options": {
-      "A) Head drops below the pump intake": true,
+      "A) Head is below the pump intake": true,
       "B) Conductance becomes negative": false,
       "C) The maximum pumping rate is exceeded": true,
       "D) The aquifer goes dry": true
     },
-    "success": "✅ Yes — dry cells, limits, or heads below constraints can all trigger pump shutdown.",
-    "error": "❌ Some of your choices are not correct. MNW simulates physical well behavior, including limits that can shut off flow."
+    "success": "✅ Yes — dry cells, pump limits, and heads below constraints can all trigger reduced or zero discharge.",
+    "error": "❌ Some of your choices are not correct. MNW simulates physical well behavior, including limits that can shut off flow, but does not change conductance values as part of the model simulation."
   }
 ]
