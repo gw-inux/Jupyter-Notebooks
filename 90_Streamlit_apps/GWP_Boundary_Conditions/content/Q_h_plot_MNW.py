@@ -311,8 +311,12 @@ def update_h_cell_slider():
     st.session_state.h_cell_slider = st.session_state.h_cell_slider_input
 def update_h_cell_slider2():
     st.session_state.h_cell_slider2 = st.session_state.h_cell_slider2_input
+def update_h_cell_slider4():
+    st.session_state.h_cell_slider4 = st.session_state.h_cell_slider4_input
 def update_h_thr():
     st.session_state.h_thr = st.session_state.h_thr_input
+def update_h_thr4():
+    st.session_state.h_thr4 = st.session_state.h_thr4_input
 def update_A():
     st.session_state.A = st.session_state.A_input
 def update_B():
@@ -335,7 +339,9 @@ st.session_state.dh_show = 5.0
 st.session_state.Q_show = 0.5
 st.session_state.h_cell_slider = 12.0
 st.session_state.h_cell_slider2 = 10.0
+st.session_state.h_cell_slider4 = 10.0
 st.session_state.h_thr = 5.0
+st.session_state.h_thr4 = 2.0
 st.session_state.A = 5.0
 st.session_state.B = 5.0
 st.session_state.C = 0.0
@@ -361,18 +367,20 @@ def Q_h_plot():
 
     col_plot = st.columns((1,1,1), gap = 'small')              
     with col_plot[1]:
-        plot_choice = st.selectbox( "**SELECT a plot to display:**", ["🔵 Plot 1", "🟢 Plot 2", "🔴 Plot 3"], index=0)
+        plot_choice = st.selectbox( "**SELECT a plot to display:**", ["🔵 Plot 1", "🟢 Plot 2", "🔴 Plot 3", "🟡 Plot 4"], index=0)
         
     if plot_choice == '🔵 Plot 1':
         show_plot1 = True
         show_plot2 = False
         show_plot3 = False
+        show_plot4 = False
         explanation = False
         instruction = False
     if plot_choice == '🟢 Plot 2':
         show_plot2 = True
         show_plot1 = False
         show_plot3 = False
+        show_plot4 = False
         explanation = False
         instruction = False
         st.session_state.second = False
@@ -380,8 +388,17 @@ def Q_h_plot():
         show_plot3 = True
         show_plot1 = False
         show_plot2 = False
+        show_plot4 = False
         explanation = False
         instruction = False
+    if plot_choice == '🟡 Plot 4':
+        show_plot4 = True
+        show_plot1 = False
+        show_plot2 = False
+        show_plot3 = False
+        explanation = False
+        instruction = False
+        st.session_state.second = False
     
     # INPUT SECTION
     
@@ -408,15 +425,27 @@ def Q_h_plot():
             st.write('**:green[Target for evaluation/visualization]**')
             if show_plot3:
                 h_target = False
+            elif show_plot4:
+                h_target = True
             else:
                 h_target = st.toggle('Toggle for :blue[**Q-**] or :red[**H-**]target')
 
             if h_target:
                 st.markdown(":red[**H-target**]")
-                if st.session_state.number_input:
-                    dh_show = st.number_input("**Drawdown $$\Delta h$$** in withdrawal well", 0.01, 10.0, st.session_state.dh_show, 0.1, key="dh_show_input", on_change=update_dh_show)
+                if show_plot4:
+                    if st.session_state.number_input:
+                        h_thr4 = st.number_input("**Well/Threshold head** $h_{thr}$ [m]", 0.0, 10.0, st.session_state.h_thr4, 0.1, key="h_thr4_input", on_change=update_h_thr4)
+                    else:
+                        h_thr4 = st.slider      ("**Well/Threshold head** $h_{thr}$ [m]", 0.0, 10.0, st.session_state.h_thr4, 0.1, key="h_thr4_input", on_change=update_h_thr4)  
+                    if st.session_state.number_input:
+                        h_cell_slider4 = st.number_input("**Aquifer head** $h_{aq}$ [m]", 10.0, 19.0, st.session_state.h_cell_slider4, 0.1, key="h_cell_slider4_input", on_change=update_h_cell_slider4)
+                    else:
+                        h_cell_slider4 = st.slider      ("**Aquifer head** $h_{aq}$ [m]", 10.0, 19.0, st.session_state.h_cell_slider4, 0.1, key="h_cell_slider4_input", on_change=update_h_cell_slider4)
                 else:
-                    dh_show = st.slider      ("**Drawdown $$\Delta h$$** in withdrawal well", 0.01, 10.0, st.session_state.dh_show, 0.1, key="dh_show_input", on_change=update_dh_show)
+                    if st.session_state.number_input:
+                        dh_show = st.number_input("**Drawdown $$\Delta h$$** in withdrawal well", 0.01, 10.0, st.session_state.dh_show, 0.1, key="dh_show_input", on_change=update_dh_show)
+                    else:
+                        dh_show = st.slider      ("**Drawdown $$\Delta h$$** in withdrawal well", 0.01, 10.0, st.session_state.dh_show, 0.1, key="dh_show_input", on_change=update_dh_show)
             else:
                 st.markdown(":blue[**Q-target**]")
                 if st.session_state.number_input:
@@ -521,7 +550,11 @@ def Q_h_plot():
     # Input for visualization
     if visualize:
         if h_target:
-            delta_head = dh_show
+            if show_plot4:
+                #delta_head = dh_show4
+                delta_head = 20
+            else:
+                delta_head = dh_show
             Q_guess = delta_head / (st.session_state.A + st.session_state.B)  # initial guess
             Q_show, = fsolve(discharge_equation, Q_guess, args=(delta_head, st.session_state.A, st.session_state.B, st.session_state.C, st.session_state.P))
             if st.session_state.second:
@@ -1106,9 +1139,9 @@ def Q_h_plot():
                 ax3.axvline(x=-Q_show, linestyle='--', color='lightgrey', linewidth=1)  
                 # if threshold is considered
                 if th:
-                    ax3.plot([-q for q in Q_plot], h_3rd, color='black', linewidth=1, linestyle=':')
-                    ax3.plot([-q for q in Q_plot_mn], h_3rd, color='black', linewidth=3, label=r"$Q$-$h_{aq}$ with threshold")
-                    ax3.plot([-q for q in Q_plot_mx], h_3rd, color='black', linewidth=3, linestyle='--')       
+                    ax3.plot([-q for q in Q_plot], h_3rd, color='blue', linewidth=1, linestyle=':')
+                    ax3.plot([-q for q in Q_plot_mn], h_3rd, color='blue', linewidth=4, label=r"$Q$-$h_{aq}$ with threshold")
+                    ax3.plot([-q for q in Q_plot_mx], h_3rd, color='blue', linewidth=4, linestyle='--')       
                     if st.session_state.second:
                         ax3.plot([-q for q in Q_plot2], h_3rd, color='red', linewidth=1, linestyle=':', label=r"$Q$-$h_{aq}$ with threshold CWC2")   
                     # Plot Q and Empty line for legend entry
@@ -1124,7 +1157,7 @@ def Q_h_plot():
                     if st.session_state.second:
                         ax3.plot(-Q_dot_th2, h_cell_slider, 'o', markersize=10, markerfacecolor='tomato', markeredgecolor='darkred', label=f'Q 2nd projected on $h_{{aq}}$ = {h_cell_slider:.2f} m') 
                 else:                
-                    ax3.plot([-q for q in Q_plot], h_3rd, color='black', linewidth=3, label=r"$Q$-$h_{aq}$ with threshold")       
+                    ax3.plot([-q for q in Q_plot], h_3rd, color='blue', linewidth=4, label=r"$Q$-$h_{aq}$ with threshold")       
                     if st.session_state.second:
                         ax3.plot([-q for q in Q_plot2], h_3rd, color='red', linewidth=2, linestyle=':', label=r"$Q(h_{aq})$ with threshold CWC2")
                     # Plot Q and Empty line for legend entry
@@ -1154,23 +1187,23 @@ def Q_h_plot():
                         ax3.plot(-Q_dot2, h_thr, 'o', markersize=10, markeredgecolor='deeppink', markerfacecolor='none', label=f'Q 2nd projected on $h_{{Well}}$ = {h_thr:.2f} m')       
             
                 # Add head annotations
-                ax3.text(-0.67, h_cell_slider+0.7, "$h_{aq}$", va='center',color='dodgerblue',  fontsize=14)
+                ax3.text(-0.63, h_cell_slider+0.7, "$h_{aq}$", va='center',color='dodgerblue',  fontsize=14)
                 if h_well >= h_thr:
-                    ax3.text(-0.77, h_well+0.7, "$h_{well}$", va='center',color='grey',  fontsize=14)
+                    ax3.text(-0.74, h_well+0.7, "$h_{well}$", va='center',color='grey',  fontsize=14)
                 else:
-                    ax3.text(-0.77, h_thr+0.7, " $h_{well}$ = ", va='center',color='grey',  fontsize=14)
+                    ax3.text(-0.74, h_thr+0.7, " $h_{well}$ = ", va='center',color='grey',  fontsize=14)
                 ax3.text(-0.92, h_thr+0.7, "$h_{thr}$",  va='center',color='red', fontsize=14)                        
                 
                 ax3.set_xlabel("Withdrawal rate $Q$ (m³/s)", fontsize=14)
                 ax3.set_ylabel("Hydraulic heads $h$ (m)", fontsize=14)
-                ax3.set_xlim(0.01, -1)
+                ax3.set_xlim(0.05, -1)
                 ax3.set_ylim(0, 20)
             else:
                 # if threshold is considered
                 if th:
-                    ax3.plot(h_3rd, [-q for q in Q_plot], color='black', linewidth=1, linestyle=':')
-                    ax3.plot(h_3rd, [-q for q in Q_plot_mn],  color='black', linewidth=3, label=r"$Q$-$h_{aq}$ with threshold")
-                    ax3.plot(h_3rd, [-q for q in Q_plot_mx],  color='black', linewidth=3, linestyle='--')
+                    ax3.plot(h_3rd, [-q for q in Q_plot], color='blue', linewidth=1, linestyle=':')
+                    ax3.plot(h_3rd, [-q for q in Q_plot_mn],  color='blue', linewidth=4, label=r"$Q$-$h_{aq}$ with threshold")
+                    ax3.plot(h_3rd, [-q for q in Q_plot_mx],  color='blue', linewidth=4, linestyle='--')
                     if st.session_state.second:
                         ax3.plot(h_3rd, [-q for q in Q_plot_th], color='red', linewidth=1, linestyle=':', label=r"$Q$-$h_{aq}$ with threshold CWC2")
                     # Plot Q and Empty line for legend entry
@@ -1184,7 +1217,7 @@ def Q_h_plot():
                     if st.session_state.second:
                         ax3.plot(h_cell_slider, -Q_dot_th2, 'o', markersize=10, markerfacecolor='dodgerblue', markeredgecolor='darkblue', label='Q for $h_{aq}$ CWC2')        
                 else:
-                    ax3.plot(h_3rd, [-q for q in Q_plot], color='black', linewidth=4, label=r"$Q$-$h_{aq}$ with threshold")
+                    ax3.plot(h_3rd, [-q for q in Q_plot], color='blue', linewidth=4, label=r"$Q$-$h_{aq}$ with threshold")
                     if st.session_state.second:
                         ax3.plot(h_3rd, [-q for q in Q_plot2], color='red', linewidth=2, linestyle=':', label=r"$Q(h_{aq})$ with threshold")
                     # Plot Q and Empty line for legend entry
@@ -1217,7 +1250,7 @@ def Q_h_plot():
                 ax3.set_xlabel("Hydraulic heads $h$ [m]", fontsize=14)
                 ax3.set_ylabel("Discharge $Q$ [m³/s]", fontsize=14)
                 ax3.set_xlim(0, 20)
-                ax3.set_ylim(0.01, -1)
+                ax3.set_ylim(0.05, -1)
             
             ax3.set_title("Q-h Behavior for the MNW Boundary with Threshold", fontsize=16, pad=20)
             ax3.tick_params(axis='both', labelsize=12)
@@ -1327,6 +1360,198 @@ def Q_h_plot():
             st.markdown("""
             #### 🧠 Final assessment for Plot 3
             These questions test your conceptual understanding after working with the app.
+            """)
+        
+            # Render questions in a 2x3 grid (row-wise)
+            for row in [(0, 1), (2, 3), (4, 5)]:
+                col1, col2 = st.columns(2)
+        
+                with col1:
+                    i = row[0]
+                    st.markdown(f"**Q{i+1}. {quest_plot3[i]['question']}**")
+                    multiple_choice(
+                        question=" ",
+                        options_dict=quest_plot3[i]["options"],
+                        success=quest_plot3[i].get("success", "✅ Correct."),
+                        error=quest_plot3[i].get("error", "❌ Not quite.")
+                    )
+        
+                with col2:
+                    i = row[1]
+                    st.markdown(f"**Q{i+1}. {quest_plot3[i]['question']}**")
+                    multiple_choice(
+                        question=" ",
+                        options_dict=quest_plot3[i]["options"],
+                        success=quest_plot3[i].get("success", "✅ Correct."),
+                        error=quest_plot3[i].get("error", "❌ Not quite.")
+                    )
+
+
+
+
+# ------------------   
+    # Forth PLOT HERE - Q vs h_cell (head-target)
+    
+    #with st.expander('Show the MNW boundary with varying aquifer heads'):  
+    if show_plot4:
+        st.subheader('🟡 Plot 4', divider = 'orange')
+        st.markdown("""
+        :orange[**Plot 4**: _Q-h_-Relationship for a well operated by a head target.] This plot demonstrates the option to compute the discharge _Q_ for a head target.
+        """)
+        
+        if visualize:
+            # Plotting range
+            h_4th = np.linspace(0, 20, 300)
+            
+            # Compute head difference assuming h_well stays at threshold if h_cell < h_thr
+            delta_h_adjusted = np.clip(h_4th - h_thr4, 0, None)
+            h_well = h_cell_slider4 - delta_head
+            
+            # Take the discharge that relates to the adjusted delta_h, define a function to interpolate
+            Q_interp_func  = interp1d(delta_h_range, Q_values,  bounds_error=False, fill_value="extrapolate")
+            
+            # Use the interpolated value, but limit it to Q_show if it's larger
+            Q_plot  = np.minimum(Q_interp_func(delta_h_adjusted),  Q_show)
+            
+            # Generate the point to show
+            if h_well >= h_thr4:
+                delta_h_current = h_cell_slider4 - h_well
+            else:
+                delta_h_current = max(h_cell_slider4 - h_thr4, 0)
+                
+            Q_dot = min(Q_interp_func(delta_h_current), Q_show)                          
+            
+           
+            # --- CREATE THE 4RD PLOT ---
+            fig4, ax4 = plt.subplots(figsize=(6,6), dpi=150)
+            if turn:               
+                ax4.plot([-q for q in Q_plot], h_4th, color='black', linewidth=4, label=r"$Q$-$h_{aq}$ for a well with drawdown $h_{well}-h_{aq}$")       
+                # Plot Q and Empty line for legend entry                       
+                ax4.plot(-Q_dot, h_cell_slider4, 'o', markersize=10, markerfacecolor='dodgerblue', markeredgecolor='darkblue',  label=f'Current $Q$ = {-Q_dot:.2f} (m³/s)')
+                ax4.axhline(y=h_cell_slider4, linestyle='--', color='dodgerblue', linewidth=2)
+                ax4.axhline(y=h_thr4, linestyle='--', color='orange', linewidth=2)   
+                # Add head annotations
+                ax4.text(-1.80, h_cell_slider4+0.7, "$h_{aq}$", va='center',color='dodgerblue',  fontsize=14)
+                ax4.text(-2.20, h_thr4+0.7, " $h_{well}$ = ", va='center',color='grey',  fontsize=14)
+                ax4.text(-2.70, h_thr4+0.7, "$h_{thr}$",  va='center',color='red', fontsize=14)                        
+                
+                ax4.set_xlabel("Withdrawal rate $Q$ (m³/s)", fontsize=14)
+                ax4.set_ylabel("Hydraulic heads $h$ (m)", fontsize=14)
+                ax4.set_xlim(0.05, -3)
+                ax4.set_ylim(0, 20)
+            else:     
+                ax4.plot(h_4th, [-q for q in Q_plot], color='black', linewidth=4, label=r"$Q$-$h_{aq}$ for a well with drawdown $h_{well}-h_{aq}$")
+                # Plot Q and Empty line for legend entry
+                ax4.plot([], [], ' ', label=f'Current $Q$ = {-Q_dot:.2f} (m³/s)')
+                ax4.plot([], [], linewidth=0, label=r'$\mathit{Q\ visualization\ for\ selected\ heads:}$')    
+                ax4.plot(h_cell_slider4, -Q_dot, 'o', markersize=10, markerfacecolor='dodgerblue', markeredgecolor='darkblue', label=f'Q for $h_{{aq}}$ = {h_cell_slider4:.2f} m')
+                ax4.axvline(x=h_cell_slider4, linestyle='--', color='dodgerblue', linewidth=2)
+                ax4.axvline(x=h_thr4, linestyle='--', color='orange', linewidth=2)
+                # Add head annotations
+                ax4.text(h_cell_slider4+0.5, -1.80, "$h_{aq}$", va='center',color='dodgerblue',  fontsize=14)
+                ax4.text(h_well+0.5, -2.20, "$h_{well}$", va='center',color='grey',  fontsize=14)
+                ax4.text(h_thr4+0.5, -2.70, "$h_{thr}$",  va='center',color='red', fontsize=14)     
+                
+                ax4.set_xlabel("Hydraulic heads $h$ [m]", fontsize=14)
+                ax4.set_ylabel("Discharge $Q$ [m³/s]", fontsize=14)
+                ax4.set_xlim(0, 20)
+                ax4.set_ylim(0.05, -3)
+            
+            ax4.set_title("Q-h Behavior for the MNW Boundary with head target", fontsize=16, pad=20)
+            ax4.tick_params(axis='both', labelsize=12)
+            #ax4.legend(fontsize=14, loc='center left', bbox_to_anchor=(1.02, 0.5), borderaxespad=0)
+            ax4.legend(fontsize=14, loc='upper center', bbox_to_anchor=(0.5, -0.22), borderaxespad=0)
+            
+            columns_fig4=st.columns((1,10,1))
+            with columns_fig4[1]:
+                st.pyplot(fig4, bbox_inches='tight') 
+        else:
+            st.write('Activate the visualization with the toggle **:rainbow[Make the plot live and visualize the results]** to see this plot')
+
+        # --- PLOT 4 EXPLANATION ---  
+        with st.expander('Click here to read more :red[**About this Plot**]'):
+            st.markdown("""
+            #### :orange[🔎 About this Plot]
+            
+            This plot illustrates the **_Q–h_-relationship of a Multi-Node Well (MNW)** under conditions where a **threshold head** equals the well head. The desired discharge is set artifically high such that the model computes the resulting discharge under the constrained of the **threshold- respectively well head**. 
+            
+            The aquifer head ($h_{aq}$) and the well head ($h_{well}$) define the discharge ($Q$) through the nonlinear **aquifer-to-well conductance (CWC)** equation (as discussed in the Theory section above).
+            
+            This plot helps visualize:
+            - How **discharge can be computed** under consideration of a **defined head target**
+            - The nonlinear relationship between Q and $h_{well}$ under withdrawal-limited conditions for various CWC parameters
+
+            """)
+        with st.expander('Click here for :red[**Instructions To Get Started with this Plot**]'):
+            st.markdown("""
+            #### :orange[🧭 Getting Started]
+            
+            Follow these steps to explore threshold-controlled withdrawal behavior in MNW:
+            
+            1. **Set Initial Conditions**
+               * $h_{aq} = 10$ m
+               * Threshold head $h_{thr} = 2.0$ m
+               * CWC parameters: $A = 5.0$, $B = 5.0$, $C = 0$, $P = 2.0$
+            
+            2. **Sweep through values of $h_{aq}$**
+               * Vary aquifer head $h_{aq}$ from 10.0 to 19 m
+               * Observe how discharge $Q$ responds to aquifer head changes
+               
+            
+            
+            3. **Modify Parameters**
+               * Try different values for $A$, $B$, $C$, and $P$
+               * Vary aquifer head $h_{aq}$ and well head $h_{well}$, and investigate the MNW behavior for this ***Q-h*** plot with the interactive diagram.
+               * Identify the well head $h_{well}$ and the aquifer head $h_{aq}$ where the discharge becomes zero
+            
+            💡 This exercise facilitates understanding of how the MNW package can consider head targets to estimate the well discharge.
+            """)
+        with st.expander('Click here for an :violet[**Exercise About this Plot**]'):
+            st.markdown("""
+            🎯 **Learning Objectives**
+            
+            This exercise is designed with the intent that, by completing it, you will be able to:
+            
+            ***TODO for arthesian flowing well***
+            
+            - Explain how threshold head limits influence MNW discharge behavior
+            - Identify the conditions for shich withdrawal is reduced to protect a wells
+            - Analyze how nonlinear head losses and operational limits combine to define feasible withdrawal rates
+            - Understand the role of Qmn and Qmx in the MNW implementation
+            
+            🛠️ **Exercise Instructions**
+            
+            1. **Locate Threshold Activation Point**
+               * Set: $A = 0.5$, $B = 0.05$, $C = 1.0$ $P = 3.0$, $h_{aq} = 15$ m, $h_{thr} = 5$ m
+               * Increase Q from 0.01 to 0.8 m³/s
+               * 📝 Identify the Q at which $h_{well} = h_{thr}$ — call this $Q_{lim}$
+            
+            2. **Test Effect of Exponent P**
+               * Increase $P$ to 4.0 and repeat the test
+               * Decrease $P$ to 1.0 and repeat the test
+               * How does $Q_{lim}$ change?
+               * Is the threshold reached earlier or later?
+            
+            3. **Apply Qmn and Qmx Limits**
+               * Set Qmn = 0.05 m³/s and Qmx = 0.2 m³/s
+               * Try to exceed this value by lowering the aquifer head to the threshold head $h_{thr}$ adn take notice of the aquifer head when withdrawal stops. (_hint: if you access this app through a computer, you can gradually reduce Q with the arrow-keys of your keyboard_)
+               * Now, increase the aquifer head to 15.0 m and notice the value of aquifer head when withdrawal starts again.
+               * Double the parameter for linear well loss $B$ and repeat the procedure. Quantify the changes in terms of aquifer heads for switching off/on the withdrawal.
+            
+            💭 Reflect:
+            - When is the threshold head the limiting factor?
+            - How do Qmn/Qmx affect the value of practical withdrawal?
+            - How is this behavior affected by the CWC respectively the individual processes that result in CWC (aquifer loss, linear and nonlinear well loss).
+            
+            This exploration prepares you to interpret MNW behavior in model calibration and design tasks.
+            """)
+        
+        with st.expander('Click here for an :rainbow[**Assessment About this Plot**]- to self-check your understanding'):
+            st.markdown("""
+            #### 🧠 Final assessment for Plot 4
+            These questions test your conceptual understanding after working with the app.
+            
+            ***TODO: Generate the assessment and place questions here***
             """)
         
             # Render questions in a 2x3 grid (row-wise)
