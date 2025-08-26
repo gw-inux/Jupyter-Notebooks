@@ -547,13 +547,11 @@ def Q_h_plot():
     delta_h_range = np.linspace(-10, 10, 200)
     Q_values = []
     if st.session_state.second:
-        delta_h_range2 = np.linspace(0.01, 10, 200)
+        delta_h_range2 = np.linspace(-10, 10, 200)
         Q_values2 = []
     
     # Solve for Q_n for each Δh
     for delta_h in delta_h_range:
-        #Q_initial_guess = delta_h / (st.session_state.A + st.session_state.B)  # reasonable initial guess
-        #Q_solution, = fsolve(discharge_equation, Q_initial_guess, args=(delta_h, st.session_state.A, st.session_state.B, st.session_state.C, st.session_state.P))
         Q_initial_guess = abs(delta_h) / (st.session_state.A + st.session_state.B)  # reasonable initial guess
         Q_solution, = fsolve(discharge_equation, Q_initial_guess, args=(abs(delta_h), st.session_state.A, st.session_state.B, st.session_state.C, st.session_state.P))
         if delta_h>=0:
@@ -563,9 +561,13 @@ def Q_h_plot():
     
     if st.session_state.second:
         for delta_h2 in delta_h_range2:
-            Q_initial_guess2 = delta_h2 / (st.session_state.A2 + st.session_state.B2)  # reasonable initial guess
-            Q_solution2, = fsolve(discharge_equation, Q_initial_guess2, args=(delta_h2, st.session_state.A2, st.session_state.B2, st.session_state.C2, st.session_state.P2))
-            Q_values2.append(Q_solution2)   
+            Q_initial_guess2 = abs(delta_h2) / (st.session_state.A2 + st.session_state.B2)  # reasonable initial guess
+            Q_solution2, = fsolve(discharge_equation, Q_initial_guess2, args=(abs(delta_h2), st.session_state.A2, st.session_state.B2, st.session_state.C2, st.session_state.P2))
+            if delta_h2>=0:
+                Q_values2.append(Q_solution2)
+            else:
+                Q_values2.append(-Q_solution2)
+  
        
     # ------------------   
     # FIRST PLOT
@@ -1101,27 +1103,28 @@ def Q_h_plot():
             # --- CREATE THE 3RD PLOT ---
             fig3, ax3 = plt.subplots(figsize=(6,6), dpi=150)
             if turn:
+                ax3.axvline(x=-Q_show, linestyle='--', color='lightgrey', linewidth=1)  
                 # if threshold is considered
                 if th:
-                    ax3.axvline(x=-Q_show, linestyle='--', color='lightgrey', linewidth=1)  
                     ax3.plot([-q for q in Q_plot], h_3rd, color='black', linewidth=1, linestyle=':')
                     ax3.plot([-q for q in Q_plot_mn], h_3rd, color='black', linewidth=3, label=r"$Q$-$h_{aq}$ with threshold")
                     ax3.plot([-q for q in Q_plot_mx], h_3rd, color='black', linewidth=3, linestyle='--')       
                     if st.session_state.second:
-                        ax3.plot([-q for q in Q_plot2], h_3rd, color='red', linewidth=1, linestyle=':', label=r"$Q$-$h_{aq}$ with threshold CWC2")                    
+                        ax3.plot([-q for q in Q_plot2], h_3rd, color='red', linewidth=1, linestyle=':', label=r"$Q$-$h_{aq}$ with threshold CWC2")   
                     # Plot Q and Empty line for legend entry
                     ax3.plot([], [], ' ', label=f'Desired $Q$ = {-Q_show:.2f} (m³/s)')
                     if h_well >= h_thr:
                         ax3.plot([], [], ' ', label=f'Current $Q$ = {-Q_show:.2f} (m³/s)')
                     else:
-                        ax3.plot([], [], ' ', label=f'Current $Q$ = {-Q_dot:.2f} (m³/s)')
-                    ax3.plot([], [], linewidth=0, label=r'$\mathit{Q\ visualization\ for\ selected\ heads:}$')     
-                    ax3.plot(-Q_dot_th, h_cell_slider, 'o', markersize=10, markerfacecolor='dodgerblue', markeredgecolor='darkblue', label=f'Q for $h_{{aq}}$ = {h_cell_slider:.2f} m')
+                        ax3.plot([], [], ' ', label=f'Current $Q$ = {-Q_dot_th:.2f} (m³/s)')
+                        if st.session_state.second:
+                            ax3.plot([], [], ' ', label=f'Current $Q$ 2nd = {-Q_dot_th2:.2f} (m³/s)')
+                    ax3.plot([], [], linewidth=0, label=r'$\mathit{Q\ visualization\ for\ selected\ heads:}$')                         
+                    ax3.plot(-Q_dot_th, h_cell_slider, 'o', markersize=10, markerfacecolor='dodgerblue', markeredgecolor='darkblue',  label=f'Q projected on $h_{{aq}}$ = {h_cell_slider:.2f} m')
                     if st.session_state.second:
-                        ax3.plot(-Q_dot_th2, h_cell_slider, 'o', markersize=10, markerfacecolor='dodgerblue', markeredgecolor='darkblue', label=f'Q for $h_{{aq}}$ = {h_cell_slider:.2f} m')
+                        ax3.plot(-Q_dot_th2, h_cell_slider, 'o', markersize=10, markerfacecolor='tomato', markeredgecolor='darkred', label=f'Q 2nd projected on $h_{{aq}}$ = {h_cell_slider:.2f} m') 
                 else:                
-                    ax3.axvline(x=-Q_show, linestyle='--', color='lightgrey', linewidth=1)
-                    ax3.plot([-q for q in Q_plot], h_3rd, color='black', linewidth=4, label=r"$Q$-$h_{aq}$ with threshold")       
+                    ax3.plot([-q for q in Q_plot], h_3rd, color='black', linewidth=3, label=r"$Q$-$h_{aq}$ with threshold")       
                     if st.session_state.second:
                         ax3.plot([-q for q in Q_plot2], h_3rd, color='red', linewidth=2, linestyle=':', label=r"$Q(h_{aq})$ with threshold CWC2")
                     # Plot Q and Empty line for legend entry
@@ -1130,10 +1133,12 @@ def Q_h_plot():
                         ax3.plot([], [], ' ', label=f'Current $Q$ = {-Q_show:.2f} (m³/s)')
                     else:
                         ax3.plot([], [], ' ', label=f'Current $Q$ = {-Q_dot:.2f} (m³/s)')
+                        if st.session_state.second:
+                            ax3.plot([], [], ' ', label=f'Current $Q$ 2nd = {-Q_dot2:.2f} (m³/s)')
                     ax3.plot([], [], linewidth=0, label=r'$\mathit{Q\ visualization\ for\ selected\ heads:}$')                         
-                    ax3.plot(-Q_dot, h_cell_slider, 'o', markersize=10, markerfacecolor='dodgerblue', markeredgecolor='darkblue',  label=f'Q for $h_{{aq}}$ = {h_cell_slider:.2f} m')
+                    ax3.plot(-Q_dot, h_cell_slider, 'o', markersize=10, markerfacecolor='dodgerblue', markeredgecolor='darkblue',  label=f'Q projcted on $h_{{aq}}$ = {h_cell_slider:.2f} m')
                     if st.session_state.second:
-                        ax3.plot(-Q_dot2, h_cell_slider, 'o', markersize=10, markerfacecolor='dodgerblue', markeredgecolor='darkblue', label=f'Q for $h_{{aq}}$ = {h_cell_slider:.2f} m')
+                        ax3.plot(-Q_dot2, h_cell_slider, 'o', markersize=10, markerfacecolor='tomato', markeredgecolor='darkred', label=f'Q 2nd projected on $h_{{aq}}$ = {h_cell_slider:.2f} m')
                 ax3.axhline(y=h_cell_slider, linestyle='--', color='dodgerblue', linewidth=2)
                 if h_well >= h_thr:
                     ax3.axhline(y=h_well, linestyle='--', color='grey', linewidth=2)
@@ -1141,12 +1146,12 @@ def Q_h_plot():
                 if h_well >= h_thr:
                     ax3.plot(-Q_dot, h_well, 'o', markersize=10, markeredgecolor='darkblue', markerfacecolor='none', label=f'Q projected on $h_{{Well}}$ = {h_well:.2f} m')
                 else:
-                    ax3.plot(-Q_dot, h_thr, 'o', markersize=10, markeredgecolor='red', markerfacecolor='none',  label=f'Q projected on $h_{{Well}}$  = {h_thr:.2f} m')  
+                    ax3.plot(-Q_dot, h_thr, 'o', markersize=10, markeredgecolor='red', markerfacecolor='none',  label=f'Q projected on $h_{{Well}}$ = {h_thr:.2f} m')  
                 if st.session_state.second:
                     if h_well2 >= h_thr:
-                        ax3.plot(-Q_dot2, h_well2, 'o', markersize=10, markeredgecolor='darkblue', markerfacecolor='none', label='Q projected on $h_{Well} CWC2$')
+                        ax3.plot(-Q_dot2, h_well2, 'o', markersize=10, markeredgecolor='darkred', markerfacecolor='none', label=f'Q 2nd projected on $h_{{Well}}$ = {h_well2:.2f} m')
                     else:
-                        ax3.plot(-Q_dot2, h_thr, 'o', markersize=10, markeredgecolor='red', markerfacecolor='none', label=f'Q projected on $h_{{Well}}$ CWC2  \n= {h_thr:.2f} m')       
+                        ax3.plot(-Q_dot2, h_thr, 'o', markersize=10, markeredgecolor='deeppink', markerfacecolor='none', label=f'Q 2nd projected on $h_{{Well}}$ = {h_thr:.2f} m')       
             
                 # Add head annotations
                 ax3.text(-0.67, h_cell_slider+0.7, "$h_{aq}$", va='center',color='dodgerblue',  fontsize=14)
@@ -1168,8 +1173,13 @@ def Q_h_plot():
                     ax3.plot(h_3rd, [-q for q in Q_plot_mx],  color='black', linewidth=3, linestyle='--')
                     if st.session_state.second:
                         ax3.plot(h_3rd, [-q for q in Q_plot_th], color='red', linewidth=1, linestyle=':', label=r"$Q$-$h_{aq}$ with threshold CWC2")
-                    # Empty line for legend entry
-                    ax3.plot([], [], linewidth=0, label=r'$\mathit{Active\ Q\ for\ selected\ heads:}$')   
+                    # Plot Q and Empty line for legend entry
+                    ax3.plot([], [], ' ', label=f'Desired $Q$ = {-Q_show:.2f} (m³/s)')
+                    if h_well >= h_thr:
+                        ax3.plot([], [], ' ', label=f'Current $Q$ = {-Q_show:.2f} (m³/s)')
+                    else:
+                        ax3.plot([], [], ' ', label=f'Current $Q$ = {-Q_dot_th:.2f} (m³/s)')
+                    ax3.plot([], [], linewidth=0, label=r'$\mathit{Q\ visualization\ for\ selected\ heads:}$')    
                     ax3.plot(h_cell_slider, -Q_dot_th, 'o', markersize=10, markerfacecolor='dodgerblue', markeredgecolor='darkblue', label=f'Q for $h_{{aq}}$ = {h_cell_slider:.2f} m')
                     if st.session_state.second:
                         ax3.plot(h_cell_slider, -Q_dot_th2, 'o', markersize=10, markerfacecolor='dodgerblue', markeredgecolor='darkblue', label='Q for $h_{aq}$ CWC2')        
@@ -1177,12 +1187,18 @@ def Q_h_plot():
                     ax3.plot(h_3rd, [-q for q in Q_plot], color='black', linewidth=4, label=r"$Q$-$h_{aq}$ with threshold")
                     if st.session_state.second:
                         ax3.plot(h_3rd, [-q for q in Q_plot2], color='red', linewidth=2, linestyle=':', label=r"$Q(h_{aq})$ with threshold")
-                    # Empty line for legend entry
-                    ax3.plot([], [], linewidth=0, label=r'$\mathit{Active\ Q\ for\ selected\ heads:}$')   
+                    # Plot Q and Empty line for legend entry
+                    ax3.plot([], [], ' ', label=f'Desired $Q$ = {-Q_show:.2f} (m³/s)')
+                    if h_well >= h_thr:
+                        ax3.plot([], [], ' ', label=f'Current $Q$ = {-Q_show:.2f} (m³/s)')
+                    else:
+                        ax3.plot([], [], ' ', label=f'Current $Q$ = {-Q_dot:.2f} (m³/s)')
+                    ax3.plot([], [], linewidth=0, label=r'$\mathit{Q\ visualization\ for\ selected\ heads:}$')    
                     ax3.plot(h_cell_slider, -Q_dot, 'o', markersize=10, markerfacecolor='dodgerblue', markeredgecolor='darkblue', label=f'Q for $h_{{aq}}$ = {h_cell_slider:.2f} m')
                     if st.session_state.second:
                         ax3.plot(h_cell_slider, -Q_dot2, 'ro', markersize=10, label='Q for $h_{aq}$ CWC2')
                 ax3.axvline(x=h_cell_slider, linestyle='--', color='dodgerblue', linewidth=2)
+                ax3.axvline(x=h_well, linestyle='--', color='grey', linewidth=2)
                 ax3.axvline(x=h_thr, linestyle='--', color='orange', linewidth=2)
                 if h_well >= h_thr:
                     ax3.plot(h_well, -Q_dot, 'o', markersize=10, markeredgecolor='darkblue', markerfacecolor='none', label=f'Q projected on $h_{{Well}}$ = {h_well:.2f} m')
@@ -1192,11 +1208,11 @@ def Q_h_plot():
                     if h_well2 >= h_thr:
                         ax3.plot(h_well2, -Q_dot2, 'o', markersize=10, markeredgecolor='darkblue', markerfacecolor='none', label='Q projected on $h_{Well} CWC2$')
                     else:
-                        ax3.plot(h_thr, -Q_dot2, 'o', markersize=10, markeredgecolor='red', markerfacecolor='none', label=f'Q projected on $h_{{Well}}$ CWC2 \n= {h_thr:.2f} m = $h_{{thr}}$')           
-                        
+                        ax3.plot(h_thr, -Q_dot2, 'o', markersize=10, markeredgecolor='red', markerfacecolor='none', label=f'Q projected on $h_{{Well}}$ CWC2 \n= {h_thr:.2f} m = $h_{{thr}}$')
                 # Add head annotations
-                ax3.text(h_cell_slider+0.5, -0.93, "hydraulic head \nin the cell $h_{aq}$", va='center',color='dodgerblue',  fontsize=14)
-                ax3.text(h_thr-4.5, -0.93, "threshold \nhead $h_{thr}$",  va='center',color='red', fontsize=14)     
+                ax3.text(h_cell_slider+0.5, -0.75, "$h_{aq}$", va='center',color='dodgerblue',  fontsize=14)
+                ax3.text(h_well+0.5, -0.85, "$h_{well}$", va='center',color='grey',  fontsize=14)
+                ax3.text(h_thr+0.5, -0.95, "$h_{thr}$",  va='center',color='red', fontsize=14)     
                 
                 ax3.set_xlabel("Hydraulic heads $h$ [m]", fontsize=14)
                 ax3.set_ylabel("Discharge $Q$ [m³/s]", fontsize=14)
