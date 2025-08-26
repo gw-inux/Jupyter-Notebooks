@@ -1111,12 +1111,12 @@ def Q_h_plot():
                 if h_well >= h_thr:
                     ax3.plot(-Q_dot, h_well, 'o', markersize=10, markeredgecolor='darkblue', markerfacecolor='none', label=f'Q projected on $h_{{Well}}$ = {h_well:.2f} m')
                 else:
-                    ax3.plot(-Q_dot, h_thr, 'ro',markersize=10, label=f'Q for $h_{{Well}}$  = {h_thr:.2f} m  = $h_{{thr}}$')  
+                    ax3.plot(-Q_dot, h_thr, 'o', markersize=10, markeredgecolor='red', markerfacecolor='none',  label=f'Q projected on $h_{{Well}}$  = {h_thr:.2f} m\n= $h_{{thr}}$')  
                 if st.session_state.second:
                     if h_well2 >= h_thr:
                         ax3.plot(-Q_dot2, h_well2, 'o', markersize=10, markeredgecolor='darkblue', markerfacecolor='none', label='Q projected on $h_{Well} CWC2$')
                     else:
-                        ax3.plot(-Q_dot2, h_thr, 'ro',markersize=10, label=f'Q projected on $h_{{Well}}$ CWC2  = {h_thr:.2f} m  = $h_{{thr}}$')       
+                        ax3.plot(-Q_dot2, h_thr, 'o', markersize=10, markeredgecolor='red', markerfacecolor='none', label=f'Q projected on $h_{{Well}}$ CWC2  \n= {h_thr:.2f} m  = $h_{{thr}}$')       
             
                 # Add head annotations
                 ax3.text(-0.65, h_cell_slider+1.3, "hydraulic head \nin the cell $h_{aq}$", va='center',color='dodgerblue',  fontsize=14)
@@ -1153,12 +1153,12 @@ def Q_h_plot():
                 if h_well >= h_thr:
                     ax3.plot(h_well, -Q_dot, 'o', markersize=10, markeredgecolor='darkblue', markerfacecolor='none', label=f'Q projected on $h_{{Well}}$ = {h_well:.2f} m')
                 else:
-                    ax3.plot(h_thr, -Q_dot, 'ro',markersize=10, label=f'Q for $h_{{Well}}$  = {h_thr:.2f} m  = $h_{{thr}}$')
+                    ax3.plot(h_thr, -Q_dot, 'o', markersize=10, markeredgecolor='red', markerfacecolor='none', label=f'Q projected on $h_{{Well}}$  = {h_thr:.2f} m\n= $h_{{thr}}$')
                 if st.session_state.second:
                     if h_well2 >= h_thr:
                         ax3.plot(h_well2, -Q_dot2, 'o', markersize=10, markeredgecolor='darkblue', markerfacecolor='none', label='Q projected on $h_{Well} CWC2$')
                     else:
-                        ax3.plot(h_thr, -Q_dot2, 'ro',markersize=10, label=f'Q for $h_{{Well}}$ CWC2 = {h_thr:.2f} m  = $h_{{thr}}$')           
+                        ax3.plot(h_thr, -Q_dot2, 'o', markersize=10, markeredgecolor='red', markerfacecolor='none', label=f'Q projected on $h_{{Well}}$ CWC2 \n= {h_thr:.2f} m = $h_{{thr}}$')           
                         
                 # Add head annotations
                 ax3.text(h_cell_slider+0.5, -0.93, "hydraulic head \nin the cell $h_{aq}$", va='center',color='dodgerblue',  fontsize=14)
