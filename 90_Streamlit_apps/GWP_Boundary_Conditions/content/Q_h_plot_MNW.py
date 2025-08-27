@@ -287,14 +287,16 @@ with st.expander("Show me more about **the Theory**"):
 st.subheader('Interactive plots to understand the general characteristics of the discharge-head relationships in MNW package', divider='rainbow')
 
 st.markdown("""
-Three interactive plots are provided to allow you to investigate different aspects of the Multi-Node-Well (MNW) boundary in MODFLOW.
+Four interactive plots are provided to allow you to investigate different aspects of the Multi-Node-Well (MNW) boundary in MODFLOW.
 
-:blue[**PLOT 1 - Hydraulic heads in the MNW boundary**]:
+:blue[**🔵 PLOT 1 - Hydraulic heads in the MNW boundary**]:
 Illustrates the additional drawdown in the well due to the lower aquifer-to-well conductance CWC. Two parameter sets for the CWC can be used.
 
-:green[**PLOT 2 - Q-h behavior of the MNW boundary**]: An interactive plot of the Q-h relationship for the specified aquifer discharge ($Q$-$h_{aq}$) and the well discharge ($Q$-$h_{well}$) which may be reduced depending on physical conditions.
+:green[**🟢 PLOT 2 - Q-h behavior of the MNW boundary**]: An interactive plot of the Q-h relationship for the specified aquifer discharge ($Q$-$h_{aq}$) and the well discharge ($Q$-$h_{well}$) which may be reduced depending on physical conditions.
 
-:red[**PLOT 3 - Q-h behavior for the aquifer head with thresholds**]: Illustrates the effect of thresholds on the simulated withdrawal rate.
+:red[**🔴 PLOT 3 - Q-h behavior for the aquifer head under consideration of an withdrawal well with thresholds**]: Illustrates the effect of thresholds on the simulated withdrawal rate.
+
+:orange[**🟡 PLOT 4 - Q-h relationship for an well operated by an head-target.**]: Illustrates the situation where MNW computes the discharge based on a given head difference, e.g., to account for artesian free flowing wells.
 
 _For all plots, the application includes toggles to:_
 - turn the plots by 90 degrees,
