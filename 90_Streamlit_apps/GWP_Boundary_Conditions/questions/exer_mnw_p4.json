@@ -1,0 +1,68 @@
+[
+  {
+    "question": "A head-target (e.g., artesian flowing well) MNW setup computes discharge based primarily on which head difference?",
+    "options": {
+      "A) $h_{well}$ - $h_{aq}$": false,
+	  "B) $h_{lim}$ - $h_{well}$": false,
+      "C) $h_{lim}$ - $h_{aq}$": true,
+      "D) $h_{well}$ - $h_{aq}$": true
+    },
+    "success": "✅ Correct. Free flow is governed by the head difference Δh = ($h_{lim}$ - $h_{aq}$) respectively Δh = ($h_{well}$ - $h_{aq}$) assuming that the well head equals the limiting head.",
+    "error": "❌ Some of your choices are not correct. Recall that the controlling head is the aquifer head relative to the limiting head, not the other way around."
+  },
+  {
+    "question": "When does the computed discharge Q become zero for a flowing-well (head-target) configuration?",
+    "options": {
+      "A) When $h_{aq}$ < $h_{lim}$": true,
+      "B) When $h_{aq}$ = $h_{lim}$": true,
+      "C) When $h_{aq}$ > $h_{lim}$": false,
+      "D) Only when Qmax is reached": false
+    },
+    "success": "✅ Correct. If $h_{aq}$ ≤ $h_{lim}$, Δh = 0 and MNW returns Q = 0 regardless of the desired rate.",
+    "error": "❌ Some of your choices are not correct. Q is nonzero only when the aquifer head equals or exceeds the limiting head."
+  },
+  {
+    "question": "How does increasing the limiting head $h_{lim}$ affect the Q–h curve for a fixed CWC parameter set?",
+    "options": {
+      "A) Shifts the onset of flow to higher $h_{aq}$ values.": true,
+      "B) Increases Q at the same $h_{aq}$ because Δh is larger.": false,
+      "C) Leaves the shape of the curve unchanged.": true,
+      "D) Decreases Q at the same $h_{aq}$ because Δh is smaller.": true
+    },
+    "success": "✅ Correct. A higher $h_{lim}$ reduces Δh for a given $h_{aq}$, reducing the flow. Besides, the shape of the curve remains the same.",
+    "error": "❌ Some of your choices are not correct. Raising $h_{lim}$ reduces, not increases, Δh at fixed $h_{aq}$."
+  },
+  {
+    "question": "Which changes in CWC parameters tend to make the MNW response more linear in Δh (i.e., closer to proportional Q–Δh)?",
+    "options": {
+      "A) Larger A and B with C ≈ 0 and P → 1": true,
+      "B) Larger C with P > 1 (turbulence)": false,
+      "C) Smaller A and B with C ≈ 0 and P → 4": true,
+      "D) Smaller A and B with C ≈ 0.5 and P → 3": false
+    },
+    "success": "✅ Correct. Dominant linear terms (aquifer/skin; A & B term) with C ≈ 0 (independent of P) yield a near-linear Q–Δh.",
+    "error": "❌ Some of your choices are not correct. Nonlinear (turbulent) losses occur with C > 0 and are increased with larger values of P > 1."
+  },
+  {
+    "question": "In a head-target scenario with a very large desired withdrawal, which factor typically limits the feasible Q returned by MNW?",
+    "options": {
+      "A) The head surplus above $h_{lim}$ via the CWC relation": true,
+      "B) The model cell thickness only": false,
+      "C) The specified head at a distant boundary": false,
+      "D) The desired withdrawal": false
+    },
+    "success": "✅ Correct. With head targeting, the feasible Q is governed by Δh and the CWC relation, not by the requested rate.",
+    "error": "❌ Some of your choices are not correct. The desired rate is only a request; MNW computes what is feasible given Δh and losses."
+  },
+  {
+    "question": "How does the existence of nonlinear losses influence the discharge–drawdown curve? (Mark ALL correct answers)",
+    "options": {
+      "A) Increased nonlinear losses causes faster increase in drawdown at higher Q.": true,
+      "B) Nonlinear losses has no effect on limiting head activation.": false,
+      "C) Increase nonlinear losses shifts the Q–h curve to reach $h_{lim}$ earlier.": true,
+      "D) Smaller C and P parameters in CWC make the system more nonlinear.": false
+    },
+    "success": "✅ Correct. Nonlinear resistance, parameterized by _C_ and _P_ in _CWC_ affects when the limiting head is reached.",
+    "error": "❌ Some of your choices are not correct. Nonlinear losses are central to curve shape and influences when the threshold-limiting Q is reached."
+  }
+]
