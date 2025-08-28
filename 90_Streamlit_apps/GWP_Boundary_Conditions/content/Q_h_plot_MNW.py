@@ -583,10 +583,10 @@ def Q_h_plot():
                 
     #Define aquifer head range / Range of head differences Δh
     #delta_h_range = np.linspace(0.01, 10, 200)
-    delta_h_range = np.linspace(-10, 10, 200)
+    delta_h_range = np.linspace(-10, 20, 200)
     Q_values = []
     if st.session_state.second:
-        delta_h_range2 = np.linspace(-10, 10, 200)
+        delta_h_range2 = np.linspace(-10, 20, 200)
         Q_values2 = []
     
     # Solve for Q_n for each Δh
@@ -1417,10 +1417,6 @@ def Q_h_plot():
                         success=quest_plot3[i].get("success", "✅ Correct."),
                         error=quest_plot3[i].get("error", "❌ Not quite.")
                     )
-
-
-
-
 # ------------------   
     # Forth PLOT HERE - Q vs h_cell (head-target)
     
