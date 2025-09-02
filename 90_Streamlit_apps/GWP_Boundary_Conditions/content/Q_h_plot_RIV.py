@@ -137,6 +137,30 @@ with columns0[1]:
     
     This **initial plot** is designed to bridge the gap between traditional $Q$-$h$ plots in user manuals and the :rainbow[**interactive plots**] provided further down in this app. The interactive plots allow you to explore the $Q$-$h$ relationships more intuitively, supported by interactive controls and guided instructions.
     """)
+    
+st.markdown("""
+####  💻 How RIV may be Applied in Field-Scale Groundwater Modeling
+
+The RIV package is particularly relevant in applied groundwater modeling at the field scale, especially in settings with a lot of surface water/groundwater exchange.
+""")
+left_co, cent_co, last_co = st.columns((10,40,10))
+with cent_co:
+    st.image('90_Streamlit_apps/GWP_Boundary_Conditions/assets/images/RIV_nearWell.png', caption="Conceptual illustration of the river/groundwater interaction.")
+with st.expander("Tell me more about **the :violet[application of RIV in Field-Scale Groundwater Modeling]**"):
+
+
+    st.markdown("""
+    In field-scale groundwater models the RIV boundary may be used to define river systems throughout the model domain by adding a RIV boundary to many cells. A simulation of coupling a MODFLOW model with a river system to a MODSIM river operations model in a hypothetical basin demonstrated the impact of spatio-temporal groundwater-surface-water exchanges on river operations.
+    """)
+    
+    left_co, cent_co, last_co = st.columns((10,40,10))
+    with cent_co:
+        st.image('90_Streamlit_apps/GWP_Boundary_Conditions/assets/images/river_field_application.jpg', caption="Example illustration of the river representation in a field-scale model.")
+        
+        
+    st.markdown("""    
+    Morway, E. D., Niswonger, R. G., & Triana, E. (2016). Toward improved simulation of river operations through integration with a hydrologic model. Environmental Modelling & Software, 82, 255-274. https://doi.org/10.1016/j.envsoft.2016.04.018
+    """)
 
 st.markdown("""
 #### 🎯 Learning Objectives
@@ -208,7 +232,12 @@ with st.expander("Show me more about **the Theory**"):
     where:
     - $R_{BOT}$ is the elevation of the river bed bottom [L].
     """)
-    st.write(':blue[**It is important to compare the calculated flow between the river and aquifer to the flow in the segment of river being modeled.**] :green[The amount of water lost or gained needs to be concistent with observed river flow over the length of the segment such that it is reasonable to assume a constant river head.]')
+    
+    left_co, cent_co, last_co = st.columns((10,40,10))
+    with cent_co:
+        st.image('90_Streamlit_apps/GWP_Boundary_Conditions/assets/images/RIV_nearWell.png', caption="Conceptual illustration of the river/groundwater interaction.")
+    
+    st.write(':blue[**It is important to compare the calculated flow between the river and aquifer to the flow in the segment of river being modeled.**] :green[The amount of water lost or gained needs to be consistent with observed river flow over the length of the segment such that it is reasonable to assume a constant river head.]')
     
     
     st.write(':blue[**If there is a significant gain or loss of flow, the river head may rise or fall, but the MODFLOW RIV package will continue to use the same river head.**] :green[If the modeler wants to represent feedback between the amount of water lost or gained and the elevation of the river head, the STR  (stream package) can be used. The concepts for flow between the river and the aquifer do not change from what is presented here.]')
@@ -231,7 +260,7 @@ with st.expander('**Click here** to read about the :green[**heads used**] in the
     """)
     left_co1, cent_co1, last_co1 = st.columns((10,80,10))
     with cent_co1:
-        st.image('90_Streamlit_apps/GWP_Boundary_Conditions/assets/images/RIV_CONCEPT_2.png', caption="Concept of the River boundary (modified from McDonald and Harbaugh, 1988; https://pubs.usgs.gov/twri/twri6a1/pdf/twri_6-A1_p.pdf)")
+        st.image('90_Streamlit_apps/GWP_Boundary_Conditions/assets/images/RIV_CONCEPT_2_v2.png', caption="Concept of the River boundary (modified from McDonald and Harbaugh, 1988; https://pubs.usgs.gov/twri/twri6a1/pdf/twri_6-A1_p.pdf)")
     st.markdown("""
     Aquifer head elevation is calculated by MODFLOW in response to all the model inputs (labeled Head in Cell in this image). It is assumed the aquifer head is uniform throughout the cell and thus occurs at the elevation of the river bottom.
 
@@ -284,7 +313,7 @@ with st.expander('**Click here** to read how flow is calculated when the :green[
     st.markdown("""
     MODFLOW assumes the river bed permeability is substantially lower than the aquifer permeability, so the river bed remains saturated when the aquifer head is below the river bottom.
 
-    Thus, when the aqufier head is lower than the river bottom, the pressure head at the bottom of the lower permeability material is defined as zero (ignoring matric tension) so, the hydraulic head is equal to the elevation of the river bottom. 
+    Thus, when the groundwater head is lower than the river bottom, the pressure head at the bottom of the lower permeability material is defined as zero (ignoring matric tension) so, the hydraulic head is equal to the elevation of the river bottom. 
 
     """)
     left_co3, cent_co3, last_co3 = st.columns((10,80,10))
@@ -914,11 +943,13 @@ with st.expander('**Show the :rainbow[**EXERCISE**] assessment** - to self-check
 
 st.subheader('✅ Conclusion', divider = 'violet')
 st.markdown("""
-The River (RIV) boundary condition is a powerful tool in MODFLOW for simulating dynamic interactions between surface water and groundwater. Unlike simpler boundary types, the RIV condition allows for **bidirectional flow** and introduces a **cutoff mechanism** when the aquifer head drops below the riverbed. In this case, RIV can capture the realistic behavior that occurs when a partially saturated zone separates the water table from the river bottom.
+The River (RIV) boundary condition is a powerful tool in MODFLOW for simulating dynamic interactions between surface water and groundwater. Unlike simpler boundary types, the RIV condition allows for **bidirectional flow** and introduces a **cutoff mechanism** when the aquifer head drops below the riverbed. In this case, RIV can capture the realistic behavior that occurs when a partially saturated zone separates the water table from the river bottom. A RIV boundary can be defined in any groundwater-flow-model cell.
 
 By adjusting parameters like **river stage**, **bed elevation**, and **conductance**, modelers can explore a wide range of hydrologic conditions, from **gaining** to **losing streams**, or even **no-flow scenarios**. Understanding these behaviors through Q–h plots supports stronger conceptual models and more reliable groundwater–surface water integration.
 
-You're now ready to test your understanding in the final assessment.
+MODFLOW boundary packages with similarities to the RIV boundary allow the exchange of water between the groundwater and the boundary to result in a change of both the boundary head and the volume of water stored in the boundary feature. Some of the related boundary conditions also allow for outflow from the boundary to be returned to the groundwater system in other locations within the model. These river-related boundary conditions include the STR, stream; SFR, stream-flow routing; DAFLOW, delayed flow; LAK, lake; and RES, reservoir. 
+
+After studying this section about river boundaries, you may want to evaluate your knowledge using the final assessment.
 """)
 
 with st.expander('**Show the final assessment** - to self-check your understanding'):

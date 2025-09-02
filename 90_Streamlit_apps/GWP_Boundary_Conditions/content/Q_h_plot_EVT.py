@@ -116,9 +116,9 @@ The EVT package is particularly relevant in applied groundwater modeling at the 
 left_co, cent_co, last_co = st.columns((10,40,10))
 with cent_co:
     st.image('90_Streamlit_apps/GWP_Boundary_Conditions/assets/images/EVT_cartoon2.png', caption="Illustration of the concept for evapotranspiration from groundwater in MODFLOW.")
-with st.expander("Show me more about **the :blue[application of EVT in Field-Scale Groundwater Modeling]**"):
+with st.expander("Tell me more about **the :blue[application of EVT in Field-Scale Groundwater Modeling]**"):
     st.markdown("""
-    In field-scale groundwater models the EVT boundary may be used to define an elevation for the ET surface at every node of the model. Each is accompanied by a value for extinction depth and a maximum ET rate that typically vary from cell to cell depending on the local conditions (e.g., type of soil, vegetation root depth). Often the ET surface elevation is the ground surface elevation or slightly below it such that the maximum evapotranspiration occurs when the water table is at or just below the surface. The water loss may reflect uptake by vegetation or direct evaporation from the water table. The complete hydrologic budget will include evaptranspiration of soil moisture, whereas the EVT boundary considers only the evapotranspiration from the saturated portion of the subsurface.
+    In field-scale groundwater models the EVT boundary may be used to define an elevation for the ET surface at every node of the model. Each is accompanied by a value for extinction depth and a maximum ET rate that typically vary from cell to cell depending on the local conditions (e.g., type of soil, vegetation root depth). Often the ET surface elevation is the ground surface elevation or slightly below it such that the maximum evapotranspiration occurs when the water table is at or just below the surface. The water loss may reflect uptake by vegetation or direct evaporation from the water table. The complete hydrologic budget will include evapotranspiration of soil moisture, whereas the EVT boundary considers only the evapotranspiration from the saturated portion of the subsurface.
     
     As the groundwater model simulation proceeds through time, water levels in each cell rise and/or fall in response to stresses in the system and water is discharged as evapotranspiration from each model node based on the groundwater head at the node. There are connections between the rate of evapotranspiration at each node and other stresses in the model. As evapotranspiration occurs, water levels decline and the rate of evapotranspiration decreases. When a drought occurs, there is less recharge from precipitation and surface water seepage, so water levels decline and the volume previously lost to evapotranspiration is reduced. If irrigation pumping lowers groundwater heads, then there is less evapotranspiration.
     """)
@@ -552,11 +552,15 @@ with st.expander('**Show the :rainbow[**EXERCISE**] assessment** - to self-check
 
 st.subheader('✅ Conclusion', divider = 'blue')
 st.markdown("""
-The Evapotranspiration (EVT) boundary in MODFLOW simulates the loss of shallow groundwater to the atmosphere through vegetation uptake and surface evaporation. It simulates a **head-dependent** process that operates when the water table is within a defined range between the **ET surface** and **extinction depth**.
+The Evapotranspiration (EVT) boundary in MODFLOW simulates the loss of shallow groundwater to the atmosphere through vegetation uptake and surface evaporation. It simulates a **head-dependent** process that operates when the water table is within a defined range between the **ET surface** and **extinction depth**. The EVT boundary is defined over an area of a groundwater-flow model that may include only one or many cells. In a multilayer model, depending on the input specifications, ET may be drawn from deeper layers if the groundwater head falls below the bottom of overlying layers.
 
 Q–h plots help us visualize how ET varies with groundwater depth — from maximum evapotranspiration to no evapotranspiration loss. This boundary type is especially relevant in arid or irrigated regions where shallow groundwater contributes to ET.
 
 By understanding ET behavior, we can make groundwater models more representative of the field setting and better identify where water-table dynamics can critically affect water balance and sustainability.
+
+MODFLOW boundary condition packages related to the EVT boundary package provide for more elaborate representation of the evapotranspiration process. These include the ETS, evapotranspiration segments package, that allows the slope of the function defining the rate of evapotranspiration with depth to vary; and the RIP, riparian evapotranspiration package, that allows definition of the spatial distribution of plant type and associated evapotranspiration behavior including the possible decrease in the evapotranspiration rate when groundwater head rises in cases where a high water table is detrimental to plants.
+
+After studying this section about evapotranspiration boundaries, you may want to evaluate your knowledge using the final assessment.
 """)
 
 

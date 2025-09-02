@@ -21,7 +21,7 @@ st.header('A Multipage Application Elucidating Boundary Conditions in Groundwate
 st.subheader('Overview')
 st.markdown(
     """
-Groundwater models are only as accurate as their boundary conditions. This interactive module is designed to deepen your understanding of how different types of boundary conditions — defined head, defined flow, and head-dependent flow — influence groundwater flow systems.
+Groundwater models are only as good as the accuracy of both the system representation (including boundary conditions) and the values of observations used to calibrate the model. This interactive module is designed to deepen your understanding of the basic ways in which different types of boundary conditions — defined head, defined flow, and head-dependent flow — influence the magnitude and direction of groundwater flow when used in solving the partial differential equation for groundwater flow.
 """)
 
 left_co, cent_co, last_co = st.columns((5,80,5))

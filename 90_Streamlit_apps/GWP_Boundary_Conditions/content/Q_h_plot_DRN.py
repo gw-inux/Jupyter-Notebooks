@@ -132,6 +132,51 @@ with columns0[1]:
 
          This **initial plot** is designed to bridge the gap between traditional $Q$-$h$ plots on paper and the :rainbow[**interactive plots**] provided further down in this app, that allow you to explore the $Q$-$h$ relationships more intuitively, supported by interactive controls and guided instructions.
     """)
+    
+
+st.markdown("""
+####  💻 How DRN may be Applied in Field-Scale Groundwater Modeling
+
+The DRN package is particularly relevant in applied groundwater modeling at the field scale, especially in agricultural, construction, and mine settings where drains are an important part of the system.
+""")
+with st.expander("Tell me more about **the :green[application of DRN in Field-Scale Groundwater Modeling]**"):
+	
+    st.markdown("""
+    In field-scale groundwater models a DRN may be associated with one or many cells, and these cells can be anywhere within the three-dimensional model.
+    """)
+    
+    st.markdown("""
+    A DRN boundary might be used to allow springs to form at the ground surface. When the water level declines, spring flow will decrease, eventually ceasing when the water level falls below the surface.
+    """)
+    left_co, cent_co, last_co = st.columns((10,40,10))
+    with cent_co:
+        st.image('90_Streamlit_apps/GWP_Boundary_Conditions/assets/images/DRNspring1.png', caption="Illustration of water table rising above the ground surface because there is no mechanism to allow groundwater outflow.")
+    left_co, cent_co, last_co = st.columns((10,40,10))
+    with cent_co:
+        st.image('90_Streamlit_apps/GWP_Boundary_Conditions/assets/images/DRNspring2.png', caption="Illustration of springs developing at the ground surface when the water table rises.")
+    
+    st.markdown("""
+    A DRN boundary might be used to represent a swamp that might be dewatered. For example, a groundwater model might have a swamp that is viewed as a permanent feature of the system and represented by a general head boundary to allow flow into and out of the system.
+    """)
+    left_co, cent_co, last_co = st.columns((10,40,10))
+    with cent_co:
+        st.image('90_Streamlit_apps/GWP_Boundary_Conditions/assets/images/DRNapplied1.png', caption="Illustration of a GHB boundary used to represent a swamp allowing exchange of water between the swamp and groundwater system.")
+    
+    st.markdown("""
+     At a later time, the model is used to simulate inflow to a new open pit mine. If the swamp continues to be represented by a GHB, it will not limit inflow and the model will predict large out flow to the mine pit that will need to be disposed of at the mine.  
+    """)
+    left_co, cent_co, last_co = st.columns((10,40,10))
+    with cent_co:
+        st.image('90_Streamlit_apps/GWP_Boundary_Conditions/assets/images/DRNapplied2.png', caption="Illustration of a GHB boundary resulting in overestimation of mine inflow.")
+
+    st.markdown("""
+    However, if a drain is used to simulate the swamp, then once pumping at the mine causes the groundwater level to decline below the  bottom of the swamp, the swamp will dry up and the simulated flow at the mine will be less as approrpiate for the system.
+    """)
+    left_co, cent_co, last_co = st.columns((10,40,10))
+    with cent_co:
+        st.image('90_Streamlit_apps/GWP_Boundary_Conditions/assets/images/DRNapplied3.png', caption="Illustration of a DRN representing a swamp such that it goes dry when groundwater levels decline.")
+   
+    
 #TODO
 st.markdown("""
 ####  🎯 Learning Objectives
@@ -451,10 +496,10 @@ def Q_h_plot():
         3. **Realistic Scenario: Excavating a building foundation**
         - Fix the aquifer head at 10.3 m
         - In 1-m steps, vary drain elevation from 9.3 m to 6.3 m, and make note of the inflow rate
-        - Consider this as a stylized representation of increasing inflow that needs to be collected and routed away from a construction site. A simular process might be used at a larger scale for an open-pit mine.
+        - Consider this as a stylized representation of increasing inflow that needs to be collected and routed away from a construction site. A similar process might be used at a larger scale for an open-pit mine.
     
         💡 **Explore:**
-        - How does inflow change as the excavation deepends?
+        - How does inflow change as the excavation deepens?
         - What would the construction company have to do to address the inflow?
         - What would reduce the inflow?
         - How might conductance be decreased on excavation walls?
@@ -495,15 +540,15 @@ with st.expander('**Show the :rainbow[**EXERCISE**] assessment** - to self-check
 
 st.subheader('✅ Conclusion', divider = 'green')
 st.markdown("""
-The Drain (DRN) boundary condition simulates discharge to external drains, ditches, trenches, topographic depressions, mines and other features where an aquifer encounters an opening to atmospherid pressure conditions. Flow _only_ occurs when groundwater levels are at or aobve the opp[ening elevation such that flow is activated. This boundary introduces a **physical cutoff** that prevents outflow based on the **drain elevation**, making it conceptually different from other head-dependent boundaries.
+The Drain (DRN) boundary condition simulates discharge to external drains, ditches, trenches, topographic depressions, mines, and other features where an aquifer encounters an opening to atmospheric pressure conditions. Flow _only_ occurs when groundwater levels are at or above the opening elevation such that flow is activated. This boundary introduces a **physical cutoff** that prevents outflow based on the **drain elevation**, making it conceptually different from other head-dependent boundaries. A DRN boundary can be defined in any groundwater-flow-model cell, it need not be defined in the surface layer, for example it might be defined deep inside a model to represent a tunnel or and underground mine. 
 
 By exploring Q–h plots, you’ve seen how the discharge remains zero until the aquifer head exceeds the drain elevation, after which it increases linearly based on the conductance. This behavior supports the simulation of seepage faces and artificial drainage systems without over-extracting water from the model.
 
-With this understanding, you’re ready to evaluate your knowledge in the final assessment.
-
 By adjusting parameters like drain **elevation** and **conductance**, modelers can explore how the discharge remains zero until the aquifer head exceeds the drain elevation, after which it increases linearly based on the conductance. This behavior supports the simulation of seepage faces, artificial drainage systems, and excavations without over-extracting water from the model. Understanding these behaviors through Q–h plots supports stronger conceptual models and more reliable groundwater–surface water integration.
 
-Now you can assess your understanding of DRN behavior in the final quiz.
+A related boundary package is the DRT boundary package in which water is removed from the groundwater system just as it is in the DRN package, and some of that water can  be returned to the groundwater system at specified locations. It is akin to having injection wells connected to the drain. The total rate of injection is limited by the rate of outflow from the groundwater system to the drain.
+
+After studying this section about drain boundaries, you may want to evaluate your knowledge using the final assessment.
 """)
 
 

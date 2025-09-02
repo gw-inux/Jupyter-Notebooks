@@ -117,7 +117,7 @@ with columns0[0]:
     - define **limiting water levels** below which withdrawal from the well stops, and
     - simulate wells that **automatically shut off** or restart depending on drawdown conditions.
     
-    This section **explores only the $Q$-$h$ relationship for an MWN well in one model cell for a withdrawal well**. It does not explore wells connected to multiple aquifer cells. The interactive plots allow **exploration of how withdrawal rate, aquifer head, well-threshold head, and connectivity between the aquifer and well (:rainbow[_CWC_]) interact to determine drawdown within the well and well discharge into or out of the aquifer**. :rainbow[_CWC_] is an abbrevation for cell-to-well conductance, which we call aquifer-to-well conductance in this module.
+    This section **explores the $Q$-$h$ relationship only for an MWN well in one model cell for a withdrawal well**. It does not explore wells connected to multiple aquifer cells. The interactive plots allow **exploration of how withdrawal rate, aquifer head, well-threshold head, and connectivity between the aquifer and well (:rainbow[_CWC_]) interact to determine drawdown within the well and well discharge into or out of the aquifer**. :rainbow[_CWC_] is an abbrevation for cell-to-well conductance, which we call aquifer-to-well conductance in this module.
     
     In contrast, the **WEL boundary in MODFLOW** is a Neumann-type boundary condition with specified flow. For this initial plot, the :blue[**WEL toggle**] allows you to view the equivalent $Q$-$h$ plot for a WEL boundary where $Q$ is defined by the modeler and is independent of head $h$ in the well and aquifer.
     """)
@@ -183,30 +183,30 @@ with columns0[1]:
     st.pyplot(fig)
     
     st.markdown("""
-    **Initial Plot** for exploring how the value of :rainbow[**MNW aquifer-to-well conductance CWC**] controls the relationship between **head in the well $h_{well}$** and :blue[**flow rate $Q$**], for a constant :blue[**aquifer head $h_{aq}$ of $10$ m**] as shown by the **solid black line**. 
+    **Initial Plot** for exploring how the value of :rainbow[**MNW aquifer-to-well conductance CWC**] controls the relationship between **head in the well $h_{well}$** and :blue[**flow rate $Q$**] as shown by the **solid black line**, for a constant :blue[**aquifer head $h_{aq}$ of $10$ m**]. 
     
     When **$h_{well}$** is above **:blue[$h_{aq}$]** then **$Q$** is positive and **water flows into** the well. When **$h_{well}$** is below **:blue[$h_{aq}$]** then **$Q$ is negative** and water flows **out of** the well. The slope of the line is defined by **:rainbow[aquifer-to-well conductance _CWC_]**. Later in this section (using Plot 3), we show how **threshold values are specified to limit the active range of the $Q$-$h$ function** in a specific well.
               
-    The dotted lines indicate head in the :blue[ aquifer (blue)] and the **well (black)**, respectively. For this plot, :blue[**$h_{aq}$ is constant at 10 m (blue dotted line)**] and if $h_{well}$ < 0 m, the well is :red[**dry**]. The **intersection of the solid black and blue lines** indicates the head in the well for the specified flow rate **:blue[$Q$]** given the **:rainbow[aquifer-to-well conductance _CWC_]**.
+    The dotted lines indicate head in the :blue[ aquifer (blue)] and head in the **well (black)**, respectively. For this plot, :blue[**$h_{aq}$ is constant at 10 m (blue dotted line)**] and if $h_{well}$ < 0 m, the well is :red[**dry**]. The **intersection of the solid black and blue lines** indicates the head in the well for the specified flow rate **:blue[$Q$]** given the **:rainbow[aquifer-to-well conductance _CWC_]**.
     
-    This **initial plot** is designed to bridge the gap between traditional Q-h plots on paper and the :rainbow[**interactive plots**] provided further down in the app. These allow you to explore the _Q_-_h_ relationships more intuitively, supported by interactive controls and guided instructions.
+    This **initial plot** is designed to bridge the gap between traditional Q-h plots on paper and the :rainbow[**interactive plots**] provided further down in this app. These plots you to explore the _Q_-_h_ relationships more intuitively, supported by interactive controls and guided instructions.
     """)
 
 st.markdown("""
 ####  💻 How the head-dependent flow feature of MNW may be Applied in Field-Scale Groundwater Modeling
 
-The MNW boundary represents a withdrawal well with a specified desired discharge rate, accounts for well losses based on connectivity of the well and aquifer to calculate head within the well, and, if needed, reduces the well discharge. In contrast, the WEL boundary applies the specified desired discharge without adjustment if the well is stressed to the point that it cannot supply the desired discharge. MNW also accomodates modeling of wells that extend through multiple model cells and calculates flow to/from each layer, however this module only addresses the head-dependent flow feature of MNW.""")
+The MNW boundary represents a withdrawal well with a specified desired discharge rate and accounts for well losses based on connectivity between the well and aquifer in order to calculate head within the well, and, if needed, reduces the well discharge. In contrast, the WEL boundary applies the specified desired discharge without adjustment if the well is stressed to the point that it cannot supply the desired discharge. MNW also accomodates modeling of wells that extend through multiple model cells and calculates flow to/from each layer, however this module only addresses the head-dependent flow feature of MNW.""")
 left_co, cent_co, last_co = st.columns((10,40,10))
 with cent_co:
-    st.image('90_Streamlit_apps/GWP_Boundary_Conditions/assets/images/MNWsketch2.png', caption="Illustration of the head losses that can lead to discharge reduction using MNW in MODFLOW. (modified from Shapiro, A.. D. Oki, and E. Greene (1998). Estimating Formation Properties from Early-Time Recovery in Wells Subject to Turbulent Head Losses. Journal of Hydrology. 208. p. 223-236. https://doi.org/10.1016/S0022-1694(98)00170-X.)")
+    st.image('90_Streamlit_apps/GWP_Boundary_Conditions/assets/images/MNWsketch2.png', caption="Illustration of the head losses that can lead to discharge reduction using MNW in MODFLOW. (modified from Shapiro, A. D. Oki, and E. Greene (1998). Estimating Formation Properties from Early-Time Recovery in Wells Subject to Turbulent Head Losses. Journal of Hydrology. 208. p. 223-236. https://doi.org/10.1016/S0022-1694(98)00170-X.)")
 
-with st.expander("Show me more about **the :rainbow[application of MNW in Field-Scale Groundwater Modeling]**"):
+with st.expander("Tell me more about **the :rainbow[application of MNW in Field-Scale Groundwater Modeling]**"):
     st.markdown("""
     For MNW wells, parameter values can be specified that limit injection or discharge depending on the head in the well. MNW can account for head losses within the well, both linear (due to flow through the aquifer and the well skin) and nonlinear (due to turbulence of flow converging on the well, moving through the well wall, and flowing through the tangle of pipes and wires within the wellbore). If connectivity between the well and aquifer is high, drawdown in the well is what would be expected in order to drive flow through the aquifer to the well. 
     
     As the connectivity decreases in an aging well (i.e., lower conductance due to wellbore wall damage and aging components within the well) the head in the well will reflect additional drawdown as required to drive the water through the well skin and along the wellbore.
     
-    As the water level in the well declines, the pump's ability to discharge water may be affected because the lower head above the pump in the well decreases the pump efficiency, or the water level drops to the level of the pump intake. Accordingly, the flow rate is reduced below the specified flow rate and ultimately may become zero because the water level is below the pump intake or  minimum allowed elevation. The MNW package makes the appropriate adjustments to the flow rate and keeps track of the flow rate reductions through out the model for all the MNW wells.
+    As the water level in the well declines, the pump's ability to discharge water may be affected because the lower head above the pump in the well decreases the pump efficiency, or the water level drops to the level of the pump intake. Accordingly, the flow rate is reduced below the specified flow rate due to reduce well performance at the lower water level. Ultimately the discharge may be set to zero because the water level is below either the pump intake or the minimum allowed elevation. In a physical setting, the well manager would install switches triggered by water level to prevent damage to the pump. The MNW package makes the appropriate adjustments to the flow rate and keeps track of the flow rate reductions through out the model for all the MNW wells.
     
     As aquifer heads decline in response to other stresses with in the model, the MNW thresholds are met at lower flow rates, resulting in more reduction of flow to wells than in healthier aquifers.
     """)
@@ -214,11 +214,11 @@ with st.expander("Show me more about **the :rainbow[application of MNW in Field-
 #TODO
 st.markdown("""
 ####  🎯 Learning Objectives
-This section is designed with the intent that, by studying it, you will be able to do the following:
+This section is designed with the intent that, by studying it, you will be able to do the following.
 - Understand the conceptual and practical differences between Multi-Node Wells (MNW) and traditional Well (WEL) boundaries in MODFLOW.
 - Evaluate the influence of well efficiency, skin effects, and conductance on MNW flow behavior.
 - Interpret Q–h relationships for MNWs and how they reflect physical and operational limits of well systems.
-- Describe how head-dependent flow and constraints such as pump limitations and cell drawdowns are represented in the MNW package.
+- Describe how head-dependent flow and constraints such as pump limitations and lower water level in the aquifer next to the well are represented in the MNW package.
 """)
 
 with st.expander('**Show the initial assessment** - to assess your existing knowledge'):
@@ -255,36 +255,36 @@ st.subheader('🧪 Theory and Background', divider="rainbow")
 st.markdown("""
 This app calculates the flow between a Multi-Node-Well (MNW) and the aquifer depending on the system parameters describing the flow near, into, and within the well.
 """)
-with st.expander("Show me more about **the Theory**"):
+with st.expander("Tell me more about **the Theory**"):
     st.markdown("""
-    In general, from the groundwater system into a well is described with a aquifer-to-well conductance:
+    In general, flow from the groundwater system into a multi-node well is described with an aquifer-to-well conductance:
     """)
     st.latex(r'''Q = CWC (h_{well} - h_{aq})''')
     
     st.markdown("""
     where:
-    - $Q$ is the flow between the aquifer and well, taken as negative if it is directed out of the aquifer [L³/T]
+    - $Q$ is the flow between the aquifer and well, taken as negative if it is directed out of the aquifer [L³/T],
     - $h_{well}$ is the head in the well (L),
     - $CWC$ is the aquifer-to-well conductance [L²/T], and
-    - $h_{aq}$ is the aquifer head [L]. _This head depends on the values of parameters and stresses (e.g., pumping, recharge) throughout the model. It can vary with time and reach a different steady state depending on all the model inputs._
+    - $h_{aq}$ is the aquifer head [L] in the cell containing the well. _This head depends on the values of parameters and stresses (e.g., pumping, recharge) throughout the model. It can vary with time and have different values the well depending on all the model inputs._
     
-    The CWC is composed of three terms, describing (1) flow to the well, (2) the skin effect that influences ease of flow through the well wall, and (3) the effect of turbulence within and in the vicinity of the well. Accordingly, the aquifer-to-well conductance $CWC$ is defined as:
+    The CWC is composed of three terms, describing (1) flow to the well, (2) the skin effect that influences ease of flow through the well wall, and (3) the effect of turbulence in the vicinity of, and within, the well. Accordingly, the aquifer-to-well conductance $CWC$ is defined as:
     """)
     
     st.latex(r'''CWC = [ A + B + C Q^{(P-1)}]^{-1}''')
     
     st.markdown("""
     where:
-    - $A$ = Linear aquifer-loss coefficient that represents head loss due to flow through the aquifer to the well. In a numerical model the head in the aquifer is the average head in the model cell that contains the well so the well head is lower than the aquifer cell head even when there is no additional resistance at the well wall or in the well. Loss due to A is calculated using the Thiem equation with T as the inverse of A and the radius of influence being the an effective radius based on the size of the model cell. [T/L²].
+    - $A$ = Linear aquifer-loss coefficient that represents head loss due to flow through the aquifer to the well. In a numerical model the head in the aquifer cell containing the well is the average head in the model cell and the lowest head in the cell occurs at the location of the well. Thus, the well head is lower than the aquifer cell head even when there is no additional resistance at the well wall or in the well. Well-head loss due to A is calculated using the Thiem equation with T being the inverse of A and the radius of influence being the effective radius based on the size of the model cell. [T/L²].
     - $B$ = Linear well-loss coefficient that accounts for head loss from _skin effects_ associated with resistance due to **laminar** components of flow adjacent to the well, through the screen, and within the wellbore [T/L²].
     - $C$ = Nonlinear well-loss coefficient that accounts for head loss from _skin effects_ associated with resistance due to **turbulent** components of flow adjacent to the well, through the screen, and within the wellbore, with units of:
     """)
     st.latex(r'''T^{P}/L^{3P-1}''')
     st.markdown("""
-    - $P$ = is the power (exponent) of the nonlinear discharge component of well loss.
+    where $P$ = is the power (exponent) of the nonlinear discharge component of well loss.
     """)
 
-st.subheader('Interactive plots to understand the general characteristics of the discharge-head relationships in MNW package', divider='rainbow')
+st.subheader('Interactive plots to facilitate understanding of the general characteristics of the discharge-head relationships in the MNW package', divider='rainbow')
 
 st.markdown("""
 Four interactive plots are provided to allow you to investigate different aspects of the Multi-Node-Well (MNW) boundary in MODFLOW.
@@ -296,7 +296,7 @@ Illustrates the additional drawdown in the well due to the lower aquifer-to-well
 
 :red[**🔴 PLOT 3 - Q-h behavior for the aquifer head under consideration of an withdrawal well with thresholds**]: Illustrates the effect of thresholds on the simulated withdrawal rate.
 
-:orange[**🟡 PLOT 4 - Q-h relationship for an well operated by an head-target.**]: Illustrates the situation where MNW computes the discharge based on a given head difference, e.g., to account for artesian free flowing wells.
+:orange[**🟡 PLOT 4 - Q-h relationship for a well operated with a head target**]: Illlustrates the situation where MNW computes the discharge based on a given head difference, e.g., to account for artesian free flowing wells..
 
 _For all plots, the application includes toggles to:_
 - turn the plots by 90 degrees,
@@ -755,7 +755,7 @@ def Q_h_plot():
             2. :red[**H-target**] (defined drawdown): Calculates the discharge required to maintain a specified drawdown (e.g., to avoid reaching a threshold head in the well that would reduce, or stop, withdrawal).
             
             The interactive plot is shown in two side-by-side images:
-            - On the **right**, the Q–Δh curve shows how head loss varieswith withdrawal rate.
+            - On the **right**, the Q–Δh curve shows how head loss varies with withdrawal rate.
             - On the **left**, a schematic illustrates the difference between $h_{aq}$ and $h_{well}$ (drawdown) in relationship to the withdrawal rate $Q$.
             
             Users can modify the **aquifer-to-well conductance (CWC)**, defined via the parameters $A$, $B$, $C$, and the exponent $P$, and compare two configurations to better understand how well losses (linear and nonlinear) influence the character of the relationship.
@@ -1084,7 +1084,7 @@ def Q_h_plot():
                     else:
                         Q_dot_th = Q_dot                
             
-            # Repeat computation for second parameter set // ToDo: the subseqent second case needs to differentiat according to head / flow target; currently only flow target
+            # Repeat computation for second parameter set // ToDo: the subsequent second case needs to differentiate according to head / flow target; currently only flow target
             if st.session_state.second:
                 if h_target:
                     h_well2 = h_cell_slider - delta_head
@@ -1334,7 +1334,7 @@ def Q_h_plot():
             
             3. **Explore Threshold Activation**
                * Increase the withdrawal rate _Q_ beyond the point where $h_{well} = h_{lim}$
-               * Note that the active _Q_ (represented by the dot in the plot) is automatically reduced to keep $h_{well} = h_{min}$
+               * Note that the current _Q_ (represented by the dot in the plot) is automatically reduced to keep $h_{well} = h_{min}$
             
             4. **Explore Withdrawal Thresholds**
                * Set the threshold head $h_{lim}$ to 5.0 m and the aquifer head $h_{aq}$ to 15.0 m. Set the withdrawal rate to 0.5 m³/s. With these settings, the system is in proper operation.
@@ -1342,7 +1342,7 @@ def Q_h_plot():
                * Set Qmn and Qmx to 0.05 and 0.2 m³/s
                * Now, lower the aquifer head $h_{aq}$ smoothly down to 5.1 m. Lowering the aquifer head can be caused by various reasons, e.g., neighboring withdrawal wells. (_hint: if you access this app through a computer, you can gradually reduce Q with the arrow-keys of your keyboard_)
                * While lowering the aquifer head, observe how the adjusted withdrawal rate - represented by the dot in the plot - is affected.
-               * Once the aquifer head reaches 5.1 m, graduallly raise the head back to 15.0 m and observe the adjusted withdrawal rate (dot in the plot).
+               * Once the aquifer head reaches 5.1 m, gradually raise the head back to 15.0 m and observe the adjusted withdrawal rate (dot in the plot).
             
             5. **Modify Parameters**
                * Try different values for $A$, $B$, $C$, and $P$
@@ -1357,7 +1357,7 @@ def Q_h_plot():
             This exercise is designed with the intent that, by completing it, you will be able to:
             
             - Explain how threshold head limits influence MNW discharge behavior
-            - Identify the conditions for shich withdrawal is reduced to protect a wells
+            - Identify the conditions for which withdrawal is reduced to protect a wells
             - Analyze how nonlinear head losses and operational limits combine to define feasible withdrawal rates
             - Understand the role of Qmn and Qmx in the MNW implementation
             
@@ -1620,11 +1620,13 @@ Q_h_plot()
 
 st.subheader('✅ Conclusion', divider = 'rainbow')
 st.markdown("""
-The Multi-Node Well (MNW) boundary in MODFLOW adds realism to well simulations by distributing flow across multiple model cells and introducing operational and physical constraints. This boundary goes beyond fixed withdrawal rates by simulating **head-dependent flow**, **skin effects**, and **withdrawal limits** — key factors in models properly representing wells in physical settings.
+The Multi-Node Well (MNW) boundary in MODFLOW adds realism to well simulations by distributing flow across multiple model cells and introducing operational and physical constraints. This boundary goes beyond fixed withdrawal rates by simulating **head-dependent flow**, **skin effects**, and **withdrawal limits** — key factors in models properly representing wells in physical settings. An MNW boundary can be defined in any groundwater-flow-model cell.
 
-Q–h plots, allowed exploration of how MNW behavior with transitions between active withdrawal, flow cutoffs, and constraint-induced reduction of flow. Understanding these condtions supports better interpretation, calibration, and reliability in groundwater modeling projects.
+Q–h plots, allowed exploration of how MNW behavior with transitions between active withdrawal, flow cutoffs, and constraint-induced reduction of flow. Understanding these conditions supports better interpretation, calibration, and reliability in groundwater modeling projects.
 
-You're now ready to assess your understanding in the final quiz.
+There are two MNW boundary condition packages for MODFLOW, MNW1 and MNW2. The MNW2 boundary has the features addressed in this module because it enhanced the MNW1 package that allowed for wells to extend through more than one groundwater-model cell by including the option for well injection or withdrawal to be limited based on both the lift (i.e., the elevation difference between the pump and the water level in the well) and the pump characteristics. Flow into or out of any particular cell in a multi-node well depends on the head in the well, the head in the cell, and a conductance calculated using various factors describing the well hydraulics.
+
+After studying this section about multi-node-well boundaries, you may want to evaluate your knowledge using the final assessment.
 """)
 
 
