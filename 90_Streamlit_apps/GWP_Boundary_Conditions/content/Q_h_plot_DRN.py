@@ -90,15 +90,15 @@ with columns0[0]:
     st.markdown("""      
     Consider these two questions:
     
-    1. **How would you simulate a ditch, tile drain, or trench that only removes water from the aquifer when the water table is high enough to flow into the feature?**
+    1. **How would you simulate a ditch, tile drain, or trench that only removes water from the groundwater when the water table is high enough to flow into the feature?**
     
     2. **What if you want to stop outflow when the groundwater falls below a certain elevation?** 
     
     3. **How can you allow a spring to develop when head in an unconfined aquifer rises to the ground surface?** 
     
-    ▶️ The :green[**Drain (DRN) Boundary**] in MODFLOW is designed for such situations. It allows water to leave the aquifer only if the head in the aquifer $h_{aq}$ exceeds the drain elevation $H_D$. **A drain can never provide inflow to a model**. (_The Drain Return Package (DRT) can be used when flow may occur from a drain into a model._) The outflow $Q_{D}$ is computed with the drain conductance $C_D$ as: """)
+    ▶️ The :green[**Drain (DRN) Boundary**] in MODFLOW is designed for such situations. It allows water to leave the groundwater compartment only if the head in the groundwater $h_{gw}$ exceeds the drain elevation $H_D$. **A drain can never provide inflow to a model**. (_The Drain Return Package (DRT) can be used when flow may occur from a drain into a model._) The outflow $Q_{D}$ is computed with the drain conductance $C_D$ as: """)
     
-    st.latex(r'''Q_{D} = C_{D} (H_{D}-h_{aq})''')
+    st.latex(r'''Q_{D} = C_{D} (H_{D}-h_{gw})''')
 with columns0[1]:    
     # Slider input and plot
     # C_DRN
@@ -108,14 +108,14 @@ with columns0[1]:
     st.session_state.Ci_DRN = float(selected_Ci)
 # Computation 
 HDi = 8 
-h_aqi = np.linspace(0, 20, 200)
-Qi = np.where(h_aqi >= HDi, st.session_state.Ci_DRN * (h_aqi - HDi)*-1, 0)
+h_gwi = np.linspace(0, 20, 200)
+Qi = np.where(h_gwi >= HDi, st.session_state.Ci_DRN * (h_gwi - HDi)*-1, 0)
 
 # Create the plot
 with columns0[1]:
     fig, ax = plt.subplots(figsize=(5, 5))      
-    ax.plot(h_aqi, Qi, color='black', linewidth=4)
-    ax.set_xlabel("Head/Elevation in the DRN-aquifer system (m)", fontsize=14, labelpad=15)
+    ax.plot(h_gwi, Qi, color='black', linewidth=4)
+    ax.set_xlabel("Head/Elevation in the DRN-groundwater system (m)", fontsize=14, labelpad=15)
     ax.set_ylabel("Flow into the groundwater \nfrom the DRN boundary $Q_{D}$ (m³/s)", fontsize=14, labelpad=15)
     ax.set_xlim(0, 20)
     ax.set_ylim(-0.05, 0.05)
@@ -183,11 +183,11 @@ st.markdown("""
 This section is designed with the intent that, by studying it, you will be able to do the following:
 
 - Explain the conceptual role of the Drain (DRN) boundary in simulating groundwater discharge to drainage features such as tile drains, trenches, or natural depressions.
-- Apply the analytical relationship $Q_{D} = C_D(H_D-h_{aq})$ to calculate boundary flows.
+- Apply the analytical relationship $Q_{D} = C_D(H_D-h_{gw})$ to calculate boundary flows.
 - Identify conditions under which the DRN boundary is active or inactive, and understand the role of the drain elevation in preventing inflow and limiting outflow.
-- Evaluate the influence of aquifer head, drain elevation, and conductance on the magnitude of drainage.
+- Evaluate the influence of groundwater head, drain elevation, and conductance on the magnitude of drainage.
 - Interpret Q–h plots to analyze the linear and threshold-based behavior of the DRN boundary.
-- Understand how the conductance term reflects the geometry and properties of the connection between the aquifer and the drain system.
+- Understand how the conductance term reflects the geometry and properties of the connection between the groundwater compartment and the drain system.
 """)
 
 with st.expander('**Show the initial assessment** - to assess your existing knowledge'):
@@ -222,41 +222,41 @@ with st.expander('**Show the initial assessment** - to assess your existing know
             
 st.subheader('🧪 Theory and Background', divider="green")
 st.markdown("""
-Some groundwater models need to allow outflow of groundwater when the aquifer head reaches a specific elevation that might be the ground surface, a tunnel, a mine drift, or a drainage tile. How do we realistically represent a such a condition in a groundwater model?
+Some groundwater models need to allow outflow of groundwater when the groundwater head reaches a specific elevation that might be the ground surface, a tunnel, a mine drift, or a drainage tile. How do we realistically represent a such a condition in a groundwater model?
 """)
 
   
 with st.expander("Show me more about **the Theory**"):
     st.markdown("""
-    This app calculates the flow between a model and a drain (DRN) depending on the drain elevation $H_D$ and the conductance $C_D$ between the boundary and the aquifer. The following figure illustrates some examples of features that require use of the DRN boundary.""")
+    This app calculates the flow between a model and a drain (DRN) depending on the drain elevation $H_D$ and the conductance $C_D$ between the boundary and the groundwater. The following figure illustrates some examples of features that require use of the DRN boundary.""")
     
     left_co, cent_co, last_co = st.columns((10,80,10))
     with cent_co:
         st.image('90_Streamlit_apps/GWP_Boundary_Conditions/assets/images/DRN.png', caption="Schematic illustration of the DRN boundary with a) drain pipe buried in a backfilled ditch, and b) an open drain at the ground surface; modified from (McDonald and Harbaugh, 1988; https://pubs.usgs.gov/twri/twri6a1/pdf/twri_6-A1_p.pdf)")
     st.markdown("""
-    The relationship between the amount of water that flows out of the groundwater system into the drain and the head in the aquifer is:
+    The relationship between the amount of water that flows out of the groundwater system into the drain and the head in the groundwater is:
     """)
     
-    st.latex(r'''Q_{D} = C_D (H_D-h_{aq})''')
+    st.latex(r'''Q_{D} = C_D (H_D-h_{gw})''')
     
     st.markdown("""
     where:
-    - $Q_{D}$ is the flow from the aquifer into the drain [L³/T]
+    - $Q_{D}$ is the flow from the groundwater into the drain [L³/T]
     - $H_D$ is the drain elevation (L),
     - $C_D$ is the drain conductance [L²/T], and
-    - $h_{aq}$ is the head in the cell that interacts with the drain (L).
+    - $h_{gw}$ is the head in the cell that interacts with the drain (L).
    
-    If the aquifer head $h_{aq}$ is below the elevation of the drain, $H_{D}$, then there is no flow.
+    If the groundwater head $h_{gw}$ is below the elevation of the drain, $H_{D}$, then there is no flow.
     
     """)
 
 st.subheader("Interactive Plot and Exercise", divider="green")
 st.markdown("""
-    The interactive plot illustrates how the flow $Q_{D}$ across a Drain Boundary is driven by the **difference between aquifer head** ($h_{aq}$) and **drain elevation** ($H_D$), while being scaled by the **drain conductance** ($C_{D}$). Flow only occurs when the aquifer head exceeds the drain elevation, meaning the boundary acts as a one-way outlet. 
+    The interactive plot illustrates how the flow $Q_{D}$ across a Drain Boundary is driven by the **difference between groundwater head** ($h_{gw}$) and **drain elevation** ($H_D$), while being scaled by the **drain conductance** ($C_{D}$). Flow only occurs when the groundwater head exceeds the drain elevation, meaning the boundary acts as a one-way outlet. 
     
-    Below, under INPUT CONTROLS, in the **"Modify Plot Controls"** drop-down menu, you can adjust the limits and range of the plot, and also toggle to: 1) turn the plot 90 degrees, 2) choose between slider or typed input to adjust the parameter values, and 3) make the plot "live" to switch from the static plot to the interactive plot. Under :blue[**"Modify Head & Elevations"**], you can adjust the value of river head, riverbed bottom elevation, and aquifer head. Finally, under :green[**"Modify Conductance"**] you can toggle between direct conductance input or computing it from geometric and hydraulic properties. The plot updates dynamically and supports different viewing orientations.
+    Below, under INPUT CONTROLS, in the **"Modify Plot Controls"** drop-down menu, you can adjust the limits and range of the plot, and also toggle to: 1) turn the plot 90 degrees, 2) choose between slider or typed input to adjust the parameter values, and 3) make the plot "live" to switch from the static plot to the interactive plot. Under :blue[**"Modify Head & Elevations"**], you can adjust the value of river head, riverbed bottom elevation, and groundwater head. Finally, under :green[**"Modify Conductance"**] you can toggle between direct conductance input or computing it from geometric and hydraulic properties. The plot updates dynamically and supports different viewing orientations.
 
-    The interactive plot includes a legend that provides the parameter values. It also graphically displays the $Q$-$h$ relationship, each parameter value, and an arrow that indicates the head difference $h_{aq}$-$H_{D}$ and points to the value of flow $Q_{D}$ on the axis.
+    The interactive plot includes a legend that provides the parameter values. It also graphically displays the $Q$-$h$ relationship, each parameter value, and an arrow that indicates the head difference $h_{gw}$-$H_{D}$ and points to the value of flow $Q_{D}$ on the axis.
     
     - You can investigate the plot on your own, perhaps using some of the :blue[**INITIAL INSTRUCTIONS**] provided below the plot to guide you.
     - A subsequent :rainbow[**EXERCISE**] invites you to use the interactive plot to investigate how the conductance value and the difference in head affect the boundary flux, as well as to interpret the physical meaning of the situation based on Q–h plots, that is, when the drain is **active** or **inactive** and how this affects groundwater discharge.
@@ -277,14 +277,14 @@ def update_HD():
     st.session_state.HD = st.session_state.HD_input
 def update_stage():
     st.session_state.stage = st.session_state.stage_input
-def update_h_aq_show():
-    st.session_state.h_aq_show = st.session_state.h_aq_show_input  
+def update_h_gw_show():
+    st.session_state.h_gw_show = st.session_state.h_gw_show_input  
     
 # Initialize session state for value and toggle state
 st.session_state.C_DRN = 1e-2
 st.session_state.C_DRN_label = "1e-2"
 st.session_state.HD = 8.0
-st.session_state.h_aq_show = 10.0
+st.session_state.h_gw_show = 10.0
 st.session_state.number_input = False  # Default to number_input
 
 
@@ -304,7 +304,7 @@ def Q_h_plot():
     with columns1[0]:
         with st.expander("Modify the **Plot Controls**"):
             turn = st.toggle('Toggle to turn the plot 90 degrees', key="DRN_turn", value=True)
-            st.session_state.number_input = st.toggle("Toggle to use Slider or Number for input of $C_D$, $H_D$, and $h_{aq}$.")
+            st.session_state.number_input = st.toggle("Toggle to use Slider or Number for input of $C_D$, $H_D$, and $h_{gw}$.")
             visualize = st.toggle(':rainbow[**Make the plot live** and visualize the input values]', key="DRN_vis", value=True)
 
     with columns1[1]:
@@ -314,9 +314,9 @@ def Q_h_plot():
             else:
                 HD = st.slider      (":green[**Drain elevation** $H_D$ (m)]", 5.0, 20.0, st.session_state.HD, 0.1, key="HD_input", on_change=update_HD)
             if st.session_state.number_input:
-                h_aq_show = st.number_input(":blue[**Aquifer head** $h_{aq}$ (m)]", 0.0, 20.0, st.session_state.h_aq_show, 0.1, key="h_aq_show_input", on_change=update_h_aq_show)
+                h_gw_show = st.number_input(":blue[**Groundwater head** $h_{gw}$ (m)]", 0.0, 20.0, st.session_state.h_gw_show, 0.1, key="h_gw_show_input", on_change=update_h_gw_show)
             else:
-                h_aq_show = st.slider      (":blue[**Aquifer head** $h_{aq}$ (m)]", 0.0, 20.0, st.session_state.h_aq_show, 0.1, key="h_aq_show_input", on_change=update_h_aq_show)
+                h_gw_show = st.slider      (":blue[**Groundwater head** $h_{gw}$ (m)]", 0.0, 20.0, st.session_state.h_gw_show, 0.1, key="h_gw_show_input", on_change=update_h_gw_show)
     
     with columns1[2]:
         with st.expander('Modify :green[**Conductance**]'):
@@ -330,24 +330,24 @@ def Q_h_plot():
                 st.session_state.C_DRN_label = get_label(st.session_state.C_DRN, labels)
                 st.select_slider("**Conductance** $C_D$ (m²/s)", labels, value = st.session_state.C_DRN_label, key="C_input", on_change=update_C_DRN)
     
-    # Computation - Define aquifer head range
-    h_aq = np.linspace(0, 20, 200)
+    # Computation - Define groundwater head range
+    h_gw = np.linspace(0, 20, 200)
     
-    Q = np.where(h_aq >= HD, st.session_state.C_DRN * (HD - h_aq), 0)
-    Q_ref = st.session_state.C_DRN * (HD - h_aq_show) if h_aq_show >= HD else 0   
+    Q = np.where(h_gw >= HD, st.session_state.C_DRN * (HD - h_gw), 0)
+    Q_ref = st.session_state.C_DRN * (HD - h_gw_show) if h_gw_show >= HD else 0   
         
     # Create the plot
     fig, ax = plt.subplots(figsize=(8, 8))
     if visualize:
         if turn:
-            ax.plot(Q, h_aq, label=rf"$Q_D = C_D(H_D-h_{{aq}})$",color='green', linewidth=3)
+            ax.plot(Q, h_gw, label=rf"$Q_D = C_D(H_D-h_{{gw}})$",color='green', linewidth=3)
             ax.plot([], [], ' ', label=fr"$Q_D$ = {Q_ref:.2e} m³/s")
             ax.plot([], [], ' ', label=fr"$C_D$ = {st.session_state.C_DRN:.2e}")
             ax.axvline(0, color='black', linewidth=1)
             ax.axhline(HD, color='green', linewidth=2, linestyle='--', label=f'$H_D$ in m = {HD:.2f}')
-            ax.axhline(h_aq_show, color='blue', linewidth=2, linestyle='--', label=f'$h_{{aq}}$ in m = {h_aq_show:.2f}')
+            ax.axhline(h_gw_show, color='blue', linewidth=2, linestyle='--', label=f'$h_{{gw}}$ in m = {h_gw_show:.2f}')
             # Labels and formatting
-            ax.set_ylabel("Heads and elevations in the DRN Boundary-Aquifer System (m)", fontsize=14, labelpad=15)
+            ax.set_ylabel("Heads and elevations in the DRN Boundary-Groundwater System (m)", fontsize=14, labelpad=15)
             ax.set_xlabel("Flow Into* the Ground-Water System from the DRN  $Q_{D}$ (m³/s)", fontsize=14, labelpad=15)
             ax.set_ylim(0, 20)
             ax.set_xlim(0.05, -0.05)
@@ -356,30 +356,30 @@ def Q_h_plot():
                 ax.annotate(
                     '',  # no text
                     xy=(Q_ref,HD),  # arrowhead
-                    xytext=(Q_ref, h_aq_show),  # arrow start
+                    xytext=(Q_ref, h_gw_show),  # arrow start
                     arrowprops=dict(arrowstyle='-|>', color='blue', lw=2.5,  alpha=0.8, mutation_scale=15)
                 )
 #            else:
 #                ax.annotate(
 #                    '',  # no text
 #                    xy=(Q_ref,HD),  # arrowhead
-#                    xytext=(Q_ref, h_aq_show),  # arrow start
+#                    xytext=(Q_ref, h_gw_show),  # arrow start
 #                    arrowprops=dict(arrowstyle='<-', color='green', lw=3, alpha=0.6)
 #                )
             # Add gaining annotations
-            if h_aq_show > HD:
+            if h_gw_show > HD:
                 ax.text(-0.04*0.05,20*0.97, "Flow INTO the Drain", fontsize=16, va='center', color='blue')
             else:
                 ax.text(-0.04*0.05,20*0.97, "Drain inactive", fontsize=16, va='center', color='red')  
         else:
-            ax.plot(h_aq, Q, label=rf"$Q_D = C_D(H_D - h_{{aq}})$",color='green', linewidth=3)
+            ax.plot(h_gw, Q, label=rf"$Q_D = C_D(H_D - h_{{gw}})$",color='green', linewidth=3)
             ax.plot([], [], ' ', label=fr"$Q_D$ = {Q_ref:.2e} m³/s")
             ax.plot([], [], ' ', label=fr"$C_D$ = {st.session_state.C_DRN:.2e}")
             ax.axhline(0, color='black', linewidth=1)
             ax.axvline(HD, color='green', linewidth=2, linestyle='--', label=f'$H_D$ in m = {HD:.2f}')
-            ax.axvline(h_aq_show, color='blue', linewidth=2, linestyle='--', label=f'$h_{{aq}}$ in m = {h_aq_show:.2f}')
+            ax.axvline(h_gw_show, color='blue', linewidth=2, linestyle='--', label=f'$h_{{gw}}$ in m = {h_gw_show:.2f}')
             # Labels and formatting
-            ax.set_xlabel("Heads and elevations in the DRN Boundary-Aquifer System (m))", fontsize=14, labelpad=15)
+            ax.set_xlabel("Heads and elevations in the DRN Boundary-Groundwater System (m))", fontsize=14, labelpad=15)
             ax.set_ylabel("Flow Into* the Ground-Water System from the DRN  $Q_{D}$ (m³/s)", fontsize=14, labelpad=15)
             ax.set_xlim(0, 20)
             ax.set_ylim(-0.05, 0.05)
@@ -388,31 +388,31 @@ def Q_h_plot():
                 ax.annotate(
                     '',  # no text
                     xy=(HD, Q_ref),  # arrowhead
-                    xytext=(h_aq_show, Q_ref),  # arrow start
+                    xytext=(h_gw_show, Q_ref),  # arrow start
                     arrowprops=dict(arrowstyle='-|>', color='blue', lw=2.5,  alpha=0.8, mutation_scale=15)
                 )
             # Add gaining drn annotations
-            if h_aq_show > HD:
+            if h_gw_show > HD:
                 ax.text(0.5, -0.003, "Flow INTO the Drain", fontsize=16, va='center', color='blue')
             else:
                 ax.text(0.5, -0.003, "Drain inactive", fontsize=16, va='center', color='red')
     else:
         if turn:
-            ax.plot(Q, h_aq, label=rf"$Q_D = C_D(H_D - h_{{aq}})$",color='black', linewidth=3)
+            ax.plot(Q, h_gw, label=rf"$Q_D = C_D(H_D - h_{{gw}})$",color='black', linewidth=3)
             ax.plot([], [], ' ', label=fr"$Q_D$ = {Q_ref:.2e} m³/s")
             ax.plot([], [], ' ', label=fr"$C_D$ = {st.session_state.C_DRN:.2e}")
             # Labels and formatting
-            ax.set_ylabel("Heads and elevations in the DRN Boundary-Aquifer System (m)", fontsize=14, labelpad=15)
+            ax.set_ylabel("Heads and elevations in the DRN Boundary-Groundwater System (m)", fontsize=14, labelpad=15)
             ax.set_xlabel("Flow Into* the Ground-Water System from the DRN  $Q_{D}$ (m³/s)", fontsize=14, labelpad=15)
             ax.set_ylim(0, 20)
             ax.set_xlim(-0.05, 0.05)
             ax.legend(loc="upper left", fontsize=14)
         else:
-            ax.plot(h_aq, Q, label=rf"$Q_D = C_D(H_D - h_{{aq}})$",color='black', linewidth=3)
+            ax.plot(h_gw, Q, label=rf"$Q_D = C_D(H_D - h_{{gw}})$",color='black', linewidth=3)
             ax.plot([], [], ' ', label=fr"$Q_D$ = {Q_ref:.2e} m³/s")
             ax.plot([], [], ' ', label=fr"$C_D$ = {st.session_state.C_DRN:.2e}")
             # Labels and formatting
-            ax.set_xlabel("Heads and elevations in the DRN Boundary-Aquifer System (m)", fontsize=14, labelpad=15)
+            ax.set_xlabel("Heads and elevations in the DRN Boundary-Groundwater System (m)", fontsize=14, labelpad=15)
             ax.set_ylabel("Flow Into* the Ground-Water System from the DRN  $Q_{D}$ (m³/s)", fontsize=14, labelpad=15)
             ax.set_xlim(0, 20)
             ax.set_ylim(-0.05, 0.05)            
@@ -426,7 +426,7 @@ def Q_h_plot():
     st.pyplot(fig)
     if visualize:
         st.markdown("""
-        _The arrow in the plot indicates the head difference $H_{D}-h_{aq}$ and points to the resulting flow $Q_{D}$._
+        _The arrow in the plot indicates the head difference $H_{D}-h_{gw}$ and points to the resulting flow $Q_{D}$._
         """)
     st.markdown("""
         _* from the **perspective of inflow** into the groundwater, **drain flow is negative** or zero because it is flow leaving the groundwater._
@@ -441,14 +441,14 @@ def Q_h_plot():
         **1. Set a Reference Case** - there is a toggle button under **Modify Plot Controls** that allows you to type in values instead of using the slider 
         
         * Set **drain elevation** $H_D$ to 10.0 m.
-        * Vary **aquifer head** $h_{aq}$ between 8 and 12 m.
+        * Vary **groundwater head** $h_{gw}$ between 8 and 12 m.
         * Observe how the flow $Q_D$ changes:
-            * When $h_{aq} > H_D$, the aquifer drains — flow leaves the aquifer through the drain.
-            * When $h_{aq} \leq H_D$, no flow occurs — the drain is inactive.
+            * When $h_{gw} > H_D$, the groundwater drains — flow leaves the groundwater through the drain.
+            * When $h_{gw} \leq H_D$, no flow occurs — the drain is inactive.
             
         **2. Test Different Conductance Values**
         
-        * With $h_{aq} > H_D$, use the slider to vary $C_D$
+        * With $h_{gw} > H_D$, use the slider to vary $C_D$
         * Note how the **slope of the Q–h curve** changes — higher conductance leads to stronger response of outflow to head differences.
         
         These steps help you build intuition for how DRN parameters govern flow — especially the **threshold behavior** and **linear relationship** between head difference and outflow. Feel free to further investigate the interactive plot on your own.
@@ -461,7 +461,7 @@ def Q_h_plot():
         
         Completing this exercise helps you:
         
-        - Understand how drain–aquifer interaction is controlled by aquifer head, drain elevation, and conductance.
+        - Understand how drain–groundwater interaction is controlled by groundwater head, drain elevation, and conductance.
         - Interpret the boundary characteristics with a Q–h plot.
         - Recognize the threshold behavior of the DRN package and its role as a one-way boundary.
         - Evaluate how conductance controls the rate of drainage above threshold.
@@ -474,27 +474,27 @@ def Q_h_plot():
         1. Initial Exploration - there is a toggle button under **Modify Plot Controls** that allows you to type in values instead of using the slider
         
         * As done in the initial instructions, set the drain elevation ($H_D$) to 10 m
-        * Vary the aquifer head ($h_{aq}$) from 8 m to 12 m
+        * Vary the groundwater head ($h_{gw}$) from 8 m to 12 m
         * Observe how the flow ($Q_D$) responds to changes in head
         
         Make a record of:
         
             * The threshold value at which the drain becomes active
             * The linearity of the Q–h relationship once the threshold is exceeded
-            * The behavior of the drain when $h_{aq} <= H_D$
+            * The behavior of the drain when $h_{gw} <= H_D$
 
         2. **Effect of Conductance**
         - Keep $H_D$ = 10 m
-        - Set the aquifer head ($h_{aq}$) to 12 m
+        - Set the groundwater head ($h_{gw}$) to 12 m
         - Choose three different conductance values (e.g., 1x10⁻², 1x10⁻³, and 1x10⁻⁴ m²/s)
         
         * For each case:
-            * Plot $Q_{D}$ vs $h_{aq}$ from 8 m to 12 m (on paper or spreadsheet)
+            * Plot $Q_{D}$ vs $h_{gw}$ from 8 m to 12 m (on paper or spreadsheet)
             * Compare the slope of the Q–h curves 
             * Consider the sensitivity of flow to conductance changes
               
         3. **Realistic Scenario: Excavating a building foundation**
-        - Fix the aquifer head at 10.3 m
+        - Fix the groundwater head at 10.3 m
         - In 1-m steps, vary drain elevation from 9.3 m to 6.3 m, and make note of the inflow rate
         - Consider this as a stylized representation of increasing inflow that needs to be collected and routed away from a construction site. A similar process might be used at a larger scale for an open-pit mine.
     
@@ -503,7 +503,7 @@ def Q_h_plot():
         - What would the construction company have to do to address the inflow?
         - What would reduce the inflow?
         - How might conductance be decreased on excavation walls?
-        - How might surrounding aquifer heads be lowered?
+        - How might surrounding groundwater heads be lowered?
         """)
 
 Q_h_plot()
@@ -542,9 +542,9 @@ st.subheader('✅ Conclusion', divider = 'green')
 st.markdown("""
 The Drain (DRN) boundary condition simulates discharge to external drains, ditches, trenches, topographic depressions, mines, and other features where an aquifer encounters an opening to atmospheric pressure conditions. Flow _only_ occurs when groundwater levels are at or above the opening elevation such that flow is activated. This boundary introduces a **physical cutoff** that prevents outflow based on the **drain elevation**, making it conceptually different from other head-dependent boundaries. A DRN boundary can be defined in any groundwater-flow-model cell, it need not be defined in the surface layer, for example it might be defined deep inside a model to represent a tunnel or and underground mine. 
 
-By exploring Q–h plots, you’ve seen how the discharge remains zero until the aquifer head exceeds the drain elevation, after which it increases linearly based on the conductance. This behavior supports the simulation of seepage faces and artificial drainage systems without over-extracting water from the model.
+By exploring Q–h plots, you’ve seen how the discharge remains zero until the groundwater head exceeds the drain elevation, after which it increases linearly based on the conductance. This behavior supports the simulation of seepage faces and artificial drainage systems without over-extracting water from the model.
 
-By adjusting parameters like drain **elevation** and **conductance**, modelers can explore how the discharge remains zero until the aquifer head exceeds the drain elevation, after which it increases linearly based on the conductance. This behavior supports the simulation of seepage faces, artificial drainage systems, and excavations without over-extracting water from the model. Understanding these behaviors through Q–h plots supports stronger conceptual models and more reliable groundwater–surface water integration.
+By adjusting parameters like drain **elevation** and **conductance**, modelers can explore how the discharge remains zero until the groundwater head exceeds the drain elevation, after which it increases linearly based on the conductance. This behavior supports the simulation of seepage faces, artificial drainage systems, and excavations without over-extracting water from the model. Understanding these behaviors through Q–h plots supports stronger conceptual models and more reliable groundwater–surface water integration.
 
 A related boundary package is the DRT boundary package in which water is removed from the groundwater system just as it is in the DRN package, and some of that water can  be returned to the groundwater system at specified locations. It is akin to having injection wells connected to the drain. The total rate of injection is limited by the rate of outflow from the groundwater system to the drain.
 
