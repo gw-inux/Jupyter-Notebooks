@@ -4,6 +4,7 @@ import os
 # --- Application parameters ---
 DEFAULT_START_PAGE = "90_Streamlit_apps/GWP_Boundary_Conditions/content/GWP_Boundary_Conditions_Start.py"
 ABOUT_PAGE = "90_Streamlit_apps/GWP_Boundary_Conditions/content/GWP_About.py"
+ABBREV_PAGE = "90_Streamlit_apps/GWP_Boundary_Conditions/content/GWP_BC_Abbreivations.py"
 
 # --- MUST be first: layout setup wide / centered ---
 if "layout_choice" not in st.session_state:
@@ -51,7 +52,8 @@ pages = {
     "🟣 RIV": "90_Streamlit_apps/GWP_Boundary_Conditions/content/Q_h_plot_RIV.py",
     "🟢 DRN": "90_Streamlit_apps/GWP_Boundary_Conditions/content/Q_h_plot_DRN.py",
     "🟡 MNW": "90_Streamlit_apps/GWP_Boundary_Conditions/content/Q_h_plot_MNW.py",
-    "🔵 EVT": "90_Streamlit_apps/GWP_Boundary_Conditions/content/Q_h_plot_EVT.py"
+    "🔵 EVT": "90_Streamlit_apps/GWP_Boundary_Conditions/content/Q_h_plot_EVT.py",
+    "📚 Learning More ": "90_Streamlit_apps/GWP_Boundary_Conditions/content/GWP_BC_LearningMore.py"
 }
 
 # --- State tracking ---
@@ -68,6 +70,10 @@ if st.sidebar.button("💦 Overview", key="btn_overview"):
 
 if st.sidebar.button("ℹ️ About", key="btn_about"):
     st.session_state.selected_path = ABOUT_PAGE
+    st.rerun()
+    
+if st.sidebar.button("📌 Abbreviations", key="btn_abbrev"):
+    st.session_state.selected_path = ABBREV_PAGE
     st.rerun()
 
 st.sidebar.markdown(
@@ -88,7 +94,11 @@ for label, path in pages.items():
         
     # After rendering "Introduction 📖", insert a section label
     if "Introduction" in label:
-        st.sidebar.markdown("**Boundary Condition Types**")
+        st.sidebar.markdown("**MODFLOW Boundary Conditions**")
+        
+    # After rendering "🔵 EVT", insert a section label
+    if "EVT" in label:
+        st.sidebar.markdown("**Further Resources**")
 
 # --- Run selected page ---
 if st.session_state.selected_path:

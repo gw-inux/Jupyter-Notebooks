@@ -1,0 +1,81 @@
+import numpy as np
+import matplotlib.pyplot as plt
+from matplotlib.patches import Rectangle
+import scipy.special
+import scipy.interpolate as interp
+import math
+import pandas as pd
+import streamlit as st
+import streamlit_book as stb
+from streamlit_extras.stateful_button import button
+import json
+from streamlit_book import multiple_choice
+
+# Authors, institutions, and year
+year = 2025 
+authors = {
+    "Thomas Reimann": [1],  # Author 1 belongs to Institution 1
+    "Eileen Poeter": [2],
+}
+institutions = {
+    1: "TU Dresden, Institute for Groundwater Management",
+    2: "Colorado School of Mines"
+}
+index_symbols = ["¹", "²", "³", "⁴", "⁵", "⁶", "⁷", "⁸", "⁹"]
+author_list = [f"{name}{''.join(index_symbols[i-1] for i in indices)}" for name, indices in authors.items()]
+institution_list = [f"{index_symbols[i-1]} {inst}" for i, inst in institutions.items()]
+institution_text = " | ".join(institution_list)
+
+st.title("📌 Abbreviations and Parameters")
+st.subheader(":blue[used in the Boundary Conditions Module]")
+
+# Define your table rows
+entries_abbrev = [
+    (r"$DRN$", "MODFLOW drain head-dependent-flow package"),
+    (r"$EVT$", "MODFLOW evapotranspiration head-dependent-flow package"),
+    (r"$GHB$", "MODFLOW general head-dependent-flow package"),
+    (r"$MNW$", "MODFLOW multi-node well package"),
+    (r"$MODFLOW$", "USGS groundwater modeling software"),
+    (r"$WEL$", "MODFLOW well constant-flux package"),
+]
+
+entries_para = [
+    (r"$C$", "conductance"),
+    (r"$C_{B}$", "conductance of the boundary condition"),
+    (r"$h$", "hydraulic head"),
+    (r"$h_{gw}$", "head in the model cell of the groundwater system"),
+    (r"$h_{bc}$", "head in the boundary condition"),
+    (r"$H_{B}$", "head in the boundary condition"),
+    (r"$K$", "hydraulic conductivity"),
+    (r"$K_h$", "horizontal hydraulic conductivity"),
+    (r"$K_v$", "vertical hydraulic conductivity"),
+    (r"$Q$", "volumetric flow rate"),
+    (r"$Q_{B}$", "volumetric flow rate to/from the boundary condition"),
+]
+
+# --- Table 1: Abbreviations ---
+st.subheader("Abbreviations", divider='blue')
+c1, c2 = st.columns([1, 3])
+c1.markdown("**Abbreviation**")
+c2.markdown("**Meaning**")
+for abbr, meaning in entries_abbrev:
+    c1, c2 = st.columns([1, 3])
+    c1.markdown(abbr)
+    c2.markdown(meaning)
+
+# --- Table 2: Parameters ---
+st.subheader("Parameters", divider='blue')
+c1, c2 = st.columns([1, 3])
+c1.markdown("**Parameter**")
+c2.markdown("**Meaning**")
+for abbr, meaning in entries_para:
+    c1, c2 = st.columns([1, 3])
+    c1.markdown(abbr)
+    c2.markdown(meaning)
+
+# Render footer with authors, institutions, and license logo in a single line
+columns_lic = st.columns((5,1))
+with columns_lic[0]:
+    st.markdown(f'Developed by {", ".join(author_list)} ({year}). <br> {institution_text}', unsafe_allow_html=True)
+with columns_lic[1]:
+    st.image('FIGS/CC_BY-SA_icon.png')
