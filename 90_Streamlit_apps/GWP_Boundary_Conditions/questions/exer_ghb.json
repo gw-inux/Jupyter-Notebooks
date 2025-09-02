@@ -1,10 +1,10 @@
 [
   {
-    "question": "When does the General Head Boundary (GHB) result in inflow to an aquifer (i.e., acts as source), and when in outflow (i.e., acts as sink)? (Mark ALL correct answers)",
+    "question": "When does the General Head Boundary (GHB) result in inflow to a groundwater system (i.e., acts as source), and when in outflow (i.e., acts as sink)? (Mark ALL correct answers)",
     "options": {
-      "When the aquifer head is equal to the boundary head, the GHB is a source.": false,
-      "The GHB acts as a source when the boundary head is higher than the aquifer head.": true,
-      "The GHB acts as a sink when the aquifer head is higher than the boundary head.": true,
+      "When the groundwater head is equal to the boundary head, the GHB is a source.": false,
+      "The GHB acts as a source when the boundary head is higher than the groundwater head.": true,
+      "The GHB acts as a sink when the groundwater head is higher than the boundary head.": true,
       "The GHB always acts as a sink, regardless of the head difference.": false,
       "The GHB is inactive if heads are equal.": true
     },
@@ -15,16 +15,16 @@
     "question": "What happens to the boundary flux Q_B if the conductance C_B is set to zero or extremely high? (Mark ALL correct answers)",
     "options": {
       "With C_B = 0, there is no exchange flux through the GHB.": true,
-      "An extremely high C_B forces the aquifer head to equal the boundary head.": true,
-      "With C_B = 0, the aquifer head equals the boundary head.": false,
-      "A very high C_B leads to unrealistic head gradients in the aquifer.": false,
+      "An extremely high C_B forces the groundwater head to equal the boundary head.": true,
+      "With C_B = 0, the groundwater head equals the boundary head.": false,
+      "A very high C_B leads to unrealistic head gradients in the groundwater system.": false,
       "Q_B increases proportionally with C_B, assuming a fixed head difference.": true
     },
     "success": "✅ Well reasoned. A zero conductance blocks flow, and high conductance amplifies the flux and head coupling.",
     "error": "❌ Some of your choices are not correct. Check the influence of the conductance value on the head difference and resulting flow."
   },
   {
-    "question": "How does increasing conductance C_B influence the sensitivity of flux to aquifer head changes? (Mark ALL correct answers)",
+    "question": "How does increasing conductance C_B influence the sensitivity of flux to groundwater head changes? (Mark ALL correct answers)",
     "options": {
       "Sensitivity decreases with higher conductance.": false,
       "Sensitivity increases with higher conductance.": true,
@@ -47,7 +47,7 @@
     "error": "❌ Some of your choices are not correct. Think about the physical situations GHBs are designed to represent and how they differ from other boundary types."
   },
   {
-    "question": "How does the slope of the $Q_B$–$h_{aq}$ plot respond to increasing conductance $C_B$? (Mark ALL correct answers)",
+    "question": "How does the slope of the $Q_B$–$h_{gw}$ plot respond to increasing conductance $C_B$? (Mark ALL correct answers)",
     "options": {
       "The slope increases.": true,
       "The slope remains constant.": false,
@@ -58,7 +58,7 @@
     "error": "❌ Some of your choices are not correct. Recall that $Q_B$ is directly proportional to $C_B$ times the head difference."
   },
   {
-    "question": "What is true when $h_{aq} = H_B$? (Mark ALL correct answers)",
+    "question": "What is true when $h_{gw} = H_B$? (Mark ALL correct answers)",
     "options": {
       "The flow $Q_B$ is zero.": true,
       "The boundary acts as a source.": false,
@@ -66,7 +66,7 @@
       "There is no net exchange across the boundary.": true
     },
     "success": "✅ Correct. Equal heads mean no driving force, so no flow occurs.",
-    "error": "❌ Some of your choices are not correct. Review the condition when $H_B = h_{aq}$. There is no head gradient to cause flow."
+    "error": "❌ Some of your choices are not correct. Review the condition when $H_B = h_{gw}$. There is no head gradient to cause flow."
   }
 ]
 

@@ -38,7 +38,7 @@
       "A) Because the ET rate equals maximum ET rate when water is near the surface": true,
       "B) Because of hydraulic resistance in the unsaturated zone": false,
       "C) Because recharge dominates at shallow depths": false,
-      "D) Because aquifer head doesn’t influence ET at shallow depths": true
+      "D) Because when groundwater head is higher than the ET surface ET is at the maximum rate": true
     },
     "success": "✅ That’s it. The flat region means ET is at its maximum because head is at, or above, the ET surface.",
     "error": "❌ Some of your choices are not correct. When water is shallow, ET rate is unaffected by further head increases because head is at, or above, the ET surface."

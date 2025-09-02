@@ -2,7 +2,7 @@
   {
     "question": "Which statements describe how a General Head Boundary (GHB) behaves? (Mark ALL correct answers)",
     "options": {
-      "The flow direction depends on the difference between $H_B$ and $h_{aq}$.": true,
+      "The flow direction depends on the difference between $H_B$ and $h_{gw}$.": true,
       "A GHB always enforces a constant discharge.": false,
       "A GHB allows variable inflow and outflow.": true,
       "GHBs are only used at the top of the model.": false
@@ -13,16 +13,16 @@
   {
     "question": "Which expression correctly defines the flow across a GHB? (Mark ALL correct answers)",
     "options": {
-      "$Q_B = C_B(H_B - h_{aq})$": true,
-      "$Q_B = K (H_B - h_{aq})$": false,
-      "$Q_B = C_B h_{aq}$": false,
+      "$Q_B = C_B(H_B - h_{gw})$": true,
+      "$Q_B = K (H_B - h_{gw})$": false,
+      "$Q_B = C_B h_{gw}$": false,
       "$Q_B = H_B / C_B$": false
     },
     "success": "✅ Well done. The GHB flow equation linearly links flow to the head difference.",
     "error": "❌ Some of your choices are not correct. Review the GHB equation. It's based on conductance and the head difference."
   },
   {
-    "question": "What happens when the aquifer head $h_{aq}$ equals the boundary head $H_B$? (Mark ALL correct answers)",
+    "question": "What happens when the groundwater head $h_{gw}$ equals the boundary head $H_B$? (Mark ALL correct answers)",
     "options": {
       "The flow $Q_B$ becomes zero.": true,
       "The boundary acts as a recharge zone.": false,
@@ -47,7 +47,7 @@
     "question": "Which parameters jointly and directly control the flow through a GHB? (Mark ALL correct answers)",
     "options": {
       "Boundary head $H_B$": true,
-      "Aquifer head $h_{aq}$": true,
+      "Groundwater head $h_{gw}$": true,
       "Recharge applied elsewhere in the model": false,
       "Conductance $C_B$": true
     },
@@ -55,14 +55,14 @@
     "error": "❌ Some of your choices are not correct. Recharge affects heads, and may influence the flow at GHB boundaries, but is not directly in the GHB flow equation."
   },
   {
-    "question": "When is a GHB considered 'gaining' from the aquifer's perspective? (Mark ALL correct answers)",
+    "question": "When is a GHB considered 'gaining' from the groundwater system's perspective? (Mark ALL correct answers)",
     "options": {
-      "When $H_B > h_{aq}$": true,
-      "When $h_{aq} > H_B$": false,
+      "When $H_B > h_{gw}$": true,
+      "When $h_{gw} > H_B$": false,
       "When $Q_B < 0$": false,
-      "When flow enters the aquifer": true
+      "When flow enters the groundwater": true
     },
-    "success": "✅ Exactly. The GHB adds water to the aquifer when its head is higher than the aquifer head resulting in more flow entering the groundwater system.",
-    "error": "❌ Some of your choices are not correct. A gaining boundary is a source of water to the system, meaning water flows into the aquifer from the boundary."
+    "success": "✅ Exactly. The GHB adds water to the groundwater system when its head is higher than the groundwater head resulting in more flow entering the groundwater system.",
+    "error": "❌ Some of your choices are not correct. A gaining boundary is a source of water to the system, meaning water flows into the groundwater system from the boundary."
   }
 ]

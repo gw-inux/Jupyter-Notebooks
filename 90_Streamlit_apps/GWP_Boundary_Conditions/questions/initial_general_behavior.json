@@ -11,15 +11,15 @@
     "error": "❌ Some of your choices are not correct. Boundary conditions define entry and exit of water, they represent external controls, and can include recharge, but they do not control time steps."
   },
   {
-    "question": "Which of the following are examples of Dirichlet boundary conditions? (Mark ALL correct answers)",
+    "question": "Which of the following are examples of specified head boundary conditions? (Mark ALL correct answers)",
     "options": {
       "A boundary with fixed hydraulic head": true,
       "A boundary with no flow allowed": false,
       "A boundary where flow depends on head difference and conductance": false,
       "A lake with a constant water level adjacent to the model": true
     },
-    "success": "✅ Correct! Dirichlet conditions fix the head at the boundary and can represent surface water bodies.",
-    "error": "❌ Some of your choices are not correct. Only fixed head boundaries are Dirichlet type boundaries and they can represent water level in water bodies connected to the model."
+    "success": "✅ Correct! specified head boundary conditions fix the head at the boundary and can represent surface water bodies.",
+    "error": "❌ Some of your choices are not correct. Only fixed head boundaries are specified head type boundaries and they can represent water level in water bodies connected to the model."
   },
   {
     "question": "In a one-dimensional model with uniform recharge and a no-flow boundary on the left, which statements are true? (Mark ALL correct answers)",
@@ -37,7 +37,7 @@
     "options": {
       "The relationship between flow (Q) and hydraulic head (h) at a boundary.": true,
       "Whether a boundary behaves like a sink or source under changing conditions.": true,
-      "The hydraulic gradient within the entire aquifer.": false,
+      "The hydraulic gradient within the entire groundwater system.": false,
       "The position of the water table over time.": false
     },
     "success": "✅ Correct! Q–h plots illustrate boundary-specific relationships and indicate whether water enters or exits the system.",

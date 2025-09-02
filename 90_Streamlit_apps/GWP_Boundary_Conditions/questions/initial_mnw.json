@@ -24,13 +24,13 @@
   {
     "question": "What behavior can be observed in Q–h plots for MNW? (Mark ALL correct answers)",
     "options": {
-      "A) A vertical line representing the aquifer head": true,
+      "A) A vertical line representing the groundwater head": true,
       "B) A slope representing head-dependent flow into the well": true,
       "C) Negative discharge when head drops below the pump intake": false,
       "D) A horizontal line representing the specified discharge from the well": true
     },
     "success": "✅ Well done. MNW plots combine diagonal lines representing head-dependent flow with horizontal lines representing specified flow boundaries.",
-    "error": "❌ Some of your choices are not correct. MNW plots relate the aquifer head and well head with the specified flow and reduced flow. Discharge is zero when head is bleow the pump intake "
+    "error": "❌ Some of your choices are not correct. MNW plots relate the groundwater head and well head with the specified flow and reduced flow. Discharge is zero when head is below the pump intake "
   },
   {
     "question": "Why might an MNW well discharge decrease or cease during a model simulation? (Mark ALL correct answers)",

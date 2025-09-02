@@ -2,20 +2,20 @@
   {
     "question": "Which statements correctly describe how the Drain Boundary (DRN) behaves? (Mark ALL correct answers)",
     "options": {
-      "A) The drain only allows flow when the aquifer head exceeds the drain elevation.": true,
+      "A) The drain only allows flow when the groundwater head exceeds the drain elevation.": true,
       "B) The DRN boundary condition allows for both inflow and outflow.": false,
-      "C) When aquifer head is below the drain elevation, the boundary becomes inactive and does not influence the model.": true,
+      "C) When the groundwater head is below the drain elevation, the boundary becomes inactive and does not influence the model.": true,
       "D) The DRN boundary enforces a constant discharge regardless of head conditions.": false
     },
-    "success": "✅ Correct! DRN acts as a one-way valve — flow only occurs from aquifer to drain when $h_{aq} > H_{D}$ and the flow is not constant, it varies as $h_{aq}$ varies.",
-    "error": "❌ Some of your choices are not correct. The DRN boundary is inactive when $H_{D} ≤ h_{aq}$. It does not permit inflow into the aquifer. When the drain is active, the flow varies depending on the aquifer head $h_{aq}$ with the rate controlled by the conductance $C_D$, so the discharge is not constant."
+    "success": "✅ Correct! DRN acts as a one-way valve — flow only occurs from groundwater to drain when $h_{gw} > H_{D}$ and the flow is not constant, it varies as $h_{gw}$ varies.",
+    "error": "❌ Some of your choices are not correct. The DRN boundary is inactive when $H_{D} ≤ h_{gw}$. It does not permit inflow into the groundwater. When the drain is active, the flow varies depending on the groundwater head $h_{gw}$ with the rate controlled by the conductance $C_D$, so the discharge is not constant."
   },
   {
-    "question": "The aquifer head is situated above the drain elevation. What happens when you increase the drain elevation while keeping aquifer head constant? (Mark ALL correct answers)",
+    "question": "The groundwater head is situated above the drain elevation. What happens when you increase the drain elevation while keeping groundwater head constant? (Mark ALL correct answers)",
     "options": {
       "A) The flow decreases as the head difference reduces.": true,
       "B) The slope of the Q–h curve increases.": false,
-      "C) The boundary may become inactive if $H_D$ exceeds $h_{aq}$.": true,
+      "C) The boundary may become inactive if $H_D$ exceeds $h_{gw}$.": true,
       "D) The conductance of the boundary increases.": false
     },
     "success": "✅ Well done. A higher drain elevation reduces the head difference and may deactivate the boundary. The drain elevation does not influence conductance.",
@@ -35,9 +35,9 @@
   {
     "question": "What are key differences between DRN and RIV boundaries? (Mark ALL correct answers)",
     "options": {
-      "A) DRN boundaries only allow flow out of the aquifer, while a RIV boundary can represent both inflow and outflow.": true,
+      "A) DRN boundaries only allow flow out of the groundwater, while a RIV boundary can represent both inflow and outflow.": true,
       "B) A RIV and DRN boundary perform identical actions but have different names depending on what they represent.": false,
-      "C) Both boundary types allow inflow into the aquifer.": false,
+      "C) Both boundary types allow inflow into the groundwater.": false,
       "D) DRN is suitable to represent a spring or trench where as RIV is not appropriate for such features.": true
     },
     "success": "✅ Correct. A DRN boundary is a one-way outflow mechanism, unlike the bidirectional behavior of RIV.",
@@ -46,23 +46,23 @@
   {
     "question": "Which conditions will lead to zero flow across a DRN boundary? (Mark ALL correct answers)",
     "options": {
-      "A) $h_{aq} = H_D$": true,
-      "B) $h_{aq} < H_D$": true,
-      "C) $h_{aq} > H_D$": false,
+      "A) $h_{gw} = H_D$": true,
+      "B) $h_{gw} < H_D$": true,
+      "C) $h_{gw} > H_D$": false,
       "D) When conductance is zero": true
     },
     "success": "✅ Yes. Zero flow occurs when head difference is non-positive or when conductance is zero.",
     "error": "❌ Reconsider your answer so as to distinguish between threshold behavior (head) and proportionality (conductance)."
   },
   {
-    "question": "In a scenario with $h_{aq}$ = 10.5 m, what is the impact of increasing $H_D$ from 9.0 to 10.6 m? (Mark ALL correct answers)",
+    "question": "In a scenario with $h_{gw}$ = 10.5 m, what is the impact of increasing $H_D$ from 9.0 to 10.6 m? (Mark ALL correct answers)",
     "options": {
-      "A) The flow decreases steadily as $H_D$ approaches $h_{aq}$.": true,
-      "B) Flow becomes zero once $H_D >= h_{aq}$.": true,
+      "A) The flow decreases steadily as $H_D$ approaches $h_{gw}$.": true,
+      "B) Flow becomes zero once $H_D >= h_{gw}$.": true,
       "C) The slope of the Q–h curve increases.": false,
       "D) The conductance increases automatically.": false
     },
-    "success": "✅ Good analysis. The flow decreases as the head difference decreases and the drain deactivates once drain elevation exceeds aquifer head. Changing the elevation does not influence the conductance.",
+    "success": "✅ Good analysis. The flow decreases as the head difference decreases and the drain deactivates once drain elevation exceeds groundwater head. Changing the elevation does not influence the conductance.",
     "error": "❌ Reconsider your answer to consider how raising the drain elevation affects the activation threshold and flow rate, and to decide if the elevation influences conductance."
   }
 ]

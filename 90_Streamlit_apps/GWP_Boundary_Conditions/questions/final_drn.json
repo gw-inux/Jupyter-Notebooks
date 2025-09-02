@@ -1,14 +1,14 @@
 [
   {
-    "question": "Which equation describes flow from the aquifer to the drain in a DRN boundary condition? (Mark ALL correct answers)",
+    "question": "Which equation describes flow from the groundwater system to the drain in a DRN boundary condition? (Mark ALL correct answers)",
     "options": {
-      "A) $Q = C (H_{D}-h_{aq})$ if $h_{aq} > H_{D}$": true,
-      "B) $Q = 0$ if $h_{aq} \\leq H_{D}$": true,
-      "C) $Q = C (H_{D} - h_{aq})$": false,
+      "A) $Q = C (H_{D}-h_{gw})$ if $h_{gw} > H_{D}$": true,
+      "B) $Q = 0$ if $h_{gw} \\leq H_{D}$": true,
+      "C) $Q = C (H_{D} - h_{gw})$": false,
       "D) $Q$ is always constant": false
     },
-    "success": "✅ Correct. The DRN flow equation is active only when aquifer head is above the drain elevation.",
-    "error": "❌ Some of your choices are not correct. DRN flow is head-dependent and allows only outflow. There is no flow when aquifer head is below the drain elevation."
+    "success": "✅ Correct. The DRN flow equation is active only when groundwater system head is above the drain elevation.",
+    "error": "❌ Some of your choices are not correct. DRN flow is head-dependent and allows only outflow. There is no flow when groundwater  head is below the drain elevation."
   },
   {
     "question": "Which parameter controls the magnitude of discharge through the DRN boundary? (Mark ALL correct answers)",
@@ -18,19 +18,19 @@
       "C) Aquifer porosity": false,
       "D) Difference in head": true
     },
-    "success": "✅ Good job. DRN discharge is governed by conductance and head difference. Drain elevation controls magnitude of flow in that if it is above the aquifer head, then flow is zero",
+    "success": "✅ Good job. DRN discharge is governed by conductance and head difference. Drain elevation controls magnitude of flow in that if it is above the groundwater head, then flow is zero",
     "error": "❌ Some of your choices are not correct. Flow depends on conductance and head difference and the threshold elevation — not porosity."
   },
   {
     "question": "When is the DRN boundary inactive in a MODFLOW simulation? (Mark ALL correct answers)",
     "options": {
-      "A) When the aquifer head is below the drain elevation.": true,
-      "B) When the aquifer head equals the drain elevation.": true,
-      "C) When the aquifer head is above the drain elevation.": false,
+      "A) When the groundwater head is below the drain elevation.": true,
+      "B) When the groundwater head equals the drain elevation.": true,
+      "C) When the groundwater head is above the drain elevation.": false,
       "D) When the drain conductance is set to zero.": true
     },
-    "success": "✅ Correct. The DRN boundary does not discharge unless $h_{aq} >= H_{D}$. and conductance is greater than zero",
-    "error": "❌ Some of your choices are not correct. Flow only occurs when aquifer head is above the drain elevation and conductance is greater than zero."
+    "success": "✅ Correct. The DRN boundary does not discharge unless $h_{gw} >= H_{D}$. and conductance is greater than zero",
+    "error": "❌ Some of your choices are not correct. Flow only occurs when groundwater head is above the drain elevation and conductance is greater than zero."
   },
   {
     "question": "Which conditions can cause a DRN boundary to remove too much water from the model? (Mark ALL correct answers)",
@@ -44,10 +44,10 @@
     "error": "❌ Some of your choices are not correct. An excess outflow problem usually is due to errors in conductance or elevation settings. The drain diameter is not considered by DRN, though it may be considered when you estimate conductance."
   },
   {
-    "question": "What is the conceptual analogy for a DRN boundary in the real world? (Mark ALL correct answers)",
+    "question": "What is the conceptual analogy for a DRN boundary in a field setting? (Mark ALL correct answers)",
     "options": {
       "A) An open ditch draining water when groundwater is near the surface.": true,
-      "B) A river recharging and draining the aquifer.": false,
+      "B) A river recharging and draining the groundwater.": false,
       "C) An impermeable wall.": false,
       "D) A drainage tile or trench below a field.": true
     },
@@ -57,12 +57,12 @@
   {
     "question": "Why does the Q–h plot for a DRN boundary become horizontal if the head is below the drain elevation? (Mark ALL correct answers)",
     "options": {
-      "A) Because boundary flow is zero when $h_{aq} \\leq H_{D}$": true,
+      "A) Because boundary flow is zero when $h_{gw} \\leq H_{D}$": true,
       "B) Because DRN boundaries always simulate fixed flow": false,
       "C) Because conductance drops to zero if the head falls below a threshold": false,
       "D) Because the boundary switches to a no-flow condition if the head falls below a threshold": true
     },
     "success": "✅ Correct. The flat region reflects zero discharge when the head is below the elevation threshold.",
-    "error": "❌ Some of your choices are not correct. The flat part of the Q–h plot reflects zero discharge when $h_{aq} \\leq H_{D}$. Flow is not constant at a drain boundary and the head does not influence the value of conductance."
+    "error": "❌ Some of your choices are not correct. The flat part of the Q–h plot reflects zero discharge when $h_{gw} \\leq H_{D}$. Flow is not constant at a drain boundary and the head does not influence the value of conductance."
   }
 ]

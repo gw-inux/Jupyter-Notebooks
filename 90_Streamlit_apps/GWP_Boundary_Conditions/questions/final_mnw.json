@@ -1,6 +1,6 @@
 [
   {
-    "question": "1) What is a primary advantage of using MNW over WEL in groundwater modeling? (Mark ALL correct answers)",
+    "question": "What is a primary advantage of using MNW over WEL in groundwater modeling? (Mark ALL correct answers)",
     "options": {
       "A) It allows distributed flow over multiple layers": true,
       "B) It includes skin and nonlinear well loss effects": true,
@@ -11,7 +11,7 @@
     "error": "❌ Some of your choices are not correct. Unlike WEL, MNW explicitly handles complex multi-node flow and constraints on well discharge."
   },
   {
-    "question": "2) Which factors influence the aquifer-to-well conductance (CWC) in a Multi-Node Well? (Mark ALL correct answers)",
+    "question": "Which factors influence the groundwater system-to-well conductance (CWC) in a Multi-Node Well? (Mark ALL correct answers)",
     "options": {
       "A) Hydraulic conductivity of the zone near the well": true,
       "B) Wellbore radius and skin resistance": true,
@@ -22,7 +22,7 @@
     "error": "❌ Some of your choices are not correct. CWC reflects subsurface and borehole properties, not unrelated boundary elevations."
   },
   {
-    "question": "3) What happens to the Q–h behavior of an MNW when a restart threshold (Qmx) is defined? (Mark ALL correct answers)",
+    "question": "What happens to the Q–h behavior of an MNW when a restart threshold (Qmx) is defined? (Mark ALL correct answers)",
     "options": {
       "A) Pumping is zero unless Q exceeds Qmx.": true,
       "B) Qmx defines the minimum discharge needed to resume pumping after shutdown.": true,
@@ -33,18 +33,18 @@
     "error": "❌ Some of your choices are not correct. Qmx defines restart behavior — it does not allow flow to increase while the well is active, and it does not create a visible step in the Q–h curve."
   },
   {
-    "question": "4) In MODFLOW, what conditions may cause a MNW to stop pumping due to head constraints? (Mark ALL correct answers)",
+    "question": "In MODFLOW, what conditions may cause a MNW to stop pumping due to head constraints? (Mark ALL correct answers)",
     "options": {
       "A) When the well head drops below the limiting head ($h_{thr}$)": true,
       "B) When Qmx is reached": false,
-      "C) When the aquifer head declines, reaching the limiting head, and the active pumping rate is < Qmn": true,
+      "C) When the groundwater head declines, reaching the limiting head, and the active pumping rate is < Qmn": true,
       "D) When recharge is increased": false
     },
     "success": "✅ Spot on. MNW may stop pumping when physical or hydraulic head constraints are violated.",
     "error": "❌ Some of your choices are not correct. Well shutdown is related to local head conditions and the minimum flux limit, not Qmx or recharge rates."
   },
   {
-    "question": "5) How is the well skin incorporated in MNW behavior? (Mark ALL correct answers)",
+    "question": "How is the well skin incorporated in MNW behavior? (Mark ALL correct answers)",
     "options": {
       "A) As additional resistance surrounding the well": true,
       "B) As a direct increase in conductance": false,
@@ -55,7 +55,7 @@
     "error": "❌ Some of your choices are not correct. Skin increases drawdown — it does not increase conductance nor affect recharge."
   },
   {
-    "question": "6) How can Q–h plots assist in interpreting MNW model behavior? (Mark ALL correct answers)",
+    "question": "How can Q–h plots assist in interpreting MNW model behavior? (Mark ALL correct answers)",
     "options": {
       "A) By identifying operational and physical pumping limits": true,
       "B) By indicating when threshold heads are reached": true,

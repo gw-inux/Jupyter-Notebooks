@@ -1,57 +1,57 @@
 [
   {
-    "question": "Which variables are required to compute the flow between the river and aquifer in the RIV boundary condition? (Mark ALL correct answers)",
+    "question": "Which variables are required to compute the flow between the river and groundwater system for the RIV boundary condition? (Mark ALL correct answers)",
     "options": {
-      "Aquifer head": true,
+      "Groundwater head": true,
       "River stage": true,
       "Riverbed conductance": true,
       "Aquifer transmissivity": false
     },
-    "success": "✅ Correct. The flow is calculated using aquifer head, river stage, and riverbed properties to determine the water exchange rate. Aquifer properties are not involved in calculating exchange between the aquifer and the river, but head in the aquifer is controlled by the geometry, hydraulic properties, and boundary conditions of the model.",
-    "error": "❌ Some of your choices are not correct. The RIV equation uses river stage, aquifer head, and riverbed properties to determine the water exchange rate. Aquifer properties are not involved in calculating exchange between the aquifer and the river, but head in the aquifer is controlled by the geometry, hydraulic properties, and boundary conditions of the model."
+    "success": "✅ Correct. The flow is calculated using groundwater head, river stage, and riverbed properties to determine the water exchange rate. Groundwater system properties are not involved in calculating exchange between groundwater and the river, but head in the groundwater system is controlled by the geometry, hydraulic properties, and boundary conditions of the model.",
+    "error": "❌ Some of your choices are not correct. The RIV equation uses river stage, groundwater head, and riverbed properties to determine the water exchange rate. Hydraulic properties of the groundwater system are not involved in calculating exchange between groundwater and the river, but head in the groundwater system is controlled by the geometry, hydraulic properties, and boundary conditions of the model."
   },
   {
     "question": "How does increasing the riverbed conductance ($C_{Riv}$) affect flow behavior in a RIV boundary condition? (Mark ALL correct answers)",
     "options": {
       "It increases the sensitivity of flow to head difference.": true,
       "It reduces the maximum exchange flow possible.": false,
-      "It represents a more hydraulically connected river–aquifer interface.": true,
+      "It represents a more hydraulically connected river–groundwater interface.": true,
       "It makes the river behave increasingly like a constant head boundary.": true
     },
-    "success": "✅ Correct. Higher conductance means better connection with the boundary. A higher conductance results in more flow per unit head difference. A very high conductance will cause head in the aquifer to be nearly the same as the boundary head because a large amount of flow will occur for even small head differences.",
+    "success": "✅ Correct. Higher conductance means better connection with the boundary. A higher conductance results in more flow per unit head difference. A very high conductance will cause head in the groundwater system near the boundary to be almost the same as the boundary head because a large amount of flow will occur for even small head differences.",
     "error": "❌ All responses that indicate increased flow, connection, and sensitivity are correct. Increased sensitivity occurs because higher conductance means the change in flow rate is larger for a given head difference."
   },
   {
-    "question": "When does flow between the aquifer and river stop in the RIV boundary? (Mark ALL correct answers)",
+    "question": "When does flow between the groundwater system and river stop for the RIV boundary? (Mark ALL correct answers)",
     "options": {
-      "When the aquifer head drops below the riverbed bottom elevation": false,
+      "When the groundwater system head drops below the riverbed bottom elevation": false,
       "When the river stage is zero": false,
       "When the conductance is set to zero": true,
-      "When the aquifer head equals the river stage": true
+      "When the groundwater system head equals the river stage": true
     },
-    "success": "✅ Well done. Flow stops if the aquifer head equals the river stage and/or if conductance is zero. Flow is constant, not zero, when the aquifer head is lower than the riverbed bottom. Flow is dependent on the difference between river stage and aquifer head not on the value of river stage.",
-    "error": "❌ Some of your choices are not correct. Flow stops if the aquifer head equals the river stage and/or if conductance is zero. Flow is constant, not zero, when the aquifer head is lower than the riverbed bottom. Flow is dependent on the difference between river stage and aquifer head not on the value of river stage."
+    "success": "✅ Well done. Flow stops if the groundwater system head equals the river stage and/or if conductance is zero. Flow occurs at a constant, non-zero rate when the groundwater system head is lower than the riverbed bottom. Flow is dependent on the difference between river stage and groundwater system head not on the value of river stage.",
+    "error": "❌ Some of your choices are not correct. Flow stops if the groundwater system head equals the river stage and/or if conductance is zero. Flow is constant, not zero, when the groundwater system head is lower than the riverbed bottom. Flow is dependent on the difference between river stage and groundwater system head not on the value of river stage."
   },
   {
     "question": "How does the MODFLOW RIV boundary simulate a gaining stream? (Mark ALL correct answers)",
     "options": {
-      "The aquifer head is above the river stage.": true,
-      "Flow is directed from aquifer to river.": true,
-      "The boundary head is fixed and does not depend on aquifer head.": false,
+      "The groundwater system head is above the river stage.": true,
+      "Flow is directed from groundwater system to river.": true,
+      "The boundary head is fixed and does not depend on groundwater system head.": false,
       "The river is always gaining if the aquifer is saturated.": false
     },
-    "success": "✅ Correct. A gaining stream receives flow when the aquifer head is above the river stage.",
-    "error": "❌ Some of your choices are not correct. A stream gains when the aquifer head is above the river stage and in that case, flow is directed from the aquifer to the stream. It is true that the boundary head does not depend on the aquifer head, but that does not cause simulation of a gaining stream. A saturated aquifer may have a head below the stream stage and so will not always cause a stream to gain."
+    "success": "✅ Correct. A gaining stream receives flow when the groundwater system head is above the river stage.",
+    "error": "❌ Some of your choices are not correct. A stream gains when the groundwater system head is above the river stage and in that case, flow is directed from the groundwater system to the stream. It is true that the boundary head does not depend on the groundwater system head, but that does not cause simulation of a gaining stream. A saturated aquifer may have a head below the stream stage and so will not always cause a stream to gain."
   },
   {
-    "question": "What happens to the exchange flow as aquifer head approaches the river stage elevation from above? (Mark ALL correct answers)",
+    "question": "What happens to the exchange flow as groundwater system head approaches the river stage elevation from above? (Mark ALL correct answers)",
     "options": {
       "Flow rate decreases and approaches zero.": true,
       "The riverbed becomes dry.": false,
       "MODFLOW disables the RIV boundary.": false,
       "Exchange flow becomes negative.": false
     },
-    "success": "✅ Exactly. The flow becomes minimal as the aquifer approaches the river stage elevation. It does not become negative because it is negative when water is exiting the grouandwtare system. When less water exits the flow is still negative. ",
+    "success": "✅ Exactly. The flow becomes minimal as the groundwater head approaches the river stage elevation. It does not become negative because it is negative when water is exiting the groundwater system. When less water exits the flow is still negative.",
     "error": "❌ Some of your choices are not correct. Flow tapers off but does not reverse and the boundary is not disabled."
   },
   {

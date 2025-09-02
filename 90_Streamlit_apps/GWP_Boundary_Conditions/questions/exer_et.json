@@ -1,6 +1,6 @@
 [
   {
-    "question": "1) What conditions activate discharge from the EVT boundary condition in MODFLOW? (Mark ALL correct answers)",
+    "question": "What conditions activate discharge from the EVT boundary condition in MODFLOW? (Mark ALL correct answers)",
     "options": {
       "A) When the groundwater head is above the extinction depth": true,
       "B) When the groundwater head is below the extinction depth": false,
@@ -11,7 +11,7 @@
     "error": "❌ Some of your choices are not correct. ET occurs above the extinction depth which includes elevations at or above the ET surface."
   },
   {
-    "question": "2) How does increasing the extinction depth affect the ET–head relationship? (Mark ALL correct answers)",
+    "question": "How does increasing the extinction depth affect the ET–head relationship? (Mark ALL correct answers)",
     "options": {
       "A) It increases the range of heads where ET occurs": true,
       "B) It affects the slope of the Q–h curve": true,
@@ -22,7 +22,7 @@
     "error": "❌ Some of your choices are not correct. EXDP changes the shape and range of the Q-h curve, but not the maximum ET rate."
   },
   {
-    "question": "3) What happens to the ET rate if the groundwater head is below the extinction depth? (Mark ALL correct answers)",
+    "question": "What happens to the ET rate if the groundwater head is below the extinction depth? (Mark ALL correct answers)",
     "options": {
       "A) It is reduced to zero": true,
       "B) It equals the maximum rate": false,
@@ -33,7 +33,7 @@
     "error": "❌ Some of your choices are not correct. ET is only nonzero above the  extinction depth."
   },
   {
-    "question": "4) Which parameter directly controls the **maximum rate** of groundwater evapotranspiration in MODFLOW? (Mark ALL correct answers)",
+    "question": "Which parameter directly controls the **maximum rate** of groundwater evapotranspiration in MODFLOW? (Mark ALL correct answers)",
     "options": {
       "A) EVTR": true,
       "B) SURF": false,
@@ -44,7 +44,7 @@
     "error": "❌ Some of your choices are not correct. EVTR area defines the maximum evapotranspiration rate. SURF and EXDP shape the relationship between elevation and rate. Cell area converts the low rate to the volumetric discharge from a model cell."
   },
   {
-    "question": "5) What is the **role of SURF** (ET surface) in the MODFLOW EVT package? (Mark ALL correct answers)",
+    "question": "What is the **role of SURF** (ET surface) in the MODFLOW EVT package? (Mark ALL correct answers)",
     "options": {
       "A) It defines the elevation at which ET begins to decline": true,
       "B) It defines the elevation at, and above, which the full ET rate is applied": true,
@@ -55,7 +55,7 @@
     "error": "❌ Some of your choices are not correct. SURF doesn’t define the evapotranspiration rate — it defines the upper elevation bound for evapotranspiration rate less than the maximum rate, but not the rate itself."
   },
   {
-    "question": "6) Which scenarios would justify a large extinction depth in an ET boundary? (Mark ALL correct answers)",
+    "question": "Which scenarios would justify a large extinction depth in an ET boundary? (Mark ALL correct answers)",
     "options": {
       "A) Deep-rooted vegetation such as phreatophytes": true,
       "B) ET dominated by surface evaporation from bare soil": false,

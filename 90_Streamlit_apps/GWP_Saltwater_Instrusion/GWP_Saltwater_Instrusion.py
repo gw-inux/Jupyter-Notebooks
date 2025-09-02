@@ -2,14 +2,15 @@ import streamlit as st
 import os
 
 # --- Application parameters ---
-# module_path = "90_Streamlit_apps/GWP_Saltwater_Intrusion/"
-module_path = ""
+module_path = "90_Streamlit_apps/GWP_Saltwater_Intrusion/"
+#module_path = ""
 
-# DEFAULT_START_PAGE = "90_Streamlit_apps/GWP_Saltwater_Intrusion/content/GWP_Saltwater_Intrusion_Start.py"
-# ABOUT_PAGE = "90_Streamlit_apps/GWP_Saltwater_Intrusion/content/GWP_About.py"
+DEFAULT_START_PAGE = "90_Streamlit_apps/GWP_Saltwater_Intrusion/content/GWP_Saltwater_Intrusion_Start.py"
+                     "90_Streamlit_apps/GWP_Boundary_Conditions/content/GWP_Boundary_Conditions_Start.py"
+ABOUT_PAGE = "90_Streamlit_apps/GWP_Saltwater_Intrusion/content/GWP_About.py"
 
-DEFAULT_START_PAGE = "content/GWP_Saltwater_Intrusion_Overview.py"
-ABOUT_PAGE = "content/GWP_About.py"
+#DEFAULT_START_PAGE = "content/GWP_Saltwater_Intrusion_Overview.py"
+#ABOUT_PAGE = "content/GWP_About.py"
 
 # --- MUST be first: layout setup wide / centered ---
 if "layout_choice" not in st.session_state:
@@ -51,11 +52,11 @@ st.markdown("""
 
 # --- Flat page definitions ---
 pages = {
-    "📕 Introduction ": module_path + "content/GWP_SFI_Introduction.py",
-    "🟠 GHP": module_path + "content/GWP_SFI_Ghyben_Herzberg.py",
-    "🟣 SLR": module_path + "content/GWP_SFI_SeaLevelRise.py",
-    "🟣 SLR GM": module_path + "content/GWP_SFI_SeaLevelRise_GM.py",
-    "🟢 SWI": module_path + "content/GWP_SFI_Upconing.py",
+    "📕 Introduction ": "90_Streamlit_apps/GWP_Saltwater_Intrusion/content/GWP_SFI_Introduction.py",
+    "🟠 GHP": "90_Streamlit_apps/GWP_Saltwater_Intrusion/content/GWP_SFI_Ghyben_Herzberg.py",
+    "🟣 SLR": "90_Streamlit_apps/GWP_Saltwater_Intrusion/content/GWP_SFI_SeaLevelRise.py",
+    "🟣 SLR GM": "90_Streamlit_apps/GWP_Saltwater_Intrusion/content/GWP_SFI_SeaLevelRise_GM.py",
+    "🟢 SWI": "90_Streamlit_apps/GWP_Saltwater_Intrusion/content/GWP_SFI_Upconing.py",
 }
 
 # --- State tracking ---

@@ -4,7 +4,7 @@
     "options": {
       "GHBs allow both inflow and outflow depending on head conditions.": true,
       "GHBs impose a fixed head at the model boundary.": false,
-      "GHBs can be used to represent a lake connected to the aquifer.": true,
+      "GHBs can be used to represent a lake connected to the groundwater.": true,
       "GHBs always remove water from the system.": false
     },
     "success": "✅ Correct! GHBs simulate two-way interaction with external systems like lakes or rivers. The head of a GHB is _not at the model boundary, rather it is removed from the model boundary by a conductance layer with the head being at some distance from the model_.",
@@ -24,10 +24,10 @@
   {
     "question": "Which of the following leads to zero flow across a GHB? (Mark ALL correct answers)",
     "options": {
-      "When aquifer head equals the boundary head.": true,
+      "When groundwater head equals the boundary head.": true,
       "When conductance is very large.": false,
       "When conductance is zero.": true,
-      "When $H_B > h_{aq}$.": false
+      "When $H_B > h_{gw}$.": false
     },
     "success": "✅ Correct! Flow does not occur when there is no head difference or conductance is zero.",
     "error": "❌ Some of your choices are not correct. Flow only occurs when there is a head difference and a non-zero conductance."

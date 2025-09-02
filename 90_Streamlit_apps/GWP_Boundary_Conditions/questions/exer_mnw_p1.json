@@ -7,7 +7,7 @@
       "C) Lower exponent P in the nonlinear term": false,
       "D) Reduced conductance due to well clogging": true
     },
-    "success": "✅ Correct. All answers except a lower P lead to increased drawdown for the same discharge.",
+    "success": "✅ Correct. All answers except a lower P result in increased drawdown for the same discharge.",
     "error": "❌ Some of your choices are not correct. Drawdown increases with higher A, B, and lower effective conductance. Lower P reduces drawdown."
   },
   {
@@ -15,7 +15,7 @@
     "options": {
       "A) The well head corresponding to the given discharge": true,
       "B) The required drawdown to achieve the selected Q": true,
-      "C) A fixed head in the aquifer": false,
+      "C) A fixed head in the groundwater": false,
       "D) The discharge at a given well head": false
     },
     "success": "✅ Yes. In Q-target, the model computes the drawdown (and thus well head) needed to produce Q.",
@@ -38,7 +38,7 @@
       "A) Increasing both A and B": true,
       "B) Increasing P while keeping A and B constant": true,
       "C) Decreasing A and B": false,
-      "D) Reducing the aquifer head": false
+      "D) Reducing the groundwater head": false
     },
     "success": "✅ Yes. Higher A, B, and P result in larger head losses and steepen the Q–Δh response.",
     "error": "❌ Some of your choices are not correct. Only increasing resistance terms (A, B, P) steepens the Q–Δh curve."
@@ -49,10 +49,10 @@
       "A) Because nonlinear terms become more dominant at high Q": true,
       "B) Because both parameter sets may have the same linear resistance A": true,
       "C) Because drawdown becomes less sensitive to P at high Q": false,
-      "D) Because the aquifer head decreases with increasing discharge": false
+      "D) Because the groundwater head decreases with increasing discharge": false
     },
     "success": "✅ Correct. At low Q, differences are minor; at high Q, nonlinear losses (B, P) dominate the increase of drawdown in the well.",
-    "error": "❌ Some of your choices are not correct. Only nonlinear terms cause divergence at high Q. Aquifer head is fixed in this plot."
+    "error": "❌ Some of your choices are not correct. Only nonlinear terms cause divergence at high Q. Groundwater head is fixed in this plot."
   },
   {
     "question": "What are correct interpretations of the second parameter set in the interactive MNW plot? (Mark ALL correct answers)",

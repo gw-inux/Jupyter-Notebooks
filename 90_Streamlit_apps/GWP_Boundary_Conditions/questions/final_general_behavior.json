@@ -4,33 +4,33 @@
     "options": {
       "Because the head remains constant regardless of flow rate.": true,
       "Because the flow rate remains constant.": false,
-      "Because the aquifer has no recharge.": false,
+      "Because the groundwater system has no recharge.": false,
       "Because it reflects external control, like a large river or lake.": true
     },
-    "success": "✅ Correct! For a Dirichlet condition, head is specified; Q varies. It often reflects external controls like large lakes that are in direct contact with the aquifer.",
+    "success": "✅ Correct! For a Dirichlet condition, head is specified and Q varies. It often reflects external controls like large lakes that are in direct contact with the groundwater system.",
     "error": "❌ Some of your choices are not correct. For a Dirichlet condition, the head is specified, not the flow, and the value of recharge does not influence the value of specified head."
   },
   {
     "question": "Which characteristics best describe a head-dependent boundary (Robin condition)? (Mark ALL correct answers)",
     "options": {
-      "The flow depends on the difference between aquifer head and external head.": true,
+      "The flow depends on the difference between groundwater head and external head.": true,
       "It involves a conductance term that controls how easily flow occurs.": true,
       "The head is always equal to the river stage.": false,
       "It results in zero flow under all conditions.": false
     },
     "success": "✅ Correct! Head-dependent flux is based on the head difference times a conductance value that controls how easily flow occurs.",
-    "error": "❌ Some of your choices are not correct. Only when head in the aquifer and boundary are equal is the flow zero — not always. Also, the head is only equal to the river stage if there is no source of water to flow out of the boundary."
+    "error": "❌ Some of your choices are not correct. Only when head in the groundwater system and boundary are equal is the flow zero — not always. Also, the head is only equal to the river stage if there is no source of water to flow out of the boundary."
   },
   {
     "question": "What happens in a groundwater model if recharge is increased while keeping boundary types unchanged? (Mark ALL correct answers)",
     "options": {
       "The hydraulic head generally increases across the domain.": true,
       "The discharge at the defined-head or river boundary increases.": true,
-      "The hydraulic conductivity of the aquifer increases.": false,
+      "The hydraulic conductivity of the groundwater system increases.": false,
       "The position of the defined head boundary shifts further into the domain.": false
     },
-    "success": "✅ Correct! Recharge increases head and thus outflow, but aquifer properties and boundary locations stay the same.",
-    "error": "❌ Some of your choices are not correct. Recharge affects system input and outflow, but it does not alter aquifer properties or boundary positions."
+    "success": "✅ Correct! Recharge increases head and thus outflow, but groundwater system properties and boundary locations stay the same.",
+    "error": "❌ Some of your choices are not correct. Recharge affects system input and outflow, but it does not alter groundwater system properties or boundary positions."
   },
   {
     "question": "In which of the following cases does the Q–h plot appear as a horizontal line (i.e., when Q represented by the y-axis)? (Mark ALL correct answers)",
@@ -49,10 +49,10 @@
       "Higher K values lead to flatter hydraulic head gradients under steady recharge.": true,
       "K influences the shape of the Q–h plot at a boundary with specified head.": false,
       "Higher K results in greater discharge in models where boundary conditions allow through flow.": true,
-      "K does not affect the discharge through the aquifer system with uniform recharge and only one outflow boundary.": true
+      "K does not affect the discharge through the groundwater system with uniform recharge and only one outflow boundary.": true
     },
-    "success": "✅ Correct! K determines how easily water flows through the aquifer, affecting head gradients, and in cases where boundaries allow through flow of groundwater higher K increases inflow and outflow, but K does not the shape of the Q–h plot at a fixed-head boundary.",
-    "error": "❌ Some of your choices are not correct. K strongly influences head gradients and flow rates in a model with boundaries that allow through flow, but not the shape of the Q–h curve at a Dirichlet boundary which is determined by the definition of a specified head boundary, not by the aquifer parameter values."
+    "success": "✅ Correct! K determines how easily water flows through the groundwater system, affecting head gradients, and in cases where boundaries allow through flow of groundwater higher K increases inflow and outflow, but K does not the shape of the Q–h plot at a fixed-head boundary.",
+    "error": "❌ Some of your choices are not correct. K strongly influences head gradients and flow rates in a model with boundaries that allow through flow, but not the shape of the Q–h curve at a Dirichlet boundary which is determined by the definition of a specified head boundary, not by the groundwater system parameter values."
   },
   {
     "question": "In a 1D model with recharge, a no-flow boundary, and a specified head boundary, which of the following are true? (Mark ALL correct answers)",

@@ -5,21 +5,21 @@
       "A) MNW calculates head based on Q and resistance, while WEL fixes Q directly.": true,
       "B) WEL includes nonlinear losses, MNW does not.": false,
       "C) MNW models drawdown dynamically based on a function defined by CWC parameters.": true,
-      "D) WEL adjusts the aquifer head based on drawdown.": false
+      "D) WEL adjusts the groundwater head based on drawdown.": false
     },
     "success": "✅ Correct. MNW allows dynamic head computation; WEL is a fixed-flux condition.",
     "error": "❌ Some of your choices are not correct. WEL fixes Q, while MNW dynamically links Q and h based on resistance."
   },
   {
-    "question": "In this plot 2, what is true about the aquifer head $h_{aq}$? (Mark ALL correct answers)",
+    "question": "In this plot 2, what is true about the groundwater head $h_{gw}$? (Mark ALL correct answers)",
     "options": {
       "A) It is fixed during all computations.": true,
       "B) It varies with drawdown in the well.": false,
       "C) It provides the reference head for computing drawdown.": true,
       "D) It is computed from boundary conditions.": false
     },
-    "success": "✅ Correct. In Plot 2, $h_{aq}$ is fixed and used as a reference for Δh.",
-    "error": "❌ Some of your choices are not correct. $h_{aq}$ is fixed — only $h_{well}$ and Q change depending on the selected target mode."
+    "success": "✅ Correct. In Plot 2, $h_{gw}$ is fixed and used as a reference for Δh.",
+    "error": "❌ Some of your choices are not correct. $h_{gw}$ is fixed — only $h_{well}$ and Q change depending on the selected target mode."
   },
   {
     "question": "What happens if the exponent $P$ in the nonlinear CWC is increased? (Mark ALL correct answers)",

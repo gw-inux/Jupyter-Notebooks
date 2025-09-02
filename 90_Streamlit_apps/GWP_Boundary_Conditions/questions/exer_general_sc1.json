@@ -12,7 +12,7 @@
     "error": "❌ Some of your choices are not correct. In our 1D steady-state model with one no-flow boundary, outflow is determined by the recharge rate only, not by hydraulic conductivity."
   },
   {
-    "question": "A 1D model with a no-flow boundary on the left uses a **specified-head** boundary condition at the right outlet. The groundwater recharge is specified as 180 mm/a. What parameter change is suitable to increase the hydraulic head in the aquifer at the right boundary? (Mark ALL correct answers)",
+    "question": "A 1D model with a no-flow boundary on the left uses a **specified-head** boundary condition at the right outlet. The groundwater recharge is specified as 180 mm/a. What parameter change is suitable to increase the hydraulic head in the groundwater at the right boundary? (Mark ALL correct answers)",
     "options": {
       "A) Increasing $R$": false,
       "B) Decreasing $R$": false,
@@ -36,7 +36,7 @@
     "error": "❌ Some of your choices are not correct. Changing conductivity or conductance affects head distribution, not the total outflow given a constant recharge."
   },
   {
-    "question": "A 1D model with a no-flow boundary on the left uses a **head-dependent** boundary condition (**River BC**) at the right outlet. The groundwater recharge is specified as 180 mm/a. What parameter change is suitable to **increase the hydraulic head** in the aquifer at the right boundary? (Mark ALL correct answers)",
+    "question": "A 1D model with a no-flow boundary on the left uses a **head-dependent** boundary condition (**River BC**) at the right outlet. The groundwater recharge is specified as 180 mm/a. What parameter change is suitable to **increase the hydraulic head** in the groundwater at the right boundary? (Mark ALL correct answers)",
     "options": {
 	    "A) Decreasing $K$": true,
 	    "B) Decreasing $C_{Riv}$": true,
@@ -44,7 +44,7 @@
       "D) Increasing $K$": false,
       "E) None of A, B, C, or D": false
     },
-    "success": "✅ Correct! Lower $C_{Riv}$ increases the resistance between the aquifer model and the boundary, thus the aquifer heads must be higher to drive the same volume of water out of the boundary. Lowering  $K$ increases overall resistance of the aquifer requiring a steeper gradient and thus higher heads to discharge the same volume of water to the river",
+    "success": "✅ Correct! Lower $C_{Riv}$ increases the resistance between the groundwater model and the boundary, thus the groundwater heads must be higher to drive the same volume of water out of the boundary. Lowering  $K$ increases overall resistance of the aquifer requiring a steeper gradient and thus higher heads to discharge the same volume of water to the river",
     "error": "❌ Some of your choices are not correct. Increasing hydraulic conductivity or conductance reduces the resistance to flow and therefore also heads."
   }
 ]
