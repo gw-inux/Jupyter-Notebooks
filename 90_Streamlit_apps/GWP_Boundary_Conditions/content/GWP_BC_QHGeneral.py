@@ -101,35 +101,14 @@ with cent_co:
     st.image('90_Streamlit_apps/GWP_Boundary_Conditions/assets/images/gwp_boundary_Qh_scheme_v2.png')
     st.markdown("""Schematic representation of an unconfined aquifer with a river boundary on the right side together with the associated _Q_-_h_ plot.""")
 
-st.markdown(""" By simulating a simple 1D unconfined aquifer with recharge and various boundary types, users of this module can gain insight into the essential principles that govern groundwater model boundaries and their practical implications in tools like the numerical groundwater flow model MODFLOW.
+st.markdown(""" 
+#### 📖 Overview about this section
+By simulating a simple 1D unconfined aquifer with recharge and various boundary types, users of this module can gain insight into the essential principles that govern groundwater model boundaries and their practical implications in tools like the numerical groundwater flow model MODFLOW.
 
 To support the understanding, this 📕 :red[**Introduction**] part of the module applies well-known analytical solutions for 1D unconfined groundwater flow with recharge. It illustrates how different boundary types like specified head, specified flow, and head-dependent flux influence the resulting hydraulic head and flow distribution. A key focus is placed on understanding the resulting ***Q-h*** relationships, which are central to the conceptualization and interpretation of boundary conditions in groundwater models like MODFLOW.
 
 The subsequent parts of this module provide more details about specific boundary conditions with a focus on MODFLOW, namely the general head boundary (:orange[**GHB**]), the river boundary (:violet[**RIV**]), the drain boundary (:green[**DRN**]), the multi-node-well boundary (:grey[**MNW**]), and the evapotranspiration (:blue[**EVT**]). The menu on the left side can be used to access these sections.
 """)
-
-   
-with st.expander('Show more :blue[**background about the mathematical application of boundary conditions in models**]  **including why RCH and WEL are not sections in this module**'):
-    st.markdown("""
-    
-    Analytical solutions of partial differential equations are limited to simple geometries, typically one-dimensional scenarios. Codes like MODFLOW (McDonald and Harbaugh, 1984) that solve the partial differential groundwater flow equation for a groundwater system by dividing the system into three-dimensional volumes (cells or elements) so they can simulate complex aquifer systems (e.g., multiple aquifers and confining units) with complex boundary conditions. 
-    
-    The shapes of these volumes vary by model code. For some methods the hydraulic head is computed at the centroid of each volume as in the block-centered finite difference method of the original MODFLOW88 or at the intersection of volume sides as in finite element method of SUTRA (Voss et al., 2024). For each volume, the models require geometry, hydraulic properties, and boundary conditions. 
-    
-    For a numerical model, a linear system of equations is solved. This linear system is similar to an equation of a line in matrix form; [A]{h}={Q} , where [A] is a matrix containing conductances (i.e., a combination of geometry and hydraulic properties, {h} is the unknown head at each cell/element [called the solution vector in linear algebra], and {Q} is the flow or flux at each discrete volume [called the right-hand side, RHS, vector in linear algebra]. The size of the matrix [A] is based on the number of head values, which is dependent on the number of discrete volumes and the solution method. Derivation of the block-centered flow, finite-difference solution for the partial differential groundwater flow equation is described in McDonald and Harbaugh (1988). The boundary conditions are added to the system of equations differently depending on the type of boundary condition.  
-    
-    MODFLOW is the most widely used groundwater modeling code and its basic form implements a block-centered-flow finite difference method. This boundary condition training module uses MODFLOW terminology. The simplest discrete volume in MODFLOW is a six-sided cube or cell located in three-dimensional model space by row, column, layer (indices i,j,k) with head solved at the centroid of each cell. 
-    
-    A specified head means that the head at that cell is known and the equation does not need to be solved for h(i,j,k). With MODFLOW and the simplest discretization (6-sided cubes) the exact location in space is not required and so the indices for the location of each head, h is by row, column, layer (i,j,k), although more complex discretization schemes are allowed in MODFLOW6 (Langevin et al 2017) which was developed after the early releases of MODFLOW.
-    
-    A specified flow is added directly to {Q} for that cell, Q(i,j,k). In MODLFOW there are two packages for specified flow, the Recharge package (RCH) and the Well package (WEL).  The two packages work a bit differently but essentially add a value of Q to the right-hand side vector {Q}.  Additionally, most codes will sum Q’s together for each cell or element using correct signs to obtain a net Q. A pumping well removes water (negative sign) and an injection well supplies water (positive sign). Recharge adds water to each cell recharge is assigned (positive sign). Thus, recharge and wells can be assigned to the same cell.  The WEL package of MODFLOW has an input structure assigning pumping rate by each cell in length cubed per volume and any multiple wells that fall into the same cell can be added to the {Q} vector individually. The RCH recharge package of MODFLOW allows users to assign a recharge rate to the top active layer in length per time and the code uses the area of the top of each cell to calculate the Q (L³/T) put into each location of the {Q} vector. 
-    
-    Since both the Specified head and Specified flux are simpler boundary conditions to implement (both have major impacts on the solution for head), this training module focuses on the more complicated head-dependent flux boundary condition packages of MODFLOW. These head dependent flux packages add terms to both the matrix [A] and the right-hand side vector {Q} at each cell or element where a boundary condition is applied.  There are different packages in MODFLOW that apply to different types of head-dependent flux boundary conditions as some are applied as rates (L/T) multiplied by areas, and some are applied as volumetric rates (L³/T).
-    
-    McDonald, M.G. and Harbaugh, A.W. (1984). A modular three-dimensional finite-difference ground-water flow model: U.S. Geological Survey Techniques Open-File Report 83-875, 528p. https://doi.org/10.3133/ofr83875 
-    
-    Voss, C.I., Provost, A.M., McKenzie, J.M., and Kurylyk, B.L. (2024). SUTRA—A code for simulation of saturated-unsaturated, variable-density groundwater flow with solute or energy transport—Documentation of the version 4.0 enhancements—Freeze-thaw capability, saturation and relative-permeability relations, spatially varying properties, and enhanced budget and velocity outputs: U.S. Geological Survey Techniques and Methods, book 6, chap. A63, 91 p., https://doi.org/10.3133/tm6A63 
-    """)
 
 st.markdown("""
 #### 🎯 Learning Objectives
@@ -173,8 +152,40 @@ with st.expander('**Show the initial assessment** - to assess your EXISTING know
             )
 
 # --- TYPES OF BOUNDARY CONDITIONS ---
-st.subheader('🧪 Theory: Types of Boundary Conditions in Groundwater Modeling and Q-h plots for description', divider='blue')
+st.subheader('🧪 Theory: A concise overview about Groundwater Modeling and Boundary Conditions', divider='blue')
+
+st.markdown(""" 
+
+#### Mathematical Application of Boundary Conditions in Models
+To understand boundary conditions in groundwater models, it is important to first recall how numerical models approximate the governing flow equations. The following part provides a concise background on discretization, system equations, and the implementation of specified versus head-dependent boundary conditions.
+""")
+
+with st.expander('Show more :blue[**background about the mathematical application of boundary conditions in models**]  **including why RCH and WEL are not sections in this module**'):
+    st.markdown("""
+    
+    Analytical solutions of partial differential equations are limited to simple geometries, typically one-dimensional scenarios. Codes like MODFLOW (McDonald and Harbaugh, 1984) that solve the partial differential groundwater flow equation for a groundwater system by dividing the system into three-dimensional volumes (cells or elements) so they can simulate complex aquifer systems (e.g., multiple aquifers and confining units) with complex boundary conditions. 
+    
+    The shapes of these volumes vary by model code. For some methods the hydraulic head is computed at the centroid of each volume as in the block-centered finite difference method of the original MODFLOW88 or at the intersection of volume sides as in finite element method of SUTRA (Voss et al., 2024). For each volume, the models require geometry, hydraulic properties, and boundary conditions. 
+    
+    For a numerical model, a linear system of equations is solved. This linear system is similar to an equation of a line in matrix form; [A]{h}={Q} , where [A] is a matrix containing conductances (i.e., a combination of geometry and hydraulic properties, {h} is the unknown head at each cell/element [called the solution vector in linear algebra], and {Q} is the flow or flux at each discrete volume [called the right-hand side, RHS, vector in linear algebra]. The size of the matrix [A] is based on the number of head values, which is dependent on the number of discrete volumes and the solution method. Derivation of the block-centered flow, finite-difference solution for the partial differential groundwater flow equation is described in McDonald and Harbaugh (1988). The boundary conditions are added to the system of equations differently depending on the type of boundary condition.  
+    
+    MODFLOW is the most widely used groundwater modeling code and its basic form implements a block-centered-flow finite difference method. This boundary condition training module uses MODFLOW terminology. The simplest discrete volume in MODFLOW is a six-sided cube or cell located in three-dimensional model space by row, column, layer (indices i,j,k) with head solved at the centroid of each cell. 
+    
+    A specified head means that the head at that cell is known and the equation does not need to be solved for h(i,j,k). With MODFLOW and the simplest discretization (6-sided cubes) the exact location in space is not required and so the indices for the location of each head, h is by row, column, layer (i,j,k), although more complex discretization schemes are allowed in MODFLOW6 (Langevin et al 2017) which was developed after the early releases of MODFLOW.
+    
+    A specified flow is added directly to {Q} for that cell, Q(i,j,k). In MODLFOW there are two packages for specified flow, the Recharge package (RCH) and the Well package (WEL).  The two packages work a bit differently but essentially add a value of Q to the right-hand side vector {Q}.  Additionally, most codes will sum Q’s together for each cell or element using correct signs to obtain a net Q. A pumping well removes water (negative sign) and an injection well supplies water (positive sign). Recharge adds water to each cell recharge is assigned (positive sign). Thus, recharge and wells can be assigned to the same cell.  The WEL package of MODFLOW has an input structure assigning pumping rate by each cell in length cubed per volume and any multiple wells that fall into the same cell can be added to the {Q} vector individually. The RCH recharge package of MODFLOW allows users to assign a recharge rate to the top active layer in length per time and the code uses the area of the top of each cell to calculate the Q (L³/T) put into each location of the {Q} vector. 
+    
+    Since both the Specified head and Specified flux are simpler boundary conditions to implement (both have major impacts on the solution for head), this training module focuses on the more complicated head-dependent flux boundary condition packages of MODFLOW. These head dependent flux packages add terms to both the matrix [A] and the right-hand side vector {Q} at each cell or element where a boundary condition is applied.  There are different packages in MODFLOW that apply to different types of head-dependent flux boundary conditions as some are applied as rates (L/T) multiplied by areas, and some are applied as volumetric rates (L³/T).
+    
+    **References**:
+    
+    *McDonald, M.G. and Harbaugh, A.W. (1984). A modular three-dimensional finite-difference ground-water flow model: U.S. Geological Survey Techniques Open-File Report 83-875, 528p. https://doi.org/10.3133/ofr83875*
+    
+    *Voss, C.I., Provost, A.M., McKenzie, J.M., and Kurylyk, B.L. (2024). SUTRA—A code for simulation of saturated-unsaturated, variable-density groundwater flow with solute or energy transport—Documentation of the version 4.0 enhancements—Freeze-thaw capability, saturation and relative-permeability relations, spatially varying properties, and enhanced budget and velocity outputs: U.S. Geological Survey Techniques and Methods, book 6, chap. A63, 91 p., https://doi.org/10.3133/tm6A63*
+    """)
+
 st.markdown("""
+#### Types of Boundary Conditions in Groundwater Modeling and Q-h plots for description
 In groundwater flow modeling, boundary conditions define how water enters, exits, or is restricted at the limits of the modeled domain. Understanding the different types of boundary conditions, and how they control the relationship between flow rate (_Q_) and hydraulic head (_h_), is essential for setting up realistic models and interpreting system behavior.
 
 A **_Q_–_h_ plot** represents conditions at the location of the assigned boundary. It displays the relationship between flow _Q_ and hydraulic head _h_ graphically, helping to illustrate how a boundary responds to changes in model parameters and hydraulic conditions. With this, a **_Q_–_h_ plot** shows what happens at the boundary.
