@@ -53,13 +53,13 @@ with columns0[0]:
     st.markdown("""   
     Think about these questions:
     
-    1. **How does groundwater contribute to plant-water demand or surface evaporation from an aquifer with a shallow water table? Is there evapotranspiration from groundwater?**
+    1. **How does groundwater contribute to plant-water demand or surface evaporation from an groundwater-bearing structure with a shallow water table? Is there evapotranspiration from groundwater?**
     
     2. **Should evapotranspiration (ET) continue if the water table drops well below the land surface and root zone?**
     
     ▶️ The **EVT Boundary** in MODFLOW captures these dynamics. It simulates water loss from the saturated zone due to evapotranspiration, **when the water table is near the surface or root zone**.
     
-    Evapotranspiration occurs at a **maximum defined rate when the groundwater head is at, or above, a modeler-defined ET surface elevation**. As the aquifer head drops below that surface, the **ET rate declines in a linear manner to zero when the head reaches a defined Extinction Depth ***EXDP*** below the ET surface**. More elaborate ET packages are available that allow functions other than direct linear decline of the rate with depth. The following interactive plot helps to (initially) visualize this relationship. Adjust the extinction depth to explore how ET demand varies with depth.
+    Evapotranspiration occurs at a **maximum defined rate when the groundwater head is at, or above, a modeler-defined ET surface elevation**. As the groundwater head drops below that surface, the **ET rate declines in a linear manner to zero when the head reaches a defined Extinction Depth ***EXDP*** below the ET surface**. More elaborate ET packages are available that allow functions other than direct linear decline of the rate with depth. The following interactive plot helps to (initially) visualize this relationship. Adjust the extinction depth to explore how ET demand varies with depth.
     """)
 
 with columns0[1]:
@@ -77,7 +77,7 @@ with columns0[1]:
     QET_MAXi = 2000
     
     # Assuming head range from 0 to 10
-    h_aqi = np.linspace(0, 10, 100)
+    h_gwi = np.linspace(0, 10, 100)
     
     #ET Surface elevation at 9 m
     SURFi = 9.0
@@ -85,15 +85,15 @@ with columns0[1]:
     #convert rate in mm/yr per m^2 to  m^3/s/km^2
     EVTRi = QET_MAXi/31557.6
 
-    RETi = np.where(h_aqi > SURFi, EVTRi, np.where(h_aqi >= (SURFi - EXDPi), EVTRi * (h_aqi - (SURFi - EXDPi)) / EXDPi, 0))
+    RETi = np.where(h_gwi > SURFi, EVTRi, np.where(h_gwi >= (SURFi - EXDPi), EVTRi * (h_gwi - (SURFi - EXDPi)) / EXDPi, 0))
 
     QETi = RETi
 
     # Create the plot
     fig, ax = plt.subplots(figsize=(5, 5    ))      
-    ax.plot(h_aqi, QETi, label="$Q_{ET}$",color='black', linewidth=4)
-    ax.set_xlabel("Head/Elevation in the EVT-aquifer system (m)", fontsize=14, labelpad=15)
-    ax.set_ylabel("ET loss from the aquifer ($Q_{ET}$) in m³/km²/s", fontsize=14, labelpad=15)
+    ax.plot(h_gwi, QETi, label="$Q_{ET}$",color='black', linewidth=4)
+    ax.set_xlabel("Head/Elevation in the EVT-groundwater system (m)", fontsize=14, labelpad=15)
+    ax.set_ylabel("ET loss from the groundwater ($Q_{ET}$) in m³/km²/s", fontsize=14, labelpad=15)
     ax.set_xlim(0, 10)
     ax.set_ylim(-0.02, 0.1)
     ax.set_title("Evapotranspiration losses", fontsize=16, pad=10)
@@ -130,7 +130,7 @@ This section is designed with the intent that, by studying it, you will be able 
 
 - Explain the conceptual function of the EVT (Evapotranspiration) boundary condition in groundwater models.
 - Apply the ET equation to describe how evapotranspiration varies with water table depth.
-- Analyze the influence of the ET surface, the extinction depth, and the aquifer head on the actual evapotranspiration rates.
+- Analyze the influence of the ET surface, the extinction depth, and the groundwater head on the actual evapotranspiration rates.
 - Interpret the shape of _Q–h_-plots for the EVT boundary and understand the limitations of this conceptualization.
 """)
 
@@ -166,11 +166,11 @@ with st.expander('**Show the initial assessment** - to assess your existing know
             
 st.subheader('🧪 Theory and Background', divider="blue")
 st.markdown("""
-This app shows the effect of evapotranspiration in removing water from an aquifer according to Harbaugh (2005) as it is implemented by the EVT package in MODFLOW.
+This app shows the effect of evapotranspiration in removing water from groundwater according to Harbaugh (2005) as it is implemented by the EVT package in MODFLOW.
 """)
 
 st.markdown("""
-    This section of the module calculates the flow between the water surface in an aquifer and the atmosphere. The rate of evapotranspiration depends on the elevation of aquifer head $h_{aq}$ relative to a modeler specified maximum ET surface elevation ***SURF***. When the aquifer head $h_{aq}$ ≥ ***SURF***, evapotranspiration occurs at the maximum specified rate ***EVTR***. As the aquifer head declines, the evapotranspiration rate declines linearly to zero at a modeler specified extinction depth below the ***SURF*** elevation.""")
+    This section of the module calculates the flow between the water surface in an groundwater-bearing structure and the atmosphere. The rate of evapotranspiration depends on the elevation of groundwater head $h_{gw}$ relative to a modeler specified maximum ET surface elevation ***SURF***. When the groundwater head $h_{gw}$ ≥ ***SURF***, evapotranspiration occurs at the maximum specified rate ***EVTR***. As the groundwater head declines, the evapotranspiration rate declines linearly to zero at a modeler specified extinction depth below the ***SURF*** elevation.""")
 
 with st.expander("Show me more about **the Theory**"):
     st.markdown("""
@@ -185,25 +185,25 @@ with st.expander("Show me more about **the Theory**"):
     The approach accounts for the following parameters/measures:
     
     - ***EVTR*** = a user defined maximum evapotranspiration rate
-    - :green[***SURF*** = an elevation called _ET surface_: when aquifer head $h_{aq}$ ≥ ***SURF***, then the maximum evapotranspiration rate occurs]
-    - :orange[***EXDP*** = _extinction depth_:  when aquifer head $h_{aq}$ < **SURF**-**EXDP**, then the evapotranspiration rate is zero. (_***EXDP*** is a distance below ***SURF*** and not an elevation._)]
-    - ***RET*** = depth-specific evapotranspiration rate which varies from ***EVTR*** to zero, declining linearly as aquifer head declines from **SURF** to a distance **EXDP** below **SURF**
+    - :green[***SURF*** = an elevation called _ET surface_: when groundwater head $h_{gw}$ ≥ ***SURF***, then the maximum evapotranspiration rate occurs]
+    - :orange[***EXDP*** = _extinction depth_:  when groundwater head $h_{gw}$ < **SURF**-**EXDP**, then the evapotranspiration rate is zero. (_***EXDP*** is a distance below ***SURF*** and not an elevation._)]
+    - ***RET*** = depth-specific evapotranspiration rate which varies from ***EVTR*** to zero, declining linearly as groundwater head declines from **SURF** to a distance **EXDP** below **SURF**
     
     The evapotranspiration rate is as follows:
     
     - if heads is at, or above, the _ET surface_ (_**SURF**_), the evapotranspiration rate _**RET**_ is the user-defined maximum rate _**EVTR**_.
     """)
-    st.latex(r'''\text{RET} = \text{EVTR}, \quad for \quad h_{aq} > \text{SURF}''')
+    st.latex(r'''\text{RET} = \text{EVTR}, \quad for \quad h_{gw} > \text{SURF}''')
     
     st.markdown("""
     - if head is more than a distance _**EXDP**_ below the _ET surface_ (_**SURF**_) the evapotranspiration rate _**RET**_ from the groundwater is zero.
     """)
-    st.latex(r'''\text{RET} = 0, \quad for  \quad h_{aq} < \text{SURF} - \text{EXDP}''')
+    st.latex(r'''\text{RET} = 0, \quad for  \quad h_{gw} < \text{SURF} - \text{EXDP}''')
     
     st.markdown("""
     - between these two thresholds, evapotranspiration increases linearly from zero at the elevation equal to **SURF**-**EXDP** to **EVTR** at the _ET surface_ **SURF**.
     """)
-    st.latex(r'''\text{RET} = \text{EVTR} \frac{h_{aq} - (\text{SURF} - \text{EXDP})}{\text{EXDP}}, \quad for  \quad (\text{SURF} - \text{EXDP}) \leq h_{aq} \leq \text{SURF}
+    st.latex(r'''\text{RET} = \text{EVTR} \frac{h_{gw} - (\text{SURF} - \text{EXDP})}{\text{EXDP}}, \quad for  \quad (\text{SURF} - \text{EXDP}) \leq h_{gw} \leq \text{SURF}
     ''')
     
     st.markdown("""
@@ -213,11 +213,11 @@ with st.expander("Show me more about **the Theory**"):
     
 st.subheader("Interactive Plot and Exercise", divider="blue")
 st.markdown("""
-    The interactive plot illustrates how the evapotranspiration loss $Q_{ET}$ varies with depth from the surface (that eventually can be related to a **groundwater head** $h_{aq}$), depending on the defined **ET surface** (_**SURF**_), **extinction depth** (_**EXDP**_), and the **maximum ET rate** (_**EVTR**_). ET occurs only when the groundwater is within range of the surface — it drops linearly to zero below the extinction depth. 
+    The interactive plot illustrates how the evapotranspiration loss $Q_{ET}$ varies with depth from the surface (that eventually can be related to a **groundwater head** $h_{gw}$), depending on the defined **ET surface** (_**SURF**_), **extinction depth** (_**EXDP**_), and the **maximum ET rate** (_**EVTR**_). ET occurs only when the groundwater is within range of the surface — it drops linearly to zero below the extinction depth. 
     
-    Below, under INPUT CONTROLS, in the **"Modify Plot Controls"** drop-down menu, you can toggle to: 1) turn the plot 90 degrees, 2) choose between slider or typed input to adjust the parameter values, and 3) make the plot "live" to switch from the static plot to the interactive plot. Under :blue[**"Modify Head & Elevations"**], you can adjust the value of ET surface elevation, extinction depth, and aquifer head elevation RELATIVE to a reference elevation of zero. Finally, under **"Modify ET rate"**, you define the Maximum ET rate. The plot updates dynamically and supports different viewing orientations.
+    Below, under INPUT CONTROLS, in the **"Modify Plot Controls"** drop-down menu, you can toggle to: 1) turn the plot 90 degrees, 2) choose between slider or typed input to adjust the parameter values, and 3) make the plot "live" to switch from the static plot to the interactive plot. Under :blue[**"Modify Head & Elevations"**], you can adjust the value of ET surface elevation, extinction depth, and groundwater head elevation RELATIVE to a reference elevation of zero. Finally, under **"Modify ET rate"**, you define the Maximum ET rate. The plot updates dynamically and supports different viewing orientations.
 
-    The interactive plot includes a legend that provides the parameter values. It also graphically displays the $Q$-$h$ relationship, each parameter value, and a yellow arrow that indicates the head difference $H_{D}$-$h_{aq}$ and points to the value of flow $Q_{ET}$ on the axis.
+    The interactive plot includes a legend that provides the parameter values. It also graphically displays the $Q$-$h$ relationship, each parameter value, and a yellow arrow that indicates the head difference $H_{D}$-$h_{gw}$ and points to the value of flow $Q_{ET}$ on the axis.
     
     - You can investigate the plot on your own, perhaps using some of the :blue[**INITIAL INSTRUCTIONS**] provided below the plot to guide you.
     - A subsequent :rainbow[**EXERCISE**] invites you to use the interactive plot to investigate how _**SURF**_, _**EXDP**_, and _**EVTR**_ influence the _Q–h_ relationship and the conditions for which ET becomes fully active, partially active, or negligible.
@@ -235,14 +235,14 @@ def update_EXDP():
     st.session_state.EXDP = st.session_state.EXDP_input
 def update_EVTR_input():
     st.session_state.EVTR_input = st.session_state.EVTR_input_input
-def update_h_aq_show():
-    st.session_state.h_aq_show = st.session_state.h_aq_show_input  
+def update_h_gw_show():
+    st.session_state.h_gw_show = st.session_state.h_gw_show_input  
     
 # Initialize session state for value and toggle state
 st.session_state.SURF = 9.0
 st.session_state.EXDP = 4.0
 st.session_state.EVTR_input = 2000.
-st.session_state.h_aq_show = 8.0
+st.session_state.h_gw_show = 8.0
 
 st.session_state.number_input = False  # Default to number_input
 
@@ -275,9 +275,9 @@ def Q_h_plot():
                 SURF = st.slider(":green[**ET surface** _SURF_ (m)]", 7.0, 10.0, st.session_state.SURF, 0.1,key="SURF_input", on_change=update_SURF)
                 EXDP = st.slider(":orange[**Extinction depth** _EXDP_ (m)]", 0.1, 5.0, st.session_state.EXDP, 0.1,key="EXDP_input", on_change=update_EXDP)
             if st.session_state.number_input:
-                h_aq_show = st.number_input(":blue[**Aquifer head** $h_{aq}$ (m)]", 0.0, 10.0, st.session_state.h_aq_show, 0.1, key="h_aq_show_input", on_change=update_h_aq_show)
+                h_gw_show = st.number_input(":blue[**Groundwater head** $h_{gw}$ (m)]", 0.0, 10.0, st.session_state.h_gw_show, 0.1, key="h_gw_show_input", on_change=update_h_gw_show)
             else:
-                h_aq_show = st.slider      (":blue[**Aquifer head** $h_{aq}$ (m)]", 0.0, 10.0, st.session_state.h_aq_show, 0.1, key="h_aq_show_input", on_change=update_h_aq_show)      
+                h_gw_show = st.slider      (":blue[**Groundwater head** $h_{gw}$ (m)]", 0.0, 10.0, st.session_state.h_gw_show, 0.1, key="h_gw_show_input", on_change=update_h_gw_show)      
 
     with columns1[2]:
 #        with st.expander('Modify **ET rate & Cell Area**'):
@@ -292,19 +292,19 @@ def Q_h_plot():
      
     QET_MAX = 4000./31557.6
     
-    # Computation / Define aquifer head range
-    h_aq = np.linspace(0, 10, 100)
-    RET = np.where(h_aq > SURF, EVTR, np.where(h_aq >= (SURF - EXDP), EVTR * (h_aq - (SURF - EXDP)) / EXDP, 0))
+    # Computation / Define groundwater head range
+    h_gw = np.linspace(0, 10, 100)
+    RET = np.where(h_gw > SURF, EVTR, np.where(h_gw >= (SURF - EXDP), EVTR * (h_gw - (SURF - EXDP)) / EXDP, 0))
     QET = RET*AREA
     # Compute RET and QET for specific evaluation elevation
-    RET_eval = EVTR if st.session_state.h_aq_show > SURF else (EVTR * (st.session_state.h_aq_show - (SURF - EXDP)) / EXDP if st.session_state.h_aq_show >= (SURF - EXDP) else 0)
+    RET_eval = EVTR if st.session_state.h_gw_show > SURF else (EVTR * (st.session_state.h_gw_show - (SURF - EXDP)) / EXDP if st.session_state.h_gw_show >= (SURF - EXDP) else 0)
     QET_eval = RET_eval * AREA
 
     # Create the plot
     fig, ax = plt.subplots(figsize=(8, 8))
     if visualize:
         if turn:
-            ax.plot(QET, h_aq, label="$Q_{ET}$",color='blue', linewidth=4)
+            ax.plot(QET, h_gw, label="$Q_{ET}$",color='blue', linewidth=4)
             ax.axhline(0, color='black', linewidth=5)
             ax.axhline(SURF, color='green', linestyle='--', label=f'$SURF$ in m = {SURF:5.2f} m')
             ax.axhline((SURF-EXDP), color='red', linestyle='--', label=f'Expiration elevation in m = {(SURF-EXDP):5.2f} m')
@@ -332,17 +332,17 @@ def Q_h_plot():
             ax.text(QET_MAX*0.9, SURF+0.2, "SURF", va='center',color='green',  fontsize=14)
             
             # Add evaluation point marker and label 
-            ax.axhline(st.session_state.h_aq_show, color='blue', linewidth=2, linestyle='--', label=f'$h_{{aq}}$ = {st.session_state.h_aq_show:.2f} m')
+            ax.axhline(st.session_state.h_gw_show, color='blue', linewidth=2, linestyle='--', label=f'$h_{{gw}}$ = {st.session_state.h_gw_show:.2f} m')
             ax.plot(
-                QET_eval, st.session_state.h_aq_show,
+                QET_eval, st.session_state.h_gw_show,
                 marker='o',
                 markersize=12,
                 markeredgecolor='black',
                 markerfacecolor='lightblue',
-                label=f'$Q_{{ET}}$ at $h_{{aq}}$ = {QET_eval:.2e} m³/km²/s'
+                label=f'$Q_{{ET}}$ at $h_{{gw}}$ = {QET_eval:.2e} m³/km²/s'
             )            
         else:
-            ax.plot(h_aq, QET, label="$Q_{ET}$",color='blue', linewidth=4)
+            ax.plot(h_gw, QET, label="$Q_{ET}$",color='blue', linewidth=4)
             ax.axvline(0, color='black', linewidth=5)
             ax.axvline(SURF, color='green', linestyle='--', label=f'$SURF$ in m = {SURF:5.2f} m')
             ax.axvline((SURF-EXDP), color='red', linestyle='--', label=f'$(SURF-EXDP)$ in m = {(SURF-EXDP):5.2f} m')
@@ -370,25 +370,25 @@ def Q_h_plot():
             ax.text(SURF+0.15, QET_MAX*-0.05, "SURF", va='center',color='green',  fontsize=14)
             
             # Add evaluation point marker and label
-            ax.axvline(st.session_state.h_aq_show, color='blue', linewidth=2, linestyle='--', label=f'$h_{{aq}}$ = {st.session_state.h_aq_show:.2f} m')
+            ax.axvline(st.session_state.h_gw_show, color='blue', linewidth=2, linestyle='--', label=f'$h_{{gw}}$ = {st.session_state.h_gw_show:.2f} m')
             ax.plot(
-                st.session_state.h_aq_show, QET_eval, 
+                st.session_state.h_gw_show, QET_eval, 
                 marker='o',
                 markersize=12,
                 markeredgecolor='black',
                 markerfacecolor='lightblue',
-                label=f'$Q_{{ET}}$ at $h_{{aq}}$ = {QET_eval:.2e} m³/km²/s'
+                label=f'$Q_{{ET}}$ at $h_{{gw}}$ = {QET_eval:.2e} m³/km²/s'
             )   
     else:
         if turn:
-            ax.plot(QET, h_aq, label="$Q_{ET}$",color='black', linewidth=4)
+            ax.plot(QET, h_gw, label="$Q_{ET}$",color='black', linewidth=4)
         else:
-            ax.plot(h_aq, QET, label="$Q_{ET}$",color='black', linewidth=4)
+            ax.plot(h_gw, QET, label="$Q_{ET}$",color='black', linewidth=4)
         
     # Labels and formatting
     if turn:
-        ax.set_ylabel("Heads and elevations in the aquifer system in m above reference level", fontsize=14, labelpad=15)
-        ax.set_xlabel("ET loss from the aquifer ($Q_{ET}$) in m³/km²/s", fontsize=14, labelpad=15)
+        ax.set_ylabel("Heads and elevations in the groundwater system in m above reference level", fontsize=14, labelpad=15)
+        ax.set_xlabel("ET loss from groundwater ($Q_{ET}$) in m³/km²/s", fontsize=14, labelpad=15)
         ax.set_ylim(0,10)
         ax.set_xlim(-0.1*QET_MAX, 1.1*QET_MAX)
         # Add second x-axis for different units
@@ -397,23 +397,23 @@ def Q_h_plot():
                 lambda x: x / 1000 * 86400 * 365.25,      # m³/km²/s -> mm/yr
                 lambda x: x * 1000 / 86400 / 365.25       # mm/yr -> m³/km²/s
             ))
-            secax.set_xlabel("Evapotranspiration loss rate from the aquifer ($RET$) in mm/yr", color = 'grey', fontsize=14, labelpad=15)
+            secax.set_xlabel("Evapotranspiration loss rate from the groundwater ($RET$) in mm/yr", color = 'grey', fontsize=14, labelpad=15)
         elif rate_unit == "mm/day":
             secax = ax.secondary_xaxis('top', functions=(
                 lambda x: x / 1000 * 86400,        # m³/km²/s -> mm/d
                 lambda x: x * 1000 / 86400         # mm/d -> m³/km²/s
             ))
-            secax.set_xlabel("Evapotranspiration loss rate from the aquifer ($RET$) in mm/d", color = 'grey', fontsize=14, labelpad=15)
+            secax.set_xlabel("Evapotranspiration loss rate from the groundwater ($RET$) in mm/d", color = 'grey', fontsize=14, labelpad=15)
         elif rate_unit == "m/s":
             secax = ax.secondary_xaxis('top', functions=(
                 lambda x: x / 1000000,        # m³/km²/s -> m/s
                 lambda x: x * 1000000         # m/s -> m³/km²/s
             ))
-            secax.set_xlabel("Evapotranspiration loss rate from the aquifer ($RET$) in m/s", color = 'grey', fontsize=14, labelpad=15)
+            secax.set_xlabel("Evapotranspiration loss rate from the groundwater ($RET$) in m/s", color = 'grey', fontsize=14, labelpad=15)
         secax.tick_params(axis='x', labelsize=14)
     else:
-        ax.set_xlabel("Heads and elevations in the aquifer system in m above reference level", fontsize=14, labelpad=15)
-        ax.set_ylabel("ET loss from the aquifer ($Q_{ET}$) in m³/km²/s", fontsize=14, labelpad=15)
+        ax.set_xlabel("Heads and elevations in the groundwater system in m above reference level", fontsize=14, labelpad=15)
+        ax.set_ylabel("ET loss from the groundwater ($Q_{ET}$) in m³/km²/s", fontsize=14, labelpad=15)
         ax.set_xlim(0,10)
         ax.set_ylim(-0.1*QET_MAX, 1.1*QET_MAX)
         # Add second y-axis
@@ -422,19 +422,19 @@ def Q_h_plot():
                 lambda y: y / 1000 * 86400 * 365.25,      # m³/km²/s -> mm/yr
                 lambda y: y * 1000 / 86400 / 365.25       # mm/yr -> m³/km²/s
             ))
-            secax.set_ylabel("Evapotranspiration loss rate from the aquifer ($RET$) in mm/yr", color = 'grey', fontsize=14, labelpad=15)
+            secax.set_ylabel("Evapotranspiration loss rate from the groundwater ($RET$) in mm/yr", color = 'grey', fontsize=14, labelpad=15)
         if rate_unit == "mm/day":
             secax = ax.secondary_yaxis('right', functions=(
                 lambda y: y / 1000 * 86400,        # m³/km²/s -> mm/d
                 lambda y: y * 1000 / 86400         # mm/d -> m³/km²/s
             ))
-            secax.set_ylabel("Evapotranspiration loss rate from the aquifer ($RET$) in mm/d", color = 'grey', fontsize=14, labelpad=15)
+            secax.set_ylabel("Evapotranspiration loss rate from the groundwater ($RET$) in mm/d", color = 'grey', fontsize=14, labelpad=15)
         if rate_unit == "m/s":
             secax = ax.secondary_yaxis('right', functions=(
                 lambda y: y / 1000000,        # m³/km²/s -> mm/d
                 lambda y: y * 1000000         # mm/d -> m³/km²/s
             ))
-            secax.set_ylabel("Evapotranspiration loss rate from the aquifer ($RET$) in m/s", color = 'grey', fontsize=14, labelpad=15)
+            secax.set_ylabel("Evapotranspiration loss rate from the groundwater ($RET$) in m/s", color = 'grey', fontsize=14, labelpad=15)
         secax.tick_params(axis='y', labelsize=14)
 
     # === SHARED FORMATTING === #
@@ -456,11 +456,11 @@ def Q_h_plot():
         * Set the **ET surface** (_**SURF**_) to –1.0 m below the reference elevation
         * Set **extinction depth** (_**EXDP**_) to 3.0 m
         * Use an **ET rate** (_**EVTR**_) of 2.0 mm/day
-        * Envision the aquifer head  $h_{aq}$ ranging from –5.0 m to 0.0 m below surface and acknowledge how $Q_{ET}$ changes:
+        * Envision the groundwater head  $h_{gw}$ ranging from –5.0 m to 0.0 m below surface and acknowledge how $Q_{ET}$ changes:
           - ET is zero below _**SURF**_ - _**EXDP**_
-          - ET increases linearly as $h_{aq}$ rises above _**SURF**_ - _**EXDP**_
-          - Full ET occurs when $h_{aq}$ => _**SURF**_
-          - Return  $h_{aq}$ to -3 m
+          - ET increases linearly as $h_{gw}$ rises above _**SURF**_ - _**EXDP**_
+          - Full ET occurs when $h_{gw}$ => _**SURF**_
+          - Return  $h_{gw}$ to -3 m
     
         **2. Analyze the Influence of _EXDP_**
         
@@ -478,7 +478,7 @@ def Q_h_plot():
         
         - Understand the threshold-controlled behavior of the ET boundary condition
         - Evaluate how extinction depth and surface elevation influence the rate of evapotranspiration
-        - Relate evapotranspiration losses to aquifer sustainability
+        - Relate evapotranspiration losses to groundwater sustainability
         
         🛠️ **Instructions**
         
@@ -489,7 +489,7 @@ def Q_h_plot():
             * Set _**SURF**_ = –1.0 m
             * Set _**EXDP**_ = 3.0 m
             * Use _**EVTR**_ = 2.0 mm/day
-            * Envision the aquifer head range from –5.0 m to 0.0 m
+            * Envision the groundwater head range from –5.0 m to 0.0 m
         
             **Observe and record:**
         
