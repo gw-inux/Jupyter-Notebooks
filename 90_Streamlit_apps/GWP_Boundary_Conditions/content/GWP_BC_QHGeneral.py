@@ -156,7 +156,7 @@ st.subheader('🧪 Theory: A concise overview about Groundwater Modeling and Bou
 
 st.markdown(""" 
 
-#### Mathematical Application of Boundary Conditions in Models
+#### 📐 Mathematical Application of Boundary Conditions in Models
 To understand boundary conditions in groundwater models, it is important to first recall how numerical models approximate the governing flow equations. The following part provides a concise background on discretization, system equations, and the implementation of specified versus head-dependent boundary conditions.
 """)
 
@@ -185,7 +185,7 @@ with st.expander('Show more :blue[**background about the mathematical applicatio
     """)
 
 st.markdown("""
-#### Types of Boundary Conditions in Groundwater Modeling and Q-h plots for description
+#### 📊 Types of Boundary Conditions in Groundwater Modeling and Q-h plots for description
 In groundwater flow modeling, boundary conditions define how water enters, exits, or is restricted at the limits of the modeled domain. Understanding the different types of boundary conditions, and how they control the relationship between flow rate (_Q_) and hydraulic head (_h_), is essential for setting up realistic models and interpreting system behavior.
 
 A **_Q_–_h_ plot** represents conditions at the location of the assigned boundary. It displays the relationship between flow _Q_ and hydraulic head _h_ graphically, helping to illustrate how a boundary responds to changes in model parameters and hydraulic conditions. With this, a **_Q_–_h_ plot** shows what happens at the boundary.
