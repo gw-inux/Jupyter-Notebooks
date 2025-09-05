@@ -162,10 +162,9 @@ To understand boundary conditions in groundwater models, it is important to firs
 
 with st.expander('Show more :blue[**background about the mathematical application of boundary conditions in models**]  **including why RCH and WEL are not sections in this module**'):
     st.markdown("""
-    
-    **Analytical solutions** of partial differential equations are limited to simple geometries, typically one-dimensional scenarios. Codes like MODFLOW ([McDonald and Harbaugh, 1984](https://doi.org/10.3133/ofr83875)) solve the **partial differential groundwater flow equation** for a groundwater system by dividing the system into three-dimensional volumes (cells or elements): 
+    The groundwater movement through porous media is described by the following **partial differential equation** (PDE):
     """)
-    
+
     st.latex(r"""
     \frac{\partial}{\partial x}\!\left( K_{xx}\,\frac{\partial h}{\partial x} \right)
     +\frac{\partial}{\partial y}\!\left( K_{yy}\,\frac{\partial h}{\partial y} \right)
@@ -174,29 +173,31 @@ with st.expander('Show more :blue[**background about the mathematical applicatio
     = S_s\,\frac{\partial h}{\partial t}
     """)
     
-    st.markdown(r"""
+    st.markdown("""
     *where*
-    - $K_{xx}, K_{yy}, K_{zz}$ is the hydraulic conductivity along x, y, z $[L\,T^{-1}]$,
+    - $K_{xx}, K_{yy}, K_{zz}$ is the hydraulic conductivity along x, y, z $[LT^{-1}]$,
     - $h$ is the hydraulic head $[L]$,
     - $W$ is volumetric flux per unit volume representing sources/sinks $[T^{-1}]$, with $W<0$ for flow *out* of the system and $W>0$ for flow *into* the system $[T^{-1}]$  
     - $S_s$ is the specific storage $[L^{-1}]$, and
     - $t$ is time $[T]$.
-        
-    In doing so, these **numerical models** can simulate complex aquifer systems (e.g., multiple aquifers and confining units) with complex boundary conditions. The shapes of these volumes vary by model code. For some methods the hydraulic head is computed at the centroid of each volume as in the block-centered finite difference method of the original MODFLOW88 or at the intersection of volume sides as in finite element method of SUTRA ([Voss et al., 2024](https://doi.org/10.3133/tm6A63)). For each volume, the models require geometry, hydraulic properties, and boundary conditions. 
     
-    For a numerical model, a linear system of equations is solved. This linear system is similar to an equation of a line in matrix form"""
-    )
+    **Analytical solutions** of PDEs are limited to simple geometries, typically one-dimensional scenarios. Further down in this section of the modul, you will find two scenarios of groundwater flow that are examples of analytical solutions.
+    
+    Codes like MODFLOW ([McDonald and Harbaugh, 1984](https://doi.org/10.3133/ofr83875)) **numerically solve** the PDE for a groundwater system by dividing it into three-dimensional volumes (cells or elements) to simulate complex aquifer systems (e.g., multiple aquifers and confining units) with complex boundary conditions. The shapes of these volumes vary by model code. For some methods the hydraulic head $h$ is computed at the centroid of each volume as in the block-centered finite difference method of the original MODFLOW88 or at the intersection of volume sides as in finite element method of SUTRA ([Voss et al., 2024](https://doi.org/10.3133/tm6A63)). For each volume, the models require geometry, hydraulic properties (e.g., $K$ and $S_S$ in the equation above), and boundary conditions (e.g., the term $W$ in the equation above). 
+    
+    For a numerical model, a linear system of equations is prepared and then solved. This linear system is similar to an equation of a line in matrix form""")
 
     st.latex(r'''[A]\{h\}=\{Q\}''')
 
     st.markdown("""
     where 
-    - $[A]$ is a matrix containing conductances (i.e., a combination of geometry and hydraulic properties,
+    - $[A]$ is a matrix containing conductances (i.e., a combination of geometry and hydraulic properties),
     - $\{h\}$ is the unknown head at each node of a cell or element [called the solution vector in linear algebra], and
     - $\{Q\}$ is the flow or flux at each discrete volume [called the right-hand side, RHS, vector in linear algebra].
+    
     Flux is the rate of fluid movement across an area and flow is the product of the area and the flux. The size of the matrix $[A]$ is based on the number of head values, which is dependent on the number of discrete volumes and the solution method. Derivation of the block-centered flow, finite-difference solution for the partial differential groundwater flow equation is described in [McDonald and Harbaugh (1984)](https://doi.org/10.3133/ofr83875). The boundary conditions are added to the system of equations differently depending on the type of boundary condition.  
     
-    **MODFLOW** is the most widely used groundwater modeling code and its basic form implements a block-centered-flow finite difference method. This boundary condition training module uses MODFLOW terminology. The simplest discrete volume in MODFLOW is a six-sided cube or cell located in three-dimensional model space by row, column, layer (indices i,j,k) with head solved at the centroid of each cell.
+    **MODFLOW** is the most widely used numerical groundwater modeling code and its basic form implements a block-centered-flow finite difference method. This boundary condition training module uses MODFLOW terminology. The simplest discrete volume in MODFLOW is a six-sided cube or cell located in three-dimensional model space by row, column, layer (indices i,j,k) with head solved at the centroid of each cell.
     """
     )
     left_co, cent_co, last_co = st.columns((20,80,20))
@@ -206,9 +207,9 @@ with st.expander('Show more :blue[**background about the mathematical applicatio
     
     st.markdown("""    
     
-    **A specified head** means that the head at that cell is known and the matrix equation does not need to be solved for $h_{(i,j,k)}$. With MODFLOW and the simplest discretization (6-sided cubes) the exact location in space is not required and so the indices for the location of each head, h is by row, column, layer (i,j,k), although more complex discretization schemes are allowed in MODFLOW6 ([Langevin et al., 2017] (https://doi.org/10.3133/tm6A55.)) which was developed after the early releases of MODFLOW.
+    **A specified head** means that the head $h$ at that cell **is known** and the matrix equation does not need to be solved for $h_{(i,j,k)}$. With MODFLOW and the simplest discretization (6-sided cubes) the exact location in space is not required and so the indices for the location of each head, h is by row, column, layer (i,j,k), although more complex discretization schemes are allowed in MODFLOW6 ([Langevin et al., 2017] (https://doi.org/10.3133/tm6A55.)) which was developed after the early releases of MODFLOW.
     
-    **A specified flow** is added directly to $\{Q\}$ for that cell, _Q(i,j,k)_. In MODFLOW there are two packages for specified flow, the Recharge package (RCH) and the Well package (WEL).  The two packages work a bit differently but essentially add a value of Q to the right-hand side vector $\{Q\}$.  Additionally, most codes will sum all of the _Q_’s specified for one cell or element using correct signs for inflow(+) and outflow(-) to the model, resulting in a net _Q_. 
+    **A specified flow** means that the flow $Q$ **is know** and therefore is added directly to $\{Q\}$ for that cell, _Q(i,j,k)_. In MODFLOW there are two packages for specified flow, the Recharge package (RCH) and the Well package (WEL).  The two packages work a bit differently but essentially add a value of Q to the right-hand side vector $\{Q\}$.  Additionally, most codes will sum all of the _Q_’s specified for one cell or element using correct signs for inflow(+) and outflow(-) to the model, resulting in a net _Q_. 
     
     **A well** specifies a volumetric flow rate, an abstraction well removes water(-) and an injection well supplies water(+). The WEL package of MODFLOW has an input structure assigning pumping rate by each cell in length cubed per volume and any multiple wells that fall into the same cell can be added to the $\{Q\}$ vector individually.
     
@@ -216,7 +217,7 @@ with st.expander('Show more :blue[**background about the mathematical applicatio
     
     Thus, recharge and wells can be assigned to the same cell. Their flow rates are summed to obtain a net flow rate.
     
-    Since both the Specified head and Specified flux boundary conditions easier to implement in the matrix equations, this module focuses on the more complicated head-dependent flux boundary condition packages of MODFLOW. These head-dependent flux packages add terms to both the matrix $[A]$ and the right-hand side vector $\{Q\}$ at each cell, or element, where a boundary condition is applied.  There are different packages in MODFLOW that apply to different types of head-dependent flux boundary conditions. Some supply volumetric rates by multiplying a flux (L/T) and an area (L²), and some supply volumetric rates (L³/T) directly.
+    Specified heads and specified flows represent **boundary conditions** *(more explanation about boundary conditions follows in the subsequently part of this section)*. Since both the Specified head and Specified flux boundary conditions are easier to implement in the matrix equations, **this module focuses on the more complicated head-dependent flux boundary condition** packages of MODFLOW. These head-dependent flux packages add terms to both the matrix $[A]$ and the right-hand side vector $\{Q\}$ at each cell, or element, where a boundary condition is applied.  There are different packages in MODFLOW that apply to different types of head-dependent flux boundary conditions. Some supply volumetric rates by multiplying a flux [L/T] and an area [L²], and some supply volumetric rates [L³/T] directly.
     """)
 
 st.markdown("""
@@ -225,7 +226,7 @@ In groundwater flow modeling, boundary conditions define how water enters, exits
 
 A **_Q_–_h_ plot** represents conditions at the location of the assigned boundary. It is a graphic display of the relationship between flow _Q_ and hydraulic head _h_, illustrating how a boundary responds to changes in model parameters and hydraulic conditions. Thus, a **_Q_–_h_ plot** shows what happens at the boundary.
 
-Additional, excellent discussion of boundary conditions is provided by T.E. Reilly (2001) "System and Boundary Conceptualization in Ground-Water Flow Simulation", Techniques of Water-Resources Investigations of the U.S. Geological Survey Book 3, Applications of Hydraulics, Chapter B8. https://pubs.usgs.gov/twri/twri-3_B8/pdf/twri_3b8.pdf.
+Additional, excellent discussion of boundary conditions is provided by [T.E. Reilly (2001)](https://pubs.usgs.gov/twri/twri-3_B8/pdf/twri_3b8.pdf).
 """
 )
 with st.expander("Show more :blue[**explanation about the boundary condition types**]"):
@@ -249,7 +250,7 @@ with st.expander("Show more :blue[**explanation about the boundary condition typ
     #### TYPE II. Specified-Flow Boundary (Neumann condition)
     **Definition:** For the analytical 1-D solution illustrated in this introductory section, a specified flow of water crosses the top boundary. The specified flow represents recharge, which is water that infiltrates to the water table. The recharge rate is provided and multiplied by the surface area to obtain the volumetric inflow rate. Head in the aquifer adjusts to accommodate the recharge and depending on the aquifer hydraulic conductivity and conditions at the other boundaries. :green[Scenario 1] includes another specified-flow boundary that is a special case of a specified-flow boundary, a no-flow boundary, with zero flow normal to the boundary. This can represent an impermeable material or a hydraulic groundwater divide that does not shift in response to model conditions. 
     
-    For a three-dimensional numerical model such as a MODFLOW block-centered-flow formulation, a specified flow of water (L³/T) can be assigned to any cell. It is input to the right-hand side vector $\{Q\}$ in the system of equations described in the previous drop-down section "Show more :blue[background about the mathematical application of boundary conditions in models]". Typically, model software provides options for assigning specified fluxes to a numerical model cell. In MODFLOW, a method for representing wells allows specifying the $q$ for each well in a cell, then summing the $q$’s and placing the net $q$ in the right-hand side vector for that cell. Another method for assigning flux is used to represent recharge. This allows assignment of a rate (L/T) that is multiplied by the area of the top of the cell then summing it with other fluxes applied to that cell and placing the net $q$ in the right-hand side vector for that cell.
+    For a three-dimensional numerical model such as a MODFLOW block-centered-flow formulation, a specified flow of water [L³/T] can be assigned to any cell. It is input to the right-hand side vector $\{Q\}$ in the system of equations described in the previous drop-down section "Show more :blue[background about the mathematical application of boundary conditions in models]". Typically, model software provides options for assigning specified fluxes to a numerical model cell. In MODFLOW, a method for representing wells allows specifying the $q$ for each well in a cell, then summing the $q$’s and placing the net $q$ in the right-hand side vector for that cell. Another method for assigning flux is used to represent recharge. This allows assignment of a rate [L/T] that is multiplied by the area of the top of the cell then summing it with other fluxes applied to that cell and placing the net $q$ in the right-hand side vector for that cell.
     
     **Effect 1:** A specified flux boundary can represent recharge where flow across the model surface enters (or exits for a negative recharge rate such as for evapotranspiration in the 1-D analytical solution shown in this section). The system and heads within the aquifer rise or fall depending on the specified flow rate. For three-dimensional numerical models specified flows can be assigned to the top of a cell to represent recharge or within a cell to represent a pumping or injection well.
     
