@@ -35,13 +35,13 @@ with cent_co:
 
 st.markdown(
     """
-This module described how boundary conditions available in MODFLOW (in particular, head-dependent boundary conditions): :orange[**GHB:**] general head; :violet[**RIV:**] river; :green[**DRN:**] drain; :rainbow[**MNW:**] multi-node-well; and :blue[**EVT:**] evapotranspiration boundary conditions control the rate of flow into and out of a simulated groundwater system.
+This module described how boundary conditions available in MODFLOW (in particular, head-dependent boundary conditions): :orange[**GHB:**] general head; :violet[**RIV:**] river; :green[**DRN:**] drain; :rainbow[**MNW:**] multi-node-well; and :blue[**EVT:**] evapotranspiration. Boundary conditions control the rate of flow into and out of a simulated groundwater system.
 
 Many variations of these boundary conditions are available in groundwater flow codes. When encountering a new type of boundary condition, it is useful to think of how it performs in terms of a $Q$-$h$ plot. 
 
 MODFLOW includes boundary options that are similar to the RIV boundary but allow the exchange of water to change both the boundary head and the volume of water stored in the boundary feature; and some allow for outflow from the boundary to be returned to the groundwater system in other locations within the model. These river-related conditions include the STR, stream; SFR, stream-flow routing; DAFLOW, delayed flow; LAK, lake; and RES, reservoir. 
 
-An enhanced version of the DRN, drain boundary conditions is the DRT, drain return flow package. 
+An enhanced version of the DRN drain boundary conditions is the DRT - drain return flow package. 
 
 More elaborate representation of evapotranspiration is possible by using the ETS, evapotranspiration segments package that allows the ET slope to vary with depth of the groundwater head; or the RIP riparian evapotranspiration package that allows definition of the spatial distribution of plant type and associated evapotranspiration behavior including a decrease in the rate when heads rise in cases where a high water table is detrimental to plants.
 
@@ -54,7 +54,9 @@ Additional, excellent discussion of boundary conditions is provided by T.E. Reil
 left_co2, cent_co2, last_co2 = st.columns((5,80,5))
 with cent_co2:
     st.image('90_Streamlit_apps/GWP_Boundary_Conditions/assets/images/final_2.jpg',caption="Outlook in a real catchment with spatially distributed precipitation ☀️🌦️🌈")
+
 st.markdown('---')
+
 left_co4, cent_co4, last_co4 = st.columns((1,8,1))
 with cent_co4:
     st.markdown(

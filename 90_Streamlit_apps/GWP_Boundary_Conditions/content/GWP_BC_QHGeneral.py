@@ -163,9 +163,26 @@ To understand boundary conditions in groundwater models, it is important to firs
 with st.expander('Show more :blue[**background about the mathematical application of boundary conditions in models**]  **including why RCH and WEL are not sections in this module**'):
     st.markdown("""
     
-    Analytical solutions of partial differential equations are limited to simple geometries, typically one-dimensional scenarios. Codes like MODFLOW ([McDonald and Harbaugh, 1984](https://doi.org/10.3133/ofr83875)) solve the partial differential groundwater flow equation for a groundwater system by dividing the system into three-dimensional volumes (cells or elements) so they can simulate complex aquifer systems (e.g., multiple aquifers and confining units) with complex boundary conditions. 
+    **Analytical solutions** of partial differential equations are limited to simple geometries, typically one-dimensional scenarios. Codes like MODFLOW ([McDonald and Harbaugh, 1984](https://doi.org/10.3133/ofr83875)) solve the **partial differential groundwater flow equation** for a groundwater system by dividing the system into three-dimensional volumes (cells or elements): 
+    """)
     
-    The shapes of these volumes vary by model code. For some methods the hydraulic head is computed at the centroid of each volume as in the block-centered finite difference method of the original MODFLOW88 or at the intersection of volume sides as in finite element method of SUTRA ([Voss et al., 2024](https://doi.org/10.3133/tm6A63)). For each volume, the models require geometry, hydraulic properties, and boundary conditions. 
+    st.latex(r"""
+    \frac{\partial}{\partial x}\!\left( K_{xx}\,\frac{\partial h}{\partial x} \right)
+    +\frac{\partial}{\partial y}\!\left( K_{yy}\,\frac{\partial h}{\partial y} \right)
+    +\frac{\partial}{\partial z}\!\left( K_{zz}\,\frac{\partial h}{\partial z} \right)
+    + W
+    = S_s\,\frac{\partial h}{\partial t}
+    """)
+    
+    st.markdown(r"""
+    *where*
+    - $K_{xx}, K_{yy}, K_{zz}$ is the hydraulic conductivity along x, y, z $[L\,T^{-1}]$,
+    - $h$ is the hydraulic head $[L]$,
+    - $W$ is volumetric flux per unit volume representing sources/sinks $[T^{-1}]$, with $W<0$ for flow *out* of the system and $W>0$ for flow *into* the system $[T^{-1}]$  
+    - $S_s$ is the specific storage $[L^{-1}]$, and
+    - $t$ is time $[T]$.
+        
+    In doing so, these **numerical models** can simulate complex aquifer systems (e.g., multiple aquifers and confining units) with complex boundary conditions. The shapes of these volumes vary by model code. For some methods the hydraulic head is computed at the centroid of each volume as in the block-centered finite difference method of the original MODFLOW88 or at the intersection of volume sides as in finite element method of SUTRA ([Voss et al., 2024](https://doi.org/10.3133/tm6A63)). For each volume, the models require geometry, hydraulic properties, and boundary conditions. 
     
     For a numerical model, a linear system of equations is solved. This linear system is similar to an equation of a line in matrix form"""
     )
@@ -179,7 +196,15 @@ with st.expander('Show more :blue[**background about the mathematical applicatio
     - $\{Q\}$ is the flow or flux at each discrete volume [called the right-hand side, RHS, vector in linear algebra].
     Flux is the rate of fluid movement across an area and flow is the product of the area and the flux. The size of the matrix $[A]$ is based on the number of head values, which is dependent on the number of discrete volumes and the solution method. Derivation of the block-centered flow, finite-difference solution for the partial differential groundwater flow equation is described in [McDonald and Harbaugh (1984)](https://doi.org/10.3133/ofr83875). The boundary conditions are added to the system of equations differently depending on the type of boundary condition.  
     
-    **MODFLOW** is the most widely used groundwater modeling code and its basic form implements a block-centered-flow finite difference method. This boundary condition training module uses MODFLOW terminology. The simplest discrete volume in MODFLOW is a six-sided cube or cell located in three-dimensional model space by row, column, layer (indices i,j,k) with head solved at the centroid of each cell. 
+    **MODFLOW** is the most widely used groundwater modeling code and its basic form implements a block-centered-flow finite difference method. This boundary condition training module uses MODFLOW terminology. The simplest discrete volume in MODFLOW is a six-sided cube or cell located in three-dimensional model space by row, column, layer (indices i,j,k) with head solved at the centroid of each cell.
+    """
+    )
+    left_co, cent_co, last_co = st.columns((20,80,20))
+    with cent_co:
+        st.image('90_Streamlit_apps/GWP_Boundary_Conditions/assets/images/MF_6_cells.png')
+        st.markdown("""Schematic representation a model cell with indices i,j,k and the six neighbouring cells.""")
+    
+    st.markdown("""    
     
     **A specified head** means that the head at that cell is known and the matrix equation does not need to be solved for $h_{(i,j,k)}$. With MODFLOW and the simplest discretization (6-sided cubes) the exact location in space is not required and so the indices for the location of each head, h is by row, column, layer (i,j,k), although more complex discretization schemes are allowed in MODFLOW6 ([Langevin et al., 2017] (https://doi.org/10.3133/tm6A55.)) which was developed after the early releases of MODFLOW.
     
