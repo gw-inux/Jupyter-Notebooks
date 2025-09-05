@@ -3,8 +3,6 @@ import os
 
 # --- Application parameters ---
 DEFAULT_START_PAGE = "90_Streamlit_apps/GWP_Boundary_Conditions/content/GWP_Boundary_Conditions_Start.py"
-ABOUT_PAGE = "90_Streamlit_apps/GWP_Boundary_Conditions/content/GWP_About.py"
-ABBREV_PAGE = "90_Streamlit_apps/GWP_Boundary_Conditions/content/GWP_BC_Abbreivations.py"
 
 # --- MUST be first: layout setup wide / centered ---
 if "layout_choice" not in st.session_state:
@@ -53,38 +51,34 @@ pages = {
     "🟢 DRN": "90_Streamlit_apps/GWP_Boundary_Conditions/content/Q_h_plot_DRN.py",
     "🟡 MNW": "90_Streamlit_apps/GWP_Boundary_Conditions/content/Q_h_plot_MNW.py",
     "🔵 EVT": "90_Streamlit_apps/GWP_Boundary_Conditions/content/Q_h_plot_EVT.py",
-    "📚 Learning More ": "90_Streamlit_apps/GWP_Boundary_Conditions/content/GWP_BC_LearningMore.py"
+    "📚 Learning More": "90_Streamlit_apps/GWP_Boundary_Conditions/content/GWP_BC_LearningMore.py",
+    "📌 Abbreviations": "90_Streamlit_apps/GWP_Boundary_Conditions/content/GWP_BC_Abbreviations.py",
+    "📖 References": "90_Streamlit_apps/GWP_Boundary_Conditions/content/GWP_BC_References.py",
+    "ℹ️ About": "90_Streamlit_apps/GWP_Boundary_Conditions/content/GWP_About.py"
 }
 
 # --- State tracking ---
 if "selected_path" not in st.session_state:
     st.session_state.selected_path = DEFAULT_START_PAGE
 
-# Space before the first two buttons
+# Space before the first button
 st.sidebar.markdown("<div style='margin-top: 2.0rem;'></div>", unsafe_allow_html=True)
 
 # --- Overview and About buttons (at top)
 if st.sidebar.button("💦 Overview", key="btn_overview"):
     st.session_state.selected_path = DEFAULT_START_PAGE
-    st.rerun()
+    st.rerun()   
 
-if st.sidebar.button("ℹ️ About", key="btn_about"):
-    st.session_state.selected_path = ABOUT_PAGE
-    st.rerun()
-    
-if st.sidebar.button("📌 Abbreviations", key="btn_abbrev"):
-    st.session_state.selected_path = ABBREV_PAGE
-    st.rerun()
-
-st.sidebar.markdown(
-    "<hr style='margin-top: -0.25rem; margin-bottom: -0.25rem;'>",
-    unsafe_allow_html=True
-)
+# grey line as divider
+#st.sidebar.markdown(
+#    "<hr style='margin-top: -0.25rem; margin-bottom: -0.25rem;'>",
+#    unsafe_allow_html=True
+#)
 
 # --- Sidebar navigation ---
 for label, path in pages.items():
     if "Introduction" in label:
-        st.sidebar.markdown("### Choose from the topics below")
+        st.sidebar.markdown("### :blue[Choose from the topics below]")
     is_selected = st.session_state.selected_path == path
     clean_label = label.strip()
     display_label = f"{clean_label} 👈" if is_selected else clean_label
@@ -100,6 +94,10 @@ for label, path in pages.items():
     if "EVT" in label:
         st.sidebar.markdown("**Further Resources**")
 
+    # After rendering "🔵 EVT", insert a section label
+    if "📚 Learning More" in label:
+        st.sidebar.markdown("**Additional Information**")
+        
 # --- Run selected page ---
 if st.session_state.selected_path:
     path = st.session_state.selected_path
@@ -108,6 +106,20 @@ if st.session_state.selected_path:
             exec(f.read(), globals())
     else:
         st.error(f"❌ File not found: `{path}`")
+
+#st.sidebar.markdown("### :blue[Additional Information]")
+#
+#if st.sidebar.button("📌 Abbreviations", key="btn_abbrev"):
+#    st.session_state.selected_path = ABBREV_PAGE
+#    st.rerun()
+#
+#if st.sidebar.button("📖 References", key="btn_refs"):
+#    st.session_state.selected_path = REFS_PAGE
+#    st.rerun()
+#
+#if st.sidebar.button("ℹ️ About", key="btn_about"):
+#    st.session_state.selected_path = ABOUT_PAGE
+#    st.rerun()
 
 # --- Layout switcher at bottom of the sidebar ---
 st.sidebar.markdown('---')
