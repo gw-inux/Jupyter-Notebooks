@@ -50,6 +50,10 @@ More information about MODFLOW boundary conditions can be accessed via https://c
 Additional, excellent discussion of boundary conditions is provided by T.E. Reilly (2001) "System and Boundary Conceptualization in Ground-Water Flow Simulation", Techniques of Water-Resources Investigations of the U.S. Geological Survey Book 3, Applications of Hydraulics, Chapter B8. https://pubs.usgs.gov/twri/twri-3_B8/pdf/twri_3b8.pdf.
 """
 ) 
+
+left_co2, cent_co2, last_co2 = st.columns((5,80,5))
+with cent_co2:
+    st.image('90_Streamlit_apps/GWP_Boundary_Conditions/assets/images/final_2.jpg',caption="Outlook in a real catchment with spatially distributed precipitation ☀️🌦️🌈")
 st.markdown('---')
 left_co4, cent_co4, last_co4 = st.columns((1,8,1))
 with cent_co4:
