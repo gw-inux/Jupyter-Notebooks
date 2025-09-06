@@ -107,20 +107,6 @@ if st.session_state.selected_path:
     else:
         st.error(f"❌ File not found: `{path}`")
 
-#st.sidebar.markdown("### :blue[Additional Information]")
-#
-#if st.sidebar.button("📌 Abbreviations", key="btn_abbrev"):
-#    st.session_state.selected_path = ABBREV_PAGE
-#    st.rerun()
-#
-#if st.sidebar.button("📖 References", key="btn_refs"):
-#    st.session_state.selected_path = REFS_PAGE
-#    st.rerun()
-#
-#if st.sidebar.button("ℹ️ About", key="btn_about"):
-#    st.session_state.selected_path = ABOUT_PAGE
-#    st.rerun()
-
 # --- Layout switcher at bottom of the sidebar ---
 st.sidebar.markdown('---')
 layout_options = ["centered", "wide"]
