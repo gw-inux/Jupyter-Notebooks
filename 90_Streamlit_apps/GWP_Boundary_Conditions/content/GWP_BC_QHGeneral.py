@@ -175,11 +175,11 @@ with st.expander('Show more :blue[**background about the mathematical applicatio
     
     st.markdown("""
     *where*
-    - $K_{xx}, K_{yy}, K_{zz}$ is the hydraulic conductivity along x, y, z $[LT^{-1}]$,
+    - $K_{xx}, K_{yy}, K_{zz}$ is the hydraulic conductivity along x, y, z [L/T],
     - $h$ is the hydraulic head $[L]$,
-    - $W$ is volumetric flux per unit volume representing sources/sinks $[T^{-1}]$, with $W<0$ for flow *out* of the system and $W>0$ for flow *into* the system $[T^{-1}]$  
-    - $S_s$ is the specific storage $[L^{-1}]$, and
-    - $t$ is time $[T]$.
+    - $W$ is volumetric flux per unit volume representing sources/sinks [1/T], with $W<0$ for flow *out* of the system and $W>0$ for flow *into* the system [1/T]  
+    - $S_s$ is the specific storage [1/L], and
+    - $t$ is time [T].
     
     **Analytical solutions** of PDEs are limited to simple geometries, typically one-dimensional scenarios. Further down in this section of the modul, you will find two scenarios of groundwater flow that are examples of analytical solutions.
     
@@ -213,7 +213,7 @@ with st.expander('Show more :blue[**background about the mathematical applicatio
     
     **A well** specifies a volumetric flow rate, an abstraction well removes water(-) and an injection well supplies water(+). The WEL package of MODFLOW has an input structure assigning pumping rate by each cell in length cubed per volume and any multiple wells that fall into the same cell can be added to the $\{Q\}$ vector individually.
     
-    **Recharge adds** water to each cell where recharge is assigned (+). The RCH recharge package of MODFLOW allows users to assign a recharge rate to the top active layer in length per time and the code uses the area of the top of each cell to calculate the _Q_ (L³/T) then puts that rate into each location of the $\{Q\}$ vector. 
+    **Recharge adds** water to each cell where recharge is assigned (+). The RCH recharge package of MODFLOW allows users to assign a recharge rate to the top active layer in length per time and the code uses the area of the top of each cell to calculate the _Q_ [L³/T] then puts that rate into each location of the $\{Q\}$ vector. 
     
     Thus, recharge and wells can be assigned to the same cell. Their flow rates are summed to obtain a net flow rate.
     
