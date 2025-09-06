@@ -264,7 +264,7 @@ with st.expander("Tell me more about **the Theory**"):
     st.markdown("""
     where:
     - $Q$ is the flow between the groundwater and well, taken as negative if it is directed out of the groundwater [L³/T],
-    - $h_{well}$ is the head in the well (L),
+    - $h_{well}$ is the head in the well [L],
     - $CWC$ is the cell-to-well conductance [L²/T], and
     - $h_{gw}$ is the groundwater head [L] in the cell containing the well. _This head depends on the values of parameters and stresses (e.g., pumping, recharge) throughout the model. It can vary with time and have different values the well depending on all the model inputs._
     

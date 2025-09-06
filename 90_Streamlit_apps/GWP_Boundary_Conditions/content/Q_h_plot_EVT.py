@@ -184,10 +184,10 @@ with st.expander("Show me more about **the Theory**"):
     st.markdown("""
     The approach accounts for the following parameters/measures:
     
-    - ***EVTR*** = a user defined maximum evapotranspiration rate
-    - :green[***SURF*** = an elevation called _ET surface_: when groundwater head $h_{gw}$ ≥ ***SURF***, then the maximum evapotranspiration rate occurs]
-    - :orange[***EXDP*** = _extinction depth_:  when groundwater head $h_{gw}$ < **SURF**-**EXDP**, then the evapotranspiration rate is zero. (_***EXDP*** is a distance below ***SURF*** and not an elevation._)]
-    - ***RET*** = depth-specific evapotranspiration rate which varies from ***EVTR*** to zero, declining linearly as groundwater head declines from **SURF** to a distance **EXDP** below **SURF**
+    - ***EVTR*** = a user defined maximum evapotranspiration rate [L/T]
+    - :green[***SURF*** = an elevation called _ET surface_ [L]: when groundwater head $h_{gw}$ ≥ ***SURF***, then the maximum evapotranspiration rate occurs]
+    - :orange[***EXDP*** = _extinction depth_ [L]:  when groundwater head $h_{gw}$ < **SURF**-**EXDP**, then the evapotranspiration rate is zero. (_***EXDP*** is a distance below ***SURF*** and not an elevation._)]
+    - ***RET*** = depth-specific evapotranspiration rate [L/T]which varies from ***EVTR*** to zero, declining linearly as groundwater head declines from **SURF** to a distance **EXDP** below **SURF**
     
     The evapotranspiration rate is as follows:
     
