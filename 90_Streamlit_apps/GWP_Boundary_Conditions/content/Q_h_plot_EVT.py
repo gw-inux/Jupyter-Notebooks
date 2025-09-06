@@ -53,13 +53,13 @@ with columns0[0]:
     st.markdown("""   
     Think about these questions:
     
-    1. **How does groundwater contribute to plant-water demand or surface evaporation from an groundwater-bearing structure with a shallow water table? Is there evapotranspiration from groundwater?**
+    1. **How does groundwater contribute to plant-water demand or surface evaporation from a shallow water table?**
     
     2. **Should evapotranspiration (ET) continue if the water table drops well below the land surface and root zone?**
     
-    ▶️ The **EVT Boundary** in MODFLOW captures these dynamics. It simulates water loss from the saturated zone due to evapotranspiration, **when the water table is near the surface or root zone**.
+    ▶️ The **EVT Boundary** in MODFLOW captures these dynamics. It simulates water loss from the saturated zone due to evapotranspiration **when the water table is near the surface or the root zone**.
     
-    Evapotranspiration occurs at a **maximum defined rate when the groundwater head is at, or above, a modeler-defined ET surface elevation**. As the groundwater head drops below that surface, the **ET rate declines in a linear manner to zero when the head reaches a defined Extinction Depth ***EXDP*** below the ET surface**. More elaborate ET packages are available that allow functions other than direct linear decline of the rate with depth. The following interactive plot helps to (initially) visualize this relationship. Adjust the extinction depth to explore how ET demand varies with depth.
+    Evapotranspiration occurs at a **maximum defined rate when the groundwater head is at, or above, a specified ET surface elevation**. As the groundwater head drops below that surface, the **ET rate declines in a linear manner to zero when the head reaches a defined Extinction Depth ***EXDP*** below the ET surface**. More elaborate ET packages are available that allow functions other than direct linear decline of the rate with depth (e.g., ETS, RIP). The  following introductory interactive plot is based on the MODFLOW documentation (Harbaugh, 2005). Try adjusting the extinction depth to explore how ET demand varies with depth.
     """)
 
 with columns0[1]:
@@ -92,18 +92,18 @@ with columns0[1]:
     # Create the plot
     fig, ax = plt.subplots(figsize=(5, 5    ))      
     ax.plot(h_gwi, QETi, label="$Q_{ET}$",color='black', linewidth=4)
-    ax.set_xlabel("Head/Elevation in the EVT-groundwater system (m)", fontsize=14, labelpad=15)
-    ax.set_ylabel("ET loss from the groundwater ($Q_{ET}$) in m³/km²/s", fontsize=14, labelpad=15)
+    ax.set_xlabel("Head in the groundwater system (m)", fontsize=14, labelpad=15)
+    ax.set_ylabel("ET loss from the groundwater \n($Q_{ET}$) in m³/km²/s", fontsize=14, labelpad=15)
     ax.set_xlim(0, 10)
     ax.set_ylim(-0.02, 0.1)
-    ax.set_title("Evapotranspiration losses", fontsize=16, pad=10)
+    ax.set_title("Evapotranspiration loss", fontsize=16, pad=10)
     plt.xticks(fontsize=14)
     plt.yticks(fontsize=14) 
     ax.axhline(0, color='grey', linestyle='--', linewidth=0.8)
     st.pyplot(fig)    
     
     st.markdown("""   
-    **Initial Plot** for exploring how changes in :blue[EVT extinction depth] changes evapotranspiration. _The maximum ET rate for this example is defined as 2,000 mm per year and the maximum ET surface elevation is defined as 9 m_.
+    **Initial Plot** for exploring how changes in :blue[EVT extinction depth] changes evapotranspiration. _The maximum ET rate for this example is 2,000 mm per year (i.e., 0.063 m³/km²/s), ET surface elevation is 9 m, and extinction depth is 4 m below the ET surface (i.e, an elevation of 5 m)_.
     
     This **initial plot** is designed to bridge the gap between traditional $Q$-$h$ plots on paper and the :rainbow[**interactive plots**] provided further down in this app, that allow you to explore the $Q$-$h$ relationships more intuitively, supported by interactive controls and guided instructions.
     """)
@@ -111,7 +111,7 @@ with columns0[1]:
 st.markdown("""
 ####  💻 How EVT may be Applied in Field-Scale Groundwater Modeling
 
-The EVT package is particularly relevant in applied groundwater modeling at the field scale, especially in settings with shallow groundwater, where evapotranspiration can represent a significant component of groundwater discharge.
+The EVT package is particularly relevant in applied groundwater modeling at the field scale in settings with shallow groundwater where evapotranspiration can represent a significant component of groundwater discharge.
 """)
 left_co, cent_co, last_co = st.columns((10,40,10))
 with cent_co:
@@ -120,7 +120,7 @@ with st.expander("Tell me more about **the :blue[application of EVT in Field-Sca
     st.markdown("""
     In field-scale groundwater models the EVT boundary may be used to define an elevation for the ET surface at every node of the model. Each is accompanied by a value for extinction depth and a maximum ET rate that typically vary from cell to cell depending on the local conditions (e.g., type of soil, vegetation root depth). Often the ET surface elevation is the ground surface elevation or slightly below it such that the maximum evapotranspiration occurs when the water table is at or just below the surface. The water loss may reflect uptake by vegetation or direct evaporation from the water table. The complete hydrologic budget will include evapotranspiration of soil moisture, whereas the EVT boundary considers only the evapotranspiration from the saturated portion of the subsurface.
     
-    As the groundwater model simulation proceeds through time, water levels in each cell rise and/or fall in response to stresses in the system and water is discharged as evapotranspiration from each model node based on the groundwater head at the node. There are connections between the rate of evapotranspiration at each node and other stresses in the model. As evapotranspiration occurs, water levels decline and the rate of evapotranspiration decreases. When a drought occurs, there is less recharge from precipitation and surface water seepage, so water levels decline and the volume previously lost to evapotranspiration is reduced. If irrigation pumping lowers groundwater heads, then there is less evapotranspiration.
+    As the groundwater model simulation proceeds through time, water levels in each cell rise and/or fall in response to stresses in the system and water is discharged as evapotranspiration from each model node based on the groundwater head at the node, so the rate of evapotranspiration depends on other stresses in the model. As water levels decline, the rate of evapotranspiration decreases. When a drought occurs, there is less recharge from precipitation and surface water seepage, so water levels decline and the volume previously lost to evapotranspiration is reduced. Similarly, if irrigation pumping lowers groundwater heads, then there may be less evapotranspiration from the crop being irrigated. Thus there can be some counterbalance when other mechanisms withdraw more water from the system casuing water levels to decline, evapotranspiration may decrease offsetting the other losses.
     """)
 
 #TODO
@@ -166,11 +166,11 @@ with st.expander('**Show the initial assessment** - to assess your existing know
             
 st.subheader('🧪 Theory and Background', divider="blue")
 st.markdown("""
-This app shows the effect of evapotranspiration in removing water from groundwater according to Harbaugh (2005) as it is implemented by the EVT package in MODFLOW.
+This app shows how evapotranspiration is removed from groundwater as implemented by the EVT package in MODFLOW (Harbaugh, 2005).
 """)
 
 st.markdown("""
-    This section of the module calculates the flow between the water surface in an groundwater-bearing structure and the atmosphere. The rate of evapotranspiration depends on the elevation of groundwater head $h_{gw}$ relative to a modeler specified maximum ET surface elevation ***SURF***. When the groundwater head $h_{gw}$ ≥ ***SURF***, evapotranspiration occurs at the maximum specified rate ***EVTR***. As the groundwater head declines, the evapotranspiration rate declines linearly to zero at a modeler specified extinction depth below the ***SURF*** elevation.""")
+    This section of the module calculates the flow between the water surface in a hydrostratigraphic unit and the atmosphere. The rate of evapotranspiration depends on the elevation of groundwater head $h_{gw}$ relative to a modeler-specified maximum ET surface elevation ***SURF***. When the groundwater head $h_{gw}$ ≥ ***SURF***, evapotranspiration occurs at the maximum specified rate ***EVTR***. As the groundwater head declines, the evapotranspiration rate declines linearly to zero at a modeler specified extinction depth below the ***SURF*** elevation.""")
 
 with st.expander("Show me more about **the Theory**"):
     st.markdown("""
@@ -438,7 +438,7 @@ def Q_h_plot():
         secax.tick_params(axis='y', labelsize=14)
 
     # === SHARED FORMATTING === #
-    ax.set_title("Evapotranspiration losses", fontsize=16, pad=20)
+    ax.set_title("Evapotranspiration loss", fontsize=16, pad=20)
     plt.xticks(fontsize=14)
     plt.yticks(fontsize=14) 
     ax.legend(fontsize=14)

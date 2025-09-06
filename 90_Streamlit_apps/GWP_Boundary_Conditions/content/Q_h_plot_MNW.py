@@ -112,14 +112,14 @@ with columns0[0]:
     
     2. **What happens if the water level in the well drops below the pump intake? Should a model continue to simulate withdrawal of groundwater?**
     
-    ▶️ The :rainbow[**Multi-Node Well (MNW)**] package in MODFLOW supports more realistic simulation of well hydraulics, even in single-layer groundwater systems. MNW allows you to:
+    ▶️ The :rainbow[**Multi-Node Well (MNW)**] package in MODFLOW supports more realistic simulation of well hydraulics, even in one-node wells. MNW allows you to:
     - account for **additional drawdown within the wellbore** ($h_{gw}-h_{well}$) **due to head losses**,
     - define **limiting water levels** below which withdrawal from the well stops, and
     - simulate wells that **automatically shut off** or restart depending on drawdown conditions.
     
-    This section **explores the $Q$-$h$ relationship only for an MWN well in one model cell for a withdrawal well**. It does not explore wells connected to multiple model cells. The interactive plots allow **exploration of how withdrawal rate, groundwater head, well-threshold head, and connectivity between the groundwater and well (:rainbow[_CWC_]) interact to determine drawdown within the well and well discharge into or out of the groundwater**. :rainbow[_CWC_] is an abbrevation for cell-to-well conductance. In this context, 'cell' refers to the model element, which can represent any groundwater-bearing structure such as an aquifer, aquitard, or others.
+    This section **explores the $Q$-$h$ relationship only for a withdrawal well in one model cell**. It does not explore injection wells nor wells connected to multiple model cells. The interactive plots allow **exploration of how withdrawal rate, groundwater head, well-threshold head, and connectivity between the groundwater and well (:rainbow[_CWC_]) interact to determine drawdown within the well and groundwater discharge to the well**. :rainbow[_CWC_] is an abbrevation for cell-to-well conductance. 'Cell' refers to the model element, which can represent any hydrostratigraphic unit, but is likely an aquifer because most wells are installed in aquifers.
     
-    In contrast, the **WEL boundary in MODFLOW** is a Neumann-type boundary condition with specified flow. For this initial plot, the :blue[**WEL toggle**] allows you to view the equivalent $Q$-$h$ plot for a WEL boundary where $Q$ is defined by the modeler and is independent of head $h$ in the well and groundwater.
+    In contrast to MNW, the **WEL boundary in MODFLOW** is a Type II (i.e., Neumann) boundary condition with specified flow. For this initial plot, the :blue[**WEL toggle**] allows you to view the equivalent $Q$-$h$ plot for a WEL boundary where $Q$ is defined by the modeler and is independent of head $h$ in the well and groundwater.
     """)
 
 with columns0[1]:
@@ -148,7 +148,7 @@ with columns0[1]:
     # Draw vertical line at QPi and h = 10
     ax.plot([10, 10], [-0.01, -0.05], color='blue',linestyle=':', linewidth=3, label='$h_{gw}$ = 10 m')
     if WEL_equi:
-        ax.set_xlabel("Head in the WEL-groundwater system (m)", fontsize=14, labelpad=15)
+        ax.set_xlabel("Head in the groundwater system (m)", fontsize=14, labelpad=15)
         ax.set_ylabel("Flow into the groundwater \nfrom the WEL boundary $Q_{WEL}$ (m³/s)", fontsize=14, labelpad=15)
         ax.set_title("Flow Between Groundwater and WEL", fontsize=16, pad=10)
     else:
@@ -160,8 +160,8 @@ with columns0[1]:
         # Draw vertical line at Qi and h_intersect
         h_is = h_ni + (-0.01 / st.session_state.CWCi)
     
-        ax.set_xlabel("Head in the MNW-groundwater system (m)", fontsize=14, labelpad=15)
-        ax.set_ylabel("Flow into the groundwater \nfrom the MNW boundary $Q_{MNW}$ (m³/s)", fontsize=14, labelpad=15)
+        ax.set_xlabel("Head in well and groundwater system (m)", fontsize=14, labelpad=15)
+        ax.set_ylabel("Flow into the groundwater \nfrom the MNW boundary $Q_{MNW}$ (m³/s) \nfor $h_{gw}$ = 10 m", fontsize=14, labelpad=15)
         ax.set_title("Flow Between Groundwater and MNW", fontsize=16, pad=10)
         ax.axhline(0, color='grey', linestyle='--', linewidth=0.8)
        
@@ -189,36 +189,36 @@ with columns0[1]:
               
     The dotted lines indicate head in the :blue[ groundwater (blue)] and head in the **well (black)**, respectively. For this plot, :blue[**$h_{gw}$ is constant at 10 m (blue dotted line)**] and if $h_{well}$ < 0 m, the well is :red[**dry**]. The **intersection of the solid black and blue lines** indicates the head in the well for the specified flow rate **:blue[$Q$]** given the **:rainbow[cell-to-well conductance _CWC_]**.
     
-    This **initial plot** is designed to bridge the gap between traditional Q-h plots on paper and the :rainbow[**interactive plots**] provided further down in this app. These plots you to explore the _Q_-_h_ relationships more intuitively, supported by interactive controls and guided instructions.
+    This **initial plot** is designed to bridge the gap between traditional $Q$-$h$ plots on paper and the :rainbow[**interactive plots**] provided further down in this app, that allow you to explore the $Q$-$h$ relationships more intuitively, supported by interactive controls and guided instructions.
     """)
 
 st.markdown("""
 ####  💻 How the head-dependent flow feature of MNW may be Applied in Field-Scale Groundwater Modeling
 
-The MNW boundary represents a withdrawal well with a specified desired discharge rate and accounts for well losses based on connectivity between the well and the groundwater-bearing structure in order to calculate head within the well, and, if needed, reduces the well discharge. In contrast, the WEL boundary applies the specified desired discharge without adjustment if the well is stressed to the point that it cannot supply the desired discharge. MNW also accomodates modeling of wells that extend through multiple model cells and calculates flow to/from each layer, however this module only addresses the head-dependent flow feature of MNW.""")
+The MNW boundary represents a well with a specified desired discharge rate and accounts for well losses (i.e., lower head within the well than the surrounding hydrostratigraphic unit) based on connectivity between the well and the hydrostratigraphic unit. If needed, MNW reduces the well discharge to meet criteria specified to protect the well. In contrast, the WEL boundary applies the specified desired discharge without adjustment if the well is stressed to the point that it cannot supply the desired discharge. MNW also accomodates modeling of wells that extend through multiple model cells and calculates flow to/from each layer, however this module only addresses the head-dependent flow feature of MNW.""")
 left_co, cent_co, last_co = st.columns((10,40,10))
 with cent_co:
-    st.image('90_Streamlit_apps/GWP_Boundary_Conditions/assets/images/MNWsketch2.png', caption="Illustration of the head losses that can lead to discharge reduction using MNW in MODFLOW. (modified from Shapiro, A. D. Oki, and E. Greene (1998). Estimating Formation Properties from Early-Time Recovery in Wells Subject to Turbulent Head Losses. Journal of Hydrology. 208. p. 223-236. https://doi.org/10.1016/S0022-1694(98)00170-X.)")
+    st.image('90_Streamlit_apps/GWP_Boundary_Conditions/assets/images/MNWsketch2.png', caption="Illustration of the head losses that can lead to discharge reduction using MNW in MODFLOW (modified and enhanced from Shapiro, A. D. Oki, and E. Greene (1998). Estimating Formation Properties from Early-Time Recovery in Wells Subject to Turbulent Head Losses. Journal of Hydrology. 208. p. 223-236. https://doi.org/10.1016/S0022-1694(98)00170-X.)")
 
 with st.expander("Tell me more about **the :rainbow[application of MNW in Field-Scale Groundwater Modeling]**"):
     st.markdown("""
-    For MNW wells, parameter values can be specified that limit injection or discharge depending on the head in the well. MNW can account for head losses within the well, both linear (due to flow through the underground structure and the well skin) and nonlinear (due to turbulence of flow converging on the well, moving through the well wall, and flowing through the tangle of pipes and wires within the wellbore). If connectivity between the well and the groundwater-bearing structure is high, drawdown in the well is what would be expected in order to drive flow through the groundwater to the well. 
+    For MNW wells, parameter values can be specified that limit injection or discharge depending on the head in the well. MNW can account for head losses within the well, both linear (due to flow through the hydrostratigraphic unit and the well skin) and nonlinear (due to turbulence of flow converging on the well, moving through the well wall, and flowing through the tangle of pipes and wires within the wellbore). If connectivity between the well and the hydrostratigraphic unit is high, there is no low-hydraulic conductvity skin around the well, and flow is laminar, then drawdown in the well is what would be expected in order to drive flow through the hydrostratigraphic unit to the well. 
     
     As the connectivity decreases in an aging well (i.e., lower conductance due to wellbore wall damage and aging components within the well) the head in the well will reflect additional drawdown as required to drive the water through the well skin and along the wellbore.
     
-    As the water level in the well declines, the pump's ability to discharge water may be affected because the lower head above the pump in the well decreases the pump efficiency, or the water level drops to the level of the pump intake. Accordingly, the flow rate is reduced below the specified flow rate due to reduce well performance at the lower water level. Ultimately the discharge may be set to zero because the water level is below either the pump intake or the minimum allowed elevation. In a physical setting, the well manager would install switches triggered by water level to prevent damage to the pump. The MNW package makes the appropriate adjustments to the flow rate and keeps track of the flow rate reductions through out the model for all the MNW wells.
+    As the water level in the well declines, the pump's ability to discharge water may be affected because the lower head above the pump in the well decreases the pump efficiency, or the water level drops to the level of the pump intake. Accordingly, the flow rate is reduced below the specified flow rate due to reduced performance of the well at the lower water level. Ultimately the discharge may be set to zero because the water level is below either the pump intake or the minimum water-level elevation allowed by the well manager who may install switches triggered by water level to prevent damage to the pump. The MNW package makes the appropriate adjustments to the flow rate and reports flow rate reductions to the modeler.
     
-    As groundwater heads decline in response to other stresses with in the model, the MNW thresholds are met at lower flow rates, resulting in more reduction of flow to wells than in healthier aquifers.
+    As groundwater heads decline in response to other stresses with in the model, the MNW thresholds are met at lower flow rates, resulting in more reduction of flow to wells than in healthier hydrostratigraphic units.
     """)
 
 #TODO
 st.markdown("""
 ####  🎯 Learning Objectives
 This section is designed with the intent that, by studying it, you will be able to do the following.
-- Understand the conceptual and practical differences between Multi-Node Wells (MNW) and traditional Well (WEL) boundaries in MODFLOW.
+- Understand the conceptual and practical differences between a Multi-Node Well (MNW) and a traditional Well (WEL) boundary in MODFLOW.
 - Evaluate the influence of well efficiency, skin effects, and conductance on MNW flow behavior.
 - Interpret Q–h relationships for MNWs and how they reflect physical and operational limits of well systems.
-- Describe how head-dependent flow and constraints such as pump limitations and lower water level in the groundwater next to the well are represented in the MNW package.
+- Describe how head-dependent flow, water level in the hydrostratigraphic unit next to the well, and constraints such as pump limitations and acceptable water levels are incorporated in the MNW package.
 """)
 
 with st.expander('**Show the initial assessment** - to assess your existing knowledge'):

@@ -88,7 +88,7 @@ st.markdown("""
 columns0 = st.columns((1,1), gap='large')
 with columns0[0]:
     st.markdown("""      
-    Consider these two questions:
+    Consider these questions:
     
     1. **How would you simulate a ditch, tile drain, or trench that only removes water from the groundwater when the water table is high enough to flow into the feature?**
     
@@ -96,9 +96,11 @@ with columns0[0]:
     
     3. **How can you allow a spring to develop when head in an unconfined aquifer rises to the ground surface?** 
     
-    ▶️ The :green[**Drain (DRN) Boundary**] in MODFLOW is designed for such situations. It allows water to leave the groundwater compartment only if the head in the groundwater $h_{gw}$ exceeds the drain elevation $H_D$. **A drain can never provide inflow to a model**. (_The Drain Return Package (DRT) can be used when flow may occur from a drain into a model._) The outflow $Q_{D}$ is computed with the drain conductance $C_D$ as: """)
-    
+    ▶️ The :green[**Drain (DRN) Boundary**] in MODFLOW is designed for such situations. It allows water to leave the groundwater compartment only if the head in the groundwater $h_{gw}$ exceeds the drain elevation $H_D$. **A drain can never provide inflow to a model**. _The Drain Return Package, DRT, can be used to return flow from a drain to another location in the groundwater system._ The outflow $Q_{D}$ is computed using the drain conductance $C_D$ as: """)
+   
     st.latex(r'''Q_{D} = C_{D} (H_{D}-h_{gw})''')
+    st.markdown("""The following introductory interactive plot is based on the MODFLOW documentation (Harbaugh, 2005) and assumes **$H_{D}$ is 8 m**. Try adjusting the drain conductance in the initial plot to explore how flow varies as a function of head in the groundwater system.
+    """)
 with columns0[1]:    
     # Slider input and plot
     # C_DRN
@@ -115,8 +117,8 @@ Qi = np.where(h_gwi >= HDi, st.session_state.Ci_DRN * (h_gwi - HDi)*-1, 0)
 with columns0[1]:
     fig, ax = plt.subplots(figsize=(5, 5))      
     ax.plot(h_gwi, Qi, color='black', linewidth=4)
-    ax.set_xlabel("Head/Elevation in the DRN-groundwater system (m)", fontsize=14, labelpad=15)
-    ax.set_ylabel("Flow into the groundwater \nfrom the DRN boundary $Q_{D}$ (m³/s)", fontsize=14, labelpad=15)
+    ax.set_xlabel("Head in the groundwater system (m)", fontsize=14, labelpad=15)
+    ax.set_ylabel("Flow into the groundwater \nfrom the DRN boundary $Q_{D}$ (m³/s) \nwith DRN elevation $H_{D}$ = 8 m", fontsize=14, labelpad=15)
     ax.set_xlim(0, 20)
     ax.set_ylim(-0.05, 0.05)
     ax.set_title("Flow Between Groundwater and DRN", fontsize=16, pad=10)
@@ -126,9 +128,9 @@ with columns0[1]:
     st.pyplot(fig)    
     
     st.markdown("""
-        **Initial plot** for exploring how outflow varies with change of the :green[drain conductance].
+        **Initial plot** for exploring how outflow varies with a change of the :green[drain conductance].
         
-        _* **"Flow into"** from the **perspective of inflow** into the groundwater, **drain flow is negative** or zero because it is flow leaving the groundwater._
+        _**"Flow into"** is from the perspective of the groundwater system, **drain flow is always negative or zero** because it is flow leaving the system._
 
          This **initial plot** is designed to bridge the gap between traditional $Q$-$h$ plots on paper and the :rainbow[**interactive plots**] provided further down in this app, that allow you to explore the $Q$-$h$ relationships more intuitively, supported by interactive controls and guided instructions.
     """)
@@ -156,21 +158,21 @@ with st.expander("Tell me more about **the :green[application of DRN in Field-Sc
         st.image('90_Streamlit_apps/GWP_Boundary_Conditions/assets/images/DRNspring2.png', caption="Illustration of springs developing at the ground surface when the water table rises.")
     
     st.markdown("""
-    A DRN boundary might be used to represent a swamp that might be dewatered. For example, a groundwater model might have a swamp that is viewed as a permanent feature of the system and represented by a general head boundary to allow flow into and out of the system.
+    A DRN boundary might be used to represent a swamp that might be dewatered at some time during model simulation. For example, a groundwater model might have a swamp that is viewed as a permanent feature of the system, in which case it could be represented by a general head boundary to allow flow into and out of the system.
     """)
     left_co, cent_co, last_co = st.columns((10,40,10))
     with cent_co:
         st.image('90_Streamlit_apps/GWP_Boundary_Conditions/assets/images/DRNapplied1.png', caption="Illustration of a GHB boundary used to represent a swamp allowing exchange of water between the swamp and groundwater system.")
     
     st.markdown("""
-     At a later time, the model is used to simulate inflow to a new open pit mine. If the swamp continues to be represented by a GHB, it will not limit inflow and the model will predict large out flow to the mine pit that will need to be disposed of at the mine.  
+     At a later time, if the model is used to simulate inflow to a new open pit mine and the swamp continues to be represented by a GHB, flow from the swamp will not be limited and the large drawdown at the mine pit will simulate large outflow that would need to be disposed of by the mining company.  
     """)
     left_co, cent_co, last_co = st.columns((10,40,10))
     with cent_co:
         st.image('90_Streamlit_apps/GWP_Boundary_Conditions/assets/images/DRNapplied2.png', caption="Illustration of a GHB boundary resulting in overestimation of mine inflow.")
 
     st.markdown("""
-    However, if a drain is used to simulate the swamp, then once pumping at the mine causes the groundwater level to decline below the  bottom of the swamp, the swamp will dry up and the simulated flow at the mine will be less as approrpiate for the system.
+    However, if a drain is used to simulate the swamp, then once pumping at the mine causes the groundwater level to decline below the  bottom of the swamp, the swamp will dry up and the simulated flow at the mine will be a more realistic representation of the system.
     """)
     left_co, cent_co, last_co = st.columns((10,40,10))
     with cent_co:
@@ -540,7 +542,7 @@ with st.expander('**Show the :rainbow[**EXERCISE**] assessment** - to self-check
 
 st.subheader('✅ Conclusion', divider = 'green')
 st.markdown("""
-The Drain (DRN) boundary condition simulates discharge to external drains, ditches, trenches, topographic depressions, mines, and other features where an groundwater-bearing structure encounters an opening to atmospheric pressure conditions. Flow _only_ occurs when groundwater levels are at or above the opening elevation such that flow is activated. This boundary introduces a **physical cutoff** that prevents outflow based on the **drain elevation**, making it conceptually different from other head-dependent boundaries. A DRN boundary can be defined in any groundwater-flow-model cell, it need not be defined in the surface layer, for example it might be defined deep inside a model to represent a tunnel or and underground mine. 
+The Drain (DRN) boundary condition simulates discharge to external drains, ditches, trenches, topographic depressions, mines, and other features where a hydrostratigraphic unit encounters an opening to atmospheric pressure conditions. Flow _only_ occurs when groundwater levels are at or above the opening elevation such that flow is activated. This boundary introduces a **physical cutoff** that prevents outflow based on the **drain elevation**, making it conceptually different from other head-dependent boundaries. A DRN boundary can be defined in any groundwater-flow-model cell, it need not be defined in the surface layer, for example it might be defined deep inside a model to represent a tunnel or and underground mine. 
 
 By exploring Q–h plots, you’ve seen how the discharge remains zero until the groundwater head exceeds the drain elevation, after which it increases linearly based on the conductance. This behavior supports the simulation of seepage faces and artificial drainage systems without over-extracting water from the model.
 

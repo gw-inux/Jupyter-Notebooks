@@ -100,7 +100,7 @@ with columns0[0]:
     - What happens if the **groundwater head drops below the riverbed**?
     - What is a **gaining stream** and a **losing stream**?
     
-    ▶️ The :violet[**River (RIV) Boundary**] in MODFLOW handles these dynamics by simulating a **head-dependent flow** that includes a check for groundwater level falling below streambed bottoms. The relationship between groundwater head $h_{gw}$ and river head $h_{RIV}$ is defined via a **conductance term** $C_{RIV}$. The following interactive plot shows how the flow between river and groundwater $Q_{RIV}$ responds to these changing conditions. The interactive plot is based on the MODFLOW documentation (Harbaugh, 2005) and assumes **$h_{RIV}$ as 8 m** with a **river bottom elevation of 6 m**. Try adjusting the river conductance in the itnitial plot to explore the general behavior.
+    ▶️ The :violet[**River (RIV) Boundary**] in MODFLOW handles these dynamics by simulating a **head-dependent flow** that includes a check for groundwater level falling below streambed bottoms. The flow resulting from a given groundwater head $h_{gw}$ and river head $h_{RIV}$ is defined by a **conductance term** $C_{RIV}$. The following introductory interactive plot shows how the flow between river and groundwater $Q_{RIV}$ responds to changing conditions. The interactive plot is based on the MODFLOW documentation (Harbaugh, 2005) and assumes **$h_{RIV}$ is 8 m** and **river bottom elevation is 6 m**. Try adjusting the river conductance in the initial plot to explore flow direction and magnitude as a function of head in the groundwater system.
     """)
     st.latex(r'''Q_{RIV} = C_{RIV} (h_{RIV} - h_{{gw}})''')
 
@@ -122,8 +122,8 @@ with columns0[1]:
     # Create the plot
     fig, ax = plt.subplots(figsize=(5, 5))      
     ax.plot(h_gwi, Qi, color='black', linewidth=4)
-    ax.set_xlabel("Head/Elevation in the RIV-groundwater system (m)", fontsize=14, labelpad=15)
-    ax.set_ylabel("Flow into the groundwater \nfrom the RIV boundary $Q_{RIV}$ (m³/s)", fontsize=14, labelpad=15)
+    ax.set_xlabel("Head in the groundwater system (m)", fontsize=14, labelpad=15)
+    ax.set_ylabel("Flow into the groundwater \nfrom the RIV boundary $Q_{RIV}$ (m³/s) \nwith RIV head $h_{RIV}$ = 8 m", fontsize=14, labelpad=15)
     ax.set_xlim(0, 20)
     ax.set_ylim(-0.05, 0.05)
     ax.set_title("Flow Between Groundwater and RIV", fontsize=16, pad=10)
@@ -135,7 +135,7 @@ with columns0[1]:
     st.markdown("""
     **Initial plot** for exploring how outflow varies with change of :violet[river conductance].
     
-    This **initial plot** is designed to bridge the gap between traditional $Q$-$h$ plots in user manuals and the :rainbow[**interactive plots**] provided further down in this app. The interactive plots allow you to explore the $Q$-$h$ relationships more intuitively, supported by interactive controls and guided instructions.
+    This **initial plot** is designed to bridge the gap between traditional $Q$-$h$ plots on paper and the :rainbow[**interactive plots**] provided further down in this app, that allow you to explore the $Q$-$h$ relationships more intuitively, supported by interactive controls and guided instructions.
     """)
     
 st.markdown("""
@@ -150,12 +150,12 @@ with st.expander("Tell me more about **the :violet[application of RIV in Field-S
 
 
     st.markdown("""
-    In field-scale groundwater models the RIV boundary may be used to define river systems throughout the model domain by adding a RIV boundary to many cells. A simulation of coupling a MODFLOW model with a river system to a MODSIM river operations model in a hypothetical basin demonstrated the impact of spatio-temporal groundwater-surface-water exchanges on river operations.
+    In field-scale groundwater models the RIV boundary may be used to define river systems throughout the model domain by adding a RIV boundary to many cells. A simulation of coupling a MODFLOW model with a river system to a MODSIM river-operations model in a hypothetical basin demonstrated the impact of spatio-temporal groundwater-surface-water exchanges on river operations.
     """)
     
     left_co, cent_co, last_co = st.columns((10,100,10))
     with cent_co:
-        st.image('90_Streamlit_apps/GWP_Boundary_Conditions/assets/images/river_field_application.jpg', caption="Example illustration of the river representation in a field-scale model.")
+        st.image('90_Streamlit_apps/GWP_Boundary_Conditions/assets/images/river_field_application.jpg', caption="Example illustration of representing a river in a field-scale model.")
         
         
     st.markdown("""    
@@ -167,11 +167,11 @@ st.markdown("""
 
 This section is designed with the intent that, by studying it, you will be able to do the following:
 
-- Explain the conceptual and mathematical formulation of the RIV boundary condition in MODFLOW.
+- Explain the conceptual and mathematical formulation of the river boundary condition (RIV).
 - Apply the RIV flow equation to simulate groundwater–river exchange and identify when groundwater would be discharging into a river (gaining stream) and when river water would be recharging the groundwater system (losing stream).
 - Evaluate how river stage, groundwater head, riverbed elevation, and conductance control the direction and magnitude of exchange.
 - Interpret _Q_–_h_ plots that illustrate the flow regime, including unsaturated conditions when groundwater heads drop below the riverbed.
-- Understand that the flow rate from a losing stream with a bottom above the water table is only valid for streambeds with hydraulic conductivity lower then the hydraulic conductivity of the groundwater-bearing structures.
+- Understand that the flow rate from a losing stream with a bottom above the water table is only valid for streambeds with hydraulic conductivity lower then the hydraulic conductivity of the groundwater-bearing material.
 """)
 
 with st.expander('**Show the initial assessment** - to assess your existing knowledge'):
@@ -206,7 +206,7 @@ with st.expander('**Show the initial assessment** - to assess your existing know
             
 st.subheader('🧪 Theory and Background', divider="violet")
 st.markdown("""
-In groundwater modeling, simulating the interaction between an groundwater (or other groundwater-bearing layers) and a river is essential for understanding stream depletion, baseflow contribution, and groundwater–surface water exchange. But how do we realistically represent a river in a groundwater model?
+In groundwater modeling, simulating the interaction between a hydrostratigraphic unit and a river is essential for understanding stream depletion, baseflow contribution, and groundwater–surface water exchange. But how do we realistically represent a river in a groundwater model?
 """)
 
 with st.expander("Show me more about **the Theory**"):
@@ -218,8 +218,8 @@ with st.expander("Show me more about **the Theory**"):
     
     st.markdown("""
     where:
-    - $Q_{RIV}$ is the flow between the river and the groundwater (positive if it is directed into the groundwater) [L3/T]
-    - $h_{RIV}$ is the water level (head) of the river (L),
+    - $Q_{RIV}$ is the flow between the river and the groundwater (positive if it is directed into the groundwater) [L³/T]
+    - $h_{RIV}$ is the water level (also called stage or head) of the river (L),
     - $C_{RIV}$ is the hydraulic conductance of the river bed [L²/T], and
     - $h_{gw}$ is the head in the groundwater beneath the river bed (L).
     
@@ -240,7 +240,7 @@ with st.expander("Show me more about **the Theory**"):
     st.write(':blue[**It is important to compare the calculated flow between the river and groundwater to the flow in the segment of river being modeled.**] :green[The amount of water lost or gained needs to be consistent with observed river flow over the length of the segment such that it is reasonable to assume a constant river head.]')
     
     
-    st.write(':blue[**If there is a significant gain or loss of flow, the river head may rise or fall, but the MODFLOW RIV package will continue to use the same river head.**] :green[If the modeler wants to represent feedback between the amount of water lost or gained and the elevation of the river head, the STR  (stream package) can be used. The concepts for flow between the river and the groundwater do not change from what is presented here.]')
+    st.write(':blue[**If there is a significant gain or loss of flow, the river head may rise or fall, but the MODFLOW RIV package will continue to use the same river head.**] :green[If the modeler wants to represent feedback between the amount of water lost or gained and the elevation of the river head, the STR (stream package), SFR (stream-flow routing), or DAFLOW (delayed flow) packages can be used. In these alternative packages, the concepts for flow between the river and the groundwater do not change from what is presented here.]')
 
 
 with st.expander('**Click here** to read about the :green[**heads used**] in the River Boundary condition of MODFLOW'):
@@ -248,23 +248,23 @@ with st.expander('**Click here** to read about the :green[**heads used**] in the
     ### Heads used in the River Boundary of MODFLOW
     """)
     st.markdown("""
-    MODFLOW assumes that the river bed permeability is substantially lower than the permeability of the groundwater-bearing structure.
+    MODFLOW assumes that the river bed permeability is substantially lower than the permeability of the hydrostratigraphic unit.
 
     Consequently, all the head loss between the river and the groundwater occurs between the top and bottom of the river bed.
 
     MODFLOW requires input values for:
 
-    - Elevation of the River head $h_{RIV}$ (called Stage in MODFLOW, is labeled River Surface in this image). Because the river is an open body of water it is assumed the River head occurs at the top of the river bed.
+    - Elevation of the River head $h_{RIV}$ (called Stage in MODFLOW) is labeled River Surface in this image. Because the river is an open body of water it is assumed the River head occurs at the top of the river bed.
 
-    - River bottom elevation (called $R_{bot}$ in MODFLOW, is the bottom of the hatched zone in this image).  
+    - River bottom elevation (called $R_{bot}$ in MODFLOW) is the bottom of the hatched zone in this image.  
     """)
     left_co1, cent_co1, last_co1 = st.columns((10,80,10))
     with cent_co1:
-        st.image('90_Streamlit_apps/GWP_Boundary_Conditions/assets/images/RIV_CONCEPT_2_v2.png', caption="Concept of the River boundary (modified from McDonald and Harbaugh, 1988; https://pubs.usgs.gov/twri/twri6a1/pdf/twri_6-A1_p.pdf)")
+        st.image('90_Streamlit_apps/GWP_Boundary_Conditions/assets/images/RIV_CONCEPT_2_v3.png', caption="Concept of the River boundary (modified from McDonald and Harbaugh, 1988; https://pubs.usgs.gov/twri/twri6a1/pdf/twri_6-A1_p.pdf)")
     st.markdown("""
-    Groundwater head elevation is calculated by MODFLOW in response to all the model inputs (labeled Head in Cell in this image). It is assumed the groundwater head is uniform throughout the cell and thus occurs at the elevation of the river bottom.
+    Groundwater head elevation is calculated by MODFLOW in response to all the model inputs. It is assumed the groundwater head is uniform throughout the cell and thus occurs at the elevation of the river bottom.
 
-    When the groundwater head is above the river bottom, the head difference across the river bed is: (Stage – Head in Cell). When this value is negative, water is flowing from the groundwater to the river.
+    When the groundwater head is above the river bottom, the head difference across the river bed is: (Stage – Head in hydrostratigraphic unit). When this value is negative, water is flowing from the groundwater to the river.
 
     This head difference is multiplied by Conductance to determine Flow Rate between the River and the Groundwater.
  
@@ -318,14 +318,14 @@ with st.expander('**Click here** to read how flow is calculated when the :green[
     """)
     left_co3, cent_co3, last_co3 = st.columns((10,80,10))
     with cent_co3:
-        st.image('90_Streamlit_apps/GWP_Boundary_Conditions/assets/images/RIV_CONCEPT_UNSAT_2.png', caption="Concept of the River boundary when the groundwater head falls below the river bottom (modified from McDonald and Harbaugh, 1988; https://pubs.usgs.gov/twri/twri6a1/pdf/twri_6-A1_p.pdf)")
+        st.image('90_Streamlit_apps/GWP_Boundary_Conditions/assets/images/RIV_CONCEPT_UNSAT_3.png', caption="Concept of the River boundary when the groundwater head falls below the river bottom (modified from McDonald and Harbaugh, 1988; https://pubs.usgs.gov/twri/twri6a1/pdf/twri_6-A1_p.pdf)")
 
     st.markdown("""
     When the groundwater head $h_{gw}$ is lower than the river bottom $R_{bot}$, the head difference across the river bed is: 
 
     - Elevation of the River Surface $h_{Riv}$ – Elevation of the River Bottom $R_{bot}$
 
-    - :red[This difference remains a constant.]
+    - :red[As long as the groundwater head is below the riverbed bottom, this difference is constant so the flow into groundwater is constant.]
 
     This head difference is multiplied by conductance to determine the flow rate from the river to the groundwater
     """)
