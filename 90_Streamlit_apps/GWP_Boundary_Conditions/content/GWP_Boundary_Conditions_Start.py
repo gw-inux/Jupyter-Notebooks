@@ -16,42 +16,52 @@ institution_list = [f"{index_symbols[i-1]} {inst}" for i, inst in institutions.i
 institution_text = " | ".join(institution_list)
 
 st.title("Welcome to the Boundary Condition Module 💦")
-st.header('A Multipage Application Elucidating Boundary Conditions in Groundwater Flow Models 👋', divider= 'green')
+st.subheader('A Multipage Application Elucidating Boundary Conditions in Groundwater Flow Models 👋', divider= 'green')
 
-st.subheader('Overview')
-st.markdown(
-    """
-Groundwater models are only as good as the accuracy of both the system representation (including boundary conditions) and the values of observations used to calibrate the model. This interactive module is designed to deepen your understanding of the basic ways in which different types of boundary conditions — defined head, defined flow, and head-dependent flow — influence the magnitude and direction of groundwater flow when used in solving the partial differential equation for groundwater flow.
+#st.subheader('Getting started')
+st.markdown("""
+#### Getting started
+Groundwater models are only as good as the accuracy of both the system representation (including boundary conditions) and the values of observations used to calibrate the model.
 """)
 
 left_co, cent_co, last_co = st.columns((5,80,5))
 with cent_co:
     st.image('90_Streamlit_apps/GWP_Boundary_Conditions/assets/images/gwp_boundary_title.png',caption="Schematic representation of groundwater flow. Physical features of the area like the lake, stream, and pumping well are represented by boundary conditions. Figure modified from [Grannemann et al. 2000](https://mi.water.usgs.gov/pubs/WRIR/WRIR00-4008/).")
+    
+st.markdown("""
+💡 This interactive module is designed to deepen your understanding of the basic ways in which different types of boundary conditions - specified head, specified flow, and head-dependent flow - influence the magnitude and direction of groundwater flow when used in solving the partial differential equation for groundwater flow.
 
-st.markdown(
-    """
-Whether you're an advanced student or a practicing hydrogeologist, this module offers intuitive visualizations, conceptual explanations, and interactive tools to help bridge theory and application.
-"""
-)   
+💡 This module offers intuitive visualizations, conceptual explanations, and interactive tools to help bridge theory and application for both advanced students and practicing hydrogeologists. To get the most out of this resource, see the **How to Use this Module** section below.
+""")
 
 columns = st.columns((1,6,1))
 
 with columns[1]:
-    st.markdown(
+    st.markdown("""
+    👉 :green[**Use the sidebar to navigate through examples and boundary types.**] 👈
     """
-👉 :green[**Use the sidebar to navigate through examples and boundary types.**] 👈
-"""
-)
-st.markdown(
-    """
-The sidebar links to sections that cover the specific boundary conditions that are available in MODFLOW, the USGS groundwater flow model:
-- :orange[**GHB:**] The **General Head** Boundary package to simulate head dependent flux in or out of the model.
-- :violet[**RIV:**] The **River** Boundary package to simulate head dependent flux in or out of the model.
-- :green[**DRN:**] The **Drain** package to simulate head dependent flux out of the model.
-- :rainbow[**MNW:**] The **Multi-Node-Well** package to simulate head dependent flux in or out of wells.
-- :blue[**EVT:**] The **Evapotranspiration** package to simulate flux out of the model.
-"""
-) 
+    )
+
+st.subheader('How to Use this Module', divider= 'green')
+
+st.markdown("""
+A flexible resource for both beginners and experienced users of groundwater modeling.
+
+- ***Who is it for?***: The module is intended for beginners as well as advanced and experienced users who wish to refresh their understanding of specific boundary types. A basic familiarity with hydrogeology and groundwater flow is recommended, but no prior experience with MODFLOW is required.
+
+- ***Structure of the module***: The opening :red[📕 Introduction] Section provides an overview of groundwater models and introduces the role of boundary conditions in MODFLOW. Following this, each boundary condition is presented in its own dedicated section, where the concepts, applications, and implications are explained in detail.
+
+- ***Flexibility for experienced users***: Experienced users can use the module selectively, for example, by going directly to a single section of interest to refresh their knowledge of a specific boundary condition.
+
+- ***Time needed***: Completing the full module typically requires 4-8 hours, while individual sections can be completed in 15–30 minutes depending on prior knowledge and level of detail explored.
+
+- ***Practical focus***: Exercises and examples are embedded throughout, ensuring that users not only understand the concepts but also see their application in practice.
+
+- ***Learning through assessments***: Each section integrates assessments to provide immediate feedback. These include short questions at the beginning to activate prior knowledge, as well as exercises and final self-checks to consolidate understanding.
+
+- ***Instructions and exercises***: Beginners are guided step by step through initial instructions and hands-on exercises that help build familiarity with each boundary condition.
+""")
+
 st.markdown('---')
 left_co4, cent_co4, last_co4 = st.columns((1,8,1))
 with cent_co4:

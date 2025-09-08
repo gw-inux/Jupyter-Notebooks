@@ -936,15 +936,15 @@ def Q_h_plot():
             st.markdown("""
             #### :green[🔎 About this Plot]
             
-            This plot illustrates the relationship between **well head ($h_{well}$)** and **discharge (Q)** for a **fixed groundwater head ($h_{gw}$)** in a Multi-Node Well (MNW). 
+            This plot illustrates the relationship between **well head ($h_{well}$)** and **discharge (Q)** for a **specified groundwater head ($h_{gw}$)** in a Multi-Node Well (MNW). 
             
             Two modes are available:
             1. :blue[**Q-target**]: Where you can specify the discharge and calculate the resulting $h_{well}$ (drawdown) for a given conductance (initially set to $1.0$).
             2. :red[**H-target**]: Where you specify $h_{well}$ and compute the discharge resulting from head difference and conductance.
             
-            Unlike the MODFLOW well (WEL) or recharge (RCH) boundaries that impose a fixed flux, and unlike RIV or DRN boundaries that assume **linear head-dependent flow**, MNW simulates **nonlinear resistance** due to turbulence that result from high flow velocity or well construction effects. This is controlled by the **cell-to-well conductance (CWC)**, defined by parameters $A$, $B$, $C$, and $P$.
+            Unlike the MODFLOW well (WEL) or recharge (RCH) boundaries that impose a fixed flow, and unlike RIV or DRN boundaries that assume **linear head-dependent flow**, MNW simulates **nonlinear resistance** due to turbulence that result from high flow velocity or well construction effects. This is controlled by the **cell-to-well conductance (CWC)**, defined by parameters $A$, $B$, $C$, and $P$.
             
-            The groundwater head ($h_{gw}$) is always $10$ m for this plot, so that the interaction between discharge and well head is isolated for analysis.
+            The groundwater head ($h_{gw}$) can be modified for this plot although there is no direct effect on the interaction between discharge and well head. Rather, a variable groundwater head shift the $Q$-$h_{well}$ relationship in relative.
             """)
         with st.expander('Click here for :green[**Instructions To Get Started with this Plot**]'):
             st.markdown("""
