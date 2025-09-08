@@ -356,6 +356,22 @@ def update_C2():
     st.session_state.C2 = st.session_state.C2_input
 def update_P2():
     st.session_state.P2 = st.session_state.P2_input 
+def update_Q_range():
+    if "Q_range_input" in st.session_state:
+        # from slider
+        lo, hi = st.session_state.Q_range_input
+    else:
+        # from number inputs
+        lo = st.session_state.Q_range_input_min
+        hi = st.session_state.Q_range_input_max
+
+    # clamp and order
+    lo = max(0.0, min(lo, st.session_state.Q_show))
+    hi = max(0.0, min(hi, st.session_state.Q_show))
+    if lo > hi:
+        lo, hi = hi, lo
+
+    st.session_state.Q_range = (lo, hi)
     
 # Initialize session state for value and toggle state
 st.session_state.dh_show = 5.0
@@ -374,6 +390,7 @@ st.session_state.B2 = 5.0
 st.session_state.C2 = 5.0
 st.session_state.P2 = 2.0
 st.session_state.number_input = False  # Default to number_input
+st.session_state.Q_range = (0.1 * st.session_state.Q_show, 0.3 * st.session_state.Q_show)
 
 if 'Q_off' not in st.session_state:
     st.session_state.Q_off = False
@@ -491,8 +508,19 @@ def Q_h_plot():
                     h_lim = st.slider      ("**Limiting head** $h_{lim}$ [m]", 0.0, 10.0, st.session_state.h_lim, 0.1, key="h_lim_input", on_change=update_h_lim)                 
                 th = st.toggle("Apply withdrawal thresholds")
                 if th:
-                    Q_range = st.slider("Discharge cutoff range $[Q_{mn}, Q_{mx}]$ [m³/s]", 0.0, st.session_state.Q_show, (0.1*st.session_state.Q_show, 0.3*st.session_state.Q_show), 0.01)
-                    Q_mn, Q_mx = Q_range                
+#                    Q_range = st.slider("Discharge cutoff range $[Q_{mn}, Q_{mx}]$ [m³/s]", 0.0, st.session_state.Q_show, (0.1*st.session_state.Q_show, 0.3*st.session_state.Q_show), 0.01)
+#                    Q_mn, Q_mx = Q_range       
+                     if st.session_state.number_input:
+                         # two number_inputs, grouped
+                         col1, col2 = st.columns(2)
+                         with col1:
+                             st.number_input("Discharge cutoff min $Q_{mn}$ [m³/s]", 0.0, st.session_state.Q_show, st.session_state.Q_range[0], 0.01, key="Q_range_input_min",  on_change=update_Q_range)
+                         with col2:
+                             st.number_input("Discharge cutoff max $Q_{mx}$ [m³/s]", 0.0, st.session_state.Q_show, st.session_state.Q_range[1], 0.01, key="Q_range_input_max", on_change=update_Q_range)
+                         Q_mn, Q_mx = st.session_state.Q_range
+                     else:
+                         Q_range = st.slider("Discharge cutoff range $[Q_{mn}, Q_{mx}]$ [m³/s]", 0.0, st.session_state.Q_show, st.session_state.Q_range, 0.01, key="Q_range_input", on_change=update_Q_range)
+                         Q_mn, Q_mx = Q_range         
     
     with columns1[2]:
         modify_CWC = st.toggle('Toggle to **modify CWC parameters**')
@@ -895,7 +923,7 @@ def Q_h_plot():
             # --- Plot Q vs. h_well ---
             fig2, ax2 = plt.subplots(figsize=(6,6), dpi=150)
             if turn:
-                ax2.plot(Q_2nd, h_2nd, color='blue', label=fr"$Q$-$h_{{gw}}$ plot with $Q = {Q_show:.2f}$ m³/s", linewidth=2)
+                ax2.plot(Q_2nd, h_2nd, color='blue', label=fr"$Q$-$h_{{gw}}$ plot with $Q = {Q_show * -1:.2f}$ m³/s", linewidth=2)
                 ax2.plot(Q_values_2nd, h_well_range, color='black', linewidth=3, label=r"$Q$-$h_{Well}$")
                 ax2.axhline(y=h_cell, linestyle='dotted', color='dodgerblue', linewidth=2)
                 ax2.axhline(y=h_well, linestyle='dotted', color='grey', linewidth=2)
@@ -909,7 +937,7 @@ def Q_h_plot():
                     ax2.plot(Q_show*-1, h_cell,'o', markersize=12, markerfacecolor='dodgerblue', markeredgecolor='darkblue', label=f'head in cell = {h_cell:.2f} m')
                     ax2.plot(Q_show*-1, h_well,'o', markersize=10, markerfacecolor='none', markeredgecolor='darkblue', label=f'head in well = {h_well:.2f} m')    
             else:
-                ax2.plot(h_2nd, Q_2nd, color='blue', label=fr"$Q$-$h_{{gw}}$ plot with $Q = {Q_show:.2f}$", linewidth=2)
+                ax2.plot(h_2nd, Q_2nd, color='blue', label=fr"$Q$-$h_{{gw}}$ plot with $Q = {Q_show * -1:.2f}$ m³/s", linewidth=2)
                 ax2.plot(h_well_range, Q_values_2nd, color='black', linewidth=3, label=r"$Q$-$h_{Well}$")
                 ax2.axvline(x=h_cell, linestyle='dotted', color='dodgerblue', linewidth=2)
                 ax2.set_xlabel("Hydraulic head $h$ [L]", fontsize=14)
