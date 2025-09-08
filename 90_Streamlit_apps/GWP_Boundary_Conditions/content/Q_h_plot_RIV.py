@@ -325,7 +325,7 @@ with st.expander('**Click here** to read how flow is calculated when the :green[
 
     - Elevation of the River Surface $h_{Riv}$ – Elevation of the River Bottom $R_{bot}$
 
-    - :red[As long as the groundwater head is below the riverbed bottom, this difference is constant so the flow into groundwater is constant.]
+    - :red[As long as the groundwater head is below the riverbed bottom, this difference is constant so the flow into the groundwater is constant.]
 
     This head difference is multiplied by conductance to determine the flow rate from the river to the groundwater
     """)
@@ -337,7 +337,7 @@ The interactive plot shows how the flow $Q_{RIV}$ across a River Boundary depend
 Use the sliders or number inputs to adjust these parameters. You can also toggle between direct conductance input or compute it from hydraulic and geometrical properties. The plot updates dynamically and supports different viewing orientations.
 
 - You can investigate the plot on your own. Some :blue[INITIAL INSTRUCTIONS] may guide you.
-- An :rainbow[EXERCISE] allows you to apply the plot and deepen your understanding. This exercise invites you to explore how river–groundwater exchange is controlled by **river stage, groundwater hydraulic head, conductance, and bottom elevation**. Use the interactive RIV plot to examine how these factors influence the exchange flow, and interpret the **physical meaning based on _Q_–_h_ plots**, especially the transitions between **gaining**, **losing**, and **decoupled** river conditions.
+- An :rainbow[EXERCISE] allows you to apply the plot and deepen your understanding. This exercise invites you to explore how river–groundwater exchange is controlled by **river stage, groundwater hydraulic head, conductance, and bottom elevation**. Use the interactive RIV plot to examine how these factors influence the exchange of flow, and interpret the **physical meaning based on _Q_–_h_ plots**, especially the transitions between **gaining**, **losing**, and **decoupled** river conditions.
 """)
 
 # Functions
@@ -834,28 +834,25 @@ def Q_h_plot():
         st.markdown("""
         **Getting Started with the Interactive Plot**
         
-        Before starting the exercise, follow these quick steps to explore RIV behavior:
+        Before starting the exercise, it is helpful to follow these steps to explore RIV behavior:
         
-        **1. Set a Reference Case**
-        * Set river head $h_{riv} = 10.0$ m
-        * Set river bottom elevation $R_{bot} = 9.0$ m
-        * Vary groundwater head $h_{gw}$ between 8 and 12 m
+        **1. Using the default values**
+        * Vary groundwater head $h_{gw}$ in steps between 5 and 12 m (if you prefer there is a toggle button under **Modify Plot Controls** that allows you to type in values instead of using the slider).
         * Observe how the flow $Q_{RIV}$ changes:
             * When $h_{gw} > h_{riv}$, the groundwater discharges to the river (losing river).
             * When $h_{gw} < h_{riv}$ but $h_{gw} > R_{bot}$, the river recharges the groundwater (gaining river).
-            * When $h_{gw} < R_{bot}$, the river is not longer in direct contact with the groundwater. Flow through an unsaturated zone occurs, which is driven between the head gradient between river stage and river bottom. In this case, outflow from the river is kept constant.
+            * When $h_{gw} < R_{bot}$, the river is not in direct contact with the groundwater. Flow through an unsaturated zone occurs, which is driven by the head gradient between river stage and river bottom. In this case, outflow from the river is constant and independent of $h_{gw}$.
         
         **2. Test Different Conductance Values**
-        * Use the slider to vary $C_{RIV}$
-        * Note how the slope of the $Q$–$h$ curve changes — higher conductance allows more exchange.
+        * Use the slider to vary $C_{RIV}$ and notice how the slope of the $Q$–$h$ curve changes, with higher conductance resulting in more exchange of flow.
         
-        **3. Compute Conductance**
+        **3. Optional: Compute Conductance**
         * Toggle “Compute conductance”
         * Enter $K$, $A_{riv}$, and $L_{RIV}$ to calculate $C_{RIV} = \\frac{KA_{RIV}}{L_{RIV}}$
         * Observe how the conductance value influences the _Q_–_h_ relationship.
-        * Set $h_{gw}$ < $R_{bot}$ and compute $C_{RIV}$ directly. Investigate the effect of the river bottom elevation $R_{bot}$ and river bed thickness $M_{RIV}$
+        * Set $h_{gw}$ < $R_{bot}$ and compute $C_{RIV}$ directly. Investigate the effect of the river bottom elevation $R_{bot}$ and river bed thickness $M_{RIV}$ on flow at the RIV boundary.
         
-        These steps help you build intuition for how RIV parameters control flow, a key foundation for the exercise. Feel free to further investigate the interactive plot on your own.
+        The subsequent exercise is designed to help you build intuition for how RIV parameters control flow.  Feel free to further investigate the interactive plot on your own.
         """)
     
     with st.expander('Show the :rainbow[**EXERCISE**]'):

@@ -102,7 +102,7 @@ with cent_co:
     st.markdown("""Schematic representation of an unconfined aquifer with a river boundary on the right side together with the associated _Q_-_h_ plot.""")
 
 st.markdown(""" 
-#### 📖 Overview about this section
+#### 📖 Overview of this section
 By simulating a simple 1D unconfined aquifer with recharge and various boundary types, users of this module can gain insight into the essential principles that govern groundwater model boundaries and their practical implications in tools like the numerical groundwater flow model MODFLOW.
 
 To support the understanding, this 📕 :red[**Introduction**] part of the module applies well-known analytical solutions for 1D unconfined groundwater flow with recharge. It illustrates how different boundary types like specified head, specified flow, and head-dependent flux influence the resulting hydraulic head and flow distribution. A key focus is placed on understanding the resulting ***Q-h*** relationships, which are central to the conceptualization and interpretation of boundary conditions in groundwater models like MODFLOW.

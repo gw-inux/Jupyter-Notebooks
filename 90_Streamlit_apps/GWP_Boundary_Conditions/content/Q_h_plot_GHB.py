@@ -153,8 +153,8 @@ with st.expander("Tell me more about **the :orange[application of GHB in Field-S
     with cent_co:
         st.image('90_Streamlit_apps/GWP_Boundary_Conditions/assets/images/GHBapplied1.png', caption="Illustration of a GHB representing a distant external water body.")
     
-    st.markdown("""
-     Or, a GHB boundary might be used to represent inflow from an adjacent aquifer with the head representing head in the adjacent aquifer that is far enough away that it is not expected to change in response to stress on the simulated aquifer.
+    st.markdown("""     
+    Or, a GHB boundary might be used to represent inflow from an adjacent aquifer with the head representing head in the adjacent aquifer that is far enough away that it is not expected to change in response to stress on the simulated aquifer. The head in the adjacent aquifer might be maintained by seepage from water bodies or areal recharge. The important point is not what maintains that distant head but rather that modelers use this technique to provide inflow from a region that is not simulated in the grid.
     """)
     left_co, cent_co, last_co = st.columns((10,40,10))
     with cent_co:
@@ -223,7 +223,7 @@ The General Head Boundary (GHB), also referred to as the Head-Dependent Flux Bou
 """)
 with st.expander("Show me more about **the Theory**"):
     st.markdown("""
-        GHB boundaries differ from specified head boundaries for which the head is specified within the model domain and flow in or out of the model depends on head in the surrounding nodes, and the conductance between those nodes and the specified head node. The GHB response is an extension from a model node in which head changes during the model simulation. The value of head in the groundwater system then determines the flow rate and direction as described by the following linear relationship:
+        GHB boundaries differ from specified head boundaries.  For **specified head boundaries, the groundwater head is specified at a node within the model domain** and flow in or out of the node depends on head in the surrounding nodes along with the conductance between those nodes and the specified head node. A **GHB is a connection of a model node to an external source or sink**. In the case of a GHB, the groundwater head of the model node changes during the model simulation and the value of head in the groundwater system then determines the flow rate and direction as described by the following linear relationship:
         
         $$
         Q_B = C_B(H_B - h_{gw})
@@ -513,11 +513,11 @@ def Q_h_plot():
         st.markdown("""
         **Getting Started with the Interactive Plot**
         
-        Before starting the exercise, it is helpful to follow these quick steps to explore GHB behavior:
+        Before starting the exercise, it is helpful to follow these steps to explore GHB behavior:
     
         **1. Using the default values**
     
-        * Vary **groundwater head $h_{gw}$** between 5 and 15 m.
+        * Vary **groundwater head $h_{gw}$** in steps between 5 and 15 m (if you prefer there is a toggle button under **Modify Plot Controls** that allows you to type in values instead of using the slider).
         * Observe how **flow $Q_B$** changes in magnitude and when groundwater flows out to the (Q < 0) and boundary water flows into the groundwater (Q > 0).  
     
         **2. Test Different Conductance Values**
@@ -540,7 +540,7 @@ def Q_h_plot():
         
        **b) After the Model is Calibrated such that the Recharge and Conductance are specified:** If other outlets are added to the system (e.g., abstraction wells, drains) the heads in the model will be a result of all the model boundary conditions and parameter values. In consequence, the previously calibrated, and then specified, conductance will control how much of the recharge flows to the :orange[**GHB**] boundary. The discharge will also depend on the location and properties of the other outlets. Here we investigate this behavior for the :orange[**General Head Boundary GHB**]. Other head dependent boundaries like :violet[**RIV**] and :green[**DRN**] follow similar principles.
            
-        The subsequent exercise is designed to help you build intuition for how GHB parameters control flow. 
+       The subsequent exercise is designed to help you build intuition for how GHB parameters control flow.  Feel free to further investigate the interactive plot on your own.
         """)
     
     with st.expander('Show the :rainbow[**EXERCISE**]'):

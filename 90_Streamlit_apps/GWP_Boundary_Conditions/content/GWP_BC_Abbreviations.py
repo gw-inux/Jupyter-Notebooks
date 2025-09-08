@@ -67,7 +67,7 @@ entries_para = [
     (r"$R_{BOT}$", "elevation of the bottom of the river bed"),
     (r"$RET$", "depth-specific evapotranspiration rate"),
     (r"$SURF$", "evapotranspiration surface elevation"),
-    (r"$W}$", "width of river segment"),
+    (r"$W$", "width of river segment"),
 ]
 
 # --- Table 1: Abbreviations ---

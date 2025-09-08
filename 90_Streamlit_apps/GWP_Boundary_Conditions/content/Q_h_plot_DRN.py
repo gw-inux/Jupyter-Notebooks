@@ -251,6 +251,39 @@ with st.expander("Show me more about **the Theory**"):
     If the groundwater head $h_{gw}$ is below the elevation of the drain, $H_{D}$, then there is no flow.
     
     """)
+    
+with st.expander('**Click here** to read how :green[**conductance is calculated**]'):
+    st.markdown("""
+    ### Calculating MODFLOW Drain Boundary Conductance
+    """)
+    
+    st.markdown("""
+    MODFLOW requires input of Conductance.
+
+    Conductance includes all of Darcy's Law except the head difference between the drain and the groundwater. 
+    """)    
+    st.latex(r'''Q_{DRN} = KA \frac{\Delta h}{M}''')
+    
+    st.latex(r'''C_{DRN} = KA \frac{1}{M} = KLW \frac{1}{M}''')
+
+    st.markdown("""
+    where: 
+
+    - $K$ is hydraulic conductivity of the drain lining or "skin" [L/T]
+    - $A$ is flow area of the drain that may be a rectangle or a cylinder (=$LW$) [L²]
+    - $M$ is thickness of the resistive material around the drain (the distance over which the gradient is calculated) [L]
+    """)
+    
+    left_co, cent_co, last_co = st.columns((10,80,10))
+    with cent_co:
+        st.image('90_Streamlit_apps/GWP_Boundary_Conditions/assets/images/DrainConductance.png', caption="Schematic illustration of the DRN boundary with labels indicating parameters used to calculate conductance; modified from (McDonald and Harbaugh, 1988; https://pubs.usgs.gov/twri/twri6a1/pdf/twri_6-A1_p.pdf)")
+    
+    st.markdown("""
+    $\Delta h$ is the difference between the Head of the Drain (which is its elevation because pressure is assummed to be atmospheric, i.e., zero) and Head in the Groundwater 
+
+    In general, MODFLOW calculates flow $Q$ with a conductance $C$ as
+    """)
+    st.latex(r'''Q = C \Delta h''')
 
 st.subheader("Interactive Plot and Exercise", divider="green")
 st.markdown("""
@@ -438,20 +471,18 @@ def Q_h_plot():
         st.markdown("""
         **Getting Started with the Interactive Plot**
         
-        Before starting the exercise, it is helpful to follow these quick steps to explore **DRN** behavior:
+       Before starting the exercise, it is helpful to follow these steps to explore DRN behavior:
         
-        **1. Set a Reference Case** - there is a toggle button under **Modify Plot Controls** that allows you to type in values instead of using the slider 
+       **1. Using the default values** 
         
-        * Set **drain elevation** $H_D$ to 10.0 m.
-        * Vary **groundwater head** $h_{gw}$ between 8 and 12 m.
+        * Vary **groundwater head** $h_{gw}$ in steps between 8 and 12 m (if you prefer there is a toggle button under **Modify Plot Controls** that allows you to type in values instead of using the slider).
         * Observe how the flow $Q_D$ changes:
             * When $h_{gw} > H_D$, the groundwater drains — flow leaves the groundwater through the drain.
             * When $h_{gw} \leq H_D$, no flow occurs — the drain is inactive.
             
         **2. Test Different Conductance Values**
         
-        * With $h_{gw} > H_D$, use the slider to vary $C_D$
-        * Note how the **slope of the Q–h curve** changes — higher conductance leads to stronger response of outflow to head differences.
+        * With $h_{gw} > H_D$, use the slider to vary $C_D$ and notice how the **slope of the Q–h curve** changes — higher conductance leads to stronger response of outflow to head differences.
         
         These steps help you build intuition for how DRN parameters govern flow — especially the **threshold behavior** and **linear relationship** between head difference and outflow. Feel free to further investigate the interactive plot on your own.
         """)

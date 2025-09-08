@@ -253,20 +253,37 @@ with st.expander('**Show the initial assessment** - to assess your existing know
             
 st.subheader('🧪 Theory and Background', divider="rainbow")
 st.markdown("""
-This app calculates the flow between a Multi-Node-Well (MNW) and the groundwater depending on the system parameters describing the flow near, into, and within the well.
+Flow between a Multi-Node-Well (MNW) and hydrostratigrphic unit that is tapped by the well depends on system parameters describing the flow near, into, and within the well.
 """)
 with st.expander("Tell me more about **the Theory**"):
     st.markdown("""
-    In general, flow from the groundwater system into a multi-node well is described with an cell-to-well conductance:
+    In general, flow from the groundwater system into a multi-node well is controlled by specifying a desired flow rate $Q$, determining the resulting head in the well given the specified rate and a cell-to-well conductance factor ($CWC$), and using specified limits for determining when the desired flow from the well will be reduced or set to zero.
+    
+    The applied flow rate is equal to the specified flow rate, but the head in the well $h_{well}$ is calculated as: 
     """)
+    
+    st.latex(r'''h_{well} = h_{gw} + Q (CWC)''')
+    
+    st.markdown("""
+    $Q$ is negative in an abstraction well so the well losses cause the heasd in the well to be lower than the head in the hydrostratigraphic unit that the well taps.
+    """)
+    
+    st.markdown("""
+    If the $h_{well}$ is below the well manager's specified lowest elevation, then the flow rate will be reduced to:
+    """)
+    
     st.latex(r'''Q = CWC (h_{well} - h_{gw})''')
+    
+    st.markdown("""
+    to prevent the well/pump from being damaged. If that $Q$ is below the well manager's specified minimum flow rate then the discharge is reduced to zero.
+    """)
     
     st.markdown("""
     where:
     - $Q$ is the flow between the groundwater and well, taken as negative if it is directed out of the groundwater [L³/T],
     - $h_{well}$ is the head in the well [L],
     - $CWC$ is the cell-to-well conductance [L²/T], and
-    - $h_{gw}$ is the groundwater head [L] in the cell containing the well. _This head depends on the values of parameters and stresses (e.g., pumping, recharge) throughout the model. It can vary with time and have different values the well depending on all the model inputs._
+    - $h_{gw}$ is the groundwater head [L] in the cell containing the well. _This head depends on the values of parameters and stresses (e.g., pumping, recharge) throughout the model. It can vary with time and have different values depending on all the model inputs._
     
     The CWC is composed of three terms, describing (1) flow to the well, (2) the skin effect that influences ease of flow through the well wall, and (3) the effect of turbulence in the vicinity of, and within, the well. Accordingly, the cell-to-well conductance $CWC$ is defined as:
     """)
@@ -290,7 +307,7 @@ st.markdown("""
 Four interactive plots are provided to allow you to investigate different aspects of the Multi-Node-Well (MNW) boundary in MODFLOW.
 
 :blue[**🔵 PLOT 1 - Hydraulic heads in the MNW boundary**]:
-Illustrates the additional drawdown in the well due to the lower cell-to-well conductance CWC. Two parameter sets for the CWC can be used.
+Illustrates the additional drawdown in the well due to lower cell-to-well conductance CWC. Two parameter sets for the CWC can be used.
 
 :green[**🟢 PLOT 2 - Q-h behavior of the MNW boundary**]: An interactive plot of the Q-h relationship for the specified groundwater discharge ($Q$-$h_{gw}$) and the well discharge ($Q$-$h_{well}$) which may be reduced depending on physical conditions.
 
@@ -765,28 +782,25 @@ def Q_h_plot():
             st.markdown("""
             #### :blue[🧭 Getting Started]
             
-            Use these initial steps to familiarize yourself with the model:
+            Before starting the exercise, it is helpful to follow these steps to familiarize yourself MNW:
             
-            1. **Define a Reference Case**
-               * Set the CWC parameters to:
-                 * $A = 0.5$, $B = 0.05$, $C = 1.0$, $P = 2.0$
-               * Select :blue[**Q-target] mode** and set $Q = 0.02$ m³/s
+            **1. Using the default values**
+               * The default is :blue[**Q-target**] mode with $Q = 0.5$ m³/s
                * Observe the drawdown between $h_{gw}$ and $h_{well}$
-               * Modify the withdrawal rate and the parameters to investigate the response in the interactive plot. A higher withdrawal rate causes more head decline in the well, but the modest settings of CWC parameter values result in minimal additional head loss in the well for extremely high flow rates.
+               * Modify the withdrawal rate to investigate the response in the interactive plot. A higher withdrawal rate causes more head decline in the well.
             
-            2. **Switch to H-target**
-               * Set the CWC parameters to:
-                 * $A = 5.0$, $B = 5.0$, $C = 0.0$, $P = 2.0$
-               * Toggle to :red[**H-target**] mode
-               * Vary drawdown Δh from $0.5$ to $5.0$ m
+            **2. Switch to H-target**
+               * Toggle to :red[**H-target**] mode and $Q$ will be reset to the default $0.5$ m³/s 
+               * Vary drawdown Δh from $0.5$ to $8.0$ m
                * Observe how $Q$ responds to increasing drawdown. The relationship is the same, but now setting $h_{well}$ produces the related value of $Q$, instead of setting $Q$ to obtain the value of $h_{well}$.
             
-            3. **Compare Parameter Sets**
-               * Toggle for a **Second parameter set** in the CWC menu and try a restrictive case:
+            **3. Compare Parameter Sets**
+               * Toggle to **modify CWC parameters** and the defaults will be shown
+               * Now, in the CWC menu, toggle to define a **second parameter set** and try a restrictive case (if you prefer there is a toggle button under **Modify Plot Controls** that allows you to type in values instead of using the slider):
                  * e.g., $A = 1.0$, $B = 0.2$, $C = 2.0$, $P = 2.5$
                * Compare the resulting Q–Δh relationships.
             
-            _Use the plot orientation toggle for alternate layouts and enable/disable the schematic as needed._
+            _Use the plot orientation toggle for alternate layouts and enable/disable the schematic as you prefer._
             """)
         with st.expander('Click here for an :blue[**Exercise Related to this Plot**]'):
             st.markdown("""
@@ -925,8 +939,8 @@ def Q_h_plot():
             This plot illustrates the relationship between **well head ($h_{well}$)** and **discharge (Q)** for a **fixed groundwater head ($h_{gw}$)** in a Multi-Node Well (MNW). 
             
             Two modes are available:
-            1. :blue[**Q-target**]: Specify the discharge and calculate the resulting $h_{well}$ (drawdown) for a given conductance (initially set to $1.0$).
-            2. :red[**H-target**]: Specify $h_{well}$ and compute the discharge resulting from head difference and conductance.
+            1. :blue[**Q-target**]: Where you can specify the discharge and calculate the resulting $h_{well}$ (drawdown) for a given conductance (initially set to $1.0$).
+            2. :red[**H-target**]: Where you specify $h_{well}$ and compute the discharge resulting from head difference and conductance.
             
             Unlike the MODFLOW well (WEL) or recharge (RCH) boundaries that impose a fixed flux, and unlike RIV or DRN boundaries that assume **linear head-dependent flow**, MNW simulates **nonlinear resistance** due to turbulence that result from high flow velocity or well construction effects. This is controlled by the **cell-to-well conductance (CWC)**, defined by parameters $A$, $B$, $C$, and $P$.
             
@@ -938,20 +952,19 @@ def Q_h_plot():
 
             Begin with the following steps to explore the MNW discharge–head relationship:
             
-            1. **Reference Parameters**
+            **1. Using the default values** 
                * The groundwater head is fixed at $h_{gw}$ = $10$ m in this plot
             
-            2. **Explore Q-target Mode**
+            **2. Explore Q-target Mode**
+               * Toggle to **modify CWC parameters**
                * Set the CWC parameter values to: $A$ = $5.0$, $B$ = $5.0$, $C$ = $1.0$, $P$ = $2.0$
-               * Set discharge $Q$ between $0.05$ and $0.7$ m³/s
-               * Observe the resulting well head $h_{well}$ and the increasing drawdown
+               * Adjust discharge $Q$ in steps between $0.05$ and $0.7$ m³/s and observe the resulting well head $h_{well}$ and increasing drawdown
             
-            3. **Switch to H-target Mode**
+            **3. Switch to H-target Mode**
                * Set the CWC parameter values to: $A$ = $5.0$, $B$ = $5.0$, $C$ = $1.0$, $P$ = $2.0$
-               * Set drawdown $Δh$ between $1.0$ and $6.5$ m
-               * Observe how discharge changes with increasing drawdown
+               * Adjust drawdown $Δh$ in steps between $1.0$ and $6.5$ m and observe how discharge changes with increasing drawdown
             
-            4. **Modify CWC Parameter Values**
+            **4. Modify CWC Parameter Values**
                * For both Q-target Mode and H-target Mode:
                  * Try different values for $A$, $B$, and $P$
                  * Compare how the drawdown or flow response changes
@@ -965,10 +978,10 @@ def Q_h_plot():
             
             This exercise is designed with the intent that, by completing it, you will be able to:
             
-            - Understand how MNW models nonlinear resistance between groundwater and well
-            - Interpret how discharge and drawdown change under different parameterizations
-            - Explain how MNW behavior differs from other boundary conditions (WEL, RCH, DRN, RIV)
-            - Identify cases where turbulence becomes dominant
+            - Understand how MNW represents nonlinear resistance between groundwater and a well
+            - Interpret how discharge and drawdown change for different parameterizations
+            - Explain how MNW behavior differs from other boundary conditions (e.g., WEL, RCH, DRN, RIV)
+            - Identify cases where turbulence is dominant
             
             🛠️ **Tasks**
             
@@ -1039,7 +1052,7 @@ def Q_h_plot():
     if show_plot3:
         st.subheader('🔴 Plot 3', divider = 'red')
         st.markdown("""
-        :red[**Plot 3**: _Q-h_-Relationship for a withdrawal well with thresholds.] This plot demonstrates the effect of a limiting head that constricts the withdrawal rate _Q_.
+        :red[**Plot 3**: _Q-h_-Relationship for a withdrawal well with thresholds.] This plot demonstrates the effect of a limiting head that restricts the withdrawal rate _Q_.
         """)
         
         if visualize:
@@ -1322,29 +1335,29 @@ def Q_h_plot():
             
             Follow these steps to explore threshold-controlled withdrawal behavior in MNW:
             
-            1. **Set Initial Conditions**
+           **1. Using the default values** 
                * $h_{gw} = 10$ m
-               * Threshold head $h_{lim} = 6.0$ m
+               * Limiting head $h_{lim} = 5.0$ m
                * CWC parameters: $A = 0.5$, $B = 0.05$, $C = 0$, $P = 2.0$
             
-            2. **Sweep through values of Q**
-               * Vary withdrawal rate $Q$ from 0.05 to 0.7 m³/s
+            **2. Step through values of Q**
+               * Vary withdrawal rate $Q$ from 0.05 to 0.9 m³/s
                * Observe how $h_{well}$ responds to withdrawal
                * Identify where the well head $h_{well}$ reaches the threshold head $h_{lim}$
             
-            3. **Explore Threshold Activation**
+            **3. Explore Threshold Activation**
                * Increase the withdrawal rate _Q_ beyond the point where $h_{well} = h_{lim}$
                * Note that the current _Q_ (represented by the dot in the plot) is automatically reduced to keep $h_{well} = h_{min}$
             
-            4. **Explore Withdrawal Thresholds**
-               * Set the threshold head $h_{lim}$ to 5.0 m and the groundwater head $h_{gw}$ to 15.0 m. Set the withdrawal rate to 0.5 m³/s. With these settings, the system is in proper operation.
+            **4. Explore Withdrawal Limits** (if you prefer there is a toggle button under **Modify Plot Controls** that allows you to type in values instead of using the slider)
+               * Set the limiting head $h_{lim}$ to 5.0 m and the groundwater head $h_{gw}$ to 15.0 m. Set the withdrawal rate to 0.5 m³/s. With these settings, the system is in proper operation.
                * Toggle **Apply withdrawal thresholds** to automatically switch off/on the pump then the Qmn and Qmx will appear on the plot as solid and dashed black lines
                * Set Qmn and Qmx to 0.05 and 0.2 m³/s
-               * Now, lower the groundwater head $h_{gw}$ smoothly down to 5.1 m. Lowering the groundwater head can be caused by various reasons, e.g., neighboring withdrawal wells. (_hint: if you access this app through a computer, you can gradually reduce Q with the arrow-keys of your keyboard_)
+               * Now, lower the groundwater head $h_{gw}$ smoothly down to 5.1 m. The groundwater head can be lowered by various mechanisms with the most common likely being withdrawal from  neighboring wells. (_hint: if you access this app through a computer, you can gradually reduce Q with the arrow-keys of your keyboard_)
                * While lowering the groundwater head, observe how the adjusted withdrawal rate - represented by the dot in the plot - is affected.
                * Once the groundwater head reaches 5.1 m, gradually raise the head back to 15.0 m and observe the adjusted withdrawal rate (dot in the plot).
             
-            5. **Modify Parameters**
+            **5. Modify Parameters**
                * Try different values for $A$, $B$, $C$, and $P$
                * Vary Q (Q-target), Δh (H-target), groundwater head $h_{gw}$ and threshold head $h_{lim}$, and investigate the MNW behavior with the interactive plot.
             
@@ -1424,7 +1437,7 @@ def Q_h_plot():
     if show_plot4:
         st.subheader('🟡 Plot 4', divider = 'orange')
         st.markdown("""
-        :orange[**Plot 4**: _Q-h_-Relationship for a well operated by a head target.] This plot demonstrates the option to compute the discharge _Q_ for a head target.
+        :orange[**Plot 4**: _Q-h_-Relationship for a well operated by a head target.] This plot demonstrates computation of the discharge _Q_ for a head target.
         """)
         
         if visualize:
@@ -1513,17 +1526,17 @@ def Q_h_plot():
             st.markdown("""
             #### :orange[🔎 About this Plot]
             
-            This plot illustrates the **_Q–h_-relationship of a Multi-Node Well (MNW)** operated with a head-target. Example applications could comprise planning of pumping capacity to lower the groundwater head for a specific target head for constructions pits or open pit mines. A further example could be the representation of an artesian flowing well. The limiting head $h_{lim}$ acts as the controling (boundary) head for the well. Groundwater flows to the well when the groundwater head $h_{gw}$ exceeds $h_{lim}$ and the resulting discharge $Q$ is computed by MNW under consideration of the specified _Cell-to-well_ conductance _CWC_.
+            This plot illustrates the **_Q–h_-relationship of a Multi-Node Well (MNW)** operated with a head-target. Example applications include planning of pumping capacity to lower the groundwater head to a specific target level in order to dewater for construction of a foundation, tunnnel, or mine. A further example could be the representation of an artesian flowing well. The limiting head $h_{lim}$ acts as the controling (boundary) head for the well. Groundwater flows to the well when the groundwater head $h_{gw}$ exceeds $h_{lim}$ and the resulting discharge $Q$ is computed by MNW under consideration of the specified _Cell-to-well_ conductance _CWC_.
             
-            In this plot the desired discharge $Q_{des}$ is set artificially high such that MNW computes the resulting discharge under the constrained of the limiting head (i.e., as _constrained_ discharge; also see plot 3 of this section).
+            In this plot the desired discharge $Q_{des}$ is set artificially high such that MNW computes the resulting discharge under the constraint of the limiting head (i.e., as _constrained_ discharge; you may find it useful to work with plot 3 of this section if you have not do so yet).
             
-            Accordingly, the groundwater head ($h_{gw}$) and the well- respectively limiting head ($h_{well}$ = $h_{lim}$) define the discharge ($Q$) through the **cell-to-well conductance (CWC)** equation (as discussed in the Theory section above) by using parameters (A,B,C,P) that represent aquifer loss and linear/nonlinear well losses..
+            Accordingly, the groundwater head ($h_{gw}$), well head ($h_{gw}$), and limiting head ($h_{lim}$) define the discharge ($Q$) through the **cell-to-well conductance (CWC)** equation (as discussed in the Theory section above) by using parameters (A,B,C,P) that represent head loss for flow through the aquifer as well as linear and nonlinear loss of head between the hydrostratigraphic unit and the well.
             
             This plot helps visualize:
             - How **discharge can be computed** under consideration of a **defined head target**;
             - How **free-flow discharge** is computed for an artesian flowing aquifer;
             - The nonlinear relationship between Q and $h_{well}$ under withdrawal-limited conditions for various CWC parameters
-            - how $h_{lim}$ clips the head difference and thus limits $Q$
+            - How $h_{lim}$ limits the head difference and thus limits $Q$
             """)
         with st.expander('Click here for :red[**Instructions To Get Started with this Plot**]'):
             st.markdown("""
@@ -1531,21 +1544,20 @@ def Q_h_plot():
             
             Follow these steps to explore threshold-controlled withdrawal behavior in MNW:
             
-            1. **Set Initial Conditions**
+            **1. Using the default values**
                * $h_{gw} = 10$ m
                * Limiting head $h_{lim} = 2.0$ m
                * CWC parameters: $A = 5.0$, $B = 5.0$, $C = 0$, $P = 2.0$
             
-            2. **Sweep through values of $h_{gw}$**
-               * Vary groundwater head $h_{gw}$ from 10.0 to 19.0 m
-               * Observe how discharge $Q$ responds to groundwater head changes
+            **2. Step through values of $h_{gw}$**
+               * Vary groundwater head $h_{gw}$ from 10.0 to 19.0 m and oserve how discharge $Q$ responds to groundwater head changes
                
-            3. **Modify Parameters**
-               * Try different values for $A$, $B$, $C$, and $P$ and watch how the shape of the ***Q-h*** plot responds.
-               * Vary groundwater head $h_{gw}$ and well/limitig head $h_{well}$/$h_{lim}$, and investigate the MNW behavior for this ***Q-h*** plot with the interactive diagram.
+            **3. Modify Parameters**
+               * Adjust values of $A$, $B$, $C$, and $P$ and observe how the shape of the ***Q-h*** plot responds.
+               * Vary groundwater head $h_{gw}$ and the ratio of well-head/limiting-head $h_{well}$/$h_{lim}$, and investigate the MNW behavior for this ***Q-h*** plot with the interactive diagram.
                * Identify the well head $h_{well}$ and the groundwater head $h_{gw}$ where the discharge becomes zero
             
-            💡 Following these steps facilitates understanding of how the MNW package can consider head targets to estimate the well discharge.
+            💡 Following these steps facilitates understanding of how the MNW package incorporates head targets and can be used to estimate well discharge.
             """)
         with st.expander('Click here for an :violet[**Exercise About this Plot**]'):
             st.markdown("""

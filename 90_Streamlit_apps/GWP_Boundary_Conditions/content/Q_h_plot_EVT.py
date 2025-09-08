@@ -165,16 +165,13 @@ with st.expander('**Show the initial assessment** - to assess your existing know
             )
             
 st.subheader('🧪 Theory and Background', divider="blue")
-st.markdown("""
-This app shows how evapotranspiration is removed from groundwater as implemented by the EVT package in MODFLOW (Harbaugh, 2005).
-""")
 
 st.markdown("""
-    This section of the module calculates the flow between the water surface in a hydrostratigraphic unit and the atmosphere. The rate of evapotranspiration depends on the elevation of groundwater head $h_{gw}$ relative to a modeler-specified maximum ET surface elevation ***SURF***. When the groundwater head $h_{gw}$ ≥ ***SURF***, evapotranspiration occurs at the maximum specified rate ***EVTR***. As the groundwater head declines, the evapotranspiration rate declines linearly to zero at a modeler specified extinction depth below the ***SURF*** elevation.""")
+    This section of the module calculates the flow between the water surface in a hydrostratigraphic unit and the atmosphere as implemented by the EVT package in MODFLOW (Harbaugh, 2005). The rate of evapotranspiration depends on the elevation of groundwater head $h_{gw}$ relative to a modeler-specified maximum ET surface elevation ***SURF***. When the groundwater head $h_{gw}$ ≥ ***SURF***, evapotranspiration occurs at the maximum specified rate ***EVTR***. As the groundwater head declines, the evapotranspiration rate declines linearly to zero at a modeler specified extinction depth below the ***SURF*** elevation.""")
 
 with st.expander("Show me more about **the Theory**"):
     st.markdown("""
-    The EVT package considers evapotranspiration from the saturated zone. The following figure illustrates the setup.
+    The EVT package considers evapotranspiration from the saturated zone. The following figure illustrates the concept.
     """)
         
     left_co2, cent_co2, last_co2 = st.columns((10,40,10))
@@ -451,21 +448,16 @@ def Q_h_plot():
         
         Before starting the exercise, it is helpful to follow these steps to understand how evapotranspiration (ET) interacts with the water table:
         
-        **1. Set a Reference Case** - there is a toggle button under **Modify Plot Controls** that allows you to type in values instead of using the slider 
+        **1. Using the default values** 
         
-        * Set the **ET surface** (_**SURF**_) to –1.0 m below the reference elevation
-        * Set **extinction depth** (_**EXDP**_) to 3.0 m
-        * Use an **ET rate** (_**EVTR**_) of 2.0 mm/day
-        * Envision the groundwater head  $h_{gw}$ ranging from –5.0 m to 0.0 m below surface and acknowledge how $Q_{ET}$ changes:
+        * Adjust the groundwater head in steps from $h_{gw}$ ranging from 0.0 m to 10.0 m (if you prefer there is a toggle button under **Modify Plot Controls** that allows you to type in values instead of using the slider) and notice how $Q_{ET}$ changes:
           - ET is zero below _**SURF**_ - _**EXDP**_
           - ET increases linearly as $h_{gw}$ rises above _**SURF**_ - _**EXDP**_
           - Full ET occurs when $h_{gw}$ => _**SURF**_
-          - Return  $h_{gw}$ to -3 m
     
-        **2. Analyze the Influence of _EXDP_**
+        **2. Using the default values** (SURF = 9 m, EXDP = 4 m, $h_{gw}$ = 8 m) analyze the influence of **_EXDP_**
         
-        * Increase _**EXDP**_ gradually and observe how the slope of the _Q–h_ curve flattens
-        * Notice how $Q_{ET}$ changes
+        * Increase _**EXDP**_ in steps and observe how the slope of the _Q–h_ curve flattens and noticing how $Q_{ET}$ changes
     
         These steps build a foundation for the full exercise. Feel free to interactively explore additional parameter value combinations.
         """)
