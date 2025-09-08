@@ -29,17 +29,26 @@ institution_text = " | ".join(institution_list)
 
 st.title("Learning More 💦")
 
-left_co, cent_co, last_co = st.columns((5,80,5))
-with cent_co:
-    st.image('90_Streamlit_apps/GWP_Boundary_Conditions/assets/images/gwp_boundary_title.png',caption="Schematic representation of groundwater flow. Physical features of the area like the lake, stream, and pumping well are represented by boundary conditions. Figure modified from [Grannemann et al. 2000](https://mi.water.usgs.gov/pubs/WRIR/WRIR00-4008/).")
-
 st.markdown(
     """
 This module described how boundary conditions available in MODFLOW (in particular, head-dependent boundary conditions): :orange[**GHB:**] general head; :violet[**RIV:**] river; :green[**DRN:**] drain; :rainbow[**MNW:**] multi-node-well; and :blue[**EVT:**] evapotranspiration. Boundary conditions control the rate of flow into and out of a simulated groundwater system.
+"""
+) 
 
+left_co2, cent_co2, last_co2 = st.columns((5,80,5))
+with cent_co2:
+    st.image('90_Streamlit_apps/GWP_Boundary_Conditions/assets/images/final_2.jpg',caption="Outlook in a real catchment with spatially distributed precipitation ☀️🌦️🌈")
+
+st.markdown(
+    """
 Many variations of these boundary conditions are available in groundwater flow codes. When encountering a new type of boundary condition, it is useful to think of how it performs in terms of a $Q$-$h$ plot. 
 
-MODFLOW includes boundary options that are similar to the RIV boundary but allow the exchange of water to change both the boundary head and the volume of water stored in the boundary feature; and some allow for outflow from the boundary to be returned to the groundwater system in other locations within the model. These river-related conditions include the STR, stream; SFR, stream-flow routing; DAFLOW, delayed flow; LAK, lake; and RES, reservoir. 
+MODFLOW includes boundary options that are similar to the RIV boundary but allow the exchange of water to change both the boundary head and the volume of water stored in the boundary feature; and some allow for outflow from the boundary to be returned to the groundwater system in other locations within the model. These river-related conditions include the following packages and processes:
+- STR, stream;
+- SFR, stream-flow routing;
+- DAFLOW, delayed flow; 
+- LAK, lake; and
+- RES, reservoir.
 
 An enhanced version of the DRN drain boundary conditions is the DRT - drain return flow package. 
 
@@ -50,10 +59,6 @@ More information about MODFLOW boundary conditions can be accessed via https://c
 Additional, excellent discussion of boundary conditions is provided by T.E. Reilly (2001) "System and Boundary Conceptualization in Ground-Water Flow Simulation", Techniques of Water-Resources Investigations of the U.S. Geological Survey Book 3, Applications of Hydraulics, Chapter B8. https://pubs.usgs.gov/twri/twri-3_B8/pdf/twri_3b8.pdf.
 """
 ) 
-
-left_co2, cent_co2, last_co2 = st.columns((5,80,5))
-with cent_co2:
-    st.image('90_Streamlit_apps/GWP_Boundary_Conditions/assets/images/final_2.jpg',caption="Outlook in a real catchment with spatially distributed precipitation ☀️🌦️🌈")
 
 st.markdown('---')
 
