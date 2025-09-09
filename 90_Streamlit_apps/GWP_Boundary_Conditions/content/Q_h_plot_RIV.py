@@ -155,12 +155,7 @@ with st.expander("Tell me more about **the :violet[application of RIV in Field-S
     
     left_co, cent_co, last_co = st.columns((10,100,10))
     with cent_co:
-        st.image('90_Streamlit_apps/GWP_Boundary_Conditions/assets/images/river_field_application.jpg', caption="Example illustration of representing a river in a field-scale model.")
-        
-        
-    st.markdown("""    
-    Morway, E. D., Niswonger, R. G., & Triana, E. (2016). Toward improved simulation of river operations through integration with a hydrologic model. Environmental Modelling & Software, 82, 255-274. https://doi.org/10.1016/j.envsoft.2016.04.018
-    """)
+        st.image('90_Streamlit_apps/GWP_Boundary_Conditions/assets/images/river_field_application.jpg', caption="Example illustration of representing a river in a field-scale model (from Morway et al., 2016).")
 
 st.markdown("""
 #### 🎯 Learning Objectives
@@ -171,7 +166,7 @@ This section is designed with the intent that, by studying it, you will be able 
 - Apply the RIV flow equation to simulate groundwater–river exchange and identify when groundwater would be discharging into a river (gaining stream) and when river water would be recharging the groundwater system (losing stream).
 - Evaluate how river stage, groundwater head, riverbed elevation, and conductance control the direction and magnitude of exchange.
 - Interpret _Q_–_h_ plots that illustrate the flow regime, including unsaturated conditions when groundwater heads drop below the riverbed.
-- Understand that the flow rate from a losing stream with a bottom above the water table is only valid for streambeds with hydraulic conductivity lower then the hydraulic conductivity of the groundwater-bearing material.
+- Understand that the flow rate from a losing stream with a bottom above the water table is only valid for streambeds with hydraulic conductivity lower than the hydraulic conductivity of the groundwater-bearing material.
 """)
 
 with st.expander('**Show the initial assessment** - to assess your existing knowledge'):
@@ -260,7 +255,7 @@ with st.expander('**Click here** to read about the :green[**heads used**] in the
     """)
     left_co1, cent_co1, last_co1 = st.columns((10,80,10))
     with cent_co1:
-        st.image('90_Streamlit_apps/GWP_Boundary_Conditions/assets/images/RIV_CONCEPT_2_v3.png', caption="Concept of the River boundary (modified from McDonald and Harbaugh, 1988; https://pubs.usgs.gov/twri/twri6a1/pdf/twri_6-A1_p.pdf)")
+        st.image('90_Streamlit_apps/GWP_Boundary_Conditions/assets/images/RIV_CONCEPT_2_v3.png', caption="Concept of the River boundary (modified from McDonald and Harbaugh, 1988)")
     st.markdown("""
     Groundwater head elevation is calculated by MODFLOW in response to all the model inputs. It is assumed the groundwater head is uniform throughout the cell and thus occurs at the elevation of the river bottom.
 
@@ -296,7 +291,7 @@ with st.expander('**Click here** to read how :green[**conductance is calculated*
     
     left_co2, cent_co2, last_co2 = st.columns((10,80,10))
     with cent_co2:
-        st.image('90_Streamlit_apps/GWP_Boundary_Conditions/assets/images/RIV_COND_2.png', caption="Calculation of the Riverbed conductance (from McDonald and Harbaugh, 1988; https://pubs.usgs.gov/twri/twri6a1/pdf/twri_6-A1_p.pdf)")
+        st.image('90_Streamlit_apps/GWP_Boundary_Conditions/assets/images/RIV_COND_2.png', caption="Calculation of the Riverbed conductance (from McDonald and Harbaugh, 1988)")
 
     
     st.markdown("""
@@ -306,7 +301,7 @@ with st.expander('**Click here** to read how :green[**conductance is calculated*
     """)
     st.latex(r'''Q = C \Delta h''')
 
-with st.expander('**Click here** to read how flow is calculated when the :green[**groundwater head is lower then the river bottom**]'):
+with st.expander('**Click here** to read how flow is calculated when the :green[**groundwater head is lower than the river bottom**]'):
     st.markdown("""
     ### A "Disconnected" River occurs when the Groundwater Head is Lower than the River Bottom""")
     
@@ -318,7 +313,7 @@ with st.expander('**Click here** to read how flow is calculated when the :green[
     """)
     left_co3, cent_co3, last_co3 = st.columns((10,80,10))
     with cent_co3:
-        st.image('90_Streamlit_apps/GWP_Boundary_Conditions/assets/images/RIV_CONCEPT_UNSAT_3.png', caption="Concept of the River boundary when the groundwater head falls below the river bottom (modified from McDonald and Harbaugh, 1988; https://pubs.usgs.gov/twri/twri6a1/pdf/twri_6-A1_p.pdf)")
+        st.image('90_Streamlit_apps/GWP_Boundary_Conditions/assets/images/RIV_CONCEPT_UNSAT_3.png', caption="Concept of the River boundary when the groundwater head falls below the river bottom (modified from McDonald and Harbaugh, 1988)")
 
     st.markdown("""
     When the groundwater head $h_{gw}$ is lower than the river bottom $R_{bot}$, the head difference across the river bed is: 
@@ -861,7 +856,7 @@ def Q_h_plot():
         
         🎯 **Expected Learning Outcomes**
         
-        By completing this exercise, you will:
+        Completion of this exercise, helps you to:
         
         * Understand how river–groundwater exchange is controlled by stage, groundwater head, bottom elevation, and conductance.
         * Interpret _Q_–_h_ plots in relation to gaining, losing, or inactive river segments.
@@ -887,7 +882,7 @@ def Q_h_plot():
         2. **Effect of Conductance**
     
         * Keep $h_{riv}$ = 10 m and $R_{bot}$ = 9 m
-        * Choose three different conductance values (e.g., **1E-2, 1E-3, and 1E-4 m²/s**)
+        * Choose three different conductance values (e.g., **1x10⁻², 1x10⁻³, and 1x10⁻⁴ m²/s**)
         * For each case:
             * Plot $Q_{RIV}$ vs $h_{gw}$ from 8 m to 12 m (on paper or spreadsheet)
             * Compare the slope of the curves and the magnitude of flow
@@ -940,9 +935,9 @@ with st.expander('**Show the :rainbow[**EXERCISE**] assessment** - to self-check
 
 st.subheader('✅ Conclusion', divider = 'violet')
 st.markdown("""
-The River (RIV) boundary condition is a powerful tool in MODFLOW for simulating dynamic interactions between surface water and groundwater. Unlike simpler boundary types, the RIV condition allows for **bidirectional flow** and introduces a **cutoff mechanism** when the groundwater head drops below the riverbed. In this case, RIV can capture the realistic behavior that occurs when a partially saturated zone separates the water table from the river bottom. A RIV boundary can be defined in any groundwater-flow-model cell.
+The River (RIV) boundary condition is a powerful tool in MODFLOW for simulating dynamic interactions between surface water and groundwater. Unlike simpler boundary types, the RIV condition allows for **bidirectional flow** and introduces a **cutoff mechanism** when the groundwater head drops below the bottom of the riverbed. In this case, RIV can capture the realistic behavior that occurs when a partially saturated zone separates the water table from the river bottom. A RIV boundary can be defined in any groundwater-flow-model cell.
 
-By adjusting parameters like **river stage**, **bed elevation**, and **conductance**, modelers can explore a wide range of hydrologic conditions, from **gaining** to **losing streams**, or even **no-flow scenarios**. Understanding these behaviors through Q–h plots supports stronger conceptual models and more reliable groundwater–surface water integration.
+By adjusting parameters like **river stage**, **bed elevation**, and **conductance**, modelers can explore a wide range of hydrologic conditions, from **gaining** to **losing streams**, and **no-flow scenarios**. Understanding these behaviors through Q–h plots supports stronger conceptual models and more reliable groundwater–surface water integration.
 
 MODFLOW boundary packages with similarities to the RIV boundary allow the exchange of water between the groundwater and the boundary to result in a change of both the boundary head and the volume of water stored in the boundary feature. Some of the related boundary conditions also allow for outflow from the boundary to be returned to the groundwater system in other locations within the model. These river-related boundary conditions include the STR, stream; SFR, stream-flow routing; DAFLOW, delayed flow; LAK, lake; and RES, reservoir. 
 

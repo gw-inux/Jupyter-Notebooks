@@ -47,19 +47,19 @@ st.subheader('How to Use this Module', divider= 'green')
 st.markdown("""
 A flexible resource for both beginners and experienced users of groundwater modeling.
 
-- ***Who is it for?***: The module is intended for beginners as well as advanced and experienced users who wish to refresh their understanding of specific boundary types. A basic familiarity with hydrogeology and groundwater flow is recommended, but no prior experience with MODFLOW is required.
+- ***Who is this module for?*** This module is intended for beginners as well as advanced and experienced users who wish to refresh their understanding of specific boundary types. A basic familiarity with hydrogeology and groundwater flow is recommended, but no prior experience with MODFLOW is required.
 
-- ***Structure of the module***: The opening :red[📕 Introduction] Section provides an overview of groundwater models and introduces the role of boundary conditions in MODFLOW. Following this, each boundary condition is presented in its own dedicated section, where the concepts, applications, and implications are explained in detail.
+- ***Structure of the module***: The :red[📕 Introduction] Section provides an overview of groundwater models and introduces the role of boundary conditions in MODFLOW. Following this, each boundary condition is presented in its own dedicated section, where the concepts, applications, and implications are explained in detail.
 
 - ***Flexibility for experienced users***: Experienced users can use the module selectively, for example, by going directly to a single section of interest to refresh their knowledge of a specific boundary condition.
 
-- ***Time needed***: Completing the full module typically requires 4-8 hours, while individual sections can be completed in 15–30 minutes depending on prior knowledge and level of detail explored.
+- ***Time needed***: Completing the full module typically requires 4-8 hours, while individual sections can be completed in 30–90 minutes depending on prior knowledge and level of detail explored.
 
-- ***Practical focus***: Exercises and examples are embedded throughout, ensuring that users not only understand the concepts but also see their application in practice.
+- ***Practical focus***: Exercises and examples are embedded throughout, not only to help users understand the concepts, but also to show practical applications of the boundary conditions.
 
 - ***Learning through assessments***: Each section integrates assessments to provide immediate feedback. These include short questions at the beginning to activate prior knowledge, as well as exercises and final self-checks to consolidate understanding.
 
-- ***Instructions and exercises***: Beginners are guided step by step through initial instructions and hands-on exercises that help build familiarity with each boundary condition.
+- ***Instructions and exercises***: Beginners are guided step-by-step with _Initial Instructions_ that are followed by hands-on _Exercises_ to help build familiarity with each boundary condition.
 """)
 
 st.markdown('---')

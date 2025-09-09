@@ -39,11 +39,16 @@ st.markdown("""
 st.subheader("MODFLOW-Specific documents", divider='blue')
 
 st.markdown("""
-
+    
+    **Anderson, M.P., Woessner, W.W. and Hunt, R.J. (2015).** Applied Groundwater Modeling: Simulation of Flow and Advective Transport. 2nd Edition, Academic Press, Cambridge.
     
     **Langevin, C.D., Hughes, J.D., Banta, E.R., Niswonger, R.G., Panday, Sorab, and Provost, A.M. (2017).** Documentation for the MODFLOW 6 Groundwater Flow Model: U.S. Geological Survey Techniques and Methods, book 6, chap. A55, 197 p., https://doi.org/10.3133/tm6A55.
 
     **McDonald, M.G. and Harbaugh, A.W. (1984).** A modular three-dimensional finite-difference ground-water flow model: U.S. Geological Survey Techniques Open-File Report 83-875, 528p. https://doi.org/10.3133/ofr83875.
+    
+    **Morway, E. D., Niswonger, R. G., & Triana, E. (2016).** Toward improved simulation of river operations through integration with a hydrologic model. Environmental Modelling & Software, 82, pp. 255-274. https://doi.org/10.1016/j.envsoft.2016.04.018.
+    
+    **Shapiro, A. D. Oki, and E. Greene (1998).** Estimating Formation Properties from Early-Time Recovery in Wells Subject to Turbulent Head Losses. Journal of Hydrology. 208. pp. 223-236. https://doi.org/10.1016/S0022-1694(98)00170-X.
     
     **Voss, C.I., Provost, A.M., McKenzie, J.M., & Kurylyk, B.L. (2024).** SUTRA—A code for simulation of saturated-unsaturated, variable-density groundwater flow with solute or energy transport—Documentation of the version 4.0 enhancements—Freeze-thaw capability, saturation and relative-permeability relations, spatially varying properties, and enhanced budget and velocity outputs: U.S. Geological Survey Techniques and Methods, book 6, chap. A63, 91 p., https://doi.org/10.3133/tm6A63.
 """

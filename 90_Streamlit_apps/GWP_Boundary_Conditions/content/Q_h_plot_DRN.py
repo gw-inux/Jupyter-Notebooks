@@ -178,8 +178,6 @@ with st.expander("Tell me more about **the :green[application of DRN in Field-Sc
     with cent_co:
         st.image('90_Streamlit_apps/GWP_Boundary_Conditions/assets/images/DRNapplied3.png', caption="Illustration of a DRN representing a swamp such that it goes dry when groundwater levels decline.")
    
-    
-#TODO
 st.markdown("""
 ####  🎯 Learning Objectives
 This section is designed with the intent that, by studying it, you will be able to do the following:
@@ -234,7 +232,7 @@ with st.expander("Show me more about **the Theory**"):
     
     left_co, cent_co, last_co = st.columns((10,80,10))
     with cent_co:
-        st.image('90_Streamlit_apps/GWP_Boundary_Conditions/assets/images/DRN.png', caption="Schematic illustration of the DRN boundary with a) drain pipe buried in a backfilled ditch, and b) an open drain at the ground surface; modified from (McDonald and Harbaugh, 1988; https://pubs.usgs.gov/twri/twri6a1/pdf/twri_6-A1_p.pdf)")
+        st.image('90_Streamlit_apps/GWP_Boundary_Conditions/assets/images/DRN.png', caption="Schematic of the DRN boundary with (a) drain pipe buried in a backfilled ditch, and (b) an open drain at the ground surface (modified from McDonald and Harbaugh, 1988)")
     st.markdown("""
     The relationship between the amount of water that flows out of the groundwater system into the drain and the head in the groundwater is:
     """)
@@ -276,10 +274,10 @@ with st.expander('**Click here** to read how :green[**conductance is calculated*
     
     left_co, cent_co, last_co = st.columns((10,80,10))
     with cent_co:
-        st.image('90_Streamlit_apps/GWP_Boundary_Conditions/assets/images/DrainConductance.png', caption="Schematic illustration of the DRN boundary with labels indicating parameters used to calculate conductance; modified from (McDonald and Harbaugh, 1988; https://pubs.usgs.gov/twri/twri6a1/pdf/twri_6-A1_p.pdf)")
+        st.image('90_Streamlit_apps/GWP_Boundary_Conditions/assets/images/DrainConductance.png', caption="Schematic of the DRN boundary with labels indicating parameters used to calculate conductance (modified from McDonald and Harbaugh, 1988)")
     
     st.markdown("""
-    $\Delta h$ is the difference between the Head of the Drain (which is its elevation because pressure is assummed to be atmospheric, i.e., zero) and Head in the Groundwater 
+    $\Delta h$ is the difference between the Head of the Drain (which is its elevation because pressure is assumed to be atmospheric, i.e., zero) and Head in the Groundwater 
 
     In general, MODFLOW calculates flow $Q$ with a conductance $C$ as
     """)
@@ -492,21 +490,21 @@ def Q_h_plot():
         st.markdown("""   
         🎯 **Expected Learning Outcomes**
         
-        Completing this exercise helps you:
+        Completion of this exercise, helps you to:
         
         - Understand how drain–groundwater interaction is controlled by groundwater head, drain elevation, and conductance.
         - Interpret the boundary characteristics with a Q–h plot.
         - Recognize the threshold behavior of the DRN package and its role as a one-way boundary.
-        - Evaluate how conductance controls the rate of drainage above threshold.
+        - Evaluate how conductance controls the rate of drainage when groundwater head is above a threshold elevation.
         - Analyze realistic scenarios (e.g., excavation of a building foundation) and the implications for boundary fluxes.
         
         🛠️ **Instructions**
         
-        Use the interactive DRN plot and complete the following steps:
+        Use the interactive DRN plot to complete the following steps:
         
-        1. Initial Exploration - there is a toggle button under **Modify Plot Controls** that allows you to type in values instead of using the slider
+        1. Initial Exploration (hint: there is a toggle button under **Modify Plot Controls** that allows you to type in values instead of using the slider)
         
-        * As done in the initial instructions, set the drain elevation ($H_D$) to 10 m
+        * Set the drain elevation ($H_D$) to 10 m
         * Vary the groundwater head ($h_{gw}$) from 8 m to 12 m
         * Observe how the flow ($Q_D$) responds to changes in head
         
@@ -514,7 +512,7 @@ def Q_h_plot():
         
             * The threshold value at which the drain becomes active
             * The linearity of the Q–h relationship once the threshold is exceeded
-            * The behavior of the drain when $h_{gw} <= H_D$
+            * Drain flow when groundwater head is less than the drain elevation
 
         2. **Effect of Conductance**
         - Keep $H_D$ = 10 m
@@ -543,7 +541,7 @@ Q_h_plot()
 
 with st.expander('**Show the :rainbow[**EXERCISE**] assessment** - to self-check your understanding'):
     st.markdown("""
-    #### 🧠 Excercise assessment
+    #### 🧠 Exercise assessment
     These questions test your understanding after doing the exercise.
     """)
 
@@ -573,13 +571,13 @@ with st.expander('**Show the :rainbow[**EXERCISE**] assessment** - to self-check
 
 st.subheader('✅ Conclusion', divider = 'green')
 st.markdown("""
-The Drain (DRN) boundary condition simulates discharge to external drains, ditches, trenches, topographic depressions, mines, and other features where a hydrostratigraphic unit encounters an opening to atmospheric pressure conditions. Flow _only_ occurs when groundwater levels are at or above the opening elevation such that flow is activated. This boundary introduces a **physical cutoff** that prevents outflow based on the **drain elevation**, making it conceptually different from other head-dependent boundaries. A DRN boundary can be defined in any groundwater-flow-model cell, it need not be defined in the surface layer, for example it might be defined deep inside a model to represent a tunnel or and underground mine. 
+The Drain (DRN) boundary condition simulates discharge to external drains, ditches, trenches, topographic depressions, mines, and other features where a hydrostratigraphic unit encounters an opening to atmospheric pressure conditions. Flow _only_ occurs when groundwater levels are at or above the opening elevation. This boundary introduces a **physical cutoff** that prevents outflow based on the **drain elevation**, making it conceptually different from other head-dependent boundaries. A DRN boundary can be defined in any groundwater-flow-model cell, it need not be defined in the surface layer, for example it might be defined deep inside a model to represent a tunnel or an underground mine. 
 
-By exploring Q–h plots, you’ve seen how the discharge remains zero until the groundwater head exceeds the drain elevation, after which it increases linearly based on the conductance. This behavior supports the simulation of seepage faces and artificial drainage systems without over-extracting water from the model.
+Analyzing **Q–h plots**, allows exploration of how the discharge remains zero until the groundwater head exceeds the drain elevation, after which it increases linearly based on the conductance. This behavior supports the simulation of seepage faces and artificial drainage systems without over-extracting water from the model.
 
 By adjusting parameters like drain **elevation** and **conductance**, modelers can explore how the discharge remains zero until the groundwater head exceeds the drain elevation, after which it increases linearly based on the conductance. This behavior supports the simulation of seepage faces, artificial drainage systems, and excavations without over-extracting water from the model. Understanding these behaviors through Q–h plots supports stronger conceptual models and more reliable groundwater–surface water integration.
 
-A related boundary package is the DRT boundary package in which water is removed from the groundwater system just as it is in the DRN package, and some of that water can  be returned to the groundwater system at specified locations. It is akin to having injection wells connected to the drain. The total rate of injection is limited by the rate of outflow from the groundwater system to the drain.
+A related boundary package is the drain return package (DRT) in which water is removed from the groundwater system just as it is in the DRN package, and some, or all, of that water can be returned to the groundwater system at specified locations. It is akin to having injection wells connected to the drain. The total rate of injection is limited by the rate of outflow from the groundwater system to the drain.
 
 After studying this section about drain boundaries, you may want to evaluate your knowledge using the final assessment.
 """)

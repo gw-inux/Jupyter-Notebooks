@@ -141,35 +141,47 @@ with columns0[1]:
 st.markdown("""
 ####  💻 How GHB may be Applied in Field-Scale Groundwater Modeling
 
-The GHB package is particularly relevant in applied groundwater modeling at the field scale, especially in settings with large water bodies that can provide water to or receive water from the groundwater system without significant change in the surface elevation of the water body. Regardless of the physical feature that a GHB represents, mathematically it will supply or receive as much water as calculated during the simulation, but the head in the water body will not change, so it is important to ensure that the simulated volumetric flow rate is reasonable given the nature of the boundary in the field. GHB differs from all the other head-dependent flow boundaries in that others (e.g., RIV, DRN, MNW, EVT) include head constraints that cause discontinuity in the Q-h plot and limit flow. Mathematically, the discontnuity caused by a head constraint requires iteratively solving for the {h} vector heads that are described in the :red[Introduction] tab under the drop down titled _"Show more background about the mathematical application of boundary conditions"_.
+The GHB package is particularly relevant in applied groundwater modeling at the field scale, especially in settings with large water bodies that can provide water to, or receive water from, the groundwater system without significant change in the surface elevation of the water body. Regardless of the physical feature that a GHB represents, mathematically it will supply, or receive, as much water as calculated during the simulation, but the head in the water body will not change, so it is important to ensure that the simulated volumetric flow rate is reasonable given the nature of the boundary in the field.".
 """)
+
+left_co, cent_co, last_co = st.columns((10,40,10))
+with cent_co:
+    st.image('90_Streamlit_apps/GWP_Boundary_Conditions/assets/images/GHBapplied0.png', caption="A GHB provides connection to a source or sink external to the model domain.")
+    
+left_co, cent_co, last_co = st.columns((10,40,10))
+with cent_co:
+    st.image('90_Streamlit_apps/GWP_Boundary_Conditions/assets/images/GHBexampleAnderson-etal_modified2.png', caption="Mathematical illustration of a GHB (modified from Anderson et al., 2015).")
+
+st.markdown("""A GHB differs from other head-dependent flow boundaries by being continuous and not limiting flow.
+""")
+
 with st.expander("Tell me more about **the :orange[application of GHB in Field-Scale Groundwater Modeling]**"):
     st.markdown("""
     In field-scale groundwater models, a GHB may represent a variety of physical features and be associated with one or many cells. These cells can be anywhere within the three-dimensional model.
     
-    A GHB boundary might be used to represent a distant, significant body of water external to the model domain. 
+    A GHB might be used to represent a significant body of water external to the model domain. 
     """)
     left_co, cent_co, last_co = st.columns((10,40,10))
     with cent_co:
-        st.image('90_Streamlit_apps/GWP_Boundary_Conditions/assets/images/GHBapplied1.png', caption="Illustration of a GHB representing a distant external water body.")
+        st.image('90_Streamlit_apps/GWP_Boundary_Conditions/assets/images/GHBapplied1.png', caption="GHB representation of a lake. All the cells intersecting the lake have GHBs.")
     
     st.markdown("""     
-    Or, a GHB boundary might be used to represent inflow from an adjacent aquifer with the head representing head in the adjacent aquifer that is far enough away that it is not expected to change in response to stress on the simulated aquifer. The head in the adjacent aquifer might be maintained by seepage from water bodies or areal recharge. The important point is not what maintains that distant head but rather that modelers use this technique to provide inflow from a region that is not simulated in the grid.
+    Or, a GHB boundary might be used to represent inflow from an adjacent aquifer. The head represents head at a location far enough away that it is not expected to change in response to stress on the simulated aquifer. The head in the adjacent aquifer might be maintained by seepage from water bodies or areal recharge. The important point is not what maintains that distant head but rather that modelers use this technique to provide inflow from a region that is not simulated in the grid.
     """)
     left_co, cent_co, last_co = st.columns((10,40,10))
     with cent_co:
-        st.image('90_Streamlit_apps/GWP_Boundary_Conditions/assets/images/GHBapplied2.png', caption="Illustration of a GHB representing a surficial water body.")
+        st.image('90_Streamlit_apps/GWP_Boundary_Conditions/assets/images/GHBapplied2.png', caption="GHB representation of inflow from an area outside of the model domain.")
 
 
     st.markdown("""
-     Alternatively, a GHB boundary could be used to represent inflow from an underlying aquifer. Leakage would vary spatially in the model depending on the head in the simulated aquifer. For example, leakage from the underlying aquifer would increase in areas of heavy pumpage in the shallow aquifer.
+     Alternatively, a GHB could be used to represent inflow from an underlying aquifer. Leakage varies spatially in the model depending on the head in the simulated aquifer. For example, leakage from the underlying aquifer would increase in areas of heavy pumpage in the shallow aquifer.
     """)
     left_co, cent_co, last_co = st.columns((10,40,10))
     with cent_co:
-        st.image('90_Streamlit_apps/GWP_Boundary_Conditions/assets/images/GHBapplied3.png', caption="Illustration of a GHB representing a surficial water body.")
+        st.image('90_Streamlit_apps/GWP_Boundary_Conditions/assets/images/GHBapplied3.png', caption="GHB representation of leakage from an underlying aquifer.")
         
     st.markdown("""
-     In yet another setting, a GHB boundary might be used to represent a large lake or reservoir with a bottom deep enough that the groundwater level is never below its bottom. 
+     In yet another setting, a GHB might be used to represent a large lake or reservoir with a bottom deep enough that the groundwater level is never below its bottom. 
     """)
     left_co, cent_co, last_co = st.columns((10,40,10))
     with cent_co:
@@ -219,7 +231,7 @@ with st.expander('**Show the initial assessment** - to assess your existing know
 
 st.subheader('🧪 Theory and Background', divider="orange")
 st.markdown("""
-The General Head Boundary (GHB), also referred to as the Head-Dependent Flux Boundary in MODFLOW, allows for a more realistic simulation of boundary conditions by enabling **exchange of water between the groundwater system and an external reservoir with a resistive lining**. In groundwater models, General Head Boundaries are used to simulate hydraulic interaction with external water bodies or groundwater zones adjacent to the model domain by specifing ("fixing") the head of the external feature. The conductance term determines how easily water can flow across the boundary.
+The General Head Boundary (GHB), also referred to as the Head-Dependent Flux Boundary in MODFLOW, allows for a more realistic simulation of boundary conditions by enabling **exchange of water between the groundwater system and an external reservoir with a resistive lining**. In groundwater models, General Head Boundaries are used to simulate hydraulic interaction with external water bodies or groundwater zones adjacent to the model domain by specifying ("fixing") the head of the external feature. The conductance term determines how easily water can flow across the boundary.
 """)
 with st.expander("Show me more about **the Theory**"):
     st.markdown("""
@@ -251,7 +263,7 @@ with st.expander("Show me more about **the Theory**"):
         
     left_co, cent_co, last_co = st.columns((10,80,10))
     with cent_co:
-        st.image('90_Streamlit_apps/GWP_Boundary_Conditions/assets/images/GHB.png', caption="Schematic illustration of the GHB boundary, modified from  (McDonald and Harbaugh, 1988; https://pubs.usgs.gov/twri/twri6a1/pdf/twri_6-A1_p.pdf)")
+        st.image('90_Streamlit_apps/GWP_Boundary_Conditions/assets/images/GHB.png', caption="Schematic of the GHB boundary (modified from McDonald and Harbaugh, 1988)")
 
 st.subheader("📈 Interactive Plot and Exercise", divider="orange")
 st.markdown("""
@@ -549,11 +561,11 @@ def Q_h_plot():
         
         🎯 **Expected Learning Outcomes**
         
-        Completion of this exercise, will help you:
+        Completion of this exercise, helps you to:
         
         * Understand how GHB flux is driven by head difference and conductance.
-        * Interpret Q–h plots in relation to the hydrogeologic behavior.
-        * Develop the ability to use the app for conceptual testing and scenario analysis.
+        * Interpret Q–h plots in relation to hydrogeologic behavior.
+        * Develop the ability to use this application for conceptual testing and scenario analysis.
        
         🛠️ **Instructions**
         
@@ -631,13 +643,13 @@ with st.expander('**Show the :rainbow[**EXERCISE**] assessment** - to self-check
 
 st.subheader('✅ Conclusion', divider = 'orange')
 st.markdown("""
-The General Head Boundary (GHB) offers a flexible way to simulate interactions with external water bodies or regions not explicitly modeled — such as distant lakes, rivers, or adjacent groundwater system systems. Its formulation as a **head-dependent boundary** enables both **inflow and outflow**, depending on the head difference between any groundwater-flow-model cell and the boundary. A GHB boundary can be defined in any groundwater-flow-model cell.
+The General Head Boundary (GHB) offers a flexible way to simulate interactions with external water bodies or regions not explicitly modeled — such as distant lakes, rivers, or adjacent groundwater systems. Its formulation as a **head-dependent boundary** enables both **inflow and outflow**, depending on the head difference between a groundwater-flow-model cell and its boundary. A GHB boundary can be defined in any groundwater-flow-model cell.
 
 The GHB condition captures the essential physics of cross-boundary exchange using only a few parameters: the **boundary head**, **groundwater head**, and **conductance**, which reflects the geometry and hydraulic properties of the connection.
 
-Analyzing **Q–h plots**, provides a clearer understanding of how conductance controls the slope of the exchange curve and how head differences dictate the flow direction. This conceptual insight is essential for setting realistic boundary conditions in MODFLOW models.
+Analyzing **Q–h plots**, facilitates understanding of how conductance controls the slope of the exchange curve and how head differences dictate the flow direction. This conceptual insight is essential for setting realistic boundary conditions in MODFLOW models.
 
-Other boundary packages discussed in this module incorporate the concepts of head diffference between the boundary and the groundwater system driving the direction of flow into or out of the system, with the magnitude of head difference and conductance controlling the flow rate. The GHB package is unique in that there are no constraints on the flow so the $Q$-$h$ plot is continuously linear.  All the other head-dependent-flow packages have head constraints causing discontinuous $Q$-$h$ plots. 
+Other boundary packages discussed in this module incorporate the concepts of head difference between the boundary and the groundwater system driving the direction of flow into or out of the system, with the magnitude of head difference and conductance controlling the flow rate. The GHB package is unique in that there are no constraints on the flow so the $Q$-$h$ plot is continuously linear.  All the other head-dependent-flow packages have head constraints causing discontinuous $Q$-$h$ plots. 
 
 After studying this section about general head boundaries, you may want to evaluate your knowledge using the final assessment.
 """)

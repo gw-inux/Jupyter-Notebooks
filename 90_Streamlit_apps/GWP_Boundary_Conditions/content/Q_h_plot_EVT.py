@@ -18,10 +18,6 @@ with open(path_quest_exer, "r", encoding="utf-8") as f:
     
 with open(path_quest_final, "r", encoding="utf-8") as f:
     quest_final = json.load(f)
-    
-# TODO:
-# - allow user to plot rate / discharge 
-# - adjust plot for discharge according to the max (rate x area)
 
 # Authors, institutions, and year
 year = 2025 
@@ -51,7 +47,7 @@ columns0 = st.columns((1,1), gap = 'large')
 
 with columns0[0]:
     st.markdown("""   
-    Think about these questions:
+    Consider these questions:
     
     1. **How does groundwater contribute to plant-water demand or surface evaporation from a shallow water table?**
     
@@ -120,10 +116,9 @@ with st.expander("Tell me more about **the :blue[application of EVT in Field-Sca
     st.markdown("""
     In field-scale groundwater models the EVT boundary may be used to define an elevation for the ET surface at every node of the model. Each is accompanied by a value for extinction depth and a maximum ET rate that typically vary from cell to cell depending on the local conditions (e.g., type of soil, vegetation root depth). Often the ET surface elevation is the ground surface elevation or slightly below it such that the maximum evapotranspiration occurs when the water table is at or just below the surface. The water loss may reflect uptake by vegetation or direct evaporation from the water table. The complete hydrologic budget will include evapotranspiration of soil moisture, whereas the EVT boundary considers only the evapotranspiration from the saturated portion of the subsurface.
     
-    As the groundwater model simulation proceeds through time, water levels in each cell rise and/or fall in response to stresses in the system and water is discharged as evapotranspiration from each model node based on the groundwater head at the node, so the rate of evapotranspiration depends on other stresses in the model. As water levels decline, the rate of evapotranspiration decreases. When a drought occurs, there is less recharge from precipitation and surface water seepage, so water levels decline and the volume previously lost to evapotranspiration is reduced. Similarly, if irrigation pumping lowers groundwater heads, then there may be less evapotranspiration from the crop being irrigated. Thus there can be some counterbalance when other mechanisms withdraw more water from the system casuing water levels to decline, evapotranspiration may decrease offsetting the other losses.
+    As the groundwater model simulation proceeds through time, water levels in each cell rise and/or fall in response to stresses in the system and water is discharged as evapotranspiration from each model node based on the groundwater head at the node, so the rate of evapotranspiration depends on other stresses in the model. As water levels decline, the rate of evapotranspiration decreases. When a drought occurs, there is less recharge from precipitation and surface water seepage, so water levels decline and the volume previously lost to evapotranspiration is reduced. Similarly, if irrigation pumping lowers groundwater heads, then there may be less evapotranspiration from the crop being irrigated. Thus, there can be some counterbalance when other mechanisms withdraw more water from the system causing water levels to decline, evapotranspiration may decrease offsetting the other losses.
     """)
 
-#TODO
 st.markdown("""
 ####  🎯 Learning Objectives
 This section is designed with the intent that, by studying it, you will be able to do the following:
@@ -176,7 +171,7 @@ with st.expander("Show me more about **the Theory**"):
         
     left_co2, cent_co2, last_co2 = st.columns((10,40,10))
     with cent_co2:
-        st.image('90_Streamlit_apps/GWP_Boundary_Conditions/assets/images/gwp_boundary_EVT.png', caption="Schematic illustration of the EVT boundary, modified from the [MODFLOW6 documentaion (Langevin et al., 2017)](https://doi.org/10.3133/tm6A55)")
+        st.image('90_Streamlit_apps/GWP_Boundary_Conditions/assets/images/gwp_boundary_EVT.png', caption="Schematic of the EVT boundary (modified from MODFLOW6 documentation by Langevin et al., 2017)")
     
     st.markdown("""
     The approach accounts for the following parameters/measures:
@@ -466,7 +461,7 @@ def Q_h_plot():
         st.markdown("""   
         🎯 **Expected Learning Outcomes**
         
-        Completing this exercise helps you:
+        Completion of this exercise, helps you to:
         
         - Understand the threshold-controlled behavior of the ET boundary condition
         - Evaluate how extinction depth and surface elevation influence the rate of evapotranspiration
@@ -474,14 +469,14 @@ def Q_h_plot():
         
         🛠️ **Instructions**
         
-        Use the interactive ET plot and complete the following steps:
+        Use the interactive ET plot to complete the following steps:
         
         1. **Initial Setup**
         
             * Set _**SURF**_ = –1.0 m
             * Set _**EXDP**_ = 3.0 m
             * Use _**EVTR**_ = 2.0 mm/day
-            * Envision the groundwater head range from –5.0 m to 0.0 m
+            * View conditions by stepping through a range of groundwater heads from –5.0 m to 0.0 m
         
             **Observe and record:**
         
@@ -493,20 +488,20 @@ def Q_h_plot():
         
             * Keep _**SURF**_ fixed at -1.0 m
             * Set "Evaluate ET at this elevation" to -1.5 m
-            * Envision results for _**EXDP**_ = 1.0, 3.0, and 5.0 m
+            * View conditions by stepping through _**EXDP**_ = 1.0, 3.0, and 5.0 m
             * For each value of _**EXDP**_, observe the slope of the ET curve and the value of $Q_{ET}$ at -1.5 m
         
         3. **Explore ET Surface Elevation Effects**
         
             * Set and keep _**EXDP**_ = 3.0 m
             * Set "Evaluate ET at this elevation" to -1.5 m
-            * Envision results for _**SURF**_ = –0.5 m, –1.0 m, –2.0 m
+            * View results for _**SURF**_ = –0.5 m, –1.0 m, –2.0 m
             * For each value of _**SURF**_, observe the slope of the ET curve and the value of $Q_{ET}$ at -1.5 m
             * Observe how this shifts the entire ET response curve along the vertical axis
         
         💡 **Reflection:**
         - When is groundwater significantly contributing to ET?
-        - What happens to ET during droughts or drawdown due to pumping?
+        - What happens to ET when groundwater levels are low during droughts or due to pumping?
         - How can extinction depth help represent different vegetation types or soil conditions?
         """)
 
@@ -514,7 +509,7 @@ Q_h_plot()
 
 with st.expander('**Show the :rainbow[**EXERCISE**] assessment** - to self-check your understanding'):
     st.markdown("""
-    #### 🧠 Excercise assessment
+    #### 🧠 Exercise assessment
     These questions test your understanding after doing the exercise.
     """)
 
@@ -546,7 +541,7 @@ st.subheader('✅ Conclusion', divider = 'blue')
 st.markdown("""
 The Evapotranspiration (EVT) boundary in MODFLOW simulates the loss of shallow groundwater to the atmosphere through vegetation uptake and surface evaporation. It simulates a **head-dependent** process that operates when the water table is within a defined range between the **ET surface** and **extinction depth**. The EVT boundary is defined over an area of a groundwater-flow model that may include only one or many cells. In a multilayer model, depending on the input specifications, ET may be drawn from deeper layers if the groundwater head falls below the bottom of overlying layers.
 
-Q–h plots help us visualize how ET varies with groundwater depth — from maximum evapotranspiration to no evapotranspiration loss. This boundary type is especially relevant in arid or irrigated regions where shallow groundwater contributes to ET.
+Q–h plots help us visualize how ET varies with groundwater depth — from maximum evapotranspiration to no evapotranspiration. This boundary type is especially relevant in arid or irrigated regions where shallow groundwater contributes to ET.
 
 By understanding ET behavior, we can make groundwater models more representative of the field setting and better identify where water-table dynamics can critically affect water balance and sustainability.
 
