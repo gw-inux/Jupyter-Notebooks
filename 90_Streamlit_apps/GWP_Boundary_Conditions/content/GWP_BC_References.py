@@ -58,15 +58,28 @@ st.markdown("""
 
     **Niswonger, R.G., Panday, S., and Ibaraki, M. (2011).** MODFLOW-NWT, A Newton formulation for MODFLOW-2005: U.S. Geological Survey Techniques and Methods 6–A37, 44 p, https://pubs.usgs.gov/tm/tm6a37/.
 
-    **McDonald, M.G. and Harbaugh, A.W. (1984).** A modular three-dimensional finite-difference ground-water flow model: U.S. Geological Survey Techniques Open-File Report 83-875, 528p. https://doi.org/10.3133/ofr83875.
+    McDonald, M.G. and Harbaugh, A.W. (1988). A modular three-dimensional finite-difference ground-water flow model. U.S. Geological Survey Techniques of Water-Resources Investigations 06-A1. https://doi.org/10.3133/twri06A1.
+
+    
+    _Dedicated documentation of advanced boundary conditions_
+    
+    **Banta, E.R. (2000).** MODFLOW-2000, the U.S. Geological Survey Modular Ground-Water Model - Documentation of Packages for Simulating Evapotranspiration with a Segmented Function (ETS1) and Drains with Return Flow (DRT1): U.S. Geological Survey Open-File Report 00-466, 127 p.
+    
+    **Fenske, J.P., Leake, S.A., and Prudic, D.E. (1996).** Documentation of a computer program (RES1) to simulate leakage from reservoirs using the modular finite-difference ground-water flow model (MODFLOW): U.S. Geological Survey Open-File Report 96-364, 51 p.
+    
+    **Konikow, L.F., Hornberger, G.Z., Halford, K.J., and Hanson, R.T. (2009).** Revised multi-node well (MNW2) package for MODFLOW ground-water flow model: U.S. Geological Survey Techniques and Methods 6–A30, 67 p.
+    
     
     ***Other numerical model codes:***
     
     **Voss, C.I., Provost, A.M., McKenzie, J.M., & Kurylyk, B.L. (2024).** SUTRA—A code for simulation of saturated-unsaturated, variable-density groundwater flow with solute or energy transport—Documentation of the version 4.0 enhancements—Freeze-thaw capability, saturation and relative-permeability relations, spatially varying properties, and enhanced budget and velocity outputs: U.S. Geological Survey Techniques and Methods, book 6, chap. A63, 91 p., https://doi.org/10.3133/tm6A63.
     
-    ***User-Interfaces:***
+    ***User-Interfaces and other tools for using MODFLOW:***
     
-    **Winston, R.B. (2024).** Revision of ModelMuse to support the use of PEST software with MODFLOW and SUTRA models: U.S. Geological Survey Techniques and Methods book 6, chap. A64, 56 p., https://doi.org/10.3133/tm6A64
+    **Winston, R.B. (2024).** Revision of ModelMuse to support the use of PEST software with MODFLOW and SUTRA models: U.S. Geological Survey Techniques and Methods book 6, chap. A64, 56 p., https://doi.org/10.3133/tm6A64.
+    
+    https://water.usgs.gov/nrp/gwsoftware/ModelMuse/Help/beginners_guide_to_modflow.html
+    https://water.usgs.gov/nrp/gwsoftware/ModelMuse/Help/beginners_guide_to_modflow.html
 """
 )
 
