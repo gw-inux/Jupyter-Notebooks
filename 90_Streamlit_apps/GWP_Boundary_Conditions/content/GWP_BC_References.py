@@ -42,7 +42,7 @@ st.markdown("""
     
     **Anderson, M.P., Woessner, W.W. and Hunt, R.J. (2015).** Applied Groundwater Modeling: Simulation of Flow and Advective Transport. 2nd Edition, Academic Press, Cambridge.
     
-    Harbaugh, A.W., 2005, MODFLOW-2005, The U.S. Geological Survey modular ground-water model—the Ground-Water Flow Process: U.S. Geological Survey Techniques and Methods 6-A16, https://pubs.usgs.gov/tm/2005/tm6A16/. 
+    **Harbaugh, A.W. (2005).** MODFLOW-2005, The U.S. Geological Survey modular ground-water model—the Ground-Water Flow Process: U.S. Geological Survey Techniques and Methods 6-A16, https://pubs.usgs.gov/tm/2005/tm6A16/. 
 
     **Langevin, C.D., Hughes, J.D., Banta, E.R., Niswonger, R.G., Panday, Sorab, and Provost, A.M. (2017).** Documentation for the MODFLOW 6 Groundwater Flow Model: U.S. Geological Survey Techniques and Methods, book 6, chap. A55, 197 p., https://doi.org/10.3133/tm6A55.
 
