@@ -58,7 +58,7 @@ st.markdown("""
 
     **Niswonger, R.G., Panday, S., and Ibaraki, M. (2011).** MODFLOW-NWT, A Newton formulation for MODFLOW-2005: U.S. Geological Survey Techniques and Methods 6–A37, 44 p, https://pubs.usgs.gov/tm/tm6a37/.
 
-    McDonald, M.G. and Harbaugh, A.W. (1988). A modular three-dimensional finite-difference ground-water flow model. U.S. Geological Survey Techniques of Water-Resources Investigations 06-A1. https://doi.org/10.3133/twri06A1.
+    **McDonald, M.G. and Harbaugh, A.W. (1988).** A modular three-dimensional finite-difference ground-water flow model. U.S. Geological Survey Techniques of Water-Resources Investigations 06-A1. https://doi.org/10.3133/twri06A1.
 
     
     _Dedicated documentation of advanced boundary conditions_
