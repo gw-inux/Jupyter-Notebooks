@@ -146,7 +146,7 @@ The GHB package is particularly relevant in applied groundwater modeling at the 
 
 left_co, cent_co, last_co = st.columns((10,40,10))
 with cent_co:
-    st.image('90_Streamlit_apps/GWP_Boundary_Conditions/assets/images/GHBapplied0.png', caption="A GHB provides connection to a source or sink external to the model domain.")
+    st.image('90_Streamlit_apps/GWP_Boundary_Conditions/assets/images/GHBapplied0_2.png', caption="A GHB provides connection to a source or sink external to the model domain.")
     
 left_co, cent_co, last_co = st.columns((10,40,10))
 with cent_co:
