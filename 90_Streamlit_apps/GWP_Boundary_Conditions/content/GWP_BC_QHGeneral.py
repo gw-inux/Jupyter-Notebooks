@@ -322,7 +322,7 @@ with st.expander('Show more about the theory of the :blue[**model and the analyt
     st.markdown("""
             #### Conceptual model
             
-            The conceptual model for both scenarios is shown in the images above. It assumes the aquifer is a homogeneous and isotropic structure with a horizontal bottom at an elevation of zero such that the heads determine the aquifer thickness. The aquifer receives uniform recharge across the top surface.
+            The conceptual model for both scenarios is shown in the images above. It assumes the aquifer is a **homogeneous** and **isotropic** structure with a **horizontal bottom at an elevation of zero** such that the heads determine the aquifer thickness. The aquifer receives uniform recharge across the top surface.
             """, unsafe_allow_html=True)
     st.markdown("""
             In :green[**Scenario 1**], the aquifer is bounded by
@@ -421,7 +421,7 @@ if show_plot1:
     # Fixed data
     L = 2500
     hr = 150.0
-    zb = (hr-50)
+    zb = (hr-150)
     hRiv = 150
     y_scale = 7
     
@@ -432,7 +432,7 @@ if show_plot1:
     def computation1():
         # Input data
         # Define the minimum and maximum for the logarithmic scale
-        log_min = -4.0 # Corresponds to 10^-7 = 0.0000001
+        log_min = -4.5229 # Corresponds to 10^-7 = 0.0000001
         log_max = -2.0  # Corresponds to 10^0 = 1
         log_min2 = -5.30103
         log_max2 = -2.30103
