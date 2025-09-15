@@ -86,7 +86,7 @@ with st.expander(":blue[**Step 2: Structure & Parameters**] - Expand to see the 
 
 # STEP 3
     
-with st.expander(":blue[**Step 3: Structure & Parameters**] - Expand to see the instructions"):
+with st.expander(":blue[**Step 3: Boundary Conditions**] - Expand to see the instructions"):
     st.markdown("""
             #### STEP 3: Boundary conditions
             In the third step we define the boundary conditions.
