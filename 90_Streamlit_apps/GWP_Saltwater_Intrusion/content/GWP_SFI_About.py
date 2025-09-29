@@ -15,7 +15,7 @@ author_list = [f"{name}{''.join(index_symbols[i-1] for i in indices)}" for name,
 institution_list = [f"{index_symbols[i-1]} {inst}" for i, inst in institutions.items()]
 institution_text = " | ".join(institution_list)
 
-module_path = ""
+module_path = "90_Streamlit_apps/GWP_Saltwater_Intrusion/"
 
 st.header('👉 About the Freshwater-Saltwater Interface Module')
 

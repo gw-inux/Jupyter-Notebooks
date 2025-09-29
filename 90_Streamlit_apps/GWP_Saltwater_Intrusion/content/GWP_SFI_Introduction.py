@@ -25,7 +25,8 @@ institution_list = [f"{index_symbols[i-1]} {inst}" for i, inst in institutions.i
 institution_text = " | ".join(institution_list)
 
 # path to questions for the assessments (direct path)
-module_path = ""
+module_path = "90_Streamlit_apps/GWP_Saltwater_Intrusion/"
+
 # path_quest_ini = module_path + "questions/initial_general_behavior.json"
 # path_quest_exer_sc1 = module_path + "questions/exer_general_sc1.json"
 # path_quest_exer_sc2 = module_path + "questions/exer_general_sc2.json"

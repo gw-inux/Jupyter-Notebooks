@@ -1,16 +1,16 @@
 import streamlit as st
 
 st.header('👉 About')
-st.header('The 1D Conservative Transport Application')
+st.header('The 3D Conservative Transport Application')
 st.markdown(
     """
     ### Description
-    The 1D Conservative Transport interactive tool calculates the break through curve for different input sources in one-dimensional, steady, uniform, groundwater flow in a homogeneous, isotropic aquifer.
+    The 3D Conservative Transport interactive tool calculates the break through curve for different input sources in three-dimensional, steady, uniform, groundwater flow in a homogeneous, isotropic aquifer.
     
     ### Development
     Innovative and digital learning and teaching materials are currently enhanced and transferred to various partners across Europe by the EU cooperation project [iNUX](https://www.gw-inux.org/). The iNUX project is funded by the ERASMUS+ program of the European Union.
     
-    The 1D Conservative Transport tool was developed by Thomas Reimann and Oriol Bertran as a Jupyter notebook and converted to Streamlit. Eileen Poeter enhanced and adapted it to the Groundwater Project interactive education format. It was released in Januray of 2025.
+    The 3D Conservative Transport tool was developed by Thomas Reimann and and Eileen Poeter with enhancments and adaptations to the Groundwater Project interactive education format.
     """
 )
 
@@ -37,18 +37,6 @@ with cent_co:
         
         Besides research, he has been actively teaching groundwater management and groundwater modeling since 2003 at Dresden University of Technology and as a guest lecturer for Hydrogeology since 2017 at the University of Gothenburg (Sweden). His ongoing teaching activities use various innovative digital methods to improve the learning process, which was honored by the Dresden University of Technology teaching award in 2017.
         
-        """
-    )
-
-left_co3, cent_co3 = st.columns((20,60))
-with left_co3:
-    st.image('C:/_1_GitHub/Jupyter-Notebooks/90_Streamlit_apps/GWP_1D_Conservative_Transport/assets/images/oriolbertran.jpg')
-with cent_co3:
-    st.markdown(
-        """
-        Oriol Bertran graduated as a Geologist from the Universitat de Barcelona (UB) and further specialized through the Master's in Hydrogeology at the Polytechnic University of Catalonia (UPC). Holding a PhD in the Geotechnical Engineering program at UPC's Hydrogeology Group, his research focused on studying mixing processes in heterogeneous porous media—from laboratory characterization to the design of engineered chaotic flows for practical applications in groundwater remediation. His main tasks included: (i) designing and conducting laboratory experiments followed by data processing through image analysis, and (ii) running stochastic models of groundwater flow and transport using Monte Carlo simulations.
-
-        He is currently a researcher at UPC, where he develops tools to streamline hydrogeological data collection and analysis. His work leverages programming languages such as Python, R, SQL, and Java, along with techniques like API requests, web scraping, and machine learning. In addition to his research, Oriol is actively contributing to several industry projects involving groundwater model development.
         """
     )
 

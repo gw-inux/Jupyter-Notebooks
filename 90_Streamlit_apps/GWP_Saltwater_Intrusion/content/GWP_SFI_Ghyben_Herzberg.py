@@ -21,7 +21,7 @@ institution_list = [f"{index_symbols[i-1]} {inst}" for i, inst in institutions.i
 institution_text = " | ".join(institution_list)
 
 # Streamlit app title and description
-module_path = ""
+module_path = "90_Streamlit_apps/GWP_Saltwater_Intrusion/"
 
 path_quest_ghp = module_path + "questions/exer_ghp.json"
 

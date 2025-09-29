@@ -20,8 +20,8 @@ st.title("Welcome to the Saltwater Intrusion Module 🌊➡️💧")
 st.header('A Multipage Application on Saltwater Intrusion 👋', divider= 'green')
 
 # Module path
-# module_path = "90_Streamlit_apps/GWP_Saltwater_Intrusion/"
-module_path = ""
+module_path = "90_Streamlit_apps/GWP_Saltwater_Intrusion/"
+#module_path = ""
 
 st.subheader('Overview')
 st.markdown(

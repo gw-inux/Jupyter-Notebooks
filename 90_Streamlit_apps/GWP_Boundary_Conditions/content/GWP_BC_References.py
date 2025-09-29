@@ -41,6 +41,8 @@ st.markdown("""
     **Morway, E.D., Niswonger, R.G., & Triana, E. (2016).** Toward improved simulation of river operations through integration with a hydrologic model. Environmental Modelling & Software, 82, pp. 255-274. https://doi.org/10.1016/j.envsoft.2016.04.018.
     
     **Shapiro, A.D. Oki, and E. Greene (1998).** Estimating Formation Properties from Early-Time Recovery in Wells Subject to Turbulent Head Losses. Journal of Hydrology. 208. pp. 223-236. https://doi.org/10.1016/S0022-1694(98)00170-X.
+    
+    **Winter, T. C., Harvey, J. W., Franke, O. L., & Alley, W. M. (1998).** Ground water and surface water: A single resource (Circular No. 1139). US Geological Survey. https://doi.org/10.3133/cir1139
 """
 )
 

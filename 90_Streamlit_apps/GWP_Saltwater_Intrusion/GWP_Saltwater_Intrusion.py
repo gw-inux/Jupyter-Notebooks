@@ -2,15 +2,7 @@ import streamlit as st
 import os
 
 # --- Application parameters ---
-module_path = "90_Streamlit_apps/GWP_Saltwater_Intrusion/"
-#module_path = ""
-
 DEFAULT_START_PAGE = "90_Streamlit_apps/GWP_Saltwater_Intrusion/content/GWP_Saltwater_Intrusion_Start.py"
-                     "90_Streamlit_apps/GWP_Boundary_Conditions/content/GWP_Boundary_Conditions_Start.py"
-ABOUT_PAGE = "90_Streamlit_apps/GWP_Saltwater_Intrusion/content/GWP_About.py"
-
-#DEFAULT_START_PAGE = "content/GWP_Saltwater_Intrusion_Overview.py"
-#ABOUT_PAGE = "content/GWP_About.py"
 
 # --- MUST be first: layout setup wide / centered ---
 if "layout_choice" not in st.session_state:
@@ -53,10 +45,11 @@ st.markdown("""
 # --- Flat page definitions ---
 pages = {
     "📕 Introduction ": "90_Streamlit_apps/GWP_Saltwater_Intrusion/content/GWP_SFI_Introduction.py",
-    "🟠 GHP": "90_Streamlit_apps/GWP_Saltwater_Intrusion/content/GWP_SFI_Ghyben_Herzberg.py",
-    "🟣 SLR": "90_Streamlit_apps/GWP_Saltwater_Intrusion/content/GWP_SFI_SeaLevelRise.py",
-    "🟣 SLR GM": "90_Streamlit_apps/GWP_Saltwater_Intrusion/content/GWP_SFI_SeaLevelRise_GM.py",
-    "🟢 SWI": "90_Streamlit_apps/GWP_Saltwater_Intrusion/content/GWP_SFI_Upconing.py",
+    "🟠 GHP":           "90_Streamlit_apps/GWP_Saltwater_Intrusion/content/GWP_SFI_Ghyben_Herzberg.py",
+    "🟣 SLR":           "90_Streamlit_apps/GWP_Saltwater_Intrusion/content/GWP_SFI_SeaLevelRise.py",
+    "🟣 SLR GM":        "90_Streamlit_apps/GWP_Saltwater_Intrusion/content/GWP_SFI_SeaLevelRise_GM.py",
+    "🟢 SWI":           "90_Streamlit_apps/GWP_Saltwater_Intrusion/content/GWP_SFI_Upconing.py",
+    "ℹ️ About":         "90_Streamlit_apps/GWP_Saltwater_Intrusion/content/GWP_SFI_About.py"
 }
 
 # --- State tracking ---
@@ -69,10 +62,6 @@ st.sidebar.markdown("<div style='margin-top: 2.0rem;'></div>", unsafe_allow_html
 # --- Overview and About buttons (at top)
 if st.sidebar.button("🌊➡️💧 Overview", key="btn_overview"):
     st.session_state.selected_path = DEFAULT_START_PAGE
-    st.rerun()
-
-if st.sidebar.button("ℹ️ About", key="btn_about"):
-    st.session_state.selected_path = ABOUT_PAGE
     st.rerun()
 
 st.sidebar.markdown(
