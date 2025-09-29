@@ -5,10 +5,10 @@
       "A) When groundwater head is lower than riverbed bottom elevation": true,
       "B) When river stage is below riverbed bottom": false,
       "C) When groundwater head equals riverbed bottom elevation": false,
-      "D) When the riverbed conductance is zero": false
+      "D) When the riverbed conductance is zero": true
     },
-    "success": "✅ Correct. Constant flow occurs if the groundwater head is below the riverbed bottom.",
-    "error": "❌ Review the RIV section to better understand when MODFLOW sets flow to a constant value — it depends on the groundwater head."
+    "success": "✅ Correct. Constant flow occurs if the groundwater head is below the riverbed bottom. Flow is also a constant rate of zero when the conductance is zero.",
+    "error": "❌ Review the RIV section to better understand when MODFLOW sets flow to a constant value — it depends on the groundwater head and riverbed conductance."
   },
   {
     "question": "What happens when the groundwater head is higher than the river stage and both are above the riverbed bottom? (Mark ALL correct answers)",

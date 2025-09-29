@@ -4,11 +4,11 @@
     "options": {
       "A) Higher linear resistance (larger A)": true,
       "B) Higher linear loss coefficient (larger B)": true,
-      "C) Lower exponent P in the nonlinear term": false,
+      "C) Lower exponent P when C=0": false,
       "D) Reduced conductance due to well clogging": true
     },
-    "success": "✅ Correct. All answers except a lower P result in increased drawdown for the same discharge.",
-    "error": "❌ Some of your choices are not correct. Drawdown increases with higher A, B, and lower effective conductance. Lower P reduces drawdown."
+    "success": "✅ Correct. All answers except a lower P with C=0 result in increased drawdown for the same discharge.",
+    "error": "❌ Some of your choices are not correct. Drawdown increases with higher A, B, and lower effective conductance. When C=0, P has no influence on drawdown."
   },
   {
     "question": "In Q-target mode, what does the app solve for? (Mark ALL correct answers)",
@@ -33,15 +33,15 @@
     "error": "❌ Some of your choices are not correct. All but the third option are correct. P affects behavior even at low Q, though less noticeably."
   },
   {
-    "question": "Which combination of parameter changes leads to a steeper Q–Δh curve? (Mark ALL correct answers)",
+    "question": "Which combination of parameter changes leads to a steeper Q–Δh curve at all values of Q? (Mark ALL correct answers)",
     "options": {
-      "A) Increasing both A and B": true,
-      "B) Increasing P while keeping A and B constant": true,
-      "C) Decreasing A and B": false,
+      "A) Increasing A and B with C=0": true,
+      "B) Increasing P while keeping A and B constant": false,
+      "C) Decreasing A and B with C=0": false,
       "D) Reducing the groundwater head": false
     },
-    "success": "✅ Yes. Higher A, B, and P result in larger head losses and steepen the Q–Δh response.",
-    "error": "❌ Some of your choices are not correct. Only increasing resistance terms (A, B, P) steepens the Q–Δh curve."
+    "success": "✅ Yes. Higher A and B result in larger head losses and steepen the Q–Δh response, but increasing P results in a steeper curve for only some values of Q.",
+    "error": "❌ Some of your choices are not correct. Only increasing resistance terms A and B steepens the Q–Δh curve for all values of Q."
   },
   {
     "question": "When comparing two parameter sets, why might their Q–Δh curves diverge only at higher discharge values? (Mark ALL correct answers)",
@@ -51,7 +51,7 @@
       "C) Because drawdown becomes less sensitive to P at high Q": false,
       "D) Because the groundwater head decreases with increasing discharge": false
     },
-    "success": "✅ Correct. At low Q, differences are minor; at high Q, nonlinear losses (B, P) dominate the increase of drawdown in the well.",
+    "success": "✅ Correct. At low Q, differences are minor; at high Q, nonlinear losses (C, P) dominate the increase of drawdown in the well.",
     "error": "❌ Some of your choices are not correct. Only nonlinear terms cause divergence at high Q. Groundwater head is fixed in this plot."
   },
   {

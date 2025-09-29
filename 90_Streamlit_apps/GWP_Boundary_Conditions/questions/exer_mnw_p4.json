@@ -2,35 +2,35 @@
   {
     "question": "A head-target (e.g., artesian flowing well) MNW setup computes discharge based primarily on which head difference?",
     "options": {
-      "A) $h_{well}$ - $h_{aq}$": false,
-	  "B) $h_{lim}$ - $h_{well}$": false,
-      "C) $h_{lim}$ - $h_{aq}$": true,
-      "D) $h_{well}$ - $h_{aq}$": true
+      "A) $h_{well}$ - $h_{gw}$": true,
+	    "B) $h_{lim}$ - $h_{well}$": false,
+      "C) $h_{lim}$ - $h_{gw}$": true,
+      "D) $h_{gw}$ - $h_{well}$": false
     },
-    "success": "✅ Correct. Free flow is governed by the head difference Δh = ($h_{lim}$ - $h_{aq}$) respectively Δh = ($h_{well}$ - $h_{aq}$) assuming that the well head equals the limiting head.",
-    "error": "❌ Some of your choices are not correct. Recall that the controlling head is the aquifer head relative to the limiting head, not the other way around."
+    "success": "✅ Correct. Free flow is governed by the head difference Δh = ($h_{lim}$ - $h_{gw}$) alternatively Δh = ($h_{well}$ - $h_{gw}$) assuming that the well head equals the limiting head.",
+    "error": "❌ Some of your choices are not correct. Recall that the controlling head is the groundwater head relative to the limiting head, and $h_{lim}$ - $h_{gw}$ will be negative when $h_{gw}$ is higher than $h_{lim}$ indicating flow out of the groundwater system. When the well head equals the limiting head, then $h_{well}$ - $h_{gw}$ can be used to determine the amount of discharge."
   },
   {
     "question": "When does the computed discharge Q become zero for a flowing-well (head-target) configuration?",
     "options": {
-      "A) When $h_{aq}$ < $h_{lim}$": true,
-      "B) When $h_{aq}$ = $h_{lim}$": true,
-      "C) When $h_{aq}$ > $h_{lim}$": false,
+      "A) When $h_{gw}$ < $h_{lim}$": true,
+      "B) When $h_{gw}$ = $h_{lim}$": true,
+      "C) When $h_{gw}$ > $h_{lim}$": false,
       "D) Only when Qmax is reached": false
     },
-    "success": "✅ Correct. If $h_{aq}$ ≤ $h_{lim}$, Δh = 0 and MNW returns Q = 0 regardless of the desired rate.",
-    "error": "❌ Some of your choices are not correct. Q is nonzero only when the aquifer head equals or exceeds the limiting head."
+    "success": "✅ Correct. If $h_{gw}$ ≤ $h_{lim}$, Δh = 0 and MNW returns Q = 0 regardless of the desired rate.",
+    "error": "❌ Some of your choices are not correct. Q is nonzero only when the groundwater head equals or exceeds the limiting head."
   },
   {
     "question": "How does increasing the limiting head $h_{lim}$ affect the Q–h curve for a fixed CWC parameter set?",
     "options": {
-      "A) Shifts the onset of flow to higher $h_{aq}$ values.": true,
-      "B) Increases Q at the same $h_{aq}$ because Δh is larger.": false,
+      "A) Shifts the onset of flow to higher $h_{gw}$ values.": true,
+      "B) Increases Q at the same $h_{gw}$ because Δh is larger.": false,
       "C) Leaves the shape of the curve unchanged.": true,
-      "D) Decreases Q at the same $h_{aq}$ because Δh is smaller.": true
+      "D) Decreases Q at the same $h_{gw}$ because Δh is smaller.": true
     },
-    "success": "✅ Correct. A higher $h_{lim}$ reduces Δh for a given $h_{aq}$, reducing the flow. Besides, the shape of the curve remains the same.",
-    "error": "❌ Some of your choices are not correct. Raising $h_{lim}$ reduces, not increases, Δh at fixed $h_{aq}$."
+    "success": "✅ Correct. A higher $h_{lim}$ reduces Δh for a given $h_{gw}$, reducing the flow. Although the curve is shifted, the shape of the curve remains the same.",
+    "error": "❌ Some of your choices are not correct. Raising $h_{lim}$ reduces, not increases, Δh at fixed $h_{gw}$."
   },
   {
     "question": "Which changes in CWC parameters tend to make the MNW response more linear in Δh (i.e., closer to proportional Q–Δh)?",

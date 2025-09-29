@@ -37,10 +37,10 @@
     "options": {
       "A) Head is below the pump intake": true,
       "B) Conductance becomes negative": false,
-      "C) The maximum pumping rate is exceeded": true,
+      "C) The pumping rate falls below the minimum allowable pumping rate ": true,
       "D) The aquifer goes dry": true
     },
-    "success": "✅ Yes — dry cells, pump limits, and heads below constraints can all trigger reduced or zero discharge.",
+    "success": "✅ Yes — dry cells, pumping rate limits, and heads below constraints can all trigger reduced or zero discharge.",
     "error": "❌ Some of your choices are not correct. MNW simulates physical well behavior, including limits that can shut off flow, but does not change conductance values as part of the model simulation."
   }
 ]

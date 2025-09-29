@@ -22,7 +22,7 @@
     "error": "❌ Some of your choices are not correct. Only fixed head boundaries are specified head type boundaries and they can represent water level in water bodies connected to the model."
   },
   {
-    "question": "In a one-dimensional model with uniform recharge and a no-flow boundary on the left, which statements are true? (Mark ALL correct answers)",
+    "question": "In a one-dimensional model with uniform recharge, a no-flow boundary on the left, and a specified head boundary on the right, which statements are true? (Mark ALL correct answers)",
     "options": {
       "Water is forced to flow towards the right boundary.": true,
       "Groundwater can exit through the no-flow boundary.": false,

@@ -37,7 +37,7 @@ This module described how boundary conditions available in MODFLOW (in particula
 
 left_co2, cent_co2, last_co2 = st.columns((5,80,5))
 with cent_co2:
-    st.image('90_Streamlit_apps/GWP_Boundary_Conditions/assets/images/final_2.jpg',caption="Outlook in a  catchment with spatially distributed precipitation 🌦️☀️🌈")
+    st.image('90_Streamlit_apps/GWP_Boundary_Conditions/assets/images/final_2.jpg',caption="View of a  catchment with spatially distributed precipitation 🌦️☀️🌈")
 
 st.markdown(
     """

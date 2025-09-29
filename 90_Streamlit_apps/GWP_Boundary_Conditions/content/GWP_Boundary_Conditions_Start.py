@@ -49,7 +49,7 @@ A flexible resource for both beginners and experienced users of groundwater mode
 
 - ***Who is this module for?*** This module is intended for beginners as well as advanced and experienced users who wish to refresh their understanding of specific boundary types. A basic familiarity with hydrogeology and groundwater flow is recommended, but no prior experience with MODFLOW is required.
 
-- ***Structure of the module***: The :red[📕 Introduction] Section provides an overview of groundwater models and introduces the role of boundary conditions in MODFLOW. Following this, each boundary condition is presented in its own dedicated section, where the concepts, applications, and implications are explained in detail.
+- ***Structure of the module***: The :red[📕 Introduction] Section provides an overview of groundwater models and introduces the role of boundary conditions in MODFLOW. Following this, each boundary condition is presented in its own dedicated section, where the concepts, applications, and implications are explained in detail. ***Note: rectangles with a downward caret "v" expand to provide more detailed information or a self-assessment.***
 
 - ***Flexibility for experienced users***: Experienced users can use the module selectively, for example, by going directly to a single section of interest to refresh their knowledge of a specific boundary condition.
 

@@ -38,13 +38,13 @@
   {
     "question": "A 1D model with a no-flow boundary on the left uses a **head-dependent** boundary condition (**River BC**) at the right outlet. The groundwater recharge is specified as 180 mm/a. What parameter change is suitable to **increase the hydraulic head** in the groundwater at the right boundary? (Mark ALL correct answers)",
     "options": {
-	    "A) Decreasing $K$": true,
+	    "A) Decreasing $K$": false,
 	    "B) Decreasing $C_{Riv}$": true,
       "C) Increasing $C_{Riv}$": false,
       "D) Increasing $K$": false,
       "E) None of A, B, C, or D": false
     },
-    "success": "✅ Correct! Lower $C_{Riv}$ increases the resistance between the groundwater model and the boundary, thus the groundwater heads must be higher to drive the same volume of water out of the boundary. Lowering  $K$ increases overall resistance of the aquifer requiring a steeper gradient and thus higher heads to discharge the same volume of water to the river",
-    "error": "❌ Some of your choices are not correct. Increasing hydraulic conductivity or conductance reduces the resistance to flow and therefore also heads."
+    "success": "✅ Correct! Lower $C_{Riv}$ increases the resistance between the groundwater model and the boundary, thus the groundwater heads must be higher to drive the same volume of water out of the boundary. Lowering  $K$ increases overall resistance of the aquifer requiring a steeper gradient in the aquifer, but the gradient between the aquifer and the river must be the same for a given outflow so the head in the cell next to the river does not change when $K$ is changed.",
+    "error": "❌ Some of your choices are not correct. Increasing conductance reduces the resistance to flow and therefore a lower gradient is required to drive the same outflow to the river so heads are lower. For a given recharge and conductance, the gradient at the river is determined so the head next to the river does not change when $K$ is changed."
   }
 ]

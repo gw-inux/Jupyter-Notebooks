@@ -78,9 +78,10 @@ st.markdown("""
     
     ***User-Interfaces and other tools for using MODFLOW:***
     
+    **Bakker, M., Post, V., Hughes, J.D., Langevin, C.D., White, J.T., Leaf, A.T., Paulinski, S.R., Bellino, J.C., Morway, E.D., Toews, M.W., Larsen, J.D., Fienen, M.N., Starn, J.J., Brakenhoff, D.A., and Bonelli, W.P. (2025).** FloPy v3.10.0.dev3: U.S. Geological Survey Software Release, 13 May 2025, https://doi.org/10.5066/F7BK19FH
+    
     **Winston, R.B. (2024).** Revision of ModelMuse to support the use of PEST software with MODFLOW and SUTRA models: U.S. Geological Survey Techniques and Methods book 6, chap. A64, 56 p., https://doi.org/10.3133/tm6A64.
     
-    https://water.usgs.gov/nrp/gwsoftware/ModelMuse/Help/beginners_guide_to_modflow.html
     https://water.usgs.gov/nrp/gwsoftware/ModelMuse/Help/beginners_guide_to_modflow.html
 """
 )

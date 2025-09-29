@@ -24,13 +24,13 @@
   {
     "question": "What happens if the exponent $P$ in the nonlinear CWC is increased? (Mark ALL correct answers)",
     "options": {
-      "A) Drawdown increases faster with Q.": true,
+      "A) The Q–h curve becomes more linear.": false,
       "B) The Q–h curve becomes more nonlinear.": true,
       "C) Resistance becomes more linear.": false,
       "D) Discharge increases at lower drawdown.": false
     },
-    "success": "✅ Exactly. Higher P makes the system more nonlinear and amplifies drawdown at higher values of Q.",
-    "error": "❌ Some of your choices are not correct. Increasing P does not linearize or reduce resistance — rather it is the opposite."
+    "success": "✅ Exactly. Higher P makes the system more nonlinear.",
+    "error": "❌ Some of your choices are not correct. Increasing P does not linearize the relationship nor reduce resistance — rather it is the opposite."
   },
   {
     "question": "In what way does MNW behavior resemble a RIV boundary? (Mark ALL correct answers)",

@@ -209,7 +209,7 @@ with st.expander('Show more :blue[**background about the mathematical applicatio
     
     **A specified head** means that the head $h$ at that cell **is known** and the matrix equation does not need to be solved for $h_{(i,j,k)}$. With MODFLOW and the simplest discretization (6-sided cubes) the exact location in space is not required and so the indices for the location of each head, h is by row, column, layer (i,j,k), although more complex discretization schemes are allowed in MODFLOW6 ([Langevin et al., 2017] (https://doi.org/10.3133/tm6A55.)) which was developed after the early releases of MODFLOW.
     
-    **A specified flow** means that the flow $Q$ **is know** and therefore is added directly to $\{Q\}$ for that cell, _Q(i,j,k)_. In MODFLOW there are two packages for specified flow, the Recharge package (RCH) and the Well package (WEL).  The two packages work a bit differently but essentially add a value of Q to the right-hand side vector $\{Q\}$.  Additionally, most codes will sum all of the _Q_’s specified for one cell or element using correct signs for inflow(+) and outflow(-) to the model, resulting in a net _Q_. 
+    **A specified flow** means that the flow $Q$ **is known** and therefore is added directly to $\{Q\}$ for that cell, _Q(i,j,k)_. In MODFLOW there are two packages for specified flow, the Recharge package (RCH) and the Well package (WEL).  The two packages work a bit differently but essentially add a value of Q to the right-hand side vector $\{Q\}$.  Additionally, most codes will sum all of the _Q_’s specified for one cell or element using correct signs for inflow(+) and outflow(-) to the model, resulting in a net _Q_. 
     
     **A well** specifies a volumetric flow rate, an abstraction well removes water(-) and an injection well supplies water(+). The WEL package of MODFLOW has an input structure assigning pumping rate by each cell in length cubed per volume and any multiple wells that fall into the same cell can be added to the $\{Q\}$ vector individually.
     
@@ -254,7 +254,7 @@ with st.expander("Show more :blue[**explanation about the boundary condition typ
     
     **Effect 1:** A specified flux boundary can represent recharge where flow across the model surface enters (or exits for a negative recharge rate such as for evapotranspiration in the 1-D analytical solution shown in this section). The system and heads within the aquifer rise or fall depending on the specified flow rate. For three-dimensional numerical models specified flows can be assigned to the top of a cell to represent recharge or within a cell to represent a pumping or injection well.
     
-    **Effect 2:** If the rate is specified as zero, then water cannot flow into or out of the system across that boundary of the analytical model. Usually the default is for all external boundaries to be no-flow, unless the modeler specifies differently. For a three-dimensional numerical model, no-flow is often accomplished by indicating that a cell is inactive and this can be done for any cell in the model. For example, there can be an impermeable zone in the middle of a model domain. A no-flow condition can be achieved in the flow-equation formulation by setting the hydraulic conductivity to zero.
+    **Effect 2:** If the rate is specified as zero, then water cannot flow into or out of the system across that boundary of the analytical model. Usually, the default is for all external boundaries to be no-flow, unless the modeler specifies differently. For a three-dimensional numerical model, no-flow is often accomplished by indicating that a cell is inactive and this can be done for any cell in the model. For example, there can be an impermeable zone in the middle of a model domain. A no-flow condition can be achieved in the flow-equation formulation by setting the hydraulic conductivity to zero.
     
     **Example application in the subsequent interactive plots:**
     - :green[**Scenario 1**]: The left boundary (_x_ = 0) is a no-flow boundary, simulating an impermeable barrier. The recharge on the top is a specified flow boundary at a rate that can be adjusted by the user.
@@ -383,8 +383,10 @@ with st.expander('Show more about the theory of the :blue[**model and the analyt
             where:
             - _h(x)_: hydraulic head at location _x_ (m),
             - _L_: domain length (m),
-            - _h<sub>0</sub>_: head at the specified-head boundary at _x_ = _0_ (m).
-            - _h<sub>L</sub>_: head at the specified-head boundary at _x_ = _L_ (m).
+            - _h<sub>0</sub>_: head at the specified-head boundary at _x_ = _0_ (m),
+            - _h<sub>L</sub>_: head at the specified-head boundary at _x_ = _L_ (m),
+            - _R_: recharge (m/s),
+            - _K_: hydraulic conductivity (m/s).
             
             These solutions are subsequently used in the interactive plots to dynamically compute and visualize how different boundary conditions and recharge rates affect the hydraulic head distribution and the _Q_-_h_ relationship.
             """, unsafe_allow_html=True)  

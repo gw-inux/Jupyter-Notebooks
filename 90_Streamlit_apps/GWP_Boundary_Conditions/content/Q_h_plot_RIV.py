@@ -905,7 +905,7 @@ Q_h_plot()
 
 with st.expander('**Show the :rainbow[**EXERCISE**] assessment** - to self-check your understanding'):
     st.markdown("""
-    #### 🧠 Excercise assessment
+    #### 🧠 Exercise assessment
     These questions test your understanding after doing the exercise.
     """)
 
