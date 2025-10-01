@@ -235,7 +235,7 @@ with st.expander("Show more :blue[**explanation about the boundary condition typ
     
     #### TYPE I. Specified Head Boundary (Dirichlet condition)
     
-    **Definition:** For the analytical 1-D solution illustrated in this introductory section, hydraulic head is fixed at a specific value on one, or both, of the lateral boundaries. The flow across the boundary is proportional to the difference between the aquifer head $h_{aq}$ at the boundary and an external water level $h_{bc}$. The specified head represents the stage of an incised waterbody such as a river or lake. The aquifer hydraulic conductivity controls the flux across the boundary in response to the head difference $h_{aq}$-$h_{bc}$.
+    **Definition:** For the analytical 1-D solution illustrated in this introductory section, hydraulic head is fixed at a specific value on one, or both, of the lateral boundaries. The flow across the boundary is proportional to the difference between the groundwater head $h_{gw}$ at the boundary and an external water level $h_{bc}$. The specified head represents the stage of an incised waterbody such as a river or lake. The model hydraulic conductivity controls the flux across the boundary in response to the head difference $h_{gw}$-$h_{bc}$.
     
     In a numerical code, hydraulic head can be specified in any node in a cell or element. It is then input to the system of equations described in the previous drop-down section "Show more :blue[background about the mathematical application of boundary conditions in models]". With the head specified, the flow in or out of each side of the cell is calculated using the conductance across each side of the cell based on the effective hydraulic conductivity between the adjacent cells and the gradient determined by the specified head and the head in the adjacent cell which is determined by the model simulation. The most common package of **MODFLOW** for specifying a head is the **Time Variant Specified Head package CHD**.
     
@@ -248,11 +248,11 @@ with st.expander("Show more :blue[**explanation about the boundary condition typ
     - :red[**Scenario 2**]: The right boundary (_x_ = _L_) has a specified head of 150 m. The left boundary (_x_ = _0_) has a user-defined specified head that can range between 145 m and 155 m.
     
     #### TYPE II. Specified-Flow Boundary (Neumann condition)
-    **Definition:** For the analytical 1-D solution illustrated in this introductory section, a specified flow of water crosses the top boundary. The specified flow represents recharge, which is water that infiltrates to the water table. The recharge rate is provided and multiplied by the surface area to obtain the volumetric inflow rate. Head in the aquifer adjusts to accommodate the recharge and depending on the aquifer hydraulic conductivity and conditions at the other boundaries. :green[Scenario 1] includes another specified-flow boundary that is a special case of a specified-flow boundary, a no-flow boundary, with zero flow normal to the boundary. This can represent an impermeable material or a hydraulic groundwater divide that does not shift in response to model conditions. 
+    **Definition:** For the analytical 1-D solution illustrated in this introductory section, a specified flow of water crosses the top boundary. The specified flow represents recharge, which is water that infiltrates to the water table. The recharge rate is provided and multiplied by the surface area to obtain the volumetric inflow rate. Head in the groundwater adjusts to accommodate the recharge and depending on the model hydraulic conductivity and conditions at the other boundaries. :green[Scenario 1] includes another specified-flow boundary that is a special case of a specified-flow boundary, a no-flow boundary, with zero flow normal to the boundary. This can represent an impermeable material or a hydraulic groundwater divide that does not shift in response to model conditions. 
     
     For a three-dimensional numerical model such as a MODFLOW block-centered-flow formulation, a specified flow of water [L³/T] can be assigned to any cell. It is input to the right-hand side vector $\{Q\}$ in the system of equations described in the previous drop-down section "Show more :blue[background about the mathematical application of boundary conditions in models]". Typically, model software provides options for assigning specified fluxes to a numerical model cell. In MODFLOW, a method for representing wells allows specifying the $q$ for each well in a cell, then summing the $q$’s and placing the net $q$ in the right-hand side vector for that cell. Another method for assigning flux is used to represent recharge. This allows assignment of a rate [L/T] that is multiplied by the area of the top of the cell then summing it with other fluxes applied to that cell and placing the net $q$ in the right-hand side vector for that cell.
     
-    **Effect 1:** A specified flux boundary can represent recharge where flow across the model surface enters (or exits for a negative recharge rate such as for evapotranspiration in the 1-D analytical solution shown in this section). The system and heads within the aquifer rise or fall depending on the specified flow rate. For three-dimensional numerical models specified flows can be assigned to the top of a cell to represent recharge or within a cell to represent a pumping or injection well.
+    **Effect 1:** A specified flux boundary can represent recharge where flow across the model surface enters (or exits for a negative recharge rate such as for evapotranspiration in the 1-D analytical solution shown in this section). The system and heads within the model rise or fall depending on the specified flow rate. For three-dimensional numerical models specified flows can be assigned to the top of a cell to represent recharge or within a cell to represent a pumping or injection well.
     
     **Effect 2:** If the rate is specified as zero, then water cannot flow into or out of the system across that boundary of the analytical model. Usually, the default is for all external boundaries to be no-flow, unless the modeler specifies differently. For a three-dimensional numerical model, no-flow is often accomplished by indicating that a cell is inactive and this can be done for any cell in the model. For example, there can be an impermeable zone in the middle of a model domain. A no-flow condition can be achieved in the flow-equation formulation by setting the hydraulic conductivity to zero.
     
@@ -261,7 +261,15 @@ with st.expander("Show more :blue[**explanation about the boundary condition typ
     - :red[**Scenario 2**]: In this scenario, the only specified flow boundary is the top and the rate can be adjusted by the user.
     
     #### TYPE III. Head-Dependent Flux Boundary (Cauchy, Mixed, and Robin condition)
-    **Definition:** The flow across the boundary is proportional to the difference between the aquifer head at the boundary and an external head of the boundary (e.g., river stage, adjacent aquifer head, drain elevation). A *conductance factor controls the flux across the boundary in response to the head gradient* between the aquifer and the boundary. In some cases, geometric aspects of the feature represented by the boundary are used to limit or prevent flow to, or from, the boundary depending on the value of head in the aquifer at the boundary.
+    **Definition:** The flow across the boundary $Q_B$ is proportional to the difference between the groundwater head $h_{gw}$ at the boundary and an external head of the boundary $h_{bc}$ (e.g., river stage, adjacent groundwater head, drain elevation). A *conductance factor $Q_B$ controls the flux across the boundary in response to the head gradient* between the model and the boundary.
+    """)
+    
+    st.latex(r"""
+    Q_B = C_B(h_{gw}-h_{bc})
+    """)
+    
+    st.markdown("""
+    In some cases, geometric aspects of the feature represented by the boundary are used to limit or prevent flow to, or from, the boundary depending on the value of head in the groundwater at the boundary.
     """)
     lc01, cc01, rc01 = st.columns((10,60,10))
     with cc01:
@@ -269,7 +277,7 @@ with st.expander("Show more :blue[**explanation about the boundary condition typ
 
     
     st.markdown("""
-    **Effect:** A head-dependent flow boundary provides a resistive zone between the aquifer and the water body that the boundary represents. Depending on the head difference between the model calculated head in the aquifer at the boundary and the assigned head from the boundary condition (e.g., river stage or drain elevation), the boundary can act as sink or source. 
+    **Effect:** A head-dependent flow boundary provides a resistive zone between the aquifer and the water body that the boundary represents. Depending on the head difference between the model calculated head in the groundwater at the boundary and the assigned head from the boundary condition (e.g., river stage or drain elevation), the boundary can act as sink or source. 
     
     In other words, the boundary behaves as a specified head boundary with a resistive connection as opposed to a direct connection to the water body being represented. Like a specified-head boundary, the head in the feature represented by the boundary condition does not change no matter how much water flows into or out of the groundwater system. The difference is the additional resistive layer and the limit to flow based on the geometry of the feature represented by the boundary.
     
@@ -458,18 +466,18 @@ if show_plot1:
     
         with columns[1]:
             with st.expander("Click to Modify **Boundary Condition Parameters**:"):
-                riv = st.toggle (':violet[**River BC?**]', key = 'riv_toggle')
+                riv = st.toggle (':violet[**Head-dependent flux BC?**]', key = 'riv_toggle')
                 if riv:
                     # Log slider for river conductance                    
                     labels, default_label = prep_log_slider(default_val = 1e-4, log_min = log_min2, log_max = log_max2)
-                    selected_cRiv = st.select_slider("**RIV conductance** $C_{RIV}$ in m²/s", labels, default_label, key = "cRiv")
+                    selected_cRiv = st.select_slider("**Boundary Conductance** $C_{B}$ in m²/s", labels, default_label, key = "cRiv")
                     cRiv = float(selected_cRiv)
                     hr_riv = R * L / cRiv + hRiv
                 
         with columns[2]:
             with st.expander("Click for **the _Q_-_h_ plot**:"):
                 if riv:
-                    options = ["**None**", ":orange[**No-flow**]", ":green[**Recharge**]", ":violet[**River**]"]
+                    options = ["**None**", ":orange[**No-flow**]", ":green[**Recharge**]", ":violet[**Head-dep. flux**]"]
                     bc_type = st.radio("for the following boundary condition:", options , index=st.session_state.bc_index, key= "bc_index_input" , on_change = update_index)
                 else:
                     options = ["**None**", ":orange[**No-flow**]", ":green[**Recharge**]", ":blue[**Specified head**]"]
@@ -570,11 +578,16 @@ if show_plot1:
         x_pos1 = 400
         x_pos2 = 2490
         y_pos1 = 158.8
+        y_pos2 = 157.3
+        
         ax.text(x_pos1, y_pos1, 'No-flow bc', horizontalalignment='right', bbox=dict(boxstyle="square", facecolor='darkorange', alpha=0.4), fontsize=12)
         if riv:
-            ax.text(x_pos2, y_pos1, 'River bc', horizontalalignment='right', bbox=dict(boxstyle="square", facecolor='fuchsia', alpha=0.4), fontsize=12)
+            ax.text(x_pos2, y_pos1, 'Head-dependent flux bc', horizontalalignment='right', bbox=dict(boxstyle="square", facecolor='fuchsia', alpha=0.4), fontsize=12)
+            ax.text(x_pos2, y_pos2, 'Q_BC: {:.2e} m³/s '.format(Q_rob_point), horizontalalignment='right', bbox=dict(boxstyle="square", facecolor='grey', alpha=0.4), fontsize=12)
         else:
             ax.text(x_pos2, y_pos1, 'Specified head bc', horizontalalignment='right', bbox=dict(boxstyle="square", facecolor='deepskyblue', alpha=0.4), fontsize=12)
+            ax.text(x_pos2, y_pos2, 'Q_BC: {:.2e} m³/s '.format(Q_defh_point), horizontalalignment='right', bbox=dict(boxstyle="square", facecolor='grey', alpha=0.4), fontsize=12)
+        
             
         # --- Q–h PLOT in 2nd subplot ---
         if turn:
@@ -638,20 +651,20 @@ if show_plot1:
                 ax_qh.set_ylim(-(400/1000/365.25/86400*2500),(400/1000/365.25/86400*2500))
                 ax_qh.axhline(0, color='grey', linestyle='--', linewidth=0.8)
                 ax_qh.axvline(150, color='grey', linestyle='--', linewidth=0.8)
-        elif "River" in bc_type:      
+        elif "Head-dep. flux" in bc_type:      
             if turn:
                 ax_qh.xaxis.set_major_formatter(FormatStrFormatter('%.1e'))
                 ax_qh.xaxis.set_major_locator(plt.MaxNLocator(3))  # Limit to 3 ticks
                 ax_qh.plot(Q_rob, h_rob, color='black', linewidth=3)
                 ax_qh.plot(Q_rob_point, h_rob_point, 'o', color='fuchsia', markersize=10)
-                ax_qh.set_title("h-Q plot: River boundary", fontsize=16, pad=15, color = 'violet')
+                ax_qh.set_title("h-Q plot: Head-dep. flux boundary", fontsize=16, pad=15, color = 'violet')
                 ax_qh.set_xlim(-(400/1000/365.25/86400*2500),(400/1000/365.25/86400*2500))
                 ax_qh.axvline(0, color='grey', linestyle='--', linewidth=0.8)
                 ax_qh.axhline(150, color='grey', linestyle='--', linewidth=0.8)
             else: 
                 ax_qh.plot(h_rob, Q_rob, color='black', linewidth=3)
                 ax_qh.plot(h_rob_point, Q_rob_point, 'o', color='fuchsia', markersize=10)
-                ax_qh.set_title("Q–h plot: River boundary", fontsize=16, pad=15, color = 'violet')
+                ax_qh.set_title("Q–h plot: Head-dep. flux boundary", fontsize=16, pad=15, color = 'violet')
                 ax_qh.set_ylim(-(400/1000/365.25/86400*2500),(400/1000/365.25/86400*2500))
                 ax_qh.axhline(0, color='grey', linestyle='--', linewidth=0.8)
                 ax_qh.axvline(150, color='grey', linestyle='--', linewidth=0.8)
@@ -927,11 +940,11 @@ if show_plot2:
         
         # Box for boundary flow
         if R2 <= 0.0:
-            ax.text(x2_pos1, y2_pos2, 'Q_BC_LEFT: {:.2e} m/s '.format(Q2_defh_point_l), horizontalalignment='left', bbox=dict(boxstyle="square", facecolor='grey', alpha=0.4), fontsize=12)
-            ax.text(x2_pos2, y2_pos2, 'Q_BC_RIGHT: {:.2e} m/s '.format(Q2_defh_point_r), horizontalalignment='right', bbox=dict(boxstyle="square", facecolor='grey', alpha=0.4), fontsize=12)
+            ax.text(x2_pos1, y2_pos2, 'Q_BC_LEFT: {:.2e} m³/s '.format(Q2_defh_point_l), horizontalalignment='left', bbox=dict(boxstyle="square", facecolor='grey', alpha=0.4), fontsize=12)
+            ax.text(x2_pos2, y2_pos2, 'Q_BC_RIGHT: {:.2e} m³/s '.format(Q2_defh_point_r), horizontalalignment='right', bbox=dict(boxstyle="square", facecolor='grey', alpha=0.4), fontsize=12)
         else:
-            ax.text(x2_pos1, y2_pos2, 'Q_BC_LEFT: {:.2e} m/s '.format(Q2_defh_point_l), horizontalalignment='left', bbox=dict(boxstyle="square", facecolor='grey', alpha=0.4), fontsize=12)
-            ax.text(x2_pos2, y2_pos2, 'Q_BC_RIGHT: {:.2e} m/s '.format(Q2_defh_point_r), horizontalalignment='right', bbox=dict(boxstyle="square", facecolor='grey', alpha=0.4), fontsize=12)
+            ax.text(x2_pos1, y2_pos2, 'Q_BC_LEFT: {:.2e} m³/s '.format(Q2_defh_point_l), horizontalalignment='left', bbox=dict(boxstyle="square", facecolor='grey', alpha=0.4), fontsize=12)
+            ax.text(x2_pos2, y2_pos2, 'Q_BC_RIGHT: {:.2e} m³/s '.format(Q2_defh_point_r), horizontalalignment='right', bbox=dict(boxstyle="square", facecolor='grey', alpha=0.4), fontsize=12)
         
         if riv2:
             ax.text(x2_pos2, y2_pos1, 'River bc', horizontalalignment='right', bbox=dict(boxstyle="square", facecolor='fuchsia', alpha=0.4), fontsize=12)
