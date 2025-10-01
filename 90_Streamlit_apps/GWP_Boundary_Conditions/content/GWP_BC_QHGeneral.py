@@ -824,6 +824,8 @@ if show_plot2:
         x2 = np.arange(0, L2,L2/1000)
         h2=(hl2**2-(hl2**2-hr2**2)/L2*x2+(R2/K2*x2*(L2-x2)))**0.5
         
+        plot_holder = st.container()
+        
         # Groundwater divide
         if R2 >= 0:
             max_y2 = max(h2)
@@ -1072,7 +1074,10 @@ if show_plot2:
             # Draw a blank subplot (white background, no ticks, no frame)
             #ax_qh.axis('off')
         
-        st.pyplot(fig, use_container_width=True)
+        with plot_holder:
+            st.pyplot(fig, use_container_width=True, clear_figure=True)
+        
+        #st.pyplot(fig, use_container_width=True)
         
         with st.expander('Show the 🧪:red[**INITIAL INSTRUCTIONS for using the interactive plot for Scenario 2**]'):
             st.markdown("""
