@@ -8,7 +8,7 @@ ipynb
 xarray
 rise
 voila
-streamlit
+streamlit==1.44.1
 streamlit_book
 streamlit_extras
 deep_translator
