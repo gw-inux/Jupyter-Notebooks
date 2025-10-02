@@ -201,8 +201,8 @@ with st.expander('Show more :blue[**background about the mathematical applicatio
     st.markdown("""
     where 
     - $[A]$ is a matrix containing conductances (i.e., a combination of geometry and hydraulic properties),
-    - $\{h\}$ is the unknown head at each node of a cell or element [called the solution vector in linear algebra], and
-    - $\{Q\}$ is the flow or flux at each discrete volume [called the right-hand side, RHS, vector in linear algebra].
+    - $h$ is the unknown head at each node of a cell or element [called the solution vector in linear algebra], and
+    - $Q$ is the flow or flux at each discrete volume [called the right-hand side, RHS, vector in linear algebra].
     
     Flux is the rate of fluid movement across an area and flow is the product of the area and the flux. The size of the matrix $[A]$ is based on the number of head values, which is dependent on the number of discrete volumes and the solution method. Derivation of the block-centered flow, finite-difference solution for the partial differential groundwater flow equation is described in [McDonald and Harbaugh (1988)](https://doi.org/10.3133/twri06A1). The boundary conditions are added to the system of equations differently depending on the type of boundary condition.  
     
