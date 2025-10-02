@@ -536,8 +536,8 @@ if show_plot1:
         
         
         # PLOT FIGURE
-        plt.rcParams.update({"figure.dpi": 160, "savefig.dpi": 160})
-        fig = plt.figure(figsize=(9, 10), layout="constrained")
+        
+        fig = plt.figure(figsize=(9, 10))
         widths = [1, 2, 1]
         heights = [1.4, 1]
         gs = fig.add_gridspec(ncols=3, nrows=2, width_ratios=widths, height_ratios=heights)
@@ -682,9 +682,8 @@ if show_plot1:
             ax_qh.text(150,0.75,"No Q–h plot selected.\n\nScroll down for Initial Instructions \n\nor select a Q–h plot type in the INPUT CONTROLS (right-hand menu).", ha='center', va='center', fontsize=13, wrap=True)
             ax_qh.axis('off')
         
-        #st.pyplot(fig)
-        st.pyplot(fig, use_container_width=True, clear_figure=True)
-        
+        st.pyplot(fig)
+
         if "No-flow" in bc_type:
             st.markdown("""_The dashed line in the plot represents the specified head at the right boundary with $h_{2500}$ = 150 m._""")
         
