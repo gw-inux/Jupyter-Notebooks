@@ -8,6 +8,15 @@ import streamlit as st
 import json
 from streamlit_book import multiple_choice
 
+st.markdown("""
+<style>
+/* Make pyplot canvases occupy available width immediately */
+div[data-testid="stPyplot"] canvas { width: 100% !important; height: auto !important; }
+div[data-testid="stPyplot"] { width: 100% !important; }
+</style>
+""", unsafe_allow_html=True)
+
+
 # path to questions for the assessments (direct path)
 path_quest_ini   = "90_Streamlit_apps/GWP_Boundary_Conditions/questions/initial_general_behavior.json"
 path_quest_exer_sc1   = "90_Streamlit_apps/GWP_Boundary_Conditions/questions/exer_general_sc1.json"
