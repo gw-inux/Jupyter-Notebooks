@@ -494,8 +494,6 @@ if show_plot1:
                 # Get the selected index
                 turn = st.toggle('Toggle to turn the plot 90 degrees', key="general_turn") 
         
-        plot_holder = st.container()
-        
         # --- Computation here
         x = np.arange(0, L, L/1000)
         
@@ -684,8 +682,7 @@ if show_plot1:
             ax_qh.text(150,0.75,"No Q–h plot selected.\n\nScroll down for Initial Instructions \n\nor select a Q–h plot type in the INPUT CONTROLS (right-hand menu).", ha='center', va='center', fontsize=13, wrap=True)
             ax_qh.axis('off')
         
-        with plot_holder:
-            st.pyplot(fig, width=True, clear_figure=True)
+        st.pyplot(fig)
 
         if "No-flow" in bc_type:
             st.markdown("""_The dashed line in the plot represents the specified head at the right boundary with $h_{2500}$ = 150 m._""")
@@ -835,8 +832,6 @@ if show_plot2:
         
         x2 = np.arange(0, L2,L2/1000)
         h2=(hl2**2-(hl2**2-hr2**2)/L2*x2+(R2/K2*x2*(L2-x2)))**0.5
-        
-        plot_holder = st.container()
         
         # Groundwater divide
         if R2 >= 0:
@@ -1086,10 +1081,7 @@ if show_plot2:
             # Draw a blank subplot (white background, no ticks, no frame)
             #ax_qh.axis('off')
         
-        with plot_holder:
-            st.pyplot(fig, width=True, clear_figure=True)
-        
-        #st.pyplot(fig, use_container_width=True)
+        st.pyplot(fig)
         
         with st.expander('Show the 🧪:red[**INITIAL INSTRUCTIONS for using the interactive plot for Scenario 2**]'):
             st.markdown("""
