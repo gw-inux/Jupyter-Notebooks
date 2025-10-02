@@ -536,7 +536,7 @@ if show_plot1:
         
         
         # PLOT FIGURE
-        
+        plt.rcParams.update({"figure.dpi": 160, "savefig.dpi": 160})
         fig = plt.figure(figsize=(9, 10))
         widths = [1, 2, 1]
         heights = [1.4, 1]
