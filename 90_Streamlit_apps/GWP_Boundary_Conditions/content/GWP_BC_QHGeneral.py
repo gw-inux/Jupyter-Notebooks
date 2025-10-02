@@ -685,8 +685,7 @@ if show_plot1:
             ax_qh.axis('off')
         
         with plot_holder:
-            st.pyplot(fig, use_container_width=True, clear_figure=True)
-        #st.pyplot(fig, use_container_width=True)
+            st.pyplot(fig, width=True, clear_figure=True)
 
         if "No-flow" in bc_type:
             st.markdown("""_The dashed line in the plot represents the specified head at the right boundary with $h_{2500}$ = 150 m._""")
@@ -1088,7 +1087,7 @@ if show_plot2:
             #ax_qh.axis('off')
         
         with plot_holder:
-            st.pyplot(fig, use_container_width=True, clear_figure=True)
+            st.pyplot(fig, width=True, clear_figure=True)
         
         #st.pyplot(fig, use_container_width=True)
         
