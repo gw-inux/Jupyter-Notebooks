@@ -10,6 +10,10 @@ import streamlit_book as stb
 from streamlit_extras.stateful_button import button
 import json
 from streamlit_book import multiple_choice
+from streamlit_scroll_to_top import scroll_to_here
+
+# Start the page with scrolling here
+scroll_to_here(0, key='page_top_scroll') 
 
 # Authors, institutions, and year
 year = 2025 

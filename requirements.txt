@@ -21,3 +21,4 @@ PyYAML
 markdown
 Pillow
 reportlab
+streamlit-scroll-to-top
