@@ -1,6 +1,15 @@
 import streamlit as st
 import os
 
+def _navigate_to(path: str):
+    """Change page and scroll to the top on next render."""
+    if path != st.session_state.selected_path:
+        st.session_state.selected_path = path
+        st.session_state.scroll_to_top = True    
+        st.session_state.prev_path = path
+    st.rerun()
+
+
 # --- Application parameters ---
 DEFAULT_START_PAGE = "90_Streamlit_apps/GWP_Boundary_Conditions/content/GWP_Boundary_Conditions_Start.py"
 
@@ -60,20 +69,19 @@ pages = {
 # --- State tracking ---
 if "selected_path" not in st.session_state:
     st.session_state.selected_path = DEFAULT_START_PAGE
+if "prev_path" not in st.session_state:
+    st.session_state.prev_path = st.session_state.selected_path
+if "scroll_to_top" not in st.session_state:
+    st.session_state.scroll_to_top = False
 
 # Space before the first button
 st.sidebar.markdown("<div style='margin-top: 2.0rem;'></div>", unsafe_allow_html=True)
 
 # --- Overview and About buttons (at top)
 if st.sidebar.button("💦 Overview", key="btn_overview"):
-    st.session_state.selected_path = DEFAULT_START_PAGE
-    st.rerun()   
-
-# grey line as divider
-#st.sidebar.markdown(
-#    "<hr style='margin-top: -0.25rem; margin-bottom: -0.25rem;'>",
-#    unsafe_allow_html=True
-#)
+#    st.session_state.selected_path = DEFAULT_START_PAGE
+#    st.rerun()   
+    _navigate_to(DEFAULT_START_PAGE)
 
 # --- Sidebar navigation ---
 for label, path in pages.items():
@@ -83,8 +91,9 @@ for label, path in pages.items():
     clean_label = label.strip()
     display_label = f"{clean_label} 👈" if is_selected else clean_label
     if st.sidebar.button(display_label, key=f"btn_{label}"):
-        st.session_state.selected_path = path
-        st.rerun()
+#        st.session_state.selected_path = path
+#        st.rerun()
+        _navigate_to(path)
         
     # After rendering "Introduction 📖", insert a section label
     if "Introduction" in label:

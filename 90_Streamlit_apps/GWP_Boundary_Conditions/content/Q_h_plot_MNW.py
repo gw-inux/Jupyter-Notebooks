@@ -13,6 +13,14 @@ import streamlit_book as stb
 from streamlit_extras.stateful_button import button
 import json
 from streamlit_book import multiple_choice
+from streamlit_scroll_to_top import scroll_to_here
+
+# Start the page with scrolling here
+if st.session_state.scroll_to_top:
+    scroll_to_here(0, key='top')
+    st.session_state.scroll_to_top = False
+#Empty space at the top
+st.markdown("<div style='height:1.25rem'></div>", unsafe_allow_html=True)
 
 # path to questions for the assessments (direct path)
 path_quest_ini   = "90_Streamlit_apps/GWP_Boundary_Conditions/questions/initial_mnw.json"

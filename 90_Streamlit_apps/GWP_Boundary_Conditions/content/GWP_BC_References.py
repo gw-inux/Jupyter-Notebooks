@@ -13,7 +13,11 @@ from streamlit_book import multiple_choice
 from streamlit_scroll_to_top import scroll_to_here
 
 # Start the page with scrolling here
-scroll_to_here(0, key='page_top_scroll') 
+if st.session_state.scroll_to_top:
+    scroll_to_here(0, key='top')
+    st.session_state.scroll_to_top = False
+#Empty space at the top
+st.markdown("<div style='height:1.25rem'></div>", unsafe_allow_html=True)
 
 # Authors, institutions, and year
 year = 2025 

@@ -1,4 +1,12 @@
 import streamlit as st
+from streamlit_scroll_to_top import scroll_to_here
+
+# Start the page with scrolling here
+if st.session_state.scroll_to_top:
+    scroll_to_here(0, key='top')
+    st.session_state.scroll_to_top = False
+#Empty space at the top
+st.markdown("<div style='height:1.25rem'></div>", unsafe_allow_html=True)
 
 # Authors, institutions, and year
 year = 2025 
@@ -15,7 +23,7 @@ author_list = [f"{name}{''.join(index_symbols[i-1] for i in indices)}" for name,
 institution_list = [f"{index_symbols[i-1]} {inst}" for i, inst in institutions.items()]
 institution_text = " | ".join(institution_list)
 
-st.header('👉 About the Boundary Condition Module')
+st.title('👉 About the Boundary Condition Module')
 
 st.subheader('Description', divider = 'green')
 
@@ -66,7 +74,7 @@ with cent_co3:
     
 st.subheader('Acknowledgment', divider='green')
 st.markdown("""
-We sincerely thank Eve L. Kuniansky, Rudolf Liedl, and William W. Woessner for the constructive feedback, which greatly helped improve the clarity and educational value of this module.""")
+We sincerely thank Eve L. Kuniansky, Claire Tiedeman, Richard Winston, Rudolf Liedl, and William W. Woessner for the excellent and constructive feedback, which greatly helped improve the clarity and educational value of this module.""")
 st.markdown("---")
 left_co4, cent_co4, last_co4 = st.columns((1,8,1))
 with cent_co4:
