@@ -108,9 +108,9 @@ with columns0[0]:
     - What happens if the **groundwater head drops below the riverbed**?
     - What is a **gaining stream** and a **losing stream**?
     
-    ▶️ The :violet[**River (RIV) Boundary**] in MODFLOW handles these dynamics by simulating a **head-dependent flow** that includes a check for groundwater level falling below streambed bottoms. The flow resulting from a given groundwater head $h_{gw}$ and river head $h_{RIV}$ is defined by a **conductance term** $C_{RIV}$. The following introductory interactive plot shows how the flow between river and groundwater $Q_{RIV}$ responds to changing conditions. The interactive plot is based on the MODFLOW documentation (Harbaugh, 2005) and assumes **$h_{RIV}$ is 8 m** and **river bottom elevation is 6 m**. Try adjusting the river conductance in the initial plot to explore flow direction and magnitude as a function of head in the groundwater system.
+    ▶️ The :violet[**River (RIV) Boundary**] in MODFLOW handles these dynamics by simulating a **head-dependent flow** that includes a check for groundwater level falling below streambed bottoms. The flow resulting from a given groundwater head $h_{gw}$ and river head $H_{RIV}$ depends on a **conductance term** $C_{RIV}$. The following introductory interactive plot shows how the flow between river and groundwater $Q_{RIV}$ responds to changing conductance. The interactive plot is based on the MODFLOW documentation (Harbaugh, 2005) and assumes **$H_{RIV}$ is 8 m** and **river bottom elevation is 6 m**. Try adjusting the river conductance in the initial plot to explore flow direction and magnitude as a function of head in the groundwater system.
     """)
-    st.latex(r'''Q_{RIV} = C_{RIV} (h_{RIV} - h_{{gw}})''')
+    st.latex(r'''Q_{RIV} = C_{RIV} (H_{RIV} - h_{{gw}})''')
 
     
     
@@ -131,7 +131,7 @@ with columns0[1]:
     fig, ax = plt.subplots(figsize=(5, 5))      
     ax.plot(h_gwi, Qi, color='black', linewidth=4)
     ax.set_xlabel("Head in the groundwater system (m)", fontsize=14, labelpad=15)
-    ax.set_ylabel("Flow into the groundwater \nfrom the RIV boundary $Q_{RIV}$ (m³/s) \nwith RIV head $h_{RIV}$ = 8 m", fontsize=14, labelpad=15)
+    ax.set_ylabel("Flow into the groundwater \nfrom the RIV boundary $Q_{RIV}$ (m³/s) \nwith RIV head $H_{RIV}$ = 8 m", fontsize=14, labelpad=15)
     ax.set_xlim(0, 20)
     ax.set_ylim(-0.05, 0.05)
     ax.set_title("Flow Between Groundwater and RIV", fontsize=16, pad=10)
@@ -217,28 +217,30 @@ with st.expander("Show me more about **the Theory**"):
     The flow between a stream and groundwater, $Q_{RIV}$, depends on the groundwater head in the river $h_{gw}$. 
     The relationship is as follows:
     """)
-    st.latex(r'''Q_{RIV} = C_{RIV} (h_{RIV} - h_{{gw}})''')
+    st.latex(r'''Q_{RIV} = C_{RIV} (H_{RIV} - h_{{gw}})''')
     
     st.markdown("""
     where:
     - $Q_{RIV}$ is the flow between the river and the groundwater (positive if it is directed into the groundwater) [L³/T]
-    - $h_{RIV}$ is the water level (also called stage or head) of the river (L),
+    - $H_{RIV}$ is the water level (also called stage or head) of the river (L),
     - $C_{RIV}$ is the hydraulic conductance of the river bed [L²/T], and
     - $h_{gw}$ is the head in the groundwater beneath the river bed (L).
     
     If the groundwater head $h_{gw}$ is below the elevation of the bottom of the river bed, $R_{BOT}$, the relationship is as follows:
     """)
     
-    st.latex(r'''Q_{RIV} = C_{RIV} (h_{RIV} - R_{{BOT}})''')
+    st.latex(r'''Q_{RIV} = C_{RIV} (H_{RIV} - R_{{BOT}})''')
    
     st.markdown("""
     where:
     - $R_{BOT}$ is the elevation of the river bed bottom [L].
+        
+    The following figure illustrates the setup.
     """)
     
     left_co, cent_co, last_co = st.columns((10,40,10))
     with cent_co:
-        st.image('90_Streamlit_apps/GWP_Boundary_Conditions/assets/images/RIV_nearWell.png', caption="Conceptual illustration of the river/groundwater interaction.")
+        st.image('90_Streamlit_apps/GWP_Boundary_Conditions/assets/images/RIV.png', caption="Schematic of the RIV boundary (modified from McDonald and Harbaugh, 1988)")
     
     st.write(':blue[**It is important to compare the calculated flow between the river and groundwater to the flow in the segment of river being modeled.**] :green[The amount of water lost or gained needs to be consistent with observed river flow over the length of the segment such that it is reasonable to assume a constant river head.]')
     
@@ -246,9 +248,9 @@ with st.expander("Show me more about **the Theory**"):
     st.write(':blue[**If there is a significant gain or loss of flow, the river head may rise or fall, but the MODFLOW RIV package will continue to use the same river head.**] :green[If the modeler wants to represent feedback between the amount of water lost or gained and the elevation of the river head, the STR (stream package), SFR (stream-flow routing), or DAFLOW (delayed flow) packages can be used. In these alternative packages, the concepts for flow between the river and the groundwater do not change from what is presented here.]')
 
 
-with st.expander('**Click here** to read about the :green[**heads used**] in the River Boundary condition of MODFLOW'):
+with st.expander('**Click here** to read about the :green[**elevations used**] in the River Boundary condition of MODFLOW'):
     st.markdown("""
-    ### Heads used in the River Boundary of MODFLOW
+    ### Elevations used in the River Boundary of MODFLOW
     """)
     st.markdown("""
     MODFLOW assumes that the river bed permeability is substantially lower than the permeability of the hydrostratigraphic unit.
@@ -257,9 +259,9 @@ with st.expander('**Click here** to read about the :green[**heads used**] in the
 
     MODFLOW requires input values for:
 
-    - Elevation of the River head $h_{RIV}$ (called Stage in MODFLOW) is labeled River Surface in this image. Because the river is an open body of water it is assumed the River head occurs at the top of the river bed.
+    - Elevation of the River head $H_{RIV}$ (called Stage in MODFLOW), which is labeled River Surface in the image below. Because the river is an open body of water it is assumed the River head is the head at the top of the river bed.
 
-    - River bottom elevation (called $R_{bot}$ in MODFLOW) is the bottom of the hatched zone in this image.  
+    - River bottom elevation (called $R_{bot}$ in MODFLOW), which is the bottom of the hatched zone in this image.  
     """)
     left_co1, cent_co1, last_co1 = st.columns((10,80,10))
     with cent_co1:
@@ -267,7 +269,7 @@ with st.expander('**Click here** to read about the :green[**heads used**] in the
     st.markdown("""
     Groundwater head elevation is calculated by MODFLOW in response to all the model inputs. It is assumed the groundwater head is uniform throughout the cell and thus occurs at the elevation of the river bottom.
 
-    When the groundwater head is above the river bottom, the head difference across the river bed is: (Stage – Head in hydrostratigraphic unit). When this value is negative, water is flowing from the groundwater to the river.
+    When the groundwater head is above the river bottom, the head difference across the river bed is: (river stage $H_{RIV}$ - groundwater head $h_{gw}$). When this value is negative, water is flowing from the groundwater to the river.
 
     This head difference is multiplied by Conductance to determine Flow Rate between the River and the Groundwater.
  
@@ -279,9 +281,9 @@ with st.expander('**Click here** to read how :green[**conductance is calculated*
     """)
     
     st.markdown("""
-    MODFLOW requires input of Conductance.
+    MODFLOW requires input of conductance.
 
-    Conductance includes all of Darcy's Law except the head difference between the river and the groundwater. 
+    Conductance includes all terms of Darcy's Law except the head difference between the river and the groundwater. 
     """)    
     st.latex(r'''Q_{RIV} = K_vA \frac{\Delta h}{M}''')
     
@@ -303,7 +305,7 @@ with st.expander('**Click here** to read how :green[**conductance is calculated*
 
     
     st.markdown("""
-    $\Delta h$ is the difference between the Head in the Stream and Head in the Groundwater (discussed above in the section about the heads used in the River Boundary condition of MODFLOW)
+    $\Delta h$ is the difference between the river head and the groundwater head (discussed above in the section about elevations used in the River boundary condition of MODFLOW)
 
     In general, MODFLOW calculates flow $Q$ with a conductance $C$ as
     """)
@@ -326,7 +328,7 @@ with st.expander('**Click here** to read how flow is calculated when the :green[
     st.markdown("""
     When the groundwater head $h_{gw}$ is lower than the river bottom $R_{bot}$, the head difference across the river bed is: 
 
-    - Elevation of the River Surface $h_{Riv}$ – Elevation of the River Bottom $R_{bot}$
+    - Elevation of the River Surface $H_{RIV}$ – Elevation of the River Bottom $R_{bot}$
 
     - :red[As long as the groundwater head is below the riverbed bottom, this difference is constant so the flow into the groundwater is constant.]
 
@@ -335,12 +337,12 @@ with st.expander('**Click here** to read how flow is calculated when the :green[
 
 st.subheader("Interactive Plot and Exercise", divider="violet")
 st.markdown("""
-The interactive plot shows how the flow $Q_{RIV}$ across a River Boundary depends on the **difference between groundwater head** ($h_{gw}$) and **river head** ($h_{riv}$), while being constrained by the **river bottom elevation** ($R_{bot}$) and scaled by the **riverbed conductance** ($C_{RIV}$).
+The interactive plot shows how the flow $Q_{RIV}$ across a River Boundary depends on the **difference between groundwater head** ($h_{gw}$) and **river head** ($H_{RIV}$), while being constrained by the **river bottom elevation** ($R_{bot}$) and scaled by the **riverbed conductance** ($C_{RIV}$).
 
-Use the sliders or number inputs to adjust these parameters. You can also toggle between direct conductance input or compute it from hydraulic and geometrical properties. The plot updates dynamically and supports different viewing orientations.
+Use the sliders or number inputs to adjust these parameters. You can also toggle between entering direct conductance input or computing it from hydraulic and geometrical properties. The plot updates dynamically and supports different viewing orientations.
 
-- You can investigate the plot on your own. Some :blue[INITIAL INSTRUCTIONS] may guide you.
-- An :rainbow[EXERCISE] allows you to apply the plot and deepen your understanding. This exercise invites you to explore how river–groundwater exchange is controlled by **river stage, groundwater hydraulic head, conductance, and bottom elevation**. Use the interactive RIV plot to examine how these factors influence the exchange of flow, and interpret the **physical meaning based on _Q_–_h_ plots**, especially the transitions between **gaining**, **losing**, and **decoupled** river conditions.
+- You can investigate the plot on your own. Some :blue[INSTRUCTIONS] below may guide you.
+- An :rainbow[EXERCISE] allows you to use the plot to deepen your understanding. This exercise invites you to explore how river–groundwater exchange is controlled by **river stage, groundwater hydraulic head, conductance, and bottom elevation**. Use the interactive RIV plot to examine how these factors influence the exchange of flow, and interpret the **physical meaning based on _Q_–_h_ plots**, especially the transitions between **gaining**, **losing**, and **decoupled** river conditions.
 """)
 
 # Functions
@@ -499,7 +501,7 @@ def Q_h_plot():
             x_range = st.number_input("**Range of Q (m³/s) in the plot**", 0.02, 1.00, 0.05, 0.01)
             turn = st.toggle('**Turn Graph** 90 degrees', key="RIV_turn", value=True)
             st.session_state.number_input = st.toggle("**Use Slider or Number** for input")      
-            visualize = st.toggle(':rainbow[**Make the plot live** and visualize the input values]', key="RIV_vis", value=True)
+            visualize = st.toggle(':rainbow[Visualize the input values]', key="RIV_vis", value=True)
     
     # Make sure that heads and elevations are inside the plot
     if st.session_state.h_gw_show < 0.1+h_ref:
@@ -513,9 +515,9 @@ def Q_h_plot():
         with st.expander('Modify :blue[**Heads** & **Elevations**]'):
             #h_RIV
             if st.session_state.number_input:
-                h_RIV = st.number_input(":violet[**River head** $h_{RIV}$ (m)]", 0.1+h_ref, thick, st.session_state.h_RIV, 0.1, key="h_RIV_input", on_change=update_h_RIV)
+                h_RIV = st.number_input(":violet[**River head** $H_{RIV}$ (m)]", 0.1+h_ref, thick, st.session_state.h_RIV, 0.1, key="h_RIV_input", on_change=update_h_RIV)
             else:
-                h_RIV = st.slider      (":violet[**River head** $h_{RIV}$ (m)]", 0.1+h_ref, thick, st.session_state.h_RIV, 0.1, key="h_RIV_input", on_change=update_h_RIV)
+                h_RIV = st.slider      (":violet[**River head** $H_{RIV}$ (m)]", 0.1+h_ref, thick, st.session_state.h_RIV, 0.1, key="h_RIV_input", on_change=update_h_RIV)
             #h_bot
             if st.session_state.number_input:
                 h_bot = st.number_input(":orange[**River bed bottom** $R_{bot}$ (m)]", 0.1+h_ref, thick, st.session_state.h_bot, 0.1, key="h_bot_input", on_change=update_h_bot)
@@ -818,7 +820,7 @@ def Q_h_plot():
     st.pyplot(fig)
     if visualize:
         st.markdown("""
-        _The arrow in the plot indicates the head difference $h_{Riv}$-$h_{gw}$ respectively $h_{Riv}$-$h_{bot}$ and points to the resulting flow $Q_{Riv}$._
+        _The arrow in the plot indicates the head difference $H_{RIV}$-$h_{gw}$ respectively $H_{RIV}$-$h_{bot}$ and points to the resulting flow $Q_{Riv}$._
         """)
 
     "---"
@@ -828,31 +830,24 @@ def Q_h_plot():
         with st.expander('Click here to show **Parameters and Results**'):
             st.write("**Parameters and Results**")
             st.write("- Groundwater (MODFLOW) hydraulic head **$h_{gw}$ = %5.2f" %h_gw_show," m**")
-            st.write("- River hydraulic head **$h_{RIV}$ = %5.2f" %h_RIV," m**")
+            st.write("- River hydraulic head **$H_{RIV}$ = %5.2f" %h_RIV," m**")
             st.write("- River bottom elevation **$R_{bot}$ = %5.2f" %h_bot," m**")
             st.write("- Riverbed conductance **$C_{RIV}$ = % 10.2E"% st.session_state.C_RIV, " m²/s**")
             st.write("- Flow between river and groundwater **$Q_{RIV}$ = % 10.2E"% Q_ref," m³/s**")
     
-    with st.expander('Show the :blue[**INITIAL INSTRUCTIONS**]'):
+    with st.expander('Show the :blue[**INSTRUCTIONS**]'):
         st.markdown("""
         **Getting Started with the Interactive Plot**
         
         Before starting the exercise, it is helpful to follow these steps to explore RIV behavior:
         
-        **1. Using the default values**
-        * Vary groundwater head $h_{gw}$ in steps between 5 and 12 m (if you prefer there is a toggle button under **Modify Plot Controls** that allows you to type in values instead of using the slider).
-        * Observe how the flow $Q_{RIV}$ changes:
-            * When $h_{gw} > h_{riv}$, the groundwater discharges to the river (losing river).
-            * When $h_{gw} < h_{riv}$ but $h_{gw} > R_{bot}$, the river recharges the groundwater (gaining river).
+        **Start with $H_{RIV}$ = 9 m, $R_{bot}$ = 7 m, $h_{gw}$ = 10 m, and $C_{RIV}$ = 1x10⁻² m²/s**
+        * Vary groundwater head $h_{gw}$ and observe how the flow $Q_{RIV}$ changes in magnitude and direction.
+            * When $h_{gw} > H_{RIV}$, the groundwater discharges to the river (losing river).
+            * When $h_{gw} < H_{RIV}$ but $h_{gw} > R_{bot}$, the river recharges the groundwater (gaining river).
             * When $h_{gw} < R_{bot}$, the river is not in direct contact with the groundwater. Flow through an unsaturated zone occurs, which is driven by the head gradient between river stage and river bottom. In this case, outflow from the river is constant and independent of $h_{gw}$.
-        
-        **2. Test Different Conductance Values**
         * Use the slider to vary $C_{RIV}$ and notice how the slope of the $Q$–$h$ curve changes, with higher conductance resulting in more exchange of flow.
-        
-        **3. Optional: Compute Conductance**
-        * Toggle “Compute conductance”
-        * Enter $K$, $A_{riv}$, and $L_{RIV}$ to calculate $C_{RIV} = \\frac{KA_{RIV}}{L_{RIV}}$
-        * Observe how the conductance value influences the _Q_–_h_ relationship.
+        * Toggle “Compute conductance” then enter $K$, $A_{riv}$, and $L_{RIV}$ to calculate $C_{RIV} = \\frac{KA_{RIV}}{L_{RIV}}$ and notice how the conductance value influences the _Q_–_h_ relationship.
         * Set $h_{gw}$ < $R_{bot}$ and compute $C_{RIV}$ directly. Investigate the effect of the river bottom elevation $R_{bot}$ and river bed thickness $M_{RIV}$ on flow at the RIV boundary.
         
         The subsequent exercise is designed to help you build intuition for how RIV parameters control flow.  Feel free to further investigate the interactive plot on your own.
@@ -864,7 +859,7 @@ def Q_h_plot():
         
         🎯 **Expected Learning Outcomes**
         
-        Completion of this exercise, helps you to:
+        Completion of this exercise helps you to:
         
         * Understand how river–groundwater exchange is controlled by stage, groundwater head, bottom elevation, and conductance.
         * Interpret _Q_–_h_ plots in relation to gaining, losing, or inactive river segments.
@@ -876,10 +871,9 @@ def Q_h_plot():
         Use the interactive RIV plot and complete the following steps:
         1. **Initial Exploration**
         
-        * Set the **river head** ($h_{riv}$) to **10 m**
+        * Set the **river head** ($H_{RIV}$) to **10 m** (remember that under INPUT CONTROLS, in the **"Modify Plot Controls"** drop-down menu, you can toggle to choose between slider or typed input to adjust the parameter values)
         * Set the **river bottom elevation** ($R_{bot}$) to **9 m**
-        * Vary the **groundwater head** ($h_{gw}$) from **8 m to 12 m**
-        * Observe and describe how the flow ($Q_{riv}$) changes.
+        * Vary the **groundwater head** ($h_{gw}$) from **8 m to 12 m** while observing and describing how the flow ($Q_{riv}$) changes. It is useful to expand the area below the graph that is labeled "Click here to show Parameters and Results". It is helpful to keep notes on the values you observe, so you may want to record the following items.
         
         📝 Record:
         
@@ -889,16 +883,19 @@ def Q_h_plot():
     
         2. **Effect of Conductance**
     
-        * Keep $h_{riv}$ = 10 m and $R_{bot}$ = 9 m
+        * Set $H_{RIV}$ = 10 m and $R_{bot}$ = 9 m
         * Choose three different conductance values (e.g., **1x10⁻², 1x10⁻³, and 1x10⁻⁴ m²/s**)
-        * For each case:
-            * Plot $Q_{RIV}$ vs $h_{gw}$ from 8 m to 12 m (on paper or spreadsheet)
-            * Compare the slope of the curves and the magnitude of flow
-            * Observe how low/high conductance limits flow exchange
+          * For each of the 3 conductance values view the plot $Q_{RIV}$ vs $h_{gw}$ while adjusting $h_{gw}$ from 8 m to 12 m and note the influence of conductance on the slope of the line and the magnitude of flow. It is helpful to keep notes on the values you observe, so you may want to record the following items.
+                  
+        📝 Record:
+        
+            * Whether the river is gaining or losing in each case.
+            * Whether no flow occurs and, if so, for what conditions.
+            * Take note of transition points between gaining/losing/inactive behavior.
         
         3. **Realistic Scenarios: Recession Flow**
         
-        * Imagine a river with stage $h_{riv}$ **decreasing** from **11 m** to **9 m** (e.g., during a dry spell)
+        * Imagine a river with stage $H_{RIV}$ **decreasing** from **11 m** to **9 m** (e.g., during a dry spell)
         * Set river bottom to **8.5 m**
         * Groundwater head is fixed at **9.2 m**
         

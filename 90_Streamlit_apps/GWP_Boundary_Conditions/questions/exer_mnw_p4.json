@@ -57,9 +57,9 @@
   {
     "question": "How does the existence of nonlinear losses influence the discharge–drawdown curve? (Mark ALL correct answers)",
     "options": {
-      "A) Increased nonlinear losses causes faster increase in drawdown at higher Q.": true,
-      "B) Nonlinear losses has no effect on limiting head activation.": false,
-      "C) Increase nonlinear losses shifts the Q–h curve to reach $h_{lim}$ earlier.": true,
+      "A) Increased nonlinear losses cause faster increase in drawdown at higher Q.": true,
+      "B) Nonlinear losses have no effect on limiting head activation.": false,
+      "C) Increased nonlinear losses shifts the Q–h curve to reach $h_{lim}$ earlier.": true,
       "D) Smaller C and P parameters in CWC make the system more nonlinear.": false
     },
     "success": "✅ Correct. Nonlinear resistance, parameterized by _C_ and _P_ in _CWC_ affects when the limiting head is reached.",

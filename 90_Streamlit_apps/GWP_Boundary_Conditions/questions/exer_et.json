@@ -27,7 +27,7 @@
       "A) It is reduced to zero": true,
       "B) It equals the maximum rate": false,
       "C) It decreases linearly to zero": false,
-      "D) It is considered negligible in MODFLOW": true
+      "D) There is no ET": true
     },
     "success": "✅ Correct. Below extinction depth, actual ET is zero by definition and thus MODFLOW is assuming it is negligible.",
     "error": "❌ Some of your choices are not correct. ET is only nonzero above the  extinction depth."

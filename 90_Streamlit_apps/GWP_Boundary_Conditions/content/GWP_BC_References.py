@@ -43,14 +43,16 @@ st.markdown("""
     **Anderson, M.P., Woessner, W.W. and Hunt, R.J. (2015).** Applied Groundwater Modeling: Simulation of Flow and Advective Transport. 2nd Edition, Academic Press, Cambridge.
     
     **Grannemann, N.G., Hunt, R.J., Nicholas, J.R., Reilly, T.E. and Winter, T.C. (2000).** The Importance of Ground Water in the Great Lakes Region: Water Resources Investigations Report 00-4008, https://mi.water.usgs.gov/pubs/WRIR/WRIR00-4008/.
+    
+    **Jazayeri, A. and Werner, A.D. (2019).** Boundary Condition Nomenclature Confusion in Groundwater Flow Modeling. Groundwater. 57(5). https://doi.org/10.1016/S0022-1694(98)00170-X.
 
     **Reilly, T.E. (2001).** System and boundary conceptualization in ground-water flow simulation. US Geological Survey Techniques of Water-Resources Investigations TWRI, book 3, chap. B8, 25p., https://pubs.usgs.gov/twri/twri-3_B8/.
     
-    **Morway, E.D., Niswonger, R.G., & Triana, E. (2016).** Toward improved simulation of river operations through integration with a hydrologic model. Environmental Modelling & Software, 82, pp. 255-274. https://doi.org/10.1016/j.envsoft.2016.04.018.
+    **Morway, E.D., Niswonger, R.G., and Triana, E. (2016).** Toward improved simulation of river operations through integration with a hydrologic model. Environmental Modelling and Software, 82, pp. 255-274. https://doi.org/10.1016/j.envsoft.2016.04.018.
     
-    **Shapiro, A.D. Oki, and E. Greene (1998).** Estimating Formation Properties from Early-Time Recovery in Wells Subject to Turbulent Head Losses. Journal of Hydrology. 208. pp. 223-236. https://doi.org/10.1016/S0022-1694(98)00170-X.
+    **Shapiro, A.M., Oki, D.S., and E. Greene (1998).** Estimating Formation Properties from Early-Time Recovery in Wells Subject to Turbulent Head Losses. Journal of Hydrology. 208(3-4) pp. 223-236. https://doi.org/10.1016/S0022-1694(98)00170-X.
     
-    **Winter, T. C., Harvey, J. W., Franke, O. L., & Alley, W. M. (1998).** Ground water and surface water: A single resource (Circular No. 1139). US Geological Survey. https://doi.org/10.3133/cir1139
+    **Winter, T. C., Harvey, J. W., Franke, O. L., and Alley, W. M. (1998).** Ground water and surface water: A single resource (Circular No. 1139). US Geological Survey. https://doi.org/10.3133/cir1139
 """
 )
 
@@ -58,7 +60,7 @@ st.subheader("MODFLOW-Specific documents", divider='blue')
 
 st.markdown("""
     
-    ***MODFLOW family of codes:***
+    ***MODFLOW family of codes***
     
     **Boyce, S.E., Hanson, R.T., Ferguson, I., Schmid, W., Henson, W., Reimann, T., Mehl, S.M., and Earll, M.M. (2020).** One-Water Hydrologic Flow Model: A MODFLOW based conjunctive-use simulation software: U.S. Geological Survey Techniques and Methods 6–A60, 435 p., https://doi.org/10.3133/tm6A60.
     
@@ -71,7 +73,7 @@ st.markdown("""
     **McDonald, M.G. and Harbaugh, A.W. (1988).** A modular three-dimensional finite-difference ground-water flow model. U.S. Geological Survey Techniques of Water-Resources Investigations 06-A1. https://doi.org/10.3133/twri06A1.
 
     
-    _Dedicated documentation of advanced boundary conditions_
+    **_Dedicated documentation of advanced MODFLOW boundary conditions_**
     
     **Banta, E.R. (2000).** MODFLOW-2000, the U.S. Geological Survey Modular Ground-Water Model - Documentation of Packages for Simulating Evapotranspiration with a Segmented Function (ETS1) and Drains with Return Flow (DRT1): U.S. Geological Survey Open-File Report 00-466, 127 p.
     
@@ -80,17 +82,15 @@ st.markdown("""
     **Konikow, L.F., Hornberger, G.Z., Halford, K.J., and Hanson, R.T. (2009).** Revised multi-node well (MNW2) package for MODFLOW ground-water flow model: U.S. Geological Survey Techniques and Methods 6–A30, 67 p.
     
     
-    ***Other numerical model codes:***
+    ***Other numerical model codes***
     
-    **Voss, C.I., Provost, A.M., McKenzie, J.M., & Kurylyk, B.L. (2024).** SUTRA—A code for simulation of saturated-unsaturated, variable-density groundwater flow with solute or energy transport—Documentation of the version 4.0 enhancements—Freeze-thaw capability, saturation and relative-permeability relations, spatially varying properties, and enhanced budget and velocity outputs: U.S. Geological Survey Techniques and Methods, book 6, chap. A63, 91 p., https://doi.org/10.3133/tm6A63.
+    **Voss, C.I., Provost, A.M., McKenzie, J.M., and Kurylyk, B.L. (2024).** SUTRA—A code for simulation of saturated-unsaturated, variable-density groundwater flow with solute or energy transport—Documentation of the version 4.0 enhancements—Freeze-thaw capability, saturation and relative-permeability relations, spatially varying properties, and enhanced budget and velocity outputs: U.S. Geological Survey Techniques and Methods, book 6, chap. A63, 91 p., https://doi.org/10.3133/tm6A63.
     
-    ***User-Interfaces and other tools for using MODFLOW:***
+    ***User-Interfaces and other tools for using MODFLOW and SUTRA***
     
     **Bakker, M., Post, V., Hughes, J.D., Langevin, C.D., White, J.T., Leaf, A.T., Paulinski, S.R., Bellino, J.C., Morway, E.D., Toews, M.W., Larsen, J.D., Fienen, M.N., Starn, J.J., Brakenhoff, D.A., and Bonelli, W.P. (2025).** FloPy v3.10.0.dev3: U.S. Geological Survey Software Release, 13 May 2025, https://doi.org/10.5066/F7BK19FH
     
-    **Winston, R.B. (2024).** Revision of ModelMuse to support the use of PEST software with MODFLOW and SUTRA models: U.S. Geological Survey Techniques and Methods book 6, chap. A64, 56 p., https://doi.org/10.3133/tm6A64.
-    
-    https://water.usgs.gov/nrp/gwsoftware/ModelMuse/Help/beginners_guide_to_modflow.html
+    **Winston, R.B. (2024).** Revision of ModelMuse to support the use of PEST software with MODFLOW and SUTRA models: U.S. Geological Survey Techniques and Methods book 6, chap. A64, 56 p., https://doi.org/10.3133/tm6A64. Online ModelMuse Help: https://water.usgs.gov/nrp/gwsoftware/ModelMuse/Help/beginners_guide_to_modflow.html
 """
 )
 

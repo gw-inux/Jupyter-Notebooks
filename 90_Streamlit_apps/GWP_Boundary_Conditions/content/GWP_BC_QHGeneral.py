@@ -103,7 +103,7 @@ st.markdown("""
 #### 💡 Motivation - Boundary conditions and _Q_-_h_ plots in groundwater modeling
 Understanding how different boundary conditions influence groundwater flow is fundamental to building reliable groundwater models. Boundary conditions control how water enters, leaves, or interacts with the groundwater system, whether through specified heads, specified flows, or head-dependent exchanges such as rivers or drains. However, the behavior of these boundaries can be misinterpreted or misunderstood.
 
-This app provides an intuitive visual and interactive exploration of :blue[**_Q_-_h_ plots**], which are graphical representations of the :blue[**relationship between discharge (_Q_) and hydraulic head (_h_) at a boundary**], as shown in the following figure. :blue[**_Q_-_h_ plots**] are powerful conceptual tools to classify and compare the general response of boundary conditions in groundwater models.
+This app provides an intuitive visual and interactive exploration of :blue[**_Q_-_h_ plots**], which are graphical representations of the :blue[**relationship between groundwater outflow or inflow (_Q_) and hydraulic head (_h_) at a boundary**], as shown in the following figure. :blue[**_Q_-_h_ plots**] are powerful conceptual tools to classify and compare the general response of boundary conditions in groundwater models.
 """)
 
 left_co, cent_co, last_co = st.columns((20,80,20))
@@ -126,7 +126,7 @@ By engaging with this section of the interactive module, you will be able to:
 
 1. **Differentiate between specified head, specified flow, and head-dependent flux boundary conditions** and explain their conceptual roles in groundwater models.
 
-2. **Interpret _Q_–_h_ plots** to characterize the functional behavior of boundary conditions and understand how they respond to changes in system inputs.
+2. **Interpret _Q_–_h_ plots** to characterize the functional behavior of boundary conditions and understand how these plots respond to changes in system inputs.
 
 3. **Assess the influence of recharge and hydraulic conductivity** on the groundwater head distribution and the resulting flow dynamics at model boundaries.
 """)
@@ -191,9 +191,9 @@ with st.expander('Show more :blue[**background about the mathematical applicatio
     - $S_s$ is the specific storage [1/L], and
     - $t$ is time [T].
     
-    **Analytical solutions** of PDEs are limited to simple geometries, typically one-dimensional scenarios. Further down in this section of the modul, you will find two scenarios of groundwater flow that are examples of analytical solutions.
+    **Analytical solutions** of PDEs are limited to simple geometries, typically one-dimensional scenarios. Further down in this section of the module, you will find two scenarios of groundwater flow that are examples of analytical solutions.
     
-    Codes like MODFLOW ([McDonald and Harbaugh, 1988](https://doi.org/10.3133/twri06A1) **numerically solve** the PDE for a groundwater system by dividing it into three-dimensional volumes (cells or elements) to simulate complex aquifer systems (e.g., multiple aquifers and confining units) with complex boundary conditions. The shapes of these volumes vary by model code. For some methods the hydraulic head $h$ is computed at the centroid of each volume as in the block-centered finite difference method of the original MODFLOW88 or at the intersection of volume sides as in finite element method of SUTRA ([Voss et al., 2024](https://doi.org/10.3133/tm6A63)). For each volume, the models require geometry, hydraulic properties (e.g., $K$ and $S_S$ in the equation above), and boundary conditions (e.g., the term $W$ in the equation above). 
+    Codes like MODFLOW ([McDonald and Harbaugh, 1988](https://doi.org/10.3133/twri06A1)) **numerically solve** the PDE for a groundwater system by dividing it into three-dimensional volumes (cells or elements) to simulate complex aquifer systems (e.g., multiple aquifers and confining units) with complex boundary conditions. The shapes of these volumes vary by model code. For some methods the hydraulic head $h$ is computed at the centroid of each volume as in the block-centered finite difference method of the original MODFLOW88 or at the intersection of volume sides as in the finite element method of SUTRA ([Voss et al., 2024](https://doi.org/10.3133/tm6A63)). For each volume, the models require geometry, hydraulic properties (e.g., $K$ and $S_S$ in the equation above), and boundary conditions (e.g., the term $W$ in the equation above). 
     
     For a numerical model, a linear system of equations is prepared and then solved. This linear system is similar to an equation of a line in matrix form""")
 
@@ -207,7 +207,7 @@ with st.expander('Show more :blue[**background about the mathematical applicatio
     
     Flux is the rate of fluid movement across an area and flow is the product of the area and the flux. The size of the matrix $[A]$ is based on the number of head values, which is dependent on the number of discrete volumes and the solution method. Derivation of the block-centered flow, finite-difference solution for the partial differential groundwater flow equation is described in [McDonald and Harbaugh (1988)](https://doi.org/10.3133/twri06A1). The boundary conditions are added to the system of equations differently depending on the type of boundary condition.  
     
-    **MODFLOW** is the most widely used numerical groundwater modeling code and its basic form implements a block-centered-flow finite difference method. This boundary condition training module uses MODFLOW terminology. The simplest discrete volume in MODFLOW is a six-sided cube or cell located in three-dimensional model space by row, column, layer (indices i,j,k) with head solved at the centroid of each cell.
+    **MODFLOW** is the most widely used numerical groundwater modeling code and this boundary condition training module uses MODFLOW terminology. The simplest discrete volume in MODFLOW is a six-sided cube (a cell) located in three-dimensional model space by row, column, layer (indices i,j,k) with head solved at the centroid of each cell.
     """
     )
     left_co, cent_co, last_co = st.columns((20,80,20))
@@ -217,17 +217,17 @@ with st.expander('Show more :blue[**background about the mathematical applicatio
     
     st.markdown("""    
     
-    **A specified head** means that the head $h$ at that cell **is known** and the matrix equation does not need to be solved for $h_{(i,j,k)}$. With MODFLOW and the simplest discretization (6-sided cubes) the exact location in space is not required and so the indices for the location of each head, h is by row, column, layer (i,j,k), although more complex discretization schemes are allowed in MODFLOW6 ([Langevin et al., 2017] (https://doi.org/10.3133/tm6A55.)) which was developed after the early releases of MODFLOW.
+    **A specified head** means that the head $h$ at that cell **is known** and the matrix equation does not need to be solved for $h_{(i,j,k)}$. With MODFLOW and the simplest discretization (6-sided cubes) the exact location in space is not required and so the indices for the location of each head $h$ is by row, column, layer (i,j,k), although more complex discretization schemes are allowed in MODFLOW6 [Langevin et al., 2017](https://doi.org/10.3133/tm6A55). which was developed after the early releases of MODFLOW.
     
-    **A specified flow** means that the flow $Q$ **is known** and therefore is added directly to $Q$ for that cell, _Q(i,j,k)_. In MODFLOW there are two packages for specified flow, the Recharge package (RCH) and the Well package (WEL).  The two packages work a bit differently but essentially add a value of Q to the right-hand side vector $Q$.  Additionally, most codes will sum all of the _Q_’s specified for one cell or element using correct signs for inflow(+) and outflow(-) to the model, resulting in a net _Q_. 
+    **A specified flow** means that the flow $Q$ **is known** and therefore is added directly to the right-hand side vector $Q$ for that cell, _Q(i,j,k)_. In MODFLOW there are two packages for specified flow, the Recharge package (RCH) and the Well package (WEL). The two packages work a bit differently but essentially add a value to the right-hand side vector $Q$.  
     
-    **A well** specifies a volumetric flow rate, an abstraction well removes water(-) and an injection well supplies water(+). The WEL package of MODFLOW has an input structure assigning pumping rate by each cell in length cubed per volume and any multiple wells that fall into the same cell can be added to the $Q$ vector individually.
+    **A well** specifies a volumetric flow rate, an abstraction well removes water(-) and an injection well supplies water(+). The WEL package of MODFLOW can add any number of wells to a cell, each with a rate in length cubed per volume per time and the flow rate for all wells in the cell are summed and the sum is added to the $Q$ vector for that cell location.
     
-    **Recharge adds** water to each cell where recharge is assigned (+). The RCH recharge package of MODFLOW allows users to assign a recharge rate to the top active layer in length per time and the code uses the area of the top of each cell to calculate the _Q_ [L³/T] then puts that rate into each location of the $Q$ vector. 
+    **Recharge** is assigned as a rate in length per time [L/T] to the top of each model cell and the rate is multipled by the area of the top of the cell to calculate the volumetric flow rate _Q_ [L³/T] which is added to the $Q$ vector for that cell location. 
     
-    Thus, recharge and wells can be assigned to the same cell. Their flow rates are summed to obtain a net flow rate.
+    Thus, recharge and wells can be assigned to the same cell. Their flow rates are summed to obtain a net flow rate for input to the matrix.
     
-    Specified heads and specified flows represent **boundary conditions** *(more explanation about boundary conditions follows in the subsequently part of this section)*. Since both the Specified head and Specified flux boundary conditions are easier to implement in the matrix equations, **this module focuses on the more complicated head-dependent flux boundary condition** packages of MODFLOW. These head-dependent flux packages add terms to both the matrix $[A]$ and the right-hand side vector $Q$ at each cell, or element, where a boundary condition is applied.  There are different packages in MODFLOW that apply to different types of head-dependent flux boundary conditions. Some supply volumetric rates by multiplying a flux [L/T] and an area [L²], and some supply volumetric rates [L³/T] directly.
+    Both the Specified head and Specified flux boundary conditions are straightforward with respect to implementation in the matrix equations and easier to understand conceptually (one fixes the head at a location and the other fixes a flow). The head-dependent-boundary conditions are more complex, in that flow at the boundary varies in magnitude and possibly direction depending on the simulated head at the boundary, model parameters, and other factors. Consequently, **this module focuses on the more complicated head-dependent flux boundary condition** packages of MODFLOW. These head-dependent flux packages add terms to both the matrix $[A]$ and the right-hand side vector $Q$ at each cell, or element, where a boundary condition is applied. There are different packages in MODFLOW that apply to different types of head-dependent flux boundary conditions. Some supply volumetric rates by multiplying a flux [L/T] and an area [L²], and some supply volumetric rates [L³/T] directly.
     """)
 
 st.markdown("""
@@ -241,15 +241,15 @@ Additional, excellent discussion of boundary conditions is provided by [T.E. Rei
 )
 with st.expander("Show more :blue[**explanation about the boundary condition types**]"):
     st.markdown("""
-    Groundwater models use different boundary condition types to represent different hydrological conditions. Each type defines a specific way that flow and head interact at the boundary, reflecting the physical behavior of the natural or engineered system. **The different types of boundaries and associated _Q_–_h_ plots** can be investigated by scrolling down to the Computation and Visualization section of this introduction and using the two example configurations of a one-dimensional unconfined aquifer (:green[**Scenario 1**] and :red[**Scenario 2**]). First, each type of boundary is described here.
+    Groundwater models use different boundary condition types to represent different hydrological conditions. Each type defines a specific way that flow and head interact at the boundary, reflecting the physical behavior of the natural or engineered system. **The different types of boundaries and associated _Q_–_h_ plots** can be investigated by scrolling down to the Computation and Visualization section of this introduction and using the analytical solutions for two example configurations of a one-dimensional (1-D) unconfined aquifer (:green[**Scenario 1**] and :red[**Scenario 2**]). First, each type of boundary is described here.
     
     #### TYPE I. Specified Head Boundary (Dirichlet condition)
     
-    **Definition:** For the analytical 1-D solution illustrated in this introductory section, hydraulic head is fixed at a specific value on one, or both, of the lateral boundaries. The flow across the boundary is proportional to the difference between the groundwater head $h_{gw}$ at the boundary and an external water level $h_{bc}$. The specified head represents the stage of an incised waterbody such as a river or lake. The model hydraulic conductivity controls the flux across the boundary in response to the head difference $h_{gw}$-$h_{bc}$.
+    **Definition:** For the analytical 1-D solutions illustrated in this introductory section, hydraulic head is fixed at a specific value on one, or both, of the lateral boundaries. The flow across the boundary is proportional to the difference between the groundwater head $h_{gw}$ at the boundary and an external water level $h_{bc}$. The specified head represents the stage of an incised waterbody such as a river or lake. The model hydraulic conductivity controls the flux across the boundary in response to the head difference $h_{gw}$-$h_{bc}$. In mathematical terminology, a Dirichlet condition is a boundary condition which specifies the value of the model solution, and a groundwater model solves for head.
     
-    In a numerical code, hydraulic head can be specified in any node in a cell or element. It is then input to the system of equations described in the previous drop-down section "Show more :blue[background about the mathematical application of boundary conditions in models]". With the head specified, the flow in or out of each side of the cell is calculated using the conductance across each side of the cell based on the effective hydraulic conductivity between the adjacent cells and the gradient determined by the specified head and the head in the adjacent cell which is determined by the model simulation. The most common package of **MODFLOW** for specifying a head is the **Time Variant Specified Head package CHD**.
+    In a numerical code, hydraulic head can be specified in any node in a cell or element. It is then input to the system of equations described in the previous drop-down section "Show more :blue[background about the mathematical application of boundary conditions in models]". The flow in or out of each side of a specified-head cell is calculated using the conductance across each side of the cell and the gradient between the specified head and the head in the adjacent cell. The conductance is based on the effective hydraulic conducitivty between the adjacent cells and the head in the adjacent cell is calculated by the model simulation. The most common package of **MODFLOW** for specifying a head is the **Time Variant Specified Head package CHD**.
     
-    **Effect:** Using a specified head boundary simplifies the representation of the field system by imposing the average head of a water body at its location in the model. This can be more or less appropriate depending on the system. It is more appropriate for representing a strong external control like a large river or lake, or an ocean. It is less appropriate for representing a small water body that cannot provide/receive water to/from the groundwater system without experiencing a water level change. It is also not appropriate for representing a water body that has a low hydraulic conductivity bed that provides resistance to flow. 
+    **Effect:** Using a specified head boundary simplifies the representation of the field system by imposing the average head of a water body at its location in the model. This can be more or less appropriate depending on the system. It is more appropriate for representing a strong external control like a large river or lake, or an ocean. It is less appropriate for representing a small water body that cannot provide/receive water to/from the groundwater system without experiencing a water level change. It is also not appropriate for representing a water body that has a low-hydraulic-conductivity bed that provides resistance to flow. 
     
     The specified head boundary serves as an unlimited sink/source of water. For example, if a high-capacity pumping well was placed in a model next to a specified head boundary, that boundary condition would provide the  inflow required to satisfy the pumping well without the head changing at the boundary regardless of the flow rate through the boundary.
     
@@ -258,11 +258,11 @@ with st.expander("Show more :blue[**explanation about the boundary condition typ
     - :red[**Scenario 2**]: The right boundary (_x_ = _L_) has a specified head of 150 m. The left boundary (_x_ = _0_) has a user-defined specified head that can range between 145 m and 155 m.
     
     #### TYPE II. Specified-Flow Boundary (Neumann condition)
-    **Definition:** For the analytical 1-D solution illustrated in this introductory section, a specified flow of water crosses the top boundary. The specified flow represents recharge, which is water that infiltrates to the water table. The recharge rate is provided and multiplied by the surface area to obtain the volumetric inflow rate. Head in the groundwater adjusts to accommodate the recharge and depending on the model hydraulic conductivity and conditions at the other boundaries. :green[Scenario 1] includes another specified-flow boundary that is a special case of a specified-flow boundary, a no-flow boundary, with zero flow normal to the boundary. This can represent an impermeable material or a hydraulic groundwater divide that does not shift in response to model conditions. 
+    **Definition:** For the analytical 1-D solution illustrated in this introductory section, a specified flow of water crosses the top boundary. The specified flow represents recharge, which is water that infiltrates to the water table. The recharge rate is provided and multiplied by the surface area to obtain the volumetric inflow rate. Head in the groundwater adjusts to accommodate the recharge. This adjustment also depends on the model hydraulic conductivity and conditions at the other boundaries. :green[Scenario 1] includes another specified-flow boundary that is a special case of a specified-flow boundary, a no-flow boundary, with zero flow normal to the boundary. This can represent an impermeable material or a hydraulic groundwater divide that does not shift in response to model conditions. In mathematical terminology, a Neumann condition is a boundary condition with specified values of a derivative of the model solution (flow is calculated from the gradient, or derivative, of head). 
     
-    For a three-dimensional numerical model such as a MODFLOW block-centered-flow formulation, a specified flow of water [L³/T] can be assigned to any cell. It is input to the right-hand side vector $Q$ in the system of equations described in the previous drop-down section "Show more :blue[background about the mathematical application of boundary conditions in models]". Typically, model software provides options for assigning specified fluxes to a numerical model cell. In MODFLOW, a method for representing wells allows specifying the $q$ for each well in a cell, then summing the $q$’s and placing the net $q$ in the right-hand side vector for that cell. Another method for assigning flux is used to represent recharge. This allows assignment of a rate [L/T] that is multiplied by the area of the top of the cell then summing it with other fluxes applied to that cell and placing the net $q$ in the right-hand side vector for that cell.
+    For a three-dimensional numerical model such as a MODFLOW block-centered-flow formulation, a specified flow of water [L³/T] can be assigned to any cell. It is input to the right-hand-side vector $Q$ in the system of equations described in the previous drop-down section "Show more :blue[background about the mathematical application of boundary conditions in models]". Typically, model software provides options for assigning specified fluxes to a numerical model cell. In MODFLOW, a method for representing wells allows specifying the $Q$ for each well in a cell, then summing the $Q$’s and placing the net $Q$ in the right-hand side vector for that cell. A different method for assigning flux is used to represent recharge. This allows assignment of a rate [L/T] that is multiplied by the area of the top of the cell then summing it with other fluxes applied to that cell and placing the net $Q$ in the right-hand side vector for that cell.
     
-    **Effect 1:** A specified flux boundary can represent recharge where flow across the model surface enters (or exits for a negative recharge rate such as for evapotranspiration in the 1-D analytical solution shown in this section). The system and heads within the model rise or fall depending on the specified flow rate. For three-dimensional numerical models specified flows can be assigned to the top of a cell to represent recharge or within a cell to represent a pumping or injection well.
+    **Effect 1:** A specified flux boundary can represent recharge where flow across the model surface enters (or exits for a negative recharge rate such as for evapotranspiration in the 1-D analytical solution shown in this section). The heads within the model rise or fall depending on the specified flow rate. For three-dimensional numerical models specified flows can be assigned to the top of a cell to represent recharge or within a cell to represent a pumping or injection well.
     
     **Effect 2:** If the rate is specified as zero, then water cannot flow into or out of the system across that boundary of the analytical model. Usually, the default is for all external boundaries to be no-flow, unless the modeler specifies differently. For a three-dimensional numerical model, no-flow is often accomplished by indicating that a cell is inactive and this can be done for any cell in the model. For example, there can be an impermeable zone in the middle of a model domain. A no-flow condition can be achieved in the flow-equation formulation by setting the hydraulic conductivity to zero.
     
@@ -270,26 +270,28 @@ with st.expander("Show more :blue[**explanation about the boundary condition typ
     - :green[**Scenario 1**]: The left boundary (_x_ = 0) is a no-flow boundary, simulating an impermeable barrier. The recharge on the top is a specified flow boundary at a rate that can be adjusted by the user.
     - :red[**Scenario 2**]: In this scenario, the only specified flow boundary is the top and the rate can be adjusted by the user.
     
-    #### TYPE III. Head-Dependent Flux Boundary (Cauchy, Mixed, and Robin condition)
-    **Definition:** The flow across the boundary $Q_B$ is proportional to the difference between the groundwater head $h_{gw}$ at the boundary and an external head of the boundary $h_{bc}$ (e.g., river stage, adjacent groundwater head, drain elevation). A *conductance factor $Q_B$ controls the flux across the boundary in response to the head gradient* between the model and the boundary.
+    #### TYPE III. Head-Dependent Flux Boundary (Robin condition, often confused with a Cauchy condition in groundwater modeling 
+    **Definition:** The flow across the boundary $Q_B$ is proportional to the difference between the groundwater head $h_{gw}$ at the boundary and the external head of the boundary feature $H_{bc}$ (e.g., river stage, adjacent groundwater head, drain elevation). A *conductance factor $Q_B$ controls the flux across the boundary in response to the head gradient* between the model and the boundary. In mathematical terminology, this is a Robin condition.
     """)
     
     st.latex(r"""
-    Q_B = C_B(h_{gw}-h_{bc})
+    Q_B = C_B(h_{bc}-h_{gw})
     """)
     
-    st.markdown("""
-    In some cases, geometric aspects of the feature represented by the boundary are used to limit or prevent flow to, or from, the boundary depending on the value of head in the groundwater at the boundary.
-    """)
     lc01, cc01, rc01 = st.columns((10,60,10))
     with cc01:
         st.image('90_Streamlit_apps/GWP_Boundary_Conditions/assets/images/GHBintro.png', caption="General concept of a head dependent flow boundary condition (from  McDonald and Harbaugh, 1988)")
-
+        
+    st.markdown("""
+    For some head-dependent flux boundary conditions in MODFLOW, geometric aspects of the feature represented by the boundary are used to limit or prevent flow to, or from, the boundary depending on the value of head in the groundwater at the boundary. In the case where this limit is reached, a Neumann condition prevails. 
+    
+    This boundary condition type has commonly been called a Cauchy condition in the groundwater modeling community. The correct definitions of Cauchy and Robin conditions, and the confusion between them, is explained by [Jazayeri and Werner, 2019](https://doi.org/10.1111/gwat.12893). They also discuss some of the boundary packages presented in this module (GHB, RIV, DRN, and EVT) and explain when they behave as a Robin condition and when they behave as a Neumann condition.
+    """)
     
     st.markdown("""
-    **Effect:** A head-dependent flow boundary provides a resistive zone between the aquifer and the water body that the boundary represents. Depending on the head difference between the model calculated head in the groundwater at the boundary and the assigned head from the boundary condition (e.g., river stage or drain elevation), the boundary can act as sink or source. 
+    **Effect:** A head-dependent flow boundary provides a resistive zone between the groundwater and the water body that the boundary represents. Depending on the head difference between the model calculated head in the groundwater at the boundary and the assigned head from the boundary condition (e.g., river stage or drain elevation), the boundary can act as sink or source. 
     
-    In other words, the boundary behaves as a specified head boundary with a resistive connection as opposed to a direct connection to the water body being represented. Like a specified-head boundary, the head in the feature represented by the boundary condition does not change no matter how much water flows into or out of the groundwater system. The difference is the additional resistive layer and the limit to flow based on the geometry of the feature represented by the boundary.
+    In other words, the boundary behaves as a specified head boundary with a resistive connection as opposed to a direct connection to the water body being represented. Like a specified-head boundary, the head in the feature represented by the boundary condition does not change no matter how much water flows into or out of the groundwater system. The difference is the additional resistance and the limit to flow based on the geometry of the feature represented by the boundary.
     
     **Example application in the subsequent interactive plots:**
     - :green[**Scenario 1**]: The specified head boundary on the right becomes head-dependent when the River BC toggle is activated (under the assumption that the river is exchanging water with the aquifer at the boundary under fully saturated conditions, allowing water to freely discharge to, or be recharged from, the river system). 
@@ -299,10 +301,10 @@ with st.expander("Show more :blue[**explanation about _Q_-_h_ plots**] that desc
     st.markdown("""
     The relationship between discharge (_Q_) and hydraulic head (_h_) at model boundaries provides a powerful way to conceptualize and compare different types of boundary conditions in groundwater flow modeling. _Q_-_h_ plots visually illustrate how flow into or out of a model domain responds to parameter changes, highlighting the fundamental behavior of specified-head, specified-flow, and head-dependent flux boundaries. These plots serve as intuitive tools to understand how boundary conditions influence system response, and how they are implemented in models like MODFLOW.
     
-    The following figure from the [MODFLOW6 documentation (Langevin et al., 2017)](https://doi.org/10.3133/tm6A55) presents various _Q_-_h_ plots to describe the boundary conditions in MODFLOW. :red[These plots are very powerful but not easy to understand.] You can toggle for :green[an adapted version of the plots that provides more information and explanation.]
+    The following figure from the [MODFLOW6 documentation (Langevin et al., 2017)](https://doi.org/10.3133/tm6A55) presents various _Q_-_h_ plots to describe the boundary conditions in MODFLOW. :red[These plots are very powerful but not easy to understand.] You can toggle for :green[an annotated version of the plots that provides more information and explanation.]
     """
     )
-    modified_plot = st.toggle('**Toggle here** to see the :green[**adapted version**].')
+    modified_plot = st.toggle('**Toggle here** to see the :green[**annotated version**].')
     
     st.markdown("""
     :blue[**The subsequent parts**] of this module allow investigation of these _Q_-_h_ plots :rainbow[**with color coded sections**] for various boundary conditions (_these are accessible via links on the left menu of this module_).
@@ -312,9 +314,9 @@ with st.expander("Show more :blue[**explanation about _Q_-_h_ plots**] that desc
     
     with cc1:
         if modified_plot:
-            st.image('90_Streamlit_apps/GWP_Boundary_Conditions/assets/images/Q_h_plots_MF2005_v2.png', caption="Q-h plots describing the behavior of boundary conditions, [adapted from Langevin et al., 2017] (https://doi.org/10.3133/tm6A55.)")
+            st.image('90_Streamlit_apps/GWP_Boundary_Conditions/assets/images/Q_h_plots_MF2005_v3.png', caption="Q-h plots describing the behavior of boundary conditions, [adapted from Langevin et al., 2017] (https://doi.org/10.3133/tm6A55.)")
         else:
-            st.image('90_Streamlit_apps/GWP_Boundary_Conditions/assets/images/Q_h_plots_MF6.png', caption="Q-h plots describing the behavior of boundary conditions, [from Langevin et al., 2017] (https://doi.org/10.3133/tm6A55.)")
+            st.image('90_Streamlit_apps/GWP_Boundary_Conditions/assets/images/Q_h_plots_MF6_v2.png', caption="Q-h plots describing the behavior of boundary conditions, [modified from Langevin et al., 2017] (https://doi.org/10.3133/tm6A55.)")
     
 # --- EXPLANATORY EXAMPLES ---
 st.subheader('💫 Examples that explain the use of Q-h plots to illustrate boundary conditions', divider='blue')
@@ -399,7 +401,7 @@ with st.expander('Show more about the theory of the :blue[**model and the analyt
     
     st.markdown("""
             where:
-            - _h(x)_: hydraulic head at location _x_ (m),
+            - _h(x)_: hydraulic head at location _x_ (meters (m),
             - _L_: domain length (m),
             - _h<sub>0</sub>_: head at the specified-head boundary at _x_ = _0_ (m),
             - _h<sub>L</sub>_: head at the specified-head boundary at _x_ = _L_ (m),
@@ -412,8 +414,8 @@ with st.expander('Show more about the theory of the :blue[**model and the analyt
 
 st.subheader('📈 Computation and Visualization', divider='blue')
 st.markdown("""Subsequently, the solutions are computed and results are visualized. You can vary the parameters to investigate the functional behavior of the system. In general, you can modify the
-- **recharge _R_** (in mm/a) and 
-- **hydraulic conductivity _K_** (in m/s), 
+- **recharge _R_** in millimeters/year (mm/yr) and 
+- **hydraulic conductivity _K_** in meters/second (m/s), 
 - with additional modifications depending on your choice of :green[**Scenario 1**] or :red[**Scenario 2**]. 
 
 On the right side of the control panel, you can select which **_Q_-_h_ relationship** you would like to plot for different model boundaries. The position within the model plot for the head represented in the _Q_-_h_ plot is marked by a colored circle. Additionally, you can toggle to turn the _Q_-_h_ plots 90 degrees clockwise to view _h_-_Q_ plots which are more intuitive for most of us.
@@ -430,7 +432,7 @@ with colplot2:
 
 if show_plot1:    
     st.markdown("""
-    #### :green[**Additional Instructions for Scenario 1:**]
+    #### :green[**Scenario 1:**]
     
     You can toggle between a :blue[specified head] and a :violet[head-dependent river boundary] condition on the right side of the model. If the :violet[river] boundary is chosen, you can modify the river-aquifer conductance. 
     
@@ -471,12 +473,12 @@ if show_plot1:
                 K = float(selected_K)
                 # Recharge
                 st.write("")
-                R = st.slider('**Recharge** $R$ in mm/a',-300,300,0,1)
+                R = st.slider('**Recharge** $R$ in mm/yr',-300,300,0,1)
                 R = R/1000/365.25/86400
     
         with columns[1]:
             with st.expander("Click to Modify **Boundary Condition Parameters**:"):
-                riv = st.toggle (':violet[**Head-dependent flux BC?**]', key = 'riv_toggle')
+                riv = st.toggle (':violet[**Head-dependent flux BC on right side?**]', key = 'riv_toggle')
                 if riv:
                     # Log slider for river conductance                    
                     labels, default_label = prep_log_slider(default_val = 1e-4, log_min = log_min2, log_max = log_max2)
@@ -680,7 +682,7 @@ if show_plot1:
                 ax_qh.axvline(150, color='grey', linestyle='--', linewidth=0.8)
         else:
             ax_qh.set_ylim(-1,1)
-            ax_qh.text(150,0.75,"No Q–h plot selected.\n\nScroll down for Initial Instructions \n\nor select a Q–h plot type in the INPUT CONTROLS (right-hand menu).", ha='center', va='center', fontsize=13, wrap=True)
+            ax_qh.text(150,0.75,"No Q–h plot selected.\n\nScroll down for Instructions \n\nor select a Q–h plot type in the INPUT CONTROLS (right-hand menu).", ha='center', va='center', fontsize=13, wrap=True)
             ax_qh.axis('off')
         
         st.pyplot(fig)
@@ -688,53 +690,55 @@ if show_plot1:
         if "No-flow" in bc_type:
             st.markdown("""_The dashed line in the plot represents the specified head at the right boundary with $h_{2500}$ = 150 m._""")
         
-        with st.expander('Show the 🧪:green[**INITIAL INSTRUCTIONS for using the interactive plot for Scenario 1**]'):
+        with st.expander('Show the 🧪:green[**INSTRUCTIONS for using the interactive plot for Scenario 1**]'):
             st.markdown("""
             **Getting Started with the Interactive Plot** Instructions for :green[**Scenario 1**]: Exploring Model Behavior and _Q_-_h_ Relationships
             
             Use the interactive tools in :green[**Scenario 1**] to investigate how model parameters and boundary conditions affect hydraulic head distributions and boundary flows. Follow the steps below to explore key relationships and system behavior.
             
             **1. Modify Model Parameters**
-            - Open the Control Panel and click "Modify Model Parameters".
+            - Open the INPUT CONTROLS and click "Click to Modify Model Parameters".
             - Begin by increasing (or decreasing) the Recharge rate.
             - Observe how the hydraulic head distribution changes throughout the domain.
-            - Next, adjust the Hydraulic Conductivity:
-               - 🔽 Lower values result in steeper gradients due to the reduced transmissivity (for positive recharge heads rise and for negative recharge heads decline).
-               - 🔼 Higher values result in lower gradients due to increased transmissivity (for positive recharge heads decline and for negative recharge heads rise).
+            - Next, adjust the Hydraulic Conductivity (K):
+               - 🔽 Lower values result in steeper gradients due to the reduced transmissivity (As K is decreased: for positive recharge, heads rise and for negative recharge heads decline).
+               - 🔼 Higher values result in lower gradients due to increased transmissivity (As K is increased: for positive recharge, heads decline and for negative recharge heads rise).
             - Proceed with a higher hydraulic conductivity and note the changes in head profiles.
             
             **2. Activate and Explore the _Q_-_h_ Plot**
-            - Navigate to the Input Menu and click "Click for the _Q_-_h_ plot".
-            - Select one of the available _Q_-_h_ plots to display. Start with the No-Flow Boundary.
-            - The red dot in the _Q_-_h_ plot represents the _Q_-_h_ state at a specific point in the model (upper figure).
-            - This point corresponds to the selected boundary condition and dynamically updates.
+            - Navigate to the INPUT CONTROLS and click "Click for the _Q_-_h_ plot".
+            - Select the No-flow _Q_-_h_ plot for display.
+            - The red dot in the _Q_-_h_ plot represents the flow and head at the location of the dot in the model shown in the upper figure.
+            - With the No-flow _Q_-_h_ plot selected, this point corresponds to the no-flow boundary on the left and updates as parameter values are changed.
+            - The black line shows how $Q_{in}$ varies as head at the no-flow boundary varies from 140 to 160 m. 
             
             **3. Analyze Parameter Sensitivity**
             - Vary the recharge and observe how the red dot shifts vertically:
-                - For the No-Flow Boundary, the flow remains constant at zero, while the head adjusts with changing parameters.
-                - Change hydraulic conductivity and again observe the effect on head and the red dot location.
+                - For the No-Flow Boundary, the flow remains constant at zero, while the head adjusts with changing parameters. When using a relatively high hydraulic conductivity, the calculated head at the boundary does not substantially change.
+                - Lower the hydraulic conductivity and again observe the effect on head and the red dot location.
             
             **4. Explore Head-dependent (River) Boundaries**
-            - Return to the Input Menu, activate the River boundary, and then activate the _Q_-_h_ plot for the River Boundary.
+            - Return to the INPUT CONTROLS, activate the River boundary, and then activate the _Q_-_h_ plot for the River Boundary.
             - While the River Boundary is active:
               - Adjust Recharge and note how both hydraulic head and flow change.
               - Modify the River Conductance (_the units of the conductance are m²/s, this is explained in the :violet[**RIV**] section of the module._): Observe the head changes in the model and the different appearance of the ***Q-h*** plot. This demonstrates some characteristics of head-dependent boundaries. The next step considers the application of these boundary conditions.
               
             **5. Understand the Role of Head-Dependent Boundaries in Applied Groundwater Modelling** 
             
-            Head-dependent boundaries (such as River, General Head, or Drain boundaries) are commonly used to simulate interactions between an aquifer and external systems, where the flow across the boundary is not fixed, but governed by a conductance term and the difference in head between the groundwater at the boundary and the boundary elevation or head of the external system (_this is explained more in the sections :orange[**GHB**], :violet[**RIV**], :green[**DRN**] of this module_).
+            Head-dependent boundaries (such as River, General Head, or Drain boundaries) are commonly used to simulate interactions between an aquifer and external systems, where the flow across the boundary is not fixed, but governed by a conductance term and the difference in between the groundwater head calculated at the boundary and the boundary elevation or head of the external system (_this is explained more in the sections :orange[**GHB**], :violet[**RIV**], :green[**DRN**] of this module_).
             
             The use of these boundaries can be considered in two fundamentally different ways depending on the modeling context, first:
             
             **a) During Model Calibration or Model Setup:** One might have field data indicating the groundwater discharge to the river (for example 1.6x10⁻⁵ m³/s per meter length of river). Given that the river is the only outlet of the model, the recharge rate can be calculated by dividing the discharge by the surface area of the model (2500 m by 1 m). Then, the hydraulic conductivity and conductance can be adjusted until the model heads match the measured field heads.
             
             To explore this behavior:
-            - Set the recharge to a value of (approximately) 200 mm/a.
+            - Set the boundary on the right side of the model to a specified head.
+            - Set the recharge to a value of (approximately) 200 mm/yr.
             - Use the toggle to show the ***Q-h*** plot of the specified head boundary (on the right side). The blue dot represents the outflow at the boundary.
             - Modify the hydraulic conductivity and the recharge to see how the Q-h plot reacts (focus on the blue dot that represents the head and flow at the boundary).
-            - Reset the recharge to a value of (approximately) 200 mm/a.
+            - Reset the recharge to a value of (approximately) 200 mm/yr.
             - Now toggle in the middle section of the :green[INPUT CONTROLS] for the :violet[River BC]. Make sure that the ***Q-h*** plot for the River boundary is active. The magenta-dot represents the outflow and head at the boundary.
-            - Assess the difference between the Specified head and the River boundary by setting and resetting the :violet[River BC] toggle and study the ***Q-h*** plot with the aquifer hydraulic conductivity higher than the river conductance. The flow, which is solely a function of the recharge, is identical but the head at the boundary is increased if the :violet[River BC] is active AND the conductance value is less than the aquifer hydraulic conductivity (the same would be the case for other head-dependent boundary conditions like :orange[**GHB**] or :green[**DRN**]. If the conductance is higher than the aquifer hydraulic conductivity, then including the river bed does not change the heads in the system. If the conductance is much lower than the aquifer hydraulic conductivity then there is a steep gradient near the river.
+            - Assess the difference between the Specified head and the River boundary by setting and resetting the :violet[River BC] toggle and study the ***Q-h*** plot with the aquifer hydraulic conductivity higher than the river conductance. The flow, which is solely a function of the recharge, is identical but the head at the boundary is increased if the :violet[River BC] is active AND the conductance value is less than the aquifer hydraulic conductivity (the same would be the case for other head-dependent boundary conditions like :orange[**GHB**] or :green[**DRN**]). If the conductance is higher than the aquifer hydraulic conductivity, then including the river bed does not change the heads in the system. If the conductance is much lower than the aquifer hydraulic conductivity then there is a steep gradient between the aquifer head calculated at the boundary and the river stage.
             - It is useful to experiment with values of conductance $C_{Riv}$ and observe how the heads in the model and the ***Q–h*** relationship change.
             
             A second way to use the river boundary: 
@@ -777,7 +781,7 @@ if show_plot1:
 if show_plot2:
     
     st.markdown("""
-    #### :red[**Additional Instructions for Scenario 2:**]
+    #### :red[**Scenario 2:**]
     
     You can modify the :blue[specified head] elevation at the left side (the right-side hydraulic head is fixed at 150 m). The interactive plot will indicate the boundary flow (inflow or outflow) for both :blue[specified head boundaries].   
     
@@ -812,7 +816,7 @@ if show_plot2:
                 selected_K2 = st.select_slider("**Hydr. conductivity** $K$ in m/s", labels, default_label, key = "K_2")
                 K2 = float(selected_K2)
                 st.write("")
-                R2 = st.slider('**Recharge** $R$ in mm/a ',-300,300,0,1)
+                R2 = st.slider('**Recharge** $R$ in mm/yr ',-300,300,0,1)
                 R2 = R2/1000/365.25/86400
         
         with columns[1]:
@@ -1077,14 +1081,14 @@ if show_plot2:
 #                ax_qh.axvline(150, color='grey', linestyle='--', linewidth=0.8)
         else:
             ax_qh.set_ylim(-1,1)
-            ax_qh.text(150,0.75,"No Q–h plot selected.\n\nScroll down for Initial Instructions \n\nor select a Q–h plot type in the INPUT CONTROLS (right-hand menu).", ha='center', va='center', fontsize=13, wrap=True)
+            ax_qh.text(150,0.75,"No Q–h plot selected.\n\nScroll down for Instructions \n\nor select a Q–h plot type in the INPUT CONTROLS (right-hand menu).", ha='center', va='center', fontsize=13, wrap=True)
             ax_qh.axis('off')
             # Draw a blank subplot (white background, no ticks, no frame)
             #ax_qh.axis('off')
         
         st.pyplot(fig)
         
-        with st.expander('Show the 🧪:red[**INITIAL INSTRUCTIONS for using the interactive plot for Scenario 2**]'):
+        with st.expander('Show the 🧪:red[**INSTRUCTIONS for using the interactive plot for Scenario 2**]'):
             st.markdown("""
             **Getting Started with the Interactive Plot** Instructions for :red[**Scenario 2**]: Recharge, Groundwater Divide, and Boundary Flow Response
             
@@ -1094,20 +1098,22 @@ if show_plot2:
             - Click "Modify Model Parameters" in the Control Panel to begin.
             - Increase the Recharge:
               - A red vertical line will appear in the plot, marking the location of the groundwater divide.
+              - Blue arrows will appear in the plot, indicating the direction and magnitude of recharge.
               - Adjust the Hydraulic Conductivity:
                 - 🔽 Lower values create steeper gradients and form a distinct “groundwater mound”.
                 - Use a very low hydraulic conductivity to clearly visualize this effect.
             
             **2. Investigate Flow and Divide Behavior**
-            - The plot dynamically shows outflow values across the boundaries.
-            - Click the middle tab in the Input Controls to access Boundary Condition Parameters.
+            - The plot dynamically shows flow values across the boundaries. A negative Q indicates outflow at the boundary and a positive value indicates inflow.
+            - Click the middle tab in the INPUT CONTROLS to access Boundary Condition Parameters.
             - Modify the elevation of the left specified head boundary:
-              - 🔼 Increasing the left head: Shifts the groundwater divide to the left. This also increases the hydraulic gradient and flow at the right boundary. The flow at the boundary increases because the area (right from the divide) that collects recharge is larger. 
+              - 🔼 Increasing the left head: Shifts the groundwater divide to the left. This also increases the hydraulic gradient and flow at the right boundary. The flow at the boundary increases because the area (between the divide and the right boundary) that collects recharge is larger. 
+              - If the flow magnitude at the left boundary becomes greater than 3x10⁻⁵ m³/s, use the toggle to increase the Q axis range.
               - 🔽 Decreasing the left head: Moves the divide to the right. Accordingly, reduces the contributing recharge area to the right boundary and lowers outflow.
-              - Using a high 🔼 head on the left coupled with a low 🔽 recharge rate and a high 🔼 hydraulic conductivity results in flow through the aquifer from left to right at a rate higher than the inflowing recharge and there is there is no flow divide within the model.
+              - Using a high 🔼 head on the left coupled with a low 🔽 recharge rate and a high 🔼 hydraulic conductivity results in flow through the aquifer from left to right at a rate higher than the inflowing recharge and there is no flow divide within the model.
             
             **3. Explore the _Q_-_h_ Plot Dynamics**
-            - Activate the _Q_-_h_ Plot for the Right Specified Head Boundary:
+            - Activate the _Q_-_h_ Plot for the right specified head boundary:
               - A blue dot in the main plot highlights the boundary condition point.
               - The _Q_-_h_ plot shows this as a blue dot at a fixed head of 150 m.
             - As you adjust the left specified head, observe how the blue dot moves:

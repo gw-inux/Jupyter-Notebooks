@@ -36,7 +36,7 @@
     "question": "Which conditions can cause a DRN boundary to remove too much water from the model? (Mark ALL correct answers)",
     "options": {
       "A) An unrealistically high conductance": true,
-      "B) If the drain diameter is too large": false,
+      "B) If the drain diameter is too large when calculating conductance": true,
       "C) Drain elevations set too low": true,
       "D) Aquifer transmissivity set too high": false
     },

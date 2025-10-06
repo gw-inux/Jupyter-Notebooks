@@ -104,7 +104,7 @@ with columns0[0]:
     
     3. **How can you allow a spring to develop when head in an unconfined aquifer rises to the ground surface?** 
     
-    ▶️ The :green[**Drain (DRN) Boundary**] in MODFLOW is designed for such situations. It allows water to leave the groundwater compartment only if the head in the groundwater $h_{gw}$ exceeds the drain elevation $H_D$. **A drain can never provide inflow to a model**. _The Drain Return Package, DRT, can be used to return flow from a drain to another location in the groundwater system._ The outflow $Q_{D}$ is computed using the drain conductance $C_D$ as: """)
+    ▶️ The :green[**Drain (DRN) Boundary**] in MODFLOW is designed for such situations. It allows water to leave the groundwater compartment only if the head in the groundwater $h_{gw}$ exceeds the drain elevation $H_D$. In the drain package, **a drain can never provide inflow to a model**. _The Drain Return Package, DRT, can be used to return flow from a drain to another location in the groundwater system._ The outflow $Q_{D}$ is computed using the drain conductance $C_D$ as: """)
    
     st.latex(r'''Q_{D} = C_{D} (H_{D}-h_{gw})''')
     st.markdown("""The following introductory interactive plot is based on the MODFLOW documentation (Harbaugh, 2005) and assumes **$H_{D}$ is 8 m**. Try adjusting the drain conductance in the initial plot to explore how flow varies as a function of head in the groundwater system.
@@ -138,7 +138,7 @@ with columns0[1]:
     st.markdown("""
         **Initial plot** for exploring how outflow varies with a change of the :green[drain conductance].
         
-        _**"Flow into"** is from the perspective of the groundwater system, **drain flow is always negative or zero** because it is flow leaving the system._
+        _**"Flow into"** is from the perspective of the groundwater system. **Drain flow is always negative or zero** because it is flow leaving the system._
 
          This **initial plot** is designed to bridge the gap between traditional $Q$-$h$ plots on paper and the :rainbow[**interactive plots**] provided further down in this app, that allow you to explore the $Q$-$h$ relationships more intuitively, supported by interactive controls and guided instructions.
     """)
@@ -166,14 +166,14 @@ with st.expander("Tell me more about **the :green[application of DRN in Field-Sc
         st.image('90_Streamlit_apps/GWP_Boundary_Conditions/assets/images/DRNspring2.png', caption="Illustration of springs developing at the ground surface when the water table rises.")
     
     st.markdown("""
-    A DRN boundary might be used to represent a swamp that might be dewatered at some time during model simulation. For example, a groundwater model might have a swamp that is viewed as a permanent feature of the system, in which case it could be represented by a general head boundary to allow flow into and out of the system.
+    A DRN boundary could be used to represent a swamp that might be dewatered at some time during model simulation. For example, in a groundwater model with a swamp that is viewed as a permanent feature of the system, the swamp could be represented by a general head boundary to allow flow into and out of the system.
     """)
     left_co, cent_co, last_co = st.columns((10,40,10))
     with cent_co:
         st.image('90_Streamlit_apps/GWP_Boundary_Conditions/assets/images/DRNapplied1.png', caption="Illustration of a GHB boundary used to represent a swamp allowing exchange of water between the swamp and groundwater system.")
     
     st.markdown("""
-     At a later time, if the model is used to simulate inflow to a new open pit mine and the swamp continues to be represented by a GHB, flow from the swamp will not be limited and the large drawdown at the mine pit will simulate large outflow that would need to be disposed of by the mining company.  
+     However, if the model is later used to simulate inflow to a new open pit mine, then continuing to represent the swamp with a GHB is unrealistic because this boundary condition allows an unlimited amount of water to flow from the swamp into the groundwater system and discharge in the mine pit.  
     """)
     left_co, cent_co, last_co = st.columns((10,40,10))
     with cent_co:
@@ -192,7 +192,7 @@ This section is designed with the intent that, by studying it, you will be able 
 
 - Explain the conceptual role of the Drain (DRN) boundary in simulating groundwater discharge to drainage features such as tile drains, trenches, or natural depressions.
 - Apply the analytical relationship $Q_{D} = C_D(H_D-h_{gw})$ to calculate boundary flows.
-- Identify conditions under which the DRN boundary is active or inactive, and understand the role of the drain elevation in preventing inflow and limiting outflow.
+- Identify conditions under which the DRN boundary is active or inactive, and understand the role of the drain elevation in preventing inflow to groundwater and limiting outflow from groundwater.
 - Evaluate the influence of groundwater head, drain elevation, and conductance on the magnitude of drainage.
 - Interpret Q–h plots to analyze the linear and threshold-based behavior of the DRN boundary.
 - Understand how the conductance term reflects the geometry and properties of the connection between the groundwater compartment and the drain system.
@@ -264,9 +264,9 @@ with st.expander('**Click here** to read how :green[**conductance is calculated*
     """)
     
     st.markdown("""
-    MODFLOW requires input of Conductance.
+    MODFLOW requires input of conductance.
 
-    Conductance includes all of Darcy's Law except the head difference between the drain and the groundwater. 
+    Conductance includes all terms of Darcy's Law except the head difference between the drain and the groundwater. 
     """)    
     st.latex(r'''Q_{DRN} = KA \frac{\Delta h}{M}''')
     
@@ -285,7 +285,7 @@ with st.expander('**Click here** to read how :green[**conductance is calculated*
         st.image('90_Streamlit_apps/GWP_Boundary_Conditions/assets/images/DrainConductance.png', caption="Schematic of the DRN boundary with labels indicating parameters used to calculate conductance (modified from McDonald and Harbaugh, 1988)")
     
     st.markdown("""
-    $\Delta h$ is the difference between the Head of the Drain (which is its elevation because pressure is assumed to be atmospheric, i.e., zero) and Head in the Groundwater 
+    $\Delta h$ is the difference between the drain head (which is the drain elevation because pressure is assumed to be atmospheric) and groundwater head.
 
     In general, MODFLOW calculates flow $Q$ with a conductance $C$ as
     """)
@@ -295,11 +295,11 @@ st.subheader("Interactive Plot and Exercise", divider="green")
 st.markdown("""
     The interactive plot illustrates how the flow $Q_{D}$ across a Drain Boundary is driven by the **difference between groundwater head** ($h_{gw}$) and **drain elevation** ($H_D$), while being scaled by the **drain conductance** ($C_{D}$). Flow only occurs when the groundwater head exceeds the drain elevation, meaning the boundary acts as a one-way outlet. 
     
-    Below, under INPUT CONTROLS, in the **"Modify Plot Controls"** drop-down menu, you can adjust the limits and range of the plot, and also toggle to: 1) turn the plot 90 degrees, 2) choose between slider or typed input to adjust the parameter values, and 3) make the plot "live" to switch from the static plot to the interactive plot. Under :blue[**"Modify Head & Elevations"**], you can adjust the value of river head, riverbed bottom elevation, and groundwater head. Finally, under :green[**"Modify Conductance"**] you can toggle between direct conductance input or computing it from geometric and hydraulic properties. The plot updates dynamically and supports different viewing orientations.
+    Below, under INPUT CONTROLS, in the **"Modify Plot Controls"** drop-down menu, you can adjust the limits and range of the plot, and also toggle to: 1) turn the plot 90 degrees – this different viewing orientation might help you interpret the results, 2) choose between slider or typed input to adjust the parameter values, and 3) visualize the input values, which helps to interpret the plot. Under :blue[**"Modify Head & Elevations"**], you can adjust the value of drain elevation and groundwater head. Finally, under :green[**"Modify Conductance"**] you can adjust the conductance value.
 
     The interactive plot includes a legend that provides the parameter values. It also graphically displays the $Q$-$h$ relationship, each parameter value, and an arrow that indicates the head difference $h_{gw}$-$H_{D}$ and points to the value of flow $Q_{D}$ on the axis.
     
-    - You can investigate the plot on your own, perhaps using some of the :blue[**INITIAL INSTRUCTIONS**] provided below the plot to guide you.
+    - You can investigate the plot on your own, perhaps using some of the :blue[**INSTRUCTIONS**] provided below the plot to guide you.
     - A subsequent :rainbow[**EXERCISE**] invites you to use the interactive plot to investigate how the conductance value and the difference in head affect the boundary flux, as well as to interpret the physical meaning of the situation based on Q–h plots, that is, when the drain is **active** or **inactive** and how this affects groundwater discharge.
 """)
 
@@ -346,7 +346,7 @@ def Q_h_plot():
         with st.expander("Modify the **Plot Controls**"):
             turn = st.toggle('Toggle to turn the plot 90 degrees', key="DRN_turn", value=True)
             st.session_state.number_input = st.toggle("Toggle to use Slider or Number for input of $C_D$, $H_D$, and $h_{gw}$.")
-            visualize = st.toggle(':rainbow[**Make the plot live** and visualize the input values]', key="DRN_vis", value=True)
+            visualize = st.toggle(':rainbow[Visualize the input values]', key="DRN_vis", value=True)
 
     with columns1[1]:
         with st.expander('Modify :blue[**Heads** & **Elevations**]'):
@@ -470,23 +470,23 @@ def Q_h_plot():
         _The arrow in the plot indicates the head difference $H_{D}-h_{gw}$ and points to the resulting flow $Q_{D}$._
         """)
     st.markdown("""
-        _* from the **perspective of inflow** into the groundwater, **drain flow is negative** or zero because it is flow leaving the groundwater._
+        _* from the **perspective of inflow** into the groundwater, **drain flow is always negative** or zero because it is flow leaving the groundwater._
         """)
     
-    with st.expander('Show the :blue[**INITIAL INSTRUCTIONS**]'):
+    with st.expander('Show the :blue[**INSTRUCTIONS**]'):
         st.markdown("""
         **Getting Started with the Interactive Plot**
         
        Before starting the exercise, it is helpful to follow these steps to explore DRN behavior:
         
-       **1. Using the default values** 
+       1. **Start with $H_{D}$ = 8 m, $h_{gw}$ = 10 m, and $C_{B}$ = 1x10⁻² m²/s** 
         
-        * Vary **groundwater head** $h_{gw}$ in steps between 8 and 12 m (if you prefer there is a toggle button under **Modify Plot Controls** that allows you to type in values instead of using the slider).
+        * Vary **groundwater head** $h_{gw}$ in steps between 6 and 12 m (if you prefer there is a toggle button under **Modify Plot Controls** that allows you to type in values instead of using the slider).
         * Observe how the flow $Q_D$ changes:
-            * When $h_{gw} > H_D$, the groundwater drains — flow leaves the groundwater through the drain.
-            * When $h_{gw} \leq H_D$, no flow occurs — the drain is inactive.
+            * When $h_{gw} > H_D$, the groundwater drains, that is flow leaves the groundwater through the drain.
+            * When $h_{gw} \leq H_D$, no flow occurs because the drain is inactive.
             
-        **2. Test Different Conductance Values**
+       2. **Experiment with Different Conductance Values**
         
         * With $h_{gw} > H_D$, use the slider to vary $C_D$ and notice how the **slope of the Q–h curve** changes — higher conductance leads to stronger response of outflow to head differences.
         
@@ -498,7 +498,7 @@ def Q_h_plot():
         st.markdown("""   
         🎯 **Expected Learning Outcomes**
         
-        Completion of this exercise, helps you to:
+        Completion of this exercise helps you to:
         
         - Understand how drain–groundwater interaction is controlled by groundwater head, drain elevation, and conductance.
         - Interpret the boundary characteristics with a Q–h plot.
@@ -510,11 +510,10 @@ def Q_h_plot():
         
         Use the interactive DRN plot to complete the following steps:
         
-        1. Initial Exploration (hint: there is a toggle button under **Modify Plot Controls** that allows you to type in values instead of using the slider)
+        1. **Initial Exploration (hint: there is a toggle button under **Modify Plot Controls** that allows you to type in values instead of using the slider)**
         
-        * Set the drain elevation ($H_D$) to 10 m
-        * Vary the groundwater head ($h_{gw}$) from 8 m to 12 m
-        * Observe how the flow ($Q_D$) responds to changes in head
+        * Start with $H_{D}$ = 8 m, $h_{gw}$ = 10 m, and $C_{B}$ = 1x10⁻² m²/s
+        * Vary the groundwater head ($h_{gw}$) from 8 m to 12 m and observe how the flow ($Q_D$) responds to changes in head
         
         Make a record of:
         
@@ -523,22 +522,17 @@ def Q_h_plot():
             * Drain flow when groundwater head is less than the drain elevation
 
         2. **Effect of Conductance**
-        - Keep $H_D$ = 10 m
-        - Set the groundwater head ($h_{gw}$) to 12 m
-        - Choose three different conductance values (e.g., 1x10⁻², 1x10⁻³, and 1x10⁻⁴ m²/s)
-        
-        * For each case:
-            * Plot $Q_{D}$ vs $h_{gw}$ from 8 m to 12 m (on paper or spreadsheet)
-            * Compare the slope of the Q–h curves 
-            * Consider the sensitivity of flow to conductance changes
-              
+        * Start with $H_{D}$ = 8 m, $h_{gw}$ = 10 m, and $C_{B}$ = 1x10⁻² m²/s
+        * Choose three different conductance values (e.g., 1x10⁻², 1x10⁻³, and 1x10⁻⁴ m²/s)
+          * For each of the 3 conductance values view the plot $Q_{D}$ vs $h_{gw}$ while adjusting $h_{gw}$ from 6 m to 12 m and note the influence of conductance on the slope of the line and the magnitude of flow.
+
         3. **Realistic Scenario: Excavating a building foundation**
         - Fix the groundwater head at 10.3 m
-        - In 1-m steps, vary drain elevation from 9.3 m to 6.3 m, and make note of the inflow rate
-        - Consider this as a stylized representation of increasing inflow that needs to be collected and routed away from a construction site. A similar process might be used at a larger scale for an open-pit mine.
+        - In 1-m steps, vary drain elevation from 9.3 m to 6.3 m, and make note of the flow rate to the drain
+        - Consider this as a simplified representation of increasing inflow that needs to be collected and routed away from a construction site. A similar process might be used at a larger scale for an open-pit mine.
     
         💡 **Explore:**
-        - How does inflow change as the excavation deepens?
+        - How does flow to the drain change as the excavation deepens?
         - What would the construction company have to do to address the inflow?
         - What would reduce the inflow?
         - How might conductance be decreased on excavation walls?
@@ -579,9 +573,9 @@ with st.expander('**Show the :rainbow[**EXERCISE**] assessment** - to self-check
 
 st.subheader('✅ Conclusion', divider = 'green')
 st.markdown("""
-The Drain (DRN) boundary condition simulates discharge to external drains, ditches, trenches, topographic depressions, mines, and other features where a hydrostratigraphic unit encounters an opening to atmospheric pressure conditions. Flow _only_ occurs when groundwater levels are at or above the opening elevation. This boundary introduces a **physical cutoff** that prevents outflow based on the **drain elevation**, making it conceptually different from other head-dependent boundaries. A DRN boundary can be defined in any groundwater-flow-model cell, it need not be defined in the surface layer, for example it might be defined deep inside a model to represent a tunnel or an underground mine. 
+The Drain (DRN) boundary condition simulates discharge to external drains, ditches, trenches, topographic depressions, mines, and other features where a hydrostratigraphic unit encounters an opening to atmospheric pressure conditions. Flow _only_ occurs when groundwater levels are at or above the opening elevation. This boundary introduces a **physical cutoff based on the drain elevation** that prevents outflow, making it conceptually different from other head-dependent boundaries. A DRN boundary can be defined in any groundwater-flow-model cell. It need not be defined in the surface layer, for example it might be defined deep inside a model to represent a tunnel or an underground mine. 
 
-Analyzing **Q–h plots**, allows exploration of how the discharge remains zero until the groundwater head exceeds the drain elevation, after which it increases linearly based on the conductance. This behavior supports the simulation of seepage faces and artificial drainage systems without over-extracting water from the model.
+Analyzing **Q–h plots** allows exploration of how the discharge remains zero until the groundwater head exceeds the drain elevation, after which it increases linearly based on the conductance. This behavior supports the simulation of seepage faces and artificial drainage systems without over-extracting water from the model.
 
 By adjusting parameters like drain **elevation** and **conductance**, modelers can explore how the discharge remains zero until the groundwater head exceeds the drain elevation, after which it increases linearly based on the conductance. This behavior supports the simulation of seepage faces, artificial drainage systems, and excavations without over-extracting water from the model. Understanding these behaviors through Q–h plots supports stronger conceptual models and more reliable groundwater–surface water integration.
 

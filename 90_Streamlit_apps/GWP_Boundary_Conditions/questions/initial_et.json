@@ -1,6 +1,6 @@
 [
   {
-    "question": "What is simulated by the ET boundary condition in MODFLOW? (Mark ALL correct answers)",
+    "question": "What is simulated by the EVT boundary condition in MODFLOW? (Mark ALL correct answers)",
     "options": {
       "A) Loss of water from the water table due to plant uptake and evaporation": true,
       "B) River infiltration": false,
@@ -22,7 +22,7 @@
     "error": "❌ Some of your choices are not correct. Evapotranspiration only occurs when the water table is at or above the defined ET surface."
   },
   {
-    "question": "How does the rate of ET change in the EVT boundary conditions as groundwater becomes deeper? (Mark ALL correct answers)",
+    "question": "How does the rate of ET change in the EVT boundary condition as groundwater becomes deeper? (Mark ALL correct answers)",
     "options": {
       "A) It decreases linearly until the extinction depth is reached": true,
       "B) It increases exponentially": false,

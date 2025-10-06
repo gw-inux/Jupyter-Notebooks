@@ -33,7 +33,7 @@
     "error": "❌ Some of your choices are not correct. Recharge affects system input and outflow, but it does not alter groundwater system properties or boundary positions."
   },
   {
-    "question": "In which of the following cases does the Q–h plot appear as a horizontal line (i.e., when Q represented by the y-axis)? (Mark ALL correct answers)",
+    "question": "In which of the following cases does the Q–h plot appear as a horizontal line (i.e., when Q is represented by the y-axis)? (Mark ALL correct answers)",
     "options": {
       "Defined-head boundary.": false,
       "No-flow boundary.": true,
@@ -48,7 +48,7 @@
     "options": {
       "Higher K values lead to flatter hydraulic head gradients under steady recharge.": true,
       "K influences the shape of the Q–h plot at a boundary with specified head.": false,
-      "Higher K results in greater discharge in models where boundary conditions allow through flow.": true,
+      "Higher K results in greater discharge in models where boundary conditions allow through flow (i.e., inflow at one or more boundaries and outflow at one or more boundaries).": true,
       "K does not affect the discharge through the groundwater system with uniform recharge and only one outflow boundary.": true
     },
     "success": "✅ Correct! K determines how easily water flows through the groundwater system, affecting head gradients, and in cases where boundaries allow through flow of groundwater higher K increases inflow and outflow, but K does not the shape of the Q–h plot at a fixed-head boundary.",

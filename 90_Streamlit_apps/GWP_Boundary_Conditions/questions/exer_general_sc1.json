@@ -12,7 +12,7 @@
     "error": "❌ Some of your choices are not correct. In our 1D steady-state model with one no-flow boundary, outflow is determined by the recharge rate only, not by hydraulic conductivity."
   },
   {
-    "question": "A 1D model with a no-flow boundary on the left uses a **specified-head** boundary condition at the right outlet. The groundwater recharge is specified as 180 mm/a. What parameter change is suitable to increase the hydraulic head in the groundwater at the right boundary? (Mark ALL correct answers)",
+    "question": "A 1D model with a no-flow boundary on the left uses a **specified-head** boundary condition at the right outlet. The groundwater recharge is specified as 180 mm/yr. What parameter change is suitable to increase the hydraulic head in the groundwater at the right boundary? (Mark ALL correct answers)",
     "options": {
       "A) Increasing $R$": false,
       "B) Decreasing $R$": false,
@@ -24,7 +24,7 @@
     "error": "❌ Some of your choices are not correct. The head at a Dirichlet boundary remains constant, regardless of other parameters."
   },
   {
-    "question": "A 1D model with a no-flow boundary on the left uses a **head-dependent** boundary condition at the right outlet. The groundwater recharge is specified as 180 mm/a. What parameter change is suitable to **increase the outflow** at the boundary? (Mark ALL correct answers)",
+    "question": "A 1D model with a no-flow boundary on the left uses a **head-dependent** boundary condition at the right outlet. The groundwater recharge is specified as 180 mm/yr. What parameter change is suitable to **increase the outflow** at the boundary? (Mark ALL correct answers)",
     "options": {
       "A) None of the below": true,
 	    "B) Increasing $K$": false,
@@ -36,7 +36,7 @@
     "error": "❌ Some of your choices are not correct. Changing conductivity or conductance affects head distribution, not the total outflow given a constant recharge."
   },
   {
-    "question": "A 1D model with a no-flow boundary on the left uses a **head-dependent** boundary condition (**River BC**) at the right outlet. The groundwater recharge is specified as 180 mm/a. What parameter change is suitable to **increase the hydraulic head** in the groundwater at the right boundary? (Mark ALL correct answers)",
+    "question": "A 1D model with a no-flow boundary on the left uses a **head-dependent** boundary condition (**River BC**) at the right outlet. The groundwater recharge is specified as 180 mm/yr. What parameter change is suitable to **increase the hydraulic head** in the groundwater at the right boundary? (Mark ALL correct answers)",
     "options": {
 	    "A) Decreasing $K$": false,
 	    "B) Decreasing $C_{Riv}$": true,

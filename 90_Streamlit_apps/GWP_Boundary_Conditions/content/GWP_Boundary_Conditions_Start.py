@@ -24,7 +24,7 @@ institution_list = [f"{index_symbols[i-1]} {inst}" for i, inst in institutions.i
 institution_text = " | ".join(institution_list)
 
 st.title("Welcome to the Boundary Condition Module 💦")
-st.subheader('A Multipage Application Elucidating Boundary Conditions in Groundwater Flow Models 👋', divider= 'green')
+st.subheader('A Application Elucidating Boundary Conditions in Groundwater Flow Models 👋', divider= 'green')
 
 #st.subheader('Getting started')
 st.markdown("""
@@ -39,7 +39,7 @@ with cent_co:
 st.markdown("""
 💡 This interactive module is designed to deepen your understanding of the basic ways in which different types of boundary conditions - specified head, specified flow, and head-dependent flow - influence the magnitude and direction of groundwater flow when used in solving the partial differential equation for groundwater flow.
 
-💡 This module offers intuitive visualizations, conceptual explanations, and interactive tools to help bridge theory and application for both advanced students and practicing hydrogeologists. To get the most out of this resource, see the **How to Use this Module** section below.
+💡 This module offers intuitive visualizations, conceptual explanations, and interactive tools to help bridge theory and application for beginners, advanced students, and practicing hydrogeologists. To get the most out of this resource, see the **How to Use this Module** section below.
 """)
 
 columns = st.columns((1,6,1))
@@ -53,7 +53,7 @@ with columns[1]:
 st.subheader('How to Use this Module', divider= 'green')
 
 st.markdown("""
-A flexible resource for both beginners and experienced users of groundwater modeling.
+A flexible resource for both beginners and experienced groundwater modelers.
 
 - ***Who is this module for?*** This module is intended for beginners as well as advanced and experienced users who wish to refresh their understanding of specific boundary types. A basic familiarity with hydrogeology and groundwater flow is recommended, but no prior experience with MODFLOW is required.
 

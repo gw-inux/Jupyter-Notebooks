@@ -39,7 +39,7 @@ st.title("Learning More 💦")
 
 st.markdown(
     """
-This module described how boundary conditions available in MODFLOW (in particular, head-dependent boundary conditions): :orange[**GHB:**] general head; :violet[**RIV:**] river; :green[**DRN:**] drain; :rainbow[**MNW:**] multi-node-well; and :blue[**EVT:**] evapotranspiration. Boundary conditions control the rate of flow into and out of a simulated groundwater system.
+This module described boundary conditions available in MODFLOW (in particular, head-dependent boundary conditions): :orange[**GHB:**] general head; :violet[**RIV:**] river; :green[**DRN:**] drain; :rainbow[**MNW:**] multi-node-well; and :blue[**EVT:**] evapotranspiration. Boundary conditions control the rate of flow into and out of a simulated groundwater system.
 """
 ) 
 
@@ -58,13 +58,13 @@ For example, MODFLOW includes boundary options that are similar to the RIV bound
 - LAK, lake; and
 - RES, reservoir.
 
-Also, there is an enhanced version of the DRN drain boundary conditions is the DRT - drain return flow package that allows water discharged to drains to be reintroduced to the model in other locations. 
+Also, an enhanced version of the DRN drain boundary conditions is the DRT, drain return flow, package that allows water discharged to drains to be reintroduced to the model in other locations. 
 
-More elaborate representation of evapotranspiration is possible by using the ETS, evapotranspiration segments package that allows the ET slope to vary with depth of the groundwater head; or the RIP riparian evapotranspiration package that allows definition of the spatial distribution of plant type and associated evapotranspiration behavior including a decrease in the rate when heads rise in cases where a high water table is detrimental to plants.
+More elaborate representation of evapotranspiration is possible by using the ETS, evapotranspiration segments, package that allows the ET slope to vary with depth of the groundwater head; or the RIP, riparian evapotranspiration, package that allows definition of the spatial distribution of plant type and associated evapotranspiration behavior including a decrease in the rate when heads rise in cases where a high water table is detrimental to plants.
 
 More information about MODFLOW boundary conditions can be accessed via https://ca.water.usgs.gov/modeling-software/one-water-hydrologic-model/users-manual/index.html?head_dependent_flux_boundary_p.htm.
 
-Additional, excellent discussion of boundary conditions is provided by T.E. Reilly (2001) "System and Boundary Conceptualization in Ground-Water Flow Simulation", Techniques of Water-Resources Investigations of the U.S. Geological Survey Book 3, Applications of Hydraulics, Chapter B8. https://pubs.usgs.gov/twri/twri-3_B8/pdf/twri_3b8.pdf.
+Additional excellent discussion of boundary conditions is provided by T.E. Reilly (2001) "System and Boundary Conceptualization in Ground-Water Flow Simulation", Techniques of Water-Resources Investigations of the U.S. Geological Survey Book 3, Applications of Hydraulics, Chapter B8. https://pubs.usgs.gov/twri/twri-3_B8/pdf/twri_3b8.pdf.
 """
 ) 
 

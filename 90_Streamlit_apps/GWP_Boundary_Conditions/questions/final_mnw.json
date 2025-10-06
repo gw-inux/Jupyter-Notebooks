@@ -24,7 +24,7 @@
   {
     "question": "What happens to the Q–h behavior of an MNW when a restart threshold (Qmx) is defined? (Mark ALL correct answers)",
     "options": {
-      "A) Pumping is zero unless Q exceeds Qmx.": true,
+      "A) After the Qmn constraint activates, pumping remains zero unless Q exceeds Qmx.": true,
       "B) Qmx defines the minimum discharge needed to resume pumping after shutdown.": true,
       "C) Discharge continues increasing even if the well is inactive.": false,
       "D) The Q–h curve shows a step change at the Qmx limit.": false
