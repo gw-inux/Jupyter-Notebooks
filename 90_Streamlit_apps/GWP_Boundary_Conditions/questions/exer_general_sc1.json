@@ -1,6 +1,6 @@
 [
   {
-    "question": "A 1D model with a no-flow boundary on the left uses a **specified head boundary** condition at the right outlet. How can we modify the amount of outflow? ",
+    "question": "A 1D model with a no-flow boundary on the left uses a **specified head boundary** condition at the right outlet. How can we modify the amount of outflow?",
     "options": {
       "A) Increase $K$": false,
       "B) Decrease $K$": false,
