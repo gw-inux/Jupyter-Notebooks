@@ -1,5 +1,27 @@
 import streamlit as st
 from streamlit_scroll_to_top import scroll_to_here
+from GWP_Boundary_Conditions_utils import read_md
+
+# ---------- Doc-only view for expanders (must run first)
+params = st.query_params
+DOC_VIEW = params.get("view") == "md" and params.get("doc")
+
+if DOC_VIEW:
+    md_file = params.get("doc")
+
+    st.markdown("""
+    <style>
+      /* Hide sidebar & its nav */
+      [data-testid="stSidebar"],
+      [data-testid="stSidebarNav"] { display: none !important; }
+
+      /* Hide the small chevron / collapse control */
+      [data-testid="stSidebarCollapsedControl"] { display: none !important; }
+    </style>
+    """, unsafe_allow_html=True)
+
+    st.markdown(read_md(md_file))
+    st.stop()
 
 # Start the page with scrolling here
 if st.session_state.scroll_to_top:
@@ -57,8 +79,16 @@ A flexible resource for both beginners and experienced groundwater modelers.
 
 - ***Who is this module for?*** This module is intended for beginners as well as advanced and experienced users who wish to refresh their understanding of specific boundary types. A basic familiarity with hydrogeology and groundwater flow is recommended, but no prior experience with MODFLOW is required.
 
-- ***Structure of the module***: The :red[📕 Introduction] Section provides an overview of groundwater models and introduces the role of boundary conditions in MODFLOW. Following this, each boundary condition is presented in its own dedicated section, where the concepts, applications, and implications are explained in detail. ***Note: rectangles with a downward caret "v" expand to provide more detailed information or a self-assessment.***
+- ***Structure of the module***: The :red[📕 Introduction] Section provides an overview of groundwater models and introduces the role of boundary conditions in MODFLOW. Following this, each boundary condition is presented in its own dedicated section, where the concepts, applications, and implications are explained in detail. ***Note: rectangles with a downward caret "v" expand to provide more detailed information or a self-assessment:***
+""")
 
+# Expander with "open in new tab"
+DOC_FILE = "GWP_Boundary_Conditions_Start_example.md"
+with st.expander(':rainbow[**Expand this example**]'):
+    st.link_button("*Open in new tab* ↗️ ", url=f"?view=md&doc={DOC_FILE}")
+    st.markdown(read_md(DOC_FILE))
+
+st.markdown("""
 - ***Flexibility for experienced users***: Experienced users can use the module selectively, for example, by going directly to a single section of interest to refresh their knowledge of a specific boundary condition.
 
 - ***Time needed***: Completing the full module typically requires 4-8 hours, while individual sections can be completed in 30–90 minutes depending on prior knowledge and level of detail explored.

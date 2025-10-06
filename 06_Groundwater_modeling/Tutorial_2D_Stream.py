@@ -135,10 +135,24 @@ with st.expander(" Click here to read more about the :blue[**Scenario**] – Ide
 st.subheader("Instructions and Tutorials to implement streams in MODFLOW 💻", divider="blue")
 
 st.markdown("""
-#### 🧊 Model Variant 1 - Lowland river
+#### 🧊 How to Implement a Stream in MODFLOW with ModelMuse
 
-Some introduction and description
+In the following, we provide instructions and explanations on how to design a numerical model that represents a stream. The tutorial is based on MODFLOW-2005 using the graphical user interface ModelMuse, but the same model design principles can be applied with any other interface for the MODFLOW family of codes.
+
+In the screencast, we demonstrate a variant where the stream is represented using the RIV package. Alternative formulations include the GHB and DRN packages.
+
+:red[**Before working with the numerical model, it is important to reflect on the conceptual situation. By clarifying how the stream interacts with the groundwater system, we can better formulate our expectations of the model results.**]
 """)
+
+
+
+st.markdown("""
+#### 🧊 Tutorial with step-by-step instructions and screencast videos
+
+Next, you will find the tutorial files. The resulting model is provided as MODELMUSE file. Further, you can download the written instructions as PDF file.
+""")
+# TODO: Provide GPT files and PDF's
+
 # ----------------------------
 # STEP 1
 # ----------------------------
