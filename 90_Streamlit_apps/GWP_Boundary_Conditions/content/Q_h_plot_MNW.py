@@ -206,7 +206,7 @@ st.markdown("""
 The MNW boundary represents a well with a specified desired discharge rate and accounts for well losses (i.e., lower head within the well than the surrounding hydrostratigraphic unit) that are a function of the connectivity between the well and the hydrostratigraphic unit. If needed, MNW reduces the well discharge to meet criteria specified to protect the well. In contrast, the WEL boundary applies the specified desired discharge without adjustment for the condition where the well is stressed to the point that it cannot supply the desired discharge. MNW also accommodates modeling of wells that extend through multiple model cells and calculates flow to/from each layer, however this module only addresses the head-dependent flow feature of MNW.""")
 left_co, cent_co, last_co = st.columns((1,58,1))
 with cent_co:
-    st.image('90_Streamlit_apps/GWP_Boundary_Conditions/assets/images/MNWsketch5.png', caption="Illustration of the head losses that can lead to discharge reduction using MNW in MODFLOW. In situation (1) head in the well is above the threshold so the well is pumping at the desired rate. In situation (2) head in the well reached the threshold so the pumping rate is reduced to keep the head in the well at the threshold. In situation (3) head in the aquifer reached the threshold so the pump is shut off. (modified and enhanced from Shapiro et al., 1998)")
+    st.image('90_Streamlit_apps/GWP_Boundary_Conditions/assets/images/MNWsketch6.png', caption="Illustration of the head losses that can lead to discharge reduction using MNW in MODFLOW. In situation (1) head in the well is above the threshold so the well is pumping at the desired rate. In situation (2) head in the well reached the threshold so the pumping rate is reduced to keep the head in the well at the threshold. In situation (3) head in the aquifer reached the threshold so the pump is shut off. (modified and enhanced from Shapiro et al., 1998)")
 
 with st.expander("Tell me more about **the :rainbow[application of MNW in Field-Scale Groundwater Modeling]**"):
     st.markdown("""
@@ -333,6 +333,12 @@ _For all plots, the application includes toggles to:_
 - turn the plots by 90 degrees,
 - switch between number input or sliders.
 """)
+
+# --- One-time session init of the select box
+if "session_init" not in st.session_state:
+    st.session_state["session_init"] = True
+    st.session_state["plot_choice"] = "🔵 Plot 1"
+    
 # Functions
 
 # Define the nonlinear equation to solve: Q = Δh / (A + B + C * Q**(p-1))
@@ -418,10 +424,12 @@ if 'second' not in st.session_state:
 def Q_h_plot():
     
     # Choose the plot
+    if "plot_choice" not in st.session_state:
+        st.session_state["plot_choice"] = "🔵 Plot 1"
 
     col_plot = st.columns((1,1,1), gap = 'small')              
     with col_plot[1]:
-        plot_choice = st.selectbox( "**SELECT a plot to display:**", ["🔵 Plot 1", "🟢 Plot 2", "🔴 Plot 3", "🟡 Plot 4"], index=0)
+        plot_choice = st.selectbox( "**SELECT a plot to display:**", ["🔵 Plot 1", "🟢 Plot 2", "🔴 Plot 3", "🟡 Plot 4"], index=0, key="plot_choice")
         
     if plot_choice == '🔵 Plot 1':
         show_plot1 = True
@@ -571,44 +579,44 @@ def Q_h_plot():
         columns4 = st.columns((1,1,1,1))
         if st.session_state.number_input:
             with columns4[0]:
-                A = st.number_input("", 0.001, 10.0, st.session_state.A, 0.1, key="A_input", on_change=update_A, label_visibility="collapsed")
+                A = st.number_input("", 0.001, 10.0, st.session_state.A, 0.05, key="A_input", on_change=update_A, label_visibility="collapsed")
             with columns4[1]:
-                B = st.number_input("", 0.001, 10.0, st.session_state.B, 0.1, key="B_input", on_change=update_B, label_visibility="collapsed")
+                B = st.number_input("", 0.001, 10.0, st.session_state.B, 0.05, key="B_input", on_change=update_B, label_visibility="collapsed")
             with columns4[2]:
-                C = st.number_input("", 0.00, 10.0, st.session_state.C, 0.1, key="C_input", on_change=update_C, label_visibility="collapsed")
+                C = st.number_input("", 0.00, 10.0, st.session_state.C, 0.05, key="C_input", on_change=update_C, label_visibility="collapsed")
             with columns4[3]:
-                P = st.number_input("", 1.0, 4.0,   st.session_state.P, 0.1, key="P_input", on_change=update_P, label_visibility="collapsed")
+                P = st.number_input("", 1.0, 4.0,   st.session_state.P, 0.05, key="P_input", on_change=update_P, label_visibility="collapsed")
         else:
             with columns4[0]:
-                A = st.slider      ("", 0.001, 10.0, st.session_state.A, 0.1, key="A_input", on_change=update_A, label_visibility="collapsed")
+                A = st.slider      ("", 0.001, 10.0, st.session_state.A, 0.05, key="A_input", on_change=update_A, label_visibility="collapsed")
             with columns4[1]:
-                B = st.slider      ("", 0.001, 10.0, st.session_state.B, 0.1, key="B_input", on_change=update_B, label_visibility="collapsed")        
+                B = st.slider      ("", 0.001, 10.0, st.session_state.B, 0.05, key="B_input", on_change=update_B, label_visibility="collapsed")        
             with columns4[2]:
-                C = st.slider      ("", 0.00, 10.0, st.session_state.C, 0.1, key="C_input", on_change=update_C, label_visibility="collapsed")   
+                C = st.slider      ("", 0.00, 10.0, st.session_state.C, 0.05, key="C_input", on_change=update_C, label_visibility="collapsed")   
             with columns4[3]:
-                P = st.slider      ("", 1.0, 4.0,   st.session_state.P, 0.1, key="P_input", on_change=update_P, label_visibility="collapsed")
+                P = st.slider      ("", 1.0, 4.0,   st.session_state.P, 0.05, key="P_input", on_change=update_P, label_visibility="collapsed")
         
         if st.session_state.second:
             st.write('**:red[Dataset 2]** (A, B, C, P)')
             columns5 = st.columns((1,1,1,1))
             if st.session_state.number_input:
                 with columns5[0]:
-                    A2 = st.number_input("", 0.001, 10.0, st.session_state.A2, 0.1, key="A2_input", on_change=update_A2, label_visibility="collapsed")
+                    A2 = st.number_input("", 0.001, 10.0, st.session_state.A2, 0.05, key="A2_input", on_change=update_A2, label_visibility="collapsed")
                 with columns5[1]:
-                    B2 = st.number_input("", 0.001, 10.0, st.session_state.B2, 0.1, key="B2_input", on_change=update_B2, label_visibility="collapsed")
+                    B2 = st.number_input("", 0.001, 10.0, st.session_state.B2, 0.05, key="B2_input", on_change=update_B2, label_visibility="collapsed")
                 with columns5[2]:
-                    C2 = st.number_input("", 0.00, 10.0, st.session_state.C2, 0.1, key="C2_input", on_change=update_C2, label_visibility="collapsed")
+                    C2 = st.number_input("", 0.00, 10.0, st.session_state.C2, 0.05, key="C2_input", on_change=update_C2, label_visibility="collapsed")
                 with columns5[3]:
-                    P2 = st.number_input("", 1.0, 4.0,   st.session_state.P2, 0.1, key="P2_input", on_change=update_P2, label_visibility="collapsed")
+                    P2 = st.number_input("", 1.0, 4.0,   st.session_state.P2, 0.05, key="P2_input", on_change=update_P2, label_visibility="collapsed")
             else:
                 with columns5[0]:
-                    A2 = st.slider      ("", 0.001, 10.0, st.session_state.A2, 0.1, key="A2_input", on_change=update_A2, label_visibility="collapsed")
+                    A2 = st.slider      ("", 0.001, 10.0, st.session_state.A2, 0.05, key="A2_input", on_change=update_A2, label_visibility="collapsed")
                 with columns5[1]:
-                    B2 = st.slider      ("", 0.001, 10.0, st.session_state.B2, 0.1, key="B2_input", on_change=update_B2, label_visibility="collapsed")        
+                    B2 = st.slider      ("", 0.001, 10.0, st.session_state.B2, 0.05, key="B2_input", on_change=update_B2, label_visibility="collapsed")        
                 with columns5[2]:
-                    C2 = st.slider      ("", 0.00, 10.0, st.session_state.C2, 0.1, key="C2_input", on_change=update_C2, label_visibility="collapsed")   
+                    C2 = st.slider      ("", 0.00, 10.0, st.session_state.C2, 0.05, key="C2_input", on_change=update_C2, label_visibility="collapsed")   
                 with columns5[3]:
-                    P2 = st.slider      ("", 1.0, 4.0,   st.session_state.P2, 0.1, key="P2_input", on_change=update_P2, label_visibility="collapsed")        
+                    P2 = st.slider      ("", 1.0, 4.0,   st.session_state.P2, 0.05, key="P2_input", on_change=update_P2, label_visibility="collapsed")        
     
     groundwater_thickness = 10.0
     
@@ -1204,22 +1212,22 @@ def Q_h_plot():
                     ax3.plot([-q for q in Q_plot_mx], h_3rd, color='blue', linewidth=2, linestyle='--')       
                     if st.session_state.second:
                         ax3.plot([-q for q in Q_plot2], h_3rd, color='red', linewidth=1, linestyle=':', label=r"$Q$-$h_{gw}$ with threshold CWC2")   
-                    ax3.axvline(x=-Q_show, linestyle='--', color='blue', linewidth=1, label=f'Desired $Q$ = {-Q_show:.2f} (m³/s)')
+                    ax3.axvline(x=-Q_show, linestyle='--', color='blue', linewidth=1, label=f'Desired $Q$ = {-Q_show:.3f} (m³/s)')
                     # Plot Q for legend entry
                     if h_well >= h_lim:
-                        ax3.plot(-Q_dot_th, h_cell_slider, 'o', markersize=10, markerfacecolor='dodgerblue', markeredgecolor='darkblue',  label=f'Current $Q$ = {-Q_show:.2f} (m³/s)')
+                        ax3.plot(-Q_dot_th, h_cell_slider, 'o', markersize=10, markerfacecolor='dodgerblue', markeredgecolor='darkblue',  label=f'Current $Q$ = {-Q_show:.3f} (m³/s)')
                     else:
-                        ax3.plot(-Q_dot_th, h_cell_slider, 'o', markersize=10, markerfacecolor='dodgerblue', markeredgecolor='darkblue',  label=f'Current $Q$ = {-Q_dot_th:.2f} (m³/s)')                       
+                        ax3.plot(-Q_dot_th, h_cell_slider, 'o', markersize=10, markerfacecolor='dodgerblue', markeredgecolor='darkblue',  label=f'Current $Q$ = {-Q_dot_th:.3f} (m³/s)')                       
                 else:                
                     ax3.plot([-q for q in Q_plot], h_3rd, color='blue', linewidth=4, label=r"$Q$-$h_{gw}$ with threshold")       
                     if st.session_state.second:
                         ax3.plot([-q for q in Q_plot2], h_3rd, color='red', linewidth=2, linestyle=':', label=r"$Q(h_{gw})$ with threshold CWC2")
-                    ax3.axvline(x=-Q_show, linestyle='--', color='blue', linewidth=1, label=f'Desired $Q$ = {-Q_show:.2f} (m³/s)')
+                    ax3.axvline(x=-Q_show, linestyle='--', color='blue', linewidth=1, label=f'Desired $Q$ = {-Q_show:.3f} (m³/s)')
                     # Plot Q for legend entry
                     if h_well >= h_lim:
-                        ax3.plot(-Q_dot, h_cell_slider, 'o', markersize=10, markerfacecolor='dodgerblue', markeredgecolor='darkblue',  label=f'Current $Q$ = {-Q_show:.2f} (m³/s)')
+                        ax3.plot(-Q_dot, h_cell_slider, 'o', markersize=10, markerfacecolor='dodgerblue', markeredgecolor='darkblue',  label=f'Current $Q$ = {-Q_show:.3f} (m³/s)')
                     else:
-                        ax3.plot(-Q_dot, h_cell_slider, 'o', markersize=10, markerfacecolor='dodgerblue', markeredgecolor='darkblue',  label=f'Current $Q$ = {-Q_dot:.2f} (m³/s)')  
+                        ax3.plot(-Q_dot, h_cell_slider, 'o', markersize=10, markerfacecolor='dodgerblue', markeredgecolor='darkblue',  label=f'Current $Q$ = {-Q_dot:.3f} (m³/s)')  
                 ax3.axhline(y=h_cell_slider, linestyle='--', color='dodgerblue', linewidth=2, label=f'$h_{{gw}}$ = {h_cell_slider:.2f} m')  
                 if h_well >= h_lim:
                     ax3.axhline(y=h_well, linestyle='--', color='grey', linewidth=2, label=f'$h_{{well}}$ = {h_well:.2f} m')
@@ -1278,22 +1286,22 @@ def Q_h_plot():
                     ax3.plot(h_3rd, [-q for q in Q_plot_mx],  color='blue', linewidth=4, linestyle='--')
                     if st.session_state.second:
                         ax3.plot(h_3rd, [-q for q in Q_plot_th], color='red', linewidth=1, linestyle=':', label=r"$Q$-$h_{gw}$ with threshold CWC2")
-                    ax3.axhline(y=-Q_show, linestyle='--', color='blue', linewidth=1, label=f'Desired $Q$ = {-Q_show:.2f} (m³/s)')
+                    ax3.axhline(y=-Q_show, linestyle='--', color='blue', linewidth=1, label=f'Desired $Q$ = {-Q_show:.3f} (m³/s)')
                     # Plot Q for legend entry
                     if h_well >= h_lim:
-                        ax3.plot(h_cell_slider,-Q_dot_th, 'o', markersize=10, markerfacecolor='dodgerblue', markeredgecolor='darkblue',  label=f'Current $Q$ = {-Q_show:.2f} (m³/s)')
+                        ax3.plot(h_cell_slider,-Q_dot_th, 'o', markersize=10, markerfacecolor='dodgerblue', markeredgecolor='darkblue',  label=f'Current $Q$ = {-Q_show:.3f} (m³/s)')
                     else:
-                        ax3.plot(h_cell_slider, -Q_dot_th, 'o', markersize=10, markerfacecolor='dodgerblue', markeredgecolor='darkblue',  label=f'Current $Q$ = {-Q_dot_th:.2f} (m³/s)')         
+                        ax3.plot(h_cell_slider, -Q_dot_th, 'o', markersize=10, markerfacecolor='dodgerblue', markeredgecolor='darkblue',  label=f'Current $Q$ = {-Q_dot_th:.3f} (m³/s)')         
                 else:
                     ax3.plot(h_3rd, [-q for q in Q_plot], color='blue', linewidth=4, label=r"$Q$-$h_{gw}$ with threshold")
                     if st.session_state.second:
                         ax3.plot(h_3rd, [-q for q in Q_plot2], color='red', linewidth=2, linestyle=':', label=r"$Q(h_{gw})$ with threshold")
-                    ax3.axhline(y=-Q_show, linestyle='--', color='blue', linewidth=1, label=f'Desired $Q$ = {-Q_show:.2f} (m³/s)')
+                    ax3.axhline(y=-Q_show, linestyle='--', color='blue', linewidth=1, label=f'Desired $Q$ = {-Q_show:.3f} (m³/s)')
                     # Plot Q for legend entry
                     if h_well >= h_lim:
-                        ax3.plot(h_cell_slider, -Q_dot, 'o', markersize=10, markerfacecolor='dodgerblue', markeredgecolor='darkblue',  label=f'Current $Q$ = {-Q_show:.2f} (m³/s)')
+                        ax3.plot(h_cell_slider, -Q_dot, 'o', markersize=10, markerfacecolor='dodgerblue', markeredgecolor='darkblue',  label=f'Current $Q$ = {-Q_show:.3f} (m³/s)')
                     else:
-                        ax3.plot(h_cell_slider, -Q_dot, 'o', markersize=10, markerfacecolor='dodgerblue', markeredgecolor='darkblue',  label=f'Current $Q$ = {-Q_dot:.2f} (m³/s)')
+                        ax3.plot(h_cell_slider, -Q_dot, 'o', markersize=10, markerfacecolor='dodgerblue', markeredgecolor='darkblue',  label=f'Current $Q$ = {-Q_dot:.3f} (m³/s)')
                 ax3.axvline(x=h_cell_slider, linestyle='--', color='dodgerblue', linewidth=2, label=f'$h_{{gw}}$ = {h_cell_slider:.2f} m')
                 if h_well >= h_lim:
                     ax3.axvline(x=h_well, linestyle='--', color='grey', linewidth=2, label=f'$h_{{well}}$ = {h_well:.2f} m')
@@ -1514,7 +1522,7 @@ def Q_h_plot():
             if turn:               
                 ax4.plot([-q for q in Q_plot], h_4th, color='black', linewidth=4, label=r"$Q$-$h_{gw}$ for a well with drawdown $h_{well}-h_{gw}$")       
                 # Plot Q and Empty line for legend entry                       
-                ax4.plot(-Q_dot, h_cell_slider4, 'o', markersize=10, markerfacecolor='dodgerblue', markeredgecolor='darkblue',  label=f'Current $Q$ = {-Q_dot:.2f} (m³/s)')
+                ax4.plot(-Q_dot, h_cell_slider4, 'o', markersize=10, markerfacecolor='dodgerblue', markeredgecolor='darkblue',  label=f'Current $Q$ = {-Q_dot:.3f} (m³/s)')
                 ax4.axhline(y=h_cell_slider4, linestyle='--', color='dodgerblue', linewidth=2, label=f'$h_{{gw}}$ = {h_cell_slider4:.2f} m')
                 ax4.axhline(y=h_lim4, linestyle='--', color='orange', linewidth=2, label=f'$h_{{well}}$ = $h_{{lim}}$ = {h_lim4:.2f} m')   
                 
@@ -1537,7 +1545,7 @@ def Q_h_plot():
             else:     
                 ax4.plot(h_4th, [-q for q in Q_plot], color='black', linewidth=4, label=r"$Q$-$h_{gw}$ for a well with drawdown $h_{well}-h_{gw}$")
                 # Plot Q and Empty line for legend entry
-                ax4.plot(h_cell_slider4, -Q_dot, 'o', markersize=10, markerfacecolor='dodgerblue', markeredgecolor='darkblue', label=f'Current $Q$ = {-Q_dot:.2f} (m³/s)')
+                ax4.plot(h_cell_slider4, -Q_dot, 'o', markersize=10, markerfacecolor='dodgerblue', markeredgecolor='darkblue', label=f'Current $Q$ = {-Q_dot:.3f} (m³/s)')
                 ax4.axvline(x=h_cell_slider4, linestyle='--', color='dodgerblue', linewidth=2, label=f'$h_{{gw}}$ = {h_cell_slider4:.2f} m')
                 ax4.axvline(x=h_lim4, linestyle='--', color='orange', linewidth=2, label=f'$h_{{well}}$ = $h_{{lim}}$ = {h_lim4:.2f} m')
                 ax4.annotate(
