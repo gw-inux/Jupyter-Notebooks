@@ -46,7 +46,7 @@ institution_list = [f"{index_symbols[i-1]} {inst}" for i, inst in institutions.i
 institution_text = " | ".join(institution_list)
 
 st.title("Welcome to the Boundary Condition Module 💦")
-st.subheader('A Application Elucidating Boundary Conditions in Groundwater Flow Models 👋', divider= 'green')
+st.subheader('An Application Elucidating Boundary Conditions in Groundwater Flow Models 👋', divider= 'green')
 
 #st.subheader('Getting started')
 st.markdown("""
