@@ -15,6 +15,13 @@ import json
 from streamlit_book import multiple_choice
 from streamlit_scroll_to_top import scroll_to_here
 
+# Track the current page
+PAGE_ID = "MNW"
+
+# Do (optional) things/settings if the user comes from another page
+if st.session_state.current_page != PAGE_ID:
+    st.session_state.current_page = PAGE_ID
+    
 # Start the page with scrolling here
 if st.session_state.scroll_to_top:
     scroll_to_here(0, key='top')

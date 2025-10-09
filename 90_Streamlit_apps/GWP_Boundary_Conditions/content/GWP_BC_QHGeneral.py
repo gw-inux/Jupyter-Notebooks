@@ -8,15 +8,49 @@ import streamlit as st
 import json
 from streamlit_book import multiple_choice
 from streamlit_scroll_to_top import scroll_to_here
+from GWP_Boundary_Conditions_utils import read_md
 
-# Start the page with scrolling here
+# ---------- Track the current page
+PAGE_ID = "GENERAL"
+
+# Prevent collapsing st.expander with toggle inside
+if "qh_expander_open" not in st.session_state:
+    st.session_state.qh_expander_open = False
+    
+# if we just navigated back to this page, reset the expander to closed
+if st.session_state.current_page != PAGE_ID:
+    st.session_state.current_page = PAGE_ID
+    st.session_state.qh_expander_open = False 
+    
+# ---------- Doc-only view for expanders (must run first)
+params = st.query_params
+DOC_VIEW = params.get("view") == "md" and params.get("doc")
+
+if DOC_VIEW:
+    md_file = params.get("doc")
+
+    st.markdown("""
+    <style>
+      /* Hide sidebar & its nav */
+      [data-testid="stSidebar"],
+      [data-testid="stSidebarNav"] { display: none !important; }
+
+      /* Hide the small chevron / collapse control */
+      [data-testid="stSidebarCollapsedControl"] { display: none !important; }
+    </style>
+    """, unsafe_allow_html=True)
+
+    st.markdown(read_md(md_file))
+    st.stop()
+
+# ---------- Start the page with scrolling here
 if st.session_state.scroll_to_top:
     scroll_to_here(0, key='top')
     st.session_state.scroll_to_top = False
 #Empty space at the top
 st.markdown("<div style='height:1.25rem'></div>", unsafe_allow_html=True)
 
-# path to questions for the assessments (direct path)
+# ---------- path to questions for the assessments (direct path)
 path_quest_ini   = "90_Streamlit_apps/GWP_Boundary_Conditions/questions/initial_general_behavior.json"
 path_quest_exer_sc1   = "90_Streamlit_apps/GWP_Boundary_Conditions/questions/exer_general_sc1.json"
 path_quest_exer_sc2   = "90_Streamlit_apps/GWP_Boundary_Conditions/questions/exer_general_sc2.json"
@@ -74,7 +108,11 @@ def update_index():
         index = 0
     
     st.session_state.bc_index = index
-
+   
+def mark_qh_expander_open():
+    # Call this from inside the expander on first render (and from the toggle's on_change)
+    st.session_state.qh_expander_open = True
+     
     
 # Authors, institutions, and year
 year = 2025 
@@ -297,14 +335,20 @@ with st.expander("Show more :blue[**explanation about the boundary condition typ
     - :green[**Scenario 1**]: The specified head boundary on the right becomes head-dependent when the River BC toggle is activated (under the assumption that the river is exchanging water with the aquifer at the boundary under fully saturated conditions, allowing water to freely discharge to, or be recharged from, the river system). 
     - :red[**Scenario 2**]: This scenario does not use a specified head boundary.
     """)
-with st.expander("Show more :blue[**explanation about _Q_-_h_ plots**] that describe boundary condition behavior"):
+    
+with st.expander("Show more :blue[**explanation about _Q_-_h_ plots**] that describe boundary condition behavior", expanded=st.session_state.qh_expander_open):
+    st.write(st.session_state.qh_expander_open)
     st.markdown("""
     The relationship between discharge (_Q_) and hydraulic head (_h_) at model boundaries provides a powerful way to conceptualize and compare different types of boundary conditions in groundwater flow modeling. _Q_-_h_ plots visually illustrate how flow into or out of a model domain responds to parameter changes, highlighting the fundamental behavior of specified-head, specified-flow, and head-dependent flux boundaries. These plots serve as intuitive tools to understand how boundary conditions influence system response, and how they are implemented in models like MODFLOW.
     
     The following figure from the [MODFLOW6 documentation (Langevin et al., 2017)](https://doi.org/10.3133/tm6A55) presents various _Q_-_h_ plots to describe the boundary conditions in MODFLOW. :red[These plots are very powerful but not easy to understand.] You can toggle for :green[an annotated version of the plots that provides more information and explanation.]
     """
     )
-    modified_plot = st.toggle('**Toggle here** to see the :green[**annotated version**].')
+    # Toggle that ensures that the expander keeps open
+    modified_plot = st.toggle('**Toggle here** to see the :green[**annotated version**].',
+        key="qh_toggle",
+        on_change= mark_qh_expander_open,
+    )
     
     st.markdown("""
     :blue[**The subsequent parts**] of this module allow investigation of these _Q_-_h_ plots :rainbow[**with color coded sections**] for various boundary conditions (_these are accessible via links on the left menu of this module_).
@@ -539,7 +583,6 @@ if show_plot1:
         
         
         # PLOT FIGURE
-        
         fig = plt.figure(figsize=(9, 10))
         widths = [1, 2, 1]
         heights = [1.4, 1]
@@ -571,7 +614,7 @@ if show_plot1:
         if "Specified head" in bc_type:
             ax.plot(2500, h_defh_point, 'bo', markersize=10)
             ax.text(2425, h_defh_point+1.0, 'Q-h plot for this point', horizontalalignment='right', bbox=dict(boxstyle="square",facecolor='none', edgecolor='deepskyblue'), fontsize=12)
-        if "River" in bc_type:
+        if "Head-dep. flux" in bc_type:
             ax.plot(2500, h_rob_point, 'o', color='fuchsia', markersize=10)
             ax.text(2425, h_rob_point+1.0, 'Q-h plot for this point', horizontalalignment='right', bbox=dict(boxstyle="square",facecolor='none', edgecolor='fuchsia'), fontsize=12)
         
@@ -690,61 +733,11 @@ if show_plot1:
         if "No-flow" in bc_type:
             st.markdown("""_The dashed line in the plot represents the specified head at the right boundary with $h_{2500}$ = 150 m._""")
         
+        # Expander with "open in new tab"
+        DOC_FILE1 = "GWP_Boundary_Conditions_General_Instructions1.md"
         with st.expander('Show the 🧪:green[**INSTRUCTIONS for using the interactive plot for Scenario 1**]'):
-            st.markdown("""
-            **Getting Started with the Interactive Plot** Instructions for :green[**Scenario 1**]: Exploring Model Behavior and _Q_-_h_ Relationships
-            
-            Use the interactive tools in :green[**Scenario 1**] to investigate how model parameters and boundary conditions affect hydraulic head distributions and boundary flows. Follow the steps below to explore key relationships and system behavior.
-            
-            **1. Modify Model Parameters**
-            - Open the INPUT CONTROLS and click "Click to Modify Model Parameters".
-            - Begin by increasing (or decreasing) the Recharge rate.
-            - Observe how the hydraulic head distribution changes throughout the domain.
-            - Next, adjust the Hydraulic Conductivity (K):
-               - 🔽 Lower values result in steeper gradients due to the reduced transmissivity (As K is decreased: for positive recharge, heads rise and for negative recharge heads decline).
-               - 🔼 Higher values result in lower gradients due to increased transmissivity (As K is increased: for positive recharge, heads decline and for negative recharge heads rise).
-            - Proceed with a higher hydraulic conductivity and note the changes in head profiles.
-            
-            **2. Activate and Explore the _Q_-_h_ Plot**
-            - Navigate to the INPUT CONTROLS and click "Click for the _Q_-_h_ plot".
-            - Select the No-flow _Q_-_h_ plot for display.
-            - The red dot in the _Q_-_h_ plot represents the flow and head at the location of the dot in the model shown in the upper figure.
-            - With the No-flow _Q_-_h_ plot selected, this point corresponds to the no-flow boundary on the left and updates as parameter values are changed.
-            - The black line shows how $Q_{in}$ varies as head at the no-flow boundary varies from 140 to 160 m. 
-            
-            **3. Analyze Parameter Sensitivity**
-            - Vary the recharge and observe how the red dot shifts vertically:
-                - For the No-Flow Boundary, the flow remains constant at zero, while the head adjusts with changing parameters. When using a relatively high hydraulic conductivity, the calculated head at the boundary does not substantially change.
-                - Lower the hydraulic conductivity and again observe the effect on head and the red dot location.
-            
-            **4. Explore Head-dependent (River) Boundaries**
-            - Return to the INPUT CONTROLS, activate the River boundary, and then activate the _Q_-_h_ plot for the River Boundary.
-            - While the River Boundary is active:
-              - Adjust Recharge and note how both hydraulic head and flow change.
-              - Modify the River Conductance (_the units of the conductance are m²/s, this is explained in the :violet[**RIV**] section of the module._): Observe the head changes in the model and the different appearance of the ***Q-h*** plot. This demonstrates some characteristics of head-dependent boundaries. The next step considers the application of these boundary conditions.
-              
-            **5. Understand the Role of Head-Dependent Boundaries in Applied Groundwater Modelling** 
-            
-            Head-dependent boundaries (such as River, General Head, or Drain boundaries) are commonly used to simulate interactions between an aquifer and external systems, where the flow across the boundary is not fixed, but governed by a conductance term and the difference in between the groundwater head calculated at the boundary and the boundary elevation or head of the external system (_this is explained more in the sections :orange[**GHB**], :violet[**RIV**], :green[**DRN**] of this module_).
-            
-            The use of these boundaries can be considered in two fundamentally different ways depending on the modeling context, first:
-            
-            **a) During Model Calibration or Model Setup:** One might have field data indicating the groundwater discharge to the river (for example 1.6x10⁻⁵ m³/s per meter length of river). Given that the river is the only outlet of the model, the recharge rate can be calculated by dividing the discharge by the surface area of the model (2500 m by 1 m). Then, the hydraulic conductivity and conductance can be adjusted until the model heads match the measured field heads.
-            
-            To explore this behavior:
-            - Set the boundary on the right side of the model to a specified head.
-            - Set the recharge to a value of (approximately) 200 mm/yr.
-            - Use the toggle to show the ***Q-h*** plot of the specified head boundary (on the right side). The blue dot represents the outflow at the boundary.
-            - Modify the hydraulic conductivity and the recharge to see how the Q-h plot reacts (focus on the blue dot that represents the head and flow at the boundary).
-            - Reset the recharge to a value of (approximately) 200 mm/yr.
-            - Now toggle in the middle section of the :green[INPUT CONTROLS] for the :violet[River BC]. Make sure that the ***Q-h*** plot for the River boundary is active. The magenta-dot represents the outflow and head at the boundary.
-            - Assess the difference between the Specified head and the River boundary by setting and resetting the :violet[River BC] toggle and study the ***Q-h*** plot with the aquifer hydraulic conductivity higher than the river conductance. The flow, which is solely a function of the recharge, is identical but the head at the boundary is increased if the :violet[River BC] is active AND the conductance value is less than the aquifer hydraulic conductivity (the same would be the case for other head-dependent boundary conditions like :orange[**GHB**] or :green[**DRN**]). If the conductance is higher than the aquifer hydraulic conductivity, then including the river bed does not change the heads in the system. If the conductance is much lower than the aquifer hydraulic conductivity then there is a steep gradient between the aquifer head calculated at the boundary and the river stage.
-            - It is useful to experiment with values of conductance $C_{Riv}$ and observe how the heads in the model and the ***Q–h*** relationship change.
-            
-            A second way to use the river boundary: 
-            
-            **b) Once the Model is Calibrated such that the values of Recharge and Conductance are no longer adjusted:** If other outlets are added to the system (e.g., abstraction wells, drains) the heads in the model will be a result of all the model boundary conditions and parameter values. In consequence, the previously calibrated, and then specified, conductance will control how much of the recharge flows to the river boundary. The discharge will also depend on the location and properties of the other outlets. Such cases are discussed in the :orange[**GHB**], :violet[**RIV**], and :green[**DRN**] sections of this module. Further instructions for exploring the influence of boundary conditions are provided in those sections.
-            """)
+            st.link_button("*Open in new tab* ↗️ ", url=f"?view=md&doc={DOC_FILE1}")
+            st.markdown(read_md(DOC_FILE1))
             
         with st.expander('Show the :green[**SCENARIO 1**] :rainbow[**assessment**] - to self-check your understanding'):
             st.markdown("""
@@ -971,15 +964,68 @@ if show_plot2:
         ax.hlines(y= h_arrow-(h_arrow*0.0010), xmin=L2*0.59, xmax=L2*0.61, colors='blue')   
         ax.hlines(y= h_arrow-(h_arrow*0.0022), xmin=L2*0.595, xmax=L2*0.605, colors='blue')
         
-        #ARROWS FOR RECHARGE 
+#        #ARROWS FOR RECHARGE 
+#        if R2 != 0:
+#            head_length=(R2*86400*365.25*1000*0.002)*y2_scale/5
+#            h_rch1 = (hl2**2-(hl2**2-hr2**2)/L2*(L2*0.25)+(R2/K2*(L2*0.25)*(L2-(L2*0.25))))**0.5  #water level at arrow for Recharge Posotion 1
+#            ax.arrow(L2*0.25,(h_rch1+head_length), 0, -0.01, fc="k", ec="k", head_width=(head_length*300/y2_scale), head_length=head_length)
+#            h_rch2 = (hl2**2-(hl2**2-hr2**2)/L2*(L2*0.50)+(R2/K2*(L2*0.50)*(L2-(L2*0.50))))**0.5  #water level at arrow for Recharge Postition 2
+#            ax.arrow(L2*0.50,(h_rch2+head_length), 0, -0.01, fc="k", ec="k", head_width=(head_length*300/y2_scale), head_length=head_length)
+#            h_rch3 = (hl2**2-(hl2**2-hr2**2)/L2*(L2*0.75)+(R2/K2*(L2*0.75)*(L2-(L2*0.75))))**0.5  #water level at arrow for Recharge Position 3
+#            ax.arrow(L2*0.75,(h_rch3+head_length), 0, -0.01, fc="k", ec="k", head_width=(head_length*300/y2_scale), head_length=head_length)
+        
+        
+        # ARROWS FOR RECHARGE
         if R2 != 0:
-            head_length=(R2*86400*365.25*1000*0.002)*y2_scale/5
-            h_rch1 = (hl2**2-(hl2**2-hr2**2)/L2*(L2*0.25)+(R2/K2*(L2*0.25)*(L2-(L2*0.25))))**0.5  #water level at arrow for Recharge Posotion 1
-            ax.arrow(L2*0.25,(h_rch1+head_length), 0, -0.01, fc="k", ec="k", head_width=(head_length*300/y2_scale), head_length=head_length)
-            h_rch2 = (hl2**2-(hl2**2-hr2**2)/L2*(L2*0.50)+(R2/K2*(L2*0.50)*(L2-(L2*0.50))))**0.5  #water level at arrow for Recharge Postition 2
-            ax.arrow(L2*0.50,(h_rch2+head_length), 0, -0.01, fc="k", ec="k", head_width=(head_length*300/y2_scale), head_length=head_length)
-            h_rch3 = (hl2**2-(hl2**2-hr2**2)/L2*(L2*0.75)+(R2/K2*(L2*0.75)*(L2-(L2*0.75))))**0.5  #water level at arrow for Recharge Position 3
-            ax.arrow(L2*0.75,(h_rch3+head_length), 0, -0.01, fc="k", ec="k", head_width=(head_length*300/y2_scale), head_length=head_length)
+            mag = abs(R2)
+        
+            # size scaling (kept in your style, just used consistently)
+            head_len  = (mag * 86400 * 365.25 * 1000 * 0.002) * y2_scale / 3
+            head_len  = max(head_len, 0.03)                 # ensure visible head
+            shaft_len = max(0.05, head_len * 1.4)           # visible shaft
+        
+            # shaft & head widths (data units)
+            shaft_width = (head_len * 120 / y2_scale)
+            head_width  = (head_len * 450 / y2_scale)
+        
+            def draw_recharge_arrow(xpos, h_at_x, sign):
+                """
+                sign > 0  -> recharge (down arrow), tip EXACTLY at water table
+                sign < 0  -> ET (up arrow), tail EXACTLY at water table
+                """
+                total = shaft_len + head_len
+        
+                if sign > 0:
+                    # start above water, draw down so the tip lands on h_at_x
+                    y0 = h_at_x + total
+                    dy = -total
+                else:
+                    # start on the water table, draw up so the tail sits on h_at_x
+                    y0 = h_at_x
+                    dy = total
+        
+                ax.arrow(
+                    xpos, y0, 0.0, dy,
+                    length_includes_head=True,
+                    width=shaft_width, head_width=head_width, head_length=head_len,
+                    fc="green", ec="green", alpha=0.95, linewidth=0.8, zorder=4
+                )
+        
+            # positions and water levels
+            x1, x2, x3, x4, x5 = L2*0.167, L2*0.333, L2*0.50, L2*0.666, L2*0.833,
+            h_rch1 = (hl2**2 - (hl2**2-hr2**2)/L2*x1 + (R2/K2)*x1*(L2-x1))**0.5
+            h_rch2 = (hl2**2 - (hl2**2-hr2**2)/L2*x2 + (R2/K2)*x2*(L2-x2))**0.5
+            h_rch3 = (hl2**2 - (hl2**2-hr2**2)/L2*x3 + (R2/K2)*x3*(L2-x3))**0.5
+            h_rch4 = (hl2**2 - (hl2**2-hr2**2)/L2*x4 + (R2/K2)*x4*(L2-x4))**0.5
+            h_rch5 = (hl2**2 - (hl2**2-hr2**2)/L2*x5 + (R2/K2)*x5*(L2-x5))**0.5
+        
+            sgn = 1 if R2 > 0 else -1
+            draw_recharge_arrow(x1, h_rch1, sgn)
+            draw_recharge_arrow(x2, h_rch2, sgn)
+            draw_recharge_arrow(x3, h_rch3, sgn)
+            draw_recharge_arrow(x4, h_rch4, sgn)
+            draw_recharge_arrow(x5, h_rch5, sgn)
+        
         
         #Groundwater divide
         if R2 > 0.0 and R2>R2_min_ms:
@@ -1088,45 +1134,11 @@ if show_plot2:
         
         st.pyplot(fig)
         
+        # Expander with "open in new tab"
+        DOC_FILE2 = "GWP_Boundary_Conditions_General_Instructions2.md"
         with st.expander('Show the 🧪:red[**INSTRUCTIONS for using the interactive plot for Scenario 2**]'):
-            st.markdown("""
-            **Getting Started with the Interactive Plot** Instructions for :red[**Scenario 2**]: Recharge, Groundwater Divide, and Boundary Flow Response
-            
-            :red[**Scenario 2**] allows you to explore the development of a groundwater divide under recharge conditions, and to investigate how hydraulic conductivity, boundary elevations, and model parameters influence both flow dynamics and _Q_-_h_ relationships.
-            
-            **1. Modify Model Parameters**
-            - Click "Modify Model Parameters" in the Control Panel to begin.
-            - Increase the Recharge:
-              - A red vertical line will appear in the plot, marking the location of the groundwater divide.
-              - Blue arrows will appear in the plot, indicating the direction and magnitude of recharge.
-              - Adjust the Hydraulic Conductivity:
-                - 🔽 Lower values create steeper gradients and form a distinct “groundwater mound”.
-                - Use a very low hydraulic conductivity to clearly visualize this effect.
-            
-            **2. Investigate Flow and Divide Behavior**
-            - The plot dynamically shows flow values across the boundaries. A negative Q indicates outflow at the boundary and a positive value indicates inflow.
-            - Click the middle tab in the INPUT CONTROLS to access Boundary Condition Parameters.
-            - Modify the elevation of the left specified head boundary:
-              - 🔼 Increasing the left head: Shifts the groundwater divide to the left. This also increases the hydraulic gradient and flow at the right boundary. The flow at the boundary increases because the area (between the divide and the right boundary) that collects recharge is larger. 
-              - If the flow magnitude at the left boundary becomes greater than 3x10⁻⁵ m³/s, use the toggle to increase the Q axis range.
-              - 🔽 Decreasing the left head: Moves the divide to the right. Accordingly, reduces the contributing recharge area to the right boundary and lowers outflow.
-              - Using a high 🔼 head on the left coupled with a low 🔽 recharge rate and a high 🔼 hydraulic conductivity results in flow through the aquifer from left to right at a rate higher than the inflowing recharge and there is no flow divide within the model.
-            
-            **3. Explore the _Q_-_h_ Plot Dynamics**
-            - Activate the _Q_-_h_ Plot for the right specified head boundary:
-              - A blue dot in the main plot highlights the boundary condition point.
-              - The _Q_-_h_ plot shows this as a blue dot at a fixed head of 150 m.
-            - As you adjust the left specified head, observe how the blue dot moves:
-              - 🔼 When the left head increases, the groundwater divide moves to the left and more recharge flows to the right boundary → the blue dot moves down, indicating higher outflow.
-              - 🔽 When the left head decreases, the contributing area shrinks → the blue dot moves up, indicating reduced flow.
-            
-            **4. Run Comparative Experiments**
-            - Switch between the different _Q_-_h_ plots to track how other boundaries behave.
-            - Vary the following parameters to better understand interactions:
-              - Recharge
-              - Hydraulic Conductivity
-              - Left Boundary Head
-            """)
+            st.link_button("*Open in new tab* ↗️ ", url=f"?view=md&doc={DOC_FILE2}")
+            st.markdown(read_md(DOC_FILE2))
         
         with st.expander('Show the :red[**SCENARIO 2**] :rainbow[**assessment**] - to self-check your understanding'):
             st.markdown("""

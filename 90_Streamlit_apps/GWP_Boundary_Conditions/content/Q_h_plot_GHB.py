@@ -13,6 +13,13 @@ from streamlit_book import multiple_choice
 from streamlit_scroll_to_top import scroll_to_here
 from GWP_Boundary_Conditions_utils import read_md
 
+# Track the current page
+PAGE_ID = "DRN"
+
+# Do (optional) things/settings if the user comes from another page
+if st.session_state.current_page != PAGE_ID:
+    st.session_state.current_page = PAGE_ID
+    
 # ---------- Doc-only view for expanders (must run first)
 params = st.query_params
 DOC_VIEW = params.get("view") == "md" and params.get("doc")

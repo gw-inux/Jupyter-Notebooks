@@ -2,6 +2,16 @@ import streamlit as st
 from streamlit_scroll_to_top import scroll_to_here
 from GWP_Boundary_Conditions_utils import read_md
 
+# ---------- Track the current page
+PAGE_ID = "START"
+
+if "current_page" not in st.session_state:
+    st.session_state.current_page = PAGE_ID
+
+# Do (optional) things/settings if the user comes from another page
+if st.session_state.current_page != PAGE_ID:
+    st.session_state.current_page = PAGE_ID
+
 # ---------- Doc-only view for expanders (must run first)
 params = st.query_params
 DOC_VIEW = params.get("view") == "md" and params.get("doc")
@@ -23,7 +33,7 @@ if DOC_VIEW:
     st.markdown(read_md(md_file))
     st.stop()
 
-# Start the page with scrolling here
+# ---------- Start the page with scrolling here
 if st.session_state.scroll_to_top:
     scroll_to_here(0, key='top')
     st.session_state.scroll_to_top = False
