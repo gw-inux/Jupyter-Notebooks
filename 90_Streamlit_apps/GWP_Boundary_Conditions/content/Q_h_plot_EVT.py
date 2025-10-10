@@ -443,8 +443,10 @@ def Q_h_plot():
             secax.set_xlabel("Evapotranspiration rate from groundwater ($RET$) mm/d", color = 'black', fontsize=14, labelpad=15)
         elif rate_unit == "m/s":
             secax = ax.secondary_xaxis('top', functions=(
-                lambda x: x / 1000000,        # m³/km²/s -> m/s
-                lambda x: x * 1000000         # m/s -> m³/km²/s
+#                lambda x: x / 1000000,        # m³/km²/s -> m/s
+#                lambda x: x * 1000000         # m/s -> m³/km²/s
+                lambda x: x / 0.1,        # m³/km²/s -> m/s
+                lambda x: x * 0.1         # m/s -> m³/km²/s
             ))
             secax.set_xlabel("Evapotranspiration rate from groundwater ($RET$) m/s times 10⁻⁷", color = 'black', fontsize=14, labelpad=15)
         secax.tick_params(axis='x', labelsize=14)
@@ -468,8 +470,10 @@ def Q_h_plot():
             secax.set_ylabel("Evapotranspiration rate from groundwater ($RET$) mm/d", color = 'grey', fontsize=14, labelpad=15)
         if rate_unit == "m/s":
             secax = ax.secondary_yaxis('right', functions=(
-                lambda y: y / 1000000,        # m³/km²/s -> mm/d
-                lambda y: y * 1000000         # mm/d -> m³/km²/s
+#                lambda y: y / 1000000,        # m³/km²/s -> mm/d
+#                lambda y: y * 1000000         # mm/d -> m³/km²/s
+                lambda y: y / 0.1,        # m³/km²/s -> mm/d
+                lambda y: y * 0.1         # mm/d -> m³/km²/s
             ))
             secax.set_ylabel("Evapotranspiration rate from groundwater ($RET$) m/s times 10⁻⁷", color = 'grey', fontsize=14, labelpad=15)
         secax.tick_params(axis='y', labelsize=14)

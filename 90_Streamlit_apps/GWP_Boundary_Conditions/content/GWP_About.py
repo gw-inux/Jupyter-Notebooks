@@ -1,7 +1,7 @@
 import streamlit as st
 from streamlit_scroll_to_top import scroll_to_here
 
-# Track the current page
+# ---------- Track the current page
 PAGE_ID = "ABOUT"
 
 # Do (optional) things/settings if the user comes from another page
@@ -10,7 +10,7 @@ if "current_page" not in st.session_state:
 if st.session_state.current_page != PAGE_ID:
     st.session_state.current_page = PAGE_ID
     
-# Start the page with scrolling here
+# ---------- Start the page with scrolling here
 if st.session_state.scroll_to_top:
     scroll_to_here(0, key='top')
     st.session_state.scroll_to_top = False

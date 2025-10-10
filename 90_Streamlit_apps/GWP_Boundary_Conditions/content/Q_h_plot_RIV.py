@@ -12,7 +12,7 @@ from streamlit_book import multiple_choice
 from streamlit_scroll_to_top import scroll_to_here
 from GWP_Boundary_Conditions_utils import read_md
 
-# Track the current page
+# ---------- Track the current page
 PAGE_ID = "RIV"
 
 # Do (optional) things/settings if the user comes from another page
@@ -42,7 +42,7 @@ if DOC_VIEW:
     st.markdown(read_md(md_file))
     st.stop()
     
-# Start the page with scrolling here
+# ---------- Start the page with scrolling here
 if st.session_state.scroll_to_top:
     scroll_to_here(0, key='top')
     st.session_state.scroll_to_top = False

@@ -14,15 +14,37 @@ from streamlit_extras.stateful_button import button
 import json
 from streamlit_book import multiple_choice
 from streamlit_scroll_to_top import scroll_to_here
+from GWP_Boundary_Conditions_utils import read_md
 
-# Track the current page
+# ---------- Track the current page
 PAGE_ID = "MNW"
 
 # Do (optional) things/settings if the user comes from another page
 if st.session_state.current_page != PAGE_ID:
     st.session_state.current_page = PAGE_ID
     
-# Start the page with scrolling here
+# ---------- Doc-only view for expanders (must run first)
+params = st.query_params
+DOC_VIEW = params.get("view") == "md" and params.get("doc")
+
+if DOC_VIEW:
+    md_file = params.get("doc")
+
+    st.markdown("""
+    <style>
+      /* Hide sidebar & its nav */
+      [data-testid="stSidebar"],
+      [data-testid="stSidebarNav"] { display: none !important; }
+
+      /* Hide the small chevron / collapse control */
+      [data-testid="stSidebarCollapsedControl"] { display: none !important; }
+    </style>
+    """, unsafe_allow_html=True)
+
+    st.markdown(read_md(md_file))
+    st.stop()
+    
+# ---------- Start the page with scrolling here
 if st.session_state.scroll_to_top:
     scroll_to_here(0, key='top')
     st.session_state.scroll_to_top = False
@@ -310,7 +332,7 @@ with st.expander("Tell me more about **the Theory**"):
     
     st.markdown("""
     where:
-    - $A$ = Linear aquifer-loss coefficient that represents head loss due to flow through the aquifer to the well [T/L²]. In a numerical model the head in the aquifer cell containing the well is the average head in the model cell and the lowest head in the cell occurs at the location of the abstraction well. Thus, the well head is lower than the groundwater cell head even when there is no additional resistance at the well wall or in the well. Well-head loss due to A is calculated using the Thiem equation with T being the inverse of A and the radius of influence being the effective radius based on the size of the model cell. [T/L²].
+    - $A$ = Linear aquifer-loss coefficient that represents head loss due to flow through the aquifer to the well [T/L²]. In a numerical model the head in the aquifer cell containing the well is the average head in the model cell and the lowest head in the cell occurs at the location of the abstraction well. Thus, the well head is lower than the groundwater cell head even when there is no additional resistance at the well wall or in the well. Well-head loss due to A is calculated using the Thiem equation with T being the inverse of A and the radius of influence being the effective radius based on the size of the model cell. [T/L²] ([Konikow et al. 2009](https://doi.org/10.3133/tm6A30)).
     - $B$ = Linear well-loss coefficient that accounts for head loss from _skin effects_ associated with resistance due to **laminar** components of flow adjacent to the well, through the screen, and within the wellbore.
     - $C$ = Nonlinear well-loss coefficient that accounts for head loss from _skin effects_ associated with resistance due to **turbulent** components of flow adjacent to the well, through the screen, and within the wellbore, with dimensions of:
     """)
@@ -805,17 +827,17 @@ def Q_h_plot():
             if h_target:
                 st.write(':grey[**Drawdown in the well**] (in m) = %5.2f' %delta_head)
                 st.write(':blue[**Discharge $Q$ to the well**] (in m³/s) = %5.3f' %Q_show)
-                st.write(':blue[***CWC1***] (in m²/s) = %5.2f' %(st.session_state.A + st.session_state.B + st.session_state.C * Q_show**(st.session_state.P - 1)))
+                st.write(':blue[***CWC1***] (in m²/s) = %5.2f' %((st.session_state.A + st.session_state.B + st.session_state.C * Q_show**(st.session_state.P - 1))**-1))
                 if st.session_state.second:
                     st.write(':red[**Discharge $Q2$ to the well**] (in m³/s) = %5.3f' %Q_show2)
-                    st.write(':red[***CWC2***] (in m²/s) = %5.2f' %(st.session_state.A2 + st.session_state.B2 + st.session_state.C2 * Q_show2**(st.session_state.P2 - 1)))
+                    st.write(':red[***CWC2***] (in m²/s) = %5.2f' %((st.session_state.A2 + st.session_state.B2 + st.session_state.C2 * Q_show2**(st.session_state.P2 - 1))**-1))
             else:
                 st.write(':grey[**Discharge to the well**] (in m³/s) = %5.3f' %Q_show)
                 st.write(':blue[**Drawdown $$\Delta h$$ in the well**] (in m) = %5.2f' %delta_head)
-                st.write(':blue[***CWC1***] (in m²/s) = %5.2f' %(st.session_state.A + st.session_state.B + st.session_state.C * Q_show**(st.session_state.P - 1)))
+                st.write(':blue[***CWC1***] (in m²/s) = %5.2f' %((st.session_state.A + st.session_state.B + st.session_state.C * Q_show**(st.session_state.P - 1))**-1))
                 if st.session_state.second:
                     st.write(':red[**Drawdown $$\Delta h2$$ in the well**] (in m) = %5.2f' %delta_head2)
-                    st.write(':red[***CWC2***] (in m²/s) = %5.2f' %(st.session_state.A2 + st.session_state.B2 + st.session_state.C2 * Q_show2**(st.session_state.P2 - 1)))                    
+                    st.write(':red[***CWC2***] (in m²/s) = %5.2f' %((st.session_state.A2 + st.session_state.B2 + st.session_state.C2 * Q_show2**(st.session_state.P2 - 1))**-1))
     
         # --- PLOT 1 EXPLANATION ---  
         with st.expander('Click here to read more :blue[**About this Plot**]'):
@@ -835,67 +857,18 @@ def Q_h_plot():
             Users can modify the **cell-to-well conductance (CWC)**, defined via the parameters $A$, $B$, $C$, and the exponent $P$, and compare two configurations to better understand how well losses (linear and nonlinear) influence the character of the relationship.
             
             """)
+            
+        # Expander with "open in new tab"
+        DOC_FILE1 = "Q_h_plot_MNW_instructions1.md"
         with st.expander('Click here for :blue[**Instructions To Get Started with this Plot**]'):
-            st.markdown("""
-            #### :blue[🧭 Getting Started]
-            
-            Before starting the exercise, it is helpful to follow these steps to familiarize yourself MNW:
-            
-            **1. To start exploring, enter a value of 3 for $A$, $B$, $C$, and $P$ to represent a well with significant losses**
-               * The default is :blue[**Q-target**] mode with $Q = 0.5$ m³/s
-               * Observe the drawdown between $h_{gw}$ and $h_{well}$
-               * Modify the withdrawal rate to investigate the response in the interactive plot. A higher withdrawal rate causes more head decline in the well.
-            
-            **2. Switch to H-target**
-               * Toggle to :red[**H-target**] mode and $Q$ will be reset to the default $0.5$ m³/s 
-               * Vary drawdown Δh from $0.5$ to $8.0$ m
-               * Observe how $Q$ responds to increasing drawdown. The relationship is the same, but now setting $h_{well}$ produces the related value of $Q$, instead of setting $Q$ to obtain the value of $h_{well}$.
-            
-            **3. Compare Parameter Sets**
-               * Toggle to **modify CWC parameters** and the default values will be shown
-               * Now, in the CWC menu, toggle to define a **second parameter set** and try a restrictive case (if you prefer there is a toggle button under **Modify Plot Controls** that allows you to type in values instead of using the slider):
-                 * e.g., $A = 1.0$, $B = 0.2$, $C = 2.0$, $P = 2.5$
-               * Compare the resulting Q–Δh relationships.
-            
-            _Use the plot orientation toggle for alternate layouts._
-            """)
-        with st.expander('Click here for an :blue[**Exercise Related to this Plot**]'):
-            st.markdown("""
-            🎯 **Learning Objectives**
-            
-            This exercise is designed with the intent that, upon completion, you will be able to:
-            
-            - Understand how the withdrawal–drawdown relationship is defined for MNW boundaries
-            - Explain the influence of CWC parameters ($A$, $B$, $C$, $P$)
-            - Differentiate between Q-target and H-target modes
-            - Compare well behavior for different types and magnitude of well loss 
-            
-            🛠️ **Tasks**
-            
-            1. **Explore Q–Δh Relationship**
-               * Set: $A = 3$, $B = 3$, $C = 1.0$, $P = 2.0$
-               * Use :blue[**Q-target**] mode
-               * Vary $Q$ from $0.01$ to $0.5$ m³/s
-               * 📝 Record where the curve steepens and explain the influence of the different parameters in CWC ($A$, $B$, $C$, and $P$)
-            
-            2. **Test Parameter Sensitivity**
-               * Set: $A = 1$, $B = 1$, $C = 1.0$, $P = 2.0$
-               * Set $Q = 0.3$ m³/s in :blue[**Q-target**] mode
-               * Enable the **second parameter set** 
-               * Vary $A$, then systematically change $B$, $C$, and $P$ (ultimately setting all values to 4) and compare responses
-               * 💭 Reflect on the role of linear versus nonlinear resistance.
-                   * Switch on/off the linear resistance by setting $A$ and $B$ to $0$.
-                   * Switch on/off the nonlinear resistance by setting $C$ to $0$.
-               * 💭 Reflect on what parameter values would represent well-aging?
-            
-            3. **Reverse Analysis with H-target**
-               * Switch to :red[**H-target**] and make sure to use the initial parameter set: $A$ = $4$, $B$ = $4$, $C$ = $4$, $P$ = $4$
-               * Set $Δh$ = $1$, $3$, $5$, $7$ m
-               * Compare resulting $Q$ values across different parameter sets (e.g., to reflect an aged well).
-               * At what Δh value does $Q$ have a larger withdrawal rate than $-0.2$ m³/s? How much does well-aging affect the efficiency?
-            
-            _Use this exploration to build deeper insight into how MNW wells behave under variable design conditions._
-            """)
+            st.link_button("*Open in new tab* ↗️ ", url=f"?view=md&doc={DOC_FILE1}")
+            st.markdown(read_md(DOC_FILE1))
+    
+        # Expander with "open in new tab"
+        DOC_FILE2 = "Q_h_plot_MNW_exercise1.md"    
+        with st.expander('Click here for an :blue[**Exercise About this Plot**]'):
+            st.link_button("*Open in new tab* ↗️ ", url=f"?view=md&doc={DOC_FILE2}")
+            st.markdown(read_md(DOC_FILE2))  
         
         with st.expander('Click here for an :rainbow[**Assessment About this Plot**]- to self-check your understanding'):
             st.markdown("""
@@ -1003,73 +976,18 @@ def Q_h_plot():
             
             The groundwater head ($h_{gw}$) can be modified for this plot although its value has no effect on the relationship between discharge and well head. Rather, a change in groundwater head shifts the plot vertically on the graph.
             """)
+            
+        # Expander with "open in new tab"
+        DOC_FILE3 = "Q_h_plot_MNW_instructions2.md"
         with st.expander('Click here for :green[**Instructions To Get Started with this Plot**]'):
-            st.markdown("""
-            #### :green[🧭 Getting Started]
-
-            Begin with the following steps to explore the MNW discharge–head relationship:
-            
-            **1. To start exploring, enter a value of 3 for $A$, $B$, $C$, and $P$ to represent a well with significant losses** 
-               * The groundwater head is fixed at $h_{gw}$ = $10$ m in this plot
-            
-            **2. Explore Q-target Mode**
-               * Toggle to **modify CWC parameters**
-               * Set the CWC parameter values to: $A$ = $5.0$, $B$ = $5.0$, $C$ = $1.0$, $P$ = $2.0$
-               * Adjust discharge $Q$ in steps between $0.05$ and $0.7$ m³/s and observe the resulting well head $h_{well}$ and increasing drawdown
-            
-            **3. Switch to H-target Mode**
-               * Set the CWC parameter values to: $A$ = $5.0$, $B$ = $5.0$, $C$ = $1.0$, $P$ = $2.0$
-               * Adjust drawdown $Δh$ in steps between $1.0$ and $6.5$ m and observe how discharge changes with increasing drawdown
-            
-            **4. Modify CWC Parameter Values**
-               * For both Q-target Mode and H-target Mode:
-                 * Try different values for $A$, $B$, and $P$
-                 * Compare how the drawdown or flow response changes
-            
-            💡 Consider how your observations differ from the behavior of **DRN** and **RIV** boundaries (linear, head-dependent flow) and from **WEL** and **RCH** boundaries (fixed Q).
-
-            """)
+            st.link_button("*Open in new tab* ↗️ ", url=f"?view=md&doc={DOC_FILE3}")
+            st.markdown(read_md(DOC_FILE3))
+    
+        # Expander with "open in new tab"
+        DOC_FILE4 = "Q_h_plot_MNW_exercise2.md"    
         with st.expander('Click here for an :green[**Exercise About this Plot**]'):
-            st.markdown("""
-            🎯 **Learning Objectives**
-            
-            This exercise is designed with the intent that, upon completion, you will be able to:
-            
-            - Understand how MNW represents nonlinear resistance between groundwater and a well
-            - Interpret how discharge and drawdown change for different parameterizations
-            - Explain how MNW behavior differs from other boundary conditions (e.g., WEL, RCH, DRN, RIV)
-            - Identify cases where turbulence is dominant
-            
-            🛠️ **Tasks**
-            
-            1. **Well Head Response to Discharge**
-               * Use :blue[**Q-target**] mode
-               * Set: $A = 0.5$, $B = 0.05$, $C = 1.0$, $P = 2.0$
-               * Vary $Q$ from $0.05$ to $0.8$ m³/s
-               * 📝 Record $h_{well}$ and compute the drawdown: $\Delta h = h_{gw} - h_{well}$
-            
-            2. **Effect of Parameter Variation**
-               * Starting with the CWC settings from step 1, for a few values of Q, make the following changes and note the drawdown
-                 * Double $A$
-                 * Double $B$
-                 * Double $C$
-                 * Increase $P$ to $2.5$ or $3.0$
-               * 📝 Record how each change affects drawdown for a given $Q$
-               * Which parameters cause nonlinear increases in $Q$?
-            
-            3. **Explore H-target Mode**
-               * Retaining the final settings for CWC from step 2, set drawdown to $Δh$ = $2.0$ m, then in a few steps, lower it to $0.5$ m
-                 * 📝 Record how discharge changes (hint: when the $Q$ value is out of the axis range as is the case for $Δh$ = $2.0$ m, the value of $Q$ can be determined from the legend)
-            
-            4. **Conceptual Comparison**
-               * When is the MNW behavior close to behaving like:
-                 - a constant $Q$ source (WEL)?
-                 - a linear head-dependent boundary (RIV)?
-               * What role does the parameter $P$ play in making an MNW boundary behave differently?
-            
-            🧠 Reflect: What happens if you set $A$ = $0$? When is turbulence (nonlinear loss) dominant?
-
-            """)
+            st.link_button("*Open in new tab* ↗️ ", url=f"?view=md&doc={DOC_FILE4}")
+            st.markdown(read_md(DOC_FILE4))  
         
         with st.expander('Click here for an :rainbow[**Assessment About this Plot**]- to self-check your understanding'):
             st.markdown("""
