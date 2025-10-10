@@ -377,8 +377,8 @@ def discharge_equation(Q, delta_h, A, B, C, p):
 # Callback function to update session state
 def update_dh_show():
     st.session_state.dh_show = st.session_state.dh_show_input
-def update_Q_show():
-    st.session_state.Q_show = st.session_state.Q_show_input
+def update_Q_show_neg():
+    st.session_state.Q_show_neg = st.session_state.Q_show_input
 def update_h_cell_slider():
     st.session_state.h_cell_slider = st.session_state.h_cell_slider_input
 def update_h_cell_slider2():
@@ -425,6 +425,7 @@ def update_Q_range():
 # Initialize session state for value and toggle state
 st.session_state.dh_show = 5.0
 st.session_state.Q_show = 0.5
+st.session_state.Q_show_neg = -0.5
 st.session_state.h_cell_slider = 12.0
 st.session_state.h_cell_slider2 = 10.0
 st.session_state.h_cell_slider4 = 10.0
@@ -539,10 +540,18 @@ def Q_h_plot():
                         dh_show = st.slider      ("**Drawdown $$\Delta h$$** in withdrawal well", 0.01, 10.0, st.session_state.dh_show, 0.1, key="dh_show_input", on_change=update_dh_show)
             else:
                 st.markdown(":blue[**Q-target**]")
+                
+                # Discrete negative options: −0.001, −0.002, …, −1.000
+                Q_show_OPTIONS = [round(-i/1000, 3) for i in range(1, 1001)]
                 if st.session_state.number_input:
-                    Q_show = st.number_input("**Withdrawal rate $Q$** in the well", 0.001, 1.0, st.session_state.Q_show, 0.001, key="Q_show_input", on_change=update_Q_show)
+                    Q_show_neg = st.number_input("**Withdrawal rate $Q$** in the well", -1.0, -0.001, st.session_state.Q_show_neg, 0.001, format="%.3f", key="Q_show_input", on_change=update_Q_show_neg)
                 else:
-                    Q_show = st.slider      ("**Withdrawal rate $Q$** in the well", 0.001, 1.0, st.session_state.Q_show, 0.001, key="Q_show_input", on_change=update_Q_show)   
+                    Q_show_neg = st.select_slider("**Withdrawal rate $Q$** in the well", Q_show_OPTIONS, round(st.session_state.get("Q_show_neg", -0.100), 3), key="Q_show_input", on_change=update_Q_show_neg)
+                Q_show = Q_show_neg * -1
+#                if st.session_state.number_input:
+#                    Q_show = st.number_input("**Withdrawal rate $Q$** in the well", 0.001, 1.0, st.session_state.Q_show, 0.001, key="Q_show_input", on_change=update_Q_show)
+#                else:
+#                    Q_show = st.slider      ("**Withdrawal rate $Q$** in the well", 0.001, 1.0, st.session_state.Q_show, 0.001, key="Q_show_input", on_change=update_Q_show)   
             if show_plot2:
                 if st.session_state.number_input:
                     h_cell_slider2 = st.number_input("**Groundwater head** $h_{gw}$ [m]", 5.0, 15.0, st.session_state.h_cell_slider2, 0.1, key="h_cell_slider2_input", on_change=update_h_cell_slider2)
