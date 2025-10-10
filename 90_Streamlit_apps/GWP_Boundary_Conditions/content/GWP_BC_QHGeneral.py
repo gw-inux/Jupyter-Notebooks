@@ -629,6 +629,57 @@ if show_plot1:
         ax.hlines(y= h_arrow-(h_arrow*0.0022), xmin=L2*0.595, xmax=L2*0.605, colors='blue')
         
         
+        
+        # --- ARROWS FOR RECHARGE (Scenario 1) ---
+        # uses: R, K, L, x, h, y_scale, ax  (already defined in computation1)
+        
+        if R != 0:
+            mag = abs(R)
+        
+            # sizing (same style as Scenario 2)
+            head_len  = (mag * 86400 * 365.25 * 1000 * 0.002) * y_scale / 3
+            head_len  = max(head_len, 0.03)         # ensure visible head
+            shaft_len = max(0.05, head_len * 1.4)   # ensure visible shaft
+        
+            # shaft & head widths (data units)
+            shaft_width = (head_len * 120 / y_scale)
+            head_width  = (head_len * 450 / y_scale)
+        
+            def draw_recharge_arrow(xpos, h_at_x, sign):
+                """
+                sign > 0 -> recharge (down arrow), tip EXACTLY at water table
+                sign < 0 -> ET (up arrow), tail EXACTLY at water table
+                """
+                total = shaft_len + head_len
+                if sign > 0:
+                    # start above water, draw down so the tip lands on h_at_x
+                    y0, dy = h_at_x + total, -total
+                else:
+                    # start on the water table, draw up so the tail sits on h_at_x
+                    y0, dy = h_at_x, total
+        
+                ax.arrow(
+                    xpos, y0, 0.0, dy,
+                    length_includes_head=True,
+                    width=shaft_width, head_width=head_width, head_length=head_len,
+                    fc="green", ec="green", alpha=0.95, linewidth=0.8, zorder=4
+                )
+        
+            # pick a few positions across the domain
+            xs = np.array([L*0.167, L*0.333, L*0.50, L*0.666, L*0.833])
+        
+            # interpolate heads at those x-positions from the computed profile
+            hs = np.interp(xs, x, h)
+        
+            sgn = 1 if R > 0 else -1
+            for xi, hi in zip(xs, hs):
+                draw_recharge_arrow(xi, hi, sgn)
+        
+        
+        
+        
+        
+        
         # Format plot
         ax.set_ylim(140,160)
         ax.set_xlim(-30,L+30)
