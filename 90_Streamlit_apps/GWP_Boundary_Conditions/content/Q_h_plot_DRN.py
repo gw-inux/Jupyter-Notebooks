@@ -448,6 +448,7 @@ def Q_h_plot():
             # Add gaining annotations
             if h_gw_show > HD:
                 ax.text(-0.04*0.05,20*0.97, "Flow INTO the Drain", fontsize=16, va='center', color='blue')
+                ax.text(-0.05*0.05,20*0.92, "(OUT of the model)", fontsize=16, va='center', color='blue', alpha = 0.5)
             else:
                 ax.text(-0.04*0.05,20*0.97, "Drain inactive", fontsize=16, va='center', color='red')  
         else:
@@ -473,6 +474,7 @@ def Q_h_plot():
             # Add gaining drn annotations
             if h_gw_show > HD:
                 ax.text(0.5, -0.003, "Flow INTO the Drain", fontsize=16, va='center', color='blue')
+                ax.text(0.6, -0.008, "(OUT of the model)", fontsize=16, va='center', color='blue', alpha = 0.5)
             else:
                 ax.text(0.5, -0.003, "Drain inactive", fontsize=16, va='center', color='red')
     else:

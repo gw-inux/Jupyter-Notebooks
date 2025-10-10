@@ -737,6 +737,8 @@ def Q_h_plot():
             # Add gaining/losing river annotations
             ax.text(-0.04*lim1, h_ref+(thick-h_ref)*0.97, "Flow INTO the River", va='center',color='blue',  fontsize=16)
             ax.text(0.82   *lim1, h_ref+(thick-h_ref)*0.97, "Flow OUT of the River",  va='center',color='green', fontsize=16)
+            ax.text(-0.05*lim1, h_ref+(thick-h_ref)*0.92, "(OUT of the model)", va='center',color='blue',  fontsize=16, alpha=0.5)
+            ax.text(0.74   *lim1, h_ref+(thick-h_ref)*0.92, "(INTO the model)",  va='center',color='green', fontsize=16, alpha=0.5)
         else:
             ax.plot(Q, h_gw, label=rf"$Q$", color='black', linewidth=3)            
     else:
@@ -809,7 +811,9 @@ def Q_h_plot():
                     draw_sharp_arrow(ax, start=(h_RIV, Q_ref), end=(h_gw_show,Q_ref), orientation='horizontal', axis_range_x=(lim1, lim2), axis_range_y=(h_ref, thick), color='green', al=0.4, lw=3, hs=25)
             # Add gaining/losing river annotations
             ax.text(thick-(0.4*(thick-h_ref)), -0.05*lim1, "Flow INTO the River", va='center',color='blue',  fontsize=16)
-            ax.text(thick-(0.4*(thick-h_ref)),  0.05*lim1, "Flow OUT of the River",  va='center',color='green', fontsize=16)
+            ax.text(thick-(0.4*(thick-h_ref)),  0.15*lim1, "Flow OUT of the River",  va='center',color='green', fontsize=16)
+            ax.text(thick-(0.4*(thick-h_ref)), -0.15*lim1, "(OUT of the model)", va='center',color='blue',  fontsize=16, alpha=0.5)
+            ax.text(thick-(0.4*(thick-h_ref)),  0.05*lim1, "(INTO the model)",  va='center',color='green', fontsize=16, alpha=0.5)
         else:
             ax.plot(h_gw, Q, label=rf"$Q$", color='black', linewidth=3)
    

@@ -471,19 +471,15 @@ def Q_h_plot():
                 )
             # Add gaining/losing stream annotations
             if relax_Q:
-#                ax.text(-0.3,1, "Flow OUT of the model", va='center',color='blue',  fontsize=16)
-#                ax.text(0.2, 1,  "Flow INTO the model", va='center', ha='right',color='green',  fontsize=16)
                 ax.text(-0.3,1.5, "Flow INTO the boundary", va='center',color='blue',  fontsize=16)
                 ax.text(0.2, 1.5,  "Flow OUT of the boundary", va='center', ha='right',color='green',  fontsize=16)
-                ax.text(-0.8,0.5, "(OUT of the model)", va='center',color='blue',  fontsize=16)
-                ax.text(0.8, 0.5,  "(INTO the model)", va='center', ha='right',color='green',  fontsize=16)                
+                ax.text(-0.8,0.5, "(OUT of the model)", va='center',color='blue',  fontsize=16, alpha=0.5)
+                ax.text(0.8, 0.5,  "(INTO the model)", va='center', ha='right',color='green',  fontsize=16, alpha=0.5)                
             else:
-#                ax.text(-0.003,1, "Flow OUT of the model", va='center',color='blue',  fontsize=16)
-#                ax.text(0.002, 1,  "Flow INTO the model", va='center', ha='right',color='green',  fontsize=16)
                 ax.text(-0.003,1.5, "Flow INTO the boundary", va='center',color='blue',  fontsize=16)
                 ax.text(0.002, 1.5,  "Flow OUT of the boundary", va='center', ha='right',color='green',  fontsize=16)      
-                ax.text(-0.008,0.5, "(OUT of the model)", va='center',color='blue',  fontsize=16)
-                ax.text(0.008, 0.5,  "(INTO the model)", va='center', ha='right',color='green',  fontsize=16)     
+                ax.text(-0.008,0.5, "(OUT of the model)", va='center',color='blue',  fontsize=16, alpha=0.5)
+                ax.text(0.008, 0.5,  "(INTO the model)", va='center', ha='right',color='green',  fontsize=16, alpha=0.5)     
             # Add red rectangle if Q out of the plot
             if (Q_ref < -0.05 or Q_ref > 0.05) and not relax_Q:
                 rect = Rectangle((min(0.05, -0.05), 0.0), abs(-0.05 - 0.05), 20.0, linewidth=5, edgecolor='red', facecolor='none')
@@ -523,19 +519,15 @@ def Q_h_plot():
                 )
             # Add gaining/losing stream annotations
             if relax_Q:
-#                ax.text(19.8, -0.3, "Flow OUT of the model", va='center', ha='right',color='blue',  fontsize=16)
-#                ax.text(19.8, 0.3, "Flow INTO the model", va='center', ha='right',color='green',  fontsize=16)
                 ax.text(19.8, -0.3, "Flow INTO the boundary", va='center', ha='right',color='blue',  fontsize=16)
                 ax.text(19.8, 0.8, "Flow OUT of the boundary", va='center', ha='right',color='green',  fontsize=16)
-                ax.text(19.8, -0.8, "(OUT of the model)", va='center', ha='right',color='blue',  fontsize=16)
-                ax.text(19.8, 0.3, "(INTO the model)", va='center', ha='right',color='green',  fontsize=16)
+                ax.text(19.8, -0.8, "(OUT of the model)", va='center', ha='right',color='blue',  fontsize=16, alpha=0.5)
+                ax.text(19.8, 0.3, "(INTO the model)", va='center', ha='right',color='green',  fontsize=16, alpha=0.5)
             else:
-#                ax.text(19.8, -0.003, "Flow OUT of the model", va='center', ha='right',color='blue',  fontsize=16)
-#                ax.text(19.8, 0.003, "Flow INTO the model", va='center', ha='right',color='green',  fontsize=16)
                 ax.text(19.8, -0.003, "Flow INTO the boundary", va='center', ha='right',color='blue',  fontsize=16)
                 ax.text(19.8, 0.008, "Flow OUT of the boundary", va='center', ha='right',color='green',  fontsize=16)
-                ax.text(19.8, -0.008, "(OUT of the model)", va='center', ha='right',color='blue',  fontsize=16)
-                ax.text(19.8, 0.003, "(INTO the model)", va='center', ha='right',color='green',  fontsize=16)
+                ax.text(19.8, -0.008, "(OUT of the model)", va='center', ha='right',color='blue',  fontsize=16, alpha=0.5)
+                ax.text(19.8, 0.003, "(INTO the model)", va='center', ha='right',color='green',  fontsize=16, alpha=0.5)
             # Add red rectangle if Q out of the plot
             if (Q_ref < -0.05 or Q_ref > 0.05) and not relax_Q:
                 rect = Rectangle((0.0, min(0.05, -0.05)), 20.0, abs(-0.05 - 0.05), linewidth=5, edgecolor='red', facecolor='none')
