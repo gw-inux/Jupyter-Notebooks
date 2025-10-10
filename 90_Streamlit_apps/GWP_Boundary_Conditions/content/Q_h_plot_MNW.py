@@ -1304,81 +1304,18 @@ def Q_h_plot():
             - The nonlinear relationship between Q and $h_{well}$ under withdrawal-limited conditions for various CWC parameters
 
             """)
+            
+        # Expander with "open in new tab"
+        DOC_FILE5 = "Q_h_plot_MNW_instructions3.md"
         with st.expander('Click here for :red[**Instructions To Get Started with this Plot**]'):
-            st.markdown("""
-            #### :red[🧭 Getting Started]
-            
-            Follow these steps to explore threshold-controlled withdrawal behavior in MNW (if you prefer there is a toggle button under **Modify Plot Controls** that allows you to type in values instead of using the slider):
-            
-           **1. Start by setting the following values** 
-              * $Q-target = 0.5$ m
-              * $h_{gw} = 10$ m
-              * Limiting head $h_{lim} = 5.0$ m
-              * CWC parameters: $A = 3$, $B = 3$, $C = 3$, and $P = 3$ to represent a well with significant losses
-            
-            **2. Step through values of Q** 
-              * Vary withdrawal rate $Q$ from 0.1 to 0.9 m³/s
-              * Observe how $h_{well}$ responds to withdrawal
-              * Identify where the well head $h_{well}$ reaches the threshold head $h_{lim}$
-            
-            **3. Explore Threshold Activation** 
-              * Increase the withdrawal rate _Q_ beyond the point where $h_{well} = h_{lim}$
-              * Note that the current _Q_ (represented by the dot in the plot) is automatically reduced to keep $h_{well} = h_{min}$
-            
-            **4. Explore Withdrawal Limits**  
-              * Set the limiting head $h_{lim}$ to 5.0 m and the groundwater head $h_{gw}$ to 15.0 m. Set the withdrawal rate to 0.5 m³/s. With these settings, the system is in proper operation.
-              * Toggle **Apply withdrawal thresholds** to automatically switch off/on the pump then the Qmn and Qmx will appear on the plot as solid and dashed black lines
-              * Set Qmn and Qmx to 0.05 and 0.2 m³/s
-              * Now, lower the groundwater head $h_{gw}$ in steps down to 5.1 m. The groundwater head can be lowered by various mechanisms with the most common likely being withdrawal from  neighboring wells.
-              * While lowering the groundwater head, observe how the adjusted withdrawal rate - represented by the dot in the plot - is affected.
-              * Once the groundwater head reaches 5.1 m, gradually raise the head back to 15.0 m and observe the adjusted withdrawal rate (dot in the plot).
-            
-            **5. Modify Parameters**
-              * Try different values for $A$, $B$, $C$, and $P$
-              * Vary Q (Q-target), Δh (H-target), groundwater head $h_{gw}$ and threshold head $h_{lim}$, and investigate the MNW behavior with the interactive plot.
-            
-            💡 This exercise facilitates understanding of how operational constraints (like prevention of water level dropping below a pump) interact with well head-loss to adjust the simulated flow rate so a model cannot represent more withdrawal of water than the well design will allow.
-            """)
+            st.link_button("*Open in new tab* ↗️ ", url=f"?view=md&doc={DOC_FILE5}")
+            st.markdown(read_md(DOC_FILE5))
+    
+        # Expander with "open in new tab"
+        DOC_FILE6 = "Q_h_plot_MNW_exercise3.md"    
         with st.expander('Click here for an :red[**Exercise About this Plot**]'):
-            st.markdown("""
-            🎯 **Learning Objectives**
-            
-            This exercise is designed with the intent that, upon completion, you will be able to:
-            
-            - Explain how threshold head limits influence MNW discharge behavior
-            - Identify the conditions for which withdrawal is reduced to protect a wells
-            - Analyze how nonlinear head losses and operational limits combine to define feasible withdrawal rates
-            - Understand the role of Qmn and Qmx in the MNW implementation
-            
-            🛠️ **Exercise Instructions**
-            
-            1. **Locate Threshold Activation Point**
-               * Set: $A = 1$, $B = 1$, $C = 1$ $P = 1$, $h_{gw} = 10$ m, $h_{lim} = 7$ m
-               * Increase Q from 0.2 to 1.0 m³/s
-               * 📝 Identify the Q at which $h_{well} = h_{lim}$ — call this $Q_{lim}$
-            
-            2. **Test Effect of Nonlinearity and Exponent P**
-               * Starting again with: Q to 0.5 m³/s, $h_{gw} = 10$ m, $h_{lim} = 7$ m $A = 1$, $B = 1$, $C = 1$ $P = 1$
-               * Increase $C$ to 2 and repeat the test
-               * Increase $P$ to 2 and repeat the test
-               * How does $Q_{lim}$ change?
-               * Is the threshold reached earlier or later?
-               * Why does a higher $P$ allow a higher flow rate?
-            
-            3. **Apply Qmn and Qmx Limits**
-               * Starting again with: Q to 0.5 m³/s, $h_{gw} = 10$ m, $h_{lim} = 7$ m $A = 1$, $B = 1$, $C = 1$ $P = 1$
-               * Set Qmn = 0.1 m³/s and Qmx = 0.2 m³/s
-               * Try to reach the value of Qmn by lowering the groundwater head and take notice of the groundwater head when withdrawal stops.
-               * Now, increase the groundwater head in steps up to 10.0 m and notice the value of groundwater head when withdrawal starts again. Consider why withdrawal stops and starts at different values of groundwater head.
-               * Double the parameter for linear well loss $B$ and repeat the procedure. Quantify the changes in terms of groundwater heads for switching off/on the withdrawal.
-            
-            💭 Reflect:
-            - When is the threshold head the limiting factor?
-            - How do Qmn and Qmx affect the value of practical withdrawal?
-            - How is this behavior affected by the value of CWC with respect to the individual processes that control CWC (aquifer loss, linear and nonlinear well loss).
-            
-            This exploration prepares you to interpret MNW behavior in model calibration and design tasks.
-            """)
+            st.link_button("*Open in new tab* ↗️ ", url=f"?view=md&doc={DOC_FILE6}")
+            st.markdown(read_md(DOC_FILE6))  
         
         with st.expander('Click here for an :rainbow[**Assessment About this Plot**]- to self-check your understanding'):
             st.markdown("""
@@ -1501,7 +1438,7 @@ def Q_h_plot():
             st.write('Activate the visualization with the toggle **:rainbow[Visualize the results]** to see this plot')
 
         # --- PLOT 4 EXPLANATION ---  
-        with st.expander('Click here to read more :red[**About this Plot**]'):
+        with st.expander('Click here to read more :orange[**About this Plot**]'):
             st.markdown("""
             #### :orange[🔎 About this Plot]
             
@@ -1517,61 +1454,19 @@ def Q_h_plot():
             - The nonlinear relationship between Q and $h_{well}$ under withdrawal-limited conditions for various CWC parameters
             - How $h_{lim}$ limits the head difference and thus limits $Q$
             """)
-        with st.expander('Click here for :red[**Instructions To Get Started with this Plot**]'):
-            st.markdown("""
-            #### :orange[🧭 Getting Started]
             
-            Follow these steps to explore threshold-controlled withdrawal behavior in MNW:
+        # Expander with "open in new tab"
+        DOC_FILE7 = "Q_h_plot_MNW_instructions4.md"
+        with st.expander('Click here for :orange[**Instructions To Get Started with this Plot**]'):
+            st.link_button("*Open in new tab* ↗️ ", url=f"?view=md&doc={DOC_FILE7}")
+            st.markdown(read_md(DOC_FILE7))
+    
+        # Expander with "open in new tab"
+        DOC_FILE8 = "Q_h_plot_MNW_exercise4.md"    
+        with st.expander('Click here for an :orange[**Exercise About this Plot**]'):
+            st.link_button("*Open in new tab* ↗️ ", url=f"?view=md&doc={DOC_FILE8}")
+            st.markdown(read_md(DOC_FILE8))  
             
-            **1. Start by setting the following values**
-               * Limiting head $h_{lim} = 2.0$ m
-               * $h_{gw} = 10$ m
-               * CWC parameters: $A = 5.0$, $B = 5.0$, $C = 0$, $P = 2.0$
-            
-            **2. Step through values of $h_{gw}$**
-               * Vary groundwater head $h_{gw}$ from 10.0 to 19.0 m and observe how discharge $Q$ responds to groundwater head changes
-               
-            **3. Modify Parameters**
-               * Adjust values of $A$, $B$, $C$, and $P$ and observe how the shape of the ***Q-h*** plot responds.
-               * Vary groundwater head $h_{gw}$ and the ratio of well-head/limiting-head $h_{well}$/$h_{lim}$, and investigate the MNW behavior for this ***Q-h*** plot with the interactive diagram.
-               * Identify the well head $h_{well}$ and the groundwater head $h_{gw}$ where the discharge becomes zero
-            
-            💡 Following these steps facilitates understanding of how the MNW package incorporates head targets and can be used to estimate well discharge.
-            """)
-        with st.expander('Click here for an :violet[**Exercise About this Plot**]'):
-            st.markdown("""
-            🎯 **Learning Objectives**
-            
-            This exercise is designed with the intent that, upon completion, you will be able to:
-            
-            - Explain how the limiting head influence MNW discharge behavior
-            - Analyze how nonlinear head losses and operational limits combine to define feasible withdrawal rates
-            
-            🛠️ **Exercise Instructions**
-            
-            1. **Identify the outflow from an artesian flowing well**
-               * Set: $A = 5$, $B = 5$, $C = 0.0$ $P = 1.0$, $h_{gw} = 15$ m, $h_{lim} = 5$ m
-               * 📝 Identify the Q that flows out of the well
-               * 📝 Quantify how Q changes when the groundwater head declines from 15 m to 12 m.
-            
-            2. **Test Effect of Nonlinearity**
-               * Set $h_{gw} = 18$ m and observe $Q$
-               * then increase $P$ to 3.5 and observe $Q$
-               * Reset $P$ = 1.0, set $C$ = 3.0 and observe $Q$
-               * then increase $P$ to 3.5 again and observe $Q$
-            
-            3. **Effect of linear losses**
-               * Reset to: $A = 5$, $B = 5$, $C = 0.0$ $P = 1.0$, $h_{gw} = 15$ m, $h_{lim} = 5$ m
-               * Double $B$ (keep the others fixed)
-               * Quantify how the discharge changes for Δh = 4.3 m.
-            
-            💭 Reflect:
-            - How does the MNW boundary behave in this exercise? What other boundary condition presented in this module exhibits comparable behavior?
-            - How do linear and nonlinear losses shape the Q-h curve? What does this mean for the resulting outflow?
-            
-            This exploration prepares you to interpret MNW behavior in model calibration and design tasks.
-            """)
-        
         with st.expander('Click here for an :rainbow[**Assessment About this Plot**]- to self-check your understanding'):
             st.markdown("""
             #### 🧠 Final assessment for Plot 4
