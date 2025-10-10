@@ -18,6 +18,9 @@ if "qh_expander_open" not in st.session_state:
     st.session_state.qh_expander_open = False
     
 # if we just navigated back to this page, reset the expander to closed
+if "current_page" not in st.session_state:
+    st.session_state.current_page = PAGE_ID
+    
 if st.session_state.current_page != PAGE_ID:
     st.session_state.current_page = PAGE_ID
     st.session_state.qh_expander_open = False 
@@ -337,7 +340,6 @@ with st.expander("Show more :blue[**explanation about the boundary condition typ
     """)
     
 with st.expander("Show more :blue[**explanation about _Q_-_h_ plots**] that describe boundary condition behavior", expanded=st.session_state.qh_expander_open):
-    st.write(st.session_state.qh_expander_open)
     st.markdown("""
     The relationship between discharge (_Q_) and hydraulic head (_h_) at model boundaries provides a powerful way to conceptualize and compare different types of boundary conditions in groundwater flow modeling. _Q_-_h_ plots visually illustrate how flow into or out of a model domain responds to parameter changes, highlighting the fundamental behavior of specified-head, specified-flow, and head-dependent flux boundaries. These plots serve as intuitive tools to understand how boundary conditions influence system response, and how they are implemented in models like MODFLOW.
     
@@ -962,18 +964,7 @@ if show_plot2:
         h_arrow = (hl2**2-(hl2**2-hr2**2)/L2*(L2*0.6)+(R2/K2*(L2*0.6)*(L2-(L2*0.6))))**0.5  #water level at arrow
         ax.arrow(L2*0.6,(h_arrow+(h_arrow*0.0030)), 0, -0.01, fc="k", ec="k", head_width=(L2*0.015), head_length=(h_arrow*0.0025))
         ax.hlines(y= h_arrow-(h_arrow*0.0010), xmin=L2*0.59, xmax=L2*0.61, colors='blue')   
-        ax.hlines(y= h_arrow-(h_arrow*0.0022), xmin=L2*0.595, xmax=L2*0.605, colors='blue')
-        
-#        #ARROWS FOR RECHARGE 
-#        if R2 != 0:
-#            head_length=(R2*86400*365.25*1000*0.002)*y2_scale/5
-#            h_rch1 = (hl2**2-(hl2**2-hr2**2)/L2*(L2*0.25)+(R2/K2*(L2*0.25)*(L2-(L2*0.25))))**0.5  #water level at arrow for Recharge Posotion 1
-#            ax.arrow(L2*0.25,(h_rch1+head_length), 0, -0.01, fc="k", ec="k", head_width=(head_length*300/y2_scale), head_length=head_length)
-#            h_rch2 = (hl2**2-(hl2**2-hr2**2)/L2*(L2*0.50)+(R2/K2*(L2*0.50)*(L2-(L2*0.50))))**0.5  #water level at arrow for Recharge Postition 2
-#            ax.arrow(L2*0.50,(h_rch2+head_length), 0, -0.01, fc="k", ec="k", head_width=(head_length*300/y2_scale), head_length=head_length)
-#            h_rch3 = (hl2**2-(hl2**2-hr2**2)/L2*(L2*0.75)+(R2/K2*(L2*0.75)*(L2-(L2*0.75))))**0.5  #water level at arrow for Recharge Position 3
-#            ax.arrow(L2*0.75,(h_rch3+head_length), 0, -0.01, fc="k", ec="k", head_width=(head_length*300/y2_scale), head_length=head_length)
-        
+        ax.hlines(y= h_arrow-(h_arrow*0.0022), xmin=L2*0.595, xmax=L2*0.605, colors='blue')    
         
         # ARROWS FOR RECHARGE
         if R2 != 0:

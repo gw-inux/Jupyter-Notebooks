@@ -10,22 +10,46 @@ from streamlit_extras.stateful_button import button
 import json
 from streamlit_book import multiple_choice
 from streamlit_scroll_to_top import scroll_to_here
+from GWP_Boundary_Conditions_utils import read_md
 
-# Track the current page
+# ---------- Track the current page
 PAGE_ID = "DRN"
 
 # Do (optional) things/settings if the user comes from another page
+if "current_page" not in st.session_state:
+    st.session_state.current_page = PAGE_ID
 if st.session_state.current_page != PAGE_ID:
     st.session_state.current_page = PAGE_ID
     
-# Start the page with scrolling here
+# ---------- Doc-only view for expanders (must run first)
+params = st.query_params
+DOC_VIEW = params.get("view") == "md" and params.get("doc")
+
+if DOC_VIEW:
+    md_file = params.get("doc")
+
+    st.markdown("""
+    <style>
+      /* Hide sidebar & its nav */
+      [data-testid="stSidebar"],
+      [data-testid="stSidebarNav"] { display: none !important; }
+
+      /* Hide the small chevron / collapse control */
+      [data-testid="stSidebarCollapsedControl"] { display: none !important; }
+    </style>
+    """, unsafe_allow_html=True)
+
+    st.markdown(read_md(md_file))
+    st.stop()
+    
+# ---------- Start the page with scrolling here
 if st.session_state.scroll_to_top:
     scroll_to_here(0, key='top')
     st.session_state.scroll_to_top = False
 #Empty space at the top
 st.markdown("<div style='height:1.25rem'></div>", unsafe_allow_html=True)
 
-# path to questions for the assessments (direct path)
+# ---------- path to questions for the assessments (direct path)
 path_quest_ini   = "90_Streamlit_apps/GWP_Boundary_Conditions/questions/initial_drn.json"
 path_quest_exer =  "90_Streamlit_apps/GWP_Boundary_Conditions/questions/exer_drn.json"
 path_quest_final = "90_Streamlit_apps/GWP_Boundary_Conditions/questions/final_drn.json"
@@ -354,6 +378,13 @@ def Q_h_plot():
             turn = st.toggle('Toggle to turn the plot 90 degrees', key="DRN_turn", value=True)
             st.session_state.number_input = st.toggle("Toggle to use Slider or Number for input of $C_D$, $H_D$, and $h_{gw}$.")
             visualize = st.toggle(':rainbow[Visualize the input values]', key="DRN_vis", value=True)
+            reset = st.button(':red[Reset the plot to the initial values]')
+            if reset:
+                st.session_state.C_DRN = 1e-2
+                st.session_state.C_DRN_label = "1e-2"
+                st.session_state.HD = 8.0
+                st.session_state.h_gw_show = 10.0
+                st.session_state.number_input = False  # Default to number_input
 
     with columns1[1]:
         with st.expander('Modify :blue[**Heads** & **Elevations**]'):
@@ -480,71 +511,17 @@ def Q_h_plot():
         _* from the **perspective of inflow** into the groundwater, **drain flow is always negative** or zero because it is flow leaving the groundwater._
         """)
     
+    # Expander with "open in new tab"
+    DOC_FILE1 = "Q_h_plot_DRN_instructions.md"
     with st.expander('Show the :blue[**INSTRUCTIONS**]'):
-        st.markdown("""
-        **Getting Started with the Interactive Plot**
+        st.link_button("*Open in new tab* ↗️ ", url=f"?view=md&doc={DOC_FILE1}")
+        st.markdown(read_md(DOC_FILE1))
         
-       Before starting the exercise, it is helpful to follow these steps to explore DRN behavior:
-        
-       1. **Start with $H_{D}$ = 8 m, $h_{gw}$ = 10 m, and $C_{B}$ = 1x10⁻² m²/s** 
-        
-        * Vary **groundwater head** $h_{gw}$ in steps between 6 and 12 m (if you prefer there is a toggle button under **Modify Plot Controls** that allows you to type in values instead of using the slider).
-        * Observe how the flow $Q_D$ changes:
-            * When $h_{gw} > H_D$, the groundwater drains, that is flow leaves the groundwater through the drain.
-            * When $h_{gw} \leq H_D$, no flow occurs because the drain is inactive.
-            
-       2. **Experiment with Different Conductance Values**
-        
-        * With $h_{gw} > H_D$, use the slider to vary $C_D$ and notice how the **slope of the Q–h curve** changes — higher conductance leads to stronger response of outflow to head differences.
-        
-        These steps help you build intuition for how DRN parameters govern flow — especially the **threshold behavior** and **linear relationship** between head difference and outflow. Feel free to further investigate the interactive plot on your own.
-        """)
-    
+    # Expander with "open in new tab"
+    DOC_FILE2 = "Q_h_plot_DRN_exercise.md"
     with st.expander('Show the :rainbow[**EXERCISE**]'):
-        
-        st.markdown("""   
-        🎯 **Expected Learning Outcomes**
-        
-        Completion of this exercise helps you to:
-        
-        - Understand how drain–groundwater interaction is controlled by groundwater head, drain elevation, and conductance.
-        - Interpret the boundary characteristics with a Q–h plot.
-        - Recognize the threshold behavior of the DRN package and its role as a one-way boundary.
-        - Evaluate how conductance controls the rate of drainage when groundwater head is above a threshold elevation.
-        - Analyze realistic scenarios (e.g., excavation of a building foundation) and the implications for boundary fluxes.
-        
-        🛠️ **Instructions**
-        
-        Use the interactive DRN plot to complete the following steps:
-        
-        1. **Initial Exploration (hint: there is a toggle button under **Modify Plot Controls** that allows you to type in values instead of using the slider)**
-        
-        * Start with $H_{D}$ = 8 m, $h_{gw}$ = 10 m, and $C_{B}$ = 1x10⁻² m²/s
-        * Vary the groundwater head ($h_{gw}$) from 8 m to 12 m and observe how the flow ($Q_D$) responds to changes in head
-        
-        Make a record of:
-        
-            * The threshold value at which the drain becomes active
-            * The linearity of the Q–h relationship once the threshold is exceeded
-            * Drain flow when groundwater head is less than the drain elevation
-
-        2. **Effect of Conductance**
-        * Start with $H_{D}$ = 8 m, $h_{gw}$ = 10 m, and $C_{B}$ = 1x10⁻² m²/s
-        * Choose three different conductance values (e.g., 1x10⁻², 1x10⁻³, and 1x10⁻⁴ m²/s)
-          * For each of the 3 conductance values view the plot $Q_{D}$ vs $h_{gw}$ while adjusting $h_{gw}$ from 6 m to 12 m and note the influence of conductance on the slope of the line and the magnitude of flow.
-
-        3. **Realistic Scenario: Excavating a building foundation**
-        - Fix the groundwater head at 10.3 m
-        - In 1-m steps, vary drain elevation from 9.3 m to 6.3 m, and make note of the flow rate to the drain
-        - Consider this as a simplified representation of increasing inflow that needs to be collected and routed away from a construction site. A similar process might be used at a larger scale for an open-pit mine.
-    
-        💡 **Explore:**
-        - How does flow to the drain change as the excavation deepens?
-        - What would the construction company have to do to address the inflow?
-        - What would reduce the inflow?
-        - How might conductance be decreased on excavation walls?
-        - How might surrounding groundwater heads be lowered?
-        """)
+        st.link_button("*Open in new tab* ↗️ ", url=f"?view=md&doc={DOC_FILE2}")
+        st.markdown(read_md(DOC_FILE2))
 
 Q_h_plot()
 

@@ -16,6 +16,8 @@ from streamlit_scroll_to_top import scroll_to_here
 PAGE_ID = "REF"
 
 # Do (optional) things/settings if the user comes from another page
+if "current_page" not in st.session_state:
+    st.session_state.current_page = PAGE_ID
 if st.session_state.current_page != PAGE_ID:
     st.session_state.current_page = PAGE_ID
     

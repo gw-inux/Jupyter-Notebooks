@@ -4,15 +4,39 @@ import matplotlib.pyplot as plt
 import json
 from streamlit_book import multiple_choice
 from streamlit_scroll_to_top import scroll_to_here
+from GWP_Boundary_Conditions_utils import read_md
 
-# Track the current page
+# ---------- Track the current page
 PAGE_ID = "DRN"
 
 # Do (optional) things/settings if the user comes from another page
+if "current_page" not in st.session_state:
+    st.session_state.current_page = PAGE_ID
 if st.session_state.current_page != PAGE_ID:
     st.session_state.current_page = PAGE_ID
     
-# Start the page with scrolling here
+# ---------- Doc-only view for expanders (must run first)
+params = st.query_params
+DOC_VIEW = params.get("view") == "md" and params.get("doc")
+
+if DOC_VIEW:
+    md_file = params.get("doc")
+
+    st.markdown("""
+    <style>
+      /* Hide sidebar & its nav */
+      [data-testid="stSidebar"],
+      [data-testid="stSidebarNav"] { display: none !important; }
+
+      /* Hide the small chevron / collapse control */
+      [data-testid="stSidebarCollapsedControl"] { display: none !important; }
+    </style>
+    """, unsafe_allow_html=True)
+
+    st.markdown(read_md(md_file))
+    st.stop()
+    
+# ---------- Start the page with scrolling here
 if st.session_state.scroll_to_top:
     scroll_to_here(0, key='top')
     st.session_state.scroll_to_top = False
@@ -250,7 +274,6 @@ st.session_state.SURF = 9.0
 st.session_state.EXDP = 4.0
 st.session_state.EVTR_input = 2000.
 st.session_state.h_gw_show = 8.0
-
 st.session_state.number_input = False  # Default to number_input
 
 # Main area inputs
@@ -271,7 +294,14 @@ def Q_h_plot():
             # Time unit for rate - the user can choose between seconds, days, years through dropdown
             rate_unit = st.selectbox("Select unit for ET rate:", ["mm/yr", "mm/day", "m/s"], index=1)
             # Unit selection for area
-            #area_unit = st.selectbox("Select area unit:", ["km²", "ha", "m²"], index=0)          
+            #area_unit = st.selectbox("Select area unit:", ["km²", "ha", "m²"], index=0)
+            reset = st.button(':red[Reset the plot to the initial values]')
+            if reset:
+                st.session_state.SURF = 9.0
+                st.session_state.EXDP = 4.0
+                st.session_state.EVTR_input = 2000.
+                st.session_state.h_gw_show = 8.0
+                st.session_state.number_input = False
 
     with columns1[1]:
         with st.expander('Modify :blue[**Heads** & **Elevations**]'):
@@ -452,68 +482,17 @@ def Q_h_plot():
     
     st.pyplot(fig)
     
+    # Expander with "open in new tab"
+    DOC_FILE1 = "Q_h_plot_EVT_instructions.md"
     with st.expander('Show the :blue[**INSTRUCTIONS**]'):
-        st.markdown("""
-        **Getting Started with the Interactive Plot**
+        st.link_button("*Open in new tab* ↗️ ", url=f"?view=md&doc={DOC_FILE1}")
+        st.markdown(read_md(DOC_FILE1))
         
-        Before starting the exercise, it is helpful to follow these steps to understand how evapotranspiration (ET) interacts with the water table:
-        
-        **Start with _SURF_ = 9 m, _EXDP_ = 4 m, $h_{gw}$ = 8 m, and _EVTR_ = 2000 mm/yr** 
-        
-        * Adjust the groundwater head in steps from $h_{gw}$ ranging from 0.0 m to 10.0 m (if you prefer there is a toggle button under **Modify Plot Controls** that allows you to type in values instead of using the slider) and notice how $Q_{ET}$ changes:
-          - ET is zero below _**SURF**_ - _**EXDP**_ (which is equal to the expiration elevation shown on the graph)
-          - ET increases linearly as $h_{gw}$ rises above _**SURF**_ - _**EXDP**_
-          - Maximum ET occurs when $h_{gw}$ => _**SURF**_
-    
-        **Start with _SURF_ = 9 m, _EXDP_ = 4 m, $h_{gw}$ = 8 m, and _EVTR_ = 2000 mm/yr, then analyze the influence of _EXDP_**
-        
-        * Increase _**EXDP**_ in steps and observe how the slope of the _Q–h_ curve flattens and how $Q_{ET}$ changes
-    
-        These steps build a foundation for the full exercise. Feel free to interactively explore additional parameter value combinations.
-        """)
-    
+    # Expander with "open in new tab"
+    DOC_FILE2 = "Q_h_plot_EVT_exercise.md"
     with st.expander('Show the :rainbow[**EXERCISE**]'):
-        st.markdown("""   
-        🎯 **Expected Learning Outcomes**
-        
-        Completion of this exercise helps you to:
-        
-        - Understand the threshold-controlled behavior of the ET boundary condition
-        - Evaluate how extinction depth and surface elevation influence the rate of evapotranspiration
-        - Relate evapotranspiration losses to groundwater sustainability
-        
-        🛠️ **Instructions**
-        
-        Use the interactive ET plot to complete the following steps:
-        
-        1. **Initial Setup**
-            * Start with **_SURF_** = 9 m, **_EXDP_** = 4 m, and **_EVTR_** = 730 mm/yr 
-            * View conditions by stepping through a range of groundwater heads from 3 m to 10 m
-        
-            **Observe and record:**
-        
-                * The head at which ET reaches its maximum value
-                * The head at which ET drops to zero
-                * The shape of the Q–h curve between these thresholds
-        
-        2. **Test Sensitivity to Extinction Depth**
-        
-            * Set **_SURF_** at 9 m and **$h_{gw}$** to 6 m
-            * View conditions by stepping through **_EXDP_** from 1 to 5 m
-            * For each value of **_EXDP_**, observe the slope of the ET curve and the value of **$Q_{ET}$** for the groundwater head of 6 m
-        
-        3. **Explore ET Surface Elevation Effects**
-        
-            * Set _**EXDP**_ = 3 m  and **$h_{gw}$** to 6 m
-            * View results for _**SURF**_ = 7 m, 8 m, 9 m, and 10 m
-            * For each value of _**SURF**_, observe the slope of the ET curve and the value of **$Q_{ET}$** for the groundwater head of 6 m
-            * Observe how this shifts the entire ET response curve along the vertical axis
-        
-        💡 **Reflection:**
-        - When is groundwater significantly contributing to ET?
-        - What happens to ET when groundwater levels are low during droughts or due to pumping?
-        - How can extinction depth help represent different vegetation types or soil conditions?
-        """)
+        st.link_button("*Open in new tab* ↗️ ", url=f"?view=md&doc={DOC_FILE2}")
+        st.markdown(read_md(DOC_FILE2))
 
 Q_h_plot()
 

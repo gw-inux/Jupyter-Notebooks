@@ -10,13 +10,37 @@ from streamlit_extras.stateful_button import button
 import json
 from streamlit_book import multiple_choice
 from streamlit_scroll_to_top import scroll_to_here
+from GWP_Boundary_Conditions_utils import read_md
 
 # Track the current page
 PAGE_ID = "RIV"
 
 # Do (optional) things/settings if the user comes from another page
+if "current_page" not in st.session_state:
+    st.session_state.current_page = PAGE_ID
 if st.session_state.current_page != PAGE_ID:
     st.session_state.current_page = PAGE_ID
+    
+# ---------- Doc-only view for expanders (must run first)
+params = st.query_params
+DOC_VIEW = params.get("view") == "md" and params.get("doc")
+
+if DOC_VIEW:
+    md_file = params.get("doc")
+
+    st.markdown("""
+    <style>
+      /* Hide sidebar & its nav */
+      [data-testid="stSidebar"],
+      [data-testid="stSidebarNav"] { display: none !important; }
+
+      /* Hide the small chevron / collapse control */
+      [data-testid="stSidebarCollapsedControl"] { display: none !important; }
+    </style>
+    """, unsafe_allow_html=True)
+
+    st.markdown(read_md(md_file))
+    st.stop()
     
 # Start the page with scrolling here
 if st.session_state.scroll_to_top:
@@ -509,6 +533,22 @@ def Q_h_plot():
             turn = st.toggle('**Turn Graph** 90 degrees', key="RIV_turn", value=True)
             st.session_state.number_input = st.toggle("**Use Slider or Number** for input")      
             visualize = st.toggle(':rainbow[Visualize the input values]', key="RIV_vis", value=True)
+            reset = st.button(':red[Reset the plot to the initial values]')
+            if reset:
+                st.session_state.C_RIV = 1e-2
+                st.session_state.C_RIV_label = "1e-2"
+                st.session_state.K_RIV = 1e-5
+                st.session_state.K_RIV_label = "1e-5"
+                st.session_state.thick = 20.0
+                st.session_state.h_ref = 0.0
+                st.session_state.h_gw_show = 10.0
+                st.session_state.h_RIV = 9.0
+                st.session_state.L_RIV = 100.0
+                st.session_state.W_RIV = 10.0
+                st.session_state.M_RIV = 1.0
+                st.session_state.h_bot = 7.0
+                st.session_state.number_input = False  # Default to number_input
+                st.session_state.condcomp = False
     
     # Make sure that heads and elevations are inside the plot
     if st.session_state.h_gw_show < 0.1+h_ref:
@@ -842,76 +882,17 @@ def Q_h_plot():
             st.write("- Riverbed conductance **$C_{RIV}$ = % 10.2E"% st.session_state.C_RIV, " m²/s**")
             st.write("- Flow between river and groundwater **$Q_{RIV}$ = % 10.2E"% Q_ref," m³/s**")
     
+    # Expander with "open in new tab"
+    DOC_FILE1 = "Q_h_plot_RIV_instructions.md"
     with st.expander('Show the :blue[**INSTRUCTIONS**]'):
-        st.markdown("""
-        **Getting Started with the Interactive Plot**
-        
-        Before starting the exercise, it is helpful to follow these steps to explore RIV behavior:
-        
-        **Start with $H_{RIV}$ = 9 m, $R_{bot}$ = 7 m, $h_{gw}$ = 10 m, and $C_{RIV}$ = 1x10⁻² m²/s**
-        * Vary groundwater head $h_{gw}$ and observe how the flow $Q_{RIV}$ changes in magnitude and direction.
-            * When $h_{gw} > H_{RIV}$, the groundwater discharges to the river (losing river).
-            * When $h_{gw} < H_{RIV}$ but $h_{gw} > R_{bot}$, the river recharges the groundwater (gaining river).
-            * When $h_{gw} < R_{bot}$, the river is not in direct contact with the groundwater. Flow through an unsaturated zone occurs, which is driven by the head gradient between river stage and river bottom. In this case, outflow from the river is constant and independent of $h_{gw}$.
-        * Use the slider to vary $C_{RIV}$ and notice how the slope of the $Q$–$h$ curve changes, with higher conductance resulting in more exchange of flow.
-        * Toggle “Compute conductance” then enter $K$, $A_{riv}$, and $L_{RIV}$ to calculate $C_{RIV} = \\frac{KA_{RIV}}{L_{RIV}}$ and notice how the conductance value influences the _Q_–_h_ relationship.
-        * Set $h_{gw}$ < $R_{bot}$ and compute $C_{RIV}$ directly. Investigate the effect of the river bottom elevation $R_{bot}$ and river bed thickness $M_{RIV}$ on flow at the RIV boundary.
-        
-        The subsequent exercise is designed to help you build intuition for how RIV parameters control flow.  Feel free to further investigate the interactive plot on your own.
-        """)
-    
+        st.link_button("*Open in new tab* ↗️ ", url=f"?view=md&doc={DOC_FILE1}")
+        st.markdown(read_md(DOC_FILE1))
+
+    # Expander with "open in new tab"
+    DOC_FILE2 = "Q_h_plot_RIV_exercise.md"    
     with st.expander('Show the :rainbow[**EXERCISE**]'):
-        
-        st.markdown("""
-        
-        🎯 **Expected Learning Outcomes**
-        
-        Completion of this exercise helps you to:
-        
-        * Understand how river–groundwater exchange is controlled by stage, groundwater head, bottom elevation, and conductance.
-        * Interpret _Q_–_h_ plots in relation to gaining, losing, or inactive river segments.
-        * Identify conditions that limit or enable flow across the riverbed.
-        * Develop the ability to test and visualize river boundary behavior through scenario analysis.
-    
-        🛠️ **Instructions**
-    
-        Use the interactive RIV plot and complete the following steps:
-        1. **Initial Exploration**
-        
-        * Set the **river head** ($H_{RIV}$) to **10 m** (remember that under INPUT CONTROLS, in the **"Modify Plot Controls"** drop-down menu, you can toggle to choose between slider or typed input to adjust the parameter values)
-        * Set the **river bottom elevation** ($R_{bot}$) to **9 m**
-        * Vary the **groundwater head** ($h_{gw}$) from **8 m to 12 m** while observing and describing how the flow ($Q_{riv}$) changes. It is useful to expand the area below the graph that is labeled "Click here to show Parameters and Results". It is helpful to keep notes on the values you observe, so you may want to record the following items.
-        
-        📝 Record:
-        
-            * Whether the river is gaining or losing in each case.
-            * The conditions where no flow occurs.
-            * The transition points between gaining/losing/inactive behavior.
-    
-        2. **Effect of Conductance**
-    
-        * Set $H_{RIV}$ = 10 m and $R_{bot}$ = 9 m
-        * Choose three different conductance values (e.g., **1x10⁻², 1x10⁻³, and 1x10⁻⁴ m²/s**)
-          * For each of the 3 conductance values view the plot $Q_{RIV}$ vs $h_{gw}$ while adjusting $h_{gw}$ from 8 m to 12 m and note the influence of conductance on the slope of the line and the magnitude of flow. It is helpful to keep notes on the values you observe, so you may want to record the following items.
-                  
-        📝 Record:
-        
-            * Whether the river is gaining or losing in each case.
-            * Whether no flow occurs and, if so, for what conditions.
-            * Take note of transition points between gaining/losing/inactive behavior.
-        
-        3. **Realistic Scenarios: Recession Flow**
-        
-        * Imagine a river with stage $H_{RIV}$ **decreasing** from **11 m** to **9 m** (e.g., during a dry spell)
-        * Set river bottom to **8.5 m**
-        * Groundwater head is fixed at **9.2 m**
-        
-        💭 Explore:
-        
-            * How does the direction and magnitude of flow change as the river stage drops?
-            * How does the bottom elevation restrict or allow recharge?
-            * Discuss which condition (stage or bottom) dominates the system behavior    
-        """)
+        st.link_button("*Open in new tab* ↗️ ", url=f"?view=md&doc={DOC_FILE2}")
+        st.markdown(read_md(DOC_FILE2))        
 
 Q_h_plot()
 

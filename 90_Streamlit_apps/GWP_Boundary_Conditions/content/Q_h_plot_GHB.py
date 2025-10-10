@@ -13,10 +13,12 @@ from streamlit_book import multiple_choice
 from streamlit_scroll_to_top import scroll_to_here
 from GWP_Boundary_Conditions_utils import read_md
 
-# Track the current page
+# ---------- Track the current page
 PAGE_ID = "DRN"
 
 # Do (optional) things/settings if the user comes from another page
+if "current_page" not in st.session_state:
+    st.session_state.current_page = PAGE_ID
 if st.session_state.current_page != PAGE_ID:
     st.session_state.current_page = PAGE_ID
     
@@ -41,7 +43,7 @@ if DOC_VIEW:
     st.markdown(read_md(md_file))
     st.stop()
 
-# Start the page with scrolling here
+# ---------- Start the page with scrolling here
 if st.session_state.scroll_to_top:
     scroll_to_here(0, key='top')
     st.session_state.scroll_to_top = False
@@ -370,6 +372,19 @@ def Q_h_plot():
             st.session_state.number_input = st.toggle("Toggle to use Slider or Number for input of $C_B$, $H_B$, $A_B$, $L_B$, and $h_{gw}$.")
             relax_Q = st.toggle('Toggle to increase the Q-range shown by the plot')
             visualize = st.toggle(':rainbow[Visualize the input values]', key="GHB_vis", value=True)
+            reset = st.button(':red[Reset the plot to the initial values]')
+            if reset:
+                st.session_state.C_GHB = 3e-3
+                st.session_state.C_GHB_label = "3e-3"
+                st.session_state.K_GHB = 1e-4
+                st.session_state.K_GHB_label = "1e-4"
+                st.session_state.LB = 100.
+                st.session_state.AB = 1000.0
+                st.session_state.HB = 8.0
+                st.session_state.stage = 2.0
+                st.session_state.h_aq_show = 10.0
+                st.session_state.number_input = False  # Default to number_input
+                st.session_state.c_computed = False
             
     with columns1[1]:
         with st.expander('Modify :blue[**Head Elevations**]'):
@@ -445,22 +460,22 @@ def Q_h_plot():
                     '',  # no text
                     xy=(Q_ref,HB),  # arrowhead
                     xytext=(Q_ref, h_aq_show),  # arrow start
-                    arrowprops=dict(arrowstyle='-|>', color='green', lw=2.5,  alpha=0.8, mutation_scale=15)
+                    arrowprops=dict(arrowstyle='-|>', color='blue', lw=2.5,  alpha=0.8, mutation_scale=15)
                 )
             else:
                 ax.annotate(
                     '',  # no text
                     xy=(Q_ref,HB),  # arrowhead
                     xytext=(Q_ref, h_aq_show),  # arrow start
-                    arrowprops=dict(arrowstyle='<|-', color='blue', lw=2.5, alpha=0.8, mutation_scale=15)
+                    arrowprops=dict(arrowstyle='<|-', color='green', lw=2.5, alpha=0.8, mutation_scale=15)
                 )
             # Add gaining/losing stream annotations
             if relax_Q:
-                ax.text(-0.3,1, "Flow OUT of the model", va='center',color='green',  fontsize=16)
-                ax.text(0.2, 1,  "Flow INTO the model", va='center', ha='right',color='blue',  fontsize=16)
+                ax.text(-0.3,1, "Flow OUT of the model", va='center',color='blue',  fontsize=16)
+                ax.text(0.2, 1,  "Flow INTO the model", va='center', ha='right',color='green',  fontsize=16)
             else:
-                ax.text(-0.003,1, "Flow OUT of the model", va='center',color='green',  fontsize=16)
-                ax.text(0.002, 1,  "Flow INTO the model", va='center', ha='right',color='blue',  fontsize=16)
+                ax.text(-0.003,1, "Flow OUT of the model", va='center',color='blue',  fontsize=16)
+                ax.text(0.002, 1,  "Flow INTO the model", va='center', ha='right',color='green',  fontsize=16)
             # Add red rectangle if Q out of the plot
             if (Q_ref < -0.05 or Q_ref > 0.05) and not relax_Q:
                 rect = Rectangle((min(0.05, -0.05), 0.0), abs(-0.05 - 0.05), 20.0, linewidth=5, edgecolor='red', facecolor='none')
@@ -489,22 +504,22 @@ def Q_h_plot():
                     '',  # no text
                     xy=(HB, Q_ref),  # arrowhead
                     xytext=(h_aq_show, Q_ref),  # arrow start
-                    arrowprops=dict(arrowstyle='-|>', color='green', lw=2.5,  alpha=0.8, mutation_scale=15)
+                    arrowprops=dict(arrowstyle='-|>', color='blue', lw=2.5,  alpha=0.8, mutation_scale=15)
                 )
             else:
                 ax.annotate(
                 '',  # no text
                 xy=(HB, Q_ref),  # arrowhead
                 xytext=(h_aq_show, Q_ref),  # arrow start
-                arrowprops=dict(arrowstyle='<|-', color='blue', lw=2.5,  alpha=0.8, mutation_scale=15)
+                arrowprops=dict(arrowstyle='<|-', color='green', lw=2.5,  alpha=0.8, mutation_scale=15)
                 )
             # Add gaining/losing stream annotations
             if relax_Q:
-                ax.text(19.8, -0.3, "Flow OUT of the model", va='center', ha='right',color='green',  fontsize=16)
-                ax.text(19.8, 0.3, "Flow INTO the model", va='center', ha='right',color='blue',  fontsize=16)
+                ax.text(19.8, -0.3, "Flow OUT of the model", va='center', ha='right',color='blue',  fontsize=16)
+                ax.text(19.8, 0.3, "Flow INTO the model", va='center', ha='right',color='green',  fontsize=16)
             else:
-                ax.text(19.8, -0.003, "Flow OUT of the model", va='center', ha='right',color='green',  fontsize=16)
-                ax.text(19.8, 0.003, "Flow INTO the model", va='center', ha='right',color='blue',  fontsize=16)
+                ax.text(19.8, -0.003, "Flow OUT of the model", va='center', ha='right',color='blue',  fontsize=16)
+                ax.text(19.8, 0.003, "Flow INTO the model", va='center', ha='right',color='green',  fontsize=16)
             # Add red rectangle if Q out of the plot
             if (Q_ref < -0.05 or Q_ref > 0.05) and not relax_Q:
                 rect = Rectangle((0.0, min(0.05, -0.05)), 20.0, abs(-0.05 - 0.05), linewidth=5, edgecolor='red', facecolor='none')
@@ -544,11 +559,11 @@ def Q_h_plot():
     if visualize:
         if ((Q_ref < -0.05 or Q_ref > 0.05) and not relax_Q) or (Q_ref < -5 or Q_ref > 5):
             st.markdown("""
-            :red[_The green arrow, indicating the head difference $H_{B}$-$h_{gw}$ and pointing to the value of flow $Q_B$ on the axis, is out of the visible range for the plot. The value for $Q_B$ is still shown in the legend. A toggle in “Modify the Plot Controls” can be used to increase the range._]
+            :red[_The blue/green arrow, indicating the head difference $H_{B}$-$h_{gw}$ and pointing to the value of flow $Q_B$ on the axis, is out of the visible range for the plot. The value for $Q_B$ is still shown in the legend. A toggle in “Modify the Plot Controls” can be used to increase the range._]
             """)
         else:
             st.markdown("""
-            _The :green[green arrow] indicates the head difference $H_{B}$-$h_{gw}$ and points to the value of flow $Q_B$ on the axis._
+            _The :blue[blue]/:green[green] arrow indicates the head difference $H_{B}$-$h_{gw}$ and points to the value of flow $Q_B$ on the axis._
             """)
     
     # Expander with "open in new tab"
@@ -562,49 +577,6 @@ def Q_h_plot():
     with st.expander('Show the :rainbow[**EXERCISE**]'):
         st.link_button("*Open in new tab* ↗️ ", url=f"?view=md&doc={DOC_FILE2}")
         st.markdown(read_md(DOC_FILE2))
-    
-#    
-#    with st.expander('Show the :rainbow[**EXERCISE**]'):
-#        
-#        st.markdown("""
-#        
-#        🎯 **Expected Learning Outcomes**
-#        
-#        Completion of this exercise helps you to:
-#        
-#        * Understand how GHB flux is driven by head difference and conductance.
-#        * Interpret Q–h plots in relation to hydrogeologic behavior.
-#        * Develop the ability to use this application for conceptual testing and scenario analysis.
-#       
-#        🛠️ **Instructions**
-#        
-#        Use the interactive GHB plot as follows:
-#        
-#        **1. Start with $H_{B}$ = 8 m, $h_{gw}$ = 10 m, and $C_{B}$ = 1x10⁻² m²/s**
-#        * Vary the groundwater head ($h_{gw}$) from **5 m to 15 m**
-#        * Observe and describe how the flux ($Q$) changes
-#        * Record:
-#          * The sign of the flux for different $h_{gw}$ values
-#          * The value of $Q$ when $h_{gw}$ = $H_B$
-#        
-#        **2. Conductance Effect**
-#                
-#        * Start with $H_{B}$ = 8 m, $h_{gw}$ = 10 m, and $C_{B}$ = 1x10⁻² m²/s
-#        * Choose three different conductance values (e.g., **3x10⁻², 3x10⁻³, and 3x10⁻⁴ m²/s**)
-#          * Cycle through the 3 conductance values a couple of times, noting the influence of conductance on the slope of the line and flow conditions
-#        * Choose one conductance value (e.g., **3x10⁻³ m²/s**) and three values of $H_B$ with increased and decreased values (e.g., **5, 9, and 20 m**)
-#          * Cycle through the 3 $H_B$ values a couple of times, noting the influence of conductance on the slope of the line and flow conditions
-#        
-#        **3. Realistic Scenarios**
-#        
-#        * Imagine a GHB represents a canal system connected to the groundwater system. The canal water level is 10 m.
-#        * Assume the groundwater head starts at 8 m.
-#        * Evaluate how much water would enter the groundwater system for:
-#          * A poorly connected canal (low conductance)
-#          * A well-connected canal (high conductance)
-#        * Consider the implications of your findings for water management 
-#        """)
-
 
 Q_h_plot()
 
