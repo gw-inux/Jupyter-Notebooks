@@ -1,7 +1,7 @@
 import streamlit as st
 
-st.title("# MWW01 App! 💦")
-st.header('Willkommen zur MWW01 Sammlung von Interaktiven Tools 👋')
+st.title("GROWi26 App! 💦")
+st.header('Willkommen zur Sammlung von interaktiven Tools für MWW01 👋')
 
 st.markdown(
     """
