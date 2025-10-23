@@ -48,7 +48,7 @@ st.latex(r'''h(x)=\sqrt{h_0^2-\frac{h_0^2-h_L^2}{L}x+\frac{R}{K}x(L-x)}''')
 
 left_co, cent_co, last_co = st.columns((20,60,20))
 with cent_co:
-    st.image('90_Streamlit_apps/GWBmC/assets/images/concept_1D_flow_unconfined.png', caption="Abbildung 1: Konzeptionelles Modell zur 1D Grundwasserströmung in einem ungespannten Grundwasserleiter.")
+    st.image('04_Basic_hydrogeology/FIGS/concept_1D_flow_unconfined.png', caption="Abbildung 1: Konzeptionelles Modell zur 1D Grundwasserströmung in einem ungespannten Grundwasserleiter.")
 
 st.markdown(
     """

@@ -24,7 +24,7 @@ st.set_page_config(page_title="SlideJet - Present", page_icon="🚀")
 
 # --- Default YAML path, use / ---
 #DEFAULT_YAML = "example.yaml"
-DEFAULT_YAML = "90_Streamlit_apps/MWW01/slidejet_presentations/GWBmC_WS2526_V01_NEW_SJconfig.yaml"
+DEFAULT_YAML = "90_Streamlit_apps/MWW01/SlideJet_Presentations/GWBmC_WS2526_V01_NEW_SJconfig.yaml"
 
 # --- Proxy ID --- This should be
 # an unique ID if the app is used
