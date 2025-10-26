@@ -77,7 +77,9 @@ with left_co3:
 with cent_co3:
     st.markdown(
         """
-        :blue[**Eileen Poeter**] is a Professor Emeritus at Colorado School of Mines and a member of the Board of Directors for the Groundwater Project. She is also past director of the Integrated Groundwater Modeling Center and retired president of Poeter Engineering. With 40 years of experience modeling groundwater systems, she has consulted to attorneys, industries, engineering companies, government agencies, research labs, and citizen groups on groundwater modeling projects for aquifer storage and recovery; slurry wall performance; drainage at proposed nuclear power plant facilities; regional groundwater management; large scale regional pumping; dam seepage;  migration; impacts of dewatering; and stream aquifer interaction.
+        :blue[**Eileen Poeter**] is a Professor Emeritus at Colorado School of Mines and a member of the Board of Directors for the Groundwater Project. She is also past director of the Integrated Groundwater Modeling Center and retired president of Poeter Engineering. 
+        
+        With 40 years of experience modeling groundwater systems, she has consulted to attorneys, industries, engineering companies, government agencies, research labs, and citizen groups on groundwater modeling projects for aquifer storage and recovery; slurry wall performance; drainage at proposed nuclear power plant facilities; regional groundwater management; large scale regional pumping; dam seepage;  migration; impacts of dewatering; and stream aquifer interaction.
         """
     )
 left_co4, cent_co4 = st.columns((20,60))
@@ -86,7 +88,11 @@ with left_co4:
 with cent_co4:
     st.markdown(
         """
-        :blue[**Eve Louise Kuniansky**] pursued a dual degree program graduating with a degree in Physics from Franklin and Marshall College in 1978; a Bachelor in Civil Engineering with highest honors from Georgia Institute of Technology, 1981; and Master of Science in Civil Engineering from Georgia Institute of Technology, specializing in Hydrology/Hydraulics, 1982. In January 1983, she began a career with the United States Geological Survey (USGS) and gained experience in surface-water modeling, project management, borehole geophysics, geologic mapping, field data collection, groundwater flow and transport simulation, Geographic Information Systems, karst hydrology, and aquifer hydraulics. In 1998, she was promoted to Southeastern Region Groundwater Specialist providing technical assistance to groundwater projects throughout the southeastern USA, Puerto Rico, and the Virgin Islands. Also, required to review and approve all aquifer pumping tests and groundwater flow modeling reports and archives prior to publication. Because of her expertise she was frequently selected for short term international assignments by the USGS International Water Resources Branch (China, Israel, Cyprus, Ethiopia, Kenya, and South Africa). After 35 years with the USGS, she retired in December 2017 and has been volunteering for The Groundwater Project assisting with educational material about karst aquifers and groundwater modeling.
+        :blue[**Eve Louise Kuniansky**] pursued a dual degree program graduating with a degree in Physics from Franklin and Marshall College in 1978; a Bachelor in Civil Engineering with highest honors from Georgia Institute of Technology, 1981; and Master of Science in Civil Engineering from Georgia Institute of Technology, specializing in Hydrology/Hydraulics, 1982.
+        
+        In January 1983, she began a career with the United States Geological Survey (USGS) and gained experience in surface-water modeling, project management, borehole geophysics, geologic mapping, field data collection, groundwater flow and transport simulation, Geographic Information Systems, karst hydrology, and aquifer hydraulics. In 1998, she was promoted to Southeastern Region Groundwater Specialist providing technical assistance to groundwater projects throughout the southeastern USA, Puerto Rico, and the Virgin Islands. Also, required to review and approve all aquifer pumping tests and groundwater flow modeling reports and archives prior to publication. Because of her expertise she was frequently selected for short term international assignments by the USGS International Water Resources Branch (China, Israel, Cyprus, Ethiopia, Kenya, and South Africa).
+        
+        After 35 years with the USGS, she retired in December 2017 and has been volunteering for The Groundwater Project assisting with educational material about karst aquifers and groundwater modeling.
         """
     )
 st.subheader('Acknowledgment', divider='green')
