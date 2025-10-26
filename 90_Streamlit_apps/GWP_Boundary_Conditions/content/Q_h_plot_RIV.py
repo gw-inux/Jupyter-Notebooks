@@ -69,10 +69,12 @@ year = 2025
 authors = {
     "Thomas Reimann": [1],  # Author 1 belongs to Institution 1
     "Eileen Poeter": [2],
+    "Eve L. Kuniansky": [3],
 }
 institutions = {
     1: "TU Dresden, Institute for Groundwater Management",
-    2: "Colorado School of Mines"
+    2: "Colorado School of Mines",
+    3: "Retired from the US Geological Survey"
 }
 index_symbols = ["¹", "²", "³", "⁴", "⁵", "⁶", "⁷", "⁸", "⁹"]
 author_list = [f"{name}{''.join(index_symbols[i-1] for i in indices)}" for name, indices in authors.items()]
@@ -139,9 +141,15 @@ with columns0[0]:
     - What happens if the **groundwater head drops below the riverbed**?
     - What is a **gaining stream** and a **losing stream**?
     
-    ▶️ The :violet[**River (RIV) Boundary**] in MODFLOW handles these dynamics by simulating a **head-dependent flow** that includes a check for groundwater level falling below streambed bottoms. The flow resulting from a given groundwater head $h_{gw}$ and river head $H_{RIV}$ depends on a **conductance term** $C_{RIV}$. The following introductory interactive plot shows how the flow between river and groundwater $Q_{RIV}$ responds to changing conductance. The interactive plot is based on the MODFLOW documentation (Harbaugh, 2005) and assumes **$H_{RIV}$ is 8 m** and **river bottom elevation is 6 m**. Try adjusting the river conductance in the initial plot to explore flow direction and magnitude as a function of head in the groundwater system.
+    ▶️ The :violet[**River (RIV) Boundary**] in MODFLOW handles these dynamics by simulating a **head-dependent flow** that includes a check for groundwater level falling below streambed bottoms (defined by the variable $R_{BOT}$). The flow resulting from a given groundwater head $h_{gw}$ and river head $H_{RIV}$ depends on a **conductance term** $C_{RIV}$. $C_{RIV}$ is calculated as the plan view area of the river multiplied by the riverbed vertical hydraulic conductivity and divided by the thickness of the riverbed material. The following introductory interactive plot shows how the flow between river and groundwater $Q_{RIV}$ responds to changing conductance. The interactive plot is based on the MODFLOW documentation (Harbaugh, 2005) and assumes **$H_{RIV}$ is 8 m** and **river bottom elevation is 6 m**. Try adjusting the river conductance in the initial plot to explore flow direction and magnitude as a function of head in the groundwater system.
+    
+    if $h_{gw}$ > $R_{BOT}$
     """)
     st.latex(r'''Q_{RIV} = C_{RIV} (H_{RIV} - h_{{gw}})''')
+    st.markdown("""
+    if $h_{gw}$ < $R_{BOT}$
+    """)
+    st.latex(r'''Q_{RIV} = C_{RIV} (H_{RIV} - R_{BOT})''')
 
     
     
@@ -187,7 +195,6 @@ with cent_co:
     st.image('90_Streamlit_apps/GWP_Boundary_Conditions/assets/images/RIV_nearWell.png', caption="Conceptual illustration of the river/groundwater interaction.")
 with st.expander("Tell me more about **the :violet[application of RIV in Field-Scale Groundwater Modeling]**"):
 
-
     st.markdown("""
     In field-scale groundwater models the RIV boundary may be used to define river systems throughout the model domain by adding a RIV boundary to many cells. A simulation of coupling a MODFLOW model with a river system to a MODSIM river-operations model in a hypothetical basin demonstrated the impact of spatio-temporal groundwater-surface-water exchanges on river operations.
     """)
@@ -195,6 +202,9 @@ with st.expander("Tell me more about **the :violet[application of RIV in Field-S
     left_co, cent_co, last_co = st.columns((10,100,10))
     with cent_co:
         st.image('90_Streamlit_apps/GWP_Boundary_Conditions/assets/images/river_field_application.jpg', caption="Example illustration of representing a river in a field-scale model (from Morway et al., 2016).")
+    st.markdown("""
+    Additionally, when maximum streamflow loss is known from a streamflow loss/gain study, the maximum loss can be controlled in a model by setting $R_{BOT}$ to 1 unit length below $H_{RIV}$ while setting $C_{RIV}$ to be the maximum loss along the canal reach within each model cell. This is especially useful for canals where the maximum loss is often known.
+    """)
 
 st.markdown("""
 #### 🎯 Learning Objectives
@@ -643,7 +653,7 @@ def Q_h_plot():
         st.write(':red[**Visualization issue: River bottom is above highest elevation shown on the graph.**] :green[Adjust in Graph Controls.]')
         
     if h_RIV < h_bed:
-        st.write(':red[**Illogical physical representation. River head is below the top of the river bed. The value of flow will be in error because the gradient will be calculated as if dh occurs across the entire thickness of the river bed, but it does not. Also there is no open water to provide the leakage through the river bed.**] :green[Adjust River Head, River Bottom, and/or River Bed Thickness.]')
+        st.write(':red[**Illogical physical representation. River head is below the top of the river bed. The value of flow will be in error because the gradient will be calculated as if dh occurs across the entire thickness of the river bed, but it does not. Also, there is no open water to provide the leakage through the river bed.**] :green[Adjust River Head, River Bottom, and/or River Bed Thickness.]')
         
     if h_RIV < h_bot:
         st.write(':red[**Illogical physical representation. River head is below the bottom of the river.**] :green[Adjust River Head, River Bottom, and/or River Bed Thickness.]')
@@ -974,7 +984,7 @@ with st.expander('**Show the final assessment** - to self-check your understandi
 st.markdown('---')
 
 # Render footer with authors, institutions, and license logo in a single line
-columns_lic = st.columns((5,1))
+columns_lic = st.columns((4,1))
 with columns_lic[0]:
     st.markdown(f'Developed by {", ".join(author_list)} ({year}). <br> {institution_text}', unsafe_allow_html=True)
 with columns_lic[1]:
