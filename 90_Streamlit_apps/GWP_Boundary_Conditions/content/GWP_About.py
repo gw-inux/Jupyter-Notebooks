@@ -134,7 +134,7 @@ st.markdown("---")
         
 '---'
 # Render footer with authors, institutions, and license logo in a single line
-columns_lic = st.columns((5,1))
+columns_lic = st.columns((9,2))
 with columns_lic[0]:
     st.markdown(f'Developed by {", ".join(author_list)} ({year}). <br> {institution_text}', unsafe_allow_html=True)
 with columns_lic[1]:
