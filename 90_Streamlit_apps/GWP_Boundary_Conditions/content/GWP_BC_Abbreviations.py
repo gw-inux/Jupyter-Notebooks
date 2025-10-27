@@ -33,10 +33,12 @@ year = 2025
 authors = {
     "Thomas Reimann": [1],  # Author 1 belongs to Institution 1
     "Eileen Poeter": [2],
+    "Eve L. Kuniansky": [3],
 }
 institutions = {
     1: "TU Dresden, Institute for Groundwater Management",
-    2: "Colorado School of Mines"
+    2: "Colorado School of Mines",
+    3: "Retired from the US Geological Survey"
 }
 index_symbols = ["¹", "²", "³", "⁴", "⁵", "⁶", "⁷", "⁸", "⁹"]
 author_list = [f"{name}{''.join(index_symbols[i-1] for i in indices)}" for name, indices in authors.items()]
@@ -120,7 +122,7 @@ for abbr, meaning in entries_para:
     c2.markdown(meaning)
 
 # Render footer with authors, institutions, and license logo in a single line
-columns_lic = st.columns((5,1))
+columns_lic = st.columns((4,1))
 with columns_lic[0]:
     st.markdown(f'Developed by {", ".join(author_list)} ({year}). <br> {institution_text}', unsafe_allow_html=True)
 with columns_lic[1]:
