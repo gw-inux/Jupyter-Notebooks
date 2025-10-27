@@ -1,10 +1,10 @@
 [
   {
-    "question": "Under which condition is flow through a river boundary considered 'constant' (i.e., flow is not dependent on groundwater head)? (Mark ALL correct answers)",
+    "question": "Under which condition is flow through a river boundary considered 'constant'? (Mark ALL correct answers)",
     "options": {
       "A) When groundwater head is lower than riverbed bottom elevation": true,
       "B) When river stage is below riverbed bottom": false,
-      "C) When groundwater head equals riverbed bottom elevation": false,
+      "C) When groundwater head equals riverbed bottom elevation": true,
       "D) When the riverbed conductance is zero": true
     },
     "success": "✅ Correct. Constant flow occurs if the groundwater head is below the riverbed bottom. Flow is also a constant rate of zero when the conductance is zero.",
