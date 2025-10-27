@@ -13,7 +13,7 @@ authors = {
     "Edith Grießer": [1],
 }
 institutions = {
-    1: "Institute of Earth Sciences, University of Graz"
+    1: "Department of Earth Sciences, University of Graz"
 }
 index_symbols = ["¹", "²", "³", "⁴", "⁵", "⁶", "⁷", "⁸", "⁹"]
 author_list = [f"{name}{''.join(index_symbols[i-1] for i in indices)}" for name, indices in authors.items()]
@@ -43,25 +43,33 @@ with st.expander('See explanation'):
 # Parameters
 col1, col2, col3 = st.columns(3)
 with col1:
-    T = st.slider('T',0.1,100.,10.,0.1)
+    T = st.slider('$T [m²/d]$',0.1,100.,10.,0.1)
+
+log_options = np.round(np.concatenate([
+    [v for v in np.arange(0.0001, 0.001, 0.0001) if int(v * 1e6) % 10 == 0], # 0.0001 to 0.001 in steps of 0.0001 (keep only nice round ones)
+    np.arange(0.001, 0.01, 0.001), # 0.001 to 0.01 in steps of 0.001
+    np.arange(0.01, 0.1, 0.01), # 0.01 to 0.1 in steps of 0.01
+    np.arange(0.1, 1.1, 0.1) # 0.1 to 1 in steps of 0.1
+    ]), decimals=4)    
+  
 with col2:
-    S = st.slider('S', 0.,0.3,0.2,0.01)
+    S = st.select_slider('$S [-]$', log_options, value=0.1)
 with col3:
-    h0 = st.slider('h0', 0.1,10.,2.,0.1)
+    h0 = st.slider('$h_0 [m]$', 0.1,10.,2.,0.1)
 
 col4, col5, col6 = st.columns(3)
 with col4:
-    max_x = st.slider('max_x', 1, 1000, 200, 10)
+    max_x = st.slider('$x_{max} [m]$', 1, 1000, 200, 10)
 with col5:
-    max_t= st.slider('max_t', 1, 1000, 100, 10)
+    max_t= st.slider('$t_{max} [d]$', 0.1, 1000., 100., 0.1)
 
 with st.expander('See parameter description'):
     st.write('''
-             *T*...Transmissivity of the aquifer\n
-             *S*...Storage coefficient (storativity).\n
-             *h0*...The hydraulic head after the water level has risen.\n
-             *max_x*...Furthest displayed, horizontal distance from the river.\n
-             *max_t*...Latest displayed time since the sudden water level rise.
+             $T$...Transmissivity of the aquifer\n
+             $S$...Storage coefficient (storativity).\n
+             $h_0$...The hydraulic head after the water level has risen.\n
+             $x_{max}...Furthest displayed, horizontal distance from the river.\n
+             $t_{max}$...Latest displayed time since the sudden water level rise.
              ''')
 
 t0=0 # time of change in the river level, d
