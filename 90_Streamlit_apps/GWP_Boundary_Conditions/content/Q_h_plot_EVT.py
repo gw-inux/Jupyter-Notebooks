@@ -137,6 +137,14 @@ with columns0[1]:
     plt.xticks(fontsize=14)
     plt.yticks(fontsize=14) 
     ax.axhline(0, color='grey', linestyle='--', linewidth=0.8)
+    
+    # Add vertical dashed line for drain elevation and annotation
+    ax.axvline(x=SURFi, color='blue', linestyle=(0, (6, 4)), linewidth=2)
+    ax.text(SURFi + 0.2, 0.045, r"ET Surface", color='blue', fontsize=14, verticalalignment='center',rotation=270)
+    
+    ax.axvline(x=(SURFi - EXDPi), color='blue', linestyle=(0, (4, 3)), linewidth=2)
+    ax.text((SURFi - EXDPi) - 0.7, 0.03, r"Extinction Depth", color='blue', fontsize=14, verticalalignment='center',rotation=270)
+    
     st.pyplot(fig)    
     
     st.markdown("""   
