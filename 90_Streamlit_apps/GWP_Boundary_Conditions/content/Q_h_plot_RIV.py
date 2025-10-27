@@ -178,7 +178,7 @@ with columns0[1]:
     plt.yticks(fontsize=14) 
     ax.axhline(0, color='grey', linestyle='--', linewidth=0.8)
     
-    # Add vertical dashed line for h_bot and annotation
+    # Add vertical dashed line for R_bot and annotation
     ax.axvline(x=h_boti, color='purple', linestyle=(0, (6, 4)), linewidth=2)
     ax.text(h_boti + 0.3, -0.045, r"$R_{bot}$", color='purple', fontsize=14, verticalalignment='center')
     st.pyplot(fig)

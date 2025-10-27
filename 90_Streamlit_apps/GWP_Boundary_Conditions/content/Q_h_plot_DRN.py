@@ -69,10 +69,12 @@ year = 2025
 authors = {
     "Thomas Reimann": [1],  # Author 1 belongs to Institution 1
     "Eileen Poeter": [2],
+    "Eve L. Kuniansky": [3],
 }
 institutions = {
     1: "TU Dresden, Institute for Groundwater Management",
-    2: "Colorado School of Mines"
+    2: "Colorado School of Mines",
+    3: "Retired from the US Geological Survey"
 }
 index_symbols = ["¹", "²", "³", "⁴", "⁵", "⁶", "⁷", "⁸", "⁹"]
 author_list = [f"{name}{''.join(index_symbols[i-1] for i in indices)}" for name, indices in authors.items()]
@@ -164,6 +166,10 @@ with columns0[1]:
     plt.xticks(fontsize=14)
     plt.yticks(fontsize=14) 
     ax.axhline(0, color='grey', linestyle='--', linewidth=0.8)
+    
+    # Add vertical dashed line for drain elevation and annotation
+    ax.axvline(x=HDi, color='green', linestyle=(0, (6, 4)), linewidth=2)
+    ax.text(HDi + 0.3, -0.045, r"$H_{D}$", color='green', fontsize=14, verticalalignment='center')
     st.pyplot(fig)    
     
     st.markdown("""
@@ -184,6 +190,8 @@ with st.expander("Tell me more about **the :green[application of DRN in Field-Sc
 	
     st.markdown("""
     In field-scale groundwater models a DRN may be associated with one or many cells, and these cells can be anywhere within the three-dimensional model.
+    
+    The drain package is often used for ephemeral streams as these only flow during wet conditions and are dry much of the time, thus the RIV or GHB packages would be inappropriate.
     """)
     
     st.markdown("""
@@ -604,7 +612,7 @@ with st.expander('**Show the final assessment** - to self-check your understandi
 st.markdown('---')
 
 # Render footer with authors, institutions, and license logo in a single line
-columns_lic = st.columns((5,1))
+columns_lic = st.columns((4,1))
 with columns_lic[0]:
     st.markdown(f'Developed by {", ".join(author_list)} ({year}). <br> {institution_text}', unsafe_allow_html=True)
 with columns_lic[1]:
