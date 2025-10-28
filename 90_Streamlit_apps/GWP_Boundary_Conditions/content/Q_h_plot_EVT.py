@@ -130,7 +130,7 @@ with columns0[1]:
     fig, ax = plt.subplots(figsize=(5, 5    ))      
     ax.plot(h_gwi, QETi, label="$Q_{ET}$",color='black', linewidth=4)
     ax.set_xlabel("Head in the groundwater system (m)", fontsize=14, labelpad=15)
-    ax.set_ylabel("ET loss from groundwater over a square kilometer ($Q_{ET}$) in m³/s", fontsize=14, labelpad=15)
+    ax.set_ylabel("ET loss from groundwater \nover a square kilometer ($Q_{ET}$) \nin m³/s", fontsize=14, labelpad=15)
     ax.set_xlim(0, 10)
     ax.set_ylim(-0.02, 0.1)
     ax.set_title("Evapotranspiration loss", fontsize=16, pad=10)
