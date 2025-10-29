@@ -9,8 +9,9 @@ st.set_page_config(page_title = "iNUX - Transient 1D Flow")
 # Authors, institutions, and year
 year = 2025 
 authors = {
-    "Steffen Birk": [1],  # Author 1 belongs to Institution 1
     "Edith Grießer": [1],
+    "Steffen Birk": [1],  # Author 1 belongs to Institution 1
+    
 }
 institutions = {
     1: "Institute of Earth Sciences, University of Graz"

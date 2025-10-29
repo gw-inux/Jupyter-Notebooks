@@ -9,8 +9,8 @@ st.set_page_config(page_title = "iNUX - Transient 1D Flow")
 # Authors, institutions, and year
 year = 2025 
 authors = {
-    "Steffen Birk": [1],  # Author 1 belongs to Institution 1
     "Edith Grießer": [1],
+    "Steffen Birk": [1],  # Author 1 belongs to Institution 1
 }
 institutions = {
     1: "Department of Earth Sciences, University of Graz"
@@ -36,7 +36,7 @@ with st.expander('See explanation'):
     st.write('The solution of the above flow equation for the given intial and boundary conditions is\n\n')
     st.write('$$h(x,t)=h_0 \\: \\mathrm{ erfc}\\left(\\sqrt{\\frac{S x^2}{4T (t)}}\\right)$$\n\n')
     st.write('This solution can also be applied to unconfined aquifers if the variation of the hydraulic head is small relative to the saturated thickness of the aquifer such that the transmissivity can be regarded as approximately constant. \n\n')
-    st.write('Bakker & Post (2022) provide more details about the derivation of this solution and a Python code for its application. This Jupyter Notebook makes use of their Python code and adds features such as sliders and textboxes that facilitate the variation of parameter values and the visualisation of their effects on the hydraulic heads.\n\n\n')
+    st.write('Bakker & Post (2022) provide more details about the derivation of this solution and a Python code for its application. This Streamlit App makes use of their Python code and adds features such as sliders and textboxes that facilitate the variation of parameter values and the visualisation of their effects on the hydraulic heads.\n\n\n')
     st.image("04_Basic_hydrogeology/FIGS/Fig1_transient_1d_flow_conf.jpg", caption="Figure 1: Aquifer headchange due to surface water level change.")
     st.write('References: Bakker, M., & Post, V. (2022). Analytical groundwater modeling: Theory and applications using Python. CRC Press.')
 
