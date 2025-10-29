@@ -565,7 +565,7 @@ with st.expander('**Show the :rainbow[**EXERCISE**] assessment** - to self-check
                 error=quest_exer[i].get("error", "❌ Not quite.")
             )
 
-st.subheader('✅ Conclusion', divider = 'green')
+st.subheader('✔️ Conclusion', divider = 'green')
 st.markdown("""
 The Drain (DRN) boundary condition simulates discharge to external drains, ditches, trenches, topographic depressions, mines, and other features where a hydrostratigraphic unit encounters an opening to atmospheric pressure conditions. Flow _only_ occurs when groundwater levels are at or above the opening elevation. This boundary introduces a **physical cutoff based on the drain elevation** that prevents outflow, making it conceptually different from other head-dependent boundaries. A DRN boundary can be defined in any groundwater-flow-model cell. It need not be defined in the surface layer, for example it might be defined deep inside a model to represent a tunnel or an underground mine. 
 

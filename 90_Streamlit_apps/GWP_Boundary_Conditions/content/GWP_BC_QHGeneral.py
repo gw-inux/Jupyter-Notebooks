@@ -16,6 +16,9 @@ PAGE_ID = "GENERAL"
 # Prevent collapsing st.expander with toggle inside
 if "qh_expander_open" not in st.session_state:
     st.session_state.qh_expander_open = False
+
+st.session_state.setdefault('exp_general_01', False)
+st.session_state.setdefault('exp_general_02', False)
     
 # if we just navigated back to this page, reset the expander to closed
 if "current_page" not in st.session_state:
@@ -24,6 +27,8 @@ if "current_page" not in st.session_state:
 if st.session_state.current_page != PAGE_ID:
     st.session_state.current_page = PAGE_ID
     st.session_state.qh_expander_open = False 
+    st.session_state['exp_general_01'] = False
+    st.session_state['exp_general_02'] = False
     
 # ---------- Doc-only view for expanders (must run first)
 params = st.query_params
@@ -139,7 +144,6 @@ institution_text = " | ".join(institution_list)
 st.title('General Behavior of Boundary Conditions in :blue[Groundwater Models]')
 st.subheader('Understanding the :blue[relationship between flow _Q_ and hydraulic head _h_ using _Q_-_h_ plots] for different boundary conditions', divider="blue")
 
-
 # --- MOTIVATION ---
 st.markdown("""
 #### 💡 Motivation - Boundary conditions and _Q_-_h_ plots in groundwater modeling
@@ -172,36 +176,46 @@ By engaging with this section of the interactive module, you will be able to:
 
 3. **Assess the influence of recharge and hydraulic conductivity** on the groundwater head distribution and the resulting flow dynamics at model boundaries.
 """)
-
-with st.expander('**Show the initial assessment** - to assess your EXISTING knowledge'):
-    st.markdown("""
-    #### 📋 Initial assessment
-    You can use the initial questions to assess your existing knowledge.
-    """)
-
-    # Render questions in a 2x2 grid (row-wise, aligned)
-    for row in [(0, 1), (2, 3)]:
-        col1, col2 = st.columns(2)
     
-        with col1:
-            i = row[0]
-            st.markdown(f"**Q{i+1}. {quest_ini[i]['question']}**")
-            multiple_choice(
-                question=" ",  # suppress repeated question display
-                options_dict=quest_ini[i]["options"],
-                success=quest_ini[i].get("success", "✅ Correct."),
-                error=quest_ini[i].get("error", "❌ Not quite.")
-            )
+with st.container(border=True):
+    ass1_1, ass1_2 = st.columns((25,1))
+    with ass1_1:
+        open_click = st.button("✅ **Show the initial assessment** – to assess your **EXISTING** knowledge", key="ass1_btn", type="tertiary")
+        if open_click:
+            st.session_state.exp_general_01 = not st.session_state.exp_general_01
+    with ass1_2:
+        chevron = "▲" if st.session_state.exp_general_01 else "▼"
+        st.markdown(chevron)
     
-        with col2:
-            i = row[1]
-            st.markdown(f"**Q{i+1}. {quest_ini[i]['question']}**")
-            multiple_choice(
-                question=" ",
-                options_dict=quest_ini[i]["options"],
-                success=quest_ini[i].get("success", "✅ Correct."),
-                error=quest_ini[i].get("error", "❌ Not quite.")
-            )
+    if st.session_state.exp_general_01:
+        st.markdown("""
+        #### Initial assessment
+        You can use the initial questions to assess your existing knowledge.
+        """)
+    
+        # Render questions in a 2x2 grid (row-wise, aligned)
+        for row in [(0, 1), (2, 3)]:
+            col1, col2 = st.columns(2)
+        
+            with col1:
+                i = row[0]
+                st.markdown(f"**Q{i+1}. {quest_ini[i]['question']}**")
+                multiple_choice(
+                    question=" ",  # suppress repeated question display
+                    options_dict=quest_ini[i]["options"],
+                    success=quest_ini[i].get("success", "✅ Correct."),
+                    error=quest_ini[i].get("error", "❌ Not quite.")
+                )
+        
+            with col2:
+                i = row[1]
+                st.markdown(f"**Q{i+1}. {quest_ini[i]['question']}**")
+                multiple_choice(
+                    question=" ",
+                    options_dict=quest_ini[i]["options"],
+                    success=quest_ini[i].get("success", "✅ Correct."),
+                    error=quest_ini[i].get("error", "❌ Not quite.")
+                )
 
 # --- TYPES OF BOUNDARY CONDITIONS ---
 st.subheader('🧪 Theory: A concise overview about Groundwater Modeling and Boundary Conditions', divider='blue')
@@ -212,7 +226,7 @@ st.markdown("""
 To understand boundary conditions in groundwater models, it is important to first recall how numerical models approximate the governing flow equations. The following drop-down discussion on the mathematical application of boundary conditions in models provides a concise background on discretization, system equations, and implementation of specified versus head-dependent boundary conditions.
 """)
 
-with st.expander('Show more :blue[**background about the mathematical application of boundary conditions in models**]  **including why RCH and WEL are not sections in this module**'):
+with st.expander('Show more :blue[**background about the mathematical application of boundary conditions in models**]  **including why RCH and WEL are not sections in this module**', icon ="📑"):
     st.markdown("""
     The groundwater movement through porous media is described by the following **partial differential equation** (PDE):
     """)
@@ -281,7 +295,7 @@ A **_Q_–_h_ plot** represents conditions at the location of the assigned bound
 Additional, excellent discussion of boundary conditions is provided by [T.E. Reilly (2001)](https://pubs.usgs.gov/twri/twri-3_B8/pdf/twri_3b8.pdf).
 """
 )
-with st.expander("Show more :blue[**explanation about the boundary condition types**]"):
+with st.expander("Show more :blue[**explanation about the boundary condition types**]", icon ="📑"):
     st.markdown("""
     Groundwater models use different boundary condition types to represent different hydrological conditions. Each type defines a specific way that flow and head interact at the boundary, reflecting the physical behavior of the natural or engineered system. **The different types of boundaries and associated _Q_–_h_ plots** can be investigated by scrolling down to the Computation and Visualization section of this introduction and using the analytical solutions for two example configurations of a one-dimensional (1-D) unconfined aquifer (:green[**Scenario 1**] and :red[**Scenario 2**]). First, each type of boundary is described here.
     
@@ -340,7 +354,7 @@ with st.expander("Show more :blue[**explanation about the boundary condition typ
     - :red[**Scenario 2**]: This scenario does not use a specified head boundary.
     """)
     
-with st.expander("Show more :blue[**explanation about _Q_-_h_ plots**] that describe boundary condition behavior", expanded=st.session_state.qh_expander_open):
+with st.expander("Show more :blue[**explanation about _Q_-_h_ plots**] that describe boundary condition behavior", icon ="📑", expanded=st.session_state.qh_expander_open):
     st.markdown("""
     The relationship between discharge (_Q_) and hydraulic head (_h_) at model boundaries provides a powerful way to conceptualize and compare different types of boundary conditions in groundwater flow modeling. _Q_-_h_ plots visually illustrate how flow into or out of a model domain responds to parameter changes, highlighting the fundamental behavior of specified-head, specified-flow, and head-dependent flux boundaries. These plots serve as intuitive tools to understand how boundary conditions influence system response, and how they are implemented in models like MODFLOW.
     
@@ -352,7 +366,7 @@ with st.expander("Show more :blue[**explanation about _Q_-_h_ plots**] that desc
         key="qh_toggle",
         on_change= mark_qh_expander_open,
     )
-    
+        
     st.markdown("""
     :blue[**The subsequent parts**] of this module allow investigation of these _Q_-_h_ plots :rainbow[**with color coded sections**] for various boundary conditions (_these are accessible via links on the left menu of this module_).
     """
@@ -385,7 +399,7 @@ with rc1:
     st.image('90_Streamlit_apps/GWP_Boundary_Conditions/assets/images/GWF_EX02.jpg')
     st.markdown("""Conceptual model of :red[**Scenario 2**]: a one-dimensional unconfined groundwater system with **two specified head boundaries**.""")
     
-with st.expander('Show more about the theory of the :blue[**model and the analytical solution**]'):
+with st.expander('Show more about the theory of the :blue[**model and the analytical solution**]', icon ="📑"):
     st.markdown("""
             #### Conceptual model
             
@@ -1215,7 +1229,7 @@ if show_plot2:
     
     computation2()
 
-st.subheader('✅ Conclusion', divider = 'blue')
+st.subheader('✔️ Conclusion', divider = 'blue')
 st.markdown("""
 Boundary conditions are the foundation of any groundwater model. They define how water enters, exits, or interacts with the simulated model domain. Each boundary type, whether specified head, specified flow, or head-dependent flow, represents a different physical assumption and has specific implications for model behavior.
 
@@ -1225,37 +1239,45 @@ By exploring these relationships interactively, a user can develop a more intuit
 
 In the following boundary-specific sections of the module, we dive deeper into each condition, with visualizations, theory, and targeted assessments. But prior moving on, it may be helpful to take the final assessment to self-check your understanding.
 """)
-
-
-with st.expander('**Show the final assessment** - to self-check your understanding'):
-    st.markdown("""
-    #### 🧠 Final assessment
-    These questions test your conceptual understanding after working with the application.
-    """)
-
-    # Render questions in a 2x3 grid (row-wise)
-    for row in [(0, 1), (2, 3), (4, 5)]:
-        col1, col2 = st.columns(2)
-
-        with col1:
-            i = row[0]
-            st.markdown(f"**Q{i+1}. {quest_final[i]['question']}**")
-            multiple_choice(
-                question=" ",
-                options_dict=quest_final[i]["options"],
-                success=quest_final[i].get("success", "✅ Correct."),
-                error=quest_final[i].get("error", "❌ Not quite.")
-            )
-
-        with col2:
-            i = row[1]
-            st.markdown(f"**Q{i+1}. {quest_final[i]['question']}**")
-            multiple_choice(
-                question=" ",
-                options_dict=quest_final[i]["options"],
-                success=quest_final[i].get("success", "✅ Correct."),
-                error=quest_final[i].get("error", "❌ Not quite.")
-            )
+with st.container(border=True):
+    ass2_1, ass2_2 = st.columns((25,1))
+    with ass2_1:
+        open_click = st.button("✅ **Show the final assessment** - to self-check your **understanding**", key="ass2_btn", type="tertiary")
+        if open_click:
+            st.session_state.exp_general_02 = not st.session_state.exp_general_02
+    with ass2_2:
+        chevron2 = "▲" if st.session_state.exp_general_02 else "▼"
+        st.markdown(chevron2)
+    
+    if st.session_state.exp_general_02:
+        st.markdown("""
+        #### Final assessment
+        These questions test your conceptual understanding after working with the application.
+        """)
+    
+        # Render questions in a 2x3 grid (row-wise)
+        for row in [(0, 1), (2, 3), (4, 5)]:
+            col1, col2 = st.columns(2)
+    
+            with col1:
+                i = row[0]
+                st.markdown(f"**Q{i+1}. {quest_final[i]['question']}**")
+                multiple_choice(
+                    question=" ",
+                    options_dict=quest_final[i]["options"],
+                    success=quest_final[i].get("success", "✅ Correct."),
+                    error=quest_final[i].get("error", "❌ Not quite.")
+                )
+    
+            with col2:
+                i = row[1]
+                st.markdown(f"**Q{i+1}. {quest_final[i]['question']}**")
+                multiple_choice(
+                    question=" ",
+                    options_dict=quest_final[i]["options"],
+                    success=quest_final[i].get("success", "✅ Correct."),
+                    error=quest_final[i].get("error", "❌ Not quite.")
+                )
 st.markdown('---')
 
 # Render footer with authors, institutions, and license logo in a single line

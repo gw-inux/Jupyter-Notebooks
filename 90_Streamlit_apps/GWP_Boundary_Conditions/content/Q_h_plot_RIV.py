@@ -944,7 +944,7 @@ with st.expander('**Show the :rainbow[**EXERCISE**] assessment** - to self-check
                 error=quest_exer[i].get("error", "❌ Not quite.")
             )
 
-st.subheader('✅ Conclusion', divider = 'violet')
+st.subheader('✔️ Conclusion', divider = 'violet')
 st.markdown("""
 The River (RIV) boundary condition is a powerful tool in MODFLOW for simulating dynamic interactions between surface water and groundwater. Unlike simpler boundary types, the RIV condition allows for **bidirectional flow** and introduces a **cutoff mechanism** when the groundwater head drops below the bottom of the riverbed. In this case, RIV can capture the realistic behavior that occurs when a partially saturated zone separates the water table from the river bottom. A RIV boundary can be defined in any groundwater-flow-model cell.
 

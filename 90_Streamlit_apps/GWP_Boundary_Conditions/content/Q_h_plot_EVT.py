@@ -540,7 +540,7 @@ with st.expander('**Show the :rainbow[**EXERCISE**] assessment** - to self-check
                 error=quest_exer[i].get("error", "❌ Not quite.")
             )
 
-st.subheader('✅ Conclusion', divider = 'blue')
+st.subheader('✔️ Conclusion', divider = 'blue')
 st.markdown("""
 The Evapotranspiration (EVT) boundary in MODFLOW simulates the loss of shallow groundwater to the atmosphere through vegetation uptake and surface evaporation. It simulates a **head-dependent** process that operates when the water table is within a defined range between the **ET surface** and **extinction depth**. The EVT boundary is defined over an area of a groundwater-flow model that may include only one or many cells. In a multilayer model, depending on the input specifications, ET may be drawn from deeper layers if the groundwater head falls below the bottom of overlying layers.
 
