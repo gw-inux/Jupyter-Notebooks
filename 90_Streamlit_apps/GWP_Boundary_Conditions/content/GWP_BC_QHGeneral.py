@@ -176,17 +176,22 @@ By engaging with this section of the interactive module, you will be able to:
 
 3. **Assess the influence of recharge and hydraulic conductivity** on the groundwater head distribution and the resulting flow dynamics at model boundaries.
 """)
+
+def change_ass_state():
+    st.session_state.exp_general_01 = not st.session_state.exp_general_01
     
 with st.container(border=True):
-    ass1_1, ass1_2 = st.columns((25,1))
+    ass1_1, ass1_2 = st.columns([25, 1])
     with ass1_1:
-        open_click = st.button("✅ **Show the initial assessment** – to assess your **EXISTING** knowledge", key="ass1_btn", type="tertiary")
-        if open_click:
-            st.session_state.exp_general_01 = not st.session_state.exp_general_01
+        st.markdown("<div style='text-align:left;'>", unsafe_allow_html=True)
+        open_click = st.button("✅ **Show the initial assessment** – to assess your **EXISTING** knowledge", key="ass1_btn", type="tertiary",on_click=change_ass_state)
+        st.markdown("</div>", unsafe_allow_html=True)
     with ass1_2:
         chevron = "▲" if st.session_state.exp_general_01 else "▼"
-        st.markdown(chevron)
-    
+        st.markdown("<div style='text-align:right;'>", unsafe_allow_html=True)
+        st.button(chevron, key="ass1_btn2", type="tertiary", on_click=change_ass_state)
+        st.markdown("</div>", unsafe_allow_html=True)
+
     if st.session_state.exp_general_01:
         st.markdown("""
         #### Initial assessment
