@@ -10,6 +10,57 @@ from streamlit_book import multiple_choice
 from streamlit_scroll_to_top import scroll_to_here
 from GWP_Boundary_Conditions_utils import read_md
 
+# RENDER ASSESSMENTS
+
+def flip_assessment(section_id: str):
+    """Flip the boolean flag for a given section_id."""
+    key = f"exp_{section_id}"
+    st.session_state[key] = not st.session_state.get(key, False)
+
+def render_toggle_container(
+    section_id: str,
+    label: str,
+    content_fn,                 # a function that renders the section contents when open
+    *,
+    default_open: bool = False,
+    col_ratio=(25, 1),
+    container_border: bool = True,
+):
+    """
+    Renders a toggleable container with two buttons:
+    - Left: text button with your label
+    - Right: chevron button (▲/▼)
+    Each section manages its own state via section_id.
+
+    Parameters
+    ----------
+    section_id : unique id string, e.g., "general_01"
+    label      : button label shown on the left
+    content_fn : callable with no args that renders the open content
+    default_open : initial open state (only used on first render)
+    col_ratio  : column width ratio for (label_button, chevron_button)
+    container_border : show a border around the section container
+    """
+    state_key = f"exp_{section_id}"
+    if state_key not in st.session_state:
+        st.session_state[state_key] = default_open
+
+    with st.container(border=container_border):
+        ass_c1, ass_c2 = st.columns(col_ratio)
+
+        # Left button – same on_click toggler for consistency
+        with ass_c1:
+            st.button(label,key=f"btn_label_{section_id}",type="tertiary",on_click=flip_assessment,args=(section_id,))
+
+        # Right chevron button – also toggles the same state
+        with ass_c2:
+            chevron = "▲" if st.session_state[state_key] else "▼"
+            st.button(chevron,key=f"btn_chev_{section_id}",type="tertiary",on_click=flip_assessment,args=(section_id,))
+
+        # Conditional content
+        if st.session_state[state_key]:
+            content_fn()
+
 # ---------- Track the current page
 PAGE_ID = "GENERAL"
 
@@ -177,50 +228,40 @@ By engaging with this section of the interactive module, you will be able to:
 3. **Assess the influence of recharge and hydraulic conductivity** on the groundwater head distribution and the resulting flow dynamics at model boundaries.
 """)
 
-def change_ass_state():
-    st.session_state.exp_general_01 = not st.session_state.exp_general_01
+# INITIAL ASSESSMENT
+def content_initial():
+    st.markdown("""#### Initial assessment""")
+    st.info("You can use the initial questions to assess your existing knowledge.")
     
-with st.container(border=True):
-    ass1_1, ass1_2 = st.columns([25, 1])
-    with ass1_1:
-        st.markdown("<div style='text-align:left;'>", unsafe_allow_html=True)
-        open_click = st.button("✅ **Show the initial assessment** – to assess your **EXISTING** knowledge", key="ass1_btn", type="tertiary",on_click=change_ass_state)
-        st.markdown("</div>", unsafe_allow_html=True)
-    with ass1_2:
-        chevron = "▲" if st.session_state.exp_general_01 else "▼"
-        st.markdown("<div style='text-align:right;'>", unsafe_allow_html=True)
-        st.button(chevron, key="ass1_btn2", type="tertiary", on_click=change_ass_state)
-        st.markdown("</div>", unsafe_allow_html=True)
+    # Render questions in a 2x2 grid (row-wise, aligned)
+    for row in [(0, 1), (2, 3)]:
+        col1, col2 = st.columns(2)
+        with col1:
+            i = row[0]
+            st.markdown(f"**Q{i+1}. {quest_ini[i]['question']}**")
+            multiple_choice(
+                question=" ",  # suppress repeated question display
+                options_dict=quest_ini[i]["options"],
+                success=quest_ini[i].get("success", "✅ Correct."),
+                error=quest_ini[i].get("error", "❌ Not quite.")
+            )
+        with col2:
+            i = row[1]
+            st.markdown(f"**Q{i+1}. {quest_ini[i]['question']}**")
+            multiple_choice(
+                question=" ",
+                options_dict=quest_ini[i]["options"],
+                success=quest_ini[i].get("success", "✅ Correct."),
+                error=quest_ini[i].get("error", "❌ Not quite.")
+            )
 
-    if st.session_state.exp_general_01:
-        st.markdown("""
-        #### Initial assessment
-        You can use the initial questions to assess your existing knowledge.
-        """)
-    
-        # Render questions in a 2x2 grid (row-wise, aligned)
-        for row in [(0, 1), (2, 3)]:
-            col1, col2 = st.columns(2)
-        
-            with col1:
-                i = row[0]
-                st.markdown(f"**Q{i+1}. {quest_ini[i]['question']}**")
-                multiple_choice(
-                    question=" ",  # suppress repeated question display
-                    options_dict=quest_ini[i]["options"],
-                    success=quest_ini[i].get("success", "✅ Correct."),
-                    error=quest_ini[i].get("error", "❌ Not quite.")
-                )
-        
-            with col2:
-                i = row[1]
-                st.markdown(f"**Q{i+1}. {quest_ini[i]['question']}**")
-                multiple_choice(
-                    question=" ",
-                    options_dict=quest_ini[i]["options"],
-                    success=quest_ini[i].get("success", "✅ Correct."),
-                    error=quest_ini[i].get("error", "❌ Not quite.")
-                )
+# Render initial assessment
+render_toggle_container(
+    section_id="general_01",
+    label="✅ **Show the initial assessment** – to assess your **EXISTING** knowledge",
+    content_fn=content_initial,
+    default_open=False,
+)
 
 # --- TYPES OF BOUNDARY CONDITIONS ---
 st.subheader('🧪 Theory: A concise overview about Groundwater Modeling and Boundary Conditions', divider='blue')
@@ -1244,45 +1285,44 @@ By exploring these relationships interactively, a user can develop a more intuit
 
 In the following boundary-specific sections of the module, we dive deeper into each condition, with visualizations, theory, and targeted assessments. But prior moving on, it may be helpful to take the final assessment to self-check your understanding.
 """)
-with st.container(border=True):
-    ass2_1, ass2_2 = st.columns((25,1))
-    with ass2_1:
-        open_click = st.button("✅ **Show the final assessment** - to self-check your **understanding**", key="ass2_btn", type="tertiary")
-        if open_click:
-            st.session_state.exp_general_02 = not st.session_state.exp_general_02
-    with ass2_2:
-        chevron2 = "▲" if st.session_state.exp_general_02 else "▼"
-        st.markdown(chevron2)
+
+# FINAL ASSESSMENT
+def content_final():
+    st.markdown("""#### Final assessment""")
+    st.info("These questions test your conceptual understanding after working with the application.")
     
-    if st.session_state.exp_general_02:
-        st.markdown("""
-        #### Final assessment
-        These questions test your conceptual understanding after working with the application.
-        """)
-    
-        # Render questions in a 2x3 grid (row-wise)
-        for row in [(0, 1), (2, 3), (4, 5)]:
-            col1, col2 = st.columns(2)
-    
-            with col1:
-                i = row[0]
-                st.markdown(f"**Q{i+1}. {quest_final[i]['question']}**")
-                multiple_choice(
-                    question=" ",
-                    options_dict=quest_final[i]["options"],
-                    success=quest_final[i].get("success", "✅ Correct."),
-                    error=quest_final[i].get("error", "❌ Not quite.")
-                )
-    
-            with col2:
-                i = row[1]
-                st.markdown(f"**Q{i+1}. {quest_final[i]['question']}**")
-                multiple_choice(
-                    question=" ",
-                    options_dict=quest_final[i]["options"],
-                    success=quest_final[i].get("success", "✅ Correct."),
-                    error=quest_final[i].get("error", "❌ Not quite.")
-                )
+    # Render questions in a 2x3 grid (row-wise)
+    for row in [(0, 1), (2, 3), (4, 5)]:
+        col1, col2 = st.columns(2)
+
+        with col1:
+            i = row[0]
+            st.markdown(f"**Q{i+1}. {quest_final[i]['question']}**")
+            multiple_choice(
+                question=" ",
+                options_dict=quest_final[i]["options"],
+                success=quest_final[i].get("success", "✅ Correct."),
+                error=quest_final[i].get("error", "❌ Not quite.")
+            )
+
+        with col2:
+            i = row[1]
+            st.markdown(f"**Q{i+1}. {quest_final[i]['question']}**")
+            multiple_choice(
+                question=" ",
+                options_dict=quest_final[i]["options"],
+                success=quest_final[i].get("success", "✅ Correct."),
+                error=quest_final[i].get("error", "❌ Not quite.")
+            )
+
+# Render final assessment
+render_toggle_container(
+    section_id="general_04",
+    label="✅ **Show the final assessment** - to self-check your **understanding**",
+    content_fn=content_final,
+    default_open=False,
+)
+
 st.markdown('---')
 
 # Render footer with authors, institutions, and license logo in a single line
