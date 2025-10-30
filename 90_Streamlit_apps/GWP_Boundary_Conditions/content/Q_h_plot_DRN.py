@@ -11,6 +11,11 @@ import json
 from streamlit_book import multiple_choice
 from streamlit_scroll_to_top import scroll_to_here
 from GWP_Boundary_Conditions_utils import read_md
+from GWP_Boundary_Conditions_utils import flip_assessment
+from GWP_Boundary_Conditions_utils import render_toggle_container
+from GWP_Boundary_Conditions_utils import prep_log_slider
+from GWP_Boundary_Conditions_utils import get_label
+from GWP_Boundary_Conditions_utils import get_step
 
 # ---------- Track the current page
 PAGE_ID = "DRN"
@@ -81,43 +86,7 @@ author_list = [f"{name}{''.join(index_symbols[i-1] for i in indices)}" for name,
 institution_list = [f"{index_symbols[i-1]} {inst}" for i, inst in institutions.items()]
 institution_text = " | ".join(institution_list)
 
-# --- functions
-
-def prep_log_slider(default_val: float, log_min: float, log_max: float, step: float = 0.01, digits: int = 2):
-    """
-    Prepares labels and default for a log-scale select_slider.
-
-    Returns:
-    --------
-    labels : list of str
-        Formatted string labels in scientific notation.
-    default_label : str
-        Closest label to the given default_val.
-    """
-    # --- Generate value list and labels
-    log_values = np.arange(log_min, log_max + step, step)
-    values = 10 ** log_values
-    fmt = f"{{0:.{digits}e}}"
-    labels = [fmt.format(v) for v in values]
-
-    # --- Find closest label for default
-    idx_closest = np.abs(values - default_val).argmin()
-    default_label = labels[idx_closest]
-
-    return labels, default_label
-    
-def get_label(val: float, labels: list[str]) -> str:
-    """Given a float value and a list of scientific notation labels, return the closest label."""
-    label_vals = [float(l) for l in labels]
-    idx = np.abs(np.array(label_vals) - val).argmin()
-    return labels[idx]
-
-def get_step(val: float) -> float:
-    """Return a step that modifies the first digit after the decimal point in scientific notation."""
-    if val == 0:
-        return 1e-8  # fallback
-    exponent = int(np.floor(np.log10(abs(val))))
-    return 10 ** (exponent - 1)
+# --- START HERE
     
 st.title("Theory and Concept of the :green[Drain Boundary (DRN) in MODFLOW]")
 st.subheader("Groundwater - :green[Drain] interaction", divider="green")
@@ -186,6 +155,7 @@ st.markdown("""
 
 The DRN package is particularly relevant in applied groundwater modeling at the field scale, especially in agricultural, construction, and mine settings where drains are an important part of the system.
 """)
+
 with st.expander("Tell me more about **the :green[application of DRN in Field-Scale Groundwater Modeling]**"):
 	
     st.markdown("""
@@ -237,12 +207,11 @@ This section is designed with the intent that, by studying it, you will be able 
 - Understand how the conductance term reflects the geometry and properties of the connection between the groundwater compartment and the drain system.
 """)
 
-with st.expander('**Show the initial assessment** - to assess your existing knowledge'):
-    st.markdown("""
-    #### 📋 Initial assessment
-    You can use the initial questions to assess your existing knowledge.
-    """)
-
+# --- INITIAL ASSESSMENT ---
+def content_initial_drn():
+    st.markdown("""#### Initial assessment""")
+    st.info("You can use the initial questions to assess your existing knowledge.")
+    
     # Render questions in a 2x2 grid (row-wise, aligned)
     for row in [(0, 1), (2, 3)]:
         col1, col2 = st.columns(2)
@@ -266,6 +235,14 @@ with st.expander('**Show the initial assessment** - to assess your existing know
                 success=quest_ini[i].get("success", "✅ Correct."),
                 error=quest_ini[i].get("error", "❌ Not quite.")
             )
+
+# Render initial assessment
+render_toggle_container(
+    section_id="drn_01",
+    label="✅ **Show the initial assessment** – to assess your **EXISTING** knowledge",
+    content_fn=content_initial_drn,
+    default_open=False,
+)
             
 st.subheader('🧪 Theory and Background', divider="green")
 st.markdown("""
@@ -535,12 +512,12 @@ def Q_h_plot():
 
 Q_h_plot()
 
-with st.expander('**Show the :rainbow[**EXERCISE**] assessment** - to self-check your understanding'):
-    st.markdown("""
-    #### 🧠 Exercise assessment
-    These questions test your understanding after doing the exercise.
-    """)
+# --- EXERCISE ASSESSMENT ---
 
+def content_exer_drn():
+    st.markdown("""#### 🧠 Exercise assessment""")
+    st.info("These questions test your understanding after doing the DRN exercise.")
+    
     # Render questions in a 2x3 grid (row-wise)
     for row in [(0, 1), (2, 3), (4, 5)]:
         col1, col2 = st.columns(2)
@@ -564,6 +541,14 @@ with st.expander('**Show the :rainbow[**EXERCISE**] assessment** - to self-check
                 success=quest_exer[i].get("success", "✅ Correct."),
                 error=quest_exer[i].get("error", "❌ Not quite.")
             )
+            
+# Render exercise assessment
+render_toggle_container(
+    section_id="drn_02",
+    label="✅ **Show the :rainbow[**EXERCISE**] assessment** - to self-check your understanding",
+    content_fn=content_exer_drn,
+    default_open=False,
+)
 
 st.subheader('✔️ Conclusion', divider = 'green')
 st.markdown("""
@@ -578,13 +563,11 @@ A related boundary package is the drain return package (DRT) in which water is r
 After studying this section about drain boundaries, you may want to evaluate your knowledge using the final assessment.
 """)
 
-
-with st.expander('**Show the final assessment** - to self-check your understanding'):
-    st.markdown("""
-    #### 🧠 Final assessment
-    These questions test your conceptual understanding after working with the app.
-    """)
-
+# --- FINAL ASSESSMENT ---
+def content_final_drn():
+    st.markdown("""#### 🧠 Final assessment""")
+    st.info("These questions test your conceptual understanding after working with the application.")
+    
     # Render questions in a 2x3 grid (row-wise)
     for row in [(0, 1), (2, 3), (4, 5)]:
         col1, col2 = st.columns(2)
@@ -608,6 +591,14 @@ with st.expander('**Show the final assessment** - to self-check your understandi
                 success=quest_final[i].get("success", "✅ Correct."),
                 error=quest_final[i].get("error", "❌ Not quite.")
             )
+            
+# Render final assessment
+render_toggle_container(
+    section_id="drn_03",
+    label="✅ **Show the final assessment** - to self-check your **understanding**",
+    content_fn=content_final_drn,
+    default_open=False,
+)
             
 st.markdown('---')
 

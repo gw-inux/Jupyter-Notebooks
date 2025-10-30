@@ -12,6 +12,11 @@ import json
 from streamlit_book import multiple_choice
 from streamlit_scroll_to_top import scroll_to_here
 from GWP_Boundary_Conditions_utils import read_md
+from GWP_Boundary_Conditions_utils import flip_assessment
+from GWP_Boundary_Conditions_utils import render_toggle_container
+from GWP_Boundary_Conditions_utils import prep_log_slider
+from GWP_Boundary_Conditions_utils import get_label
+from GWP_Boundary_Conditions_utils import get_step
 
 # ---------- Track the current page
 PAGE_ID = "DRN"
@@ -82,44 +87,7 @@ author_list = [f"{name}{''.join(index_symbols[i-1] for i in indices)}" for name,
 institution_list = [f"{index_symbols[i-1]} {inst}" for i, inst in institutions.items()]
 institution_text = " | ".join(institution_list)
 
-# --- functions
-
-def prep_log_slider(default_val: float, log_min: float, log_max: float, step: float = 0.01, digits: int = 2):
-    """
-    Prepares labels and default for a log-scale select_slider.
-
-    Returns:
-    --------
-    labels : list of str
-        Formatted string labels in scientific notation.
-    default_label : str
-        Closest label to the given default_val.
-    """
-    # --- Generate value list and labels
-    log_values = np.arange(log_min, log_max + step, step)
-    values = 10 ** log_values
-    fmt = f"{{0:.{digits}e}}"
-    labels = [fmt.format(v) for v in values]
-
-    # --- Find closest label for default
-    idx_closest = np.abs(values - default_val).argmin()
-    default_label = labels[idx_closest]
-
-    return labels, default_label
-    
-def get_label(val: float, labels: list[str]) -> str:
-    """Given a float value and a list of scientific notation labels, return the closest label."""
-    label_vals = [float(l) for l in labels]
-    idx = np.abs(np.array(label_vals) - val).argmin()
-    return labels[idx]
-
-def get_step(val: float) -> float:
-    """Return a step that modifies the first digit after the decimal point in scientific notation."""
-    if val == 0:
-        return 1e-8  # fallback
-    exponent = int(np.floor(np.log10(abs(val))))
-    return 10 ** (exponent - 1)
-
+# --- START HERE
 st.title("Theory and Concept of the :orange[General Head Boundary (GHB) in MODFLOW]")
 #st.subheader("Interaction Between Groundwater and Head-Dependent Boundaries", divider="orange")
 st.subheader("Groundwater - :orange[Head-Dependent Boundary] interaction", divider="orange")
@@ -233,12 +201,11 @@ This section is designed with the intent that, by studying it, you will be able 
 - Visualize groundwater exchange at the boundary (flow into or out of the model at the boundary).
 """)
 
-with st.expander('**Show the initial assessment** - to assess your existing knowledge'):
-    st.markdown("""
-    #### 📋 Initial assessment
-    You can use the initial questions to assess your existing knowledge.
-    """)
-
+# --- INITIAL ASSESSMENT ---
+def content_initial_ghb():
+    st.markdown("""#### Initial assessment""")
+    st.info("You can use the initial questions to assess your existing knowledge.")
+    
     # Render questions in a 2x2 grid (row-wise, aligned)
     for row in [(0, 1), (2, 3)]:
         col1, col2 = st.columns(2)
@@ -262,6 +229,14 @@ with st.expander('**Show the initial assessment** - to assess your existing know
                 success=quest_ini[i].get("success", "✅ Correct."),
                 error=quest_ini[i].get("error", "❌ Not quite.")
             )
+
+# Render initial assessment
+render_toggle_container(
+    section_id="ghb_01",
+    label="✅ **Show the initial assessment** – to assess your **EXISTING** knowledge",
+    content_fn=content_initial_ghb,
+    default_open=False,
+)
 
 st.subheader('🧪 Theory and Background', divider="orange")
 st.markdown("""
@@ -590,12 +565,11 @@ def Q_h_plot():
 
 Q_h_plot()
 
-with st.expander('**Show the :rainbow[**EXERCISE**] assessment** - to self-check your understanding'):
-    st.markdown("""
-    #### 🧠 Exercise assessment
-    These questions test your understanding after doing the GHB exercise.
-    """)
-
+# --- EXERCISE ASSESSMENT ---
+def content_exer_ghb():
+    st.markdown("""#### 🧠 Exercise assessment""")
+    st.info("These questions test your understanding after doing the GHB exercise.")
+    
     # Render questions in a 2x3 grid (row-wise)
     for row in [(0, 1), (2, 3), (4, 5)]:
         col1, col2 = st.columns(2)
@@ -619,10 +593,16 @@ with st.expander('**Show the :rainbow[**EXERCISE**] assessment** - to self-check
                 success=quest_exer[i].get("success", "✅ Correct."),
                 error=quest_exer[i].get("error", "❌ Not quite.")
             )
+            
+# Render exercise assessment
+render_toggle_container(
+    section_id="ghb_02",
+    label="✅ **Show the :rainbow[**EXERCISE**] assessment** - to self-check your understanding",
+    content_fn=content_exer_ghb,
+    default_open=False,
+)
 
-
-
-st.subheader('✅ Conclusion', divider = 'orange')
+st.subheader('✔️ Conclusion', divider = 'orange')
 st.markdown("""
 The General Head Boundary (GHB) offers a flexible way to simulate interactions with external water bodies or regions not explicitly modeled — such as distant lakes, rivers, or adjacent groundwater systems. Its formulation as a **head-dependent boundary** enables both **inflow and outflow**, depending on the head difference between a groundwater-flow-model cell and its boundary. A GHB boundary can be defined in any groundwater-flow-model cell.
 
@@ -635,12 +615,11 @@ Other boundary packages discussed in this module incorporate the concepts of hea
 After studying this section about general head boundaries, you may want to evaluate your knowledge using the final assessment.
 """)
 
-with st.expander('**Show the :red[final assessment]** - to self-check your understanding'):
-    st.markdown("""
-    #### 🧠 Final assessment
-    These questions test your conceptual understanding after working with the app.
-    """)
-
+# --- FINAL ASSESSMENT ---
+def content_final_ghb():
+    st.markdown("""#### 🧠 Final assessment""")
+    st.info("These questions test your conceptual understanding after working with the application.")
+    
     # Render questions in a 2x3 grid (row-wise)
     for row in [(0, 1), (2, 3), (4, 5)]:
         col1, col2 = st.columns(2)
@@ -664,6 +643,14 @@ with st.expander('**Show the :red[final assessment]** - to self-check your under
                 success=quest_final[i].get("success", "✅ Correct."),
                 error=quest_final[i].get("error", "❌ Not quite.")
             )
+            
+# Render final assessment
+render_toggle_container(
+    section_id="ghb_03",
+    label="✅ **Show the final assessment** - to self-check your **understanding**",
+    content_fn=content_final_ghb,
+    default_open=False,
+)
             
 st.markdown('---')
 

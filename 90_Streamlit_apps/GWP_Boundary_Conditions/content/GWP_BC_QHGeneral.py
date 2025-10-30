@@ -159,7 +159,7 @@ By engaging with this section of the interactive module, you will be able to:
 3. **Assess the influence of recharge and hydraulic conductivity** on the groundwater head distribution and the resulting flow dynamics at model boundaries.
 """)
 
-# INITIAL ASSESSMENT
+# --- INITIAL ASSESSMENT ---
 def content_initial():
     st.markdown("""#### Initial assessment""")
     st.info("You can use the initial questions to assess your existing knowledge.")
@@ -783,13 +783,12 @@ if show_plot1:
         with st.expander('Show the 🧪:green[**INSTRUCTIONS for using the interactive plot for Scenario 1**]'):
             st.link_button("*Open in new tab* ↗️ ", url=f"?view=md&doc={DOC_FILE1}")
             st.markdown(read_md(DOC_FILE1))
+
+        # --- EXERCISE ASSESSMENT ---
+        def content_exer1_general():
+            st.markdown("""#### 🧠 Scenario 1 Exercise assessment""")
+            st.info("These questions provide an opportunity for you to assess your understanding of boundary conditions discussed in scenario 1.")
             
-        with st.expander('Show the :green[**SCENARIO 1**] :rainbow[**assessment**] - to self-check your understanding'):
-            st.markdown("""
-            #### 🧠 Scenario 1 assessment
-            These questions provide an opportunity for you to assess your understanding of boundary conditions discussed in scenario 1.
-            """)
-        
             # Render questions in a 2x2 grid (row-wise, aligned)
             for row in [(0, 1), (2, 3)]:
                 col1, col2 = st.columns(2)
@@ -813,6 +812,14 @@ if show_plot1:
                         success=quest_exer_sc1[i].get("success", "✅ Correct."),
                         error=quest_exer_sc1[i].get("error", "❌ Not quite.")
                     )
+                    
+        # Render exercise assessment
+        render_toggle_container(
+            section_id="general_02",
+            label="✅ **Show the :green[**SCENARIO 1**] :rainbow[**EXERCISE**] assessment** - to self-check your understanding",
+            content_fn=content_exer1_general,
+            default_open=False,
+        )
         
     computation1()
 
@@ -1174,12 +1181,11 @@ if show_plot2:
             st.link_button("*Open in new tab* ↗️ ", url=f"?view=md&doc={DOC_FILE2}")
             st.markdown(read_md(DOC_FILE2))
         
-        with st.expander('Show the :red[**SCENARIO 2**] :rainbow[**assessment**] - to self-check your understanding'):
-            st.markdown("""
-            #### 🧠 Scenario 2 assessment
-            These questions test your understanding after investigating Scenario 2.
-            """)
-        
+        # --- EXERCISE ASSESSMENT ---
+        def content_exer2_general():
+            st.markdown("""#### 🧠 Scenario 2 Exercise assessment""")
+            st.info("These questions provide an opportunity for you to assess your understanding of boundary conditions discussed in scenario 2.")
+            
             # Render questions in a 2x2 grid (row-wise, aligned)
             for row in [(0, 1), (2, 3)]:
                 col1, col2 = st.columns(2)
@@ -1203,6 +1209,14 @@ if show_plot2:
                         success=quest_exer_sc2[i].get("success", "✅ Correct."),
                         error=quest_exer_sc2[i].get("error", "❌ Not quite.")
                     )
+                    
+        # Render exercise assessment
+        render_toggle_container(
+            section_id="general_03",
+            label="✅ **Show the :red[**SCENARIO 2**] :rainbow[**EXERCISE**] assessment** - to self-check your understanding",
+            content_fn=content_exer2_general,
+            default_open=False,
+        )
     
     computation2()
 
@@ -1217,9 +1231,9 @@ By exploring these relationships interactively, a user can develop a more intuit
 In the following boundary-specific sections of the module, we dive deeper into each condition, with visualizations, theory, and targeted assessments. But prior moving on, it may be helpful to take the final assessment to self-check your understanding.
 """)
 
-# FINAL ASSESSMENT
+# --- FINAL ASSESSMENT ---
 def content_final():
-    st.markdown("""#### Final assessment""")
+    st.markdown("""#### 🧠 Final assessment""")
     st.info("These questions test your conceptual understanding after working with the application.")
     
     # Render questions in a 2x3 grid (row-wise)

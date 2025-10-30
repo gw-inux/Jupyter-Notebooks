@@ -14,6 +14,8 @@ from GWP_Boundary_Conditions_utils import read_md
 from GWP_Boundary_Conditions_utils import flip_assessment
 from GWP_Boundary_Conditions_utils import render_toggle_container
 from GWP_Boundary_Conditions_utils import prep_log_slider
+from GWP_Boundary_Conditions_utils import get_label
+from GWP_Boundary_Conditions_utils import get_step
 
 # ---------- Track the current page
 PAGE_ID = "RIV"
@@ -84,20 +86,7 @@ author_list = [f"{name}{''.join(index_symbols[i-1] for i in indices)}" for name,
 institution_list = [f"{index_symbols[i-1]} {inst}" for i, inst in institutions.items()]
 institution_text = " | ".join(institution_list)
 
-# --- functions
-    
-def get_label(val: float, labels: list[str]) -> str:
-    """Given a float value and a list of scientific notation labels, return the closest label."""
-    label_vals = [float(l) for l in labels]
-    idx = np.abs(np.array(label_vals) - val).argmin()
-    return labels[idx]
-
-def get_step(val: float) -> float:
-    """Return a step that modifies the first digit after the decimal point in scientific notation."""
-    if val == 0:
-        return 1e-8  # fallback
-    exponent = int(np.floor(np.log10(abs(val))))
-    return 10 ** (exponent - 1)
+# --- START HERE ---
     
 st.title("Theory and Concept of the :violet[River Boundary (RIV) in MODFLOW]")
 st.subheader("Groundwater - :violet[River Boundary] interaction", divider="violet")
@@ -202,7 +191,7 @@ This section is designed with the intent that, by studying it, you will be able 
 - Understand that the flow rate from a losing stream with a bottom above the water table is only valid for streambeds with hydraulic conductivity lower than the hydraulic conductivity of the groundwater-bearing material.
 """)
 
-# INITIAL ASSESSMENT
+# --- INITIAL ASSESSMENT ---
 def content_initial_riv():
     st.markdown("""#### Initial assessment""")
     st.info("You can use the initial questions to assess your existing knowledge.")
@@ -901,9 +890,11 @@ def Q_h_plot():
 
 Q_h_plot()
 
+# --- EXERCISE ASSESSMENT ---
+
 def content_exer_riv():
     st.markdown("""#### 🧠 Exercise assessment""")
-    st.info("These questions test your understanding after doing the exercise.")
+    st.info("These questions test your understanding after doing the RIV exercise.")
     
     # Render questions in a 2x3 grid (row-wise)
     for row in [(0, 1), (2, 3), (4, 5)]:
@@ -929,7 +920,7 @@ def content_exer_riv():
                 error=quest_exer[i].get("error", "❌ Not quite.")
             )
             
-# Render final assessment
+# Render exercise assessment
 render_toggle_container(
     section_id="riv_02",
     label="✅ **Show the :rainbow[**EXERCISE**] assessment** - to self-check your understanding",
@@ -948,7 +939,7 @@ MODFLOW boundary packages with similarities to the RIV boundary allow the exchan
 After studying this section about river boundaries, you may want to evaluate your knowledge using the final assessment.
 """)
 
-# FINAL ASSESSMENT
+# --- FINAL ASSESSMENT ---
 def content_final_riv():
     st.markdown("""#### 🧠 Final assessment""")
     st.info("These questions test your conceptual understanding after working with the application.")

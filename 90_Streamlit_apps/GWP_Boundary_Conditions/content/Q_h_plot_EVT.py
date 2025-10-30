@@ -100,12 +100,7 @@ with columns0[0]:
     """)
 
 with columns0[1]:
-#    # EXPDi / EVTRi input
-#    col_ini = st.columns((1,1))
-#    with col_ini[0]:
-#        EXDPi = st.slider("**Extinction depth (EXDP)**", 0.1, 5.0, 4.0, 0.1)  
-#    with col_ini[1]:
-#        EVTRi = st.slider("**Max. ET rate**", 0.0, 4.0/86400000, 2.0/86400000, .1/86400000) 
+
     # EXPDi / EVTRi input
     EXDPi = st.slider("**Extinction depth (_EXDP_)**", 0.1, 5.0, 4.0, 0.1)
     
@@ -178,12 +173,11 @@ This section is designed with the intent that, by studying it, you will be able 
 - Interpret the shape of _Q–h_-plots for the EVT boundary and understand the limitations of this conceptualization.
 """)
 
-with st.expander('**Show the initial assessment** - to assess your existing knowledge'):
-    st.markdown("""
-    #### 📋 Initial assessment
-    You can use the initial questions to assess your existing knowledge.
-    """)
-
+# --- INITIAL ASSESSMENT ---
+def content_initial_evt():
+    st.markdown("""#### Initial assessment""")
+    st.info("You can use the initial questions to assess your existing knowledge.")
+    
     # Render questions in a 2x2 grid (row-wise, aligned)
     for row in [(0, 1), (2, 3)]:
         col1, col2 = st.columns(2)
@@ -207,6 +201,14 @@ with st.expander('**Show the initial assessment** - to assess your existing know
                 success=quest_ini[i].get("success", "✅ Correct."),
                 error=quest_ini[i].get("error", "❌ Not quite.")
             )
+
+# Render initial assessment
+render_toggle_container(
+    section_id="evt_01",
+    label="✅ **Show the initial assessment** – to assess your **EXISTING** knowledge",
+    content_fn=content_initial_evt,
+    default_open=False,
+)
             
 st.subheader('🧪 Theory and Background', divider="blue")
 
@@ -510,12 +512,12 @@ def Q_h_plot():
 
 Q_h_plot()
 
-with st.expander('**Show the :rainbow[**EXERCISE**] assessment** - to self-check your understanding'):
-    st.markdown("""
-    #### 🧠 Exercise assessment
-    These questions test your understanding after doing the exercise.
-    """)
+# --- EXERCISE ASSESSMENT ---
 
+def content_exer_evt():
+    st.markdown("""#### 🧠 Exercise assessment""")
+    st.info("These questions test your understanding after doing the EVT exercise.")
+    
     # Render questions in a 2x3 grid (row-wise)
     for row in [(0, 1), (2, 3), (4, 5)]:
         col1, col2 = st.columns(2)
@@ -539,6 +541,14 @@ with st.expander('**Show the :rainbow[**EXERCISE**] assessment** - to self-check
                 success=quest_exer[i].get("success", "✅ Correct."),
                 error=quest_exer[i].get("error", "❌ Not quite.")
             )
+            
+# Render exercise assessment
+render_toggle_container(
+    section_id="evt_02",
+    label="✅ **Show the :rainbow[**EXERCISE**] assessment** - to self-check your understanding",
+    content_fn=content_exer_evt,
+    default_open=False,
+)
 
 st.subheader('✔️ Conclusion', divider = 'blue')
 st.markdown("""
@@ -553,13 +563,11 @@ MODFLOW boundary condition packages related to the EVT boundary package provide 
 After studying this section about evapotranspiration boundaries, you may want to evaluate your knowledge using the final assessment.
 """)
 
-
-with st.expander('**Show the final assessment** - to self-check your understanding'):
-    st.markdown("""
-    #### 🧠 Final assessment
-    These questions test your conceptual understanding after working with the app.
-    """)
-
+# --- FINAL ASSESSMENT ---
+def content_final_evt():
+    st.markdown("""#### 🧠 Final assessment""")
+    st.info("These questions test your conceptual understanding after working with the application.")
+    
     # Render questions in a 2x3 grid (row-wise)
     for row in [(0, 1), (2, 3), (4, 5)]:
         col1, col2 = st.columns(2)
@@ -583,6 +591,14 @@ with st.expander('**Show the final assessment** - to self-check your understandi
                 success=quest_final[i].get("success", "✅ Correct."),
                 error=quest_final[i].get("error", "❌ Not quite.")
             )
+            
+# Render final assessment
+render_toggle_container(
+    section_id="evt_03",
+    label="✅ **Show the final assessment** - to self-check your **understanding**",
+    content_fn=content_final_evt,
+    default_open=False,
+)
             
 st.markdown('---')
 

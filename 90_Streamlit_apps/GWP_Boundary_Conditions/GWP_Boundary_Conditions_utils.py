@@ -97,3 +97,16 @@ def prep_log_slider(default_val: float, log_min: float, log_max: float, step: fl
     default_label = labels[idx_closest]
 
     return labels, default_label
+    
+def get_label(val: float, labels: list[str]) -> str:
+    """Given a float value and a list of scientific notation labels, return the closest label."""
+    label_vals = [float(l) for l in labels]
+    idx = np.abs(np.array(label_vals) - val).argmin()
+    return labels[idx]
+
+def get_step(val: float) -> float:
+    """Return a step that modifies the first digit after the decimal point in scientific notation."""
+    if val == 0:
+        return 1e-8  # fallback
+    exponent = int(np.floor(np.log10(abs(val))))
+    return 10 ** (exponent - 1)
