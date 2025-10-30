@@ -11,6 +11,9 @@ import json
 from streamlit_book import multiple_choice
 from streamlit_scroll_to_top import scroll_to_here
 from GWP_Boundary_Conditions_utils import read_md
+from GWP_Boundary_Conditions_utils import flip_assessment
+from GWP_Boundary_Conditions_utils import render_toggle_container
+from GWP_Boundary_Conditions_utils import prep_log_slider
 
 # ---------- Track the current page
 PAGE_ID = "RIV"
@@ -82,29 +85,6 @@ institution_list = [f"{index_symbols[i-1]} {inst}" for i, inst in institutions.i
 institution_text = " | ".join(institution_list)
 
 # --- functions
-
-def prep_log_slider(default_val: float, log_min: float, log_max: float, step: float = 0.01, digits: int = 2):
-    """
-    Prepares labels and default for a log-scale select_slider.
-
-    Returns:
-    --------
-    labels : list of str
-        Formatted string labels in scientific notation.
-    default_label : str
-        Closest label to the given default_val.
-    """
-    # --- Generate value list and labels
-    log_values = np.arange(log_min, log_max + step, step)
-    values = 10 ** log_values
-    fmt = f"{{0:.{digits}e}}"
-    labels = [fmt.format(v) for v in values]
-
-    # --- Find closest label for default
-    idx_closest = np.abs(values - default_val).argmin()
-    default_label = labels[idx_closest]
-
-    return labels, default_label
     
 def get_label(val: float, labels: list[str]) -> str:
     """Given a float value and a list of scientific notation labels, return the closest label."""
@@ -222,12 +202,11 @@ This section is designed with the intent that, by studying it, you will be able 
 - Understand that the flow rate from a losing stream with a bottom above the water table is only valid for streambeds with hydraulic conductivity lower than the hydraulic conductivity of the groundwater-bearing material.
 """)
 
-with st.expander('**Show the initial assessment** - to assess your existing knowledge'):
-    st.markdown("""
-    #### 📋 Initial assessment
-    You can use the initial questions to assess your existing knowledge.
-    """)
-
+# INITIAL ASSESSMENT
+def content_initial_riv():
+    st.markdown("""#### Initial assessment""")
+    st.info("You can use the initial questions to assess your existing knowledge.")
+    
     # Render questions in a 2x2 grid (row-wise, aligned)
     for row in [(0, 1), (2, 3)]:
         col1, col2 = st.columns(2)
@@ -251,6 +230,14 @@ with st.expander('**Show the initial assessment** - to assess your existing know
                 success=quest_ini[i].get("success", "✅ Correct."),
                 error=quest_ini[i].get("error", "❌ Not quite.")
             )
+
+# Render initial assessment
+render_toggle_container(
+    section_id="riv_01",
+    label="✅ **Show the initial assessment** – to assess your **EXISTING** knowledge",
+    content_fn=content_initial_riv,
+    default_open=False,
+)
             
 st.subheader('🧪 Theory and Background', divider="violet")
 st.markdown("""
@@ -914,12 +901,10 @@ def Q_h_plot():
 
 Q_h_plot()
 
-with st.expander('**Show the :rainbow[**EXERCISE**] assessment** - to self-check your understanding'):
-    st.markdown("""
-    #### 🧠 Exercise assessment
-    These questions test your understanding after doing the exercise.
-    """)
-
+def content_exer_riv():
+    st.markdown("""#### 🧠 Exercise assessment""")
+    st.info("These questions test your understanding after doing the exercise.")
+    
     # Render questions in a 2x3 grid (row-wise)
     for row in [(0, 1), (2, 3), (4, 5)]:
         col1, col2 = st.columns(2)
@@ -943,6 +928,14 @@ with st.expander('**Show the :rainbow[**EXERCISE**] assessment** - to self-check
                 success=quest_exer[i].get("success", "✅ Correct."),
                 error=quest_exer[i].get("error", "❌ Not quite.")
             )
+            
+# Render final assessment
+render_toggle_container(
+    section_id="riv_02",
+    label="✅ **Show the :rainbow[**EXERCISE**] assessment** - to self-check your understanding",
+    content_fn=content_exer_riv,
+    default_open=False,
+)
 
 st.subheader('✔️ Conclusion', divider = 'violet')
 st.markdown("""
@@ -955,12 +948,11 @@ MODFLOW boundary packages with similarities to the RIV boundary allow the exchan
 After studying this section about river boundaries, you may want to evaluate your knowledge using the final assessment.
 """)
 
-with st.expander('**Show the final assessment** - to self-check your understanding'):
-    st.markdown("""
-    #### 🧠 Final assessment
-    These questions test your conceptual understanding after working with the app.
-    """)
-
+# FINAL ASSESSMENT
+def content_final_riv():
+    st.markdown("""#### 🧠 Final assessment""")
+    st.info("These questions test your conceptual understanding after working with the application.")
+    
     # Render questions in a 2x3 grid (row-wise)
     for row in [(0, 1), (2, 3), (4, 5)]:
         col1, col2 = st.columns(2)
@@ -984,6 +976,14 @@ with st.expander('**Show the final assessment** - to self-check your understandi
                 success=quest_final[i].get("success", "✅ Correct."),
                 error=quest_final[i].get("error", "❌ Not quite.")
             )
+            
+# Render final assessment
+render_toggle_container(
+    section_id="riv_03",
+    label="✅ **Show the final assessment** - to self-check your **understanding**",
+    content_fn=content_final_riv,
+    default_open=False,
+)
             
 st.markdown('---')
 
