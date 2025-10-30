@@ -72,6 +72,8 @@ pages = {
         "--- MODFLOW tutorials 📋 ---": None,
         "MODFLOW Pumping Test": "90_Streamlit_apps/SYMPLE25/pages/M1B/Theis_pumping_Tutorial.py",
         "2D Synthetic Modell": "90_Streamlit_apps/SYMPLE25/pages/M1C/Tutorial_2D_Synth.py",
+        "--- Folien 🚀---": None,
+        "T03: Numerische GW-Strömungsmod. 📝": "90_Streamlit_apps/MWW01/SlideJet_Presentations/GWBmC_WS2526_T03_Strömungsmodellierung_SJpresent.py",
     },
     "🔶 Transport": {
         "--- Folien 🚀---": None,
