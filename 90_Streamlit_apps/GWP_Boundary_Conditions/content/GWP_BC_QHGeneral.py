@@ -180,27 +180,15 @@ By engaging with this section of the interactive module, you will be able to:
 def change_ass_state():
     st.session_state.exp_general_01 = not st.session_state.exp_general_01
     
-st.markdown("""
-<style>
-/* Make tertiary buttons a bit more compact and aligned */
-button[kind="tertiary"] {
-    padding: 0.35rem 0.75rem !important;
-    line-height: 1.1 !important;
-}
-/* Prevent extra vertical spacing inside bordered containers */
-div[data-testid="stVerticalBlock"] > div:has(> div[data-testid="stHorizontalBlock"]) { margin-bottom: 0 !important; }
-</style>
-""", unsafe_allow_html=True)
-
 with st.container(border=True):
-    ass1_1, ass1_2 = st.columns([25, 1], vertical_alignment="center")
+    ass1_1, ass1_2 = st.columns([25, 1])
     with ass1_1:
         st.markdown("<div style='text-align:left;'>", unsafe_allow_html=True)
         open_click = st.button("✅ **Show the initial assessment** – to assess your **EXISTING** knowledge", key="ass1_btn", type="tertiary",on_click=change_ass_state)
         st.markdown("</div>", unsafe_allow_html=True)
     with ass1_2:
         chevron = "▲" if st.session_state.exp_general_01 else "▼"
-        st.markdown("<div style='display:flex; justify-content:flex-end; align-items:center;'>", unsafe_allow_html=True)
+        st.markdown("<div style='text-align:right;'>", unsafe_allow_html=True)
         st.button(chevron, key="ass1_btn2", type="tertiary", on_click=change_ass_state)
         st.markdown("</div>", unsafe_allow_html=True)
 
