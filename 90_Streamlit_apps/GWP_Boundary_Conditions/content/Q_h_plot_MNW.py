@@ -15,6 +15,11 @@ import json
 from streamlit_book import multiple_choice
 from streamlit_scroll_to_top import scroll_to_here
 from GWP_Boundary_Conditions_utils import read_md
+from GWP_Boundary_Conditions_utils import flip_assessment
+from GWP_Boundary_Conditions_utils import render_toggle_container
+from GWP_Boundary_Conditions_utils import prep_log_slider
+from GWP_Boundary_Conditions_utils import get_label
+from GWP_Boundary_Conditions_utils import get_step
 
 # ---------- Track the current page
 PAGE_ID = "MNW"
@@ -95,43 +100,7 @@ author_list = [f"{name}{''.join(index_symbols[i-1] for i in indices)}" for name,
 institution_list = [f"{index_symbols[i-1]} {inst}" for i, inst in institutions.items()]
 institution_text = " | ".join(institution_list)
 
-# --- functions
-
-def prep_log_slider(default_val: float, log_min: float, log_max: float, step: float = 0.01, digits: int = 2):
-    """
-    Prepares labels and default for a log-scale select_slider.
-
-    Returns:
-    --------
-    labels : list of str
-        Formatted string labels in scientific notation.
-    default_label : str
-        Closest label to the given default_val.
-    """
-    # --- Generate value list and labels
-    log_values = np.arange(log_min, log_max + step, step)
-    values = 10 ** log_values
-    fmt = f"{{0:.{digits}e}}"
-    labels = [fmt.format(v) for v in values]
-
-    # --- Find closest label for default
-    idx_closest = np.abs(values - default_val).argmin()
-    default_label = labels[idx_closest]
-
-    return labels, default_label
-    
-def get_label(val: float, labels: list[str]) -> str:
-    """Given a float value and a list of scientific notation labels, return the closest label."""
-    label_vals = [float(l) for l in labels]
-    idx = np.abs(np.array(label_vals) - val).argmin()
-    return labels[idx]
-
-def get_step(val: float) -> float:
-    """Return a step that modifies the first digit after the decimal point in scientific notation."""
-    if val == 0:
-        return 1e-8  # fallback
-    exponent = int(np.floor(np.log10(abs(val))))
-    return 10 ** (exponent - 1)
+# --- Start here
 
 st.title("Theory and Concept of the :rainbow[Multi-Node-Well Boundary (MNW)]")
 st.subheader("Groundwater - :rainbow[Well] interaction", divider="rainbow")
@@ -188,7 +157,7 @@ with columns0[1]:
     ax.plot([10, 10], [-0.01, -0.05], color='blue',linestyle=':', linewidth=3, label='$h_{gw}$ = 10 m')
     if WEL_equi:
         ax.set_xlabel("Head in the groundwater system (m)", fontsize=14, labelpad=15)
-        ax.set_ylabel("Flow into the groundwater \nfrom the WEL boundary $Q_{WEL}$ (m³/s)", fontsize=14, labelpad=15)
+        ax.set_ylabel("Flow into the groundwater \nfrom the WEL boundary $Q_{WEL}$ (m³/s) \nfor $h_{gw}$ = 10 m", fontsize=14, labelpad=15)
         ax.set_title("Flow Between Groundwater and WEL", fontsize=16, pad=10)
     else:
         ax.plot(h_WELLi, Qi, color='black', linewidth=3, label='$Q$-$h_{well}$')
@@ -259,12 +228,11 @@ This section is designed with the intent that, by studying it, you will be able 
 - Describe how head-dependent flow, water level in the hydrostratigraphic unit next to the well, and constraints such as pump limitations and acceptable water levels are incorporated in the MNW package.
 """)
 
-with st.expander('**Show the initial assessment** - to assess your existing knowledge'):
-    st.markdown("""
-    #### 📋 Initial assessment
-    You can use the initial questions to assess your existing knowledge.
-    """)
-
+# --- INITIAL ASSESSMENT ---
+def content_initial_mnw():
+    st.markdown("""#### Initial assessment""")
+    st.info("You can use the initial questions to assess your existing knowledge.")
+    
     # Render questions in a 2x2 grid (row-wise, aligned)
     for row in [(0, 1), (2, 3)]:
         col1, col2 = st.columns(2)
@@ -288,12 +256,20 @@ with st.expander('**Show the initial assessment** - to assess your existing know
                 success=quest_ini[i].get("success", "✅ Correct."),
                 error=quest_ini[i].get("error", "❌ Not quite.")
             )
+
+# Render initial assessment
+render_toggle_container(
+    section_id="mnw_01",
+    label="✅ **Show the initial assessment** – to assess your **EXISTING** knowledge",
+    content_fn=content_initial_mnw,
+    default_open=False,
+)
             
 st.subheader('🧪 Theory and Background', divider="rainbow")
 st.markdown("""
 Flow between a Multi-Node-Well (MNW) and hydrostratigraphic unit that is tapped by the well depends on system parameters describing the flow near, into, and within the well.
 """)
-with st.expander("Tell me more about **the Theory**"):
+with st.expander("Tell me more about **the Theory**", icon ="📑"):
     st.markdown("""
     Flow from the groundwater system into (or out of) a multi-node well is controlled by several factors. These include
     - a user-specified desired flow rate $Q$
@@ -851,7 +827,7 @@ def Q_h_plot():
                     st.write(':red[***CWC2***] (in m²/s) = %5.2f' %((st.session_state.A2 + st.session_state.B2 + st.session_state.C2 * Q_show2**(st.session_state.P2 - 1))**-1))
     
         # --- PLOT 1 EXPLANATION ---  
-        with st.expander('Click here to read more :blue[**About this Plot**]'):
+        with st.expander('Click here to read more :blue[**About this Plot**]', icon ="📑"):
             st.markdown("""
             #### :blue[🔎 About this Plot]
             
@@ -871,22 +847,21 @@ def Q_h_plot():
             
         # Expander with "open in new tab"
         DOC_FILE1 = "Q_h_plot_MNW_instructions1.md"
-        with st.expander('Click here for :blue[**Instructions To Get Started with this Plot**]'):
+        with st.expander('Click here for :blue[**Instructions To Get Started with this Plot**]', icon ="🧪"):
             st.link_button("*Open in new tab* ↗️ ", url=f"?view=md&doc={DOC_FILE1}")
             st.markdown(read_md(DOC_FILE1))
     
         # Expander with "open in new tab"
         DOC_FILE2 = "Q_h_plot_MNW_exercise1.md"    
-        with st.expander('Click here for an :blue[**Exercise About this Plot**]'):
+        with st.expander('Click here for an :blue[**Exercise About this Plot**]', icon ="🧩"):
             st.link_button("*Open in new tab* ↗️ ", url=f"?view=md&doc={DOC_FILE2}")
             st.markdown(read_md(DOC_FILE2))  
-        
-        with st.expander('Click here for an :rainbow[**Assessment About this Plot**]- to self-check your understanding'):
-            st.markdown("""
-            #### 🧠 Final assessment for Plot 1
-            These questions test your conceptual understanding after working with the app.
-            """)
-        
+
+        # --- EXERCISE 1 ASSESSMENT ---        
+        def content_exer1_mnw():
+            st.markdown("""#### 🧠 Exercise assessment for plot 1""")
+            st.info("These questions test your understanding after doing the MNW plot 1 exercise.")
+            
             # Render questions in a 2x3 grid (row-wise)
             for row in [(0, 1), (2, 3), (4, 5)]:
                 col1, col2 = st.columns(2)
@@ -910,6 +885,14 @@ def Q_h_plot():
                         success=quest_plot1[i].get("success", "✅ Correct."),
                         error=quest_plot1[i].get("error", "❌ Not quite.")
                     )
+                    
+        # Render exercise assessment
+        render_toggle_container(
+            section_id="mnw_02",
+            label="✅ **Show the :rainbow[**EXERCISE**] assessment about plot 1** - to self-check your understanding",
+            content_fn=content_exer1_mnw,
+            default_open=False,
+        )
     
     # ------------------   
     # SECOND PLOT
@@ -973,7 +956,7 @@ def Q_h_plot():
             
             
         # --- PLOT 2 EXPLANATION ---  
-        with st.expander('Click here to read more :green[**About this Plot**]'):
+        with st.expander('Click here to read more :green[**About this Plot**]', icon ="📑"):
             st.markdown("""
             #### :green[🔎 About this Plot]
             
@@ -990,22 +973,21 @@ def Q_h_plot():
             
         # Expander with "open in new tab"
         DOC_FILE3 = "Q_h_plot_MNW_instructions2.md"
-        with st.expander('Click here for :green[**Instructions To Get Started with this Plot**]'):
+        with st.expander('Click here for :green[**Instructions To Get Started with this Plot**]', icon ="🧪"):
             st.link_button("*Open in new tab* ↗️ ", url=f"?view=md&doc={DOC_FILE3}")
             st.markdown(read_md(DOC_FILE3))
     
         # Expander with "open in new tab"
         DOC_FILE4 = "Q_h_plot_MNW_exercise2.md"    
-        with st.expander('Click here for an :green[**Exercise About this Plot**]'):
+        with st.expander('Click here for an :green[**Exercise About this Plot**]', icon ="🧩"):
             st.link_button("*Open in new tab* ↗️ ", url=f"?view=md&doc={DOC_FILE4}")
             st.markdown(read_md(DOC_FILE4))  
-        
-        with st.expander('Click here for an :rainbow[**Assessment About this Plot**]- to self-check your understanding'):
-            st.markdown("""
-            #### 🧠 Final assessment for Plot 2
-            These questions test your conceptual understanding after working with the app.
-            """)
-        
+
+        # --- EXERCISE 2 ASSESSMENT ---  
+        def content_exer2_mnw():
+            st.markdown("""#### 🧠 Exercise assessment for plot 2""")
+            st.info("These questions test your understanding after doing the MNW plot 2 exercise.")
+            
             # Render questions in a 2x3 grid (row-wise)
             for row in [(0, 1), (2, 3), (4, 5)]:
                 col1, col2 = st.columns(2)
@@ -1029,7 +1011,14 @@ def Q_h_plot():
                         success=quest_plot2[i].get("success", "✅ Correct."),
                         error=quest_plot2[i].get("error", "❌ Not quite.")
                     )
-
+                    
+        # Render exercise assessment
+        render_toggle_container(
+            section_id="mnw_03",
+            label="✅ **Show the :rainbow[**EXERCISE**] assessment about plot 2** - to self-check your understanding",
+            content_fn=content_exer2_mnw,
+            default_open=False,
+        )        
       
     # ------------------   
     # THIRD PLOT HERE - Q vs h_cell (with head and discharge thresholds)
@@ -1295,7 +1284,7 @@ def Q_h_plot():
             st.write('Activate the visualization with the toggle **:rainbow[Visualize the results]** to see this plot')
 
         # --- PLOT 3 EXPLANATION ---  
-        with st.expander('Click here to read more :red[**About this Plot**]'):
+        with st.expander('Click here to read more :red[**About this Plot**]', icon ="📑"):
             st.markdown("""
             #### :red[🔎 About this Plot]
             
@@ -1318,22 +1307,21 @@ def Q_h_plot():
             
         # Expander with "open in new tab"
         DOC_FILE5 = "Q_h_plot_MNW_instructions3.md"
-        with st.expander('Click here for :red[**Instructions To Get Started with this Plot**]'):
+        with st.expander('Click here for :red[**Instructions To Get Started with this Plot**]', icon ="🧪"):
             st.link_button("*Open in new tab* ↗️ ", url=f"?view=md&doc={DOC_FILE5}")
             st.markdown(read_md(DOC_FILE5))
     
         # Expander with "open in new tab"
         DOC_FILE6 = "Q_h_plot_MNW_exercise3.md"    
-        with st.expander('Click here for an :red[**Exercise About this Plot**]'):
+        with st.expander('Click here for an :red[**Exercise About this Plot**]', icon ="🧩"):
             st.link_button("*Open in new tab* ↗️ ", url=f"?view=md&doc={DOC_FILE6}")
             st.markdown(read_md(DOC_FILE6))  
-        
-        with st.expander('Click here for an :rainbow[**Assessment About this Plot**]- to self-check your understanding'):
-            st.markdown("""
-            #### 🧠 Final assessment for Plot 3
-            These questions test your conceptual understanding after working with the app.
-            """)
-        
+
+        # --- EXERCISE 3 ASSESSMENT ---      
+        def content_exer3_mnw():
+            st.markdown("""#### 🧠 Exercise assessment for plot 3""")
+            st.info("These questions test your understanding after doing the MNW plot 3 exercise.")
+            
             # Render questions in a 2x3 grid (row-wise)
             for row in [(0, 1), (2, 3), (4, 5)]:
                 col1, col2 = st.columns(2)
@@ -1357,6 +1345,15 @@ def Q_h_plot():
                         success=quest_plot3[i].get("success", "✅ Correct."),
                         error=quest_plot3[i].get("error", "❌ Not quite.")
                     )
+                    
+        # Render exercise assessment
+        render_toggle_container(
+            section_id="mnw_04",
+            label="✅ **Show the :rainbow[**EXERCISE**] assessment about plot 3** - to self-check your understanding",
+            content_fn=content_exer3_mnw,
+            default_open=False,
+        )
+        
 # ------------------   
     # Fourth PLOT HERE - Q vs h_cell (head-target)
     
@@ -1449,7 +1446,7 @@ def Q_h_plot():
             st.write('Activate the visualization with the toggle **:rainbow[Visualize the results]** to see this plot')
 
         # --- PLOT 4 EXPLANATION ---  
-        with st.expander('Click here to read more :orange[**About this Plot**]'):
+        with st.expander('Click here to read more :orange[**About this Plot**]', icon ="📑"):
             st.markdown("""
             #### :orange[🔎 About this Plot]
             
@@ -1468,22 +1465,21 @@ def Q_h_plot():
             
         # Expander with "open in new tab"
         DOC_FILE7 = "Q_h_plot_MNW_instructions4.md"
-        with st.expander('Click here for :orange[**Instructions To Get Started with this Plot**]'):
+        with st.expander('Click here for :orange[**Instructions To Get Started with this Plot**]', icon ="🧪"):
             st.link_button("*Open in new tab* ↗️ ", url=f"?view=md&doc={DOC_FILE7}")
             st.markdown(read_md(DOC_FILE7))
     
         # Expander with "open in new tab"
         DOC_FILE8 = "Q_h_plot_MNW_exercise4.md"    
-        with st.expander('Click here for an :orange[**Exercise About this Plot**]'):
+        with st.expander('Click here for an :orange[**Exercise About this Plot**]', icon ="🧩"):
             st.link_button("*Open in new tab* ↗️ ", url=f"?view=md&doc={DOC_FILE8}")
             st.markdown(read_md(DOC_FILE8))  
             
-        with st.expander('Click here for an :rainbow[**Assessment About this Plot**]- to self-check your understanding'):
-            st.markdown("""
-            #### 🧠 Final assessment for Plot 4
-            These questions test your conceptual understanding after working with the app.
-            """)
-        
+        # --- EXERCISE 4 ASSESSMENT --- 
+        def content_exer4_mnw():
+            st.markdown("""#### 🧠 Exercise assessment for plot 4""")
+            st.info("These questions test your understanding after doing the MNW plot 4 exercise.")
+            
             # Render questions in a 2x3 grid (row-wise)
             for row in [(0, 1), (2, 3), (4, 5)]:
                 col1, col2 = st.columns(2)
@@ -1507,10 +1503,18 @@ def Q_h_plot():
                         success=quest_plot4[i].get("success", "✅ Correct."),
                         error=quest_plot4[i].get("error", "❌ Not quite.")
                     )
+                    
+        # Render exercise assessment
+        render_toggle_container(
+            section_id="mnw_05",
+            label="✅ **Show the :rainbow[**EXERCISE**] assessment about plot 4** - to self-check your understanding",
+            content_fn=content_exer4_mnw,
+            default_open=False,
+        )
 
 Q_h_plot()
 
-st.subheader('✅ Conclusion', divider = 'rainbow')
+st.subheader('✔️ Conclusion', divider = 'rainbow')
 st.markdown("""
 The Multi-Node Well (MNW) boundary in MODFLOW adds realism to well simulations by distributing flow across multiple model cells and introducing operational and physical constraints. This boundary goes beyond fixed withdrawal rates by simulating **head-dependent flow**, **skin effects**, and **withdrawal limits** — key factors in models properly representing wells in physical settings. An MNW boundary can be defined in any groundwater-model cell.
 
@@ -1521,13 +1525,11 @@ There are two MNW boundary condition packages for MODFLOW, MNW1 and MNW2. The MN
 After studying this section about multi-node-well boundaries, you may want to evaluate your knowledge using the final assessment.
 """)
 
-
-with st.expander('**Show the final assessment** - to self-check your understanding'):
-    st.markdown("""
-    #### 🧠 Final assessment
-    These questions test your conceptual understanding after working with the app.
-    """)
-
+# --- FINAL ASSESSMENT ---
+def content_final_mnw():
+    st.markdown("""#### 🧠 Final assessment""")
+    st.info("These questions test your conceptual understanding after working with the application.")
+    
     # Render questions in a 2x3 grid (row-wise)
     for row in [(0, 1), (2, 3), (4, 5)]:
         col1, col2 = st.columns(2)
@@ -1551,6 +1553,14 @@ with st.expander('**Show the final assessment** - to self-check your understandi
                 success=quest_final[i].get("success", "✅ Correct."),
                 error=quest_final[i].get("error", "❌ Not quite.")
             )
+            
+# Render final assessment
+render_toggle_container(
+    section_id="mnw_06",
+    label="✅ **Show the final assessment** - to self-check your **understanding**",
+    content_fn=content_final_mnw,
+    default_open=False,
+)
             
 st.markdown('---')
 

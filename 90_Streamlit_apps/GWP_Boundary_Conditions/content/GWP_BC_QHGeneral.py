@@ -780,13 +780,13 @@ if show_plot1:
         
         # Expander with "open in new tab"
         DOC_FILE1 = "GWP_Boundary_Conditions_General_Instructions1.md"
-        with st.expander('Show the 🧪:green[**INSTRUCTIONS for using the interactive plot for Scenario 1**]'):
+        with st.expander('Show the :green[**INSTRUCTIONS for using the interactive plot for Scenario 1**]', icon ="🧪"):
             st.link_button("*Open in new tab* ↗️ ", url=f"?view=md&doc={DOC_FILE1}")
             st.markdown(read_md(DOC_FILE1))
 
         # --- EXERCISE ASSESSMENT ---
         def content_exer1_general():
-            st.markdown("""#### 🧠 Scenario 1 Exercise assessment""")
+            st.markdown("""#### 🧠 Scenario 1 assessment""")
             st.info("These questions provide an opportunity for you to assess your understanding of boundary conditions discussed in scenario 1.")
             
             # Render questions in a 2x2 grid (row-wise, aligned)
@@ -816,7 +816,7 @@ if show_plot1:
         # Render exercise assessment
         render_toggle_container(
             section_id="general_02",
-            label="✅ **Show the :green[**SCENARIO 1**] :rainbow[**EXERCISE**] assessment** - to self-check your understanding",
+            label="✅ **Show the :green[**SCENARIO 1**] :rainbow[**application**] assessment** - to self-check your understanding",
             content_fn=content_exer1_general,
             default_open=False,
         )
@@ -1177,13 +1177,13 @@ if show_plot2:
         
         # Expander with "open in new tab"
         DOC_FILE2 = "GWP_Boundary_Conditions_General_Instructions2.md"
-        with st.expander('Show the 🧪:red[**INSTRUCTIONS for using the interactive plot for Scenario 2**]'):
+        with st.expander('Show the :red[**INSTRUCTIONS for using the interactive plot for Scenario 2**]', icon ="🧪"):
             st.link_button("*Open in new tab* ↗️ ", url=f"?view=md&doc={DOC_FILE2}")
             st.markdown(read_md(DOC_FILE2))
         
         # --- EXERCISE ASSESSMENT ---
         def content_exer2_general():
-            st.markdown("""#### 🧠 Scenario 2 Exercise assessment""")
+            st.markdown("""#### 🧠 Scenario 2 assessment""")
             st.info("These questions provide an opportunity for you to assess your understanding of boundary conditions discussed in scenario 2.")
             
             # Render questions in a 2x2 grid (row-wise, aligned)
@@ -1213,7 +1213,7 @@ if show_plot2:
         # Render exercise assessment
         render_toggle_container(
             section_id="general_03",
-            label="✅ **Show the :red[**SCENARIO 2**] :rainbow[**EXERCISE**] assessment** - to self-check your understanding",
+            label="✅ **Show the :red[**SCENARIO 2**] :rainbow[**application**] assessment** - to self-check your understanding",
             content_fn=content_exer2_general,
             default_open=False,
         )

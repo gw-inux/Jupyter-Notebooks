@@ -878,13 +878,13 @@ def Q_h_plot():
     
     # Expander with "open in new tab"
     DOC_FILE1 = "Q_h_plot_RIV_instructions.md"
-    with st.expander('Show the :blue[**INSTRUCTIONS**]'):
+    with st.expander('Show the :blue[**INSTRUCTIONS**]', icon ="🧪"):
         st.link_button("*Open in new tab* ↗️ ", url=f"?view=md&doc={DOC_FILE1}")
         st.markdown(read_md(DOC_FILE1))
 
     # Expander with "open in new tab"
     DOC_FILE2 = "Q_h_plot_RIV_exercise.md"    
-    with st.expander('Show the :rainbow[**EXERCISE**]'):
+    with st.expander('Show the :rainbow[**EXERCISE**]', icon ="🧩"):
         st.link_button("*Open in new tab* ↗️ ", url=f"?view=md&doc={DOC_FILE2}")
         st.markdown(read_md(DOC_FILE2))        
 
