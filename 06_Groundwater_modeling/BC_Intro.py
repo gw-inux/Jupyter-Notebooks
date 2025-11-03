@@ -3,6 +3,7 @@ import matplotlib.pyplot as plt
 from matplotlib.ticker import FormatStrFormatter
 from matplotlib.gridspec import GridSpec
 from matplotlib.patches import Rectangle
+from matplotlib.offsetbox import AnnotationBbox, OffsetImage
 import streamlit as st
 
 st.title("Introduction in boundary conditions")
@@ -15,7 +16,7 @@ def intro_scenario1_block(bc_kind):
     L     = 2500.0            # domain length [m]
     hr    = 150.0             # specified head at x=L [m]
     hRiv  = 150.0             # external stage for head-dependent case [m]
-    cRiv  = 5e-6              # FIXED conductance [m^2/s] (used only if "head-dependent" is toggled)
+    cRiv  = 9e-6              # FIXED conductance [m^2/s] (used only if "head-dependent" is toggled)
     zb    = hr - 150.0        # bottom elevation in your original code (hr=150 => zb=0)
     x     = np.linspace(0.0, L, 1000)
     
@@ -180,6 +181,58 @@ def intro_scenario1_block(bc_kind):
     # LEFT: head profile for ACTIVE recharge only
     axL.plot(x, h_active, linewidth=2.5);
     axL.fill_between(x, 0, h_active, facecolor="lightblue", alpha=0.75, edgecolor="none")
+    
+    # --- Fixed land surface independent of h(x) ---
+    surf_base = 150.0            # reference level in meters
+    # gentle relief: a mound that fades toward the right boundary
+    relief_max = 9.0             # peak height above 140 m
+    u = np.clip(x / L, 0, 1)
+    mound = relief_max * (1 - u)**0.25 * (0.8 + 0.1*np.cos(np.pi * np.clip(u, 0, 0.4) / 0.4))
+    y_cap = surf_base + mound    # final land-surface curve (independent of h)
+    
+    # draw unsaturated zone “cap”
+    axL.fill_between(
+        x, h_active, y_cap,
+        facecolor="#9c6b3d", edgecolor="#704214", linewidth=0.8, alpha=0.95, zorder=1
+    )
+    axL.plot(x, y_cap, color="#5e3b16", linewidth=1.2, zorder=1.1)
+    
+    # make sure the cap is visible in the current y-limits
+    axL.set_ylim(140, max(160, (y_cap.max() + 0.5)))
+
+    # ---- Optional pine tree on top of the land surface ----
+    show_tree = True
+    tree_path = "FIGS/tree-23.png"
+    tree_x1    = 500
+    tree_zoom1 = 0.4
+    tree_x2    = 1100
+    tree_zoom2 = 0.3
+    
+    if show_tree:
+        try:
+            img = plt.imread(tree_path)
+            # y position: land-surface height at tree_x
+            i = np.searchsorted(x, tree_x1)
+            y_here = y_cap[min(max(i, 0), len(y_cap)-1)]
+            oi1 = OffsetImage(img, zoom=tree_zoom1)
+            oi2 = OffsetImage(img, zoom=tree_zoom2)
+            ab1 = AnnotationBbox(
+                oi1, (tree_x1, y_here),
+                frameon=False, box_alignment=(0.5, 0.1),  # bottom-center sits on the surface
+                xycoords='data'
+            )
+            ab2 = AnnotationBbox(
+                oi2, (tree_x2, y_here),
+                frameon=False, box_alignment=(0.5, 0.48),  # bottom-center sits on the surface
+                xycoords='data'
+            )
+            axL.add_artist(ab1)
+            axL.add_artist(ab2)
+        except Exception as e:
+            st.info(f"Could not load tree image from '{tree_path}': {e}")
+
+
+    
     axL.set_xlim(-30, L + 30)
     axL.set_ylim(140, 160)
     # axL.set_xlabel("x (m)")
