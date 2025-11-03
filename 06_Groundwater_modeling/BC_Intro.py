@@ -202,7 +202,7 @@ def intro_scenario1_block(bc_kind):
 
     # ---- Optional pine tree on top of the land surface ----
     show_tree = True
-    tree_path = "06_Groundwater_modeling/FIGSFIGS/tree-23.png"
+    tree_path = "06_Groundwater_modeling/FIGS/tree-23.png"
     tree_x1    = 500
     tree_zoom1 = 0.4
     tree_x2    = 1100
