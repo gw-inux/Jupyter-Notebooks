@@ -9,6 +9,11 @@ import streamlit as st
 st.title("Introduction in boundary conditions")
 st.subheader("Visual explanation of the boundary condition types", divider = "blue")
 
+# ToDo: Implement arrows to indicate flow over boundaries
+# ToDo: Show the boundary elements (like the defined head) clearly in the figures
+# ToDo: Make the surface water more realistic / round-shaped
+# ToDo: add water triangle on surface water and groundwater
+# ToDo: Add motivation, more explanation, and assessments
 
 # ---------- Minimal, scenario-1-only visualization ----------
 def intro_scenario1_block(bc_kind):
@@ -165,7 +170,7 @@ def intro_scenario1_block(bc_kind):
     axR = fig.add_subplot(gs[0, 1])
     pos = axR.get_position()
     axR.set_position([pos.x0, pos.y0 + pos.height * 0.25, pos.width, pos.height * 0.5])
-    # --- Illustration style: remove bottom numbers, keep side numbers ---
+    
     for ax in (axL, axR):
         ax.tick_params(axis='x', which='both', length=0)  # no x ticks
         ax.set_xticklabels([])                            # no x labels
@@ -175,22 +180,19 @@ def intro_scenario1_block(bc_kind):
     for ax in (axL, axR):
         ax.spines['top'].set_visible(False)
         ax.spines['right'].set_visible(False)
-    # keep left/bottom spines so y-axis remains readable
-    
     
     # LEFT: head profile for ACTIVE recharge only
     axL.plot(x, h_active, linewidth=2.5);
-    axL.fill_between(x, 0, h_active, facecolor="lightblue", alpha=0.75, edgecolor="none")
+    axL.fill_between(x, 0, h_active, facecolor="lightblue", alpha=1, edgecolor="none")
     
     # --- Fixed land surface independent of h(x) ---
     surf_base = 150.0            # reference level in meters
-    # gentle relief: a mound that fades toward the right boundary
     relief_max = 9.0             # peak height above 140 m
     u = np.clip(x / L, 0, 1)
     mound = relief_max * (1 - u)**0.25 * (0.8 + 0.1*np.cos(np.pi * np.clip(u, 0, 0.4) / 0.4))
     y_cap = surf_base + mound    # final land-surface curve (independent of h)
     
-    # draw unsaturated zone “cap”
+    # draw unsaturated zone and surface elevation
     axL.fill_between(
         x, h_active, y_cap,
         facecolor="#9c6b3d", edgecolor="#704214", linewidth=0.8, alpha=0.95, zorder=1
@@ -230,41 +232,130 @@ def intro_scenario1_block(bc_kind):
             axL.add_artist(ab2)
         except Exception as e:
             st.info(f"Could not load tree image from '{tree_path}': {e}")
-
-
     
-    axL.set_xlim(-30, L + 30)
+    
+    
+    river_w = L * 0.15  # width of the surface-water block/extension outside the domain
+    axL.set_xlim(-30, L + river_w)
     axL.set_ylim(140, 160)
-    # axL.set_xlabel("x (m)")
-    # axL.set_ylabel("hydraulic head (m)")
-    # axL.set_title(f"Head profile – R = {R_label}", color="green")
+    
     # boundaries
     axL.vlines(0, 0, 1000, color="moccasin", linewidth=8, alpha=0.7)     # no-flow at left
+    
+    # --- parameters for surface-water area ---
+    river_base = 140.0
+    river_stage = hr
+    
+    # 1) Aquifer extension
+    x_ext = np.linspace(L, L + river_w, 30)
+    y_ext = np.linspace(hRiv, hr, 30)
+    
+    # create a short curved path dipping into the water
+    x_start = L
+    y_start = y_cap[-1]
+    x_rivbed = np.linspace(x_start, L + river_w, 30)
+    y_rivbed = y_start - 8.0 * np.sin(np.linspace(0, np.pi/2, 30))
+
+    # draw the riverbed outline
+    axL.plot(x_rivbed, y_rivbed, color="darkblue", linewidth=1.8, zorder=3.3, clip_on=False)     
+    
+    # River water level
+    axL.plot(
+        x_ext, y_ext, color="darkblue", linewidth=2.0,
+        solid_capstyle="round", zorder=3.2, clip_on=False
+    )
+
+    # fill below the riverbed with aquifer color to continue the subsurface
+    axL.fill_between(
+        x_rivbed, river_base, y_rivbed,
+        facecolor="lightblue", edgecolor="none", alpha=1, zorder=2
+    )        
+    # Fill the river
+    axL.fill_between(
+        x_ext, 140.0, y_ext,
+        facecolor="deepskyblue", edgecolor="none", alpha=0.75,
+        zorder=1.0, clip_on=False
+    )
     if riv:
         # right: head-dependent + external stage indicator (thin fuchsia line)
         hr_riv = R_active * L / cRiv + hRiv
-        axL.vlines(L - 5, 0, hr_riv, color="fuchsia", linewidth=3, zorder=3)
-        # Thick boundary-head bar outside the plot, left edge at x=L
-        bar_w = L * 0.3   # ~3.5% of domain width; adjust if you need
-        rect  = Rectangle((L+2, 140), bar_w, hr-140, facecolor='deepskyblue',
-                          edgecolor='deepskyblue', linewidth=0.0, clip_on=False, zorder=2)
-        axL.add_patch(rect)
-    else:
-        # Thick boundary-head bar outside the plot, left edge at x=L
-        bar_w = L * 0.3   # ~3.5% of domain width; adjust if you need
-        rect  = Rectangle((L, 140), bar_w, hr-140, facecolor='deepskyblue',
-                          edgecolor='deepskyblue', linewidth=0.0, clip_on=False, zorder=2)
-        axL.add_patch(rect)
+        
+        # draw line representing conductance
+        if hr_riv > 150:
+            axL.vlines(L - 5,150, hr_riv, color="fuchsia", linewidth=3, zorder=3)
+        
+        # fill the dewatered area (only where riverbed lies above river stage)
+        mask = y_rivbed > hr_riv
+        
+        if np.any(mask):
+            axL.fill_between(
+                x_rivbed[mask], hr_riv, y_rivbed[mask],
+                facecolor="#9c6b3d", edgecolor="none", alpha=1.0, zorder=2
+            )
+        
+        # draw the riverbed outline
+        axL.plot(x_rivbed, y_rivbed, color="fuchsia", linewidth=3, zorder=3.3, clip_on=False)  
 
     # Mark the x-position that Q–h “samples” for Recharge (mid-domain)
     if bc_kind == "Recharge":
-        axL.plot(L/2, np.interp(L/2, x, h_active), "go", ms=9, zorder=5);
+        axL.plot(L*0.35, np.interp(L*0.35, x, h_active), "go", ms=9, zorder=5);
     elif bc_kind == "No-flow":
         axL.plot(0, h_active[0], "o", color="darkorange", ms=9, zorder=5);
     elif bc_kind == "Specified head":
         axL.plot(L, hr, "bo", ms=9, zorder=5);
     elif bc_kind == "Head-dep. flux":
         axL.plot(L, head_profile(R_active, True, K)[-1], "o", color="fuchsia", ms=9, zorder=5);
+
+    # Arrows and visuals
+    # Recharge
+    sgn1 = np.sign(R_active)      # +: downward arrows; -: upward; 0: none
+    if sgn1 != 0:
+        xs = np.array([0.20*L, 0.50*L, 0.8*L])     # three positions
+        d  = 2.0                                    # arrow half-length (increased for visibility)
+        for xi in xs:
+            yi = np.interp(xi, x, h_active)         # height at xi
+            # define direction
+            if sgn1 > 0:  # positive R → downward
+                xytext, xy = (xi, yi + d), (xi, yi - d)
+            else:         # negative R → upward
+                xytext, xy = (xi, yi - d), (xi, yi + d)
+            axL.annotate(
+                "",
+                xy=xy, xytext=xytext,
+                arrowprops=dict(
+                    arrowstyle="-|>,head_width=0.6,head_length=2",  # larger arrowhead
+                    lw=2,
+                    facecolor="goldenrod",    # fill color
+                    edgecolor="burlywood",     # outline color
+                    shrinkA=0, shrinkB=0,     # no shrink at ends
+                ),
+                zorder=5
+            )
+    # Groundwater-Surface water 
+    sgn2 = np.sign(R_active)  # +: toward river (right); -: toward aquifer (left)
+    y0 = hr-6                 # vertical position relative to river stage
+    x0 = L+30                    # start at boundary
+    d  = river_w*0.9       # arrow half-length in x-direction
+
+    # Define direction
+    if sgn1 != 0:
+        if sgn2 > 0:   # positive recharge → groundwater to river
+            xytext, xy = (x0 - d, y0), (x0 + d, y0)
+        else:          # negative recharge → river to groundwater
+            xytext, xy = (x0 + d, y0), (x0 - d, y0)
+    
+        axL.annotate(
+            "",
+            xy=xy, xytext=xytext,
+            arrowprops=dict(
+                arrowstyle="-|>,head_width=0.75,head_length=3",
+                lw=3,
+                facecolor="turquoise",     # same fill color as recharge arrows
+                edgecolor="lightseagreen",  # same outline color
+                shrinkA=0, shrinkB=0,
+            ),
+            zorder=6
+        )
 
     # RIGHT: Q–h plot
     if bc_kind == "None":

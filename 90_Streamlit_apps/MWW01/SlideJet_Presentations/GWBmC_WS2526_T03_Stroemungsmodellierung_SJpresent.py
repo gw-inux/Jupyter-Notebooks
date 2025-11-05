@@ -402,21 +402,21 @@ if st.session_state[slide_data_key]:
 else:
     st.warning("The presentation is not loaded yet.")
 
-'---'
-st.markdown(":grey[**Presentation Management**]")
-
-with st.expander('🔄 :red[**CLICK HERE**] if you want to load another presentation'):
-    st.warning("Are you sure you want to load another presentation? **If yes**, you will be able to select another presentation through a YAML-file. However, **this will remove the current presentation** from memory.")
-
-    col1, col2, col3 = st.columns((3,4,2))
-    with col2:
-        if st.button("✅ Yes, load new presentation"):
-            st.session_state[reset_key] = True
-            st.session_state[config_key] = None
-            st.session_state[slide_data_key] = None
-            st.session_state[presentation_folder_key] = None
-            st.session_state[images_folder_key] = None
-            st.rerun()
+#'---'
+#st.markdown(":grey[**Presentation Management**]")
+#
+#with st.expander('🔄 :red[**CLICK HERE**] if you want to load another presentation'):
+#    st.warning("Are you sure you want to load another presentation? **If yes**, you will be able to select another presentation through a YAML-file. However, **this will remove the current presentation** from memory.")
+#
+#    col1, col2, col3 = st.columns((3,4,2))
+#    with col2:
+#        if st.button("✅ Yes, load new presentation"):
+#            st.session_state[reset_key] = True
+#            st.session_state[config_key] = None
+#            st.session_state[slide_data_key] = None
+#            st.session_state[presentation_folder_key] = None
+#            st.session_state[images_folder_key] = None
+#            st.rerun()
 
 # --- Footer (Authors and Copyright)---
 '---'
