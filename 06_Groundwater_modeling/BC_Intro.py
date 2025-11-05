@@ -6,12 +6,27 @@ from matplotlib.patches import Rectangle
 from matplotlib.offsetbox import AnnotationBbox, OffsetImage
 import streamlit as st
 
+# Authors, institutions, and year
+year = 2025 
+authors = {
+    "Thomas Reimann": [1],  # Author 1 belongs to Institution 1
+    "Eileen Poeter": [2],
+}
+institutions = {
+    1: "TU Dresden, Institute for Groundwater Management",
+    2: "Colorado School of Mines"
+}
+index_symbols = ["¹", "²", "³", "⁴", "⁵", "⁶", "⁷", "⁸", "⁹"]
+author_list = [f"{name}{''.join(index_symbols[i-1] for i in indices)}" for name, indices in authors.items()]
+institution_list = [f"{index_symbols[i-1]} {inst}" for i, inst in institutions.items()]
+institution_text = " | ".join(institution_list)
+
+# --- Start here
+
 st.title("Introduction in boundary conditions")
 st.subheader("Visual explanation of the boundary condition types", divider = "blue")
 
-# ToDo: Implement arrows to indicate flow over boundaries
 # ToDo: Show the boundary elements (like the defined head) clearly in the figures
-# ToDo: Make the surface water more realistic / round-shaped
 # ToDo: add water triangle on surface water and groundwater
 # ToDo: Add motivation, more explanation, and assessments
 
@@ -22,7 +37,7 @@ def intro_scenario1_block(bc_kind):
     hr    = 150.0             # specified head at x=L [m]
     hRiv  = 150.0             # external stage for head-dependent case [m]
     cRiv  = 9e-6              # FIXED conductance [m^2/s] (used only if "head-dependent" is toggled)
-    zb    = hr - 150.0        # bottom elevation in your original code (hr=150 => zb=0)
+    zb    = hr - 150.0        # bottom elevation
     x     = np.linspace(0.0, L, 1000)
     
     key_suffix = bc_kind.replace(" ", "_").replace(".", "").replace("-", "_").lower()
@@ -32,7 +47,6 @@ def intro_scenario1_block(bc_kind):
     else:
         riv = False
     # --- Three recharge states (mm/yr -> m/s) ---
-    # Choices & maps
     R_choices_mm = [-250, 0, 250]
     K_choices    = [5e-5, 1e-4, 5e-4]
     
@@ -358,69 +372,74 @@ def intro_scenario1_block(bc_kind):
         )
 
     # RIGHT: Q–h plot
+    flow_label = "flow into the groundwater (m³/s)" # was "+ is flow INTO the model, $Q_{in}$ (m³/s)"
     if bc_kind == "None":
         axR.axis("off")
         axR.text(0.5, 0.5, "No Q–h plot selected", ha="center", va="center", transform=axR.transAxes)
     else:
         # draw curve for the chosen boundary type
         if bc_kind == "No-flow":
+            flow_label = "flow into the groundwater (m³/s)\n at the left boundary"
             if turn:
                 axR.plot(Q_nf, h_nf, color="black", linewidth=3);
                 axR.set_ylabel("hydraulic head (m)")
-                axR.set_xlabel("+ is flow INTO the model, $Q_{in}$ (m³/s)")
+                axR.set_xlabel(flow_label)
                 axR.set_ylim(140, 160)
                 axR.set_xlim(-1, 1)
                 axR.xaxis.set_major_formatter(FormatStrFormatter('%.1e'))
             else:
                 axR.plot(h_nf, Q_nf, color="black", linewidth=3);
                 axR.set_xlabel("hydraulic head (m)")
-                axR.set_ylabel("+ is flow INTO the model, $Q_{in}$ (m³/s)")
+                axR.set_ylabel(flow_label)
                 axR.set_xlim(140, 160)
                 axR.set_ylim(-1, 1)
         elif bc_kind == "Recharge":
+            flow_label = "flow into the groundwater (m³/s)\n from recharge"
             Q_recharge = 250 / 1000 / 365.25 / 86400   # [m/s]
             if turn:
                 axR.axvline(Q_recharge, color="black", linewidth=3);  # keep axis consistent
                 # Will just place points at (Q=R, h=…)
                 axR.set_ylabel("hydraulic head (m)")
-                axR.set_xlabel("+ is flow INTO the model, $Q_{in}$ (m³/s)")
+                axR.set_xlabel(flow_label)
                 axR.set_ylim(140, 160)
                 axR.set_xlim(-400/1000/365.25/86400, 400/1000/365.25/86400)
                 axR.xaxis.set_major_formatter(FormatStrFormatter('%.1e'))
             else:
                 axR.axhline(Q_recharge, color="black", linewidth=3);     # cosmetic for axis
                 axR.set_xlabel("hydraulic head (m)")
-                axR.set_ylabel("+ is flow INTO the model, $Q_{in}$ (m³/s)")
+                axR.set_ylabel(flow_label)
                 axR.set_xlim(140, 160)
                 axR.set_ylim(-400/1000/365.25/86400, 400/1000/365.25/86400)
                 axR.yaxis.set_major_formatter(FormatStrFormatter('%.1e'))
         elif bc_kind == "Specified head":
+            flow_label = "flow into the groundwater (m³/s)\n from the river"
             if turn:
                 axR.plot(Q_defh, h_defh, color="black", linewidth=3);
                 axR.set_ylabel("hydraulic head (m)")
-                axR.set_xlabel("+ is flow INTO the model, $Q_{in}$ (m³/s)")
+                axR.set_xlabel(flow_label)
                 axR.set_ylim(140, 160)
                 axR.set_xlim(-400/1000/365.25/86400*L, 400/1000/365.25/86400*L)
                 axR.xaxis.set_major_formatter(FormatStrFormatter('%.1e'))
             else:
                 axR.plot(h_defh, Q_defh, color="black", linewidth=3);
                 axR.set_xlabel("hydraulic head (m)")
-                axR.set_ylabel("+ is flow INTO the model, $Q_{in}$ (m³/s)")
+                axR.set_ylabel(flow_label)
                 axR.set_xlim(140, 160)
                 axR.set_ylim(-400/1000/365.25/86400*L, 400/1000/365.25/86400*L)
                 axR.yaxis.set_major_formatter(FormatStrFormatter('%.1e'))
         elif bc_kind == "Head-dep. flux":
+            flow_label = "flow into the groundwater (m³/s)\n from the river"
             if turn:
                 axR.plot(Q_rob_axis, h_rob_axis, color="black", linewidth=3);
                 axR.set_ylabel("hydraulic head (m)")
-                axR.set_xlabel("+ is flow INTO the model, $Q_{in}$ (m³/s)")
+                axR.set_xlabel(flow_label)
                 axR.set_ylim(140, 160)
                 axR.set_xlim(-400/1000/365.25/86400*L, 400/1000/365.25/86400*L)
                 axR.xaxis.set_major_formatter(FormatStrFormatter('%.1e'))
             else:
                 axR.plot(h_rob_axis, Q_rob_axis, color="black", linewidth=3);
                 axR.set_xlabel("hydraulic head (m)")
-                axR.set_ylabel("+ is flow INTO the model, $Q_{in}$ (m³/s)")
+                axR.set_ylabel(flow_label)
                 axR.set_xlim(140, 160)
                 axR.set_ylim(-400/1000/365.25/86400*L, 400/1000/365.25/86400*L)
                 axR.yaxis.set_major_formatter(FormatStrFormatter('%.1e'))
@@ -451,10 +470,10 @@ def intro_scenario1_block(bc_kind):
 
         # Titles
         ttl = {
-            "No-flow":        ("Q–h", "h–Q")[turn] + " : Specified flow (No-flow) ",
-            "Recharge":       ("Q–h", "h–Q")[turn] + " : Specified flow (Recharge)",
-            "Specified head": ("Q–h", "h–Q")[turn] + " : Specified head           ",
-            "Head-dep. flux": ("Q–h", "h–Q")[turn] + " : Head-dependent flux      ",
+            "No-flow":        ("Q–h", "h–Q")[turn] + ": Specified flow (No-flow) ",
+            "Recharge":       ("Q–h", "h–Q")[turn] + ": Specified flow (Recharge per m³)",
+            "Specified head": ("Q–h", "h–Q")[turn] + ": Specified head           ",
+            "Head-dep. flux": ("Q–h", "h–Q")[turn] + ": Head-dependent flux      ",
         }.get(bc_kind, "")
         if ttl:
             axR.set_title(ttl, pad=10)
@@ -465,44 +484,60 @@ def intro_scenario1_block(bc_kind):
 # ---- Explanation and plots ----
 
 st.markdown("""
-#### 💧 Understanding Boundary Conditions
 
+#### 💡 Motivation - Boundary conditions in groundwater modeling
 Boundary conditions define how the groundwater system interacts with its surroundings.
 
-They describe whether water can **enter**, **leave**, or **remain in equilibrium** with the model domain, for example, through **recharge**, **rivers**, **lakes**, or **impermeable barriers**.
+They describe whether water can **enter** or **leave** the model domain, for example, through **recharge**, **rivers**, **lakes**, or **impermeable barriers**.
 
-Without boundary conditions, the groundwater flow equation would be incomplete, because we would not know how the system behaves at its limits.
+It is essential to understand the concept behind the different boundary conditions. This understanding is required to 'translate' physical and hydrological elements of the real world into model elements.
+
+With the app you can build **intuition** for how Type I/II/III boundaries behave, and how this behavior can be described by discharge-head relations (_Q–h_-plots). You will learn how the boundary conditions reflect the system characteristics, and you will get understanding in the general characteristics of the **groundwater–surface water interaction**.
+
+
+#### 🎯 Learning Objectives
+By engaging with this application, you will be able to:
+- **Explain** the general characteristics of the different boundary types.
+- **Distinguish** Type I (specified head), Type II (specified flux), and Type III (head-dependent flux) boundaries and name typical use cases.
+- **Predict qualitatively** the boundary condition behavior with a **Q–h** plot.
+- [_please add/modify_]...
+
+#### 💧 Understanding Boundary Conditions
+Without boundary conditions, the groundwater flow equation could not be solved, because we would not know how the system behaves at its limits.
+
 
 To illustrate the idea, consider the **one-dimensional steady-state flow equation**:
 
-$ \\frac{d}{dx} K \\frac{dh}{dx} = 0$
+$ \\frac{d}{dx}(-hK \\frac{dh}{dx}) = R$
 
-where *K* is the hydraulic conductivity and *h* is the hydraulic head. To solve this equation for $h(x)$, we must define how the head or the flow behaves at both ends of the domain, these are the **boundary conditions**.
+where ***K*** is the hydraulic conductivity, ***h*** is the hydraulic head, and ***R*** is the groundwater recharge. To solve this equation for $h(x)$, we must define how the head or the flow behaves at the boundaries of the domain, i.e., both ends, the top, and the bottom. These are the **boundary conditions**.
 """)
 
 st.subheader("🟧 Type I – Specified Head (Dirichlet Condition", divider = "orange")
 st.markdown("""
 A **Type I** boundary condition assigns a defined hydraulic head at the boundary, such as the specified water level of a large lake or reservoir.  
 The aquifer can either **discharge into** or **receive water from** the lake depending on the internal head gradient.  
-The head remains constant, while the direction and rate of flow adapt to the hydraulic difference.
+The specified head at the boundary remains constant, while the direction and rate of flow adapt to the hydraulic conditions (varying recharge).
+The following figure illustrate the setting with an river that interacts with the groundwater. The river head is specified as 150 m above reference. The hydraulic conductivity of the aquifer is set to 5E-5 m/s, and **recharge can be modified for three situations**.
 """)
-
 intro_scenario1_block("Specified head")
+
 st.subheader("🟩 Type II – Specified Flux (Neumann Condition)", divider = "green")
 st.markdown("""
 A **Type II** boundary condition prescribes a specified flux or head gradient across the boundary.  
 Typical examples include **recharge** through the soil surface or **abstraction** by a pumping well.  
 Here, the **flow rate is defined**, and the model calculates the hydraulic head that satisfies this flux.
+The following figure illustate the behavior for a specified recharge flow of 250 mm/year (resulting in 8E-9 m³/s). The river is considered by a first type boundary with the head specified as 150 m above reference You can modify the hydraulic conductivity in three steps to investigate the variation of hydraulic heads.
 """)
-
 intro_scenario1_block("Recharge")
-
-st.markdown("""#### 🔻 Type II – Specified Flux - Special Case: :red[No-Flow]
+st.subheader("🔻 Type II – Specified Flux (Neumann Condition) - Special Case: :red[No-Flow]")
+st.markdown("""
+The no-flow condition defines that at the boundary no water enters or leaves the groundwater. In the subsequent figure this is the case for the left boundary. There is no variation in the general setup in comparison to the previous situations: The hydraulic conductivity of the underground is 5E-5 m/s. The groundwater is in direct contact with the river on the right side with the river head specified as 150 m above reference, and **recharge can be modified for three situations**.
 """)
 
 intro_scenario1_block("No-flow")
 
-st.subheader("🟪 Type III – Head-Dependent Flux (Robin or Cauchy Condition)", divider = "violet")
+st.subheader("🟪 Type III – Head-Dependent Flux (Robin [Mixed] Condition)", divider = "violet")
 st.markdown("""
 A **Type III** boundary condition links the flux to the difference between the groundwater head *h* and an external head *H* (for instance, a river, lake, or drain).
   
@@ -511,10 +546,21 @@ The relationship is expressed as
 
 $q = C (h - H)$
 
-where *C* is the **conductance** of the interface (for example, the riverbed or aquitard separating the aquifer from the lake).  
+where *C* is the **conductance** of the interface (for example, the riverbed or aquitard separating the aquifer from the lake). 
 
 When groundwater is **higher** than the boundary head, flow occurs **toward** the boundary; when both are **equal**, there is **no net exchange**; and when groundwater is **lower**, water moves **from** the boundary into the groundwater.  
 Such conditions are widely used to represent **dynamic interactions** between groundwater and surface water bodies.
+
+The following figure illustrate the setting with an river that interacts with the groundwater through a head-dependent flux boundary and a conductance of 9E-6 m/s. The river head is specified as 150 m above reference. The hydraulic conductivity of the aquifer is set to 5E-5 m/s, and **recharge can be modified for three situations**.
 """)
 
 intro_scenario1_block("Head-dep. flux")
+
+st.markdown('---')
+
+# Render footer with authors, institutions, and license logo in a single line
+columns_lic = st.columns((4,1))
+with columns_lic[0]:
+    st.markdown(f'Developed by {", ".join(author_list)} ({year}). <br> {institution_text}', unsafe_allow_html=True)
+with columns_lic[1]:
+    st.image('FIGS/CC_BY-SA_icon.png')
