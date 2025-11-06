@@ -1,6 +1,6 @@
 🎯 **Expected Learning Outcomes**
 
-Completion of this exercise helps you to:
+Completion of this exercise helps you to accomplish the following.
 
 * Understand how GHB flux is driven by head difference and conductance.
 * Interpret Q–h plots in relation to hydrogeologic behavior.

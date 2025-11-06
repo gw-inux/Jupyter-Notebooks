@@ -155,7 +155,7 @@ The GHB package is particularly relevant in applied groundwater modeling at the 
 
 left_co, cent_co, last_co = st.columns((10,40,10))
 with cent_co:
-    st.image('90_Streamlit_apps/GWP_Boundary_Conditions/assets/images/GHBapplied0_2.png', caption="A GHB provides connection to a source or sink external to the model domain.")
+    st.image('90_Streamlit_apps/GWP_Boundary_Conditions/assets/images/GHBapplied0_2.png', caption="A GHB provides connection to a source or sink external to the model domain. Here, flow is from an adjacent aquifer with water supplied by a lake some distance away.")
     
 left_co, cent_co, last_co = st.columns((10,40,10))
 with cent_co:
@@ -175,7 +175,7 @@ with st.expander("Tell me more about **the :orange[application of GHB in Field-S
         st.image('90_Streamlit_apps/GWP_Boundary_Conditions/assets/images/GHBapplied1.png', caption="GHB representation of a lake. All the cells intersecting the lake have GHBs.")
     
     st.markdown("""     
-    Or, a GHB boundary might be used to represent inflow from an adjacent aquifer. The head represents head at a location far enough away that it is not expected to change in response to stress on the simulated aquifer. The head in the adjacent aquifer might be maintained by seepage from water bodies or areal recharge. The important point is not what maintains that distant head but rather that modelers use this technique to provide inflow from a region that is not simulated in the grid.
+    Or, a GHB boundary might be used to represent inflow from an adjacent aquifer, with the boundary head representing head in the adjacent aquifer at a location far enough away that it is not expected to change in response to stress on the simulated aquifer. The head in the adjacent aquifer might be maintained by seepage from water bodies or areal recharge. The important point is not what maintains that distant head but rather that modelers use this technique to provide inflow from a region that is not simulated in the grid.
     """)
     left_co, cent_co, last_co = st.columns((10,40,10))
     with cent_co:
@@ -251,7 +251,7 @@ with st.expander("Show me more about **the Theory**"):
         $$
         
         where:
-        - $Q_B$ is the flow between the GHB and the groundwater system, defined as positive if it is directed into the groundwater system [L³/T]
+        - $Q_B$ is the flow between the GHB and the groundwater system, defined as positive if it is directed into the groundwater system [L³/T],
         - $H_B$ is the boundary head [L], representing e.g., an external water level like a distant lake,
         - $C_B$ is the hydraulic conductance of the GHB-groundwater interconnection [L²/T], which encapsulates **geometry and material properties**, and
         - $h_{gw}$ is the head [L] in the groundwater model cell where the GHB boundary is active.
@@ -278,9 +278,9 @@ st.subheader("📈 Interactive Plot and Exercise", divider="orange")
 st.markdown("""
     The interactive plot shows how the flow $Q_B$ across a General Head Boundary depends on the difference between groundwater head ($h_{gw}$) and boundary head ($H_B$), and on the conductance ($C_B$). 
     
-    Below, under INPUT CONTROLS, in the "Modify Plot Controls" drop-down menu, you can toggle to: 1) turn the plot 90 degrees – this different viewing orientation might help you interpret the results, 2) choose between slider or typed input to adjust the parameter values, and 3) increase the range of the $Q_B$ axis, then the plot is redrawn as soon as new values are entered. Under "Modify Head Elevations", you can adjust the value of groundwater head and GHB head. Finally, under "Modify the Conductance" you can toggle between entering direct conductance input or computing it from geometric and hydraulic properties.
+    Below, under INPUT CONTROLS, in the "Modify Plot Controls" drop-down menu, you can toggle to: 1) turn the plot 90 degrees – this different viewing orientation might help you interpret the results, 2) choose between slider or typed input to adjust the parameter values, and 3) increase the range of the $Q_B$ axis, then the plot is redrawn as soon as new values are entered. Under "Modify Head Elevations", you can adjust the value of groundwater head and GHB head. Finally, under "Modify the Conductance" you can toggle between entering a value of conductance directly or computing it from geometric and hydraulic properties.
 
-    The interactive plot graphically displays the Q–h relationship. When the toggle to visualize input value is turned on, the plot includes a legend that displays all parameter values and an arrow that indicates the head difference $H_{B}$-$h_{gw}$ and points to the value of flow $Q_{GHB}$ on the axis. If the arrow is not shown, you might need to increase the Q range.
+    The interactive plot graphically displays the Q–h relationship. When the toggle to visualize input values is turned on, the plot includes a legend that displays all parameter values and an arrow that indicates the head difference $H_{B}$-$h_{gw}$ and points to the value of flow $Q_{GHB}$ on the axis. If the arrow is not shown, you might need to use the toggle to increase the Q range.
     
     - You can investigate the plot on your own, perhaps using some of the :blue[**INSTRUCTIONS**] provided below the plot to guide you.
     - A subsequent :rainbow[**EXERCISE**] invites you to use the interactive plot to investigate how the conductance value and the difference in head affect the boundary flux, as well as to interpret the physical meaning of the situation based on Q–h plots.
@@ -544,11 +544,11 @@ def Q_h_plot():
     if visualize:
         if ((Q_ref < -0.05 or Q_ref > 0.05) and not relax_Q) or (Q_ref < -5 or Q_ref > 5):
             st.markdown("""
-            :red[_The blue/green arrow, indicating the head difference $H_{B}$-$h_{gw}$ and pointing to the value of flow $Q_B$ on the axis, is out of the visible range for the plot. The value for $Q_B$ is still shown in the legend. A toggle in “Modify the Plot Controls” can be used to increase the range._]
+            :red[_The arrow, indicating the head difference $H_{B}$-$h_{gw}$ and pointing to the value of flow $Q_B$ on the axis, is out of the visible range for the plot. The value for $Q_B$ is still shown in the legend. A toggle in “Modify the Plot Controls” can be used to increase the range._]
             """)
         else:
             st.markdown("""
-            _The :blue[blue]/:green[green] arrow indicates the head difference $H_{B}$-$h_{gw}$ and points to the value of flow $Q_B$ on the axis._
+            _The arrow indicates the head difference $H_{B}$-$h_{gw}$ and points to the value of flow $Q_B$ on the axis._
             """)
     
     # Expander with "open in new tab"
