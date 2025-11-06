@@ -401,7 +401,7 @@ def intro_scenario1_block(bc_kind):
                 # Will just place points at (Q=R, h=…)
                 axR.set_ylabel("hydraulic head (m)")
                 axR.set_xlabel(flow_label)
-                axR.set_ylim(140, 160)
+                axR.set_ylim(145, 155)
                 axR.set_xlim(-400/1000/365.25/86400, 400/1000/365.25/86400)
                 axR.xaxis.set_major_formatter(FormatStrFormatter('%.1e'))
             else:
