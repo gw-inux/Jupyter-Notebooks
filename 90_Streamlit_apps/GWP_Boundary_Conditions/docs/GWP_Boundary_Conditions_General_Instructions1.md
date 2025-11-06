@@ -16,7 +16,7 @@ Use the interactive tools in :green[**Scenario 1**] to investigate how model par
 - Select the No-flow _Q_-_h_ plot for display.
 - The red dot in the _Q_-_h_ plot represents the flow and head at the location of the dot in the model shown in the upper figure.
 - With the No-flow _Q_-_h_ plot selected, this point corresponds to the no-flow boundary on the left and updates as parameter values are changed.
-- The black line shows how $Q_{in}$ varies as head at the no-flow boundary varies from 140 to 160 m. 
+- The black line shows how $Q_{in}$ varies as head at the no-flow boundary varies from 140 to 160 m. The flow is always zero because it is a no flow boundary.
 
 **3. Analyze Parameter Sensitivity**
 - Vary the recharge and observe how the red dot shifts vertically:
@@ -44,7 +44,7 @@ To explore this behavior:
 - Modify the hydraulic conductivity and the recharge to see how the Q-h plot reacts (focus on the blue dot that represents the head and flow at the boundary).
 - Reset the recharge to a value of (approximately) 200 mm/yr.
 - Now toggle in the middle section of the :green[INPUT CONTROLS] for the :violet[Head-dependent flux BC]. Make sure that the ***Q-h*** plot for the Head-dependent flux boundary is active. The magenta-dot represents the outflow and head at the boundary.
-- Assess the difference between the Specified head and the Head-dependent flux boundary by setting and resetting the :violet[Head-dependent flux BC] toggle and study the ***Q-h*** plot with the aquifer hydraulic conductivity higher than the Head-dependent flux boundary conductance. The flow, which is solely a function of the recharge, is identical but the head at the boundary is increased if the :violet[Head-dependent flux BC] is active AND the conductance value is less than the aquifer hydraulic conductivity (the same would be the case for other head-dependent boundary conditions like :orange[**GHB**] or :green[**DRN**]). If the conductance is higher than the aquifer hydraulic conductivity, then including the river bed does not change the heads in the system. If the conductance is much lower than the aquifer hydraulic conductivity then there is a steep gradient between the aquifer head calculated at the boundary and the Head-dependent flux boundary (river) stage.
+- Assess the difference between the Specified head and the Head-dependent flux boundary by setting and resetting the :violet[Head-dependent flux BC] toggle and study the ***Q-h*** plot with the value of aquifer hydraulic conductivity set higher than the conductance of the head-dependent flux boundary. The flow, which is solely a function of the recharge, is identical but the head at the boundary is increased if the :violet[Head-dependent flux BC] is active AND the conductance value is less than the aquifer hydraulic conductivity (the same would be the case for other head-dependent boundary conditions like :orange[**GHB**] or :green[**DRN**]). If the conductance is higher than the aquifer hydraulic conductivity, then including the river bed does not change the heads in the system. If the conductance is much lower than the aquifer hydraulic conductivity then there is a steep gradient between the aquifer head calculated at the boundary and the Head-dependent flux boundary (river) stage.
 - It is useful to experiment with values of conductance $C_{B}$ and observe how the heads in the model and the ***Q–h*** relationship change.
 
 A second way to use the Head-dependent flux (river) boundary: 
