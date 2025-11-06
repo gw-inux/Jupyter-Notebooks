@@ -53,8 +53,7 @@ with column[1]:
 with column[2]:
     with st.expander('**Parameter for the numerical solution**'):  
         st.session_state.i_max   = st.number_input('Max number of iterations', 5, 500, 50, 1)    
-        st.session_state.epsilon = st.number_input('Closure criteria (in m)', 0.00001, 10., 0.001, 0.00001, format="%0.4f")
-        st.session_state.analytic = st.toggle("Show analytic solution", help="Press here to start the iteration with the analytic solution")    
+        st.session_state.epsilon = st.number_input('Closure criteria (in m)', 0.00001, 10., 0.001, 0.00001, format="%0.4f")  
 
 st.session_state.analytic = st.toggle("Show analytic solution", help="Press here to plot the analytical solution for comparison") 
     
