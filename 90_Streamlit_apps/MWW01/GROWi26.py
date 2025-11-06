@@ -62,6 +62,7 @@ pages = {
     },
     "🔶 Konzeptionelles Modell": {
         "--- Modellbeispiele 📖---": None,
+        "Intro Randbedingungen 💡": "06_Groundwater_modeling/BC_Intro.py",
         "1D GWF 💧": "04_Basic_hydrogeology/GWF_1D_unconf_analytic_BC_EX_DE.py",
         "--- Folien 🚀---": None,
         "T02: Konzeptionelles Modell 📝": "90_Streamlit_apps/MWW01/SlideJet_Presentations/GWBmC_WS2526_V02_SJpresent.py",
