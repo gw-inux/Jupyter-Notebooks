@@ -516,12 +516,18 @@ By engaging with this application, you will be able to:
 - **Explain** the general characteristics of the different boundary types.
 - **Distinguish** Type I (specified head), Type II (specified flux), and Type III (head-dependent flux) boundaries and name typical use cases.
 - **Predict qualitatively** the boundary condition behavior with a **Q–h** plot.
-- [_please add/modify_]...
+- **Discuss** how the different boundary conditions can reflect heads and flows of real systems.
 
 #### 💧 Understanding Boundary Conditions
 Without boundary conditions, the groundwater flow equation could not be solved, because the equation is only a general solution to flow through a porous medium. We need to define how the system behaves at the limits of its domain and apply those boundary conditions to formulate a specific solution that can be solved.
+""")
 
-To illustrate the idea, consider the **one-dimensional steady-state flow equation**:
+columns_fig = st.columns((1,4,1))
+with columns_fig[1]:
+    st.image('06_Groundwater_modeling/FIGS/GWF_EX01.jpg')
+
+st.markdown("""
+To illustrate the idea, consider the **one-dimensional steady-state flow equation**, for a situation as shown in the figure above _(an unconfined groundwater system with one no-flow boundary and one specified head or optionally a head-dependent flux boundary)_:
 
 $ \\frac{d}{dx} K \\frac{dh}{dx} = 0$
 
@@ -596,4 +602,4 @@ columns_lic = st.columns((4,1))
 with columns_lic[0]:
     st.markdown(f'Developed by {", ".join(author_list)} ({year}). <br> {institution_text}', unsafe_allow_html=True)
 with columns_lic[1]:
-    st.image('FIGS/CC_BY-SA_icon.png')
+    st.image('06_Groundwater_modeling/FIGS/CC_BY-SA_icon.png')
