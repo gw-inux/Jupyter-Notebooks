@@ -408,7 +408,7 @@ def intro_scenario1_block(bc_kind):
                 axR.axhline(Q_recharge, color="black", linewidth=3);     # cosmetic for axis
                 axR.set_xlabel("hydraulic head (m)")
                 axR.set_ylabel(flow_label)
-                axR.set_xlim(140, 160)
+                axR.set_xlim(145, 155)
                 axR.set_ylim(-400/1000/365.25/86400, 400/1000/365.25/86400)
                 axR.yaxis.set_major_formatter(FormatStrFormatter('%.1e'))
         elif bc_kind == "Specified head":
