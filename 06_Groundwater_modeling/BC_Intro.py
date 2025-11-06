@@ -23,8 +23,8 @@ institution_text = " | ".join(institution_list)
 
 # --- Start here
 
-st.title("Introduction in boundary conditions")
-st.subheader("Visual explanation of the boundary condition types", divider = "blue")
+st.title("Introduction to boundary conditions")
+st.subheader("Visual explanation of boundary condition types", divider = "blue")
 
 # ToDo: Show the boundary elements (like the defined head) clearly in the figures
 # ToDo: add water triangle on surface water and groundwater
@@ -284,13 +284,21 @@ def intro_scenario1_block(bc_kind):
         x_rivbed, river_base, y_rivbed,
         facecolor="lightblue", edgecolor="none", alpha=1, zorder=2
     )        
-    # Fill the river
-    axL.fill_between(
-        x_ext, 140.0, y_ext,
-        facecolor="deepskyblue", edgecolor="none", alpha=0.75,
-        zorder=1.0, clip_on=False
-    )
+#    # Fill the river
+#    axL.fill_between(
+#        x_ext, 140.0, y_ext,
+#        facecolor="deepskyblue", edgecolor="none", alpha=0.75,
+#        zorder=1.0, clip_on=False
+#    )
     if riv:
+        
+        # Fill the river
+        axL.fill_between(
+            x_ext, 140.0, y_ext,
+            facecolor="deepskyblue", edgecolor="none", alpha=0.75,
+            zorder=1.0, clip_on=False
+            )
+            
         # right: head-dependent + external stage indicator (thin fuchsia line)
         hr_riv = R_active * L / cRiv + hRiv
         
@@ -309,6 +317,14 @@ def intro_scenario1_block(bc_kind):
         
         # draw the riverbed outline
         axL.plot(x_rivbed, y_rivbed, color="fuchsia", linewidth=3, zorder=3.3, clip_on=False)  
+    
+    else: 
+        # Fill the river
+        axL.fill_between(
+            x_ext, 140.0, y_ext,
+            facecolor="aqua", edgecolor="none", alpha=0.75,
+            zorder=1.0, clip_on=False        
+            )
 
     # Mark the x-position that Q–h “samples” for Recharge (mid-domain)
     if bc_kind == "Recharge":
@@ -379,7 +395,7 @@ def intro_scenario1_block(bc_kind):
     else:
         # draw curve for the chosen boundary type
         if bc_kind == "No-flow":
-            flow_label = "flow into the groundwater (m³/s)\n at the left boundary"
+            flow_label = "+ is flow INTO the groundwater from \nthe LEFT BOUNDARY $Q_{in}$ (m³/s)"
             if turn:
                 axR.plot(Q_nf, h_nf, color="black", linewidth=3);
                 axR.set_ylabel("hydraulic head (m)")
@@ -394,7 +410,7 @@ def intro_scenario1_block(bc_kind):
                 axR.set_xlim(140, 160)
                 axR.set_ylim(-1, 1)
         elif bc_kind == "Recharge":
-            flow_label = "flow into the groundwater (m³/s)\n from recharge"
+            flow_label = "+ is flow INTO the groundwater from \nSURFACE RECHARGE $Q_{in}$ (m³/s)"
             Q_recharge = 250 / 1000 / 365.25 / 86400   # [m/s]
             if turn:
                 axR.axvline(Q_recharge, color="black", linewidth=3);  # keep axis consistent
@@ -412,7 +428,7 @@ def intro_scenario1_block(bc_kind):
                 axR.set_ylim(-400/1000/365.25/86400, 400/1000/365.25/86400)
                 axR.yaxis.set_major_formatter(FormatStrFormatter('%.1e'))
         elif bc_kind == "Specified head":
-            flow_label = "flow into the groundwater (m³/s)\n from the river"
+            flow_label = "+ is flow INTO the groundwater from \nthe LAKE $Q_{in}$ (m³/s)"
             if turn:
                 axR.plot(Q_defh, h_defh, color="black", linewidth=3);
                 axR.set_ylabel("hydraulic head (m)")
@@ -428,7 +444,7 @@ def intro_scenario1_block(bc_kind):
                 axR.set_ylim(-400/1000/365.25/86400*L, 400/1000/365.25/86400*L)
                 axR.yaxis.set_major_formatter(FormatStrFormatter('%.1e'))
         elif bc_kind == "Head-dep. flux":
-            flow_label = "flow into the groundwater (m³/s)\n from the river"
+            flow_label = "+ is flow INTO the groundwater from \nthe RIVER $Q_{in}$ (m³/s)"
             if turn:
                 axR.plot(Q_rob_axis, h_rob_axis, color="black", linewidth=3);
                 axR.set_ylabel("hydraulic head (m)")
@@ -503,36 +519,49 @@ By engaging with this application, you will be able to:
 - [_please add/modify_]...
 
 #### 💧 Understanding Boundary Conditions
-Without boundary conditions, the groundwater flow equation could not be solved, because we would not know how the system behaves at its limits.
-
+Without boundary conditions, the groundwater flow equation could not be solved, because the equation is only a general solution to flow through a porous medium. We need to define how the system behaves at the limits of its domain and apply those boundary conditions to formulate a specific solution that can be solved.
 
 To illustrate the idea, consider the **one-dimensional steady-state flow equation**:
 
-$ \\frac{d}{dx}(-hK \\frac{dh}{dx}) = R$
+$ \\frac{d}{dx} K \\frac{dh}{dx} = 0$
 
-where ***K*** is the hydraulic conductivity, ***h*** is the hydraulic head, and ***R*** is the groundwater recharge. To solve this equation for $h(x)$, we must define how the head or the flow behaves at the boundaries of the domain, i.e., both ends, the top, and the bottom. These are the **boundary conditions**.
+where *K* is the hydraulic conductivity and *h* is the hydraulic head. 
+
+If we include recharge, *R*, and define the aquifer thickness as equal to the head by assuming the bottom of the aquifer is horizontal at an elevation of zero to account for the unconfined condition, then the equation becomes: 
+
+$ \\frac{d}{dx}(-hK\\frac{dh}{dx})=R$
+
+To solve this equation for $h(x)$, we define the head or flow at each end of the domain and a uniform flow over the length of the system. These are the **boundary conditions**.
 """)
 
 st.subheader("🟧 Type I – Specified Head (Dirichlet Condition", divider = "orange")
 st.markdown("""
 A **Type I** boundary condition assigns a defined hydraulic head at the boundary, such as the specified water level of a large lake or reservoir.  
-The aquifer can either **discharge into** or **receive water from** the lake depending on the internal head gradient.  
-The specified head at the boundary remains constant, while the direction and rate of flow adapt to the hydraulic conditions (varying recharge).
-The following figure illustrate the setting with an river that interacts with the groundwater. The river head is specified as 150 m above reference. The hydraulic conductivity of the aquifer is set to 5E-5 m/s, and **recharge can be modified for three situations**.
+
+The aquifer can either **discharge into** or **receive water from** the specified head boundary depending on the internal head gradient.  
+
+The head remains constant, while the direction and rate of flow adapt to the hydraulic head difference.
+
+**For this example, flow on the left side is 0 m³/s, head of the lake is 150 m, and *K* of the aquifer is 5x10⁻⁵ m/s, while the user varies recharge to be zero or +/- 250 mm/yr (i.e., +/- 8 x 10⁻⁹ m³/s which is 250 mm/yr over the 2500 m long system).**
+
+**The model calculates the hydraulic heads required to drive the selected recharge to the lake for this hydraulic conductivity.**
 """)
 intro_scenario1_block("Specified head")
 
 st.subheader("🟩 Type II – Specified Flux (Neumann Condition)", divider = "green")
 st.markdown("""
-A **Type II** boundary condition prescribes a specified flux or head gradient across the boundary.  
+A **Type II** boundary condition prescribes a specified flux or head gradient across the boundary. 
+ 
 Typical examples include **recharge** through the soil surface or **abstraction** by a pumping well.  
-Here, the **flow rate is defined**, and the model calculates the hydraulic head that satisfies this flux.
-The following figure illustate the behavior for a specified recharge flow of 250 mm/year (resulting in 8E-9 m³/s). The river is considered by a first type boundary with the head specified as 150 m above reference You can modify the hydraulic conductivity in three steps to investigate the variation of hydraulic heads.
+
+**For this example, flow on the left side is 0 m³/s, head of the lake is 150 m, and recharge *R* is 8 x 10⁻⁹ m³/s (i.e., 250 mm/yr over the 2500 m long system), while the user varies hydraulic conductivity to be 5 x 10⁻⁵, 1 x 10⁻⁴, or 5 x 10⁻⁴ m/s.**
+
+**The model calculates the hydraulic heads required to drive the recharge to the lake given the selected hydraulic conductivity.**
 """)
 intro_scenario1_block("Recharge")
 st.subheader("🔻 Type II – Specified Flux (Neumann Condition) - Special Case: :red[No-Flow]")
 st.markdown("""
-The no-flow condition defines that at the boundary no water enters or leaves the groundwater. In the subsequent figure this is the case for the left boundary. There is no variation in the general setup in comparison to the previous situations: The hydraulic conductivity of the underground is 5E-5 m/s. The groundwater is in direct contact with the river on the right side with the river head specified as 150 m above reference, and **recharge can be modified for three situations**.
+The no-flow condition defines that at the boundary no water enters or leaves the groundwater. In the subsequent figure this is the case for the left boundary. There is no variation in the general setup in comparison to the previous situations: The hydraulic conductivity of the underground is 5E-5 m/s. The groundwater is in direct contact with the lake on the right side with the lake head specified as 150 m above reference, and **recharge can be modified for three situations**.
 """)
 
 intro_scenario1_block("No-flow")
@@ -542,16 +571,20 @@ st.markdown("""
 A **Type III** boundary condition links the flux to the difference between the groundwater head *h* and an external head *H* (for instance, a river, lake, or drain).
   
 It combines aspects of the first two types and is therefore also called a **mixed** or **Robin** boundary condition.  
+
 The relationship is expressed as
 
 $q = C (h - H)$
 
-where *C* is the **conductance** of the interface (for example, the riverbed or aquitard separating the aquifer from the lake). 
+where *C* is the **conductance** of the interface (for example, a riverbed separating the aquifer from the river water).  
 
-When groundwater is **higher** than the boundary head, flow occurs **toward** the boundary; when both are **equal**, there is **no net exchange**; and when groundwater is **lower**, water moves **from** the boundary into the groundwater.  
+When groundwater is **higher** than the boundary head, flow occurs **toward** the boundary; when both are **equal**, there is **no net exchange**; and when groundwater is **lower**, water moves **from** the boundary into the groundwater. 
+ 
 Such conditions are widely used to represent **dynamic interactions** between groundwater and surface water bodies.
 
-The following figure illustrate the setting with an river that interacts with the groundwater through a head-dependent flux boundary and a conductance of 9E-6 m/s. The river head is specified as 150 m above reference. The hydraulic conductivity of the aquifer is set to 5E-5 m/s, and **recharge can be modified for three situations**.
+**For this example, we consider the surface water to be a river that is separated from the groundwater by a colmation layer. Flow on the left side is 0 m³/s, head of the river is 150 m, *K* of the aquifer is 5 x 10⁻⁵ m/s, and conductance of the river bed is 9 x 10⁻⁶ m²/s while the user varies recharge to be zero or +/- 250 mm/yr (i.e., +/- 8 x 10⁻⁹ m³/s which is 250 mm/yr over the 2500 m long system).**
+
+**The model calculates the hydraulic heads required to drive the selected recharge to the river for this hydraulic conductivity and river bed conductance.**
 """)
 
 intro_scenario1_block("Head-dep. flux")
