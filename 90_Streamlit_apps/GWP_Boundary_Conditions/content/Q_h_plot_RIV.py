@@ -92,7 +92,7 @@ st.title("Theory and Concept of the :violet[River Boundary (RIV) in MODFLOW]")
 st.subheader("Groundwater - :violet[River Boundary] interaction", divider="violet")
 
 st.markdown("""
-#### 💡 Motivation: Why River Boundaries?
+#### 💡 Motivation: Why use River Boundaries?
 """)
 
 # Initial plot
