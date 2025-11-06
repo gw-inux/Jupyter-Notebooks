@@ -1049,7 +1049,7 @@ if show_plot2:
                     xpos, y0, 0.0, dy,
                     length_includes_head=True,
                     width=shaft_width, head_width=head_width, head_length=head_len,
-                    fc="green", ec="green", alpha=0.95, linewidth=0.8, zorder=4
+                    fc="green", ec="green", alpha=0.95, linewidth=0.8
                 )
         
             # positions and water levels
