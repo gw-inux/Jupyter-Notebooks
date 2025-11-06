@@ -487,7 +487,7 @@ def intro_scenario1_block(bc_kind):
         # Titles
         ttl = {
             "No-flow":        ("Q–h", "h–Q")[turn] + ": Specified flow (No-flow) ",
-            "Recharge":       ("Q–h", "h–Q")[turn] + ": Specified flow (Recharge per m³)",
+            "Recharge":       ("Q–h", "h–Q")[turn] + ": Specified flow (Recharge per m²)",
             "Specified head": ("Q–h", "h–Q")[turn] + ": Specified head           ",
             "Head-dep. flux": ("Q–h", "h–Q")[turn] + ": Head-dependent flux      ",
         }.get(bc_kind, "")
