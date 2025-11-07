@@ -5,6 +5,8 @@ from matplotlib.gridspec import GridSpec
 from matplotlib.patches import Rectangle
 from matplotlib.offsetbox import AnnotationBbox, OffsetImage
 import streamlit as st
+from streamlit_book import multiple_choice
+import json
 
 # Authors, institutions, and year
 year = 2025 
@@ -21,6 +23,63 @@ author_list = [f"{name}{''.join(index_symbols[i-1] for i in indices)}" for name,
 institution_list = [f"{index_symbols[i-1]} {inst}" for i, inst in institutions.items()]
 institution_text = " | ".join(institution_list)
 
+path_quest_final = "06_Groundwater_modeling/QUESTIONS/bc_intro_final_ass.json"
+
+# Load questions
+with open(path_quest_final, "r", encoding="utf-8") as f:
+    quest_final = json.load(f)
+    
+# Functions
+# RENDER ASSESSMENTS
+
+def flip_assessment(section_id: str):
+    """Flip the boolean flag for a given section_id."""
+    key = f"exp_{section_id}"
+    st.session_state[key] = not st.session_state.get(key, False)
+    
+def render_toggle_container(
+    section_id: str,
+    label: str,
+    content_fn,                 # a function that renders the section contents when open
+    *,
+    default_open: bool = False,
+    col_ratio=(25, 1),
+    container_border: bool = True,
+):
+    """
+    Renders a toggleable container with two buttons:
+    - Left: text button with your label
+    - Right: chevron button (▲/▼)
+    Each section manages its own state via section_id.
+
+    Parameters
+    ----------
+    section_id : unique id string, e.g., "general_01"
+    label      : button label shown on the left
+    content_fn : callable with no args that renders the open content
+    default_open : initial open state (only used on first render)
+    col_ratio  : column width ratio for (label_button, chevron_button)
+    container_border : show a border around the section container
+    """
+    state_key = f"exp_{section_id}"
+    if state_key not in st.session_state:
+        st.session_state[state_key] = default_open
+
+    with st.container(border=container_border):
+        ass_c1, ass_c2 = st.columns(col_ratio)
+
+        # Left button – same on_click toggler for consistency
+        with ass_c1:
+            st.button(label,key=f"btn_label_{section_id}",type="tertiary",on_click=flip_assessment,args=(section_id,))
+
+        # Right chevron button – also toggles the same state
+        with ass_c2:
+            chevron = "▲" if st.session_state[state_key] else "▼"
+            st.button(chevron,key=f"btn_chev_{section_id}",type="tertiary",on_click=flip_assessment,args=(section_id,))
+
+        # Conditional content
+        if st.session_state[state_key]:
+            content_fn()
 # --- Start here
 
 st.title("Introduction to boundary conditions")
@@ -671,6 +730,42 @@ Such conditions are widely used to represent **dynamic interactions** between gr
 
 intro_scenario1_block("Head-dep. flux")
 
+# --- FINAL ASSESSMENT ---
+def content_final_bc_intro():
+    st.markdown("""#### 🧠 Final assessment""")
+    st.info("These questions test your conceptual understanding after working with the application.")
+    
+    # Render questions in a 2x4 grid (row-wise)
+    for row in [(0, 1), (2, 3), (4, 5),(6, 7)]:
+        col1, col2 = st.columns(2)
+
+        with col1:
+            i = row[0]
+            st.markdown(f"**Q{i+1}. {quest_final[i]['question']}**")
+            multiple_choice(
+                question=" ",
+                options_dict=quest_final[i]["options"],
+                success=quest_final[i].get("success", "✅ Correct."),
+                error=quest_final[i].get("error", "❌ Not quite.")
+            )
+
+        with col2:
+            i = row[1]
+            st.markdown(f"**Q{i+1}. {quest_final[i]['question']}**")
+            multiple_choice(
+                question=" ",
+                options_dict=quest_final[i]["options"],
+                success=quest_final[i].get("success", "✅ Correct."),
+                error=quest_final[i].get("error", "❌ Not quite.")
+            )
+            
+# Render final assessment
+render_toggle_container(
+    section_id="bc_intro01",
+    label="✅ **Show the final assessment** - to self-check your **understanding**",
+    content_fn=content_final_bc_intro,
+    default_open=False,
+)
 st.markdown('---')
 
 # Render footer with authors, institutions, and license logo in a single line

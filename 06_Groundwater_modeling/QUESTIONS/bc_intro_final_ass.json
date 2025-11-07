@@ -1,0 +1,90 @@
+[
+  {
+    "question": "Which statements correctly describe a Type I (specified head) boundary? (Mark ALL correct answers)",
+    "options": {
+      "The hydraulic head at the boundary is fixed throughout the simulation.": true,
+      "The flux across the boundary is computed by the model solution.": true,
+      "A regulated reservoir with tightly controlled stage can be represented by this type.": true,
+      "A very large flow can result in the drying out of the boundary.": false
+    },
+    "success": "✅ Correct! Type I specifies head; the resulting flux follows from the solution and can represent regulated surface water bodies.",
+    "error": "❌ Not quite. Remember: Type I sets head (not flow). The resulting flux can be completely implausible but doesnt affect the boundary head."
+  },
+  {
+    "question": "Which statements correctly describe a Type II (specified flux) boundary? (Mark ALL correct answers)",
+    "options": {
+      "The normal component of flow across the boundary is prescribed.": true,
+      "The boundary head adjusts to satisfy the imposed flux.": true,
+      "It enforces a constant head equal to the initial water table.": false,
+      "Uniform areal recharge given from a water balance is a typical example.": true
+    },
+    "success": "✅ Correct! Type II prescribes flux (e.g., recharge, pumping); head is computed to satisfy that flux.",
+    "error": "❌ Some choices are off. Type II sets flux, not head; head responds to meet the flux requirement."
+  },
+  {
+    "question": "Which statements correctly describe a Type III (head-dependent flux) boundary? (Mark ALL correct answers)",
+    "options": {
+      "The groundwater hydraulic head is specified at the boundary and cannot vary during the simulation.": false,
+      "A lake with known stage and a leaky lakebed is a typical example.": true,
+      "It is equivalent to a specified head boundary when the resistance due to conductance is minor.": true,
+      "Water transfer is proportional to the head difference across an interface with finite resistance (conductance).": true
+    },
+    "success": "✅ Correct! Type III uses conductance to relate head difference to flux; C→0 implies vanishing exchange.",
+    "error": "❌ Not quite. Recall: q = C(h - H); only infinite C approaches defined head."
+  },
+  {
+    "question": "How do the three boundary types relate to the mathematical formulation of the groundwater flow equation? (Mark ALL correct answers)",
+    "options": {
+      "A Type I boundary prescribes the dependent variable of the equation, namely the hydraulic head.": true,
+	  "A Type II boundary prescribes the derivative of the head normal to the boundary, i.e., the flux.": true,
+      "A Type II boundary combines both the groundwater head and the boundary head by a linear flow term.": false,
+	  "A Type III boundary defines the conductance distribution within the model domain.": false
+    },
+    "success": "✅ Correct! Type I fixes the variable (head), Type II fixes its derivative (flux), and Type III links both through conductance.",
+    "error": "❌ Remember: Type I = fixed head, Type II = fixed flux, Type III = head–flux relationship (conductance)."
+  },
+  {
+    "question": "Which scenarios are suitably represented by a Type III boundary? (Mark ALL correct answers)",
+    "options": {
+      "Stream–aquifer interaction through a semi-permeable bed.": true,
+      "An abstraction well with additional resistance due to well skin effects.": true,
+      "Drains keeping water levels from rising beneath structures or fields.": true,
+      "A lake in direct contact with the groundwater and with perfectly maintained constant stage regardless of inflow/outflow.": false
+    },
+    "success": "✅ Correct! Streams, wells with skin effect, and drains are head-dependent; a perfectly constant stage in direct contact with the groundwater can be represented by type I.",
+    "error": "❌ Reconsider: head-dependent processes (via conductance/resistance) point to type III, not a fixed stage."
+  },
+  {
+    "question": "About conductance in head-dependent boundaries (like rivers, drains), which statements are correct? (Mark ALL correct answers)",
+    "options": {
+      "Conductance aggregates properties like hydraulic conductivity, interface area, and thickness.": true,
+      "Reducing conductance lowers exchange for a given head difference.": true,
+      "Very high conductance approximates a specified head condition.": true,
+      "Conductance has the same units as hydraulic head.": false
+    },
+    "success": "✅ Correct! C ∼ K·A/ΔL; lower C → less exchange; C→∞ approximates fixed head.",
+    "error": "❌ Not quite. Conductance reflects leakiness (K·A/ΔL), not a head unit."
+  },
+  {
+    "question": "Consider a model with uniform recharge, a no-flow boundary on the left, and a Type I boundary on the right. Which statements are true? (Mark ALL correct answers)",
+    "options": {
+      "Flow is forced to exit toward the right boundary.": true,
+      "The no-flow boundary can represent a symmetry line or impermeable wall.": true,
+      "Groundwater can discharge through the no-flow boundary.": false,
+      "Recharge in this setup enters only at a single point.": false
+    },
+    "success": "✅ Correct! No‑flow blocks discharge; uniform recharge enters over the surface; outflow is to the right.",
+    "error": "❌ Review: no‑flow does not allow flux; recharge is distributed, not a point load."
+  },
+  {
+    "question": "Which elements are typical considered as type 1 boundary? (Mark ALL correct answers)",
+    "options": {
+      "The measured water level in an observation well.": false,
+      "The sea that is in direct contact with the groundwater.": true,
+      "An abstraction well that is pumping with a specified abstraction rate.": false,
+      "A stable isocontour line of measured groundwater heads.": true
+    },
+    "success": "✅ Correct! Elements with (relatively) well know head that are in contact with the groundwater can be considered as type 1 boundaries.",
+    "error": "❌ Neither observation wells with point measurements nor abstraction wells are typically considered as type 1 boundaries."
+  }
+]
