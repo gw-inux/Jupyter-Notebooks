@@ -266,9 +266,9 @@ with st.expander("Show me more about **the Theory**"):
     st.markdown("""
     where:
     - $Q_{D}$ is the flow from the groundwater into the drain [L³/T]
-    - $H_D$ is the drain elevation (L),
+    - $H_D$ is the drain elevation [L],
     - $C_D$ is the drain conductance [L²/T], and
-    - $h_{gw}$ is the head in the cell that interacts with the drain (L).
+    - $h_{gw}$ is the head in the cell that interacts with the drain [L].
    
     If the groundwater head $h_{gw}$ is below the elevation of the drain, $H_{D}$, then there is no flow.
     
@@ -280,7 +280,7 @@ with st.expander('**Click here** to read how :green[**conductance is calculated*
     """)
     
     st.markdown("""
-    MODFLOW requires input of conductance.
+    MODFLOW requires input of drain conductance.
 
     Conductance includes all terms of Darcy's Law except the head difference between the drain and the groundwater. 
     """)    
@@ -292,7 +292,7 @@ with st.expander('**Click here** to read how :green[**conductance is calculated*
     where: 
 
     - $K$ is hydraulic conductivity of the drain lining or "skin" [L/T]
-    - $A$ is flow area of the drain that may be a rectangle or a cylinder (=$LW$) [L²]
+    - $A$ is flow area of the drain that may be a rectangle or a cylinder (e.g., $WL$ or $2 π r L$) [L²]
     - $M$ is thickness of the resistive material around the drain (the distance over which the gradient is calculated) [L]
     """)
     
@@ -495,7 +495,7 @@ def Q_h_plot():
         _The arrow in the plot indicates the head difference $H_{D}-h_{gw}$ and points to the resulting flow $Q_{D}$._
         """)
     st.markdown("""
-        _* from the **perspective of inflow** into the groundwater, **drain flow is always negative** or zero because it is flow leaving the groundwater._
+        _From the **perspective of inflow** into the groundwater, **drain flow is always negative (or zero)** because it is flow leaving the groundwater._
         """)
     
     # Expander with "open in new tab"
@@ -552,7 +552,7 @@ render_toggle_container(
 
 st.subheader('✔️ Conclusion', divider = 'green')
 st.markdown("""
-The Drain (DRN) boundary condition simulates discharge to external drains, ditches, trenches, topographic depressions, mines, and other features where a hydrostratigraphic unit encounters an opening to atmospheric pressure conditions. Flow _only_ occurs when groundwater levels are at or above the opening elevation. This boundary introduces a **physical cutoff based on the drain elevation** that prevents outflow, making it conceptually different from other head-dependent boundaries. A DRN boundary can be defined in any groundwater-flow-model cell. It need not be defined in the surface layer, for example it might be defined deep inside a model to represent a tunnel or an underground mine. 
+The Drain (DRN) boundary condition simulates discharge to external drains, ditches, trenches, topographic depressions, mines, and other features where a hydrostratigraphic unit encounters an opening to atmospheric pressure conditions. **Flow _only_ occurs when groundwater levels are at or above the opening elevation.** This boundary introduces a **physical cutoff based on the drain elevation** that prevents outflow, making it conceptually different from other head-dependent boundaries. A DRN boundary can be defined in any groundwater-flow-model cell. It need not be defined in the surface layer, for example it might be defined deep inside a model to represent a tunnel or an underground mine. 
 
 Analyzing **Q–h plots** allows exploration of how the discharge remains zero until the groundwater head exceeds the drain elevation, after which it increases linearly based on the conductance. This behavior supports the simulation of seepage faces and artificial drainage systems without over-extracting water from the model.
 
