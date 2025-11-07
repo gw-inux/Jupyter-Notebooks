@@ -516,41 +516,83 @@ By engaging with this application, you will be able to:
 - **Explain** the general characteristics of the different boundary types.
 - **Distinguish** Type I (specified head), Type II (specified flux), and Type III (head-dependent flux) boundaries and name typical use cases.
 - **Predict qualitatively** the boundary condition behavior with a **Q–h** plot.
-- **Discuss** how the different boundary conditions can reflect heads and flows of real systems.
+- **Discuss** how the different boundary conditions can reflect heads and flows of real systems.""")
 
-#### 💧 Understanding Boundary Conditions
+st.subheader("💧 Understanding Boundary Conditions", divider="green")
+
+st.markdown("""
 Before we get into the mathematical implications of boundary conditions it’s important to have some examples of natural features that can be represented by each type of boundary condition.
 
 #### 🌍 Field examples of features represented by boundary conditions:
 
-**Type I (specified head):**
+**For a location** where the hydraulic head is specified, we can represent it as a
+
+:orange[**Type I (specified head):**]
 - **Large Lake/Major River** with a relatively constant water level (head)
 - **Reservoir** with a water level maintained at a fixed elevation for water management purposes
-- **Adjacent Aquifer** beyond the model domain with a stable head and a source of water
+- **Adjacent Aquifer** beyond the model domain with a stable head and a source of water""")
+columns_fig1 = st.columns((1,1,1))
+with columns_fig1[0]:
+    st.image('06_Groundwater_modeling/FIGS/Lake01.jpg')
+    st.markdown(":orange[*Large lake with no resistance between the lake and the groundwater.*]")
+with columns_fig1[1]:
+    st.image('06_Groundwater_modeling/FIGS/Sea02.jpg')
+    st.markdown(":orange[*The sea and a hard rock aquifer no resistance between the sea and the groundwater.*]")
+with columns_fig1[2]:
+    st.image('06_Groundwater_modeling/FIGS/Sea03.jpg')
+    st.markdown(":orange[*The sea and a sandy beach with no resistance between the sea and the groundwater.*]")
 
-**Type II (specified flux)**
+st.markdown("""
+**For a location** where the flux across the boundary is specified and the hydraulic head adjusts accordingly, we can represent it as a
+
+:green[**Type II (specified flux)**]
 - **Wells** with known pumping rate for agricultural or municipal use
 - **Recharge** infiltration of precipitation to the water table
 - **Impermeable material** is physical barrier to flow that forms a no-flow boundary such as a contact with low-permeability bedrock (e.g., granite mountains)
 - **A groundwater flow line** forms a no-flow boundary in a steady flow field
-- **A groundwater divide** forms a no-flow boundary in a steady flow system
+- **A groundwater divide** forms a no-flow boundary in a steady flow system""")
 
-**Type III (head-dependent flux):**
+columns_fig2 = st.columns((1,1,1))
+with columns_fig2[0]:
+    st.image('06_Groundwater_modeling/FIGS/Well01.jpg')
+    st.markdown(":green[*An abstraction well in a mining area.*]")
+with columns_fig2[1]:
+    st.image('06_Groundwater_modeling/FIGS/Precipitation01.jpg')
+    st.markdown(":green[*Autumn recipitation resulting in groundwater recharge.*]")
+with columns_fig2[2]:
+    st.image('06_Groundwater_modeling/FIGS/Evapo01.jpg')
+    st.markdown(":green[*Evapotranspiration resulting in water flow from the underground into the atmosphere.*]")
+    
+st.markdown("""
+**For a location** where water exchange occurs through a resistance layer and depends on the head difference between the boundary and the aquifer, we can represent it as a
+
+:violet[**Type III (head-dependent flux):**]
 - **Stream/Aquifer Interaction** where flow into or out of the aquifer depends on the difference between the stream stage and the groundwater head as well as the conductance of the streambed material
 - **Drains** that keep water levels from getting too high in agricultural fields, or keep a foundation dry
 - **Evapotranspiration** where water discharges to the surface at a rate that depends on the depth of the water table
 - **Springs** that flow when the water table intersects the ground surface
-- **A semi-permeable barrier** such as a clay liner that separates the groundwater system from leachate 
+- **A semi-permeable barrier** such as a clay liner that separates the groundwater system from leachate""")
 
+columns_fig3 = st.columns((1,1,1))
+with columns_fig3[0]:
+    st.image('06_Groundwater_modeling/FIGS/Lake03.jpg')
+    st.markdown(":violet[*A lake with vegetation at the shore line, resulting in indirect contact to the groundwater due to colmation.*]")
+with columns_fig3[1]:
+    st.image('06_Groundwater_modeling/FIGS/Lake04.jpg')
+    st.markdown(":violet[*A lake that is partially dewatered, showing the colmation layer at the lake bottom.*]")
+with columns_fig3[2]:
+    st.image('06_Groundwater_modeling/FIGS/River01.jpg')
+    st.markdown(":violet[*A river that is in indirect contact to the groundwater due to colmation.*]")
+    
+st.markdown("""
 #### Background:
 
 Without boundary conditions, the groundwater flow equation could not be solved, because the equation is only a general solution to flow through a porous medium. We need to define how the system behaves at the limits of its domain and apply those boundary conditions to formulate a specific solution that can be solved.
 
 """)
-
-
-columns_fig = st.columns((1,4,1))
-with columns_fig[1]:
+    
+columns_fig4 = st.columns((1,4,1))
+with columns_fig4[1]:
     st.image('06_Groundwater_modeling/FIGS/GWF_EX01.jpg')
 
 st.markdown("""
