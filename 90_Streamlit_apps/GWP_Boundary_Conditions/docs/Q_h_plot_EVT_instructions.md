@@ -9,7 +9,7 @@ Before starting the exercise, it is helpful to follow these steps to understand 
   - ET increases linearly as $h_{gw}$ rises above _**SURF**_ - _**EXDP**_
   - Maximum ET occurs when $h_{gw}$ => _**SURF**_
 
-**Start with _SURF_ = 9 m, _EXDP_ = 4 m, $h_{gw}$ = 8 m, and _EVTR_ = 2000 mm/yr, then analyze the influence of _EXDP_**.
+**Start with _SURF_ = 9 m, _EXDP_ = 1 m, $h_{gw}$ = 8 m, and _EVTR_ = 2000 mm/yr, then analyze the influence of _EXDP_**.
  
 * Increase _**EXDP**_ in steps and observe how the slope of the _Q–h_ curve flattens and how $Q_{ET}$ changes.
 

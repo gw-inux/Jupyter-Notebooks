@@ -11,7 +11,7 @@ Completion of this exercise helps you to:
 Use the interactive ET plot to complete the following steps:
 
 1. **Initial Setup**
-    * Start with **_SURF_** = 9 m, **_EXDP_** = 4 m, and **_EVTR_** = 730 mm/yr 
+    * Start with **$h_{gw}$** = 8 m, **_SURF_** = 9 m, **_EXDP_** = 4 m, and **_EVTR_** = 730 mm/yr 
     * View conditions by stepping through a range of groundwater heads from 3 m to 10 m
 
     **Observe and record:**
