@@ -14,7 +14,7 @@
     "question": "Which statements correctly describe a Type II (specified flux) boundary? (Mark ALL correct answers)",
     "options": {
       "The normal component of flow across the boundary is prescribed.": true,
-      "The boundary head adjusts to satisfy the imposed flux.": true,
+      "The model head adjusts to satisfy the imposed flux.": true,
       "It enforces a constant head equal to the initial water table.": false,
       "Uniform areal recharge given from a water balance is a typical example.": true
     },
@@ -24,9 +24,9 @@
   {
     "question": "Which statements correctly describe a Type III (head-dependent flux) boundary? (Mark ALL correct answers)",
     "options": {
-      "The groundwater hydraulic head is specified at the boundary and cannot vary during the simulation.": false,
+      "The groundwater hydraulic flux is specified at the boundary.": false,
       "A lake with known stage and a leaky lakebed is a typical example.": true,
-      "It is equivalent to a specified head boundary when the resistance due to conductance is minor.": true,
+      "It is equivalent to a specified head boundary when the conductance is large.": true,
       "Water transfer is proportional to the head difference across an interface with finite resistance (conductance).": true
     },
     "success": "✅ Correct! Type III uses conductance to relate head difference to flux; C→0 implies vanishing exchange.",
@@ -55,7 +55,7 @@
     "error": "❌ Reconsider: head-dependent processes (via conductance/resistance) point to type III, not a fixed stage."
   },
   {
-    "question": "About conductance in head-dependent boundaries (like rivers, drains), which statements are correct? (Mark ALL correct answers)",
+    "question": "Regarding conductance in head-dependent boundaries (like rivers, drains), which statements are correct? (Mark ALL correct answers)",
     "options": {
       "Conductance aggregates properties like hydraulic conductivity, interface area, and thickness.": true,
       "Reducing conductance lowers exchange for a given head difference.": true,
@@ -77,14 +77,14 @@
     "error": "❌ Review: no‑flow does not allow flux; recharge is distributed, not a point load."
   },
   {
-    "question": "Which elements are typical considered as type 1 boundary? (Mark ALL correct answers)",
+    "question": "Which elements are typically considered as a type 1 boundary? (Mark ALL correct answers)",
     "options": {
       "The measured water level in an observation well.": false,
       "The sea that is in direct contact with the groundwater.": true,
       "An abstraction well that is pumping with a specified abstraction rate.": false,
       "A stable isocontour line of measured groundwater heads.": true
     },
-    "success": "✅ Correct! Elements with (relatively) well know head that are in contact with the groundwater can be considered as type 1 boundaries.",
+    "success": "✅ Correct! Elements with (relatively) well known head that are in contact with the groundwater can be considered as type 1 boundaries.",
     "error": "❌ Neither observation wells with point measurements nor abstraction wells are typically considered as type 1 boundaries."
   }
 ]
