@@ -543,16 +543,16 @@ with columns_fig1[0]:
     st.markdown(":orange[*Large lake with no resistance between the lake and the groundwater.*]")
 with columns_fig1[1]:
     st.image('06_Groundwater_modeling/FIGS/Sea02.jpg')
-    st.markdown(":orange[*The sea and a hard rock aquifer no resistance between the sea and the groundwater.*]")
+    st.markdown(":orange[*The sea and a hard rock aquifer with no resistance between the sea and the groundwater.*]")
 with columns_fig1[2]:
     st.image('06_Groundwater_modeling/FIGS/Sea03.jpg')
     st.markdown(":orange[*The sea and a sandy beach with no resistance between the sea and the groundwater.*]")
 
 st.markdown("""
-**For a location** where the flux across the boundary is specified and the hydraulic head adjusts accordingly, we can represent it as a
+**For a location** where the flux across the boundary is specified and the hydraulic head adjusts accordingly, we can represent it as
 
 :green[**Type II (specified flux)**]
-- **Wells** with known pumping rate for agricultural or municipal use
+- **A well** with a known pumping rate for agricultural or municipal use
 - **Recharge** infiltration of precipitation to the water table
 - **Impermeable material** is physical barrier to flow that forms a no-flow boundary such as a contact with low-permeability bedrock (e.g., granite mountains)
 - **A groundwater flow line** forms a no-flow boundary in a steady flow field
@@ -564,31 +564,32 @@ with columns_fig2[0]:
     st.markdown(":green[*An abstraction well in a mining area.*]")
 with columns_fig2[1]:
     st.image('06_Groundwater_modeling/FIGS/Precipitation01.jpg')
-    st.markdown(":green[*Autumn recipitation resulting in groundwater recharge.*]")
+    st.markdown(":green[*Precipitation resulting in groundwater recharge.*]")
 with columns_fig2[2]:
     st.image('06_Groundwater_modeling/FIGS/Evapo01.jpg')
-    st.markdown(":green[*Evapotranspiration resulting in water flow from the underground into the atmosphere.*]")
+    st.markdown(":green[*Evapotranspiration resulting in water flow from underground to the atmosphere.*]")
     
 st.markdown("""
 **For a location** where water exchange occurs through a resistance layer and depends on the head difference between the boundary and the aquifer, we can represent it as a
 
 :violet[**Type III (head-dependent flux):**]
 - **Stream/Aquifer Interaction** where flow into or out of the aquifer depends on the difference between the stream stage and the groundwater head as well as the conductance of the streambed material
-- **Drains** that keep water levels from getting too high in agricultural fields, or keep a foundation dry
-- **Evapotranspiration** where water discharges to the surface at a rate that depends on the depth of the water table
 - **Springs** that flow when the water table intersects the ground surface
+- **Drains** that keep water levels from getting too high in agricultural fields, or keep a foundation dry
+- **Underground mine shafts and tunnels** where inflow needs to be estimated to design pump systems to keep the mine dewatered
+- **Evapotranspiration** where water discharges to the surface at a rate that depends on the depth of the water table
 - **A semi-permeable barrier** such as a clay liner that separates the groundwater system from leachate""")
 
 columns_fig3 = st.columns((1,1,1))
 with columns_fig3[0]:
     st.image('06_Groundwater_modeling/FIGS/Lake03.jpg')
-    st.markdown(":violet[*A lake with vegetation at the shore line, resulting in indirect contact to the groundwater due to colmation.*]")
+    st.markdown(":violet[*A lake with vegetation at the shore line, with a layer of resistive, fine-grained material between the lake and the groundwater.*]")
 with columns_fig3[1]:
     st.image('06_Groundwater_modeling/FIGS/Lake04.jpg')
-    st.markdown(":violet[*A lake that is partially dewatered, showing the colmation layer at the lake bottom.*]")
+    st.markdown(":violet[*A lake that is partially dewatered, showing the resistive, fine-grained layer at the lake bottom.*]")
 with columns_fig3[2]:
     st.image('06_Groundwater_modeling/FIGS/River01.jpg')
-    st.markdown(":violet[*A river that is in indirect contact to the groundwater due to colmation.*]")
+    st.markdown(":violet[*A river with a layer of resistive, fine-grained material between the river water and the groundwater.*]")
     
 st.markdown("""
 #### Background:
