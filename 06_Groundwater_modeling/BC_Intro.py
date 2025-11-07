@@ -675,7 +675,7 @@ $ \\frac{d}{dx}(-hK\\frac{dh}{dx})=R$
 To solve this equation for $h(x)$, we define the head or flow at each end of the domain and a uniform flow over the length of the system. These are the **boundary conditions**.
 """)
 
-st.subheader("🟧 Type I – Specified Head (Dirichlet Condition", divider = "orange")
+st.subheader("🟧 Type I – Specified Head (Dirichlet Condition)", divider = "orange")
 st.markdown("""
 A **Type I** boundary condition assigns a defined hydraulic head at the boundary, such as the specified water level of a large lake or reservoir.  
 
