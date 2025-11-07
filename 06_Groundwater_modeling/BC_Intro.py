@@ -504,7 +504,13 @@ st.markdown("""
 #### 💡 Motivation - What are boundary conditions in groundwater modeling?
 Boundary conditions define how the groundwater system interacts with its surroundings.
 
-They describe whether water can **enter** or **leave** the model domain, for example, through **recharge**, **rivers**, **lakes**, or **impermeable barriers**.
+They describe whether water can **enter** or **leave** the model domain, for example, through **recharge**, **rivers**, **lakes**, or **impermeable barriers**.""")
+
+columns_fig0 = st.columns((1,4,1))
+with columns_fig0[1]:
+    st.image('06_Groundwater_modeling/FIGS/stream_groundwater_BC.png')
+
+st.markdown("""
 
 It is essential to understand the concept behind the different boundary conditions. This understanding is required to 'translate' physical and hydrological elements of the real world into model elements.
 
