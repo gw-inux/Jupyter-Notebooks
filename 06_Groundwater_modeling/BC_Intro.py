@@ -24,7 +24,7 @@ institution_text = " | ".join(institution_list)
 # --- Start here
 
 st.title("Introduction to boundary conditions")
-st.subheader("Visual explanation of boundary condition types", divider = "blue")
+st.subheader("Visual explanation of types of boundary conditions", divider = "blue")
 
 # ToDo: Show the boundary elements (like the defined head) clearly in the figures
 # ToDo: add water triangle on surface water and groundwater
@@ -501,14 +501,14 @@ def intro_scenario1_block(bc_kind):
 
 st.markdown("""
 
-#### 💡 Motivation - Boundary conditions in groundwater modeling
+#### 💡 Motivation - What are boundary conditions in groundwater modeling?
 Boundary conditions define how the groundwater system interacts with its surroundings.
 
 They describe whether water can **enter** or **leave** the model domain, for example, through **recharge**, **rivers**, **lakes**, or **impermeable barriers**.
 
 It is essential to understand the concept behind the different boundary conditions. This understanding is required to 'translate' physical and hydrological elements of the real world into model elements.
 
-With the app you can build **intuition** for how Type I/II/III boundaries behave, and how this behavior can be described by discharge-head relations (_Q–h_-plots). You will learn how the boundary conditions reflect the system characteristics, and you will get understanding in the general characteristics of the **groundwater–surface water interaction**.
+With the app you can build **intuition** for how Type I/II/III boundaries behave, and how this behavior can be described by discharge-head relations (_Q–h_-plots). You will learn how boundary conditions reflect system characteristics, and you will gain an understanding of the general characteristics of **groundwater–surface water interaction**.
 
 
 #### 🎯 Learning Objectives
@@ -519,8 +519,35 @@ By engaging with this application, you will be able to:
 - **Discuss** how the different boundary conditions can reflect heads and flows of real systems.
 
 #### 💧 Understanding Boundary Conditions
+Before we get into the mathematical implications of boundary conditions it’s important to have some examples of natural features that can be represented by each type of boundary condition.
+
+#### 🌍 Field examples of features represented by boundary conditions:
+
+**Type I (specified head):**
+- **Large Lake/Major River** with a relatively constant water level (head)
+- **Reservoir** with a water level maintained at a fixed elevation for water management purposes
+- **Adjacent Aquifer** beyond the model domain with a stable head and a source of water
+
+**Type II (specified flux)**
+- **Wells** with known pumping rate for agricultural or municipal use
+- **Recharge** infiltration of precipitation to the water table
+- **Impermeable material** is physical barrier to flow that forms a no-flow boundary such as a contact with low-permeability bedrock (e.g., granite mountains)
+- **A groundwater flow line** forms a no-flow boundary in a steady flow field
+- **A groundwater divide** forms a no-flow boundary in a steady flow system
+
+**Type III (head-dependent flux):**
+- **Stream/Aquifer Interaction** where flow into or out of the aquifer depends on the difference between the stream stage and the groundwater head as well as the conductance of the streambed material
+- **Drains** that keep water levels from getting too high in agricultural fields, or keep a foundation dry
+- **Evapotranspiration** where water discharges to the surface at a rate that depends on the depth of the water table
+- **Springs** that flow when the water table intersects the ground surface
+- **A semi-permeable barrier** such as a clay liner that separates the groundwater system from leachate 
+
+#### Background:
+
 Without boundary conditions, the groundwater flow equation could not be solved, because the equation is only a general solution to flow through a porous medium. We need to define how the system behaves at the limits of its domain and apply those boundary conditions to formulate a specific solution that can be solved.
+
 """)
+
 
 columns_fig = st.columns((1,4,1))
 with columns_fig[1]:
@@ -533,7 +560,7 @@ $ \\frac{d}{dx} K \\frac{dh}{dx} = 0$
 
 where *K* is the hydraulic conductivity and *h* is the hydraulic head. 
 
-If we include recharge, *R*, and define the aquifer thickness as equal to the head by assuming the bottom of the aquifer is horizontal at an elevation of zero to account for the unconfined condition, then the equation becomes: 
+**If we include recharge, *R*, and define the aquifer thickness as equal to the head by assuming the bottom of the aquifer is horizontal at an elevation of zero to account for the unconfined condition, then the one-dimensional steady-state flow equation becomes:**
 
 $ \\frac{d}{dx}(-hK\\frac{dh}{dx})=R$
 
@@ -567,7 +594,7 @@ Typical examples include **recharge** through the soil surface or **abstraction*
 intro_scenario1_block("Recharge")
 st.subheader("🔻 Type II – Specified Flux (Neumann Condition) - Special Case: :red[No-Flow]")
 st.markdown("""
-The no-flow condition defines that at the boundary no water enters or leaves the groundwater. In the subsequent figure this is the case for the left boundary. There is no variation in the general setup in comparison to the previous situations: The hydraulic conductivity of the underground is 5E-5 m/s. The groundwater is in direct contact with the lake on the right side with the lake head specified as 150 m above reference, and **recharge can be modified for three situations**.
+The no-flow condition defines that at the boundary no water enters or leaves the groundwater. In the subsequent figure this is the case for the left boundary. There is no variation in the general setup in comparison to the previous situations: The hydraulic conductivity of the aquifer is 5x10⁻⁵ m/s. The groundwater is in direct contact with the lake on the right side with the lake head specified as 150 m above reference, and **recharge can be modified for three situations**.
 """)
 
 intro_scenario1_block("No-flow")
@@ -588,7 +615,7 @@ When groundwater is **higher** than the boundary head, flow occurs **toward** th
  
 Such conditions are widely used to represent **dynamic interactions** between groundwater and surface water bodies.
 
-**For this example, we consider the surface water to be a river that is separated from the groundwater by a colmation layer. Flow on the left side is 0 m³/s, head of the river is 150 m, *K* of the aquifer is 5 x 10⁻⁵ m/s, and conductance of the river bed is 9 x 10⁻⁶ m²/s while the user varies recharge to be zero or +/- 250 mm/yr (i.e., +/- 8 x 10⁻⁹ m³/s which is 250 mm/yr over the 2500 m long system).**
+**For this example, we consider the surface water to be a river that is separated from the groundwater by a  layer that has been clogged with fine particles and thus has low permeability. Flow on the left side is 0 m³/s, head of the river is 150 m, *K* of the aquifer is 5 x 10⁻⁵ m/s, and conductance of the river bed is 9 x 10⁻⁶ m²/s while the user varies recharge to be zero or +/- 250 mm/yr (i.e., +/- 8 x 10⁻⁹ m³/s which is 250 mm/yr over the 2500 m long system).**
 
 **The model calculates the hydraulic heads required to drive the selected recharge to the river for this hydraulic conductivity and river bed conductance.**
 """)
