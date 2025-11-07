@@ -50,14 +50,14 @@ st.subheader(":blue[used in the Boundary Conditions Module]")
 
 # Define your table rows
 entries_abbrev = [
-    (r"$DRN$", "MODFLOW drain head-dependent-flow package"),
+    (r"$DRN$", "MODFLOW drain boundary package"),
     (r"$ET$", "evapotranspiration"),
-    (r"$EVT$", "MODFLOW evapotranspiration head-dependent-flow package"),
-    (r"$GHB$", "MODFLOW general head-dependent-flow package"),
-    (r"$MNW$", "MODFLOW multi-node well package"),
+    (r"$EVT$", "MODFLOW evapotranspiration boundary package"),
+    (r"$GHB$", "MODFLOW general head boundary package"),
+    (r"$MNW$", "MODFLOW multi-node well boundary package"),
     (r"$MODFLOW$", "USGS groundwater modeling software"),
     (r"$RIV$", "MODFLOW river boundary package"),
-    (r"$WEL$", "MODFLOW well constant-flux package"),
+    (r"$WEL$", "MODFLOW well boundarypackage"),
 ]
 
 entries_para = [
@@ -77,15 +77,15 @@ entries_para = [
     (r"$h_{gw}$", "head in groundwater system"),
     (r"$h_{lim}$", "head in well at which $Q$ is reduced from desired $Q$"),
     (r"$h_{well}$", "head in well bore"),
-    (r"$H_{B}$", "head in the e general head boundary condition"),
+    (r"$H_{B}$", "head in the general head boundary condition"),
     (r"$H_{D}$", "elevation of the drain boundary condition"),
     (r"$h_{RIV}$", "head in the river boundary condition"),
     (r"$K$", "hydraulic conductivity"),
     (r"$K_h$", "horizontal hydraulic conductivity"),
     (r"$K_v$", "vertical hydraulic conductivity"),
-    (r"$L}$", "length of river segment"),
+    (r"$L$", "length of river segment"),
     (r"$L_{B}$", "length of flow path between the boundary feature and the model"),
-    (r"$M$", "thickness of the riverbed sediments"),
+    (r"$M$", "thickness of riverbed sediments"),
     (r"$P$", "power (exponent) of the nonlinear discharge component of well loss"),
     (r"$Q$", "volumetric flow rate"),
     (r"$Q_{B}$", "volumetric flow rate to/from the general head boundary condition"),
