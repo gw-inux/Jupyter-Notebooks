@@ -120,7 +120,7 @@ def intro_scenario1_block(bc_kind):
         if bc_kind == "Recharge":
             # Fix R at +200 mm/yr; let user pick K
             K_label = st.radio(
-                "Hydraulic conductivity ***K*** (3 steps)",
+                "**MODIFY** the :red[**hydraulic conductivity _K_**] (3 steps)",
                 K_labels,
                 index=1,                      # default 5e-5 m/s
                 horizontal=True,
@@ -132,7 +132,7 @@ def intro_scenario1_block(bc_kind):
         else:
             # Pick R; keep K fixed at 5e-5
             R_label = st.radio(
-                "Recharge ***R*** (3 steps)",
+                "**MODIFY** the :blue[**recharge _R_**] (3 steps)",
                 list(R_map.keys()),
                 index=1,                      # default 0 mm/yr
                 horizontal=True,
@@ -568,6 +568,7 @@ They describe whether water can **enter** or **leave** the model domain, for exa
 columns_fig0 = st.columns((1,4,1))
 with columns_fig0[1]:
     st.image('06_Groundwater_modeling/FIGS/stream_groundwater_BC.png')
+    st.markdown("""_Figure: Conceptual groundwater flow diagram (from [the USGS Water Science School](https://www.usgs.gov/media/images/conceptual-groundwater-flow-diagram)_""") 
 
 st.markdown("""
 
@@ -593,7 +594,7 @@ Before we get into the mathematical implications of boundary conditions it’s i
 **For a location** where the hydraulic head is specified, we can represent it as a
 
 :orange[**Type I (specified head):**]
-- **Large Lake/Major River** with a relatively constant water level (head)
+- **Large Lake/Major River** with a relatively constant water level (head) (_as represented by :violet[the river] in the figure at the beginning, assuming the river is in **direct contact** with the groundwater_)
 - **Reservoir** with a water level maintained at a fixed elevation for water management purposes
 - **Adjacent Aquifer** beyond the model domain with a stable head and a source of water""")
 columns_fig1 = st.columns((1,1,1))
@@ -611,11 +612,11 @@ st.markdown("""
 **For a location** where the flux across the boundary is specified and the hydraulic head adjusts accordingly, we can represent it as
 
 :green[**Type II (specified flux)**]
-- **A well** with a known pumping rate for agricultural or municipal use
-- **Recharge** infiltration of precipitation to the water table
+- **A well** with a known pumping rate for agricultural or municipal use (_as represented by :blue[the well] in the figure at the beginning_)
+- **Recharge** infiltration of precipitation to the water table (_as represented by :green[the inflow through groundwater recharge] in the figure at the beginning_)
 - **Impermeable material** is physical barrier to flow that forms a no-flow boundary such as a contact with low-permeability bedrock (e.g., granite mountains)
 - **A groundwater flow line** forms a no-flow boundary in a steady flow field
-- **A groundwater divide** forms a no-flow boundary in a steady flow system""")
+- **A groundwater divide** forms a no-flow boundary in a steady flow system (_as represented by :red[the groundwater divide] in the figure at the beginning_)""")
 
 columns_fig2 = st.columns((1,1,1))
 with columns_fig2[0]:
@@ -632,7 +633,7 @@ st.markdown("""
 **For a location** where water exchange occurs through a resistance layer and depends on the head difference between the boundary and the aquifer, we can represent it as a
 
 :violet[**Type III (head-dependent flux):**]
-- **Stream/Aquifer Interaction** where flow into or out of the aquifer depends on the difference between the stream stage and the groundwater head as well as the conductance of the streambed material
+- **Stream/Aquifer Interaction** where flow into or out of the aquifer depends on the difference between the stream stage and the groundwater head as well as the conductance of the streambed material (_as represented by :violet[the river] in the figure at the beginning, assuming the river is in **indirect** contact with the groundwater_)
 - **Springs** that flow when the water table intersects the ground surface
 - **Drains** that keep water levels from getting too high in agricultural fields, or keep a foundation dry
 - **Underground mine shafts and tunnels** where inflow needs to be estimated to design pump systems to keep the mine dewatered
@@ -650,6 +651,7 @@ with columns_fig3[2]:
     st.image('06_Groundwater_modeling/FIGS/River01.jpg')
     st.markdown(":violet[*A river with a layer of resistive, fine-grained material between the river water and the groundwater.*]")
     
+st.subheader("💧 Interactive Exploration of Boundary Types and Q-h plots", divider="green")
 st.markdown("""
 #### Background:
 
@@ -664,13 +666,13 @@ with columns_fig4[1]:
 st.markdown("""
 To illustrate the idea, consider the **one-dimensional steady-state flow equation**, for a situation as shown in the figure above _(an unconfined groundwater system with one no-flow boundary and one specified head or optionally a head-dependent flux boundary)_:
 
-$ \\frac{d}{dx} K \\frac{dh}{dx} = 0$
+* $ \\frac{d}{dx} K \\frac{dh}{dx} = 0$
 
 where *K* is the hydraulic conductivity and *h* is the hydraulic head. 
 
 **If we include recharge, *R*, and define the aquifer thickness as equal to the head by assuming the bottom of the aquifer is horizontal at an elevation of zero to account for the unconfined condition, then the one-dimensional steady-state flow equation becomes:**
 
-$ \\frac{d}{dx}(-hK\\frac{dh}{dx})=R$
+* $ \\frac{d}{dx}(-hK\\frac{dh}{dx})=R$
 
 To solve this equation for $h(x)$, we define the head or flow at each end of the domain and a uniform flow over the length of the system. These are the **boundary conditions**.
 """)
@@ -683,9 +685,9 @@ The aquifer can either **discharge into** or **receive water from** the specifie
 
 The head remains constant, while the direction and rate of flow adapt to the hydraulic head difference.
 
-**For this example, flow on the left side is 0 m³/s, head of the lake is 150 m, and *K* of the aquifer is 5x10⁻⁵ m/s, while the user varies recharge to be zero or +/- 250 mm/yr (i.e., +/- 8 x 10⁻⁹ m³/s which is 250 mm/yr over the 2500 m long system).**
+**For this example, flow on the left side is 0 m³/s, head of the lake is 150 m, and *K* of the aquifer is 5x10⁻⁵ m/s, while the user varies recharge to be zero or +/- 250 mm/yr** (i.e., +/- 8 x 10⁻⁹ m³/s which is 250 mm/yr over the 2500 m long system).
 
-**The model calculates the hydraulic heads required to drive the selected recharge to the lake for this hydraulic conductivity.**
+**The model calculates the hydraulic heads required to drive the selected recharge to the lake for this hydraulic conductivity. The :blue[**blue dot**] represents the position for which in the right part of the figure the discharge-head relationship as *Q-h* plot is provided.**
 """)
 intro_scenario1_block("Specified head")
 
@@ -695,14 +697,16 @@ A **Type II** boundary condition prescribes a specified flux or head gradient ac
  
 Typical examples include **recharge** through the soil surface or **abstraction** by a pumping well.  
 
-**For this example, flow on the left side is 0 m³/s, head of the lake is 150 m, and recharge *R* is 8 x 10⁻⁹ m³/s (i.e., 250 mm/yr over the 2500 m long system), while the user varies hydraulic conductivity to be 5 x 10⁻⁵, 1 x 10⁻⁴, or 5 x 10⁻⁴ m/s.**
+**For this example, flow on the left side is 0 m³/s, head of the lake is 150 m, and recharge *R* is 8 x 10⁻⁹ m³/s** (i.e., 250 mm/yr over the 2500 m long system), **while the user varies hydraulic conductivity to be 5 x 10⁻⁵, 1 x 10⁻⁴, or 5 x 10⁻⁴ m/s.**
 
-**The model calculates the hydraulic heads required to drive the recharge to the lake given the selected hydraulic conductivity.**
+**The model calculates the hydraulic heads required to drive the recharge to the lake given the selected hydraulic conductivity.The :green[**green dot**] represents the position for which in the right part of the figure the discharge-head relationship as *Q-h* plot is provided.**
 """)
 intro_scenario1_block("Recharge")
 st.subheader("🔻 Type II – Specified Flux (Neumann Condition) - Special Case: :red[No-Flow]")
 st.markdown("""
 The no-flow condition defines that at the boundary no water enters or leaves the groundwater. In the subsequent figure this is the case for the left boundary. There is no variation in the general setup in comparison to the previous situations: The hydraulic conductivity of the aquifer is 5x10⁻⁵ m/s. The groundwater is in direct contact with the lake on the right side with the lake head specified as 150 m above reference, and **recharge can be modified for three situations**.
+
+The :orange[**orange dot**] represents the position for which in the right part of the figure the discharge-head relationship as *Q-h* plot is provided.**
 """)
 
 intro_scenario1_block("No-flow")
@@ -723,9 +727,9 @@ When groundwater is **higher** than the boundary head, flow occurs **toward** th
  
 Such conditions are widely used to represent **dynamic interactions** between groundwater and surface water bodies.
 
-**For this example, we consider the surface water to be a river that is separated from the groundwater by a  layer that has been clogged with fine particles and thus has low permeability. Flow on the left side is 0 m³/s, head of the river is 150 m, *K* of the aquifer is 5 x 10⁻⁵ m/s, and conductance of the river bed is 9 x 10⁻⁶ m²/s while the user varies recharge to be zero or +/- 250 mm/yr (i.e., +/- 8 x 10⁻⁹ m³/s which is 250 mm/yr over the 2500 m long system).**
+**For this example, we consider the surface water to be a river that is separated from the groundwater by a  layer that has been clogged with fine particles and thus has low permeability. Flow on the left side is 0 m³/s, head of the river is 150 m, *K* of the aquifer is 5 x 10⁻⁵ m/s, and conductance of the river bed is 9 x 10⁻⁶ m²/s while the user varies recharge to be zero or +/- 250 mm/yr** (i.e., +/- 8 x 10⁻⁹ m³/s which is 250 mm/yr over the 2500 m long system). 
 
-**The model calculates the hydraulic heads required to drive the selected recharge to the river for this hydraulic conductivity and river bed conductance.**
+**The model calculates the hydraulic heads required to drive the selected recharge to the river for this hydraulic conductivity and river bed conductance.** The :violet[**violet dot**] represents the position for which in the right part of the figure the discharge-head relationship as *Q-h* plot is provided.**
 """)
 
 intro_scenario1_block("Head-dep. flux")
@@ -766,6 +770,27 @@ render_toggle_container(
     content_fn=content_final_bc_intro,
     default_open=False,
 )
+
+st.subheader('✔️ Conclusion', divider = 'green')
+st.markdown("""
+In this introduction, you have seen how boundary conditions define the interaction between groundwater and its surroundings.
+Through simple 1D visualizations and *Q–h* plots, the three basic types of boundary conditions, (I) specified head, (II) specified flux, and (III) head-dependent flux, were illustrated.
+
+Boundary conditions are **essential to ensure a conceptually meaningful** representation of groundwater systems for modeling. Accordingly, they strongly influence model results and interpretation.
+
+For those who wish to go further, a dedicated [:blue[**Boundary Condition Module**]](https://gwp-boundary-conditions.streamlit.app/) provides a deeper exploration of each boundary type, including:
+* more detailed explanations and interactive plots for own investigations,
+* interactive *Q–h* plots for all three types of boundary conditions with several adjustable parameters,
+* an introduction and overview of MODFLOW-specific boundary condition packages (GHB, RIV, DRN, MNW, and ET) together with specifically adapted *Q–h* plots.
+
+These functionality comes together with
+* detailed, application-oriented explanations,
+* practical instructions and exercises with parameter variation and sensitivity tests,
+* integrated self-assessments for structured learning, and more.
+
+Access the Boundary Condition Module through the [Groundwater Projects Interactive Education Tools](https://gwp-boundary-conditions.streamlit.app/). 
+""")
+
 st.markdown('---')
 
 # Render footer with authors, institutions, and license logo in a single line
