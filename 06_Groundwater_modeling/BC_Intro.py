@@ -568,7 +568,7 @@ They describe whether water can **enter** or **leave** the model domain, for exa
 columns_fig0 = st.columns((1,4,1))
 with columns_fig0[1]:
     st.image('06_Groundwater_modeling/FIGS/stream_groundwater_BC.png')
-    st.markdown("""_Figure: Conceptual groundwater flow diagram (from [the USGS Water Science School](https://www.usgs.gov/media/images/conceptual-groundwater-flow-diagram)_""") 
+    st.markdown("""_Figure: Conceptual groundwater flow diagram (from [the USGS Water Science School](https://www.usgs.gov/media/images/conceptual-groundwater-flow-diagram)_)""") 
 
 st.markdown("""
 
