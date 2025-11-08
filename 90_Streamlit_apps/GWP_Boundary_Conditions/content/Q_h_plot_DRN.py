@@ -156,7 +156,7 @@ st.markdown("""
 The DRN package is particularly relevant in applied groundwater modeling at the field scale, especially in agricultural, construction, and mine settings where drains are an important part of the system.
 """)
 
-with st.expander("Tell me more about **the :green[application of DRN in Field-Scale Groundwater Modeling]**"):
+with st.expander("Tell me more about **the :green[application of DRN in Field-Scale Groundwater Modeling]**", icon ="🌍"):
 	
     st.markdown("""
     In field-scale groundwater models a DRN may be associated with one or many cells, and these cells can be anywhere within the three-dimensional model.
@@ -250,7 +250,7 @@ Some groundwater models need to allow outflow of groundwater when the groundwate
 """)
 
   
-with st.expander("Show me more about **the Theory**"):
+with st.expander("Show me more about **the Theory**", icon ="📑"):
     st.markdown("""
     This app calculates the flow between a model and a drain (DRN) depending on the drain elevation $H_D$ and the conductance $C_D$ between the boundary and the groundwater. The following figure illustrates some examples of features that require use of the DRN boundary.""")
     
@@ -274,7 +274,7 @@ with st.expander("Show me more about **the Theory**"):
     
     """)
     
-with st.expander('**Click here** to read how :green[**conductance is calculated**]'):
+with st.expander('**Click here** to read how :green[**conductance is calculated**]', icon ="📑"):
     st.markdown("""
     ### Calculating MODFLOW Drain Boundary Conductance
     """)

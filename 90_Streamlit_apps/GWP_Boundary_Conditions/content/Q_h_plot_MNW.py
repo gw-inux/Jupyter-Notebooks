@@ -208,7 +208,7 @@ left_co, cent_co, last_co = st.columns((1,58,1))
 with cent_co:
     st.image('90_Streamlit_apps/GWP_Boundary_Conditions/assets/images/MNWsketch6.png', caption="Illustration of the head losses that can lead to discharge reduction using MNW in MODFLOW. In situation (1) head in the well is above the threshold so the well is pumping at the desired rate. In situation (2) head in the well reached the threshold so the pumping rate is reduced to keep the head in the well at the threshold. In situation (3) head in the aquifer reached the threshold so the pump is shut off. (modified and enhanced from Shapiro et al., 1998)")
 
-with st.expander("Tell me more about **the :rainbow[application of MNW in Field-Scale Groundwater Modeling]**"):
+with st.expander("Tell me more about **the :rainbow[application of MNW in Field-Scale Groundwater Modeling]**", icon ="🌍"):
     st.markdown("""
     For MNW wells, parameter values can be specified that limit injection or discharge depending on the head in the well. MNW can account for head losses within the well, both linear (due to flow through the hydrostratigraphic unit and the well skin) and nonlinear (due to turbulence of flow converging on the well, moving through the well wall, and flowing through the tangle of pipes and wires within the wellbore). All these processes are accounted for in the cell-to-well conductance term $CWC$. If connectivity between the well and the hydrostratigraphic unit is high, there is no low-hydraulic conductivity skin around the well, and flow is laminar, then drawdown in the well is what would be expected in order to drive flow through the hydrostratigraphic unit to the well. 
     

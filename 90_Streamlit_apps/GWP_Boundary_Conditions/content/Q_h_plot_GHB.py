@@ -169,7 +169,7 @@ with cent_co:
 st.markdown("""A GHB differs from other head-dependent flow boundaries in that the relation between flow across the boundary and calculated head in the aquifer is continuously linear and there is no limit on the magnitude of flow that can occur.
 """)
 
-with st.expander("Tell me more about **the :orange[application of GHB in Field-Scale Groundwater Modeling]**"):
+with st.expander("Tell me more about **the :orange[application of GHB in Field-Scale Groundwater Modeling]**", icon ="🌍"):
     st.markdown("""
     In field-scale groundwater models, a GHB may represent a variety of physical features and be associated with one or many cells. These cells can be anywhere within the three-dimensional model.
     
@@ -247,7 +247,7 @@ st.subheader('🧪 Theory and Background', divider="orange")
 st.markdown("""
 The General Head Boundary (GHB), also referred to as the Head-Dependent Flux Boundary in MODFLOW, allows for a more realistic simulation of boundary conditions compared to specified head boundaries, as described below in **the Theory**, by enabling **exchange of water between the groundwater system and an external reservoir with a resistive lining**. In groundwater models, General Head Boundaries are used to simulate hydraulic interaction with external water bodies or groundwater zones adjacent to the model domain by specifying ("fixing") the head of the external feature. The conductance term determines how easily water can flow across the boundary.
 """)
-with st.expander("Show me more about **the Theory**"):
+with st.expander("Show me more about **the Theory**", icon ="📑"):
     st.markdown("""
         GHB boundaries differ from specified head boundaries.  For **specified head boundaries, the groundwater head is specified at a node within the model domain** and flow in or out of the node depends on head in the surrounding nodes along with the conductance between those nodes and the specified head node. A **GHB is a connection of a model node to an external source or sink**. In the case of a GHB, the groundwater head of the model node changes during the model simulation and the value of head in the groundwater system then determines the flow rate and direction as described by the following linear relationship:
         

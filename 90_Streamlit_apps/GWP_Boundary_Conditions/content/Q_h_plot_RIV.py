@@ -171,7 +171,7 @@ The RIV package is particularly relevant in applied groundwater modeling at the 
 left_co, cent_co, last_co = st.columns((10,40,10))
 with cent_co:
     st.image('90_Streamlit_apps/GWP_Boundary_Conditions/assets/images/RIV_nearWell.png', caption="Conceptual illustration of the river/groundwater interaction.")
-with st.expander("Tell me more about **the :violet[application of RIV in Field-Scale Groundwater Modeling]**"):
+with st.expander("Tell me more about **the :violet[application of RIV in Field-Scale Groundwater Modeling]**", icon ="🌍"):
 
     st.markdown("""
     In field-scale groundwater models the RIV boundary may be used to define river systems throughout the model domain by adding a RIV boundary to many cells. The image below illustrates a simulation that coupled a MODFLOW model with a river system to a MODSIM river-operations model in a hypothetical basin. It demonstrated the impact of spatio-temporal groundwater-surface-water exchanges on river operations.
@@ -241,7 +241,7 @@ st.markdown("""
 In groundwater modeling, simulating the interaction between a hydrostratigraphic unit and a river is essential for understanding stream depletion, baseflow contribution, and groundwater–surface water exchange. But how do we realistically represent a river in a groundwater model?
 """)
 
-with st.expander("Show me more about **the Theory**"):
+with st.expander("Show me more about **the Theory**", icon ="📑"):
     st.markdown("""
     The flow between a stream and groundwater, $Q_{RIV}$, depends on the groundwater head in the river $h_{gw}$. 
     The relationship is as follows:
@@ -277,7 +277,7 @@ with st.expander("Show me more about **the Theory**"):
     st.write(':blue[**If there is a significant gain or loss of flow, the river head may rise or fall, but the MODFLOW RIV package will continue to use the same river head.**] :green[If the modeler wants to represent feedback between the amount of water lost or gained and the elevation of the river head, the STR (stream package), SFR (stream-flow routing), or DAFLOW (delayed flow) packages can be used. In these alternative packages, the concepts for flow between the river and the groundwater do not change from what is presented here.]')
 
 
-with st.expander('**Click here** to read about the :green[**elevations used**] in the River Boundary condition of MODFLOW'):
+with st.expander('**Click here** to read about the :green[**elevations used**] in the River Boundary condition of MODFLOW', icon ="📑"):
     st.markdown("""
     ### Elevations used in the River Boundary of MODFLOW
     """)
@@ -304,7 +304,7 @@ with st.expander('**Click here** to read about the :green[**elevations used**] i
  
     """)
 
-with st.expander('**Click here** to read how :green[**conductance is calculated**]'):
+with st.expander('**Click here** to read how :green[**conductance is calculated**]', icon ="📑"):
     st.markdown("""
     ### Calculating MODFLOW River Boundary Conductance
     """)
@@ -340,7 +340,7 @@ with st.expander('**Click here** to read how :green[**conductance is calculated*
     """)
     st.latex(r'''Q = C \Delta h''')
 
-with st.expander('**Click here** to read how flow is calculated when the :green[**groundwater head is lower than the river bottom**]'):
+with st.expander('**Click here** to read how flow is calculated when the :green[**groundwater head is lower than the river bottom**]', icon ="📑"):
     st.markdown("""
     ### A "Disconnected" River occurs when the Groundwater Head is Lower than the River Bottom""")
     
