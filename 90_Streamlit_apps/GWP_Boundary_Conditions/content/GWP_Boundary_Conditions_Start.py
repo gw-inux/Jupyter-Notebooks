@@ -71,7 +71,7 @@ with cent_co:
     st.image('90_Streamlit_apps/GWP_Boundary_Conditions/assets/images/gwp_boundary_title.png',caption="Schematic representation of groundwater flow. Physical features of the area like the lake, stream, and pumping well are represented by boundary conditions. Figure modified from [Grannemann et al. 2000](https://mi.water.usgs.gov/pubs/WRIR/WRIR00-4008/).")
     
 st.markdown("""
-💡 This interactive module is designed to deepen your understanding of the basic ways in which different types of boundary conditions - specified head, specified flow, and head-dependent flow - influence the magnitude and direction of groundwater flow when used in solving the partial differential equation for groundwater flow.
+💡 This interactive module is designed **to deepen your understanding** of the basic ways in which different types of boundary conditions - specified head, specified flow, and head-dependent flow - influence the magnitude and direction of groundwater flow when used in solving the partial differential equation for groundwater flow. (_There is an additional (basic introduction app)[https://boundary-conditions-intro.streamlit.app/] for those who are completely new to the topic._)
 
 💡 This module offers intuitive visualizations, conceptual explanations, and interactive tools to help bridge theory and application for beginning modelers, advanced students, and practicing hydrogeologists. To get the most out of this resource, see the **How to Use this Module** section below.
 """)
@@ -90,6 +90,8 @@ st.markdown("""
 A flexible resource for both beginners and experienced groundwater modelers.
 
 - ***Who is this module for?*** This module is intended for beginners who know a little about groundwater models and are ready to learn about boundary conditions, as well as advanced and experienced users who wish to refresh their understanding of specific boundary types. A basic familiarity with hydrogeology and groundwater flow is recommended, but no prior experience with MODFLOW is required.
+
+👉 For users who are completely new to the topic, a separate (introductory application)[https://boundary-conditions-intro.streamlit.app/] is available that provides a visual explanation of the fundamental concepts of boundary conditions before exploring their implementation in groundwater models.
 
 - ***Structure of the module***: The :red[📕 Introduction] Section provides an overview of groundwater models and introduces the role of boundary conditions in MODFLOW. Following this, each boundary condition is presented in its own dedicated section, where the concepts, applications, and implications are explained in detail. ***Note: rectangles with a downward caret "v" expand to provide more detailed information or a self-assessment:***
 """)

@@ -162,7 +162,7 @@ By engaging with this section of the interactive module, you will be able to:
 # --- INITIAL ASSESSMENT ---
 def content_initial():
     st.markdown("""#### Initial assessment""")
-    st.info("You can use the initial questions to assess your existing knowledge.")
+    st.info("You can use the initial questions to assess your existing knowledge. (_There is an additional (basic introduction app)[https://boundary-conditions-intro.streamlit.app/] if you want to recap the fundamental knowledge about boundary conditions._)")
     
     # Render questions in a 2x2 grid (row-wise, aligned)
     for row in [(0, 1), (2, 3)]:
