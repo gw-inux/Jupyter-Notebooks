@@ -651,7 +651,7 @@ with columns_fig3[2]:
     st.image('06_Groundwater_modeling/FIGS/River01.jpg')
     st.markdown(":violet[*A river with a layer of resistive, fine-grained material between the river water and the groundwater.*]")
     
-st.subheader("💧 Interactive Exploration of Boundary Types and Q-h plots", divider="green")
+st.subheader("💧 Interactive Exploration of Boundary Types and _Q-h_ plots", divider="green")
 st.markdown("""
 #### Background:
 
