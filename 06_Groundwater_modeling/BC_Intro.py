@@ -568,7 +568,7 @@ They describe whether water can **enter** or **leave** the model domain, for exa
 columns_fig0 = st.columns((1,4,1))
 with columns_fig0[1]:
     st.image('06_Groundwater_modeling/FIGS/stream_groundwater_BC.png')
-    st.markdown("""_Figure: Conceptual groundwater flow diagram (from [the USGS Water Science School](https://www.usgs.gov/media/images/conceptual-groundwater-flow-diagram)_)""") 
+    st.markdown("""_Figure: Conceptual groundwater flow diagram (from [the USGS Water Science School](https://www.usgs.gov/media/images/conceptual-groundwater-flow-diagram))_""") 
 
 st.markdown("""
 
@@ -687,7 +687,7 @@ The head remains constant, while the direction and rate of flow adapt to the hyd
 
 **For this example, flow on the left side is 0 m³/s, head of the lake is 150 m, and *K* of the aquifer is 5x10⁻⁵ m/s, while the user varies recharge to be zero or +/- 250 mm/yr** (i.e., +/- 8 x 10⁻⁹ m³/s which is 250 mm/yr over the 2500 m long system).
 
-**The model calculates the hydraulic heads required to drive the selected recharge to the lake for this hydraulic conductivity. The :blue[**blue dot**] represents the position for which in the right part of the figure the discharge-head relationship as *Q-h* plot is provided.**
+**The model calculates the hydraulic heads required to drive the selected recharge to the lake for this hydraulic conductivity. The :blue[**blue dot**] is the location represented by the discharge-head (*Q-h*) plot on the right.**
 """)
 intro_scenario1_block("Specified head")
 
@@ -699,14 +699,14 @@ Typical examples include **recharge** through the soil surface or **abstraction*
 
 **For this example, flow on the left side is 0 m³/s, head of the lake is 150 m, and recharge *R* is 8 x 10⁻⁹ m³/s** (i.e., 250 mm/yr over the 2500 m long system), **while the user varies hydraulic conductivity to be 5 x 10⁻⁵, 1 x 10⁻⁴, or 5 x 10⁻⁴ m/s.**
 
-**The model calculates the hydraulic heads required to drive the recharge to the lake given the selected hydraulic conductivity.The :green[**green dot**] represents the position for which in the right part of the figure the discharge-head relationship as *Q-h* plot is provided.**
+**The model calculates the hydraulic heads required to drive the recharge to the lake given the selected hydraulic conductivity. The :green[**green dot**] is the location represented by the discharge-head (*Q-h*) plot on the right.**
 """)
 intro_scenario1_block("Recharge")
 st.subheader("🔻 Type II – Specified Flux (Neumann Condition) - Special Case: :red[No-Flow]")
 st.markdown("""
 The no-flow condition defines that at the boundary no water enters or leaves the groundwater. In the subsequent figure this is the case for the left boundary. There is no variation in the general setup in comparison to the previous situations: The hydraulic conductivity of the aquifer is 5x10⁻⁵ m/s. The groundwater is in direct contact with the lake on the right side with the lake head specified as 150 m above reference, and **recharge can be modified for three situations**.
 
-The :orange[**orange dot**] represents the position for which in the right part of the figure the discharge-head relationship as *Q-h* plot is provided.**
+The :orange[**orange dot**] is the location represented by the discharge-head (*Q-h*) plot on the right.**
 """)
 
 intro_scenario1_block("No-flow")
@@ -729,7 +729,7 @@ Such conditions are widely used to represent **dynamic interactions** between gr
 
 **For this example, we consider the surface water to be a river that is separated from the groundwater by a  layer that has been clogged with fine particles and thus has low permeability. Flow on the left side is 0 m³/s, head of the river is 150 m, *K* of the aquifer is 5 x 10⁻⁵ m/s, and conductance of the river bed is 9 x 10⁻⁶ m²/s while the user varies recharge to be zero or +/- 250 mm/yr** (i.e., +/- 8 x 10⁻⁹ m³/s which is 250 mm/yr over the 2500 m long system). 
 
-**The model calculates the hydraulic heads required to drive the selected recharge to the river for this hydraulic conductivity and river bed conductance.** The :violet[**violet dot**] represents the position for which in the right part of the figure the discharge-head relationship as *Q-h* plot is provided.**
+**The model calculates the hydraulic heads required to drive the selected recharge to the river for this hydraulic conductivity and river bed conductance.** The :violet[**violet dot**] is the location represented by the discharge-head (*Q-h*) plot on the right.**
 """)
 
 intro_scenario1_block("Head-dep. flux")
@@ -773,22 +773,20 @@ render_toggle_container(
 
 st.subheader('✔️ Conclusion', divider = 'green')
 st.markdown("""
-In this introduction, you have seen how boundary conditions define the interaction between groundwater and its surroundings.
+This introduction has shown how boundary conditions define the interaction between groundwater and its surroundings.
 Through simple 1D visualizations and *Q–h* plots, the three basic types of boundary conditions, (I) specified head, (II) specified flux, and (III) head-dependent flux, were illustrated.
 
-Boundary conditions are **essential to ensure a conceptually meaningful** representation of groundwater systems for modeling. Accordingly, they strongly influence model results and interpretation.
+Boundary conditions are **essential to defining a conceptually meaningful representation of a groundwater system**. Accordingly, they strongly influence groundwater model results and interpretation.
 
-For those who wish to go further, a dedicated [:blue[**Boundary Condition Module**]](https://gwp-boundary-conditions.streamlit.app/) provides a deeper exploration of each boundary type, including:
-* more detailed explanations and interactive plots for own investigations,
-* interactive *Q–h* plots for all three types of boundary conditions with several adjustable parameters,
-* an introduction and overview of MODFLOW-specific boundary condition packages (GHB, RIV, DRN, MNW, and ET) together with specifically adapted *Q–h* plots.
+For those who wish to go further, the [:blue[**Boundary Condition Module**]](https://gw-project.org/interactive-education/module-boundary-conditions-for-groundwater-modeling/) provides deeper exploration of each boundary type, including:
+* more detailed explanations and interactive plots for your own investigation,
+* interactive *Q–h* plots for all three types of boundary conditions with incremental controls for several adjustable parameters, as well as
+* introduction and overview of MODFLOW-specific boundary condition packages (GHB, RIV, DRN, MNW, and EVT) with specifically adapted *Q–h* plots.
 
-These functionality comes together with
-* detailed, application-oriented explanations,
-* practical instructions and exercises with parameter variation and sensitivity tests,
+These functionalities come together with
+* detailed, application-oriented, explanations;
+* practical instructions and exercises with parameter variation and sensitivity evaluations;
 * integrated self-assessments for structured learning, and more.
-
-Access the Boundary Condition Module through the [Groundwater Projects Interactive Education Tools](https://gwp-boundary-conditions.streamlit.app/). 
 """)
 
 st.markdown('---')
