@@ -568,7 +568,7 @@ They describe whether water can **enter** or **leave** the model domain, for exa
 columns_fig0 = st.columns((1,4,1))
 with columns_fig0[1]:
     st.image('06_Groundwater_modeling/FIGS/stream_groundwater_BC.png')
-    st.markdown("""_Figure: Conceptual groundwater flow diagram (from [the USGS Water Science School](https://www.usgs.gov/media/images/conceptual-groundwater-flow-diagram))_""") 
+    st.markdown("""_Conceptual Groundwater Flow Diagram (from [the USGS Water Science School](https://www.usgs.gov/media/images/conceptual-groundwater-flow-diagram)_""") 
 
 st.markdown("""
 
@@ -612,11 +612,11 @@ st.markdown("""
 **For a location** where the flux across the boundary is specified and the hydraulic head adjusts accordingly, we can represent it as
 
 :green[**Type II (specified flux)**]
-- **A well** with a known pumping rate for agricultural or municipal use (_as represented by :blue[the well] in the figure at the beginning_)
-- **Recharge** infiltration of precipitation to the water table (_as represented by :green[the inflow through groundwater recharge] in the figure at the beginning_)
+- **A well** with a known pumping rate for agricultural or municipal use (_as represented by :blue[the well] in the Conceptual Groundwater Flow Diagram of the Motivation section_)
+- **Recharge** infiltration of precipitation to the water table (_as represented by :green[the inflow through groundwater recharge] in the Conceptual Groundwater Flow Diagram of the Motivation section_)
 - **Impermeable material** is physical barrier to flow that forms a no-flow boundary such as a contact with low-permeability bedrock (e.g., granite mountains)
 - **A groundwater flow line** forms a no-flow boundary in a steady flow field
-- **A groundwater divide** forms a no-flow boundary in a steady flow system (_as represented by :red[the groundwater divide] in the figure at the beginning_)""")
+- **A groundwater divide** forms a no-flow boundary in a steady flow system (_as represented by :red[the groundwater divide] in the Conceptual Groundwater Flow Diagram of the Motivation section_)""")
 
 columns_fig2 = st.columns((1,1,1))
 with columns_fig2[0]:
@@ -633,7 +633,7 @@ st.markdown("""
 **For a location** where water exchange occurs through a resistance layer and depends on the head difference between the boundary and the aquifer, we can represent it as a
 
 :violet[**Type III (head-dependent flux):**]
-- **Stream/Aquifer Interaction** where flow into or out of the aquifer depends on the difference between the stream stage and the groundwater head as well as the conductance of the streambed material (_as represented by :violet[the river] in the figure at the beginning, assuming the river is in **indirect** contact with the groundwater_)
+- **Stream/Aquifer Interaction** where flow into or out of the aquifer depends on the difference between the stream stage and the groundwater head as well as the conductance of the streambed material (_as represented by :violet[the river] in the Conceptual Groundwater Flow Diagram of the Motivation section, assuming the river is in **indirect** contact with the groundwater_)
 - **Springs** that flow when the water table intersects the ground surface
 - **Drains** that keep water levels from getting too high in agricultural fields, or keep a foundation dry
 - **Underground mine shafts and tunnels** where inflow needs to be estimated to design pump systems to keep the mine dewatered
