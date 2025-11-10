@@ -39,6 +39,15 @@ st.markdown("""
         background-color: rgba(44, 123, 229, 0.1) !important;
         border-radius: 5px !important;
     }
+    .subheader-label {
+        font-style: italic;
+        color: black;
+        font-size: 1rem;
+        text-decoration: underline;
+        margin-left: 0.5rem;
+        margin-top: -0.5rem;
+        margin-bottom: 0.5rem;
+    }
     section[data-testid="stSidebar"] .block-container .stButton {
         margin-top: 0rem !important;
         margin-bottom: 0rem !important;
@@ -53,39 +62,39 @@ st.markdown("""
 
 # --- Pages definition / The content of your application / Header are with the target 'None' ---
 pages = {
-    "🔶 Einführung": {
+    "🟩 Einführung": {
         "--- Modellbeispiele 📖---": None,
-        "1D GWF 💧": "90_Streamlit_apps/SYMPLE25/pages/00_OM/1D_GWF_Unconfined Recharge.py",
-        "Well Capture 🌀": "90_Streamlit_apps/SYMPLE25/pages/00_OM/WellCapture.py",
+        "💧 1D GWF": "90_Streamlit_apps/SYMPLE25/pages/00_OM/1D_GWF_Unconfined Recharge.py",
+        "🌀 Well Capture": "90_Streamlit_apps/SYMPLE25/pages/00_OM/WellCapture.py",
         "--- Folien 🚀 ---": None,
-        "T01: Einführung 📝": "90_Streamlit_apps/MWW01/SlideJet_Presentations/GWBmC_WS2526_V01_SJpresent.py",
+        "📝 T01: Einführung": "90_Streamlit_apps/MWW01/SlideJet_Presentations/GWBmC_WS2526_V01_SJpresent.py",
     },
-    "🔶 Konzeptionelles Modell": {
-        "Intro Randbedingungen 💡": "06_Groundwater_modeling/BC_Intro.py",
-        "1D GWF 💧": "04_Basic_hydrogeology/GWF_1D_unconf_analytic_BC_EX_DE.py",
+    "🟫 Konzeptionelles Modell": {
+        "💡 Intro Randbedingungen": "06_Groundwater_modeling/BC_Intro.py",
+        "💧 1D GWF": "04_Basic_hydrogeology/GWF_1D_unconf_analytic_BC_EX_DE.py",
         "--- Folien 🚀---": None,
-        "T02: Konzeptionelles Modell 📝": "90_Streamlit_apps/MWW01/SlideJet_Presentations/GWBmC_WS2526_V02_SJpresent.py",
-        "LV 6.11.25: Folien zum Start 📝": "90_Streamlit_apps/MWW01/SlideJet_Presentations/GWBmC_WS2526_V04_Start_SJpresent.py",
+        "📝 T02: Konzeptionelles Modell": "90_Streamlit_apps/MWW01/SlideJet_Presentations/GWBmC_WS2526_V02_SJpresent.py",
+        "📑 LV 6.11.25: Folien zum Start": "90_Streamlit_apps/MWW01/SlideJet_Presentations/GWBmC_WS2526_V04_Start_SJpresent.py",
     },
-    "🔶 Grundwasserströmung": {
+    "🟦 Grundwasserströmung": {
         "--- Modellbeispiele 📖---": None,
-        "1D FD Schema 💧": "06_Groundwater_modeling/GWF_1D_conf_FD.py",
+        "🧮 1D FD Schema": "06_Groundwater_modeling/GWF_1D_conf_FD.py",
         "--- MODFLOW tutorials 📋 ---": None,
-        "MODFLOW Pumping Test": "90_Streamlit_apps/SYMPLE25/pages/M1B/Theis_pumping_Tutorial.py",
-        "2D Synthetic Modell": "90_Streamlit_apps/SYMPLE25/pages/M1C/Tutorial_2D_Synth.py",
+        "💻 MODFLOW Pumping Test": "90_Streamlit_apps/SYMPLE25/pages/M1B/Theis_pumping_Tutorial.py",
+        "💻 2D Synthetic Modell": "90_Streamlit_apps/SYMPLE25/pages/M1C/Tutorial_2D_Synth.py",
         "--- Folien 🚀---": None,
-        "T03: Numerische GW-Strömungsmod. 📝": "90_Streamlit_apps/MWW01/SlideJet_Presentations/GWBmC_WS2526_T03_Stroemungsmodellierung_SJpresent.py",
+        "📝 T03: Numerische GW-Strömungsmod.": "90_Streamlit_apps/MWW01/SlideJet_Presentations/GWBmC_WS2526_T03_Stroemungsmodellierung_SJpresent.py",
     },
-    "🔶 Transport": {
-        "--- Folien 🚀---": None,
-    },
-    "🔶 Kalibrierung": {
+    "🟪 Transport": {
         "--- Folien 🚀---": None,
     },
-    "🔶 Anwendungen": {
+    "🟨 Kalibrierung": {
         "--- Folien 🚀---": None,
     },
-    "🔷 General Info": {
+    "🟧 Anwendungen": {
+        "--- Folien 🚀---": None,
+    },
+    "ℹ️ General Info": {
         "About": "90_Streamlit_apps/MWW01/content/GROWi26_About.py",
     }
 }
@@ -122,7 +131,8 @@ for section, subpages in pages.items():
                 st.sidebar.markdown(f"<div class='subheader-label'>{label.replace('---', '').strip()}</div>", unsafe_allow_html=True)
             else:
                 is_selected = st.session_state.selected_path == path
-                display_label = f"👉 {label}" if is_selected else label
+#                display_label = f"👉 {label}" if is_selected else label
+                display_label = f"{label} 👈" if is_selected else label
                 indent, content = st.sidebar.columns([0.1, 0.9])
                 with content:
                     if st.button(display_label, key=f"{section}_{label}"):
