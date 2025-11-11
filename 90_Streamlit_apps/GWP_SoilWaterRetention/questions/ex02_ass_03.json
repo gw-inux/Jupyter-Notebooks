@@ -1,0 +1,68 @@
+[
+  {
+    "question": "A) What does the van Genuchten α parameter primarily control? (Mark ALL correct answers)",
+    "options": {
+      "A) Onset of desaturation": true,
+      "B) Slope of the retention curve": false,
+      "C) Air entry pressure": true,
+      "D) Saturated hydraulic conductivity": false
+    },
+    "success": "✅ Yes. α controls the air-entry pressure and shifts the desaturation curve.",
+    "error": "❌ α does not affect slope directly and is unrelated to conductivity."
+  },
+  {
+    "question": "A) How can you distinguish a silt soil from a sandy soil using the retention curve? (Mark ALL correct answers)",
+    "options": {
+      "A) Silt soils show a flatter SWRC and retain more water": true,
+      "B) Sandy soils show abrupt drop in θ with suction": true,
+      "C) Silt soils desaturate at lower pressure heads": false,
+      "D) Sandy soils maintain higher kr at low θ": false
+    },
+    "success": "✅ Correct. Textural differences affect both shape and position of the retention curve.",
+    "error": "❌ Check how each soil type desaturates and retains water across pressure head."
+  },
+  {
+    "question": "A) What defines the effective field capacity (eFC)? (Mark ALL correct answers)",
+    "options": {
+      "A) Difference between FC and PWP": true,
+      "B) Equal to saturated water content": false,
+      "C) It represents the range available to plants": true,
+      "D) It depends on α and n": true
+    },
+    "success": "✅ Correct. eFC is the difference between FC and PWP and is influenced by α and n.",
+    "error": "❌ Recheck definitions: θs ≠ eFC and parameter impact matters."
+  },
+  {
+    "question": "A) Which soil shows the slowest drainage and highest field capacity? (Mark ALL correct answers)",
+    "options": {
+      "A) Dataset 3": false,
+      "B) Dataset 2": true,
+      "C) Dataset 1": false,
+      "D) None – they all drain equally": false
+    },
+    "success": "✅ Correct. Dataset 2 shows flatter curves and higher retention, ideal for field capacity.",
+    "error": "❌ Refer to how the datasets behave in the plotted suction vs θ curves."
+  },
+  {
+    "question": "A) How is the relative permeability (kr) curve typically related to the water content? (Mark ALL correct answers)",
+    "options": {
+      "A) kr decreases non-linearly with θ": true,
+      "B) kr remains high throughout desaturation": false,
+      "C) Sandy soils lose kr more rapidly": true,
+      "D) kr is unrelated to θ": false
+    },
+    "success": "✅ Excellent. kr drops off quickly with θ, especially in coarse soils.",
+    "error": "❌ Think about how kr is linked to saturation and soil texture."
+  },
+  {
+    "question": "A) What is the practical relevance of plotting kr and PWP together? (Mark ALL correct answers)",
+    "options": {
+      "A) kr shows how water moves under unsaturated conditions": true,
+      "B) PWP defines limits for plant water uptake": true,
+      "C) Together they help assess hydraulic and agronomic function": true,
+      "D) They are both constant for all soil types": false
+    },
+    "success": "✅ Great insight! Combining kr and PWP supports both hydraulic and agricultural evaluations.",
+    "error": "❌ Remember: kr and PWP vary by soil and help inform water movement and plant health."
+  }
+]

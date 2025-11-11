@@ -1,0 +1,46 @@
+[
+{
+"question": "What does a soil water retention curve describe? (Mark ALL correct answers)",
+"options": {
+"A) The relationship between volumetric water content and suction pressure": true,
+"B) The time it takes water to infiltrate a soil column": false,
+"C) How tightly water is held in soil at different moisture levels": true,
+"D) The pressure head required to achieve saturation": false
+},
+"success": "✅ Correct. Retention curves show how water content varies with suction (capillary pressure).",
+"error": "❌ It describes θ–suction relations, not infiltration time or saturation mechanics."
+},
+{
+"question": "What are typical physical bounds of volumetric water content in soil? (Mark ALL correct answers)",
+"options": {
+"A) Between θr and θs": true,
+"B) Always less than θr": false,
+"C) Never exceeds θs": true,
+"D) Can be negative under extreme suction": false
+},
+"success": "✅ Correct. θ should always lie between residual and saturated values.",
+"error": "❌ Water content is bounded: it cannot exceed θs or be less than θr."
+},
+{
+"question": "What does the α parameter in the van Genuchten model represent? (Mark ALL correct answers)",
+"options": {
+"A) The inverse of air-entry suction": true,
+"B) A scaling factor for suction head": true,
+"C) A measure of pore-size uniformity": false,
+"D) The hydraulic conductivity of the soil": false
+},
+"success": "✅ Yes! α controls where the curve begins to drop and is inversely related to air-entry pressure.",
+"error": "❌ α is not a conductivity or pore-size uniformity term."
+},
+{
+"question": "Which variables are directly used in the van Genuchten retention equation? (Mark ALL correct answers)",
+"options": {
+"A) Saturated and residual water content (θs, θr)": true,
+"B) Suction pressure head (h)": true,
+"C) Saturated hydraulic conductivity (Ks)": false,
+"D) van Genuchten shape parameters (α, n)": true
+},
+"success": "✅ Correct. θs, θr, α, n, and h are inputs to the retention function.",
+"error": "❌ Ks is not part of the retention equation — only used for K(h) later."
+}
+]

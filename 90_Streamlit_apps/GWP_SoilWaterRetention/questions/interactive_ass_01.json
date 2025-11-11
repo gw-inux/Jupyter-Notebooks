@@ -1,0 +1,46 @@
+[
+  {
+    "question": "A) What does volumetric water content ($\\theta$) represent in unsaturated soils? (Mark ALL correct answers)",
+    "options": {
+      "A) The volume of water per total soil volume": true,
+      "B) The total porosity of the soil": false,
+      "C) The pressure head in the soil profile": false,
+      "D) The volumetric ratio of air-filled pores to solids": false
+    },
+    "success": "✅ Correct. Volumetric water content quantifies the water volume per unit soil volume.",
+    "error": "❌ Not quite. $\\theta$ is the volumetric ratio of water to total soil volume."
+  },
+  {
+    "question": "A) Which statements about residual water content ($\\theta_r$) are correct? (Mark ALL correct answers)",
+    "options": {
+      "A) It refers to water that remains in the soil but is not freely mobile": true,
+      "B) It corresponds to the water content at saturation": false,
+      "C) It is influenced by pore-size distribution and soil texture": true,
+      "D) It marks the lower bound of plant-available water": false
+    },
+    "success": "✅ Yes! $\\theta_r$ reflects tightly held, immobile water and depends on soil microstructure.",
+    "error": "❌ Not quite. Residual water content is immobile and below the plant-available range."
+  },
+  {
+    "question": "A) What defines the permanent wilting point (PWP)? (Mark ALL correct answers)",
+    "options": {
+      "A) It is the suction level where most plants can no longer extract water": true,
+      "B) It marks the lower limit of plant-available water": true,
+      "C) It corresponds to field capacity conditions": false,
+      "D) It is typically observed around a suction of 1500 cm": true
+    },
+    "success": "✅ Correct. PWP is a soil suction threshold that limits plant uptake.",
+    "error": "❌ Review the concept — PWP is where plants permanently wilt due to unavailability of water."
+  },
+  {
+    "question": "A) Which of the following statements about field capacity (FC) are true? (Mark ALL correct answers)",
+    "options": {
+      "A) FC refers to the moisture content after gravitational drainage slows": true,
+      "B) FC defines the upper boundary of plant-available water": true,
+      "C) FC equals the saturated water content": false,
+      "D) FC is reached when soil pores are completely filled with water": false
+    },
+    "success": "✅ Well done. FC is the post-drainage condition just before water becomes unavailable.",
+    "error": "❌ Not quite. FC is not saturation — it's the drained, plant-available upper limit."
+  }
+]

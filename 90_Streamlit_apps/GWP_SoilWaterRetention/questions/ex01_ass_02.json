@@ -1,0 +1,24 @@
+[
+{
+"question": "Which soil does the measured dataset labeled 'Soil 1' most likely represent?",
+"options": {
+"A) Soil 1 = Sand": true,
+"B) Soil 1 = Loam": false,
+"C) Soil 1 = Silt": false,
+"D) Soil 1 = Clay": false
+},
+"success": "✅ Correct – Soil 1 exhibits a steep drop in water content at low suction pressures, typical for sandy soils.",
+"error": "❌ Not quite. Soil 1 drains rapidly and retains little moisture at high suction — that’s typical of sandy soils."
+},
+{
+"question": "Which soil does the measured dataset labeled 'Soil 2' most likely represent?",
+"options": {
+"A) Soil 2 = Sand": true,
+"B) Soil 2 = Loam": false,
+"C) Soil 2 = Silt": true,
+"D) Soil 2 = Clay": false
+},
+"success": "✅ Correct – Soil 2 retains high moisture even under strong suction, a hallmark of silt-rich soils.",
+"error": "❌ Try again. Soil 2 holds onto water over a wide suction range, which is characteristic of silt."
+}
+]

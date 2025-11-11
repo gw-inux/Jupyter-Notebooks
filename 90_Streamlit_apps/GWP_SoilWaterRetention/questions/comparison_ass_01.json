@@ -1,0 +1,46 @@
+[
+{
+"question": "A) What is the primary reason to compare multiple soil water retention curves across soil types? (Mark ALL correct answers)",
+"options": {
+"A) To identify soils with the highest porosity": false,
+"B) To evaluate differences in plant-available water across soil textures": true,
+"C) To analyze how hydraulic properties vary due to texture and structure": true,
+"D) To estimate soil color from retention data": false
+},
+"success": "✅ Correct. Comparing retention curves reveals texture-dependent water availability and hydraulic behavior.",
+"error": "❌ The focus is on water retention behavior, not soil color or total porosity alone."
+},
+{
+"question": "A) Which parameter combination generally corresponds to sandy soils in the van Genuchten model? (Mark ALL correct answers)",
+"options": {
+"A) Low \\u03b8_s, high n, high \\u03b1": true,
+"B) High \\u03b8_r, low \\u03b1": false,
+"C) High K_s, high n": true,
+"D) Low n, low \\u03b1": false
+},
+"success": "✅ Correct. Sandy soils typically drain quickly due to large pores (high n, high α) and have high K_s.",
+"error": "❌ Sandy soils typically have high α, high n, and low θ_r."
+},
+{
+"question": "A) Which soil texture generally shows the highest field capacity (FC) and permanent wilting point (PWP)? (Mark ALL correct answers)",
+"options": {
+"A) Sand": false,
+"B) Loamy Sand": false,
+"C) Clay": true,
+"D) Silty Clay Loam": true
+},
+"success": "✅ Correct. Fine-textured soils like clay and silty clay loam hold more water at FC and PWP.",
+"error": "❌ Coarse soils retain less water. FC and PWP are typically highest in fine-textured soils."
+},
+{
+"question": "A) What factors can be evaluated using the dual-dataset comparison of SWRCs in the app? (Mark ALL correct answers)",
+"options": {
+"A) Changes in PWP and FC across textures": true,
+"B) Differences in relative hydraulic conductivity": true,
+"C) Differences in soil mineralogy": false,
+"D) Sensitivity of suction to water content": true
+},
+"success": "✅ Exactly. The tool reveals how soils differ in retention and conductivity behavior.",
+"error": "❌ Soil mineralogy is not explicitly modeled. The focus is on retention and conductivity."
+}
+]

@@ -9,7 +9,6 @@ def _navigate_to(path: str):
         st.session_state.prev_path = path
     st.rerun()
 
-
 # --- Application parameters ---
 DEFAULT_START_PAGE = "90_Streamlit_apps/GWP_Boundary_Conditions/content/GWP_Boundary_Conditions_Start.py"
 
@@ -50,7 +49,6 @@ st.markdown("""
     }
     </style>
 """, unsafe_allow_html=True)
-
 
 # --- Flat page definitions ---
 pages = {

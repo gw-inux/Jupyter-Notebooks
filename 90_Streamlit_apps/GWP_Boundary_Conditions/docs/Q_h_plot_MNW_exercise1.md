@@ -12,12 +12,12 @@ This exercise is designed with the intent that, upon completion, you will be abl
 1. **Explore Q–Δh Relationship**
    * Set: $A = 3$, $B = 3$, $C = 1.0$, $P = 2.0$
    * Use :blue[**Q-target**] mode
-   * Vary $Q$ from $0.01$ to $0.5$ m³/s
+   * Vary $Q$ from $-0.01$ to $-0.5$ m³/s
    * 📝 Record where the curve steepens and explain the influence of the different parameters in CWC ($A$, $B$, $C$, and $P$)
 
 2. **Test Parameter Sensitivity**
    * Set: $A = 1$, $B = 1$, $C = 1.0$, $P = 2.0$
-   * Set $Q = 0.3$ m³/s in :blue[**Q-target**] mode
+   * Set $Q = -0.3$ m³/s in :blue[**Q-target**] mode
    * Enable the **second parameter set** 
    * Vary $A$, then systematically change $B$, $C$, and $P$ (ultimately setting all values to 4) and compare responses
    * 💭 Reflect on the role of linear versus nonlinear resistance.

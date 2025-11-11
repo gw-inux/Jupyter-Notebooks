@@ -1,0 +1,46 @@
+[
+{
+"question": "What does a soil water retention curve represent? (Mark ALL correct answers)",
+"options": {
+"A) The relationship between water content and pore size": false,
+"B) The relationship between soil water content and capillary pressure": true,
+"C) How strongly water is held in soil pores at varying moisture levels": true,
+"D) The rate of vertical infiltration in saturated media": false
+},
+"success": "✅ Correct. Retention curves link water content to capillary suction and describe retention strength.",
+"error": "❌ Not quite. The retention curve shows water content vs. suction, not infiltration or pore size directly."
+},
+{
+"question": "What typically characterizes the 'field capacity' point on a retention curve? (Mark ALL correct answers)",
+"options": {
+"A) Water is held against gravity but still available to plants": true,
+"B) The capillary pressure head is typically around −100 to −300 cm": true,
+"C) All pores are completely drained": false,
+"D) The soil is saturated": false
+},
+"success": "✅ Yes. Field capacity marks the upper limit of plant-available water, after drainage slows.",
+"error": "❌ Field capacity is below saturation and not associated with complete drainage."
+},
+{
+"question": "Which terms describe characteristic points on a retention curve? (Mark ALL correct answers)",
+"options": {
+"A) Saturation point": false,
+"B) Wilting point": true,
+"C) Field capacity": true,
+"D) Residual water content": true
+},
+"success": "✅ Correct. Wilting point, field capacity, and residual content are key indices on the curve.",
+"error": "❌ 'Saturation point' is not typically used as a defined retention curve index."
+},
+{
+"question": "What is hysteresis in the context of soil water retention? (Mark ALL correct answers)",
+"options": {
+"A) A delay in infiltration after rainfall": false,
+"B) A difference between drainage and wetting curves for the same soil": true,
+"C) A result of pore-scale processes and wettability effects": true,
+"D) A phase change between water and vapor in deep soil layers": false
+},
+"success": "✅ Well done. Hysteresis reflects differences in the retention behavior during drying vs. wetting.",
+"error": "❌ Hysteresis refers to unequal retention curves due to pore and surface effects—not infiltration or vaporization."
+}
+]

@@ -1,0 +1,46 @@
+[
+  {
+    "question": "What does the term *field capacity* ($\\theta_{fc}$) refer to?",
+    "options": {
+      "The point where soil becomes completely saturated": false,
+      "The water content after gravity drainage slows down": true,
+      "The water content at permanent wilting point": false,
+      "The maximum water the soil can ever hold": false
+    },
+    "success": "✅ Correct! Field capacity is the water retained in soil after drainage has mostly stopped.",
+    "error": "❌ Not quite. Field capacity is the moisture level after gravitational water has drained, not saturation."
+  },
+  {
+    "question": "Which of the following best describes *available water capacity (AWC)*?",
+    "options": {
+      "The amount of water between saturation and field capacity": false,
+      "The water volume the soil can hold when fully saturated": false,
+      "The difference between field capacity and wilting point": true,
+      "The amount of water stored in large pores": false
+    },
+    "success": "✅ Exactly! AWC is the water available for plants, between field capacity and wilting point.",
+    "error": "❌ That's not correct. AWC is defined as the difference between field capacity and wilting point."
+  },
+  {
+    "question": "Which pressure head value is commonly used to define the *wilting point*?",
+    "options": {
+      "0 cm": false,
+      "-100 cm": false,
+      "-15000 cm": true,
+      "+15000 cm": false
+    },
+    "success": "✅ Correct! The wilting point is typically set at −15,000 cm of pressure head.",
+    "error": "❌ Not quite. It's −15,000 cm, indicating strong suction where plants can no longer extract water."
+  },
+  {
+    "question": "Why is knowledge of the soil retention curve important in agriculture?",
+    "options": {
+      "To estimate infiltration rates only": false,
+      "To manage plant-available water and irrigation": true,
+      "To measure total porosity in the field": false,
+      "To select fertilizers": false
+    },
+    "success": "✅ That's right! The retention curve helps determine irrigation needs and avoid drought stress.",
+    "error": "❌ Not correct. The retention curve is most useful for managing plant water availability."
+  }
+]
