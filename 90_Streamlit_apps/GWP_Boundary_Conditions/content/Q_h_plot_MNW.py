@@ -812,13 +812,13 @@ def Q_h_plot():
             st.write('**Drawdown and flow in the well:**')
             if h_target:
                 st.write(':grey[**Drawdown in the well**] (in m) = %5.2f' %delta_head)
-                st.write(':blue[**Discharge $Q$ to the well**] (in m³/s) = %5.3f' %Q_show)
+                st.write(':blue[**Discharge $Q$ to the well**] (in m³/s) = -%5.3f' %Q_show)
                 st.write(':blue[***CWC1***] (in m²/s) = %5.2f' %((st.session_state.A + st.session_state.B + st.session_state.C * Q_show**(st.session_state.P - 1))**-1))
                 if st.session_state.second:
-                    st.write(':red[**Discharge $Q2$ to the well**] (in m³/s) = %5.3f' %Q_show2)
+                    st.write(':red[**Discharge $Q2$ to the well**] (in m³/s) = -%5.3f' %Q_show2)
                     st.write(':red[***CWC2***] (in m²/s) = %5.2f' %((st.session_state.A2 + st.session_state.B2 + st.session_state.C2 * Q_show2**(st.session_state.P2 - 1))**-1))
             else:
-                st.write(':grey[**Discharge to the well**] (in m³/s) = %5.3f' %Q_show)
+                st.write(':grey[**Discharge to the well**] (in m³/s) = -%5.3f' %Q_show)
                 st.write(':blue[**Drawdown $$\Delta h$$ in the well**] (in m) = %5.2f' %delta_head)
                 st.write(':blue[***CWC1***] (in m²/s) = %5.2f' %((st.session_state.A + st.session_state.B + st.session_state.C * Q_show**(st.session_state.P - 1))**-1))
                 if st.session_state.second:
