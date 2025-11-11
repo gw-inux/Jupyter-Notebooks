@@ -69,7 +69,7 @@ with st.expander('Show variable descriptions'):
 with st.expander("Show typical parameter values"):
         st.markdown( r""" *Table 1: Typical parameter values (after Chin, D.A.: Water-Resources Enginieering, 2013).
         Please note that for the use in this app, the values of $K_s$ need to be transformed from mm/h to mm/min.
-        The (field-)saturated water content $\theta_0$ can be approximated by value of porosity, 
+        The (field-)saturated water content $\theta_0$ can be approximated by the porosity, 
         the initial water content $\theta_i$ is likely to range between field capacity and wilting point, 
         with the field capacitiy representing conditions a few days after a rain event and the wilting point 
         those after a long drought.* """)
