@@ -12,7 +12,7 @@ This exercise is designed with the intent that, upon completion, you will be abl
 1. **Well Head Response to Discharge**
    * Use :blue[**Q-target**] mode
    * Set: $A = 0.5$, $B = 0.05$, $C = 1.0$, $P = 2.0$
-   * Vary $Q$ from $0.05$ to $0.8$ m³/s
+   * Vary $Q$ from $-0.05$ to $-0.8$ m³/s
    * 📝 Record $h_{well}$ and compute the drawdown: $\Delta h = h_{gw} - h_{well}$
 
 2. **Effect of Parameter Variation**

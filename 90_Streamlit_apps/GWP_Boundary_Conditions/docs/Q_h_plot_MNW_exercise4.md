@@ -2,7 +2,7 @@
 
 This exercise is designed with the intent that, upon completion, you will be able to:
 
-- Explain how the limiting head influence MNW discharge behavior
+- Explain how the limiting head influences MNW discharge behavior
 - Analyze how nonlinear head losses and operational limits combine to define feasible withdrawal rates
 
 🛠️ **Exercise Instructions**
