@@ -667,28 +667,38 @@ def Q_h_plot():
     #delta_h_range = np.linspace(0.01, 10, 200)
     delta_h_range = np.linspace(-10, 20, 200)
     Q_values = []
+    prev_q = None 
+    
     if st.session_state.second:
         delta_h_range2 = np.linspace(-10, 20, 200)
         Q_values2 = []
+        prev_q2 = None
     
     # Solve for Q_n for each Δh
     for delta_h in delta_h_range:
-        Q_initial_guess = abs(delta_h) / (st.session_state.A + st.session_state.B)  # reasonable initial guess
-        Q_solution, = fsolve(discharge_equation, Q_initial_guess, args=(abs(delta_h), st.session_state.A, st.session_state.B, st.session_state.C, st.session_state.P))
+        q0 = prev_q if (prev_q is not None and prev_q < 100) else abs(delta_h) / (st.session_state.A + st.session_state.B+0.005)
+#        Q_initial_guess = abs(delta_h) / (st.session_state.A + st.session_state.B)  # reasonable initial guess
+#        Q_solution, = fsolve(discharge_equation, Q_initial_guess, args=(abs(delta_h), st.session_state.A, st.session_state.B, st.session_state.C, st.session_state.P))
+        Q_solution, = fsolve(discharge_equation, q0, args=(abs(delta_h), st.session_state.A, st.session_state.B, st.session_state.C, st.session_state.P))
+        
         if delta_h>=0:
             Q_values.append(Q_solution)
         else:
             Q_values.append(-Q_solution)
+        prev_q = float(Q_solution)
     
     if st.session_state.second:
         for delta_h2 in delta_h_range2:
-            Q_initial_guess2 = abs(delta_h2) / (st.session_state.A2 + st.session_state.B2)  # reasonable initial guess
-            Q_solution2, = fsolve(discharge_equation, Q_initial_guess2, args=(abs(delta_h2), st.session_state.A2, st.session_state.B2, st.session_state.C2, st.session_state.P2))
+            q02 = prev_q2 if (prev_q2 is not None and prev_q2 < 100) else abs(delta_h2) / (st.session_state.A2 + st.session_state.B2+0.005)
+#            Q_initial_guess2 = abs(delta_h2) / (st.session_state.A2 + st.session_state.B2)  # reasonable initial guess
+#            Q_solution2, = fsolve(discharge_equation, Q_initial_guess2, args=(abs(delta_h2), st.session_state.A2, st.session_state.B2, st.session_state.C2, st.session_state.P2))
+            Q_solution2, = fsolve(discharge_equation, q02, args=(abs(delta_h2), st.session_state.A2, st.session_state.B2, st.session_state.C2, st.session_state.P2))
+            
             if delta_h2>=0:
                 Q_values2.append(Q_solution2)
             else:
                 Q_values2.append(-Q_solution2)
-  
+            prev_q2 = float(Q_solution2)
        
     # ------------------   
     # FIRST PLOT
