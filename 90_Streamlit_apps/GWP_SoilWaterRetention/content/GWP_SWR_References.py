@@ -32,18 +32,19 @@ st.markdown("<div style='height:1.25rem'></div>", unsafe_allow_html=True)
 year = 2025 
 authors = {
     "Thomas Reimann": [1],  # Author 1 belongs to Institution 1
-    "Eileen Poeter": [2],
-    "Eve L. Kuniansky": [3],
+    "Oriol Bertran": [2],
+    "Daniel Fernàndez-Garcia": [2],
+    "Eileen Poeter": [3]
 }
 institutions = {
-    1: "TU Dresden, Institute for Groundwater Management",
-    2: "Colorado School of Mines",
-    3: "Retired from the US Geological Survey"
+    1: "TU Dresden",
+    2: "UPC Universitat Politècnica de Catalunya",
+    3: "Colorado School of Mines"
 }
 index_symbols = ["¹", "²", "³", "⁴", "⁵", "⁶", "⁷", "⁸", "⁹"]
 author_list = [f"{name}{''.join(index_symbols[i-1] for i in indices)}" for name, indices in authors.items()]
 institution_list = [f"{index_symbols[i-1]} {inst}" for i, inst in institutions.items()]
-institution_text = " | ".join(institution_list)
+institution_text = " | ".join(institution_list)  # Institutions in one line
 
 st.title("📖 References")
 st.subheader(":blue[used in the Soil Water Retention Module]")
@@ -53,7 +54,7 @@ st.subheader("Books", divider='blue')
 st.markdown("""
     **Freeze, R. A. & Cherry, J. A., (1979).** Groundwater (p. 370). Englewood Cliffs, NJ: Prentice-Hall.](https://gw-project.org/books/groundwater/) (**Chapter 2.6:** *Unsaturated Flow and the Water Table*, p. 38).
     
-    ** Custodio, E., & Llamas, M. R. (1983).** Hidrología subterránea. (**Chapter 8.8:** *Capilaridad y flujo multifase*, p. 553 & **Chapter 8.9:** *Movimiento del agua en los medios porosos no saturados y teoría de la infiltración*, p. 564).
+    **Custodio, E., & Llamas, M. R. (1983).** Hidrología subterránea. (**Chapter 8.8:** *Capilaridad y flujo multifase*, p. 553 & **Chapter 8.9:** *Movimiento del agua en los medios porosos no saturados y teoría de la infiltración*, p. 564).
     
     **Bear, J., & Cheng, A. H. D. (2010).** Modeling groundwater flow and contaminant transport (Vol. 23, p. 834). Dordrecht: Springer. (**Chapter 6:** *Unsaturated Flow Models*, p. 251).
     

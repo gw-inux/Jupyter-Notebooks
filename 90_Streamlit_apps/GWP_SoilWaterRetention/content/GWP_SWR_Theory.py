@@ -24,20 +24,19 @@ if st.session_state.scroll_to_top:
 #Empty space at the top
 st.markdown("<div style='height:1.25rem'></div>", unsafe_allow_html=True)
 
-# --- Authors, institutions, and year
+# Authors, institutions, and year
 year = 2025 
 authors = {
-    "Thomas Reimann": [1],  # Author 1 belongs to Institution 1
-    "Oriol Bertran": [2],
-    "Daniel Fernàndez-Garcia": [2]
-   #"Colleague Name": [1],  # Author 2 also belongs to Institution 1
+    "Oriol Bertran": [1],
+    "Daniel Fernàndez-Garcia": [1],
+    "Thomas Reimann": [2],    
+    "Eileen Poeter": [3]
 }
 institutions = {
-    1: "TU Dresden",
-    2: "UPC Universitat Politècnica de Catalunya",
-#   2: "Second Institution / Organization"
+    1: "UPC Universitat Politècnica de Catalunya",
+    2: "TU Dresden",
+    3: "Colorado School of Mines"
 }
-
 index_symbols = ["¹", "²", "³", "⁴", "⁵", "⁶", "⁷", "⁸", "⁹"]
 author_list = [f"{name}{''.join(index_symbols[i-1] for i in indices)}" for name, indices in authors.items()]
 institution_list = [f"{index_symbols[i-1]} {inst}" for i, inst in institutions.items()]
@@ -734,16 +733,6 @@ st.markdown("""
 
 with st.expander('🧠 **Show the final assessment** - to evaluate your understanding'):
     render_assessment("90_Streamlit_apps/GWP_SoilWaterRetention/questions/theory_ass_05.json", title="Theory section - final assessment", max_questions=6)
-
-"---"
-# Navigation at the bottom of the side - useful for mobile phone users     
-        
-columnsN1 = st.columns((1,1,1), gap = 'large')
-with columnsN1[1]:
-    st.subheader(':orange[**Navigation**]')
-with columnsN1[2]:
-    if st.button("Next page"):
-        st.switch_page("pages/02_📈_The SWRC interactive.py")
         
 '---'
 # Render footer with authors, institutions, and license logo in a single line
@@ -752,6 +741,3 @@ with columns_lic[0]:
     st.markdown(f'Developed by {", ".join(author_list)} ({year}). <br> {institution_text}', unsafe_allow_html=True)
 with columns_lic[1]:
     st.image('FIGS/CC_BY-SA_icon.png')
-    
-st.markdown('<span style="font-size: 15px;">*The online version of soilwaterretention is copyrighted by the author and distributed by* The Groundwater Project. *Please use* gw-project.org *links when you want to share* Groundwater Project *materials with others. It is not permissible to make GW-Project documents available on other websites nor to send copies of the files directly to others.*</span>', 
-            unsafe_allow_html=True)

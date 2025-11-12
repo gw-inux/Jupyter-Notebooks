@@ -32,11 +32,14 @@ year = 2025
 authors = {
     "Thomas Reimann": [1],  # Author 1 belongs to Institution 1
     "Rudolf Liedl": [1],
-   #"Colleague Name": [1],  # Author 2 also belongs to Institution 1
+    "Oriol Bertran": [2],
+    "Daniel Fernàndez-Garcia": [2],
+    "Eileen Poeter": [3]
 }
 institutions = {
     1: "TU Dresden",
-#   2: "Second Institution / Organization"
+    2: "UPC Universitat Politècnica de Catalunya",
+    3: "Colorado School of Mines"
 }
 index_symbols = ["¹", "²", "³", "⁴", "⁵", "⁶", "⁷", "⁸", "⁹"]
 author_list = [f"{name}{''.join(index_symbols[i-1] for i in indices)}" for name, indices in authors.items()]
@@ -221,19 +224,6 @@ st.markdown("""
 with st.expander('🧠 **Show questions for the final assessment** - to assess your learning success'):
     render_assessment("90_Streamlit_apps/GWP_SoilWaterRetention/assets/questions/interactive_ass_02.json", title="Final assessment", max_questions=6)
 "---"
-# Navigation at the bottom of the side - useful for mobile phone users     
-        
-columnsN1 = st.columns((1,1,1), gap = 'large')
-with columnsN1[0]:
-    if st.button("Previous page"):
-        st.switch_page("pages/01_📚_Theory.py")
-with columnsN1[1]:
-    st.subheader(':orange[**Navigation**]')
-with columnsN1[2]:
-    if st.button("Next page"):
-        st.switch_page("pages/03_📊_The SWRC in comparison.py")
-        
-'---'
 # Render footer with authors, institutions, and license logo in a single line
 columns_lic = st.columns((5,1))
 with columns_lic[0]:

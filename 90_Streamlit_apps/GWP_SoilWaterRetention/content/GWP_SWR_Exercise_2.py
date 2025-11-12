@@ -43,11 +43,14 @@ year = 2025
 authors = {
     "Thomas Reimann": [1],  # Author 1 belongs to Institution 1
     "Rudolf Liedl": [1],
-   #"Colleague Name": [1],  # Author 2 also belongs to Institution 1
+    "Oriol Bertran": [2],
+    "Daniel Fernàndez-Garcia": [2],
+    "Eileen Poeter": [3]
 }
 institutions = {
     1: "TU Dresden",
-#   2: "Second Institution / Organization"
+    2: "UPC Universitat Politècnica de Catalunya",
+    3: "Colorado School of Mines"
 }
 index_symbols = ["¹", "²", "³", "⁴", "⁵", "⁶", "⁷", "⁸", "⁹"]
 author_list = [f"{name}{''.join(index_symbols[i-1] for i in indices)}" for name, indices in authors.items()]

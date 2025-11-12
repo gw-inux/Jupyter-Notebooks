@@ -32,24 +32,27 @@ st.markdown("<div style='height:1.25rem'></div>", unsafe_allow_html=True)
 year = 2025 
 authors = {
     "Thomas Reimann": [1],  # Author 1 belongs to Institution 1
-    "Eileen Poeter": [2],
-    "Eve L. Kuniansky": [3],
+    "Oriol Bertran": [2],
+    "Daniel Fernàndez-Garcia": [2],
+    "Eileen Poeter": [3]
 }
 institutions = {
-    1: "TU Dresden, Institute for Groundwater Management",
-    2: "Colorado School of Mines",
-    3: "Retired from the US Geological Survey"
+    1: "TU Dresden",
+    2: "UPC Universitat Politècnica de Catalunya",
+    3: "Colorado School of Mines"
 }
 index_symbols = ["¹", "²", "³", "⁴", "⁵", "⁶", "⁷", "⁸", "⁹"]
 author_list = [f"{name}{''.join(index_symbols[i-1] for i in indices)}" for name, indices in authors.items()]
 institution_list = [f"{index_symbols[i-1]} {inst}" for i, inst in institutions.items()]
-institution_text = " | ".join(institution_list)
+institution_text = " | ".join(institution_list)  # Institutions in one line
 
 
 st.title("Learning More 💦")
 
 st.markdown(
     """
+#### :red[TODO - The subsequent text is a copy from the Boundary Conditions Module]
+
 This module described boundary conditions available in MODFLOW (in particular, head-dependent boundary conditions): :orange[**GHB:**] general head; :violet[**RIV:**] river; :green[**DRN:**] drain; :rainbow[**MNW:**] multi-node-well; and :blue[**EVT:**] evapotranspiration. Boundary conditions control the rate of flow into and out of a simulated groundwater system.
 """
 ) 
