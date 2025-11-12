@@ -317,7 +317,6 @@ def Q_h_plot():
                 st.session_state.EXDP = 4.0
                 st.session_state.EVTR_input = 2000.
                 st.session_state.h_gw_show = 8.0
-                st.session_state.number_input = False
 
     with columns1[1]:
         with st.expander('Modify :blue[**Heads** & **Elevations**]'):

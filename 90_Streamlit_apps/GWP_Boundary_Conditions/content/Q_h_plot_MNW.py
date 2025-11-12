@@ -382,22 +382,38 @@ def update_C2():
     st.session_state.C2 = st.session_state.C2_input
 def update_P2():
     st.session_state.P2 = st.session_state.P2_input 
+#def update_Q_range():
+#    if "Q_range_input" in st.session_state:
+#        # from slider
+#        lo, hi = st.session_state.Q_range_input
+#    else:
+#        # from number inputs
+#        lo = st.session_state.Q_range_input_min
+#        hi = st.session_state.Q_range_input_max
+#
+#    # clamp and order
+#    lo = max(0.0, min(lo, st.session_state.Q_show))
+#    hi = max(0.0, min(hi, st.session_state.Q_show))
+#    if lo > hi:
+#        lo, hi = hi, lo
+#
+#    st.session_state.Q_range = (lo, hi)
+    
 def update_Q_range():
-    if "Q_range_input" in st.session_state:
-        # from slider
-        lo, hi = st.session_state.Q_range_input
-    else:
-        # from number inputs
-        lo = st.session_state.Q_range_input_min
-        hi = st.session_state.Q_range_input_max
+    if "Q_range_input" in st.session_state:               # from (select_)slider: tuple of NEG values
+        lo_neg, hi_neg = st.session_state.Q_range_input
+    else:                                                 # from number inputs: two NEG values
+        lo_neg = float(st.session_state.get("Q_range_input_min", -st.session_state.Q_range[1]))
+        hi_neg = float(st.session_state.get("Q_range_input_max", -st.session_state.Q_range[0]))
 
-    # clamp and order
-    lo = max(0.0, min(lo, st.session_state.Q_show))
-    hi = max(0.0, min(hi, st.session_state.Q_show))
-    if lo > hi:
-        lo, hi = hi, lo
+    # clamp to [-Q_show, 0] and order
+    lo_neg = max(-st.session_state.Q_show, min(lo_neg, 0.0))
+    hi_neg = max(-st.session_state.Q_show, min(hi_neg, 0.0))
+    if lo_neg > hi_neg:
+        lo_neg, hi_neg = hi_neg, lo_neg
 
-    st.session_state.Q_range = (lo, hi)
+    # store as POS magnitudes (ascending)
+    st.session_state.Q_range = (abs(lo_neg), abs(hi_neg))
     
 # Initialize session state for value and toggle state
 st.session_state.dh_show = 5.0
@@ -418,6 +434,8 @@ st.session_state.C2 = 5.0
 st.session_state.P2 = 2.0
 st.session_state.number_input = False  # Default to number_input
 st.session_state.Q_range = (0.1 * st.session_state.Q_show, 0.3 * st.session_state.Q_show)
+Q_show_pos = st.session_state.Q_show
+
 
 if 'Q_off' not in st.session_state:
     st.session_state.Q_off = False
@@ -488,6 +506,26 @@ def Q_h_plot():
             turn = st.toggle('Toggle to turn the plot 90 degrees', key="MNW_turn", value=True)
             st.session_state.number_input = st.toggle("Toggle to use Slider or Number input.")
             #visualize = st.toggle(':rainbow[Visualize the input values', key="MNW_vis", value=True)
+            reset = st.button(':red[Reset the plot to the initial values]')
+            if reset:
+                # Initialize session state for value and toggle state
+                st.session_state.dh_show = 5.0
+                st.session_state.Q_show = 0.5
+                st.session_state.Q_show_neg = -0.5
+                st.session_state.h_cell_slider = 12.0
+                st.session_state.h_cell_slider2 = 10.0
+                st.session_state.h_cell_slider4 = 10.0
+                st.session_state.h_lim = 5.0
+                st.session_state.h_lim4 = 2.0
+                st.session_state.A = 5.0
+                st.session_state.B = 5.0
+                st.session_state.C = 0.0
+                st.session_state.P = 2.0
+                st.session_state.A2 = 5.0
+                st.session_state.B2 = 5.0
+                st.session_state.C2 = 5.0
+                st.session_state.P2 = 2.0
+                st.session_state.Q_range = (0.1 * st.session_state.Q_show, 0.3 * st.session_state.Q_show)
     
     with columns1[1]:
         with st.expander('Modify :blue[**Heads**]'):
@@ -525,15 +563,14 @@ def Q_h_plot():
                 else:
                     Q_show_neg = st.select_slider("**Withdrawal rate $Q$** in the well", Q_show_OPTIONS, round(st.session_state.get("Q_show_neg", -0.100), 3), key="Q_show_input", on_change=update_Q_show_neg)
                 Q_show = Q_show_neg * -1
-#                if st.session_state.number_input:
-#                    Q_show = st.number_input("**Withdrawal rate $Q$** in the well", 0.001, 1.0, st.session_state.Q_show, 0.001, key="Q_show_input", on_change=update_Q_show)
-#                else:
-#                    Q_show = st.slider      ("**Withdrawal rate $Q$** in the well", 0.001, 1.0, st.session_state.Q_show, 0.001, key="Q_show_input", on_change=update_Q_show)   
+                st.session_state.Q_show = Q_show
+                
             if show_plot2:
                 if st.session_state.number_input:
                     h_cell_slider2 = st.number_input("**Groundwater head** $h_{gw}$ [m]", 5.0, 15.0, st.session_state.h_cell_slider2, 0.1, key="h_cell_slider2_input", on_change=update_h_cell_slider2)
                 else:
                     h_cell_slider2 = st.slider      ("**Groundwater head** $h_{gw}$ [m]", 5.0, 15.0, st.session_state.h_cell_slider2, 0.1, key="h_cell_slider2_input", on_change=update_h_cell_slider2)          
+            
             if show_plot3:
                 if st.session_state.number_input:
                     h_cell_slider = st.number_input("**Groundwater head** $h_{gw}$ [m]", 0.0, 20.0, st.session_state.h_cell_slider, 0.1, key="h_cell_slider_input", on_change=update_h_cell_slider)
@@ -544,21 +581,57 @@ def Q_h_plot():
                 else:
                     h_lim = st.slider      ("**Limiting head** $h_{lim}$ [m]", 0.0, 10.0, st.session_state.h_lim, 0.1, key="h_lim_input", on_change=update_h_lim)                 
                 th = st.toggle("Apply withdrawal thresholds")
-                if th:
-#                    Q_range = st.slider("Discharge cutoff range $[Q_{mn}, Q_{mx}]$ [m³/s]", 0.0, st.session_state.Q_show, (0.1*st.session_state.Q_show, 0.3*st.session_state.Q_show), 0.01)
-#                    Q_mn, Q_mx = Q_range       
-                     if st.session_state.number_input:
-                         # two number_inputs, grouped
-                         col1, col2 = st.columns(2)
-                         with col1:
-                             st.number_input("Discharge cutoff min $Q_{mn}$ [m³/s]", 0.0, st.session_state.Q_show, st.session_state.Q_range[0], 0.01, key="Q_range_input_min",  on_change=update_Q_range)
-                         with col2:
-                             st.number_input("Discharge cutoff max $Q_{mx}$ [m³/s]", 0.0, st.session_state.Q_show, st.session_state.Q_range[1], 0.01, key="Q_range_input_max", on_change=update_Q_range)
-                         Q_mn, Q_mx = st.session_state.Q_range
-                     else:
-                         Q_range = st.slider("Discharge cutoff range $[Q_{mn}, Q_{mx}]$ [m³/s]", 0.0, st.session_state.Q_show, st.session_state.Q_range, 0.01, key="Q_range_input", on_change=update_Q_range)
-                         Q_mn, Q_mx = Q_range         
-    
+                if th:    
+                    if st.session_state.number_input:
+                        # defaults
+                        qmn_pos, qmx_pos = st.session_state.Q_range
+                        qmn_neg_def = -qmx_pos   # more negative (min)
+                        qmx_neg_def = -qmn_pos   # less negative (max)
+                        # two number_inputs, grouped
+                        col1, col2 = st.columns(2)
+                        with col1:
+#                           st.number_input(
+#                               "Discharge cutoff min $Q_{mn}$ [m³/s]",
+#                               0.0, st.session_state.Q_show, st.session_state.Q_range[0], 0.01,
+#                               key="Q_range_input_min",  on_change=update_Q_range)
+                            st.number_input(
+                                "Discharge cutoff min $Q_{mn}$ [m³/s]",
+                                -st.session_state.Q_show, 0.0, qmn_neg_def, 0.001, format="%.3f",
+                                key="Q_range_input_min", on_change=update_Q_range)
+                        with col2:
+#                           st.number_input("Discharge cutoff max $Q_{mx}$ [m³/s]",
+#                               0.0, st.session_state.Q_show, st.session_state.Q_range[1], 0.01,
+#                               key="Q_range_input_max", on_change=update_Q_range)
+                            st.number_input(
+                                "Discharge cutoff max $Q_{mx}$ [m³/s]",
+                                -st.session_state.Q_show, 0.0, qmx_neg_def, 0.001, format="%.3f",
+                                key="Q_range_input_max", on_change=update_Q_range)
+#                           Q_mn, Q_mx = st.session_state.Q_range
+                    else:
+#                         Q_range = st.slider("Discharge cutoff range $[Q_{mn}, Q_{mx}]$ [m³/s]",
+#                                       0.0, st.session_state.Q_show, st.session_state.Q_range, 0.01,
+#                                       key="Q_range_input", on_change=update_Q_range)
+#                         Q_mn, Q_mx = Q_range         
+                        
+                        # select_slider supports range (tuple)
+                        n_steps = max(0, int(round(st.session_state.Q_show * 1000)))  # thousand steps
+                        options = [round(-i/1000, 3) for i in range(0, n_steps + 1)]  # 0.000, -0.001, ..., -Q_show
+                    
+                        # session -> defaults (snap to options to avoid "not in iterable")
+                        qmn_pos, qmx_pos = st.session_state.Q_range
+                        lo_def = min(options, key=lambda x: abs(x - (-qmx_pos)))
+                        hi_def = min(options, key=lambda x: abs(x - (-qmn_pos)))
+                    
+                        st.select_slider(
+                            "Discharge cutoff range $[Q_{mn}, Q_{mx}]$ [m³/s]",
+                            options=options,
+                            value=(lo_def, hi_def),
+                            key="Q_range_input",
+                            on_change=update_Q_range)
+                    
+                    # set values for all variants
+                    Q_mn, Q_mx = st.session_state.Q_range
+ 
     with columns1[2]:
         modify_CWC = st.toggle('Toggle to **modify CWC parameters**')
     
@@ -566,7 +639,7 @@ def Q_h_plot():
     if modify_CWC:
         # Activate second dataset
         if show_plot1 or show_plot3:
-            st.session_state.second = st.toggle("Toggle to define a second parameter set for comparison")
+            st.session_state.second = st.toggle("Toggle to define a :red[**second parameter set**] for comparison")
         st.latex(r'''CWC = [ A + B + C Q^{(P-1)}]^{-1}''')
         # Parameter Input
         
@@ -735,7 +808,7 @@ def Q_h_plot():
             ax_schematic.plot([0.5, 1.7], [delta_head, delta_head], 'k--', linewidth=1, color='darkblue')
             ax_schematic.text(0.85, delta_head - 0.1, 'Well \nhead 1', color='darkblue', fontsize=12)
             ax_schematic.plot([0.0, 1.7], [0, 0], 'b--', linewidth=1)
-            ax_schematic.text(0.5, 0 - 0.2, 'Groundwater (cell) \nhead', color='blue', fontsize=12)
+            ax_schematic.text(0.0, 0 - 0.2, 'Groundwater (cell) \nhead', color='blue', fontsize=12)
             # Style
             ax_schematic.set_xlim(0, 2)
             ax_schematic.set_ylim(10, 0)

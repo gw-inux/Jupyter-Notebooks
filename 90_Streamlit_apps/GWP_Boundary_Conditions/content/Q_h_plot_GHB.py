@@ -365,7 +365,6 @@ def Q_h_plot():
                 st.session_state.HB = 8.0
                 st.session_state.stage = 2.0
                 st.session_state.h_aq_show = 10.0
-                st.session_state.number_input = False  # Default to number_input
                 st.session_state.c_computed = False
             
     with columns1[1]:

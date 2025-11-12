@@ -545,7 +545,6 @@ def Q_h_plot():
                 st.session_state.W_RIV = 10.0
                 st.session_state.M_RIV = 1.0
                 st.session_state.h_bot = 7.0
-                st.session_state.number_input = False  # Default to number_input
                 st.session_state.condcomp = False
     
     # Make sure that heads and elevations are inside the plot

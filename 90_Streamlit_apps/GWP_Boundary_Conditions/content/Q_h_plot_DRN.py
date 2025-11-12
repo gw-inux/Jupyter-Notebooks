@@ -369,7 +369,6 @@ def Q_h_plot():
                 st.session_state.C_DRN_label = "1e-2"
                 st.session_state.HD = 8.0
                 st.session_state.h_gw_show = 10.0
-                st.session_state.number_input = False  # Default to number_input
 
     with columns1[1]:
         with st.expander('Modify :blue[**Heads** & **Elevations**]'):
