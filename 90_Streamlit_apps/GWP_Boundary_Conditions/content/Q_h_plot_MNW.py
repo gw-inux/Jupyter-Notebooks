@@ -616,18 +616,18 @@ def Q_h_plot():
             columns5 = st.columns((1,1,1,1))
             if st.session_state.number_input:
                 with columns5[0]:
-                    A2 = st.number_input("", 0.001, 10.0, st.session_state.A2, 0.05, key="A2_input", on_change=update_A2, label_visibility="collapsed")
+                    A2 = st.number_input("", 0.00, 10.0, st.session_state.A2, 0.05, key="A2_input", on_change=update_A2, label_visibility="collapsed")
                 with columns5[1]:
-                    B2 = st.number_input("", 0.001, 10.0, st.session_state.B2, 0.05, key="B2_input", on_change=update_B2, label_visibility="collapsed")
+                    B2 = st.number_input("", 0.00, 10.0, st.session_state.B2, 0.05, key="B2_input", on_change=update_B2, label_visibility="collapsed")
                 with columns5[2]:
                     C2 = st.number_input("", 0.00, 10.0, st.session_state.C2, 0.05, key="C2_input", on_change=update_C2, label_visibility="collapsed")
                 with columns5[3]:
                     P2 = st.number_input("", 1.0, 4.0,   st.session_state.P2, 0.05, key="P2_input", on_change=update_P2, label_visibility="collapsed")
             else:
                 with columns5[0]:
-                    A2 = st.slider      ("", 0.001, 10.0, st.session_state.A2, 0.05, key="A2_input", on_change=update_A2, label_visibility="collapsed")
+                    A2 = st.slider      ("", 0.00, 10.0, st.session_state.A2, 0.05, key="A2_input", on_change=update_A2, label_visibility="collapsed")
                 with columns5[1]:
-                    B2 = st.slider      ("", 0.001, 10.0, st.session_state.B2, 0.05, key="B2_input", on_change=update_B2, label_visibility="collapsed")        
+                    B2 = st.slider      ("", 0.00, 10.0, st.session_state.B2, 0.05, key="B2_input", on_change=update_B2, label_visibility="collapsed")        
                 with columns5[2]:
                     C2 = st.slider      ("", 0.00, 10.0, st.session_state.C2, 0.05, key="C2_input", on_change=update_C2, label_visibility="collapsed")   
                 with columns5[3]:
