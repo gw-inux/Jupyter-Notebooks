@@ -77,7 +77,6 @@ pages = {
         "📑 LV 6.11.25: Folien zum Start": "90_Streamlit_apps/MWW01/SlideJet_Presentations/GWBmC_WS2526_V04_Start_SJpresent.py",
     },
     "🟦 Grundwasserströmung": {
-        "--- Modellbeispiele 📖---": None,
         "🧮 1D FD Schema": "06_Groundwater_modeling/GWF_1D_conf_FD.py",
         "--- MODFLOW tutorials 📋 ---": None,
         "💻 MODFLOW Pumping Test": "90_Streamlit_apps/SYMPLE25/pages/M1B/Theis_pumping_Tutorial.py",
