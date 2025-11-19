@@ -1,0 +1,46 @@
+[
+  {
+    "question": "How does increasing the suction head difference Δh affect infiltration according to the Green–Ampt model? (Mark ALL correct answers)",
+    "options": {
+      "It increases the driving force for infiltration.": true,
+      "It leads to faster advancement of the wetting front.": true,
+      "It reduces the cumulative infiltration at a given time.": false,
+      "It has no impact on infiltration when Δθ = 0.": true
+    },
+    "success": "✅ Correct! Larger suction differences enhance infiltration, but if there is no moisture contrast (Δθ=0), Δh has no effect.",
+    "error": "❌ Not fully correct. Δh increases the driving force and accelerates infiltration, but has no effect when Δθ = 0."
+  },
+  {
+    "question": "Under which conditions does the long-term infiltration rate approach Ks in the Green–Ampt model? (Mark ALL correct answers)",
+    "options": {
+      "At large times when cumulative infiltration becomes large.": true,
+      "When the wetting front suction term becomes negligible.": true,
+      "At the very beginning of infiltration.": false,
+      "When Δθ and Δh remain dominant throughout the entire infiltration process.": false
+    },
+    "success": "✅ Correct! Long-term infiltration approaches Ks once the suction-driven part becomes small relative to gravity and conductivity.",
+    "error": "❌ Not correct. Only at long times does infiltration approach Ks; early infiltration is dominated by suction forces."
+  },
+  {
+    "question": "Which statements describe limitations of the Green–Ampt model? (Mark ALL correct answers)",
+    "options": {
+      "It assumes a sharp wetting front that may not exist in real soils.": true,
+      "It does not account for gradual moisture transitions.": true,
+      "It perfectly represents infiltration into strongly layered soils.": false,
+      "It simplifies the variability of hydraulic properties above the front.": true
+    },
+    "success": "✅ Correct! The Green–Ampt model simplifies real soil-water behavior, especially the wetting front representation.",
+    "error": "❌ Not fully correct. The model does not handle gradual transitions or layered soils well."
+  },
+  {
+    "question": "What does the shape of the infiltration rate curve i(t) typically show? (Mark ALL correct answers)",
+    "options": {
+      "A rapid initial decline due to decreasing suction effects.": true,
+      "A later stabilization toward Ks.": true,
+      "An increase in infiltration rate over time.": false,
+      "Logarithmic behavior in the early stage.": true
+    },
+    "success": "✅ Correct! i(t) shows a strong initial decrease due to suction effects before approaching Ks.",
+    "error": "❌ Not fully correct. Infiltration rate does not increase; it declines and asymptotically approaches Ks."
+  }
+]

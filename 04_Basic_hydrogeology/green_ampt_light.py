@@ -1,6 +1,10 @@
 import numpy as np
 import matplotlib.pyplot as plt
 import streamlit as st
+from pathlib import Path
+import re
+import json
+from streamlit_book import multiple_choice
 
 COLOR_CYCLE = [
     "tab:blue", "tab:orange", "tab:green", "tab:red",
@@ -9,7 +13,8 @@ COLOR_CYCLE = [
 ]
 
 st.set_page_config(page_title = "iNUX - Green Ampt", page_icon="04_Basic_hydrogeology/FIGS/iNUX_wLogo.png")
-# Authors, institutions, and year
+
+# --- Authors, institutions, and year
 year = 2025 
 authors = {
     "Steffen Birk": [1],  # Author 1 belongs to Institution 1
@@ -24,17 +29,159 @@ author_list = [f"{name}{''.join(index_symbols[i-1] for i in indices)}" for name,
 institution_list = [f"{index_symbols[i-1]} {inst}" for i, inst in institutions.items()]
 institution_text = " | ".join(institution_list)
 
+# --- FUNCTIONS
+# Make docs/ relative to THIS file, not the working directory
+DOCS_DIR = (Path(__file__).parent / "docs").resolve()
+DOCS_DIR.mkdir(parents=True, exist_ok=True)
+
+ALLOWED = re.compile(r"^[A-Za-z0-9_\-]+\.md$")
+
+def read_md(doc_name: str) -> str:
+    if not doc_name or not ALLOWED.match(doc_name):
+        return f"**Invalid document name:** `{doc_name}`"
+    p = (DOCS_DIR / doc_name).resolve()
+    try:
+        if DOCS_DIR not in p.parents:
+            return f"**Access denied:** `{doc_name}`"
+        if not p.exists() or not p.is_file():
+            return f"**Document not found:** `{doc_name}`"
+        return p.read_text(encoding="utf-8")
+    except Exception as e:
+        return f"**Error reading `{doc_name}`:** {e}"
+
+# RENDER ASSESSMENTS
+
+def flip_assessment(section_id: str):
+    """Flip the boolean flag for a given section_id."""
+    key = f"exp_{section_id}"
+    st.session_state[key] = not st.session_state.get(key, False)
+    
+def render_toggle_container(
+    section_id: str,
+    label: str,
+    content_fn,                 # a function that renders the section contents when open
+    *,
+    default_open: bool = False,
+    col_ratio=(25, 1),
+    container_border: bool = True,
+):
+    """
+    Renders a toggleable container with two buttons:
+    - Left: text button with your label
+    - Right: chevron button (▲/▼)
+    Each section manages its own state via section_id.
+
+    Parameters
+    ----------
+    section_id : unique id string, e.g., "general_01"
+    label      : button label shown on the left
+    content_fn : callable with no args that renders the open content
+    default_open : initial open state (only used on first render)
+    col_ratio  : column width ratio for (label_button, chevron_button)
+    container_border : show a border around the section container
+    """
+    state_key = f"exp_{section_id}"
+    if state_key not in st.session_state:
+        st.session_state[state_key] = default_open
+
+    with st.container(border=container_border):
+        ass_c1, ass_c2 = st.columns(col_ratio)
+
+        # Left button – same on_click toggler for consistency
+        with ass_c1:
+            st.button(label,key=f"btn_label_{section_id}",type="tertiary",on_click=flip_assessment,args=(section_id,))
+
+        # Right chevron button – also toggles the same state
+        with ass_c2:
+            chevron = "▲" if st.session_state[state_key] else "▼"
+            st.button(chevron,key=f"btn_chev_{section_id}",type="tertiary",on_click=flip_assessment,args=(section_id,))
+
+        # Conditional content
+        if st.session_state[state_key]:
+            content_fn()
+
+
+# --- INITIALIZATION
 if "saved_params" not in st.session_state:
     st.session_state["saved_params"] = []
     
+# --- LOAD ASSESSMENTS
+# ---------- path to questions for the assessments (direct path)
+path_quest_ini   = "03_Soil_physics/questions/green_ampt_ini.json"
+path_quest_final = "03_Soil_physics/questions/green_ampt_final.json"
+
+# Load questions
+with open(path_quest_ini, "r", encoding="utf-8") as f:
+    quest_ini = json.load(f)
+    
+with open(path_quest_final, "r", encoding="utf-8") as f:
+    quest_final = json.load(f)
     
 st.title('Green-Ampt-Model for Infiltration v2')
+st.subheader('Understanding infiltration into soils', divider = 'green')
 
-with st.expander("Show explanation"):
-        st.markdown(""" Figure 1 shows a situation where the rainfall rate was greater than the infiltration rate such that ponding occured and water infiltrates into the soil. A similar situation occurs in experiments with double ring infiltrometers (Figure 2). """)
+st.markdown("""
+#### 💡 Motivation
+Understanding infiltration into soils is fundamental for many fields of groundwater and hydrological practice. The Green–Ampt model provides a simple but powerful way to describe how water moves from the surface into variably wet soils. This app enables learners to explore how soil properties and initial conditions affect infiltration behavior, helping to connect theory with visual, interactive interpretation. Accordingly, this app:
+- Helps understand how soils respond to rainfall or irrigation.
+- Links soil hydraulic properties (saturated hydraulic conductivity $K_s$, difference in soil water content $\Delta \\theta$, head difference $\Delta h$) to infiltration processes.
+- Offers an intuitive introduction before more complex models (e.g., van Genuchten–Mualem).
+- Supports applied questions in hydrology, agriculture, and groundwater recharge analysis.""")
 
-        st.image("04_Basic_hydrogeology/FIGS/Green_Ampt_Model.png", caption="Figure 1: Soil water profile for the case of ponding (a). Volumetric water content as a function of soil depth for a (b) 'real situation' and (c) assumptions underlying the Green-Ampt equation.")
-        
+st.markdown("""
+#### 🎯 Learning Objectives
+After working with this app, you will be able to:
+- Understand the conceptual assumptions of the Green–Ampt infiltration approach (sharp wetting front, $\Delta \\theta$, $\Delta h$).
+- Interpret how changes in soil hydraulic properties influence cumulative infiltration and infiltration rates.
+- Analyze the effect of varying $K_s$, $\Delta \\theta$, and $\Delta h$ using interactive plots and identify characteristic infiltration patterns.
+""")
+
+# --- INITIAL ASSESSMENT ---
+def content_initial():
+    st.markdown("""#### Initial assessment""")
+    st.info("You can use the initial questions to assess your existing knowledge.")
+    
+    # Render questions in a 2x2 grid (row-wise, aligned)
+    for row in [(0, 1), (2, 3)]:
+        col1, col2 = st.columns(2)
+        with col1:
+            i = row[0]
+            st.markdown(f"**Q{i+1}. {quest_ini[i]['question']}**")
+            multiple_choice(
+                question=" ",  # suppress repeated question display
+                options_dict=quest_ini[i]["options"],
+                success=quest_ini[i].get("success", "✅ Correct."),
+                error=quest_ini[i].get("error", "❌ Not quite.")
+            )
+        with col2:
+            i = row[1]
+            st.markdown(f"**Q{i+1}. {quest_ini[i]['question']}**")
+            multiple_choice(
+                question=" ",
+                options_dict=quest_ini[i]["options"],
+                success=quest_ini[i].get("success", "✅ Correct."),
+                error=quest_ini[i].get("error", "❌ Not quite.")
+            )
+
+# Render initial assessment
+render_toggle_container(
+    section_id="green_ampt_ini",
+    label="✅ **Show the initial assessment** – to assess your **EXISTING** knowledge",
+    content_fn=content_initial,
+    default_open=False,
+)
+st.markdown(""" 
+
+#### 📐 Some theory
+
+Figure 1 shows a situation where the rainfall rate was greater than the infiltration rate such that ponding occured and water infiltrates into the soil. In consequence, infiltration occurs, which can be computed by the Green-Ampt equation.
+""")
+
+st.image("04_Basic_hydrogeology/FIGS/Green_Ampt_Model.png", caption="Figure 1: Soil water profile for the case of ponding (a). Volumetric water content as a function of soil depth for a (b) 'real situation' and (c) assumptions underlying the Green-Ampt equation.")
+
+with st.expander("Show more explanation", icon ="📑"):
+        st.markdown("""  A similar situation occurs in experiments with double ring infiltrometers (Figure 2). """)
+
         st.image("04_Basic_hydrogeology/FIGS/Doppelring-Infiltrometer.jpg", caption='Figure 2: Double Ring Infiltrometer', width=350)
 
         st.markdown("""
@@ -49,7 +196,15 @@ with st.expander("Show explanation"):
         st.latex(r'''I(t) - \Delta\theta \Delta h \ln \left( 1 + \frac{I(t)}{\Delta h} \right) = K_s t''')
         
         st.markdown("""
-        where $K_s$ is the hydraulic conductivity in the wetted zone and $\\Delta\\theta = \\theta_0 - \\theta_i$ and $\\Delta h = h_0 - h_f$.
+        
+        with 
+        - $\\theta_0$ = soil water content before infiltration starts
+        - $\\theta_i$ = soil water content after infiltration
+        - $\\Delta \\theta$ = $\\theta_0 - \\theta_i$
+        - $h_0$ = matrix potential at the ground surface}
+        - $h_f$ = matrix potential at the wetting front
+        - $\\Delta h$ = $h_0 - h_f$
+        - $K_s$ = hydraulic conductivity of the saturated soil in the wetted zone
         
         Although this equation cannot be solved for $I(t)$, we can solve it for $t$ and thus calculate and visualize the cumulative infiltration $I(t)$ for given values of the time $t$:""")
         
@@ -57,18 +212,6 @@ with st.expander("Show explanation"):
         
         st.markdown("""
         To understand which and how the model parameters control the infiltration process, it is helpful to change the individual parameter values and examine the effects on the cumulative infiltration and the infiltration rate. The latter is obtained by divding the change of the cumulative infiltration in a short time intervall through the length of this time intervall.""")
-
-# TODO: notation for theta, delta latex?
-with st.expander('Show variable descriptions'):
-    st.markdown("""
-    - $\\theta_0$ = soil water content before infiltration starts
-    - $\\theta_i$ = soil water content after infiltration
-    - $\\Delta \\theta$ = $\\theta_0 - \\theta_i$
-    - $h_0$ = matrix potential at the ground surface}
-    - $h_f$ = matrix potential at the wetting front
-    - $\\Delta h$ = $h_0 - h_f$
-    - $K_s$ = hydraulic conductivity of the saturated soil in the wetted zone
-    """)
 
 # ToDo: Implement a table to choose the suitable parameters (see GWP_SoilWaterRetention)
 with st.expander("Show typical parameter values"):
@@ -96,6 +239,19 @@ with st.expander("Show typical parameter values"):
 st.subheader("Interactive plot", divider = 'green')
 
 st.markdown("""
+The interactive plot visualizes how cumulative infiltration _I(t)_ and infiltration rate _i(t)_ evolve over time based on the selected soil parameters. By adjusting $K_s$, $\Delta \\theta$, and $\Delta h$, users can investigate how soil wetness, suction forces, and hydraulic conductivity control infiltration behavior.
+
+How to use the plot
+
+Modify $\Delta h$ to see how the suction head contrast influences infiltration.
+
+Adjust $\Delta \\theta$ to explore the effect of soil wetness and available pore space.
+
+Change $K_s$ to examine how hydraulic conductivity controls long-term infiltration.
+
+Save multiple parameter sets to compare scenarios in a single figure.
+
+The plot helps build intuition for how physical soil properties shape the infiltration response.
 You can modify the input with the following sliders. Additionally, you can save the computed line by using the button.
 """)
 # Interactive Input
@@ -131,7 +287,7 @@ def infiltration_rate(new_t, t, I_t):
 def compute_curves(Ks, delta_theta, delta_h,
                    t_plot_max=185.0,
                    I_axis_max=600.0,
-                   I_axis_min=50.0,
+                   I_axis_min=0.0,
                    dI=0.1,
                    delta_t2=0.1):
     """
@@ -198,7 +354,6 @@ ax1.set_title(label='Green-Ampt Infiltration Model', fontsize=20, loc= 'center')
 ax1.set_xlim(0, t_plot_max)
 ax1.set_ylim(I_axis_min, I_axis_max)
 ax1.set_xlabel('time [min]', fontsize=10)                                                         
-ax1.set_ylabel('cummulative infiltration [mm/min]', fontsize=10)
 ax1.set_ylabel('cummulative infiltration [mm]', fontsize=10)
 ax1.grid(which = "major", linewidth = 1, alpha=0.5)                                                         
 ax1.grid(which = "minor", linewidth = 0.2, alpha=0.5)
@@ -221,6 +376,9 @@ ax2.minorticks_on()
 columns_but = st.columns((1, 1, 2))
 
 with columns_but[0]:
+    
+    MAX_SAVED = 8
+    
     if st.button("Save line"):
         saved = st.session_state["saved_params"]
         # pick next color from the cycle, stable over time
@@ -236,6 +394,10 @@ with columns_but[0]:
             }
         )
 
+        # Keep only the last MAX_SAVED entries
+        if len(saved) > MAX_SAVED:
+            st.session_state["saved_params"] = saved[-MAX_SAVED:]
+        
 with columns_but[1]:
     if st.button("Clear saved lines"):
         st.session_state["saved_params"] = []
@@ -318,7 +480,51 @@ ax2.legend(
 
 st.pyplot(fig)
 
-'---'
+st.subheader('✔️ Conclusion', divider = 'green')
+st.markdown("""
+The Green–Ampt infiltration model provides a clear and intuitive way to explore how soils respond to rainfall, irrigation, and surface water inputs. By varying the key parameters $\Delta \\theta$, $\Delta h$, and $K_s$, this app illustrates how soil moisture conditions, suction forces, and hydraulic conductivity shape both cumulative infiltration and infiltration rates over time.
+
+While the Green–Ampt model is based on simplifying assumptions, it remains a valuable tool for conceptual learning and for examining how soil and boundary conditions influence water movement into the unsaturated zone. As an outlook, more advanced models, such as those based on the Richards equation or the van Genuchten–Mualem formulation, allow for a more detailed representation of moisture profiles and unsaturated zone hydraulics.
+""")
+
+# --- FINAL ASSESSMENT ---
+def content_final():
+    st.markdown("""#### 🧠 Final assessment""")
+    st.info("These questions test your understanding after working with the application.")
+    
+    # Render questions in a 2x3 grid (row-wise)
+    for row in [(0, 1), (2, 3)]:
+        col1, col2 = st.columns(2)
+
+        with col1:
+            i = row[0]
+            st.markdown(f"**Q{i+1}. {quest_final[i]['question']}**")
+            multiple_choice(
+                question=" ",
+                options_dict=quest_final[i]["options"],
+                success=quest_final[i].get("success", "✅ Correct."),
+                error=quest_final[i].get("error", "❌ Not quite.")
+            )
+
+        with col2:
+            i = row[1]
+            st.markdown(f"**Q{i+1}. {quest_final[i]['question']}**")
+            multiple_choice(
+                question=" ",
+                options_dict=quest_final[i]["options"],
+                success=quest_final[i].get("success", "✅ Correct."),
+                error=quest_final[i].get("error", "❌ Not quite.")
+            )
+
+# Render final assessment
+render_toggle_container(
+    section_id="green_ampt_final",
+    label="✅ **Show the final assessment** - to self-check your **understanding**",
+    content_fn=content_final,
+    default_open=False,
+)
+
+st.markdown('---')
 
 columns_lic = st.columns((5,1))
 with columns_lic[0]:

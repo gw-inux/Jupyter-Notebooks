@@ -5,27 +5,84 @@ import matplotlib.pyplot as plt
 st.header('Head distribution in homogeneous media')
 st.subheader('Heads in water and sand')
 
+# --- Function
+
+def sync_after_top_change():
+    """Ensure: base_level <= top_level."""
+    top = st.session_state.top_level
+    base = st.session_state.base_level
+    if base > top:
+        st.session_state.base_level = top
+
+def sync_after_base_change():
+    """
+    If rise is active: move top_level with base_level to keep filling constant.
+    If not: enforce base_level <= top_level.
+    """
+    base = st.session_state.base_level
+    top = st.session_state.top_level
+
+    if st.session_state.rise:
+        filling = st.session_state.filling_grade
+        # New top level to preserve filling height
+        new_top = base + filling
+
+        # Do not exceed global maximum
+        if new_top > top_level_max:
+            new_top = top_level_max
+            # Adjust base accordingly so filling stays constant as much as possible
+            st.session_state.base_level = max(0.0, new_top - filling)
+
+        st.session_state.top_level = new_top
+
+    else:
+        # Normal mode: bottom cannot be above current filling level
+        if base > top:
+            st.session_state.top_level = base
+
+def handle_rise_toggle():
+    """Store current filling height when 'rise' becomes active."""
+    if st.session_state.rise:
+        st.session_state.filling_grade = (st.session_state.top_level - st.session_state.base_level)
+
 # --- Settings ---
 base_level_ini = 0.     # cm (bottom of bucket)
 top_level_max = 100.
 top_level_ini = 50.
+
 # Initialize for the first time
 if "top_level" not in st.session_state:
-    st.session_state.top_level = 50.0
+    st.session_state.top_level = top_level_ini
 if "base_level" not in st.session_state:
-    st.session_state.base_level = 0.0
+    st.session_state.base_level = base_level_ini
 if "z_measure" not in st.session_state:
     st.session_state.z_measure = 0.0
-
+if "rise" not in st.session_state:
+    st.session_state.rise = False
+if "filling_grade" not in st.session_state:
+    st.session_state.filling_grade = (st.session_state.top_level - st.session_state.base_level)
+    
 # --- Input slider ---
 column1 = st.columns((1,1), gap = 'large')
 with column1[0]:
-    st.slider(':blue[**Filling level**]', 0.0, top_level_max, top_level_ini, 1.0, key="top_level")
-    st.slider('**Bucket bottom level**', 0.0, top_level_max, base_level_ini, 1.0, key="base_level")
+    
+
+    filling = (st.session_state.filling_grade if st.session_state.rise else st.session_state.top_level - st.session_state.base_level)
+    st.slider(':blue[**Filling level** _in cm above reference_]', float(st.session_state.base_level), top_level_max, float(st.session_state.top_level), 1.0, key="top_level", disabled = st.session_state.rise, on_change = None if st.session_state.rise else sync_after_top_change)
+    
+    max_bottom = (top_level_max - filling if st.session_state.rise else float(st.session_state.top_level))
+    
+    st.slider('**Bucket bottom level** _in cm above reference_', 0.0, float(max_bottom), float(st.session_state.base_level), 1.0, key="base_level", on_change=sync_after_base_change)
+    rise = st.toggle('Rise the bucket', key="rise", on_change=handle_rise_toggle)
+    
+    
+    
+    st.write(filling)
+    
     sand = st.toggle('Bucket filled with sand and water')
 
 with column1[1]:
-    st.slider(':red[**Elevation of measurement $z_{measure}$**]', 0.0, top_level_max, 0.0, 0.1,key="z_measure")
+    st.slider(':red[**Observation elevation $z_{obs}$** _in cm above reference_]', 0.0, top_level_max, float(st.session_state.z_measure), 0.1, key="z_measure")
 
 # Use values from session state
 top_level = st.session_state.top_level
@@ -161,9 +218,9 @@ ax_bucket.axis('off')
 ax_bucket.set_title("Water Column", fontsize=12)
 
 # --- Right: Head components ---
-ax_profile.plot(elevation_head, z, label="Elevation Head (z)", color='grey')
-ax_profile.plot(pressure_head, z, label="Pressure Head (ψ)", color='orange')
-ax_profile.plot(total_head, z, label="Total Head (h)", color='blue')
+ax_profile.plot(elevation_head, z, label="elevation head (z)", color='grey')
+ax_profile.plot(pressure_head, z, label="pressure head (ψ)", color='orange')
+ax_profile.plot(total_head, z, label="total head (h)", color='blue')
 if (z_measure <= top_level):
     ax_profile.plot(z_measure, z_measure, 'o', color='grey')
 if base_level <= z_measure <= top_level:
@@ -180,7 +237,9 @@ ax_profile.legend()
 
 # --- Display in Streamlit ---
 st.pyplot(fig)
-st.write('**Your pressure transducer measure:**')
+
+#st.write('**Your pressure transducer measure:**')
+st.write('**Head values at the observation height:**')
 if (z_measure >= base_level):
     st.write(':orange[**Pressure head**] (in cm) = %5.1f' %pressure_head_measure)
 else:

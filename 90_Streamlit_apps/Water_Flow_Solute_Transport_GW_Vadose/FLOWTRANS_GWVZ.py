@@ -52,7 +52,8 @@ st.markdown("""
 
 # --- Pages definition / The content of your application / Header are with the target 'None' ---
 pages = {
-    "🔶 Section 1": {
+    "🔶 **Chapter 1**:  \nHydrostatics and  \nSteady-State  \nSaturated Flow": {
+        "Overview 💦": "90_Streamlit_apps/Water_Flow_Solute_Transport_GW_Vadose/content/Section_1/section1.py",
         "--- 📈 Head distribution in a bucket... ---": None,
         "... full of water/sand 💦": "90_Streamlit_apps/Water_Flow_Solute_Transport_GW_Vadose/content/Section_1/bucket_steady_homo.py",
         "--- 📈 Heads in a soil column with flow... ---": None,
@@ -129,7 +130,7 @@ for section, subpages in pages.items():
                 st.sidebar.markdown(f"<div class='subheader-label'>{label.replace('---', '').strip()}</div>", unsafe_allow_html=True)
             else:
                 is_selected = st.session_state.selected_path == path
-                display_label = f"▶️ **{label}**" if is_selected else label
+                display_label = f"➤️ **{label}**" if is_selected else label
                 indent, content = st.sidebar.columns([0.1, 0.9])
                 with content:
                     if st.button(display_label, key=f"{section}_{label}"):
