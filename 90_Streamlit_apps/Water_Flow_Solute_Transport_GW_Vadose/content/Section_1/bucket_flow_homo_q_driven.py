@@ -138,9 +138,64 @@ def bucket_flow():
     )
     
     # Showing ponding head
-    z_value = top_level + pressure_head_measure
-    ax_bucket.plot([0, bucket_width], [z_value, z_value], color='blue', linestyle='--', linewidth=2)
+    pressure_head_top = specific_discharge * (top_level - base_level) / K
+    z_value = top_level + pressure_head_top
     
+    if z_value < 100:
+        
+        ax_bucket.plot([0, bucket_width], [z_value, z_value], color='lightskyblue', linestyle='--', linewidth=1)
+        
+        ax_bucket.text(
+        bucket_width / 2,
+        z_value,
+        "(Virtual) \nPonding head",
+        fontsize=10,
+        color='lightskyblue',
+        va="center",
+        ha="left"
+        )
+        
+        # Triangle marker at ponding head (like ∇)
+        ax_bucket.plot(
+            [(water_left + water_right) / 3],
+            [z_value+2],
+            marker='v',
+            color='lightskyblue',
+            markersize=10
+        )
+        # Horizontal lines below triangle
+        line_y1 = z_value - 2  # slightly below triangle
+        line_y2 = z_value - 4  # a bit further down
+        
+        line_length = 0.2
+        x_center = (water_left + water_right) / 3
+        
+        # First line
+        ax_bucket.plot(
+            [x_center - line_length, x_center + line_length],
+            [line_y1, line_y1],
+            color='lightskyblue',
+            linewidth=1.5
+        )
+        
+        # Second line
+        ax_bucket.plot(
+            [x_center - line_length * 0.6, x_center + line_length * 0.6],
+            [line_y2, line_y2],
+            color='lightskyblue',
+            linewidth=1.5
+        )
+    else:
+        ax_bucket.text(
+        bucket_width / 2,
+        95,
+        "Ponding head  \noutside the plot",
+        fontsize=10,
+        color='lightskyblue',
+        va="center",
+        ha="left"
+        )
+        
     # Pressure sensor at z_measure (like *)
     # TODO ALSO CONSIDER SENSOR BELOW BOTTOM
     if base_level <= z_measure <= top_level:
