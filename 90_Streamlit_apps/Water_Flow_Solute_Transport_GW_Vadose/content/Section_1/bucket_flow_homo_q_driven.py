@@ -137,6 +137,10 @@ def bucket_flow():
         linewidth=1.5
     )
     
+    # Showing ponding head
+    z_value = top_level + pressure_head_measure
+    ax_bucket.plot([0, bucket_width], [z_value, z_value], color='blue', linestyle='--', linewidth=2)
+    
     # Pressure sensor at z_measure (like *)
     # TODO ALSO CONSIDER SENSOR BELOW BOTTOM
     if base_level <= z_measure <= top_level:
