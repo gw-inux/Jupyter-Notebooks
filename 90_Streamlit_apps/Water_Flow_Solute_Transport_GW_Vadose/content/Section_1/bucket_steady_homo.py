@@ -81,7 +81,7 @@ with column1[0]:
     max_bottom = (top_level_max - filling if st.session_state.rise else float(st.session_state.top_level))
     
     st.slider('**Bucket bottom level** _in cm above reference_', 0.0, float(max_bottom), float(st.session_state.base_level), 1.0, key="base_level", on_change=sync_after_base_change)
-    rise = st.toggle('Rise the bucket', key="rise", on_change=handle_rise_toggle)
+    rise = st.toggle('Raise the bucket', key="rise", on_change=handle_rise_toggle)
     
     sand = st.toggle('Bucket filled with sand and water')
 
