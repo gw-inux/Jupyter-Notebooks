@@ -65,10 +65,18 @@ if "filling_grade" not in st.session_state:
 # --- Input slider ---
 column1 = st.columns((1,1), gap = 'large')
 with column1[0]:
+    EPS = 1E-6
     
-
     filling = (st.session_state.filling_grade if st.session_state.rise else st.session_state.top_level - st.session_state.base_level)
-    st.slider(':blue[**Filling level** _in cm above reference_]', float(st.session_state.base_level), top_level_max, float(st.session_state.top_level), 1.0, key="top_level", disabled = st.session_state.rise, on_change = None if st.session_state.rise else sync_after_top_change)
+    
+    st.slider(':blue[**Filling level** _in cm above reference_]',
+        float(st.session_state.base_level),
+        top_level_max,
+        float(st.session_state.top_level)+EPS,
+        1.0,
+        key="top_level",
+        disabled = st.session_state.rise,
+        on_change = None if st.session_state.rise else sync_after_top_change)
     
     max_bottom = (top_level_max - filling if st.session_state.rise else float(st.session_state.top_level))
     
@@ -178,9 +186,9 @@ else:
     )
     ax_bucket.plot([((water_left + water_right) / 1.1), ((water_left + water_right) / 1.1)], [z_measure, top_level], color='lightgrey', linewidth=1,linestyle='--')  # line of measurement sensor
     ax_bucket.text(
-        (water_left + water_right) / 1.3,
-        top_level+10,
-        "Measurment \noutside the \nWater filled \nbucket",
+        (water_left + water_right) / 2,
+        z_measure,
+        "Measurment outside \nthe Water filled bucket",
         fontsize=12,
         color='red',
         ha='center',
