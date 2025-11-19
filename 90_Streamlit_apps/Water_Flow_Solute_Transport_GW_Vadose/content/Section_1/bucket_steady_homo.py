@@ -117,13 +117,37 @@ bucket_width = 4  # cm
 water_left = 0
 water_right = bucket_width
 
-# Water fill
-z_fill = np.linspace(base_level, top_level, 100)
-
+# Fill material in the bucket
 if sand:
-    ax_bucket.fill_betweenx(z_fill, water_left, water_right, color='brown', alpha=0.7)
+    # Dry sand: from bucket bottom to 100 cm (light brown)
+    z_sand_full = np.linspace(base_level, top_level_max, 100)
+    ax_bucket.fill_betweenx(
+        z_sand_full,
+        water_left,
+        water_right,
+        color='#d2b48c',  # light brown (tan)
+        alpha=0.7,
+    )
+
+    # Wet sand: from bucket bottom to current filling level (darker brown)
+    z_wet = np.linspace(base_level, top_level, 100)
+    ax_bucket.fill_betweenx(
+        z_wet,
+        water_left,
+        water_right,
+        color='brown',
+        alpha=0.8,
+    )
 else:
-    ax_bucket.fill_betweenx(z_fill, water_left, water_right, color='lightblue', alpha=0.7)
+    # Water: only up to current filling level
+    z_fill = np.linspace(base_level, top_level, 100)
+    ax_bucket.fill_betweenx(
+        z_fill,
+        water_left,
+        water_right,
+        color='lightblue',
+        alpha=0.7,
+    )
 
 # Bucket outline (left, right, bottom)
 ax_bucket.plot([water_left, water_left], [base_level, top_level_max], color='black', linewidth=4)  # left wall
