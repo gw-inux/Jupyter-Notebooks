@@ -90,7 +90,7 @@ pages = {
         "🧮 1D Advektion-Dispersion": "05_Applied_hydrogeology/Transport_1D_AD_ST.py",
         "--- Folien 🚀---": None,
         "📝 T04: Numerische GW-Transportmod.": "90_Streamlit_apps/MWW01/SlideJet_Presentations/GWBmC_WS2526_T04_Transport_SJpresent.py",
-        "📑 LV 13.11.25: Folien zum Start": "90_Streamlit_apps/MWW01/SlideJet_Presentations/GWBmC_WS2526_V06_Start_SJpresent.py",
+        "📑 LV 20.11.25: Folien zum Start": "90_Streamlit_apps/MWW01/SlideJet_Presentations/GWBmC_WS2526_V06_Start_SJpresent.py",
     },
     "🟨 Kalibrierung": {
         "--- Folien 🚀---": None,
