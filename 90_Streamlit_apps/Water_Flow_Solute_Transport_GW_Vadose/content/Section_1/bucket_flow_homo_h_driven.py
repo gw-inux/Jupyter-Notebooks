@@ -179,7 +179,7 @@ def bucket_flow():
     
     ax_profile.set_xlabel("Head [cm]")
     ax_profile.set_ylabel("Elevation [cm]")
-    ax_profile.set_xlim(0, 1.5*top_level_max + 5)
+    ax_profile.set_xlim(0, 155)
     ax_profile.set_ylim(0, top_level_max+25)
     ax_profile.set_title("Hydraulic Head Components")
     

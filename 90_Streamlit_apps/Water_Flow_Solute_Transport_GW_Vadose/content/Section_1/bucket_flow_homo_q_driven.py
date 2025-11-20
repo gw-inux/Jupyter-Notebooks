@@ -9,7 +9,7 @@ st.subheader('Head distribution in a bucket filled with water and sand and flowi
 base_level_ini = 0.     # cm (bottom of bucket)
 top_level_max = 100.
 top_level_ini = 50.
-specific_discharge_ini = 0.05
+specific_discharge_ini = 0.02
 
    
 # Callback function to update session state
@@ -46,7 +46,8 @@ def bucket_flow():
     
     with column1[1]:
         st.slider(':red[**Elevation of measurement $z_{measure}$**]', 0.0, top_level_max, 0.0, 0.1,key="z_measure")
-        st.slider(':green[**Specific discharge $q$**]', 0.0, 0.05, specific_discharge_ini, 0.001 ,format="%4.3f", key="specific_discharge")
+        st.slider(':green[**Specific discharge $q$**]', 0.0, 0.02, 0.005, 0.001 ,format="%4.3f", key="specific_discharge")
+        
         # Hydraulic conductivity
         container = st.container()
         if st.session_state.number_input:
@@ -257,7 +258,7 @@ def bucket_flow():
     
     ax_profile.set_xlabel("Head [cm]")
     ax_profile.set_ylabel("Elevation [cm]")
-    ax_profile.set_xlim(0, 3*top_level_max + 5)
+    ax_profile.set_xlim(0, 155)
     ax_profile.set_ylim(0, top_level_max)
     ax_profile.set_title("Hydraulic Head Components")
     
