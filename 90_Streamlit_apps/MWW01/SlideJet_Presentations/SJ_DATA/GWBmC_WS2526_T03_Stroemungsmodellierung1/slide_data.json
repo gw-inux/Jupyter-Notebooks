@@ -1,0 +1,530 @@
+[
+    {
+        "image": "images/slide_1.png",
+        "notes": "Willkommen zur Grundwasserbewirtschaftung mit Computermodellen \u2013 Thema 03: Numerische L\u00f6sung der Grundwasserstr\u00f6mungsgleichung\rNachfolgend die wichtigsten Folien, zum Teil mit Kommentaren (Stand 2021 10 28 // 16:00 Uhr; Kommentare werden ggf. noch erg\u00e4nzt),\rNeben diesen Folien finden Sie im OPAL-Kurs weitere Materialien, u. a. elektronische Kontrollfragen,\rU. a. finden Sie im OPAL-Kurs die auf den folgenden Seiten angesprochenen EXCEL-Sheets und Jupyter-Notebooks\rBei Fragen, Kommentaren und Hinweisen freuen wir uns von Ihnen zu h\u00f6ren."
+    },
+    {
+        "image": "images/slide_2.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_3.png",
+        "notes": "Luftbild: Tagebauregion Lausitz\rOben rechts befindet sich der aktive Tagebau\rMittig / unten-links sind geflutete Restl\u00f6cher zu erkennen\rEinige typische Fragestellungen, die mit Computermodellen beantwortet werden:\rDimensionierung Entw\u00e4sserung (Tagebau)\rzuk\u00fcnftiger Wasserstand (Prognose Nach-Bergbau)\rWasserbeschaffenheit\rGrunds\u00e4tzliches hydrogeol. Verhalten (z. B. Flie\u00dfrichtung)\r\u2026"
+    },
+    {
+        "image": "images/slide_4.png",
+        "notes": "Geologische Struktur\rDie Abbildung zeigt einen regionalen geologischen Schnitt durch die Lausitz (horizontale Ausdehnung mehrere Kilometer)\rDer Schnitt macht deutlich, dass f\u00fcr einige Fragestellungen die geologischen Strukturen stark vereinfacht/abstrahiert als homogene konzipiert werden k\u00f6nnen"
+    },
+    {
+        "image": "images/slide_5.png",
+        "notes": "Analytische L\u00f6sung\rF\u00fcr idealisierte bzw. stark vereinfachte Situationen k\u00f6nnen entsprechende Rechenmodelle (z. B. 1D Grundwasserstr\u00f6mungsgleichung) mit analytischen Gleichungen gel\u00f6st werden\rWeitere Erl\u00e4uterungen und Anwendung: https://mybinder.org/v2/gh/ThoReimann/HydroTeaching/master (MWW01 ...)"
+    },
+    {
+        "image": "images/slide_6.png",
+        "notes": "Geologische Struktur\rDie Folien zeigt einen Ausschnitt aus einem detaillierten hydrogeol. Strukturmodell (horizontale Ausdehnung mehrere 10er meter)\rEs wird deutlich, dass unter Umst\u00e4nden die kleinr\u00e4umig vorhandenen Strukturen ber\u00fccksichtigt werden sollen (nat\u00fcrlich abh\u00e4ngig von der Fragestellung)"
+    },
+    {
+        "image": "images/slide_7.png",
+        "notes": "Beispiel f\u00fcr ein 2D numerisches Modell\rkomplexe konzeptionelle Modell k\u00f6nnen nicht mehr mit analytischen Ans\u00e4tzen gel\u00f6st werden\rstattdessen werden numerische Modelle verwendet\rIm Beispiel: Finite-Differenzen Simulation mit der Software ASM (Aquifer Simulation Modell, eine einfache FD Software aus den 1980er Jahren; Kinzelbach)\rBasis ASM: 2D Grundwasserstr\u00f6mungsgleichung"
+    },
+    {
+        "image": "images/slide_8.png",
+        "notes": "Beispiel f\u00fcr ein 2D numerisches Modell\rhier dargestellt ist die Verteilung der hydraulischen Leitf\u00e4higkeit K (siehe Strukturmodell zwei Seiten vorher)"
+    },
+    {
+        "image": "images/slide_9.png",
+        "notes": "Zielstellung / Relevanz des Themas im Rahmen der LV Grundwasserbewirtschaftung mit Computermodellen\rGrundverst\u00e4ndnis aber keinen tiefergehenden speziellen Kentnisse\rSie sollten z. B. in der Lage sein, auf m\u00f6gliche Probleme der Modelle zu reagieren, z. B. wenn ein Modell nicht konvergiert"
+    },
+    {
+        "image": "images/slide_10.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_11.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_12.png",
+        "notes": "Zielstellung / Relevanz des Themas im Rahmen der LV Grundwasserbewirtschaftung mit Computermodellen\rGrundverst\u00e4ndnis aber keinen tiefergehenden speziellen Kentnisse\rSie sollten z. B. in der Lage sein, auf m\u00f6gliche Probleme der Modelle zu reagieren, z. B. wenn ein Modell nicht konvergiert"
+    },
+    {
+        "image": "images/slide_13.png",
+        "notes": "Fallbeispiel \u2013 Dichtwand\r(Hinweis: im WS 21/22 nicht in LV02 besprochen, wird zu einem sp\u00e4teren Zeitpunkt folgen)\rAusgangsproblem: um den Tagebau zu betreiben, muss das Grundwasser um einen signifikanten Betrag abgesenkt werden\rurspr\u00fcnglich ist das Grundwasser flurnah (siehe auch Spreewald)\rdie Absenkung mit Vertikalfilterbrunnen ist weit reichend und Energieaufw\u00e4ndig"
+    },
+    {
+        "image": "images/slide_14.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_15.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_16.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_17.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_18.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_19.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_20.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_21.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_22.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_23.png",
+        "notes": "Grundlage\r3D-Grundwasserstr\u00f6mungsgleichung\rkann mit Hilfe eines Kontrollvolumens (linke Seite) hergeleitet werden\rBasis:\rMassenerhalt/Massenbilanz\rGrundwasserstr\u00f6mung nach Darcy\rBei Bedarf ist die Herleitung in Lehrb\u00fcchern bzw. in einem Dokument im OPAL-Kurs zu finden"
+    },
+    {
+        "image": "images/slide_24.png",
+        "notes": "s. Anderson et al. 2015; chapter 1.6 p16\r(bereits bekanntes) Beispiel f\u00fcr ein Finite-Differenzen-Gitter\rDas Beispiel zeigt einen Nachteil der Finiten-Differenzen-Verfahren: Verfeinerungen im Netz ziehen sich durch das gesamte Modell\rsolche Netze werden auch als strukturiere FD-Gitter bezeichnet"
+    },
+    {
+        "image": "images/slide_25.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_26.png",
+        "notes": "FD-Gitter\rDie Abbildung zeigt eine Variante der FD \u2013Verfahren, bei der das Gitter lokal verfeinert wird\rz. B. die Versionen MODFLOW-LGR k\u00f6nnen solche Gitter generieren\rgut geeignet z. B. f\u00fcr lokale Fragestellungen wie Kontaminationen, Wasserentnahme etc."
+    },
+    {
+        "image": "images/slide_27.png",
+        "notes": "Weitere Beispiele f\u00fcr Finite-Differenzen/Finite Volumen\rGrundlage f\u00fcr beide Abbildungen ist das selbe konzeptionelle Modell (Struktur der Oberfl\u00e4chengew\u00e4sser)\rin der linken Abbildungen kommt ein klassischen strukturiertes FD-Gitter zum Einsatz\rin der rechten Abbildung wird ein unstrukturiertes Finite-Volumen-Verfahren verwendet (z. B. mit MODFLOW-USG/MODFLOW6 realisierbar)"
+    },
+    {
+        "image": "images/slide_28.png",
+        "notes": "Beispiel f\u00fcr ein Finite-Elemente-Gitter\rdargestellt ist ein Transportmodell mit einem Finite-Elemente-Gitter (FE)\rverwendete Software im Beispiel ist FEFLOW"
+    },
+    {
+        "image": "images/slide_29.png",
+        "notes": "Problemstellung (vereinfachtes Beispiel, bekannte Situation)\rZiel ist die Quantifizierung einer station\u00e4ren 1D-Str\u00f6mung in einem gespannten Grundwasserleiter mit horizontaler Basis (Sohle) und konstanter M\u00e4chtigkeit m zwischen zwei fest vorgegebenen Potentialh\u00f6hen h0 und hL mit Hilfe eines Finite-Differenzen-(FD-) Verfahrens.\rbisher wurde die Aufgabenstellung mit einer analytischen Gleichung gel\u00f6st\rNun wird stattdessen ein einfaches numerisches Modell mittels FD-Verfahren aufgebaut"
+    },
+    {
+        "image": "images/slide_30.png",
+        "notes": "Gitte und Indizierung\rKnoten bzw. Zellen werden indiziert, um die Zuordnung von Parameterwerten (hydraulische Leitf\u00e4higkeit, GWN) und Potentialh\u00f6hen zu erleichtern.\rJeder Parameterwert bzw. jede Potentialh\u00f6he ist repr\u00e4sentativ f\u00fcr eine gesamte Zelle, d. h. innerhalb einer Zelle gibt es keine r\u00e4umliche Aufl\u00f6sung. \rDie Indizierung erfolgt \u00fcblicherweise in Richtung der x-Achse mit i = 1,      i = 2, \u2026, i = n (n = Anzahl von Zellen, hier: n = 11).\rNachfolgend werden folgende Symbole verwendet: Ti, Ni, hi sind die Transmissivit\u00e4t, die GWN bzw. die Potentialh\u00f6he in Zelle i."
+    },
+    {
+        "image": "images/slide_31.png",
+        "notes": "Grundlagen f\u00fcr das Gleichungssystem\rSchema zur Herleitung auf der linken Seite in der Draufsicht (Auschnitt mit 3 Zellen)\rRechte Seite in der Seitenansicht"
+    },
+    {
+        "image": "images/slide_32.png",
+        "notes": "Grundgleichungen (hier nochmal das gleiche Prinzip aus der Dokumentation von MODFLOW)\rFD-Verfahren zur Simulation der Grundwasserstr\u00f6mung beruhen auf zwei grundlegenden Beziehungen:\rMassen-/Volumenerhalt und\rDarcy-Gesetz\rDiese beiden Beziehungen sind f\u00fcr jede Zelle aufzustellen (au\u00dfer bei Zellen mit vorgegebener hydraulischer Potentialh\u00f6he, d. h. bei Zellen, in denen eine Randbedingung 1. Art bzw. Dirichlet-Randbedingung vorliegt).\rAus der Kombination von Volumenerhalt und Darcy-Gesetz ermittelt das FD-Verfahren f\u00fcr jede Zelle einen Wert f\u00fcr die Potentialh\u00f6he."
+    },
+    {
+        "image": "images/slide_33.png",
+        "notes": "Volumenbilanz\rBasis der Herleitung ist der bereits vorgestellte Ausschnitt mit 3 Zellen (Draufsicht)\rEs wird f\u00fcr die Zelle i die Volumenbilanz aufgestellt (Zu- und Abfluss von und in die Nachbarzellen sowie die fl\u00e4chige Grundwasserneubildung; Fl\u00e4che f\u00fcr die Grundwasserneubildung ist B mal dx)\rDie halbzahligen Indizes i \u2013 1/2 und i + 1/2 sollen andeuten(!), dass der Durchfluss aus einer bzw. in eine Nachbarzelle erfolgt.\rSelbstverst\u00e4ndlich gibt es keine real existierenden Zellen oder Knoten mit halbzahliger Nummer!"
+    },
+    {
+        "image": "images/slide_34.png",
+        "notes": "Darcy-Gesetz\rDabei ist T die Transmissivit\u00e4t [L\u00b2/T].\rZur Erinnerung: F\u00fcr einen gespannten Grundwasserleiter ist die Transmissivit\u00e4t das Produkt aus hydraulischer Leitf\u00e4higkeit und M\u00e4chtigkeit, d. h. T = K\u00b7m."
+    },
+    {
+        "image": "images/slide_35.png",
+        "notes": "Kombination\rEinsetzen und k\u00fcrzen\u2026"
+    },
+    {
+        "image": "images/slide_36.png",
+        "notes": "FD Abeitsgleichung\rDiese Arbeitsgleichung beinhaltet die Potentialh\u00f6hen f\u00fcr die Zelle i und f\u00fcr die beiden Nachbarzellen.\rDadurch entsteht ein Gleichungssystem, d. h. die Arbeitsgleichungen sind miteinander gekoppelt und k\u00f6nnen nicht isoliert voneinander gel\u00f6st werden.\rDieses Gleichungssystem wird von Softwarepaketen \u201eautomatisch\u201c aufgestellt (z. B. MOFLOW).\rAn den Randzellen werden (im betrachteten Beispiel) zudem Werte f\u00fcr die Potentialh\u00f6hen h1 und hn vorgegeben.\rModifizierte \u00dcberlegungen w\u00e4ren f\u00fcr Zellen mit anderen Randbedingungen erforderlich, z. B. bei einer No-Flow-Bedingung (undurchl\u00e4ssiger Rand) oder einer \u201criver boundary condition\u201c. Hier muss die zugeh\u00f6rige Potentialh\u00f6he jeweils aus einer entsprechenden Arbeitsgleichung bestimmt werden."
+    },
+    {
+        "image": "images/slide_37.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_38.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_39.png",
+        "notes": "Einfache Iteration\rZur Durchf\u00fchrung eines einfachen Iterationsverfahrens wird die FD-Arbeitsgleichung nach der Potentialh\u00f6he hi aufgel\u00f6st.\rAusgehend von einer Startsch\u00e4tzung werden die Potentialh\u00f6hen nach dieser Vorschrift sukzessive verbessert, bis eine vorgegebene Toleranzschranke eingehalten wird.\rBeispiel f\u00fcr Toleranzschranke: Potentialh\u00f6hen aus zwei aufeinander folgenden Iterationsschritten d\u00fcrfen sich um nicht mehr als 1 mm unterscheiden."
+    },
+    {
+        "image": "images/slide_40.png",
+        "notes": "\u00dcbung / Anwendung\rin den Excel-Sheets zur LV kann der Aufbau des Gleichungssystems nachvollzogen werden\rd. h. es wird f\u00fcr die jweiligen gesuchten Potentialh\u00f6hen deutlich, \u2018woher\u2019 die Zutaten kommen\res wird klar, dass es sich um ein iteratives Verfahren handelt, d. h. die Potentialh\u00f6hen der Nachbarzellen (siehe Gleichung vorige Seite) stammen aus dem vorherigen Iterationsschritte\rmit dem Jupyter Notebook kann besonders gut der iterative Weg zur L\u00f6sung nachvollzogen werden\rdie angesprochenen EXCEL-Sheets und Jupyter-Notebooks finden Sie im OPAL-Kurs"
+    },
+    {
+        "image": "images/slide_41.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_42.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_43.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_44.png",
+        "notes": "Arbeitauftrag (z. B. in Gruppen\u2026) mit EXCEL / JUPYTER NOTEBOOK\rAufgabe: grafische Anzeige der Parameter (Transmissivit\u00e4t) / Ergebnisse\rAnalyse f\u00fcr gespannten und ungespannt Fall\rT(x)?\rh(x)?\rWelche Ver\u00e4nderungen in der hydraulischen Potentialh\u00f6he ergeben sich, wenn die M\u00e4chtigkeit des Aquifers \u00f6rtlich variiert (Grundwasserneubildung und hydraulische Leitf\u00e4higkeit \u00f6rtlich konstant)? Unterscheiden Sie gespannte und ungespannte Bedingungen."
+    },
+    {
+        "image": "images/slide_45.png",
+        "notes": "Das numerische Grundwasserstr\u00f6mungsmodell MODFLOW\rhier erste Vorstellung \rGrunds\u00e4tzlich arbeitet MODFLOW wie das Beispiel, was gerade hergeleitet/besprochen wurde\rallerdings in 3D und mit einer Vielzahl von m\u00f6glichen Randbedingungen"
+    },
+    {
+        "image": "images/slide_46.png",
+        "notes": "Grunds\u00e4tze/Charakteristiken iterativer L\u00f6sungen\rbasierend auf den bisherigen Erfahrungen (Excel-Sheet, Jupyter Notebook)"
+    },
+    {
+        "image": "images/slide_47.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_48.png",
+        "notes": "Motivation (f\u00fcr den Einsatz bzw. Verwendung eines 2D horizontal-ebenen Ansatzes)\rDer Untergrund weist zumeist eine geschichtete Struktur auf, z. B. eine  Abfolge von gut und schlecht leitenden Schichten.  \rDie horizontale Ausdehnung von Schichten ist wesentlich gr\u00f6\u00dfer als die vertikale Ausdehnung. Daher ist oftmals eine vertikale Mittelung der Grundwasserstr\u00f6mung innerhalb jeder Schicht gerechtfertigt.\rDieses Konzept ist in die Entwicklung vieler Softwarepakete eingeflossen, sodass Grundwassermodelle sehr oft aus 2D-Modellschichten (\u201clayers\u201c) bestehen. \u201eRichtige\u201c 3D-Modelle sind selten.\rEin reines 2D-Grundwassermodell besitzt nur eine einzige Modellschicht.\rmehr als eine Modellschicht: Quasi-3D-Modell (oder \u201e2D+\u201c).\rModellschichten k\u00f6nnen mit hydrogeologischen Schichten identisch sein.\rWird eine bessere vertikale Aufl\u00f6sung angestrebt, so wird eine hydrogeologische Schicht durch mehrere Modellschichten abgebildet. \rZwischen Modellschichten kann vertikaler Wassertransfer ber\u00fccksichtigt werden.\rAquitarde m\u00fcssen nicht als eigene Schichten abgebildet werden. Die Vorgabe von vertikalen hydraulischen Leitf\u00e4higkeiten zwischen benachbarten Modellschichten ist oft ausreichend (\u201cleaky aquifer\u201c)."
+    },
+    {
+        "image": "images/slide_49.png",
+        "notes": "2D Gitter\rGrunds\u00e4tzlich vergleichbar mit dem bisherigen Vorgehen in 1D\rstatt 2 Nachbarzellen wie in 1D gibt es nun 4 Nachbarzellen"
+    },
+    {
+        "image": "images/slide_50.png",
+        "notes": "F\u00fcnf Punkte Stern\rIn 2D-Finite-Differenzen-Modellen erfolgt die Grundwasserstr\u00f6mung zwischen benachbarten Zellen jeweils parallel zu einer der beiden Koordinatenrichtungen (Doppelpfeile in der Abbildung).\rFD-Gleichungen beruhen auf Volumenbilanz und Darcy-Gesetz. Sie beinhalten Gr\u00f6\u00dfen aus f\u00fcnf Zellen (au\u00dfer an Modellr\u00e4ndern oder bei vorgegebener Potentialh\u00f6he).\rZur Formulierung des Darcy-Gesetzes m\u00fcssen dabei Leitf\u00e4higkeits- oder Transmissivit\u00e4tswerte f\u00fcr die Zellkanten gebildet werden.\r\rEin gut verst\u00e4ndliches Beispiel mit weiteren Vereinfachungen (konstante Transmissivit\u00e4t, einheitliche / gleiche Zellweiten) finden Sie in\rAnderson et al. (2015) ab S. 128 / Box 4.3 \u201cSpreadsheet solution\u2026.\u201d sowie\rIm Opal-Kurs (Unterlagen zu LV 03 \u2013 Material \u2013 Spreadsheet); basierend auf Fox (1996) [Fox, P. J., \"Spreadsheet Solution Method for Groundwater Flow Problems,\" Subsurface Fluid- Flow (Ground-Water and Vadose Zone) Modeling, ASTM STP 1288, Joseph D. Ritchey and James 0. Rumbaugh, Eds., American Society for Testing and Materials, 1996.]"
+    },
+    {
+        "image": "images/slide_51.png",
+        "notes": "Mittelung von Transmissivit\u00e4ten\rTransmissivit\u00e4tswerte an den Zellkanten entstehen durch Mittelung der Transmissivit\u00e4ten der beiden jeweils angrenzenden Zellen.\rDabei wird das harmonische Mittel gebildet (Formeln s. o.). \rGrund: Das harmonische Mittel entspricht der effektiven Transmissivit\u00e4t, wenn zwei Bereiche unterschiedlicher Transmissivit\u00e4t nacheinander durchstr\u00f6mt werden."
+    },
+    {
+        "image": "images/slide_52.png",
+        "notes": "Block- und Knotenzentrierte FD-Verfahren\rBei blockzentrierten FD-Verfahren (h\u00e4ufigere Variante, wird in \u201eGrundwasserbewirtschaftung mit Computermodellen\u201c verwendet) werden die Aquiferparameter und die errechnete Potentialh\u00f6he auf eine Zelle bezogen.\rBei knoten- oder gitterzentrierten Verfahren beziehen sich diese Werte auf eine rechteckige Umgebung (schraffiert) des Schnittpunkts von Gitterlinien.\rKnoten sind bei knotenzentrierten Verfahren die Schnittpunkte von Gitterlinien, bei blockzentrierten Verfahren die Zellmittelpunkte."
+    },
+    {
+        "image": "images/slide_53.png",
+        "notes": "Instation\u00e4r\rBei instation\u00e4ren Problemen muss auch die Zeitachse diskretisiert werden. \rdritter Index erforderlich \u2013 hier: k\rZeitindex k wird meist oben angeschrieben (kein Exponent!)\rUm die Werte der Potentialh\u00f6he zum Zeitniveau k zu ermitteln, werden nur h-Werte des vorhergehenden Zeitniveaus k-1 verwendet (Einschrittverfahren)."
+    },
+    {
+        "image": "images/slide_54.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_55.png",
+        "notes": "Problemstellung\rZur Simulation der Grundwasserstr\u00f6mung muss ein Gleichungssystem gel\u00f6st werden. Die L\u00f6sungswerte sind die Potentialh\u00f6hen f\u00fcr jede Zelle bzw. jeden Knoten.\rDiese Finite-Differenzengleichungen basieren auf dem Volumenerhalt (f\u00fcr jede Zelle) und dem Darcy-Gesetz (Str\u00f6mung zwischen benachbarten Zellen).\rAufgrund der Gr\u00f6\u00dfe des Gleichungssystems ist das Gau\u00df-Eliminationsverfahren nicht von Vorteil, da es i. d. R. zuviel Speicherplatz beansprucht (au\u00dfer bei 1D-Problemen und gespanntem Grundwasserleiter, vgl. vorige Vorlesung).\rDaher werden iterative L\u00f6sungsverfahren verwendet.\rBei nichtlinearen Gleichungssystemen (ungespannter Grundwasserleiter) sind iterative Verfahren stets erforderlich (auch bei \u201eunendlichem\u201c Speicherplatz).\r\rZum Beispiel\rWeitere Informationen finden Sie ggf. in den Unterlagen zum BSc Studium (Prof. Kolditz) oder\rAlternativ in den Unterlagen zur Weiterbildung \u201cNumerical groundwater flow modeling\u201d (Cairo2020) \u2013 T04 Numerical solution of groundwater flow"
+    },
+    {
+        "image": "images/slide_56.png",
+        "notes": "Beispiel\rEine Folie aus einer Pr\u00e4sentation zu MODFLOW von Eve L. Kuniansky 2005\rDie Matrix A enth\u00e4lt die Eigenschaften des Systems (hydr. LF, r\u00e4umliche Abmessungen etc.)\rb enth\u00e4lt Massen- bzw. Volumenstr\u00f6me, u. a. aufgrund der vorhandenen Randbedingungen (vgl. auch Q-h Diagramme)"
+    },
+    {
+        "image": "images/slide_57.png",
+        "notes": "Beispiel\rEin Auschnitt aus der Dokumentation von MODFLOW6\rZeigt das Grundprinzip am Beispiel MODFLOW6"
+    },
+    {
+        "image": "images/slide_58.png",
+        "notes": "Weitere Erl\u00e4uterung\rIm OPAL-Kurs gibt es zu diesem Schema ein Video, welches die Grundz\u00fcge der Analyse demonstriert\rDas charakteristische Verhalten eines spezifischen Modells wird durch die schwarze Linie repr\u00e4sentiert (folgende Seite mit weiteren Beispielen und Modellen, welche ein unterschiedliches charakteristisches Verhalten zeigen)\rDie Aufgabe der gestrichelten Linie ist es, die Potentialh\u00f6he h zu \u2018spiegeln\u2019"
+    },
+    {
+        "image": "images/slide_59.png",
+        "notes": "Weitere Beispiele\rjeweils unterschiedliches charakteristisches Modellverhalten (hier \u2018Modellverhalten\u2019 -> y = F(x))"
+    },
+    {
+        "image": "images/slide_60.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_61.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_62.png",
+        "notes": "Schematische Darstellung der Funktionsweise von Iterationsverfahren \rDie L\u00f6sung des FD-Gleichungssystems erfolgt nicht in einem Schritt (wie beim Gau\u00df-Eliminationsverfahren), sondern mittels einer Abfolge gleichartiger (Iterations-)Schritte.\rIn jedem Iterationsschritt soll  eine Verbesserung der N\u00e4herungswerte f\u00fcr das aktuelle Zeitniveau erzielt werden.\rF\u00fcr dieses \u201eUpdate\u201c wird jeweils das Zwischenergebnis des vorhergehenden Schrittes benutzt."
+    },
+    {
+        "image": "images/slide_63.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_64.png",
+        "notes": "Startwerte\rIterationsz\u00e4hler \u03bd = 0\rBei zeitabh\u00e4ngigen Problemen sind die Startwerte \u00fcblicherweise identisch mit den Ergebnissen des vorhergehenden Zeitschritts (bzw. den Anfangswerten).\rAusnahme: Zellen mit Festpotentialrandbedingung (Potentialh\u00f6hen sind zum Zeitniveau k bekannt, kein \u201eUpdate\u201c n\u00f6tig)\rBei station\u00e4ren Problemen m\u00fcssen Startwerte vorab gesch\u00e4tzt werden mittels:\rautomatischer Vorgabe durch die Software\rErfahrung\rinstation\u00e4rer Modellierung mit allm\u00e4hlicher Ann\u00e4herung an den station\u00e4ren Zustand"
+    },
+    {
+        "image": "images/slide_65.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_66.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_67.png",
+        "notes": "Zur Wahl von Toleranzschranke und max. Iterationszahl\rEine Verringerung (Erh\u00f6hung) des Wertes f\u00fcr die Toleranzschranke zieht eine Erh\u00f6hung (Verringerung) der ben\u00f6tigten Anzahl von Iterationsschritten bzw. der ben\u00f6tigten Rechenzeit nach sich.\rJe kleiner die Toleranzschranke gew\u00e4hlt wird, umso genauer wird i. d. R. die L\u00f6sung der FD-Gleichungssystems angen\u00e4hert, solange das Iterationsverfahren konvergent bleibt (ggf. \u03bdmax  anpassen).\rAusnahme: Toleranzschranken in der N\u00e4he der Rechnergenauigkeit k\u00f6nnen zu Rundungsfehlern und damit zu geringerer Genauigkeit f\u00fchren.\rFaustregel Die Toleranzschranke sollte eine Gr\u00f6\u00dfenordnung unter der angestrebten Modellgenauigkeit liegen.\rBeispiel: Berechnung von h auf 0.01 m genau bedeutet \u03b5 = 0.001 m.\rStarke hydraulische Kontraste k\u00f6nnen jedoch kleinere Toleranzschranken erfordern.  \rVorgehen bei der Wahl der maximalen Iterationszahl:\rVoreinstellung des Softwarepakets \u00fcbernehmen\rbei fehlender Konvergenz ggf. erh\u00f6hen"
+    },
+    {
+        "image": "images/slide_68.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_69.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_70.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_71.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_72.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_73.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_74.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_75.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_76.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_77.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_78.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_79.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_80.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_81.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_82.png",
+        "notes": "MODFLOW-NWT and before use FD formulation \rRectangular grid blocks (cells)\rLayers numbered from top to bottom\rRows are numbered from up to down\rColumns are numbered from left to right \rCells can be sloping or distorted in the vertical direction\rCells are inactivated outside of domain in lateral direction \rEasy to count layer, row, column \rData input in order of column, row, layer \r7-point connectivity in 3 dimensions"
+    },
+    {
+        "image": "images/slide_83.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_84.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_85.png",
+        "notes": "MODFLOW resource:\rhttps://www.usgs.gov/mission-areas/water-resources/science/modflow-and-related-programs"
+    },
+    {
+        "image": "images/slide_86.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_87.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_88.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_89.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_90.png",
+        "notes": "MODFLOW-USG and MODFLOW 6 use a CVFD formulation \rProvides flexibility in grid types and cell shapes \u2013 variable connectivity\rOvercomes finite-difference limitations (thin unwanted cells)\rUnstructured framework provides flexibility to include other hydrologic processes (Connected Linear Network in MODFLOW-USG) \rProvides Finite Element flexibility and more \rMore efficient \u2013 no element integration and nodal assembly \rHonors geology and domain geometry\rMass conserved formulation"
+    },
+    {
+        "image": "images/slide_91.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_92.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_93.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_94.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_95.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_96.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_97.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_98.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_99.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_100.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_101.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_102.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_103.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_104.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_105.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_106.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_107.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_108.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_109.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_110.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_111.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_112.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_113.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_114.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_115.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_116.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_117.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_118.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_119.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_120.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_121.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_122.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_123.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_124.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_125.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_126.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_127.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_128.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_129.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_130.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_131.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_132.png",
+        "notes": "No notes"
+    }
+]

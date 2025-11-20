@@ -24,12 +24,12 @@ from reportlab.lib.units import cm
 
 # --- Default YAML path, use / ---
 #DEFAULT_YAML = "example.yaml"
-DEFAULT_YAML = "90_Streamlit_apps/MWW01/SlideJet_Presentations/GWBmC_WS2526_T03_Stroemungsmodellierung1_SJconfig.yaml"
+DEFAULT_YAML = "90_Streamlit_apps/MWW01/SlideJet_Presentations/GWBmC_WS2526_V06_Start_SJconfig.yaml"
 
 # --- Proxy ID --- This should be
 # an unique ID if the app is used
 # multiple times in a multipage app (string required)
-app_id = "app_12"
+app_id = "app_10"
 #
 ###########################
 

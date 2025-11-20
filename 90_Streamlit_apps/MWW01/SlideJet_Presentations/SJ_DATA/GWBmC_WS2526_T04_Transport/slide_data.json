@@ -1,0 +1,178 @@
+[
+    {
+        "image": "images/slide_1.png",
+        "notes": "Willkommen zur Grundwasserbewirtschaftung mit Computermodellen \u2013 Thema 03: Numerische L\u00f6sung der Grundwasserstr\u00f6mungsgleichung (Fortsetzung) und Thema 04: Numerische L\u00f6sung der Transportgleichung\rNachfolgend die wichtigsten Folien, zum Teil mit Kommentaren (Stand 2022 11 03),\rIn der Veranstaltung vom 03. November 2022 haben wir die Inhalte bis zum Beginn von Thema 4 besprochen,\rNeben diesen Folien finden Sie im OPAL-Kurs weitere Materialien, u. a. elektronische Kontrollfragen,\rBei Fragen, Kommentaren und Hinweisen freuen wir uns von Ihnen zu h\u00f6ren."
+    },
+    {
+        "image": "images/slide_2.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_3.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_4.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_5.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_6.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_7.png",
+        "notes": "Begriffe\rKonservative Stoffe (inerte Stoffe, nicht-reaktive Stoffe) sind im Sicker- oder Grundwasser gel\u00f6ste Stoffe, die w\u00e4hrend des Transports keinen physikalischen, chemischen oder biologischen Ver\u00e4nderungen unterliegen.\rUnter dem Begriff \u201ekonservativer Stofftransport\u201c werden dementsprechend alle Ausbreitungsprozesse zusammengefasst, die keine physikalischen, chemischen oder biologischen Ver\u00e4nderungen der gel\u00f6sten Stoffe hervorrufen.\rDazu geh\u00f6ren Advektion (Konvektion), mechanische Dispersion und Porendiffusion.\rReaktive Stoffe unterliegen hingegen physikalischen, chemischen oder biologischen Ver\u00e4nderungen.\rZu den entsprechenden reaktiven Stofftransportprozessen geh\u00f6ren Sorption / Desorption, mikrobieller Abbau, radioaktiver Zerfall, geochemische Reaktionen."
+    },
+    {
+        "image": "images/slide_8.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_9.png",
+        "notes": "Transportmodelle f\u00fcr konservativen Stofftransport basieren auf\rdem Massenerhalt innerhalb von Kontrollvolumina (inkl. Zufuhr / Entnahme von Masse z. B. mittels Tracerinjektion oder \u00fcber GWN)\rFlie\u00dfgesetzen f\u00fcr Advektion und Dispersion \u00fcber die Grenzfl\u00e4chen benachbarter Kontrollvolumina\r\rn = (totale) Porosit\u00e4t = Wasservolumen / Kontrollvolumen [-]\rne= effektive Porosit\u00e4t= Volumen des mobilen Wassers / Kontrollvolumen [-]\rM = Aquiferm\u00e4chtigkeit [L]\rN = Grundwasserneubildung (GWN) [L/T]\rV = Abstandsgeschwindigkeit [L/T]\rD = Dispersionskoeffizient bzw. \u2013tensor [L\u00b2/T]\rC = Stoffkonzentration (gel\u00f6st) = gel\u00f6ste Stoffmasse / Wasservolumen [M/L\u00b3]\rC\u2019 = Zugabe- bzw. Entnahmekonzentration (bei Zugabe: C\u2019 ist vorzugeben; bei Entnahme: C\u2019 = C) [M/L\u00b3]\rF = Massenfluss (= Stofffracht) [M/T]"
+    },
+    {
+        "image": "images/slide_10.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_11.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_12.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_13.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_14.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_15.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_16.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_17.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_18.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_19.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_20.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_21.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_22.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_23.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_24.png",
+        "notes": "Massenstr\u00f6me\rDie (konservative) Stoffausbreitung in einem Porengrundwasserleiter setzt sich grunds\u00e4tzlich zusammen aus einer \u00dcberlagerung (Superposition) von Advektion, mechanischer Dispersion und Porendiffusion."
+    },
+    {
+        "image": "images/slide_25.png",
+        "notes": "Grundideen\rStr\u00f6mung und Stofftransport k\u00f6nnen mit zwei Betrachtungsweisen behandelt werden, die auf Euler und Lagrange zur\u00fcckgehen.\rEuler: Beobachter bzw. Kontrollvolumen in Ruhe\rLagrange: Beobachter bzw. Kontrollvolumen bewegt sich (rein advektiv) mit dem Fluid"
+    },
+    {
+        "image": "images/slide_26.png",
+        "notes": "Rein advektive Stoffausbreitung\rIn der Betrachtungsweise nach Lagrange \u00e4ndert sich bei reiner Advektion die Stoffkonzentration in einem (mit dem Fluid bewegten!) Volumenelement nicht.\rIn der Betrachtungsweise nach Euler \u00e4ndert sich bei reiner Advektion die Stoffkonzentration in einem (festen!) Volumenelement mit der Zeit.\rMan erh\u00e4lt eine zugeh\u00f6rige Durchbruchskurve, z. B.:"
+    },
+    {
+        "image": "images/slide_27.png",
+        "notes": "\u00dcberblick\rDie Euler- und die Lagrange-Betrachtungsweise lassen sich erweitern, um Dispersion mit zu ber\u00fccksichtigen (sp\u00e4tere Vorlesung).\rVerfahren zur Simulation des Stofftransports wurden auf der Basis von beiden Betrachtungsweisen entwickelt.\rBei Euler-Verfahren wird ab und an auch von Euler-Gitterverfahren gesprochen, d. h. mit Hinweis auf das Gitter (= Finite Differenzen / Finite Elemente)"
+    },
+    {
+        "image": "images/slide_28.png",
+        "notes": "Weitere Bemerkung:\rDas Arbeitsblatt auf Folie 56 gibt bereits einen Einblick in die Problematik \u2018Numerische Dispersion\u2019"
+    },
+    {
+        "image": "images/slide_29.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_30.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_31.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_32.png",
+        "notes": "\u00dcberblick\rDie Euler- und die Lagrange-Betrachtungsweise lassen sich erweitern, um Dispersion mit zu ber\u00fccksichtigen (sp\u00e4tere Vorlesung).\rVerfahren zur Simulation des Stofftransports wurden auf der Basis von beiden Betrachtungsweisen entwickelt.\rZudem gibt es Mischformen (vgl. Tabelle)."
+    },
+    {
+        "image": "images/slide_33.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_34.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_35.png",
+        "notes": "Einf\u00fchrung\rBahnlinienverfahren (\u201eParticle Tracking\u201c) erlauben die Modellierung der advektiven Stoffausbreitung.\rDazu werden (virtuelle) Teilchen oder Partikel an vorgegebenen Punkten ins Str\u00f6mungsfeld eingesetzt und ihre Bahnen verfolgt.\rAus der Bewegung der Teilchen lassen sich R\u00fcckschl\u00fcsse \u00fcber die advektive Stoffausbreitung ziehen (Transportwege und -zeiten).\rModelltechnisch sind daf\u00fcr Informationen erforderlich \u00fcber\rdie zeitabh\u00e4ngigen Partikelkoordinaten xp(t) bzw. yp(t),\rdie Abstandsgeschwindigkeit v an der jeweiligen Partikelposition (sowohl x- als auch y-Komponente),\rdie Startzeit eines Partikels (nur bei instation\u00e4rer Str\u00f6mung). \r\rPartikel folgen den Stromlinien (Teilchenbahn = Stromlinie). \rDie Stromlinien und damit die Teilchenbahnen liegen tangential zu den Vektoren des Geschwindigkeitsfelds.\rWerden zwei Teilchen zu verschiedenen Zeiten an derselben Stelle in ein station\u00e4res Geschwindigkeitsfeld eingesetzt, so sind ihre Bahnen identisch und f\u00fcr dieselben Transportwege werden dieselben Zeiten ben\u00f6tigt.\rDie Teilchenbahn ist unabh\u00e4ngig vom Startzeitpunkt eines Teilchens."
+    },
+    {
+        "image": "images/slide_36.png",
+        "notes": "Instation\u00e4re Str\u00f6mung\rDie Stromlinien liegen tangential zu den Vektoren des (sich zeitlich \u00e4ndernden!) Geschwindigkeitsfelds.\rTeilchen folgen der \u201emomentanen\u201c Str\u00f6mungsrichtung (Teilchenbahn \u2260 Stromlinie!). \rWerden zwei Teilchen zu verschiedenen Zeiten an derselben Stelle in ein instation\u00e4res Geschwindigkeitsfeld eingesetzt, so sind ihre Bahnen nicht identisch.\rDie Teilchenbahn h\u00e4ngt vom Startzeitpunkt des Teilchens ab."
+    },
+    {
+        "image": "images/slide_37.png",
+        "notes": "Bei station\u00e4rer Str\u00f6mung in zwei Raumdimensionen ergeben sich die zeitabh\u00e4ngigen Partikelkoordinaten xp(t) und yp(t) als L\u00f6sungen der Bewegungsgleichungen\rDabei sind vx und vy die ortsabh\u00e4ngigen Komponenten der Abstandsgeschwindigkeit.\rDie Bewegungsgleichungen besagen, dass sich die Partikelkoordinaten entsprechend der jeweiligen Komponente der Abstandsgeschwindigkeit \u00e4ndern.\rDie L\u00f6sung der Bewegungsgleichungen erfolgt in den kommerziell erh\u00e4ltlichen Computerprogrammen entweder mit Hilfe eines numerischen Verfahrens oder auf der Basis einer analytischen (N\u00e4herungs-)L\u00f6sung.\rBeide Methoden ben\u00f6tigen Informationen \u00fcber die x- und y-Komponente der Abstandsgeschwindigkeit an der Partikelposition.\rDiese Geschwindigkeitsinfo erh\u00e4lt man aus den Ergebnissen des Str\u00f6mungsmodells."
+    },
+    {
+        "image": "images/slide_38.png",
+        "notes": "Das Bahnlinienverfahren von Euler stellt die einfachste numerische L\u00f6sung der Bewegungsgleichungen dar. \rDie Auswertung der Komponenten der Abstandsgeschwindigkeit erfolgt dabei jeweils f\u00fcr die Teilchenposition des \u201ealten\u201c Zeitniveaus.\r\u00c4nderungen der Abstandsgeschwindigkeitskomponenten auf dem Weg des Teilchens werden w\u00e4hrend des Zeitintervalls \u0394t nicht ber\u00fccksichtigt.\rErst f\u00fcr den n\u00e4chsten Zeitschritt findet wieder ein Update der Abstandsgeschwindigkeit statt."
+    },
+    {
+        "image": "images/slide_39.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_40.png",
+        "notes": "Im Gegensatz zum Euler-Verfahren basiert das Bahnlinienverfahren nach Pollock (1988) nicht auf einer numerischen, sondern auf einer analytischen L\u00f6sung der Bewegungsgleichungen.\rDabei wird eine spezielle Interpolationsvorschrift f\u00fcr Abstandsgeschwindigkeiten innerhalb jeder Zelle zugrunde gelegt.\rDiese Vorgehensweise ist z. B. in dem Computerprogramm MODPATH realisiert. (MODPATH ist z. B. Teil von ModelMuse.)\rDas Verfahren von Pollock vermeidet die numerischen Fehler des Euler-Verfahrens.\rAufgrund der o. g. Interpolationsvorschrift f\u00fcr die Abstandsgeschwindigkeiten liefert auch das Verfahren von Pollock \u201enur\u201c eine N\u00e4herungsl\u00f6sung f\u00fcr die Bahnlinien. Der Fehler ist i. a. jedoch erheblich geringer als etwa beim Euler-Verfahren.\rDas Verfahren von Pollock ben\u00f6tigt eine Reihe von Fallunterscheidungen (vgl. n\u00e4chste Seite)."
+    },
+    {
+        "image": "images/slide_41.png",
+        "notes": "In der analytischen L\u00f6sung von Pollock \u00e4ndert sich die Interpolationsformel f\u00fcr die Abstandsgeschwindigkeiten, sobald ein Teilchen w\u00e4hrend eines Zeitschritts \u00fcber eine (mehrere) Zellkante(n) verschoben wird.\rDer Zeitschritt ist ggf. entsprechend zu unterteilen.\rF\u00fcr jeden Abschnitt muss die zugeh\u00f6rige analytische L\u00f6sung gesondert ausgewertet werden.\rAnschlie\u00dfend wird der Transport-weg \u201ezusammengest\u00fcckelt\u201c.\rDie weitgehende Elimination numerischer Fehler wird also durch einen erh\u00f6hten Buchhaltungsaufwand bei der Auswertung der analytischen L\u00f6sung erkauft."
+    },
+    {
+        "image": "images/slide_42.png",
+        "notes": "Diese Methode dient dazu, Flie\u00dfwege entgegen der Str\u00f6mungsrichtung zu verfolgen und wird auch als \u201cBackward Tracking\u201c bezeichnet.\rWie bei der bisher behandelten Variante des Bahnlinienverfahrens (\u201cForward Tracking\u201c) k\u00f6nnen auch hier Transportwege und -zeiten bestimmt werden.\r\u201cBackward Tracking\u201c ist insbesondere f\u00fcr die Ausweisung von Wasserschutzgebieten von Interesse.\rDie L\u00f6sung kann mit allen Verfahren erfolgen, die sich f\u00fcr das \u201eForward Tracking\u201c eignen.\rLediglich das ge\u00e4nderte Vorzeichen der Abstandsgeschwindigkeit ist zu ber\u00fccksichtigen."
+    },
+    {
+        "image": "images/slide_43.png",
+        "notes": "Partikel bewegen sich entlang der Stromlinien.\r\u201cBackward Tracking\u201c: Bewegung der Partikel ist der Str\u00f6mungsrichtung entgegengesetzt.\rZus\u00e4tzlich werden die Laufzeiten entlang der Stromlinien bestimmt.  \rIsochrone = Linie gleicher Laufzeit\rLage der Isochronen ist von der effektiven Porosit\u00e4t ne abh\u00e4ngig.\rVerlauf der Stromlinien ist nicht von der effektiven Porosit\u00e4t ne abh\u00e4ngig."
+    },
+    {
+        "image": "images/slide_44.png",
+        "notes": "No notes"
+    }
+]

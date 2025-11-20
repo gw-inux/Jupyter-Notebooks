@@ -78,6 +78,7 @@ pages = {
     },
     "🟦 Grundwasserströmung": {
         "🧮 1D FD Schema": "06_Groundwater_modeling/GWF_1D_conf_FD.py",
+        "🧮 Brunnenströmung": "04_Basic_hydrogeology/Flow2Well_transient_confined.py",
         "--- MODFLOW tutorials 📋 ---": None,
         "💻 MODFLOW Pumping Test": "90_Streamlit_apps/SYMPLE25/pages/M1B/Theis_pumping_Tutorial.py",
         "💻 2D Synthetic Modell": "90_Streamlit_apps/SYMPLE25/pages/M1C/Tutorial_2D_Synth.py",
@@ -86,7 +87,10 @@ pages = {
         "📑 LV 13.11.25: Folien zum Start": "90_Streamlit_apps/MWW01/SlideJet_Presentations/GWBmC_WS2526_V05_Start_SJpresent.py",
     },
     "🟪 Transport": {
+        "🧮 1D Advektion-Dispersion": "05_Applied_hydrogeology/Transport_1D_AD_ST.py",
         "--- Folien 🚀---": None,
+        "📝 T04: Numerische GW-Transportmod.": "90_Streamlit_apps/MWW01/SlideJet_Presentations/GWBmC_WS2526_T04_Transport_SJpresent.py",
+        "📑 LV 13.11.25: Folien zum Start": "90_Streamlit_apps/MWW01/SlideJet_Presentations/GWBmC_WS2526_V06_Start_SJpresent.py",
     },
     "🟨 Kalibrierung": {
         "--- Folien 🚀---": None,
