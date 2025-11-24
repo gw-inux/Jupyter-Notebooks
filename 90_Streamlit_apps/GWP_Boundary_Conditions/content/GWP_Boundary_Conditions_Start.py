@@ -111,9 +111,16 @@ st.markdown("""
 
 - ***Learning through assessments***: Each section integrates assessments to provide immediate feedback. These include short questions at the beginning to activate prior knowledge, as well as exercises and final self-checks to consolidate understanding.
 
-- ***Instructions and exercises***: Beginners are guided step-by-step with _Initial Instructions_ that are followed by hands-on _Exercises_ to help build familiarity with each boundary condition.
+- ***Instructions and exercises***: Beginners are guided step-by-step with _Initial Instructions_ that are followed by hands-on _Exercises_ to help build familiarity with each boundary condition. An **optional printable booklet** compiling all instructions and exercises from the module sections is also available for users who prefer a physical companion document alongside the app. [Click here to download the booklet](https://raw.githubusercontent.com/gw-inux/gw-project/main/GW_MODELING/GWP_Boundary_Conditions/docs/GWP_Boundary_Conditions_Module_Instructions_Exercises.pdf).
 """)
 
+st.subheader('How to Cite this Module', divider= 'green')
+
+st.markdown("""
+If you want to refer to this module, please cite as:
+
+_Reimann, T., Poeter, E., & Kuniansky, E.L. (2025). Boundary Condition Module. An interactive educational resource for The Groundwater Project. Available at https://gw-project.org/interactive-education/module-boundary-conditions-for-groundwater-modeling, https://doi.org/10.5281/zenodo.17624994_.
+""")
 st.markdown('---')
 left_co4, cent_co4, last_co4 = st.columns((1,8,1))
 with cent_co4:
