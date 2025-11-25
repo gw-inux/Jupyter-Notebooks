@@ -7,8 +7,14 @@ st.markdown(
     """
     Diese Anwendung begleitet die Lehrveranstaltung MWW01 - Grundwasserbewirtschaftung mit Computermodellen, welche Teil der Masterausbildung der Fachrichtung Hydrowissenschaften der TU Dresden ist. 
      
-    Die Anwendung besteht aus verschiedenen Tools, welche einzelne Anwendungen The app is composed of various applications that contain demonstrations, applications, and exercises to the various lectures. The content will be updated over the course. 
+    Die Anwendung besteht aus
+    - verschiedenen Tools, welche einzelne Zusammenhänge, Methoden, Anwendungen, und ähnliches erläutern und 
+    - den Folien zu den einzelnen Themenbereichen sowie.
     
     Die einzelnen Tools und Themen können über die Menüleiste an der Seite ausgewählt werden.
+    
+     Der Inhalt der App wird im Laufe des Semesters kontinuierlich erweitert.
+     
+     :red[**Umfrage:** ] **Bitte beteiligen Sie sich an der Umfrage zur GROWi26 App** [:red[**Link Hier**]](https://www.soscisurvey.de/iNUX_survey/?q=qnr5)
 """
 )

@@ -2,9 +2,9 @@
   {
     "question": "Which assumptions underlie the Green–Ampt infiltration model? (Mark ALL correct answers)",
     "options": {
-      "The wetting front is represented as a sharp interface.": true,
-      "Soil water content above the wetting front is constant.": true,
       "The infiltration rate is independent of hydraulic conductivity.": false,
+	  "The wetting front is represented as a sharp interface.": true,
+      "Soil water content above the wetting front is constant.": true,
       "Soil moisture transitions gradually and continuously across the entire profile.": false
     },
     "success": "✅ Correct! The Green–Ampt model assumes a sharp wetting front and uniform water content above it.",
@@ -13,10 +13,10 @@
   {
     "question": "What does the parameter Δθ represent in the Green–Ampt model? (Mark ALL correct answers)",
     "options": {
-      "The change in volumetric water content across the wetting front.": true,
-      "The difference between initial and field-saturated water content.": true,
       "The total porosity of the soil.": false,
-      "The pressure gradient at the surface.": false
+	  "The change in volumetric water content across the wetting front.": true,
+      "The pressure gradient at the surface.": false,
+	  "The difference between initial and field-saturated water content.": true
     },
     "success": "✅ Correct! Δθ is the difference between initial and near-saturated water content.",
     "error": "❌ Not fully correct. Δθ describes the contrast between initial and saturated water content, not porosity or surface pressure."
@@ -35,10 +35,10 @@
   {
     "question": "In the context of infiltration, what does ponding mean? (Mark ALL correct answers)",
     "options": {
-      "Rainfall exceeds the infiltration capacity.": true,
-      "A water layer forms on the soil surface.": true,
       "No infiltration occurs during this period.": false,
-      "The wetting front stops moving.": false
+      "The wetting front stops moving.": false,
+	  "Rainfall exceeds the infiltration capacity.": true,
+      "A water layer forms on the soil surface.": true
     },
     "success": "✅ Correct! Ponding occurs when rainfall is greater than the infiltration rate, forming a surface layer.",
     "error": "❌ Ponding means rainfall exceeds infiltration capacity, but infiltration continues into the soil."
