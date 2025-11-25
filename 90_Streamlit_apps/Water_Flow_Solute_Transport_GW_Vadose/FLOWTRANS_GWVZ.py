@@ -58,6 +58,7 @@ pages = {
         "... full of water/sand 💦": "90_Streamlit_apps/Water_Flow_Solute_Transport_GW_Vadose/content/Section_1/bucket_steady_homo.py",
         "--- 📈 Heads in a soil column with flow... ---": None,
         "... driven by a given q 🌀": "90_Streamlit_apps/Water_Flow_Solute_Transport_GW_Vadose/content/Section_1/bucket_flow_homo_q_driven.py",
+        "... driven by a given q 🌀 in heterogenous media": "90_Streamlit_apps/Water_Flow_Solute_Transport_GW_Vadose/content/Section_1/bucket_flow_hetero_q_driven.py",
         "... driven by a given h 📑": "90_Streamlit_apps/Water_Flow_Solute_Transport_GW_Vadose/content/Section_1/bucket_flow_homo_h_driven.py",
     },
     "🔶 Section 2": {
