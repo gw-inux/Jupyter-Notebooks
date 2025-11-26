@@ -1,6 +1,24 @@
 import streamlit as st
+from streamlit_scroll_to_top import scroll_to_here
+from GWP_SFI_utils import read_md
 
-# Authors, institutions, and year
+# ---------- Track the current page
+PAGE_ID = "ABOUT"
+
+# Do (optional) things/settings if the user comes from another page
+if "current_page" not in st.session_state:
+    st.session_state.current_page = PAGE_ID
+if st.session_state.current_page != PAGE_ID:
+    st.session_state.current_page = PAGE_ID
+
+# ---------- Start the page with scrolling here
+if st.session_state.scroll_to_top:
+    scroll_to_here(0, key='top')
+    st.session_state.scroll_to_top = False
+#Empty space at the top
+st.markdown("<div style='height:1.25rem'></div>", unsafe_allow_html=True)
+
+# ---------- Authors, institutions, and year
 year = 2025 
 authors = {
     "Markus Giese": [1],  # Author 1 belongs to Institution 1
@@ -16,10 +34,10 @@ author_list = [f"{name}{''.join(index_symbols[i-1] for i in indices)}" for name,
 institution_list = [f"{index_symbols[i-1]} {inst}" for i, inst in institutions.items()]
 institution_text = " | ".join(institution_list)
 
-module_path = "90_Streamlit_apps/GWP_Saltwater_Intrusion/"
+# ---------- Define paths, loading files
 
+#---------- UI Starting here
 st.header('👉 About the Freshwater-Saltwater Interface Module')
-
 st.subheader('Description', divider = 'green')
 
 st.markdown(
@@ -40,15 +58,15 @@ st.markdown(
 )
 left_co1, cent_co1 = st.columns((20,60))
 with left_co1:
-    st.image(module_path + 'images/iNUX_wLogo.png')
+    st.image(st.session_state.module_path + 'images/iNUX_wLogo.png')
 with cent_co1:
-    st.image(module_path + 'images/1200px-Erasmus+_Logo.svg.png')
+    st.image(st.session_state.module_path + 'images/1200px-Erasmus+_Logo.svg.png')
 
 st.subheader('About the Developers', divider = 'green')
     
 left_co2, cent_co2 = st.columns((20,60))
 with left_co2:
-    st.image(module_path + 'images/thomasreimann.png')
+    st.image(st.session_state.module_path + 'images/thomasreimann.png')
 with cent_co2:
     st.markdown(
         """
@@ -61,7 +79,7 @@ with cent_co2:
     )
 left_co3, cent_co3 = st.columns((20,60))
 with left_co3:
-    st.image(module_path + 'images/eileen.poeter.jpg')
+    st.image(st.session_state.module_path + 'images/eileen.poeter.jpg')
 with cent_co3:
     st.markdown(
         """
@@ -103,11 +121,12 @@ st.markdown("---")
 #    st.subheader(':orange[**Navigation**]')
 #with columnsN1[2]:
 #    st.write()
-        
-'---'
-# Render footer with authors, institutions, and license logo in a single line
+
+st.markdown('---')
+
+# --- Render footer with authors, institutions, and license logo in a single line
 columns_lic = st.columns((5,1))
 with columns_lic[0]:
     st.markdown(f'Developed by {", ".join(author_list)} ({year}). <br> {institution_text}', unsafe_allow_html=True)
 with columns_lic[1]:
-    st.image(module_path + 'images/CC_BY-SA_icon.png')
+    st.image(st.session_state.module_path + 'images/CC_BY-SA_icon.png')

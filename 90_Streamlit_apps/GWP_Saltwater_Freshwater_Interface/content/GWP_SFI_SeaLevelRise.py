@@ -5,7 +5,26 @@ from scipy.special import erfc, erf
 import math
 from streamlit_book import multiple_choice
 import json
-# Authors, institutions, and year
+from streamlit_scroll_to_top import scroll_to_here
+from GWP_SFI_utils import read_md
+
+# ---------- Track the current page
+PAGE_ID = "SEARISE"
+
+# Do (optional) things/settings if the user comes from another page
+if "current_page" not in st.session_state:
+    st.session_state.current_page = PAGE_ID
+if st.session_state.current_page != PAGE_ID:
+    st.session_state.current_page = PAGE_ID
+
+# ---------- Start the page with scrolling here
+if st.session_state.scroll_to_top:
+    scroll_to_here(0, key='top')
+    st.session_state.scroll_to_top = False
+#Empty space at the top
+st.markdown("<div style='height:1.25rem'></div>", unsafe_allow_html=True)
+
+# ---------- Authors, institutions, and year
 year = 2025 
 authors = {
     "Markus Giese": [1],  # Author 1 belongs to Institution 1
@@ -21,13 +40,11 @@ author_list = [f"{name}{''.join(index_symbols[i-1] for i in indices)}" for name,
 institution_list = [f"{index_symbols[i-1]} {inst}" for i, inst in institutions.items()]
 institution_text = " | ".join(institution_list)
 
-module_path = "90_Streamlit_apps/GWP_Saltwater_Intrusion/"
+# ---------- Define paths, loading files
 
-# Streamlit app title and description
-# Markdown description
+#---------- UI Starting here
 
 st.title("Sea Level Rise")
-
 st.subheader('Describing the impact of :red[sea level rise] on the freshwater-saltwater interface location', divider= "red")
 
 
@@ -356,10 +373,11 @@ D. A rise in mean sea level that reduces the hydraulic gradient from land to sea
                 error=quest_sfi[i].get("error", "❌ Not quite.")
             )
 
+st.markdown('---')
 
-# Render footer with authors, institutions, and license logo in a single line
+# --- Render footer with authors, institutions, and license logo in a single line
 columns_lic = st.columns((5,1))
 with columns_lic[0]:
     st.markdown(f'Developed by {", ".join(author_list)} ({year}). <br> {institution_text}', unsafe_allow_html=True)
 with columns_lic[1]:
-    st.image(module_path + 'images/CC_BY-SA_icon.png')
+    st.image(st.session_state.module_path + 'images/CC_BY-SA_icon.png')

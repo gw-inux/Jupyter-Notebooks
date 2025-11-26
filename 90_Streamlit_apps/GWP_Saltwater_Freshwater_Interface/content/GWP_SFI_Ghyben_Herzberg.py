@@ -4,16 +4,15 @@ import matplotlib.pyplot as plt
 import json
 from streamlit_book import multiple_choice
 from streamlit_scroll_to_top import scroll_to_here
-from GWP_Saltwater_Intrusion_utils import read_md
-from GWP_Saltwater_Intrusion_utils import flip_assessment
-from GWP_Saltwater_Intrusion_utils import render_toggle_container
-from GWP_Saltwater_Intrusion_utils import prep_log_slider
-from GWP_Saltwater_Intrusion_utils import get_label
-from GWP_Saltwater_Intrusion_utils import get_step
+from GWP_SFI_utils import read_md
+from GWP_SFI_utils import flip_assessment
+from GWP_SFI_utils import render_toggle_container
+from GWP_SFI_utils import prep_log_slider
+from GWP_SFI_utils import get_label
+from GWP_SFI_utils import get_step
 
 # ---------- Track the current page
 PAGE_ID = "GHY"
-module_path = "90_Streamlit_apps/GWP_Saltwater_Intrusion/"
 
 # Do (optional) things/settings if the user comes from another page
 if "current_page" not in st.session_state:
@@ -21,6 +20,27 @@ if "current_page" not in st.session_state:
 if st.session_state.current_page != PAGE_ID:
     st.session_state.current_page = PAGE_ID
 
+# ---------- Doc-only view for expanders (must run first)
+params = st.query_params
+DOC_VIEW = params.get("view") == "md" and params.get("doc")
+
+if DOC_VIEW:
+    md_file = params.get("doc")
+
+    st.markdown("""
+    <style>
+      /* Hide sidebar & its nav */
+      [data-testid="stSidebar"],
+      [data-testid="stSidebarNav"] { display: none !important; }
+
+      /* Hide the small chevron / collapse control */
+      [data-testid="stSidebarCollapsedControl"] { display: none !important; }
+    </style>
+    """, unsafe_allow_html=True)
+
+    st.markdown(read_md(md_file))
+    st.stop()
+    
 # ---------- Start the page with scrolling here
 if st.session_state.scroll_to_top:
     scroll_to_here(0, key='top')
@@ -28,24 +48,7 @@ if st.session_state.scroll_to_top:
 #Empty space at the top
 st.markdown("<div style='height:1.25rem'></div>", unsafe_allow_html=True)
 
-
-# ---------- path to questions for the assessments (direct path)
-path_quest_ini   = module_path + "questions/ghyben_initial.json"
-path_quest_exer =  module_path + "questions/ghyben_exer.json"
-path_quest_final = module_path + "questions/ghyben_final.json"
-
-# Load questions
-with open(path_quest_ini, "r", encoding="utf-8") as f:
-    quest_ini = json.load(f)
-    
-with open(path_quest_exer, "r", encoding="utf-8") as f:
-    quest_exer = json.load(f)
-    
-with open(path_quest_final, "r", encoding="utf-8") as f:
-    quest_final = json.load(f)
-
-
-# --- Authors, institutions, and year
+# ---------- Authors, institutions, and year
 year = 2025 
 authors = {
     "Markus Giese": [1],  # Author 1 belongs to Institution 1
@@ -61,21 +64,115 @@ author_list = [f"{name}{''.join(index_symbols[i-1] for i in indices)}" for name,
 institution_list = [f"{index_symbols[i-1]} {inst}" for i, inst in institutions.items()]
 institution_text = " | ".join(institution_list)
 
-# Streamlit app title and description
+# ---------- Define paths, loading files
+# --- path to questions for the assessments (direct path)
+path_quest_ini   = st.session_state.module_path + "questions/ghyben_initial.json"
+path_quest_exer =  st.session_state.module_path + "questions/ghyben_exer.json"
+path_quest_final = st.session_state.module_path + "questions/ghyben_final.json"
 
+# Load questions
+with open(path_quest_ini, "r", encoding="utf-8") as f:
+    quest_ini = json.load(f)
+    
+with open(path_quest_exer, "r", encoding="utf-8") as f:
+    quest_exer = json.load(f)
+    
+with open(path_quest_final, "r", encoding="utf-8") as f:
+    quest_final = json.load(f)
+    
+#---------- FUNCTIONS
+def land_surface(x, p):
+    """Quadratische Funktion, die von y=10 (bei x=0) auf y=0 (bei x=1000) fällt. The exponent defines the shape"""
+    return 10 * (1 - (x / 1000)**p)
+
+def sea_surface(x, p):
+    """Erzeugt eine gekrümmte ansteigende Funktion von (1000,0) bis (1200,30) mit starkem Anfangsgradient."""
+    return 50 * (1 - ((1200 - x) / 200) ** p)*-1
+
+def ghyben_herzberg(h, rho_f, rho_s, x):
+    h = (h**2 - (h**2 - 0**2) / 1000 * x) ** 0.5
+    z = (rho_f / (rho_s - rho_f)) * h
+    return h, z
+
+def update_h():
+    st.session_state.h = st.session_state.h_input
+    
+def update_rho_s():
+    st.session_state.rho_s = st.session_state.rho_s_input
+    
+def update_rho_f():
+    st.session_state.rho_f = st.session_state.rho_f_input  
+    
+#---------- UI Starting here
 st.title('The Ghyben-Herzberg Relation')
-
 st.subheader('Describing the :orange[freshwater-saltwater interface] under static hydraulic conditions', divider="orange")
 
-st.markdown(r"""
-### **Introduction**  
+st.markdown("""
+    #### 💡 Motivation: Why investigate the Ghyben-Herzberg Relation?
+    
+    CONTENT HERE
+    
+    CONTENT HERE
+    
+    CONTENT HERE
+    
+    """)
+
+st.markdown("""
+    ####  🎯 Learning Objectives
+    This section is designed with the intent that, by studying it, you will be able to do the following:
+    
+    CONTENT HERE
+    
+    """)    
+    
+# --- INITIAL ASSESSMENT ---
+def content_initial_GHY():
+    st.markdown("""#### Initial assessment""")
+    st.info("You can use the initial questions to assess your existing knowledge.")
+    
+    # Render questions in a 2x2 grid (row-wise, aligned)
+    for row in [(0, 1), (2, 3)]:
+        col1, col2 = st.columns(2)
+    
+        with col1:
+            i = row[0]
+            st.markdown(f"**Q{i+1}. {quest_ini[i]['question']}**")
+            multiple_choice(
+                question=" ",  # suppress repeated question display
+                options_dict=quest_ini[i]["options"],
+                success=quest_ini[i].get("success", "✅ Correct."),
+                error=quest_ini[i].get("error", "❌ Not quite.")
+            )
+    
+        with col2:
+            i = row[1]
+            st.markdown(f"**Q{i+1}. {quest_ini[i]['question']}**")
+            multiple_choice(
+                question=" ",
+                options_dict=quest_ini[i]["options"],
+                success=quest_ini[i].get("success", "✅ Correct."),
+                error=quest_ini[i].get("error", "❌ Not quite.")
+            )
+
+# Render initial assessment
+render_toggle_container(
+    section_id="GHY_01",
+    label="✅ **Show the initial assessment** – to assess your **EXISTING** knowledge",
+    content_fn=content_initial_GHY,
+    default_open=False,
+)
+
+st.subheader('🧪 Theory and Background', divider="orange")
+st.markdown("""
+#### Introduction
 The first general scientific descriptions of saltwater intrusion were published at the end of the nineteenth century. Based on field observations, Drabbe and Badon-Ghyben (1888) and Herzberg (1901) derived the first quantitative relationship of the saltwater–freshwater interface location as a linear function of the water-table elevation in steady-state conditions. The resulting conceptual theorem, the Ghyben-Herzberg theorem, is named after two of the leading authors. The conceptual model of a sharp interface is still frequently applied, although it does not account for mixing along the interface and therefore the validity of a sharp interface applied on real case scenarios is limited.
 The Ghyben-Herzberg relation describes the equilibrium relationship between fresh groundwater and underlying seawater in coastal aquifers. Due to the density difference between freshwater and seawater, a lens of fresh groundwater floats above the denser saltwater, see the following figure.
 """, unsafe_allow_html=True)
 
-#lc0, cc0, rc0 = st.columns((20,60,20))
-#with cc0:
-#"    st.image(module_path + 'images/Saltwater_intrusion_en.png', caption="Conceptual sketch of the fresh-water saltwater interface under hydrostatic conditions (Barlow 2003)[https://pubs.usgs.gov/circ/2003/circ1262/].")
+lc0, cc0, rc0 = st.columns((20,60,20))
+with cc0:
+    st.image(st.session_state.module_path + 'images/Saltwater_intrusion_en.png', caption="Conceptual sketch of the fresh-water saltwater interface under hydrostatic conditions (Barlow 2003)[https://pubs.usgs.gov/circ/2003/circ1262/].")
 
 st.markdown(r"""
 This relation can be expressed as:  
@@ -112,28 +209,11 @@ This means that for every meter of freshwater head above sea level, the freshwat
 
 """, unsafe_allow_html=True)
 
-def land_surface(x, p):
-    """Quadratische Funktion, die von y=10 (bei x=0) auf y=0 (bei x=1000) fällt. The exponent defines the shape"""
-    return 10 * (1 - (x / 1000)**p)
+#-------INTERACTIVE PLOT
 
-def sea_surface(x, p):
-    """Erzeugt eine gekrümmte ansteigende Funktion von (1000,0) bis (1200,30) mit starkem Anfangsgradient."""
-    return 50 * (1 - ((1200 - x) / 200) ** p)*-1
-
-def ghyben_herzberg(h, rho_f, rho_s, x):
-    h = (h**2 - (h**2 - 0**2) / 1000 * x) ** 0.5
-    z = (rho_f / (rho_s - rho_f)) * h
-    return h, z
-    
-ymin = -200 # lower value for plotting
 st.subheader('Interactive Plot and Exercise', divider="orange")
 
-def update_h():
-    st.session_state.h = st.session_state.h_input
-def update_rho_s():
-    st.session_state.rho_s = st.session_state.rho_s_input
-def update_rho_f():
-    st.session_state.rho_f = st.session_state.rho_f_input
+ymin = -200 # lower value for plotting
 
 # User defined input
 st.session_state.h = 1.0
@@ -205,16 +285,65 @@ plt.text(150, -10, 'Freshwater', horizontalalignment='right', bbox=dict(boxstyle
     
 st.pyplot(fig)
 
+# Expander with "open in new tab"
+DOC_FILE1 = "GHY_instructions.md"
+with st.expander('Show the :blue[**INSTRUCTIONS**]', icon ="🧪"):
+    st.link_button("*Open in new tab* ↗️ ", url=f"?view=md&doc={DOC_FILE1}")
+    st.markdown(read_md(DOC_FILE1))
+    
+# Expander with "open in new tab"
+DOC_FILE2 = "GHY_exercise.md"
+with st.expander('Show the :rainbow[**EXERCISE**]', icon ="🧩"):
+    st.link_button("*Open in new tab* ↗️ ", url=f"?view=md&doc={DOC_FILE2}")
+    st.markdown(read_md(DOC_FILE2))
+        
 with st.expander('Show the :rainbow[**EXERCISE**]', icon ="🧩"):
     st.markdown(r"""
     ### 📘 Exercise – Comparing well designs and pumping strategies
 
 🎯 Expected Learning Outcomes:
 
-
 """)
 
-st.subheader('✔️ Conclusion', divider = 'green')
+# --- EXERCISE ASSESSMENT ---
+
+def content_exer_GHY():
+    st.markdown("""#### 🧠 Exercise assessment""")
+    st.info("These questions test your understanding after doing the DRN exercise.")
+    
+    # Render questions in a 2x3 grid (row-wise)
+    for row in [(0, 1), (2, 3), (4, 5)]:
+        col1, col2 = st.columns(2)
+
+        with col1:
+            i = row[0]
+            st.markdown(f"**Q{i+1}. {quest_exer[i]['question']}**")
+            multiple_choice(
+                question=" ",
+                options_dict=quest_exer[i]["options"],
+                success=quest_exer[i].get("success", "✅ Correct."),
+                error=quest_exer[i].get("error", "❌ Not quite.")
+            )
+
+        with col2:
+            i = row[1]
+            st.markdown(f"**Q{i+1}. {quest_exer[i]['question']}**")
+            multiple_choice(
+                question=" ",
+                options_dict=quest_exer[i]["options"],
+                success=quest_exer[i].get("success", "✅ Correct."),
+                error=quest_exer[i].get("error", "❌ Not quite.")
+            )
+            
+# Render exercise assessment
+render_toggle_container(
+    section_id="GHY_02",
+    label="✅ **Show the :rainbow[**EXERCISE**] assessment** - to self-check your understanding",
+    content_fn=content_exer_GHY,
+    default_open=False,
+)
+
+st.subheader('✔️ Conclusion', divider = 'orange')
 st.markdown("""
 ...
 After studying this section about the Ghyben-Herzberg principle, you may want to evaluate your knowledge using the final assessment.
@@ -259,9 +388,9 @@ render_toggle_container(
             
 st.markdown('---')
 
-# Render footer with authors, institutions, and license logo in a single line
-columns_lic = st.columns((4,1))
+# --- Render footer with authors, institutions, and license logo in a single line
+columns_lic = st.columns((5,1))
 with columns_lic[0]:
     st.markdown(f'Developed by {", ".join(author_list)} ({year}). <br> {institution_text}', unsafe_allow_html=True)
 with columns_lic[1]:
-    st.image('FIGS/CC_BY-SA_icon.png')
+    st.image(st.session_state.module_path + 'images/CC_BY-SA_icon.png')

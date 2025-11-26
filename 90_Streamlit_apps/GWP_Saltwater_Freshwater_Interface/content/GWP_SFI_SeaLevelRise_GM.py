@@ -5,8 +5,26 @@ from scipy.special import erfc, erf
 import math
 from streamlit_book import multiple_choice
 import json
+from streamlit_scroll_to_top import scroll_to_here
+from GWP_SFI_utils import read_md
 
-# Authors, institutions, and year
+# ---------- Track the current page
+PAGE_ID = "GM"
+
+# Do (optional) things/settings if the user comes from another page
+if "current_page" not in st.session_state:
+    st.session_state.current_page = PAGE_ID
+if st.session_state.current_page != PAGE_ID:
+    st.session_state.current_page = PAGE_ID
+
+# ---------- Start the page with scrolling here
+if st.session_state.scroll_to_top:
+    scroll_to_here(0, key='top')
+    st.session_state.scroll_to_top = False
+#Empty space at the top
+st.markdown("<div style='height:1.25rem'></div>", unsafe_allow_html=True)
+
+# ---------- Authors, institutions, and year
 year = 2025 
 authors = {
     "Markus Giese": [1],  # Author 1 belongs to Institution 1
@@ -22,18 +40,17 @@ author_list = [f"{name}{''.join(index_symbols[i-1] for i in indices)}" for name,
 institution_list = [f"{index_symbols[i-1]} {inst}" for i, inst in institutions.items()]
 institution_text = " | ".join(institution_list)
 
-# Streamlit app title and description
-module_path = "90_Streamlit_apps/GWP_Saltwater_Intrusion/content/"
+# ---------- Define paths, loading files
 
-path_quest_sfi = module_path + "questions/exer_sfi_gm.json"
+# --- path to questions for the assessments (direct path)
+path_quest_exer  = st.session_state.module_path + "questions/exer_sfi_gm.json"
 
 # Load questions
-#with open(path_quest_sfi, "r", encoding="utf-8") as f:
-#    quest_sfi = json.load(f)
+    
+with open(path_quest_exer, "r", encoding="utf-8") as f:
+    quest_exer = json.load(f)
 
-# Streamlit app title and description
-# Markdown description
-
+#---------- UI Starting here
 st.title("Glover–Morgan Equation – Modeling Saltwater Intrusion Dynamics")
 
 #st.subheader('Sea Level Rise Impact on Aquifer Interface', divider= "green")
@@ -188,11 +205,11 @@ with st.expander('**Show self-test** - to assess your EXISTING knowledge'):
                 error=quest_sfi[i].get("error", "❌ Not quite.")
             )
 
-'---'
+st.markdown('---')
 
-# Render footer with authors, institutions, and license logo in a single line
+# --- Render footer with authors, institutions, and license logo in a single line
 columns_lic = st.columns((5,1))
 with columns_lic[0]:
     st.markdown(f'Developed by {", ".join(author_list)} ({year}). <br> {institution_text}', unsafe_allow_html=True)
 with columns_lic[1]:
-    st.image(module_path + 'images/CC_BY-SA_icon.png')
+    st.image(st.session_state.module_path + 'images/CC_BY-SA_icon.png')
