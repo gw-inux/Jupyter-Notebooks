@@ -1,4 +1,16 @@
 import streamlit as st
+from streamlit_scroll_to_top import scroll_to_here
+from GWP_Saltwater_Intrusion_utils import read_md
+
+# ---------- Track the current page
+PAGE_ID = "START"
+
+if "current_page" not in st.session_state:
+    st.session_state.current_page = PAGE_ID
+
+# Do (optional) things/settings if the user comes from another page
+if st.session_state.current_page != PAGE_ID:
+    st.session_state.current_page = PAGE_ID
 
 # Authors, institutions, and year
 year = 2025 

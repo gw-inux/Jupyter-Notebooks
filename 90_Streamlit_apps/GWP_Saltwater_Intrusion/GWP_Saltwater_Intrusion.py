@@ -2,7 +2,7 @@ import streamlit as st
 import os
 
 # --- Application parameters ---
-DEFAULT_START_PAGE = "90_Streamlit_apps/GWP_Saltwater_Intrusion/content/GWP_Saltwater_Intrusion_Start.py"
+DEFAULT_START_PAGE = "90_Streamlit_apps/GWP_Saltwater_Intrusion/content/GWP_Saltwater_Intrusion_Overview.py"
 
 # --- MUST be first: layout setup wide / centered ---
 if "layout_choice" not in st.session_state:
@@ -44,17 +44,22 @@ st.markdown("""
 
 # --- Flat page definitions ---
 pages = {
-    "📕 Introduction ": "90_Streamlit_apps/GWP_Saltwater_Intrusion/content/GWP_SFI_Introduction.py",
-    "🟠 GHP":           "90_Streamlit_apps/GWP_Saltwater_Intrusion/content/GWP_SFI_Ghyben_Herzberg.py",
-    "🟣 SLR":           "90_Streamlit_apps/GWP_Saltwater_Intrusion/content/GWP_SFI_SeaLevelRise.py",
-    "🟣 SLR GM":        "90_Streamlit_apps/GWP_Saltwater_Intrusion/content/GWP_SFI_SeaLevelRise_GM.py",
-    "🟢 SWI":           "90_Streamlit_apps/GWP_Saltwater_Intrusion/content/GWP_SFI_Upconing.py",
-    "ℹ️ About":         "90_Streamlit_apps/GWP_Saltwater_Intrusion/content/GWP_SFI_About.py"
+    "📕 Introduction ":   "90_Streamlit_apps/GWP_Saltwater_Intrusion/content/GWP_SFI_Introduction.py",
+    "🟠 Ghyben-Herzberg": "90_Streamlit_apps/GWP_Saltwater_Intrusion/content/GWP_SFI_Ghyben_Herzberg.py",
+    "🟣 Glover":          "90_Streamlit_apps/GWP_Saltwater_Intrusion/content/Glover.py",
+    "🔵 Glover-Morgan":   "90_Streamlit_apps/GWP_Saltwater_Intrusion/content/GWP_SFI_SeaLevelRise_GM.py",
+    "🟡 SeaLevel Rise":   "90_Streamlit_apps/GWP_Saltwater_Intrusion/content/GWP_SFI_SeaLevelRise.py",
+    "🟢 Upconing":        "90_Streamlit_apps/GWP_Saltwater_Intrusion/content/GWP_SFI_Upconing.py",
+    "ℹ️ About":           "90_Streamlit_apps/GWP_Saltwater_Intrusion/content/GWP_SFI_About.py"
 }
 
 # --- State tracking ---
 if "selected_path" not in st.session_state:
     st.session_state.selected_path = DEFAULT_START_PAGE
+if "prev_path" not in st.session_state:
+    st.session_state.prev_path = st.session_state.selected_path
+if "scroll_to_top" not in st.session_state:
+    st.session_state.scroll_to_top = False
 
 # Space before the first two buttons
 st.sidebar.markdown("<div style='margin-top: 2.0rem;'></div>", unsafe_allow_html=True)

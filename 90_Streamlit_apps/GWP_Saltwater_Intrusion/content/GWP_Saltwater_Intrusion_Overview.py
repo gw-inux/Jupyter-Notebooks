@@ -17,16 +17,16 @@ institution_list = [f"{index_symbols[i-1]} {inst}" for i, inst in institutions.i
 institution_text = " | ".join(institution_list)
 
 st.title("Welcome to the Saltwater Intrusion Module 🌊➡️💧")
-st.header('A Multipage Application on Saltwater Intrusion 👋', divider= 'green')
+st.header('An Application Introducing Different Aspects of Saltwater Intrusion 👋', divider= 'green')
 
 # Module path
-module_path = "90_Streamlit_apps/GWP_Saltwater_Intrusion/"
+module_path = "90_Streamlit_apps/GWP_Saltwater_Intrusion/content/"
 #module_path = ""
 
-st.subheader('Overview')
+st.subheader('Getting started')
 st.markdown(
     """
-Freshwater–Saltwater Interface: Theory, Dynamics, and Management
+**Saltwater intrusion** is a **key challenge** in coastal groundwater management, where changes in pumping, sea level, and aquifer properties can allow saline water to **migrate inland** and **upward into** freshwater zones. Understanding these processes is essential for sustainable use of coastal aquifers. This module is designed to introduce basic concepts and analytical solutions for saltwater intrusion in coastal aquifers.
 """)
 
 left_co, cent_co, last_co = st.columns((5,80,5))
@@ -35,8 +35,9 @@ with cent_co:
     st.markdown('Insert image')
 st.markdown(
     """
-Whether you're an advanced student or a practicing hydrogeologist, this module offers intuitive visualizations, conceptual explanations, and interactive tools to 
-help bridge theory and application.
+💡 This interactive module is designed **to deepen your understanding** of the fundamental mechanisms that control saltwater intrusion in coastal aquifers. Through focused tools you can explore how hydraulic gradients, pumping stresses, and changing sea levels influence the position and movement of the freshwater–saltwater interface. Combined in one module, these apps provide an intuitive introduction to the key physical relationships that govern inland migration of saltwater, vertical upconing beneath wells, and long-term vulnerability to climate-driven sea-level changes.
+
+💡 This module offers intuitive visualizations, conceptual explanations, and interactive tools to help bridge theory and application for beginning modelers, advanced students, and practicing hydrogeologists. To get the most out of this resource, see the **How to Use this Module** section below.
 """
 )   
 
@@ -45,15 +46,26 @@ columns = st.columns((1,6,1))
 with columns[1]:
     st.markdown(
     """
-👉 :green[**Use the sidebar to navigate through examples and boundary types.**] 👈
+👉 :green[**Use the sidebar to navigate through examples and analytical solutions.**] 👈
 """
 )
+st.subheader('How to Use this Module', divider= 'green')
 st.markdown(
     """
-The sidebar links to sections that cover the specific salt water intrusion conditions that are available in...:
-- :orange[**GHP:**] The **Ghyber-Herzberg Principle**.
-- :violet[**SLR:**] The **Sea Level Rise** package to simulate saltwater intrusion from sea level rise.
-- :green[**SWI:**] The **Upconing** package to simulate upconing from pumping.
+**Who is this module for?**
+
+**Structure of the module:** The 📕 Introduction Section provides an overview of ...
+
+**Flexibility for experienced users:** Experienced users can use the module selectively, for example, by going directly to a single section of interest to refresh their knowledge of a specific topic.
+
+**Time needed:**
+
+**Practical focus:** Exercises and examples are embedded throughout, not only to help users understand the concepts, but also to show practical applications of the boundary conditions.
+
+**Learning through assessments:**
+
+**Instructions and exercises:**
+
 """
 ) 
 st.markdown('---')

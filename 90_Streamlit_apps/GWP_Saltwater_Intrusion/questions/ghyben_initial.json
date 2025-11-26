@@ -1,0 +1,61 @@
+[
+  {
+    "question": "In many textbooks, a “40:1” ratio between interface depth and freshwater head is mentioned. Which of the following statements are true?",
+    "options": {
+      "Roughly, 1 m of freshwater head above sea level corresponds to about 40 m of freshwater thickness below sea level, for typical seawater–freshwater density contrasts.": true,
+      "The exact ratio depends on the density difference between freshwater and seawater.": true,
+      "The 40:1 rule is a universal constant that does not change from one site to another.": false,
+      "The ratio becomes smaller if the density contrast becomes larger.": true
+    },
+    "success": "Correct — the 40:1 rule is an approximation based on typical density differences. It changes with density contrast and is not a universal constant.",
+    "error": "Not quite — remember that the 40:1 ratio is only approximate and depends on the freshwater–seawater density contrast."
+  },
+
+  {
+    "question": "In which of the following situations is the Ghyben–Herzberg relation most appropriate as a first approximation?",
+    "options": {
+      "A small, unpumped island aquifer with a relatively uniform freshwater lens and no strong vertical flows.": true,
+      "A heavily pumped coastal aquifer with strong vertical gradients near wells and complex transient behaviour.": false,
+      "A system where the main interest is the order-of-magnitude thickness of the freshwater lens, not detailed salinity patterns.": true,
+      "A system with strong density-driven convection and fingering in the transition zone.": false
+    },
+    "success": "Exactly — the Ghyben–Herzberg relation works best in calm, near-hydrostatic conditions where a simple order-of-magnitude estimate is sufficient.",
+    "error": "Try again — the Ghyben–Herzberg relation is not suitable for pumped or strongly density-driven systems."
+  },
+
+  {
+    "question": "Which of the following are standard assumptions of the Ghyben–Herzberg theorem?",
+    "options": {
+      "Hydrostatic equilibrium (no significant flow or dynamic effects).": true,
+      "Homogeneous aquifer with uniform properties.": true,
+      "Constant densities for freshwater and seawater, separated by a sharp interface.": true,
+      "A well-developed dispersion zone that is explicitly resolved.": false
+    },
+    "success": "Correct — the theorem assumes hydrostatic conditions, constant densities, homogeneity, and a sharp interface (not a dispersion zone).",
+    "error": "Not quite — recall that Ghyben–Herzberg assumes a sharp interface and does not account for dispersion."
+  },
+
+  {
+    "question": "Which of the following changes in a coastal groundwater system would reduce the reliability of applying the Ghyben–Herzberg relation without further modelling?",
+    "options": {
+      "Significant pumping from wells that creates strong vertical gradients near the coast.": true,
+      "Strong temporal variations in recharge leading to seasonal rises and falls in the water table.": true,
+      "Pronounced heterogeneity in hydraulic properties (e.g., lenses, layers, or fractures) that distort the flow field.": true,
+      "A thick transition zone with noticeable mixing between fresh and saline water rather than a sharp interface.": true
+    },
+    "success": "Correct — all listed factors violate the assumptions of the Ghyben–Herzberg relation and reduce its reliability.",
+    "error": "Almost — all options here reduce the applicability of the Ghyben–Herzberg approximation."
+  },
+
+  {
+    "question": "In a small island aquifer, the Ghyben–Herzberg relation is used to estimate the thickness of the freshwater lens. Suppose sea level rises by 0.5 m, and at the same time recharge decreases so that the freshwater head at the island centre drops by 0.5 m relative to its original value. Which statement best describes the impact on the depth of the interface below the new sea level at a certain distance from the shoreline?",
+    "options": {
+      "The interface depth below the new sea level remains approximately the same, because both sea level and head changed by the same amount.": false,
+      "The interface becomes significantly shallower below the new sea level, because the net freshwater head above sea level has decreased.": true,
+      "The interface becomes deeper below the new sea level, because higher sea level pushes the saltwater further down.": false,
+      "The interface depth below the new sea level cannot be evaluated with Ghyben–Herzberg, because the relation does not include sea level explicitly.": false
+    },
+    "success": "Correct — the freshwater head relative to sea level decreased, so the interface rises (becomes shallower) relative to the new sea level.",
+    "error": "Not quite — the key factor is that the freshwater head above sea level has decreased, making the freshwater lens thinner."
+  }
+]

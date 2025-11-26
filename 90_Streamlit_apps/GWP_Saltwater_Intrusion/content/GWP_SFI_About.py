@@ -3,12 +3,13 @@ import streamlit as st
 # Authors, institutions, and year
 year = 2025 
 authors = {
-    "Thomas Reimann": [1],  # Author 1 belongs to Institution 1
-    "Eileen Poeter": [2],
+    "Markus Giese": [1],  # Author 1 belongs to Institution 1
+    "Thomas Reimann": [2],
+    "Nils Wallenberg": [1]
 }
 institutions = {
-    1: "TU Dresden, Institute for Groundwater Management",
-    2: "Colorado School of Mines"
+    1: "University of Gothenburg, Department of Earth Sciences",
+    2: "TU Dresden, Institute for Groundwater Management",
 }
 index_symbols = ["¹", "²", "³", "⁴", "⁵", "⁶", "⁷", "⁸", "⁹"]
 author_list = [f"{name}{''.join(index_symbols[i-1] for i in indices)}" for name, indices in authors.items()]

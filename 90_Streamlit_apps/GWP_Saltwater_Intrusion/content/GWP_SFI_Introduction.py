@@ -24,26 +24,6 @@ author_list = [f"{name}{''.join(index_symbols[i-1] for i in indices)}" for name,
 institution_list = [f"{index_symbols[i-1]} {inst}" for i, inst in institutions.items()]
 institution_text = " | ".join(institution_list)
 
-# path to questions for the assessments (direct path)
-module_path = "90_Streamlit_apps/GWP_Saltwater_Intrusion/"
-
-# path_quest_ini = module_path + "questions/initial_general_behavior.json"
-# path_quest_exer_sc1 = module_path + "questions/exer_general_sc1.json"
-# path_quest_exer_sc2 = module_path + "questions/exer_general_sc2.json"
-# path_quest_final = module_path + "questions/final_general_behavior.json"
-
-# # Load questions
-# with open(path_quest_ini, "r", encoding="utf-8") as f:
-#     quest_ini = json.load(f)
-
-# with open(path_quest_exer_sc1, "r", encoding="utf-8") as f:
-#     quest_exer_sc1 = json.load(f)
-    
-# with open(path_quest_exer_sc2, "r", encoding="utf-8") as f:
-#     quest_exer_sc2 = json.load(f)
-    
-# with open(path_quest_final, "r", encoding="utf-8") as f:
-#     quest_final = json.load(f)
 
 def prep_log_slider(default_val: float, log_min: float, log_max: float, step: float = 0.01, digits: int = 2):
     """
@@ -85,31 +65,36 @@ def update_index():
     
     st.session_state.bc_index = index
 
-st.title('Freshwater-Saltwater Interface :blue[Groundwater Models]')
+st.title(':blue[Analytical Solutions] of Freshwater-Saltwater Interface')
 st.subheader('Theory, dynamics and management', divider="blue")
 
 
 # --- MOTIVATION ---
 st.markdown("""
-#### 💡 Motivation - Why it matters
-Saltwater Intrusion in Coastal Aquifers
-Coastal aquifers are vital freshwater sources for millions of people worldwide. These underground reservoirs supply drinking water, support agriculture, and sustain ecosystems. However, their delicate balance is increasingly under threat from a range of environmental and human-induced pressures:
+#### 💡 Motivation - Saltwater Intrusion in Coastal Aquifers
 
-* Overpumping – Excessive groundwater extraction lowers freshwater pressure, allowing denser seawater to migrate inland.
+Saltwater intrusion is the movement of saline water into freshwater aquifers, typically occurring in coastal areas due to the natural hydraulic connection between groundwater and seawater. Under normal conditions, freshwater flows toward the sea, creating a pressure barrier. Freshwater from the land naturally “floats” above denser saltwater from the sea, creating an interface zone. But when this balance is disrupted, saltwater can encroach into the aquifer. The direction of the saltwater encroachment is highly correlated to the dominating processes caused by both natural and anthropogenic factors. Changes of boundary conditions (link to BC app?) mainly trigger lateral and upward saltwater intrusion. Downward saltwater intrusion, as a consequence of saltwater inflow from the surface due to temporary (e.g. storm floods) or permanent (e.g. estuaries, marsh flats) saltwater flooding, is not covered by this module. Independent of the causes of saltwater intrusion the consequence is a degraded groundwater quality making it unsuitable for drinking, irrigation, and industrial use.
 
-* Sea-level rise – Higher ocean levels push the freshwater–saltwater interface further into the aquifer.
+Coastal aquifers are vital freshwater sources for millions of people worldwide (50% of the world population lives within 60 km of the shoreline). These underground reservoirs supply drinking water, support agriculture, and sustain ecosystems. However, their delicate balance is increasingly under threat from a range of environmental and human-induced pressures which have deteriorated the groundwater situation in coastal areas around the globe:
 
-* Climate change – Altered rainfall patterns and prolonged droughts reduce aquifer recharge, intensifying the risk of intrusion.
+🧂 Overpumping – Excessive groundwater extraction lowers freshwater pressure, allowing denser seawater to migrate inland.
 
-* Storm surges and extreme weather – Coastal flooding events can rapidly accelerate saltwater migration.
+🧂 Sea-level rise – Higher ocean levels push the freshwater–saltwater interface further into the aquifer.
 
-* Man-made infrastructure – Canals and drainage systems may inadvertently act as conduits for saltwater movement.
+🧂 Climate change – Altered rainfall patterns and prolonged droughts reduce aquifer recharge, intensifying the risk of intrusion.
 
-These factors can cause the saltwater–freshwater interface to migrate landward, contaminating wells and reducing water supply reliability—a process known as saltwater intrusion.
+🧂 Storm surges and extreme weather – Coastal flooding events can rapidly accelerate saltwater migration.
 
-Saltwater intrusion is the movement of saline water into freshwater aquifers, typically occurring in coastal areas due to the natural hydraulic connection between groundwater and seawater. Under normal conditions, freshwater flows toward the sea, creating a pressure barrier that keeps saltwater at bay. But when this balance is disrupted, saltwater can encroach laterally or vertically into the aquifer, degrading groundwater quality and making it unsuitable for drinking, irrigation, and industrial use.
+🧂 Man-made infrastructure – Canals and drainage systems may inadvertently act as conduits for saltwater movement.
 
-#### 🚨 Why Study It?
+""")
+
+#left_co, cent_co, last_co = st.columns((20,80,20))
+#with cent_co:
+#    st.image(module_path + 'images/GenericSaltwaterIntrusion.jpg')
+#    st.markdown("""Generic illustration of before and after saltwater intrusion""")
+
+st.markdown("""#### 🚨 Why Study It?
 
 Understanding and predicting saltwater intrusion is critical for sustainable water management in coastal regions. Without proactive monitoring and modeling, communities risk:
 
@@ -121,13 +106,7 @@ Understanding and predicting saltwater intrusion is critical for sustainable wat
 
 💰 Economic strain, from mitigation efforts and loss of water-dependent industries.
                         
-Therefore, understanding and predicting saltwater intrusion is critical for sustainable water management in coastal regions.
 """)
-
-left_co, cent_co, last_co = st.columns((20,80,20))
-with cent_co:
-    st.image(module_path + 'images/GenericSaltwaterIntrusion.jpg')
-    st.markdown("""Generic illustration of before and after saltwater intrusion""")
 
 st.markdown(""" 
 In coastal aquifers, freshwater from the land naturally “floats” above denser saltwater from the sea, creating an 
@@ -183,9 +162,38 @@ st.markdown("""
 """
 )
 with st.expander("Show more :blue[**explanation about saltwater intrusion**]"):
-    st.markdown("""
-    
-    """)
+    st.markdown(r"""### Transport processes:
+
+The main transport mechanism for dissolved substances in groundwater is **advection** – movement with the bulk flow of water driven by hydraulic gradients (gravity and pressure differences). If the water is at static but density differences exist (for example between fresh and saline water), the lighter water will tend to overlie the denser water and a **stable horizontal stratification** forms. When groundwater flows, these density differences can produce **sloping density interfaces** between fresh and saline water, as in coastal aquifers.
+
+In addition to advection, **molecular diffusion** contributes to solute transport. Diffusion is the microscopic movement of ions and molecules driven purely by **concentration gradients**, independent of bulk flow. Its effect grows roughly with the square root of time, which means that in many groundwater systems diffusion is relatively slow. At a sharp initial boundary between fresh and saline water, diffusion will gradually smear out the concentration contrast and create a **transition zone of brackish water**.
+
+Groundwater flow also produces **mechanical dispersion**, a mixing process that arises because groundwater velocities vary in magnitude and direction within the pore space. Some flow paths are faster, some slower, so a plume of solute spreads out even if molecular diffusion were negligible. On larger scales, **heterogeneities in aquifer properties** (layering, lenses, fractures) cause additional spreading, often called **macrodispersion**. The amount of spreading due to dispersion is roughly proportional to the **groundwater velocity**, so faster flow leads to stronger mechanical mixing.
+
+Both **diffusion and dispersion** act to **smooth concentration gradients** and broaden originally sharp interfaces between fluids of different salinity. In practice they are difficult to separate, so their combined effect is represented with a **hydrodynamic dispersion coefficient**, which includes both molecular diffusion and mechanical dispersion. In many coastal aquifers, advection and dispersion dominate at the field scale, while diffusion controls mixing at very small scales or over long time periods in low-permeability zones.
+
+### Density:
+
+In groundwater systems, the **density** of water is not a fixed value. In general it depends on **pressure**, **temperature** and the **concentration of dissolved substances**:
+
+$$
+\rho = f(p, T, S)
+$$
+
+where  
+
+- $\rho$ is water density [M/L3]  
+- $p$ is pressure [M/L/T2]  
+- $T$ is water temperature [K]  
+- $S$ is salinity or total dissolved solids (TDS) (M/L3)
+
+For most hydrogeologic settings, the effect of **pressure** on density is very small and can usually be neglected. The influence of **temperature** is often modest compared to the influence of **dissolved solids**, especially in shallow aquifers where temperature variations are relatively limited. As a result, in many groundwater applications density is treated primarily as a function of **dissolved solids concentration**, while temperature is assumed constant.
+
+When groundwater “quality” is of interest, we often describe the water in terms of **salinity** or **total dissolved solids (TDS)**. TDS is particularly useful in practice because it can be estimated quickly from measurements of **electrical conductivity** of a water sample.
+
+Dissolved solids consist of a mixture of **cations** (positively charged ions) and **anions** (negatively charged ions). Typical major ions include, for example, Na⁺, K⁺, Ca²⁺, Mg²⁺, Cl⁻, SO₄²⁻ and HCO₃⁻. Ocean water contains a characteristic mixture of these ions, with **chloride (Cl⁻)** being the dominant anion.
+
+In coastal hydrogeology, chloride is often used as a **tracer for salinity**. Because chloride is abundant, conservative (it reacts little with the aquifer matrix) and relatively easy to measure, changes in **chloride concentration** are commonly taken to represent changes in the **overall dissolved solids**. In other words, when models or measurements focus on chloride distribution, it is usually assumed that the **proportional composition of the other ions** remains similar to that of seawater, and that chloride can be used as a proxy for the total salinity distribution in the groundwater system.    """)
     
 # --- EXPLANATORY EXAMPLES ---
 st.subheader('💫 Examples ...', divider='blue')
@@ -201,7 +209,7 @@ st.markdown("""
 
 """)
 
-st.subheader('✅ Conclusion', divider = 'blue')
+st.subheader('✔️ Conclusion', divider = 'blue')
 st.markdown("""
 
 """)
@@ -243,4 +251,4 @@ columns_lic = st.columns((5,1))
 with columns_lic[0]:
     st.markdown(f'Developed by {", ".join(author_list)} ({year}). <br> {institution_text}', unsafe_allow_html=True)
 with columns_lic[1]:
-    st.image(module_path + 'images/CC_BY-SA_icon.png')
+    st.image('90_Streamlit_apps/GWP_Saltwater_Intrusion/images/CC_BY-SA_icon.png')

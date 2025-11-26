@@ -23,13 +23,13 @@ institution_list = [f"{index_symbols[i-1]} {inst}" for i, inst in institutions.i
 institution_text = " | ".join(institution_list)
 
 # Streamlit app title and description
-module_path = "90_Streamlit_apps/GWP_Saltwater_Intrusion/"
+module_path = "90_Streamlit_apps/GWP_Saltwater_Intrusion/content/"
 
 path_quest_sfi = module_path + "questions/exer_sfi_gm.json"
 
 # Load questions
-with open(path_quest_sfi, "r", encoding="utf-8") as f:
-    quest_sfi = json.load(f)
+#with open(path_quest_sfi, "r", encoding="utf-8") as f:
+#    quest_sfi = json.load(f)
 
 # Streamlit app title and description
 # Markdown description
