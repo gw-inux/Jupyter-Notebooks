@@ -44,6 +44,31 @@ institution_text = " | ".join(institution_list)
 st.title('Glover Equation')
 st.subheader('Describing the :violet[freshwater-saltwater interface] under steady groundwater flow', divider="violet")
 
+st.markdown("""
+#### 💡 Motivation: Why investigate the Glover Relation?
+
+- Links **regional groundwater flow** toward the coast with the **geometry of the freshwater–saltwater interface**.
+
+- Extends beyond a **local head-depth relation** by including freshwater discharge, gradient, and aquifer thickness.
+
+- Helps build intuition for how gradient, aquifer thickness and density contrast control interface depth at the coast and inland extent of saltwater.
+
+- Serves as a **screening tool** before using full variable-density numerical models, making it valuable for both teaching and practice.
+""")
+
+st.markdown(r"""
+#### 🎯 Learning Objectives
+
+This section is designed with the intent that, by studying it, you will be able to do the following:
+
+- Explain the conceptual function and mathematical formulation of the **Glover equation**, and how it differs from the **Ghyben–Herzberg relation**.
+
+- Apply the Glover solution to determine the **shape and inland extent** of the freshwater–saltwater interface and the associated freshwater discharge toward the sea under steady, horizontal flow.
+
+- Evaluate how hydraulic gradient, aquifer thickness and density contrast jointly affect the **position of the interface** and the **vulnerability of coastal aquifers** to saltwater intrusion.
+""")
+
+
 st.markdown(r"""
 ### **Introduction**  
 
