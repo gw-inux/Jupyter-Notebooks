@@ -46,6 +46,30 @@ path_quest_ghp = st.session_state.module_path + "questions/exer_ghp.json"
 st.title("Upconing")
 st.subheader('Describing the :orange[upconing] of the freshwater-saltwater interface due to pumping', divider= "orange")
 
+st.markdown("""
+#### 💡 Motivation: Why investigate Upconing?
+
+- Explains why pumping from coastal aquifers can cause the **saltwater interface to rise toward wells** (upconing) and eventually salinise them.
+
+- Links pumping rate, well depth, and initial interface position to interface stability in a simple, analytical way.
+
+- Builds intuition for assessing sustainable solution in coastal settings.
+
+- Provides a **design and screening tool** for assessing upconing risk before investing in more complex numerical modelling.
+""")
+
+st.markdown(r"""
+#### 🎯 Learning Objectives
+
+This section is designed with the intent that, by studying it, you will be able to do the following:
+
+- Explain the concept of **interface upconing** used to approximate the rise of the freshwater–saltwater interface under pumping from a coastal aquifer.
+
+- Apply the upconing equations to calculate **interface rise beneath a pumping well**, estimate critical pumping rates, and assess the risk of salinisation for different well depths and aquifer configurations.
+
+- Evaluate how pumping rate, initial separation d, hydraulic properties and density contrast influence upconing, and **judge design options** (well depth, spacing, distributed pumping) to minimise the risk of saltwater intrusion.
+""")
+
 
 st.markdown(r"""
 ### **Introduction**  
