@@ -1,0 +1,35 @@
+[
+  {
+    "question": "In the Glover framework, increasing the freshwater hydraulic gradient i toward the sea (all else equal) tends to:",
+    "options": {
+      "Move the saltwater toe further inland.": false,
+      "Reduce freshwater discharge to the sea.": false,
+      "Push the interface deeper near the coast and shift the saltwater toe seaward.": true,
+      "Have no effect on the freshwater–saltwater interface.": false
+    },
+    "success": "Correct — a higher freshwater gradient increases seaward flow, which tends to deepen the interface at the coast and push the saltwater toe seaward.",
+    "error": "Not quite — in the Glover model, increasing the land-to-sea gradient strengthens freshwater discharge and pushes the interface seaward, not landward."
+  },
+  {
+    "question": "For which setting is the Glover equation most appropriate as a first approximation?",
+    "options": {
+      "A homogeneous coastal aquifer with steady, primarily horizontal freshwater flow toward the sea and a relatively sharp interface.": true,
+      "A karst system with conduit flow and complex vertical circulation.": false,
+      "A strongly tidal estuary with rapidly varying heads at the coast.": false,
+      "A heavily pumped multi-layer system with strong vertical leakage.": false
+    },
+    "success": "Exactly — the Glover solution is intended for relatively simple, homogeneous coastal aquifers with steady, mainly horizontal flow and a sharp interface.",
+    "error": "Try again — Glover is not designed for highly complex, pumped, karst or strongly tidal systems."
+  },
+  {
+    "question": "Which of the following are standard assumptions of the classical Glover model?",
+    "options": {
+      "Homogeneous, isotropic aquifer of constant thickness.": true,
+      "Dupuit-type horizontal flow with a sharp freshwater–saltwater interface.": true,
+      "Fully transient variable-density flow in a thick mixing zone.": false,
+      "Constant seawater head at the coast and steady-state conditions.": true
+    },
+    "success": "Correct — the classical Glover model assumes a homogeneous, isotropic aquifer of constant thickness, Dupuit-type horizontal flow with a sharp interface, and steady-state conditions with a constant head at the sea.",
+    "error": "Not quite — remember that Glover is a steady, sharp-interface, horizontally averaged model and does not handle full transient variable-density flow in a thick mixing zone."
+  }
+]

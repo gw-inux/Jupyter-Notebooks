@@ -1,0 +1,46 @@
+[
+  {
+    "question": "What is meant by interface upconing in a coastal groundwater system?",
+    "options": {
+      "The downward movement of freshwater into the seawater zone.": false,
+      "The upward movement of the freshwater–saltwater interface toward a pumping well.": true,
+      "The landward migration of the saltwater toe under natural flow.": false,
+      "The rise of the freshwater-saltwater interface due to increased recharge.": false
+    },
+    "success": "Correct — interface upconing is the upward movement of the freshwater–saltwater interface toward a pumping well.",
+    "error": "Not quite — upconing refers specifically to the interface rising toward the well under pumping."
+  },
+  {
+    "question": "Which of the following changes will generally increase the risk of problematic upconing beneath a coastal pumping well?",
+    "options": {
+      "Increasing the pumping rate while keeping well depth constant.": true,
+      "Decreasing the initial vertical distance between the well screen and the interface.": true,
+      "Moving the well further inland, away from the saltwater body.": false,
+      "Reducing pumping and distributing abstraction among more shallow wells.": false
+    },
+    "success": "Correct — higher pumping rates and smaller initial separation between the screen and interface both increase the risk of problematic upconing.",
+    "error": "Not quite — think about which changes bring the interface closer to the well or pull it upward more strongly."
+  },
+  {
+    "question": "Analytical upconing models are best suited for:",
+    "options": {
+      "Screening-level estimates of interface rise beneath a single well in a relatively homogeneous coastal aquifer.": true,
+      "Fully resolving 3D density-driven fingering in a strongly heterogeneous system.": false,
+      "Simulating complex multi-well pumping with strong tidal influences.": false,
+      "Predicting long-term land subsidence due to deep groundwater extraction.": false
+    },
+    "success": "Exactly — analytical upconing models are intended for screening-level estimates for relatively simple, single-well situations.",
+    "error": "Try again — these models are not meant for full 3D fingering, complex multi-well systems or subsidence predictions."
+  },
+  {
+    "question": "In practical upconing design, a “critical” fraction of the distance between well and freshwater–saltwater interface is sometimes used as a limit for acceptable interface rise. This means that:",
+    "options": {
+      "The interface must always remain exactly one aquifer thickness below the well screen.": false,
+      "Only a fraction of the original freshwater thickness between the well and interface is allowed to be “used up” by upconing before salinisation risk is considered too high.": true,
+      "The critical fraction is a universal constant independent of design choices.": false,
+      "The safety factor is irrelevant if pumping is low.": false
+    },
+    "success": "Correct — the idea is that only part of the original freshwater separation can be consumed by upconing before the risk of salinisation becomes unacceptable.",
+    "error": "Not quite — the critical fraction defines how much of the initial freshwater buffer can be lost to upconing before it is considered unsafe."
+  }
+]
