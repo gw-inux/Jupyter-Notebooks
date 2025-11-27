@@ -110,19 +110,24 @@ st.subheader('Describing the :orange[freshwater-saltwater interface] under stati
 st.markdown("""
     #### 💡 Motivation: Why investigate the Ghyben-Herzberg Relation?
     
-    CONTENT HERE
+    - It provides a **simple link** between freshwater head and the depth of the freshwater–saltwater interface, allowing quick, first-order estimates of **freshwater lens thickness** without running a full numerical model.
     
-    CONTENT HERE
+    - It helps building **physical intuition**: See how a small change in groundwater level (e.g. due to pumping, reduced recharge, or sea-level rise) can translate into a large shift of the interface at depth.
     
-    CONTENT HERE
+    - It is still widely used as a **screening and communication tool** in coastal groundwater studies, making it a natural starting point before introducing more complex density-dependent models.
+    
+    - Understanding its **assumptions and limitations** (hydrostatic equilibrium, homogeneity, sharp interface) trains the user to critically judge when a “classic” textbook relation is useful—and when it can be misleading in real-world applications.
     
     """)
 
-st.markdown("""
+st.markdown(r"""
     ####  🎯 Learning Objectives
     This section is designed with the intent that, by studying it, you will be able to do the following:
     
-    CONTENT HERE
+    - Explain the conceptual function of the **Ghyben–Herzberg relation** and its mathematical formulation including the origin and meaning of the “40:1” rule of thumb.
+    - Apply the Ghyben–Herzberg relation to calculate **interface depth and freshwater lens thickness** for simple coastal and island aquifer settings, and 
+    - Evaluate how changes in density contrast $\rho_s$ - $\rho_f$) and freshwater head $\h$) affect the interface position.
+
     
     """)    
     
