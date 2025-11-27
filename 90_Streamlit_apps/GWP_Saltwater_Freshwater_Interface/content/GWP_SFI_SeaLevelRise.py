@@ -47,6 +47,28 @@ institution_text = " | ".join(institution_list)
 st.title("Sea Level Rise")
 st.subheader('Describing the impact of :red[sea level rise] on the freshwater-saltwater interface location', divider= "red")
 
+st.markdown("""
+#### 💡 Motivation: Why investigate Sea-Level Rise in Coastal Aquifers?
+
+- Shows how **sea-level rise** can cause **landward migration of the saltwater wedge**, change water-table elevations, and alter freshwater storage, even without pumping.
+
+- Provides a transparent way to explore interactions between sea-level change, recharge, aquifer slope, and hydraulic properties in a **sloping coastal aquifer**.
+
+- Helps identify which coastal settings are **most vulnerable** to sea-level rise.
+""")
+
+st.markdown(r"""
+#### 🎯 Learning Objectives
+
+This section is designed with the intent that, by studying it, you will be able to do the following:
+
+- Explain the conceptual model and analytical formulation used to describe how sea-level rise affects water-table elevation, the position of the saltwater toe, and freshwater volume in a sloping unconfined coastal aquifer.
+
+- Quantify **changes in interface position and freshwater storage** for specified sea-level rise scenarios and aquifer parameters (recharge, K, slope, density contrast).
+
+- Evaluate the sensitivity of different coastal aquifer types to sea-level rise.
+""")
+
 
 st.markdown(r"""
 ### **Introduction**  
