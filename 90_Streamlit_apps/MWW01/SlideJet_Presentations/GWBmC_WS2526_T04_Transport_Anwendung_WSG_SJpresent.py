@@ -24,7 +24,7 @@ from reportlab.lib.units import cm
 
 # --- Default YAML path, use / ---
 #DEFAULT_YAML = "example.yaml"
-DEFAULT_YAML = "MWW01/SlideJet_Presentations/GWBmC_WS2526_T04_Transport_Anwendung_WSG_SJconfig.yaml"
+DEFAULT_YAML = "90_Streamlit_apps/MWW01/SlideJet_Presentations/GWBmC_WS2526_T04_Transport_Anwendung_WSG_SJconfig.yaml"
 
 # --- Proxy ID --- This should be
 # an unique ID if the app is used
