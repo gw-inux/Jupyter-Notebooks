@@ -316,6 +316,14 @@ with st.expander('Show the :rainbow[**EXERCISE**]', icon ="🧩"):
 
 """)
 
+st.subheader('✔️ Conclusion', divider = 'violett')
+st.markdown("""
+The **sea-level rise app** demonstrates how **changes at the coastal boundary** affect groundwater heads, the position of the saltwater toe, and the volume of stored freshwater in unconfined coastal aquifers. Using an analytical sharp-interface solution, it links **sea-level change**, **recharge**, **aquifer slope**, **hydraulic conductivity**, and **density contrast** to the inland migration of the saltwater wedge and changes in freshwater storage.
+
+By adjusting parameters such as **sea-level rise** $\Delta z_0$, **coastal slope**, and **$K$**, you can compare responses of different idealised coastal settings, from low-lying, gently sloping aquifers to steeper, more transmissive ones. The app highlights why gently sloping coasts can be especially vulnerable: a modest vertical rise in sea level can lead to a large horizontal shift of the shoreline and saltwater toe. At the same time, the tool reinforces that it is a **screening model**, based on homogeneity, a sharp interface, and steady recharge, and does not resolve full 3D salinity patterns or complex infrastructure.
+
+Together with the **Ghyben–Herzberg**, **Glover**, and **upconing** apps, this tool completes the picture of coastal aquifers under combined pressures from **natural gradients**, **human pumping**, and **climate-driven sea-level change**. After studying this section on sea-level rise, you may wish to consolidate your understanding by working through the final assessment for this app.
+
 with st.expander('**Show self-test** - to assess your EXISTING knowledge'):
     st.markdown("""
     #### 📋 Self-test
