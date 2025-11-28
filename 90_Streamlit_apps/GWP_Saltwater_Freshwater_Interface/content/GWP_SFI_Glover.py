@@ -309,6 +309,15 @@ The local hydrogeologists are still uncertain about the true thickness of the aq
 👉 Finally, reflect on the **limitations** of using the Glover equation: Which important processes and complexities are **not** represented (e.g. pumping, heterogeneity, mixing zone, transients)?  
 """)
 
+st.subheader('✔️ Conclusion', divider = 'violett')
+st.markdown("""
+The **Glover equation** generalizes the Ghyben–Herzberg relation from a **local head–depth estimate** to a **regional description of the freshwater–saltwater wedge** in a coastal aquifer. It explicitly includes the freshwater gradient and discharge toward the sea, allowing you to visualise how the freshwater table and interface shape vary from inland areas to the shoreline under steady conditions.
+
+By adjusting parameters such as **hydraulic gradient**, **aquifer thickness**, and **density contrast**, the Glover app shows how these factors jointly determine the **inland extent of the saltwater toe** and the **interface depth at the coast**. Comparing the Glover interface to the Ghyben–Herzberg estimate at the shoreline highlights both the usefulness and the limitations of purely local hydrostatic relations. The model serves as an effective **screening tool** before resorting to full variable-density numerical simulations.
+
+This regional perspective provides the **background state** on which other processes act: **pumping** can locally distort the wedge and cause upconing beneath wells, while **sea-level rise or changes in recharge** can shift the entire wedge landward or seaward. After studying this section, you may want to evaluate your knowledge with the Glover initial and final assessment questions.
+""")
+
 with st.expander('**Show self-test** - to assess your EXISTING knowledge'):
     st.markdown("""
     #### 📋 Self-test
