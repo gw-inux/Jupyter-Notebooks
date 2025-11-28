@@ -136,7 +136,7 @@ st.subheader('Interactive Plot and Exercise', divider="violet")
 
 def glover(i, b, rho_f, rho_s):
     h = (2 * i * b * (1000 - x_land) * rho_f / (rho_s - rho_f))**0.5
-    z = (2 * i * b * (1000 - x_land)* rho_f / (rho_s - rho_f) + (i * b * rho_f / (rho_s - rho_f))**2)**0.5
+    z = (2 * i * b * (1000 - x_land) / (rho_s - rho_f) + (i * b * rho_f / (rho_s - rho_f))**2)**0.5
     z_0 = (rho_f / (rho_s - rho_f)) * i * b
     L = (i * b * rho_f) / (2 * (rho_s - rho_f))
     x_f = (b * (rho_s - rho_f)) / (2 * i * rho_f)
