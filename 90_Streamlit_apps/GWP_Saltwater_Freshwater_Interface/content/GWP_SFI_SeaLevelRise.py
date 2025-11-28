@@ -323,6 +323,7 @@ The **sea-level rise app** demonstrates how **changes at the coastal boundary** 
 By adjusting parameters such as **sea-level rise** $\Delta z_0$, **coastal slope**, and **$K$**, you can compare responses of different idealised coastal settings, from low-lying, gently sloping aquifers to steeper, more transmissive ones. The app highlights why gently sloping coasts can be especially vulnerable: a modest vertical rise in sea level can lead to a large horizontal shift of the shoreline and saltwater toe. At the same time, the tool reinforces that it is a **screening model**, based on homogeneity, a sharp interface, and steady recharge, and does not resolve full 3D salinity patterns or complex infrastructure.
 
 Together with the **Ghyben–Herzberg**, **Glover**, and **upconing** apps, this tool completes the picture of coastal aquifers under combined pressures from **natural gradients**, **human pumping**, and **climate-driven sea-level change**. After studying this section on sea-level rise, you may wish to consolidate your understanding by working through the final assessment for this app.
+""")
 
 with st.expander('**Show self-test** - to assess your EXISTING knowledge'):
     st.markdown("""
