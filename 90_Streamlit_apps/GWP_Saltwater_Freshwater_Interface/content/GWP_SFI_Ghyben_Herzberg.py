@@ -354,7 +354,8 @@ The **Ghyben–Herzberg relation** is a simple but powerful tool for estimating 
 
 Unlike more complex approaches, the Ghyben–Herzberg concept assumes **hydrostatic equilibrium**, a **homogeneous aquifer**, and a **sharp interface**. Within these limits, adjusting parameters such as **freshwater head** and **density contrast** helps you see how small changes in water level can translate into large shifts in interface depth (for example, the familiar “40:1” rule of thumb). This builds strong physical intuition for why even modest drawdown, reduced recharge, or sea-level change can have large implications for freshwater availability.
 
-The insights from this app form the conceptual foundation for the more advanced tools in this module. **Glover** extends the idea to a *regional wedge*, **upconing** illustrates *local vertical disturbances by pumping*, and the **sea-level rise** app explores *time-dependent boundary changes*. After working through the Ghyben–Herzberg app, you may wish to test your understanding using the corresponding initial and final assessments.""")
+The insights from this app form the conceptual foundation for the more advanced tools in this module. **Glover** extends the idea to a *regional wedge*, **upconing** illustrates *local vertical disturbances by pumping*, and the **sea-level rise** app explores *time-dependent boundary changes*. After working through the Ghyben–Herzberg app, you may wish to test your understanding using the corresponding initial and final assessments.
+""")
 
 # --- FINAL ASSESSMENT ---
 def content_final_ghy():
