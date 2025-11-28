@@ -290,6 +290,7 @@ ax.fill_between(x_land, np.maximum(new_sealevel, -z_x), -z_x, facecolor='red', a
 
 ax.fill_between(x_land, 0, h_x, facecolor='lightskyblue', alpha=0.5)
 ax.fill_between(x_land, 0, -z_x, facecolor='lightskyblue', alpha=0.5)
+ax.legend(loc = 'lower right', fontsize=12)
 #plt.text(-z0, L0 + xmax, 'θ', horizontalalignment='right', bbox=dict(boxstyle="square", facecolor='lightgrey'), fontsize=10)
 #plt.text(1180, -20, 'Sea', horizontalalignment='right', bbox=dict(boxstyle="square", facecolor='lightgrey'), fontsize=10)
 #plt.text(1180, -80, 'Saltwater', horizontalalignment='right', bbox=dict(boxstyle="square", facecolor='lightgrey'), fontsize=10)
