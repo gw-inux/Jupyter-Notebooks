@@ -284,6 +284,15 @@ and analyse how each affects the **maximum upconing at the well** and the **crit
 Discuss which design (A or B) is more robust against salinisation and under what conditions the difference between the designs becomes most pronounced.
 """)
 
+st.subheader('✔️ Conclusion', divider = 'orange')
+st.markdown("""
+he **upconing app** focuses on what happens when the regional freshwater–saltwater configuration is disturbed by **pumping near the interface**. Analytical upconing solutions approximate how the interface rises toward a well as freshwater heads are lowered, providing a **screening-level tool** for assessing the risk of salinisation without running a full density-dependent model.
+
+By varying **pumping rate**, **hydraulic conductivity**, **porosity**, and the **pre-pumping distance between the well screen and the interface**, you can explore how design choices influence the **maximum interface rise** and the **critical pumping rate**. The app helps you understand why distributed, shallower pumping and greater separation from the interface are generally safer than concentrated, deep, high-rate abstraction. It also clarifies that these models assume a **homogeneous aquifer**, a **sharp interface**, and **axisymmetric flow** to an idealised well.
+
+Combined with the Ghyben–Herzberg and Glover tools, the upconing app illustrates how **local well design** interacts with **regional flow** and **density structure** in coastal aquifers. Once you have worked through the examples, you are encouraged to check your understanding using the upconing initial and final assessment activities.
+""")
+
 with st.expander('**Show self-test** - to assess your EXISTING knowledge'):
     st.markdown("""
     #### 📋 Self-test
