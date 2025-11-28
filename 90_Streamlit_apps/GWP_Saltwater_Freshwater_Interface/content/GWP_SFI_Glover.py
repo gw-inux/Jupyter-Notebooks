@@ -239,6 +239,7 @@ ax.fill_between(x_sea[mask], y_sea[mask], -z_0, facecolor='white') # Freshwater 
 ax.fill_between(x_sea[mask], y_sea[mask], -z_0, facecolor='lightskyblue', alpha=0.5) # Freshwater flow zone
 plt.ylim(-b, )
 plt.xlim(0,1200)
+ax.legend(loc = 'lower right', fontsize=12)
 #plt.text(1180, -20, 'Sea', horizontalalignment='right', bbox=dict(boxstyle="square", facecolor='lightgrey'), fontsize=10)
 #plt.text(1180, -80, 'Saltwater', horizontalalignment='right', bbox=dict(boxstyle="square", facecolor='lightgrey'), fontsize=10)
 #plt.text(150, -10, 'Freshwater', horizontalalignment='right', bbox=dict(boxstyle="square", facecolor='lightgrey'), fontsize=10)
