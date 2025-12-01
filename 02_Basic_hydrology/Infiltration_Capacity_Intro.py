@@ -233,20 +233,30 @@ def update_k():
         st.session_state.k = float(raw_val)  # from select_slider
     elif isinstance(raw_val, float):
         st.session_state.k = raw_val         # from number_input
-        
+    
+# Define the minimum and maximum for the logarithmic scale
+log_min = -2.0 # Corresponds to 10^-7 = 0.0000001
+log_max = 1.0  # Corresponds to 10^0 = 1
+    
 # User defined input
 st.session_state.f0 = 7.0
 st.session_state.fc = 4.0
 st.session_state.prec = 3.0
-#st.session_state.k = -2.0
 
 # Initialize session state for value and toggle state
-st.session_state.k = 1e-2
+st.session_state.k = 1e+1
 st.session_state.k_label = "1e-2"
 
-# Define the minimum and maximum for the logarithmic scale
-log_min = -2.0 # Corresponds to 10^-7 = 0.0000001
-log_max = 1.0  # Corresponds to 10^0 = 1
+# ---- Initialize k and k_input ----
+labels, default_label = prep_log_slider(default_val=1e+1,
+                                        log_min=log_min,
+                                        log_max=log_max)
+
+if "k_input" not in st.session_state:
+    st.session_state.k_input = default_label
+    st.session_state.k = float(default_label)
+
+
 
 columns1 = st.columns((1,1,1), gap = 'small')
 with columns1[0]:
@@ -303,11 +313,8 @@ with columns1[1]:
         else:
             # --- slider mode (log scale)
             # Convert slider label → float → normalize label
-            if "k_input" in st.session_state and isinstance(st.session_state.k_input, str):
-                try:
-                    st.session_state.k = float(st.session_state.k_input)
-                except:
-                    pass
+            if isinstance(st.session_state.k_input, str):
+                st.session_state.k = float(st.session_state.k_input)
             # closest label to current k
             st.session_state.k_label = get_label(st.session_state.k, labels)
             st.select_slider(
