@@ -303,8 +303,11 @@ with columns1[1]:
         else:
             # --- slider mode (log scale)
             # Convert slider label → float → normalize label
-            if isinstance(st.session_state.k_input, str):
-                st.session_state.k = float(st.session_state.k_input)
+            if "k_input" in st.session_state and isinstance(st.session_state.k_input, str):
+                try:
+                    st.session_state.k = float(st.session_state.k_input)
+                except:
+                    pass
             # closest label to current k
             st.session_state.k_label = get_label(st.session_state.k, labels)
             st.select_slider(
