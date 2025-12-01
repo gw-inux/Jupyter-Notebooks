@@ -335,7 +335,6 @@ with columns1[2]:
                 prec = st.slider      (r":blue[**Precipitation** $P$ (cm/hr)]", 0., 15.0, st.session_state.prec, 0.1, key="prec_input", on_change=update_prec)
 
 # Convert the slider value to the logarithmic scale
-st.write(st.session_state.k)
 k = st.session_state.k/3600 #time in seconds
 
 tmax = 86400
