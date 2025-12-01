@@ -252,8 +252,7 @@ labels, default_label = prep_log_slider(default_val=1e+1,
                                         log_min=log_min,
                                         log_max=log_max)
 
-if "k_input" not in st.session_state:
-    st.session_state.k_input = default_label
+if "k" not in st.session_state:
     st.session_state.k = float(default_label)
 
 
@@ -312,17 +311,20 @@ with columns1[1]:
 
         else:
             # --- slider mode (log scale)
-            # Convert slider label → float → normalize label
-            if isinstance(st.session_state.k_input, str):
-                st.session_state.k = float(st.session_state.k_input)
-            # closest label to current k
+            if "k_input" in st.session_state:
+                try:
+                    st.session_state.k = float(st.session_state.k_input)
+                except:
+                    pass
+        
+            # Find the closest label for the current k
             st.session_state.k_label = get_label(st.session_state.k, labels)
+        
             st.select_slider(
                 ":red[**Rate of infiltration capacity decrease** $k$ (1/hr)]",
                 options=labels,
                 value=st.session_state.k_label,
-                key="k_input",
-                on_change=update_k
+                key="k_input"
             )
 
 with columns1[2]:
