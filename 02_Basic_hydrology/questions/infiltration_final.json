@@ -1,0 +1,46 @@
+[
+  {
+    "question": "For a soil described by the Horton model with f0 > fc and k > 0, which statements about the infiltration capacity f(t) are correct?",
+    "options": {
+      "f(t) decreases over time and asymptotically approaches fc.": true,
+      "f(t) increases without bound as time increases.": false,
+      "After a long time, infiltration capacity becomes approximately constant and equal to fc.": true,
+      "The model predicts oscillations in infiltration capacity around fc.": false
+    },
+    "success": "Correct — in the Horton model, infiltration capacity decreases over time toward a constant value fc, without oscillations or unbounded growth.",
+    "error": "Not quite — remember that Horton’s f(t) decays smoothly toward fc and does not grow without bound or oscillate."
+  },
+  {
+    "question": "Assume a constant rainfall intensity ir and a soil described by Horton’s model. Neglect ponding delay. Which of the following are correct?",
+    "options": {
+      "While ir < f(t), all rainfall infiltrates and there is no Hortonian overland flow.": true,
+      "Once ir > f(t), infiltration is limited to f(t) and the excess becomes overland flow.": true,
+      "If ir is always less than fc, Hortonian overland flow will not occur.": true,
+      "The Horton model cannot be used to compare rainfall intensity with infiltration capacity.": false
+    },
+    "success": "Correct — as long as rainfall intensity stays below infiltration capacity, all water can infiltrate; runoff starts once intensity exceeds f(t).",
+    "error": "Almost — think about the comparison between rainfall intensity and infiltration capacity: Horton’s model is explicitly designed for that."
+  },
+  {
+    "question": "Consider two soils with the same f0 and fc, but different decay constants: k1 > k2. Which statements are true?",
+    "options": {
+      "Soil 1 (with k1) will reach its final infiltration capacity fc faster than Soil 2.": true,
+      "Soil 2 (with smaller k2) maintains higher infiltration capacity for a longer period during a storm.": true,
+      "The long-term value of the infiltration capacity is larger for Soil 1.": false,
+      "The choice of k has no impact on the timing of surface runoff generation.": false
+    },
+    "success": "Correct — a larger k means a faster drop toward fc, while a smaller k keeps infiltration capacity higher for longer; in both cases fc is the same.",
+    "error": "Not quite — remember that k controls how quickly f(t) decays, which directly affects how soon runoff may begin."
+  },
+  {
+    "question": "Which of the following are recognised limitations or caveats when using the Horton infiltration model?",
+    "options": {
+      "It is empirical and parameters are typically calibrated from field data rather than derived from first principles.": true,
+      "It assumes that infiltration capacity depends only on time, not explicitly on soil moisture profile or variable rainfall history.": true,
+      "It does not directly describe redistribution or drainage after rainfall stops.": true,
+      "It is the full numerical solution of Richards’ equation for unsaturated flow.": false
+    },
+    "success": "Correct — Horton is an empirical, time-based model that does not resolve detailed soil-water processes or fully replicate Richards’ equation.",
+    "error": "Not quite — keep in mind that Horton is a simplified, empirical model with important assumptions and limitations."
+  }
+]

@@ -96,7 +96,7 @@ for label, path in pages.items():
     if "SWRC Exercise 2" in label:
         st.sidebar.markdown("**Further Resources**")
 
-    # After rendering "🔵 EVT", insert a section label
+    # After rendering "📚 Learning More", insert a section label
     if "📚 Learning More" in label:
         st.sidebar.markdown("**Additional Information**")
         
