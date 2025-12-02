@@ -19,10 +19,12 @@ year = 2025
 authors = {
     "Steffen Birk": [1],  # Author 1 belongs to Institution 1
     "Edith Grießer": [1],
-    "Matthias Hausleber": [1]
+    "Matthias Hausleber": [1],
+    "Thomas Reimann":[2]
 }
 institutions = {
     1: "Department of Earth Sciences, University of Graz"
+    2: "Institute for Groundwater Management, TU Dresden"
 }
 index_symbols = ["¹", "²", "³", "⁴", "⁵", "⁶", "⁷", "⁸", "⁹"]
 author_list = [f"{name}{''.join(index_symbols[i-1] for i in indices)}" for name, indices in authors.items()]
@@ -107,8 +109,8 @@ if "saved_params" not in st.session_state:
     
 # --- LOAD ASSESSMENTS
 # ---------- path to questions for the assessments (direct path)
-path_quest_ini   = "03_Soil_physics/questions/green_ampt_ini.json"
-path_quest_final = "03_Soil_physics/questions/green_ampt_final.json"
+path_quest_ini   = "02_Basic_hydrology/questions/green_ampt_ini.json"
+path_quest_final = "02_Basic_hydrology/questions/green_ampt_final.json"
 
 # Load questions
 with open(path_quest_ini, "r", encoding="utf-8") as f:
@@ -530,7 +532,7 @@ columns_lic = st.columns((5,1))
 with columns_lic[0]:
     st.markdown(f'Developed by {", ".join(author_list)} ({year}). <br> {institution_text}', unsafe_allow_html=True)
 with columns_lic[1]:
-    st.image('04_Basic_hydrogeology/FIGS/CC_BY-SA_icon.png')
+    st.image('FIGS/CC_BY-SA_icon.png')
 
 
 

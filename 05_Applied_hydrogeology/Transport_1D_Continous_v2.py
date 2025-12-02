@@ -84,13 +84,11 @@ columns3 = st.columns((1,1,1), gap = 'large')
 
 with columns3[0]:
     with st.expander("Control for the breakthrough curves"):
-        breaktr = st.toggle('Toggle here to see the breaktrough curve')
         l  = st.slider(f'**Distance of observation from source (m)**',0.01,lmax,0.5,0.01)
 
 with columns3[1]:
     with st.expander("Controls for the concentration profile"):
-        profile = st.toggle('Toggle here to see the concentration profile')
-        time_p = st.slider(f'**Time to plot the conc. profile (s)**',0,10000,600,60)
+        time_p = st.slider(f'**Time to plot the conc. profile (s)**',0,3600,600,10)
     plot_DATA = False
     #plot_DATA = st.toggle('Show Measured data for calibration',False)
     #if plot_DATA:
@@ -156,52 +154,45 @@ st.write("Concentration for an average velocity _v_ = ","% 7.3E"% v, " (m/s)")
 # PLOT FIGURE
 
 # General figure settings
-#fig = plt.figure(figsize=(16,20))
-#gs = matplotlib.gridspec.GridSpec(3,1, height_ratios=[1,0.02,0.7])
-
 fig = plt.figure(figsize=(9,8))
 ax = fig.add_subplot(2, 1, 1)
 # Upper figure 
-if breaktr:
-    #ax = fig.add_subplot(gs[0,:])
-    ax.set_title  (f"Concentration breakthrough curve at x = {l} meters", fontsize=14)
-    ax.set_xlabel ('Time (s)', fontsize=14)
-    ax.set_ylabel ('Concentration (g/m³)', fontsize=14)
-          
-    ax.plot(timea, conca, 'fuchsia', linewidth=2, label="Computed: ONLY Advection")
-    if disp:
-        ax.plot(time,  conc,  'navy',    linewidth=2, label="Computed: Advection-Dispersion")
-    
-    if plot_DATA == 1:
-        ax.plot(t_obs, c_obs, 'ro', label="Measured")
-    #ax.scatter(t_obs, c_obs, marker="x", c="red", zorder=10)
-    
-    plt.ylim(0, 1.12*c0)
-    plt.xlim(0, tmax)
-    plt.xticks(np.arange(0, 11000, 1000),fontsize=14)
-    plt.yticks(fontsize=14)
-    legend = plt.legend(loc='upper right', fontsize=14, framealpha=0.8)
-    legend.get_frame().set_linewidth(0.0)
+ax.set_title  (f"Concentration breakthrough curve at x = {l} meters", fontsize=14)
+ax.set_xlabel ('Time (s)', fontsize=14)
+ax.set_ylabel ('Concentration (g/m³)', fontsize=14)
+      
+ax.plot(timea, conca, 'fuchsia', linewidth=2, label="Computed: ONLY Advection")
+if disp:
+    ax.plot(time,  conc,  'navy',    linewidth=2, label="Computed: Advection-Dispersion")
+
+if plot_DATA == 1:
+    ax.plot(t_obs, c_obs, 'ro', label="Measured")
+
+plt.ylim(0, 1.12*c0)
+plt.xlim(0, tmax)
+plt.xticks(np.arange(0, 11000, 1000),fontsize=14)
+plt.yticks(fontsize=14)
+legend = plt.legend(loc='upper right', fontsize=14, framealpha=0.8)
+legend.get_frame().set_linewidth(0.0)
 
 ax = fig.add_subplot(2, 1, 2)
 # Lower figure
-if profile:
-    #ax = fig.add_subplot(gs[2,:])
-    ax.set_title  (f"Concentration profile along the column at t = {round(time_p)} seconds", fontsize=14)
-    ax.set_xlabel ('Column length (m)', fontsize=14)
-    ax.set_ylabel ('Concentration (g/m³)', fontsize=14)
-      
-    ax.plot(loca, conca_p, 'orange', linewidth=2, label="Computed: ONLY Advection")  
-    if disp:
-        ax.plot(loc,  conc_p,  'green',    linewidth=2, label="Computed: Advection-Dispersion")
-    
-    plt.ylim(0, 1.19*c0)
-    plt.xlim(0, lmax)
-    plt.xticks(np.arange(0, 1.01*lmax, 0.1),fontsize=14)
-    plt.yticks(fontsize=14)
-    legend = plt.legend(loc='upper right', fontsize=14, framealpha=0.8)
-    legend.get_frame().set_linewidth(0.0)
+ax.set_title  (f"Concentration profile along the column at t = {round(time_p)} seconds", fontsize=14)
+ax.set_xlabel ('Column length (m)', fontsize=14)
+ax.set_ylabel ('Concentration (g/m³)', fontsize=14)
+  
+ax.plot(loca, conca_p, 'orange', linewidth=2, label="Computed: ONLY Advection")  
+if disp:
+    ax.plot(loc,  conc_p,  'green',    linewidth=2, label="Computed: Advection-Dispersion")
 
+plt.ylim(0, 1.19*c0)
+plt.xlim(0, lmax)
+plt.xticks(np.arange(0, 1.01*lmax, 0.1),fontsize=14)
+plt.yticks(fontsize=14)
+legend = plt.legend(loc='upper right', fontsize=14, framealpha=0.8)
+legend.get_frame().set_linewidth(0.0)
+
+plt.subplots_adjust(hspace=0.40)
 st.pyplot(fig)
 
 if plot_DATA:
