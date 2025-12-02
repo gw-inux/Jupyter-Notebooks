@@ -266,7 +266,7 @@ with columns1[0]:
             reset = st.button(':red[Reset the plot to the initial values]')
             if reset:
                 st.session_state.f0 = 7.0
-                st.session_state.fc = 5.0
+                st.session_state.fc = 4.0
                 st.session_state.prec = 3.0
                 st.session_state.k = 1e+1
 
