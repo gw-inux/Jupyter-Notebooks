@@ -239,9 +239,12 @@ log_min = -2.0 # Corresponds to 10^-7 = 0.0000001
 log_max = 1.0  # Corresponds to 10^0 = 1
     
 # User defined input
-st.session_state.f0 = 7.0
-st.session_state.fc = 4.0
-st.session_state.prec = 3.0
+if "f0" not in st.session_state:
+    st.session_state.f0 = 7.0
+if "fc" not in st.session_state:
+    st.session_state.fc = 4.0
+if "prec" not in st.session_state:
+    st.session_state.prec = 3.0
 
 # Initialize session state for value and toggle state
 if "k" not in st.session_state:
