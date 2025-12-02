@@ -264,11 +264,11 @@ with columns1[0]:
             x_point = st.slider(f'**Point (x-axis) for result output**:',0,86400,0,10)
             st.session_state.number_input = st.toggle("Toggle to use Slider or Number for input of $h$, $rho_f$ and $rho_s$.")
             reset = st.button(':red[Reset the plot to the initial values]')
-            if reset:
-                st.session_state.f0 = 7.0
-                st.session_state.fc = 4.0
-                st.session_state.prec = 3.0
-                st.session_state.k = 1e+1
+#            if reset:
+#                st.session_state.f0 = 7.0
+#                st.session_state.fc = 4.0
+#                st.session_state.prec = 3.0
+#                st.session_state.k = 1e+1
 
 with columns1[1]:
     with st.expander('Modify :orange[**Infiltration capacity**]'):
