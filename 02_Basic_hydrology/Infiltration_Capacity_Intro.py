@@ -268,6 +268,7 @@ with columns1[0]:
                 st.session_state.f0 = 7.0
                 st.session_state.fc = 5.0
                 st.session_state.prec = 3.0
+                st.session_state.k = 1e+1
 
 with columns1[1]:
     with st.expander('Modify :orange[**Infiltration capacity**]'):
@@ -385,7 +386,7 @@ The Horton model provides a simple way to describe how a soil’s **infiltration
 
 # --- FINAL ASSESSMENT ---
 def content_final_HOR():
-    st.markdown("""#### 🧠 Final assessment""")
+    st.markdown("""#### Final assessment""")
     st.info("These questions test your conceptual understanding after working with the application.")
     
     # Render questions in a 2x3 grid (row-wise)
