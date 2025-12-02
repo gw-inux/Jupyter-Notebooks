@@ -275,21 +275,21 @@ with columns1[1]:
 
         # --- f0
         if st.session_state.number_input:
-            f0 = st.number_input(":green[**Initial infiltration capacity** $f0$ (cm/hr)]",
+            st.number_input(":green[**Initial infiltration capacity** $f0$ (cm/hr)]",
                                  0.0, 50.0, st.session_state.f0, 0.1,
                                  key="f0_input", on_change=update_f0)
         else:
-            f0 = st.slider(":green[**Initial infiltration capacity** $f0$ (cm/hr)]",
+            st.slider(":green[**Initial infiltration capacity** $f0$ (cm/hr)]",
                            0.0, 50.0, st.session_state.f0, 0.1,
                            key="f0_input", on_change=update_f0)
 
         # --- fc
         if st.session_state.number_input:
-            fc = st.number_input(":orange[**Equilibrium infiltration capacity** $fc$ (cm/hr)]",
+            st.number_input(":orange[**Equilibrium infiltration capacity** $fc$ (cm/hr)]",
                                  0.0, 50.0, st.session_state.fc, 0.1,
                                  key="fc_input", on_change=update_fc)
         else:
-            fc = st.slider(":orange[**Equilibrium infiltration capacity** $fc$ (cm/hr)]",
+            st.slider(":orange[**Equilibrium infiltration capacity** $fc$ (cm/hr)]",
                            0.0, 50.0, st.session_state.fc, 0.1,
                            key="fc_input", on_change=update_fc)
         
