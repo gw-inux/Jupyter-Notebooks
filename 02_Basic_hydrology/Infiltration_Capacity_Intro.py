@@ -70,7 +70,7 @@ def get_step(val: float) -> float:
     if val == 0:
         return 1e-8  # fallback
     exponent = int(np.floor(np.log10(abs(val))))
-    return 10 ** (exponent - 1)
+    return float(10 ** (exponent - 1))
     
 def flip_assessment(section_id: str):
     """Flip the boolean flag for a given section_id."""
@@ -244,7 +244,8 @@ st.session_state.fc = 4.0
 st.session_state.prec = 3.0
 
 # Initialize session state for value and toggle state
-st.session_state.k = 1e+1
+if "k" not in st.session_state:
+    st.session_state.k = 1e+1
 st.session_state.k_label = "1e-2"
 
 # ---- Initialize k and k_input ----
@@ -267,7 +268,6 @@ with columns1[0]:
                 st.session_state.f0 = 7.0
                 st.session_state.fc = 5.0
                 st.session_state.prec = 3.0
-                st.session_state.k = -2.0
 
 with columns1[1]:
     with st.expander('Modify :orange[**Infiltration capacity**]'):
@@ -275,57 +275,63 @@ with columns1[1]:
         # --- f0
         if st.session_state.number_input:
             f0 = st.number_input(":green[**Initial infiltration capacity** $f0$ (cm/hr)]",
-                                 0.0, 50.0, st.session_state.f0, 0.01,
+                                 0.0, 50.0, st.session_state.f0, 0.1,
                                  key="f0_input", on_change=update_f0)
         else:
             f0 = st.slider(":green[**Initial infiltration capacity** $f0$ (cm/hr)]",
-                           0.0, 50.0, st.session_state.f0, 0.01,
+                           0.0, 50.0, st.session_state.f0, 0.1,
                            key="f0_input", on_change=update_f0)
 
         # --- fc
         if st.session_state.number_input:
             fc = st.number_input(":orange[**Equilibrium infiltration capacity** $fc$ (cm/hr)]",
-                                 0.0, 50.0, st.session_state.fc, 0.01,
+                                 0.0, 50.0, st.session_state.fc, 0.1,
                                  key="fc_input", on_change=update_fc)
         else:
             fc = st.slider(":orange[**Equilibrium infiltration capacity** $fc$ (cm/hr)]",
-                           0.0, 50.0, st.session_state.fc, 0.01,
+                           0.0, 50.0, st.session_state.fc, 0.1,
                            key="fc_input", on_change=update_fc)
-
-        # 1) Define labels BEFORE using them
-        labels, _ = prep_log_slider(default_val=1e-2,
+        
+        # --- Generate slider labels ---
+        labels, _ = prep_log_slider(default_val=st.session_state.k,
                                     log_min=log_min,
                                     log_max=log_max)
-
+        
+        # --- Ensure k_input exists for the active mode ---
         if st.session_state.number_input:
-            # --- numeric mode
+            # numeric mode → k_input must be float
+            if "k_input" not in st.session_state or isinstance(st.session_state.k_input, str):
+                st.session_state.k_input = st.session_state.k
+        else:
+            # slider mode → k_input must be a string label
+            if "k_input" not in st.session_state or isinstance(st.session_state.k_input, float):
+                st.session_state.k_input = get_label(st.session_state.k, labels)
+        
+        
+        # --- Render widget ---
+        if st.session_state.number_input:
+            # numeric mode
             st.number_input(
                 ":red[**Rate of infiltration capacity decrease** $k$ (1/hr)]",
                 10**log_min, 10**log_max,
-                st.session_state.k,
-                get_step(st.session_state.k),
+                st.session_state.k_input,
+                get_step(st.session_state.k_input),
                 format="%.2e",
-                key="k_input",
-                on_change=update_k
+                key="k_input"
             )
-
+            # update internal numeric value
+            st.session_state.k = float(st.session_state.k_input)
+        
         else:
-            # --- slider mode (log scale)
-            if "k_input" in st.session_state:
-                try:
-                    st.session_state.k = float(st.session_state.k_input)
-                except:
-                    pass
-        
-            # Find the closest label for the current k
-            st.session_state.k_label = get_label(st.session_state.k, labels)
-        
+            # slider mode
             st.select_slider(
                 ":red[**Rate of infiltration capacity decrease** $k$ (1/hr)]",
                 options=labels,
-                value=st.session_state.k_label,
+                value=get_label(st.session_state.k, labels),
                 key="k_input"
             )
+            # update internal numeric value
+            st.session_state.k = float(st.session_state.k_input)
 
 with columns1[2]:
         with st.expander('Modify :blue[**Precipitation**]'):
