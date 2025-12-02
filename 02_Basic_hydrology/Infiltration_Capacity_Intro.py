@@ -263,7 +263,7 @@ with columns1[0]:
         with st.expander("Modify the **Plot Controls**"):
             x_point = st.slider(f'**Point (x-axis) for result output**:',0,86400,0,10)
             st.session_state.number_input = st.toggle("Toggle to use Slider or Number for input of $h$, $rho_f$ and $rho_s$.")
-            reset = st.button(':red[Reset the plot to the initial values]')
+#            reset = st.button(':red[Reset the plot to the initial values]')
 #            if reset:
 #                st.session_state.f0 = 7.0
 #                st.session_state.fc = 4.0
