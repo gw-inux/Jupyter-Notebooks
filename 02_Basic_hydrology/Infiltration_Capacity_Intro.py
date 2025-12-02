@@ -343,6 +343,8 @@ with columns1[2]:
 
 # Convert the slider value to the logarithmic scale
 k = st.session_state.k/3600 #time in seconds
+f0 = st.session_state.f0
+fc = st.session_state.fc
 
 tmax = 86400
 t = np.arange(0, tmax, tmax/200)
