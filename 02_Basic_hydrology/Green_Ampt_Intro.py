@@ -12,7 +12,7 @@ COLOR_CYCLE = [
     "tab:olive", "tab:cyan",
 ]
 
-st.set_page_config(page_title = "iNUX - Green Ampt", page_icon="04_Basic_hydrogeology/FIGS/iNUX_wLogo.png")
+st.set_page_config(page_title = "iNUX - Green Ampt", page_icon="02_Basic_hydrology/FIGS/iNUX_wLogo.png")
 
 # --- Authors, institutions, and year
 year = 2025 
@@ -179,12 +179,12 @@ st.markdown("""
 Figure 1 shows a situation where the rainfall rate was greater than the infiltration rate such that ponding occured and water infiltrates into the soil. In consequence, infiltration occurs, which can be computed by the Green-Ampt equation.
 """)
 
-st.image("04_Basic_hydrogeology/FIGS/Green_Ampt_Model.png", caption="Figure 1: Soil water profile for the case of ponding (a). Volumetric water content as a function of soil depth for a (b) 'real situation' and (c) assumptions underlying the Green-Ampt equation.")
+st.image("02_Basic_hydrology/FIGS/Green_Ampt_Model.png", caption="Figure 1: Soil water profile for the case of ponding (a). Volumetric water content as a function of soil depth for a (b) 'real situation' and (c) assumptions underlying the Green-Ampt equation.")
 
 with st.expander("Show more explanation", icon ="📑"):
         st.markdown("""  A similar situation occurs in experiments with double ring infiltrometers (Figure 2). """)
 
-        st.image("04_Basic_hydrogeology/FIGS/Doppelring-Infiltrometer.jpg", caption='Figure 2: Double Ring Infiltrometer', width=350)
+        st.image("02_Basic_hydrology/FIGS/Doppelring-Infiltrometer.jpg", caption='Figure 2: Double Ring Infiltrometer', width=350)
 
         st.markdown("""
         In these experiments, two concentric rings, which are partially inserted into the soil, are filled with water. The water in the outer ring is intended to prevent lateral flow. Therefore, we assume vertical infiltration in the inner ring as an approximation. As a result of the ponding, a wetting front moves downward in the soil.
