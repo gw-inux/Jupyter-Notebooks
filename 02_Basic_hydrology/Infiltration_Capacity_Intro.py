@@ -275,21 +275,21 @@ with columns1[1]:
 
         # --- f0
         if st.session_state.number_input:
-            st.number_input(":green[**Initial infiltration capacity** $f0$ (cm/hr)]",
+            f0 = st.number_input(":green[**Initial infiltration capacity** $f0$ (cm/hr)]",
                                  0.0, 50.0, st.session_state.f0, 0.1,
                                  key="f0_input", on_change=update_f0)
         else:
-            st.slider(":green[**Initial infiltration capacity** $f0$ (cm/hr)]",
+            f0 = st.slider(":green[**Initial infiltration capacity** $f0$ (cm/hr)]",
                            0.0, 50.0, st.session_state.f0, 0.1,
                            key="f0_input", on_change=update_f0)
 
         # --- fc
         if st.session_state.number_input:
-            st.number_input(":orange[**Equilibrium infiltration capacity** $fc$ (cm/hr)]",
+            fc = st.number_input(":orange[**Equilibrium infiltration capacity** $fc$ (cm/hr)]",
                                  0.0, 50.0, st.session_state.fc, 0.1,
                                  key="fc_input", on_change=update_fc)
         else:
-            st.slider(":orange[**Equilibrium infiltration capacity** $fc$ (cm/hr)]",
+            fc = st.slider(":orange[**Equilibrium infiltration capacity** $fc$ (cm/hr)]",
                            0.0, 50.0, st.session_state.fc, 0.1,
                            key="fc_input", on_change=update_fc)
         
@@ -343,8 +343,6 @@ with columns1[2]:
 
 # Convert the slider value to the logarithmic scale
 k = st.session_state.k/3600 #time in seconds
-f0 = st.session_state.f0
-fc = st.session_state.fc
 
 tmax = 86400
 t = np.arange(0, tmax, tmax/200)
