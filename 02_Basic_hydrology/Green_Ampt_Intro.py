@@ -23,7 +23,7 @@ authors = {
     "Thomas Reimann":[2]
 }
 institutions = {
-    1: "Department of Earth Sciences, University of Graz"
+    1: "Department of Earth Sciences, University of Graz",
     2: "Institute for Groundwater Management, TU Dresden"
 }
 index_symbols = ["¹", "²", "³", "⁴", "⁵", "⁶", "⁷", "⁸", "⁹"]
