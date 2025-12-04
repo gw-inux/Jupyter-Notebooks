@@ -273,7 +273,7 @@
     },
     {
         "image": "images/slide_69.png",
-        "notes": "No notes"
+        "notes": "Vorbemerkung\rZiel ist es, einige grundlegende Eigenschaften von Finite-Differenzen-Verfahren (FD-Verfahren) zur numerischen L\u00f6sung der Stofftransportgleichung herauszuarbeiten.\rInsbesondere soll dabei auf Probleme von FD-Verfahren eingegangen werden, die bei der Simulation der Grundwasserstr\u00f6mung nicht bzw. nicht so gravierend auftreten.\rDiese Probleme sind letztendlich darauf zur\u00fcckzuf\u00fchren, dass die Bewegungsgesetze f\u00fcr Advektion und Dispersion / Diffusion unterschiedliche Struktur aufweisen:\radvektiver Massenstrom ~ Konzentration\rdispersiver/diffusiver Massenstrom ~ Konzentrationsgradient"
     },
     {
         "image": "images/slide_70.png",
@@ -281,107 +281,107 @@
     },
     {
         "image": "images/slide_71.png",
-        "notes": "Vorbemerkung\rZiel ist es, einige grundlegende Eigenschaften von Finite-Differenzen-Verfahren (FD-Verfahren) zur numerischen L\u00f6sung der Stofftransportgleichung herauszuarbeiten.\rInsbesondere soll dabei auf Probleme von FD-Verfahren eingegangen werden, die bei der Simulation der Grundwasserstr\u00f6mung nicht bzw. nicht so gravierend auftreten.\rDiese Probleme sind letztendlich darauf zur\u00fcckzuf\u00fchren, dass die Bewegungsgesetze f\u00fcr Advektion und Dispersion / Diffusion unterschiedliche Struktur aufweisen:\radvektiver Massenstrom ~ Konzentration\rdispersiver/diffusiver Massenstrom ~ Konzentrationsgradient"
-    },
-    {
-        "image": "images/slide_72.png",
-        "notes": "No notes"
-    },
-    {
-        "image": "images/slide_73.png",
         "notes": "Ursache der Probleme: unterschiedliche Struktur der Bewegungsgesetze f\u00fcr Advektion und Dispersion:\radvektiver Massenstrom ~ Konzentration\rdispersiver Massenstrom ~ Konzentrationsgradient"
     },
     {
-        "image": "images/slide_74.png",
+        "image": "images/slide_72.png",
         "notes": "FD Verfahren\rDoppelindizierung der Knoten (Zellen) mit (i,j)\rAbk\u00fcrzung: Cij = C(xi,yj)\rFD-Verfahren hat die Aufgabe, alle N\u00e4herungswerte Cij der Stoff-konzentration zu ermitteln."
     },
     {
-        "image": "images/slide_75.png",
-        "notes": "No notes"
-    },
-    {
-        "image": "images/slide_76.png",
+        "image": "images/slide_73.png",
         "notes": "Diese Gleichung wird auf der folgenden Seite in ein explizites FD-Verfahren \u00fcbergef\u00fchrt.\r\u201eExplizit\u201c bedeutet, dass die Berechnung der neuen Konzentrationswerte (Zeitniveau t + \uf044t) unabh\u00e4ngig voneinander durchgef\u00fchrt werden. Es werden also keine Konzentrationsinfos dieses Zeitniveaus aus den Nachbarzellen ber\u00fccksichtigt, sondern nur aus dem vorangegangenen Zeitniveau t."
     },
     {
-        "image": "images/slide_77.png",
+        "image": "images/slide_74.png",
         "notes": "FD explizit (Beispiel)\rVerfahren ist anf\u00e4llig f\u00fcr Numerische Dispersion \rTrick: Dispersivit\u00e4t \uf061 um diesen Betrag verringern (Ergebnis darf aber nicht negativ werden und Trick klappt nicht bei jedem Verfahren!)\rOszillationen (Instabilit\u00e4ten) treten auf bei negativen Gewichtsfaktoren. Das f\u00fchrt hier zur Zeitschrittbegrenzung:"
     },
     {
-        "image": "images/slide_78.png",
+        "image": "images/slide_75.png",
         "notes": "Probleme\rEine zufriedenstellende Simulation der Grundwasserstr\u00f6mung ist zumeist bereits mit einfachen FD-Verfahren m\u00f6glich.\rDies gilt nicht mehr f\u00fcr die Simulation von Stofftransportvorg\u00e4ngen. Zuverl\u00e4ssige FD-Verfahren sind hier komplizierter aufgebaut.\rDies liegt an den unterschiedlichen Strukturen der Bewegungsgesetze f\u00fcr Advektion und Dispersion, die von ein und demselben Verfahrenstyp nicht mit gleicher Genauigkeit angen\u00e4hert werden k\u00f6nnen.\rZuverl\u00e4ssige FD-Verfahren f\u00fcr Stofftransport sind daher aus einer \u00dcberlagerung verschiedener Grundtypen gebildet worden, auf die im Einzelnen nicht eingegangen wird.\rDie erw\u00e4hnten Probleme lassen sich unter die Oberbegriffe \u201eInstabilit\u00e4t\u201c und \u201enumerische Dispersion\u201c einordnen.\r\rStabilit\u00e4t vs. Instabilit\u00e4t\rStabilit\u00e4t eines FD-Verfahrens ist ein wesentliches Kriterium zur Beurteilung der Qualit\u00e4t des Verfahrens.\rEin FD-Verfahren ist instabil, wenn in den Ergebnissen physikalisch unsinnige Oszillationen auftreten (die sich dann auch noch mit der Zeit verst\u00e4rken).\rEin FD-Verfahren ist stabil, wenn keine physikalisch unsinnigen Oszillationen auftreten.\rStabilit\u00e4t ist jedoch keine Garantie daf\u00fcr, dass das FD-Verfahren eine brauchbare N\u00e4herungsl\u00f6sung f\u00fcr die Modellgleichung liefert. (Auch nicht oszillierende L\u00f6sungen k\u00f6nnen u. U. ungenau sein!)"
     },
     {
-        "image": "images/slide_79.png",
+        "image": "images/slide_76.png",
         "notes": "Courant Zahl\rDie Courant-Zahl Co ist das Verh\u00e4ltnis aus der Transportstrecke in einem Zeitschritt \u0394t zur Schrittweite \u0394x:\rIn der Abbildung\rsymbolisiert der blaue Pfeil die Transportstrecke\rsymbolisiert der gr\u00fcne Pfeil die Schrittweite (hier die r\u00e4umliche Diskretisierung)\rPraktisch bedeutet eine Courantzahl von 1, das die Transportstrecke gleich der Schrittweite ist\rIn der praktischen Anwendung\rkann die Software die n\u00f6tige Courantzahl z. B. durch die Begrenzung des Zeitschritts \uf044t realisieren,\rkann ein Alogithmus bzw. ein Rechenverfahren eine h\u00f6chstens zul\u00e4ssige Courantzahl bedingen (z. B. in Form eines Stabilit\u00e4tskriteriums; wird die zul\u00e4ssige Courantzahl \u00fcberschritten, kann das Rechenverfahren instabil werden; siehe auch vorige Seite: die n\u00f6tigen \u2018Zutaten\u2019 f\u00fcr das FD Verfahren befinden sich in den benachbarten Zellen; um sicherzustellen, dass sich die gel\u00f6sten Stoffe nicht ausserhalb der \u2018Reichweite\u2019 des FD Verfahrens befinden, muss die Courantzahl < 1 sein)"
     },
     {
-        "image": "images/slide_80.png",
+        "image": "images/slide_77.png",
         "notes": "Frage: bisher nur Advektion betrachtet\u2026"
     },
     {
+        "image": "images/slide_78.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_79.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_80.png",
+        "notes": "No notes"
+    },
+    {
         "image": "images/slide_81.png",
-        "notes": "Numerische Dispersion\rNumerische Dispersion oder numerische D\u00e4mpfung bedeutet, dass Konzentrationsgradienten von einem numerischen Verfahren gegen\u00fcber der korrekten L\u00f6sung untersch\u00e4tzt werden.\rDie numerische N\u00e4herungsl\u00f6sung f\u00fchrt dann dazu, dass Konzentrationsprofile flacher zu- und abnehmen. Konzentrationsmaxima (\u201cpeaks\u201c) werden zu gering angegeben.\rDasselbe gilt sinngem\u00e4\u00df f\u00fcr Durchbruchskurven."
+        "notes": "No notes"
     },
     {
         "image": "images/slide_82.png",
-        "notes": "Dispersion als skalenabh\u00e4ngiger Parameter\rje gr\u00f6\u00dfer die r\u00e4umliche Skala, umso gr\u00f6\u00dfer ist \u00fcblicherweise die Dispersion (z. B. infolge zunehmender geologischer Heterogeni\u00e4ten im regionalen Umfeld)\rgrobe Faustregel: Dispersivit\u00e4t \uf061 ist ca. 1/10 der Transportstrecken bei \u00fcblichen Transportstrecken im Bereich von 100 \u2026 10 000 m"
+        "notes": "Numerische Dispersion\rNumerische Dispersion oder numerische D\u00e4mpfung bedeutet, dass Konzentrationsgradienten von einem numerischen Verfahren gegen\u00fcber der korrekten L\u00f6sung untersch\u00e4tzt werden.\rDie numerische N\u00e4herungsl\u00f6sung f\u00fchrt dann dazu, dass Konzentrationsprofile flacher zu- und abnehmen. Konzentrationsmaxima (\u201cpeaks\u201c) werden zu gering angegeben.\rDasselbe gilt sinngem\u00e4\u00df f\u00fcr Durchbruchskurven."
     },
     {
         "image": "images/slide_83.png",
-        "notes": "P\u00e9clet Zahl\rDie P\u00e9clet-Zahl Pe ist ein Ma\u00df f\u00fcr die relative Bedeutung von Advektion und Dispersion f\u00fcr die Stoffausbreitung:\rUm den Bezug zu einem numerischen Verfahren zu verdeutlichen, wird diese Form der P\u00e9clet-Zahl h\u00e4ufig als Gitter-P\u00e9clet-Zahl bezeichnet.\rpraktisch kann die Gitter-P\u00e9clet-Zahl ein Kriterium sein, um die verfahrensbedingte numerische Dispersion zu minimieren\r\u00fcblicherweise fordern Rechenverfahren eine bestimmte P\u00e9clet-Zahl (oder kleiner); in der praktischen Konsequenz bedeutet das, dass die Zellweite klein(er) wird\rbei einer P\u00e9clet-Zahl von 1 entspricht die Gitterweite \uf044x gleich der Dispersivit\u00e4t \uf061"
+        "notes": "Dispersion als skalenabh\u00e4ngiger Parameter\rje gr\u00f6\u00dfer die r\u00e4umliche Skala, umso gr\u00f6\u00dfer ist \u00fcblicherweise die Dispersion (z. B. infolge zunehmender geologischer Heterogeni\u00e4ten im regionalen Umfeld)\rgrobe Faustregel: Dispersivit\u00e4t \uf061 ist ca. 1/10 der Transportstrecken bei \u00fcblichen Transportstrecken im Bereich von 100 \u2026 10 000 m"
     },
     {
         "image": "images/slide_84.png",
-        "notes": "No notes"
+        "notes": "P\u00e9clet Zahl\rDie P\u00e9clet-Zahl Pe ist ein Ma\u00df f\u00fcr die relative Bedeutung von Advektion und Dispersion f\u00fcr die Stoffausbreitung:\rUm den Bezug zu einem numerischen Verfahren zu verdeutlichen, wird diese Form der P\u00e9clet-Zahl h\u00e4ufig als Gitter-P\u00e9clet-Zahl bezeichnet.\rpraktisch kann die Gitter-P\u00e9clet-Zahl ein Kriterium sein, um die verfahrensbedingte numerische Dispersion zu minimieren\r\u00fcblicherweise fordern Rechenverfahren eine bestimmte P\u00e9clet-Zahl (oder kleiner); in der praktischen Konsequenz bedeutet das, dass die Zellweite klein(er) wird\rbei einer P\u00e9clet-Zahl von 1 entspricht die Gitterweite \uf044x gleich der Dispersivit\u00e4t \uf061"
     },
     {
         "image": "images/slide_85.png",
-        "notes": "Fallbeispiel\rBerechnet wird der Transport von Nitrat in disketen Karstr\u00f6hren (entspricht einer 1D Stoffausbreitung)\rdie r\u00e4umliche und zeitliche Skala ist sehr gro\u00df"
+        "notes": "No notes"
     },
     {
         "image": "images/slide_86.png",
-        "notes": "Zeitliche Skala:\rBerechnung \u00fcber mehrere Jahrzehnte\rdas Beispiel zeigt ein \u2018Dilemma\u2019:\rum numerische Dispersion zu minimieren, sollte die P\u00e9clet-Zahl klein sein, d.h. m\u00f6glichst kleine Zellweiten\rum mit dem expliziten Algorithmus stabil zu rechnen, muss aber auch die Courant-Zahl kleiner 1 sein (im Beispiel sogar sehr klein, da die Flie\u00dfgeschwindigkeit in den diskreten Karstr\u00f6hren hoch sein kann)\rErgebnis: kleine Zellen und damit auch sehr kleine Zeitschritte n\u00f6tig"
+        "notes": "Fallbeispiel\rBerechnet wird der Transport von Nitrat in disketen Karstr\u00f6hren (entspricht einer 1D Stoffausbreitung)\rdie r\u00e4umliche und zeitliche Skala ist sehr gro\u00df"
     },
     {
         "image": "images/slide_87.png",
-        "notes": "Abbildung zur Erl\u00e4uterung / Erg\u00e4nzung:\rgezeigt wird das Verh\u00e4ltnis von numerischer zu physikalischer Dispersion f\u00fcr verschiedenen Rechenverfahren\rd. h. eine Zahl/Isolinie von 2 bedeutet, dass die numerische Disperison zweimal so gro\u00df ist, wie die physikalische Dispersion \u2026\rstabile und genaue Ergebnisse sind mit den FD Verfahren mit kleinen Zellen und kleinen Zeitschritten m\u00f6glich (d. h. unter Umst\u00e4nden sehr langsame Rechnungen)"
+        "notes": "Zeitliche Skala:\rBerechnung \u00fcber mehrere Jahrzehnte mit einem expliziten Algorithmus\rdas Beispiel zeigt ein \u2018Dilemma\u2019:\rum numerische Dispersion zu minimieren, sollte die P\u00e9clet-Zahl klein sein, d.h. m\u00f6glichst kleine Zellweiten\rum mit dem expliziten Algorithmus stabil zu rechnen, muss aber auch die Courant-Zahl kleiner 1 sein (im Beispiel sogar sehr klein, da die Flie\u00dfgeschwindigkeit in den diskreten Karstr\u00f6hren hoch sein kann)\rErgebnis: kleine Zellen und damit auch sehr kleine Zeitschritte n\u00f6tig"
     },
     {
         "image": "images/slide_88.png",
-        "notes": "Dieses Thema ist eine Zusatzinfo \u2013 wird in der LV nur erw\u00e4hnt"
+        "notes": "Abbildung zur Erl\u00e4uterung / Erg\u00e4nzung:\rgezeigt wird das Verh\u00e4ltnis von numerischer zu physikalischer Dispersion f\u00fcr verschiedenen Rechenverfahren\rd. h. eine Zahl/Isolinie von 2 bedeutet, dass die numerische Disperison zweimal so gro\u00df ist, wie die physikalische Dispersion \u2026\rstabile und genaue Ergebnisse sind mit den FD Verfahren mit kleinen Zellen und kleinen Zeitschritten m\u00f6glich (d. h. unter Umst\u00e4nden sehr langsame Rechnungen)"
     },
     {
         "image": "images/slide_89.png",
-        "notes": "1D Stofftransport \u2013 Problemstellung\runendlich ausgedehntes Gebiet (\u201esehr lange Labors\u00e4ule\u201c)\rhomogenes por\u00f6ses Medium\rgleichf\u00f6rmige station\u00e4re Durchstr\u00f6mung\rquerschnittsbezogene Stoffmasse m [M/L\u00b2] zu Beginn (t = 0) \u201eauf einen Punkt konzentriert\u201c (Koordinatenursprung)\rStoffausbreitung unterliegt der Advektion und der (mechanischen) Dispersion.\r\rKonzentrationsprofile\rDie Konzentrationsprofile sind (in diesem Beispiel) symmetrisch und glockenf\u00f6rmig.\rDas Konzentrationsmaximum liegt bei x = vt.\rDie (bzgl. m normierte) Maximalkonzentration betr\u00e4gt 1/\uf0d6(4\uf070Dt).\rDie Fl\u00e4chen unter den normierten Konzentrationsprofilen sind stets gleich 1.\r\u00c4hnlichkeiten mit der Normalverteilung sind nicht rein zuf\u00e4llig \u2026"
+        "notes": "Dieses Thema ist eine Zusatzinfo \u2013 wird in der LV nur erw\u00e4hnt"
     },
     {
         "image": "images/slide_90.png",
-        "notes": "f(x) ist die Wahrscheinlichkeitsdichte einer normalverteilten Zufallsgr\u00f6\u00dfe X ~ N(\uf06d,\uf073\u00b2) mit Mittelwert \uf06d und Varianz \uf073\u00b2 (bzw. Standardabweichung \uf073).\rx ist hier die Variable der Dichtefunktion und keine Ortskoordinate."
+        "notes": "1D Stofftransport \u2013 Problemstellung\runendlich ausgedehntes Gebiet (\u201esehr lange Labors\u00e4ule\u201c)\rhomogenes por\u00f6ses Medium\rgleichf\u00f6rmige station\u00e4re Durchstr\u00f6mung\rquerschnittsbezogene Stoffmasse m [M/L\u00b2] zu Beginn (t = 0) \u201eauf einen Punkt konzentriert\u201c (Koordinatenursprung)\rStoffausbreitung unterliegt der Advektion und der (mechanischen) Dispersion.\r\rKonzentrationsprofile\rDie Konzentrationsprofile sind (in diesem Beispiel) symmetrisch und glockenf\u00f6rmig.\rDas Konzentrationsmaximum liegt bei x = vt.\rDie (bzgl. m normierte) Maximalkonzentration betr\u00e4gt 1/\uf0d6(4\uf070Dt).\rDie Fl\u00e4chen unter den normierten Konzentrationsprofilen sind stets gleich 1.\r\u00c4hnlichkeiten mit der Normalverteilung sind nicht rein zuf\u00e4llig \u2026"
     },
     {
         "image": "images/slide_91.png",
-        "notes": "Die beiden rechten Seiten werden identisch, wenn man \uf06d = vt und \uf073\u00b2 = 2Dt setzt.\rvt ist die Position des Konzentrationsmaximums.\r2Dt ist ein Ma\u00df f\u00fcr die Breite des Konzentrationsprofils.\rDie Stoffausbreitung kann aufgrund dieser Analogie interpretiert werden als die Gesamtheit von Einzelbewegungen einer gro\u00dfen Zahl von Teilchen.\rDie Bewegung einzelner Teilchen setzt sich zusammen aus einer deterministischen Komponente (f\u00fcr die Advektion) und einer Zufallskomponente (f\u00fcr die Dispersion).\rDie Teilchendichte entspricht der Stoffkonzentration."
+        "notes": "f(x) ist die Wahrscheinlichkeitsdichte einer normalverteilten Zufallsgr\u00f6\u00dfe X ~ N(\uf06d,\uf073\u00b2) mit Mittelwert \uf06d und Varianz \uf073\u00b2 (bzw. Standardabweichung \uf073).\rx ist hier die Variable der Dichtefunktion und keine Ortskoordinate."
     },
     {
         "image": "images/slide_92.png",
-        "notes": "Jedes Teilchen wird in einem Zeitintervall \u0394t aufgrund von Advektion um die Strecke v\u00b7\u0394t verschoben (vgl. Euler-Verfahren beim Particle Tracking).\rJedes Teilchen unterliegt zudem im Zeitintervall \u0394t einer zuf\u00e4lligen Bewegung aufgrund von Dispersion. Diese Verschiebung ist normalverteilt mit Mittelwert 0 und Varianz 2\u00b7D\u00b7\u0394t bzw. Standardabweichung \uf0d6(2\u00b7D\u00b7\u0394t).\rX ist eine Zufallszahl aus einer Standardnormalverteilung, d. h. X ~ N(0,1).\rDamit hat die dispersive Verschiebung wie gew\u00fcnscht den Mittelwert 0 und die Standardabweichung \uf0d6(2\u00b7D\u00b7\u0394t) bzw. die Varianz 2\u00b7D\u00b7\u0394t.\rZufallszahlen f\u00fcr verschiedene Teilchen m\u00fcssen statistisch unabh\u00e4ngig sein!"
+        "notes": "Die beiden rechten Seiten werden identisch, wenn man \uf06d = vt und \uf073\u00b2 = 2Dt setzt.\rvt ist die Position des Konzentrationsmaximums.\r2Dt ist ein Ma\u00df f\u00fcr die Breite des Konzentrationsprofils.\rDie Stoffausbreitung kann aufgrund dieser Analogie interpretiert werden als die Gesamtheit von Einzelbewegungen einer gro\u00dfen Zahl von Teilchen.\rDie Bewegung einzelner Teilchen setzt sich zusammen aus einer deterministischen Komponente (f\u00fcr die Advektion) und einer Zufallskomponente (f\u00fcr die Dispersion).\rDie Teilchendichte entspricht der Stoffkonzentration."
     },
     {
         "image": "images/slide_93.png",
-        "notes": "Haupteigenschaften\rRandom-Walk-Verfahren\rbasieren auf der Lagrange-Betrachtungsweise,\rerm\u00f6glichen die Ber\u00fccksichtigung der Dispersion und stellen somit eine Erweiterung des Particle-Tracking-Verfahrens dar,\runterliegen nicht der numerischen Dispersion (= verfahrensbedingte D\u00e4mpfung von Konzentrationsschwankungen),\rsind erweiterbar auf zwei und drei Raumdimensionen.\r\rDurchbruchskurven\rBei Verwendung von \u201ezu wenigen\u201c Teilchen kann ein Random-Walk-Verfahren stark gezackte Durchbruchskurven (s. links) produzieren.\rDies gilt sinngem\u00e4\u00df auch f\u00fcr Konzentrationsprofile bzw. -isolinien.\rAbhilfen:\r\u2013 mehr Teilchen\r\u2013 Gl\u00e4ttungsverfahren \rNachteil:            Random-Walk-Verfahren k\u00f6nnen eine sehr hohe Teilchenanzahl (hohe Rechenzeit!) ben\u00f6tigen, falls dispersive Einfl\u00fcsse bedeutend sind."
+        "notes": "Jedes Teilchen wird in einem Zeitintervall \u0394t aufgrund von Advektion um die Strecke v\u00b7\u0394t verschoben (vgl. Euler-Verfahren beim Particle Tracking).\rJedes Teilchen unterliegt zudem im Zeitintervall \u0394t einer zuf\u00e4lligen Bewegung aufgrund von Dispersion. Diese Verschiebung ist normalverteilt mit Mittelwert 0 und Varianz 2\u00b7D\u00b7\u0394t bzw. Standardabweichung \uf0d6(2\u00b7D\u00b7\u0394t).\rX ist eine Zufallszahl aus einer Standardnormalverteilung, d. h. X ~ N(0,1).\rDamit hat die dispersive Verschiebung wie gew\u00fcnscht den Mittelwert 0 und die Standardabweichung \uf0d6(2\u00b7D\u00b7\u0394t) bzw. die Varianz 2\u00b7D\u00b7\u0394t.\rZufallszahlen f\u00fcr verschiedene Teilchen m\u00fcssen statistisch unabh\u00e4ngig sein!"
     },
     {
         "image": "images/slide_94.png",
-        "notes": "Das Random-Walk-Verfahren ben\u00f6tigt Zufallszahlen X aus einer Standardnormalverteilung.\rZufallszahlengeneratoren liefern \u00fcblicherweise Zufallszahlen Z aus einer Gleichverteilung im Intervall von 0 bis 1, d. h. Z ~ U(0,1).\rMit Hilfe des Zentralen Grenzwertsatzes ist es m\u00f6glich, Zufallszahlen (z. B. aus einer Gleichverteilung) so zu kombinieren, dass sich in guter N\u00e4herung eine Zufallszahl X aus der Standardnormalverteilung ergibt."
+        "notes": "Haupteigenschaften\rRandom-Walk-Verfahren\rbasieren auf der Lagrange-Betrachtungsweise,\rerm\u00f6glichen die Ber\u00fccksichtigung der Dispersion und stellen somit eine Erweiterung des Particle-Tracking-Verfahrens dar,\runterliegen nicht der numerischen Dispersion (= verfahrensbedingte D\u00e4mpfung von Konzentrationsschwankungen),\rsind erweiterbar auf zwei und drei Raumdimensionen.\r\rDurchbruchskurven\rBei Verwendung von \u201ezu wenigen\u201c Teilchen kann ein Random-Walk-Verfahren stark gezackte Durchbruchskurven (s. links) produzieren.\rDies gilt sinngem\u00e4\u00df auch f\u00fcr Konzentrationsprofile bzw. -isolinien.\rAbhilfen:\r\u2013 mehr Teilchen\r\u2013 Gl\u00e4ttungsverfahren \rNachteil:            Random-Walk-Verfahren k\u00f6nnen eine sehr hohe Teilchenanzahl (hohe Rechenzeit!) ben\u00f6tigen, falls dispersive Einfl\u00fcsse bedeutend sind."
     },
     {
         "image": "images/slide_95.png",
-        "notes": "Eine derartige Summe von Zufallsgr\u00f6\u00dfen strebt gegen die Standardnormalverteilung.\rDie trifft insbesondere auf gleichverteilte Zufallsgr\u00f6\u00dfen Zi aus der U(0,1)-Verteilung zu, die den Zufallszahlengeneratoren zugrunde liegt.\rF\u00fcr die U(0,1)-Verteilung ist \uf06di = 1/2 und \uf073i\u00b2 = 1/12."
+        "notes": "Das Random-Walk-Verfahren ben\u00f6tigt Zufallszahlen X aus einer Standardnormalverteilung.\rZufallszahlengeneratoren liefern \u00fcblicherweise Zufallszahlen Z aus einer Gleichverteilung im Intervall von 0 bis 1, d. h. Z ~ U(0,1).\rMit Hilfe des Zentralen Grenzwertsatzes ist es m\u00f6glich, Zufallszahlen (z. B. aus einer Gleichverteilung) so zu kombinieren, dass sich in guter N\u00e4herung eine Zufallszahl X aus der Standardnormalverteilung ergibt."
     },
     {
         "image": "images/slide_96.png",
-        "notes": "No notes"
+        "notes": "Eine derartige Summe von Zufallsgr\u00f6\u00dfen strebt gegen die Standardnormalverteilung.\rDie trifft insbesondere auf gleichverteilte Zufallsgr\u00f6\u00dfen Zi aus der U(0,1)-Verteilung zu, die den Zufallszahlengeneratoren zugrunde liegt.\rF\u00fcr die U(0,1)-Verteilung ist \uf06di = 1/2 und \uf073i\u00b2 = 1/12."
     },
     {
         "image": "images/slide_97.png",
@@ -393,31 +393,31 @@
     },
     {
         "image": "images/slide_99.png",
-        "notes": "Grundidee\rCharakteristikenverfahren (MOC = \u201cMethod Of Characteristics\u201c) geh\u00f6ren zu den \u201egemischten\u201c Verfahren zur L\u00f6sung der Stofftransportgleichung,   d. h. sie basieren auf Grundlagen der Euler- und der Lagrange-Betrachtungsweise.\rMit dieser Kombination sollen die jeweiligen Nachteile von numerischen Methoden reduziert werden, die auf einer reinen Euler- oder reinen Lagrange-Betrachtungsweise beruhen.\rNumerische Verfahren, die allein auf der Euler-Betrachtungsweise aufgebaut sind, weisen bei advektionsdominierten Problemen Schw\u00e4chen auf.\rNumerische Verfahren, die allein auf der Lagrange-Betrachtungsweise aufgebaut sind, weisen bei dispersionsdominierten Problemen Schw\u00e4chen auf.\rCharakteristikenverfahren zur Modellierung des konservativen Stofftransports im Grundwasser sind eine Kombination von\reinem Particle-Tracking-Verfahren zur Simulation der advektiven Stoffausbreitung und\reinem Finite-Differenzen-Verfahren zur Simulation der dispersiven Stoffausbreitung."
+        "notes": "No notes"
     },
     {
         "image": "images/slide_100.png",
-        "notes": "Anfangsbedingung Partikelverteilung\rZur Simulation des advektiven Transports mittels MOC m\u00fcssen Partikel und ihre Eigenschaften definiert werden. Insbesondere sind zu Beginn einer Simulation (t = 0) Startpunkte f\u00fcr die einzelnen Partikel festzulegen.\rDie zugeh\u00f6rige Anordnung von Partikeln in einer Zelle kann entweder regelm\u00e4\u00dfig oder zuf\u00e4llig sein. \rEntweder: (a) feste Anzahl von Partikeln f\u00fcr jede Zelle (\u201egleichf\u00f6rmig\u201c); Oder (b) h\u00f6here Anzahl von Partikeln in Bereichen mit st\u00e4rkeren relativen \u00c4nderungen der Anfangskonzentrationen (\u201edynamisch\u201c)\rDie kleinere Anzahl von Partikeln nur in Bereichen mit geringen Konzentrationsunterschieden soll zu einer Verringerung der Rechenzeit ohne gleichzeitige Genauigkeitseinbu\u00dfen beitragen.\rZur Quantifizierung von Konzentrationsunterschieden kann f\u00fcr eine Zelle (i,j) folgender Wert verwendet werden: {Gleichung dCij =} ; Dabei sind:\r\u2013 cmax0, cmin0 das Konzentrationsmaximum bzw. -minimum im Modellgebiet zur Zeit t = 0\r\u2013 cmax,ij0, cmin,ij0 das Konzentrationsmaximum bzw. -minimum im F\u00fcnf-Punkte-Stern um die Zelle (i,j) zur Zeit t = 0\rBei der \u201edynamischen\u201c Variante wird die Partikelanzahl in einer Zelle zum Anfangszeitpunkt in Abh\u00e4ngigkeit von \u0394cij0 entweder auf einen \u201ehohen\u201c oder auf einen \u201eniedrigen\u201c Wert gesetzt.\rDie \u201ehohe\u201c Partikelanzahl wird gew\u00e4hlt, falls \u0394cij0 \u00fcber einem vordefinierten Schwellenwert liegt. Andernfalls wird die \u201eniedrige\u201c Partikelanzahl gew\u00e4hlt.\rTypische Werte: \u2013 Schwellenwert = 10-5 / \u2013 \u201ehohe\u201c / niedrige Partikelanzahl = 25 / 0\rDer kleine Schwellenwert stellt sicher, dass auch in Bereichen mit geringeren Konzentrationsunterschieden noch Partikel platziert werden. Dies verringert erfahrungsgem\u00e4\u00df Fehler in der Massenbilanz des Charakteristikenverfahrens."
+        "notes": "Grundidee\rCharakteristikenverfahren (MOC = \u201cMethod Of Characteristics\u201c) geh\u00f6ren zu den \u201egemischten\u201c Verfahren zur L\u00f6sung der Stofftransportgleichung,   d. h. sie basieren auf Grundlagen der Euler- und der Lagrange-Betrachtungsweise.\rMit dieser Kombination sollen die jeweiligen Nachteile von numerischen Methoden reduziert werden, die auf einer reinen Euler- oder reinen Lagrange-Betrachtungsweise beruhen.\rNumerische Verfahren, die allein auf der Euler-Betrachtungsweise aufgebaut sind, weisen bei advektionsdominierten Problemen Schw\u00e4chen auf.\rNumerische Verfahren, die allein auf der Lagrange-Betrachtungsweise aufgebaut sind, weisen bei dispersionsdominierten Problemen Schw\u00e4chen auf.\rCharakteristikenverfahren zur Modellierung des konservativen Stofftransports im Grundwasser sind eine Kombination von\reinem Particle-Tracking-Verfahren zur Simulation der advektiven Stoffausbreitung und\reinem Finite-Differenzen-Verfahren zur Simulation der dispersiven Stoffausbreitung."
     },
     {
         "image": "images/slide_101.png",
-        "notes": "Anfangsbedingungen \u2013 Zuordnung von Konzentrationen\rBeim Random-Walk-Verfahren wird jedem Partikel zu Beginn der Simulation eine Masse zugeordnet.\rIm Gegensatz dazu wird beim Charakteristikenverfahren jedem Partikel eine Konzentration zugeordnet.\rDie Anfangskonzentration Cp0, die einem Partikel p zugeordnet wird (p = Partikelnummer), stimmt mit der Anfangskonzentration cij0 in der Zelle \u00fcberein, in der sich dieses Partikel zu Beginn der Simulation befindet.\rDies wird sinngem\u00e4\u00df auch f\u00fcr alle Partikel so gehandhabt, die zu einem sp\u00e4teren Zeitpunkt erstmals ins Modellgebiet \u201eeingesetzt\u201c werden, z. B. im Zuge eines Stoffeintrags (Tracerinjektion o. dgl.)."
+        "notes": "Anfangsbedingung Partikelverteilung\rZur Simulation des advektiven Transports mittels MOC m\u00fcssen Partikel und ihre Eigenschaften definiert werden. Insbesondere sind zu Beginn einer Simulation (t = 0) Startpunkte f\u00fcr die einzelnen Partikel festzulegen.\rDie zugeh\u00f6rige Anordnung von Partikeln in einer Zelle kann entweder regelm\u00e4\u00dfig oder zuf\u00e4llig sein. \rEntweder: (a) feste Anzahl von Partikeln f\u00fcr jede Zelle (\u201egleichf\u00f6rmig\u201c); Oder (b) h\u00f6here Anzahl von Partikeln in Bereichen mit st\u00e4rkeren relativen \u00c4nderungen der Anfangskonzentrationen (\u201edynamisch\u201c)\rDie kleinere Anzahl von Partikeln nur in Bereichen mit geringen Konzentrationsunterschieden soll zu einer Verringerung der Rechenzeit ohne gleichzeitige Genauigkeitseinbu\u00dfen beitragen.\rZur Quantifizierung von Konzentrationsunterschieden kann f\u00fcr eine Zelle (i,j) folgender Wert verwendet werden: {Gleichung dCij =} ; Dabei sind:\r\u2013 cmax0, cmin0 das Konzentrationsmaximum bzw. -minimum im Modellgebiet zur Zeit t = 0\r\u2013 cmax,ij0, cmin,ij0 das Konzentrationsmaximum bzw. -minimum im F\u00fcnf-Punkte-Stern um die Zelle (i,j) zur Zeit t = 0\rBei der \u201edynamischen\u201c Variante wird die Partikelanzahl in einer Zelle zum Anfangszeitpunkt in Abh\u00e4ngigkeit von \u0394cij0 entweder auf einen \u201ehohen\u201c oder auf einen \u201eniedrigen\u201c Wert gesetzt.\rDie \u201ehohe\u201c Partikelanzahl wird gew\u00e4hlt, falls \u0394cij0 \u00fcber einem vordefinierten Schwellenwert liegt. Andernfalls wird die \u201eniedrige\u201c Partikelanzahl gew\u00e4hlt.\rTypische Werte: \u2013 Schwellenwert = 10-5 / \u2013 \u201ehohe\u201c / niedrige Partikelanzahl = 25 / 0\rDer kleine Schwellenwert stellt sicher, dass auch in Bereichen mit geringeren Konzentrationsunterschieden noch Partikel platziert werden. Dies verringert erfahrungsgem\u00e4\u00df Fehler in der Massenbilanz des Charakteristikenverfahrens."
     },
     {
         "image": "images/slide_102.png",
-        "notes": "Konzentrationen im neuen Zeitniveau\rMOC simuliert Advektion mit dem Particle-Tracking-Verfahren (Vorw\u00e4rtsvariante).\rNach der Ausf\u00fchrung des advektiven Schritts werden die zugeh\u00f6rigen Zellkonzentrationen cij,advk als gewichtetes Mittel von Partikelkonzentrationen Cpk-1 berechnet {s. Gleichung in Abb.}\rDie Summen werden dabei \u00fcber alle Partikel p gebildet, die sich nach dem advektiven Schritt in Zelle (i,j) befinden.\rDer Gewichtsfaktor Vp ist das Volumen der Zelle, in der sich das Partikel p zu Beginn der Simulation befunden hat! \rMit Hilfe eines FD-Verfahrens f\u00fcr Dispersion lassen sich die Zellkonzentrationen cijk im neuen Zeitniveau bestimmen.\rAnschlie\u00dfend werden die Partikel-konzentrationen Cpk f\u00fcr das neue Zeitniveau festgelegt.\rBei dieser Umrechnung ist sicherzustellen, dass keine negativen Partikelkonzentrationen auftreten.\rStoffentnahme (\u201eSenken\u201c): Wegnahme von Partikeln bzw. Verringerung der Partikelkonzentrationen\rStoffeintrag (\u201eQuellen\u201c): Hinzuf\u00fcgen neuer Partikel mit entsprechenden Konzentrationen\rDie mehrfachen Mittelungsbildungen, Interpolationen und Umrechnungen zwischen Zell- und Partikelkonzentrationen ergeben ein erh\u00f6htes Potenzial f\u00fcr Massenbilanzfehler.\rDies ist ein wesentlicher Nachteil von MOC gegen\u00fcber anderen Verfahren."
+        "notes": "Anfangsbedingungen \u2013 Zuordnung von Konzentrationen\rBeim Random-Walk-Verfahren wird jedem Partikel zu Beginn der Simulation eine Masse zugeordnet.\rIm Gegensatz dazu wird beim Charakteristikenverfahren jedem Partikel eine Konzentration zugeordnet.\rDie Anfangskonzentration Cp0, die einem Partikel p zugeordnet wird (p = Partikelnummer), stimmt mit der Anfangskonzentration cij0 in der Zelle \u00fcberein, in der sich dieses Partikel zu Beginn der Simulation befindet.\rDies wird sinngem\u00e4\u00df auch f\u00fcr alle Partikel so gehandhabt, die zu einem sp\u00e4teren Zeitpunkt erstmals ins Modellgebiet \u201eeingesetzt\u201c werden, z. B. im Zuge eines Stoffeintrags (Tracerinjektion o. dgl.)."
     },
     {
         "image": "images/slide_103.png",
-        "notes": "MMOC\rMMOC = \u201eModified Method Of Characteristics\u201c (modifiziertes Charakteristikenverfahren)\rW\u00e4hrend die advektive Stoffausbreitung von MOC per Vorw\u00e4rts-Tracking simuliert wird, verwendet MMOC das Backward-Tracking.\rDabei wird pro Zelle nur ein Partikel ben\u00f6tigt (weniger Rechenzeit und Speicherplatz).\rDas Partikel soll sich im \u201eneuen\u201c Zeitniveau k am Knoten (i,j) befinden.\rMit Backward-Tracking wird die advektive Verschiebung w\u00e4hrend des letzten Zeitschritts zur\u00fcckgerechnet.\r\rDie Partikelkonzentration Cpk-1 zum \u201ealten\u201c Zeitniveau k\u20131 wird interpoliert.\rZur Interpolation werden dabei die Konzentrationen cijk-1 benachbarter Knoten bzw. Zellen verwendet (inkl. Wichtung mit den Abst\u00e4nden zu diesen Knoten als Gewichtsfaktoren).\rDie Zellkonzentration cij,advk ist nach dem advektiven Schritt gerade gleich Cpk-1.\rDie Berechnung der Zell- und Partikelkonzentrationen cijk bzw. Cpk zum \u201eneuen\u201c Zeitniveau erfolgt wie bei MOC mit Hilfe eines FD-Verfahrens bzw. einer Umrechnung.\r\rMMOC weist \u00e4hnliche Probleme bei der Massenbilanz auf wie MOC.\rHinzu kommt eine st\u00e4rkere numerische Dispersion aufgrund der Interpolation f\u00fcr Cpk-1."
+        "notes": "Konzentrationen im neuen Zeitniveau\rMOC simuliert Advektion mit dem Particle-Tracking-Verfahren (Vorw\u00e4rtsvariante).\rNach der Ausf\u00fchrung des advektiven Schritts werden die zugeh\u00f6rigen Zellkonzentrationen cij,advk als gewichtetes Mittel von Partikelkonzentrationen Cpk-1 berechnet {s. Gleichung in Abb.}\rDie Summen werden dabei \u00fcber alle Partikel p gebildet, die sich nach dem advektiven Schritt in Zelle (i,j) befinden.\rDer Gewichtsfaktor Vp ist das Volumen der Zelle, in der sich das Partikel p zu Beginn der Simulation befunden hat! \rMit Hilfe eines FD-Verfahrens f\u00fcr Dispersion lassen sich die Zellkonzentrationen cijk im neuen Zeitniveau bestimmen.\rAnschlie\u00dfend werden die Partikel-konzentrationen Cpk f\u00fcr das neue Zeitniveau festgelegt.\rBei dieser Umrechnung ist sicherzustellen, dass keine negativen Partikelkonzentrationen auftreten.\rStoffentnahme (\u201eSenken\u201c): Wegnahme von Partikeln bzw. Verringerung der Partikelkonzentrationen\rStoffeintrag (\u201eQuellen\u201c): Hinzuf\u00fcgen neuer Partikel mit entsprechenden Konzentrationen\rDie mehrfachen Mittelungsbildungen, Interpolationen und Umrechnungen zwischen Zell- und Partikelkonzentrationen ergeben ein erh\u00f6htes Potenzial f\u00fcr Massenbilanzfehler.\rDies ist ein wesentlicher Nachteil von MOC gegen\u00fcber anderen Verfahren."
     },
     {
         "image": "images/slide_104.png",
-        "notes": "HMOC\rHMOC = \u201cHybrid Method Of Characteristics\u201c (hybrides Charakteristikenverfahren)\rHMOC wurde entwickelt, um die Vorteile von MOC und MMOC zu vereinen.\rIn der N\u00e4he von steilen Konzentrationsfronten wird die advektive Stoffausbreitung mittels MOC simuliert.\rDabei werden Partikel \u201edynamisch\u201c in der N\u00e4he der Front eingesetzt und per Vorw\u00e4rts-Tracking verfolgt.\rDieses Vorgehen reduziert die numerische Dispersion in der N\u00e4he von steilen Konzentrationsfronten.\rIn anderen Teilen des Modellgebiets (d. h. in Bereichen ohne steile Konzentrationsfront) wird die Simulation auf der Basis von MMOC durchgef\u00fchrt, um die Rechenzeiten niedrig zu halten.\rBzgl. Massenbilanzfehlern weist HMOC dieselben Probleme auf wie MOC oder MMOC.\rDes weiteren ist die Optimierung des Kriteriums, das \u00fcber die Auswahl zwischen MOC und MMOC entscheidet, Gegenstand der Diskussion.\rStandardsoftware (z. B. MT3D) trifft diese Entscheidung \u201eautomatisch\u201c in Abh\u00e4ngigkeit von der aktuellen Konzentrationsverteilung in Teilen des Modellgebiets."
+        "notes": "MMOC\rMMOC = \u201eModified Method Of Characteristics\u201c (modifiziertes Charakteristikenverfahren)\rW\u00e4hrend die advektive Stoffausbreitung von MOC per Vorw\u00e4rts-Tracking simuliert wird, verwendet MMOC das Backward-Tracking.\rDabei wird pro Zelle nur ein Partikel ben\u00f6tigt (weniger Rechenzeit und Speicherplatz).\rDas Partikel soll sich im \u201eneuen\u201c Zeitniveau k am Knoten (i,j) befinden.\rMit Backward-Tracking wird die advektive Verschiebung w\u00e4hrend des letzten Zeitschritts zur\u00fcckgerechnet.\r\rDie Partikelkonzentration Cpk-1 zum \u201ealten\u201c Zeitniveau k\u20131 wird interpoliert.\rZur Interpolation werden dabei die Konzentrationen cijk-1 benachbarter Knoten bzw. Zellen verwendet (inkl. Wichtung mit den Abst\u00e4nden zu diesen Knoten als Gewichtsfaktoren).\rDie Zellkonzentration cij,advk ist nach dem advektiven Schritt gerade gleich Cpk-1.\rDie Berechnung der Zell- und Partikelkonzentrationen cijk bzw. Cpk zum \u201eneuen\u201c Zeitniveau erfolgt wie bei MOC mit Hilfe eines FD-Verfahrens bzw. einer Umrechnung.\r\rMMOC weist \u00e4hnliche Probleme bei der Massenbilanz auf wie MOC.\rHinzu kommt eine st\u00e4rkere numerische Dispersion aufgrund der Interpolation f\u00fcr Cpk-1."
     },
     {
         "image": "images/slide_105.png",
-        "notes": "No notes"
+        "notes": "HMOC\rHMOC = \u201cHybrid Method Of Characteristics\u201c (hybrides Charakteristikenverfahren)\rHMOC wurde entwickelt, um die Vorteile von MOC und MMOC zu vereinen.\rIn der N\u00e4he von steilen Konzentrationsfronten wird die advektive Stoffausbreitung mittels MOC simuliert.\rDabei werden Partikel \u201edynamisch\u201c in der N\u00e4he der Front eingesetzt und per Vorw\u00e4rts-Tracking verfolgt.\rDieses Vorgehen reduziert die numerische Dispersion in der N\u00e4he von steilen Konzentrationsfronten.\rIn anderen Teilen des Modellgebiets (d. h. in Bereichen ohne steile Konzentrationsfront) wird die Simulation auf der Basis von MMOC durchgef\u00fchrt, um die Rechenzeiten niedrig zu halten.\rBzgl. Massenbilanzfehlern weist HMOC dieselben Probleme auf wie MOC oder MMOC.\rDes weiteren ist die Optimierung des Kriteriums, das \u00fcber die Auswahl zwischen MOC und MMOC entscheidet, Gegenstand der Diskussion.\rStandardsoftware (z. B. MT3D) trifft diese Entscheidung \u201eautomatisch\u201c in Abh\u00e4ngigkeit von der aktuellen Konzentrationsverteilung in Teilen des Modellgebiets."
     },
     {
         "image": "images/slide_106.png",
@@ -433,7 +433,7 @@
     },
     {
         "image": "images/slide_109.png",
-        "notes": "No notes"
+        "notes": "TVD-Methode\r\u2018Methode der Wahl\u2019 in MT3D\rGuter Kompromiss aus reduzierter num. Dispersion / Bilanztreue / Effizient\rGrundprinzip \u00e4hnlich wie die eingangs erl\u00e4uterten FD-Verfahren\rAllerdings greift der Algorithmus auf \u2018mehr Zellen\u2019 zur\u00fcck (nicht nur der linke / rechte Nachbar wie bei den FD Verfahren)"
     },
     {
         "image": "images/slide_110.png",
@@ -465,6 +465,22 @@
     },
     {
         "image": "images/slide_117.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_118.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_119.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_120.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_121.png",
         "notes": "No notes"
     }
 ]
