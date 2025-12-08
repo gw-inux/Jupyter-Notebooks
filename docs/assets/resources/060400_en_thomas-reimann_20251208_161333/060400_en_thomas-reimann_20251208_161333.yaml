@@ -1,0 +1,62 @@
+catalog_category: "06 Experimental Techniques and Methods"
+catalog_subcategory: "04 Aquifer Testing"
+catalog_subsubcategory: "(Attach to subcategory)"
+
+# --- RESOURCE IDENTIFICATION AND TOPIC MAPPING ---
+# item_id: A unique, simple slug for this item (e.g., aquifer_test_1). 
+
+item_id: TO_BE_FILLED_BY_COURSE_MANAGER
+topic: Aquifer Testing # Must match the title of the parent catalog page.
+title: The Pumping Test Module    # The full, descriptive name of the resource.
+
+# --- TYPE AND ACCESS ---
+resource_type: Streamlit app            # Required. Options: Streamlit app, Jupyter Notebook, Video, Dataset, Other.
+url: https://gwp-pumping-test-analysis.streamlit.app/      # The direct link to launch the app, notebook on Binder, or video on YouTube.
+date_released: TO_BE_FILLED_BY_COURSE_MANAGER               # Release date in YYYY-MM-DD format.
+
+# --- CONTENT AND METADATA ---
+description_short: >
+  Pumping tests are one of the most important methods for acquiring information about groundwater systems. A pumping test provides values of aquifer transmissivity T and storativity S and in some settings, other hydraulic parameter values. This module is designed to introduce the evaluation of pumping tests for confined, unconfined, and leaky aquifers. The Pumping Test Analysis Module is provided by The Groundwater Project and developed in  cooperation with the iNUX project. The module forms part of a broader initiative to create interactive, open-access educational resources for groundwater science and engineering.
+  
+  Overview of the module: This module combines theoretical explanations with interactive applications and exercises. Quizzes inside the module allow you to assess your understanding. The underlying theory is provided as a concise overview at the beginning. First, the general response of aquifers to groundwater abstraction is explained as a cone of water-level drawdown expanding outward from a well over time. Then we explore how pumping test data can be evaluated to estimate hydraulic parameters such as transmissivity and storativity for: confined, leaky, and unconfined aquifers. Opportunities are offered to explore the evaluation methods with a few different synthetic and idealized data that originate from textbooks, as well as measured data from the Varnum test site in Sweden, the Viterbo test site in Italy, the Pirna test site in Germany, and you can also use your own data in the Pumping Test Analysis section.
+keywords: [Theis, Neuman, Hantush-Jacob, Pumping test]
+multipage_app: true
+num_pages: 7
+interactive_plots: true
+num_interactive_plots: 10
+assessments_included: true
+num_assessment_questions: 28
+videos_included: true
+num_videos: 1
+
+# --- EDUCATIONAL FIT ---
+time_required: 2 hours             # Estimated time for a student to complete the activity (e.g., 30 minutes, 1.5 hours).
+prerequisites: Basic Hydrogeology       # Required prior knowledge (e.g., Darcy's Law, Python basics, basic calculus).
+fit_for:
+  - self learning
+  - exam preparation
+
+# --- AUTHOR AND REFERENCE ---
+authors:
+  - name: Thomas Reimann
+    affiliation: TU Dresden
+  - name: Eileen Poeter
+    affiliation: Colorado School of Mines
+references:
+  - https://zenodo.org/records/16789736                            # List any published papers, DOIs, or source materials related to this resource.
+# image_url: Optional path to a screenshot for the catalog page (e.g., /assets/images/resources/flow_tool_screenshot.png)
+
+figures:
+  - id: 1
+    original_filename: pumping_test_01.jpg
+    type: Screenshot
+    caption: Curve fitting with the Theis solution
+    is_cover: true
+  - id: 2
+    original_filename: pumping_test_02.jpg
+    type: Screenshot
+    caption: An applied exercise with the Pumping Test Analysis Module - Theis curve fitting with random data and prediction.
+  - id: 3
+    original_filename: pumping_test_03.jpg
+    type: Screenshot
+    caption: Prediction of drawdown with Theis. Evaluation of different datasets
