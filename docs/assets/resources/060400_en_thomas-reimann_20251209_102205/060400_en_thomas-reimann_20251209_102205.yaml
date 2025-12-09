@@ -1,0 +1,59 @@
+catalog_category: "06 Experimental Techniques and Methods"
+catalog_subcategory: "04 Aquifer Testing"
+catalog_subsubcategory: "(Attach to subcategory)"
+
+# --- RESOURCE IDENTIFICATION AND TOPIC MAPPING ---
+# item_id: A unique, simple slug for this item (e.g., aquifer_test_1). 
+
+item_id: TO_BE_FILLED_BY_COURSE_MANAGER
+topic: Aquifer Testing # Must match the title of the parent catalog page.
+title: Slugtest Evaluation    # The full, descriptive name of the resource.
+
+# --- TYPE AND ACCESS ---
+resource_type: Streamlit app            # Required. Options: Streamlit app, Jupyter Notebook, Video, Dataset, Other.
+url: https://slugtest-multilingual.streamlit.app/      # The direct link to launch the app, notebook on Binder, or video on YouTube.
+date_released: TO_BE_FILLED_BY_COURSE_MANAGER               # Release date in YYYY-MM-DD format.
+
+# --- CONTENT AND METADATA ---
+description_short: >
+  This application introduces slug tests in unconfined aquifers and provides an interactive environment for evaluating slug test data using the Bouwer & Rice (1976) method. Core explanatory content (text, figure captions, buttons, etc.) can be translated on the fly into multiple languages using an integrated translation routine that preserves Markdown/HTML structure and protects key hydrogeological terminology through a custom dictionary.
+  
+  Users can work with predefined field datasets (Varnum, Sweden; Viterbo, Italy), upload their own CSV data, or generate synthetic noisy data for practice. The app allows adjusting well and screen parameters, slug size, time offset and hydraulic conductivity, and visualizes the resulting response curve together with measured heads. Optional scatter plots with ME, MAE and RMSE, as well as download functions for figures and data, support quantitative evaluation and self-guided learning about parameter fitting and uncertainty in slug test analysis.
+keywords: [Aquifer test, multilingual, field data]
+multipage_app: false
+num_pages: 0
+interactive_plots: true
+num_interactive_plots: 1
+assessments_included: false
+num_assessment_questions: 0
+videos_included: true
+num_videos: 1
+
+# --- EDUCATIONAL FIT ---
+time_required: 15–30 minutes             # Estimated time for a student to complete the activity (e.g., 30 minutes, 1.5 hours).
+prerequisites: Basic Hydrogeology       # Required prior knowledge (e.g., Darcy's Law, Python basics, basic calculus).
+fit_for:
+  - self learning
+  - classroom teaching
+  - online teaching
+  - exam preparation
+
+# --- AUTHOR AND REFERENCE ---
+authors:
+  - name: Thomas Reimann
+    affiliation: TU Dresden
+references:
+  - Bouwer, H., & Rice, R. C. (1976). A slug test for determining hydraulic conductivity of unconfined aquifers with completely or partially penetrating wells. Water Resources Research, 12(3), 423-428.
+  - Kruseman, G.P., de Ridder, N.A., & Verweij, J.M., 1991. Analysis and Evaluation of Pumping Test Data, International Institute for Land Reclamation and Improvement, Wageningen, The Netherlands, 377 pages.                            # List any published papers, DOIs, or source materials related to this resource.
+# image_url: Optional path to a screenshot for the catalog page (e.g., /assets/images/resources/flow_tool_screenshot.png)
+
+figures:
+  - id: 1
+    original_filename: Slugtest_01.jpg
+    type: Screenshot
+    caption: The interactive plot for parameter fitting.
+    is_cover: true
+  - id: 2
+    original_filename: Slugtest_02.jpg
+    type: Screenshot
+    caption: The interface of the Streamlit app with embedded video.
