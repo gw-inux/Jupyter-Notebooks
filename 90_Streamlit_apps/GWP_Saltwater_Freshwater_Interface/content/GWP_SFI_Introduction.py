@@ -209,6 +209,11 @@ where
 
 For most hydrogeologic settings, the effect of **pressure** on density is very small and can usually be neglected. The influence of **temperature** is often modest compared to the influence of **dissolved solids**, especially in shallow aquifers where temperature variations are relatively limited. As a result, in many groundwater applications density is treated primarily as a function of **dissolved solids concentration**, while temperature is assumed constant.
 
+left_co, cent_co, last_co = st.columns((20,80,20))
+with cent_co:
+    st.image(st.session_state.module_path + 'images/Density.png')
+    st.markdown("""""")
+
 When groundwater “quality” is of interest, we often describe the water in terms of **salinity** or **total dissolved solids (TDS)**. TDS is particularly useful in practice because it can be estimated quickly from measurements of **electrical conductivity** of a water sample.
 
 Dissolved solids consist of a mixture of **cations** (positively charged ions) and **anions** (negatively charged ions). Typical major ions include, for example, Na⁺, K⁺, Ca²⁺, Mg²⁺, Cl⁻, SO₄²⁻ and HCO₃⁻. Ocean water contains a characteristic mixture of these ions, with **chloride (Cl⁻)** being the dominant anion.
