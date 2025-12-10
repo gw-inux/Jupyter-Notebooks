@@ -508,14 +508,14 @@
     "error": "This statement is false. Natural groundwater may contain geogenic contaminants even without human impact."
   },
   {
-    "question": "In the situation shown in the figure below: Assuming that this picture shows a steady state situation with the green arrows indicating recharge, which of the following answers are correct?",
+    "question": "In the situation shown in the figure below: Assume that this picture shows a steady state situation with the green arrows indicating recharge. The solution allows to modify recharge. Which of the following answers are correct?",
     "options": {
       "Recharge equals total discharge to both rivers.": true,
       "Water flows until both river stages become identical.": false,
       "The river heads will never change.": false,
-      "The water table at hmax will eventually decrease to an elevation between h1 and h2.": true,
-      "The water table at hmax will decrease until it equals h1.": true,
-      "The water table will not change position.": false,
+      "The water table at $h_{max}$ will eventually decrease to an elevation between h1 and h2.": true,
+      "The water table at $h_{max}$ will eventually decrease until it equals h1.": true,
+      "The water table at $h_{max}$ will not change position.": false,
       "There cannot be any flow from the aquifer to the rivers in this situation.": false
     },
     "success": "Correct. Several statements are physically impossible or contradict mass balance. Flow patterns adjust according to gradients, and river stages do not 'equalize' automatically.",
