@@ -38,8 +38,9 @@ while True:
     R_old = R
     
 #COMPUTE h(r)
-r = np.arange(r_w, R, 0.01)
-rm = r*-1
+n_points = 500  # reasonable resolution for plotting
+r = np.linspace(r_w, R, n_points)
+rm = -r  # mirrored for left side
 h = H - (Q * np.log((R)/(r)))/(2 * np.pi * K* m)
     
 #PLOT    
