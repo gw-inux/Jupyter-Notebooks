@@ -109,7 +109,7 @@ def content_quiz():
 
         # --- INSERT FIGURE FOR SPECIFIC QUESTION ---
         if i == 51:   # Q52 → index 51
-            st.image("04_Basic_hydrogeology/FIGS/Q53.jpg", caption="Figure for Question 53")
+            st.image("04_Basic_hydrogeology/FIGS/Q52.jpg", caption="Figure for Question 53")
         
         options = list(q["options"].keys())
         correct_options = [opt for opt, is_correct in q["options"].items() if is_correct]
