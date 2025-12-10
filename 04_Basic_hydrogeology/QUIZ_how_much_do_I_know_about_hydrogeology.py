@@ -88,16 +88,19 @@ Intro to learners: The survey consists of multiple-choice questions covering key
 """)
 
 # --- ASSESSMENT ---
-def content_quiz():
-    st.markdown("#### How much do I know about Hydrogeology?")
-    st.info("These questions test and reflect your current understanding of hydrogeology. At the bottom of the quiz you will find statistics about your performance. You can reset the quiz for a fresh start with the Reset button 🔄")
+import streamlit as st
 
-    # --- Reset button ---
+def content_quiz():
+    st.markdown("#### Quiz - How much do I know about Hydrogeology?")
+    st.info("These questions test and reflect your current understanding of hydrogeology.")
+
+    # --- initialize reset token ---
+    if "quiz_reset_token" not in st.session_state:
+        st.session_state.quiz_reset_token = 0
+
+    # --- Reset button (before widgets) ---
     if st.button("🔄 Reset quiz"):
-        # Remove all stored selections for this quiz
-        for k in list(st.session_state.keys()):
-            if k.startswith("q_"):
-                del st.session_state[k]
+        st.session_state.quiz_reset_token += 1  # change widget keys
         st.rerun()
 
     total_questions = len(quest_final)
@@ -107,17 +110,21 @@ def content_quiz():
     for i, q in enumerate(quest_final):
         st.markdown(f"**Q{i+1}. {q['question']}**")
 
-        # --- INSERT FIGURE FOR SPECIFIC QUESTION ---
-        if i == 51:   # Q52 → index 51
-            st.image("04_Basic_hydrogeology/FIGS/Q52.jpg", caption="Figure for Question 53")
-        
+        # === INSERT FIGURE FOR SPECIFIC QUESTION ===
+        # Show an image for question 52 (index 51)
+        if i == 51:
+            st.image(
+                "04_Basic_hydrogeology/FIGS/Q52.jpg",     # your figure path
+                caption="Figure used for Question 52"
+            )
+
         options = list(q["options"].keys())
-        correct_options = [opt for opt, is_correct in q["options"].items() if is_correct]
+        correct_options = [opt for opt, val in q["options"].items() if val]
 
-        # Unique key per question
-        widget_key = f"q_{i}_selection"
+        # widget key now depends on reset_token
+        widget_key = f"q_{i}_selection_{st.session_state.quiz_reset_token}"
 
-        # --- SINGLE-CORRECT: use radio ---
+        # --- Single-correct → radio ---
         if len(correct_options) == 1:
             selection = st.radio(
                 "Select one answer:",
@@ -134,7 +141,7 @@ def content_quiz():
                 else:
                     st.error(q.get("error", "Not quite."))
 
-        # --- MULTI-CORRECT: use multiselect ---
+        # --- Multi-correct → multiselect ---
         else:
             selection = st.multiselect(
                 "",
@@ -143,7 +150,7 @@ def content_quiz():
                 placeholder="Choose all suitable options",
             )
 
-            if selection:  # user selected at least one option
+            if selection:
                 total_answered += 1
                 if set(selection) == set(correct_options):
                     total_correct += 1
@@ -151,14 +158,15 @@ def content_quiz():
                 else:
                     st.error(q.get("error", "Not quite."))
 
-        st.markdown("---")  # separator between questions
+        st.markdown("---")
 
-    # --- Score summary at bottom ---
+    # --- Score summary ---
     st.subheader("Your Score")
-    st.write(f"Answered questions: **{total_answered} / {total_questions}**")
-    st.write(f"Correct answers: **{total_correct}**")
+    st.write(f"Answered: **{total_answered} / {total_questions}**")
+    st.write(f"Correct: **{total_correct}**")
     if total_answered > 0:
         st.write(f"Accuracy: **{100 * total_correct / total_answered:.1f}%**")
+
 
 
 
