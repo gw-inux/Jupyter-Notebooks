@@ -98,7 +98,7 @@ def content_quiz():
         for k in list(st.session_state.keys()):
             if k.startswith("q_"):
                 del st.session_state[k]
-        st.experimental_rerun()
+        st.rerun()
 
     total_questions = len(quest_final)
     total_answered = 0
