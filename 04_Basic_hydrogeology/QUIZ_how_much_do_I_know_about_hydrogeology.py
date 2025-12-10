@@ -89,8 +89,8 @@ Intro to learners: The survey consists of multiple-choice questions covering key
 
 # --- ASSESSMENT ---
 def content_quiz():
-    st.markdown("#### Quiz - How much do I know about Hydrogeology?")
-    st.info("These questions test and reflect your current understanding of hydrogeology.")
+    st.markdown("#### How much do I know about Hydrogeology?")
+    st.info("These questions test and reflect your current understanding of hydrogeology. At the bottom of the quiz you will find statistics about your performance. You can reset the quiz for a fresh start with the Reset button 🔄")
 
     # --- Reset button ---
     if st.button("🔄 Reset quiz"):
