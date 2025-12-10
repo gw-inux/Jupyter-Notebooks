@@ -108,7 +108,7 @@ def content_quiz():
         st.markdown(f"**Q{i+1}. {q['question']}**")
 
         # --- INSERT FIGURE FOR SPECIFIC QUESTION ---
-        if i == 52:   # Q53 → index 52
+        if i == 51:   # Q52 → index 51
             st.image("04_Basic_hydrogeology/FIGS/Q53.jpg", caption="Figure for Question 53")
         
         options = list(q["options"].keys())
