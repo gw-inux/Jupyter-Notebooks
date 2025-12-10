@@ -54,6 +54,7 @@ st.markdown("""
 # --- Pages definition / The content of your application / Header are with the target 'None' ---
 pages = {
     "🔶 Orientation meeting": {
+        "QUIZ ❓ \nHow much do \nI know about \nHydrogeology?": "04_Basic_hydrogeology/QUIZ_how_much_do_I_know_about_hydrogeology.py",
         "--- Initial Model examples 📖---": None,
         "1D GWF 💧": "90_Streamlit_apps/SYMPLE25/pages/00_OM/1D_GWF_Unconfined Recharge.py",
         "Well Capture 🌀": "90_Streamlit_apps/SYMPLE25/pages/00_OM/WellCapture.py",
