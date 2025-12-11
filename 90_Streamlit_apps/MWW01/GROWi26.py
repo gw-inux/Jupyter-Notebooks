@@ -96,12 +96,15 @@ pages = {
         "📑 LV 20.11.25: Folien zum Start": "90_Streamlit_apps/MWW01/SlideJet_Presentations/GWBmC_WS2526_V06_Start_SJpresent.py",
         "📑 LV 27.11.25: Folien zum Start": "90_Streamlit_apps/MWW01/SlideJet_Presentations/GWBmC_WS2526_V07_Start_SJpresent.py",
         "📑 LV 04.12.25: Folien zum Start": "90_Streamlit_apps/MWW01/SlideJet_Presentations/GWBmC_WS2526_V08_Start_SJpresent.py",
+        "📑 LV 11.12.25: Folien zum Start": "90_Streamlit_apps/MWW01/SlideJet_Presentations/GWBmC_WS2526_V09_Start_SJpresent.py",
     },
     "🟨 Kalibrierung": {
         "--- Folien 🚀---": None,
     },
     "🟫 Anwendungen": {
+        "🧮 Thiem ungespannt  \nSuperposition": "04_Basic_hydrogeology/Flow2Well_Thiem_unconfined_superposition7.py",
         "--- Folien 🚀---": None,
+        "📝 T10: Flächenhafte Wasserhaltung  \n& Baugrubenentwässerung": "90_Streamlit_apps/MWW01/SlideJet_Presentations/GWBmC_WS2526_T10_SJpresent.py",
     },
     "ℹ️ General Info": {
         "About": "90_Streamlit_apps/MWW01/content/GROWi26_About.py",
