@@ -92,7 +92,7 @@ import streamlit as st
 
 def content_quiz():
     st.markdown("#### Quiz - How much do I know about Hydrogeology?")
-    st.info("These questions test and reflect your current understanding of hydrogeology.")
+    st.info("These questions test and reflect your current understanding of hydrogeology.  \nAt the bottom of the quiz you will find statistics about your performance.  \nYou can reset the quiz for a fresh start with the Reset button 🔄.")
 
     # --- initialize reset token ---
     if "quiz_reset_token" not in st.session_state:
