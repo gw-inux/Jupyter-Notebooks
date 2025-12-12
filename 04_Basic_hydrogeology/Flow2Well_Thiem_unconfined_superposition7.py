@@ -16,6 +16,7 @@ with columns[0]:
     with st.expander('Show plot and system parameter'):
         x_max = st.slider('x_max (m)', 50, 3000, 500, 10)
         H = st.slider('Initial water table elevation H (m)', 1.0, 100.0, 25.0, 0.01)
+        capa = st.toggle('Show the wells and their capacity')
     
 with columns[1]:
     show_pit = st.toggle('Show the construction pit')
@@ -149,6 +150,36 @@ if h2_center <= 0.0:
 else:
     h_center = np.sqrt(h2_center)
     dry_center = False
+    
+    
+    
+    
+    
+# --- Compute head and Sichardt capacity Q_c at each well ---
+well_heads = []
+well_Qc = []
+
+for x_i in well_positions:
+    # h² at well x_i including superposition of all wells
+    h2_i = H**2
+    for x_j in well_positions:
+        r_ij = abs(x_i - x_j)
+        if r_ij < r_w:
+            r_ij = r_w
+        if r_ij < R:
+            h2_i -= (Q / (np.pi * K)) * np.log(R / r_ij)
+
+    if h2_i <= 0.0:
+        h_i = 0.0
+    else:
+        h_i = np.sqrt(h2_i)
+
+    # Sichardt capacity: Q_c = 2 * pi * r_well * h * sqrt(K) / 15
+    Q_c_i = 2.0 * np.pi * r_w * h_i * np.sqrt(K) / 15.0
+
+    well_heads.append(h_i)
+    well_Qc.append(Q_c_i)
+
 
 # ---------- PLOT ----------
 
@@ -170,10 +201,25 @@ ax.fill_between(x, h, 0, facecolor='lightblue')
 # Undisturbed water table line
 ax.hlines(y=H, xmin=-x_max, xmax=x_max, linestyle='--', colors=color)
 
-# Mark well positions
-for x_w in well_positions:
-    ax.axvline(x=x_w, ymin=0, ymax=1, linestyle=':', color='k', linewidth=1)
-    ax.text(x_w, H + 0.3, 'W', ha='center', va='bottom')
+# Mark well positions + vertical line colored by capacity Q_c vs Q
+if capa:
+    for x_w, h_i, Q_c_i in zip(well_positions, well_heads, well_Qc):
+        color_w = 'g' if Q_c_i >= Q else 'r'
+    
+        # Vertical line from bottom to local head at the well
+        ax.vlines(x=x_w+3, ymin=0, ymax=h_i, colors=color_w, linewidth=2)
+        ax.vlines(x=x_w-3, ymin=0, ymax=h_i, colors=color_w, linewidth=2)
+        
+        ax.vlines(x=x_w, ymin=0, ymax=H, linestyle=':', color='k', linewidth=1)
+    
+        # Label the well above the initial water table
+        #ax.text(x_w, H + 0.3, 'W', ha='center', va='bottom', color=color_w)
+else:
+    for x_w, h_i, Q_c_i in zip(well_positions, well_heads, well_Qc):
+        ax.vlines(x=x_w, ymin=0, ymax=H, linestyle=':', color='k', linewidth=1)
+    
+        # Label the well above the initial water table
+        #ax.text(x_w, H + 0.3, 'W', ha='center', va='bottom', color=color_w)
 
 ax.set(
     xlabel='x [m]',
@@ -227,8 +273,22 @@ st.pyplot(fig)
 
 # ---------- OUTPUTS ----------
 s_center = H - h_center
-st.write(f'Number of wells: {n_wells}')
-st.write('Drawdown at the central well (including superposition): ', s_center, ' m')
-st.write('Abstraction rate per well Q: ', Q, ' m³/s')
-st.write('Total abstraction rate: ', n_wells * Q, ' m³/s')
-st.write('Radius of influence (Sichardt, single-well basis): ', R, ' m')
+
+st.markdown(f"""
+### Model Output
+**Number of wells:** {n_wells}  
+**Drawdown at central well:** {s_center:.3f} m  
+**Abstraction rate per well (Q):** {Q:.3e} m³/s  
+**Total abstraction rate:** {(n_wells * Q):.3e} m³/s  
+**Radius of influence (Sichardt):** {R:.1f} m  
+"""
+)
+
+# Well-specific Sichardt capacities
+for i, (x_w, Q_c_i) in enumerate(zip(well_positions, well_Qc), start=1):
+    status = "OK" if Q_c_i >= Q else "INSUFFICIENT"
+    st.write(
+        f"Well {i} at x = {x_w:.1f} m: "
+        f"Q_c = {Q_c_i:.4f} m³/s ({status})"
+    )
+
