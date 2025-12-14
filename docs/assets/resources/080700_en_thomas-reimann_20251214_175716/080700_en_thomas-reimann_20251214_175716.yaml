@@ -1,0 +1,56 @@
+catalog_category: "08 Groundwater Modeling"
+catalog_subcategory: "08-07 Parameter Estimation & Calibration"
+catalog_subsubcategory: "(Attach to subcategory)"
+
+# --- RESOURCE IDENTIFICATION AND TOPIC MAPPING ---
+# item_id: A unique, simple slug for this item (e.g., aquifer_test_1). 
+
+item_id: TO_BE_FILLED_BY_COURSE_MANAGER
+topic: 07 Parameter Estimation & Calibration # Must match the title of the parent catalog page.
+title: Analytical solution for 1D unconfined flow with one specified head boundary and one head-dependent boundary - Understanding Model Calibration    # The full, descriptive name of the resource.
+
+# --- TYPE AND ACCESS ---
+resource_type: Streamlit app            # Required. Options: Streamlit app, Jupyter Notebook, Video, Dataset, Other.
+url: https://gwf-1d-unconf-noflow-calib.streamlit.app/      # The direct link to launch the app, notebook on Binder, or video on YouTube.
+date_released: TO_BE_FILLED_BY_COURSE_MANAGER               # Release date in YYYY-MM-DD format.
+
+# --- CONTENT AND METADATA ---
+description_short: >
+  This app extends the 1D unconfined flow calibration exercise by introducing a no-flow boundary on one side and, on the other side, either a specified-head boundary or a head-dependent (river-type) boundary. The conceptual model assumes a homogeneous, isotropic aquifer with a horizontal impermeable base and uniform recharge over the entire model length.
+  
+  Users can generate synthetic calibration datasets (regular or irregular sampling, optionally with noise) and then estimate model parameters by adjusting recharge and hydraulic conductivity. In the head-dependent scenario, an additional boundary parameter (river conductance) is included, allowing learners to experience how boundary formulation increases calibration complexity and parameter non-uniqueness. Model performance can be evaluated using an optional scatter plot and basic error metrics (ME, MAE, RMSE), and the app can reveal the “true” parameter values for self-assessment.
+keywords: [groundwater flow, 1D flow, unconfined flow, gamification, calibration, uncertainty]
+multipage_app: false
+num_pages: 0
+interactive_plots: true
+num_interactive_plots: 2
+assessments_included: false
+num_assessment_questions: 0
+videos_included: false
+num_videos: 0
+
+# --- EDUCATIONAL FIT ---
+time_required: 15–30 minutes             # Estimated time for a student to complete the activity (e.g., 30 minutes, 1.5 hours).
+prerequisites: Darcy law, boundary conditions, groundwater flow equation       # Required prior knowledge (e.g., Darcy's Law, Python basics, basic calculus).
+fit_for:
+  - self learning
+  - classroom teaching
+  - online teaching
+
+# --- AUTHOR AND REFERENCE ---
+authors:
+  - name: Thomas Reimann
+    affiliation: TU Dresden
+references: []                            # List any published papers, DOIs, or source materials related to this resource.
+# image_url: Optional path to a screenshot for the catalog page (e.g., /assets/images/resources/flow_tool_screenshot.png)
+
+figures:
+  - id: 1
+    original_filename: 08_07_1D_unconf_one_specified_head_noflow1.png
+    type: Screenshot
+    caption: Computed heads with measurements for calibration.
+    is_cover: true
+  - id: 2
+    original_filename: 08_07_1D_unconf_one_specified_head_noflow2.png
+    type: Screenshot
+    caption: The user interface with the model, the scatter plot, and the results of the calibration.
