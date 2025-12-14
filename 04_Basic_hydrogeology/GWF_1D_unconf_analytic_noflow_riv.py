@@ -87,75 +87,6 @@ hr = 150.0
 zb = (hr-50)
 hRiv = 150
 
-# Data for random 'measurements'
-K_random = 2.34E-4*(np.random.randint(5, 500)/100)
-R_random = 150/1000/365.25/86400*(np.random.randint(50, 150)/100)
-cRiv_random = 1.34E-7*(np.random.randint(5, 500)/100)
-hr_riv_random = R_random * L / cRiv_random / zb + hRiv
-
-st.session_state.K_random = K_random
-st.session_state.R_random = R_random
-
-# Equation from Bakker et al. (chapter 3); assuming the aquifer bottom is 10 m below the left boundary head
-phiL_random = 0.5 * K_random * (hr - zb) ** 2
-phiL_riv_random = 0.5 * K_random * (hr_riv_random - zb) ** 2
-
-# TODO - Implement the following function
-def add_noise(j,noise):
-    upper_value = round((i + noise/2)/ i * 100000)
-    lower_value = round((i - noise/2)/ i * 100000)
-    return upper_value, lower_value
-    
-def compute_statistics(measured, computed):
-    # Calculate the number of values
-    n = len(measured)
-
-    # Initialize a variable to store the sum of squared differences
-    total_me = 0
-    total_mae = 0
-    total_rmse = 0
-
-    # Loop through each value
-    for i in range(n): # Add the squared difference to the total
-        total_me   += (computed[i] - measured[i])
-        total_mae  += (abs(computed[i] - measured[i]))
-        total_rmse += (computed[i] - measured[i])**2
-
-    # Calculate the me, mae, mean squared error
-    me = total_me / n
-    mae = total_mae / n
-    meanSquaredError = total_rmse / n
-
-    # Raise the mean squared error to the power of 0.5 
-    rmse = (meanSquaredError) ** (1/2)
-    return me, mae, rmse
-
-# Data for Calibration exercises
-# 1 Regular
-xp1 = [250, 500, 750, 1000, 1250, 1500, 1750,2000, 2250]
-hp1 = [zb + np.sqrt(2 * (-R_random / 2 * (x ** 2 - L ** 2) + phiL_random) / K_random) for x in xp1]
-hp1_riv = [zb + np.sqrt(2 * (-R_random / 2 * (x ** 2 - L ** 2) + phiL_riv_random) / K_random) for x in xp1]
-
-# 2 Random calib points
-n_random2 = np.random.randint(3,8)
-xp2 = []
-for i in range(n_random2):
-    xp2.append(np.random.randint(100, 2500))
-hp2 = [zb + np.sqrt(2 * (-R_random / 2 * (x ** 2 - L ** 2) + phiL_random) / K_random) for x in xp2]
-hp2_riv = [zb + np.sqrt(2 * (-R_random / 2 * (x ** 2 - L ** 2) + phiL_riv_random) / K_random) for x in xp2]
-
-# 3 Random calib points with uncertainty
-n_random3 = np.random.randint(5,8)
-xp3 = []
-for i in range(n_random3):
-    xp3.append(np.random.randint(100, 2500))
-# Provide heads and add noise
-hp3 = [zb + np.sqrt(2 * (-R_random / 2 * (x ** 2 - L ** 2) + phiL_random) / K_random) for x in xp3]
-hp3_riv = [zb + np.sqrt(2 * (-R_random / 2 * (x ** 2 - L ** 2) + phiL_riv_random) / K_random) for x in xp3]
-hp3 = [i*np.random.randint(round((i - noise/2)/ i * 100000),round((i + noise/2)/ i * 100000))/100000 for i in hp3]
-hp3_riv = [i*np.random.randint(round((i - noise/2)/ i * 100000),round((i + noise/2)/ i * 100000))/100000 for i in hp3_riv]
-
-
 @st.fragment
 def computation():
     # Input data
@@ -235,6 +166,11 @@ def computation():
     
 computation()
 
-lc3, cc3, rc3 = st.columns((1,1,1), gap = 'large')
-with cc3:
-    st.button('Restart with new data? Press here!')
+st.markdown('---')
+
+# Render footer with authors, institutions, and license logo in a single line
+columns_lic = st.columns((4,1))
+with columns_lic[0]:
+    st.markdown(f'Developed by {", ".join(author_list)} ({year}). <br> {institution_text}', unsafe_allow_html=True)
+with columns_lic[1]:
+    st.image('FIGS/CC_BY-SA_icon.png')
