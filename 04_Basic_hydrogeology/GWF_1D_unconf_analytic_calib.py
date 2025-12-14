@@ -8,6 +8,7 @@ import streamlit as st
 # ToDo:
 #    - K log slider
 #    - account/warn for negative heads
+#    - option for specified head
 
 # Authors, institutions, and year
 year = 2025 
