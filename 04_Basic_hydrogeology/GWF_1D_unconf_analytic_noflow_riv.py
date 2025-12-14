@@ -23,7 +23,7 @@ institution_text = " | ".join(institution_list)
 
 #--- User Interface
 
-st.title('Analytical solution for 1D unconfined flow with one specified head boundary and one head-dependent boundary')
+st.title('Analytical solution for 1D unconfined flow with one no-flow boundary and one specified head/head-dependent boundary')
 st.subheader('Understanding :blue[Groundwater-Surface Water Interaction]', divider="blue")
 
 with st.expander('Show the theory (conceptual and mathematical model)'):
