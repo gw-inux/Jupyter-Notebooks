@@ -1,0 +1,51 @@
+catalog_category: "03 Basic Hydrogeology"
+catalog_subcategory: "03-03 Steady Groundwater Flow"
+catalog_subsubcategory: "(Attach to subcategory)"
+
+# --- RESOURCE IDENTIFICATION AND TOPIC MAPPING ---
+# item_id: A unique, simple slug for this item (e.g., aquifer_test_1). 
+
+item_id: TO_BE_FILLED_BY_COURSE_MANAGER
+topic: 03 Steady Groundwater Flow # Must match the title of the parent catalog page.
+title: Analytical solution for 1D unconfined flow with two specified head boundaries    # The full, descriptive name of the resource.
+
+# --- TYPE AND ACCESS ---
+resource_type: Streamlit app            # Required. Options: Streamlit app, Jupyter Notebook, Video, Dataset, Other.
+url: https://gwf-1d-unconf-analytic.streamlit.app/      # The direct link to launch the app, notebook on Binder, or video on YouTube.
+date_released: TO_BE_FILLED_BY_COURSE_MANAGER               # Release date in YYYY-MM-DD format.
+
+# --- CONTENT AND METADATA ---
+description_short: >
+  This app illustrates the analytical solution for one-dimensional groundwater flow in an unconfined aquifer subject to two specified head boundaries and uniform recharge. The conceptual model assumes a homogeneous and isotropic aquifer with a horizontal base, bounded by fixed hydraulic heads at the inflow and outflow boundaries.
+  
+  Users can interactively explore the influence of recharge, hydraulic conductivity, aquifer length, and boundary heads on the resulting hydraulic head distribution. The visualization highlights characteristic features such as groundwater divides and recharge effects, making the app well suited for teaching fundamental concepts of steady unconfined groundwater flow and boundary-controlled systems.
+keywords: [groundwater flow, 1D flow, unconfined flow]
+multipage_app: false
+num_pages: 0
+interactive_plots: true
+num_interactive_plots: 1
+assessments_included: false
+num_assessment_questions: 0
+videos_included: false
+num_videos: 0
+
+# --- EDUCATIONAL FIT ---
+time_required: 5–15 min             # Estimated time for a student to complete the activity (e.g., 30 minutes, 1.5 hours).
+prerequisites: Darcy law, boundary conditions, groundwater flow equation       # Required prior knowledge (e.g., Darcy's Law, Python basics, basic calculus).
+fit_for:
+  - classroom teaching
+  - online teaching
+
+# --- AUTHOR AND REFERENCE ---
+authors:
+  - name: Thomas Reimann
+    affiliation: TU Dresden
+references: []                            # List any published papers, DOIs, or source materials related to this resource.
+# image_url: Optional path to a screenshot for the catalog page (e.g., /assets/images/resources/flow_tool_screenshot.png)
+
+figures:
+  - id: 1
+    original_filename: 03_03_1D_unconfined.png
+    type: Screenshot
+    caption: 1D groundwater flow with two specified heads. The red line indicate a groundwater divide.
+    is_cover: true
