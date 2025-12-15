@@ -59,13 +59,13 @@ st.subheader('Interactive plot of decay species A -> B and species B -> C', divi
 columns = st.columns((1,1))
 
 with columns[0]:
-    with st.expander('Modify the initial masses'):
+    with st.expander('Modify the **Initial Masses**'):
         A_0=st.slider(f'**Initial mass $A_0$ [kg]**:',0,1000,500,10)
         B_0=st.slider(f'**Initial mass $B_0$ [kg]:**',0,1000,0,10)
         C_0=st.slider(f'**Initial mass $C_0$ [kg]:**',0,1000,0,10)
     
 with columns[1]:
-    with st.expander('Modify the decay rates'):
+    with st.expander('Modify the **Decay Rates**'):
         R_A=st.slider(f'**Decay rate of $A$: $R_A$ [1/a]**:',0.0,1.0,0.000,0.001)
         R_B=st.slider(f'**Decay rate of $B$: $R_B$ [1/a]**:',0.0,1.0,0.000,0.001)
 
