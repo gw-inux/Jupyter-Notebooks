@@ -8,7 +8,9 @@ import streamlit as st
 
 # ToDo
 # - random data
-# - scatter plot and statistical measures
+# - toggle for log time
+# - plot results sheet with parameters
+# - number/slider input
 
 # --- Authors, institutions, and year
 year = 2025 
@@ -23,7 +25,34 @@ author_list = [f"{name}{''.join(index_symbols[i-1] for i in indices)}" for name,
 institution_list = [f"{index_symbols[i-1]} {inst}" for i, inst in institutions.items()]
 institution_text = " | ".join(institution_list)
 
-st.title('Reservoir head')
+#--- Functions
+# Postprocessing statistics
+def compute_statistics(measured, computed):
+    # Calculate the number of values
+    n = len(measured)
+
+    # Initialize a variable to store the sum of squared differences
+    total_me = 0
+    total_mae = 0
+    total_rmse = 0
+
+    # Loop through each value
+    for i in range(n): # Add the squared difference to the total
+        total_me   += (computed[i] - measured[i])
+        total_mae  += (abs(computed[i] - measured[i]))
+        total_rmse += (computed[i] - measured[i])**2
+
+    # Calculate the me, mae, mean squared error
+    me = total_me / n
+    mae = total_mae / n
+    meanSquaredError = total_rmse / n
+
+    # Raise the mean squared error to the power of 0.5 
+    rmse = (meanSquaredError) ** (1/2)
+    return me, mae, rmse
+
+
+st.title('Lumped-Parameter-Model: Reservoir Head')
 st.header('Introductionary Example to Model Calibration  \n***(based on materials from John Doherty)***', divider = 'green')
 
 st.markdown("""The example is taken from a tutorial by John Doherty (author of the software PEST). A catchment area is described by a lumped-parameter model (i.e., the entire area is described with a few effective parameters).
@@ -40,39 +69,40 @@ st.markdown("""A reservoir is defined by a storage *S*. An inflow of water is ge
 
 st.subheader('Mathematical Model', divider = 'orange')
 
-st.markdown("""The following equations describe the behavior of the catchment area. The outflow *q* results from the conductance *C* and the water level *h*.
-
-#### Outflow $q$""")
-st.latex(r'''\large q = Kh''')
-st.markdown("""The higher the water level, the more water flows out of the reservoir.
-
-#### Flow Equation with Continuity / Mass Conservation
-
-The flow equation is derived from the combination of outflow and mass conservation (continuity):
-""")
-st.latex(r'''\large S\frac{\partial h}{\partial t}=R-Kh''')
-st.markdown("""with
-* *S* = storage and 
-* *R* = recharge.
-
-#### Initial Condition
-
-To solve the equation, an initial condition is necessary:
-
-$h(t=0) = h_i$
-
-with
-
-$h_i$ = initial water level.
-
-#### Solution
-The flow equation can be solved as follows, describing the water level *h* as a function of time *t*: """)
-
-st.latex(r'''\large h(t) = h_i+(\frac{R}{K}-h_i)(1-e^{\frac{-Kt}{S}})''')
-
-st.subheader('Interactive Plot', divider = 'rainbow')
-
-st.markdown("""The equation will be solved in the following.""")
+with st.expander('Click here to read about the mathematical model'):
+    st.markdown("""The following equations describe the behavior of the catchment area. The outflow *q* results from the conductance *C* and the water level *h*.
+    
+    #### Outflow $q$""")
+    st.latex(r'''\large q = Kh''')
+    st.markdown("""The higher the water level, the more water flows out of the reservoir.
+    
+    #### Flow Equation with Continuity / Mass Conservation
+    
+    The flow equation is derived from the combination of outflow and mass conservation (continuity):
+    """)
+    st.latex(r'''\large S\frac{\partial h}{\partial t}=R-Kh''')
+    st.markdown("""with
+    * *S* = storage and 
+    * *R* = recharge.
+    
+    #### Initial Condition
+    
+    To solve the equation, an initial condition is necessary:
+    
+    $h(t=0) = h_i$
+    
+    with
+    
+    $h_i$ = initial water level.
+    
+    #### Solution
+    The flow equation can be solved as follows, describing the water level *h* as a function of time *t*: """)
+    
+    st.latex(r'''\large h(t) = h_i+(\frac{R}{K}-h_i)(1-e^{\frac{-Kt}{S}})''')
+    
+    st.subheader('Interactive Plot', divider = 'rainbow')
+    
+    st.markdown("""The equation will be solved in the following.""")
 
 #Computation
 
@@ -85,13 +115,17 @@ log_max2 = 3.0  # S / Corresponds to 10^0 = 1
 log_min3 = -5.0 # S / Corresponds to 10^-7 = 0.0000001
 log_max3 = 3.0  # S / Corresponds to 10^0 = 1
 
-columns = st.columns((1,1), gap = 'large')
+columns = st.columns((1,1,1), gap = 'large')
 
 with columns[0]:
-    with st.expander('Initial Conditions'):
-        h_i = st.slider(f'**Initial head**', 0,150,10,1)
+    with st.expander('Modify plots'):
+        scatter = st.toggle('Show Scatter Plot')
 
 with columns[1]:
+    with st.expander('Initial Conditions'):
+        h_i = st.slider(f'**Initial head**', 0,150,20,1)
+
+with columns[2]:
     with st.expander('Parameter'):
         R_slider_value=st.slider('(log of) Recharge', log_min3,log_max3,-1.0,0.01,format="%4.2f" )
         # Convert the slider value to the logarithmic scale
@@ -118,16 +152,50 @@ t = np.arange(0, t_max, t_max/100)
 h=h_i+(R/K-h_i)*(1-math.e**(-K*t/S))
     
 # PLOT FIGURE
-fig = plt.figure(figsize=(10,6))
-ax = fig.add_subplot(1, 1, 1)
+fig = plt.figure(figsize=(8,12))
+ax = fig.add_subplot(2, 1, 1)
 ax.plot(t,h, linewidth=2, label='Computed')
-ax.plot(t_meas, h_meas, 'ro', label='Measured')
-plt.xlim(-1000,t_max*1.05)
+ax.plot(
+    t_meas,
+    h_meas,
+    'o',
+    markersize=7,
+    markerfacecolor='none',
+    markeredgecolor='r',
+    markeredgewidth=0.8,
+    label='Measured'
+)
+# compute heads for measurments
+h_mod = [h_i+(R/K-h_i)*(1-math.e**(-K*t/S)) for t in t_meas]
+plt.xlim(-500,t_max*1.05)
 plt.ylim(0,150)
 plt.xlabel('t',fontsize=14)
 plt.ylabel('head',fontsize=14)
 plt.title('Hydraulic head in the reservoir', fontsize=16)
 plt.legend(fontsize=14)
+
+
+if scatter:
+    x45 = [0,200]
+    y45 = [0,200]
+    ax = fig.add_subplot(2, 1, 2)
+    ax.plot(x45,y45, '--')
+    ax.plot(h_mod,h_meas, 'ro', label=r'measured')
+    me, mae, rmse = compute_statistics(h_mod, h_meas)
+    plt.title('Scatter plot', fontsize=16)
+    plt.xlabel(r'Computed head in m', fontsize=14)
+    plt.ylabel(r'Measured head in m', fontsize=14)
+    plt.ylim(0, 150)
+    plt.xlim(0, 150)
+    # Generate the data for printing in the plot
+    out_txt = '\n'.join((
+                         r'$ME = %.3f$ m' % (me, ),
+                         r'$MAE = %.3f$ m' % (mae, ),
+                         r'$RMSE = %.3f$ m' % (rmse, ))) 
+    x_pos3 = 145
+    y_pos3 = 10
+    plt.text(x_pos3, y_pos3, out_txt, horizontalalignment='right', bbox=dict(boxstyle="square", facecolor='lightgrey'), fontsize=14)
+
 
 st.pyplot(fig)
 
