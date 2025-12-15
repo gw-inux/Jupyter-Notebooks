@@ -1,0 +1,56 @@
+catalog_category: "05 Hydrogeochemistry and Contaminant Transport"
+catalog_subcategory: "05-06 Reactive Solute Transport"
+catalog_subsubcategory: "(Attach to subcategory)"
+
+# --- RESOURCE IDENTIFICATION AND TOPIC MAPPING ---
+# item_id: A unique, simple slug for this item (e.g., aquifer_test_1). 
+
+item_id: 0506001
+topic: 06 Reactive Solute Transport # Must match the title of the parent catalog page.
+title: Mass balance for a decay chain - Decay of Species A to B and species B to C    # The full, descriptive name of the resource.
+
+# --- TYPE AND ACCESS ---
+resource_type: Streamlit app            # Required. Options: Streamlit app, Jupyter Notebook, Video, Dataset, Other.
+url: https://radioactive-decay.streamlit.app/      # The direct link to launch the app, notebook on Binder, or video on YouTube.
+date_released: TO_BE_FILLED_BY_COURSE_MANAGER               # Release date in YYYY-MM-DD format.
+
+# --- CONTENT AND METADATA ---
+description_short: >
+  This interactive app illustrates the mass balance of a simple decay chain (A → B → C) using a time-discrete numerical approach. It demonstrates how the decay of one species leads to the production of subsequent species while conserving total mass.
+  
+  Users can modify initial masses and decay rates and explore the temporal evolution of all three species through interactive plots. The example is motivated by radioactive decay but is formulated generically, making it applicable to a wide range of first-order transformation processes relevant to hydrogeochemistry and reactive solute transport.
+  
+  The app is primarily intended as a conceptual teaching tool to support the understanding of coupled decay and production processes, mass conservation, and dynamic system behavior in environmental and groundwater-related contexts.
+keywords: [solute transport, decay, half-time, reactive transport, mass balance]
+multipage_app: false
+num_pages: 0
+interactive_plots: true
+num_interactive_plots: 1
+assessments_included: false
+num_assessment_questions: 0
+videos_included: false
+num_videos: 0
+
+# --- EDUCATIONAL FIT ---
+time_required: 5–15 min             # Estimated time for a student to complete the activity (e.g., 30 minutes, 1.5 hours).
+prerequisites: basic chemistry       # Required prior knowledge (e.g., Darcy's Law, Python basics, basic calculus).
+fit_for:
+  - self learning
+  - classroom teaching
+  - online teaching
+
+# --- AUTHOR AND REFERENCE ---
+authors:
+  - name: Thomas Reimann
+    affiliation: TU Dresden, Institute for Groundwater Management
+  - name: Rudolf Liedl
+    affiliation: TU Dresden, Institute for Groundwater Management
+references: []                            # List any published papers, DOIs, or source materials related to this resource.
+# image_url: Optional path to a screenshot for the catalog page (e.g., /assets/images/resources/flow_tool_screenshot.png)
+
+figures:
+  - id: 1
+    original_filename: 05_06_radioactive_decay.png
+    type: Screenshot
+    caption: The interactive plot of the mass balance for radioactive decay.
+    is_cover: true
