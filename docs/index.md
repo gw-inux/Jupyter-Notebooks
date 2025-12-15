@@ -21,9 +21,9 @@ Our resources are designed to enhance self-controlled learning for students and 
 
 | Resource Type | Description | Access Point |
 | :--- | :--- | :--- |
-| **Streamlit Apps** | User-friendly, web-based applications for platform-independent, interactive exploration of concepts. | [**View All Streamlit Apps**](https://share.streamlit.io/user/thoreimann) |
-| **Jupyter Notebooks** | Combinations of text, explanations, and live Python code for computation and in-depth analysis. | [**Launch Binder**](https://mybinder.org/v2/gh/gw-inux/Jupyter-Notebooks/HEAD?urlpath=tree) **(Online Access)** |
-| **Full Repository** | Access all source code, videos, questions, and problem sets, organized by hydrogeological topic. | [**Visit GitHub Repository**](https://github.com/gw-inux/Jupyter-Notebooks/) |
+| **Streamlit Apps** | User-friendly, web-based applications for platform-independent, interactive exploration of concepts. | <a href="https://share.streamlit.io/user/thoreimann" target="_blank" rel="noopener noreferrer"><strong>View All Streamlit Apps</strong></a> |
+| **Jupyter Notebooks** | Combinations of text, explanations, and live Python code for computation and in-depth analysis. | <a href="https://mybinder.org/v2/gh/gw-inux/Jupyter-Notebooks/HEAD?urlpath=tree" target="_blank" rel="noopener noreferrer"><strong>Launch Binder</strong></a> <strong>(Online Access)</strong> |
+| **Full Repository** | Access all source code, videos, questions, and problem sets, organized by hydrogeological topic. | <a href="https://github.com/gw-inux/Jupyter-Notebooks/" target="_blank" rel="noopener noreferrer"><strong>Visit GitHub Repository</strong></a> |
 
 ---
 
@@ -32,7 +32,7 @@ Our resources are designed to enhance self-controlled learning for students and 
 Get started immediately with a powerful simulation tool.
 
 **Purpose:** Investigate the mass balance for substances undergoing decay. Define initial mass and decay rates for three components to analyze their mass balance over time.
-**Access:** [**Radioactive Decay App**](https://radioactive-decay.streamlit.app/)
+**Access:** <a href="https://radioactive-decay.streamlit.app/" target="_blank" rel="noopener noreferrer"><strong>Radioactive Decay App</strong></a>
 
 <img src="./assets/images/st/01/radioactive_decay.png" alt="Screenshot of the Radioactive Decay Streamlit application" width="400"/>
 
@@ -52,7 +52,7 @@ Jupyter Notebooks offer a higher degree of freedom, allowing for immediate modif
 
 You can process notebooks directly in your browser using the MyBinder service.
 
-* **Access Link:** [**Launch Binder Service**](https://mybinder.org/v2/gh/gw-inux/Jupyter-Notebooks/HEAD?urlpath=tree)
+* **Access Link:** <a href="https://mybinder.org/v2/gh/gw-inux/Jupyter-Notebooks/HEAD?urlpath=tree" target="_blank" rel="noopener noreferrer"><strong>Launch Binder Service</strong></a>
 
 > **Note on MyBinder:** The initial start can take a few minutes as MyBinder sets up a dedicated server for you. Subsequent starts should be faster.
 
@@ -67,10 +67,9 @@ For long-term or offline work, you can download the notebooks and run them local
 This is an open-source initiative, and contributions are highly encouraged!
 
 * **Feedback & Suggestions:** Open an issue on our GitHub repository.
-* **Submitting New Material:** Use the [**INCOMING**](https://github.com/gw-inux/Jupyter-Notebooks/tree/main/99_INCOMING) section in the repository for new Jupyter Notebooks, questions, or problem sets.
-* **Join the Community:** We are actively establishing interest groups to combine efforts, build larger resource pools (e.g., question banks), and link with related activities like the [**Groundwater Project**](https://gw-project.org/).
+* **Submitting New Material:** Use the <a href="https://github.com/gw-inux/Jupyter-Notebooks/tree/main/99_INCOMING" target="_blank" rel="noopener noreferrer"><strong>INCOMING</strong></a> section in the repository for new Jupyter Notebooks, questions, or problem sets.
+* **Join the Community:** We are actively establishing interest groups to combine efforts, build larger resource pools (e.g., question banks), and link with related activities like the <a href="https://gw-project.org/" target="_blank" rel="noopener noreferrer"><strong>Groundwater Project</strong></a>.
 
 ## Interactive Resources (Welcome)
 
 No resources submitted for this topic yet.
-
