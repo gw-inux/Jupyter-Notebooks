@@ -3,12 +3,16 @@ document.addEventListener("DOMContentLoaded", () => {
   btn.id = "back-to-top";
   btn.type = "button";
   btn.setAttribute("aria-label", "Back to top");
-  btn.textContent = "↑";
+
+  // icon + label (label can be hidden on very small screens via CSS)
+  btn.innerHTML = '<span class="btt-icon" aria-hidden="true">↑</span><span class="btt-label">Top</span>';
 
   document.body.appendChild(btn);
 
+  const SHOW_AT = 250; // was 400 (appears earlier now)
+
   const toggle = () => {
-    btn.style.display = window.scrollY > 400 ? "block" : "none";
+    btn.style.display = window.scrollY > SHOW_AT ? "inline-flex" : "none";
   };
 
   btn.addEventListener("click", () => {

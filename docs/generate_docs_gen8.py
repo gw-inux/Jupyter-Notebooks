@@ -7,9 +7,20 @@ import unicodedata
 from typing import Any, Dict, List, Optional
 
 
-#Improvement over v6: 
-# 1. Orders resources based on item add
-# 2. Adds number of resources to sidebar 
+
+# Improvements over V7:
+# 1. Enhanced figure handling:
+#    - Supports per-resource cover images and additional figures
+#    - Renders framed, centered figures with consistent captions using HTML
+#
+# 2. Improved resource formatting:
+#    - Cleaner markdown structure for resource blocks
+#    - Optional Streamlit-specific metadata sections rendered conditionally
+#
+# 3. Sidebar navigation enhancement:
+#    - Displays total number of resources (including all descendants)
+#    - Counts are language-agnostic and reflect subtree totals
+
 
 # -------------------------------------------------
 # CONFIGURATION
@@ -169,6 +180,43 @@ def strip_leading_code(title: str) -> str:
     return re.sub(r"^\d{2}(?:-\d{2})*\s+", "", t).strip() or t
 
 # -------------------------------------------------
+# SIDEBAR COUNT HELPERS (subtree totals, language-agnostic)
+# -------------------------------------------------
+def trimmed_code_parts(page_id: str) -> List[str]:
+    """
+    Get hierarchy parts from page_id, dropping trailing '00' segments.
+    Examples:
+      030000_en -> ['03']
+      030300_en -> ['03','03']
+      030302_de -> ['03','03','02']
+    """
+    parts = split_page_id_codes(page_id)
+    while parts and parts[-1] == "00":
+        parts.pop()
+    return parts
+
+
+def is_descendant_page(parent_id: str, child_id: str) -> bool:
+    """
+    True if child_id is inside the hierarchy of parent_id (language-agnostic),
+    and child_id != parent_id.
+    """
+    if not parent_id or not child_id or parent_id == child_id:
+        return False
+
+    p = trimmed_code_parts(parent_id)
+    c = trimmed_code_parts(child_id)
+    if not p or not c:
+        return False
+
+    return len(c) > len(p) and c[: len(p)] == p
+
+
+
+
+
+
+# -------------------------------------------------
 # RESOURCE ORDERING HELPERS
 # -------------------------------------------------
 def _valid_item_id(raw: Any) -> Optional[int]:
@@ -291,34 +339,48 @@ def render_html_figure(
     alt: str,
     figure_number: int,
     caption_text: Optional[str] = None,
-    width_pct: int = 90,
-    caption_left_margin_pct: int = 5,
+    container_width_pct: int = 70,
 ) -> str:
     """
-    Render a figure using HTML (for better control in Just-the-Docs),
-    following the style your professor used.
+    Render a figure with a centered container + framed image + caption.
+    Designed to match the HTML pattern you shared.
 
-    - Centered image with controlled width
-    - Caption below, left-aligned with a small left margin
+    Notes:
+    - img_url can already contain Jekyll Liquid (e.g. {{ "... " | relative_url }}).
+      So we use it directly in src="" (we do NOT apply | relative_url again here).
     """
     alt_escaped = (alt or "").replace('"', "&quot;")
 
-    # If no caption provided, still show a generic figure label
-    caption_final = caption_text.strip() if caption_text and caption_text.strip() else f"Figure {figure_number}."
-    if not caption_final.lower().startswith("figure"):
-        caption_final = f"Figure {figure_number}: {caption_final}"
+    # Caption formatting: always ensure "Figure X: ..."
+    caption_final = caption_text.strip() if caption_text and caption_text.strip() else ""
+    if caption_final:
+        if not caption_final.lower().startswith("figure"):
+            caption_final = f"Figure {figure_number}: {caption_final}"
+        # else: assume caller already provided "Figure X: ..."
     else:
-        # If caller already provided "Figure X: ...", keep it.
-        caption_final = caption_final
+        caption_final = f"Figure {figure_number}."
 
     return (
-        f'<p style="text-align: center;">\n'
-        f'  <img src="{img_url}" alt="{alt_escaped}" style="width:{width_pct}%; height:auto;">\n'
-        f"</p>\n\n"
-        f'<p style="text-align: left; margin-left: {caption_left_margin_pct}%;">\n'
-        f"  <em>{caption_final}</em>\n"
-        f"</p>\n\n"
+        f'<div style="width:{container_width_pct}%; margin: auto; text-align: center;">\n'
+        f'<img \n'
+        f'    src="{img_url}"\n'
+        f'    alt="{alt_escaped}"\n'
+        f'    style="\n'
+        f'      width:100%;\n'
+        f'      height:auto;\n'
+        f'      border:1px solid #cfcfcf;\n'
+        f'      padding:6px;\n'
+        f'      background:#fafafa;\n'
+        f'      border-radius:4px;\n'
+        f'    ">\n'
+        f'<p style="text-align: left; font-size: 0.9em; margin-top: 6px;">\n'
+        f'<em>\n'
+        f'      {caption_final}\n'
+        f'</em>\n'
+        f'</p>\n'
+        f'</div>\n\n'
     )
+
 
 
 
@@ -502,9 +564,9 @@ def format_resource_markdown(resource: Dict[str, Any], item_code: str) -> str:
             alt=title,
             figure_number=fig_counter,
             caption_text=caption_text,
-            width_pct=90,
-            caption_left_margin_pct=5,
+            container_width_pct=70,
         )
+
 
         fig_counter += 1
 
@@ -618,9 +680,9 @@ def format_resource_markdown(resource: Dict[str, Any], item_code: str) -> str:
                 alt=alt,
                 figure_number=fig_counter,
                 caption_text=caption_text,
-                width_pct=90,
-                caption_left_margin_pct=5,
+                container_width_pct=70,
             )
+
 
         fig_counter += 1
 
@@ -637,6 +699,41 @@ def main(target_page_ids: Optional[List[str]] = None) -> None:
     # Load full spreadsheet for title/parent lookup
     df_full = pd.read_excel(DATA_FILE, dtype=str).fillna("")
     all_resources = load_all_resources(RESOURCES_DIR)
+
+
+    # -------------------------------------------------
+    # Precompute resource counts (direct + subtree totals)
+    # -------------------------------------------------
+    def resources_for(pid: str, page_title: str) -> List[Dict[str, Any]]:
+        # Keep the same mapping logic you already use:
+        # 1) by page_id, 2) fallback by title
+        res = all_resources.get(pid, [])
+        if not res:
+            res = all_resources.get(page_title, [])
+        return res or []
+
+    # Direct counts for each page in the spreadsheet
+    direct_count_by_page_id: Dict[str, int] = {}
+    for _, r in df_full.iterrows():
+        pid = str(r.get("page_id") or "").strip()
+        t = str(r.get("title") or "").strip()
+        if not pid:
+            continue
+        direct_count_by_page_id[pid] = len(resources_for(pid, t))
+
+    # Subtree totals (language-agnostic): parent includes all descendants
+    all_page_ids = [str(x).strip() for x in df_full["page_id"].tolist() if str(x).strip()]
+    subtree_count_by_page_id: Dict[str, int] = {}
+
+    for pid in all_page_ids:
+        total = direct_count_by_page_id.get(pid, 0)
+        for cid in all_page_ids:
+            if is_descendant_page(pid, cid):
+                total += direct_count_by_page_id.get(cid, 0)
+        subtree_count_by_page_id[pid] = total
+
+
+
 
     title_by_page_id: Dict[str, str] = dict(zip(df_full["page_id"], df_full["title"]))
     parent_by_page_id: Dict[str, str] = dict(zip(df_full["page_id"], df_full["parent_id"]))
@@ -774,10 +871,12 @@ def main(target_page_ids: Optional[List[str]] = None) -> None:
         if not resources_for_topic:
             resources_for_topic = all_resources.get(title, [])
 
-        # Sidebar label override: show resource count in nav if there are any
-        n_resources = len(resources_for_topic)
-        if n_resources > 0:
-            frontmatter["nav_title"] = f"{title} [{n_resources}]"
+
+        # Sidebar label: show TOTAL resources in subtree (this page + all descendants)
+        n_resources = subtree_count_by_page_id.get(page_id, 0)
+        frontmatter["nav_title"] = f"{title} [{n_resources}]"
+
+
 
 
 
@@ -798,13 +897,21 @@ def main(target_page_ids: Optional[List[str]] = None) -> None:
             # If more than one resource, add a small TOC
             if len(resources_for_topic) > 1:
                 resources_list_md += "### Contents\n\n"
+                resources_list_md += "| Index | Description |\n"
+                resources_list_md += "| :--- | :--- |\n"
+
                 for idx, res in enumerate(resources_for_topic, start=1):
                     r_title = (str(res.get("title") or "").strip()) or "Untitled Resource"
                     item_code = f"{page_prefix}-{idx:03d}" if page_prefix else f"{idx:03d}"
                     anchor = slugify(f"{item_code} {r_title}")
-                    resources_list_md += f"* **{item_code}**: [{r_title}](#{anchor})\n"
+
+                    resources_list_md += (
+                        f"| **{item_code}** | "
+                        f"[{r_title}](#{anchor}) |\n"
+                    )
 
                 resources_list_md += "\n"
+
 
             # Then the actual resource blocks
             for idx, res in enumerate(resources_for_topic, start=1):
