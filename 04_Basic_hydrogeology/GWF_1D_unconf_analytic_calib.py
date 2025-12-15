@@ -4,7 +4,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 import streamlit as st
 
-# also Interactive Documents 08-07-001
+# also Interactive Documents 08-07-002
 # ToDo:
 #    - K log slider
 #    - account/warn for negative heads
