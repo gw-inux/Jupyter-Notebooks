@@ -60,7 +60,7 @@ columns = st.columns((1,1))
 
 with columns[0]:
     with st.expander('Modify the initial masses'):
-        A_0=st.slider(f'**Initial mass $A_0$ [kg]**:',0,1000,0,10)
+        A_0=st.slider(f'**Initial mass $A_0$ [kg]**:',0,1000,500,10)
         B_0=st.slider(f'**Initial mass $B_0$ [kg]:**',0,1000,0,10)
         C_0=st.slider(f'**Initial mass $C_0$ [kg]:**',0,1000,0,10)
     
