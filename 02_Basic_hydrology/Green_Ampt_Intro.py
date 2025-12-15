@@ -119,7 +119,7 @@ with open(path_quest_ini, "r", encoding="utf-8") as f:
 with open(path_quest_final, "r", encoding="utf-8") as f:
     quest_final = json.load(f)
     
-st.title('Green-Ampt-Model for Infiltration v2')
+st.title('Green-Ampt-Model for Infiltration - Intro')
 st.subheader('Understanding infiltration into soils', divider = 'green')
 
 st.markdown("""
