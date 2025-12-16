@@ -1,0 +1,55 @@
+/* Resource heading styling */
+.resource-id {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
+               "Liberation Mono", "Courier New", monospace;
+  font-size: .85em;
+  padding: .12rem .45rem;
+  border: 1px solid #d0d0d0;
+  border-radius: .6rem;
+  margin-right: .4rem;
+  background: #fff;
+  white-space: nowrap;
+}
+
+.resource-title {
+  font-weight: 700;
+}
+
+
+/* Card-style resource header */
+.resource-header {
+  display: block;
+  padding: 12px 14px;
+
+  border: 1.5px solid currentColor;
+  border-radius: 14px;
+
+  background: #fff;
+  box-shadow: none;
+}
+
+/* Resource identifier (metadata) */
+.resource-header .resource-id {
+  display: inline-block;
+
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
+               "Liberation Mono", "Courier New", monospace;
+  font-size: 0.8em;
+
+  opacity: 0.65;
+
+  padding: 0.1rem 0.45rem;
+  border: 1px solid currentColor;
+  border-radius: 999px;   /* pill */
+
+  margin-bottom: 6px;
+}
+
+/* Resource title (primary signal) */
+.resource-header .resource-title {
+  display: block;
+  margin-top: 6px;
+
+  font-weight: 700;
+  font-size: 1.05em;
+}
