@@ -200,7 +200,7 @@ if scatter:
 
 st.pyplot(fig)
 
-st.markdown("""_Reference to the PEST software and training materials: Doherty, J. (2025) PEST, Model-Independent Parameter Estimation—Software and User Manual. Watermark Numerical Computing, https://pesthomepage.org/programs, last access 16. 12. 2025._""")
+st.markdown("""***Reference*** to the PEST software and training materials: Doherty, J. (2025) PEST, Model-Independent Parameter Estimation—Software and User Manual. Watermark Numerical Computing, https://pesthomepage.org/programs, last access 16. 12. 2025._""")
 
 st.markdown('---')
 
