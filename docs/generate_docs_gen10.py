@@ -534,9 +534,10 @@ def format_resource_markdown(resource: Dict[str, Any], item_code: str) -> str:
     md = ""
 
     # --- Header first (H3 so page title stays dominant) ---
+    anchor = slugify(f"{item_code} {title}")
+
     md += (
-        "### "
-        f'<span class="resource-header">'
+        f'### <span class="resource-header" id="{anchor}">'
         f'<span class="resource-id">{item_code}</span>'
         f'<span class="resource-title">{title}</span>'
         f"</span>\n\n"
