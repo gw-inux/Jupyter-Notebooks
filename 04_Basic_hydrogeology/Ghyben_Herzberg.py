@@ -5,12 +5,28 @@ import matplotlib.pyplot as plt
 # Streamlit app title and description
 # Developed by Markus Giese University of Gothenburg 2025
 
+# Authors, institutions, and year
+year = 2025 
+authors = {
+    "Markus Giese": [1],  # Author 1 belongs to Institution 1
+    "Thomas Reimann": [2]
+}
+institutions = {
+    1: "University of Gothenburg, Department of Earth Sciences",
+    2: "TU Dresden, Institute for Groundwater Management",
+}
+index_symbols = ["¹", "²", "³", "⁴", "⁵", "⁶", "⁷", "⁸", "⁹"]
+author_list = [f"{name}{''.join(index_symbols[i-1] for i in indices)}" for name, indices in authors.items()]
+institution_list = [f"{index_symbols[i-1]} {inst}" for i, inst in institutions.items()]
+institution_text = " | ".join(institution_list)
+
 st.title('The Ghyben-Herzberg Relation')
 
 st.subheader('Describing the :blue[freshwater-saltwater interface] under static hydraulic conditions', divider="blue")
 
 st.markdown(r"""
 ### **Introduction**  
+The first general scientific descriptions of saltwater intrusion were published at the end of the nineteenth century. Based on field observations, Drabbe and Badon-Ghyben (1888) and Herzberg (1901) derived the first quantitative relationship of the saltwater–freshwater interface location as a linear function of the water-table elevation in steady-state conditions. The resulting conceptual theorem, the Ghyben-Herzberg theorem, is named after two of the leading authors. The conceptual model of a sharp interface is still frequently applied, although it does not account for mixing along the interface and therefore the validity of a sharp interface applied on real case scenarios is limited.
 The Ghyben-Herzberg relation describes the equilibrium relationship between fresh groundwater and underlying seawater in coastal aquifers. Due to the density difference between freshwater and seawater, a lens of fresh groundwater floats above the denser saltwater, see the following figure.
 """, unsafe_allow_html=True)
 
@@ -26,10 +42,10 @@ z = \frac{\rho_f}{\rho_s - \rho_f} h
 $$
 
 where:  
-- \( z \) is the depth of the freshwater-saltwater interface below sea level,  
-- \( h \) is the height of the freshwater table above sea level,  
-- \( $\rho_f$ \) is the density of freshwater (approximately \( 1000 \, kg/m³ \)),  
-- \( $\rho_s$ \) is the density of seawater (approximately \( 1025 \, kg/m³ \)).  
+- $z$ is the depth of the freshwater-saltwater interface below sea level [L],  
+- $h$ is the height of the freshwater table above sea level [L],  
+- $\rho_{f}$ is the density of freshwater [M/L³] ($\approx$ 1000 kg/m³),  
+- $\rho_{s}$ is the density of seawater [M/L³] ($\approx$ 1025 kg/m³).  
 
 For typical values, this relation simplifies to:  
 
@@ -38,8 +54,22 @@ z \approx 40h
 $$
 
 This means that for every meter of freshwater head above sea level, the freshwater-saltwater interface extends approximately **40 meters** below sea level.
+
+**Assumptions:**
+
+- Static (no pumping, no recharge change) conditions.
+- Homogeneous, isotropic aquifer.
+- Sharp interface between fresh and salt water (no mixing zone).
+- Hydrostatic equilibrium (no flow effects on interface position).
+
+**Limitations:**
+
+- Real aquifers have a transition zone due to dispersion and diffusion.
+- Does not account for pumping cones of depression or tidal effects.
+
 """, unsafe_allow_html=True)
 
+st.subheader('Interactive Plot', divider="blue")
 def land_surface(x, p):
     """Quadratische Funktion, die von y=10 (bei x=0) auf y=0 (bei x=1000) fällt. The exponent defines the shape"""
     return 10 * (1 - (x / 1000)**p)
@@ -105,9 +135,9 @@ st.pyplot(fig)
 
 '---'
 
-# Copyright
-col1, col2 = st.columns([1, 5], gap = 'large')  # Adjust column width ratio
-with col1:
-    st.image('04_Basic_hydrogeology/FIGS/logo_iNUX.jpg', width=125)
-with col2:
-    st.markdown("© 2025 iNUX Project - Interactive understanding of groundwater hydrology and hydrogeology - An ERASMUS+ cooperation project.<br>App developer: Markus Giese (University of Gothenburg), Thomas Reimann (TU Dresden)", unsafe_allow_html=True)
+# Render footer with authors, institutions, and license logo in a single line
+columns_lic = st.columns((5,1))
+with columns_lic[0]:
+    st.markdown(f'Developed by {", ".join(author_list)} ({year}). <br> {institution_text}', unsafe_allow_html=True)
+with columns_lic[1]:
+    st.image('FIGS/CC_BY-SA_icon.png')
