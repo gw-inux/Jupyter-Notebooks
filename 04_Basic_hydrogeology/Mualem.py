@@ -6,6 +6,7 @@ import matplotlib.pyplot as plt
 # - Description
 # - Slider
 # - Plot
+# - Purpose (compare different soil etc.)
 
 # Streamlit app title and description
 # Developed by Markus Giese University of Gothenburg 2025
@@ -24,8 +25,10 @@ institution_list = [f"{index_symbols[i-1]} {inst}" for i, inst in institutions.i
 institution_text = " | ".join(institution_list)
 
 # Markdown description
+st.title('Mualem Equation')
+st.subheader('Describing unsaturated hydraulic conductivity as a function of soil suction', divider="black")
 st.markdown(r"""
-### **Mualem Equation**  
+### **Introduction**  
 The Mualem equation describes the relationship between the unsaturated hydraulic conductivity $k(\psi)$ and the soil water retention curve. It links how easily water moves through partially saturated soil to how much water the soil holds at a given pressure (matric potential), usually using effective saturation as a bridge between the two. In practice, it is often combined with a retention model such as the van Genuchten curve, so that both 
 $𝜃(𝜓)$ and $k(ψ)$ are described consistently with a shared set of parameters. The Mualem formulation includes a parameter (commonly denoted $L$) that accounts for how complex pore pathways become as the soil dries, making it a widely used foundation for modelling unsaturated flow in hydrology and soil physics.
 
@@ -55,7 +58,7 @@ $$
 where:
 - $\alpha$ is another empirical parameter.
 """, unsafe_allow_html=True)
-
+st.subheader('Interactive Plot and Exercise', divider="black")
 # User inputs for Mualem equation
 alpha = st.slider("α (1/cm)", min_value=0.008, max_value=0.145, step=0.001, value=0.075)
 n = st.slider("n (dimensionless)", min_value=1.09, max_value=2.68, step=0.01, value=1.89)
@@ -87,4 +90,5 @@ with columns_lic[0]:
     st.markdown(f'Developed by {", ".join(author_list)} ({year}). <br> {institution_text}', unsafe_allow_html=True)
 with columns_lic[1]:
     st.image('FIGS/CC_BY-SA_icon.png')
+
 
