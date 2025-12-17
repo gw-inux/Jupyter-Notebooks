@@ -1,0 +1,230 @@
+[
+    {
+        "image": "images/slide_1.png",
+        "notes": "Willkommen zur Grundwasserbewirtschaftung mit Computermodellen \u2013 Thema 04: Numerische L\u00f6sung der Transportgleichung\rSchwerpunkt im ersten Teil der Veranstaltung vom 10. November ist eine Einf\u00fchrung zu den Grundlagen des Transports gel\u00f6ster Stoffe; die Folien / Notizen dazu finden Sie in den Unterlagen zu V04 (02. November 2023) ab ca. Folie 50;\rIn Teil 2 der Veranstaltung besprechen wir die Ausweisung von Schutzzonen f\u00fcr Wasserfassungen auf Basis von Partikeltracking;\rNachfolgend die wichtigsten Folien, zum Teil mit Kommentaren (2022 11 10 // 16:30 Uhr; Kommentare soweit erg\u00e4nzt),\rNeben diesen Folien finden Sie im OPAL-Kurs weitere Materialien, u. a. elektronische Kontrollfragen,\rBei Fragen, Kommentaren und Hinweisen freuen wir uns von Ihnen zu h\u00f6ren."
+    },
+    {
+        "image": "images/slide_2.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_3.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_4.png",
+        "notes": "Praktische Fragestellung (Beispiel)\rWasserversorgung im Zusammenang mit landwirtschaftlicher Nutzung\rIn den Vorfeldme\u00dfstellen wird eine erh\u00f6hte Konzentration von Nitrat festgestellt\rFrage(n):\rWie sehen die einzelnen Einzugsgebiete der Entnahmebrunnen aus?\rWoher stammt das Wasser, welches durch die Entnahmebrunnen gef\u00f6rdert wird?\rWie kann ggf. Die Wasserbeschaffenheit durch Ma\u00dfnahmen im Einzugsgebiet optimiert werden (aber: hierei handelt es sich um eher langfristige Effekte)"
+    },
+    {
+        "image": "images/slide_5.png",
+        "notes": "Relevanz(!)\rAuch wenn vieles mit Computer und entsprechender Software realisiert werden kann, sind einfach Handrechnungen ein sehr wichtiger Aspekt (Grundverst\u00e4ndnis, Kontrolle der Computerrechnungen)\rDie nachfolgenden Rechnungen zu Trennstromlinie und Einzugsgebiet sind solch einfache Handrechnungen"
+    },
+    {
+        "image": "images/slide_6.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_7.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_8.png",
+        "notes": "Situation in diesem Beispiel\ru. a. Interaktion mit Oberfl\u00e4chengew\u00e4ssern;\rUnterschiedliche Landnutzung"
+    },
+    {
+        "image": "images/slide_9.png",
+        "notes": "Beispiel\rMit dem Computermodell werden einige m\u00f6gliche Varianten (-> Ber\u00fccksichtigung von Unsicherheiten \u2013 s. auch die Abschnitte der LV zum konzeptionellen Modell)\rEinige numerisch berechnete Str\u00f6mungsbahnen zeigen in der Abbildung das Einzugsgebiet der Wasserfassung"
+    },
+    {
+        "image": "images/slide_10.png",
+        "notes": "Beispiel zur Plausilibit\u00e4t (Trennstromlinie)\rVergleich der numerisch berechneten Varianten mit den Ergebnissen der \u2018h\u00e4ndisch\u2019 / analytisch berechneten Trennstromlinie (f\u00fcr verschiedene hydr. Leitf\u00e4higkeiten)\rd. h. numerische Berechnungen plausible\rDie Berechnung der Trennstromlinie folgt in dieser Lehrveranstaltung"
+    },
+    {
+        "image": "images/slide_11.png",
+        "notes": "Beispiel zur Plausilibit\u00e4t (Isochronen / Zylinderformel)\rAbsch\u00e4tzung des Entahmebereichs mit der Zylinderformel\rNumerische Berechnung der Isochrone f\u00fcr 10 Jahre (gelber Bereich)\rPlausibilit\u00e4t des numerischen Modells\rBerechnung der Zylinderformel im weiteren Verlauf dieser Veranstaltung"
+    },
+    {
+        "image": "images/slide_12.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_13.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_14.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_15.png",
+        "notes": "Beispiel \u2013 Wasserstutzzonen im Freistatt Sachsen (Karte vom LfULG)"
+    },
+    {
+        "image": "images/slide_16.png",
+        "notes": "Beispiel \u2013 Wasserstutzzonen in Baden W\u00fcrttemberg (Karte vom LUBW)\rBereiche von BW sind im Untergrund verkarstet (z. B. schw\u00e4bische Alb)\rDamit sind die Schutzzonen bedeutend gr\u00f6\u00dfer als im \u00fcblichen Lockergestein (z. B. relative hohe Abstandsgeschwindigkeiten in den Karstr\u00f6hren)"
+    },
+    {
+        "image": "images/slide_17.png",
+        "notes": "Wird aus einem Aquifer Wasser entnommen (z. B. durch F\u00f6rderbrunnen) bildet sich ein Absenktrichter aus. F\u00fcr den Entnahmebrunnen ergibt sich das Einzugsgebiet, d. h. innerhalb dieser Fl\u00e4che erreicht neu gebildetes Grundwasser den Entnahmebrunnen."
+    },
+    {
+        "image": "images/slide_18.png",
+        "notes": "Wasserschutzgebiete sind in drei Zonen unterteilt. Die nachfolgenden Folien geben einen \u00dcberblick \u00fcber die Intention der jeweiligen Zone und erl\u00e4utern kurz, wie diese bestimmt / dimensioniert werden."
+    },
+    {
+        "image": "images/slide_19.png",
+        "notes": "In Deutschland wird f\u00fcr Schutzzone II die 50-Tage Isochrone verwendet. In anderen Teilen der Welt werden z. T. anderen Werte verwendet (z. B. 30-Tage Isochrone)."
+    },
+    {
+        "image": "images/slide_20.png",
+        "notes": "Die Schutzzone 3 umfasst das gesamte unterirdische Einzugsgebiet der Wasserfassung.\rHintergrund: urspr\u00fcnglich wurde von pathogenen Keimen als Gefahrenquelle f\u00fcr die Wasserfassung ausgegangen (Hygiene).\rEntsprechend wurde die 50-Tage Isochrone (SZ II) ausgewiesen. Im Laufe der Zeit wurde aber auch in anderen Substanzen eine Gefahr f\u00fcr die Wasserfassung gesehen (z. B. gesundheitsgef\u00e4hrdende Stoffe, welche nicht bzw. nur sehr schwer abgebaut werden \u2013 persistente Schadstoffe).\rSchutzzone 3 (das gesamte EZG der Wasserfassung) soll durch entsprechende Restriktionen vermeiden, dass diese Stoffe in das Einzugsgebiet der Wasserfassung eingetragen werden."
+    },
+    {
+        "image": "images/slide_21.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_22.png",
+        "notes": "Beispiel zur Relevanz:\rIm Wasserschutzgebiet gibt es z. B. andere Anforderungen an den Verkehr (Stra\u00dfenbau, ggf. Geschwindigkeitsbegrenzungen) mit dem Ziel, den Eintrag wassergef\u00e4hrdenter Stoffe zu vermeiden"
+    },
+    {
+        "image": "images/slide_23.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_24.png",
+        "notes": "Relevanz(!)\rAuch wenn vieles mit Computer und entsprechender Software realisiert werden kann, sind einfach Handrechnungen ein sehr wichtiger Aspekt (Grundverst\u00e4ndnis, Kontrolle der Computerrechnungen)\rDie nachfolgenden Rechnungen zu Trennstromlinie und Einzugsgebiet sind solch einfache Handrechnungen"
+    },
+    {
+        "image": "images/slide_25.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_26.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_27.png",
+        "notes": "Die Zylinderformel ist eine sehr einfache Methode, um eine Isochrone abzusch\u00e4tzen. Grundlage - idealisierte Situation (homogener / isotroper Aquifer):\rdas Grundwasser befindet sich in Ruhe (d. h. keine Hintergrundstr\u00f6mung, der nat\u00fcrliche Gradient I = 0).\rBei Wasserentnahme wird der Brunnen gleichm\u00e4\u00dfig von allen Seiten angestr\u00f6mt.\rDie Isochronen bilden konzentrische Kreise um den Brunnen."
+    },
+    {
+        "image": "images/slide_28.png",
+        "notes": "(hier f\u00fcr den gespannten Fall)\rDas entnommene Volumen Q \uf0b4 t (Entnahmemenge mal Zeit) entspricht einem Zylinder mit dem Inhalt \uf070r2 (Umfang) \uf0b4 M\u00e4chtigkeit b (entspricht der H\u00f6he des Zylinders) \uf0b4 effektive Porosit\u00e4t.\rUm die Isochrone zu ermitteln, muss die Gleichung nur nach dem Radius r umgestellt werden."
+    },
+    {
+        "image": "images/slide_29.png",
+        "notes": "\u00dcbungsaufgabe:\rHier einfach die Zylinderformel nach dem Radius umstellen\rDer Radius entspricht dem gesuchtem Ergebnis"
+    },
+    {
+        "image": "images/slide_30.png",
+        "notes": "Numerische L\u00f6sung der \u00dcbungsaufgabe \u2013 Partikeltracking\rEingangsdaten f\u00fcr das Partikeltracking sind die Ergebnisse der Str\u00f6mungssimulation (s. rechte Seite \u2013 jeder Pfeil in der Abbildung repr\u00e4sentiert einen berechneten Volumenstrom)\rAuf Basis der Volumenstr\u00f6me / Geschwindigkeiten wird die Laufbahn der \u2018virtuellen\u2019 Partikel berechnet\rEinfache Variante: Partikeltracking nach Euler\rNachteil: Aktuelle Geschwindigkeit wird extrapoliert; \u00c4nderungen im Verlauf der Wegbahn (z. B. g\u00e4nderte Richtung) werden vernachl\u00e4ssigt"
+    },
+    {
+        "image": "images/slide_31.png",
+        "notes": "Numerische L\u00f6sung der \u00dcbungsaufgabe \u2013 Partikeltracking\rKomplexere Variante: Partikeltracking nach Runge-Kutta\rEs werden weitere Punkte im Verlauf der Strombahn ber\u00fccksichtigt (d. h. wenn sich im Verlauf die Richtung / Geschwindigkeit \u00e4ndert)\rErgebnis ist eine Mittelung"
+    },
+    {
+        "image": "images/slide_32.png",
+        "notes": "Numerische L\u00f6sung der \u00dcbungsaufgabe \u2013 Partikeltracking\rKomplexere Variante: Partikeltracking nach Pollock\rEs werden innerhalb der Zelle die Wegbahnen mit analytischen Gleichungen berechnet\rErgebnis ist, je nach r\u00e4umlicher Diskretisierung, eine gute N\u00e4herung,"
+    },
+    {
+        "image": "images/slide_33.png",
+        "notes": "Numerische L\u00f6sung der \u00dcbungsaufgabe 1a\rMit Partikeltracking wird der gleiche Durchmesser der Isochrone ermittelt (im Vergleich zur Zylinderformel)\rDas numerische Modell ist im OPAL Kurs zu finden"
+    },
+    {
+        "image": "images/slide_34.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_35.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_36.png",
+        "notes": "Numerische L\u00f6sung der \u00dcbungsaufgabe 1b\rMit Partikeltracking wird ein vergleichbarer Durchmesser der Isochrone ermittelt (im Vergleich zur angepassten Zylinderformel)\rDas numerische Modell ist im OPAL Kurs zu finden"
+    },
+    {
+        "image": "images/slide_37.png",
+        "notes": "Testfrage:\rWelche Verfahren stehen hinter den Bahnen A, B und C?"
+    },
+    {
+        "image": "images/slide_38.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_39.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_40.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_41.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_42.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_43.png",
+        "notes": "Analytische L\u00f6sung f\u00fcr das Einzugsgebiet einer Wasserfassung (Trennstromlinie) f\u00fcr einen homogenen und gespannten Aquifer."
+    },
+    {
+        "image": "images/slide_44.png",
+        "notes": "Folgende Gr\u00f6\u00dfen ergeben sich aus der analytischen L\u00f6sung (Achtung \u2013 Vorzeichen bei Abstand zum Kulminationspunkt). (Q = gef\u00f6rderte Wassermenge, K = hydraulische Leitf\u00e4higkeit, I = nat\u00fcrlicher Gradient des Grundwassers, b = wassererf\u00fcllte M\u00e4chtigkeit des Grundwasserleiters)."
+    },
+    {
+        "image": "images/slide_45.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_46.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_47.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_48.png",
+        "notes": "Numerische L\u00f6sung\rErgebnis verleichbar mit der analytischen (Hand)Rechnung\rModell ist im OPAL-Kurs zu finden"
+    },
+    {
+        "image": "images/slide_49.png",
+        "notes": "Trennstromlinie f\u00fcr den ungespannten Grundwasserleiter\rPrinzipiell vergleichbar\rIn der Lehrveranstaltung nicht n\u00e4her erl\u00e4utert (hier zur Vollst\u00e4ndigkeit)"
+    },
+    {
+        "image": "images/slide_50.png",
+        "notes": "Theoretisch ist das Einzugsgebiet einer Wasserfassung unendlich lang; um die Fl\u00e4che zu begrenzen, kann \u00fcber die j\u00e4hrliche Grundwasserneubildung die Fl\u00e4che von Schutzzone III (= Einzugsgebiet der Wasserfassung) abgesch\u00e4tzt werden."
+    },
+    {
+        "image": "images/slide_51.png",
+        "notes": "Beispiel zur Ausweisung von Schutzzonen\rKarte vom LfULG (umwelt.Sachsen) - iDA\rStadt Hoyerswerda\rRot: Schutzzone I\rDunkelgr\u00fcn: Schutzzone II\rHellgr\u00fcn: Schutzzone IIIA\rGelb: Schutzzone IIIB"
+    },
+    {
+        "image": "images/slide_52.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_53.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_54.png",
+        "notes": "\u00dcbungsaufgabe 3\rAnwendung der h\u00e4ndischen Rechnungen\rArbeitsblatt verwenden\rSchutzzonen endg\u00fcltig auf Basis der Handrechnungen festlegen / Flurst\u00fccksgrenzen etc. ber\u00fccksichtigen"
+    },
+    {
+        "image": "images/slide_55.png",
+        "notes": "Beispiel f\u00fcr die numerische Berechnung der Trennstromlinien\rLinks: Backward Partikel-Tracking; Zugabe der Partikel in den Brunnen / R\u00fcckrechnung -> Anzeige des EZG\rRechts: Forward Partikel-Tracking; Zugabe der Partikel im Einzugsgebiet (z. B. Zustrom Randbedingung) / Einzugsgebiet wird sichtbar"
+    },
+    {
+        "image": "images/slide_56.png",
+        "notes": "Ausblick\rLehrveranstaltung / \u00dcbungsaufgaben mit einfachen Beispielen f\u00fcr Lockergesteins-Grundwasserleiter\rF\u00fcr komplexere Situationen sind diese Methoden eher beschr\u00e4nkt / nicht korrekt anwendbar;\rDie Abbildung zeigt als Beispiel die Schutzzonen f\u00fcr einen Karstgrundwasserleiter; es wird deutlich, dass Zone II im weiteren Einzugsgebiet verstreut ist (hier, wo es z. B. durch Schluckl\u00f6cher direkten Zugang in den Karstgrundwasserleiter gibt)."
+    },
+    {
+        "image": "images/slide_57.png",
+        "notes": "No notes"
+    }
+]

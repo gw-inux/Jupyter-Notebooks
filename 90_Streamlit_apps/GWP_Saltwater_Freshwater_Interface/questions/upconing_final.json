@@ -1,0 +1,57 @@
+[
+  {
+    "question": "Which of the following statements about upconing are correct?",
+    "options": {
+      "Upconing is the upward movement of the saltwater–freshwater interface below a pumping well caused by lowering of freshwater heads.": true,
+      "Upconing occurs only when the pumping rate exceeds the critical rate Q_{max}.": false,
+      "Upconing can occur even at relatively low pumping rates if the initial distance d between the well and the interface is small.": true,
+      "Upconing is driven solely by molecular diffusion and does not depend on pumping.": false
+    },
+    "success": "Correct — upconing is the upward movement of the interface driven by pumping, and it can occur even at modest pumping rates if the well is too close to the interface.",
+    "error": "Not quite — remember that upconing is a pumping-driven rise of the interface and can occur even below a 'critical' rate if the initial separation is small."
+  },
+  {
+    "question": "Which of the following parameter changes would tend to increase the amount of upconing z(0), assuming all other parameters remain constant?",
+    "options": {
+      "Increasing the pumping rate Q.": true,
+      "Increasing hydraulic conductivity K.": false,
+      "Decreasing the pre-pumping distance d between the well screen and the interface.": true,
+      "Increasing the density difference.": false
+    },
+    "success": "Correct — stronger pumping and a smaller initial separation both increase upconing; higher K or larger density contrast tend to stabilise the interface.",
+    "error": "Not quite — focus on changes that strengthen drawdown at the well or reduce the freshwater buffer between the screen and the interface."
+  },
+  {
+    "question": "The analytical upconing solution used in your app is based on several simplifying assumptions. Which of the following are standard assumptions in these models?",
+    "options": {
+      "The interface between fresh and saline groundwater is sharp, with no transition zone.": true,
+      "The aquifer is homogeneous, isotropic and of uniform thickness.": true,
+      "Flow to the well is axisymmetric, and the well is treated as a point sink.": true,
+      "The model fully accounts for complex density-dependent flow and dispersion in a thick mixing zone.": false
+    },
+    "success": "Correct — classical upconing models assume a sharp interface, a homogeneous aquifer and axisymmetric flow to an idealised well; they do not resolve full density-dependent flow and dispersion.",
+    "error": "Not quite — these models are deliberately simple: sharp interface, uniform aquifer and axisymmetric flow, without detailed mixing-zone physics."
+  },
+  {
+    "question": "Which design choices typically reduce the risk of salinisation due to upconing?",
+    "options": {
+      "Using several shallow wells with lower pumping rates instead of one deep, heavily pumped well.": true,
+      "Placing well screens as close as possible to the initial interface to maximise yield.": false,
+      "Increasing the distance between the well and the coastline, where feasible.": true,
+      "Concentrating all abstraction in a single well field close to the coast.": false
+    },
+    "success": "Correct — distributed, shallower pumping and greater distance from the coast reduce upconing risk; deep, concentrated coastal pumping does the opposite.",
+    "error": "Not quite — think about designs that maintain a thicker freshwater buffer and reduce the drawdown at any single well."
+  },
+  {
+    "question": "In the classical sharp-interface upconing solution, which parameter primarily affects the time scale over which the interface approaches its maximum rise beneath the well, but does not change the steady-state maximum upconing height at the well?",
+    "options": {
+      "Hydraulic conductivity.": false,
+      "Pumping rate.": false,
+      "Pre-pumping distance between well screen and interface.": false,
+      "Effective porosity.": true
+    },
+    "success": "Correct — in these models, effective porosity controls how quickly the interface moves (the time scale), while the steady-state maximum upconing height is set mainly by pumping rate, geometry and aquifer properties.",
+    "error": "Not quite — porosity controls the volume of water that must move and therefore the time scale, even though it does not change the final steady-state upconing height."
+  }
+]

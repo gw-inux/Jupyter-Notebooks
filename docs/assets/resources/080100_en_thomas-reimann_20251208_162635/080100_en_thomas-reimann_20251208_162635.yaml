@@ -1,0 +1,60 @@
+catalog_category: "08 Groundwater Modeling"
+catalog_subcategory: "01 Conceptual Model Development"
+catalog_subsubcategory: "(Attach to subcategory)"
+
+# --- RESOURCE IDENTIFICATION AND TOPIC MAPPING ---
+# item_id: A unique, simple slug for this item (e.g., aquifer_test_1). 
+
+item_id: 0801001
+topic: 01 Conceptual Model Development # Must match the title of the parent catalog page.
+title: Introduction in Boundary Conditions    # The full, descriptive name of the resource.
+
+# --- TYPE AND ACCESS ---
+resource_type: Streamlit app            # Required. Options: Streamlit app, Jupyter Notebook, Video, Dataset, Other.
+url: https://gwp-boundary-conditions-intro.streamlit.app/      # The direct link to launch the app, notebook on Binder, or video on YouTube.
+date_released: TO_BE_FILLED_BY_COURSE_MANAGER               # Release date in YYYY-MM-DD format.
+
+# --- CONTENT AND METADATA ---
+description_short: >
+  Boundary conditions define how the groundwater system interacts with its surroundings. They describe whether water enters or leaves the model domain, for example, through recharge, rivers, lakes, wells, or impermeable barriers. It is essential to understand the concept behind the different boundary conditions. This understanding is required to ‘translate’ physical and hydrological elements of the real world into model elements.
+  
+  With this application you can build intuition for how Type I/II/III boundaries behave, and how this behavior can be described by discharge-head relations (Q–h-plots). You can learn how boundary conditions reflect system characteristics, and gain an understanding of the general characteristics of groundwater–surface water interaction.
+  
+  This application is an excellent introduction for the Module: Boundary Conditions for Groundwater Modeling.
+keywords: [Boundary conditions, groundwater modeling, conceptual model]
+multipage_app: false
+num_pages: 0
+interactive_plots: true
+num_interactive_plots: 4
+assessments_included: true
+num_assessment_questions: 8
+videos_included: false
+num_videos: 0
+
+# --- EDUCATIONAL FIT ---
+time_required: 30–45 minutes             # Estimated time for a student to complete the activity (e.g., 30 minutes, 1.5 hours).
+prerequisites: Basic hydrogeology       # Required prior knowledge (e.g., Darcy's Law, Python basics, basic calculus).
+fit_for:
+  - self learning
+  - classroom teaching
+  - online teaching
+
+# --- AUTHOR AND REFERENCE ---
+authors:
+  - name: Thomas Reimann
+    affiliation: TU Dresden
+  - name: Eileen Poeter
+    affiliation: Colorado School of Mines
+references: []                            # List any published papers, DOIs, or source materials related to this resource.
+# image_url: Optional path to a screenshot for the catalog page (e.g., /assets/images/resources/flow_tool_screenshot.png)
+
+figures:
+  - id: 1
+    original_filename: BC_Intro_01.jpg
+    type: Screenshot
+    caption: Interactive plot of for a boundary condition including the discharge-head relationship.
+    is_cover: true
+  - id: 2
+    original_filename: BC_Intro_02.jpg
+    type: Screenshot
+    caption: Insight of the app that combines explanations, figures, interactive plots, and assessments.

@@ -17,30 +17,39 @@ with columns[0]:
     r_w = st.slider('Well radius (m)', 0.01,1.,0.3,0.01, format="%4.2f")
 with columns[1]:
     m =  st.slider('Thickness of the aquifer (m)', 1.,100.,20.,0.01, format="%4.2f")
-    Q =  st.slider('Abstraction rate (m3/s)', 0.001,1.,0.05,0.001, format="%5.3f")
     K_slider_value=st.slider('(log of) **Hydr. conductivity (m/s)**', log_min,log_max,-3.0,0.01,format="%4.2f" )
     # Convert the slider value to the logarithmic scale
     K = 10 ** K_slider_value
     # Display the logarithmic value
     st.write("_Hydraulic conductivity (m/s):_ %5.2e" %K)
+    ddwn = st.toggle('Abstraction _Q_ or Drawdown _s_?')
+    if ddwn:
+        s = st.slider('Drawdown (m)', 0.01, 10.0, 0.2, 0.01, format="%5.2f")
+    else:
+        Q =  st.slider('Abstraction rate (m3/s)', 0.001,1.,0.05,0.001, format="%5.3f")
 
          
-# Initialize 
-R_max = 3000*(H-m)*0.01**0.5
-R_old = R_max/2
+# Initialize
+if ddwn:
+    R = 3000 * s * K**0.5
+    Q = 2 * np.pi * K * m * s / np.log(R / r_w)
+else:
+    R_max = 3000*(H-m)*0.01**0.5
+    R_old = R_max/2
 
-#FIND R
-while True: 
-    h_w = H - (Q * np.log(R_old/r_w))/(2 * np.pi * K * m)
-    R = 3000 * (H-h_w) * K**0.5
-    if abs(R - R_old)<0.00001:
-        break
-    R_old = R
+    #FIND R
+    while True: 
+        h_w = H - (Q * np.log(R_old/r_w))/(2 * np.pi * K * m)
+        R = 3000 * (H-h_w) * K**0.5
+        if abs(R - R_old)<0.00001:
+            break
+        R_old = R
     
 #COMPUTE h(r)
-r = np.arange(r_w, R, 0.01)
-rm = r*-1
-h = H - (Q * np.log((R)/(r)))/(2 * np.pi * K* m)
+n_points = 500  # reasonable resolution for plotting
+r = np.linspace(r_w, R, n_points)
+rm = -r  # mirrored for left side
+h = H - (Q * np.log((R)/(r)))/(2 * np.pi * K * m)
     
 #PLOT    
 fig = plt.figure(figsize=(9,6))
@@ -73,3 +82,6 @@ ax.axvspan(-x_max, x_max, ymin=0, ymax=((H+5)/1), alpha=0.5, color='grey')
 ax.text((x_max/2),(m/2),'confined aquifer')
     
 st.pyplot(fig)
+
+st.write('Drawdown at the well: ', H-h[0], ' m')
+st.write('Abstraction rate: ', Q, ' m3/s')

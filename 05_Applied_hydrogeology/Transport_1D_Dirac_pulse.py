@@ -6,26 +6,29 @@ import streamlit as st
 
 st.title('1D Transport with advection and dispersion')
 st.subheader('Tracer input as :green[Dirac Pulse] data', divider="green")
-
-columns1 = st.columns((1,1,1), gap = 'large')
-with columns1[1]:
-    theory = st.button('Show theory')
     
-if theory:
+with st.expander("Show the equation"):
     st.latex(r'''c(x,t) = \frac{\Delta M}{2 \cdot A \cdot n_e \sqrt{\pi \cdot D \cdot t}} e^{-\frac{(x - v \cdot t)^2}{4 D \cdot t}}''')
 
 st.markdown("""
             ### About the computed situation
             
-            Transport is considered for a 1D system with steady groundwater flow with a specific discharge _q_ of 0.016 m/s. The average velocity is depending on the porosity and printed below the interactive plot.
+            Transport is considered for a 1D system with the following characteristics
+            * steady groundwater flow,
+            * specific discharge $q$ of 0.016 m/s.
+            * The solutes are added by an Dirac pulse with a user defined mass.
             
-            The solutes are added by an Dirac pulse with a user defined mass.
+            The average velocity is depending on the porosity and printed below the interactive plot.        
             
-            The plot shows the solute concentration for advective-dispersive transport. The break through curve is computed for an observation point in a user-defined distance from the source. It is possible to plot a second breakthrough curve in an user-defined distance relative to the first observation.
+            The plots show the solute concentration for advective-dispersive transport.
+            
+            (1) The **break through** curve is computed for an observation point in a user-defined distance from the source. It is possible to plot a second breakthrough curve in an user-defined distance relative to the first observation.
+            
+            (2) The **concentration profile** shows the situation for a specific time.
 """, unsafe_allow_html=True
 )
-"---"
 
+st.subheader("Interactive plot", divider = 'green')
 #FUNCTIONS FOR COMPUTATION; ADS = ADVECTION, DISPERSION AND SORPTION - EVENTUALLY SET RETARDATION TO 1 FOR NO SORPTION
 
 def c_ADE(x, t, dM, Area, n, a, v):
@@ -42,21 +45,26 @@ def c_ADE(x, t, dM, Area, n, a, v):
     c = prefactor * exponential
     return c
 
-st.write('The plot shows the solute concentration at an observation point in a user-defined distance from the source. Transport is considered for a 1D system with steady groundwater flow. Solutes are added by an finite pulse with a concentration of 0.1 g per cubicmeter.')
+st.write('')
 "---"
-columns2 = st.columns((1,1), gap = 'large')
+columns2 = st.columns((1,1,1))
 
 with columns2[0]:
-    tp = st.slider(f'**Time for the concentration profile (s)**',1.,1800.,120.,1.)
-    multi = st.toggle("Plot two curves")
-    x  = st.slider(f'**Distance of the primary observation from source (m)**',1.,100.,1.,1.)
-    if multi:
-        dx = st.slider(f'**Distance between the primary and secondary observation (m)**',0.,50.,1.,0.1) 
-    
+    with st.expander("Control for the breakthrough curves"):
+        multi = st.toggle("Plot two curves")
+        x  = st.slider(f'**Distance of the primary observation from source (m)**',1.,100.,1.,1.)
+        if multi:
+            dx = st.slider(f'**Distance between the primary and secondary observation (m)**',0.,50.,1.,0.1) 
+
 with columns2[1]:
-    dM = st.slider(f'**Input mass (g)**',0.01,5.0,1.0,0.01)
-    n = st.slider(f'**Porosity (dimensionless)**',0.02,0.6,0.2,0.001)       
-    a = st.slider(f'**Longitudinal dispersivity (m)**',0.001,1.0,0.01,0.001)
+    with st.expander("Controls for the concentration profile"):
+        tp = st.slider(f'**Time for the concentration profile (s)**',1.,1800.,120.,1.)      
+ 
+with columns2[2]:
+    with st.expander("Controls for the solute transport"):
+        dM = st.slider(f'**Input mass (g)**',0.01,5.0,1.0,0.01)
+        n = st.slider(f'**Porosity (dimensionless)**',0.02,0.6,0.2,0.001)       
+        a = st.slider(f'**Longitudinal dispersivity (m)**',0.001,1.0,0.01,0.001)
     
 "---"
 r  = 2      # Column radius
@@ -109,7 +117,7 @@ t_obs = [100, 200, 300, 400, 500, 600, 700, 800, 900, 1000]
 c_obs = [1e-3, 5e-2, 8.5e-2, 9.7e-2, 9.9e-2, 10e-2, 10e-2, 10e-2, 10e-2, 10e-2]
    
 #PLOT FIGURE
-fig = plt.figure(figsize=(9,12))
+fig = plt.figure(figsize=(9,8))
 ax = fig.add_subplot(2, 1, 1)
 ax.set_title('1D solute transport with advection-dispersion', fontsize=16)
 ax.set_xlabel ('Time (s)', fontsize=14)

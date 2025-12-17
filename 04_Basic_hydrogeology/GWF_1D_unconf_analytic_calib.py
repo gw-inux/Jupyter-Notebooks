@@ -4,34 +4,65 @@ import matplotlib.pyplot as plt
 import numpy as np
 import streamlit as st
 
-st.title('Analytical solution for 1D unconfined flow with two defined head boundaries')
-st.subheader('Understanding :rainbow[Model Calibration]', divider="blue")
+# also Interactive Documents 08-07-002
+# ToDo:
+#    - K log slider
+#    - account/warn for negative heads
+#    - option for specified head
 
-lc1, cc1, rc1 = st.columns((1,1,1), gap = 'large')
-with cc1:
-    theory = st.button('Show theory')
-if theory:
-    st.subheader('Conceptual model')
-    st.write('The conceptual model considers the aquifer as a homogeneous and isotropic structure with a horizontal bottom. The aquifer is bounded by two defined-head boundary conditions on the in- and outflow part. From the top, the aquifer receives uniform groundwater recharge.')
+# Authors, institutions, and year
+year = 2025 
+authors = {
+    "Thomas Reimann": [1]  # Author 1 belongs to Institution 1
+}
+institutions = {
+    1: "TU Dresden, Institute for Groundwater Management"
     
-    st.subheader('Mathematical model')
-    st.write('The equation for 1D groundwater flow in a homogeneous aquifer is')
+}
+index_symbols = ["¹", "²", "³", "⁴", "⁵", "⁶", "⁷", "⁸", "⁹"]
+author_list = [f"{name}{''.join(index_symbols[i-1] for i in indices)}" for name, indices in authors.items()]
+institution_list = [f"{index_symbols[i-1]} {inst}" for i, inst in institutions.items()]
+institution_text = " | ".join(institution_list)
+
+#--- User Interface
+
+st.title('Analytical solution for 1D unconfined flow with two specified head boundaries')
+st.header('Understanding :rainbow[Model Calibration]', divider="blue")
+
+
+with st.expander('Show the theory (conceptual and mathematical model)'):
+    st.markdown("""
+    #### Conceptual model
+    
+    The conceptual model considers the aquifer as a homogeneous and isotropic structure with a horizontal bottom. The aquifer is bounded by two specified-head boundary conditions on the in- and outflow part. From the top, the aquifer receives uniform groundwater recharge.
+    """)
+    st.image('FIGS/03_03_concept_1D_flow_unconfined.png', caption="Sketch of the conceptual model for the UNCONFINED aquifer.")
+    
+    st.markdown("""
+    #### Mathematical model
+    
+    The equation for 1D groundwater flow in a homogeneous aquifer is
+    """)
     st.latex(r'''\frac{d}{dx}=(-hK\frac{dh}{dx})=R''')
-    st.write('with')
-    st.write('- _x_ is spatial coordinate along flow,')
-    st.write('- _h_ is hydraulic head,')
-    st.write('- _K_ is hydraulic conductivity,')
-    st.write('- _R_ is recharge.')
-    st.write('A solution for the equation can be obtained with two boundary conditions at _x_ = 0 and _x_ = _L_:')
+    
+    st.markdown("""
+    with
+    * _x_ is spatial coordinate along flow,
+    * _h_ is hydraulic head,')
+    * _K_ is hydraulic conductivity,')
+    * _R_ is recharge.')
+    
+    A solution for the equation can be obtained with two boundary conditions at _x_ = 0 and _x_ = _L_:
+    """)
     st.latex(r'''h(0) = h_0''')
     st.latex(r'''h(L) = h_L''')
-    st.write('The solution for hydraulic head _h_ along _x_ is')
+    st.markdown("""The solution for hydraulic head _h_ along _x_ is""")
+    
     st.latex(r'''h(x)=\sqrt{h_0^2-\frac{h_0^2-h_L^2}{L}x+\frac{R}{K}x(L-x)}''')
 
-st.subheader('Computation and visualization')
-st.write('Subsequently, the solution is computed and results are visualized. You can modify the parameters to investigate the functional behavior. You can modify the groundwater recharge _R_ (in mm/a) and the hydraulic conductivity _K_ (in m/s).')
+st.subheader('Computation and visualization', divider='violet')
+st.markdown("""Subsequently, the solution is computed and results are visualized. You can modify the parameters to investigate the functional behavior. You can modify the groundwater recharge _R_ (in mm/a) and the hydraulic conductivity _K_ (in m/s).""")
 
-"---"
 # Random data for 'measurements'
 K_random = 2.34E-5*(np.random.randint(5, 500)/100)
 R_random = 250/1000/365.25/86400*(np.random.randint(50, 150)/100)
@@ -39,8 +70,8 @@ st.session_state.K_random = K_random
 st.session_state.R_random = R_random
 
 # Pre setting data
-hl = 150
-hr = 152
+hl = 152
+hr = 150
 L = 2500
 noise = 0.2
 calib = 'No calibration'
@@ -106,9 +137,12 @@ def computation():
     log_min = -6.0 # Corresponds to 10^-7 = 0.0000001
     log_max = -2.0  # Corresponds to 10^0 = 1
 
-    columns = st.columns((1,1), gap = 'large')
+    columns = st.columns((1,1,1))
     with columns[0]:
-        y_scale = st.slider('_Scaling the y-axis of the plot_', 0,20,3,1)
+        with st.expander('Adjust the plot'):
+            y_scale = st.slider('_Scaling the y-axis of the plot_', 0,20,3,1)
+    
+    with columns[1]:
         if st.toggle('Provide data for calibration?'):
             calib = st.selectbox("What data for calibration?", ('Irregular data with noise', 'Irregular data','Regular data' ))
             scatter = st.toggle('Show scatter plot')
@@ -118,20 +152,21 @@ def computation():
             scatter = False
             rch_fix = False 
         
-    with columns[1]:
-        # Log slider with input and print
-        # K_slider_value=st.slider('(log of) hydraulic conductivity in m/s', log_min,log_max,-4.0,0.01,format="%4.2f" )
-        K_slider_value=st.slider('_(log of) Hydraulic conductivity input:_', log_min,log_max,-4.0,0.01,format="%4.2f" )
-        K = 10 ** K_slider_value
-        st.write("**Hydraulic conductivity in m/s:** %5.2e" %K)
-        if rch_fix:
-            R = R_random
-            R_print = R*1000*86400*365.25
-            st.write("**Recharge (fixed) in mm/a:** %5.2f" %R_print)
-        else:
-            R = st.slider('_Recharge input:_',0,400,0,1)
-            st.write("**Recharge in mm/a:** %3i" %R)
-            R = R/1000/365.25/86400
+    with columns[2]:
+        with st.expander('Modify parameters'):
+            # Log slider with input and print
+            # K_slider_value=st.slider('(log of) hydraulic conductivity in m/s', log_min,log_max,-4.0,0.01,format="%4.2f" )
+            K_slider_value=st.slider('_(log of) Hydraulic conductivity input:_', log_min,log_max,-4.0,0.01,format="%4.2f" )
+            K = 10 ** K_slider_value
+            st.write("**Hydraulic conductivity in m/s:** %5.2e" %K)
+            if rch_fix:
+                R = R_random
+                R_print = R*1000*86400*365.25
+                st.write("**Recharge (fixed) in mm/a:** %5.2f" %R_print)
+            else:
+                R = st.slider('_Recharge input:_',0,400,0,1)
+                st.write("**Recharge in mm/a:** %3i" %R)
+                R = R/1000/365.25/86400
       
     # Computation of head
     x = np.arange(0, L,L/1000)
@@ -177,11 +212,11 @@ def computation():
 
     plt.ylim(hl*(1-y_scale/100),hr*(1+y_scale/100))
     plt.xlim(-50,L+50)
-    x_pos1 = 500
+    x_pos1 = 550
     x_pos2 = 2500
     y_pos1 = ((hr *(1+y_scale/100))-150)*0.9+150
-    plt.text(x_pos1, y_pos1, 'Defined head bc', horizontalalignment='right', bbox=dict(boxstyle="square", facecolor='lightgrey'), fontsize=12)
-    plt.text(x_pos2, y_pos1, 'Defined head bc', horizontalalignment='right', bbox=dict(boxstyle="square", facecolor='lightgrey'), fontsize=12)
+    plt.text(x_pos1, y_pos1, 'Specified head bc', horizontalalignment='right', bbox=dict(boxstyle="square", facecolor='deepskyblue', alpha=0.4), fontsize=12)
+    plt.text(x_pos2, y_pos1, 'Specified head bc', horizontalalignment='right', bbox=dict(boxstyle="square", facecolor='deepskyblue', alpha=0.4), fontsize=12)
     
     if scatter:
         x45 = [0,200]
@@ -229,3 +264,12 @@ computation()
 lc2, cc2, rc2 = st.columns((1,1,1), gap = 'large')
 with cc2:
     st.button('Restart with new data? Press here!')
+    
+st.markdown('---')
+
+# Render footer with authors, institutions, and license logo in a single line
+columns_lic = st.columns((4,1))
+with columns_lic[0]:
+    st.markdown(f'Developed by {", ".join(author_list)} ({year}). <br> {institution_text}', unsafe_allow_html=True)
+with columns_lic[1]:
+    st.image('FIGS/CC_BY-SA_icon.png')

@@ -1,0 +1,43 @@
+# --- RESOURCE IDENTIFICATION AND TOPIC MAPPING ---
+# item_id: A unique, simple slug for this item (e.g., aquifer_test_1). 
+
+item_id: 0401001
+topic: 01 Soil Properties # Must match the title of the parent catalog page.
+title: Soil Texture Triangle    # The full, descriptive name of the resource.
+
+# --- TYPE AND ACCESS ---
+resource_type: Jupyter Notebook            # Required. Options: Streamlit app, Jupyter Notebook, Video, Dataset, Other.
+url: https://github.com/gw-inux/Jupyter-Notebooks/blob/main/03_Soil_physics/Soil_texture_triangle.ipynb      # The direct link to launch the app, notebook on Binder, or video on YouTube.
+date_released: TO_BE_FILLED_BY_COURSE_MANAGER               # Release date in YYYY-MM-DD format.
+
+# --- CONTENT AND METADATA ---
+description_short: >
+  This Notebook illustrates how the percentages of the particle-size classes sand, silt, and clay determine the soil texture and how these can be read from a soil texture triangle.
+keywords: [soil classification]
+multipage_app: false
+num_pages: 0
+interactive_plots: false
+num_interactive_plots: 0
+assessments_included: false
+num_assessment_questions: 0
+videos_included: false
+num_videos: 0
+
+# --- EDUCATIONAL FIT ---
+time_required: 5–15 min             # Estimated time for a student to complete the activity (e.g., 30 minutes, 1.5 hours).
+prerequisites:        # Required prior knowledge (e.g., Darcy's Law, Python basics, basic calculus).
+fit_for:
+  - exam preparation
+
+# --- AUTHOR AND REFERENCE ---
+authors:
+  - name: Steffen Birk
+    affiliation: Edith Grießer
+references: []                            # List any published papers, DOIs, or source materials related to this resource.
+# image_url: Optional path to a screenshot for the catalog page (e.g., /assets/images/resources/flow_tool_screenshot.png)
+
+figures:
+  - id: 1
+    original_filename: Soil_texture_triangle.png
+    type: Screenshot
+    caption: Screenshot of the Jupyter Notebook

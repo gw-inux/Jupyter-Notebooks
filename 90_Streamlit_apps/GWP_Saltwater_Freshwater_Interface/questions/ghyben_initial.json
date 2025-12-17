@@ -1,0 +1,49 @@
+[
+  {
+    "question": "What does the Ghyben–Herzberg relation say about the relationship between the freshwater head and the depth of the freshwater–saltwater interface?",
+    "options": {
+      "The higher the head, the deeper the interface, in a fixed proportion.": true,
+      "There is no relation between head and interface depth.": false,
+      "The interface depth depends only on recharge, not on head.": false,
+      "The interface always lies exactly 25 m below the water table.": false
+    },
+    "success": "Correct — in the Ghyben–Herzberg framework, a higher freshwater head corresponds to a deeper interface in a fixed proportion determined by the density contrast.",
+    "error": "Not quite — remember that in Ghyben–Herzberg, interface depth is directly proportional to freshwater head above sea level."
+  },
+
+  {
+    "question": "In which type of coastal groundwater system do you expect the Ghyben–Herzberg approximation to be most physically reasonable?",
+    "options": {
+      "A small island with a relatively uniform freshwater lens and no pumping.": true,
+      "A strongly pumped coastal aquifer with many deep wells near the shore.": false,
+      "An estuary with rapidly fluctuating tides and strong vertical circulation.": false,
+      "A fractured coastal karst system with conduit flow.": false
+    },
+    "success": "Exactly — the Ghyben–Herzberg relation works best for a calm, unpumped island-type system with a relatively uniform lens.",
+    "error": "Try again — Ghyben–Herzberg is not well suited to pumped, tidally dominated or strongly fractured systems."
+  },
+
+  {
+    "question": "Which of the following conditions is implicitly assumed when using the Ghyben–Herzberg relation?",
+    "options": {
+      "Hydrostatic equilibrium (no significant dynamic effects).": true,
+      "A sharp interface between fresh and salt water.": true,
+      "Strong vertical flow and a thick mixing zone.": false,
+      "Spatially uniform aquifer properties.": true
+    },
+    "success": "Correct — Ghyben–Herzberg assumes hydrostatic equilibrium, a sharp interface and a reasonably homogeneous aquifer, not strong vertical flow or a thick mixing zone.",
+    "error": "Not quite — recall that the theorem assumes hydrostatic conditions, a sharp interface and roughly uniform aquifer properties."
+  },
+
+  {
+    "question": "Which of the following changes in a coastal groundwater system would make you doubt the validity of a simple Ghyben–Herzberg estimate?",
+    "options": {
+      "Onset of heavy pumping and strong drawdown near the coast.": false,
+      "Seasonal water-table fluctuations of several metres.": false,
+      "Pronounced layering, lenses, and fractures in the aquifer.": false,
+      "All of the above.": true
+    },
+    "success": "Correct — all of these factors (pumping, strong temporal fluctuations, and heterogeneity) make the simple Ghyben–Herzberg approximation less reliable.",
+    "error": "Almost — in fact, all of the listed changes reduce the applicability of the Ghyben–Herzberg relation, so 'All of the above' is the best choice."
+  }
+]

@@ -29,7 +29,7 @@ DEFAULT_YAML = "90_Streamlit_apps/MWW01/SlideJet_Presentations/GWBmC_WS2526_T04_
 # --- Proxy ID --- This should be
 # an unique ID if the app is used
 # multiple times in a multipage app (string required)
-app_id = "app_11"
+app_id = "app_20"
 #
 ###########################
 

@@ -75,9 +75,7 @@ if "scroll_to_top" not in st.session_state:
 st.sidebar.markdown("<div style='margin-top: 2.0rem;'></div>", unsafe_allow_html=True)
 
 # --- Overview and About buttons (at top)
-if st.sidebar.button("💦 Overview", key="btn_overview"):
-#    st.session_state.selected_path = DEFAULT_START_PAGE
-#    st.rerun()   
+if st.sidebar.button("💦 Overview", key="btn_overview"): 
     _navigate_to(DEFAULT_START_PAGE)
 
 # --- Sidebar navigation ---
@@ -88,19 +86,17 @@ for label, path in pages.items():
     clean_label = label.strip()
     display_label = f"{clean_label} 👈" if is_selected else clean_label
     if st.sidebar.button(display_label, key=f"btn_{label}"):
-#        st.session_state.selected_path = path
-#        st.rerun()
         _navigate_to(path)
         
     # After rendering "The SWRC in comparison", insert a section label
     if "The SWRC in comparison" in label:
         st.sidebar.markdown("**Exercises**")
         
-    # After rendering "🔵 EVT", insert a section label
+    # After rendering "SWRC Exercise 2", insert a section label
     if "SWRC Exercise 2" in label:
         st.sidebar.markdown("**Further Resources**")
 
-    # After rendering "🔵 EVT", insert a section label
+    # After rendering "📚 Learning More", insert a section label
     if "📚 Learning More" in label:
         st.sidebar.markdown("**Additional Information**")
         

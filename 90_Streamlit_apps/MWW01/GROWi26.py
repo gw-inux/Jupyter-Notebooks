@@ -88,15 +88,23 @@ pages = {
     },
     "🟪 Transport": {
         "🧮 1D Advektion-Dispersion": "05_Applied_hydrogeology/Transport_1D_AD_ST.py",
+        "🧮 1D Advektion-Dispersion Continous": "05_Applied_hydrogeology/Transport_1D_Continous_v2.py",
+        "🧮 1D Advektion-Dispersion Dirac": "05_Applied_hydrogeology/Transport_1D_Dirac_pulse_v2.py",
         "--- Folien 🚀---": None,
         "📝 T04: Numerische GW-Transportmod.": "90_Streamlit_apps/MWW01/SlideJet_Presentations/GWBmC_WS2526_T04_Transport_SJpresent.py",
+        "📝 T04: Numerische GW-Transportmod.  \nAnwendung WSG": "90_Streamlit_apps/MWW01/SlideJet_Presentations/GWBmC_WS2526_T04_Transport_Anwendung_WSG_SJpresent.py",
         "📑 LV 20.11.25: Folien zum Start": "90_Streamlit_apps/MWW01/SlideJet_Presentations/GWBmC_WS2526_V06_Start_SJpresent.py",
+        "📑 LV 27.11.25: Folien zum Start": "90_Streamlit_apps/MWW01/SlideJet_Presentations/GWBmC_WS2526_V07_Start_SJpresent.py",
+        "📑 LV 04.12.25: Folien zum Start": "90_Streamlit_apps/MWW01/SlideJet_Presentations/GWBmC_WS2526_V08_Start_SJpresent.py",
+        "📑 LV 11.12.25: Folien zum Start": "90_Streamlit_apps/MWW01/SlideJet_Presentations/GWBmC_WS2526_V09_Start_SJpresent.py",
     },
     "🟨 Kalibrierung": {
         "--- Folien 🚀---": None,
     },
     "🟫 Anwendungen": {
+        "🧮 Thiem ungespannt  \nSuperposition": "04_Basic_hydrogeology/Flow2Well_Thiem_unconfined_superposition7.py",
         "--- Folien 🚀---": None,
+        "📝 T10: Flächenhafte Wasserhaltung  \n& Baugrubenentwässerung": "90_Streamlit_apps/MWW01/SlideJet_Presentations/GWBmC_WS2425_T10_SJpresent.py",
     },
     "ℹ️ General Info": {
         "About": "90_Streamlit_apps/MWW01/content/GROWi26_About.py",

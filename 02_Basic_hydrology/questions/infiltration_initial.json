@@ -1,0 +1,46 @@
+[
+  {
+    "question": "What is meant by infiltration in hydrology?",
+    "options": {
+      "Water evaporating from the soil surface.": false,
+      "Water flowing in a river channel.": false,
+      "Water entering the soil from the land surface.": true,
+      "Water stored in a reservoir.": false
+    },
+    "success": "Correct — infiltration is the process of water moving from the land surface into the soil.",
+    "error": "Not quite — in hydrology, infiltration refers specifically to water entering the soil from the land surface."
+  },
+  {
+    "question": "What is the main idea behind Horton’s infiltration concept?",
+    "options": {
+      "Infiltration capacity stays constant during a storm.": false,
+      "Infiltration capacity increases the longer it rains.": false,
+      "Infiltration capacity is high at the beginning of rainfall and then decreases over time.": true,
+      "Infiltration only depends on groundwater level.": false
+    },
+    "success": "Exactly — Horton’s concept is that soils start with a high infiltration capacity that declines over time during a storm.",
+    "error": "Try again — Horton’s model is built on the idea that infiltration capacity is initially high and then decreases with time."
+  },
+  {
+    "question": "What happens if rainfall intensity is higher than the soil’s ability to absorb water?",
+    "options": {
+      "Infiltration increases without limit.": false,
+      "Water immediately evaporates.": false,
+      "Surface runoff begins.": true,
+      "Soil becomes drier.": false
+    },
+    "success": "Correct — When rainfall intensity exceeds the soil’s infiltration capacity, the excess water cannot enter the soil. It starts to accumulate at the surface and forms surface runoff or ponding. This transition is fundamental for understanding infiltration excess overland flow and is central to many infiltration models, including Horton.",
+    "error": "Not quite — When rainfall intensity is greater than the soil’s ability to absorb water, the soil can only infiltrate up to its maximum capacity. Any additional water remains at the surface and leads to ponding and surface runoff."
+  },
+  {
+    "question": "Why can Hortonian overland flow (infiltration-excess runoff) occur during intense rainfall?",
+    "options": {
+      "Because rainfall intensity becomes higher than the soil’s infiltration capacity.": true,
+      "Because the soil is always saturated before rainfall starts.": false,
+      "Because rivers are already full.": false,
+      "Because evaporation stops during storms.": false
+    },
+    "success": "Correct — Hortonian overland flow occurs when rainfall intensity exceeds the current infiltration capacity of the soil.",
+    "error": "Not quite — the key is that rainfall becomes more intense than the soil can infiltrate, so the excess water runs off on the surface."
+  }
+]

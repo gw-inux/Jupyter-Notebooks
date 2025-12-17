@@ -1,0 +1,684 @@
+[
+  {
+    "question": "Which of the following statements is correct? Groundwater recharge can be roughly determined:",
+    "options": {
+      "by using the so-called ion-balance method": false,
+      "by measuring the flow across the water table with a so-called susceptibility meter": false,
+      "by measuring and comparing the chloride concentration in precipitation, soil water and groundwater": true
+    },
+    "success": "Correct. A common way to estimate long-term recharge is the chloride mass balance method, comparing chloride in precipitation, soil water, and groundwater.",
+    "error": "Not quite. Groundwater recharge is often estimated using the chloride mass balance method, i.e. by comparing chloride in precipitation, soil water, and groundwater; ion balance or strange instruments at the water table are not standard recharge methods."
+  },
+  {
+    "question": "High concentrations of hydrogen carbonate (bicarbonate) in groundwater occur only if contamination with hydrocarbons has occurred.",
+    "options": {
+      "True": false,
+      "False": true
+    },
+    "success": "Correct. High bicarbonate concentrations are very common in natural groundwater due to CO₂ dissolution and carbonate weathering and are not uniquely linked to hydrocarbon contamination.",
+    "error": "This is false. Elevated bicarbonate in groundwater is usually caused by natural processes such as CO₂ dissolution and carbonate mineral weathering, not exclusively by hydrocarbon contamination."
+  },
+  {
+    "question": "The hydraulic conductivity of a rock or soil is directly proportional to its total porosity.",
+    "options": {
+      "True": false,
+      "False": true
+    },
+    "success": "Correct. Total porosity alone does not control hydraulic conductivity; pore connectivity, pore size distribution and effective porosity are much more important (e.g. clays: high porosity but very low K).",
+    "error": "This statement is false. Hydraulic conductivity depends on pore connectivity and pore size distribution rather than just total porosity; some high-porosity materials (e.g. clays) have very low K."
+  },
+  {
+    "question": "If we find arsenic in groundwater we can almost be sure that anthropogenic contamination has occurred.",
+    "options": {
+      "True": false,
+      "False": true
+    },
+    "success": "Correct. Many arsenic problems in groundwater are geogenic and related to natural mineral–water interactions, not necessarily to human contamination.",
+    "error": "This is false. Arsenic in groundwater is often of natural (geogenic) origin, released from minerals under certain redox and geochemical conditions, so its presence does not automatically imply anthropogenic contamination."
+  },
+  {
+    "question": "When a borehole is drilled in an unconfined aquifer the water level will rise to:",
+    "options": {
+      "to a position which is somewhere in the middle between the upper boundary of the capillary fringe and the water table, depending on the grain size of the aquifer material": false,
+      "the upper boundary of the capillary fringe": false,
+      "to the position of the water table": true
+    },
+    "success": "Correct. In an unconfined aquifer the water level in a borehole equilibrates with the water table, not with the capillary fringe above it.",
+    "error": "Not quite. In an unconfined aquifer the water level in a borehole will rise to the water table. The capillary fringe is above the water table and remains unsaturated (in terms of pressure head)."
+  },
+  {
+    "question": "Storativity is:",
+    "options": {
+      "... the volume of water that can be pumped from a confined aquifer when the head is lowered by 1 m": false,
+      "... the volume of water released from an aquifer per unit surface area of the aquifer and per unit change in head within 1 second": false,
+      "... the ratio of the volume of water that will drain from a water sample due to gravitation to the total volume of the sample": false,
+      "... the volume of water released from an aquifer per unit surface area of the aquifer and per unit change in head": true
+    },
+    "success": "Correct. Storativity is defined as the volume of water released from or taken into storage per unit surface area of aquifer per unit change in hydraulic head (dimensionless).",
+    "error": "The correct definition of storativity is the volume of water released from or taken into storage per unit surface area of aquifer per unit change in hydraulic head. The ratio that drains by gravity is called specific yield, and the time unit in the second option is incorrect."
+  },
+  {
+    "question": "Which of the following properties can change in magnitude depending on the direction of measurement (same location, but measurement device oriented differently)?",
+    "options": {
+      "effective porosity": false,
+      "hydraulic conductivity": true,
+      "storativity": false
+    },
+    "success": "Correct. Hydraulic conductivity is often anisotropic and depends on direction; effective porosity and storativity are typically treated as scalar properties at a given location.",
+    "error": "Only hydraulic conductivity is generally direction-dependent (anisotropic). Effective porosity and storativity are usually described as scalar properties at a given point."
+  },
+  {
+    "question": "Which of the following statements is wrong? Spatial changes of the hydraulic gradient of an aquifer can be explained by:",
+    "options": {
+      "changes in aquifer thickness": false,
+      "losses into open underground structures, e.g. tunnels": false,
+      "pumping from an aquifer": false,
+      "Contamination with nitrate from agriculture": true,
+      "changes in hydraulic conductivity": false,
+      "infiltration": false
+    },
+    "success": "Correct. Nitrate contamination mainly affects groundwater quality, not directly the hydraulic gradient, whereas changes in thickness, K, pumping, tunnel leakage and infiltration can all affect the gradient.",
+    "error": "The only wrong statement is the one referring to nitrate contamination. Nitrate affects water quality, but the hydraulic gradient is controlled by flow, aquifer geometry and hydraulic properties (thickness, K, pumping, recharge, leakage)."
+  },
+  {
+    "question": "Groundwater flow direction is always perpendicular to the equipotential lines (lines of equal hydraulic head).",
+    "options": {
+      "True": true,
+      "False": false
+    },
+    "success": "Correct in the standard assumption: for isotropic conditions the flow lines are perpendicular to equipotential lines in a flow net, which is the situation usually assumed in basic hydrogeology.",
+    "error": "In the standard Darcy flow framework with an isotropic medium, groundwater flow is perpendicular to equipotential lines. Deviations mainly occur in anisotropic cases, which are usually not considered in basic flow-net constructions."
+  },
+  {
+    "question": "Most freshwater is stored in:",
+    "options": {
+      "groundwater below the land surface": false,
+      "clouds and water vapour in the atmosphere": false,
+      "rivers and lakes": false,
+      "ice and snow": true
+    },
+    "success": "Correct. The majority of Earth’s freshwater is stored in ice and snow (glaciers, ice caps); groundwater is the second-largest freshwater reservoir.",
+    "error": "Most of the planet’s freshwater is stored in ice and snow (glaciers and ice caps), not in rivers, lakes, atmosphere, or even groundwater."
+  },
+  {
+    "question": "A necessary requirement for the conditions in an aquifer to be at steady state is:",
+    "options": {
+      "the aquifer is isotropic and homogeneous": false,
+      "that pumping or infiltration at a constant rate does not result in a change of the hydraulic head": true,
+      "that there is no groundwater movement in an aquifer": false
+    },
+    "success": "Correct. Steady state means that heads do not change with time, even if there is flow; constant stresses that do not cause head changes satisfy this requirement.",
+    "error": "Steady state does not require homogeneity or the absence of flow. It simply means that hydraulic head does not change with time, even though water may be moving in the aquifer."
+  },
+  {
+    "question": "From a transient (non-stationary) pumping test we can determine ...",
+    "options": {
+      "the transmissivity of an aquifer but not the storativity": false,
+      "the transmissivity and the storativity": true,
+      "the storativity of an aquifer but not the transmissivity": false,
+      "neither the transmissivity nor the storativity, only hydraulic conductivity": false
+    },
+    "success": "Correct. Transient pumping tests (e.g. Theis analysis) allow estimation of both transmissivity and storativity from the time-drawdown behaviour.",
+    "error": "A transient pumping test yields information on both transmissivity and storativity via the time–drawdown response; it is not limited to only one of these parameters."
+  },
+  {
+    "question": "The hydraulic head in a borehole at one location in one specific aquifer is always the same no matter in which depth the head is measured (i.e. the depth of the filter).",
+    "options": {
+      "True": false,
+      "False": true
+    },
+    "success": "Correct. Vertical hydraulic gradients can exist, so hydraulic head may vary with depth. The head is not always identical at all depths in an aquifer.",
+    "error": "This statement is false. Vertical gradients (e.g. due to recharge or leakage) can cause differences in hydraulic head with depth in the same aquifer."
+  },
+  {
+    "question": "A daily precipitation sum above approx. 10 mm will always lead to a significant increase of discharge in a typical small catchment (1 km²) in western Sweden.",
+    "options": {
+      "True": false,
+      "False": true
+    },
+    "success": "Correct. Whether discharge reacts strongly depends on antecedent moisture, soil conditions, and catchment state; 10 mm of rain does not always produce a clear discharge response.",
+    "error": "The statement is false. Discharge response depends on catchment wetness, soil properties and other conditions; even 10 mm of rain may not lead to a noticeable increase in runoff under dry conditions."
+  },
+  {
+    "question": "Oxidation:",
+    "options": {
+      "is the gain of electrons by a molecule, atom, or ion": false,
+      "is the loss of electrons by a molecule, atom, or ion": true
+    },
+    "success": "Correct. Oxidation is defined as loss of electrons; reduction is the gain of electrons.",
+    "error": "This is incorrect. Oxidation is the loss of electrons, whereas reduction is the gain of electrons."
+  },
+  {
+    "question": "Check the only correct statement. The drawdown in an unconfined aquifer that is bounded by impermeable bedrock 20 m away from the pumping well will differ from the drawdown in an aquifer of infinite extent (same thickness, same material) in that:",
+    "options": {
+      "the drawdown is the same in the beginning but at later stages it will be different": true,
+      "the drawdown is faster in the beginning but later it will be the same": false,
+      "the drawdown is smaller for the bounded aquifer than for the infinite one": false,
+      "the drawdown does not differ at all": false
+    },
+    "success": "Correct. Early in the test the boundary is not yet ‘felt’, but at later times the no-flow boundary increases drawdown compared to an infinite aquifer.",
+    "error": "The correct statement is that the drawdown is initially similar, but later in the test the no-flow boundary causes the drawdown to deviate and become larger than in an infinite aquifer."
+  },
+  {
+    "question": "Which of the statements is wrong: Methods to determine hydraulic properties from pumping test data with simple graphical or analytical solutions rely on the following assumptions. The aquifer ...",
+    "options": {
+      "has a constant thickness": false,
+      "is homogeneous and isotropic": false,
+      "is limited by clearly defined boundaries with a clearly defined and known change in hydraulic conductivity": true,
+      "is horizontal": false
+    },
+    "success": "Correct. Classical analytical pumping test methods usually assume an aquifer of infinite lateral extent, not one that is limited by well-known boundaries with sharp K contrasts.",
+    "error": "The wrong statement is the one claiming the aquifer is limited by clearly defined boundaries with known changes in K. Standard analytical solutions typically assume an infinite, homogeneous, isotropic, horizontal aquifer of constant thickness."
+  },
+  {
+    "question": "Dissolved iron does not occur in groundwater in significant concentrations when the groundwater is saturated with oxygen.",
+    "options": {
+      "True": true,
+      "False": false
+    },
+    "success": "Correct. Under oxygen-saturated conditions Fe²⁺ is oxidized and precipitates as iron oxides/hydroxides, so dissolved iron concentrations are usually low.",
+    "error": "This statement is actually true: under oxic conditions iron tends to oxidize and precipitate, so significant concentrations of dissolved iron are not expected."
+  },
+  {
+    "question": "Fractured rocks are usually:",
+    "options": {
+      "less anisotropic and more heterogeneous than porous materials (unconsolidated rocks)": false,
+      "more anisotropic and less heterogeneous than porous materials (unconsolidated rocks)": false,
+      "more anisotropic and more heterogeneous than porous materials (unconsolidated rocks)": true,
+      "less anisotropic and less heterogeneous than porous materials (unconsolidated rocks)": false
+    },
+    "success": "Correct. Fractured rocks typically show strong anisotropy (flow along fracture sets) and high heterogeneity compared to unconsolidated porous media.",
+    "error": "Fractured rocks tend to be both more anisotropic and more heterogeneous than unconsolidated porous materials, because fractures create preferential flow paths with strong spatial variability."
+  },
+  {
+    "question": "Aquifer tests are performed to evaluate:",
+    "options": {
+      "the basic physico-chemical properties of groundwater in an aquifer (temperature, pH, electric conductivity)": false,
+      "how the aquifer material will react to heavy loads (buildings, railroads)": false,
+      "to determine hydraulic parameters": true
+    },
+    "success": "Correct. The main purpose of aquifer tests (pumping tests, slug tests) is to determine hydraulic parameters such as transmissivity, hydraulic conductivity, and storativity.",
+    "error": "Aquifer tests are designed to determine hydraulic parameters (e.g. transmissivity, hydraulic conductivity, storativity), not primarily water chemistry or geotechnical bearing capacity."
+  },
+  {
+    "question": "Groundwater recharge cannot take place after long periods without rain.",
+    "options": {
+      "True": false,
+      "False": true
+    },
+    "success": "Correct. Even after long dry periods, recharge may occur when infiltration capacity is recovered or when intense precipitation exceeds soil moisture deficits.",
+    "error": "This statement is false. Recharge can still occur after extended dry periods once rainfall resumes and infiltration exceeds evapotranspiration and soil storage deficits."
+  },
+  {
+    "question": "It is much more difficult to use confined aquifers for drinking water supply than unconfined aquifers because much less water can be withdrawn per unit time.",
+    "options": {
+      "True": false,
+      "False": true
+    },
+    "success": "Correct. Confined aquifers can often yield large amounts of water; the limiting factor is not that less water can be withdrawn but the characteristics of pressure response and storativity.",
+    "error": "This statement is false. Confined aquifers often provide very good yields; the challenge is pressure response, not inherently low withdrawal rates."
+  },
+  {
+    "question": "Darcy’s Law says:",
+    "options": {
+      "The volumetric flow rate is proportional to cross-sectional area, hydraulic gradient, and hydraulic conductivity.": true,
+      "The volumetric flow rate is proportional to column length, hydraulic gradient, and hydraulic conductivity.": false,
+      "The linear flow velocity is proportional to cross-sectional area, hydraulic gradient, and hydraulic conductivity.": false
+    },
+    "success": "Correct. Darcy’s Law states Q ∝ A · K · i, where i is the hydraulic gradient.",
+    "error": "Darcy’s Law relates discharge to area, hydraulic gradient, and hydraulic conductivity. Column length is used only to compute the gradient, not directly in the proportionality."
+  },
+  {
+    "question": "The development of karst is most effective:",
+    "options": {
+      "just above the water table": true,
+      "deep below the water table": false,
+      "in the weathered zone of granites and gneisses": false
+    },
+    "success": "Correct. Karstification is strongest near the water table where alternating saturated/unsaturated conditions enhance dissolution.",
+    "error": "Karst develops mainly in carbonate rocks close to the water table, not deep below it or in crystalline rocks."
+  },
+  {
+    "question": "In presence of a lake, groundwater flow direction in a hydraulically connected aquifer will always be directed toward the lake.",
+    "options": {
+      "True": false,
+      "False": true
+    },
+    "success": "Correct. Flow direction depends on head gradients. Lakes may act as gaining or losing systems.",
+    "error": "Flow does not always move toward a lake; if the surrounding groundwater level is lower, the lake may lose water to the aquifer."
+  },
+  {
+    "question": "Heavy precipitation always leads to groundwater recharge.",
+    "options": {
+      "True": false,
+      "False": true
+    },
+    "success": "Correct. Recharge requires precipitation to exceed evapotranspiration and soil storage needs; heavy rain does not guarantee recharge.",
+    "error": "Recharge depends on soil moisture, infiltration capacity, and ET—not only rainfall intensity."
+  },
+  {
+    "question": "The time–drawdown relation for a confined and an unconfined aquifer differs ...",
+    "options": {
+      "not at all": false,
+      "mainly in the later stage of a pumping test": true,
+      "mainly in the early stage of a pumping test": false,
+      "at all times": false
+    },
+    "success": "Correct. Later stages differ due to delayed yield in unconfined systems.",
+    "error": "The major differences appear in the later period, where unconfined aquifers show delayed drainage effects."
+  },
+  {
+    "question": "Which of the following statements is WRONG regarding catchments:",
+    "options": {
+      "Each location in a river has the same catchment area.": true,
+      "The area that contributes to a river’s discharge is called the catchment area.": false,
+      "The boundaries of a catchment are called drainage divides.": false
+    },
+    "success": "Correct. Catchment area increases downstream; therefore the first statement is wrong.",
+    "error": "The wrong statement is the first one: catchment area always increases downstream."
+  },
+  {
+    "question": "Hydraulic head is:",
+    "options": {
+      "Elevation head plus pressure head": true,
+      "Impossible to express without knowing the water density": false,
+      "Elevation head minus pressure head": false
+    },
+    "success": "Correct. h = z + ψ; density matters only when converting pressure to head.",
+    "error": "Hydraulic head equals elevation head plus pressure head; the other options misrepresent the definition."
+  },
+  {
+    "question": "In a layered sedimentary rock with horizontal bedding, the average flow velocity can be determined based on the arithmetic mean of the hydraulic conductivity of the layers.",
+    "options": {
+      "True": false,
+      "False": true
+    },
+    "success": "Correct. Horizontal flow requires a thickness-weighted arithmetic mean; velocity cannot be determined from a plain arithmetic mean.",
+    "error": "This is false. The effective horizontal hydraulic conductivity is thickness-weighted, not simply the unweighted arithmetic mean."
+  },
+  {
+    "question": "Constant-head permeameters are used to measure samples with very low hydraulic conductivity, while falling-head permeameters are used for very high hydraulic conductivity.",
+    "options": {
+      "True": false,
+      "False": true
+    },
+    "success": "Correct. It is the opposite: falling head is for low K, constant head for high K.",
+    "error": "This statement is false: falling-head permeameters are suitable for low hydraulic conductivity materials, constant-head for higher K."
+  },
+  {
+    "question": "Which of the following statements is correct regarding actual evaporation?",
+    "options": {
+      "It is lower than or equal to potential evaporation.": true,
+      "It can be measured with a Class A pan.": false,
+      "It is always higher than potential evaporation.": false,
+      "It is often higher in humid climates but always lower in arid climates.": false
+    },
+    "success": "Correct. Actual evaporation is limited by water availability and cannot exceed potential evaporation.",
+    "error": "Actual evaporation cannot exceed potential evaporation; it is constrained by water supply at the surface."
+  },
+  {
+    "question": "If a borehole is drilled near the coast (on land), what will be found?",
+    "options": {
+      "Saltwater above freshwater": false,
+      "Saltwater beneath freshwater": true,
+      "A vertical sharp boundary between fresh and saltwater at the shoreline": false
+    },
+    "success": "Correct. Freshwater overlies denser saltwater; the interface dips inland.",
+    "error": "Saltwater is denser and therefore lies beneath freshwater in coastal aquifers."
+  },
+  {
+    "question": "At a rain gauge in a catchment of 1.85 km², 34 mm of rain fell over 2 days. What is the equivalent average precipitation rate in L/s?",
+    "options": {
+      "8.20×10⁻⁶ L/s": false,
+      "0.364 L/s": true,
+      "364 L/s": false,
+      "76.2 L/s": false
+    },
+    "success": "Correct. Converting area × depth to volume per time gives about 0.364 L/s.",
+    "error": "Only 0.364 L/s matches the correct conversion from rainfall depth and catchment area."
+  },
+  {
+    "question": "The horizontal hydraulic conductivity of a sediment is usually larger than the vertical hydraulic conductivity.",
+    "options": {
+      "True": true,
+      "False": false
+    },
+    "success": "Correct. Sediments often show anisotropy where horizontal K exceeds vertical K due to bedding planes.",
+    "error": "This is generally true for layered sediments, where horizontal flow pathways dominate."
+  },
+  {
+    "question": "Transmissivity is:",
+    "options": {
+      "The product of hydraulic conductivity and storativity": false,
+      "The product of hydraulic conductivity and saturated thickness": true,
+      "The quotient of hydraulic conductivity and saturated thickness": false,
+      "The product of hydraulic conductivity and unit cross-sectional area": false
+    },
+    "success": "Correct. T = K × b, where b is saturated thickness.",
+    "error": "Transmissivity equals hydraulic conductivity multiplied by the saturated thickness."
+  },
+  {
+    "question": "Which of the following soil water balance equations is correct (no capillary rise)?",
+    "options": {
+      "ΔS = P – E – T + SR – R": true,
+      "ΔS = P – E – T – D – GWin + GWout – R": false,
+      "ΔS = P – E – T – SR – R": false,
+      "ΔS = P – E – T – SR + R": false,
+      "ΔS = P – E – T – SR + GWin – GWout – R": false
+    },
+    "success": "Correct. The correct water balance without capillary rise is ΔS = P – E – T + SR – R.",
+    "error": "Only ΔS = P – E – T + SR – R is consistent with the standard soil water balance under the stated assumptions."
+  },
+  {
+    "question": "Which of the following statements is true regarding hydraulic conductivity of fresh basalts vs. granites?",
+    "options": {
+      "Both have usually very low hydraulic conductivity.": false,
+      "Basalt often has much higher hydraulic conductivity than granite.": true,
+      "It is impossible to make any general assumption.": false
+    },
+    "success": "Correct. Basalt commonly exhibits fractures and vesicular structures increasing conductivity, while unweathered granite is typically very low K.",
+    "error": "Basalt generally has higher K than granite due to its structure."
+  },
+  {
+    "question": "Which of the following statements is wrong regarding the unsaturated zone?",
+    "options": {
+      "It is located between the water table and land surface.": false,
+      "It contains no water.": true,
+      "It can be more than 200 m thick.": false
+    },
+    "success": "Correct. The unsaturated zone contains water; it is only not fully saturated. Therefore the second statement is wrong.",
+    "error": "The wrong statement is the claim that the unsaturated zone contains no water; it does contain water, but not under positive pressure."
+  },
+  {
+    "question": "The hydraulic properties of rocks do not change much over time; after about 10,000 years they become almost constant.",
+    "options": {
+      "True": false,
+      "False": true
+    },
+    "success": "Correct. Weathering, fracturing and diagenesis continue to alter hydraulic properties over geological timescales.",
+    "error": "This statement is false. Hydraulic properties continue to evolve due to weathering and tectonic processes."
+  },
+  {
+    "question": "The horizontal hydraulic conductivity of a sediment is usually larger than the vertical hydraulic conductivity of the same sediment.",
+    "options": {
+      "True": true,
+      "False": false
+    },
+    "success": "Correct. Bedding planes and layering usually enhance horizontal permeability relative to vertical permeability.",
+    "error": "The correct answer is True. Sediments commonly show anisotropy with larger horizontal than vertical hydraulic conductivity."
+  },
+  {
+    "question": "Transmissivity is:",
+    "options": {
+      "the product of hydraulic conductivity and the storativity of an aquifer": false,
+      "the product of hydraulic conductivity and the saturated thickness of an aquifer": true,
+      "the quotient of hydraulic conductivity and the saturated thickness": false,
+      "the product of hydraulic conductivity and the unit cross-sectional area of an aquifer": false
+    },
+    "success": "Correct. Transmissivity is T = K × b, hydraulic conductivity times saturated thickness.",
+    "error": "Transmissivity equals hydraulic conductivity multiplied by saturated thickness, not by storativity or area."
+  },
+  {
+    "question": "A water balance equation is established for soil water in a catchment (no capillary rise). Which of the following is correct?",
+    "options": {
+      "ΔS = P – E – T + SR – R": true,
+      "ΔS = P – E – T – D – GWin + GWout – R": false,
+      "ΔS = P – E – T – SR – R": false,
+      "ΔS = P – E – T – SR + R": false,
+      "ΔS = P – E – T – SR + GWin – GWout – R": false
+    },
+    "success": "Correct. This is the standard soil-water balance without capillary rise.",
+    "error": "Only ΔS = P – E – T + SR – R satisfies the catchment soil-water balance under the stated assumptions."
+  },
+  {
+    "question": "Which of the following statements is true?",
+    "options": {
+      "Basalts and granites both have very low hydraulic conductivity when fresh and unweathered": false,
+      "Fresh basalts often have high hydraulic conductivity while fresh granites have low hydraulic conductivity": true,
+      "No general comparison can be made between basalt and granite hydraulic conductivity": false
+    },
+    "success": "Correct. Basalts often contain fractures or vesicles producing higher K, whereas fresh granites are typically very low K.",
+    "error": "Fresh basalts usually have higher hydraulic conductivity than granites; the other statements are incorrect."
+  },
+  {
+    "question": "Which of the following statements about the unsaturated zone is wrong?",
+    "options": {
+      "It is located between the water table and the land surface.": false,
+      "The unsaturated zone contains no water.": true,
+      "It can exceed 200 meters in thickness.": false
+    },
+    "success": "Correct. The unsaturated zone definitely contains water; the second statement is wrong.",
+    "error": "The wrong statement is that the unsaturated zone contains no water. It contains water under negative pressure."
+  },
+  {
+    "question": "The hydraulic properties of rocks do not change significantly over time; after about 10,000 years they become almost constant.",
+    "options": {
+      "True": false,
+      "False": true
+    },
+    "success": "Correct. Weathering, tectonics and chemical processes continue to modify rock properties over geological time.",
+    "error": "This is false. Hydraulic properties evolve continuously with weathering and geological processes."
+  },
+  {
+    "question": "Absorption is:",
+    "options": {
+      "the adherence of molecules onto a solid surface": false,
+      "the incorporation of a substance into another phase": true
+    },
+    "success": "Correct. Absorption refers to uptake into a bulk phase; adherence on surfaces is adsorption.",
+    "error": "The correct definition of absorption is the incorporation of one substance into another phase."
+  },
+  {
+    "question": "Storativity and specific yield: which statement is correct?",
+    "options": {
+      "Storativity has units of 1/s while specific yield is dimensionless": false,
+      "Storativity and specific yield have the same unit": false,
+      "Storativity is dimensionless, while specific yield is measured in m³": false,
+      "Storativity is dimensionless while specific yield is dimensionless": true
+    },
+    "success": "Correct. Both storativity and specific yield are dimensionless quantities.",
+    "error": "Both storativity and specific yield are dimensionless; the other statements include incorrect units."
+  },
+  {
+    "question": "The specific yield of a fractured hardrock aquifer formation is always much lower than that of a porous unconsolidated aquifer.",
+    "options": {
+      "True": true,
+      "False": false
+    },
+    "success": "Correct. Fractured rocks release little water by gravity drainage, resulting in low specific yield.",
+    "error": "Specific yield in hardrock aquifers is generally low; porous sediments have much greater drainable porosity."
+  },
+  {
+    "question": "Water flowing in a river after a long dry period is called:",
+    "options": {
+      "deep percolation": false,
+      "baseflow": true,
+      "perched watertable": false
+    },
+    "success": "Correct. Baseflow is sustained river discharge fed by groundwater during dry periods.",
+    "error": "The correct term is baseflow, which represents groundwater contribution to river discharge."
+  },
+  {
+    "question": "Groundwater that was never influenced by human activities is usually safe to drink.",
+    "options": {
+      "True": false,
+      "False": true
+    },
+    "success": "Correct. Natural groundwater can contain harmful substances such as arsenic, fluoride, or pathogens.",
+    "error": "This statement is false. Natural groundwater may contain geogenic contaminants even without human impact."
+  },
+  {
+    "question": "In the situation shown in the figure below: Assume that this picture shows a steady state situation with the green arrows indicating recharge. The solution allows to modify recharge. Which of the following answers are correct?",
+    "options": {
+      "Recharge equals total discharge to both rivers.": true,
+      "Water flows until both river stages become identical.": false,
+      "The river heads will never change.": false,
+      "The water table at $h_{max}$ will eventually decrease to an elevation between h1 and h2.": true,
+      "The water table at $h_{max}$ will eventually decrease until it equals h1.": true,
+      "The water table at $h_{max}$ will not change position.": false,
+      "There cannot be any flow from the aquifer to the rivers in this situation.": false
+    },
+    "success": "Correct. Several statements are physically impossible or contradict mass balance. Flow patterns adjust according to gradients, and river stages do not 'equalize' automatically.",
+    "error": "Some statements contradict groundwater flow principles. The incorrect choices involve unrealistic assumptions about river heads or flow balance."
+  },
+  {
+    "question": "The hydraulic conductivity of unconsolidated clastic sediments depends mainly on:",
+    "options": {
+      "the average pore size": true,
+      "the diameter of the largest pores": false,
+      "the d60 grain size": false,
+      "the d10 grain size": true,
+      "the coefficient of uniformity": false
+    },
+    "success": "Correct. Average pore size and the effective grain size (d10) strongly control K.",
+    "error": "Hydraulic conductivity correlates mainly with effective grain size (d10) and pore-size distribution."
+  },
+  {
+    "question": "The thickness of the capillary fringe depends on:",
+    "options": {
+      "grain size only": false,
+      "surface tension only": false,
+      "mainly the coefficient of uniformity": false,
+      "both surface tension and grain size": true
+    },
+    "success": "Correct. Capillary rise height depends on pore size and fluid surface tension.",
+    "error": "Capillary fringe thickness depends jointly on pore structure and surface tension, not only one parameter."
+  },
+  {
+    "question": "How much of Sweden’s drinking water is taken from naturally recharged groundwater?",
+    "options": {
+      "more than 80%": false,
+      "approx. 50%": true,
+      "approx. 25%": false,
+      "less than 10%": false
+    },
+    "success": "Correct. About half of Sweden's drinking water supply originates from groundwater.",
+    "error": "The correct share is around 50%, not 80%, 25%, or below 10%."
+  },
+  {
+    "question": "A pumping test is called a 'steady-state test' if:",
+    "options": {
+      "all measured parameters (flow rate, temperature, EC) become constant": false,
+      "the pumping rate is constant": false,
+      "the water levels in the pumped well and observation wells do not change anymore": true
+    },
+    "success": "Correct. Steady state is reached when heads no longer change with time during pumping.",
+    "error": "Steady state refers to stabilization of hydraulic heads, not simply constant pumping rate or physico-chemical properties."
+  },
+  {
+    "question": "The delay between rainfall and the rise of river discharge is independent of catchment size.",
+    "options": {
+      "True": false,
+      "False": true
+    },
+    "success": "Correct. Larger catchments have longer travel times; lag is strongly size-dependent.",
+    "error": "This is false. Larger catchments typically exhibit longer delay times between rainfall and discharge response."
+  },
+  {
+    "question": "The solubility of quartz in pure water is higher than the solubility of calcite.",
+    "options": {
+      "True": false,
+      "False": true
+    },
+    "success": "Correct. Calcite is far more soluble in natural waters than quartz.",
+    "error": "Quartz has much lower solubility than calcite; the statement is false."
+  },
+  {
+    "question": "How many percent of the world's total water is freshwater?",
+    "options": {
+      "2.5%": true,
+      "0.25%": false,
+      "0.025%": false,
+      "25%": false
+    },
+    "success": "Correct. Only about 2.5% of global water is freshwater.",
+    "error": "The correct value is around 2.5%; the other options are off by orders of magnitude."
+  },
+  {
+    "question": "Which of the following statements are correct regarding aquitards?",
+    "options": {
+      "They contain water with high salinity.": false,
+      "Their hydraulic conductivity is typically less than 10⁻⁵ m/s.": true,
+      "They are weakly consolidated.": false,
+      "They have relatively low hydraulic conductivity.": true,
+      "They are too thin to be used for groundwater extraction.": false
+    },
+    "success": "Correct. Aquitards are defined by low hydraulic conductivity; the other statements are not defining characteristics.",
+    "error": "Correct statements relate to low hydraulic conductivity; salinity and thickness are not defining features."
+  },
+  {
+    "question": "The hydraulic head in an aquifer is independent of the density of the fluid.",
+    "options": {
+      "True": false,
+      "False": true
+    },
+    "success": "Correct. Hydraulic head depends on fluid density when pressure is converted to head.",
+    "error": "This is false. Fluid density affects calculated hydraulic head because pressure head is divided by ρg."
+  },
+  {
+    "question": "The flow in a fracture is proportional to the aperture of the fracture to the power of 3 (cubed).",
+    "options": {
+      "True": true,
+      "False": false
+    },
+    "success": "Correct. According to the cubic law, flow through a fracture is proportional to the aperture cubed, assuming laminar flow and smooth parallel fracture surfaces.",
+    "error": "Incorrect. The cubic law states that flow through a fracture scales with the cube of the fracture aperture, not linearly."
+  },
+  {
+    "question": "The water table in an aquifer close to a river is:",
+    "options": {
+      "always below the bottom of the river": false,
+      "can be located anywhere in relation to river bottom and river level depending on climate, relief and geology": true,
+      "always above the water level in the river": false,
+      "always between the water level in the river and the bottom of the river": false
+    },
+    "success": "Correct. Depending on recharge, geology, gradients, and river–aquifer interactions, the water table may lie above, below, or intersect the river bed.",
+    "error": "The water table is not fixed relative to the river. Its position depends on regional groundwater gradients, recharge conditions, and aquifer–river connectivity."
+  },
+  {
+    "question": "From a steady-state pumping test we can determine:",
+    "options": {
+      "specific yield only": false,
+      "the transmissivity of an aquifer but not its storativity": false,
+      "the storativity of an aquifer but not its transmissivity": false,
+      "neither the transmissivity nor the storativity, only hydraulic conductivity": false,
+      "the transmissivity and the storativity": false,
+      "the transmissivity only": true
+    },
+    "success": "Correct. Under steady-state conditions, drawdown becomes time-independent, so storativity cannot be inferred. Only transmissivity can be estimated.",
+    "error": "In a steady-state test, storativity cannot be determined because the time-dependent drawdown behavior is absent. Only transmissivity can be estimated."
+
+  },
+  {
+    "question": "Aquifers in fractured rocks are:",
+    "options": {
+      "almost always confined": false,
+      "never confined": false,
+      "there is no relation between the type of aquifer (porous/fractured) and its state (confined/unconfined)": true,
+      "almost always unconfined": false,
+      "always confined": false
+    },
+    "success": "Correct. Whether an aquifer is confined or unconfined depends on the presence of confining layers, not on whether the material is fractured or porous.",
+    "error": "Incorrect. Fractured aquifers may be confined or unconfined depending on the geologic setting. The fractured/porous distinction does not determine confinement status."
+  },
+  {
+    "question": "Rainwater has the highest amount of total dissolved solids over:",
+    "options": {
+      "the oceans": true,
+      "it doesn't matter where the concentration is measured; it is always approximately the same": false,
+	  "over the continents": false
+    },
+    "success": "Correct. Rain that falls over the oceans typically shows slightly elevated TDS due to sea-salt aerosols entrained into the atmosphere.",
+    "error": "Incorrect. TDS in rainwater varies. It is typically highest over the oceans due to sea-salt spray input into the atmosphere. Rainwater over the continents typically has lower TDS than rainwater over the oceans."
+  },
+  {
+    "question": "Which of the following statements are correct?",
+    "options": {
+      "Clays have usually very high total porosity and low effective porosity.": true,
+      "Clays have usually low total porosity and low effective porosity.": false,
+      "The total porosity of coarse well-sorted sands is much lower than their effective porosity.": false
+    },
+    "success": "Correct. Clays have very high total porosity due to large amounts of micropores, but their effective porosity is low because pore connectivity is very limited.",
+    "error": "Only the first statement is correct. Clays typically have high total porosity but low effective porosity because very fine pores impede advective flow. Well-sorted sands have total porosity higher than or equal to effective porosity—not lower."
+  }
+]

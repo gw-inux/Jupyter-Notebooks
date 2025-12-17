@@ -1,0 +1,46 @@
+[
+  {
+    "question": "In an unpumped coastal aquifer with constant recharge, a rise in mean sea level will generally tend to:",
+    "options": {
+      "Push the saltwater wedge seaward and deepen the freshwater–saltwater interface.": false,
+      "Promote landward movement of the saltwater toe and reduce the width of the freshwater zone.": true,
+      "Leave the groundwater system unchanged, because recharge is constant.": false,
+      "Completely eliminate the mixing zone.": false
+    },
+    "success": "Correct — even without pumping, sea-level rise tends to drive the saltwater toe landward and reduce the thickness or width of the freshwater zone.",
+    "error": "Not quite — remember that a higher sea level usually promotes landward movement of the saltwater wedge, not seaward retreat."
+  },
+  {
+    "question": "Why is the slope of the coastal aquifer (or land surface) an important parameter in sea-level–rise impact assessments?",
+    "options": {
+      "It controls only porosity and therefore has no hydraulic significance.": false,
+      "Gentle slopes mean that a small rise in sea level can produce a large inland shift of the shoreline and toe position.": true,
+      "Steep slopes always produce more inland saltwater intrusion for a given sea-level rise.": false,
+      "Slope only matters in confined aquifers.": false
+    },
+    "success": "Correct — in very gently sloping coasts, even modest sea-level rise can shift the shoreline and saltwater toe a long distance inland.",
+    "error": "Try again — the key issue is that gentle slopes amplify the horizontal impact of a given vertical sea-level rise."
+  },
+  {
+    "question": "The Chesnaux-type sea-level rise solution is most appropriate for:",
+    "options": {
+      "An aquifer where inland heads are fixed by large rivers and lakes.": false,
+      "A flux-controlled coastal aquifer with a fixed inland no-flow boundary and constant recharge.": true,
+      "A system heavily controlled by pumping wells near the coast.": false,
+      "A tidally dominated estuary aquifer with rapidly varying heads.": false
+    },
+    "success": "Exactly — the Chesnaux approach is designed for flux-controlled systems with a fixed inland boundary and constant recharge, not head-controlled or heavily pumped systems.",
+    "error": "Not quite — this analytical solution is intended for a flux-controlled coastal aquifer with constant recharge and a fixed inland no-flow boundary."
+  },
+  {
+    "question": "Which of the following statements are true about an analytical solution for sea-level rise?",
+    "options": {
+      "It can estimate changes in water-table elevation, toe position and freshwater volume for a given sea-level rise.": true,
+      "It fully resolves the detailed 3D salinity structure in the mixing zone.": false,
+      "It assumes a homogeneous, isotropic, unconfined aquifer with a sharp interface and constant recharge.": true,
+      "It is best used as a first-order screening tool rather than a complete site-scale management model.": true
+    },
+    "success": "Correct — these analytical models are sharp-interface, homogeneous approximations that can estimate head, toe position and freshwater volume, and are best used as screening tools.",
+    "error": "Almost — remember that the model assumes a homogeneous, sharp-interface aquifer and is mainly a first-order screening tool, not a full 3D mixing-zone simulator."
+  }
+]

@@ -1,0 +1,68 @@
+[
+  {
+    "question": "Which of the following statements correctly describe a Dirac (pulse) input in 1D solute transport? (Mark ALL correct answers)",
+    "options": {
+      "It represents an instantaneous mass injection at a single point in time.": true,
+      "It produces a breakthrough curve that has a finite width at the moment of injection.": false,
+      "The total injected mass must be conserved throughout the domain.": true,
+      "It is equivalent to applying a constant concentration boundary at the inlet.": false
+    },
+    "success": "Correct! A Dirac input is instantaneous, all mass is injected at once, and mass conservation holds.",
+    "fail": "Not quite. A Dirac input is an instantaneous point-source injection; it is not a continuous boundary condition."
+  },
+  {
+    "question": "Which statements about pure advection in a 1D column are correct? (Mark ALL correct answers)",
+    "options": {
+      "The concentration front travels at the average linear velocity v.": true,
+      "Dispersion has no effect in pure advection scenarios.": true,
+      "The front becomes smoother with time.": false,
+      "In pure advection, the concentration profile has a perfectly sharp step.": true
+    },
+    "success": "Correct! Pure advection produces a sharp front moving at v, with no spreading.",
+    "fail": "Review pure advection: it has a sharp front that moves at v without spreading."
+  },
+  {
+    "question": "Which statements about dispersion in groundwater flow are correct? (Mark ALL correct answers)",
+    "options": {
+      "Longitudinal dispersion causes spreading of the solute plume along the flow direction.": true,
+      "Dispersion decreases the width of the breakthrough curve.": false,
+      "Mechanical dispersion depends on velocity.": true,
+      "Effective dispersion is the sum of mechanical dispersion and molecular diffusion.": true
+    },
+    "success": "Correct! Dispersion spreads the plume and depends on flow velocity.",
+    "fail": "Check the definition of mechanical dispersion and its link to flow velocity."
+  },
+  {
+    "question": "Which statements about breakthrough curves (BTCs) are correct? (Mark ALL correct answers)",
+    "options": {
+      "A BTC plots concentration as a function of time at a fixed location.": true,
+      "BTCs become broader with increasing dispersivity.": true,
+      "BTCs show how concentration varies with distance at a fixed time.": false,
+      "BTCs can be used to estimate transport parameters such as v and dispersivity.": true
+    },
+    "success": "Correct! BTCs show concentration vs. time at a location and are strongly influenced by dispersion.",
+    "fail": "Remember: a BTC is concentration versus time at a fixed point."
+  },
+  {
+    "question": "Which statements about concentration profiles are correct? (Mark ALL correct answers)",
+    "options": {
+      "A concentration profile shows concentration along the column at a fixed time.": true,
+      "For a Dirac input, the concentration profile spreads symmetrically around the pulse location.": false,
+      "For a continuous input, the upstream portion of the concentration profile may reach steady values.": true,
+      "Dispersion makes concentration profiles smoother compared to pure advection.": true
+    },
+    "success": "Correct! Concentration profiles describe solute distribution in space at one moment in time.",
+    "fail": "Review the distinction between Dirac input and continuous injection profiles."
+  },
+  {
+    "question": "Which statements about transport parameters and definitions are correct? (Mark ALL correct answers)",
+    "options": {
+      "The average linear velocity v equals the specific discharge q divided by porosity n.": true,
+      "Longitudinal dispersivity has units of meters.": true,
+      "The dispersion coefficient D is equal to longitudinal dispersivity times the seepage velocity.": true,
+      "Porosity affects dispersion but does not influence advective velocity.": false
+    },
+    "success": "Correct! v = q/n, dispersivity has units of length, and D = α · v.",
+    "fail": "Check the definitions of v, dispersivity, and the dispersion coefficient."
+  }
+]

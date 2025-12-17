@@ -1,0 +1,60 @@
+catalog_category: "08 Groundwater Modeling"
+catalog_subcategory: "02 Numerical Schemes"
+catalog_subsubcategory: "(Attach to subcategory)"
+
+# --- RESOURCE IDENTIFICATION AND TOPIC MAPPING ---
+# item_id: A unique, simple slug for this item (e.g., aquifer_test_1). 
+
+item_id: TO_BE_FILLED_BY_COURSE_MANAGER
+topic: 02 Numerical Schemes # Must match the title of the parent catalog page.
+title: Finite Difference Numerical Scheme    # The full, descriptive name of the resource.
+
+# --- TYPE AND ACCESS ---
+resource_type: Streamlit app            # Required. Options: Streamlit app, Jupyter Notebook, Video, Dataset, Other.
+url: https://gwf-1d-conf-fd.streamlit.app/      # The direct link to launch the app, notebook on Binder, or video on YouTube.
+date_released: TO_BE_FILLED_BY_COURSE_MANAGER               # Release date in YYYY-MM-DD format.
+
+# --- CONTENT AND METADATA ---
+description_short: >
+  **Purpose and Functionality**
+  The app implements the one-dimensional finite difference method for groundwater flow with two fixed head boundary conditions. Users can specify the spatial discretization by selecting the number of cells, upon which the numerical scheme is set up and solved.
+  
+  **Learning Features**
+  The app visualizes the iterative development of the numerical solution and illustrates how the approximation approaches a stable state. A built-in analytical reference solution enables direct comparison, supporting the exploration of error behaviour, convergence, and numerical representation of groundwater flow processes.
+keywords: [Numerical solution, groundwater modeling, applied hydrogeology, finite differences]
+multipage_app: false
+num_pages: 0
+interactive_plots: true
+num_interactive_plots: 1
+assessments_included: false
+num_assessment_questions: 0
+videos_included: false
+num_videos: 0
+
+# --- EDUCATIONAL FIT ---
+time_required: 15–30 minutes             # Estimated time for a student to complete the activity (e.g., 30 minutes, 1.5 hours).
+prerequisites: Basic hydrogeology, 1D groundwater flow equation, analytical solutions for 1D groundwater flow,       # Required prior knowledge (e.g., Darcy's Law, Python basics, basic calculus).
+fit_for:
+  - self learning
+  - online teaching
+  - classroom teaching
+
+# --- AUTHOR AND REFERENCE ---
+authors:
+  - name: Thomas Reimann
+    affiliation: TU Dresden
+  - name: Rudolf Liedl
+    affiliation: TU Dresden
+references: []                            # List any published papers, DOIs, or source materials related to this resource.
+# image_url: Optional path to a screenshot for the catalog page (e.g., /assets/images/resources/flow_tool_screenshot.png)
+
+figures:
+  - id: 1
+    original_filename: FD_1D_Numerical_Scheme_01.jpg
+    type: Screenshot
+    caption: The interactive plot with the basic setup. When the computation is running, the shown head values update.
+    is_cover: true
+  - id: 2
+    original_filename: FD_1D_Numerical_Scheme_02.jpg
+    type: Screenshot
+    caption: The user interface with an interactive plot that comes with an modified spatial discretization. In addition, the analytical solution is show that allows students comparison with the numerical results.

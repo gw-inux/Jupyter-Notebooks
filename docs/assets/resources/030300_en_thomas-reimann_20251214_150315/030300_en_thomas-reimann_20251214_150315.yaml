@@ -1,0 +1,51 @@
+catalog_category: "03 Basic Hydrogeology"
+catalog_subcategory: "03-03 Steady Groundwater Flow"
+catalog_subsubcategory: "(Attach to subcategory)"
+
+# --- RESOURCE IDENTIFICATION AND TOPIC MAPPING ---
+# item_id: A unique, simple slug for this item (e.g., aquifer_test_1). 
+
+item_id: 0303002
+topic: 03 Steady Groundwater Flow # Must match the title of the parent catalog page.
+title: Analytical solutions for 1D flow, Unconfined and Confined aquifer bounded by two specified head boundaries    # The full, descriptive name of the resource.
+
+# --- TYPE AND ACCESS ---
+resource_type: Streamlit app            # Required. Options: Streamlit app, Jupyter Notebook, Video, Dataset, Other.
+url: https://gwf-1d-unconf-conf-analytic.streamlit.app/      # The direct link to launch the app, notebook on Binder, or video on YouTube.
+date_released: TO_BE_FILLED_BY_COURSE_MANAGER               # Release date in YYYY-MM-DD format.
+
+# --- CONTENT AND METADATA ---
+description_short: >
+  This app compares analytical solutions for one-dimensional groundwater flow in confined and unconfined aquifers bounded by two specified head boundaries. Both systems are assumed to be homogeneous and isotropic with a horizontal base and no groundwater recharge, allowing a direct comparison of the resulting head distributions.
+  
+  Users can interactively adjust hydraulic conductivity, aquifer length, and boundary heads to explore how flow behavior differs between confined (linear head distribution) and unconfined (nonlinear head distribution) conditions. The side-by-side visualization supports conceptual understanding of aquifer type, boundary control, and the fundamental differences between confined and unconfined flow regimes.
+keywords: [groundwater flow, confined, unconfined, darcy]
+multipage_app: false
+num_pages: 0
+interactive_plots: true
+num_interactive_plots: 1
+assessments_included: false
+num_assessment_questions: 0
+videos_included: false
+num_videos: 0
+
+# --- EDUCATIONAL FIT ---
+time_required: 5–15 min             # Estimated time for a student to complete the activity (e.g., 30 minutes, 1.5 hours).
+prerequisites: darcy law, groundwater flow, aquifer types       # Required prior knowledge (e.g., Darcy's Law, Python basics, basic calculus).
+fit_for:
+  - online teaching
+  - classroom teaching
+
+# --- AUTHOR AND REFERENCE ---
+authors:
+  - name: Thomas Reimann
+    affiliation: TU Dresden
+references: []                            # List any published papers, DOIs, or source materials related to this resource.
+# image_url: Optional path to a screenshot for the catalog page (e.g., /assets/images/resources/flow_tool_screenshot.png)
+
+figures:
+  - id: 1
+    original_filename: 03_03_1D_conf_unconfined.png
+    type: Screenshot
+    caption: Computed groundwatrer heads for an unconfined and a confined aquifer.
+    is_cover: true

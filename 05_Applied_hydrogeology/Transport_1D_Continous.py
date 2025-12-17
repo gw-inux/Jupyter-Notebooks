@@ -44,20 +44,6 @@ if theory:
 )
 
 "---"
-st.subheader('Quiz for self education')
-st.markdown("""            
-            The subsequent digital questions allow you to assess your knowledge. They are intended to enhance your learning experience. You can show and hide the questions with the following button.
-""", unsafe_allow_html=True
-)
-columns2 = st.columns((1,1,1), gap = 'large')
-with columns2[1]:
-    quiz = button('Show/Hide quiz questions', key = 'button2') # This button from Streamlit.Extras keeps the part open until the user press the button again
-    
-if quiz:
-    stb.single_choice(":orange[If you choose to plot a concentration profile, what is shown on the x-axis?]",
-                  ["Time", "Concentration", "Space"],
-                  2,success='CORRECT! this is shown by toggling on _Plot concentration profile_ in the interactive tool', error='This is not correct. This can be explored by toggling on _Plot concentration profile_ in the interactive tool, and viewing the second graph.')
-"---"
 
 #FUNCTIONS FOR COMPUTATION
 def concentration(x, t, a, v, c0, R):
@@ -97,27 +83,34 @@ dt = 10         # Time discretization for ploting
 columns3 = st.columns((1,1,1), gap = 'large')
 
 with columns3[0]:
-    c0 = st.slider(f'**Input concentration (g/m³) (same as mg/L)**',100,10000,1000,100) 
-    n  = st.slider(f'**Porosity (dimensionless)**',0.01,0.6,0.2,0.01)       
-    disp = st.toggle('Toggle here to account for dispersion')
-    a  = st.slider(f'**Longitudinal dispersivity (m)**',0.002,0.100,0.010,0.001, format="%5.3f")
+    with st.expander("Control for the breakthrough curves"):
+        breaktr = st.toggle('Toggle here to see the breaktrough curve')
+        l  = st.slider(f'**Distance of observation from source (m)**',0.01,lmax,0.5,0.01)
 
 with columns3[1]:
-    plot_DATA = st.toggle('Show Measured data for calibration',False)
-    if plot_DATA:
-        l = 0.75
-        time_p = l/(Q/(np.pi*r**2)/n)
-        st.write(f"**Calibration data measured {l} m from the source**")
-        st.write(f"**Concentration profile is for {round(time_p)} seconds**")
-        st.write('**To calibrate, adjust parameter values until model matches data**')
-        st.write('**Check calibrated values using button below graphs**')
-    else:
-        l  = st.slider(f'**Distance of observation from source (m)**',0.01,lmax,0.5,0.01)
+    with st.expander("Controls for the concentration profile"):
+        profile = st.toggle('Toggle here to see the concentration profile')
         time_p = st.slider(f'**Time to plot the conc. profile (s)**',0,10000,600,60)
+    plot_DATA = False
+    #plot_DATA = st.toggle('Show Measured data for calibration',False)
+    #if plot_DATA:
+    #    l = 0.75
+    #    time_p = l/(Q/(np.pi*r**2)/n)
+    #    st.write(f"**Calibration data measured {l} m from the source**")
+    #    st.write(f"**Concentration profile is for {round(time_p)} seconds**")
+    #    st.write('**To calibrate, adjust parameter values until model matches data**')
+    #    st.write('**Check calibrated values using button below graphs**')
+    #else:
+    #    l  = st.slider(f'**Distance of observation from source (m)**',0.01,lmax,0.5,0.01)
+    #    time_p = st.slider(f'**Time to plot the conc. profile (s)**',0,10000,600,60)
 
 with columns3[2]:
-    breaktr = st.toggle('Toggle here to see the breaktrough curve')
-    profile = st.toggle('Toggle here to see the concentration profile')
+    with st.expander("Controls for the solute transport"):
+        c0 = st.slider(f'**Input concentration (g/m³) (same as mg/L)**',100,10000,1000,100) 
+        n  = st.slider(f'**Porosity (dimensionless)**',0.01,0.6,0.2,0.01)       
+        disp = st.toggle('Toggle here to account for dispersion')
+        a  = st.slider(f'**Longitudinal dispersivity (m)**',0.002,0.100,0.010,0.001, format="%5.3f")
+    
 "---"
 
 # Computation of intermediate results
@@ -163,13 +156,15 @@ st.write("Concentration for an average velocity _v_ = ","% 7.3E"% v, " (m/s)")
 # PLOT FIGURE
 
 # General figure settings
-fig = plt.figure(figsize=(16,20))
-gs = matplotlib.gridspec.GridSpec(3,1, height_ratios=[1,0.02,0.7])
+#fig = plt.figure(figsize=(16,20))
+#gs = matplotlib.gridspec.GridSpec(3,1, height_ratios=[1,0.02,0.7])
 
+fig = plt.figure(figsize=(9,8))
+ax = fig.add_subplot(2, 1, 1)
 # Upper figure 
 if breaktr:
-    ax = fig.add_subplot(gs[0,:])
-    ax.set_title  (f"Concentration breakthrough curve at x = {l} meters", fontsize=24)
+    #ax = fig.add_subplot(gs[0,:])
+    ax.set_title  (f"Concentration breakthrough curve at x = {l} meters", fontsize=14)
     ax.set_xlabel ('Time (s)', fontsize=14)
     ax.set_ylabel ('Concentration (g/m³)', fontsize=14)
           
@@ -188,10 +183,11 @@ if breaktr:
     legend = plt.legend(loc='upper right', fontsize=14, framealpha=0.8)
     legend.get_frame().set_linewidth(0.0)
 
+ax = fig.add_subplot(2, 1, 2)
 # Lower figure
 if profile:
-    ax = fig.add_subplot(gs[2,:])
-    ax.set_title  (f"Concentration profile along the column at t = {round(time_p)} seconds", fontsize=24)
+    #ax = fig.add_subplot(gs[2,:])
+    ax.set_title  (f"Concentration profile along the column at t = {round(time_p)} seconds", fontsize=14)
     ax.set_xlabel ('Column length (m)', fontsize=14)
     ax.set_ylabel ('Concentration (g/m³)', fontsize=14)
       
