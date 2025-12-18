@@ -165,5 +165,6 @@ columns_lic = st.columns((5,1))
 with columns_lic[0]:
     st.markdown(f'Developed by {", ".join(author_list)} ({year}). <br> {institution_text}', unsafe_allow_html=True)
 with columns_lic[1]:
-    st.image(module_path + 'images/CC_BY-SA_icon.png')
+    st.image('FIGS/CC_BY-SA_icon.png')
+
 
