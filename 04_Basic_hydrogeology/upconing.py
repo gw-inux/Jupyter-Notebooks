@@ -2,23 +2,40 @@ import streamlit as st
 import numpy as np
 import matplotlib.pyplot as plt
 
+# TO DO: 
+# - Slider
+
 # Streamlit app title and description
 # Developed by Markus Giese University of Gothenburg 2025
+
+year = 2025 
+authors = {
+    "Markus Giese": [1],  # Author 1 belongs to Institution 1
+    "Thomas Reimann": [2],
+}
+institutions = {
+    1: "University of Gothenburg, Department of Earth Sciences",
+    2: "TU Dresden, Institute for Groundwater Management",
+}
+index_symbols = ["¹", "²", "³", "⁴", "⁵", "⁶", "⁷", "⁸", "⁹"]
+author_list = [f"{name}{''.join(index_symbols[i-1] for i in indices)}" for name, indices in authors.items()]
+institution_list = [f"{index_symbols[i-1]} {inst}" for i, inst in institutions.items()]
+institution_text = " | ".join(institution_list)
 
 # Markdown description
 
 st.title("Upconing")
 
-st.subheader('Upconing of the Saltwater Interface', divider= "blue")
+st.subheader('Describing the :orange[upconing] of the freshwater-saltwater interface due to pumping', divider= "orange")
 
 
 st.markdown(r"""
-This interactive app demonstrate the principle of upconing (rise of saltwater) due to pumping. The notebook is based on an example from the INOWAS platform (https://www.inowas.com).
-
-### **Introduction**  
-#### **General Situation** 
-
-Upconing of the saltwater interface can occur when the aquifer (freshwater) head is lowered by pumping from wells. Schmork and Mercado (1969) and Dagan and Bear (1968) developed equations to calculate upconing and determine the maximum well pumping rate at a new equilibrium caused by pumping. In these calculations, the pumping well is considered as a point.
+**Introduction**
+In aquifers where saline groundwater lies beneath freshwater, pumping can disturb the balance between the two. When pumping lowers the piezometric head in the freshwater zone, the underlying saltwater responds by moving upward toward the well. This process is known as interface upconing.
+Upconing is a particular concern in heavily exploited coastal aquifers, where groundwater is the main source of drinking water. In such areas, over-pumping and illegal abstractions can significantly lower groundwater heads, allowing the saline–freshwater interface to rise. If pumping continues, the interface may eventually reach the well screen. Once this happens, the pumped water becomes increasingly saline and unsuitable for domestic use, forcing a reduction or complete stop of pumping.
+To avoid or limit these negative effects, the pumping rate must be kept below a critical value, so that the drawdown of the piezometric head stays within acceptable limits. If pumping is reduced sufficiently, the interface can gradually move back downward toward its original position, although this recovery is usually slow because of the long response times of aquifer systems. Another management option is to relocate wells or to distribute pumping over several wells instead of a single high-capacity well.
+Based on a sharp-interface concept and a number of simplifying assumptions (homogeneous aquifer, steady pumping, axisymmetric flow, and clear density contrast between fresh and saline water), analytical solutions have been developed to estimate the amount of upconing beneath a pumping well (Bear & Dagan, 1964; Dagan & Bear, 1968; Schmorak & Mercado, 1969). These solutions are widely used for screening-level assessments and teaching, helping to identify safe pumping rates and understand the key controls on upconing, before more detailed numerical modelling is applied.
+coning of the saltwater interface can occur when the aquifer (freshwater) head is lowered by pumping from wells. Schmork and Mercado (1969) and Dagan and Bear (1968) developed equations to calculate upconing and determine the maximum well pumping rate at a new equilibrium caused by pumping. In these calculations, the pumping well is considered as a point.
 
 The maximum upconing, which occurs directly underneath the pumping well, can be calculated as:
 
@@ -42,6 +59,8 @@ and
 - $Q$ = pumping rate [L³/T],
 - $d$ = pre-pumping distance from base of well to interface [L],
 - $K$ = hydraulic conductivity [L/T].
+
+In literature, the safety factor varies from 0.25 to 0.6 considering how strict the water-quality target is, how thick the mixing zone is assumed to be, and how conservative the design is.
 
 To calculate the upconing at any distance ($x$) from the well, the following equation can be used under steady-state conditions $( t \to \infty ) $ (Bear, 1999):
 
@@ -68,8 +87,8 @@ Dagan, G., Bear, J., 1968. Solving The Problem Of Local Interface Upconing In A 
 """, unsafe_allow_html=True)
 
 "---"
-
-st.subheader('Computation')
+st.subheader('Interactive Plot and Exercise', divider="orange")
+st.markdown(""" #### :orange[INPUT CONTROLS]""")
 
 # User inputs
 def upconing(x, Q, K, d_pre, rho_f, rho_s, n):
@@ -98,7 +117,16 @@ with rc1:
         n = st.slider("Porosity (n)", min_value=0.05, max_value=0.4, step=0.01, value=0.15)
     d_pre = st.slider("Pre-pumping distance ($d_{pre}$) in m", min_value=0.5, max_value=100.0, step=0.1, value=10.0)
     Q = st.slider("Freshwater Discharge (pumping rate) ($Q$) in m³/d", min_value=0, max_value=5000, step=10, value=100)
-   
+
+# Ensure physical consistency: rho_s > rho_f
+if rho_s <= rho_f:
+    st.warning(
+        "Saltwater density must be greater than freshwater density. "
+        "Adjusting ρ_s to ρ_f + 1 kg/m³."
+    )
+    rho_s = rho_f + 1
+    st.session_state.rho_s = rho_s
+
 z, z_0, Q_max, z_max = upconing(x, Q, K, d_pre, rho_f, rho_s, n)
 
 # Plot Glover equation results
@@ -132,9 +160,10 @@ st.write(f"**Critical upconing elevation:** {z_max:.2f} m")
 
 
 
-# Copyright
-col1, col2 = st.columns([1, 5], gap = 'large')  # Adjust column width ratio
-with col1:
-    st.image('04_Basic_hydrogeology/FIGS/logo_iNUX.jpg', width=125)
-with col2:
-    st.markdown("© 2025 iNUX Project - Interactive understanding of groundwater hydrology and hydrogeology - An ERASMUS+ cooperation project.<br>App developer: Markus Giese (University of Gothenburg)", unsafe_allow_html=True)
+# Render footer with authors, institutions, and license logo in a single line
+columns_lic = st.columns((5,1))
+with columns_lic[0]:
+    st.markdown(f'Developed by {", ".join(author_list)} ({year}). <br> {institution_text}', unsafe_allow_html=True)
+with columns_lic[1]:
+    st.image(module_path + 'images/CC_BY-SA_icon.png')
+
