@@ -2,12 +2,6 @@
   margin-top: 1.25rem;  /* adjust as needed */
 }
 
-/* Move the divider under title/search down */
 .site-header {
-  padding-bottom: 1.25rem;   /* moves its border-bottom down */
-}
-
-/* Move the divider under the search (main header) down */
-.main-header {
-  padding-bottom: 1.25rem;   /* same logic */
+  border-bottom: none !important;
 }
