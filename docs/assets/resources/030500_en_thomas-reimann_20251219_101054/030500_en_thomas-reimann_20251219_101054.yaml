@@ -1,0 +1,59 @@
+catalog_category: "03 Basic Hydrogeology"
+catalog_subcategory: "03-05 Flow to Wells"
+catalog_subsubcategory: "(Attach to subcategory)"
+
+# --- RESOURCE IDENTIFICATION AND TOPIC MAPPING ---
+# item_id: A unique, simple slug for this item (e.g., aquifer_test_1). 
+
+item_id: 0305001
+topic: 05 Flow to Wells # Must match the title of the parent catalog page.
+title: Steady-State Flow to a Well in a Confined Aquifer - Drawdown with the Thiem equation    # The full, descriptive name of the resource.
+
+# --- TYPE AND ACCESS ---
+resource_type: Streamlit app            # Required. Options: Streamlit app, Jupyter Notebook, Video, Dataset, Other.
+url: https://flow2well-thiem-confined.streamlit.app/      # The direct link to launch the app, notebook on Binder, or video on YouTube.
+date_released: TO_BE_FILLED_BY_COURSE_MANAGER               # Release date in YYYY-MM-DD format.
+
+# --- CONTENT AND METADATA ---
+description_short: >
+  This Streamlit app is an interactive learning tool for steady-state radial flow to a pumping well in a confined aquifer using the Thiem equation. Users explore how aquifer properties and well characteristics control the drawdown curve and the pumping rate required to achieve a target drawdown.
+  
+  
+  The interface provides sliders for key parameters: the unaffected hydraulic head (H), aquifer thickness (m), and hydraulic conductivity (K, adjusted on a log scale), as well as the well radius (rₙ). A toggle lets users choose between two modes: (i) prescribe a drawdown at the well and compute the corresponding abstraction rate Q, or (ii) prescribe Q and compute the resulting head distribution.
+  
+  
+  Based on the selected parameters, the app iteratively determines an effective radius of influence (R) and then calculates the hydraulic head h(r) from the Thiem solution. The resulting drawdown profile is plotted symmetrically around the well to visualize the cone of depression and its spatial extent. If parameters imply that the computed head drops below the aquifer thickness (indicating a transition toward unconfined conditions), the app flags this with a clear warning in the plot.
+  
+  
+  A compact output panel summarizes the drawdown at the well and the computed abstraction rate, supporting quick interpretation and “what-if” experimentation. Overall, the app helps students and practitioners build intuition for confined well hydraulics and parameter sensitivity in a transparent, hands-on way.
+keywords: [Wells, steady-state, dewatering, Thiem equation, flow to wells]
+multipage_app: false
+num_pages: 0
+interactive_plots: true
+num_interactive_plots: 1
+assessments_included: false
+num_assessment_questions: 0
+videos_included: false
+num_videos: 0
+
+# --- EDUCATIONAL FIT ---
+time_required: 5–15 min             # Estimated time for a student to complete the activity (e.g., 30 minutes, 1.5 hours).
+prerequisites: Basic hydrogeology       # Required prior knowledge (e.g., Darcy's Law, Python basics, basic calculus).
+fit_for:
+  - self learning
+  - classroom teaching
+  - online teaching
+
+# --- AUTHOR AND REFERENCE ---
+authors:
+  - name: Thomas Reimann
+    affiliation: TU Dresden
+references: []                            # List any published papers, DOIs, or source materials related to this resource.
+# image_url: Optional path to a screenshot for the catalog page (e.g., /assets/images/resources/flow_tool_screenshot.png)
+
+figures:
+  - id: 1
+    original_filename: 03_05_Thiem_confined.png
+    type: Screenshot
+    caption: The interactive plot with the computed drawdown
+    is_cover: true

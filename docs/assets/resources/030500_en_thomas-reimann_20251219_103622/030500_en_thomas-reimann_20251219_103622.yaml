@@ -1,0 +1,59 @@
+catalog_category: "03 Basic Hydrogeology"
+catalog_subcategory: "03-05 Flow to Wells"
+catalog_subsubcategory: "(Attach to subcategory)"
+
+# --- RESOURCE IDENTIFICATION AND TOPIC MAPPING ---
+# item_id: A unique, simple slug for this item (e.g., aquifer_test_1). 
+
+item_id: 0305002
+topic: 05 Flow to Wells # Must match the title of the parent catalog page.
+title: Steady-State Flow to Multiple Wells in a Confined Aquifer - Thiem Equation & Superposition    # The full, descriptive name of the resource.
+
+# --- TYPE AND ACCESS ---
+resource_type: Streamlit app            # Required. Options: Streamlit app, Jupyter Notebook, Video, Dataset, Other.
+url: https://flow2well-thiem-confined-superposition.streamlit.app/      # The direct link to launch the app, notebook on Binder, or video on YouTube.
+date_released: TO_BE_FILLED_BY_COURSE_MANAGER               # Release date in YYYY-MM-DD format.
+
+# --- CONTENT AND METADATA ---
+description_short: >
+  This Streamlit app illustrates steady-state flow to multiple pumping wells in a confined aquifer using the Thiem equation and the principle of superposition. It is designed to support conceptual understanding of well interference and its dependence on aquifer properties, well spacing, and pumping rates.
+  
+  
+  Users adjust key aquifer parameters (unaffected head H, aquifer thickness m, hydraulic conductivity K on a logarithmic scale) and well characteristics (well radius). Two complementary modes are available: prescribing a drawdown at the well to compute the required pumping rate per well, or prescribing a pumping rate to compute the resulting head distribution. The number of wells (1–13) is selected symmetrically around a central well, together with the spacing between neighboring wells.
+  
+  
+  The app estimates a radius of influence and computes the head distribution along a 1D transect through the well field. Drawdown contributions from all wells are summed by superposition, clearly visualizing overlapping cones of depression and increasing interference with decreasing well spacing. Parameter combinations that imply a transition toward unconfined conditions are flagged directly in the plot.
+  
+  
+  A compact output section reports the drawdown at the central well, the abstraction rate per well, the total abstraction rate, and the estimated radius of influence, making the app suitable for both teaching and exploratory well-field analysis.
+keywords: [Wells, steady-state, dewatering, Thiem equation, flow to wells]
+multipage_app: false
+num_pages: 0
+interactive_plots: true
+num_interactive_plots: 1
+assessments_included: false
+num_assessment_questions: 0
+videos_included: false
+num_videos: 0
+
+# --- EDUCATIONAL FIT ---
+time_required: 15–30 minutes             # Estimated time for a student to complete the activity (e.g., 30 minutes, 1.5 hours).
+prerequisites: Basic hydrogeology       # Required prior knowledge (e.g., Darcy's Law, Python basics, basic calculus).
+fit_for:
+  - self learning
+  - classroom teaching
+  - online teaching
+
+# --- AUTHOR AND REFERENCE ---
+authors:
+  - name: Thomas Reimann
+    affiliation: TU Dresden
+references: []                            # List any published papers, DOIs, or source materials related to this resource.
+# image_url: Optional path to a screenshot for the catalog page (e.g., /assets/images/resources/flow_tool_screenshot.png)
+
+figures:
+  - id: 1
+    original_filename: 03_05_Thiem_confined_superposition.png
+    type: Screenshot
+    caption: The plot shows the resulting drawdown according to Thiems equation for three wells.
+    is_cover: true

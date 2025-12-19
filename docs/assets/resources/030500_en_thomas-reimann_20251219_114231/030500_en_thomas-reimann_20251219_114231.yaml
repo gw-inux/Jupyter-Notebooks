@@ -1,0 +1,65 @@
+catalog_category: "03 Basic Hydrogeology"
+catalog_subcategory: "03-05 Flow to Wells"
+catalog_subsubcategory: "(Attach to subcategory)"
+
+# --- RESOURCE IDENTIFICATION AND TOPIC MAPPING ---
+# item_id: A unique, simple slug for this item (e.g., aquifer_test_1). 
+
+item_id: 0305004
+topic: 05 Flow to Wells # Must match the title of the parent catalog page.
+title: Steady-State Flow to Multiple Wells in an Unconfined Aquifer - Thiem Equation & Superposition    # The full, descriptive name of the resource.
+
+# --- TYPE AND ACCESS ---
+resource_type: Streamlit app            # Required. Options: Streamlit app, Jupyter Notebook, Video, Dataset, Other.
+url: https://flow2well-thiem-unconfined-superposition.streamlit.app/      # The direct link to launch the app, notebook on Binder, or video on YouTube.
+date_released: TO_BE_FILLED_BY_COURSE_MANAGER               # Release date in YYYY-MM-DD format.
+
+# --- CONTENT AND METADATA ---
+description_short: >
+  This interactive app illustrates steady-state groundwater flow to multiple pumping wells in an unconfined aquifer using the Dupuit–Thiem equation combined with the principle of superposition. A symmetric well field (1–13 wells) is arranged along a line, allowing users to explore how well spacing, number of wells, hydraulic conductivity (log-scaled), and initial water-table elevation jointly control the resulting drawdown pattern.
+  
+  
+  Users may either specify the abstraction rate per well (Q) or prescribe a drawdown at the central well, from which the corresponding pumping rate is derived. The app computes the radius of influence (Sichardt) and evaluates the combined drawdown by superposing the contributions of all wells, consistent with unconfined Thiem theory.
+  
+  
+  Optional visualization features include:
+  
+  * Display of individual well positions and local heads,
+  
+  * A capacity check comparing pumping rate with a Sichardt-based well capacity,
+  
+  * Representation of a construction pit intersecting the groundwater table.
+  
+  
+  Key outputs include drawdown at the central well, per-well and total abstraction rates, and well-specific capacity indicators, supporting conceptual understanding of well interference, field design, and sustainability limits in unconfined aquifers.
+keywords: [Wells, steady-state, dewatering, Thiem equation, flow to wells]
+multipage_app: false
+num_pages: 0
+interactive_plots: true
+num_interactive_plots: 1
+assessments_included: false
+num_assessment_questions: 0
+videos_included: false
+num_videos: 0
+
+# --- EDUCATIONAL FIT ---
+time_required: 15–30 minutes             # Estimated time for a student to complete the activity (e.g., 30 minutes, 1.5 hours).
+prerequisites: Basic hydrogeology       # Required prior knowledge (e.g., Darcy's Law, Python basics, basic calculus).
+fit_for:
+  - self learning
+  - classroom teaching
+  - online teaching
+
+# --- AUTHOR AND REFERENCE ---
+authors:
+  - name: Thomas Reimann
+    affiliation: TU Dresden
+references: []                            # List any published papers, DOIs, or source materials related to this resource.
+# image_url: Optional path to a screenshot for the catalog page (e.g., /assets/images/resources/flow_tool_screenshot.png)
+
+figures:
+  - id: 1
+    original_filename: 03_05_Thiem_unconfined_superposition.png
+    type: Screenshot
+    caption: The drawdown in an unconfined aquifer with 5 pumping wells.
+    is_cover: true
