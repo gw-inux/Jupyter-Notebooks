@@ -30,7 +30,7 @@ st.subheader('Describing the :orange[upconing] of the freshwater-saltwater inter
 
 
 st.markdown(r"""
-**Introduction**
+### **Introduction**
 
 In aquifers where saline groundwater lies beneath freshwater, pumping can disturb the balance between the two. When pumping lowers the piezometric head in the freshwater zone, the underlying saltwater responds by moving upward toward the well. This process is known as interface upconing.
 Upconing is a particular concern in heavily exploited coastal aquifers, where groundwater is the main source of drinking water. In such areas, over-pumping and illegal abstractions can significantly lower groundwater heads, allowing the saline–freshwater interface to rise. If pumping continues, the interface may eventually reach the well screen. Once this happens, the pumped water becomes increasingly saline and unsuitable for domestic use, forcing a reduction or complete stop of pumping.
@@ -167,6 +167,7 @@ with columns_lic[0]:
     st.markdown(f'Developed by {", ".join(author_list)} ({year}). <br> {institution_text}', unsafe_allow_html=True)
 with columns_lic[1]:
     st.image('FIGS/CC_BY-SA_icon.png')
+
 
 
 
