@@ -158,7 +158,7 @@ textstr1 =('Unconfined')
 textstr2 =('Confined (above aquifer top)')
     
 # Plotting
-fig =plt.figure(figsize=(10, 6))
+fig =plt.figure(figsize=(8, 5))
     
 plt.plot(r_neg, s, linewidth=1.5, color='r', label=r'drawdown prediction confined')
 plt.plot(r, s, linewidth=0.25, color='r', linestyle='dashed')
@@ -175,7 +175,7 @@ plt.ylabel(r'Drawdown in m', fontsize=14)
 plt.title('Drawdown prediction with Theis', fontsize=16)
 plt.text(-max_r*0.95, max_s*0.9, textstr2, fontsize=14,
         verticalalignment='top')
-plt.text(max_r*0.7, max_s*0.9, textstr1, fontsize=14,
+plt.text(max_r*0.62, max_s*0.9, textstr1, fontsize=14,
         verticalalignment='top')
 plt.legend()
 #plt.grid(True)
