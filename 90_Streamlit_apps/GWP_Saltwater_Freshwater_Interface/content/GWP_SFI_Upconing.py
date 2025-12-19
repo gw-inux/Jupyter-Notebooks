@@ -40,7 +40,46 @@ institution_list = [f"{index_symbols[i-1]} {inst}" for i, inst in institutions.i
 institution_text = " | ".join(institution_list)
 
 # ---------- Define paths, loading files
-path_quest_ghp = st.session_state.module_path + "questions/exer_ghp.json"
+# ---------- Define paths, loading files
+# --- path to questions for the assessments (direct path)
+path_quest_ini   = st.session_state.module_path + "questions/upconing_initial.json"
+#path_quest_exer =  st.session_state.module_path + "questions/upconing_exer.json"
+path_quest_final = st.session_state.module_path + "questions/upconing_final.json"
+
+# Load questions
+with open(path_quest_ini, "r", encoding="utf-8") as f:
+    quest_ini = json.load(f)
+    
+#with open(path_quest_exer, "r", encoding="utf-8") as f:
+#    quest_exer = json.load(f)
+    
+with open(path_quest_final, "r", encoding="utf-8") as f:
+    quest_final = json.load(f)
+
+#---------- FUNCTIONS
+def upconing(x, Q, K, d_pre, rho_f, rho_s, n):
+    # Compute values
+    t = np.inf
+    z = (1/(x**2/d_pre**2+1)**0.5-1/(x**2/d_pre**2+(1+((rho_s - rho_f)/rho_f)*K*t/(n*d_pre*(2+(rho_s - rho_f)/rho_f)))**2)**0.5)* Q/(2*np.pi*d_pre*K*((rho_s - rho_f)/rho_f))
+    z_0 = Q*(rho_f/(rho_s - rho_f))/(2*np.pi*d_pre*K)
+    Q_max = (0.6*np.pi*d_pre**2*K)/(rho_f/(rho_s - rho_f))
+    z_max = Q_max*(rho_f/(rho_s - rho_f))/(2*np.pi*d_pre*K)
+    
+    return z, z_0, Q_max, z_max
+
+# Callback function to update session state
+def update_K():
+    st.session_state.K = st.session_state.K_input
+def update_n():
+    st.session_state.n = st.session_state.n_input
+def update_Q():
+    st.session_state.K = st.session_state.K_input
+def update_d_pre():
+    st.session_state.n = st.session_state.n_input
+def update_rho_s():
+    st.session_state.rho_s = st.session_state.rho_s_input
+def update_rho_f():
+    st.session_state.rho_f = st.session_state.rho_f_input
 
 #---------- UI Starting here
 st.title("Upconing")
@@ -131,29 +170,9 @@ where
 
 st.subheader('Interactive Plot and Exercise', divider="orange")
 st.markdown(""" #### :orange[INPUT CONTROLS]""")
-# Callback function to update session state
-def update_K():
-    st.session_state.K = st.session_state.K_input
-def update_n():
-    st.session_state.n = st.session_state.n_input
-def update_Q():
-    st.session_state.K = st.session_state.K_input
-def update_d_pre():
-    st.session_state.n = st.session_state.n_input
-def update_rho_s():
-    st.session_state.rho_s = st.session_state.rho_s_input
-def update_rho_f():
-    st.session_state.rho_f = st.session_state.rho_f_input
+
 # User inputs
-def upconing(x, Q, K, d_pre, rho_f, rho_s, n):
-    # Compute values
-    t = np.inf
-    z = (1/(x**2/d_pre**2+1)**0.5-1/(x**2/d_pre**2+(1+((rho_s - rho_f)/rho_f)*K*t/(n*d_pre*(2+(rho_s - rho_f)/rho_f)))**2)**0.5)* Q/(2*np.pi*d_pre*K*((rho_s - rho_f)/rho_f))
-    z_0 = Q*(rho_f/(rho_s - rho_f))/(2*np.pi*d_pre*K)
-    Q_max = (0.6*np.pi*d_pre**2*K)/(rho_f/(rho_s - rho_f))
-    z_max = Q_max*(rho_f/(rho_s - rho_f))/(2*np.pi*d_pre*K)
-    
-    return z, z_0, Q_max, z_max
+
    
 # Parameter / Input
 
