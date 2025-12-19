@@ -49,8 +49,8 @@ path_quest_final = st.session_state.module_path + "questions/sealevelrise_final.
 with open(path_quest_ini, "r", encoding="utf-8") as f:
     quest_ini = json.load(f)
     
-#with open(path_quest_exer, "r", encoding="utf-8") as f:
-#    quest_exer = json.load(f)
+with open(path_quest_exer, "r", encoding="utf-8") as f:
+    quest_exer = json.load(f)
     
 with open(path_quest_final, "r", encoding="utf-8") as f:
     quest_final = json.load(f)
