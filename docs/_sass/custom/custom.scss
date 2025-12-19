@@ -1,3 +1,16 @@
+/* 1) Make the whole header taller so the bottom divider stays below content */
+.site-header {
+  padding-top: 1.25rem;     /* "blank line" feeling */
+  padding-bottom: 0.75rem;  /* pushes the bottom border down */
+}
+
+/* 2) Keep title itself clean (no extra margin-top needed anymore) */
 .site-title {
-  margin-top: 1.5rem;  /* adjust as needed */
+  margin-top: 0;
+}
+
+/* 3) If the search now looks too high compared to the title, move it down too */
+.site-header .search,
+.site-header .search-input-wrap {
+  margin-top: 0.35rem; /* adjust 0–0.8rem to taste */
 }
