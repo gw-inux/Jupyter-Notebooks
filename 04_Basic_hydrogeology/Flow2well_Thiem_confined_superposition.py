@@ -3,7 +3,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 import streamlit as st
 
-st.title('Steady-State Flow to Three Wells in a Confined Aquifer - Thiem Equation & Superposition')
+st.title('Steady-State Flow to Multiple Wells in a Confined Aquifer - Thiem Equation & Superposition')
 
 # Import parameter
 log_min = -7.0  # K / Corresponds to 10^-7 = 0.0000001
@@ -31,12 +31,26 @@ with columns[1]:
     else:
         Q = st.slider('Abstraction rate per well (m³/s)', 0.001, 1.0, 0.05, 0.001, format="%5.3f")
 
+# --- Number of wells: 3, 5, or 7 (always symmetric around x = 0) ---
+n_wells = st.radio(
+    "Number of wells (symmetric around the central well):",
+    options=[3, 5, 7],
+    index=0,
+    horizontal=True
+)
+
+# Maximum index factor: for 3 wells → 1 (positions -d, 0, d)
+#                       for 5 wells → 2 (positions -2d, -d, 0, d, 2d)
+#                       for 7 wells → 3 (positions -3d, -2d, -d, 0, d, 2d, 3d)
+k_max = (n_wells - 1) // 2
+
 # Distance of neighboring wells from the central well
+# Ensure outermost well lies within the plotting range: k_max * d <= x_max
 d = st.slider(
     'Distance of neighboring wells from the central well (m)',
     float(max(2 * r_w, 1.0)),
-    float(x_max / 2),
-    float(min(100.0, x_max / 2)),
+    float(x_max / max(k_max, 1)),  # avoid division by zero (k_max>=1 here)
+    float(min(100.0, x_max / max(k_max, 1))),
     step=1.0,
     format="%5.1f"
 )
@@ -60,13 +74,15 @@ else:
             break
         R_old = R
 
-# --- COMPUTE h(x) with superposition of three wells ---
+# --- COMPUTE h(x) with superposition of multiple wells ---
 
-n_points = 800  # reasonable resolution for plotting
+n_points = 5000  # reasonable resolution for plotting
 x = np.linspace(-x_max, x_max, n_points)
 
-# Well positions: left, center, right
-well_positions = np.array([-d, 0.0, d])
+# Well positions: symmetric multiples of d around 0
+# Example: n_wells=5 → multipliers = [-2, -1, 0, 1, 2] * d
+multipliers = np.arange(-k_max, k_max + 1)
+well_positions = multipliers * d
 
 # Start from undisturbed head everywhere
 h = np.full_like(x, H, dtype=float)
@@ -83,7 +99,7 @@ for x_w in well_positions:
     mask = r < R
     h[mask] -= C * np.log(R / r[mask])
 
-# Head at the central well (x = 0) including superposition
+# Head at the central well (x = 0) including superposition from all wells
 x_center = 0.0
 h_center = H
 for x_w in well_positions:
@@ -100,7 +116,7 @@ ax = fig.add_subplot(1, 1, 1)
 # Check confined vs "unconfined" conditions at central well
 if h_center > m:
     color = 'b'
-    linestyle = '--'
+    linestyle = '-'
 else:
     color = 'r'
     linestyle = '-'
@@ -138,7 +154,8 @@ ax.text((x_max / 2), (m / 2), 'confined aquifer')
 st.pyplot(fig)
 
 # --- OUTPUTS ---
+st.write(f'Number of wells: {n_wells}')
 st.write('Drawdown at the central well (including superposition): ', H - h_center, ' m')
 st.write('Abstraction rate per well: ', Q, ' m³/s')
-st.write('Total abstraction rate (3 wells): ', 3 * Q, ' m³/s')
+st.write('Total abstraction rate: ', n_wells * Q, ' m³/s')
 st.write('Radius of influence (Sichardt): ', R, ' m')
