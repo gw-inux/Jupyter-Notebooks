@@ -4,6 +4,25 @@ import matplotlib.pyplot as plt
 from matplotlib.patches import Rectangle
 import streamlit as st
 
+# also 03-05-004
+# Todo
+# log slider
+# number input
+
+# Authors, institutions, and year
+year = 2025 
+authors = {
+    "Thomas Reimann": [1]  # Author 1 belongs to Institution 1
+}
+institutions = {
+    1: "TU Dresden, Institute for Groundwater Management"
+    
+}
+index_symbols = ["¹", "²", "³", "⁴", "⁵", "⁶", "⁷", "⁸", "⁹"]
+author_list = [f"{name}{''.join(index_symbols[i-1] for i in indices)}" for name, indices in authors.items()]
+institution_list = [f"{index_symbols[i-1]} {inst}" for i, inst in institutions.items()]
+institution_text = " | ".join(institution_list)
+
 st.title('Steady-State Flow to Multiple Wells in an Unconfined Aquifer - Thiem Equation & Superposition')
 
 # Input
@@ -16,7 +35,6 @@ with columns[0]:
     with st.expander('Show plot and system parameter'):
         x_max = st.slider('x_max (m)', 50, 3000, 500, 10)
         H = st.slider('Initial water table elevation H (m)', 1.0, 100.0, 25.0, 0.01)
-        capa = st.toggle('Show the wells and their capacity')
     
 with columns[1]:
     show_pit = st.toggle('Show the construction pit')
@@ -45,6 +63,9 @@ columns2 = st.columns((1,3,1), gap='medium')
 with columns2[1]:
     n_wells = st.radio("Number of wells (symmetric around the central well):", options=[1, 3, 5, 7, 9, 11, 13], index=0, horizontal=True)
 k_max = (n_wells - 1) // 2  # e.g. 3→1, 5→2, 7→3
+with columns2[2]:
+    capa = st.toggle('Show wells and their capacity')
+
 
 columns3 = st.columns((1,1), gap='medium')
 # Distance of neighboring wells from the central well
@@ -52,7 +73,7 @@ with columns3[0]:
     r_w = st.slider('Well radius r_w (m)', 0.01, 1.0, 0.3, 0.01)
 with columns3[1]:
     d = st.slider(
-        'Distance of neighboring wells from the central well (m)',
+        'Distance between wells (m)',
         5.0,
         float(x_max / max(k_max, 1)),
         float(min(50.0, x_max / max(k_max, 1))),
@@ -285,10 +306,24 @@ st.markdown(f"""
 )
 
 # Well-specific Sichardt capacities
-for i, (x_w, Q_c_i) in enumerate(zip(well_positions, well_Qc), start=1):
-    status = "OK" if Q_c_i >= Q else "INSUFFICIENT"
-    st.write(
-        f"Well {i} at x = {x_w:.1f} m: "
-        f"Q_c = {Q_c_i:.4f} m³/s ({status})"
-    )
+if capa:
+    for i, (x_w, Q_c_i) in enumerate(zip(well_positions, well_Qc), start=1):
+        status = "OK" if Q_c_i >= Q else "INSUFFICIENT"
+        st.markdown(f"""
+            **Well {i}** at x = {x_w:.1f} m:
+            $Q_c$ = {Q_c_i:.4f} m³/s ({status})"""
+        )
+else:
+    for i, (x_w, Q_c_i) in enumerate(zip(well_positions, well_Qc), start=1):
+        st.markdown(f"""
+            **Well {i}** at x = {x_w:.1f} m:
+            $Q_c$ = {Q_c_i:.4f} m³/s"""
+        )
+"---"
 
+# --- Render footer with authors, institutions, and license logo in a single line
+columns_lic = st.columns((5,1))
+with columns_lic[0]:
+    st.markdown(f'Developed by {", ".join(author_list)} ({year}). <br> {institution_text}', unsafe_allow_html=True)
+with columns_lic[1]:
+    st.image('FIGS/CC_BY-SA_icon.png')
