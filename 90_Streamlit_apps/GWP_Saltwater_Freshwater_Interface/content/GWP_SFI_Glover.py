@@ -46,15 +46,15 @@ institution_text = " | ".join(institution_list)
 # ---------- Define paths, loading files
 # --- path to questions for the assessments (direct path)
 path_quest_ini   = st.session_state.module_path + "questions/glover_initial.json"
-#path_quest_exer =  st.session_state.module_path + "questions/glover_exer.json"
+path_quest_exer =  st.session_state.module_path + "docs/glover_exer.json"
 path_quest_final = st.session_state.module_path + "questions/glover_final.json"
 
 # Load questions
 with open(path_quest_ini, "r", encoding="utf-8") as f:
     quest_ini = json.load(f)
     
-#with open(path_quest_exer, "r", encoding="utf-8") as f:
-#    quest_exer = json.load(f)
+with open(path_quest_exer, "r", encoding="utf-8") as f:
+    quest_exer = json.load(f)
     
 with open(path_quest_final, "r", encoding="utf-8") as f:
     quest_final = json.load(f)
