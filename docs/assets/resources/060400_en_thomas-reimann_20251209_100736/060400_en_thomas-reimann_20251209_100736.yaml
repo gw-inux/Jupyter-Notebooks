@@ -18,6 +18,7 @@ date_released: TO_BE_FILLED_BY_COURSE_MANAGER               # Release date in YY
 description_short: >
   This application provides an interactive environment for understanding and applying the Theis solution for pumping-test evaluation in confined aquifers. It includes a dynamically generated Theis type curve, tools to explore dimensionless time and well-function behavior, and functionality for manual type-curve matching following standard hydrogeological practice. Users may load synthetic or own field data, visualize measured drawdown on log–log or semi-log axes, and export figures for offline matching.
   
+  
   Based on selected match-point values, the app computes transmissivity and storativity, illustrating how aquifer parameters are derived from transient drawdown observations. Additional guidance is provided through step-by-step instructions, an embedded video tutorial, and an example of a completed manual match.
 keywords: [Theis, pumping test, manual curve fitting]
 multipage_app: false

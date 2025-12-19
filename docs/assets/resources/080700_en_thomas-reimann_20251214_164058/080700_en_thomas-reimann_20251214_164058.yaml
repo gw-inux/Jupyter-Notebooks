@@ -18,6 +18,7 @@ date_released: TO_BE_FILLED_BY_COURSE_MANAGER               # Release date in YY
 description_short: >
   This app introduces the principles of model calibration using an analytical solution for one-dimensional unconfined groundwater flow with two specified head boundaries and uniform recharge. Starting from a simple conceptual and mathematical model, the app computes the hydraulic head profile and visualizes how the solution responds to changes in hydraulic conductivity and recharge.
   
+  
   To mimic real calibration workflows, the app can generate synthetic “measurement” datasets (regular or irregular sampling, optionally with noise). Users can fit the model by adjusting parameters and assess the quality of their calibration through a comparison of computed and measured heads, including an optional scatter plot and basic performance metrics (ME, MAE, RMSE). A feedback option reveals the “true” parameter values to support self-evaluation and learning.
 keywords: [1D flow, calibration, non-uniqueness, gamification]
 multipage_app: false

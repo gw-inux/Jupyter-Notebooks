@@ -1,0 +1,59 @@
+catalog_category: "03 Basic Hydrogeology"
+catalog_subcategory: "03-05 Flow to Wells"
+catalog_subsubcategory: "(Attach to subcategory)"
+
+# --- RESOURCE IDENTIFICATION AND TOPIC MAPPING ---
+# item_id: A unique, simple slug for this item (e.g., aquifer_test_1). 
+
+item_id: 0305003
+topic: 05 Flow to Wells # Must match the title of the parent catalog page.
+title: Steady-State Flow to a Well in an Unconfined Aquifer - Drawdown with the Thiem equation    # The full, descriptive name of the resource.
+
+# --- TYPE AND ACCESS ---
+resource_type: Streamlit app            # Required. Options: Streamlit app, Jupyter Notebook, Video, Dataset, Other.
+url: https://flow2well-thiem-unconfined.streamlit.app/      # The direct link to launch the app, notebook on Binder, or video on YouTube.
+date_released: TO_BE_FILLED_BY_COURSE_MANAGER               # Release date in YYYY-MM-DD format.
+
+# --- CONTENT AND METADATA ---
+description_short: >
+  This interactive app demonstrates steady-state radial flow to a pumping well in an unconfined aquifer using the Thiem (Dupuit–Thiem) equation. Users explore how hydraulic conductivity (log-scaled), initial water-table elevation, and well radius control the drawdown cone and the abstraction rate.
+  
+  
+  Two usage modes are provided:
+  
+  * Specify drawdown (s): the app computes the corresponding pumping rate (Q) and an influence radius (R) (Sichardt-type estimate).
+  
+  * Specify pumping rate (Q): the app iteratively determines well water level (h_w) and radius of influence (R), and flags conditions where the well may run dry (no feasible steady-state solution).
+  
+  The resulting water-table profile h(r) is plotted symmetrically around the well, including the unaffected head outside the influence radius. Key outputs (drawdown at the well and pumping rate) are reported to support conceptual understanding and sensitivity exploration.
+keywords: [Wells, steady-state, dewatering, Thiem equation, flow to wells]
+multipage_app: false
+num_pages: 0
+interactive_plots: true
+num_interactive_plots: 1
+assessments_included: false
+num_assessment_questions: 0
+videos_included: false
+num_videos: 0
+
+# --- EDUCATIONAL FIT ---
+time_required: 5–15 min             # Estimated time for a student to complete the activity (e.g., 30 minutes, 1.5 hours).
+prerequisites: Basic hydrogeology       # Required prior knowledge (e.g., Darcy's Law, Python basics, basic calculus).
+fit_for:
+  - self learning
+  - classroom teaching
+  - online teaching
+
+# --- AUTHOR AND REFERENCE ---
+authors:
+  - name: Thomas Reimann
+    affiliation: TU Dresden
+references: []                            # List any published papers, DOIs, or source materials related to this resource.
+# image_url: Optional path to a screenshot for the catalog page (e.g., /assets/images/resources/flow_tool_screenshot.png)
+
+figures:
+  - id: 1
+    original_filename: 03_05_Thiem_unconfined.png
+    type: Screenshot
+    caption: The drawdown in an unconfined aquifer, computed with Thiem's equation.
+    is_cover: true

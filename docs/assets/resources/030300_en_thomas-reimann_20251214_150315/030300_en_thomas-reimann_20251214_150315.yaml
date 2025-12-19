@@ -18,6 +18,7 @@ date_released: TO_BE_FILLED_BY_COURSE_MANAGER               # Release date in YY
 description_short: >
   This app compares analytical solutions for one-dimensional groundwater flow in confined and unconfined aquifers bounded by two specified head boundaries. Both systems are assumed to be homogeneous and isotropic with a horizontal base and no groundwater recharge, allowing a direct comparison of the resulting head distributions.
   
+  
   Users can interactively adjust hydraulic conductivity, aquifer length, and boundary heads to explore how flow behavior differs between confined (linear head distribution) and unconfined (nonlinear head distribution) conditions. The side-by-side visualization supports conceptual understanding of aquifer type, boundary control, and the fundamental differences between confined and unconfined flow regimes.
 keywords: [groundwater flow, confined, unconfined, darcy]
 multipage_app: false

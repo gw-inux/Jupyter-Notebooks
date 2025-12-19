@@ -18,6 +18,7 @@ date_released: TO_BE_FILLED_BY_COURSE_MANAGER               # Release date in YY
 description_short: >
   This app illustrates the analytical solution for one-dimensional groundwater flow in an unconfined aquifer subject to two specified head boundaries and uniform recharge. The conceptual model assumes a homogeneous and isotropic aquifer with a horizontal base, bounded by fixed hydraulic heads at the inflow and outflow boundaries.
   
+  
   Users can interactively explore the influence of recharge, hydraulic conductivity, aquifer length, and boundary heads on the resulting hydraulic head distribution. The visualization highlights characteristic features such as groundwater divides and recharge effects, making the app well suited for teaching fundamental concepts of steady unconfined groundwater flow and boundary-controlled systems.
 keywords: [groundwater flow, 1D flow, unconfined flow]
 multipage_app: false
