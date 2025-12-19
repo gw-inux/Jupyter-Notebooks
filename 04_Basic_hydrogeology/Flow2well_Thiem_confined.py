@@ -3,6 +3,11 @@ import numpy as np
 import matplotlib.pyplot as plt
 import streamlit as st
 
+# also 03-05-001
+# Todo
+# log slider
+# number input
+
 # Authors, institutions, and year
 year = 2025 
 authors = {
@@ -110,6 +115,7 @@ st.markdown(f"""
 """
 )
 
+"---"
 
 # --- Render footer with authors, institutions, and license logo in a single line
 columns_lic = st.columns((5,1))
