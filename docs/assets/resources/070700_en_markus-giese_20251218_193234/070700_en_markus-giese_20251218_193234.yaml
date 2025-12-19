@@ -1,0 +1,55 @@
+catalog_category: "07 Applied Hydrogeology"
+catalog_subcategory: "07-07 Freshwater–Saltwater Interaction"
+catalog_subsubcategory: "(Attach to subcategory)"
+
+# --- RESOURCE IDENTIFICATION AND TOPIC MAPPING ---
+# item_id: A unique, simple slug for this item (e.g., aquifer_test_1). 
+
+item_id: 0707002
+topic: 07 Freshwater–Saltwater Interaction # Must match the title of the parent catalog page.
+title: Upconing    # The full, descriptive name of the resource.
+
+# --- TYPE AND ACCESS ---
+resource_type: Streamlit app            # Required. Options: Streamlit app, Jupyter Notebook, Video, Dataset, Other.
+url: https://upconing.streamlit.app/      # The direct link to launch the app, notebook on Binder, or video on YouTube.
+date_released: TO_BE_FILLED_BY_COURSE_MANAGER               # Release date in YYYY-MM-DD format.
+
+# --- CONTENT AND METADATA ---
+description_short: >
+  This app explores upconing of the freshwater–saltwater interface beneath a pumping well in a coastal aquifer. Using a sharp-interface analytical solution, it shows how the interface rises toward the well as you adjust key parameters such as pumping rate, hydraulic conductivity, porosity, density contrast, and pre-pumping distance to the interface. The interactive plot highlights the upconed interface, the maximum upconing at the well, and a critical pumping rate/elevation, helping users understand when pumping remains safe and when the risk of salinisation becomes significant.
+keywords: [seawater, saltwater, interface, pumping]
+multipage_app: false
+num_pages: 0
+interactive_plots: true
+num_interactive_plots: 1
+assessments_included: false
+num_assessment_questions: 0
+videos_included: false
+num_videos: 0
+
+# --- EDUCATIONAL FIT ---
+time_required: 5–15 min             # Estimated time for a student to complete the activity (e.g., 30 minutes, 1.5 hours).
+prerequisites:        # Required prior knowledge (e.g., Darcy's Law, Python basics, basic calculus).
+fit_for:
+  - self learning
+  - classroom teaching
+
+# --- AUTHOR AND REFERENCE ---
+authors:
+  - name: Markus Giese
+    affiliation: University of Gothenburg
+  - name: Thomas Reimann
+    affiliation: TO_BE_FILLED_BY_COURSE_MANAGER
+references:
+  - Bear, J. (Ed.), 1999. Seawater intrusion in coastal aquifers: concepts, methods and practices, Theory and applications of transport in porous media. Kluwer, Dordrecht.
+  - Callander, P., Lough, H., Steffens, C., 2011. New Zealand Guidelines for the Monitoring and Management of Sea Water Intrusion Risks on Groundwater. Pattle Delamore Partners LTD, New Zealand.
+  - Schmork, S., Mercado, A., 1969. Upconing of Fresh Water-Sea Water Interface Below Pumping Wells, Field Study. Water Resources Research 5, 1290–1311. doi: 10.1029/WR005i006p01290
+  - Dagan, G., Bear, J., 1968. Solving The Problem Of Local Interface Upconing In A Coastal Aquifer By The Method Of Small Perturbations. Journal of Hydraulic Research 6, 15–44. doi: 10.1080/00221686809500218                            # List any published papers, DOIs, or source materials related to this resource.
+# image_url: Optional path to a screenshot for the catalog page (e.g., /assets/images/resources/flow_tool_screenshot.png)
+
+figures:
+  - id: 1
+    original_filename: upconing.png
+    type: Screenshot
+    caption: Freshwater-Saltwater interface location in a pumped aquifer
+    is_cover: true
