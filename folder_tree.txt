@@ -1,3922 +1,1077 @@
 Auflistung der Ordnerpfade
 Volumeseriennummer : E433-86B9
 C:.
-³   .gitignore
-³   00_Getting_started.ipynb
-³   2025 12 08 Jupyter-Notebooks-docs.zip
-³   bokeh_plot.html
-³   folder_tree.txt
-³   LICENCE.md
-³   Q_h_plot_RIV_2.zip
-³   README.md
-³   requirements.txt
-³   requirements_save.txt
-³   RIV_CONCEPT_2.png
-³   RIV_CONCEPT_UNSAT_2.png
-³   RIV_COND_2.png
-³   Template_FunctionFig_Marker.ipynb
-³   
-ÃÄÄÄ.binder
-³       environment.yml
-³       
-ÃÄÄÄ.devcontainer
-³       devcontainer.json
-³       
-ÃÄÄÄ.github
-³   ³   dependabot.yml
-³   ³   
-³   ÀÄÄÄworkflows
-³           keep_streamlit_alive.yml
-³           pages.yml
-³           
-ÃÄÄÄ.ipynb_checkpoints
-³       00_Getting_started-checkpoint.ipynb
-³       Template_FunctionFig_Marker-checkpoint.ipynb
-³       
-ÃÄÄÄ01_Water_cycle
-³   ³   Radioactive_Decay.ipynb
-³   ³   Radioactive_Decay_ST.py
-³   ³   Volume_Mass_Budget.ipynb
-³   ³   
-³   ÃÄÄÄ.ipynb_checkpoints
-³   ³       Example_Radioactive_Decay-checkpoint.ipynb
-³   ³       Example_Volume_Mass_Budget-Interactive-checkpoint.ipynb
-³   ³       Radioactive_Decay-checkpoint.ipynb
-³   ³       
-³   ÀÄÄÄFIGS
-³           Read.me
-³           T03_01.png
-³           T03_02.png
-³           
-ÃÄÄÄ02_Basic_hydrology
-³   ³   Baseflow_recession.py
-³   ³   ETP_Haude.ipynb
-³   ³   ETP_Oudin.ipynb
-³   ³   Green_Ampt_Intro.py
-³   ³   Infiltration_capacity.ipynb
-³   ³   Infiltration_capacity.py
-³   ³   Infiltration_Capacity_Intro.py
-³   ³   
-³   ÃÄÄÄ.ipynb_checkpoints
-³   ³       Infiltration_capacity-checkpoint.ipynb
-³   ³       
-³   ÃÄÄÄDATA
-³   ³       ETP_data.xlsx
-³   ³       GW_recharge_data.csv
-³   ³       
-³   ÃÄÄÄFIGS
-³   ³       Doppelring-Infiltrometer.jpg
-³   ³       GreenAmptImage.jpg
-³   ³       Green_Ampt_Model.png
-³   ³       iNUX_wLogo.png
-³   ³       logo_iNUX.jpg
-³   ³       
-³   ÀÄÄÄquestions
-³           green_ampt_final.json
-³           green_ampt_ini.json
-³           infiltration_final.json
-³           infiltration_initial.json
-³           
-ÃÄÄÄ03_Soil_physics
-³   ³   retention_curves.ipynb
-³   ³   retention_curves.py
-³   ³   retention_curves_exercice.ipynb
-³   ³   Soil_texture_classes.ipynb
-³   ³   Soil_texture_triangle.ipynb
-³   ³   Soil_Water_Retention.ipynb
-³   ³   Soil_Water_Retention_Comparison_Data.py
-³   ³   Soil_Water_Retention_FIG.ipynb
-³   ³   Soil_Water_Retention_ST.py
-³   ³   Soil_Water_Retention_V01.ipynb
-³   ³   Soil_Water_Retention_WB.ipynb
-³   ³   
-³   ÃÄÄÄ.ipynb_checkpoints
-³   ³       retention_curves-checkpoint.ipynb
-³   ³       retention_curves_exercice-checkpoint.ipynb
-³   ³       Soil_texture_classes-checkpoint.ipynb
-³   ³       Soil_texture_triangle-checkpoint.ipynb
-³   ³       Soil_Water_Retention-checkpoint.ipynb
-³   ³       Soil_Water_Retention_FIG-checkpoint.ipynb
-³   ³       Soil_Water_Retention_V01-checkpoint.ipynb
-³   ³       Soil_Water_Retention_WB-checkpoint.ipynb
-³   ³       
-³   ÃÄÄÄjs
-³   ³       Q_Soil_Water_Retention.json
-³   ³       
-³   ÀÄÄÄquestions
-ÃÄÄÄ04_Basic_hydrogeology
-³   ³   Darcy.ipynb
-³   ³   Darcy_FIG.ipynb
-³   ³   Flow2well_Thiem_confined.ipynb
-³   ³   Flow2well_Thiem_confined.py
-³   ³   Flow2well_Thiem_confined_superposition.py
-³   ³   Flow2well_Thiem_confined_superposition7.py
-³   ³   Flow2well_Thiem_unconfined.ipynb
-³   ³   Flow2Well_Thiem_unconfined_JUNIOR.py
-³   ³   Flow2Well_Thiem_unconfined_ST.py
-³   ³   Flow2Well_Thiem_unconfined_superposition7.py
-³   ³   Flow2Well_transient_confined.py
-³   ³   Flow2Well_transient_confined_superposition.py
-³   ³   Flow2Well_transient_confined_superposition_JUNIOR.py
-³   ³   Flow2Well_transient_unconfined_confined.py
-³   ³   Ghyben_Herzberg.py
-³   ³   green-ampt-infiltration.ipynb
-³   ³   green_ampt.ipynb
-³   ³   green_ampt.py
-³   ³   green_ampt_data_input.ipynb
-³   ³   green_ampt_data_input_german.ipynb
-³   ³   green_ampt_HydMeth.ipynb
-³   ³   green_ampt_HydMeth_german.ipynb
-³   ³   GWF_1D_analytic_multi_K_calib.ipynb
-³   ³   GWF_1D_analytic_multi_K_calib_v0.ipynb
-³   ³   GWF_1D_unconf_analytic_BC3.ipynb
-³   ³   GWF_1D_unconf_analytic_BC_EX_DE.ipynb
-³   ³   GWF_1D_unconf_analytic_BC_EX_DE.py
-³   ³   GWF_1D_unconf_analytic_calib.py
-³   ³   GWF_1D_unconf_analytic_calib_fix.py
-³   ³   GWF_1D_unconf_analytic_noflow_calib.py
-³   ³   GWF_1D_unconf_analytic_noflow_riv.py
-³   ³   GWF_1D_unconf_analytic_ST.py
-³   ³   GWF_1D_unconf_analytic_v00.ipynb
-³   ³   GWF_1D_unconf_analytic_v01.ipynb
-³   ³   GWF_1D_unconf_conf_analytic.py
-³   ³   GW_recharge.ipynb
-³   ³   Linear_reservoir.py
-³   ³   Linear_reservoir_runoff.ipynb
-³   ³   Linear_reservoir_runoff.py
-³   ³   Mualem.py
-³   ³   QUIZ_how_much_do_I_know_about_hydrogeology.py
-³   ³   read.me
-³   ³   SeaLevelRise.py
-³   ³   time.txt
-³   ³   transient_1d_flow_x.py
-³   ³   transient_1d_flow_xt.ipynb
-³   ³   transient_1d_flow_xt.py
-³   ³   transient_1d_flow_xt_with_intro.ipynb
-³   ³   upconing.py
-³   ³   Well_capture_zone.ipynb
-³   ³   Well_capture_zone_FIG.ipynb
-³   ³   Well_capture_zone_JUNIOR.py
-³   ³   Well_capture_zone_ST.py
-³   ³   Well_capture_zone_SYM.ipynb
-³   ³   Well_capture_zone_uncertainty.py
-³   ³   
-³   ÃÄÄÄ.ipynb_checkpoints
-³   ³       Darcy_FIG-checkpoint.ipynb
-³   ³       Flow2well_Thiem_confined-checkpoint.ipynb
-³   ³       Flow2well_Thiem_unconfined-checkpoint.ipynb
-³   ³       GWF_1D_unconf_analytic_BC3-checkpoint.ipynb
-³   ³       GWF_1D_unconf_analytic_BC_EX_DE-checkpoint.ipynb
-³   ³       GWF_1D_unconf_analytic_V00-checkpoint.ipynb
-³   ³       GWF_1D_unconf_analytic_v01-checkpoint.ipynb
-³   ³       transient_1d_flow_xt_with_intro-checkpoint.ipynb
-³   ³       Well_capture_zone-checkpoint.ipynb
-³   ³       Well_capture_zone_FIG-checkpoint.ipynb
-³   ³       Well_capture_zone_SYM-checkpoint.ipynb
-³   ³       Well_Catchment-checkpoint.ipynb
-³   ³       Well_Catchment_FIG-checkpoint.ipynb
-³   ³       Well_Catchment_SYM-checkpoint.ipynb
-³   ³       Well_Stream_Divide-checkpoint.ipynb
-³   ³       
-³   ÃÄÄÄDATA
-³   ³       ETP_data.xlsx
-³   ³       GW_recharge_data.csv
-³   ³       
-³   ÃÄÄÄdocs
-³   ÃÄÄÄFIGS
-³   ³       1D_unconfied_BC_2.png
-³   ³       1D_unconfied_BC_4.png
-³   ³       CC_BY-SA_icon.png
-³   ³       concept_1D_flow_unconfined.png
-³   ³       Darcy_experiment.png
-³   ³       Doppelring-Infiltrometer.jpg
-³   ³       ferris_infiltration.png
-³   ³       ferris_no_flow.png
-³   ³       ferris_no_flow_small.png
-³   ³       FIG138_GW_DIVIDE.jpg
-³   ³       Fig1_transient_1d_flow_conf.jpg
-³   ³       grass.png
-³   ³       GreenAmptImage.jpg
-³   ³       Green_Ampt_Model.png
-³   ³       GWF_008.jpg
-³   ³       iNUX_wLogo.png
-³   ³       Linear_reservoir.png
-³   ³       Linear_reservoir_runoff.png
-³   ³       logo_iNUX.jpg
-³   ³       Q52.jpg
-³   ³       read.me
-³   ³       Saltwater_intrusion_en.png
-³   ³       well_catchment.png
-³   ³       
-³   ÀÄÄÄquestions
-³           how_much_know_hydrogeology.json
-³           
-ÃÄÄÄ05_Applied_hydrogeology
-³   ³   analytical_solutions.ipynb
-³   ³   aSolutions_decay_continuous_1D.ipynb
-³   ³   aSolutions_decay_continuous_2D.ipynb
-³   ³   aSolutions_decay_instantaneous.ipynb
-³   ³   aSolutions_noDecay_continuous_1D.ipynb
-³   ³   DCC_Equivalent_Hydr_Cond.ipynb
-³   ³   DCC_Flow_Equations.ipynb
-³   ³   Diffusive_Movement_1D_HydraulicHead.ipynb
-³   ³   erf_erfc.ipynb
-³   ³   erf_erfc_ST.py
-³   ³   example_restAPI.ipynb
-³   ³   GWF_1D_unconf_analytic_calib_fix.py
-³   ³   Hantush_Jacob_s_t_plot_invers.py
-³   ³   Hantush_Jacob_s_t_plot_inverse.ipynb
-³   ³   HCW_number_wells.py
-³   ³   HeatTransport_1D_COND.ipynb
-³   ³   HeatTransport_1D_COND_observations.ipynb
-³   ³   Heat_Cond_Conv_1D.py
-³   ³   Heat_transport_flow_1D.py
-³   ³   leakyAq_example_CooperJacob.ipynb
-³   ³   leakyAq_example_TheisHantush.ipynb
-³   ³   Neuman_s_t_plot_invers.py
-³   ³   Neuman_s_t_plot_inverse.ipynb
-³   ³   pumping_test.ipynb
-³   ³   Slugtest.py
-³   ³   Slugtest_translate.py
-³   ³   solute_transport_superposition_principle.py
-³   ³   superposition_principle.ipynb
-³   ³   Theis_inverse.ipynb
-³   ³   Theis_inverse_ddown.ipynb
-³   ³   Theis_inverse_ddown.py
-³   ³   Theis_inverse_ddown_DATA.py
-³   ³   Theis_inverse_ddown_IT.py
-³   ³   Theis_inverse_ddown_RANDOM.py
-³   ³   Theis_inverse_VITERBO.ipynb
-³   ³   Theis_manual.py
-³   ³   Theis_Neuman_Hantush_inverse_DATA.py
-³   ³   Theis_predict_ddown_distance.ipynb
-³   ³   Theis_predict_ddown_time.ipynb
-³   ³   Theis_predict_vertical_cross_section-unconfined.ipynb
-³   ³   Theis_predict_vertical_cross_section.ipynb
-³   ³   Theis_s_t_plot_invers.py
-³   ³   Theis_s_t_plot_inverse.ipynb
-³   ³   Theis_type_curve.ipynb
-³   ³   Transport_1D_AD.ipynb
-³   ³   Transport_1D_AD_FIG.ipynb
-³   ³   Transport_1D_AD_react_analytic_FIG.ipynb
-³   ³   Transport_1D_AD_ST.py
-³   ³   Transport_1D_AD_WB.ipynb
-³   ³   Transport_1D_Continous.py
-³   ³   Transport_1D_Continous_v2.py
-³   ³   Transport_1D_Dirac_pulse.py
-³   ³   Transport_1D_Dirac_pulse_v2.py
-³   ³   Transport_2D_Continous.py
-³   ³   Transport_2D_Dirac_pulse.py
-³   ³   Transport_3D_Continous.py
-³   ³   Transport_3D_Continous_heat.py
-³   ³   Transport_3D_Dirac_pulse.py
-³   ³   WTF_Recharge.py
-³   ³   
-³   ÃÄÄÄ.ipynb_checkpoints
-³   ³       1D_Conduction-checkpoint.ipynb
-³   ³       DCC_Equivalent_Hydraulic_Conductivity-checkpoint.ipynb
-³   ³       DCC_Equivalent_Hydr_Cond-checkpoint.ipynb
-³   ³       DCC_Flow_Equations-checkpoint.ipynb
-³   ³       DCC_Flow_Equations_MarkQ-checkpoint.ipynb
-³   ³       Diffusive_Movement_1D_HydraulicHead-checkpoint.ipynb
-³   ³       erf_erfc-checkpoint.ipynb
-³   ³       Hantush_Jacob_s_t_plot_inverse-checkpoint.ipynb
-³   ³       HeatTransport_1D_COND-checkpoint.ipynb
-³   ³       HeatTransport_1D_COND_observations-checkpoint.ipynb
-³   ³       Neuman_s_t_plot_inverse-checkpoint.ipynb
-³   ³       Theis_interactive-checkpoint.ipynb
-³   ³       Theis_interactive_ddown-checkpoint.ipynb
-³   ³       Theis_inverse-checkpoint.ipynb
-³   ³       Theis_inverse_ddown-checkpoint.ipynb
-³   ³       Theis_inverse_VITERBO-checkpoint.ipynb
-³   ³       Theis_Neuman_HJ_inverse-checkpoint.ipynb
-³   ³       Theis_Neuman_inverse-checkpoint.ipynb
-³   ³       Theis_predict-checkpoint.ipynb
-³   ³       Theis_predict_ddown_distance-checkpoint.ipynb
-³   ³       Theis_predict_radius-checkpoint.ipynb
-³   ³       Theis_predict_time-checkpoint.ipynb
-³   ³       Theis_predict_vertical_cross_section-checkpoint.ipynb
-³   ³       Theis_predict_vertical_cross_section-unconfined-checkpoint.ipynb
-³   ³       Theis_type_curve-checkpoint.ipynb
-³   ³       Transport_1D_AD_FIG-checkpoint.ipynb
-³   ³       TRANS_1D_AD_analytic-checkpoint.ipynb
-³   ³       TRANS_1D_AD_analytic_FIG-checkpoint.ipynb
-³   ³       TRANS_1D_AD_analytic_WB-checkpoint.ipynb
-³   ³       TRANS_1D_AD_react_analytic_FIG-checkpoint.ipynb
-³   ³       
-³   ÃÄÄÄDATA
-³   ³   ÃÄÄÄPumping_tests
-³   ³   ³   ³   leakyAq_example_data.txt
-³   ³   ³   ³   Varnum_R12_2016.csv
-³   ³   ³   ³   Viterbo_2024_A2.csv
-³   ³   ³   ³   Viterbo_2024_PP1.csv
-³   ³   ³   ³   
-³   ³   ³   ÀÄÄÄPirna24
-³   ³   ³           g21new.csv
-³   ³   ³           g24.csv
-³   ³   ³           g27.csv
-³   ³   ³           g29.csv
-³   ³   ³           g30.csv
-³   ³   ³           
-³   ³   ÃÄÄÄSlug
-³   ³   ³       Italy_2025-01-22_BH20_Diver.csv
-³   ³   ³       Varnum18_04_1.csv
-³   ³   ³       Varnum18_04_1_orig.csv
-³   ³   ³       Viterbo24.csv
-³   ³   ³       
-³   ³   ÀÄÄÄTransport
-³   ³           Data_Transport_Viterbo23.txt
-³   ³           
-³   ÃÄÄÄFIGS
-³   ³       CC_BY-SA_icon.png
-³   ³       Flow_well_confined.png
-³   ³       LPM_Storage.png
-³   ³       slug_confined.png
-³   ³       slug_unconfined.png
-³   ³       superposition_principle_figure.PNG
-³   ³       theis_manual_example.png
-³   ³       
-³   ÃÄÄÄquestions
-³   ³       1D_AD_Dirac_final.json
-³   ³       1D_AD_Dirac_initial.json
-³   ³       
-³   ÀÄÄÄRISK_ASSESSMENT
-³           db_contaminants.xlsx
-³           risk_assessment_tool.ipynb
-³           
-ÃÄÄÄ06_Groundwater_modeling
-³   ³   BC_Intro.py
-³   ³   ex_sgsim_uncond_modflow.ipynb
-³   ³   ex_sgsim_uncond_modflow_rw.ipynb
-³   ³   Figs_Q_h_plot_RIV_2.py.pptx
-³   ³   GWF_1D_analytic_multi_K_calib.ipynb
-³   ³   GWF_1D_conf_analytic_calib.ipynb
-³   ³   GWF_1D_conf_FD.py
-³   ³   GWF_1D_conf_FD_homog.ipynb
-³   ³   GWF_DCC_CFP_Response.ipynb
-³   ³   LumpedModel_Reservoir.ipynb
-³   ³   LumpedModel_Reservoir.py
-³   ³   OBSvSIM.ipynb
-³   ³   Q_h_plot_Cauchy.py
-³   ³   Q_h_plot_DRN.py
-³   ³   Q_h_plot_ET.py
-³   ³   Q_h_plot_GHB.py
-³   ³   Q_h_plot_MNW2.py
-³   ³   Q_h_plot_RIV.py
-³   ³   Q_h_plot_RIV_2.py
-³   ³   Q_h_plot_RIV_2.py.bak
-³   ³   Theis_pumping_Tutorial.py
-³   ³   Timestep_Multiplier.py
-³   ³   Time_Consideration.py
-³   ³   Transport_1D_MT3D.ipynb
-³   ³   Tutorial_2D_Stream.py
-³   ³   Tutorial_2D_Synth.py
-³   ³   Tutorial_2D_Transport.py
-³   ³   
-³   ÃÄÄÄ.ipynb_checkpoints
-³   ³       ex_sgsim_uncond_modflow-checkpoint.ipynb
-³   ³       ex_sgsim_uncond_modflow_rw-checkpoint.ipynb
-³   ³       GWF_1D_analytic_multi_K_calib-checkpoint.ipynb
-³   ³       GWF_1D_conf_analytic_calib-checkpoint.ipynb
-³   ³       GWF_1D_conf_FD_homog-checkpoint.ipynb
-³   ³       LumpedModel_Reservoir-checkpoint.ipynb
-³   ³       LumpedModel_Storage-checkpoint.ipynb
-³   ³       Transport_1D_MT3D-checkpoint.ipynb
-³   ³       
-³   ÃÄÄÄDATA
-³   ³   ³   2D_Synthetic.gpt
-³   ³   ³   TUTORIAL_2DSYNTH.pdf
-³   ³   ³   
-³   ³   ÃÄÄÄ2D_Transport
-³   ³   ³       2DTransport_Tutorial.xlsx
-³   ³   ³       2DTransport_Tutorial_empty.xlsx
-³   ³   ³       2D_Transport_Step_01.pdf
-³   ³   ³       2D_Transport_Step_02.pdf
-³   ³   ³       2D_Transport_Step_03.pdf
-³   ³   ³       2D_Transport_Step_03b.pdf
-³   ³   ³       2D_Transport_Step_04.pdf
-³   ³   ³       2D_Transport_Step_04b.pdf
-³   ³   ³       2D_Transport_Step_05.pdf
-³   ³   ³       2D_Transport_Step_06.pdf
-³   ³   ³       coarse.gpt
-³   ³   ³       coarse.zip
-³   ³   ³       Dirac.gpt
-³   ³   ³       Dirac_Refined.gpt
-³   ³   ³       fine.gpt
-³   ³   ³       
-³   ³   ÀÄÄÄobs_vs_simulation
-³   ³       ³   input_obs.xlsx
-³   ³       ³   
-³   ³       ÀÄÄÄmodel_output
-³   ³               montcada_classe_v2.ob_gw_out_head.csv
-³   ³               montcada_classe_v3.ob_gw_out_head.csv
-³   ³               
-³   ÃÄÄÄFIGS
-³   ³       2D_analytic_1000d.png
-³   ³       2D_idealized_tracer.png
-³   ³       2D_idealized_transport.png
-³   ³       2D_idealized_transport_continuous.png
-³   ³       2D_idealized_transport_pulse.png
-³   ³       2D_synthetic.png
-³   ³       CC_BY-SA_icon.png
-³   ³       confined_aquifer_model.png
-³   ³       DRN.png
-³   ³       Evapo01.jpg
-³   ³       Evapo02.jpg
-³   ³       GHB.png
-³   ³       GWF_1D_FD.png
-³   ³       GWF_EX01.jpg
-³   ³       Lake01.jpg
-³   ³       Lake02.jpg
-³   ³       Lake03.jpg
-³   ³       Lake04.jpg
-³   ³       LPM_Storage.png
-³   ³       MAP_calib.jpg
-³   ³       MAP_well.jpg
-³   ³       Precipitation01.jpg
-³   ³       River01.jpg
-³   ³       RIV_CONCEPT.png
-³   ³       RIV_CONCEPT_2.png
-³   ³       RIV_CONCEPT_UNSAT.png
-³   ³       RIV_CONCEPT_UNSAT_2.png
-³   ³       RIV_COND.png
-³   ³       RIV_COND_2.png
-³   ³       Sea01.jpg
-³   ³       Sea02.jpg
-³   ³       Sea03.jpg
-³   ³       stream_groundwater.png
-³   ³       stream_groundwater_BC.png
-³   ³       tree-21.png
-³   ³       tree-22.png
-³   ³       tree-23.png
-³   ³       V1_LOW_concept.png
-³   ³       Well01.jpg
-³   ³       Well02.jpg
-³   ³       Winter_Streams.png
-³   ³       
-³   ÀÄÄÄQUESTIONS
-³           bc_intro_final_ass.json
-³           final_2D_trans_step1.json
-³           final_2D_trans_step2.json
-³           final_2D_trans_step3.json
-³           final_2D_trans_step4.json
-³           final_2D_trans_step5.json
-³           final_2D_trans_step6.json
-³           final_general_behavior.json
-³           initial_2D_trans_step1.json
-³           initial_2D_trans_step2.json
-³           initial_2D_trans_step3.json
-³           initial_2D_trans_step4.json
-³           initial_2D_trans_step5.json
-³           initial_2D_trans_step6.json
-³           initial_general_behavior.json
-³           
-ÃÄÄÄ90_Streamlit_apps
-³   ³   README.md
-³   ³   Streamlit_TestOptions.py
-³   ³   
-³   ÃÄÄÄ.ipynb_checkpoints
-³   ÃÄÄÄ1D_Unconfined_Flow
-³   ³   ³   1D_Unconfined_flow.py
-³   ³   ³   GWF_1D_Unconfined.py
-³   ³   ³   
-³   ³   ÃÄÄÄassets
-³   ³   ³   ÀÄÄÄimages
-³   ³   ³           1200px-Erasmus+_Logo.svg.png
-³   ³   ³           concept_1D_flow_unconfined.png
-³   ³   ³           iNUX_wLogo.png
-³   ³   ³           thomasreimann.png
-³   ³   ³           
-³   ³   ÀÄÄÄpages
-³   ³           01_??_Theory.py
-³   ³           02_??_?? Run Computation.py
-³   ³           03_??_About.py
-³   ³           
-³   ÃÄÄÄDewatering_exercise
-³   ³   ³   Dewatering_exercise_APP.py
-³   ³   ³   
-³   ³   ÀÄÄÄpages
-³   ³           1_??_Step_1??.py
-³   ³           2_??_Step_2??.py
-³   ³           2_??_Step_2??_TEST.py
-³   ³           3_??_Step_3??.py
-³   ³           4_??Step_4??.py
-³   ³           5_??Step_5??.py
-³   ³           6_??Step_6??.py
-³   ³           7_??Step_7??.py
-³   ³           8_??Step_8??.py
-³   ³           9_?_Here some theory_??.py
-³   ³           
-³   ÃÄÄÄEGU25
-³   ³   ³   SlideJet_present_EGU25.py
-³   ³   ³   
-³   ³   ÀÄÄÄslides
-³   ³       ÀÄÄÄEGU25_Presentation
-³   ³           ³   slide_data.json
-³   ³           ³   
-³   ³           ÀÄÄÄimages
-³   ³                   slide_1.png
-³   ³                   slide_10.png
-³   ³                   slide_11.png
-³   ³                   slide_12.png
-³   ³                   slide_13.png
-³   ³                   slide_14.png
-³   ³                   slide_15.png
-³   ³                   slide_16.png
-³   ³                   slide_17.png
-³   ³                   slide_18.png
-³   ³                   slide_19.png
-³   ³                   slide_2.png
-³   ³                   slide_20.png
-³   ³                   slide_21.png
-³   ³                   slide_22.png
-³   ³                   slide_23.png
-³   ³                   slide_24.png
-³   ³                   slide_3.png
-³   ³                   slide_4.png
-³   ³                   slide_5.png
-³   ³                   slide_6.png
-³   ³                   slide_7.png
-³   ³                   slide_8.png
-³   ³                   slide_9.png
-³   ³                   
-³   ÃÄÄÄGBC
-³   ÃÄÄÄGroundwater_Model_Calibration_Challenge
-³   ³   ³   GMC_Challenge.py
-³   ³   ³   
-³   ³   ÃÄÄÄassets
-³   ³   ³   ÀÄÄÄimages
-³   ³   ³           1200px-Erasmus+_Logo.svg.png
-³   ³   ³           GWF_008.jpg
-³   ³   ³           iNUX_wLogo.png
-³   ³   ³           thomasreimann.png
-³   ³   ³           wellcapturediagram-sm42.png
-³   ³   ³           
-³   ³   ÀÄÄÄpages
-³   ³           01_??_Theory.py
-³   ³           02 Understand_the_System.py
-³   ³           03_??_?? Calibrate_with_defined_head.py
-³   ³           04_??_?? Calibrate_with_river.py
-³   ³           05_??_About.py
-³   ³           
-³   ÃÄÄÄGWBmC
-³   ³   ³   GWBmC.py
-³   ³   ³   
-³   ³   ÃÄÄÄassets
-³   ³   ³   ÀÄÄÄimages
-³   ³   ³           1200px-Erasmus+_Logo.svg.png
-³   ³   ³           1D_unconfied_BC_2.png
-³   ³   ³           1D_unconfied_BC_4.png
-³   ³   ³           concept_1D_flow_unconfined.png
-³   ³   ³           iNUX_wLogo.png
-³   ³   ³           thomasreimann.png
-³   ³   ³           wellcapturediagram-sm42.png
-³   ³   ³           
-³   ³   ÀÄÄÄpages
-³   ³       ÃÄÄÄStart
-³   ³       ³       content.py
-³   ³       ³       start.py
-³   ³       ³       welcome.py
-³   ³       ³       
-³   ³       ÃÄÄÄTopic_1
-³   ³       ³       section1.py
-³   ³       ³       section1proxy.py
-³   ³       ³       
-³   ³       ÃÄÄÄTopic_2
-³   ³       ³       GWF_1D_unconf_analytic_BC_EX_DE.py
-³   ³       ³       section2.py
-³   ³       ³       section2proxy.py
-³   ³       ³       
-³   ³       ÃÄÄÄTopic_3
-³   ³       ³       section3.py
-³   ³       ³       section3proxy.py
-³   ³       ³       
-³   ³       ÃÄÄÄTopic_4
-³   ³       ³       section4.py
-³   ³       ³       section4proxy.py
-³   ³       ³       
-³   ³       ÃÄÄÄTopic_5
-³   ³       ³       section5.py
-³   ³       ³       section5proxy.py
-³   ³       ³       
-³   ³       ÀÄÄÄTopic_6
-³   ³               section6.py
-³   ³               section6proxy.py
-³   ³               
-³   ÃÄÄÄGWP_1D_Conservative_Transport
-³   ³   ³   GWP_1D_Transport.py
-³   ³   ³   GWP_1D_Transport.py.bak
-³   ³   ³   
-³   ³   ÃÄÄÄassets
-³   ³   ³   ÀÄÄÄimages
-³   ³   ³           1200px-Erasmus+_Logo.svg.png
-³   ³   ³           1DtransportConceptualModel_1.jpg
-³   ³   ³           1DtransportConceptualModel_2.jpg
-³   ³   ³           breakthrough_curve.jpg
-³   ³   ³           eileen.poeter.jpg
-³   ³   ³           iNUX_wLogo.png
-³   ³   ³           oriolbertran.jpg
-³   ³   ³           thomasreimann.png
-³   ³   ³           tracer_input_signals.jpg
-³   ³   ³           
-³   ³   ÀÄÄÄpages
-³   ³           01_??_Theory.py
-³   ³           01_??_Theory.py.bak
-³   ³           02_??_?? Compute Continuous Injection.py
-³   ³           02_??_?? Compute Continuous Injection.py.bak
-³   ³           03_??_?? Compute Finite Pulse.py
-³   ³           03_??_?? Compute Finite Pulse.py.bak
-³   ³           04_??_About.py
-³   ³           04_??_About.py.bak
-³   ³           
-³   ÃÄÄÄGWP_3D_Transport
-³   ³   ³   GWP_3D_Transport.py
-³   ³   ³   
-³   ³   ÃÄÄÄassets
-³   ³   ³   ÀÄÄÄimages
-³   ³   ³           1200px-Erasmus+_Logo.svg.png
-³   ³   ³           1DtransportConceptualModel_1.jpg
-³   ³   ³           1DtransportConceptualModel_2.jpg
-³   ³   ³           break_through_curve.jpg
-³   ³   ³           eileen.poeter.jpg
-³   ³   ³           iNUX_wLogo.png
-³   ³   ³           oriolbertran.jpg
-³   ³   ³           thomasreimann.png
-³   ³   ³           tracer_input_signals.jpg
-³   ³   ³           
-³   ³   ÀÄÄÄpages
-³   ³           01_??_Theory.py
-³   ³           02_??_?? Compute Continuous Injection 3D.py
-³   ³           03_??_?? Compute Dirac Pulse 3D.py
-³   ³           04_??_About.py
-³   ³           
-³   ÃÄÄÄGWP_Boundary_Conditions
-³   ³   ³   GWP_Boundary_Conditions.py
-³   ³   ³   GWP_Boundary_Conditions_utils.py
-³   ³   ³   
-³   ³   ÃÄÄÄassets
-³   ³   ³   ÀÄÄÄimages
-³   ³   ³           1200px-Erasmus+_Logo.svg.png
-³   ³   ³           CC_BY-SA_icon.png
-³   ³   ³           CC_BY-SA_icon.svg
-³   ³   ³           CC_BY-SA_icon_275.png
-³   ³   ³           DrainConductance.png
-³   ³   ³           DRN.png
-³   ³   ³           DRNapplied1.png
-³   ³   ³           DRNapplied2.png
-³   ³   ³           DRNapplied3.png
-³   ³   ³           DRNspring1.png
-³   ³   ³           DRNspring2.png
-³   ³   ³           eileen.poeter.jpg
-³   ³   ³           evekuniansky.png
-³   ³   ³           EVT_cartoon2.png
-³   ³   ³           final_1.jpg
-³   ³   ³           final_2.jpg
-³   ³   ³           final_3.jpg
-³   ³   ³           GHB.png
-³   ³   ³           GHBapplied0.png
-³   ³   ³           GHBapplied0_2.png
-³   ³   ³           GHBapplied1.png
-³   ³   ³           GHBapplied2.png
-³   ³   ³           GHBapplied3.png
-³   ³   ³           GHBapplied4.png
-³   ³   ³           GHBexampleAnderson-etal_modified.png
-³   ³   ³           GHBexampleAnderson-etal_modified2.png
-³   ³   ³           GHBintro.png
-³   ³   ³           GWF_EX01.jpg
-³   ³   ³           GWF_EX02.jpg
-³   ³   ³           GWF_EX02.png
-³   ³   ³           gwp_boundary_EVT.png
-³   ³   ³           gwp_boundary_Qh_scheme.png
-³   ³   ³           gwp_boundary_Qh_scheme_v2.png
-³   ³   ³           gwp_boundary_Qh_scheme_v3.png
-³   ³   ³           gwp_boundary_title.png
-³   ³   ³           iNUX_wLogo.png
-³   ³   ³           MF_6_cells.png
-³   ³   ³           MNWsketch.png
-³   ³   ³           MNWsketch2.png
-³   ³   ³           MNWsketch3.png
-³   ³   ³           MNWsketch4.png
-³   ³   ³           MNWsketch5.png
-³   ³   ³           MNWsketch6.png
-³   ³   ³           Q_h_plots_MF2005.png
-³   ³   ³           Q_h_plots_MF2005_v2.png
-³   ³   ³           Q_h_plots_MF2005_v3.png
-³   ³   ³           Q_h_plots_MF6.png
-³   ³   ³           Q_h_plots_MF6_v2.png
-³   ³   ³           RIV.png
-³   ³   ³           river_field_application.jpg
-³   ³   ³           RIV_CONCEPT_2.png
-³   ³   ³           RIV_CONCEPT_2_v2.png
-³   ³   ³           RIV_CONCEPT_2_v3.png
-³   ³   ³           RIV_CONCEPT_UNSAT_2.png
-³   ³   ³           RIV_CONCEPT_UNSAT_3.png
-³   ³   ³           RIV_COND_2.png
-³   ³   ³           RIV_nearWell.png
-³   ³   ³           Snap10.png
-³   ³   ³           thomasreimann.png
-³   ³   ³           wss-cycle-groundwater-flow-diagram.jpg
-³   ³   ³           
-³   ³   ÃÄÄÄcontent
-³   ³   ³       GWP_About.py
-³   ³   ³       GWP_BC_Abbreviations.py
-³   ³   ³       GWP_BC_ExternalExpander.py
-³   ³   ³       GWP_BC_LearningMore.py
-³   ³   ³       GWP_BC_QHGeneral.py
-³   ³   ³       GWP_BC_References.py
-³   ³   ³       GWP_Boundary_Conditions_Start.py
-³   ³   ³       Q_h_plot_DRN.py
-³   ³   ³       Q_h_plot_EVT.py
-³   ³   ³       Q_h_plot_GHB.py
-³   ³   ³       Q_h_plot_MNW.py
-³   ³   ³       Q_h_plot_RIV.py
-³   ³   ³       
-³   ³   ÃÄÄÄdocs
-³   ³   ³       GWP_Boundary_Conditions_General_Instructions1.md
-³   ³   ³       GWP_Boundary_Conditions_General_Instructions2.md
-³   ³   ³       GWP_Boundary_Conditions_Start_example.md
-³   ³   ³       Q_h_plot_DRN_exercise.md
-³   ³   ³       Q_h_plot_DRN_instructions.md
-³   ³   ³       Q_h_plot_EVT_exercise.md
-³   ³   ³       Q_h_plot_EVT_instructions.md
-³   ³   ³       Q_h_plot_GHB_exercise.md
-³   ³   ³       Q_h_plot_GHB_instructions.md
-³   ³   ³       Q_h_plot_MNW_exercise1.md
-³   ³   ³       Q_h_plot_MNW_exercise2.md
-³   ³   ³       Q_h_plot_MNW_exercise3.md
-³   ³   ³       Q_h_plot_MNW_exercise4.md
-³   ³   ³       Q_h_plot_MNW_instructions1.md
-³   ³   ³       Q_h_plot_MNW_instructions2.md
-³   ³   ³       Q_h_plot_MNW_instructions3.md
-³   ³   ³       Q_h_plot_MNW_instructions4.md
-³   ³   ³       Q_h_plot_RIV_exercise.md
-³   ³   ³       Q_h_plot_RIV_instructions.md
-³   ³   ³       
-³   ³   ÃÄÄÄquestions
-³   ³   ³       exer_drn.json
-³   ³   ³       exer_et.json
-³   ³   ³       exer_general_sc1.json
-³   ³   ³       exer_general_sc2.json
-³   ³   ³       exer_ghb.json
-³   ³   ³       exer_mnw_p1.json
-³   ³   ³       exer_mnw_p2.json
-³   ³   ³       exer_mnw_p3.json
-³   ³   ³       exer_mnw_p4.json
-³   ³   ³       exer_riv.json
-³   ³   ³       final_drn.json
-³   ³   ³       final_et.json
-³   ³   ³       final_general_behavior.json
-³   ³   ³       final_ghb.json
-³   ³   ³       final_mnw.json
-³   ³   ³       final_riv.json
-³   ³   ³       initial_drn.json
-³   ³   ³       initial_et.json
-³   ³   ³       initial_general_behavior.json
-³   ³   ³       initial_ghb.json
-³   ³   ³       initial_mnw.json
-³   ³   ³       initial_riv.json
-³   ³   ³       
-³   ³   ÀÄÄÄ__pycache__
-³   ³           GWP_Boundary_Conditions_utils.cpython-311.pyc
-³   ³           
-³   ÃÄÄÄGWP_Flow2WellTheis
-³   ³   ³   Flow2WellTheis.py
-³   ³   ³   
-³   ³   ÃÄÄÄassets
-³   ³   ³   ÀÄÄÄimages
-³   ³   ³           1200px-Erasmus+_Logo.svg.png
-³   ³   ³           Flow_well_confined.png
-³   ³   ³           iNUX_wLogo.png
-³   ³   ³           thomasreimann.png
-³   ³   ³           
-³   ³   ÀÄÄÄpages
-³   ³           01_??_Theory.py
-³   ³           02_??_?? Transient_Flow to a Well.py
-³   ³           03_??_?? Parameter Estimation.py
-³   ³           04_??_?? Real Data Parameter Estimation.py
-³   ³           05 ??_?? Transient_Flow_to_a_Well_for Confined_and_Unconfined_Situations.py
-³   ³           06_??_About.py
-³   ³           
-³   ÃÄÄÄGWP_Pumping_Test_Analysis
-³   ³   ³   PumpingTestAnalysis.py
-³   ³   ³   
-³   ³   ÃÄÄÄassets
-³   ³   ³   ÀÄÄÄimages
-³   ³   ³           1200px-Erasmus+_Logo.svg.png
-³   ³   ³           confined_aquifer.png
-³   ³   ³           confined_aquifer_2.dhs
-³   ³   ³           confined_aquifer_2.png
-³   ³   ³           drawdown_aquifer.png
-³   ³   ³           eileen.poeter.jpg
-³   ³   ³           ferris_infiltration.png
-³   ³   ³           ferris_no_flow.png
-³   ³   ³           ferris_no_flow_small.png
-³   ³   ³           Flow_well_confined.png
-³   ³   ³           Flow_well_confined_2.png
-³   ³   ³           Hantush_Pirna_example.png
-³   ³   ³           Hantush_Varnum_example.png
-³   ³   ³           Hantush_Viterbo_example.png
-³   ³   ³           iNUX_wLogo.png
-³   ³   ³           leaky_aquifer.png
-³   ³   ³           leaky_aquifer_2.dhs
-³   ³   ³           leaky_aquifer_2.png
-³   ³   ³           Neuman_Pirna_example.png
-³   ³   ³           Theis_Ideal_example.png
-³   ³   ³           Theis_Varnum_example.png
-³   ³   ³           Theis_Viterbo_example.png
-³   ³   ³           thomasreimann.png
-³   ³   ³           unconfined_aquifer.png
-³   ³   ³           unconfined_aquifer_2.dhs
-³   ³   ³           unconfined_aquifer_2.png
-³   ³   ³           
-³   ³   ÃÄÄÄpages
-³   ³   ³       01_??_Theory.py
-³   ³   ³       02_??_?? Transient_Flow_to_a_Well.py
-³   ³   ³       03_??_?? Theis_solution.py
-³   ³   ³       04_??_?? Hantush_Jacob_solution.py
-³   ³   ³       05_??_?? Neuman_solution.py
-³   ³   ³       06_??_?? Pumping_Test_Analysis.py
-³   ³   ³       07_??_?? Parameter_Uncertainty.py
-³   ³   ³       08_??_About.py
-³   ³   ³       
-³   ³   ÀÄÄÄquestions
-³   ³           Theis.json
-³   ³           Theis2.json
-³   ³           theory.json
-³   ³           transient_flow.json
-³   ³           
-³   ÃÄÄÄGWP_Saltwater_Freshwater_Interface
-³   ³   ³   GWP_Saltwater_Freshwater_Interface.py
-³   ³   ³   GWP_SFI_utils.py
-³   ³   ³   
-³   ³   ÃÄÄÄcontent
-³   ³   ³       GWP_SFI_Abbreviations.py
-³   ³   ³       GWP_SFI_About.py
-³   ³   ³       GWP_SFI_Ghyben_Herzberg.py
-³   ³   ³       GWP_SFI_Glover.py
-³   ³   ³       GWP_SFI_Introduction.py
-³   ³   ³       GWP_SFI_LearningMore.py
-³   ³   ³       GWP_SFI_Overview.py
-³   ³   ³       GWP_SFI_SeaLevelRise.py
-³   ³   ³       GWP_SFI_SeaLevelRise_GM.py
-³   ³   ³       GWP_SFI_Upconing.py
-³   ³   ³       GWP_SFR_References.py
-³   ³   ³       
-³   ³   ÃÄÄÄdocs
-³   ³   ³       GHY_exercise.md
-³   ³   ³       GHY_instructions.md
-³   ³   ³       glover_exercise.md
-³   ³   ³       GWP_SoilWaterRetention_Start_example.md
-³   ³   ³       sealevelrise_exercise.md
-³   ³   ³       upconing_exercise.md
-³   ³   ³       
-³   ³   ÃÄÄÄimages
-³   ³   ³       1200px-Erasmus+_Logo.svg.png
-³   ³   ³       CC_BY-SA_icon.png
-³   ³   ³       CC_BY-SA_icon.svg
-³   ³   ³       CC_BY-SA_icon_275.png
-³   ³   ³       Density.png
-³   ³   ³       eileen.poeter.jpg
-³   ³   ³       GenericSaltwaterIntrusion.jpg
-³   ³   ³       GHB.png
-³   ³   ³       iNUX_wLogo.png
-³   ³   ³       logo_iNUX.jpg
-³   ³   ³       Saltwater_intrusion_en.png
-³   ³   ³       thomasreimann.png
-³   ³   ³       
-³   ³   ÃÄÄÄquestions
-³   ³   ³       exer_ghp.json
-³   ³   ³       exer_sfi_gm.json
-³   ³   ³       ghyben_exer.json
-³   ³   ³       ghyben_final.json
-³   ³   ³       ghyben_initial.json
-³   ³   ³       glover_final.json
-³   ³   ³       glover_initial.json
-³   ³   ³       sealevelrise_final.json
-³   ³   ³       sealevelrise_initial.json
-³   ³   ³       upconing_final.json
-³   ³   ³       upconing_initial.json
-³   ³   ³       
-³   ³   ÀÄÄÄ__pycache__
-³   ³           GWP_Saltwater_Intrusion_utils.cpython-311.pyc
-³   ³           GWP_SFI_utils.cpython-311.pyc
-³   ³           
-³   ÃÄÄÄGWP_SoilWaterRetention
-³   ³   ³   GWP_SoilWaterRetention_utils.py
-³   ³   ³   SoilWaterRetention.py
-³   ³   ³   
-³   ³   ÃÄÄÄassets
-³   ³   ³   ÃÄÄÄimages
-³   ³   ³   ³       1200px-Erasmus+_Logo.svg.png
-³   ³   ³   ³       danielfernandez.png
-³   ³   ³   ³       eileen.poeter.jpg
-³   ³   ³   ³       field_capacity.png
-³   ³   ³   ³       freeze_cherry.png
-³   ³   ³   ³       freeze_cherry_2.png
-³   ³   ³   ³       iNUX_wLogo.png
-³   ³   ³   ³       oriolbertran.jpg
-³   ³   ³   ³       oriolbertranoller.png
-³   ³   ³   ³       retention_curve_mod.png
-³   ³   ³   ³       surface_tension_bear.png
-³   ³   ³   ³       surface_tension_schema.png
-³   ³   ³   ³       SW_intro.png
-³   ³   ³   ³       thomasreimann.png
-³   ³   ³   ³       water_strider.jpg
-³   ³   ³   ³       wellcapturediagram-sm42.png
-³   ³   ³   ³       
-³   ³   ³   ÀÄÄÄquestions
-³   ³   ³           comparison_ass_01.json
-³   ³   ³           comparison_ass_02.json
-³   ³   ³           ex01_ass_01.json
-³   ³   ³           ex01_ass_02.json
-³   ³   ³           ex01_ass_03.json
-³   ³   ³           ex02_ass_01.json
-³   ³   ³           ex02_ass_02.json
-³   ³   ³           ex02_ass_03.json
-³   ³   ³           interactive_ass_01.json
-³   ³   ³           interactive_ass_02.json
-³   ³   ³           theory_ass_01.json
-³   ³   ³           theory_ass_02.json
-³   ³   ³           theory_ass_03.json
-³   ³   ³           theory_ass_04.json
-³   ³   ³           theory_ass_05.json
-³   ³   ³           
-³   ³   ÃÄÄÄcontent
-³   ³   ³       GWP_SoilWaterRetention_Start.py
-³   ³   ³       GWP_SWR_Abbreviations.py
-³   ³   ³       GWP_SWR_About.py
-³   ³   ³       GWP_SWR_Exercise_1.py
-³   ³   ³       GWP_SWR_Exercise_2.py
-³   ³   ³       GWP_SWR_LearningMore.py
-³   ³   ³       GWP_SWR_References.py
-³   ³   ³       GWP_SWR_SWRC in comparison.py
-³   ³   ³       GWP_SWR_SWRC_interactive.py
-³   ³   ³       GWP_SWR_Theory.py
-³   ³   ³       
-³   ³   ÃÄÄÄdocs
-³   ³   ³       GWP_SoilWaterRetention_Start_example.md
-³   ³   ³       
-³   ³   ÃÄÄÄpages_old
-³   ³   ³       01_??_Theory.py
-³   ³   ³       02_??_The SWRC interactive.py
-³   ³   ³       03_??_The SWRC in comparison.py
-³   ³   ³       04_??_SWRC_Exercise_1.py
-³   ³   ³       05_??_SWRC_Exercise_2.py
-³   ³   ³       06_??_About.py
-³   ³   ³       
-³   ³   ÃÄÄÄquestions
-³   ³   ³       comparison_ass_01.json
-³   ³   ³       comparison_ass_02.json
-³   ³   ³       ex01_ass_01.json
-³   ³   ³       ex01_ass_02.json
-³   ³   ³       ex01_ass_03.json
-³   ³   ³       ex02_ass_01.json
-³   ³   ³       ex02_ass_02.json
-³   ³   ³       ex02_ass_03.json
-³   ³   ³       interactive_ass_01.json
-³   ³   ³       interactive_ass_02.json
-³   ³   ³       theory_ass_01.json
-³   ³   ³       theory_ass_02.json
-³   ³   ³       theory_ass_03.json
-³   ³   ³       theory_ass_04.json
-³   ³   ³       theory_ass_05.json
-³   ³   ³       
-³   ³   ÀÄÄÄ__pycache__
-³   ³           GWP_SoilWaterRetention_utils.cpython-311.pyc
-³   ³           
-³   ÃÄÄÄGWP_Well_capture
-³   ³   ³   WellCapture.py
-³   ³   ³   
-³   ³   ÃÄÄÄassets
-³   ³   ³   ÀÄÄÄimages
-³   ³   ³           1200px-Erasmus+_Logo.svg.png
-³   ³   ³           iNUX_wLogo.png
-³   ³   ³           thomasreimann.png
-³   ³   ³           wellcapturediagram-sm42.png
-³   ³   ³           
-³   ³   ÀÄÄÄpages
-³   ³           01_??_Theory.py
-³   ³           02_??_?? Run Computation.py
-³   ³           03_??_About.py
-³   ³           
-³   ÃÄÄÄGWP_Well_capture2
-³   ³   ³   WellCapture2.py
-³   ³   ³   
-³   ³   ÃÄÄÄassets
-³   ³   ³   ÀÄÄÄimages
-³   ³   ³           1200px-Erasmus+_Logo.svg.png
-³   ³   ³           iNUX_wLogo.png
-³   ³   ³           thomasreimann.png
-³   ³   ³           wellcapturediagram-sm42.png
-³   ³   ³           
-³   ³   ÀÄÄÄpages
-³   ³           01_??_Theory.py
-³   ³           02_??_?? Run Computation.py
-³   ³           03_??_?? Task Manage accident.py
-³   ³           04_??_?? Task Manage plume capture.py
-³   ³           05_??_About.py
-³   ³           
-³   ÃÄÄÄgw_recharge
-³   ³   ³   Groundwater_Recharge_App.py
-³   ³   ³   gw_recharge_functions.py
-³   ³   ³   
-³   ³   ÃÄÄÄdata
-³   ³   ³       UniGraz1990-2020.csv
-³   ³   ³       
-³   ³   ÃÄÄÄimages
-³   ³   ³       1200px-Erasmus+_Logo.svg.png
-³   ³   ³       CC_BY-SA_icon.png
-³   ³   ³       iNUX_wLogo.png
-³   ³   ³       Linear_reservoir.png
-³   ³   ³       Linear_reservoir_runoff.png
-³   ³   ³       water_balance_crop.png
-³   ³   ³       water_stress.png
-³   ³   ³       
-³   ³   ÀÄÄÄpages
-³   ³           01_Intro.py
-³   ³           02_ETP_Oudin.py
-³   ³           03_ETP_Haude.py
-³   ³           04_ETP_PM.py
-³   ³           05_Groundwater_Recharge.py
-³   ³           06_Linear_Reservoir.py
-³   ³           07_About.py
-³   ³           08_References.py
-³   ³           
-³   ÃÄÄÄMWW01
-³   ³   ³   GROWi26.py
-³   ³   ³   MWW01.py
-³   ³   ³   
-³   ³   ÃÄÄÄassets
-³   ³   ³   ÀÄÄÄimages
-³   ³   ³       ³   1200px-Erasmus+_Logo.svg.png
-³   ³   ³       ³   blank_profile.png
-³   ³   ³       ³   iNUX_wLogo.png
-³   ³   ³       ³   Symple_logo.png
-³   ³   ³       ³   thomasreimann.png
-³   ³   ³       ³   wellcapturediagram-sm42.png
-³   ³   ³       ³   
-³   ³   ³       ÀÄÄÄGWF
-³   ³   ³               GWF_001.jpg
-³   ³   ³               GWF_002.jpg
-³   ³   ³               GWF_003.jpg
-³   ³   ³               GWF_004.jpg
-³   ³   ³               GWF_005.jpg
-³   ³   ³               GWF_006.jpg
-³   ³   ³               GWF_007.jpg
-³   ³   ³               GWF_008.jpg
-³   ³   ³               
-³   ³   ÃÄÄÄcontent
-³   ³   ³       1D_GWF_Unconfined Recharge_GROWi26.py
-³   ³   ³       About.py
-³   ³   ³       GROWi26_About.py
-³   ³   ³       GROWi26_Start.py
-³   ³   ³       GWF_1D_conf_FD_GROWi26.py
-³   ³   ³       MF_cells_v2.py
-³   ³   ³       MWW01APP.py
-³   ³   ³       
-³   ³   ÃÄÄÄpages
-³   ³   ³   ÃÄÄÄ01_Intro
-³   ³   ³   ÃÄÄÄ02_Konzeptionelles_Modell
-³   ³   ³   ÃÄÄÄ03_Stroemungsmodellierung
-³   ³   ³   ÃÄÄÄ04_Transportmodellierung
-³   ³   ³   ³       Transport_1D_AD_MWW01.py
-³   ³   ³   ³       WellCapture_MWW01.py
-³   ³   ³   ³       
-³   ³   ³   ÀÄÄÄ05_Kalibrierung
-³   ³   ³           GWF_1D_unconf_analytic_calib.py
-³   ³   ³           GWF_1D_unconf_analytic_noflow_calib.py
-³   ³   ³           
-³   ³   ÀÄÄÄSlideJet_Presentations
-³   ³       ³   GWBmC_WS2425_T10_SJconfig.yaml
-³   ³       ³   GWBmC_WS2425_T10_SJpresent.py
-³   ³       ³   GWBmC_WS2526_T03_Stroemungsmodellierung1_SJconfig.yaml
-³   ³       ³   GWBmC_WS2526_T03_Stroemungsmodellierung1_SJpresent.py
-³   ³       ³   GWBmC_WS2526_T03_Stroemungsmodellierung_SJconfig.yaml
-³   ³       ³   GWBmC_WS2526_T03_Stroemungsmodellierung_SJpresent.py
-³   ³       ³   GWBmC_WS2526_T04_Transport_Anwendung_WSG_SJconfig.yaml
-³   ³       ³   GWBmC_WS2526_T04_Transport_Anwendung_WSG_SJpresent.py
-³   ³       ³   GWBmC_WS2526_T04_Transport_SJconfig.yaml
-³   ³       ³   GWBmC_WS2526_T04_Transport_SJpresent.py
-³   ³       ³   GWBmC_WS2526_V01_SJconfig.yaml
-³   ³       ³   GWBmC_WS2526_V01_SJpresent.py
-³   ³       ³   GWBmC_WS2526_V02_SJconfig.yaml
-³   ³       ³   GWBmC_WS2526_V02_SJpresent.py
-³   ³       ³   GWBmC_WS2526_V04_Start_SJconfig.yaml
-³   ³       ³   GWBmC_WS2526_V04_Start_SJpresent.py
-³   ³       ³   GWBmC_WS2526_V05_Start_SJconfig.yaml
-³   ³       ³   GWBmC_WS2526_V05_Start_SJpresent.py
-³   ³       ³   GWBmC_WS2526_V06_Start_SJconfig.yaml
-³   ³       ³   GWBmC_WS2526_V06_Start_SJpresent.py
-³   ³       ³   GWBmC_WS2526_V07_Start_SJconfig.yaml
-³   ³       ³   GWBmC_WS2526_V07_Start_SJpresent.py
-³   ³       ³   GWBmC_WS2526_V08_Start_SJconfig.yaml
-³   ³       ³   GWBmC_WS2526_V08_Start_SJpresent.py
-³   ³       ³   GWBmC_WS2526_V09_Start_SJconfig.yaml
-³   ³       ³   GWBmC_WS2526_V09_Start_SJpresent.py
-³   ³       ³   
-³   ³       ÀÄÄÄSJ_DATA
-³   ³           ÃÄÄÄGWBmC_WS2425_T10
-³   ³           ³   ³   slide_data.json
-³   ³           ³   ³   
-³   ³           ³   ÀÄÄÄimages
-³   ³           ³           slide_1.png
-³   ³           ³           slide_10.png
-³   ³           ³           slide_11.png
-³   ³           ³           slide_12.png
-³   ³           ³           slide_13.png
-³   ³           ³           slide_14.png
-³   ³           ³           slide_15.png
-³   ³           ³           slide_16.png
-³   ³           ³           slide_17.png
-³   ³           ³           slide_18.png
-³   ³           ³           slide_19.png
-³   ³           ³           slide_2.png
-³   ³           ³           slide_20.png
-³   ³           ³           slide_21.png
-³   ³           ³           slide_22.png
-³   ³           ³           slide_23.png
-³   ³           ³           slide_24.png
-³   ³           ³           slide_25.png
-³   ³           ³           slide_26.png
-³   ³           ³           slide_27.png
-³   ³           ³           slide_28.png
-³   ³           ³           slide_29.png
-³   ³           ³           slide_3.png
-³   ³           ³           slide_30.png
-³   ³           ³           slide_31.png
-³   ³           ³           slide_32.png
-³   ³           ³           slide_33.png
-³   ³           ³           slide_34.png
-³   ³           ³           slide_35.png
-³   ³           ³           slide_36.png
-³   ³           ³           slide_37.png
-³   ³           ³           slide_38.png
-³   ³           ³           slide_39.png
-³   ³           ³           slide_4.png
-³   ³           ³           slide_40.png
-³   ³           ³           slide_41.png
-³   ³           ³           slide_42.png
-³   ³           ³           slide_43.png
-³   ³           ³           slide_44.png
-³   ³           ³           slide_45.png
-³   ³           ³           slide_46.png
-³   ³           ³           slide_47.png
-³   ³           ³           slide_48.png
-³   ³           ³           slide_49.png
-³   ³           ³           slide_5.png
-³   ³           ³           slide_50.png
-³   ³           ³           slide_51.png
-³   ³           ³           slide_52.png
-³   ³           ³           slide_53.png
-³   ³           ³           slide_6.png
-³   ³           ³           slide_7.png
-³   ³           ³           slide_8.png
-³   ³           ³           slide_9.png
-³   ³           ³           
-³   ³           ÃÄÄÄGWBmC_WS2526_T03_Stroemungsmodellierung
-³   ³           ³   ³   slide_data.json
-³   ³           ³   ³   
-³   ³           ³   ÀÄÄÄimages
-³   ³           ³           slide_1.png
-³   ³           ³           slide_10.png
-³   ³           ³           slide_100.png
-³   ³           ³           slide_101.png
-³   ³           ³           slide_102.png
-³   ³           ³           slide_103.png
-³   ³           ³           slide_104.png
-³   ³           ³           slide_105.png
-³   ³           ³           slide_106.png
-³   ³           ³           slide_107.png
-³   ³           ³           slide_108.png
-³   ³           ³           slide_109.png
-³   ³           ³           slide_11.png
-³   ³           ³           slide_110.png
-³   ³           ³           slide_111.png
-³   ³           ³           slide_112.png
-³   ³           ³           slide_113.png
-³   ³           ³           slide_114.png
-³   ³           ³           slide_115.png
-³   ³           ³           slide_116.png
-³   ³           ³           slide_117.png
-³   ³           ³           slide_118.png
-³   ³           ³           slide_119.png
-³   ³           ³           slide_12.png
-³   ³           ³           slide_120.png
-³   ³           ³           slide_121.png
-³   ³           ³           slide_122.png
-³   ³           ³           slide_123.png
-³   ³           ³           slide_124.png
-³   ³           ³           slide_125.png
-³   ³           ³           slide_126.png
-³   ³           ³           slide_127.png
-³   ³           ³           slide_128.png
-³   ³           ³           slide_129.png
-³   ³           ³           slide_13.png
-³   ³           ³           slide_14.png
-³   ³           ³           slide_15.png
-³   ³           ³           slide_16.png
-³   ³           ³           slide_17.png
-³   ³           ³           slide_18.png
-³   ³           ³           slide_19.png
-³   ³           ³           slide_2.png
-³   ³           ³           slide_20.png
-³   ³           ³           slide_21.png
-³   ³           ³           slide_22.png
-³   ³           ³           slide_23.png
-³   ³           ³           slide_24.png
-³   ³           ³           slide_25.png
-³   ³           ³           slide_26.png
-³   ³           ³           slide_27.png
-³   ³           ³           slide_28.png
-³   ³           ³           slide_29.png
-³   ³           ³           slide_3.png
-³   ³           ³           slide_30.png
-³   ³           ³           slide_31.png
-³   ³           ³           slide_32.png
-³   ³           ³           slide_33.png
-³   ³           ³           slide_34.png
-³   ³           ³           slide_35.png
-³   ³           ³           slide_36.png
-³   ³           ³           slide_37.png
-³   ³           ³           slide_38.png
-³   ³           ³           slide_39.png
-³   ³           ³           slide_4.png
-³   ³           ³           slide_40.png
-³   ³           ³           slide_41.png
-³   ³           ³           slide_42.png
-³   ³           ³           slide_43.png
-³   ³           ³           slide_44.png
-³   ³           ³           slide_45.png
-³   ³           ³           slide_46.png
-³   ³           ³           slide_47.png
-³   ³           ³           slide_48.png
-³   ³           ³           slide_49.png
-³   ³           ³           slide_5.png
-³   ³           ³           slide_50.png
-³   ³           ³           slide_51.png
-³   ³           ³           slide_52.png
-³   ³           ³           slide_53.png
-³   ³           ³           slide_54.png
-³   ³           ³           slide_55.png
-³   ³           ³           slide_56.png
-³   ³           ³           slide_57.png
-³   ³           ³           slide_58.png
-³   ³           ³           slide_59.png
-³   ³           ³           slide_6.png
-³   ³           ³           slide_60.png
-³   ³           ³           slide_61.png
-³   ³           ³           slide_62.png
-³   ³           ³           slide_63.png
-³   ³           ³           slide_64.png
-³   ³           ³           slide_65.png
-³   ³           ³           slide_66.png
-³   ³           ³           slide_67.png
-³   ³           ³           slide_68.png
-³   ³           ³           slide_69.png
-³   ³           ³           slide_7.png
-³   ³           ³           slide_70.png
-³   ³           ³           slide_71.png
-³   ³           ³           slide_72.png
-³   ³           ³           slide_73.png
-³   ³           ³           slide_74.png
-³   ³           ³           slide_75.png
-³   ³           ³           slide_76.png
-³   ³           ³           slide_77.png
-³   ³           ³           slide_78.png
-³   ³           ³           slide_79.png
-³   ³           ³           slide_8.png
-³   ³           ³           slide_80.png
-³   ³           ³           slide_81.png
-³   ³           ³           slide_82.png
-³   ³           ³           slide_83.png
-³   ³           ³           slide_84.png
-³   ³           ³           slide_85.png
-³   ³           ³           slide_86.png
-³   ³           ³           slide_87.png
-³   ³           ³           slide_88.png
-³   ³           ³           slide_89.png
-³   ³           ³           slide_9.png
-³   ³           ³           slide_90.png
-³   ³           ³           slide_91.png
-³   ³           ³           slide_92.png
-³   ³           ³           slide_93.png
-³   ³           ³           slide_94.png
-³   ³           ³           slide_95.png
-³   ³           ³           slide_96.png
-³   ³           ³           slide_97.png
-³   ³           ³           slide_98.png
-³   ³           ³           slide_99.png
-³   ³           ³           
-³   ³           ÃÄÄÄGWBmC_WS2526_T03_Stroemungsmodellierung1
-³   ³           ³   ³   slide_data.json
-³   ³           ³   ³   
-³   ³           ³   ÀÄÄÄimages
-³   ³           ³           slide_1.png
-³   ³           ³           slide_10.png
-³   ³           ³           slide_100.png
-³   ³           ³           slide_101.png
-³   ³           ³           slide_102.png
-³   ³           ³           slide_103.png
-³   ³           ³           slide_104.png
-³   ³           ³           slide_105.png
-³   ³           ³           slide_106.png
-³   ³           ³           slide_107.png
-³   ³           ³           slide_108.png
-³   ³           ³           slide_109.png
-³   ³           ³           slide_11.png
-³   ³           ³           slide_110.png
-³   ³           ³           slide_111.png
-³   ³           ³           slide_112.png
-³   ³           ³           slide_113.png
-³   ³           ³           slide_114.png
-³   ³           ³           slide_115.png
-³   ³           ³           slide_116.png
-³   ³           ³           slide_117.png
-³   ³           ³           slide_118.png
-³   ³           ³           slide_119.png
-³   ³           ³           slide_12.png
-³   ³           ³           slide_120.png
-³   ³           ³           slide_121.png
-³   ³           ³           slide_122.png
-³   ³           ³           slide_123.png
-³   ³           ³           slide_124.png
-³   ³           ³           slide_125.png
-³   ³           ³           slide_126.png
-³   ³           ³           slide_127.png
-³   ³           ³           slide_128.png
-³   ³           ³           slide_129.png
-³   ³           ³           slide_13.png
-³   ³           ³           slide_130.png
-³   ³           ³           slide_131.png
-³   ³           ³           slide_132.png
-³   ³           ³           slide_14.png
-³   ³           ³           slide_15.png
-³   ³           ³           slide_16.png
-³   ³           ³           slide_17.png
-³   ³           ³           slide_18.png
-³   ³           ³           slide_19.png
-³   ³           ³           slide_2.png
-³   ³           ³           slide_20.png
-³   ³           ³           slide_21.png
-³   ³           ³           slide_22.png
-³   ³           ³           slide_23.png
-³   ³           ³           slide_24.png
-³   ³           ³           slide_25.png
-³   ³           ³           slide_26.png
-³   ³           ³           slide_27.png
-³   ³           ³           slide_28.png
-³   ³           ³           slide_29.png
-³   ³           ³           slide_3.png
-³   ³           ³           slide_30.png
-³   ³           ³           slide_31.png
-³   ³           ³           slide_32.png
-³   ³           ³           slide_33.png
-³   ³           ³           slide_34.png
-³   ³           ³           slide_35.png
-³   ³           ³           slide_36.png
-³   ³           ³           slide_37.png
-³   ³           ³           slide_38.png
-³   ³           ³           slide_39.png
-³   ³           ³           slide_4.png
-³   ³           ³           slide_40.png
-³   ³           ³           slide_41.png
-³   ³           ³           slide_42.png
-³   ³           ³           slide_43.png
-³   ³           ³           slide_44.png
-³   ³           ³           slide_45.png
-³   ³           ³           slide_46.png
-³   ³           ³           slide_47.png
-³   ³           ³           slide_48.png
-³   ³           ³           slide_49.png
-³   ³           ³           slide_5.png
-³   ³           ³           slide_50.png
-³   ³           ³           slide_51.png
-³   ³           ³           slide_52.png
-³   ³           ³           slide_53.png
-³   ³           ³           slide_54.png
-³   ³           ³           slide_55.png
-³   ³           ³           slide_56.png
-³   ³           ³           slide_57.png
-³   ³           ³           slide_58.png
-³   ³           ³           slide_59.png
-³   ³           ³           slide_6.png
-³   ³           ³           slide_60.png
-³   ³           ³           slide_61.png
-³   ³           ³           slide_62.png
-³   ³           ³           slide_63.png
-³   ³           ³           slide_64.png
-³   ³           ³           slide_65.png
-³   ³           ³           slide_66.png
-³   ³           ³           slide_67.png
-³   ³           ³           slide_68.png
-³   ³           ³           slide_69.png
-³   ³           ³           slide_7.png
-³   ³           ³           slide_70.png
-³   ³           ³           slide_71.png
-³   ³           ³           slide_72.png
-³   ³           ³           slide_73.png
-³   ³           ³           slide_74.png
-³   ³           ³           slide_75.png
-³   ³           ³           slide_76.png
-³   ³           ³           slide_77.png
-³   ³           ³           slide_78.png
-³   ³           ³           slide_79.png
-³   ³           ³           slide_8.png
-³   ³           ³           slide_80.png
-³   ³           ³           slide_81.png
-³   ³           ³           slide_82.png
-³   ³           ³           slide_83.png
-³   ³           ³           slide_84.png
-³   ³           ³           slide_85.png
-³   ³           ³           slide_86.png
-³   ³           ³           slide_87.png
-³   ³           ³           slide_88.png
-³   ³           ³           slide_89.png
-³   ³           ³           slide_9.png
-³   ³           ³           slide_90.png
-³   ³           ³           slide_91.png
-³   ³           ³           slide_92.png
-³   ³           ³           slide_93.png
-³   ³           ³           slide_94.png
-³   ³           ³           slide_95.png
-³   ³           ³           slide_96.png
-³   ³           ³           slide_97.png
-³   ³           ³           slide_98.png
-³   ³           ³           slide_99.png
-³   ³           ³           
-³   ³           ÃÄÄÄGWBmC_WS2526_T04_Transport
-³   ³           ³   ³   slide_data.json
-³   ³           ³   ³   
-³   ³           ³   ÀÄÄÄimages
-³   ³           ³           slide_1.png
-³   ³           ³           slide_10.png
-³   ³           ³           slide_100.png
-³   ³           ³           slide_101.png
-³   ³           ³           slide_102.png
-³   ³           ³           slide_103.png
-³   ³           ³           slide_104.png
-³   ³           ³           slide_105.png
-³   ³           ³           slide_106.png
-³   ³           ³           slide_107.png
-³   ³           ³           slide_108.png
-³   ³           ³           slide_109.png
-³   ³           ³           slide_11.png
-³   ³           ³           slide_110.png
-³   ³           ³           slide_111.png
-³   ³           ³           slide_112.png
-³   ³           ³           slide_113.png
-³   ³           ³           slide_114.png
-³   ³           ³           slide_115.png
-³   ³           ³           slide_116.png
-³   ³           ³           slide_117.png
-³   ³           ³           slide_118.png
-³   ³           ³           slide_119.png
-³   ³           ³           slide_12.png
-³   ³           ³           slide_120.png
-³   ³           ³           slide_121.png
-³   ³           ³           slide_13.png
-³   ³           ³           slide_14.png
-³   ³           ³           slide_15.png
-³   ³           ³           slide_16.png
-³   ³           ³           slide_17.png
-³   ³           ³           slide_18.png
-³   ³           ³           slide_19.png
-³   ³           ³           slide_2.png
-³   ³           ³           slide_20.png
-³   ³           ³           slide_21.png
-³   ³           ³           slide_22.png
-³   ³           ³           slide_23.png
-³   ³           ³           slide_24.png
-³   ³           ³           slide_25.png
-³   ³           ³           slide_26.png
-³   ³           ³           slide_27.png
-³   ³           ³           slide_28.png
-³   ³           ³           slide_29.png
-³   ³           ³           slide_3.png
-³   ³           ³           slide_30.png
-³   ³           ³           slide_31.png
-³   ³           ³           slide_32.png
-³   ³           ³           slide_33.png
-³   ³           ³           slide_34.png
-³   ³           ³           slide_35.png
-³   ³           ³           slide_36.png
-³   ³           ³           slide_37.png
-³   ³           ³           slide_38.png
-³   ³           ³           slide_39.png
-³   ³           ³           slide_4.png
-³   ³           ³           slide_40.png
-³   ³           ³           slide_41.png
-³   ³           ³           slide_42.png
-³   ³           ³           slide_43.png
-³   ³           ³           slide_44.png
-³   ³           ³           slide_45.png
-³   ³           ³           slide_46.png
-³   ³           ³           slide_47.png
-³   ³           ³           slide_48.png
-³   ³           ³           slide_49.png
-³   ³           ³           slide_5.png
-³   ³           ³           slide_50.png
-³   ³           ³           slide_51.png
-³   ³           ³           slide_52.png
-³   ³           ³           slide_53.png
-³   ³           ³           slide_54.png
-³   ³           ³           slide_55.png
-³   ³           ³           slide_56.png
-³   ³           ³           slide_57.png
-³   ³           ³           slide_58.png
-³   ³           ³           slide_59.png
-³   ³           ³           slide_6.png
-³   ³           ³           slide_60.png
-³   ³           ³           slide_61.png
-³   ³           ³           slide_62.png
-³   ³           ³           slide_63.png
-³   ³           ³           slide_64.png
-³   ³           ³           slide_65.png
-³   ³           ³           slide_66.png
-³   ³           ³           slide_67.png
-³   ³           ³           slide_68.png
-³   ³           ³           slide_69.png
-³   ³           ³           slide_7.png
-³   ³           ³           slide_70.png
-³   ³           ³           slide_71.png
-³   ³           ³           slide_72.png
-³   ³           ³           slide_73.png
-³   ³           ³           slide_74.png
-³   ³           ³           slide_75.png
-³   ³           ³           slide_76.png
-³   ³           ³           slide_77.png
-³   ³           ³           slide_78.png
-³   ³           ³           slide_79.png
-³   ³           ³           slide_8.png
-³   ³           ³           slide_80.png
-³   ³           ³           slide_81.png
-³   ³           ³           slide_82.png
-³   ³           ³           slide_83.png
-³   ³           ³           slide_84.png
-³   ³           ³           slide_85.png
-³   ³           ³           slide_86.png
-³   ³           ³           slide_87.png
-³   ³           ³           slide_88.png
-³   ³           ³           slide_89.png
-³   ³           ³           slide_9.png
-³   ³           ³           slide_90.png
-³   ³           ³           slide_91.png
-³   ³           ³           slide_92.png
-³   ³           ³           slide_93.png
-³   ³           ³           slide_94.png
-³   ³           ³           slide_95.png
-³   ³           ³           slide_96.png
-³   ³           ³           slide_97.png
-³   ³           ³           slide_98.png
-³   ³           ³           slide_99.png
-³   ³           ³           
-³   ³           ÃÄÄÄGWBmC_WS2526_T04_Transport_Anwendung_WSG
-³   ³           ³   ³   slide_data.json
-³   ³           ³   ³   
-³   ³           ³   ÀÄÄÄimages
-³   ³           ³           slide_1.png
-³   ³           ³           slide_10.png
-³   ³           ³           slide_11.png
-³   ³           ³           slide_12.png
-³   ³           ³           slide_13.png
-³   ³           ³           slide_14.png
-³   ³           ³           slide_15.png
-³   ³           ³           slide_16.png
-³   ³           ³           slide_17.png
-³   ³           ³           slide_18.png
-³   ³           ³           slide_19.png
-³   ³           ³           slide_2.png
-³   ³           ³           slide_20.png
-³   ³           ³           slide_21.png
-³   ³           ³           slide_22.png
-³   ³           ³           slide_23.png
-³   ³           ³           slide_24.png
-³   ³           ³           slide_25.png
-³   ³           ³           slide_26.png
-³   ³           ³           slide_27.png
-³   ³           ³           slide_28.png
-³   ³           ³           slide_29.png
-³   ³           ³           slide_3.png
-³   ³           ³           slide_30.png
-³   ³           ³           slide_31.png
-³   ³           ³           slide_32.png
-³   ³           ³           slide_33.png
-³   ³           ³           slide_34.png
-³   ³           ³           slide_35.png
-³   ³           ³           slide_36.png
-³   ³           ³           slide_37.png
-³   ³           ³           slide_38.png
-³   ³           ³           slide_39.png
-³   ³           ³           slide_4.png
-³   ³           ³           slide_40.png
-³   ³           ³           slide_41.png
-³   ³           ³           slide_42.png
-³   ³           ³           slide_43.png
-³   ³           ³           slide_44.png
-³   ³           ³           slide_45.png
-³   ³           ³           slide_46.png
-³   ³           ³           slide_47.png
-³   ³           ³           slide_48.png
-³   ³           ³           slide_49.png
-³   ³           ³           slide_5.png
-³   ³           ³           slide_50.png
-³   ³           ³           slide_51.png
-³   ³           ³           slide_52.png
-³   ³           ³           slide_53.png
-³   ³           ³           slide_54.png
-³   ³           ³           slide_55.png
-³   ³           ³           slide_56.png
-³   ³           ³           slide_57.png
-³   ³           ³           slide_6.png
-³   ³           ³           slide_7.png
-³   ³           ³           slide_8.png
-³   ³           ³           slide_9.png
-³   ³           ³           
-³   ³           ÃÄÄÄGWBmC_WS2526_V01
-³   ³           ³   ³   slide_data.json
-³   ³           ³   ³   
-³   ³           ³   ÀÄÄÄimages
-³   ³           ³           slide_1.png
-³   ³           ³           slide_10.png
-³   ³           ³           slide_100.png
-³   ³           ³           slide_101.png
-³   ³           ³           slide_102.png
-³   ³           ³           slide_103.png
-³   ³           ³           slide_104.png
-³   ³           ³           slide_105.png
-³   ³           ³           slide_106.png
-³   ³           ³           slide_107.png
-³   ³           ³           slide_108.png
-³   ³           ³           slide_109.png
-³   ³           ³           slide_11.png
-³   ³           ³           slide_110.png
-³   ³           ³           slide_111.png
-³   ³           ³           slide_12.png
-³   ³           ³           slide_13.png
-³   ³           ³           slide_14.png
-³   ³           ³           slide_15.png
-³   ³           ³           slide_16.png
-³   ³           ³           slide_17.png
-³   ³           ³           slide_18.png
-³   ³           ³           slide_19.png
-³   ³           ³           slide_2.png
-³   ³           ³           slide_20.png
-³   ³           ³           slide_21.png
-³   ³           ³           slide_22.png
-³   ³           ³           slide_23.png
-³   ³           ³           slide_24.png
-³   ³           ³           slide_25.png
-³   ³           ³           slide_26.png
-³   ³           ³           slide_27.png
-³   ³           ³           slide_28.png
-³   ³           ³           slide_29.png
-³   ³           ³           slide_3.png
-³   ³           ³           slide_30.png
-³   ³           ³           slide_31.png
-³   ³           ³           slide_32.png
-³   ³           ³           slide_33.png
-³   ³           ³           slide_34.png
-³   ³           ³           slide_35.png
-³   ³           ³           slide_36.png
-³   ³           ³           slide_37.png
-³   ³           ³           slide_38.png
-³   ³           ³           slide_39.png
-³   ³           ³           slide_4.png
-³   ³           ³           slide_40.png
-³   ³           ³           slide_41.png
-³   ³           ³           slide_42.png
-³   ³           ³           slide_43.png
-³   ³           ³           slide_44.png
-³   ³           ³           slide_45.png
-³   ³           ³           slide_46.png
-³   ³           ³           slide_47.png
-³   ³           ³           slide_48.png
-³   ³           ³           slide_49.png
-³   ³           ³           slide_5.png
-³   ³           ³           slide_50.png
-³   ³           ³           slide_51.png
-³   ³           ³           slide_52.png
-³   ³           ³           slide_53.png
-³   ³           ³           slide_54.png
-³   ³           ³           slide_55.png
-³   ³           ³           slide_56.png
-³   ³           ³           slide_57.png
-³   ³           ³           slide_58.png
-³   ³           ³           slide_59.png
-³   ³           ³           slide_6.png
-³   ³           ³           slide_60.png
-³   ³           ³           slide_61.png
-³   ³           ³           slide_62.png
-³   ³           ³           slide_63.png
-³   ³           ³           slide_64.png
-³   ³           ³           slide_65.png
-³   ³           ³           slide_66.png
-³   ³           ³           slide_67.png
-³   ³           ³           slide_68.png
-³   ³           ³           slide_69.png
-³   ³           ³           slide_7.png
-³   ³           ³           slide_70.png
-³   ³           ³           slide_71.png
-³   ³           ³           slide_72.png
-³   ³           ³           slide_73.png
-³   ³           ³           slide_74.png
-³   ³           ³           slide_75.png
-³   ³           ³           slide_76.png
-³   ³           ³           slide_77.png
-³   ³           ³           slide_78.png
-³   ³           ³           slide_79.png
-³   ³           ³           slide_8.png
-³   ³           ³           slide_80.png
-³   ³           ³           slide_81.png
-³   ³           ³           slide_82.png
-³   ³           ³           slide_83.png
-³   ³           ³           slide_84.png
-³   ³           ³           slide_85.png
-³   ³           ³           slide_86.png
-³   ³           ³           slide_87.png
-³   ³           ³           slide_88.png
-³   ³           ³           slide_89.png
-³   ³           ³           slide_9.png
-³   ³           ³           slide_90.png
-³   ³           ³           slide_91.png
-³   ³           ³           slide_92.png
-³   ³           ³           slide_93.png
-³   ³           ³           slide_94.png
-³   ³           ³           slide_95.png
-³   ³           ³           slide_96.png
-³   ³           ³           slide_97.png
-³   ³           ³           slide_98.png
-³   ³           ³           slide_99.png
-³   ³           ³           
-³   ³           ÃÄÄÄGWBmC_WS2526_V02
-³   ³           ³   ³   slide_data.json
-³   ³           ³   ³   
-³   ³           ³   ÀÄÄÄimages
-³   ³           ³           slide_1.png
-³   ³           ³           slide_10.png
-³   ³           ³           slide_100.png
-³   ³           ³           slide_101.png
-³   ³           ³           slide_102.png
-³   ³           ³           slide_103.png
-³   ³           ³           slide_104.png
-³   ³           ³           slide_105.png
-³   ³           ³           slide_106.png
-³   ³           ³           slide_107.png
-³   ³           ³           slide_108.png
-³   ³           ³           slide_109.png
-³   ³           ³           slide_11.png
-³   ³           ³           slide_110.png
-³   ³           ³           slide_111.png
-³   ³           ³           slide_112.png
-³   ³           ³           slide_113.png
-³   ³           ³           slide_114.png
-³   ³           ³           slide_115.png
-³   ³           ³           slide_116.png
-³   ³           ³           slide_117.png
-³   ³           ³           slide_118.png
-³   ³           ³           slide_119.png
-³   ³           ³           slide_12.png
-³   ³           ³           slide_120.png
-³   ³           ³           slide_121.png
-³   ³           ³           slide_122.png
-³   ³           ³           slide_123.png
-³   ³           ³           slide_124.png
-³   ³           ³           slide_125.png
-³   ³           ³           slide_126.png
-³   ³           ³           slide_127.png
-³   ³           ³           slide_128.png
-³   ³           ³           slide_129.png
-³   ³           ³           slide_13.png
-³   ³           ³           slide_130.png
-³   ³           ³           slide_131.png
-³   ³           ³           slide_132.png
-³   ³           ³           slide_133.png
-³   ³           ³           slide_134.png
-³   ³           ³           slide_135.png
-³   ³           ³           slide_136.png
-³   ³           ³           slide_137.png
-³   ³           ³           slide_138.png
-³   ³           ³           slide_139.png
-³   ³           ³           slide_14.png
-³   ³           ³           slide_140.png
-³   ³           ³           slide_141.png
-³   ³           ³           slide_142.png
-³   ³           ³           slide_143.png
-³   ³           ³           slide_144.png
-³   ³           ³           slide_145.png
-³   ³           ³           slide_146.png
-³   ³           ³           slide_147.png
-³   ³           ³           slide_148.png
-³   ³           ³           slide_149.png
-³   ³           ³           slide_15.png
-³   ³           ³           slide_150.png
-³   ³           ³           slide_151.png
-³   ³           ³           slide_152.png
-³   ³           ³           slide_153.png
-³   ³           ³           slide_154.png
-³   ³           ³           slide_155.png
-³   ³           ³           slide_156.png
-³   ³           ³           slide_157.png
-³   ³           ³           slide_158.png
-³   ³           ³           slide_159.png
-³   ³           ³           slide_16.png
-³   ³           ³           slide_160.png
-³   ³           ³           slide_161.png
-³   ³           ³           slide_162.png
-³   ³           ³           slide_163.png
-³   ³           ³           slide_164.png
-³   ³           ³           slide_165.png
-³   ³           ³           slide_166.png
-³   ³           ³           slide_17.png
-³   ³           ³           slide_18.png
-³   ³           ³           slide_19.png
-³   ³           ³           slide_2.png
-³   ³           ³           slide_20.png
-³   ³           ³           slide_21.png
-³   ³           ³           slide_22.png
-³   ³           ³           slide_23.png
-³   ³           ³           slide_24.png
-³   ³           ³           slide_25.png
-³   ³           ³           slide_26.png
-³   ³           ³           slide_27.png
-³   ³           ³           slide_28.png
-³   ³           ³           slide_29.png
-³   ³           ³           slide_3.png
-³   ³           ³           slide_30.png
-³   ³           ³           slide_31.png
-³   ³           ³           slide_32.png
-³   ³           ³           slide_33.png
-³   ³           ³           slide_34.png
-³   ³           ³           slide_35.png
-³   ³           ³           slide_36.png
-³   ³           ³           slide_37.png
-³   ³           ³           slide_38.png
-³   ³           ³           slide_39.png
-³   ³           ³           slide_4.png
-³   ³           ³           slide_40.png
-³   ³           ³           slide_41.png
-³   ³           ³           slide_42.png
-³   ³           ³           slide_43.png
-³   ³           ³           slide_44.png
-³   ³           ³           slide_45.png
-³   ³           ³           slide_46.png
-³   ³           ³           slide_47.png
-³   ³           ³           slide_48.png
-³   ³           ³           slide_49.png
-³   ³           ³           slide_5.png
-³   ³           ³           slide_50.png
-³   ³           ³           slide_51.png
-³   ³           ³           slide_52.png
-³   ³           ³           slide_53.png
-³   ³           ³           slide_54.png
-³   ³           ³           slide_55.png
-³   ³           ³           slide_56.png
-³   ³           ³           slide_57.png
-³   ³           ³           slide_58.png
-³   ³           ³           slide_59.png
-³   ³           ³           slide_6.png
-³   ³           ³           slide_60.png
-³   ³           ³           slide_61.png
-³   ³           ³           slide_62.png
-³   ³           ³           slide_63.png
-³   ³           ³           slide_64.png
-³   ³           ³           slide_65.png
-³   ³           ³           slide_66.png
-³   ³           ³           slide_67.png
-³   ³           ³           slide_68.png
-³   ³           ³           slide_69.png
-³   ³           ³           slide_7.png
-³   ³           ³           slide_70.png
-³   ³           ³           slide_71.png
-³   ³           ³           slide_72.png
-³   ³           ³           slide_73.png
-³   ³           ³           slide_74.png
-³   ³           ³           slide_75.png
-³   ³           ³           slide_76.png
-³   ³           ³           slide_77.png
-³   ³           ³           slide_78.png
-³   ³           ³           slide_79.png
-³   ³           ³           slide_8.png
-³   ³           ³           slide_80.png
-³   ³           ³           slide_81.png
-³   ³           ³           slide_82.png
-³   ³           ³           slide_83.png
-³   ³           ³           slide_84.png
-³   ³           ³           slide_85.png
-³   ³           ³           slide_86.png
-³   ³           ³           slide_87.png
-³   ³           ³           slide_88.png
-³   ³           ³           slide_89.png
-³   ³           ³           slide_9.png
-³   ³           ³           slide_90.png
-³   ³           ³           slide_91.png
-³   ³           ³           slide_92.png
-³   ³           ³           slide_93.png
-³   ³           ³           slide_94.png
-³   ³           ³           slide_95.png
-³   ³           ³           slide_96.png
-³   ³           ³           slide_97.png
-³   ³           ³           slide_98.png
-³   ³           ³           slide_99.png
-³   ³           ³           
-³   ³           ÃÄÄÄGWBmC_WS2526_V04_Start
-³   ³           ³   ³   slide_data.json
-³   ³           ³   ³   
-³   ³           ³   ÀÄÄÄimages
-³   ³           ³           slide_1.png
-³   ³           ³           slide_10.png
-³   ³           ³           slide_2.png
-³   ³           ³           slide_3.png
-³   ³           ³           slide_4.png
-³   ³           ³           slide_5.png
-³   ³           ³           slide_6.png
-³   ³           ³           slide_7.png
-³   ³           ³           slide_8.png
-³   ³           ³           slide_9.png
-³   ³           ³           
-³   ³           ÃÄÄÄGWBmC_WS2526_V05_Start
-³   ³           ³   ³   slide_data.json
-³   ³           ³   ³   
-³   ³           ³   ÀÄÄÄimages
-³   ³           ³           slide_1.png
-³   ³           ³           slide_2.png
-³   ³           ³           slide_3.png
-³   ³           ³           slide_4.png
-³   ³           ³           slide_5.png
-³   ³           ³           slide_6.png
-³   ³           ³           slide_7.png
-³   ³           ³           slide_8.png
-³   ³           ³           
-³   ³           ÃÄÄÄGWBmC_WS2526_V06_Start
-³   ³           ³   ³   slide_data.json
-³   ³           ³   ³   
-³   ³           ³   ÀÄÄÄimages
-³   ³           ³           slide_1.png
-³   ³           ³           slide_2.png
-³   ³           ³           slide_3.png
-³   ³           ³           slide_4.png
-³   ³           ³           slide_5.png
-³   ³           ³           slide_6.png
-³   ³           ³           slide_7.png
-³   ³           ³           slide_8.png
-³   ³           ³           
-³   ³           ÃÄÄÄGWBmC_WS2526_V07_Start
-³   ³           ³   ³   slide_data.json
-³   ³           ³   ³   
-³   ³           ³   ÀÄÄÄimages
-³   ³           ³           slide_1.png
-³   ³           ³           slide_2.png
-³   ³           ³           slide_3.png
-³   ³           ³           slide_4.png
-³   ³           ³           slide_5.png
-³   ³           ³           slide_6.png
-³   ³           ³           slide_7.png
-³   ³           ³           
-³   ³           ÃÄÄÄGWBmC_WS2526_V08_Start
-³   ³           ³   ³   slide_data.json
-³   ³           ³   ³   
-³   ³           ³   ÀÄÄÄimages
-³   ³           ³           slide_1.png
-³   ³           ³           slide_10.png
-³   ³           ³           slide_11.png
-³   ³           ³           slide_12.png
-³   ³           ³           slide_2.png
-³   ³           ³           slide_3.png
-³   ³           ³           slide_4.png
-³   ³           ³           slide_5.png
-³   ³           ³           slide_6.png
-³   ³           ³           slide_7.png
-³   ³           ³           slide_8.png
-³   ³           ³           slide_9.png
-³   ³           ³           
-³   ³           ÀÄÄÄGWBmC_WS2526_V09_Start
-³   ³               ³   slide_data.json
-³   ³               ³   
-³   ³               ÀÄÄÄimages
-³   ³                       slide_1.png
-³   ³                       slide_10.png
-³   ³                       slide_11.png
-³   ³                       slide_12.png
-³   ³                       slide_13.png
-³   ³                       slide_14.png
-³   ³                       slide_15.png
-³   ³                       slide_16.png
-³   ³                       slide_17.png
-³   ³                       slide_18.png
-³   ³                       slide_19.png
-³   ³                       slide_2.png
-³   ³                       slide_20.png
-³   ³                       slide_21.png
-³   ³                       slide_22.png
-³   ³                       slide_23.png
-³   ³                       slide_3.png
-³   ³                       slide_4.png
-³   ³                       slide_5.png
-³   ³                       slide_6.png
-³   ³                       slide_7.png
-³   ³                       slide_8.png
-³   ³                       slide_9.png
-³   ³                       
-³   ÃÄÄÄMWW11
-³   ³   ³   SlideJet_present_MWW11_25_ORG.py
-³   ³   ³   
-³   ³   ÀÄÄÄslides
-³   ³       ÀÄÄÄFallstudien25_FS0_ORG
-³   ³           ³   slide_data.json
-³   ³           ³   
-³   ³           ÀÄÄÄimages
-³   ³                   slide_1.png
-³   ³                   slide_10.png
-³   ³                   slide_11.png
-³   ³                   slide_12.png
-³   ³                   slide_13.png
-³   ³                   slide_14.png
-³   ³                   slide_15.png
-³   ³                   slide_16.png
-³   ³                   slide_17.png
-³   ³                   slide_18.png
-³   ³                   slide_19.png
-³   ³                   slide_2.png
-³   ³                   slide_20.png
-³   ³                   slide_21.png
-³   ³                   slide_22.png
-³   ³                   slide_23.png
-³   ³                   slide_24.png
-³   ³                   slide_25.png
-³   ³                   slide_26.png
-³   ³                   slide_27.png
-³   ³                   slide_28.png
-³   ³                   slide_29.png
-³   ³                   slide_3.png
-³   ³                   slide_30.png
-³   ³                   slide_31.png
-³   ³                   slide_32.png
-³   ³                   slide_33.png
-³   ³                   slide_34.png
-³   ³                   slide_35.png
-³   ³                   slide_36.png
-³   ³                   slide_37.png
-³   ³                   slide_38.png
-³   ³                   slide_39.png
-³   ³                   slide_4.png
-³   ³                   slide_40.png
-³   ³                   slide_41.png
-³   ³                   slide_42.png
-³   ³                   slide_43.png
-³   ³                   slide_44.png
-³   ³                   slide_45.png
-³   ³                   slide_46.png
-³   ³                   slide_47.png
-³   ³                   slide_48.png
-³   ³                   slide_49.png
-³   ³                   slide_5.png
-³   ³                   slide_50.png
-³   ³                   slide_51.png
-³   ³                   slide_6.png
-³   ³                   slide_7.png
-³   ³                   slide_8.png
-³   ³                   slide_9.png
-³   ³                   
-³   ÃÄÄÄSYMPLE25
-³   ³   ³   SYMPLE25.py
-³   ³   ³   
-³   ³   ÃÄÄÄassets
-³   ³   ³   ÀÄÄÄimages
-³   ³   ³       ³   1200px-Erasmus+_Logo.svg.png
-³   ³   ³       ³   blank_profile.png
-³   ³   ³       ³   iNUX_wLogo.png
-³   ³   ³       ³   Symple_logo.png
-³   ³   ³       ³   thomasreimann.png
-³   ³   ³       ³   wellcapturediagram-sm42.png
-³   ³   ³       ³   
-³   ³   ³       ÀÄÄÄGWF
-³   ³   ³               GWF_001.jpg
-³   ³   ³               GWF_002.jpg
-³   ³   ³               GWF_003.jpg
-³   ³   ³               GWF_004.jpg
-³   ³   ³               GWF_005.jpg
-³   ³   ³               GWF_006.jpg
-³   ³   ³               GWF_007.jpg
-³   ³   ³               GWF_008.jpg
-³   ³   ³               
-³   ³   ÃÄÄÄDATA
-³   ³   ³       confined_pumping.csv
-³   ³   ³       Confined_pumping.gpt
-³   ³   ³       
-³   ³   ÃÄÄÄpages
-³   ³   ³   ÃÄÄÄ00_OM
-³   ³   ³   ³       1D_GWF_Unconfined Recharge.py
-³   ³   ³   ³       M0_presentation.py
-³   ³   ³   ³       Motivation_Hydrogeology.py
-³   ³   ³   ³       WellCapture.py
-³   ³   ³   ³       
-³   ³   ³   ÃÄÄÄCalibration
-³   ³   ³   ³       GWF_1D_unconf_analytic_calib.py
-³   ³   ³   ³       GWF_1D_unconf_analytic_noflow_calib.py
-³   ³   ³   ³       
-³   ³   ³   ÃÄÄÄM1A
-³   ³   ³   ³       Flow2Well_transient_unconfined_confined_basics.py
-³   ³   ³   ³       GWF_1D_unconf_analytic_noflow_calib_basics.py
-³   ³   ³   ³       Heat_transport_flow_1D_basics.py
-³   ³   ³   ³       M1A_1_presentation.py
-³   ³   ³   ³       Radioactive_Decay_basics.py
-³   ³   ³   ³       Transport_1D_AD_basics.py
-³   ³   ³   ³       
-³   ³   ³   ÃÄÄÄM1B
-³   ³   ³   ³       Theis_pumping_Tutorial.py
-³   ³   ³   ³       
-³   ³   ³   ÃÄÄÄM1C
-³   ³   ³   ³       GWF_1D_conf_FD.py
-³   ³   ³   ³       M1C_3_presentation.py
-³   ³   ³   ³       Tutorial_2D_Synth.py
-³   ³   ³   ³       
-³   ³   ³   ÃÄÄÄM1D
-³   ³   ³   ³       M1D_1_presentation.py
-³   ³   ³   ³       
-³   ³   ³   ÀÄÄÄORG
-³   ³   ³           About.py
-³   ³   ³           About_SYMPLE.py
-³   ³   ³           SYMPLE25APP.py
-³   ³   ³           
-³   ³   ÃÄÄÄpresentations
-³   ³   ³   ³   SlideJet_present_M0.py
-³   ³   ³   ³   SlideJet_present_M1A_1.py
-³   ³   ³   ³   SlideJet_present_M1A_2.py
-³   ³   ³   ³   SlideJet_present_M1A_3.py
-³   ³   ³   ³   SlideJet_present_M1D_1.py
-³   ³   ³   ³   SYMPLE25_M0_INTRO_slidejet_config.yaml
-³   ³   ³   ³   SYMPLE25_M1A_1_slidejet_config.yaml
-³   ³   ³   ³   SYMPLE25_M1A_2_slidejet_config.yaml
-³   ³   ³   ³   SYMPLE25_M1A_3_slidejet_config.yaml
-³   ³   ³   ³   SYMPLE25_M1D_TransportModeling_1_slidejet_config.yaml
-³   ³   ³   ³   
-³   ³   ³   ÃÄÄÄ90_Streamlit_apps
-³   ³   ³   ³   ÀÄÄÄSYMPLE25
-³   ³   ³   ³       ÀÄÄÄpresentations
-³   ³   ³   ³           ÀÄÄÄslides
-³   ³   ³   ³               ÃÄÄÄSYMPLE25_ M1D_TransportModeling_1
-³   ³   ³   ³               ³   ³   slide_data.json
-³   ³   ³   ³               ³   ³   
-³   ³   ³   ³               ³   ÀÄÄÄimages
-³   ³   ³   ³               ÀÄÄÄSYMPLE25_M1D_TransportModeling_1
-³   ³   ³   ³                   ³   slide_data.json
-³   ³   ³   ³                   ³   
-³   ³   ³   ³                   ÀÄÄÄimages
-³   ³   ³   ³                           slide_1.png
-³   ³   ³   ³                           slide_10.png
-³   ³   ³   ³                           slide_11.png
-³   ³   ³   ³                           slide_12.png
-³   ³   ³   ³                           slide_13.png
-³   ³   ³   ³                           slide_14.png
-³   ³   ³   ³                           slide_15.png
-³   ³   ³   ³                           slide_16.png
-³   ³   ³   ³                           slide_17.png
-³   ³   ³   ³                           slide_18.png
-³   ³   ³   ³                           slide_19.png
-³   ³   ³   ³                           slide_2.png
-³   ³   ³   ³                           slide_20.png
-³   ³   ³   ³                           slide_21.png
-³   ³   ³   ³                           slide_22.png
-³   ³   ³   ³                           slide_23.png
-³   ³   ³   ³                           slide_24.png
-³   ³   ³   ³                           slide_25.png
-³   ³   ³   ³                           slide_26.png
-³   ³   ³   ³                           slide_27.png
-³   ³   ³   ³                           slide_28.png
-³   ³   ³   ³                           slide_29.png
-³   ³   ³   ³                           slide_3.png
-³   ³   ³   ³                           slide_30.png
-³   ³   ³   ³                           slide_31.png
-³   ³   ³   ³                           slide_32.png
-³   ³   ³   ³                           slide_33.png
-³   ³   ³   ³                           slide_34.png
-³   ³   ³   ³                           slide_35.png
-³   ³   ³   ³                           slide_36.png
-³   ³   ³   ³                           slide_37.png
-³   ³   ³   ³                           slide_38.png
-³   ³   ³   ³                           slide_39.png
-³   ³   ³   ³                           slide_4.png
-³   ³   ³   ³                           slide_40.png
-³   ³   ³   ³                           slide_41.png
-³   ³   ³   ³                           slide_42.png
-³   ³   ³   ³                           slide_43.png
-³   ³   ³   ³                           slide_44.png
-³   ³   ³   ³                           slide_45.png
-³   ³   ³   ³                           slide_46.png
-³   ³   ³   ³                           slide_47.png
-³   ³   ³   ³                           slide_48.png
-³   ³   ³   ³                           slide_49.png
-³   ³   ³   ³                           slide_5.png
-³   ³   ³   ³                           slide_50.png
-³   ³   ³   ³                           slide_51.png
-³   ³   ³   ³                           slide_52.png
-³   ³   ³   ³                           slide_53.png
-³   ³   ³   ³                           slide_54.png
-³   ³   ³   ³                           slide_55.png
-³   ³   ³   ³                           slide_56.png
-³   ³   ³   ³                           slide_57.png
-³   ³   ³   ³                           slide_58.png
-³   ³   ³   ³                           slide_59.png
-³   ³   ³   ³                           slide_6.png
-³   ³   ³   ³                           slide_60.png
-³   ³   ³   ³                           slide_61.png
-³   ³   ³   ³                           slide_62.png
-³   ³   ³   ³                           slide_63.png
-³   ³   ³   ³                           slide_64.png
-³   ³   ³   ³                           slide_65.png
-³   ³   ³   ³                           slide_66.png
-³   ³   ³   ³                           slide_67.png
-³   ³   ³   ³                           slide_68.png
-³   ³   ³   ³                           slide_69.png
-³   ³   ³   ³                           slide_7.png
-³   ³   ³   ³                           slide_70.png
-³   ³   ³   ³                           slide_71.png
-³   ³   ³   ³                           slide_72.png
-³   ³   ³   ³                           slide_73.png
-³   ³   ³   ³                           slide_74.png
-³   ³   ³   ³                           slide_75.png
-³   ³   ³   ³                           slide_76.png
-³   ³   ³   ³                           slide_77.png
-³   ³   ³   ³                           slide_78.png
-³   ³   ³   ³                           slide_79.png
-³   ³   ³   ³                           slide_8.png
-³   ³   ³   ³                           slide_80.png
-³   ³   ³   ³                           slide_81.png
-³   ³   ³   ³                           slide_82.png
-³   ³   ³   ³                           slide_83.png
-³   ³   ³   ³                           slide_84.png
-³   ³   ³   ³                           slide_85.png
-³   ³   ³   ³                           slide_86.png
-³   ³   ³   ³                           slide_87.png
-³   ³   ³   ³                           slide_88.png
-³   ³   ³   ³                           slide_89.png
-³   ³   ³   ³                           slide_9.png
-³   ³   ³   ³                           slide_90.png
-³   ³   ³   ³                           slide_91.png
-³   ³   ³   ³                           slide_92.png
-³   ³   ³   ³                           slide_93.png
-³   ³   ³   ³                           slide_94.png
-³   ³   ³   ³                           slide_95.png
-³   ³   ³   ³                           slide_96.png
-³   ³   ³   ³                           
-³   ³   ³   ÀÄÄÄslides
-³   ³   ³       ÃÄÄÄSYMPLE25_M0_INTRO
-³   ³   ³       ³   ³   slide_data.json
-³   ³   ³       ³   ³   
-³   ³   ³       ³   ÀÄÄÄimages
-³   ³   ³       ³           slide_1.png
-³   ³   ³       ³           slide_10.png
-³   ³   ³       ³           slide_11.png
-³   ³   ³       ³           slide_12.png
-³   ³   ³       ³           slide_13.png
-³   ³   ³       ³           slide_14.png
-³   ³   ³       ³           slide_15.png
-³   ³   ³       ³           slide_16.png
-³   ³   ³       ³           slide_17.png
-³   ³   ³       ³           slide_18.png
-³   ³   ³       ³           slide_19.png
-³   ³   ³       ³           slide_2.png
-³   ³   ³       ³           slide_20.png
-³   ³   ³       ³           slide_21.png
-³   ³   ³       ³           slide_22.png
-³   ³   ³       ³           slide_23.png
-³   ³   ³       ³           slide_24.png
-³   ³   ³       ³           slide_25.png
-³   ³   ³       ³           slide_26.png
-³   ³   ³       ³           slide_27.png
-³   ³   ³       ³           slide_28.png
-³   ³   ³       ³           slide_29.png
-³   ³   ³       ³           slide_3.png
-³   ³   ³       ³           slide_30.png
-³   ³   ³       ³           slide_31.png
-³   ³   ³       ³           slide_32.png
-³   ³   ³       ³           slide_33.png
-³   ³   ³       ³           slide_34.png
-³   ³   ³       ³           slide_35.png
-³   ³   ³       ³           slide_36.png
-³   ³   ³       ³           slide_37.png
-³   ³   ³       ³           slide_38.png
-³   ³   ³       ³           slide_39.png
-³   ³   ³       ³           slide_4.png
-³   ³   ³       ³           slide_40.png
-³   ³   ³       ³           slide_41.png
-³   ³   ³       ³           slide_42.png
-³   ³   ³       ³           slide_43.png
-³   ³   ³       ³           slide_44.png
-³   ³   ³       ³           slide_45.png
-³   ³   ³       ³           slide_46.png
-³   ³   ³       ³           slide_47.png
-³   ³   ³       ³           slide_48.png
-³   ³   ³       ³           slide_49.png
-³   ³   ³       ³           slide_5.png
-³   ³   ³       ³           slide_50.png
-³   ³   ³       ³           slide_51.png
-³   ³   ³       ³           slide_52.png
-³   ³   ³       ³           slide_53.png
-³   ³   ³       ³           slide_54.png
-³   ³   ³       ³           slide_55.png
-³   ³   ³       ³           slide_56.png
-³   ³   ³       ³           slide_57.png
-³   ³   ³       ³           slide_6.png
-³   ³   ³       ³           slide_7.png
-³   ³   ³       ³           slide_8.png
-³   ³   ³       ³           slide_9.png
-³   ³   ³       ³           
-³   ³   ³       ÃÄÄÄSYMPLE25_M1A_1
-³   ³   ³       ³   ³   slide_data.json
-³   ³   ³       ³   ³   
-³   ³   ³       ³   ÀÄÄÄimages
-³   ³   ³       ³           slide_1.png
-³   ³   ³       ³           slide_10.png
-³   ³   ³       ³           slide_11.png
-³   ³   ³       ³           slide_12.png
-³   ³   ³       ³           slide_13.png
-³   ³   ³       ³           slide_14.png
-³   ³   ³       ³           slide_15.png
-³   ³   ³       ³           slide_16.png
-³   ³   ³       ³           slide_17.png
-³   ³   ³       ³           slide_18.png
-³   ³   ³       ³           slide_19.png
-³   ³   ³       ³           slide_2.png
-³   ³   ³       ³           slide_20.png
-³   ³   ³       ³           slide_21.png
-³   ³   ³       ³           slide_22.png
-³   ³   ³       ³           slide_23.png
-³   ³   ³       ³           slide_24.png
-³   ³   ³       ³           slide_25.png
-³   ³   ³       ³           slide_26.png
-³   ³   ³       ³           slide_27.png
-³   ³   ³       ³           slide_28.png
-³   ³   ³       ³           slide_29.png
-³   ³   ³       ³           slide_3.png
-³   ³   ³       ³           slide_30.png
-³   ³   ³       ³           slide_31.png
-³   ³   ³       ³           slide_32.png
-³   ³   ³       ³           slide_33.png
-³   ³   ³       ³           slide_34.png
-³   ³   ³       ³           slide_35.png
-³   ³   ³       ³           slide_36.png
-³   ³   ³       ³           slide_37.png
-³   ³   ³       ³           slide_38.png
-³   ³   ³       ³           slide_39.png
-³   ³   ³       ³           slide_4.png
-³   ³   ³       ³           slide_40.png
-³   ³   ³       ³           slide_41.png
-³   ³   ³       ³           slide_42.png
-³   ³   ³       ³           slide_43.png
-³   ³   ³       ³           slide_44.png
-³   ³   ³       ³           slide_45.png
-³   ³   ³       ³           slide_46.png
-³   ³   ³       ³           slide_47.png
-³   ³   ³       ³           slide_48.png
-³   ³   ³       ³           slide_49.png
-³   ³   ³       ³           slide_5.png
-³   ³   ³       ³           slide_50.png
-³   ³   ³       ³           slide_51.png
-³   ³   ³       ³           slide_52.png
-³   ³   ³       ³           slide_53.png
-³   ³   ³       ³           slide_54.png
-³   ³   ³       ³           slide_55.png
-³   ³   ³       ³           slide_56.png
-³   ³   ³       ³           slide_57.png
-³   ³   ³       ³           slide_58.png
-³   ³   ³       ³           slide_59.png
-³   ³   ³       ³           slide_6.png
-³   ³   ³       ³           slide_60.png
-³   ³   ³       ³           slide_61.png
-³   ³   ³       ³           slide_62.png
-³   ³   ³       ³           slide_63.png
-³   ³   ³       ³           slide_64.png
-³   ³   ³       ³           slide_65.png
-³   ³   ³       ³           slide_66.png
-³   ³   ³       ³           slide_67.png
-³   ³   ³       ³           slide_68.png
-³   ³   ³       ³           slide_69.png
-³   ³   ³       ³           slide_7.png
-³   ³   ³       ³           slide_70.png
-³   ³   ³       ³           slide_71.png
-³   ³   ³       ³           slide_72.png
-³   ³   ³       ³           slide_73.png
-³   ³   ³       ³           slide_74.png
-³   ³   ³       ³           slide_75.png
-³   ³   ³       ³           slide_76.png
-³   ³   ³       ³           slide_77.png
-³   ³   ³       ³           slide_78.png
-³   ³   ³       ³           slide_79.png
-³   ³   ³       ³           slide_8.png
-³   ³   ³       ³           slide_80.png
-³   ³   ³       ³           slide_81.png
-³   ³   ³       ³           slide_82.png
-³   ³   ³       ³           slide_83.png
-³   ³   ³       ³           slide_84.png
-³   ³   ³       ³           slide_85.png
-³   ³   ³       ³           slide_86.png
-³   ³   ³       ³           slide_87.png
-³   ³   ³       ³           slide_88.png
-³   ³   ³       ³           slide_89.png
-³   ³   ³       ³           slide_9.png
-³   ³   ³       ³           slide_90.png
-³   ³   ³       ³           slide_91.png
-³   ³   ³       ³           slide_92.png
-³   ³   ³       ³           slide_93.png
-³   ³   ³       ³           slide_94.png
-³   ³   ³       ³           slide_95.png
-³   ³   ³       ³           
-³   ³   ³       ÃÄÄÄSYMPLE25_M1A_2
-³   ³   ³       ³   ³   slide_data.json
-³   ³   ³       ³   ³   
-³   ³   ³       ³   ÀÄÄÄimages
-³   ³   ³       ³           slide_1.png
-³   ³   ³       ³           slide_10.png
-³   ³   ³       ³           slide_100.png
-³   ³   ³       ³           slide_101.png
-³   ³   ³       ³           slide_102.png
-³   ³   ³       ³           slide_103.png
-³   ³   ³       ³           slide_104.png
-³   ³   ³       ³           slide_105.png
-³   ³   ³       ³           slide_106.png
-³   ³   ³       ³           slide_107.png
-³   ³   ³       ³           slide_108.png
-³   ³   ³       ³           slide_109.png
-³   ³   ³       ³           slide_11.png
-³   ³   ³       ³           slide_110.png
-³   ³   ³       ³           slide_111.png
-³   ³   ³       ³           slide_112.png
-³   ³   ³       ³           slide_113.png
-³   ³   ³       ³           slide_114.png
-³   ³   ³       ³           slide_115.png
-³   ³   ³       ³           slide_116.png
-³   ³   ³       ³           slide_117.png
-³   ³   ³       ³           slide_118.png
-³   ³   ³       ³           slide_119.png
-³   ³   ³       ³           slide_12.png
-³   ³   ³       ³           slide_120.png
-³   ³   ³       ³           slide_121.png
-³   ³   ³       ³           slide_122.png
-³   ³   ³       ³           slide_123.png
-³   ³   ³       ³           slide_124.png
-³   ³   ³       ³           slide_125.png
-³   ³   ³       ³           slide_126.png
-³   ³   ³       ³           slide_127.png
-³   ³   ³       ³           slide_128.png
-³   ³   ³       ³           slide_13.png
-³   ³   ³       ³           slide_14.png
-³   ³   ³       ³           slide_15.png
-³   ³   ³       ³           slide_16.png
-³   ³   ³       ³           slide_17.png
-³   ³   ³       ³           slide_18.png
-³   ³   ³       ³           slide_19.png
-³   ³   ³       ³           slide_2.png
-³   ³   ³       ³           slide_20.png
-³   ³   ³       ³           slide_21.png
-³   ³   ³       ³           slide_22.png
-³   ³   ³       ³           slide_23.png
-³   ³   ³       ³           slide_24.png
-³   ³   ³       ³           slide_25.png
-³   ³   ³       ³           slide_26.png
-³   ³   ³       ³           slide_27.png
-³   ³   ³       ³           slide_28.png
-³   ³   ³       ³           slide_29.png
-³   ³   ³       ³           slide_3.png
-³   ³   ³       ³           slide_30.png
-³   ³   ³       ³           slide_31.png
-³   ³   ³       ³           slide_32.png
-³   ³   ³       ³           slide_33.png
-³   ³   ³       ³           slide_34.png
-³   ³   ³       ³           slide_35.png
-³   ³   ³       ³           slide_36.png
-³   ³   ³       ³           slide_37.png
-³   ³   ³       ³           slide_38.png
-³   ³   ³       ³           slide_39.png
-³   ³   ³       ³           slide_4.png
-³   ³   ³       ³           slide_40.png
-³   ³   ³       ³           slide_41.png
-³   ³   ³       ³           slide_42.png
-³   ³   ³       ³           slide_43.png
-³   ³   ³       ³           slide_44.png
-³   ³   ³       ³           slide_45.png
-³   ³   ³       ³           slide_46.png
-³   ³   ³       ³           slide_47.png
-³   ³   ³       ³           slide_48.png
-³   ³   ³       ³           slide_49.png
-³   ³   ³       ³           slide_5.png
-³   ³   ³       ³           slide_50.png
-³   ³   ³       ³           slide_51.png
-³   ³   ³       ³           slide_52.png
-³   ³   ³       ³           slide_53.png
-³   ³   ³       ³           slide_54.png
-³   ³   ³       ³           slide_55.png
-³   ³   ³       ³           slide_56.png
-³   ³   ³       ³           slide_57.png
-³   ³   ³       ³           slide_58.png
-³   ³   ³       ³           slide_59.png
-³   ³   ³       ³           slide_6.png
-³   ³   ³       ³           slide_60.png
-³   ³   ³       ³           slide_61.png
-³   ³   ³       ³           slide_62.png
-³   ³   ³       ³           slide_63.png
-³   ³   ³       ³           slide_64.png
-³   ³   ³       ³           slide_65.png
-³   ³   ³       ³           slide_66.png
-³   ³   ³       ³           slide_67.png
-³   ³   ³       ³           slide_68.png
-³   ³   ³       ³           slide_69.png
-³   ³   ³       ³           slide_7.png
-³   ³   ³       ³           slide_70.png
-³   ³   ³       ³           slide_71.png
-³   ³   ³       ³           slide_72.png
-³   ³   ³       ³           slide_73.png
-³   ³   ³       ³           slide_74.png
-³   ³   ³       ³           slide_75.png
-³   ³   ³       ³           slide_76.png
-³   ³   ³       ³           slide_77.png
-³   ³   ³       ³           slide_78.png
-³   ³   ³       ³           slide_79.png
-³   ³   ³       ³           slide_8.png
-³   ³   ³       ³           slide_80.png
-³   ³   ³       ³           slide_81.png
-³   ³   ³       ³           slide_82.png
-³   ³   ³       ³           slide_83.png
-³   ³   ³       ³           slide_84.png
-³   ³   ³       ³           slide_85.png
-³   ³   ³       ³           slide_86.png
-³   ³   ³       ³           slide_87.png
-³   ³   ³       ³           slide_88.png
-³   ³   ³       ³           slide_89.png
-³   ³   ³       ³           slide_9.png
-³   ³   ³       ³           slide_90.png
-³   ³   ³       ³           slide_91.png
-³   ³   ³       ³           slide_92.png
-³   ³   ³       ³           slide_93.png
-³   ³   ³       ³           slide_94.png
-³   ³   ³       ³           slide_95.png
-³   ³   ³       ³           slide_96.png
-³   ³   ³       ³           slide_97.png
-³   ³   ³       ³           slide_98.png
-³   ³   ³       ³           slide_99.png
-³   ³   ³       ³           
-³   ³   ³       ÃÄÄÄSYMPLE25_M1A_3
-³   ³   ³       ³   ³   slide_data.json
-³   ³   ³       ³   ³   
-³   ³   ³       ³   ÀÄÄÄimages
-³   ³   ³       ³           slide_1.png
-³   ³   ³       ³           slide_10.png
-³   ³   ³       ³           slide_100.png
-³   ³   ³       ³           slide_101.png
-³   ³   ³       ³           slide_102.png
-³   ³   ³       ³           slide_103.png
-³   ³   ³       ³           slide_104.png
-³   ³   ³       ³           slide_105.png
-³   ³   ³       ³           slide_106.png
-³   ³   ³       ³           slide_107.png
-³   ³   ³       ³           slide_108.png
-³   ³   ³       ³           slide_109.png
-³   ³   ³       ³           slide_11.png
-³   ³   ³       ³           slide_110.png
-³   ³   ³       ³           slide_111.png
-³   ³   ³       ³           slide_112.png
-³   ³   ³       ³           slide_113.png
-³   ³   ³       ³           slide_114.png
-³   ³   ³       ³           slide_115.png
-³   ³   ³       ³           slide_116.png
-³   ³   ³       ³           slide_117.png
-³   ³   ³       ³           slide_118.png
-³   ³   ³       ³           slide_119.png
-³   ³   ³       ³           slide_12.png
-³   ³   ³       ³           slide_120.png
-³   ³   ³       ³           slide_121.png
-³   ³   ³       ³           slide_122.png
-³   ³   ³       ³           slide_123.png
-³   ³   ³       ³           slide_124.png
-³   ³   ³       ³           slide_125.png
-³   ³   ³       ³           slide_126.png
-³   ³   ³       ³           slide_127.png
-³   ³   ³       ³           slide_128.png
-³   ³   ³       ³           slide_129.png
-³   ³   ³       ³           slide_13.png
-³   ³   ³       ³           slide_130.png
-³   ³   ³       ³           slide_131.png
-³   ³   ³       ³           slide_132.png
-³   ³   ³       ³           slide_14.png
-³   ³   ³       ³           slide_15.png
-³   ³   ³       ³           slide_16.png
-³   ³   ³       ³           slide_17.png
-³   ³   ³       ³           slide_18.png
-³   ³   ³       ³           slide_19.png
-³   ³   ³       ³           slide_2.png
-³   ³   ³       ³           slide_20.png
-³   ³   ³       ³           slide_21.png
-³   ³   ³       ³           slide_22.png
-³   ³   ³       ³           slide_23.png
-³   ³   ³       ³           slide_24.png
-³   ³   ³       ³           slide_25.png
-³   ³   ³       ³           slide_26.png
-³   ³   ³       ³           slide_27.png
-³   ³   ³       ³           slide_28.png
-³   ³   ³       ³           slide_29.png
-³   ³   ³       ³           slide_3.png
-³   ³   ³       ³           slide_30.png
-³   ³   ³       ³           slide_31.png
-³   ³   ³       ³           slide_32.png
-³   ³   ³       ³           slide_33.png
-³   ³   ³       ³           slide_34.png
-³   ³   ³       ³           slide_35.png
-³   ³   ³       ³           slide_36.png
-³   ³   ³       ³           slide_37.png
-³   ³   ³       ³           slide_38.png
-³   ³   ³       ³           slide_39.png
-³   ³   ³       ³           slide_4.png
-³   ³   ³       ³           slide_40.png
-³   ³   ³       ³           slide_41.png
-³   ³   ³       ³           slide_42.png
-³   ³   ³       ³           slide_43.png
-³   ³   ³       ³           slide_44.png
-³   ³   ³       ³           slide_45.png
-³   ³   ³       ³           slide_46.png
-³   ³   ³       ³           slide_47.png
-³   ³   ³       ³           slide_48.png
-³   ³   ³       ³           slide_49.png
-³   ³   ³       ³           slide_5.png
-³   ³   ³       ³           slide_50.png
-³   ³   ³       ³           slide_51.png
-³   ³   ³       ³           slide_52.png
-³   ³   ³       ³           slide_53.png
-³   ³   ³       ³           slide_54.png
-³   ³   ³       ³           slide_55.png
-³   ³   ³       ³           slide_56.png
-³   ³   ³       ³           slide_57.png
-³   ³   ³       ³           slide_58.png
-³   ³   ³       ³           slide_59.png
-³   ³   ³       ³           slide_6.png
-³   ³   ³       ³           slide_60.png
-³   ³   ³       ³           slide_61.png
-³   ³   ³       ³           slide_62.png
-³   ³   ³       ³           slide_63.png
-³   ³   ³       ³           slide_64.png
-³   ³   ³       ³           slide_65.png
-³   ³   ³       ³           slide_66.png
-³   ³   ³       ³           slide_67.png
-³   ³   ³       ³           slide_68.png
-³   ³   ³       ³           slide_69.png
-³   ³   ³       ³           slide_7.png
-³   ³   ³       ³           slide_70.png
-³   ³   ³       ³           slide_71.png
-³   ³   ³       ³           slide_72.png
-³   ³   ³       ³           slide_73.png
-³   ³   ³       ³           slide_74.png
-³   ³   ³       ³           slide_75.png
-³   ³   ³       ³           slide_76.png
-³   ³   ³       ³           slide_77.png
-³   ³   ³       ³           slide_78.png
-³   ³   ³       ³           slide_79.png
-³   ³   ³       ³           slide_8.png
-³   ³   ³       ³           slide_80.png
-³   ³   ³       ³           slide_81.png
-³   ³   ³       ³           slide_82.png
-³   ³   ³       ³           slide_83.png
-³   ³   ³       ³           slide_84.png
-³   ³   ³       ³           slide_85.png
-³   ³   ³       ³           slide_86.png
-³   ³   ³       ³           slide_87.png
-³   ³   ³       ³           slide_88.png
-³   ³   ³       ³           slide_89.png
-³   ³   ³       ³           slide_9.png
-³   ³   ³       ³           slide_90.png
-³   ³   ³       ³           slide_91.png
-³   ³   ³       ³           slide_92.png
-³   ³   ³       ³           slide_93.png
-³   ³   ³       ³           slide_94.png
-³   ³   ³       ³           slide_95.png
-³   ³   ³       ³           slide_96.png
-³   ³   ³       ³           slide_97.png
-³   ³   ³       ³           slide_98.png
-³   ³   ³       ³           slide_99.png
-³   ³   ³       ³           
-³   ³   ³       ÀÄÄÄSYMPLE25_M1D_TransportModeling_1
-³   ³   ³           ³   slide_data.json
-³   ³   ³           ³   
-³   ³   ³           ÀÄÄÄimages
-³   ³   ³                   slide_1.png
-³   ³   ³                   slide_10.png
-³   ³   ³                   slide_11.png
-³   ³   ³                   slide_12.png
-³   ³   ³                   slide_13.png
-³   ³   ³                   slide_14.png
-³   ³   ³                   slide_15.png
-³   ³   ³                   slide_16.png
-³   ³   ³                   slide_17.png
-³   ³   ³                   slide_18.png
-³   ³   ³                   slide_19.png
-³   ³   ³                   slide_2.png
-³   ³   ³                   slide_20.png
-³   ³   ³                   slide_21.png
-³   ³   ³                   slide_22.png
-³   ³   ³                   slide_23.png
-³   ³   ³                   slide_24.png
-³   ³   ³                   slide_25.png
-³   ³   ³                   slide_26.png
-³   ³   ³                   slide_27.png
-³   ³   ³                   slide_28.png
-³   ³   ³                   slide_29.png
-³   ³   ³                   slide_3.png
-³   ³   ³                   slide_30.png
-³   ³   ³                   slide_31.png
-³   ³   ³                   slide_32.png
-³   ³   ³                   slide_33.png
-³   ³   ³                   slide_34.png
-³   ³   ³                   slide_35.png
-³   ³   ³                   slide_36.png
-³   ³   ³                   slide_37.png
-³   ³   ³                   slide_38.png
-³   ³   ³                   slide_39.png
-³   ³   ³                   slide_4.png
-³   ³   ³                   slide_40.png
-³   ³   ³                   slide_41.png
-³   ³   ³                   slide_42.png
-³   ³   ³                   slide_43.png
-³   ³   ³                   slide_44.png
-³   ³   ³                   slide_45.png
-³   ³   ³                   slide_46.png
-³   ³   ³                   slide_47.png
-³   ³   ³                   slide_48.png
-³   ³   ³                   slide_49.png
-³   ³   ³                   slide_5.png
-³   ³   ³                   slide_50.png
-³   ³   ³                   slide_51.png
-³   ³   ³                   slide_52.png
-³   ³   ³                   slide_53.png
-³   ³   ³                   slide_54.png
-³   ³   ³                   slide_55.png
-³   ³   ³                   slide_56.png
-³   ³   ³                   slide_57.png
-³   ³   ³                   slide_58.png
-³   ³   ³                   slide_59.png
-³   ³   ³                   slide_6.png
-³   ³   ³                   slide_60.png
-³   ³   ³                   slide_61.png
-³   ³   ³                   slide_62.png
-³   ³   ³                   slide_63.png
-³   ³   ³                   slide_64.png
-³   ³   ³                   slide_65.png
-³   ³   ³                   slide_66.png
-³   ³   ³                   slide_67.png
-³   ³   ³                   slide_68.png
-³   ³   ³                   slide_69.png
-³   ³   ³                   slide_7.png
-³   ³   ³                   slide_70.png
-³   ³   ³                   slide_71.png
-³   ³   ³                   slide_72.png
-³   ³   ³                   slide_73.png
-³   ³   ³                   slide_74.png
-³   ³   ³                   slide_75.png
-³   ³   ³                   slide_76.png
-³   ³   ³                   slide_77.png
-³   ³   ³                   slide_78.png
-³   ³   ³                   slide_79.png
-³   ³   ³                   slide_8.png
-³   ³   ³                   slide_80.png
-³   ³   ³                   slide_81.png
-³   ³   ³                   slide_82.png
-³   ³   ³                   slide_83.png
-³   ³   ³                   slide_84.png
-³   ³   ³                   slide_85.png
-³   ³   ³                   slide_86.png
-³   ³   ³                   slide_87.png
-³   ³   ³                   slide_88.png
-³   ³   ³                   slide_89.png
-³   ³   ³                   slide_9.png
-³   ³   ³                   slide_90.png
-³   ³   ³                   slide_91.png
-³   ³   ³                   slide_92.png
-³   ³   ³                   slide_93.png
-³   ³   ³                   slide_94.png
-³   ³   ³                   slide_95.png
-³   ³   ³                   slide_96.png
-³   ³   ³                   
-³   ³   ÀÄÄÄSLIDES
-³   ³       ÃÄÄÄSYMPLE25_M0_INTRO
-³   ³       ³   ³   slide_data.json
-³   ³       ³   ³   
-³   ³       ³   ÀÄÄÄimages
-³   ³       ³           slide_1.png
-³   ³       ³           slide_10.png
-³   ³       ³           slide_11.png
-³   ³       ³           slide_12.png
-³   ³       ³           slide_13.png
-³   ³       ³           slide_14.png
-³   ³       ³           slide_15.png
-³   ³       ³           slide_16.png
-³   ³       ³           slide_17.png
-³   ³       ³           slide_18.png
-³   ³       ³           slide_19.png
-³   ³       ³           slide_2.png
-³   ³       ³           slide_20.png
-³   ³       ³           slide_21.png
-³   ³       ³           slide_22.png
-³   ³       ³           slide_23.png
-³   ³       ³           slide_24.png
-³   ³       ³           slide_25.png
-³   ³       ³           slide_26.png
-³   ³       ³           slide_27.png
-³   ³       ³           slide_28.png
-³   ³       ³           slide_29.png
-³   ³       ³           slide_3.png
-³   ³       ³           slide_30.png
-³   ³       ³           slide_31.png
-³   ³       ³           slide_32.png
-³   ³       ³           slide_33.png
-³   ³       ³           slide_34.png
-³   ³       ³           slide_35.png
-³   ³       ³           slide_36.png
-³   ³       ³           slide_37.png
-³   ³       ³           slide_38.png
-³   ³       ³           slide_39.png
-³   ³       ³           slide_4.png
-³   ³       ³           slide_40.png
-³   ³       ³           slide_41.png
-³   ³       ³           slide_42.png
-³   ³       ³           slide_43.png
-³   ³       ³           slide_44.png
-³   ³       ³           slide_45.png
-³   ³       ³           slide_46.png
-³   ³       ³           slide_47.png
-³   ³       ³           slide_48.png
-³   ³       ³           slide_49.png
-³   ³       ³           slide_5.png
-³   ³       ³           slide_50.png
-³   ³       ³           slide_51.png
-³   ³       ³           slide_52.png
-³   ³       ³           slide_53.png
-³   ³       ³           slide_54.png
-³   ³       ³           slide_55.png
-³   ³       ³           slide_56.png
-³   ³       ³           slide_57.png
-³   ³       ³           slide_6.png
-³   ³       ³           slide_7.png
-³   ³       ³           slide_8.png
-³   ³       ³           slide_9.png
-³   ³       ³           
-³   ³       ÃÄÄÄSYMPLE25_M1A_1
-³   ³       ³   ³   slide_data.json
-³   ³       ³   ³   
-³   ³       ³   ÀÄÄÄimages
-³   ³       ³           slide_1.png
-³   ³       ³           slide_10.png
-³   ³       ³           slide_11.png
-³   ³       ³           slide_12.png
-³   ³       ³           slide_13.png
-³   ³       ³           slide_14.png
-³   ³       ³           slide_15.png
-³   ³       ³           slide_16.png
-³   ³       ³           slide_17.png
-³   ³       ³           slide_18.png
-³   ³       ³           slide_19.png
-³   ³       ³           slide_2.png
-³   ³       ³           slide_20.png
-³   ³       ³           slide_21.png
-³   ³       ³           slide_22.png
-³   ³       ³           slide_23.png
-³   ³       ³           slide_24.png
-³   ³       ³           slide_25.png
-³   ³       ³           slide_26.png
-³   ³       ³           slide_27.png
-³   ³       ³           slide_28.png
-³   ³       ³           slide_29.png
-³   ³       ³           slide_3.png
-³   ³       ³           slide_30.png
-³   ³       ³           slide_31.png
-³   ³       ³           slide_32.png
-³   ³       ³           slide_33.png
-³   ³       ³           slide_34.png
-³   ³       ³           slide_35.png
-³   ³       ³           slide_36.png
-³   ³       ³           slide_37.png
-³   ³       ³           slide_38.png
-³   ³       ³           slide_39.png
-³   ³       ³           slide_4.png
-³   ³       ³           slide_40.png
-³   ³       ³           slide_41.png
-³   ³       ³           slide_42.png
-³   ³       ³           slide_43.png
-³   ³       ³           slide_44.png
-³   ³       ³           slide_45.png
-³   ³       ³           slide_46.png
-³   ³       ³           slide_47.png
-³   ³       ³           slide_48.png
-³   ³       ³           slide_49.png
-³   ³       ³           slide_5.png
-³   ³       ³           slide_50.png
-³   ³       ³           slide_51.png
-³   ³       ³           slide_52.png
-³   ³       ³           slide_53.png
-³   ³       ³           slide_54.png
-³   ³       ³           slide_55.png
-³   ³       ³           slide_56.png
-³   ³       ³           slide_57.png
-³   ³       ³           slide_58.png
-³   ³       ³           slide_59.png
-³   ³       ³           slide_6.png
-³   ³       ³           slide_60.png
-³   ³       ³           slide_61.png
-³   ³       ³           slide_62.png
-³   ³       ³           slide_63.png
-³   ³       ³           slide_64.png
-³   ³       ³           slide_65.png
-³   ³       ³           slide_66.png
-³   ³       ³           slide_67.png
-³   ³       ³           slide_68.png
-³   ³       ³           slide_69.png
-³   ³       ³           slide_7.png
-³   ³       ³           slide_70.png
-³   ³       ³           slide_71.png
-³   ³       ³           slide_72.png
-³   ³       ³           slide_73.png
-³   ³       ³           slide_74.png
-³   ³       ³           slide_75.png
-³   ³       ³           slide_76.png
-³   ³       ³           slide_77.png
-³   ³       ³           slide_78.png
-³   ³       ³           slide_79.png
-³   ³       ³           slide_8.png
-³   ³       ³           slide_80.png
-³   ³       ³           slide_81.png
-³   ³       ³           slide_82.png
-³   ³       ³           slide_83.png
-³   ³       ³           slide_84.png
-³   ³       ³           slide_85.png
-³   ³       ³           slide_86.png
-³   ³       ³           slide_87.png
-³   ³       ³           slide_88.png
-³   ³       ³           slide_89.png
-³   ³       ³           slide_9.png
-³   ³       ³           slide_90.png
-³   ³       ³           slide_91.png
-³   ³       ³           slide_92.png
-³   ³       ³           slide_93.png
-³   ³       ³           slide_94.png
-³   ³       ³           slide_95.png
-³   ³       ³           
-³   ³       ÃÄÄÄSYMPLE25_M1C_3
-³   ³       ³   ³   slide_data.json
-³   ³       ³   ³   
-³   ³       ³   ÀÄÄÄimages
-³   ³       ³           slide_1.png
-³   ³       ³           slide_10.png
-³   ³       ³           slide_11.png
-³   ³       ³           slide_12.png
-³   ³       ³           slide_13.png
-³   ³       ³           slide_14.png
-³   ³       ³           slide_15.png
-³   ³       ³           slide_16.png
-³   ³       ³           slide_17.png
-³   ³       ³           slide_18.png
-³   ³       ³           slide_19.png
-³   ³       ³           slide_2.png
-³   ³       ³           slide_20.png
-³   ³       ³           slide_21.png
-³   ³       ³           slide_22.png
-³   ³       ³           slide_23.png
-³   ³       ³           slide_24.png
-³   ³       ³           slide_25.png
-³   ³       ³           slide_26.png
-³   ³       ³           slide_27.png
-³   ³       ³           slide_28.png
-³   ³       ³           slide_29.png
-³   ³       ³           slide_3.png
-³   ³       ³           slide_30.png
-³   ³       ³           slide_31.png
-³   ³       ³           slide_32.png
-³   ³       ³           slide_33.png
-³   ³       ³           slide_34.png
-³   ³       ³           slide_35.png
-³   ³       ³           slide_36.png
-³   ³       ³           slide_37.png
-³   ³       ³           slide_38.png
-³   ³       ³           slide_39.png
-³   ³       ³           slide_4.png
-³   ³       ³           slide_40.png
-³   ³       ³           slide_41.png
-³   ³       ³           slide_42.png
-³   ³       ³           slide_43.png
-³   ³       ³           slide_44.png
-³   ³       ³           slide_45.png
-³   ³       ³           slide_46.png
-³   ³       ³           slide_47.png
-³   ³       ³           slide_48.png
-³   ³       ³           slide_49.png
-³   ³       ³           slide_5.png
-³   ³       ³           slide_50.png
-³   ³       ³           slide_51.png
-³   ³       ³           slide_52.png
-³   ³       ³           slide_53.png
-³   ³       ³           slide_54.png
-³   ³       ³           slide_55.png
-³   ³       ³           slide_56.png
-³   ³       ³           slide_57.png
-³   ³       ³           slide_58.png
-³   ³       ³           slide_59.png
-³   ³       ³           slide_6.png
-³   ³       ³           slide_60.png
-³   ³       ³           slide_61.png
-³   ³       ³           slide_62.png
-³   ³       ³           slide_63.png
-³   ³       ³           slide_64.png
-³   ³       ³           slide_65.png
-³   ³       ³           slide_66.png
-³   ³       ³           slide_67.png
-³   ³       ³           slide_68.png
-³   ³       ³           slide_69.png
-³   ³       ³           slide_7.png
-³   ³       ³           slide_70.png
-³   ³       ³           slide_71.png
-³   ³       ³           slide_72.png
-³   ³       ³           slide_73.png
-³   ³       ³           slide_74.png
-³   ³       ³           slide_8.png
-³   ³       ³           slide_9.png
-³   ³       ³           
-³   ³       ÀÄÄÄSYMPLE25_M1D_1
-³   ³           ³   slide_data.json
-³   ³           ³   
-³   ³           ÀÄÄÄimages
-³   ³                   slide_1.png
-³   ³                   slide_10.png
-³   ³                   slide_11.png
-³   ³                   slide_12.png
-³   ³                   slide_13.png
-³   ³                   slide_14.png
-³   ³                   slide_15.png
-³   ³                   slide_16.png
-³   ³                   slide_17.png
-³   ³                   slide_18.png
-³   ³                   slide_19.png
-³   ³                   slide_2.png
-³   ³                   slide_20.png
-³   ³                   slide_21.png
-³   ³                   slide_22.png
-³   ³                   slide_23.png
-³   ³                   slide_24.png
-³   ³                   slide_25.png
-³   ³                   slide_26.png
-³   ³                   slide_27.png
-³   ³                   slide_28.png
-³   ³                   slide_29.png
-³   ³                   slide_3.png
-³   ³                   slide_30.png
-³   ³                   slide_31.png
-³   ³                   slide_32.png
-³   ³                   slide_33.png
-³   ³                   slide_34.png
-³   ³                   slide_35.png
-³   ³                   slide_36.png
-³   ³                   slide_37.png
-³   ³                   slide_38.png
-³   ³                   slide_39.png
-³   ³                   slide_4.png
-³   ³                   slide_40.png
-³   ³                   slide_41.png
-³   ³                   slide_42.png
-³   ³                   slide_43.png
-³   ³                   slide_44.png
-³   ³                   slide_45.png
-³   ³                   slide_46.png
-³   ³                   slide_47.png
-³   ³                   slide_48.png
-³   ³                   slide_49.png
-³   ³                   slide_5.png
-³   ³                   slide_50.png
-³   ³                   slide_51.png
-³   ³                   slide_52.png
-³   ³                   slide_53.png
-³   ³                   slide_54.png
-³   ³                   slide_55.png
-³   ³                   slide_56.png
-³   ³                   slide_57.png
-³   ³                   slide_58.png
-³   ³                   slide_59.png
-³   ³                   slide_6.png
-³   ³                   slide_60.png
-³   ³                   slide_61.png
-³   ³                   slide_62.png
-³   ³                   slide_63.png
-³   ³                   slide_64.png
-³   ³                   slide_65.png
-³   ³                   slide_66.png
-³   ³                   slide_67.png
-³   ³                   slide_68.png
-³   ³                   slide_69.png
-³   ³                   slide_7.png
-³   ³                   slide_70.png
-³   ³                   slide_71.png
-³   ³                   slide_72.png
-³   ³                   slide_8.png
-³   ³                   slide_9.png
-³   ³                   
-³   ÃÄÄÄSYMPLE_Storage
-³   ³   ³   SYMPLE_Storage.py
-³   ³   ³   
-³   ³   ÃÄÄÄassets
-³   ³   ³   ÀÄÄÄimages
-³   ³   ³           1200px-Erasmus+_Logo.svg.png
-³   ³   ³           iNUX_wLogo.png
-³   ³   ³           thomasreimann.png
-³   ³   ³           wellcapturediagram-sm42.png
-³   ³   ³           
-³   ³   ÀÄÄÄpages
-³   ³           01_??_Theory.py
-³   ³           02_??_?? Run Computation.py
-³   ³           02_??_?? Run Computation_Storage.py
-³   ³           03_??_About.py
-³   ³           
-³   ÃÄÄÄVerify_matplotlib
-³   ³       Verify_matploylib.py
-³   ³       
-³   ÀÄÄÄWater_Flow_Solute_Transport_GW_Vadose
-³       ³   FLOWTRANS_GWVZ.py
-³       ³   
-³       ÃÄÄÄassets
-³       ³   ÀÄÄÄimages
-³       ³           1200px-Erasmus+_Logo.svg.png
-³       ³           iNUX_wLogo.png
-³       ³           
-³       ÀÄÄÄcontent
-³           ³   FLOWTRANS_GWVZ_Start.py
-³           ³   
-³           ÃÄÄÄSection_1
-³           ³       bucket_flow_hetero_q_driven.py
-³           ³       bucket_flow_homo_h_driven.py
-³           ³       bucket_flow_homo_q_driven.py
-³           ³       bucket_steady_hetero.py
-³           ³       bucket_steady_homo.py
-³           ³       section1.py
-³           ³       
-³           ÃÄÄÄSection_10
-³           ³       section10.py
-³           ³       section10proxy.py
-³           ³       
-³           ÃÄÄÄSection_2
-³           ³       bucket_transient_a.py
-³           ³       bucket_transient_b.py
-³           ³       section2.py
-³           ³       
-³           ÃÄÄÄSection_3
-³           ³       section3.py
-³           ³       section3proxy.py
-³           ³       
-³           ÃÄÄÄSection_4
-³           ³       section4.py
-³           ³       Transport_1D_A.py
-³           ³       Transport_1D_AD.py
-³           ³       Transport_1D_ADR.py
-³           ³       Transport_1D_ADRD.py
-³           ³       
-³           ÃÄÄÄSection_5
-³           ³       section5.py
-³           ³       section5proxy.py
-³           ³       
-³           ÃÄÄÄSection_6
-³           ³       section6.py
-³           ³       section6proxy.py
-³           ³       
-³           ÃÄÄÄSection_7
-³           ³       section7.py
-³           ³       section7proxy.py
-³           ³       
-³           ÃÄÄÄSection_8
-³           ³       section8.py
-³           ³       section8proxy.py
-³           ³       
-³           ÃÄÄÄSection_9
-³           ³       section9.py
-³           ³       section9proxy.py
-³           ³       
-³           ÀÄÄÄStart
-³                   content.py
-³                   start.py
-³                   welcome.py
-³                   
-ÃÄÄÄ98_Templates_Demos
-³   ³   colored_expander.py
-³   ³   copyright_template.py
-³   ³   JSON_QTI.py
-³   ³   Linear_logarithmic_slider.py
-³   ³   Logarithmic_slider.py
-³   ³   Open_Expander_New_Tab.py
-³   ³   
-³   ÃÄÄÄdocs
-³   ³       example1.md
-³   ³       example2.md
-³   ³       ghb_intro.md
-³   ³       
-³   ÀÄÄÄMultipage_Template
-³       ³   Multipage_App_Template.py
-³       ³   
-³       ÃÄÄÄassets
-³       ³   ÀÄÄÄimages
-³       ³           1200px-Erasmus+_Logo.svg.png
-³       ³           iNUX_wLogo.png
-³       ³           
-³       ÀÄÄÄcontent
-³               Multipage_Template_Default_Start.py
-³               
-ÃÄÄÄ99_INCOMING
-³   ³   Bokeh_inside.py
-³   ³   bokeh_theis_interactive.html
-³   ³   bokeh_transport_model.html
-³   ³   bokeh_upconing_interactive.html
-³   ³   bokeh_upconing_multi_interactive.html
-³   ³   ETP_Haude.ipynb
-³   ³   ETP_Oudin.ipynb
-³   ³   example_restAPI.ipynb
-³   ³   figure-1.PNG
-³   ³   Generate_BOKEH_html.py
-³   ³   Generate_BOKEH_Theis.py
-³   ³   Generate_BOKEH_upconing.py
-³   ³   Ghyben_Herzberg.ipynb
-³   ³   Ghyben_Herzberg.py
-³   ³   Ghyben_Herzberg_simple.ipynb
-³   ³   Glover.ipynb
-³   ³   Glover_simple.ipynb
-³   ³   GW_recharge.ipynb
-³   ³   HFB_DIM.py
-³   ³   Mualem_equation.ipynb
-³   ³   Neuman_plain.ipynb
-³   ³   particle_tracking.ipynb
-³   ³   particle_tracking.py
-³   ³   Pizza.py
-³   ³   readme.md
-³   ³   slider_number_demo.py
-³   ³   solute_transport_superposition_principle.ipynb
-³   ³   survey.py
-³   ³   S_star.py
-³   ³   Test_Plotting.py
-³   ³   Test_Plotting_Streamlit.py
-³   ³   translate.py
-³   ³   Translation_Optimization_Test.py
-³   ³   Travel_time.ipynb
-³   ³   Travel_time_pump.ipynb
-³   ³   Travel_time_uc.ipynb
-³   ³   Upconing.ipynb
-³   ³   Upconing_simple.ipynb
-³   ³   
-³   ÃÄÄÄ.ipynb_checkpoints
-³   ³       Glover_simple-checkpoint.ipynb
-³   ³       Travel_time_uc-checkpoint.ipynb
-³   ³       Upconing-checkpoint.ipynb
-³   ³       Upconing_simple-checkpoint.ipynb
-³   ³       
-³   ÃÄÄÄDATA
-³   ³       bokeh_interactive.html
-³   ³       Confined_pumping.csv
-³   ³       ETP_data.xlsx
-³   ³       GW_recharge_data.csv
-³   ³       Theis_Testing.html
-³   ³       
-³   ÀÄÄÄTransient_1D_flow
-³       ³   transient_1d_flow_x.py
-³       ³   transient_1d_flow_xt.py
-³       ³   
-³       ÀÄÄÄimages
-³               CC_BY-SA_icon.png
-³               Fig1_transient_1d_flow_conf.jpg
-³               iNUX_wLogo.png
-³               
-ÃÄÄÄdocs
-³   ³   .gitignore
-³   ³   Gemfile
-³   ³   Gemfile.lock
-³   ³   generate_docs_gen10.py
-³   ³   generate_docs_gen5.py
-³   ³   generate_docs_gen6.py
-³   ³   generate_docs_gen7.py
-³   ³   generate_docs_gen8.py
-³   ³   generate_docs_gen9.py
-³   ³   index.md
-³   ³   LICENSE
-³   ³   README.md
-³   ³   _config.yml
-³   ³   
-³   ÃÄÄÄ.jekyll-cache
-³   ³   ³   .gitignore
-³   ³   ³   
-³   ³   ÀÄÄÄJekyll
-³   ³       ÀÄÄÄCache
-³   ³           ÃÄÄÄJekyll--Cache
-³   ³           ³   ÀÄÄÄb7
-³   ³           ³           9606fb3afea5bd1609ed40b622142f1c98125abcfe89a76a661b0e8e343910
-³   ³           ³           
-³   ³           ÃÄÄÄJekyll--Converters--Markdown
-³   ³           ³   ÃÄÄÄ01
-³   ³           ³   ³       e8d7c116371d72e8e5c3b769181ec32d7b03fbd38dd7d834f3504a8a966179
-³   ³           ³   ³       
-³   ³           ³   ÃÄÄÄ05
-³   ³           ³   ³       ee6c9e554be3186ea4f4e17b5d9e89013e7e08953ffe38b584663ad8b9897b
-³   ³           ³   ³       
-³   ³           ³   ÃÄÄÄ07
-³   ³           ³   ³       ca57e83f21f0eb3e9791220b64ace0f3bea0eb06fc52a4a9fec5160c433cd3
-³   ³           ³   ³       
-³   ³           ³   ÃÄÄÄ0a
-³   ³           ³   ³       ef4422247876c20ea0d65f73b7b5849b12a5ce2d5b8afa05f047253c1e3a27
-³   ³           ³   ³       
-³   ³           ³   ÃÄÄÄ0b
-³   ³           ³   ³       df80be09f61b6140f17c40e8ac2db7c34b05136bf1a88a3cd9c911edcaa250
-³   ³           ³   ³       
-³   ³           ³   ÃÄÄÄ0c
-³   ³           ³   ³       701b977cd469acbf0b47ad16335edb1f61ae2e475586bb5e496b536fe08410
-³   ³           ³   ³       c120419c8d2d94f6f8637c35e58eb8741ae3254a1c088c8c0a979142888567
-³   ³           ³   ³       
-³   ³           ³   ÃÄÄÄ0d
-³   ³           ³   ³       7f606efd91b78ca0a34a223e1a3b8598609ccfa6733999f6d31fc3f194a438
-³   ³           ³   ³       bde2e535f9c8b984d0099b6bad4f1ba1c9911b532331f81f22a71fb4378b61
-³   ³           ³   ³       be14c395ecab72d73ac70c9ea0a2cc69f3cc712db0bb417ef53bf92d440447
-³   ³           ³   ³       
-³   ³           ³   ÃÄÄÄ0e
-³   ³           ³   ³       2226b5235f0ff94a276eb4d07a3bfea74b7e3b8b85e9efca6c18430f041bf8
-³   ³           ³   ³       
-³   ³           ³   ÃÄÄÄ10
-³   ³           ³   ³       12efd065e129991d8cc27614b016b6a7be2f41f67d9e86b5ec5d5367a8dc60
-³   ³           ³   ³       
-³   ³           ³   ÃÄÄÄ12
-³   ³           ³   ³       889781c21caa690834d48c3b638c324db09190f9ea5d2c2d938a999da680b2
-³   ³           ³   ³       
-³   ³           ³   ÃÄÄÄ14
-³   ³           ³   ³       0faff2401f34faedaf3925aba84cdfeb349be7c01a97a52639317cdd7f3e9d
-³   ³           ³   ³       
-³   ³           ³   ÃÄÄÄ1b
-³   ³           ³   ³       2e9a6b2d5d801f1519afd26cbb1313c491c3aefdf838159a71d41068cc202e
-³   ³           ³   ³       
-³   ³           ³   ÃÄÄÄ1c
-³   ³           ³   ³       3a2cf64c355f3f7f6f2f332056cf94b3b1cffaf66166bea5069248ffb56a6c
-³   ³           ³   ³       4c952a9391fcd7c492b9cee99bac6bf44ae03970728129c4e8f2bdec452339
-³   ³           ³   ³       d1d2385cdbdb08a83ebc77748fd20d7284d3cbb330718d106d4af774ead636
-³   ³           ³   ³       
-³   ³           ³   ÃÄÄÄ27
-³   ³           ³   ³       c3eaef4cc00683957a38d653fc62e3dc5f0c843497e47eb4bb7d44ecbc07b4
-³   ³           ³   ³       
-³   ³           ³   ÃÄÄÄ2c
-³   ³           ³   ³       5e06c8e203b8f380a50bb700b62b28c5c0940090727a5cd4720be3e9651476
-³   ³           ³   ³       
-³   ³           ³   ÃÄÄÄ2e
-³   ³           ³   ³       acb990ab3e21cc6990bab73eb198c42aab4cfaa91dcce848e896f507a36f26
-³   ³           ³   ³       
-³   ³           ³   ÃÄÄÄ32
-³   ³           ³   ³       f68f423cd6014066eb2ec13da25c99adb7202d327c02db90df074144a18236
-³   ³           ³   ³       
-³   ³           ³   ÃÄÄÄ33
-³   ³           ³   ³       9d44d71d60f2ed37a04cd6b7d3a349714462f716a1703779c9d93d2e618a6a
-³   ³           ³   ³       f0b73ede203e104369c5e86cb61371fed7401bf347ea154c8de49c0629e9f3
-³   ³           ³   ³       
-³   ³           ³   ÃÄÄÄ34
-³   ³           ³   ³       8555ae5aae3662031e9a47489edd3ed473fd04bd2a670830a808eb8d266023
-³   ³           ³   ³       
-³   ³           ³   ÃÄÄÄ36
-³   ³           ³   ³       d2203683f4c7fc4536d954be9b30a6efd969ba74d53536e4f1bae8a2ac3cf0
-³   ³           ³   ³       
-³   ³           ³   ÃÄÄÄ3e
-³   ³           ³   ³       5871130225a2df57dcfff1e9fcad0d720fe5618a10ccebb8527c9d98503ec4
-³   ³           ³   ³       
-³   ³           ³   ÃÄÄÄ41
-³   ³           ³   ³       d477b9def7c2e1a639ddd815d4190e1542c5f0b6e14a567e8274fcd9de8b36
-³   ³           ³   ³       
-³   ³           ³   ÃÄÄÄ43
-³   ³           ³   ³       b4b61ffaee8e734ac008b58aa93f74590fe92725a9e0d5b7a0d3f35894c13a
-³   ³           ³   ³       
-³   ³           ³   ÃÄÄÄ44
-³   ³           ³   ³       3437ce4b4564ce81355253472442fb73f884369ca2f345a242e3751a96d24c
-³   ³           ³   ³       
-³   ³           ³   ÃÄÄÄ45
-³   ³           ³   ³       39e51b1465d7281ebbcc61894c17894711e26040eaeb68f1c689edb795ba72
-³   ³           ³   ³       7973e5d1840c6aa2542ad82e465a4b39eb9448fd5e11b596b65449d5acf497
-³   ³           ³   ³       7a615aef72a1553b4bedaa6bbe9499a9f929ed77faef919a6b8e2257732ca0
-³   ³           ³   ³       
-³   ³           ³   ÃÄÄÄ4a
-³   ³           ³   ³       e452297af8b96700713f92afc3c4eaa72647939cce3c79df27c3ab03b21f05
-³   ³           ³   ³       f1968b701a265796830bc02079a41874230329c7ef6d994ab70e176c211d9d
-³   ³           ³   ³       
-³   ³           ³   ÃÄÄÄ4c
-³   ³           ³   ³       11eaf063c4a76bf7627739d8729c8f3baf977df9bb597d0c78db3836741dfc
-³   ³           ³   ³       
-³   ³           ³   ÃÄÄÄ4e
-³   ³           ³   ³       f26eb736e0da1890a22107ec12ce85fce093dc403e70f836134eedcc80c911
-³   ³           ³   ³       
-³   ³           ³   ÃÄÄÄ53
-³   ³           ³   ³       649a80aa5f0e59ab08a56aaf5d7170a8dd3791f22b6838360d5b8c4dd6841c
-³   ³           ³   ³       c1d7d31b2b41db53347f2e194c351e40c70b50be738af5f120dac647eda52d
-³   ³           ³   ³       
-³   ³           ³   ÃÄÄÄ56
-³   ³           ³   ³       ad0b26c45171b2c89c9435fdd91b8aa09a94d18b7b0333e35488bf548268b0
-³   ³           ³   ³       
-³   ³           ³   ÃÄÄÄ59
-³   ³           ³   ³       6d2ee466d1ceca9dc39728e0e4b034e1ee325300673bc85cececf76df3e91d
-³   ³           ³   ³       
-³   ³           ³   ÃÄÄÄ5a
-³   ³           ³   ³       90eaaced76447e1059cd2e31a72882098acf81e732b99efe0a1796bbff00db
-³   ³           ³   ³       bdbe717f9f3bdae449bc14eea37fc570a3ac42d3126f5e263e44db11b240a9
-³   ³           ³   ³       
-³   ³           ³   ÃÄÄÄ5c
-³   ³           ³   ³       a01126a037e23cea5a3463ccfedcaf1bf7e4dcf4c368ff32c10a7187fac5e9
-³   ³           ³   ³       
-³   ³           ³   ÃÄÄÄ5d
-³   ³           ³   ³       96aa9c14c1348637e169bac835840b2c56e72f130bd391c4477bfd7bb3b92e
-³   ³           ³   ³       
-³   ³           ³   ÃÄÄÄ5f
-³   ³           ³   ³       5f41fe7a69d78f57b5a7d3cae23ed65387d753a772f5418272179f1fa73c5d
-³   ³           ³   ³       
-³   ³           ³   ÃÄÄÄ65
-³   ³           ³   ³       1671916ea707b2010cbedaabcc342db97187f96f20f269794346e1b85afafa
-³   ³           ³   ³       
-³   ³           ³   ÃÄÄÄ66
-³   ³           ³   ³       28ed31186943f2cae773d47cb50d85aa415843a5ace0d58217d2fe85a808c5
-³   ³           ³   ³       e2cbc08fe0882446feccbb1535a7656e198b5e7ffba50bc0f1758dc471deec
-³   ³           ³   ³       
-³   ³           ³   ÃÄÄÄ67
-³   ³           ³   ³       e5cdd7a2c1a19baa55deeda5c7fa41a0744926da19d8f79ca4b46eb77f4ace
-³   ³           ³   ³       
-³   ³           ³   ÃÄÄÄ68
-³   ³           ³   ³       b98bbc7d77ffb87b8a7550dedf546069c46704500255212ee2f2c6aa2f1cba
-³   ³           ³   ³       
-³   ³           ³   ÃÄÄÄ6a
-³   ³           ³   ³       bfb1d12646dcee098288754a70fa1dfc25d656c3439f4c8dec9d45de848b25
-³   ³           ³   ³       
-³   ³           ³   ÃÄÄÄ73
-³   ³           ³   ³       0fb540a834f8a939ac6e08503f6ba789965727df29a17de29d6cb393c2fa0a
-³   ³           ³   ³       
-³   ³           ³   ÃÄÄÄ74
-³   ³           ³   ³       029c5085f6c5c63b448bd8daa2b467b23b06e479c0693587132008ffe60282
-³   ³           ³   ³       
-³   ³           ³   ÃÄÄÄ76
-³   ³           ³   ³       29e2491e4c0ab7b56e7a26dc9a1c7b879175c29f5f9a8fcaac6a2123882bb8
-³   ³           ³   ³       da4fda73c112e0a1439f1b92f0421b1b3809652ffdabd5da698bffa715071f
-³   ³           ³   ³       
-³   ³           ³   ÃÄÄÄ77
-³   ³           ³   ³       0a882235fbdb2afb15aa509767aa34494e0e346b6c29fbb35448d7d2c51b0b
-³   ³           ³   ³       db5a3e42a812551f1f6188c9e85adba9d3c31e25a6ec5208b64d7e8830cccb
-³   ³           ³   ³       
-³   ³           ³   ÃÄÄÄ78
-³   ³           ³   ³       63905b2cfbe5265bdff6fe03833481743eb39b5b97b401b5259f05ac0a67e7
-³   ³           ³   ³       
-³   ³           ³   ÃÄÄÄ79
-³   ³           ³   ³       74ad849dd210c050135691dc97ed4b98724a384a58c9f5e782d495d74cbaad
-³   ³           ³   ³       819273c0316b5bdebe0a5b82ea2b737bab0582505d68a1f65bb0bb234b8f05
-³   ³           ³   ³       
-³   ³           ³   ÃÄÄÄ7a
-³   ³           ³   ³       d8fd8f07b996be2e31dc850d14c89982db184a54e0772cc8fcfa8c90ea234d
-³   ³           ³   ³       
-³   ³           ³   ÃÄÄÄ7c
-³   ³           ³   ³       2016fc1edc8f169b40715a104423a1e9b49f231a41f2bfa640f3cb72db9dc0
-³   ³           ³   ³       e9ec91aaac9fec3091a427dab9eef37240423f2e3eb385a9ed583fc18dd0da
-³   ³           ³   ³       
-³   ³           ³   ÃÄÄÄ7d
-³   ³           ³   ³       07711e60600dd234384019eb58b2992443ff4dc9232242314090eec648ec88
-³   ³           ³   ³       2f10b0fe8d7f0247ad641de4113ff0dd62b93bf3681c49950a400a3b85e987
-³   ³           ³   ³       d7e9704e602ae87dd23b36a14b61655a1ceadd1869ba7290e4f36945a793ea
-³   ³           ³   ³       
-³   ³           ³   ÃÄÄÄ80
-³   ³           ³   ³       206036708373410df6be3558f4b488715d79500667f2f0eb7bd8455d3e1177
-³   ³           ³   ³       24000e8f90d31cfe479bcad8c45e9ebc31a3e6bcad61c01de16455f021042d
-³   ³           ³   ³       
-³   ³           ³   ÃÄÄÄ82
-³   ³           ³   ³       285698de755265ba811fb2edc116369906f93bd3630b05c7fdee4828a0c840
-³   ³           ³   ³       9b51e60c74660fb05ba6839bb5542dc1fbbe05578c77560b974bac36bc7918
-³   ³           ³   ³       
-³   ³           ³   ÃÄÄÄ84
-³   ³           ³   ³       520764ded7f69b1ddddd0a39fc2cd4a074dfcc0ba2c9b53c1d721fd17b7ae1
-³   ³           ³   ³       
-³   ³           ³   ÃÄÄÄ87
-³   ³           ³   ³       97abba6e3ac946b8e5d89c0448768dde68c0dae0be128372323011c550c674
-³   ³           ³   ³       
-³   ³           ³   ÃÄÄÄ8a
-³   ³           ³   ³       c9f6f27e664cab019160c741f95e4517474d3c8e00e882345ad6ff1bc680c2
-³   ³           ³   ³       
-³   ³           ³   ÃÄÄÄ91
-³   ³           ³   ³       ab297076711138d5a044a27a076fd8539cc1925a5bdea91e05f5eae4d48108
-³   ³           ³   ³       
-³   ³           ³   ÃÄÄÄ92
-³   ³           ³   ³       4915313dcab33cb6fc26ec019b20a4eb047d471eb5f381fc804106fa0d2f92
-³   ³           ³   ³       89fa72fde3e1dee5ba9808175be590a609a7a98f050b91fc2244fba6275b7d
-³   ³           ³   ³       
-³   ³           ³   ÃÄÄÄ93
-³   ³           ³   ³       7a2772015c2d8c5179e0a516fd3d9accbdbb03b5555573015e7ee13ca8947c
-³   ³           ³   ³       c02d1371cc55eae22f45bbb7de23f3cf0b1d3e07c835fbfde533d7ab94b8af
-³   ³           ³   ³       
-³   ³           ³   ÃÄÄÄ95
-³   ³           ³   ³       f7f8307f3f5e5d27f4bd092067aa96cd62f60d1a81f431840564596caf8019
-³   ³           ³   ³       
-³   ³           ³   ÃÄÄÄ99
-³   ³           ³   ³       34aee8afa3a0ec65279593f15d5720ca338baa23cc9862a0e35ecb0e0bb012
-³   ³           ³   ³       84c450eee7d4e13c24d8ceb520f7f2b607b7abb31e921fb9b58372464d3a66
-³   ³           ³   ³       
-³   ³           ³   ÃÄÄÄ9b
-³   ³           ³   ³       523ebbb9ef78d7aa1cde099d67a180555562cd6ea2f3cf741c443c10c14000
-³   ³           ³   ³       
-³   ³           ³   ÃÄÄÄ9c
-³   ³           ³   ³       52c2da7d31ca483eec42e6a269567675d84d5d0255cfc8989d13cd8392968b
-³   ³           ³   ³       
-³   ³           ³   ÃÄÄÄa1
-³   ³           ³   ³       d0f637e3dbc06cdca3ddf1ca047204a96c4cd98184917e0b26aa4f930d1bd3
-³   ³           ³   ³       
-³   ³           ³   ÃÄÄÄa7
-³   ³           ³   ³       97bd752567d87b2fe826a01a20237f10e61469962d0593d4eeee4ef3ae18cb
-³   ³           ³   ³       
-³   ³           ³   ÃÄÄÄaa
-³   ³           ³   ³       54b190db99d430e79d6ed4e80fe9504f4da4e484258d81d9b36082b62963aa
-³   ³           ³   ³       62c038ef8c4412d209137eb6d8df257140939a97f615a288affcceeeda3cf0
-³   ³           ³   ³       
-³   ³           ³   ÃÄÄÄab
-³   ³           ³   ³       2959f49a1928190e6ddc9c5f23e7ec49dbe9116d0ef08b725f21ffedbe6b4f
-³   ³           ³   ³       
-³   ³           ³   ÃÄÄÄac
-³   ³           ³   ³       74bef07ca8b29979f30d68acdd3172a200e12fca58ccfeb330dc74ba4f8c54
-³   ³           ³   ³       
-³   ³           ³   ÃÄÄÄae
-³   ³           ³   ³       fdd4545c157c0d93ad3585432ed644ee855d0dc7d008d3cd81d06cffa56492
-³   ³           ³   ³       
-³   ³           ³   ÃÄÄÄb0
-³   ³           ³   ³       69acedae7780a0b21eb43341353b542d414d472f4a5a83d56e97b6e5b1aad5
-³   ³           ³   ³       
-³   ³           ³   ÃÄÄÄb2
-³   ³           ³   ³       e999a9a1997254dac29602a1f33f29942840026e838d6ab78a3cc0ad7e1860
-³   ³           ³   ³       
-³   ³           ³   ÃÄÄÄb6
-³   ³           ³   ³       7007ff4d1cf88cb449b8df92d228c394df9905744dc22eb3d04320227a5f1d
-³   ³           ³   ³       
-³   ³           ³   ÃÄÄÄb9
-³   ³           ³   ³       7ee9c343c15364f6af5745a38cecdee5051b4084d92a217272eb9bf3396249
-³   ³           ³   ³       
-³   ³           ³   ÃÄÄÄbb
-³   ³           ³   ³       ebce16091b54c9bf5a75c271ae85a11774947e0ace67a1bf2427b9dbef9094
-³   ³           ³   ³       
-³   ³           ³   ÃÄÄÄbf
-³   ³           ³   ³       434069afb5bfc177ffb867e3b1bcb37d748386646b22dc9e9f9baee02ff8b1
-³   ³           ³   ³       
-³   ³           ³   ÃÄÄÄc2
-³   ³           ³   ³       7e366768b51e5efc2c71d550a2c4e8eb69527681db5c2d70981ef9ecd43799
-³   ³           ³   ³       
-³   ³           ³   ÃÄÄÄc7
-³   ³           ³   ³       0a2b0ddaa4a4f4c77e6f0d3bb02e3e1dce66e41a546010cc7750e392982196
-³   ³           ³   ³       6b93370c0439cb353cf0e47d226f755f8acc36cd1f72297f73bb3c9b92914e
-³   ³           ³   ³       96458503d33c8058dd11f266674dd2818ae3e03937d701b6d383809f742fde
-³   ³           ³   ³       c2225b061b8b0825a494887c00ff769feda941e98e8466e39c304ed74a53e1
-³   ³           ³   ³       
-³   ³           ³   ÃÄÄÄc9
-³   ³           ³   ³       5509e8105fb41528e47ec97591584d8422ffc56d84cb94b04b4b23abeb7793
-³   ³           ³   ³       
-³   ³           ³   ÃÄÄÄca
-³   ³           ³   ³       07c73ee6fdea4dda38c2d21edfd60653a3cb1feca1046241f729a3c563992e
-³   ³           ³   ³       
-³   ³           ³   ÃÄÄÄcf
-³   ³           ³   ³       91edfff8c5e6885dda157614c5f0111c0e5a355f978487cce2cb37187a6809
-³   ³           ³   ³       a4c437fc990e60328361909329cc08a813f7496878e956cda8dbeedbbcd42b
-³   ³           ³   ³       b9b39bc270309f063ea148eec6602597e2c0703096948aadb6bd5e2fccedbe
-³   ³           ³   ³       
-³   ³           ³   ÃÄÄÄd0
-³   ³           ³   ³       c38a22377b28c4f5a40bb730d48efd39f607aba1f1a66970cb955005d4292e
-³   ³           ³   ³       
-³   ³           ³   ÃÄÄÄd3
-³   ³           ³   ³       e3826362ae39eb97634ac192ba5f5ebc693e29e3ba9e8524aceae10724c8ac
-³   ³           ³   ³       
-³   ³           ³   ÃÄÄÄd6
-³   ³           ³   ³       0a10078c2d3ae5b387fc0cff24f03136f9117d19f7aa9f35179ab1535dd193
-³   ³           ³   ³       
-³   ³           ³   ÃÄÄÄd7
-³   ³           ³   ³       b2bde536166fd2829f59b4ba35ce0e5cc99d782f107480d734369ba38f3844
-³   ³           ³   ³       
-³   ³           ³   ÃÄÄÄd9
-³   ³           ³   ³       753f0efe4c6981aee7e910613464aa8142f0ca991ac7bc276c07ef00dead31
-³   ³           ³   ³       8ce84c2fa26361787c33fddbe0f5f8f0f98989cbab4f68129f47c311cc392d
-³   ³           ³   ³       
-³   ³           ³   ÃÄÄÄdb
-³   ³           ³   ³       b88fbb7b8308d7a29b095b49b1079bc7b67981becd68d2c5af858c52578faa
-³   ³           ³   ³       c791c4d460350913ed87fe32351d91d1978210b70ba4b41aa924d08124525d
-³   ³           ³   ³       
-³   ³           ³   ÃÄÄÄdd
-³   ³           ³   ³       603b96fbd27a0ebe717811c214b972347caf3a2a9e164998c15cb37a0fbedc
-³   ³           ³   ³       a4b4476235027f86da508f29796736d33a2f534425900436d35da7a770df72
-³   ³           ³   ³       
-³   ³           ³   ÃÄÄÄde
-³   ³           ³   ³       24e33fb7f7ad00b5d4da9e92240a0cdd259a9791e8b7456d2f79fe8807b5df
-³   ³           ³   ³       
-³   ³           ³   ÃÄÄÄe0
-³   ³           ³   ³       c3cbb03e3a200da51151afff66e1ccf4ec12ce5e2d0d3cd72b22f85c38d0cb
-³   ³           ³   ³       e3dcf29564bc250f0bf96af8be3363ecbd0b8c8bfd5ee2e94cf5cb3c7e979d
-³   ³           ³   ³       f78883557dd38a5876043943a7be2c2c3cbcf961b79a5ed73b5e07a4764354
-³   ³           ³   ³       
-³   ³           ³   ÃÄÄÄe3
-³   ³           ³   ³       b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
-³   ³           ³   ³       
-³   ³           ³   ÃÄÄÄe8
-³   ³           ³   ³       1eead587514c8e2692308962b001fdeb4281aa243f7b03a56e3f1329363bdf
-³   ³           ³   ³       
-³   ³           ³   ÃÄÄÄe9
-³   ³           ³   ³       b3b458970d0f7b1f5ddc7750478324b197c644a994ba370ef16628e83241ce
-³   ³           ³   ³       
-³   ³           ³   ÃÄÄÄea
-³   ³           ³   ³       be8e3da3abd4e80e679c5411bccab84dd2895914076a890412c06edd4f9109
-³   ³           ³   ³       
-³   ³           ³   ÃÄÄÄef
-³   ³           ³   ³       623c23d43b1bd7356d0fdc05575d9c21d5d6148b3402551f629c8365594ba8
-³   ³           ³   ³       
-³   ³           ³   ÃÄÄÄf7
-³   ³           ³   ³       b1ac1009ac27af3da7c48d5a7ecb43dfcd77e3ba22bc496b99c0865e556e09
-³   ³           ³   ³       
-³   ³           ³   ÃÄÄÄfa
-³   ³           ³   ³       7edc08276272250d6a80cbc086b7deaf6701d9fa1f9badfe4c7501fa8dad3b
-³   ³           ³   ³       
-³   ³           ³   ÀÄÄÄff
-³   ³           ³           d89d8b5dc24b9ac1eedc46c7154dc1de5a8b6ec94d95285dfe3d8d043cb655
-³   ³           ³           
-³   ³           ÀÄÄÄModule
-³   ³               ÃÄÄÄ27
-³   ³               ³       1621c338993aa4c2069004f9203912bcb34cf9d7e87b4b10b59e415d8e241d
-³   ³               ³       
-³   ³               ÀÄÄÄb2
-³   ³                       3f9207687aeb0a64b8f5957f1bce73f336a5c3b1e1f09eb60fdf9d4807afda
-³   ³                       
-³   ÃÄÄÄ.obsidian
-³   ³       core-plugins.json
-³   ³       
-³   ÃÄÄÄassets
-³   ³   ÃÄÄÄcss
-³   ³   ³       back-to-top.css
-³   ³   ³       readme.md
-³   ³   ³       resource_rendering.css
-³   ³   ³       
-³   ³   ÃÄÄÄimages
-³   ³   ³       iNUX_Logo.png
-³   ³   ³       
-³   ³   ÃÄÄÄjs
-³   ³   ³       back-to-top.js
-³   ³   ³       
-³   ³   ÃÄÄÄresources
-³   ³   ³   ÃÄÄÄ030300_en_thomas-reimann_20251214_130929
-³   ³   ³   ³       030300_en_thomas-reimann_20251214_130929.yaml
-³   ³   ³   ³       030300_en_thomas-reimann_20251214_130929_fig1.png
-³   ³   ³   ³       
-³   ³   ³   ÃÄÄÄ030300_en_thomas-reimann_20251214_150315
-³   ³   ³   ³       030300_en_thomas-reimann_20251214_150315.yaml
-³   ³   ³   ³       030300_en_thomas-reimann_20251214_150315_fig1.png
-³   ³   ³   ³       
-³   ³   ³   ÃÄÄÄ030300_en_thomas-reimann_20251214_185549
-³   ³   ³   ³       030300_en_thomas-reimann_20251214_185549.yaml
-³   ³   ³   ³       030300_en_thomas-reimann_20251214_185549_fig1.png
-³   ³   ³   ³       030300_en_thomas-reimann_20251214_185549_fig2.png
-³   ³   ³   ³       
-³   ³   ³   ÃÄÄÄ040100_en_steffen-birk_20251204_115847
-³   ³   ³   ³       040100_en_steffen-birk_20251204_115847.yaml
-³   ³   ³   ³       040100_en_steffen-birk_20251204_115847_fig1.png
-³   ³   ³   ³       
-³   ³   ³   ÃÄÄÄ040100_en_steffen-birk_20251214_202737
-³   ³   ³   ³       040100_en_steffen-birk_20251214_202737.yaml
-³   ³   ³   ³       040100_en_steffen-birk_20251214_202737_fig1.png
-³   ³   ³   ³       
-³   ³   ³   ÃÄÄÄ050600_en_thomas-reimann_20251215_001924
-³   ³   ³   ³       050600_en_thomas-reimann_20251215_001924.yaml
-³   ³   ³   ³       050600_en_thomas-reimann_20251215_001924_fig1.png
-³   ³   ³   ³       
-³   ³   ³   ÃÄÄÄ060400_en_thomas-reimann_20251208_161333
-³   ³   ³   ³       060400_en_thomas-reimann_20251208_161333.yaml
-³   ³   ³   ³       060400_en_thomas-reimann_20251208_161333_fig1.jpg
-³   ³   ³   ³       060400_en_thomas-reimann_20251208_161333_fig2.jpg
-³   ³   ³   ³       060400_en_thomas-reimann_20251208_161333_fig3.jpg
-³   ³   ³   ³       
-³   ³   ³   ÃÄÄÄ060400_en_thomas-reimann_20251209_100736
-³   ³   ³   ³       060400_en_thomas-reimann_20251209_100736.yaml
-³   ³   ³   ³       060400_en_thomas-reimann_20251209_100736_fig1.jpg
-³   ³   ³   ³       
-³   ³   ³   ÃÄÄÄ060400_en_thomas-reimann_20251209_102205
-³   ³   ³   ³       060400_en_thomas-reimann_20251209_102205.yaml
-³   ³   ³   ³       060400_en_thomas-reimann_20251209_102205_fig1.jpg
-³   ³   ³   ³       060400_en_thomas-reimann_20251209_102205_fig2.jpg
-³   ³   ³   ³       
-³   ³   ³   ÃÄÄÄ080100_en_thomas-reimann_20251208_162635
-³   ³   ³   ³       080100_en_thomas-reimann_20251208_162635.yaml
-³   ³   ³   ³       080100_en_thomas-reimann_20251208_162635_fig1.jpg
-³   ³   ³   ³       080100_en_thomas-reimann_20251208_162635_fig2.jpg
-³   ³   ³   ³       
-³   ³   ³   ÃÄÄÄ080200_en_thomas-reimann_20251208_164029
-³   ³   ³   ³       080200_en_thomas-reimann_20251208_164029.yaml
-³   ³   ³   ³       080200_en_thomas-reimann_20251208_164029_fig1.jpg
-³   ³   ³   ³       080200_en_thomas-reimann_20251208_164029_fig2.jpg
-³   ³   ³   ³       
-³   ³   ³   ÃÄÄÄ080700_en_thomas-reimann_20251214_164058
-³   ³   ³   ³       080700_en_thomas-reimann_20251214_164058.yaml
-³   ³   ³   ³       080700_en_thomas-reimann_20251214_164058_fig1.png
-³   ³   ³   ³       080700_en_thomas-reimann_20251214_164058_fig2.png
-³   ³   ³   ³       
-³   ³   ³   ÀÄÄÄ080700_en_thomas-reimann_20251214_175716
-³   ³   ³           080700_en_thomas-reimann_20251214_175716.yaml
-³   ³   ³           080700_en_thomas-reimann_20251214_175716_fig1.png
-³   ³   ³           080700_en_thomas-reimann_20251214_175716_fig2.png
-³   ³   ³           
-³   ³   ÀÄÄÄweb_layout
-³   ³           pages.xlsx
-³   ³           
-³   ÃÄÄÄpages
-³   ³       000100_en.md
-³   ³       000101_en.md
-³   ³       000102_en.md
-³   ³       000103_en.md
-³   ³       000104_en.md
-³   ³       000200_en.md
-³   ³       000201_en.md
-³   ³       000202_en.md
-³   ³       000203_en.md
-³   ³       000204_en.md
-³   ³       000205_en.md
-³   ³       010000_en.md
-³   ³       010100_en.md
-³   ³       010200_en.md
-³   ³       010300_en.md
-³   ³       010400_en.md
-³   ³       010500_en.md
-³   ³       020000_en.md
-³   ³       020100_en.md
-³   ³       020200_en.md
-³   ³       020300_en.md
-³   ³       020400_en.md
-³   ³       030000_en.md
-³   ³       030100_en.md
-³   ³       030200_en.md
-³   ³       030300_en.md
-³   ³       030400_en.md
-³   ³       030500_en.md
-³   ³       030600_en.md
-³   ³       030700_en.md
-³   ³       030800_en.md
-³   ³       040000_en.md
-³   ³       040100_en.md
-³   ³       040200_en.md
-³   ³       040300_en.md
-³   ³       040400_en.md
-³   ³       040500_en.md
-³   ³       050000_en.md
-³   ³       050100_en.md
-³   ³       050200_en.md
-³   ³       050300_en.md
-³   ³       050400_en.md
-³   ³       050500_en.md
-³   ³       050600_en.md
-³   ³       050700_en.md
-³   ³       060000_en.md
-³   ³       060100_en.md
-³   ³       060200_en.md
-³   ³       060300_en.md
-³   ³       060400_en.md
-³   ³       070000_en.md
-³   ³       070100_en.md
-³   ³       070200_en.md
-³   ³       070300_en.md
-³   ³       070400_en.md
-³   ³       070500_en.md
-³   ³       070600_en.md
-³   ³       070700_en.md
-³   ³       070800_en.md
-³   ³       070900_en.md
-³   ³       071000_en.md
-³   ³       080000_en.md
-³   ³       080100_en.md
-³   ³       080200_en.md
-³   ³       080300_en.md
-³   ³       080400_en.md
-³   ³       080500_en.md
-³   ³       080600_en.md
-³   ³       080700_en.md
-³   ³       080800_en.md
-³   ³       080900_en.md
-³   ³       081000_en.md
-³   ³       081100_en.md
-³   ³       081200_en.md
-³   ³       
-³   ÃÄÄÄ_includes
-³   ³   ³   head_custom.html
-³   ³   ³   
-³   ³   ÀÄÄÄcomponents
-³   ³           nav.html
-³   ³           
-³   ÃÄÄÄ_sass
-³   ³   ÀÄÄÄcolor_schemes
-³   ³           iNUX_colors1.scss
-³   ³           iNUX_colors1_template.txt
-³   ³           
-³   ÀÄÄÄ_site
-³       ³   generate_docs.py
-³       ³   index.html
-³       ³   LICENSE
-³       ³   README.md
-³       ³   
-³       ÃÄÄÄassets
-³       ³   ÃÄÄÄcss
-³       ³   ³       just-the-docs-dark.css
-³       ³   ³       just-the-docs-dark.css.map
-³       ³   ³       just-the-docs-default.css
-³       ³   ³       just-the-docs-default.css.map
-³       ³   ³       just-the-docs-head-nav.css
-³       ³   ³       just-the-docs-light.css
-³       ³   ³       just-the-docs-light.css.map
-³       ³   ³       readme.md
-³       ³   ³       
-³       ³   ÃÄÄÄimages
-³       ³   ³       iNUX_Logo.png
-³       ³   ³       
-³       ³   ÃÄÄÄjs
-³       ³   ³   ³   just-the-docs.js
-³       ³   ³   ³   search-data.json
-³       ³   ³   ³   
-³       ³   ³   ÀÄÄÄvendor
-³       ³   ³           lunr.min.js
-³       ³   ³           
-³       ³   ÃÄÄÄresources
-³       ³   ³   ÀÄÄÄ030101_en_steffen-birk_20251204_115847
-³       ³   ³           030101_en_steffen-birk_20251204_115847.yaml
-³       ³   ³           030101_en_steffen-birk_20251204_115847_fig1.png
-³       ³   ³           
-³       ³   ÀÄÄÄweb_layout
-³       ³           pages.xlsx
-³       ³           pagesinux.xlsx
-³       ³           
-³       ÀÄÄÄdocs
-³               010000_en.html
-³               010100_en.html
-³               010200_en.html
-³               010300_en.html
-³               010400_en.html
-³               010500_en.html
-³               020000_en.html
-³               020100_en.html
-³               020200_en.html
-³               020300_en.html
-³               020400_en.html
-³               030000_en.html
-³               030100_en.html
-³               030200_en.html
-³               030300_en.html
-³               030400_en.html
-³               030500_en.html
-³               030600_en.html
-³               030700_en.html
-³               030800_en.html
-³               040000_en.html
-³               040100_en.html
-³               040200_en.html
-³               040300_en.html
-³               040400_en.html
-³               040500_en.html
-³               050000_en.html
-³               050100_en.html
-³               050200_en.html
-³               050300_en.html
-³               050400_en.html
-³               050500_en.html
-³               050600_en.html
-³               060000_en.html
-³               060100_en.html
-³               060200_en.html
-³               060300_en.html
-³               060400_en.html
-³               070000_en.html
-³               070100_en.html
-³               070200_en.html
-³               070300_en.html
-³               070400_en.html
-³               070500_en.html
-³               070600_en.html
-³               070700_en.html
-³               070800_en.html
-³               070900_en.html
-³               071000_en.html
-³               080000_en.html
-³               080100_en.html
-³               080200_en.html
-³               080300_en.html
-³               080400_en.html
-³               080500_en.html
-³               080600_en.html
-³               080700_en.html
-³               080800_en.html
-³               080900_en.html
-³               081000_en.html
-³               081100_en.html
-³               081200_en.html
-³               
-ÃÄÄÄetc
-³       dictionary.json
-³       
-ÃÄÄÄFIGS
-³       03_03_1D_confined.png
-³       03_03_concept_1D_flow_unconfined.png
-³       08_07_1D_unconfined_noflow.jpg
-³       CC_BY-SA_icon.png
-³       CC_BY-SA_icon.svg
-³       CC_BY-SA_icon_275.png
-³       
-ÀÄÄÄQ_h_plot_RIV_2
-    ³   Figs_Q_h_plot_RIV_2.py.pptx
-    ³   Q_h_plot_RIV_2.py
-    ³   Q_h_plot_RIV_2.py.bak
-    ³   
-    ÀÄÄÄFIGS
-            CC_BY-SA_icon.png
-            RIV_CONCEPT_2.png
-            RIV_CONCEPT_UNSAT_2.png
-            RIV_COND_2.png
+> 00_Getting_started.ipynb    
++01_Water_cycle
+> > Radioactive_Decay.ipynb
+> > Radioactive_Decay_ST.py
+> > Volume_Mass_Budget.ipynb
+>         
++02_Basic_hydrology
+> > Baseflow_recession.py
+> > ETP_Haude.ipynb
+> > ETP_Oudin.ipynb
+> > Green_Ampt_Intro.py
+> > Infiltration_capacity.ipynb
+> > Infiltration_capacity.py
+> > Infiltration_Capacity_Intro.py
+>         
++03_Soil_physics
+> > retention_curves.ipynb
+> > retention_curves.py
+> > retention_curves_exercice.ipynb
+> > Soil_texture_classes.ipynb
+> > Soil_texture_triangle.ipynb
+> > Soil_Water_Retention.ipynb
+> > Soil_Water_Retention_Comparison_Data.py
+> > Soil_Water_Retention_FIG.ipynb
+> > Soil_Water_Retention_ST.py
+> > Soil_Water_Retention_V01.ipynb
+> > Soil_Water_Retention_WB.ipynb
+> >     
++04_Basic_hydrogeology
+> > Darcy.ipynb
+> > Darcy_FIG.ipynb
+> > Flow2well_Thiem_confined.ipynb
+> > Flow2well_Thiem_confined.py
+> > Flow2well_Thiem_confined_superposition.py
+> > Flow2well_Thiem_confined_superposition7.py
+> > Flow2well_Thiem_unconfined.ipynb
+> > Flow2Well_Thiem_unconfined_JUNIOR.py
+> > Flow2Well_Thiem_unconfined_ST.py
+> > Flow2Well_Thiem_unconfined_superposition7.py
+> > Flow2Well_transient_confined.py
+> > Flow2Well_transient_confined_superposition.py
+> > Flow2Well_transient_confined_superposition_JUNIOR.py
+> > Flow2Well_transient_unconfined_confined.py
+> > Ghyben_Herzberg.py
+> > green-ampt-infiltration.ipynb
+> > green_ampt.ipynb
+> > green_ampt.py
+> > green_ampt_data_input.ipynb
+> > green_ampt_data_input_german.ipynb
+> > green_ampt_HydMeth.ipynb
+> > green_ampt_HydMeth_german.ipynb
+> > GWF_1D_analytic_multi_K_calib.ipynb
+> > GWF_1D_analytic_multi_K_calib_v0.ipynb
+> > GWF_1D_unconf_analytic_BC3.ipynb
+> > GWF_1D_unconf_analytic_BC_EX_DE.ipynb
+> > GWF_1D_unconf_analytic_BC_EX_DE.py
+> > GWF_1D_unconf_analytic_calib.py
+> > GWF_1D_unconf_analytic_calib_fix.py
+> > GWF_1D_unconf_analytic_noflow_calib.py
+> > GWF_1D_unconf_analytic_noflow_riv.py
+> > GWF_1D_unconf_analytic_ST.py
+> > GWF_1D_unconf_analytic_v00.ipynb
+> > GWF_1D_unconf_analytic_v01.ipynb
+> > GWF_1D_unconf_conf_analytic.py
+> > GW_recharge.ipynb
+> > Linear_reservoir.py
+> > Linear_reservoir_runoff.ipynb
+> > Linear_reservoir_runoff.py
+> > Mualem.py
+> > QUIZ_how_much_do_I_know_about_hydrogeology.py
+> > read.me
+> > SeaLevelRise.py
+> > time.txt
+> > transient_1d_flow_x.py
+> > transient_1d_flow_xt.ipynb
+> > transient_1d_flow_xt.py
+> > transient_1d_flow_xt_with_intro.ipynb
+> > upconing.py
+> > Well_capture_zone.ipynb
+> > Well_capture_zone_FIG.ipynb
+> > Well_capture_zone_JUNIOR.py
+> > Well_capture_zone_ST.py
+> > Well_capture_zone_SYM.ipynb
+> > Well_capture_zone_uncertainty.py
+> >
+>         
++05_Applied_hydrogeology
+> > analytical_solutions.ipynb
+> > aSolutions_decay_continuous_1D.ipynb
+> > aSolutions_decay_continuous_2D.ipynb
+> > aSolutions_decay_instantaneous.ipynb
+> > aSolutions_noDecay_continuous_1D.ipynb
+> > DCC_Equivalent_Hydr_Cond.ipynb
+> > DCC_Flow_Equations.ipynb
+> > Diffusive_Movement_1D_HydraulicHead.ipynb
+> > erf_erfc.ipynb
+> > erf_erfc_ST.py
+> > example_restAPI.ipynb
+> > GWF_1D_unconf_analytic_calib_fix.py
+> > Hantush_Jacob_s_t_plot_invers.py
+> > Hantush_Jacob_s_t_plot_inverse.ipynb
+> > HCW_number_wells.py
+> > HeatTransport_1D_COND.ipynb
+> > HeatTransport_1D_COND_observations.ipynb
+> > Heat_Cond_Conv_1D.py
+> > Heat_transport_flow_1D.py
+> > leakyAq_example_CooperJacob.ipynb
+> > leakyAq_example_TheisHantush.ipynb
+> > Neuman_s_t_plot_invers.py
+> > Neuman_s_t_plot_inverse.ipynb
+> > pumping_test.ipynb
+> > Slugtest.py
+> > Slugtest_translate.py
+> > solute_transport_superposition_principle.py
+> > superposition_principle.ipynb
+> > Theis_inverse.ipynb
+> > Theis_inverse_ddown.ipynb
+> > Theis_inverse_ddown.py
+> > Theis_inverse_ddown_DATA.py
+> > Theis_inverse_ddown_IT.py
+> > Theis_inverse_ddown_RANDOM.py
+> > Theis_inverse_VITERBO.ipynb
+> > Theis_manual.py
+> > Theis_Neuman_Hantush_inverse_DATA.py
+> > Theis_predict_ddown_distance.ipynb
+> > Theis_predict_ddown_time.ipynb
+> > Theis_predict_vertical_cross_section-unconfined.ipynb
+> > Theis_predict_vertical_cross_section.ipynb
+> > Theis_s_t_plot_invers.py
+> > Theis_s_t_plot_inverse.ipynb
+> > Theis_type_curve.ipynb
+> > Transport_1D_AD.ipynb
+> > Transport_1D_AD_FIG.ipynb
+> > Transport_1D_AD_react_analytic_FIG.ipynb
+> > Transport_1D_AD_ST.py
+> > Transport_1D_AD_WB.ipynb
+> > Transport_1D_Continous.py
+> > Transport_1D_Continous_v2.py
+> > Transport_1D_Dirac_pulse.py
+> > Transport_1D_Dirac_pulse_v2.py
+> > Transport_2D_Continous.py
+> > Transport_2D_Dirac_pulse.py
+> > Transport_3D_Continous.py
+> > Transport_3D_Continous_heat.py
+> > Transport_3D_Dirac_pulse.py
+> > WTF_Recharge.py
+> >     
+> \RISK_ASSESSMENT
+>         db_contaminants.xlsx
+>         risk_assessment_tool.ipynb
+>         
++06_Groundwater_modeling
+> > BC_Intro.py
+> > ex_sgsim_uncond_modflow.ipynb
+> > ex_sgsim_uncond_modflow_rw.ipynb
+> > Figs_Q_h_plot_RIV_2.py.pptx
+> > GWF_1D_analytic_multi_K_calib.ipynb
+> > GWF_1D_conf_analytic_calib.ipynb
+> > GWF_1D_conf_FD.py
+> > GWF_1D_conf_FD_homog.ipynb
+> > GWF_DCC_CFP_Response.ipynb
+> > LumpedModel_Reservoir.ipynb
+> > LumpedModel_Reservoir.py
+> > OBSvSIM.ipynb
+> > Q_h_plot_Cauchy.py
+> > Q_h_plot_DRN.py
+> > Q_h_plot_ET.py
+> > Q_h_plot_GHB.py
+> > Q_h_plot_MNW2.py
+> > Q_h_plot_RIV.py
+> > Q_h_plot_RIV_2.py
+> > Q_h_plot_RIV_2.py.bak
+> > Theis_pumping_Tutorial.py
+> > Timestep_Multiplier.py
+> > Time_Consideration.py
+> > Transport_1D_MT3D.ipynb
+> > Tutorial_2D_Stream.py
+> > Tutorial_2D_Synth.py
+> > Tutorial_2D_Transport.py
+> >     
+>         
++90_Streamlit_apps
+> > 
+> +1D_Unconfined_Flow
+> > > 1D_Unconfined_flow.py
+> > > GWF_1D_Unconfined.py
+> > > 
+> > +assets
+> > > \images
+> > >         1200px-Erasmus+_Logo.svg.png
+> > >         concept_1D_flow_unconfined.png
+> > >         iNUX_wLogo.png
+> > >         thomasreimann.png
+> > >         
+> > \pages
+> >         01_??_Theory.py
+> >         02_??_?? Run Computation.py
+> >         03_??_About.py
+> >         
+> +Dewatering_exercise
+> > > Dewatering_exercise_APP.py
+> > > 
+> > \pages
+> >         1_??_Step_1??.py
+> >         2_??_Step_2??.py
+> >         2_??_Step_2??_TEST.py
+> >         3_??_Step_3??.py
+> >         4_??Step_4??.py
+> >         5_??Step_5??.py
+> >         6_??Step_6??.py
+> >         7_??Step_7??.py
+> >         8_??Step_8??.py
+> >         9_?_Here some theory_??.py
+> >                 
+> +GBC
+> +Groundwater_Model_Calibration_Challenge
+> > > GMC_Challenge.py
+> > > 
+> > +assets
+> > > \images
+> > >         1200px-Erasmus+_Logo.svg.png
+> > >         GWF_008.jpg
+> > >         iNUX_wLogo.png
+> > >         thomasreimann.png
+> > >         wellcapturediagram-sm42.png
+> > >         
+> > \pages
+> >         01_??_Theory.py
+> >         02 Understand_the_System.py
+> >         03_??_?? Calibrate_with_defined_head.py
+> >         04_??_?? Calibrate_with_river.py
+> >         05_??_About.py
+> >         
+> +GWBmC
+> > > GWBmC.py
+> > > 
+> > +assets
+> > > \images
+> > >         1200px-Erasmus+_Logo.svg.png
+> > >         1D_unconfied_BC_2.png
+> > >         1D_unconfied_BC_4.png
+> > >         concept_1D_flow_unconfined.png
+> > >         iNUX_wLogo.png
+> > >         thomasreimann.png
+> > >         wellcapturediagram-sm42.png
+> > >         
+> > \pages
+> >     +Start
+> >     >     content.py
+> >     >     start.py
+> >     >     welcome.py
+> >     >     
+> >     +Topic_1
+> >     >     section1.py
+> >     >     section1proxy.py
+> >     >     
+> >     +Topic_2
+> >     >     GWF_1D_unconf_analytic_BC_EX_DE.py
+> >     >     section2.py
+> >     >     section2proxy.py
+> >     >     
+> >     +Topic_3
+> >     >     section3.py
+> >     >     section3proxy.py
+> >     >     
+> >     +Topic_4
+> >     >     section4.py
+> >     >     section4proxy.py
+> >     >     
+> >     +Topic_5
+> >     >     section5.py
+> >     >     section5proxy.py
+> >     >     
+> >     \Topic_6
+> >             section6.py
+> >             section6proxy.py
+> >             
+> +GWP_1D_Conservative_Transport
+> > > GWP_1D_Transport.py
+> > > GWP_1D_Transport.py.bak
+> > > 
+> > +assets
+> > > \images
+> > >         1200px-Erasmus+_Logo.svg.png
+> > >         1DtransportConceptualModel_1.jpg
+> > >         1DtransportConceptualModel_2.jpg
+> > >         breakthrough_curve.jpg
+> > >         eileen.poeter.jpg
+> > >         iNUX_wLogo.png
+> > >         oriolbertran.jpg
+> > >         thomasreimann.png
+> > >         tracer_input_signals.jpg
+> > >         
+> > \pages
+> >         01_??_Theory.py
+> >         01_??_Theory.py.bak
+> >         02_??_?? Compute Continuous Injection.py
+> >         02_??_?? Compute Continuous Injection.py.bak
+> >         03_??_?? Compute Finite Pulse.py
+> >         03_??_?? Compute Finite Pulse.py.bak
+> >         04_??_About.py
+> >         04_??_About.py.bak
+> >         
+> +GWP_3D_Transport
+> > > GWP_3D_Transport.py
+> > > 
+> > +assets
+> > > \images
+> > >         1200px-Erasmus+_Logo.svg.png
+> > >         1DtransportConceptualModel_1.jpg
+> > >         1DtransportConceptualModel_2.jpg
+> > >         break_through_curve.jpg
+> > >         eileen.poeter.jpg
+> > >         iNUX_wLogo.png
+> > >         oriolbertran.jpg
+> > >         thomasreimann.png
+> > >         tracer_input_signals.jpg
+> > >         
+> > \pages
+> >         01_??_Theory.py
+> >         02_??_?? Compute Continuous Injection 3D.py
+> >         03_??_?? Compute Dirac Pulse 3D.py
+> >         04_??_About.py
+> >         
+> +GWP_Boundary_Conditions
+> > > GWP_Boundary_Conditions.py
+> > > GWP_Boundary_Conditions_utils.py
+> > > 
+> > +assets
+> > > \images
+> > >         1200px-Erasmus+_Logo.svg.png
+> > >         CC_BY-SA_icon.png
+> > >         CC_BY-SA_icon.svg
+> > >         CC_BY-SA_icon_275.png
+> > >         DrainConductance.png
+> > >         DRN.png
+> > >         DRNapplied1.png
+> > >         DRNapplied2.png
+> > >         DRNapplied3.png
+> > >         DRNspring1.png
+> > >         DRNspring2.png
+> > >         eileen.poeter.jpg
+> > >         evekuniansky.png
+> > >         EVT_cartoon2.png
+> > >         final_1.jpg
+> > >         final_2.jpg
+> > >         final_3.jpg
+> > >         GHB.png
+> > >         GHBapplied0.png
+> > >         GHBapplied0_2.png
+> > >         GHBapplied1.png
+> > >         GHBapplied2.png
+> > >         GHBapplied3.png
+> > >         GHBapplied4.png
+> > >         GHBexampleAnderson-etal_modified.png
+> > >         GHBexampleAnderson-etal_modified2.png
+> > >         GHBintro.png
+> > >         GWF_EX01.jpg
+> > >         GWF_EX02.jpg
+> > >         GWF_EX02.png
+> > >         gwp_boundary_EVT.png
+> > >         gwp_boundary_Qh_scheme.png
+> > >         gwp_boundary_Qh_scheme_v2.png
+> > >         gwp_boundary_Qh_scheme_v3.png
+> > >         gwp_boundary_title.png
+> > >         iNUX_wLogo.png
+> > >         MF_6_cells.png
+> > >         MNWsketch.png
+> > >         MNWsketch2.png
+> > >         MNWsketch3.png
+> > >         MNWsketch4.png
+> > >         MNWsketch5.png
+> > >         MNWsketch6.png
+> > >         Q_h_plots_MF2005.png
+> > >         Q_h_plots_MF2005_v2.png
+> > >         Q_h_plots_MF2005_v3.png
+> > >         Q_h_plots_MF6.png
+> > >         Q_h_plots_MF6_v2.png
+> > >         RIV.png
+> > >         river_field_application.jpg
+> > >         RIV_CONCEPT_2.png
+> > >         RIV_CONCEPT_2_v2.png
+> > >         RIV_CONCEPT_2_v3.png
+> > >         RIV_CONCEPT_UNSAT_2.png
+> > >         RIV_CONCEPT_UNSAT_3.png
+> > >         RIV_COND_2.png
+> > >         RIV_nearWell.png
+> > >         Snap10.png
+> > >         thomasreimann.png
+> > >         wss-cycle-groundwater-flow-diagram.jpg
+> > >         
+> > +content
+> > >     GWP_About.py
+> > >     GWP_BC_Abbreviations.py
+> > >     GWP_BC_ExternalExpander.py
+> > >     GWP_BC_LearningMore.py
+> > >     GWP_BC_QHGeneral.py
+> > >     GWP_BC_References.py
+> > >     GWP_Boundary_Conditions_Start.py
+> > >     Q_h_plot_DRN.py
+> > >     Q_h_plot_EVT.py
+> > >     Q_h_plot_GHB.py
+> > >     Q_h_plot_MNW.py
+> > >     Q_h_plot_RIV.py
+> > >     
+> > +docs
+> > >     GWP_Boundary_Conditions_General_Instructions1.md
+> > >     GWP_Boundary_Conditions_General_Instructions2.md
+> > >     GWP_Boundary_Conditions_Start_example.md
+> > >     Q_h_plot_DRN_exercise.md
+> > >     Q_h_plot_DRN_instructions.md
+> > >     Q_h_plot_EVT_exercise.md
+> > >     Q_h_plot_EVT_instructions.md
+> > >     Q_h_plot_GHB_exercise.md
+> > >     Q_h_plot_GHB_instructions.md
+> > >     Q_h_plot_MNW_exercise1.md
+> > >     Q_h_plot_MNW_exercise2.md
+> > >     Q_h_plot_MNW_exercise3.md
+> > >     Q_h_plot_MNW_exercise4.md
+> > >     Q_h_plot_MNW_instructions1.md
+> > >     Q_h_plot_MNW_instructions2.md
+> > >     Q_h_plot_MNW_instructions3.md
+> > >     Q_h_plot_MNW_instructions4.md
+> > >     Q_h_plot_RIV_exercise.md
+> > >     Q_h_plot_RIV_instructions.md
+> > >     
+> > +questions
+> > >     exer_drn.json
+> > >     exer_et.json
+> > >     exer_general_sc1.json
+> > >     exer_general_sc2.json
+> > >     exer_ghb.json
+> > >     exer_mnw_p1.json
+> > >     exer_mnw_p2.json
+> > >     exer_mnw_p3.json
+> > >     exer_mnw_p4.json
+> > >     exer_riv.json
+> > >     final_drn.json
+> > >     final_et.json
+> > >     final_general_behavior.json
+> > >     final_ghb.json
+> > >     final_mnw.json
+> > >     final_riv.json
+> > >     initial_drn.json
+> > >     initial_et.json
+> > >     initial_general_behavior.json
+> > >     initial_ghb.json
+> > >     initial_mnw.json
+> > >     initial_riv.json
+> > >     
+> > \__pycache__
+> >         GWP_Boundary_Conditions_utils.cpython-311.pyc
+> >         
+> +GWP_Flow2WellTheis
+> > > Flow2WellTheis.py
+> > > 
+> > +assets
+> > > \images
+> > >         1200px-Erasmus+_Logo.svg.png
+> > >         Flow_well_confined.png
+> > >         iNUX_wLogo.png
+> > >         thomasreimann.png
+> > >         
+> > \pages
+> >         01_??_Theory.py
+> >         02_??_?? Transient_Flow to a Well.py
+> >         03_??_?? Parameter Estimation.py
+> >         04_??_?? Real Data Parameter Estimation.py
+> >         05 ??_?? Transient_Flow_to_a_Well_for Confined_and_Unconfined_Situations.py
+> >         06_??_About.py
+> >         
+> +GWP_Pumping_Test_Analysis
+> > > PumpingTestAnalysis.py
+> > > 
+> > +assets
+> > > \images
+> > >         1200px-Erasmus+_Logo.svg.png
+> > >         confined_aquifer.png
+> > >         confined_aquifer_2.dhs
+> > >         confined_aquifer_2.png
+> > >         drawdown_aquifer.png
+> > >         eileen.poeter.jpg
+> > >         ferris_infiltration.png
+> > >         ferris_no_flow.png
+> > >         ferris_no_flow_small.png
+> > >         Flow_well_confined.png
+> > >         Flow_well_confined_2.png
+> > >         Hantush_Pirna_example.png
+> > >         Hantush_Varnum_example.png
+> > >         Hantush_Viterbo_example.png
+> > >         iNUX_wLogo.png
+> > >         leaky_aquifer.png
+> > >         leaky_aquifer_2.dhs
+> > >         leaky_aquifer_2.png
+> > >         Neuman_Pirna_example.png
+> > >         Theis_Ideal_example.png
+> > >         Theis_Varnum_example.png
+> > >         Theis_Viterbo_example.png
+> > >         thomasreimann.png
+> > >         unconfined_aquifer.png
+> > >         unconfined_aquifer_2.dhs
+> > >         unconfined_aquifer_2.png
+> > >         
+> > +pages
+> > >     01_??_Theory.py
+> > >     02_??_?? Transient_Flow_to_a_Well.py
+> > >     03_??_?? Theis_solution.py
+> > >     04_??_?? Hantush_Jacob_solution.py
+> > >     05_??_?? Neuman_solution.py
+> > >     06_??_?? Pumping_Test_Analysis.py
+> > >     07_??_?? Parameter_Uncertainty.py
+> > >     08_??_About.py
+> > >     
+> > \questions
+> >         Theis.json
+> >         Theis2.json
+> >         theory.json
+> >         transient_flow.json
+> >         
+> +GWP_Saltwater_Freshwater_Interface
+> > > GWP_Saltwater_Freshwater_Interface.py
+> > > GWP_SFI_utils.py
+> > > 
+> > +content
+> > >     GWP_SFI_Abbreviations.py
+> > >     GWP_SFI_About.py
+> > >     GWP_SFI_Ghyben_Herzberg.py
+> > >     GWP_SFI_Glover.py
+> > >     GWP_SFI_Introduction.py
+> > >     GWP_SFI_LearningMore.py
+> > >     GWP_SFI_Overview.py
+> > >     GWP_SFI_SeaLevelRise.py
+> > >     GWP_SFI_SeaLevelRise_GM.py
+> > >     GWP_SFI_Upconing.py
+> > >     GWP_SFR_References.py
+> > >     
+> > +docs
+> > >     GHY_exercise.md
+> > >     GHY_instructions.md
+> > >     glover_exercise.md
+> > >     GWP_SoilWaterRetention_Start_example.md
+> > >     sealevelrise_exercise.md
+> > >     upconing_exercise.md
+> > >     
+> > +images
+> > >     1200px-Erasmus+_Logo.svg.png
+> > >     CC_BY-SA_icon.png
+> > >     CC_BY-SA_icon.svg
+> > >     CC_BY-SA_icon_275.png
+> > >     Density.png
+> > >     eileen.poeter.jpg
+> > >     GenericSaltwaterIntrusion.jpg
+> > >     GHB.png
+> > >     iNUX_wLogo.png
+> > >     logo_iNUX.jpg
+> > >     Saltwater_intrusion_en.png
+> > >     thomasreimann.png
+> > >     
+> > +questions
+> > >     exer_ghp.json
+> > >     exer_sfi_gm.json
+> > >     ghyben_exer.json
+> > >     ghyben_final.json
+> > >     ghyben_initial.json
+> > >     glover_final.json
+> > >     glover_initial.json
+> > >     sealevelrise_final.json
+> > >     sealevelrise_initial.json
+> > >     upconing_final.json
+> > >     upconing_initial.json
+> > >     
+> > \__pycache__
+> >         GWP_Saltwater_Intrusion_utils.cpython-311.pyc
+> >         GWP_SFI_utils.cpython-311.pyc
+> >         
+> +GWP_SoilWaterRetention
+> > > GWP_SoilWaterRetention_utils.py
+> > > SoilWaterRetention.py
+> > > 
+> > +assets
+> > > +images
+> > > >     1200px-Erasmus+_Logo.svg.png
+> > > >     danielfernandez.png
+> > > >     eileen.poeter.jpg
+> > > >     field_capacity.png
+> > > >     freeze_cherry.png
+> > > >     freeze_cherry_2.png
+> > > >     iNUX_wLogo.png
+> > > >     oriolbertran.jpg
+> > > >     oriolbertranoller.png
+> > > >     retention_curve_mod.png
+> > > >     surface_tension_bear.png
+> > > >     surface_tension_schema.png
+> > > >     SW_intro.png
+> > > >     thomasreimann.png
+> > > >     water_strider.jpg
+> > > >     wellcapturediagram-sm42.png
+> > > >     
+> > > \questions
+> > >         comparison_ass_01.json
+> > >         comparison_ass_02.json
+> > >         ex01_ass_01.json
+> > >         ex01_ass_02.json
+> > >         ex01_ass_03.json
+> > >         ex02_ass_01.json
+> > >         ex02_ass_02.json
+> > >         ex02_ass_03.json
+> > >         interactive_ass_01.json
+> > >         interactive_ass_02.json
+> > >         theory_ass_01.json
+> > >         theory_ass_02.json
+> > >         theory_ass_03.json
+> > >         theory_ass_04.json
+> > >         theory_ass_05.json
+> > >         
+> > +content
+> > >     GWP_SoilWaterRetention_Start.py
+> > >     GWP_SWR_Abbreviations.py
+> > >     GWP_SWR_About.py
+> > >     GWP_SWR_Exercise_1.py
+> > >     GWP_SWR_Exercise_2.py
+> > >     GWP_SWR_LearningMore.py
+> > >     GWP_SWR_References.py
+> > >     GWP_SWR_SWRC in comparison.py
+> > >     GWP_SWR_SWRC_interactive.py
+> > >     GWP_SWR_Theory.py
+> > >     
+> > +docs
+> > >     GWP_SoilWaterRetention_Start_example.md
+> > >     
+> > +pages_old
+> > >     01_??_Theory.py
+> > >     02_??_The SWRC interactive.py
+> > >     03_??_The SWRC in comparison.py
+> > >     04_??_SWRC_Exercise_1.py
+> > >     05_??_SWRC_Exercise_2.py
+> > >     06_??_About.py
+> > >     
+> > +questions
+> > >     comparison_ass_01.json
+> > >     comparison_ass_02.json
+> > >     ex01_ass_01.json
+> > >     ex01_ass_02.json
+> > >     ex01_ass_03.json
+> > >     ex02_ass_01.json
+> > >     ex02_ass_02.json
+> > >     ex02_ass_03.json
+> > >     interactive_ass_01.json
+> > >     interactive_ass_02.json
+> > >     theory_ass_01.json
+> > >     theory_ass_02.json
+> > >     theory_ass_03.json
+> > >     theory_ass_04.json
+> > >     theory_ass_05.json
+> > >     
+> > \__pycache__
+> >         GWP_SoilWaterRetention_utils.cpython-311.pyc
+> >         
+> +GWP_Well_capture
+> > > WellCapture.py
+> > > 
+> > +assets
+> > > \images
+> > >         1200px-Erasmus+_Logo.svg.png
+> > >         iNUX_wLogo.png
+> > >         thomasreimann.png
+> > >         wellcapturediagram-sm42.png
+> > >         
+> > \pages
+> >         01_??_Theory.py
+> >         02_??_?? Run Computation.py
+> >         03_??_About.py
+> >         
+> +GWP_Well_capture2
+> > > WellCapture2.py
+> > > 
+> > +assets
+> > > \images
+> > >         1200px-Erasmus+_Logo.svg.png
+> > >         iNUX_wLogo.png
+> > >         thomasreimann.png
+> > >         wellcapturediagram-sm42.png
+> > >         
+> > \pages
+> >         01_??_Theory.py
+> >         02_??_?? Run Computation.py
+> >         03_??_?? Task Manage accident.py
+> >         04_??_?? Task Manage plume capture.py
+> >         05_??_About.py
+> >         
+> +gw_recharge
+> > > Groundwater_Recharge_App.py
+> > > gw_recharge_functions.py
+> > > 
+> > +data
+> > >     UniGraz1990-2020.csv
+> > >     
+> > +images
+> > >     1200px-Erasmus+_Logo.svg.png
+> > >     CC_BY-SA_icon.png
+> > >     iNUX_wLogo.png
+> > >     Linear_reservoir.png
+> > >     Linear_reservoir_runoff.png
+> > >     water_balance_crop.png
+> > >     water_stress.png
+> > >     
+> > \pages
+> >         01_Intro.py
+> >         02_ETP_Oudin.py
+> >         03_ETP_Haude.py
+> >         04_ETP_PM.py
+> >         05_Groundwater_Recharge.py
+> >         06_Linear_Reservoir.py
+> >         07_About.py
+> >         08_References.py
+> >         
+> +MWW01
+> > > GROWi26.py
+> > > MWW01.py
+> > > 
+> > +assets
+> > > \images
+> > >     > 1200px-Erasmus+_Logo.svg.png
+> > >     > blank_profile.png
+> > >     > iNUX_wLogo.png
+> > >     > Symple_logo.png
+> > >     > thomasreimann.png
+> > >     > wellcapturediagram-sm42.png
+> > >     > 
+> > >     \GWF
+> > >             GWF_001.jpg
+> > >             GWF_002.jpg
+> > >             GWF_003.jpg
+> > >             GWF_004.jpg
+> > >             GWF_005.jpg
+> > >             GWF_006.jpg
+> > >             GWF_007.jpg
+> > >             GWF_008.jpg
+> > >             
+> > +content
+> > >     1D_GWF_Unconfined Recharge_GROWi26.py
+> > >     About.py
+> > >     GROWi26_About.py
+> > >     GROWi26_Start.py
+> > >     GWF_1D_conf_FD_GROWi26.py
+> > >     MF_cells_v2.py
+> > >     MWW01APP.py
+> > >     
+> > +pages
+> > > +01_Intro
+> > > +02_Konzeptionelles_Modell
+> > > +03_Stroemungsmodellierung
+> > > +04_Transportmodellierung
+> > > >     Transport_1D_AD_MWW01.py
+> > > >     WellCapture_MWW01.py
+> > > >     
+> > > \05_Kalibrierung
+> > >         GWF_1D_unconf_analytic_calib.py
+> > >         GWF_1D_unconf_analytic_noflow_calib.py
+> > >         
+> >                     
+> >                 
+> +SYMPLE25
+> > > SYMPLE25.py
+> > > 
+> > +assets
+> > > \images
+> > >     > 1200px-Erasmus+_Logo.svg.png
+> > >     > blank_profile.png
+> > >     > iNUX_wLogo.png
+> > >     > Symple_logo.png
+> > >     > thomasreimann.png
+> > >     > wellcapturediagram-sm42.png
+> > >     > 
+> > >     \GWF
+> > >             GWF_001.jpg
+> > >             GWF_002.jpg
+> > >             GWF_003.jpg
+> > >             GWF_004.jpg
+> > >             GWF_005.jpg
+> > >             GWF_006.jpg
+> > >             GWF_007.jpg
+> > >             GWF_008.jpg
+> > >             
+> > +DATA
+> > >     confined_pumping.csv
+> > >     Confined_pumping.gpt
+> > >     
+> > +pages
+> > > +00_OM
+> > > >     1D_GWF_Unconfined Recharge.py
+> > > >     M0_presentation.py
+> > > >     Motivation_Hydrogeology.py
+> > > >     WellCapture.py
+> > > >     
+> > > +Calibration
+> > > >     GWF_1D_unconf_analytic_calib.py
+> > > >     GWF_1D_unconf_analytic_noflow_calib.py
+> > > >     
+> > > +M1A
+> > > >     Flow2Well_transient_unconfined_confined_basics.py
+> > > >     GWF_1D_unconf_analytic_noflow_calib_basics.py
+> > > >     Heat_transport_flow_1D_basics.py
+> > > >     M1A_1_presentation.py
+> > > >     Radioactive_Decay_basics.py
+> > > >     Transport_1D_AD_basics.py
+> > > >     
+> > > +M1B
+> > > >     Theis_pumping_Tutorial.py
+> > > >     
+> > > +M1C
+> > > >     GWF_1D_conf_FD.py
+> > > >     M1C_3_presentation.py
+> > > >     Tutorial_2D_Synth.py
+> > > >     
+> > > +M1D
+> > > >     M1D_1_presentation.py
+> > > >     
+> > > \ORG
+> > >         About.py
+> > >         About_SYMPLE.py
+> > >         SYMPLE25APP.py
+> > >         
+> > +presentations
+> > > > SlideJet_present_M0.py
+> > > > SlideJet_present_M1A_1.py
+> > > > SlideJet_present_M1A_2.py
+> > > > SlideJet_present_M1A_3.py
+> > > > SlideJet_present_M1D_1.py
+> > > > SYMPLE25_M0_INTRO_slidejet_config.yaml
+> > > > SYMPLE25_M1A_1_slidejet_config.yaml
+> > > > SYMPLE25_M1A_2_slidejet_config.yaml
+> > > > SYMPLE25_M1A_3_slidejet_config.yaml
+> > > > SYMPLE25_M1D_TransportModeling_1_slidejet_config.yaml
+> > > > 
+> > > +90_Streamlit_apps
+> >                 
+> +SYMPLE_Storage
+> > > SYMPLE_Storage.py
+> > > 
+> > +assets
+> > > \images
+> > >         1200px-Erasmus+_Logo.svg.png
+> > >         iNUX_wLogo.png
+> > >         thomasreimann.png
+> > >         wellcapturediagram-sm42.png
+> > >         
+> > \pages
+> >         01_??_Theory.py
+> >         02_??_?? Run Computation.py
+> >         02_??_?? Run Computation_Storage.py
+> >         03_??_About.py
+> >         
+> +Verify_matplotlib
+> >     Verify_matploylib.py
+> >     
+> \Water_Flow_Solute_Transport_GW_Vadose
+>     > FLOWTRANS_GWVZ.py
+>     > 
+>     +assets
+>     > \images
+>     >         1200px-Erasmus+_Logo.svg.png
+>     >         iNUX_wLogo.png
+>     >         
+>     \content
+>         > FLOWTRANS_GWVZ_Start.py
+>         > 
+>         +Section_1
+>         >     bucket_flow_hetero_q_driven.py
+>         >     bucket_flow_homo_h_driven.py
+>         >     bucket_flow_homo_q_driven.py
+>         >     bucket_steady_hetero.py
+>         >     bucket_steady_homo.py
+>         >     section1.py
+>         >     
+>         +Section_10
+>         >     section10.py
+>         >     section10proxy.py
+>         >     
+>         +Section_2
+>         >     bucket_transient_a.py
+>         >     bucket_transient_b.py
+>         >     section2.py
+>         >     
+>         +Section_3
+>         >     section3.py
+>         >     section3proxy.py
+>         >     
+>         +Section_4
+>         >     section4.py
+>         >     Transport_1D_A.py
+>         >     Transport_1D_AD.py
+>         >     Transport_1D_ADR.py
+>         >     Transport_1D_ADRD.py
+>         >     
+>         +Section_5
+>         >     section5.py
+>         >     section5proxy.py
+>         >     
+>         +Section_6
+>         >     section6.py
+>         >     section6proxy.py
+>         >     
+>         +Section_7
+>         >     section7.py
+>         >     section7proxy.py
+>         >     
+>         +Section_8
+>         >     section8.py
+>         >     section8proxy.py
+>         >     
+>         +Section_9
+>         >     section9.py
+>         >     section9proxy.py
+>         >     
+>         \Start
+>                 content.py
+>                 start.py
+>                 welcome.py
+>                 
++98_Templates_Demos
+> > colored_expander.py
+> > copyright_template.py
+> > JSON_QTI.py
+> > Linear_logarithmic_slider.py
+> > Logarithmic_slider.py
+> > Open_Expander_New_Tab.py
+> > 
+> +docs
+> >     example1.md
+> >     example2.md
+> >     ghb_intro.md
+> >     
+> \Multipage_Template
+>     > Multipage_App_Template.py
+>     > 
+>     +assets
+>     > \images
+>     >         1200px-Erasmus+_Logo.svg.png
+>     >         iNUX_wLogo.png
+>     >         
+>     \content
+>             Multipage_Template_Default_Start.py
+>             
++99_INCOMING
+> > Bokeh_inside.py
+> > bokeh_theis_interactive.html
+> > bokeh_transport_model.html
+> > bokeh_upconing_interactive.html
+> > bokeh_upconing_multi_interactive.html
+> > ETP_Haude.ipynb
+> > ETP_Oudin.ipynb
+> > example_restAPI.ipynb
+> > figure-1.PNG
+> > Generate_BOKEH_html.py
+> > Generate_BOKEH_Theis.py
+> > Generate_BOKEH_upconing.py
+> > Ghyben_Herzberg.ipynb
+> > Ghyben_Herzberg.py
+> > Ghyben_Herzberg_simple.ipynb
+> > Glover.ipynb
+> > Glover_simple.ipynb
+> > GW_recharge.ipynb
+> > HFB_DIM.py
+> > Mualem_equation.ipynb
+> > Neuman_plain.ipynb
+> > particle_tracking.ipynb
+> > particle_tracking.py
+> > Pizza.py
+> > readme.md
+> > slider_number_demo.py
+> > solute_transport_superposition_principle.ipynb
+> > survey.py
+> > S_star.py
+> > Test_Plotting.py
+> > Test_Plotting_Streamlit.py
+> > translate.py
+> > Translation_Optimization_Test.py
+> > Travel_time.ipynb
+> > Travel_time_pump.ipynb
+> > Travel_time_uc.ipynb
+> > Upconing.ipynb
+> > Upconing_simple.ipynb
+> > 
+> \ipynb_checkpoints
+> >     Glover_simple-checkpoint.ipynb
+> >     Travel_time_uc-checkpoint.ipynb
+> >     Upconing-checkpoint.ipynb
+> >     Upconing_simple-checkpoint.ipynb
+> >     
+> +DATA
+> >     bokeh_interactive.html
+> >     Confined_pumping.csv
+> >     ETP_data.xlsx
+> >     GW_recharge_data.csv
+> >     Theis_Testing.html
+> >     
+> \Transient_1D_flow
+>     > transient_1d_flow_x.py
+>     > transient_1d_flow_xt.py
+>     > 
+>     \images
+>             CC_BY-SA_icon.png
+>             Fig1_transient_1d_flow_conf.jpg
+>             iNUX_wLogo.png
+                 
+> \obsidian
+> >     core-plugins.json
+> >     
+> +assets
+> > +css
+> > >     back-to-top.css
+> > >     readme.md
+> > >     resource_rendering.css
+> > >     
+> > +images
+> > >     iNUX_Logo.png
+> > >     
+> > +js
+> > >     back-to-top.js
+> > >     
+> > >         
+> > \web_layout
+> >         pages.xlsx
+> >         
+> >     
+> +_includes
+> > > head_custom.html
+> > > 
+> > \components
+> >         nav.html
+> >         
+> +_sass
+> > \color_schemes
+> >         iNUX_colors1.scss
+> >         iNUX_colors1_template.txt
+> >         
+> \_site
+>     > generate_docs.py
+>     > index.html
+>     > LICENSE
+>     > README.md
+>     > 
+>     +assets
+>     > +css
+>     > >     just-the-docs-dark.css
+>     > >     just-the-docs-dark.css.map
+>     > >     just-the-docs-default.css
+>     > >     just-the-docs-default.css.map
+>     > >     just-the-docs-head-nav.css
+>     > >     just-the-docs-light.css
+>     > >     just-the-docs-light.css.map
+>     > >     readme.md
+>     > >     
+>     > +images
+>     > >     iNUX_Logo.png
+>     > >     
+>     > +js
+>     > > > just-the-docs.js
+>     > > > search-data.json
+>     > > > 
+>     > > \vendor
+>     > >         lunr.min.js
+>     > >         
+>     > +resources
+>     > > \030101_en_steffen-birk_20251204_115847
+>     > >         030101_en_steffen-birk_20251204_115847.yaml
+>     > >         030101_en_steffen-birk_20251204_115847_fig1.png
+>     > >         
+>     > \web_layout
+>     >         pages.xlsx
+>     >         pagesinux.xlsx
+>     >         
             
