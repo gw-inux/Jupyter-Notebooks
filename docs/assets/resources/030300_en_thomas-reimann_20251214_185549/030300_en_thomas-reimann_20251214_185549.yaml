@@ -18,6 +18,7 @@ date_released: TO_BE_FILLED_BY_COURSE_MANAGER               # Release date in YY
 description_short: >
   This app demonstrates analytical one-dimensional flow in an unconfined aquifer with uniform recharge, bounded by a no-flow boundary on one side and either a specified-head boundary or a head-dependent boundary on the other. The conceptual setup is designed to illustrate typical groundwater–surface water interaction scenarios, where boundary conditions control whether the aquifer discharges to, or is influenced by, an adjacent surface-water feature.
   
+  
   Users can interactively vary recharge (positive but also negative values) and hydraulic conductivity and, for the head-dependent case, adjust a boundary conductance parameter to explore how boundary formulation changes the hydraulic head distribution. The resulting visualization supports conceptual understanding of recharge-driven flow, no-flow constraints, and the role of head-dependent boundaries in representing groundwater–surface water exchange.
 keywords: [1D groundwater flow, analytical solution, boundary conditions, groundwater surface water interaction]
 multipage_app: false

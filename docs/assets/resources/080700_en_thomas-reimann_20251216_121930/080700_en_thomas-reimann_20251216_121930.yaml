@@ -18,7 +18,9 @@ date_released: TO_BE_FILLED_BY_COURSE_MANAGER               # Release date in YY
 description_short: >
   This interactive app introduces a lumped-parameter reservoir model as a simple conceptual representation of catchment or aquifer response. The system is described by effective parameters for recharge (R), storage (S), and conductance (K), linking inflow, outflow, and hydraulic head through a first-order mass-balance equation.
   
+  
   Users can interactively adjust model parameters and initial conditions to explore the temporal evolution of reservoir head and compare model results with predefined observation data. The app visualizes both the simulated head response and a measured–computed scatter plot, including standard goodness-of-fit metrics (ME, MAE, RMSE), enabling hands-on experience with basic model calibration.
+  
   
   The example is based on teaching materials by John Doherty and is specifically designed to illustrate parameter sensitivity, parameter correlation, and calibration challenges in conceptual models. It is well suited as an introductory exercise for students and professionals learning the fundamentals of model calibration and uncertainty in groundwater and hydrological modeling.
 keywords: [model calibration, lumped model, non uniqueness]
