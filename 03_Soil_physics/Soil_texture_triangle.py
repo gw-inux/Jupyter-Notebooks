@@ -63,11 +63,21 @@ def plot_soil_texture_classes(ax):
     ax.raxis.set_ticks_position("tick2")
 
 def random_point_5pct() -> tuple[int, int, int]:
-    """Random point with 5%-increments as in notebook."""
-    clay = np.random.randint(0, 21) * 5
-    sand = np.random.randint(0, (100 - clay) // 5 + 1) * 5
-    silt = 100 - clay - sand
-    return clay, sand, silt
+    """Random point biased toward the center of the triangle (normal distribution)."""
+
+    # draw from a normal distribution centered on equal proportions
+    vals = np.random.normal(loc=1.0, scale=0.35, size=3)
+    # enforce positivity
+    vals[vals < 0] = 0
+    # normalize to 100 %
+    vals = 100 * vals / vals.sum()
+    # round to nearest 5 %
+    vals = 5 * np.round(vals / 5)
+    # fix rounding so sum is exactly 100
+    diff = 100 - int(vals.sum())
+    vals[np.argmax(vals)] += diff
+
+    return int(vals[0]), int(vals[1]), int(vals[2])
 
 @st.cache_data(show_spinner=False)
 def render_triangle_png(rand_values: tuple[int, int, int]) -> bytes:
