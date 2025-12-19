@@ -1,0 +1,51 @@
+catalog_category: "07 Applied Hydrogeology"
+catalog_subcategory: "07-07 Freshwater–Saltwater Interaction"
+catalog_subsubcategory: "(Attach to subcategory)"
+
+# --- RESOURCE IDENTIFICATION AND TOPIC MAPPING ---
+# item_id: A unique, simple slug for this item (e.g., aquifer_test_1). 
+
+item_id: 0707001
+topic: 07 Freshwater–Saltwater Interaction # Must match the title of the parent catalog page.
+title: The Ghyben-Herzberg Relation    # The full, descriptive name of the resource.
+
+# --- TYPE AND ACCESS ---
+resource_type: Streamlit app            # Required. Options: Streamlit app, Jupyter Notebook, Video, Dataset, Other.
+url: https://ghyben-herzberg.streamlit.app/      # The direct link to launch the app, notebook on Binder, or video on YouTube.
+date_released: TO_BE_FILLED_BY_COURSE_MANAGER               # Release date in YYYY-MM-DD format.
+
+# --- CONTENT AND METADATA ---
+description_short: >
+  This app illustrates the Ghyben–Herzberg relation for the equilibrium between freshwater and seawater in a coastal aquifer under static (no-flow) conditions. Starting from the classical sharp-interface concept, it visualizes how a relatively small freshwater head above sea level supports a much thicker freshwater body below sea level due to the density contrast between fresh and salt water. Users can interactively adjust the freshwater and saltwater densities as well as the freshwater head at the inland boundary, and immediately see how the position of the freshwater–saltwater interface responds. The cross-section plot distinguishes unsaturated zone, freshwater zone, and underlying saltwater, making the app well suited for teaching the basic physics, assumptions, and limitations of the Ghyben–Herzberg theorem in an intuitive, graphical way.
+keywords: [seawater, saltwater, interface]
+multipage_app: false
+num_pages: 0
+interactive_plots: true
+num_interactive_plots: 1
+assessments_included: false
+num_assessment_questions: 0
+videos_included: false
+num_videos: 0
+
+# --- EDUCATIONAL FIT ---
+time_required: 5–15 min             # Estimated time for a student to complete the activity (e.g., 30 minutes, 1.5 hours).
+prerequisites:        # Required prior knowledge (e.g., Darcy's Law, Python basics, basic calculus).
+fit_for:
+  - self learning
+  - classroom teaching
+
+# --- AUTHOR AND REFERENCE ---
+authors:
+  - name: Markus Giese
+    affiliation: University of Gothenburg
+  - name: Thomas Reimann
+    affiliation: TU Dresden
+references: []                            # List any published papers, DOIs, or source materials related to this resource.
+# image_url: Optional path to a screenshot for the catalog page (e.g., /assets/images/resources/flow_tool_screenshot.png)
+
+figures:
+  - id: 1
+    original_filename: Ghyben_Herzberg.png
+    type: Screenshot
+    caption: Freshwater-saltwater interface under static hydraulic conditions
+    is_cover: true

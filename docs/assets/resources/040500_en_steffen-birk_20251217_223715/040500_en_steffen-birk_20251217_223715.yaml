@@ -1,0 +1,58 @@
+catalog_category: "04 Vadose Zone Physics"
+catalog_subcategory: "04-05 Infiltration"
+catalog_subsubcategory: "(Attach to subcategory)"
+
+# --- RESOURCE IDENTIFICATION AND TOPIC MAPPING ---
+# item_id: A unique, simple slug for this item (e.g., aquifer_test_1). 
+
+item_id: 0405001
+topic: 05 Infiltration # Must match the title of the parent catalog page.
+title: Green-Ampt-Model for Infiltration - Intro    # The full, descriptive name of the resource.
+
+# --- TYPE AND ACCESS ---
+resource_type: Streamlit app            # Required. Options: Streamlit app, Jupyter Notebook, Video, Dataset, Other.
+url: https://green-ampt-intro.streamlit.app/      # The direct link to launch the app, notebook on Binder, or video on YouTube.
+date_released: TO_BE_FILLED_BY_COURSE_MANAGER               # Release date in YYYY-MM-DD format.
+
+# --- CONTENT AND METADATA ---
+description_short: >
+  Green–Ampt Model for Infiltration is an interactive learning app that introduces the Green–Ampt infiltration concept for ponded conditions and soil wetting-front dynamics. The app combines a concise theoretical explanation (including typical parameter ranges and example experimental context such as double-ring infiltrometers) with an exploratory workflow where users adjust the key model controls—saturated hydraulic conductivity Kₛ, water-content contrast Δθ, and head difference Δh—to investigate their influence on cumulative infiltration I(t) and infiltration rate i(t) over time.
+  
+  Two linked plots (linear for I(t) and logarithmic for i(t)) support interpretation of early-time suction-driven behavior and long-time convergence toward Kₛ. Users can save multiple parameter sets and overlay them in the same figure to compare scenarios and build intuition for how soil properties and initial conditions shape infiltration responses. The app includes an initial assessment (to check prior knowledge) and a final assessment (to self-check learning gains), making it suitable for self-study, blended learning, and introductory teaching before progressing to more advanced unsaturated-zone approaches (e.g., Richards equation or van Genuchten–Mualem).
+keywords: [Unsaturated zone, infiltration, field experiments]
+multipage_app: false
+num_pages: 0
+interactive_plots: true
+num_interactive_plots: 2
+assessments_included: true
+num_assessment_questions: 8
+videos_included: false
+num_videos: 0
+
+# --- EDUCATIONAL FIT ---
+time_required: 15–30 minutes             # Estimated time for a student to complete the activity (e.g., 30 minutes, 1.5 hours).
+prerequisites: soil properties, soil types, basic hydrogeology       # Required prior knowledge (e.g., Darcy's Law, Python basics, basic calculus).
+fit_for:
+  - self learning
+  - online teaching
+  - classroom teaching
+
+# --- AUTHOR AND REFERENCE ---
+authors:
+  - name: Steffen Birk
+    affiliation: Department of Earth Sciences, University of Graz
+  - name: Edith Grießer
+    affiliation: Department of Earth Sciences, University of Graz
+  - name: Matthias Hausleber
+    affiliation: Department of Earth Sciences, University of Graz
+  - name: Thomas Reimann
+    affiliation: Institute for Groundwater Management, TU Dresden
+references: []                            # List any published papers, DOIs, or source materials related to this resource.
+# image_url: Optional path to a screenshot for the catalog page (e.g., /assets/images/resources/flow_tool_screenshot.png)
+
+figures:
+  - id: 1
+    original_filename: green_ampt_v2.jpg
+    type: Screenshot
+    caption: The app with the interactive plot
+    is_cover: true

@@ -1,0 +1,57 @@
+catalog_category: "04 Vadose Zone Physics"
+catalog_subcategory: "04-05 Infiltration"
+catalog_subsubcategory: "(Attach to subcategory)"
+
+# --- RESOURCE IDENTIFICATION AND TOPIC MAPPING ---
+# item_id: A unique, simple slug for this item (e.g., aquifer_test_1). 
+
+item_id: 0405002
+topic: 05 Infiltration # Must match the title of the parent catalog page.
+title: Horton Infiltration Introduction  # The full, descriptive name of the resource.
+
+# --- TYPE AND ACCESS ---
+resource_type: Streamlit app            # Required. Options: Streamlit app, Jupyter Notebook, Video, Dataset, Other.
+url: https://horton-infiltration-intro.streamlit.app/      # The direct link to launch the app, notebook on Binder, or video on YouTube.
+date_released: TO_BE_FILLED_BY_COURSE_MANAGER               # Release date in YYYY-MM-DD format.
+
+# --- CONTENT AND METADATA ---
+description_short: >
+  This interactive application illustrates the Horton infiltration model and its role in explaining infiltration-excess (Hortonian) overland flow during intense rainfall events. Users explore how infiltration capacity decreases over time from an initial value toward an equilibrium rate and how this behavior controls the partitioning of rainfall into infiltration and surface runoff.
+  
+  The app allows interactive modification of the key Horton parameters—initial infiltration capacity f_0, equilibrium infiltration capacity fc, and decay constant k, as well as rainfall intensity. The resulting time evolution of infiltration capacity is visualized and compared with precipitation, enabling users to identify conditions under which overland flow occurs.
+  
+  Integrated initial and final assessment questions support self-learning and conceptual understanding. The application is suitable for undergraduate and graduate teaching, self-study, and professional training, providing an intuitive introduction to infiltration processes in basic hydrology.
+keywords: [Infiltration, unsaturated zone]
+multipage_app: false
+num_pages: 0
+interactive_plots: true
+num_interactive_plots: 1
+assessments_included: true
+num_assessment_questions: 8
+videos_included: false
+num_videos: 0
+
+# --- EDUCATIONAL FIT ---
+time_required: 15–30 minutes             # Estimated time for a student to complete the activity (e.g., 30 minutes, 1.5 hours).
+prerequisites: Basic hydrology, basic hydrogeology       # Required prior knowledge (e.g., Darcy's Law, Python basics, basic calculus).
+fit_for:
+  - self learning
+  - classroom teaching
+  - online teaching
+  - exam preparation
+
+# --- AUTHOR AND REFERENCE ---
+authors:
+  - name: Markus Giese
+    affiliation: University of Gothenburg
+  - name: Thomas Reimann
+    affiliation: TU Dresden
+references: []                            # List any published papers, DOIs, or source materials related to this resource.
+# image_url: Optional path to a screenshot for the catalog page (e.g., /assets/images/resources/flow_tool_screenshot.png)
+
+figures:
+  - id: 1
+    original_filename: 04_05_Horton.png
+    type: Screenshot
+    caption: The interactive plot with Horton infiltration.
+    is_cover: true
