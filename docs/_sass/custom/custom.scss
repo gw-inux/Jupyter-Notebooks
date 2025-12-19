@@ -2,7 +2,21 @@
   margin-top: 1.25rem;  /* adjust as needed */
 }
 
-.side-bar hr {
-  background: red;
-  height: 6px;
+/* Hide the divider under the site title/search (often a border/shadow/pseudo element) */
+.side-bar .site-header {
+  border-bottom: 0 !important;
+  box-shadow: none !important;
+}
+
+.side-bar .site-header::after,
+.side-bar .site-header::before {
+  content: none !important;
+  display: none !important;
+}
+
+/* Sometimes the line comes from the search wrapper itself */
+.side-bar .search,
+.side-bar .search-input-wrap {
+  border-bottom: 0 !important;
+  box-shadow: none !important;
 }
