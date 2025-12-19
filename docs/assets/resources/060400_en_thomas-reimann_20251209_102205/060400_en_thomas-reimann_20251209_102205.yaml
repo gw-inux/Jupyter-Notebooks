@@ -18,6 +18,7 @@ date_released: TO_BE_FILLED_BY_COURSE_MANAGER               # Release date in YY
 description_short: >
   This application introduces slug tests in unconfined aquifers and provides an interactive environment for evaluating slug test data using the Bouwer & Rice (1976) method. Core explanatory content (text, figure captions, buttons, etc.) can be translated on the fly into multiple languages using an integrated translation routine that preserves Markdown/HTML structure and protects key hydrogeological terminology through a custom dictionary.
   
+  
   Users can work with predefined field datasets (Varnum, Sweden; Viterbo, Italy), upload their own CSV data, or generate synthetic noisy data for practice. The app allows adjusting well and screen parameters, slug size, time offset and hydraulic conductivity, and visualizes the resulting response curve together with measured heads. Optional scatter plots with ME, MAE and RMSE, as well as download functions for figures and data, support quantitative evaluation and self-guided learning about parameter fitting and uncertainty in slug test analysis.
 keywords: [Aquifer test, multilingual, field data]
 multipage_app: false

@@ -18,6 +18,7 @@ date_released: TO_BE_FILLED_BY_COURSE_MANAGER               # Release date in YY
 description_short: >
   This interactive Streamlit app helps learners understand how the relative proportions of sand, silt, and clay define a soil texture class in a soil texture triangle (e.g., FAO, 2006). A randomly generated soil sample is displayed as a red point in a ternary diagram, and users estimate the corresponding percentages by entering values for clay, sand, and silt.
   
+  
   After submitting their guess, the app provides instant feedback indicating which components are correct or incorrect. A restart button generates a new sample point so users can practice repeatedly and build intuition for reading and interpreting soil texture triangles.
 keywords: [soil, soil types, gamification, random parameters]
 multipage_app: false

@@ -18,6 +18,7 @@ date_released: TO_BE_FILLED_BY_COURSE_MANAGER               # Release date in YY
 description_short: >
   Green–Ampt Model for Infiltration is an interactive learning app that introduces the Green–Ampt infiltration concept for ponded conditions and soil wetting-front dynamics. The app combines a concise theoretical explanation (including typical parameter ranges and example experimental context such as double-ring infiltrometers) with an exploratory workflow where users adjust the key model controls—saturated hydraulic conductivity Kₛ, water-content contrast Δθ, and head difference Δh—to investigate their influence on cumulative infiltration I(t) and infiltration rate i(t) over time.
   
+  
   Two linked plots (linear for I(t) and logarithmic for i(t)) support interpretation of early-time suction-driven behavior and long-time convergence toward Kₛ. Users can save multiple parameter sets and overlay them in the same figure to compare scenarios and build intuition for how soil properties and initial conditions shape infiltration responses. The app includes an initial assessment (to check prior knowledge) and a final assessment (to self-check learning gains), making it suitable for self-study, blended learning, and introductory teaching before progressing to more advanced unsaturated-zone approaches (e.g., Richards equation or van Genuchten–Mualem).
 keywords: [Unsaturated zone, infiltration, field experiments]
 multipage_app: false

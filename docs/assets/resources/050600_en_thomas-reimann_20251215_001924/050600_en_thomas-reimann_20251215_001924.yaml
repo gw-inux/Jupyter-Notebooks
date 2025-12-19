@@ -18,7 +18,9 @@ date_released: TO_BE_FILLED_BY_COURSE_MANAGER               # Release date in YY
 description_short: >
   This interactive app illustrates the mass balance of a simple decay chain (A → B → C) using a time-discrete numerical approach. It demonstrates how the decay of one species leads to the production of subsequent species while conserving total mass.
   
+  
   Users can modify initial masses and decay rates and explore the temporal evolution of all three species through interactive plots. The example is motivated by radioactive decay but is formulated generically, making it applicable to a wide range of first-order transformation processes relevant to hydrogeochemistry and reactive solute transport.
+  
   
   The app is primarily intended as a conceptual teaching tool to support the understanding of coupled decay and production processes, mass conservation, and dynamic system behavior in environmental and groundwater-related contexts.
 keywords: [solute transport, decay, half-time, reactive transport, mass balance]

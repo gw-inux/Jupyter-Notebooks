@@ -18,7 +18,9 @@ date_released: TO_BE_FILLED_BY_COURSE_MANAGER               # Release date in YY
 description_short: >
   This interactive application illustrates the Horton infiltration model and its role in explaining infiltration-excess (Hortonian) overland flow during intense rainfall events. Users explore how infiltration capacity decreases over time from an initial value toward an equilibrium rate and how this behavior controls the partitioning of rainfall into infiltration and surface runoff.
   
+  
   The app allows interactive modification of the key Horton parameters—initial infiltration capacity f_0, equilibrium infiltration capacity fc, and decay constant k, as well as rainfall intensity. The resulting time evolution of infiltration capacity is visualized and compared with precipitation, enabling users to identify conditions under which overland flow occurs.
+  
   
   Integrated initial and final assessment questions support self-learning and conceptual understanding. The application is suitable for undergraduate and graduate teaching, self-study, and professional training, providing an intuitive introduction to infiltration processes in basic hydrology.
 keywords: [Infiltration, unsaturated zone]
