@@ -3,55 +3,111 @@ import numpy as np
 import matplotlib.pyplot as plt
 import streamlit as st
 
+# also 03-05-003
+# Todo
+# log slider
+# number input
+
+# Authors, institutions, and year
+year = 2025 
+authors = {
+    "Thomas Reimann": [1]  # Author 1 belongs to Institution 1
+}
+institutions = {
+    1: "TU Dresden, Institute for Groundwater Management"
+    
+}
+index_symbols = ["¹", "²", "³", "⁴", "⁵", "⁶", "⁷", "⁸", "⁹"]
+author_list = [f"{name}{''.join(index_symbols[i-1] for i in indices)}" for name, indices in authors.items()]
+institution_list = [f"{index_symbols[i-1]} {inst}" for i, inst in institutions.items()]
+institution_text = " | ".join(institution_list)
+
+
+#--- Functions
+def compute_R(Q, K, H, r_w):
+    dry = False
+    h = max(0.0, 0.5 * H)   # initial guess
+    max_it = 200
+    tol = 1e-6
+
+    for _ in range(max_it):
+        s = H - h
+        R = 3000.0 * s * np.sqrt(K)
+
+        # guard: Sichardt must give R > r_w
+        if R <= r_w:
+            dry = True
+            return R, 0.0, dry
+
+        discr = H**2 - (Q / (np.pi * K)) * np.log(R / r_w)
+
+        if discr <= 0.0:
+            dry = True
+            return R, 0.0, dry
+
+        h_new = np.sqrt(discr)
+
+        if abs(h_new - h) < tol:
+            h = h_new
+            break
+
+        h = h_new
+
+    # final recompute with converged h
+    s = H - h
+    R = 3000.0 * s * np.sqrt(K)
+    return R, h, dry
+
+
+def compute_h(Q,K,H,R,r):
+    h = np.sqrt (H**2 - (Q  / (np.pi * K) * np.log(R / r)))
+    return h
+    
+#--- User Interface
+
 st.title('Steady-State Flow to a Well in an Unconfined Aquifer - Drawdown with the Thiem equation')
 
 # Input
 # Import parameter
 log_min = -7.0 # K / Corresponds to 10^-7 = 0.0000001
 log_max = 0.0  # K / Corresponds to 10^0 = 1
-columns = st.columns((1,1), gap = 'large')
+
+columns = st.columns((1,1,1))
 
 with columns[0]:
-    x_max = st.slider('xmax',50,10000,2000,50)
-    H = st.slider('H',1.,100.,15.,0.01)
-    r_w   = st.slider('r_w',0.01,1.,0.3,0.01)
+    with st.expander('Adjust the plot'):
+        x_max = st.slider('x_max of the plot (m)', 10,10000,5000,50, format="%5i")
+    
 with columns[1]:
-    K_slider_value=st.slider('(log of) **Hydr. conductivity (m/s)**', log_min,log_max,-3.0,0.01,format="%4.2f" )
-    # Convert the slider value to the logarithmic scale
-    K = 10 ** K_slider_value
-    # Display the logarithmic value
-    st.write("_Hydraulic conductivity (m/s):_ %5.2e" %K)
-    Q     = st.slider('Q',0.001,0.5,0.01,0.001,format="%5.3f")
-    
-# Function to calculate the hydraulic head h in an unsaturated aquifer as a function of distance r
-def compute_R(Q,K,H,r_w):
-    # Initial guess for h (starting at H) and R
-    dry = False
-    h = H/2       
-    max_it = 1000  # Limit on iterations to prevent infinite loops
-    tol = 1e-6     # Convergence tolerance
-    for iteration in range(max_it):
-        R = 3000 * (H-h) * np.sqrt(K)
-        h_new = np.sqrt(H**2-(Q/(np.pi*K) * np.log(R/r_w)))       
-        # Check for convergence
-        if np.abs(h_new - h) < tol:
-            break     
-        # Check for dry condition
-        if (H**2-(Q/(np.pi*K) * np.log(R/r_w))) < 0.0:
-            dry = True
-            break  
-    R = 3000 * (H-h) * np.sqrt(K)
-    return R, h, dry
+    with st.expander('Adjust the aquifer parameters'):
+        H =  st.slider('Unaffected hydraulic head (m)', 1.,100.,50.,0.01, format="%5.2f")
+        K_slider_value=st.slider('(log of) **Hydr. conductivity (m/s)**', log_min,log_max,-3.0,0.01,format="%4.2f" )
+        # Convert the slider value to the logarithmic scale
+        K = 10 ** K_slider_value
+        # Display the logarithmic value
+        st.write("_Hydraulic conductivity (m/s):_ %5.2e" %K)
+with columns[2]:
+    with st.expander('Adjust the well characteristics'):
+        r_w = st.slider('Well radius (m)', 0.01,1.,0.3,0.01, format="%4.2f")
+        ddwn = st.toggle('Abstraction _Q_ or Drawdown _s_?')
+        if ddwn:
+            s = st.slider('Drawdown (m)', 0.01, 10.0, 0.2, 0.01, format="%5.2f")
+        else:
+            Q = st.slider('Abstraction rate (m3/s)', 0.001,0.2,0.05,0.001, format="%5.3f")
 
-def compute_h(Q,K,H,R,r):
-    h = np.sqrt (H**2 - (Q  / (np.pi * K) * np.log(R / r)))
-    return h
-    
-#run the initial iteration to get R
-R, h_w, dry = compute_R(Q,K,H,r_w)
+# Initialize
+if ddwn:
+    R = 3000 * s * K**0.5
+    h_w = H - s
+    numerator = H**2 - h_w**2  # = 2 H s - s^2
+    Q = np.pi * K * numerator / np.log(R / r_w)
+    dry = False
+else:
+    # User specifies Q per well: determine R, h_w, and potential dry condition
+    R, h_w, dry = compute_R(Q, K, H, r_w)
 
 #COMPUTE h(r)
-dry
+#dry
 r = np.arange(r_w, R, 0.01) 
 rm = r*-1
 h = compute_h(Q, K, H, R, r)
@@ -89,6 +145,21 @@ if dry:
     ax.text((x_max/2),2.5,'well running dry',color='red')
 else:
     ax.text((x_max/2),1,'unconfined aquifer')
-
     
 st.pyplot(fig)
+
+st.markdown(f"""
+### Model Output
+**Drawdown at the well:** {H-h[0]:.3f} m  
+**Abstraction rate (Q):** {Q:.3f} m³/s  
+"""
+)
+
+"---"
+
+# --- Render footer with authors, institutions, and license logo in a single line
+columns_lic = st.columns((5,1))
+with columns_lic[0]:
+    st.markdown(f'Developed by {", ".join(author_list)} ({year}). <br> {institution_text}', unsafe_allow_html=True)
+with columns_lic[1]:
+    st.image('FIGS/CC_BY-SA_icon.png')

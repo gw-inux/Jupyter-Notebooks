@@ -190,6 +190,8 @@ st.markdown(f"""
 """
 )
 
+"---"
+
 # --- Render footer with authors, institutions, and license logo in a single line
 columns_lic = st.columns((5,1))
 with columns_lic[0]:
