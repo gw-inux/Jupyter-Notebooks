@@ -4,6 +4,11 @@ import matplotlib.pyplot as plt
 import scipy.special
 import streamlit as st
 
+# also 03-05-008
+# Todo
+# log slider
+# number input
+
 # --- Authors, institutions, and year
 year = 2025 
 authors = {
