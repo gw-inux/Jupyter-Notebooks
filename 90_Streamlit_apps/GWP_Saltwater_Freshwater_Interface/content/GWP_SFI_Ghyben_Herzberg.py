@@ -67,7 +67,7 @@ institution_text = " | ".join(institution_list)
 # ---------- Define paths, loading files
 # --- path to questions for the assessments (direct path)
 path_quest_ini   = st.session_state.module_path + "questions/ghyben_initial.json"
-path_quest_exer =  st.session_state.module_path + "questions/ghyben_exer.json"
+path_quest_exer =  st.session_state.module_path + "docs/ghyben_exer.json"
 path_quest_final = st.session_state.module_path + "questions/ghyben_final.json"
 
 # Load questions

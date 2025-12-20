@@ -6,6 +6,11 @@ from streamlit_book import multiple_choice
 from streamlit_scroll_to_top import scroll_to_here
 from GWP_SFI_utils import read_md
 
+# TO DO: 
+# - Json-files (existing!) instead of questions
+# - Import of questions
+
+
 # ---------- Track the current page
 PAGE_ID = "GLO"
 
@@ -39,6 +44,43 @@ institution_list = [f"{index_symbols[i-1]} {inst}" for i, inst in institutions.i
 institution_text = " | ".join(institution_list)
 
 # ---------- Define paths, loading files
+# --- path to questions for the assessments (direct path)
+path_quest_ini   = st.session_state.module_path + "questions/glover_initial.json"
+path_quest_exer =  st.session_state.module_path + "docs/glover_exer.json"
+path_quest_final = st.session_state.module_path + "questions/glover_final.json"
+
+# Load questions
+with open(path_quest_ini, "r", encoding="utf-8") as f:
+    quest_ini = json.load(f)
+    
+with open(path_quest_exer, "r", encoding="utf-8") as f:
+    quest_exer = json.load(f)
+    
+with open(path_quest_final, "r", encoding="utf-8") as f:
+    quest_final = json.load(f)
+
+#---------- FUNCTIONS
+def glover(i, b, rho_f, rho_s):
+    h = (2 * i * b * (1000 - x_land) * rho_f / (rho_s - rho_f))**0.5
+    z = (2 * i * b * (1000 - x_land) / (rho_s - rho_f) + (i * b * rho_f / (rho_s - rho_f))**2)**0.5
+    z_0 = (rho_f / (rho_s - rho_f)) * i * b
+    L = (i * b * rho_f) / (2 * (rho_s - rho_f))
+    x_f = (b * (rho_s - rho_f)) / (2 * i * rho_f)
+    return h, z, z_0, L, x_f
+    
+def sea_surface(x, p):
+    """Erzeugt eine gekrümmte ansteigende Funktion von (1000,0) bis (1200,30) mit starkem Anfangsgradient."""
+    return 50 * (1 - ((1200 - x) / 200) ** p)*-1
+
+# Callback function to update session state
+def update_b():
+    st.session_state.b = st.session_state.b_input
+def update_i():
+    st.session_state.i = st.session_state.i_input
+def update_rho_s():
+    st.session_state.rho_s = st.session_state.rho_s_input
+def update_rho_f():
+    st.session_state.rho_f = st.session_state.rho_f_input
 
 #---------- UI Starting here
 st.title('Glover Equation')
@@ -55,6 +97,7 @@ st.markdown("""
 
 - Serves as a **screening tool** before using full variable-density numerical models, making it valuable for both teaching and practice.
 """)
+
 
 st.markdown(r"""
 #### 🎯 Learning Objectives
@@ -133,29 +176,6 @@ $$
 """, unsafe_allow_html=True)
 
 st.subheader('Interactive Plot and Exercise', divider="violet")
-
-def glover(i, b, rho_f, rho_s):
-    h = (2 * i * b * (1000 - x_land) * rho_f / (rho_s - rho_f))**0.5
-    z = (2 * i * b * (1000 - x_land) / (rho_s - rho_f) + (i * b * rho_f / (rho_s - rho_f))**2)**0.5
-    z_0 = (rho_f / (rho_s - rho_f)) * i * b
-    L = (i * b * rho_f) / (2 * (rho_s - rho_f))
-    x_f = (b * (rho_s - rho_f)) / (2 * i * rho_f)
-    return h, z, z_0, L, x_f
-    
-def sea_surface(x, p):
-    """Erzeugt eine gekrümmte ansteigende Funktion von (1000,0) bis (1200,30) mit starkem Anfangsgradient."""
-    return 50 * (1 - ((1200 - x) / 200) ** p)*-1
-st.markdown(""" #### :violet[INPUT CONTROLS]""")
-# Callback function to update session state
-def update_b():
-    st.session_state.b = st.session_state.b_input
-def update_i():
-    st.session_state.i = st.session_state.i_input
-def update_rho_s():
-    st.session_state.rho_s = st.session_state.rho_s_input
-def update_rho_f():
-    st.session_state.rho_f = st.session_state.rho_f_input
-
 
 # User input
 # Initialize session state for value and toggle state

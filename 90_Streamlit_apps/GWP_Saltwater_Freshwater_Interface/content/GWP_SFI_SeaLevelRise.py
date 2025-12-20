@@ -41,7 +41,68 @@ institution_list = [f"{index_symbols[i-1]} {inst}" for i, inst in institutions.i
 institution_text = " | ".join(institution_list)
 
 # ---------- Define paths, loading files
+path_quest_ini   = st.session_state.module_path + "questions/sealevelrise_initial.json"
+path_quest_exer =  st.session_state.module_path + "docs/sealevelrise_exer.json"
+path_quest_final = st.session_state.module_path + "questions/sealevelrise_final.json"
 
+# Load questions
+with open(path_quest_ini, "r", encoding="utf-8") as f:
+    quest_ini = json.load(f)
+    
+with open(path_quest_exer, "r", encoding="utf-8") as f:
+    quest_exer = json.load(f)
+    
+with open(path_quest_final, "r", encoding="utf-8") as f:
+    quest_final = json.load(f)
+
+#---------- FUNCTIONS
+def sea_surface(x, theta):
+    x = np.linspace(0, xmax, 1000)
+    return np.tan(np.radians(theta)) * x
+
+def sealevelrise(z0, W, K, L0, rho_f, rho_s, theta, delta_z0, x):
+
+    delta_rho = rho_s - rho_f
+    alpha = ((W * delta_rho) / (K * (rho_f + delta_rho)))**0.5
+    h_x = alpha*(L0**2 - x**2)**0.5
+    z_x = (rho_f / delta_rho) * h_x
+    beta = rho_f / delta_rho   
+    x_T = (L0**2 - (z0 / (alpha * beta))**2)**0.5
+    I_x = delta_z0 + ((-alpha**2 * delta_z0) / np.tan(np.radians(theta)) * (2 * L0 - delta_z0 / np.tan(np.radians(theta))) + h_x**2)**0.5 - h_x
+    delta_x_T = ((L0 - (delta_z0/np.tan(np.radians(theta))))**2 -((z0 + delta_z0) / (alpha * beta))**2)**0.5 - (L0**2 - (z0/(alpha*beta))**2)**0.5
+    delta_L = delta_z0/np.tan(np.radians(theta))
+    inu = delta_L * np.tan(np.radians(theta))
+#    h_new_x = alpha*(((L0-delta_z0/np.tan(np.radians(theta)))**0.5 - x**2)**0.5 - (L0**2-x**2)**0.5) 
+#    h_new_x = delta_z0 + ((-alpha**2 * delta_z0) / np.tan(np.radians(theta)) * (2 * L0 - delta_z0 / np.tan(np.radians(theta))) + h_x**2)**0.5
+    h_new_x = h_x + I_x
+    I_new_x = (rho_f / delta_rho) * (h_x - I_x)
+    z_new_x = (rho_f / delta_rho) * (h_new_x- delta_z0)
+    delta_V =  (z0+delta_z0) * (x_T-delta_x_T) - z0 * x_T + (alpha * np.pi * (1 + beta) / 4) * ((L0-delta_L)**2 - L0**2) + alpha * beta * (x_T * (L0**2 + x_T**2)**0.5 - (x_T-delta_x_T) * ((L0-delta_L)**2 + (x_T-delta_x_T)**2)*0.5)
+    return h_x, z_x, x_T, I_x, delta_x_T, delta_L, h_new_x, z_new_x, delta_V
+
+def update_K():
+    st.session_state.K = st.session_state.K_input
+def update_n():
+    st.session_state.n = st.session_state.n_input
+def update_W():
+    st.session_state.W = st.session_state.W_input
+def update_z0():
+    st.session_state.z0 = st.session_state.z0_input
+def update_rho_s():
+    st.session_state.rho_s = st.session_state.rho_s_input
+def update_rho_f():
+    st.session_state.rho_f = st.session_state.rho_f_input
+def update_L0():
+    st.session_state.L0 = st.session_state.L0_input
+def update_theta():
+    st.session_state.theta = st.session_state.theta_input
+def update_delta_z0():
+    st.session_state.delta_z0 = st.session_state.delta_z0_input
+def update_h0_x():
+    st.session_state.h0_x = st.session_state.h0_x_input
+def land_surface(x, theta, xmin):
+    return -np.tan(np.radians(theta)) * x + xmin
+    
 #---------- UI Starting here
 
 st.title("Sea Level Rise")
@@ -116,54 +177,7 @@ The conceptual model rests on a number of simplifying assumptions. Flow is treat
 st.subheader('Interactive Plot and Exercise', divider="orange")
 st.markdown(""" #### :orange[INPUT CONTROLS]""")
 
-def update_K():
-    st.session_state.K = st.session_state.K_input
-def update_n():
-    st.session_state.n = st.session_state.n_input
-def update_W():
-    st.session_state.W = st.session_state.W_input
-def update_z0():
-    st.session_state.z0 = st.session_state.z0_input
-def update_rho_s():
-    st.session_state.rho_s = st.session_state.rho_s_input
-def update_rho_f():
-    st.session_state.rho_f = st.session_state.rho_f_input
-def update_L0():
-    st.session_state.L0 = st.session_state.L0_input
-def update_theta():
-    st.session_state.theta = st.session_state.theta_input
-def update_delta_z0():
-    st.session_state.delta_z0 = st.session_state.delta_z0_input
-def update_h0_x():
-    st.session_state.h0_x = st.session_state.h0_x_input
-def land_surface(x, theta, xmin):
-    return -np.tan(np.radians(theta)) * x + xmin
-
 # 3.49 ersetzen mit irgendwas: xmax = z0/np.tan(np.radians(theta))
-
-def sea_surface(x, theta):
-    x = np.linspace(0, xmax, 1000)
-    return np.tan(np.radians(theta)) * x
-
-def sealevelrise(z0, W, K, L0, rho_f, rho_s, theta, delta_z0, x):
-
-    delta_rho = rho_s - rho_f
-    alpha = ((W * delta_rho) / (K * (rho_f + delta_rho)))**0.5
-    h_x = alpha*(L0**2 - x**2)**0.5
-    z_x = (rho_f / delta_rho) * h_x
-    beta = rho_f / delta_rho   
-    x_T = (L0**2 - (z0 / (alpha * beta))**2)**0.5
-    I_x = delta_z0 + ((-alpha**2 * delta_z0) / np.tan(np.radians(theta)) * (2 * L0 - delta_z0 / np.tan(np.radians(theta))) + h_x**2)**0.5 - h_x
-    delta_x_T = ((L0 - (delta_z0/np.tan(np.radians(theta))))**2 -((z0 + delta_z0) / (alpha * beta))**2)**0.5 - (L0**2 - (z0/(alpha*beta))**2)**0.5
-    delta_L = delta_z0/np.tan(np.radians(theta))
-    inu = delta_L * np.tan(np.radians(theta))
-#    h_new_x = alpha*(((L0-delta_z0/np.tan(np.radians(theta)))**0.5 - x**2)**0.5 - (L0**2-x**2)**0.5) 
-#    h_new_x = delta_z0 + ((-alpha**2 * delta_z0) / np.tan(np.radians(theta)) * (2 * L0 - delta_z0 / np.tan(np.radians(theta))) + h_x**2)**0.5
-    h_new_x = h_x + I_x
-    I_new_x = (rho_f / delta_rho) * (h_x - I_x)
-    z_new_x = (rho_f / delta_rho) * (h_new_x- delta_z0)
-    delta_V =  (z0+delta_z0) * (x_T-delta_x_T) - z0 * x_T + (alpha * np.pi * (1 + beta) / 4) * ((L0-delta_L)**2 - L0**2) + alpha * beta * (x_T * (L0**2 + x_T**2)**0.5 - (x_T-delta_x_T) * ((L0-delta_L)**2 + (x_T-delta_x_T)**2)*0.5)
-    return h_x, z_x, x_T, I_x, delta_x_T, delta_L, h_new_x, z_new_x, delta_V 
 
 st.session_state.z0=50
 st.session_state.W=0.0014
