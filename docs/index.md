@@ -35,15 +35,64 @@ For immediate, browser-based access, Streamlit apps offer the most direct entry 
 
 ---
 
-## 📊 Featured Interactive Tool: Radioactive Decay App
+## 📊 Featured Interactive Tools
 
-Get started immediately with a powerful simulation tool.
+The iNUX catalog offers a wide range of interactive documents. The following selection highlights applications that illustrate different levels of complexity, pedagogical depth, and user interaction.
 
-**Purpose:** Investigate the mass balance for substances undergoing decay. Define initial mass and decay rates for three components to analyze their mass balance over time.
+---
+
+### ⚛️ Radioactive Decay App
+
+A **compact and intuitive visualization tool** for exploring fundamental concepts of mass balance and decay. More details in section *05-06 Hydrogeochemistry and Contaminant Transport/Reactive Solute Transport*
+
+**Purpose:** Explore radioactive decay by defining initial masses and decay rates for multiple components and analyzing their mass balance over time.  
+
+**Characteristic:** Simple, focused visualization supporting conceptual understanding of decay processes and mass conservation.
 
 **Access:** <a href="https://radioactive-decay.streamlit.app/" target="_blank" rel="noopener noreferrer"><strong>Radioactive Decay App</strong></a>
 
 <img src="./assets/images/05_06_radioactive_decay.png" alt="Screenshot of the Radioactive Decay Streamlit application" width="400"/>
+
+---
+
+### 🧭 Boundary Conditions – Introduction
+
+An **educational self-learning application** introducing boundary conditions commonly used in groundwater modeling. More details in section *08-01 Groundwater Modeling/Conceptual Model Development*
+
+**Purpose:** Support understanding of boundary-condition concepts and their influence on groundwater flow systems through interactive examples.  
+**Characteristic:** Structured learning tool combining visualizations, explanatory text, and embedded assessment questions.
+
+**Access:** <a href="https://gwp-boundary-conditions-intro.streamlit.app/" target="_blank" rel="noopener noreferrer"><strong>Boundary Conditions – Introduction</strong></a><br>This app is also distributed through <a href="https://gw-project.org/interactive-education/introduction-to-boundary-conditions-for-groundwater-modeling/" target="_blank" rel="noopener noreferrer">The Groundwater Project.</a>
+
+<img src="./assets/images/BC_Intro_01.jpg" alt="Screenshot of the Boundary Conditions-Intro app" width="400"/>
+
+---
+
+### 📉 Pumping Test Module
+
+A **comprehensive teaching and learning module** covering the analysis and interpretation of pumping tests. More details in section *06-04 Experimental Techniques and Methods/Aquifer Characterization*
+
+**Purpose:** Enable systematic evaluation of pumping test data to estimate aquifer parameters and understand aquifer behavior.  
+**Characteristic:** Integrated framework combining theory, interactive plots, parameter estimation, exercises, and explanatory material.
+
+**Access:** <a href="https://gwp-pumping-test-analysis.streamlit.app/" target="_blank" rel="noopener noreferrer"><strong>Pumping Test Module</strong></a><br>This app is also distributed through <a href="https://gw-project.org/interactive-education/pumping-test-analysis/" target="_blank" rel="noopener noreferrer">The Groundwater Project.</a>
+
+<img src="./assets/images/pumping_test_02.jpg" alt="Screenshot of the Pumping Test module" width="400"/>
+
+---
+
+### 🌍 Slug Test Evaluation App
+
+An **advanced interactive evaluation tool** for slug test analysis with extended user interaction. More details in section *06-04 Experimental Techniques and Methods/Aquifer Characterization*
+
+**Purpose:** Analyze slug test data interactively to estimate hydraulic parameters using established evaluation methods.  
+
+**Characteristic:** Multilingual application featuring interactive plots, user-defined data upload, and embedded instructional video material.
+
+**Access:** <a href="https://slugtest-multilingual.streamlit.app/" target="_blank" rel="noopener noreferrer"><strong>Slug Test Evaluation App</strong></a>
+
+<img src="./assets/images/Slugtest_01.jpg" alt="Screenshot of the Slug Test evaluation app" width="400"/>
+
 
 ---
 
