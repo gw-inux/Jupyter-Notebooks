@@ -5,9 +5,9 @@ nav_order: 1
 has_children: True
 ---
 
-# <img src="./assets/images/iNUX_Logo.png" alt="iNUX logo" style="height:4rem; vertical-align:middle; margin-right:0.5rem;"> **The iNUX PROJECT**
+# <img src="./assets/images/iNUX_Logo.png" alt="iNUX logo" style="height:4rem; vertical-align:middle; margin-right:0.5rem;"> **The iNUX Catalog** of Interactive Documents
 
-***Interactive Understanding of Groundwater Hydrology and Hydrogeology***
+***iNUX - Interactive Understanding of Groundwater Hydrology and Hydrogeology***
 
 *An ERASMUS+ cooperation project*
 
