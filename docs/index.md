@@ -5,13 +5,13 @@ nav_order: 1
 has_children: True
 ---
 
-# <img src="./assets/images/iNUX_Logo.png" alt="iNUX logo" style="height:3rem; vertical-align:middle; margin-right:0.5rem;"> **The iNUX PROJECT**
+# <img src="./assets/images/iNUX_Logo.png" alt="iNUX logo" style="height:4rem; vertical-align:middle; margin-right:0.5rem;"> **The iNUX PROJECT**
 
 ***Interactive Understanding of Groundwater Hydrology and Hydrogeology***
 
 *An ERASMUS+ cooperation project*
 
-## Overview
+## 💡 Overview
 
 Welcome to the iNUX catalog of interactive documents.
 
@@ -35,7 +35,7 @@ For immediate, browser-based access, Streamlit apps offer the most direct entry 
 
 ---
 
-## Featured Interactive Tool: Radioactive Decay App
+## 📊 Featured Interactive Tool: Radioactive Decay App
 
 Get started immediately with a powerful simulation tool.
 
