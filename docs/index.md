@@ -73,11 +73,7 @@ A **comprehensive teaching and learning module** covering the analysis and inter
 
 | **Purpose** | Enable systematic analysis and interpretation of pumping test data to estimate aquifer parameters and assess aquifer behavior. |
 | **Characteristic** | Comprehensive teaching and learning module integrating theory, interactive plots, parameter estimation, exercises, and explanatory material. |
-| **Access** | <a href="LINK_TO_PUMPING_TEST_MODULE" target="_blank" rel="noopener noreferrer"><strong>Pumping Test Module</strong></a><br>
-This app is also distributed through 
-<a href="https://gw-project.org/interactive-education/pumping-test-analysis/" target="_blank" rel="noopener noreferrer">
-  <strong>The Groundwater Project</strong>
-</a> |
+| **Access** | <a href="LINK_TO_PUMPING_TEST_MODULE" target="_blank" rel="noopener noreferrer"><strong>Pumping Test Module</strong></a><br>This app is also distributed through <a href="https://gw-project.org/interactive-education/pumping-test-analysis/" target="_blank" rel="noopener noreferrer"><strong>The Groundwater Project</strong></a> |
 | **More details** | [**06-04 Experimental Techniques and Methods/Aquifer Characterization**](https://gw-inux.github.io/Jupyter-Notebooks/pages/060400_en.html) |
 
 <p align="center">
