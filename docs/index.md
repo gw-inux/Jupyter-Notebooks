@@ -5,7 +5,7 @@ nav_order: 1
 has_children: True
 ---
 
-# <img src="./assets/images/inux_logo.png" alt="iNUX logo" style="height:3rem; vertical-align:middle; margin-right:0.5rem;"> **The iNUX PROJECT**
+# <img src="./assets/images/iNUX_Logo.png" alt="iNUX logo" style="height:3rem; vertical-align:middle; margin-right:0.5rem;"> **The iNUX PROJECT**
 
 ***Interactive Understanding of Groundwater Hydrology and Hydrogeology***
 
@@ -40,6 +40,7 @@ For immediate, browser-based access, Streamlit apps offer the most direct entry 
 Get started immediately with a powerful simulation tool.
 
 **Purpose:** Investigate the mass balance for substances undergoing decay. Define initial mass and decay rates for three components to analyze their mass balance over time.
+
 **Access:** <a href="https://radioactive-decay.streamlit.app/" target="_blank" rel="noopener noreferrer"><strong>Radioactive Decay App</strong></a>
 
 <img src="./assets/images/05_06_radioactive_decay.png" alt="Screenshot of the Radioactive Decay Streamlit application" width="400"/>
