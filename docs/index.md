@@ -46,7 +46,7 @@ A **compact and intuitive visualization tool** for exploring fundamental concept
 
 | **Purpose** | Explore radioactive decay by defining initial masses and decay rates for multiple components and analyzing their mass balance over time. |
 | **Characteristic** | Simple, focused visualization supporting conceptual understanding of decay processes and mass conservation. |
-| **Access** | <a href="https://radioactive-decay.streamlit.app/" target="_blank" rel="noopener noreferrer"><strong>Radioactive Decay App</strong></a> |
+| **Access** | <a href="https://radioactive-decay.streamlit.app/" target="_blank" rel="noopener noreferrer"><strong>Start the Radioactive Decay App</strong></a> |
 | **More details** | [**05-06 Hydrogeochemistry and Contaminant Transport/Reactive Solute Transport**](https://gw-inux.github.io/Jupyter-Notebooks/pages/050600_en.html) |
 
 <p align="center">
@@ -60,7 +60,7 @@ An **educational self-learning application** introducing boundary conditions com
 
 | **Purpose** | Support understanding of common boundary-condition concepts and their influence on groundwater flow systems through interactive examples. |
 | **Characteristic** | Structured self-learning application combining interactive visualizations, explanatory text, and embedded assessment questions. |
-| **Access** | <a href="https://gwp-boundary-conditions-intro.streamlit.app/" target="_blank" rel="noopener noreferrer"><strong>Boundary Conditions – Introduction</strong></a><br>This app is also distributed through <a href="https://gw-project.org/interactive-education/introduction-to-boundary-conditions-for-groundwater-modeling/" target="_blank" rel="noopener noreferrer"><strong>The Groundwater Project</strong></a> |
+| **Access** | <a href="https://gwp-boundary-conditions-intro.streamlit.app/" target="_blank" rel="noopener noreferrer"><strong>Start the Boundary Conditions – Intro App</strong></a><br>This app is also distributed through <a href="https://gw-project.org/interactive-education/introduction-to-boundary-conditions-for-groundwater-modeling/" target="_blank" rel="noopener noreferrer"><strong>The Groundwater Project</strong></a> |
 | **More details** | [**08-01 Groundwater Modeling / Conceptual Model Development**](https://gw-inux.github.io/Jupyter-Notebooks/pages/080100_en.html) |
 
 
@@ -75,7 +75,7 @@ A **comprehensive teaching and learning module** covering the analysis and inter
 
 | **Purpose** | Enable systematic analysis and interpretation of pumping test data to estimate aquifer parameters and assess aquifer behavior. |
 | **Characteristic** | Comprehensive teaching and learning module integrating theory, interactive plots, parameter estimation, exercises, and explanatory material. |
-| **Access** | <a href="LINK_TO_PUMPING_TEST_MODULE" target="_blank" rel="noopener noreferrer"><strong>Pumping Test Module</strong></a><br>This app is also distributed through <a href="https://gw-project.org/interactive-education/pumping-test-analysis/" target="_blank" rel="noopener noreferrer"><strong>The Groundwater Project</strong></a> |
+| **Access** | <a href="LINK_TO_PUMPING_TEST_MODULE" target="_blank" rel="noopener noreferrer"><strong>Start the Pumping Test Module</strong></a><br>This app is also distributed through <a href="https://gw-project.org/interactive-education/pumping-test-analysis/" target="_blank" rel="noopener noreferrer"><strong>The Groundwater Project</strong></a> |
 | **More details** | [**06-04 Experimental Techniques and Methods/Aquifer Characterization**](https://gw-inux.github.io/Jupyter-Notebooks/pages/060400_en.html) |
 
 <p align="center">
@@ -89,7 +89,7 @@ An **advanced interactive evaluation tool** for slug test analysis with extended
 
 | **Purpose** | Analyze slug test data interactively to estimate hydraulic parameters using established evaluation methods. |
 | **Characteristic** | Multilingual application featuring interactive plots, user-defined data upload, and embedded instructional video material. |
-| **Access** | <a href="LINK_TO_SLUG_TEST_APP" target="_blank" rel="noopener noreferrer"><strong>Slug Test Evaluation App</strong></a> |
+| **Access** | <a href="LINK_TO_SLUG_TEST_APP" target="_blank" rel="noopener noreferrer"><strong>Start the Slug Test Evaluation App</strong></a> |
 | **More details** | [**06-04 Experimental Techniques and Methods/Aquifer Characterization**](https://gw-inux.github.io/Jupyter-Notebooks/pages/060400_en.html) |
 
 <p align="center">
