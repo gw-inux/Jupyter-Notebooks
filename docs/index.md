@@ -40,58 +40,58 @@ For immediate, browser-based access, Streamlit apps offer the most direct entry 
 The iNUX catalog offers a wide range of interactive documents. The following selection highlights applications that illustrate different levels of complexity, pedagogical depth, and user interaction.
 
 
-### ⚛️ Radioactive Decay App
+### 🟣 Radioactive Decay App
 
 A **compact and intuitive visualization tool** for exploring fundamental concepts of mass balance and decay.
 
 | **Purpose** | Explore radioactive decay by defining initial masses and decay rates for multiple components and analyzing their mass balance over time. |
 | **Characteristic** | Simple, focused visualization supporting conceptual understanding of decay processes and mass conservation. |
 | **Access** | <a href="https://radioactive-decay.streamlit.app/" target="_blank" rel="noopener noreferrer"><strong>Radioactive Decay App</strong></a> |
-| **More details** | [**05-06 Hydrogeochemistry and Contaminant Transport / Reactive Solute Transport**](https://gw-inux.github.io/Jupyter-Notebooks/pages/050500_en.html) |
+| **More details** | [**05-06 Hydrogeochemistry and Contaminant Transport/Reactive Solute Transport**](https://gw-inux.github.io/Jupyter-Notebooks/pages/050500_en.html) |
 
 
 <img src="./assets/images/05_06_radioactive_decay.png" alt="Screenshot of the Radioactive Decay Streamlit application" width="300"/>
 
 ---
 
-### 🧭 Boundary Conditions – Introduction
+### 🟢 Boundary Conditions – Introduction
 
-An **educational self-learning application** introducing boundary conditions commonly used in groundwater modeling. More details in section *08-01 Groundwater Modeling/Conceptual Model Development*
+An **educational self-learning application** introducing boundary conditions commonly used in groundwater modeling.
 
-**Purpose:** Support understanding of boundary-condition concepts and their influence on groundwater flow systems through interactive examples.  
-**Characteristic:** Structured learning tool combining visualizations, explanatory text, and embedded assessment questions.
+| **Purpose** | Support understanding of common boundary-condition concepts and their influence on groundwater flow systems through interactive examples. |
+| **Characteristic** | Structured self-learning application combining interactive visualizations, explanatory text, and embedded assessment questions. |
+| **Access** | <a href="https://gwp-boundary-conditions-intro.streamlit.app/" target="_blank" rel="noopener noreferrer"><strong>Boundary Conditions – Introduction</strong></a> |
+| **More details** | [**08-01 Groundwater Modeling/Conceptual Model Development**](https://gw-inux.github.io/Jupyter-Notebooks/pages/060400_en.html) |
 
-**Access:** <a href="https://gwp-boundary-conditions-intro.streamlit.app/" target="_blank" rel="noopener noreferrer"><strong>Boundary Conditions – Introduction</strong></a><br>This app is also distributed through <a href="https://gw-project.org/interactive-education/introduction-to-boundary-conditions-for-groundwater-modeling/" target="_blank" rel="noopener noreferrer">The Groundwater Project.</a>
 
-<img src="./assets/images/BC_Intro_01.jpg" alt="Screenshot of the Boundary Conditions-Intro app" width="400"/>
-
----
-
-### 📉 Pumping Test Module
-
-A **comprehensive teaching and learning module** covering the analysis and interpretation of pumping tests. More details in section *06-04 Experimental Techniques and Methods/Aquifer Characterization*
-
-**Purpose:** Enable systematic evaluation of pumping test data to estimate aquifer parameters and understand aquifer behavior.  
-**Characteristic:** Integrated framework combining theory, interactive plots, parameter estimation, exercises, and explanatory material.
-
-**Access:** <a href="https://gwp-pumping-test-analysis.streamlit.app/" target="_blank" rel="noopener noreferrer"><strong>Pumping Test Module</strong></a><br>This app is also distributed through <a href="https://gw-project.org/interactive-education/pumping-test-analysis/" target="_blank" rel="noopener noreferrer">The Groundwater Project.</a>
-
-<img src="./assets/images/pumping_test_02.jpg" alt="Screenshot of the Pumping Test module" width="400"/>
+<img src="./assets/images/BC_Intro_01.jpg" alt="Screenshot of the Boundary Conditions-Intro app" width="300"/>
 
 ---
 
-### 🌍 Slug Test Evaluation App
+### 🟡 Pumping Test Module
 
-An **advanced interactive evaluation tool** for slug test analysis with extended user interaction. More details in section *06-04 Experimental Techniques and Methods/Aquifer Characterization*
+A **comprehensive teaching and learning module** covering the analysis and interpretation of pumping tests. 
 
-**Purpose:** Analyze slug test data interactively to estimate hydraulic parameters using established evaluation methods.  
+| **Purpose** | Enable systematic analysis and interpretation of pumping test data to estimate aquifer parameters and assess aquifer behavior. |
+| **Characteristic** | Comprehensive teaching and learning module integrating theory, interactive plots, parameter estimation, exercises, and explanatory material. |
+| **Access** | <a href="LINK_TO_PUMPING_TEST_MODULE" target="_blank" rel="noopener noreferrer"><strong>Pumping Test Module</strong></a> |
+| **More details** | [**06-04 Experimental Techniques and Methods/Aquifer Characterization**](https://gw-inux.github.io/Jupyter-Notebooks/pages/060400_en.html) |
 
-**Characteristic:** Multilingual application featuring interactive plots, user-defined data upload, and embedded instructional video material.
 
-**Access:** <a href="https://slugtest-multilingual.streamlit.app/" target="_blank" rel="noopener noreferrer"><strong>Slug Test Evaluation App</strong></a>
+<img src="./assets/images/pumping_test_02.jpg" alt="Screenshot of the Pumping Test module" width="300"/>
 
-<img src="./assets/images/Slugtest_01.jpg" alt="Screenshot of the Slug Test evaluation app" width="400"/>
+---
 
+### 🔵 Slug Test Evaluation App
+
+An **advanced interactive evaluation tool** for slug test analysis with extended user interaction. 
+
+| **Purpose** | Analyze slug test data interactively to estimate hydraulic parameters using established evaluation methods. |
+| **Characteristic** | Multilingual application featuring interactive plots, user-defined data upload, and embedded instructional video material. |
+| **Access** | <a href="LINK_TO_SLUG_TEST_APP" target="_blank" rel="noopener noreferrer"><strong>Slug Test Evaluation App</strong></a> |
+| **More details** | [**06-04 Experimental Techniques and Methods/Aquifer Characterization**](https://gw-inux.github.io/Jupyter-Notebooks/pages/060400_en.html) |
+
+<img src="./assets/images/Slugtest_01.jpg" alt="Screenshot of the Slug Test Evaluation App" width="300"/>
 
 ---
 
