@@ -45,3 +45,17 @@ Get started immediately with a powerful simulation tool.
 <img src="./assets/images/05_06_radioactive_decay.png" alt="Screenshot of the Radioactive Decay Streamlit application" width="400"/>
 
 ---
+
+<table style="width:100%; border-collapse:collapse; border:none; margin-top:2rem;">
+  <tr>
+    <td style="width:220px; border:none; vertical-align:middle; padding:0;">
+      <img src="./assets/images/EN_Co-fundedbytheEU_RGB_Monochrome.png"
+           alt="Co-funded by the European Union"
+           style="max-width:200px; height:auto;">
+    </td>
+    <td style="border:none; vertical-align:middle; padding-left:1rem; font-size:0.95rem; line-height:1.35;">
+      This project is co-funded by the European Union. However, the views and opinions expressed are solely those of the author(s) and do not necessarily reflect those of the European Union or the National Agency DAAD. Neither the European Union nor the granting authority can be held responsible for them.
+    </td>
+  </tr>
+</table>
+
