@@ -15,7 +15,9 @@ Groundwater and its associated processes are critically important but largely in
 
 These resources are intended to support educators and learners in understanding, applying, explaining, communicating, and teaching concepts of fundamental and applied hydrogeology.
 
-All materials are freely available under the CC-BY-SA 4.0 open-source license.
+All materials are freely available under the CC-BY-SA 4.0 open-source license. <img src="./assets/images/CC_BY-SA_icon.png"
+     alt="CC BY-SA 4.0 license"
+     style="height:1.6rem; vertical-align:middle; margin-left:0.4rem;">
 
 ## 🚀 Quick Access to Resources
 
