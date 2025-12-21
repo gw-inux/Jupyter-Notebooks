@@ -220,24 +220,24 @@ Dissolved solids consist of a mixture of **cations** (positively charged ions) a
 
 In coastal hydrogeology, chloride is often used as a **tracer for salinity**. Because chloride is abundant, conservative (it reacts little with the aquifer matrix) and relatively easy to measure, changes in **chloride concentration** are commonly taken to represent changes in the **overall dissolved solids**. In other words, when models or measurements focus on chloride distribution, it is usually assumed that the **proportional composition of the other ions** remains similar to that of seawater, and that chloride can be used as a proxy for the total salinity distribution in the groundwater system.    """)
     
-# --- EXPLANATORY EXAMPLES ---
-st.subheader('💫 Examples ...', divider='blue')
-st.markdown("""
-  
-"""
-)
-
-            
-
-st.subheader('📈 Computation and Visualization', divider='blue')
-st.markdown("""
-
-""")
-
-st.subheader('✔️ Conclusion', divider = 'blue')
-st.markdown("""
-
-""")
+## --- EXPLANATORY EXAMPLES ---
+#st.subheader('💫 Examples ...', divider='blue')
+#st.markdown("""
+#  
+#"""
+#)
+#
+#            
+#
+#st.subheader('📈 Computation and Visualization', divider='blue')
+#st.markdown("""
+#
+#""")
+#
+#st.subheader('✔️ Conclusion', divider = 'blue')
+#st.markdown("""
+#
+#""")
 
 
 # with st.expander('**Show the final assessment** - to self-check your understanding'):

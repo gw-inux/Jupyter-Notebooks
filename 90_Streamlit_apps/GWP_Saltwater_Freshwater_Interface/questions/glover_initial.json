@@ -7,8 +7,8 @@
       "Push the interface deeper near the coast and shift the saltwater toe seaward.": true,
       "Have no effect on the freshwater–saltwater interface.": false
     },
-    "success": "Correct — a higher freshwater gradient increases seaward flow, which tends to deepen the interface at the coast and push the saltwater toe seaward.",
-    "error": "Not quite — in the Glover model, increasing the land-to-sea gradient strengthens freshwater discharge and pushes the interface seaward, not landward."
+    "success": "✅ Correct — a higher freshwater gradient increases seaward flow, which tends to deepen the interface at the coast and push the saltwater toe seaward.",
+    "error": "❌ Not quite — in the Glover model, increasing the land-to-sea gradient strengthens freshwater discharge and pushes the interface seaward, not landward."
   },
   {
     "question": "For which setting is the Glover equation most appropriate as a first approximation?",
@@ -18,8 +18,8 @@
       "A strongly tidal estuary with rapidly varying heads at the coast.": false,
       "A heavily pumped multi-layer system with strong vertical leakage.": false
     },
-    "success": "Exactly — the Glover solution is intended for relatively simple, homogeneous coastal aquifers with steady, mainly horizontal flow and a sharp interface.",
-    "error": "Try again — Glover is not designed for highly complex, pumped, karst or strongly tidal systems."
+    "success": "✅ Exactly — the Glover solution is intended for relatively simple, homogeneous coastal aquifers with steady, mainly horizontal flow and a sharp interface.",
+    "error": "❌ Try again — Glover is not designed for highly complex, pumped, karst, or strongly tidal systems."
   },
   {
     "question": "Which of the following are standard assumptions of the classical Glover model?",
@@ -29,7 +29,18 @@
       "Fully transient variable-density flow in a thick mixing zone.": false,
       "Constant seawater head at the coast and steady-state conditions.": true
     },
-    "success": "Correct — the classical Glover model assumes a homogeneous, isotropic aquifer of constant thickness, Dupuit-type horizontal flow with a sharp interface, and steady-state conditions with a constant head at the sea.",
-    "error": "Not quite — remember that Glover is a steady, sharp-interface, horizontally averaged model and does not handle full transient variable-density flow in a thick mixing zone."
+    "success": "✅ Correct — the classical Glover model assumes a homogeneous, isotropic aquifer of constant thickness, Dupuit-type horizontal flow with a sharp interface, and steady-state conditions with a constant head at the sea.",
+    "error": "❌ Not quite — remember that Glover is a steady, sharp-interface, horizontally averaged model and does not handle full transient variable-density flow in a thick mixing zone."
+  },
+  {
+    "question": "Why does freshwater overlie saltwater in a coastal aquifer under natural conditions? (Mark ALL correct answers)",
+    "options": {
+      "Freshwater has a lower density than saltwater.": true,
+      "Hydraulic gradients always force freshwater upward.": false,
+      "Buoyancy causes denser saltwater to occupy deeper parts of the aquifer.": true,
+      "Saltwater cannot flow within porous media.": false
+    },
+    "success": "✅ Correct — the density difference between freshwater and saltwater leads to buoyancy effects, with lighter freshwater overlying denser saltwater.",
+    "error": "❌ Recall that buoyancy due to density contrast controls vertical positioning of fresh and saline water, not hydraulic gradients or flow restrictions."
   }
 ]

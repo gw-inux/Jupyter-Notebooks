@@ -1,57 +1,68 @@
 [
   {
-    "question": "How does the Glover equation differ conceptually from the Ghyben–Herzberg relation?",
+    "question": "How does the Glover equation differ conceptually from the Ghyben–Herzberg relation? (Mark ALL correct answers)",
     "options": {
-      "Glover describes the interface profile as a function of distance from the shoreline, whereas Ghyben–Herzberg gives only a local relation between head and interface depth at a point.": true,
-      "Glover explicitly includes the freshwater discharge (or gradient) toward the sea, while Ghyben–Herzberg assumes purely hydrostatic equilibrium.": true,
-      "Glover assumes a mixing zone of finite thickness, while Ghyben–Herzberg assumes a perfectly sharp interface.": false,
-      "Glover can capture pumping-induced transients, while Ghyben–Herzberg is strictly a static equilibrium concept.": false
+      "A) Glover describes the interface profile as a function of distance from the shoreline, whereas Ghyben–Herzberg gives only a local relation between head and interface depth at a point.": true,
+      "B) Glover explicitly includes the freshwater discharge (or gradient) toward the sea, while Ghyben–Herzberg assumes purely hydrostatic equilibrium.": true,
+      "C) Glover assumes a mixing zone of finite thickness, while Ghyben–Herzberg assumes a perfectly sharp interface.": false,
+      "D) Glover can capture pumping-induced transients, while Ghyben–Herzberg is strictly a static equilibrium concept.": false
     },
-    "success": "Correct — Glover extends Ghyben–Herzberg by describing the full interface profile along the coast and explicitly including the freshwater gradient/discharge.",
-    "error": "Not quite — remember that Glover adds the horizontal flow field and interface shape along x, while Ghyben–Herzberg is a local static relation at a point."
+    "success": "✅ Correct. Glover extends the hydrostatic Ghyben–Herzberg concept by describing a spatial interface profile and explicitly accounting for seaward freshwater flow.",
+    "error": "❌ Review the conceptual difference: Glover includes spatial variation and freshwater flow, while Ghyben–Herzberg is a local, hydrostatic relation."
   },
   {
-    "question": "In the Glover formulation for a sharp interface in a coastal aquifer (no pumping), which of the following changes will tend to increase the inland extent or thickness of the freshwater body (all else equal)?",
+    "question": "In the Glover formulation for a sharp interface in a coastal aquifer (no pumping), which of the following changes will tend to increase the inland extent or thickness of the freshwater body (all else equal)? (Mark ALL correct answers)",
     "options": {
-      "Increasing the hydraulic gradient i (= increased freshwater flowing seaward).": true,
-      "Increasing the aquifer thickness b.": true,
-      "Decreasing the density difference (making seawater and freshwater more similar in density).": true,
-      "Decreasing the freshwater discharge toward the sea.": false
+      "A) Increasing the hydraulic gradient i (increased freshwater flowing seaward).": true,
+      "B) Increasing the aquifer thickness b.": true,
+      "C) Decreasing the density difference between freshwater and seawater.": true,
+      "D) Decreasing the freshwater discharge toward the sea.": false
     },
-    "success": "Correct — stronger gradient, thicker aquifer and smaller density contrast all favour a more extensive/thicker freshwater body in the Glover framework.",
-    "error": "Not quite — think about which changes strengthen the freshwater wedge compared to the saltwater body (more gradient, thicker aquifer, smaller density contrast)."
+    "success": "✅ Correct. Stronger freshwater flow, a thicker aquifer, and a smaller density contrast all favor a more extensive freshwater body.",
+    "error": "❌ Think about which changes strengthen freshwater dominance against seawater intrusion in the Glover sharp-interface framework."
   },
   {
-    "question": "Which of the following assumptions is true for the Glover (1959) solution?",
+    "question": "Which of the following are standard assumptions of the Glover (1959) solution? (Mark ALL correct answers)",
     "options": {
-      "The interface between freshwater and saltwater is sharp and separates two regions of constant density.": true,
-      "The aquifer is homogeneous, isotropic, of constant thickness, and satisfies the Dupuit (essentially horizontal flow) approximation.": true,
-      "Seawater is static, and freshwater flows seaward under a constant hydraulic gradient.": true,
-      "Vertical flow components and dispersion in the mixing zone are fully resolved in detail.": false
+      "A) The interface between freshwater and saltwater is sharp and separates two regions of constant density.": true,
+      "B) The aquifer is homogeneous, isotropic, of constant thickness, and satisfies the Dupuit approximation.": true,
+      "C) Seawater is static, and freshwater flows seaward under a constant hydraulic gradient.": true,
+      "D) Vertical flow components and dispersion in the mixing zone are fully resolved in detail.": false
     },
-    "success": "Correct — Glover assumes a sharp interface, constant densities, a homogeneous Dupuit aquifer of constant thickness, and steady freshwater flow toward a static sea.",
-    "error": "Not quite — Glover is a sharp-interface, horizontally averaged, steady-state model and does not resolve vertical flow or dispersion in detail."
+    "success": "✅ Correct. The Glover solution relies on a sharp interface, simplified freshwater flow (Dupuit), and idealized aquifer conditions.",
+    "error": "❌ Remember that Glover is a simplified analytical solution and does not resolve dispersion or detailed vertical flow."
   },
   {
-    "question": "In the steady-state Glover solution for a sharp freshwater–saltwater interface in a coastal aquifer (no pumping), which parameter change will increase the depth of the interface beneath the shoreline, without changing the aquifer thickness?",
+    "question": "In the steady-state Glover solution for a sharp freshwater–saltwater interface in a coastal aquifer (no pumping), which parameter change will increase the depth of the interface beneath the shoreline, without changing the aquifer thickness? (Mark ALL correct answers)",
     "options": {
-      "Increasing the density difference between seawater and freshwater.": false,
-      "Decreasing the freshwater hydraulic gradient i toward the sea.": false,
-      "Increasing the freshwater hydraulic gradient i toward the sea.": true,
-      "Decreasing the freshwater recharge so that the discharge to the sea becomes negligible.": false
+      "A) Increasing the density difference between seawater and freshwater.": false,
+      "B) Decreasing the freshwater hydraulic gradient i toward the sea.": false,
+      "C) Increasing the freshwater hydraulic gradient i toward the sea.": true,
+      "D) Decreasing the freshwater recharge so that discharge to the sea becomes negligible.": false
     },
-    "success": "Correct — increasing the freshwater hydraulic gradient strengthens seaward flow and pushes the interface deeper at the shoreline.",
-    "error": "Not quite — in the Glover model, a stronger freshwater gradient deepens the interface at the coast; weaker gradients or negligible discharge do the opposite."
+    "success": "✅ Correct. A larger seaward freshwater gradient pushes the interface deeper beneath the shoreline in the Glover model.",
+    "error": "❌ Focus on how the freshwater hydraulic gradient controls the interface position at the coast under steady-state conditions."
   },
   {
-    "question": "In the Glover model, what is the key simplification made about groundwater flow in the freshwater zone?",
+    "question": "In the Glover model, what is the key simplification made about groundwater flow in the freshwater zone? (Mark ALL correct answers)",
     "options": {
-      "Flow is fully three-dimensional, with strong vertical components near the coast.": false,
-      "Flow is mainly horizontal, so vertical gradients are neglected (Dupuit approximation).": true,
-      "Flow is assumed to be zero everywhere; only diffusion is considered.": false,
-      "Flow occurs only in the saltwater zone, while the freshwater is static.": false
+      "A) Flow is fully three-dimensional with strong vertical components near the coast.": false,
+      "B) Flow is mainly horizontal, so vertical gradients are neglected (Dupuit approximation).": true,
+      "C) Flow is assumed to be zero everywhere and only diffusion is considered.": false,
+      "D) Flow occurs only in the saltwater zone, while the freshwater is static.": false
     },
-    "success": "Correct — Glover relies on the Dupuit approximation, assuming predominantly horizontal flow and neglecting vertical gradients in the freshwater zone.",
-    "error": "Not quite — the model assumes mainly horizontal flow (Dupuit), not fully 3D flow or purely static conditions."
+    "success": "✅ Correct. Freshwater flow is simplified as predominantly horizontal using the Dupuit approximation.",
+    "error": "❌ Recall that the Glover model assumes mainly horizontal freshwater flow rather than fully 3D dynamics."
+  },
+  {
+  "question": "Compared to the Ghyben–Herzberg relation, what additional insight does the Glover solution provide for coastal aquifer management? (Mark ALL correct answers)",
+  "options": {
+    "A) It allows estimation of how far inland the freshwater–saltwater interface extends.": true,
+    "B) It links freshwater discharge toward the sea to the shape of the interface.": true,
+    "C) It explicitly represents dispersion and a finite mixing zone.": false,
+    "D) It helps assess how changes in recharge or gradient affect seawater intrusion under steady-state conditions.": true
+  },
+  "success": "✅ Correct. The Glover solution provides spatial insight into interface geometry and shows how freshwater flow conditions control seawater intrusion.",
+  "error": "❌ Recall that Glover extends the Ghyben–Herzberg concept by linking freshwater flow to the interface shape, but still assumes a sharp interface without dispersion."
   }
 ]

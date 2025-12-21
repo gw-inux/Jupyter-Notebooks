@@ -7,8 +7,8 @@
       "The aquifer’s freshwater volume may decrease, because a larger part of the aquifer cross-section is occupied by saltwater.": true,
       "The porosity n automatically decreases as sea level rises.": false
     },
-    "success": "Correct — sea-level rise with constant recharge typically drives the saltwater toe landward, can raise coastal water tables, and may reduce freshwater volume, but it does not change porosity.",
-    "error": "Not quite — remember that sea-level rise mainly affects heads, toe position and freshwater volume; porosity is a material property and does not automatically change."
+    "success": "✅ Correct — sea-level rise with constant recharge typically drives the saltwater toe landward, can raise coastal water tables, and may reduce freshwater volume, but it does not change porosity.",
+    "error": "❌ Not quite — remember that sea-level rise mainly affects heads, toe position, and freshwater volume; porosity is a material property and does not automatically change."
   },
   {
     "question": "In this analytical sea-level rise framework, which statement best reflects how hydraulic conductivity K influences the response?",
@@ -18,8 +18,8 @@
       "The position of the saltwater toe does not depend on K at all.": false,
       "K only affects porosity and has no hydraulic significance in this model.": false
     },
-    "success": "Exactly — a higher K lets the aquifer adjust more easily, often reducing the relative inland intrusion for the same sea-level rise.",
-    "error": "Not quite — think about how a more transmissive aquifer can more easily transmit freshwater seaward and resist intrusion for the same boundary change."
+    "success": "✅ Exactly — a higher K lets the aquifer adjust more easily, often reducing the relative inland intrusion for the same sea-level rise.",
+    "error": "❌ Not quite — think about how a more transmissive aquifer can more easily transmit freshwater seaward and resist intrusion for the same boundary change."
   },
   {
     "question": "Which of the following management conclusions are consistent with what this analytical sea-level rise model can show?",
@@ -29,8 +29,8 @@
       "The analytical model should be used as a screening tool, and areas that appear highly vulnerable may warrant more detailed numerical modelling and field investigations.": true,
       "Low-lying, gently sloping coasts (small theta) are particularly vulnerable to inland movement of the saltwater wedge for a given sea-level rise.": true
     },
-    "success": "Correct — the model is best used as a screening tool to highlight that even without pumping, sea-level rise can reduce freshwater storage, especially in low-lying, gently sloping coasts.",
-    "error": "Almost — remember that the model is not sufficient for detailed site-scale decisions but is very useful for screening and identifying vulnerable, low-slope coasts."
+    "success": "✅ Correct — the model is best used as a screening tool to show that even without pumping, sea-level rise can reduce freshwater storage, especially along low-lying, gently sloping coasts.",
+    "error": "❌ Almost — remember that the model is not sufficient for detailed site-scale decisions but is very useful for screening and identifying vulnerable settings."
   },
   {
     "question": "Two coastal aquifers are identical in all respects (recharge, K, densities, z0, L0, delta_z0) except for the slope of the coastline. Which statement is most consistent with the result of an analytical sea-level rise model?",
@@ -40,8 +40,8 @@
       "A steeper slope means greater landward intrusion because the interface is nearly vertical.": false,
       "The travel time at steeper coastlines are always longer and therefore result in greater saltwater intrusion.": false
     },
-    "success": "Correct — gentle slopes amplify the horizontal impact of sea-level rise, making inland intrusion and freshwater loss more severe in low-gradient settings.",
-    "error": "Not quite — the key point is that gently sloping coasts are more sensitive; steep coasts typically show less inland movement for the same vertical rise."
+    "success": "✅ Correct — gentle slopes amplify the horizontal impact of sea-level rise, making inland intrusion and freshwater loss more severe in low-gradient settings.",
+    "error": "❌ Not quite — the key point is that gently sloping coasts are more sensitive; steep coasts typically show less inland movement for the same vertical rise."
   },
   {
     "question": "Which consequences of sea-level rise are likely to promote a landward movement of the freshwater–saltwater interface in an unpumped coastal aquifer?",
@@ -51,7 +51,18 @@
       "A landward shift of the coastline, which reduces the horizontal distance between the sea and the freshwater body.": true,
       "A rise in mean sea level that reduces the hydraulic gradient from land to sea, so less freshwater is discharged seaward.": true
     },
-    "success": "Correct — a landward-shifted coastline and a reduced land-to-sea gradient both favour landward intrusion of the saltwater wedge.",
-    "error": "Not quite — think about which changes bring the sea physically closer to the freshwater body and weaken the seaward freshwater flow."
+    "success": "✅ Correct — a landward-shifted coastline and a reduced land-to-sea gradient both favour landward intrusion of the saltwater wedge.",
+    "error": "❌ Not quite — think about which changes physically move the sea closer to the freshwater body and weaken seaward freshwater flow."
+  },
+  {
+    "question": "Why can sea-level rise lead to increased salinization risk of coastal groundwater resources even in the absence of pumping?",
+    "options": {
+      "Sea-level rise steepens the land-to-sea hydraulic gradient, increasing freshwater discharge.": false,
+      "Sea-level rise raises the coastal boundary head, reducing the driving force for freshwater flow toward the sea.": true,
+      "Sea-level rise increases dispersion and mixing automatically, regardless of aquifer properties.": false,
+      "Sea-level rise can shift the freshwater–saltwater interface landward, bringing saltwater closer to wells and reducing freshwater storage.": true
+    },
+    "success": "✅ Correct — by raising coastal heads and shifting the interface landward, sea-level rise alone can increase salinization risk even without pumping.",
+    "error": "❌ Remember that the key mechanism is the reduced seaward freshwater gradient and the landward shift of the interface, not automatic increases in dispersion."
   }
 ]

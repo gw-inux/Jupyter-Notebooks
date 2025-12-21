@@ -5,6 +5,11 @@ import matplotlib.pyplot as plt
 from streamlit_book import multiple_choice
 from streamlit_scroll_to_top import scroll_to_here
 from GWP_SFI_utils import read_md
+from GWP_SFI_utils import flip_assessment
+from GWP_SFI_utils import render_toggle_container
+from GWP_SFI_utils import prep_log_slider
+from GWP_SFI_utils import get_label
+from GWP_SFI_utils import get_step
 
 # TO DO: 
 # - Json-files (existing!) instead of questions
@@ -46,15 +51,15 @@ institution_text = " | ".join(institution_list)
 # ---------- Define paths, loading files
 # --- path to questions for the assessments (direct path)
 path_quest_ini   = st.session_state.module_path + "questions/glover_initial.json"
-path_quest_exer =  st.session_state.module_path + "docs/glover_exer.json"
+#path_quest_exer =  st.session_state.module_path + "questions/glover_exer.json"
 path_quest_final = st.session_state.module_path + "questions/glover_final.json"
 
 # Load questions
 with open(path_quest_ini, "r", encoding="utf-8") as f:
     quest_ini = json.load(f)
     
-with open(path_quest_exer, "r", encoding="utf-8") as f:
-    quest_exer = json.load(f)
+#with open(path_quest_exer, "r", encoding="utf-8") as f:
+#    quest_exer = json.load(f)
     
 with open(path_quest_final, "r", encoding="utf-8") as f:
     quest_final = json.load(f)
@@ -110,6 +115,43 @@ This section is designed with the intent that, by studying it, you will be able 
 
 - Evaluate how hydraulic gradient, aquifer thickness and density contrast jointly affect the **position of the interface** and the **vulnerability of coastal aquifers** to saltwater intrusion.
 """)
+
+# --- INITIAL ASSESSMENT ---
+def content_initial_GLO():
+    st.markdown("""#### Initial assessment""")
+    st.info("You can use the initial questions to assess your existing knowledge.")
+    
+    # Render questions in a 2x2 grid (row-wise, aligned)
+    for row in [(0, 1), (2, 3)]:
+        col1, col2 = st.columns(2)
+    
+        with col1:
+            i = row[0]
+            st.markdown(f"**Q{i+1}. {quest_ini[i]['question']}**")
+            multiple_choice(
+                question=" ",  # suppress repeated question display
+                options_dict=quest_ini[i]["options"],
+                success=quest_ini[i].get("success", "✅ Correct."),
+                error=quest_ini[i].get("error", "❌ Not quite.")
+            )
+    
+        with col2:
+            i = row[1]
+            st.markdown(f"**Q{i+1}. {quest_ini[i]['question']}**")
+            multiple_choice(
+                question=" ",
+                options_dict=quest_ini[i]["options"],
+                success=quest_ini[i].get("success", "✅ Correct."),
+                error=quest_ini[i].get("error", "❌ Not quite.")
+            )
+
+# Render initial assessment
+render_toggle_container(
+    section_id="GLO_01",
+    label="✅ **Show the initial assessment** – to assess your **EXISTING** knowledge",
+    content_fn=content_initial_GLO,
+    default_open=False,
+)
 
 
 st.markdown(r"""
@@ -329,7 +371,7 @@ The local hydrogeologists are still uncertain about the true thickness of the aq
 👉 Finally, reflect on the **limitations** of using the Glover equation: Which important processes and complexities are **not** represented (e.g. pumping, heterogeneity, mixing zone, transients)?  
 """)
 
-st.subheader('✔️ Conclusion', divider = 'violett')
+st.subheader('✔️ Conclusion', divider = 'violet')
 st.markdown("""
 The **Glover equation** generalizes the Ghyben–Herzberg relation from a **local head–depth estimate** to a **regional description of the freshwater–saltwater wedge** in a coastal aquifer. It explicitly includes the freshwater gradient and discharge toward the sea, allowing you to visualise how the freshwater table and interface shape vary from inland areas to the shoreline under steady conditions.
 
@@ -338,85 +380,42 @@ By adjusting parameters such as **hydraulic gradient**, **aquifer thickness**, a
 This regional perspective provides the **background state** on which other processes act: **pumping** can locally distort the wedge and cause upconing beneath wells, while **sea-level rise or changes in recharge** can shift the entire wedge landward or seaward. After studying this section, you may want to evaluate your knowledge with the Glover initial and final assessment questions.
 """)
 
-with st.expander('**Show self-test** - to assess your EXISTING knowledge'):
-    st.markdown("""
-    #### 📋 Self-test
-    You can use the initial questions to assess your existing knowledge.
-    Questions need to be transfered to a json-file. The import routine can be find in line 27-29
-
-**How does the Glover equation differ conceptually from the Ghyben–Herzberg relation?**
-
-A. Glover describes the interface profile as a function of distance from the shoreline, whereas Ghyben–Herzberg gives only a local relation between head and interface depth at a point. ✅
-
-B. Glover explicitly includes the freshwater discharge (or gradient) toward the sea, while Ghyben–Herzberg assumes purely hydrostatic equilibrium. ✅
-
-C. Glover assumes a mixing zone of finite thickness, while Ghyben–Herzberg assumes a perfectly sharp interface.
-
-D. Glover can capture pumping-induced transients, while Ghyben–Herzberg is strictly a static equilibrium concept.
-
-**In the Glover formulation for a sharp interface in a coastal aquifer (no pumping), which of the following changes will tend to increase the inland extent or thickness of the freshwater body (all else equal)?**
-
-A. Increasing the hydraulic gradient i (= increased freshwater flowing seaward). ✅
-
-B. Increasing the aquifer thickness b. ✅
-
-C. Decreasing the density difference (making seawater and freshwater more similar in density). ✅
-
-D. Decreasing the freshwater discharge toward the sea.
-
-**Which of the following are standard assumptions is true for the Glover (1959) solution?**
-
-A. The interface between freshwater and saltwater is sharp and separates two regions of constant density. ✅
-
-B. The aquifer is homogeneous, isotropic, of constant thickness, and satisfies the Dupuit (essentially horizontal flow) approximation. ✅
-
-C. Seawater is static, and freshwater flows seaward under a constant hydraulic gradient. ✅
-
-D. Vertical flow components and dispersion in the mixing zone are fully resolved in detail.
-
-**In the steady-state Glover solution for a sharp freshwater–saltwater interface in a coastal aquifer (no pumping), which parameter change will increase the depth of the interface beneath the shoreline, without changing the aquifer thickness?**
-
-A. Increasing the density difference between seawater and freshwater.
-
-B. Decreasing the freshwater hydraulic gradient i toward the sea.
-
-C. Increasing the freshwater hydraulic gradient i toward the sea. ✅
-
-D. Decreasing the freshwater recharge so that the discharge to the sea becomes negligible.
-
-**In the Glover model, what is the key simplification made about groundwater flow in the freshwater zone?
-
-A. Flow is fully three-dimensional, with strong vertical components near the coast.
-
-B. Flow is mainly horizontal, so vertical gradients are neglected (Dupuit approximation). ✅
-
-C. Flow is assumed to be zero everywhere; only diffusion is considered.
-
-D. Flow occurs only in the saltwater zone, while the freshwater is static.""")
-
-    # Render questions in a 2x2 grid (row-wise, aligned)
-    for row in [(0, 1), (2, 3)]:
-        col1, col2 = st.columns(2)
+# --- FINAL ASSESSMENT ---
+def content_final_glo():
+    st.markdown("""#### 🧠 Final assessment""")
+    st.info("These questions test your conceptual understanding after working with the application.")
     
+    # Render questions in a 2x3 grid (row-wise)
+    for row in [(0, 1), (2, 3), (4, 5)]:
+        col1, col2 = st.columns(2)
+
         with col1:
             i = row[0]
-            st.markdown(f"**Q{i+1}. {quest_sfi[i]['question']}**")
-            multiple_choice(
-                question=" ",  # suppress repeated question display
-                options_dict=quest_sfi[i]["options"],
-                success=quest_sfi[i].get("success", "✅ Correct."),
-                error=quest_sfi[i].get("error", "❌ Not quite.")
-            )
-    
-        with col2:
-            i = row[1]
-            st.markdown(f"**Q{i+1}. {quest_sfi[i]['question']}**")
+            st.markdown(f"**Q{i+1}. {quest_final[i]['question']}**")
             multiple_choice(
                 question=" ",
-                options_dict=quest_sfi[i]["options"],
-                success=quest_sfi[i].get("success", "✅ Correct."),
-                error=quest_sfi[i].get("error", "❌ Not quite.")
+                options_dict=quest_final[i]["options"],
+                success=quest_final[i].get("success", "✅ Correct."),
+                error=quest_final[i].get("error", "❌ Not quite.")
             )
+
+        with col2:
+            i = row[1]
+            st.markdown(f"**Q{i+1}. {quest_final[i]['question']}**")
+            multiple_choice(
+                question=" ",
+                options_dict=quest_final[i]["options"],
+                success=quest_final[i].get("success", "✅ Correct."),
+                error=quest_final[i].get("error", "❌ Not quite.")
+            )
+            
+# Render final assessment
+render_toggle_container(
+    section_id="glo_03",
+    label="✅ **Show the final assessment** - to self-check your **understanding**",
+    content_fn=content_final_glo,
+    default_open=False,
+)
 
 st.markdown('---')
 

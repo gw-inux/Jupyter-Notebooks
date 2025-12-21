@@ -7,6 +7,11 @@ from streamlit_book import multiple_choice
 import json
 from streamlit_scroll_to_top import scroll_to_here
 from GWP_SFI_utils import read_md
+from GWP_SFI_utils import flip_assessment
+from GWP_SFI_utils import render_toggle_container
+from GWP_SFI_utils import prep_log_slider
+from GWP_SFI_utils import get_label
+from GWP_SFI_utils import get_step
 
 # ---------- Track the current page
 PAGE_ID = "SEARISE"
@@ -42,15 +47,15 @@ institution_text = " | ".join(institution_list)
 
 # ---------- Define paths, loading files
 path_quest_ini   = st.session_state.module_path + "questions/sealevelrise_initial.json"
-path_quest_exer =  st.session_state.module_path + "docs/sealevelrise_exer.json"
+#path_quest_exer =  st.session_state.module_path + "docs/sealevelrise_exer.json"
 path_quest_final = st.session_state.module_path + "questions/sealevelrise_final.json"
 
 # Load questions
 with open(path_quest_ini, "r", encoding="utf-8") as f:
     quest_ini = json.load(f)
     
-with open(path_quest_exer, "r", encoding="utf-8") as f:
-    quest_exer = json.load(f)
+#with open(path_quest_exer, "r", encoding="utf-8") as f:
+#    quest_exer = json.load(f)
     
 with open(path_quest_final, "r", encoding="utf-8") as f:
     quest_final = json.load(f)
@@ -130,6 +135,42 @@ This section is designed with the intent that, by studying it, you will be able 
 - Evaluate the sensitivity of different coastal aquifer types to sea-level rise.
 """)
 
+# --- INITIAL ASSESSMENT ---
+def content_initial_sea():
+    st.markdown("""#### Initial assessment""")
+    st.info("You can use the initial questions to assess your existing knowledge.")
+    
+    # Render questions in a 2x2 grid (row-wise, aligned)
+    for row in [(0, 1), (2, 3)]:
+        col1, col2 = st.columns(2)
+    
+        with col1:
+            i = row[0]
+            st.markdown(f"**Q{i+1}. {quest_ini[i]['question']}**")
+            multiple_choice(
+                question=" ",  # suppress repeated question display
+                options_dict=quest_ini[i]["options"],
+                success=quest_ini[i].get("success", "✅ Correct."),
+                error=quest_ini[i].get("error", "❌ Not quite.")
+            )
+    
+        with col2:
+            i = row[1]
+            st.markdown(f"**Q{i+1}. {quest_ini[i]['question']}**")
+            multiple_choice(
+                question=" ",
+                options_dict=quest_ini[i]["options"],
+                success=quest_ini[i].get("success", "✅ Correct."),
+                error=quest_ini[i].get("error", "❌ Not quite.")
+            )
+
+# Render initial assessment
+render_toggle_container(
+    section_id="sea_01",
+    label="✅ **Show the initial assessment** – to assess your **EXISTING** knowledge",
+    content_fn=content_initial_sea,
+    default_open=False,
+)
 
 st.markdown(r"""
 ### **Introduction**  
@@ -330,7 +371,7 @@ with st.expander('Show the :rainbow[**EXERCISE**]', icon ="🧩"):
 
 """)
 
-st.subheader('✔️ Conclusion', divider = 'violett')
+st.subheader('✔️ Conclusion', divider = 'violet')
 st.markdown("""
 The **sea-level rise app** demonstrates how **changes at the coastal boundary** affect groundwater heads, the position of the saltwater toe, and the volume of stored freshwater in unconfined coastal aquifers. Using an analytical sharp-interface solution, it links **sea-level change**, **recharge**, **aquifer slope**, **hydraulic conductivity**, and **density contrast** to the inland migration of the saltwater wedge and changes in freshwater storage.
 
@@ -339,85 +380,42 @@ By adjusting parameters such as **sea-level rise** $\Delta z_0$, **coastal slope
 Together with the **Ghyben–Herzberg**, **Glover**, and **upconing** apps, this tool completes the picture of coastal aquifers under combined pressures from **natural gradients**, **human pumping**, and **climate-driven sea-level change**. After studying this section on sea-level rise, you may wish to consolidate your understanding by working through the final assessment for this app.
 """)
 
-with st.expander('**Show self-test** - to assess your EXISTING knowledge'):
-    st.markdown("""
-    #### 📋 Self-test
-    You can use the initial questions to assess your existing knowledge.
-    Questions need to be transfered to a json-file. The import routine can be find in line 27-29
-
-**Which of the following effects are expected when sea level rises but recharge remains constant?**
-
-A. The saltwater toe tends to move landward, reducing the width of the freshwater zone. ✅
-
-B. The water table near the coast can rise, potentially increasing groundwater levels in low-lying areas. ✅
-
-C. The aquifer’s freshwater volume may decrease, because a larger part of the aquifer cross-section is occupied by saltwater. ✅
-
-D. The porosity n automatically decreases as sea level rises.
-
-**Which statement best reflects how K influences the response?**
-
-A. Higher K (Aquifer B) allows freshwater to drain more efficiently toward the sea, so the relative inland movement of the saltwater toe for a given sea-level rise is generally smaller. ✅
-
-B. Higher K always leads to a larger inland movement of the saltwater toe.
-
-C. The position of the saltwater toe does not depend on K at all.
-
-D. K only affects porosity and has no hydraulic significance in this model.
-
-**Which of the following management conclusions are consistent with what this analytical sea-level rise model can show?**
-
-A. The use of a sharp interface and homogeneous conditions is sufficient for detailed management decisions.
-
-B. Even without pumping, sea-level rise alone can gradually reduce freshwater storage and move saltwater closer to existing wells. ✅
-
-C. The analytical model should be used as a screening tool, and areas that appear highly vulnerable may warrant more detailed numerical modelling and field investigations. ✅
-
-D. Low-lying, gently sloping coasts (small theta) are particularly vulnerable to inland movement of the saltwater wedge for a given sea-level rise. ✅
-
-**Two coastal aquifers are identical in all respects (recharge, K, densities, z0, L0, delta_z0) except for the slope of the coastline. Which statement is most consistent with the result?**
-
-A. Both aquifers respond the same way; slope has no effect on seawater intrusion.
-
-B. The gently sloping Aquifer A is more vulnerable to inland migration of the saltwater wedge and loss of freshwater volume for the same sea-level rise. ✅
-
-C. A steeper slope means greater landward intrusion because the interface is nearly vertical.
-
-D. The travel time at steeper coastlines are always longer and therefore result in greater saltwater intrusion.
-
-**Which consequences of sea-level rise are likely to promote a landward movement of the freshwater–saltwater interface?
-
-A. An increase in long-term recharge, which raises inland groundwater levels more than sea level.
-
-B. A decrease in seawater density, making seawater less dense than before.
-
-C. A landward shift of the coastline, which reduces the horizontal distance between the sea and the freshwater body. ✅
-
-D. A rise in mean sea level that reduces the hydraulic gradient from land to sea, so less freshwater is discharged seaward. ✅""")
-
-    # Render questions in a 2x2 grid (row-wise, aligned)
-    for row in [(0, 1), (2, 3)]:
-        col1, col2 = st.columns(2)
+# --- FINAL ASSESSMENT ---
+def content_final_sea():
+    st.markdown("""#### 🧠 Final assessment""")
+    st.info("These questions test your conceptual understanding after working with the application.")
     
+    # Render questions in a 2x3 grid (row-wise)
+    for row in [(0, 1), (2, 3), (4, 5)]:
+        col1, col2 = st.columns(2)
+
         with col1:
             i = row[0]
-            st.markdown(f"**Q{i+1}. {quest_sfi[i]['question']}**")
-            multiple_choice(
-                question=" ",  # suppress repeated question display
-                options_dict=quest_sfi[i]["options"],
-                success=quest_sfi[i].get("success", "✅ Correct."),
-                error=quest_sfi[i].get("error", "❌ Not quite.")
-            )
-    
-        with col2:
-            i = row[1]
-            st.markdown(f"**Q{i+1}. {quest_sfi[i]['question']}**")
+            st.markdown(f"**Q{i+1}. {quest_final[i]['question']}**")
             multiple_choice(
                 question=" ",
-                options_dict=quest_sfi[i]["options"],
-                success=quest_sfi[i].get("success", "✅ Correct."),
-                error=quest_sfi[i].get("error", "❌ Not quite.")
+                options_dict=quest_final[i]["options"],
+                success=quest_final[i].get("success", "✅ Correct."),
+                error=quest_final[i].get("error", "❌ Not quite.")
             )
+
+        with col2:
+            i = row[1]
+            st.markdown(f"**Q{i+1}. {quest_final[i]['question']}**")
+            multiple_choice(
+                question=" ",
+                options_dict=quest_final[i]["options"],
+                success=quest_final[i].get("success", "✅ Correct."),
+                error=quest_final[i].get("error", "❌ Not quite.")
+            )
+            
+# Render final assessment
+render_toggle_container(
+    section_id="sea_03",
+    label="✅ **Show the final assessment** - to self-check your **understanding**",
+    content_fn=content_final_sea,
+    default_open=False,
+)
 
 st.markdown('---')
 

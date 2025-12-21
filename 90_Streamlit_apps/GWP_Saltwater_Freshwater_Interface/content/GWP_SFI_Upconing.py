@@ -6,6 +6,11 @@ from streamlit_book import multiple_choice
 import json
 from streamlit_scroll_to_top import scroll_to_here
 from GWP_SFI_utils import read_md
+from GWP_SFI_utils import flip_assessment
+from GWP_SFI_utils import render_toggle_container
+from GWP_SFI_utils import prep_log_slider
+from GWP_SFI_utils import get_label
+from GWP_SFI_utils import get_step
 
 # ---------- Track the current page
 PAGE_ID = "UPCONE"
@@ -42,15 +47,15 @@ institution_text = " | ".join(institution_list)
 # ---------- Define paths, loading files
 # --- path to questions for the assessments (direct path)
 path_quest_ini   = st.session_state.module_path + "questions/upconing_initial.json"
-path_quest_exer =  st.session_state.module_path + "docs/upconing_exer.json"
+#path_quest_exer =  st.session_state.module_path + "docs/upconing_exer.json"
 path_quest_final = st.session_state.module_path + "questions/upconing_final.json"
 
 # Load questions
 with open(path_quest_ini, "r", encoding="utf-8") as f:
     quest_ini = json.load(f)
     
-with open(path_quest_exer, "r", encoding="utf-8") as f:
-    quest_exer = json.load(f)
+#with open(path_quest_exer, "r", encoding="utf-8") as f:
+#    quest_exer = json.load(f)
     
 with open(path_quest_final, "r", encoding="utf-8") as f:
     quest_final = json.load(f)
@@ -108,6 +113,42 @@ This section is designed with the intent that, by studying it, you will be able 
 - Evaluate how pumping rate, initial separation d, hydraulic properties and density contrast influence upconing, and **judge design options** (well depth, spacing, distributed pumping) to minimise the risk of saltwater intrusion.
 """)
 
+# --- INITIAL ASSESSMENT ---
+def content_initial_upc():
+    st.markdown("""#### Initial assessment""")
+    st.info("You can use the initial questions to assess your existing knowledge.")
+    
+    # Render questions in a 2x2 grid (row-wise, aligned)
+    for row in [(0, 1), (2, 3)]:
+        col1, col2 = st.columns(2)
+    
+        with col1:
+            i = row[0]
+            st.markdown(f"**Q{i+1}. {quest_ini[i]['question']}**")
+            multiple_choice(
+                question=" ",  # suppress repeated question display
+                options_dict=quest_ini[i]["options"],
+                success=quest_ini[i].get("success", "✅ Correct."),
+                error=quest_ini[i].get("error", "❌ Not quite.")
+            )
+    
+        with col2:
+            i = row[1]
+            st.markdown(f"**Q{i+1}. {quest_ini[i]['question']}**")
+            multiple_choice(
+                question=" ",
+                options_dict=quest_ini[i]["options"],
+                success=quest_ini[i].get("success", "✅ Correct."),
+                error=quest_ini[i].get("error", "❌ Not quite.")
+            )
+
+# Render initial assessment
+render_toggle_container(
+    section_id="upc_01",
+    label="✅ **Show the initial assessment** – to assess your **EXISTING** knowledge",
+    content_fn=content_initial_upc,
+    default_open=False,
+)
 
 st.markdown(r"""
 ### **Introduction**  
@@ -311,86 +352,42 @@ By varying **pumping rate**, **hydraulic conductivity**, **porosity**, and the *
 Combined with the Ghyben–Herzberg and Glover tools, the upconing app illustrates how **local well design** interacts with **regional flow** and **density structure** in coastal aquifers. Once you have worked through the examples, you are encouraged to check your understanding using the upconing initial and final assessment activities.
 """)
 
-with st.expander('**Show self-test** - to assess your EXISTING knowledge'):
-    st.markdown("""
-    #### 📋 Self-test
-    You can use the initial questions to assess your existing knowledge.
-    Questions need to be transfered to a json-file. The import routine can be find in line 27-29
-
-**Which of the following statements about upconing are correct?**
-
-A. Upconing is the upward movement of the saltwater–freshwater interface below a pumping well caused by lowering of freshwater heads. ✅
-
-B. Upconing occurs only when the pumping rate exceeds the critical rate Q_{max}
-
-C. Upconing can occur even at relatively low pumping rates if the initial distance d between the well and the interface is small. ✅
-
-D. Upconing is driven solely by molecular diffusion and does not depend on pumping.
-
-**Which of the following parameter changes would tend to increase the amount of upconing z(0), assuming all other parameters remain constant?**
-
-A. Increasing the pumping rate Q. ✅
-
-B. Increasing hydraulic conductivity K.
-
-C. Decreasing the pre-pumping distance d between the well screen and the interface. ✅
-
-D. Increasing the density difference
-
-**The analytical upconing solution used in your app is based on several simplifying assumptions. Which of the following are standard assumptions in these models?**
-
-A. The interface between fresh and saline groundwater is sharp, with no transition zone. ✅
-
-B. The aquifer is homogeneous, isotropic and of uniform thickness. ✅
-
-C. Flow to the well is axisymmetric, and the well is treated as a point sink. ✅
-
-D. The model fully accounts for complex density-dependent flow and dispersion in a thick mixing zone.
-
-**Which design choices typically reduce the risk of salinisation due to upconing?**
-
-A. Using several shallow wells with lower pumping rates instead of one deep, heavily pumped well. ✅
-
-B. Placing well screens as close as possible to the initial interface to maximise yield.
-
-C. Increasing the distance between the well and the coastline, where feasible. ✅
-
-D. Concentrating all abstraction in a single well field close to the coast.
-
-**In the classical sharp-interface upconing solution, which parameter primarily affects the time scale over which the interface approaches its maximum rise beneath the well, but does not change the steady-state maximum upconing height at the well?**
-
-A. Hydraulic conductivity 
-
-B. Pumping rate 
-
-C. Pre-pumping distance between well screen and interface
-
-D. Effective porosity ✅""")
-
-
-    # Render questions in a 2x2 grid (row-wise, aligned)
-    for row in [(0, 1), (2, 3)]:
-        col1, col2 = st.columns(2)
+# --- FINAL ASSESSMENT ---
+def content_final_upc():
+    st.markdown("""#### 🧠 Final assessment""")
+    st.info("These questions test your conceptual understanding after working with the application.")
     
+    # Render questions in a 2x3 grid (row-wise)
+    for row in [(0, 1), (2, 3), (4, 5)]:
+        col1, col2 = st.columns(2)
+
         with col1:
             i = row[0]
-            st.markdown(f"**Q{i+1}. {quest_sfi[i]['question']}**")
-            multiple_choice(
-                question=" ",  # suppress repeated question display
-                options_dict=quest_sfi[i]["options"],
-                success=quest_sfi[i].get("success", "✅ Correct."),
-                error=quest_sfi[i].get("error", "❌ Not quite.")
-            )
-    
-        with col2:
-            i = row[1]
-            st.markdown(f"**Q{i+1}. {quest_sfi[i]['question']}**")
+            st.markdown(f"**Q{i+1}. {quest_final[i]['question']}**")
             multiple_choice(
                 question=" ",
-                options_dict=quest_sfi[i]["options"],
-                success=quest_sfi[i].get("success", "✅ Correct."),
-                error=quest_sfi[i].get("error", "❌ Not quite.")
+                options_dict=quest_final[i]["options"],
+                success=quest_final[i].get("success", "✅ Correct."),
+                error=quest_final[i].get("error", "❌ Not quite.")
             )
+
+        with col2:
+            i = row[1]
+            st.markdown(f"**Q{i+1}. {quest_final[i]['question']}**")
+            multiple_choice(
+                question=" ",
+                options_dict=quest_final[i]["options"],
+                success=quest_final[i].get("success", "✅ Correct."),
+                error=quest_final[i].get("error", "❌ Not quite.")
+            )
+            
+# Render final assessment
+render_toggle_container(
+    section_id="upc_03",
+    label="✅ **Show the final assessment** - to self-check your **understanding**",
+    content_fn=content_final_upc,
+    default_open=False,
+)
 
 st.markdown('---')
 
