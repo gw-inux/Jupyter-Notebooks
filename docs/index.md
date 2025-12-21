@@ -58,7 +58,11 @@ An **educational self-learning application** introducing boundary conditions com
 
 | **Purpose** | Support understanding of common boundary-condition concepts and their influence on groundwater flow systems through interactive examples. |
 | **Characteristic** | Structured self-learning application combining interactive visualizations, explanatory text, and embedded assessment questions. |
-| **Access** | <a href="https://gwp-boundary-conditions-intro.streamlit.app/" target="_blank" rel="noopener noreferrer"><strong>Boundary Conditions – Introduction</strong></a> |
+| **Access** | <a href="https://gwp-boundary-conditions-intro.streamlit.app/" target="_blank" rel="noopener noreferrer"><strong>Boundary Conditions – Introduction</strong></a><br>
+This app is also distributed through 
+<a href="https://gw-project.org/interactive-education/introduction-to-boundary-conditions-for-groundwater-modeling/" target="_blank" rel="noopener noreferrer">
+  <strong>The Groundwater Project</strong>
+</a> |
 | **More details** | [**08-01 Groundwater Modeling/Conceptual Model Development**](https://gw-inux.github.io/Jupyter-Notebooks/pages/080100_en.html) |
 
 <p align="center">
@@ -72,7 +76,11 @@ A **comprehensive teaching and learning module** covering the analysis and inter
 
 | **Purpose** | Enable systematic analysis and interpretation of pumping test data to estimate aquifer parameters and assess aquifer behavior. |
 | **Characteristic** | Comprehensive teaching and learning module integrating theory, interactive plots, parameter estimation, exercises, and explanatory material. |
-| **Access** | <a href="LINK_TO_PUMPING_TEST_MODULE" target="_blank" rel="noopener noreferrer"><strong>Pumping Test Module</strong></a> |
+| **Access** | <a href="LINK_TO_PUMPING_TEST_MODULE" target="_blank" rel="noopener noreferrer"><strong>Pumping Test Module</strong></a><br>
+This app is also distributed through 
+<a href="https://gw-project.org/interactive-education/pumping-test-analysis/" target="_blank" rel="noopener noreferrer">
+  <strong>The Groundwater Project</strong>
+</a> |
 | **More details** | [**06-04 Experimental Techniques and Methods/Aquifer Characterization**](https://gw-inux.github.io/Jupyter-Notebooks/pages/060400_en.html) |
 
 <p align="center">
