@@ -5,17 +5,13 @@ nav_order: 1
 has_children: True
 ---
 
-# <img src="./assets/images/iNUX_Logo.png" alt="iNUX logo" style="height:5rem; vertical-align:middle; margin-right:0.5rem;"> **The iNUX Catalog** <br>of Interactive Documents
+# <img src="./assets/images/iNUX_Logo.png" alt="iNUX logo" style="height:5rem; vertical-align:middle; margin-right:0.5rem;"> **iNUX Catalog** <br>of Interactive Documents
 
-***iNUX - Interactive Understanding of Groundwater Hydrology and Hydrogeology***
-
-*An ERASMUS+ cooperation project*
+***iNUX - Interactive Understanding of Groundwater Hydrology and Hydrogeology*** - *An ERASMUS+ cooperation project*
 
 ## 💡 Overview
 
-Welcome to the iNUX catalog of interactive documents.
-
-Groundwater and its associated processes are critically important but largely invisible. The iNUX project develops interactive and digital learning materials that complement existing teaching approaches by making groundwater and its associated processes more visible and accessible through dynamic visualizations and hands-on exploration.
+Groundwater and its associated processes are critically important but largely invisible. The iNUX project develops interactive and digital learning materials that complement existing teaching approaches by **making groundwater and its associated processes more visible and accessible** through dynamic visualizations and hands-on exploration.
 
 These resources are intended to support educators and learners in understanding, applying, explaining, communicating, and teaching concepts of fundamental and applied hydrogeology.
 
