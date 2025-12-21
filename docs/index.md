@@ -2,7 +2,7 @@
 title: Welcome
 layout: home
 nav_order: 1
-has_children: True
+has_children: false
 ---
 
 # <img src="./assets/images/iNUX_Logo.png" alt="iNUX logo" style="height:5rem; vertical-align:middle; margin-right:0.5rem;"> **iNUX Catalog** of Interactive Documents
