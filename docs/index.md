@@ -13,6 +13,8 @@ has_children: True
 
 Groundwater and its associated processes are critically important but largely invisible. The iNUX project develops interactive and digital learning materials that complement existing teaching approaches by **making groundwater and its associated processes more visible and accessible** through dynamic visualizations and hands-on exploration.
 
+You can browse the resources via the **navigation menu** (left sidebar on larger screens or the ☰ menu in the upper right corner on smaller screens). Alternatively, the catalog can be explored using the 🔍**search field**, located at the top of the page on larger screens and within the ☰ navigation menu on smaller screens.
+
 These resources are intended to support educators and learners in understanding, applying, explaining, communicating, and teaching concepts of fundamental and applied hydrogeology.
 
 All materials are freely available under the CC-BY-SA 4.0 open-source license. <img src="./assets/images/CC_BY-SA_icon.png"
