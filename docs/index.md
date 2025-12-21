@@ -49,9 +49,9 @@ A **compact and intuitive visualization tool** for exploring fundamental concept
 | **Access** | <a href="https://radioactive-decay.streamlit.app/" target="_blank" rel="noopener noreferrer"><strong>Radioactive Decay App</strong></a> |
 | **More details** | [**05-06 Hydrogeochemistry and Contaminant Transport/Reactive Solute Transport**](https://gw-inux.github.io/Jupyter-Notebooks/pages/050500_en.html) |
 
-
+<p align="center">
 <img src="./assets/images/05_06_radioactive_decay.png" alt="Screenshot of the Radioactive Decay Streamlit application" width="300"/>
-
+</p>
 ---
 
 ### 🟢 Boundary Conditions – Introduction
@@ -61,11 +61,11 @@ An **educational self-learning application** introducing boundary conditions com
 | **Purpose** | Support understanding of common boundary-condition concepts and their influence on groundwater flow systems through interactive examples. |
 | **Characteristic** | Structured self-learning application combining interactive visualizations, explanatory text, and embedded assessment questions. |
 | **Access** | <a href="https://gwp-boundary-conditions-intro.streamlit.app/" target="_blank" rel="noopener noreferrer"><strong>Boundary Conditions – Introduction</strong></a> |
-| **More details** | [**08-01 Groundwater Modeling/Conceptual Model Development**](https://gw-inux.github.io/Jupyter-Notebooks/pages/060400_en.html) |
+| **More details** | [**08-01 Groundwater Modeling/Conceptual Model Development**](https://gw-inux.github.io/Jupyter-Notebooks/pages/080100_en.html) |
 
-
+<p align="center">
 <img src="./assets/images/BC_Intro_01.jpg" alt="Screenshot of the Boundary Conditions-Intro app" width="300"/>
-
+</p>
 ---
 
 ### 🟡 Pumping Test Module
@@ -77,9 +77,9 @@ A **comprehensive teaching and learning module** covering the analysis and inter
 | **Access** | <a href="LINK_TO_PUMPING_TEST_MODULE" target="_blank" rel="noopener noreferrer"><strong>Pumping Test Module</strong></a> |
 | **More details** | [**06-04 Experimental Techniques and Methods/Aquifer Characterization**](https://gw-inux.github.io/Jupyter-Notebooks/pages/060400_en.html) |
 
-
+<p align="center">
 <img src="./assets/images/pumping_test_02.jpg" alt="Screenshot of the Pumping Test module" width="300"/>
-
+</p>
 ---
 
 ### 🔵 Slug Test Evaluation App
@@ -91,8 +91,9 @@ An **advanced interactive evaluation tool** for slug test analysis with extended
 | **Access** | <a href="LINK_TO_SLUG_TEST_APP" target="_blank" rel="noopener noreferrer"><strong>Slug Test Evaluation App</strong></a> |
 | **More details** | [**06-04 Experimental Techniques and Methods/Aquifer Characterization**](https://gw-inux.github.io/Jupyter-Notebooks/pages/060400_en.html) |
 
+<p align="center">
 <img src="./assets/images/Slugtest_01.jpg" alt="Screenshot of the Slug Test Evaluation App" width="300"/>
-
+</p>
 ---
 
 <table style="width:100%; border-collapse:collapse; border:none; margin-top:2rem;">
