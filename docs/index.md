@@ -5,24 +5,32 @@ nav_order: 1
 has_children: True
 ---
 
-# **The iNUX PROJECT**
+# <img src="./assets/images/inux_logo.png" alt="iNUX logo" style="height:3rem; vertical-align:middle; margin-right:0.5rem;"> **The iNUX PROJECT**
 
-## Project Overview
+***Interactive Understanding of Groundwater Hydrology and Hydrogeology***
 
-Welcome to the open-source catalog for **iNUX – interactive understanding of groundwater hydrogeology**.
+*An ERASMUS+ cooperation project*
 
-Groundwater is a vital, yet unseen, resource, often inadequately covered in standard education. This Erasmus+ cooperation project addresses this gap by developing **interactive and digital teaching material** focused on fundamental and applied hydrogeology. We use practical experience from leading European universities to provide resources covering basic theory, field, and laboratory applications across diverse European environments.
+## Overview
 
-All materials are freely available under an open-source license.
+Welcome to the iNUX catalog of interactive documents.
+
+Groundwater and its associated processes are critically important but largely invisible. The iNUX project develops interactive and digital learning materials that complement existing teaching approaches by making groundwater and its associated processes more visible and accessible through dynamic visualizations and hands-on exploration.
+
+These resources are intended to support educators and learners in understanding, applying, explaining, communicating, and teaching concepts of fundamental and applied hydrogeology.
+
+All materials are freely available under the CC-BY-SA 4.0 open-source license.
 
 ## 🚀 Quick Access to Resources
 
-Our resources are designed to enhance self-controlled learning for students and professionals. Jump straight into the interactive content or explore the full repository.
+The iNUX catalog provides several complementary ways to explore interactive learning materials, depending on the intended depth of use and technical setting.
+
+For immediate, browser-based access, Streamlit apps offer the most direct entry point and require no local installation, while additional formats are listed in the table below.
 
 | Resource Type | Description | Access Point |
 | :--- | :--- | :--- |
-| **Streamlit Apps** | User-friendly, web-based applications for platform-independent, interactive exploration of concepts. | <a href="https://share.streamlit.io/user/thoreimann" target="_blank" rel="noopener noreferrer"><strong>View All Streamlit Apps</strong></a> |
-| **Jupyter Notebooks** | Combinations of text, explanations, and live Python code for computation and in-depth analysis. | <a href="https://mybinder.org/v2/gh/gw-inux/Jupyter-Notebooks/HEAD?urlpath=tree" target="_blank" rel="noopener noreferrer"><strong>Launch Binder</strong></a> <strong>(Online Access)</strong> |
+| **Streamlit Apps** | User-friendly, web-based applications for platform-independent, interactive exploration. | • Links to the  Streamlit apps are directly integrated into this catalog |
+| **Jupyter Notebooks** | Combinations of text, explanations, and live Python code for computation and in-depth analysis. | • Download the IPYNB documents for local use <br> <a href="https://mybinder.org/v2/gh/gw-inux/Jupyter-Notebooks/HEAD?urlpath=tree" target="_blank" rel="noopener noreferrer"><strong>• Launch Binder</strong></a> <strong>(Online Access)</strong> |
 | **Full Repository** | Access all source code, videos, questions, and problem sets, organized by hydrogeological topic. | <a href="https://github.com/gw-inux/Jupyter-Notebooks/" target="_blank" rel="noopener noreferrer"><strong>Visit GitHub Repository</strong></a> |
 
 ---
@@ -34,42 +42,6 @@ Get started immediately with a powerful simulation tool.
 **Purpose:** Investigate the mass balance for substances undergoing decay. Define initial mass and decay rates for three components to analyze their mass balance over time.
 **Access:** <a href="https://radioactive-decay.streamlit.app/" target="_blank" rel="noopener noreferrer"><strong>Radioactive Decay App</strong></a>
 
-<img src="./assets/images/st/01/radioactive_decay.png" alt="Screenshot of the Radioactive Decay Streamlit application" width="400"/>
+<img src="./assets/images/05_06_radioactive_decay.png" alt="Screenshot of the Radioactive Decay Streamlit application" width="400"/>
 
 ---
-
-## Deep Dive: How to Use Our Interactive Documents
-
-### Streamlit Apps: Zero Setup
-
-These apps are designed for simplicity. You need **no local installation** and can use them directly on any device with a web browser (desktop, tablet, or phone). Streamlit handles the computational backend, giving you immediate access to interactive models.
-
-### Jupyter Notebooks: Combining Code and Theory
-
-Jupyter Notebooks offer a higher degree of freedom, allowing for immediate modification and individual analysis using **Python** computations.
-
-#### A. Online Access (Recommended Quick Start)
-
-You can process notebooks directly in your browser using the MyBinder service.
-
-* **Access Link:** <a href="https://mybinder.org/v2/gh/gw-inux/Jupyter-Notebooks/HEAD?urlpath=tree" target="_blank" rel="noopener noreferrer"><strong>Launch Binder Service</strong></a>
-
-> **Note on MyBinder:** The initial start can take a few minutes as MyBinder sets up a dedicated server for you. Subsequent starts should be faster.
-
-#### B. Local Access (Offline Use)
-
-For long-term or offline work, you can download the notebooks and run them locally. This requires installing **Python** and a platform like **Jupyter Notebook** or **JupyterLab** (often conveniently distributed via **Anaconda**). Refer to the iNUX Handbook for detailed setup instructions.
-
----
-
-## 🤝 Get Involved and Contribute
-
-This is an open-source initiative, and contributions are highly encouraged!
-
-* **Feedback & Suggestions:** Open an issue on our GitHub repository.
-* **Submitting New Material:** Use the <a href="https://github.com/gw-inux/Jupyter-Notebooks/tree/main/99_INCOMING" target="_blank" rel="noopener noreferrer"><strong>INCOMING</strong></a> section in the repository for new Jupyter Notebooks, questions, or problem sets.
-* **Join the Community:** We are actively establishing interest groups to combine efforts, build larger resource pools (e.g., question banks), and link with related activities like the <a href="https://gw-project.org/" target="_blank" rel="noopener noreferrer"><strong>Groundwater Project</strong></a>.
-
-## Interactive Resources (Welcome)
-
-No resources submitted for this topic yet.
