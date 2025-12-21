@@ -42,13 +42,12 @@ The iNUX catalog offers a wide range of interactive documents. The following sel
 
 ### ⚛️ Radioactive Decay App
 
-A **compact and intuitive visualization tool** for exploring fundamental concepts of mass balance and decay. More details in section *05-06 Hydrogeochemistry and Contaminant Transport/Reactive Solute Transport*
+A **compact and intuitive visualization tool** for exploring fundamental concepts of mass balance and decay.
 
-| | |
-|---|---|
 | **Purpose** | Explore radioactive decay by defining initial masses and decay rates for multiple components and analyzing their mass balance over time. |
 | **Characteristic** | Simple, focused visualization supporting conceptual understanding of decay processes and mass conservation. |
 | **Access** | <a href="https://radioactive-decay.streamlit.app/" target="_blank" rel="noopener noreferrer"><strong>Radioactive Decay App</strong></a> |
+| More details | Section *05-06 Hydrogeochemistry and Contaminant Transport/Reactive Solute Transport* |
 
 <img src="./assets/images/05_06_radioactive_decay.png" alt="Screenshot of the Radioactive Decay Streamlit application" width="300"/>
 
