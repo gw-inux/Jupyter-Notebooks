@@ -66,7 +66,7 @@ This app is also distributed through
 | **More details** | [**08-01 Groundwater Modeling/Conceptual Model Development**](https://gw-inux.github.io/Jupyter-Notebooks/pages/080100_en.html) |
 
 <p align="center">
-<img src="./assets/images/BC_Intro_01.jpg" alt="Screenshot of the Boundary Conditions-Intro app" width="300"/>
+<img src="./assets/images/BC_Intro_01.jpg" alt="Screenshot of the Boundary Conditions-Intro app" width="400"/>
 </p>
 ---
 
@@ -84,7 +84,7 @@ This app is also distributed through
 | **More details** | [**06-04 Experimental Techniques and Methods/Aquifer Characterization**](https://gw-inux.github.io/Jupyter-Notebooks/pages/060400_en.html) |
 
 <p align="center">
-<img src="./assets/images/pumping_test_02.jpg" alt="Screenshot of the Pumping Test module" width="300"/>
+<img src="./assets/images/pumping_test_02.jpg" alt="Screenshot of the Pumping Test module" width="400"/>
 </p>
 ---
 
