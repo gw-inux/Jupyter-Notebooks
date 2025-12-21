@@ -45,7 +45,7 @@ A **compact and intuitive visualization tool** for exploring fundamental concept
 | **Purpose** | Explore radioactive decay by defining initial masses and decay rates for multiple components and analyzing their mass balance over time. |
 | **Characteristic** | Simple, focused visualization supporting conceptual understanding of decay processes and mass conservation. |
 | **Access** | <a href="https://radioactive-decay.streamlit.app/" target="_blank" rel="noopener noreferrer"><strong>Radioactive Decay App</strong></a> |
-| **More details** | [**05-06 Hydrogeochemistry and Contaminant Transport/Reactive Solute Transport**](https://gw-inux.github.io/Jupyter-Notebooks/pages/050500_en.html) |
+| **More details** | [**05-06 Hydrogeochemistry and Contaminant Transport/Reactive Solute Transport**](https://gw-inux.github.io/Jupyter-Notebooks/pages/050600_en.html) |
 
 <p align="center">
 <img src="./assets/images/05_06_radioactive_decay.png" alt="Screenshot of the Radioactive Decay Streamlit application" width="300"/>
