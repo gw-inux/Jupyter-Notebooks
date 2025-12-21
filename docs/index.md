@@ -5,7 +5,7 @@ nav_order: 1
 has_children: True
 ---
 
-# <img src="./assets/images/iNUX_Logo.png" alt="iNUX logo" style="height:4rem; vertical-align:middle; margin-right:0.5rem;"> **The iNUX Catalog** of Interactive Documents
+# <img src="./assets/images/iNUX_Logo.png" alt="iNUX logo" style="height:5rem; vertical-align:middle; margin-right:0.5rem;"> **The iNUX Catalog** of Interactive Documents
 
 ***iNUX - Interactive Understanding of Groundwater Hydrology and Hydrogeology***
 
