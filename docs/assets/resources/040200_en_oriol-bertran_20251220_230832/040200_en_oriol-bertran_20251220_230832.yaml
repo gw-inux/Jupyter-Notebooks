@@ -1,0 +1,80 @@
+catalog_category: "04 Vadose Zone Physics"
+catalog_subcategory: "04-02 Soil Water Retention"
+catalog_subsubcategory: "(Attach to subcategory)"
+
+# --- RESOURCE IDENTIFICATION AND TOPIC MAPPING ---
+# item_id: A unique, simple slug for this item (e.g., aquifer_test_1). 
+
+item_id: TO_BE_FILLED_BY_COURSE_MANAGER
+topic: 02 Soil Water Retention # Must match the title of the parent catalog page.
+title: Soil Water Retention Module    # The full, descriptive name of the resource.
+
+# --- TYPE AND ACCESS ---
+resource_type: Streamlit app            # Required. Options: Streamlit app, Jupyter Notebook, Video, Dataset, Other.
+url: https://gwp-soilwaterretention.streamlit.app/      # The direct link to launch the app, notebook on Binder, or video on YouTube.
+date_released: TO_BE_FILLED_BY_COURSE_MANAGER               # Release date in YYYY-MM-DD format.
+
+# --- CONTENT AND METADATA ---
+description_short: |
+  This interactive module introduces the fundamental concepts of soil water retention in unsaturated soils and provides a structured, hands-on exploration of the van Genuchten–Mualem formulation, one of the most widely applied models in vadose zone hydrology.
+  
+  The module explains how water is retained in soils under unsaturated conditions, emphasizing the physical meaning of capillary pressure, pore-size distribution, and effective saturation. Users interactively explore how key model parameters (θᵣ, θₛ, α, n) control the shape of soil water retention curves and influence hydraulic behavior.
+  
+  Designed as a step-by-step learning resource, the module supports both first-time learners and users seeking to refresh or deepen their understanding. Interactive visualizations are combined with guided exercises that promote conceptual understanding, parameter interpretation, and practical model calibration.
+  
+  Module Structure
+  
+  📚 Theory
+  Introduces the physical basis of soil water retention, including capillarity, surface tension, and the conceptual background of the van Genuchten–Mualem model.
+  
+  📈 SWRC Interactive
+  Enables real-time exploration of how individual model parameters affect soil water retention curves.
+  
+  📊 SWRC in Comparison
+  Facilitates comparison of retention behavior across different soil textures (e.g., sand, loam, silt).
+  
+  🧪 Exercise 1
+  Focuses on fitting the van Genuchten model to measured retention data and interpreting parameter sensitivity.
+  
+  🧪 Exercise 2
+  Uses synthetic datasets to identify soil types and assess implications for agricultural use and flow processes.
+keywords: [Unsaturated zone, van Genuchten, soil water retention, capillary forces, Mualem]
+multipage_app: true
+num_pages: 10
+interactive_plots: true
+num_interactive_plots: 8
+assessments_included: true
+num_assessment_questions: 68
+videos_included: true
+num_videos: 3
+
+# --- EDUCATIONAL FIT ---
+time_required: 2-4 hours             # Estimated time for a student to complete the activity (e.g., 30 minutes, 1.5 hours).
+prerequisites: Basic Hydrogeology, soil properties       # Required prior knowledge (e.g., Darcy's Law, Python basics, basic calculus).
+fit_for:
+  - self learning
+  - exam preparation
+
+# --- AUTHOR AND REFERENCE ---
+authors:
+  - name: Oriol Bertran
+    affiliation: Universitat Politècnica de Catalunya (UPC)
+  - name: Daniel Fernàndez-Garcia
+    affiliation: Universitat Politècnica de Catalunya (UPC)
+  - name: Thomas Reimann
+    affiliation: TU Dresden
+  - name: Eileen Poeter
+    affiliation: Colorado School of Mines
+references: []                            # List any published papers, DOIs, or source materials related to this resource.
+# image_url: Optional path to a screenshot for the catalog page (e.g., /assets/images/resources/flow_tool_screenshot.png)
+
+figures:
+  - id: 1
+    original_filename: 04_02_SWR_Module1.png
+    type: Screenshot
+    caption: The interactive plot of the soil water retention curve with the Van Genuchten equation.
+    is_cover: true
+  - id: 2
+    original_filename: 04_02_SWR_Module2.png
+    type: Screenshot
+    caption: The theory section of the SWR module with interactive illustration.

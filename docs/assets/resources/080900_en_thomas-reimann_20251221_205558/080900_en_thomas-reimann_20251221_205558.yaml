@@ -1,0 +1,48 @@
+catalog_category: "08 Groundwater Modeling"
+catalog_subcategory: "08-09 Model Evaluation & Verification"
+catalog_subsubcategory: "(Attach to subcategory)"
+
+# --- RESOURCE IDENTIFICATION AND TOPIC MAPPING ---
+# item_id: A unique, simple slug for this item (e.g., aquifer_test_1). 
+
+item_id: TO_BE_FILLED_BY_COURSE_MANAGER
+topic: 09 Model Evaluation & Verification # Must match the title of the parent catalog page.
+title: Tutorial - Numerical model of a pumping test    # The full, descriptive name of the resource.
+
+# --- TYPE AND ACCESS ---
+resource_type: Streamlit app            # Required. Options: Streamlit app, Jupyter Notebook, Video, Dataset, Other.
+url: https://modflow-tutorial-2d-theis.streamlit.app/      # The direct link to launch the app, notebook on Binder, or video on YouTube.
+date_released: TO_BE_FILLED_BY_COURSE_MANAGER               # Release date in YYYY-MM-DD format.
+
+# --- CONTENT AND METADATA ---
+description_short: |
+  This tutorial demonstrates how to set up and run a numerical pumping test in a confined aquifer using MODFLOW-2005. It guides users through model discretization, parameter definition, boundary conditions, simulation, and postprocessing, and shows how the generated results can be exported and analyzed in the Pumping Test Module to compare numerical drawdown with the Theis solution.
+keywords: [MODFLOW, MODELMUSE, Theis, tutorial, groundwater flow, numerical model]
+multipage_app: false
+num_pages: 0
+interactive_plots: false
+num_interactive_plots: 0
+assessments_included: false
+num_assessment_questions: 0
+videos_included: true
+num_videos: 7
+
+# --- EDUCATIONAL FIT ---
+time_required: 1.5 hours             # Estimated time for a student to complete the activity (e.g., 30 minutes, 1.5 hours).
+prerequisites: Basic Hydrogeology, Flow to wells, basic groundwater modeling       # Required prior knowledge (e.g., Darcy's Law, Python basics, basic calculus).
+fit_for:
+  - self learning
+
+# --- AUTHOR AND REFERENCE ---
+authors:
+  - name: Thomas Reimann
+    affiliation: TU Dresden
+references: []                            # List any published papers, DOIs, or source materials related to this resource.
+# image_url: Optional path to a screenshot for the catalog page (e.g., /assets/images/resources/flow_tool_screenshot.png)
+
+figures:
+  - id: 1
+    original_filename: 08_09_Theis_tutorial.png
+    type: Screenshot
+    caption: An overview about the tutorial
+    is_cover: true
