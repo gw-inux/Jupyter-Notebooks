@@ -1,0 +1,55 @@
+catalog_category: "08 Groundwater Modeling"
+catalog_subcategory: "08-04 Transport Modeling"
+catalog_subsubcategory: "(Attach to subcategory)"
+
+# --- RESOURCE IDENTIFICATION AND TOPIC MAPPING ---
+# item_id: A unique, simple slug for this item (e.g., aquifer_test_1). 
+
+item_id: 0804001
+topic: 04 Transport Modeling # Must match the title of the parent catalog page.
+title: Groundwater Particle Tracking    # The full, descriptive name of the resource.
+
+# --- TYPE AND ACCESS ---
+resource_type: Streamlit app            # Required. Options: Streamlit app, Jupyter Notebook, Video, Dataset, Other.
+url: https://particle-tracking.streamlit.app/      # The direct link to launch the app, notebook on Binder, or video on YouTube.
+date_released: TO_BE_FILLED_BY_COURSE_MANAGER               # Release date in YYYY-MM-DD format.
+
+# --- CONTENT AND METADATA ---
+description_short: |
+  This interactive app illustrates groundwater particle tracking by following a conceptual tracer particle as it is transported through an aquifer by advective groundwater flow.
+  
+  Users can adjust the entry position of the particle, the time since recharge, and key hydrogeological parameters such as recharge rate, aquifer thickness, and effective porosity. Based on these inputs, the app computes and visualizes the particle’s flow path and its evolving horizontal position and depth over time. A highlighted marker and guide lines show the particle location at a user-selected time step, helping to connect parameter changes directly to travel distance and travel time.
+  
+  The module provides an intuitive introduction to a Lagrangian perspective on groundwater transport and supports discussion of travel times, flow paths, and the sensitivity of advective movement to recharge and aquifer properties under steady-state conditions.
+keywords: [particle tracking, lagrange, transport, solute transport]
+multipage_app: false
+num_pages: 0
+interactive_plots: true
+num_interactive_plots: 1
+assessments_included: false
+num_assessment_questions: 0
+videos_included: false
+num_videos: 0
+
+# --- EDUCATIONAL FIT ---
+time_required: 5–15 min             # Estimated time for a student to complete the activity (e.g., 30 minutes, 1.5 hours).
+prerequisites: Basic hydrogeology, Aquifer parameters       # Required prior knowledge (e.g., Darcy's Law, Python basics, basic calculus).
+fit_for:
+  - classroom teaching
+  - online teaching
+
+# --- AUTHOR AND REFERENCE ---
+authors:
+  - name: Edith Griesser
+    affiliation: Universität Graz, Institut für Erdwissenschaften
+  - name: Steffen BIrk
+    affiliation: Universität Graz, Institut für Erdwissenschaften
+references: []                            # List any published papers, DOIs, or source materials related to this resource.
+# image_url: Optional path to a screenshot for the catalog page (e.g., /assets/images/resources/flow_tool_screenshot.png)
+
+figures:
+  - id: 1
+    original_filename: 08_04_particle_tracking.png
+    type: Screenshot
+    caption: The computed pathline
+    is_cover: true

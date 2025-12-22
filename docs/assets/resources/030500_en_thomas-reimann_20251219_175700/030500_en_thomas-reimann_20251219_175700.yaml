@@ -1,0 +1,53 @@
+catalog_category: "03 Basic Hydrogeology"
+catalog_subcategory: "03-05 Flow to Wells"
+catalog_subsubcategory: "(Attach to subcategory)"
+
+# --- RESOURCE IDENTIFICATION AND TOPIC MAPPING ---
+# item_id: A unique, simple slug for this item (e.g., aquifer_test_1). 
+
+item_id: 0305008
+topic: 05 Flow to Wells # Must match the title of the parent catalog page.
+title: Water abstraction - Drawdown prediction with the Theis solution for confined and unconfined aquifers    # The full, descriptive name of the resource.
+
+# --- TYPE AND ACCESS ---
+resource_type: Streamlit app            # Required. Options: Streamlit app, Jupyter Notebook, Video, Dataset, Other.
+url: https://flow2well-transient-unconfined-confined.streamlit.app/      # The direct link to launch the app, notebook on Binder, or video on YouTube.
+date_released: TO_BE_FILLED_BY_COURSE_MANAGER               # Release date in YYYY-MM-DD format.
+
+# --- CONTENT AND METADATA ---
+description_short: >
+  This interactive app illustrates transient groundwater drawdown induced by pumping from a fully penetrating well. It is based on the classical Theis solution for confined aquifers and an adapted formulation for unconfined aquifers, allowing a direct comparison between both hydrogeological conditions.
+  
+  Users can explore how pumping rate, transmissivity, storativity (or specific yield), aquifer thickness, distance from the well, and time influence drawdown patterns. The app visualizes drawdown profiles symmetrically around the pumping well and highlights differences between confined and unconfined responses under otherwise identical conditions.
+  
+  The tool is designed for teaching and self-learning in hydrogeology, supporting conceptual understanding of radial flow to wells, parameter sensitivity, and the limitations of analytical solutions. It is particularly suited for undergraduate and graduate courses covering groundwater hydraulics, pumping tests, and aquifer characterization.
+keywords: [Wells, transient, Theis equation, confined, unconfined, flow to wells]
+multipage_app: false
+num_pages: 0
+interactive_plots: true
+num_interactive_plots: 1
+assessments_included: false
+num_assessment_questions: 0
+videos_included: false
+num_videos: 0
+
+# --- EDUCATIONAL FIT ---
+time_required: 15–30 minutes             # Estimated time for a student to complete the activity (e.g., 30 minutes, 1.5 hours).
+prerequisites: Basic hydrogeology, Aquifer parameters, Aquifer characteristics       # Required prior knowledge (e.g., Darcy's Law, Python basics, basic calculus).
+fit_for:
+  - online teaching
+  - classroom teaching
+
+# --- AUTHOR AND REFERENCE ---
+authors:
+  - name: Thomas Reimann
+    affiliation: TU Dresden
+references: []                            # List any published papers, DOIs, or source materials related to this resource.
+# image_url: Optional path to a screenshot for the catalog page (e.g., /assets/images/resources/flow_tool_screenshot.png)
+
+figures:
+  - id: 1
+    original_filename: 03_05_transient_confined_unconfined.png
+    type: Screenshot
+    caption: The drawdown plotted for confined and unconfined conditions for direct comparison
+    is_cover: true

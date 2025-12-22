@@ -1,0 +1,49 @@
+catalog_category: "03 Basic Hydrogeology"
+catalog_subcategory: "03-05 Flow to Wells"
+catalog_subsubcategory: "(Attach to subcategory)"
+
+# --- RESOURCE IDENTIFICATION AND TOPIC MAPPING ---
+# item_id: A unique, simple slug for this item (e.g., aquifer_test_1). 
+
+item_id: 0305006
+topic: 05 Flow to Wells # Must match the title of the parent catalog page.
+title: Transient Flow towards wells and superposition    # The full, descriptive name of the resource.
+
+# --- TYPE AND ACCESS ---
+resource_type: Streamlit app            # Required. Options: Streamlit app, Jupyter Notebook, Video, Dataset, Other.
+url: https://flow2well-transient-confined-superposition.streamlit.app/      # The direct link to launch the app, notebook on Binder, or video on YouTube.
+date_released: TO_BE_FILLED_BY_COURSE_MANAGER               # Release date in YYYY-MM-DD format.
+
+# --- CONTENT AND METADATA ---
+description_short: |
+keywords: [Superposition, Theis, pumping test, infiltration well, imaginary well]
+multipage_app: false
+num_pages: 0
+interactive_plots: true
+num_interactive_plots: 1
+assessments_included: false
+num_assessment_questions: 0
+videos_included: false
+num_videos: 0
+
+# --- EDUCATIONAL FIT ---
+time_required: 15–30 minutes             # Estimated time for a student to complete the activity (e.g., 30 minutes, 1.5 hours).
+prerequisites: Basic Hydrogeology, Flow to well, Theis       # Required prior knowledge (e.g., Darcy's Law, Python basics, basic calculus).
+fit_for:
+  - self learning
+  - classroom teaching
+  - online teaching
+
+# --- AUTHOR AND REFERENCE ---
+authors:
+  - name: Thomas Reimann
+    affiliation: TU Dresden
+references: []                            # List any published papers, DOIs, or source materials related to this resource.
+# image_url: Optional path to a screenshot for the catalog page (e.g., /assets/images/resources/flow_tool_screenshot.png)
+
+figures:
+  - id: 1
+    original_filename: 03_05_Theis_confined_superposition.png
+    type: Screenshot
+    caption: Computed drawdown for two pumping wells with different abstraction rates.
+    is_cover: true
