@@ -6,7 +6,7 @@ catalog_subsubcategory: "(Attach to subcategory)"
 # item_id: A unique, simple slug for this item (e.g., aquifer_test_1). 
 
 item_id: 0804001
-topic: 04 Transport Modeling # Must match the title of the parent catalog page.
+topic: 04 Transport modeling # Must match the title of the parent catalog page.
 title: Groundwater Particle Tracking    # The full, descriptive name of the resource.
 
 # --- TYPE AND ACCESS ---
