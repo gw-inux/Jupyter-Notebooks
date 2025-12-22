@@ -32,7 +32,9 @@ fit_for:
 # --- AUTHOR AND REFERENCE ---
 authors:
   - name: Steffen Birk
-    affiliation: Edith Grießer
+    affiliation: Universität Graz, Institut für Erdwissenschaften
+  - name: Edith Griesser
+    affiliation: Universität Graz, Institut für Erdwissenschaften
 references: []                            # List any published papers, DOIs, or source materials related to this resource.
 # image_url: Optional path to a screenshot for the catalog page (e.g., /assets/images/resources/flow_tool_screenshot.png)
 

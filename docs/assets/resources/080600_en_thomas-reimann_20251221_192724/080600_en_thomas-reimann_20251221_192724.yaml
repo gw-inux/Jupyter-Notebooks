@@ -1,0 +1,54 @@
+catalog_category: "08 Groundwater Modeling"
+catalog_subcategory: "08-06 Coupled Models"
+catalog_subsubcategory: "(Attach to subcategory)"
+
+# --- RESOURCE IDENTIFICATION AND TOPIC MAPPING ---
+# item_id: A unique, simple slug for this item (e.g., aquifer_test_1). 
+
+item_id: TO_BE_FILLED_BY_COURSE_MANAGER
+topic: 06 Coupled Models # Must match the title of the parent catalog page.
+title: CFP - response to discharge event    # The full, descriptive name of the resource.
+
+# --- TYPE AND ACCESS ---
+resource_type: Jupyter Notebook            # Required. Options: Streamlit app, Jupyter Notebook, Video, Dataset, Other.
+url: https://github.com/gw-inux/iNUX-Interactive-Documents/blob/main/08_Groundwater_Modeling/06_Coupled%20Models/CFP_Response.ipynb      # The direct link to launch the app, notebook on Binder, or video on YouTube.
+date_released: TO_BE_FILLED_BY_COURSE_MANAGER               # Release date in YYYY-MM-DD format.
+
+# --- CONTENT AND METADATA ---
+description_short: |
+  This Jupyter notebook demonstrates a simple MODFLOW-CFP (CFPy) model setup (after Birk, 2002) to analyze a karst conduit system’s transient response to a short discharge/recharge event. Using FloPy and CFPy, the notebook builds a 2D continuum grid with a 1D conduit network, applies steady-state initialization followed by a transient injection period and recovery phase, and runs the coupled flow simulation with the MODFLOW-CFP executable.
+  
+  Three (or more) scenarios are computed by varying different model parameters. Results are postprocessed to extract conduit flow rates through time and compare how parameter changes affect the spring discharge response.
+keywords: [MODFLOW, CFP, FloPy, Karst, numerical model]
+multipage_app: false
+num_pages: 0
+interactive_plots: false
+num_interactive_plots: 0
+assessments_included: false
+num_assessment_questions: 0
+videos_included: false
+num_videos: 0
+
+# --- EDUCATIONAL FIT ---
+time_required: 15–30 minutes             # Estimated time for a student to complete the activity (e.g., 30 minutes, 1.5 hours).
+prerequisites: Groundwater Modeling, MODFLOW, Basic Python       # Required prior knowledge (e.g., Darcy's Law, Python basics, basic calculus).
+fit_for:
+  - self learning
+  - classroom teaching
+  - online teaching
+
+# --- AUTHOR AND REFERENCE ---
+authors:
+  - name: Thomas Reimann
+    affiliation: TU Dresden
+  - name: Steffen Birk
+    affiliation: Universität Graz, Institut für Erdwissenschaften
+references: []                            # List any published papers, DOIs, or source materials related to this resource.
+# image_url: Optional path to a screenshot for the catalog page (e.g., /assets/images/resources/flow_tool_screenshot.png)
+
+figures:
+  - id: 1
+    original_filename: 08_06_CFP_response.png
+    type: Screenshot
+    caption: The computed spring discharge
+    is_cover: true

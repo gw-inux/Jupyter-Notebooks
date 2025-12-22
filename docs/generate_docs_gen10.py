@@ -31,7 +31,7 @@ OUTPUT_DOCS_DIR = Path("pages")                  # final Jekyll pages (nested fo
 OUTPUT_DOCS_DIR.mkdir(exist_ok=True)
 
 # Toggle: show page_id footer at bottom of each generated page
-SHOW_PAGE_ID_FOOTER = True
+SHOW_PAGE_ID_FOOTER = False
 
 # Default intro text when spreadsheet "description" is empty
 DEFAULT_TOPIC_INTRO = "Introductory content for this topic will be added here."
@@ -904,7 +904,7 @@ def main(target_page_ids: Optional[List[str]] = None) -> None:
         fm_text = "---\n" + yaml.safe_dump(frontmatter, sort_keys=False) + "---\n\n"
 
 
-        resources_list_md = "## Interactive Resources\n\n"
+        resources_list_md = ""
         if resources_for_topic:
             # stable order by title
             # Order resources: prefer item_id when usable; otherwise fallback safely
@@ -939,7 +939,7 @@ def main(target_page_ids: Optional[List[str]] = None) -> None:
                 resources_list_md += format_resource_markdown(res, item_code)
 
         else:
-            resources_list_md += "No resources submitted for this topic yet.\n\n"
+            resources_list_md += ""
 
         # 4. Inject resource list at marker (or append at the end)
         if INJECTION_MARKER in existing_body:

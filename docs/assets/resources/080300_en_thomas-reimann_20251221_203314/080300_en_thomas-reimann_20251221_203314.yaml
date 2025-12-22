@@ -1,0 +1,52 @@
+catalog_category: "08 Groundwater Modeling"
+catalog_subcategory: "08-03 Flow Modeling"
+catalog_subsubcategory: "(Attach to subcategory)"
+
+# --- RESOURCE IDENTIFICATION AND TOPIC MAPPING ---
+# item_id: A unique, simple slug for this item (e.g., aquifer_test_1). 
+
+item_id: TO_BE_FILLED_BY_COURSE_MANAGER
+topic: 03 Flow Modeling # Must match the title of the parent catalog page.
+title: Modflow-2005/MODELMUSE Tutorial - synthetic    # The full, descriptive name of the resource.
+
+# --- TYPE AND ACCESS ---
+resource_type: Streamlit app            # Required. Options: Streamlit app, Jupyter Notebook, Video, Dataset, Other.
+url: https://modflow-tutorial-2d-synthetic.streamlit.app/      # The direct link to launch the app, notebook on Binder, or video on YouTube.
+date_released: TO_BE_FILLED_BY_COURSE_MANAGER               # Release date in YYYY-MM-DD format.
+
+# --- CONTENT AND METADATA ---
+description_short: |
+  This interactive tutorial guides users step by step through the design, implementation, and analysis of a 2D steady-state groundwater flow model for a synthetic catchment using MODFLOW-2005 in combination with MODELMUSE. The application is structured as an expandable to-do–based workflow, supported by explanatory text, figures, downloadable resources, and short instructional videos that mirror a typical professional modeling process.
+  
+  Starting from grid discretization and parameter definition, the tutorial covers the setup of boundary conditions (constant head, recharge, river, and wells), execution of the numerical simulation, and systematic postprocessing, including hydraulic head visualization and particle tracking with MODPATH. Optional refinement steps allow users to further explore grid design and numerical sensitivity. The app is intended for academic teaching and guided self-study, providing a practical introduction to conceptualization, numerical setup, and interpretation of groundwater flow models in a controlled and transparent learning environment.
+keywords: [MODFLOW, MODELMUSE, groundwater modeling]
+multipage_app: false
+num_pages: 0
+interactive_plots: false
+num_interactive_plots: 0
+assessments_included: false
+num_assessment_questions: 0
+videos_included: true
+num_videos: 5
+
+# --- EDUCATIONAL FIT ---
+time_required: 1.5 hours             # Estimated time for a student to complete the activity (e.g., 30 minutes, 1.5 hours).
+prerequisites: Basic Hydrogeology, groundwater flow modeling basics       # Required prior knowledge (e.g., Darcy's Law, Python basics, basic calculus).
+fit_for:
+  - self learning
+
+# --- AUTHOR AND REFERENCE ---
+authors:
+  - name: Thomas Reimann
+    affiliation: TU Dresden
+  - name: Rudolf Liedl
+    affiliation: TU Dresden
+references: []                            # List any published papers, DOIs, or source materials related to this resource.
+# image_url: Optional path to a screenshot for the catalog page (e.g., /assets/images/resources/flow_tool_screenshot.png)
+
+figures:
+  - id: 1
+    original_filename: 08_03_tutorial_synthetic.png
+    type: Schematic / Diagram / Illustration
+    caption: The idealized model catchment that is used for the tutorial.
+    is_cover: true

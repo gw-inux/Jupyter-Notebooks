@@ -1,0 +1,57 @@
+catalog_category: "08 Groundwater Modeling"
+catalog_subcategory: "08-04 Transport Modeling"
+catalog_subsubcategory: "(Attach to subcategory)"
+
+# --- RESOURCE IDENTIFICATION AND TOPIC MAPPING ---
+# item_id: A unique, simple slug for this item (e.g., aquifer_test_1). 
+
+item_id: 0804002
+topic: 04 Transport Modeling # Must match the title of the parent catalog page.
+title: Groundwater Particle Tracking for multiple particles    # The full, descriptive name of the resource.
+
+# --- TYPE AND ACCESS ---
+resource_type: Streamlit app            # Required. Options: Streamlit app, Jupyter Notebook, Video, Dataset, Other.
+url: https://particle-tracking-multi.streamlit.app/      # The direct link to launch the app, notebook on Binder, or video on YouTube.
+date_released: TO_BE_FILLED_BY_COURSE_MANAGER               # Release date in YYYY-MM-DD format.
+
+# --- CONTENT AND METADATA ---
+description_short: |
+  This interactive app extends the particle-tracking concept to a bundle of multiple groundwater particles, allowing users to explore how neighboring recharge points evolve into distinct yet related flow paths and travel times within an aquifer.
+  
+  Starting from a central entry position, a user-defined number of particles is released with a specified horizontal spacing. All particles are advected by the same steady-state flow field, and their trajectories are visualized simultaneously. The central particle is highlighted, while the surrounding particles provide context on the spreading of flow paths caused by differences in initial position under identical hydraulic conditions.
+  
+  By interactively adjusting recharge rate, aquifer thickness, effective porosity, entry location, and particle spacing, users can examine how small variations in starting position influence travel distance, depth evolution, and arrival times. The app supports discussion of advective transport, flow-path divergence, and travel-time distributions, and provides an intuitive introduction to multi-particle Lagrangian analysis commonly used in groundwater modeling and capture-zone assessments under steady-state conditions.
+keywords: [particle tracking, lagrange, transport, solute transport]
+multipage_app: false
+num_pages: 0
+interactive_plots: true
+num_interactive_plots: 1
+assessments_included: false
+num_assessment_questions: 0
+videos_included: false
+num_videos: 0
+
+# --- EDUCATIONAL FIT ---
+time_required: 5–15 min             # Estimated time for a student to complete the activity (e.g., 30 minutes, 1.5 hours).
+prerequisites: Basic hydrogeology, Aquifer parameters       # Required prior knowledge (e.g., Darcy's Law, Python basics, basic calculus).
+fit_for:
+  - classroom teaching
+  - online teaching
+
+# --- AUTHOR AND REFERENCE ---
+authors:
+  - name: Edith Griesser
+    affiliation: Universität Graz, Institut für Erdwissenschaften
+  - name: Steffen BIrk
+    affiliation: Universität Graz, Institut für Erdwissenschaften
+  - name: Thomas Reimann
+    affiliation: TU Dresden, Institut für Grundwasserwirtschaft
+references: []                            # List any published papers, DOIs, or source materials related to this resource.
+# image_url: Optional path to a screenshot for the catalog page (e.g., /assets/images/resources/flow_tool_screenshot.png)
+
+figures:
+  - id: 1
+    original_filename: 08_04_particle_tracking_multi.png
+    type: Screenshot
+    caption: The interactive plot with multiple pathlines.
+    is_cover: true
