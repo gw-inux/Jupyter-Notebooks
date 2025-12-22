@@ -2,15 +2,35 @@
 import streamlit as st
 from streamlit_extras.stodo import to_do
 
-st.title('Modflow-2005/MODELMUSE Tutorial')
+# also Interactive Documents 08-03-001
 
+# Authors, institutions, and year
+year = 2025 
+authors = {
+    "Thomas Reimann": [1],  # Author 1 belongs to Institution 1
+    "Rudolf Liedl": [1] 
+}
+institutions = {
+    1: "TU Dresden, Institute for Groundwater Management"
+    
+}
+index_symbols = ["¹", "²", "³", "⁴", "⁵", "⁶", "⁷", "⁸", "⁹"]
+author_list = [f"{name}{''.join(index_symbols[i-1] for i in indices)}" for name, indices in authors.items()]
+institution_list = [f"{index_symbols[i-1]} {inst}" for i, inst in institutions.items()]
+institution_text = " | ".join(institution_list)
+
+#--- User Interface
+
+st.title('Modflow-2005/MODELMUSE Tutorial')
 st.header('2D Steady State Groundwater Flow for a Synthetic Catchment')
 
 st.subheader('Modeldesign with :green[MODFLOW-2005 and MODELMUSE]', divider="green")
 
 st.markdown("""
             This app contains a tutorial with descriptions (as To-Do list) and videos on how to setup a MODFLOW model for 2D synthetic catchment (see the following figure). The individual steps of the modeling process are provided in the following boxes that you can expand by clicking.
-            
+           """)
+with st.expander('**Click here to get access to :red[ressources used for the tutorial] (PDFs, Modelfiles, Images)**'):
+    st.markdown("""          
             #### Ressources used for the tutorial
             - The background images are available on GitHub 
               - https://github.com/gw-inux/Jupyter-Notebooks/blob/main/06_Groundwater_modeling/FIGS/MAP_well.jpg
@@ -20,7 +40,7 @@ st.markdown("""
             - The MODELMUSE model files (....gpt) is available on GitHub
               - https://github.com/gw-inux/Jupyter-Notebooks/blob/main/06_Groundwater_modeling/DATA/2D_Synthetic.gpt
            """)
-
+    
 lc0, cc0, rc0 = st.columns((20,60,20))
 with cc0:
     st.image('06_Groundwater_modeling/FIGS/2D_synthetic.png', caption="The synthetic catchment for the numerical model.")
@@ -355,3 +375,12 @@ with st.expander(":blue[**OPTIONALLY Steps: Some further things to do**] - Expan
         [(st.write, "select “Subdivide grid cells”, mark the cell containing well 2, set “subdivide each row into” = 3, and press “OK”.")],"td059",)
     to_do(
         [(st.write, "choose “Restore default 2D view” and learn about buttons to hide/show the 2D gridlines (on the very right in the second row of symbols).")],"td060",)        
+        
+st.markdown('---')
+
+# --- Render footer with authors, institutions, and license logo in a single line
+columns_lic = st.columns((5,1))
+with columns_lic[0]:
+    st.markdown(f'Developed by {", ".join(author_list)} ({year}). <br> {institution_text}', unsafe_allow_html=True)
+with columns_lic[1]:
+    st.image('FIGS/CC_BY-SA_icon.png')

@@ -4,8 +4,27 @@ import matplotlib.pyplot as plt
 import scipy.special
 import streamlit as st
 
-st.title('Transient Flow towards wells and superposition')
+# also Interactive Documents 03-05-006
+# ToDo:
+#    - K log slider
+#    - number input
 
+# Authors, institutions, and year
+year = 2025 
+authors = {
+    "Thomas Reimann": [1]  # Author 1 belongs to Institution 1
+}
+institutions = {
+    1: "TU Dresden, Institute for Groundwater Management"
+    
+}
+index_symbols = ["¹", "²", "³", "⁴", "⁵", "⁶", "⁷", "⁸", "⁹"]
+author_list = [f"{name}{''.join(index_symbols[i-1] for i in indices)}" for name, indices in authors.items()]
+institution_list = [f"{index_symbols[i-1]} {inst}" for i, inst in institutions.items()]
+institution_text = " | ".join(institution_list)
+
+#--- User Interface
+st.title('Transient Flow towards wells and superposition')
 st.subheader('Consideration of two wells under the principle of :orange[superposition]', divider="orange")
 
 st.markdown(r"""
@@ -221,11 +240,11 @@ if st.session_state.case == 'Well with infiltration bc':
     with st.expander('Here you can find additional explanation'):
         st.image('04_Basic_hydrogeology/FIGS/ferris_infiltration.png', caption="Conceptual sketch through an aquifer with one pumping well and an imaginary well to represent an infiltration boundary [Ferris et al. 1962]( https://pubs.usgs.gov/wsp/wsp1536-E/).")
 
-'---'
+st.markdown('---')
 
-# Copyright
-col1, col2 = st.columns([1, 5], gap = 'large')  # Adjust column width ratio
-with col1:
-    st.image('04_Basic_hydrogeology/FIGS/logo_iNUX.jpg', width=125)
-with col2:
-    st.markdown("© 2025 iNUX Project - Interactive understanding of groundwater hydrology and hydrogeology - An ERASMUS+ cooperation project.<br>App developer: Thomas Reimann (TU Dresden)", unsafe_allow_html=True)
+# --- Render footer with authors, institutions, and license logo in a single line
+columns_lic = st.columns((5,1))
+with columns_lic[0]:
+    st.markdown(f'Developed by {", ".join(author_list)} ({year}). <br> {institution_text}', unsafe_allow_html=True)
+with columns_lic[1]:
+    st.image('FIGS/CC_BY-SA_icon.png')
