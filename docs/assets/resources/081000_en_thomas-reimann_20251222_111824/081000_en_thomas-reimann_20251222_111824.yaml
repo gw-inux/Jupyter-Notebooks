@@ -1,0 +1,69 @@
+catalog_category: "08 Groundwater Modeling"
+catalog_subcategory: "08-10 MODFLOW Concepts, Packages & Tools"
+catalog_subsubcategory: "(Attach to subcategory)"
+
+# --- RESOURCE IDENTIFICATION AND TOPIC MAPPING ---
+# item_id: A unique, simple slug for this item (e.g., aquifer_test_1). 
+
+item_id: TO_BE_FILLED_BY_COURSE_MANAGER
+topic: 10 MODFLOW Concepts, Packages & Tools # Must match the title of the parent catalog page.
+title: The Boundary Condition Module    # The full, descriptive name of the resource.
+
+# --- TYPE AND ACCESS ---
+resource_type: Streamlit app            # Required. Options: Streamlit app, Jupyter Notebook, Video, Dataset, Other.
+url: https://gwp-boundary-conditions-analysis.streamlit.app/      # The direct link to launch the app, notebook on Binder, or video on YouTube.
+date_released: TO_BE_FILLED_BY_COURSE_MANAGER               # Release date in YYYY-MM-DD format.
+
+# --- CONTENT AND METADATA ---
+description_short: |
+  Groundwater models are only as good as the accuracy of both the system representation (including boundary conditions) and the values of observations used to calibrate the model. This interactive module is designed to deepen the understanding of the basic ways in which different types of boundary conditions - specified head, specified flow, and head-dependent flow - influence the magnitude and direction of groundwater flow when used in solving the partial differential equation for groundwater flow.
+  
+  This module offers intuitive visualizations, conceptual explanations, and interactive tools to help bridge theory and application for beginning modelers, advanced students, and practicing hydrogeologists.
+  
+  This module is intended for beginners who know a little about groundwater models and are ready to learn about boundary conditions, as well as advanced and experienced users who wish to refresh their understanding of specific boundary types. A basic familiarity with hydrogeology and groundwater flow is recommended, but no prior experience with MODFLOW is required.
+  
+  Structure of the module: The Introduction Section provides an overview of groundwater models and introduces the role of boundary conditions in MODFLOW. Following this, each MODFLOW basic boundary condition (GHB, RIV, DRN, MNW2, ET) is presented in its own dedicated section, where the concepts, applications, and implications are explained in detail.
+  
+  The Module is published in ZENODO as: Reimann, T., Poeter, E., & Kuniansky, E.L. (2025a). Boundary Condition Module. An interactive educational resource for The Groundwater Project. https://doi.org/10.5281/zenodo.17624993
+keywords: [Groundwater modeling, MODFLOW, boundary condition, GHB, RIV, DRN, MNW2, ET, Q-h plots]
+multipage_app: true
+num_pages: 2
+interactive_plots: false
+num_interactive_plots: 0
+assessments_included: false
+num_assessment_questions: 0
+videos_included: false
+num_videos: 0
+
+# --- EDUCATIONAL FIT ---
+time_required: 4-8 hours             # Estimated time for a student to complete the activity (e.g., 30 minutes, 1.5 hours).
+prerequisites: Basic hydrogeology, 1D groundwater flow equation, basic knowledge about groundwater modeling       # Required prior knowledge (e.g., Darcy's Law, Python basics, basic calculus).
+fit_for:
+  - self learning
+
+# --- AUTHOR AND REFERENCE ---
+authors:
+  - name: Thomas Reimann
+    affiliation: TU Dresden
+  - name: Eileen Poeter
+    affiliation: Colorado School of Mines
+  - name: Eve L. Kuniansky
+    affiliation: retired from USGS
+references:
+  - Reimann, T., Poeter, E., & Kuniansky, E.L. (2025a). Boundary Condition Module. An interactive educational resource for The Groundwater Project. https://doi.org/10.5281/zenodo.17624993                            # List any published papers, DOIs, or source materials related to this resource.
+# image_url: Optional path to a screenshot for the catalog page (e.g., /assets/images/resources/flow_tool_screenshot.png)
+
+figures:
+  - id: 1
+    original_filename: 08_10_BC_Module1.png
+    type: Screenshot
+    caption: The Boundary Condition Module as a complex interactive learning module.
+    is_cover: true
+  - id: 2
+    original_filename: 08_10_BC_Module2.png
+    type: Screenshot
+    caption: The analytical solution for 1D flow in an unconfined aquifer to support the explanation of Q-h plots (discharge Q stage h relationship)..
+  - id: 3
+    original_filename: 08_10_BC_Module3.png
+    type: Screenshot
+    caption: The interactive Q-h plot for the RIV boundary with visual support.
