@@ -727,9 +727,7 @@ def format_resource_markdown(resource: Dict[str, Any], item_code: str) -> str:
                 caption_text=caption_text,
                 container_width_pct=70,
             )
-
-
-        fig_counter += 1
+            fig_counter += 1
 
 
 
