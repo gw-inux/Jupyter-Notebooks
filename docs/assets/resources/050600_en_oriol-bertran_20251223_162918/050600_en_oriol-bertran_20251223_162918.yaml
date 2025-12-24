@@ -1,0 +1,75 @@
+catalog_category: 05 Hydrogeochemistry and Contaminant Transport
+catalog_subcategory: 05-06 Reactive Solute Transport
+catalog_subsubcategory: (Attach to subcategory)
+
+# --- RESOURCE IDENTIFICATION AND TOPIC MAPPING ---
+# item_id: A unique, simple slug for this item (e.g., aquifer_test_1). 
+
+item_id: TO_BE_FILLED_BY_COURSE_MANAGER
+topic_page_id: 050600_en  # Stable mapping key (preferred)
+topic: 05-06 Reactive Solute Transport # Human-readable topic label (fallback mapping)
+title: Analytical solution for 2D instantaneous solute transport injection in porous media (with decay)
+
+# --- TYPE AND ACCESS ---
+resource_type: Jupyter Notebook            # Required. Options: Streamlit app, Jupyter Notebook, Video, Dataset, Other.
+url: https://github.com/gw-inux/Jupyter-Notebooks/blob/7663b0c0e5f07a3d52fd7c17a7409f515f9a28e7/05_Applied_hydrogeology/aSolutions_decay_instantaneous.ipynb   # The direct link to launch the app, notebook on Binder, or video on YouTube.
+date_released: TO_BE_FILLED_BY_COURSE_MANAGER               # Release date in YYYY-MM-DD format.
+
+# --- CONTENT AND METADATA ---
+description_short: |
+  This interactive Jupyter tool computes and visualizes the analytical 2-D instantaneous solute injection solution with first-order decay in porous media.
+  It simulates how concentration evolves over time at a given observation point for five contaminants, each defined by a different decay rate.
+  The model incorporates:
+  * 1) Retardation
+  * 2) Longitudinal and transversal dispersion
+  * 3) Decay
+  * 4) 2-D spreading of an instantaneous point source
+  
+  The user can interactively modify: 
+  * 1) Distance to the observation point (x, y)
+  * 2) Longitudinal and transversal dispersivities
+  * 3) Retardation factor
+  
+  The tool then automatically recalculates:
+  * 1) Effective velocity
+  * 2) Effective longitudinal and transverse dispersion
+  * 3) Time-dependent concentration curves
+  
+  and plots the concentration–time profiles for all decay rates, allowing easy comparison of attenuation behavior in 2-D groundwater flow.
+  
+  
+ 
+keywords: [analytical solutions, solute transport, instantaneous injection, 2D, decay]
+multipage_app: false
+num_pages: 0
+interactive_plots: false
+num_interactive_plots: 0
+assessments_included: false
+num_assessment_questions: 0
+videos_included: false
+num_videos: 0
+
+# --- EDUCATIONAL FIT ---
+time_required: "30\u201345 minutes"             # Estimated time for a student to complete the activity (e.g., 30 minutes, 1.5 hours).
+#prerequisites: ''       # Required prior knowledge (e.g., Darcy's Law, Python basics, basic calculus).
+fit_for:
+  - self learning
+  - online teaching
+  - classroom teaching
+
+# --- AUTHOR AND REFERENCE ---
+authors:
+  - name: Oriol Bertran
+    affiliation: UPC
+  - name: "Daniel Fern\xE0ndez-Garcia"
+    affiliation: UPC
+references:
+  - Bear, J. (2012). Hydraulics of groundwater. Courier Corporation.                            # List any published papers, DOIs, or source materials related to this resource.
+# image_url: Optional path to a screenshot for the catalog page (e.g., /assets/images/resources/flow_tool_screenshot.png)
+
+figures:
+  - id: 1
+    original_filename: aSolutions_decay_instantaneous.png
+    type: Screenshot
+    caption: Concentration vs. Time for five decay rates with selected parameter values.
+    is_cover: true

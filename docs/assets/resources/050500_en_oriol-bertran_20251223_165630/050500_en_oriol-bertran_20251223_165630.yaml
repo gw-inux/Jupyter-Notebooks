@@ -1,0 +1,65 @@
+catalog_category: 05 Hydrogeochemistry and Contaminant Transport
+catalog_subcategory: 05-05 Conservative Solute Transport Processes
+catalog_subsubcategory: (Attach to subcategory)
+
+# --- RESOURCE IDENTIFICATION AND TOPIC MAPPING ---
+# item_id: A unique, simple slug for this item (e.g., aquifer_test_1). 
+
+item_id: 0505002
+topic_page_id: 050500_en  # Stable mapping key (preferred)
+topic: 05-05 Conservative Solute Transport Processes # Human-readable topic label (fallback mapping)
+title: Principle of Superposition
+
+# --- TYPE AND ACCESS ---
+resource_type: Jupyter Notebook            # Required. Options: Streamlit app, Jupyter Notebook, Video, Dataset, Other.
+url: https://github.com/gw-inux/Jupyter-Notebooks/blob/7663b0c0e5f07a3d52fd7c17a7409f515f9a28e7/05_Applied_hydrogeology/superposition_principle.ipynb     # The direct link to launch the app, notebook on Binder, or video on YouTube.
+date_released: TO_BE_FILLED_BY_COURSE_MANAGER               # Release date in YYYY-MM-DD format.
+
+# --- CONTENT AND METADATA ---
+description_short: |
+  This notebook demonstrates the principle of superposition applied to one-dimensional solute transport in porous media. Since the advection–dispersion equation is linear in concentration, individual concentration contributions from different sources or release events can be added to obtain the total solution.
+  
+  The notebook first defines the governing transport equation for continuous injection without decay, using the classical Ogata–Banks analytical solution.
+  It then sets up helper functions for dispersion, the Péclet number, and concentration calculations, along with interactive widgets that allow the user to modify input parameters and visually explore how multiple releases combine.
+  
+  Two practical examples illustrate how superposition works in groundwater contamination scenarios. In the first example, two overlapping continuous releases—one starting at time zero and another beginning later—are simulated independently and then added to obtain the combined breakthrough curve at an observation point.
+  
+  In the second example, a pulse injection is represented by subtracting two continuous injections, showing how a short-duration spill can be reconstructed using linearity. Interactive plots reveal the timing, peak concentration, and dissipation behavior of each scenario, giving users an intuitive understanding of how linear transport processes respond to multiple or time-varying sources.
+  
+keywords: [solute transport, principle of superposition]
+multipage_app: false
+num_pages: 0
+interactive_plots: false
+num_interactive_plots: 0
+assessments_included: false
+num_assessment_questions: 0
+videos_included: false
+num_videos: 0
+
+# --- EDUCATIONAL FIT ---
+time_required: "30\u201345 minutes"             # Estimated time for a student to complete the activity (e.g., 30 minutes, 1.5 hours).
+#prerequisites: ''       # Required prior knowledge (e.g., Darcy's Law, Python basics, basic calculus).
+fit_for:
+  - self learning
+  - online teaching
+  - classroom teaching
+
+# --- AUTHOR AND REFERENCE ---
+authors:
+  - name: Oriol Bertran
+    affiliation: UPC
+  - name: "Daniel Fern\xE0ndez-Garcia"
+    affiliation: UPC
+references: []                            # List any published papers, DOIs, or source materials related to this resource.
+# image_url: Optional path to a screenshot for the catalog page (e.g., /assets/images/resources/flow_tool_screenshot.png)
+
+figures:
+  - id: 1
+    original_filename: superposition_principle_1.png
+    type: Screenshot
+    caption: Continuous injection
+  - id: 2
+    original_filename: superposition_principle_2.png
+    type: Screenshot
+    caption: Pulse injection
+    is_cover: true
