@@ -1,3 +1,92 @@
+# ============================================================
+# VERSION OVERVIEW — V12 (relative to V11)
+# ============================================================
+#
+# This version improves how resources are presented and handled on the site.
+# Nothing changes in how you *submit* resources (YAML + pages.xlsx),
+# but V12 makes the generated pages more readable, robust, and scalable
+# as the catalog grows.
+#
+# In short: long links no longer break layouts, images are more useful,
+# and supplementary material can now be added explicitly.
+#
+# ------------------------------------------------------------
+# 1) Cleaner handling of long URLs
+# ------------------------------------------------------------
+# In earlier versions, the full URL was shown directly in tables.
+# Very long links (e.g. GitHub paths) could overflow the layout and
+# make pages hard to read.
+#
+# From V13 onward:
+#   - URLs are still fully clickable,
+#   - but the displayed text is shortened to a compact, readable label
+#     (e.g. "github.com · open repository").
+#
+# This keeps tables tidy while preserving access to the full link.
+# No assumptions are made about licensing or content based on the URL.
+#
+# ------------------------------------------------------------
+# 2) Explicit support for supplementary material (additional_data)
+# ------------------------------------------------------------
+# Some resources come with extra material (datasets, folders, archives)
+# that are not the main resource itself.
+#
+# V12 introduces an optional YAML field:
+#     additional_data
+#
+# You can now explicitly list such links in the YAML, and the generator
+# will render them as a dedicated "Additional data" row in the resource
+# details table.
+#
+# If no supplementary links are provided, nothing is shown.
+# This keeps pages clean while allowing richer resources when needed.
+#
+# ------------------------------------------------------------
+# 3) Clickable figures for faster access
+# ------------------------------------------------------------
+# Images are no longer just decorative.
+#
+# In V12:
+#   - The cover image (and other figures) can act as a link to the resource.
+#   - Clicking an image opens the resource in a new tab when a valid URL exists.
+#
+# This makes pages more interactive and helps users reach the resource
+# directly from visual cues.
+# Placeholder or missing URLs never create fake links.
+#
+# ------------------------------------------------------------
+# 4) Clearer diagnostics for resource mapping
+# ------------------------------------------------------------
+# To make maintenance easier, V12 improves the resource mapping report.
+#
+# Each YAML file is now explicitly marked as:
+#   - mapped (successfully attached to a page), or
+#   - unmapped (no matching page_id or title found).
+#
+# A CSV report is written after generation so missing or mislinked
+# resources can be identified quickly.
+#
+# ------------------------------------------------------------
+# 5) Internal robustness improvements (no action required)
+# ------------------------------------------------------------
+# Internally, V12 standardizes how URLs and optional fields are handled.
+# This makes the generator more tolerant of incomplete metadata and
+# easier to extend in future versions.
+#
+# These changes do not affect how you write YAML files,
+# but they make the system safer and more predictable as it evolves.
+#
+# ------------------------------------------------------------
+# Summary
+# ------------------------------------------------------------
+# V12 focuses on real-world usability:
+#   - pages stay readable even with long links,
+#   - supplementary data is first-class metadata,
+#   - images are more informative,
+#   - and maintenance feedback is clearer.
+#
+# ============================================================
+
 import sys
 import pandas as pd
 from pathlib import Path
@@ -177,6 +266,77 @@ def strip_leading_code(title: str) -> str:
     """
     t = (title or "").strip()
     return re.sub(r"^\d{2}(?:-\d{2})*\s+", "", t).strip() or t
+
+
+
+
+
+
+from urllib.parse import urlparse
+
+def html_escape(s: str) -> str:
+    return (s or "").replace("&", "&amp;").replace("<", "&lt;").replace(">", "&gt;").replace('"', "&quot;")
+
+def pretty_url_label(url: str, max_host_chars: int = 28) -> str:
+    """
+    Return a short, neutral label for a URL:
+      - shows hostname (trimmed)
+      - adds a safe action hint based on domain (no semantic overreach)
+    """
+    try:
+        p = urlparse(url)
+        host = (p.netloc or "").strip().lower()
+    except Exception:
+        host = ""
+
+    host = host or "link"
+
+    # Action mapping (keep conservative + maintainable)
+    if "github.com" in host:
+        action = "open repository"
+    elif "streamlit.app" in host or "streamlit" in host:
+        action = "open app"
+    else:
+        action = "open link"
+
+    # Trim host for display only (href keeps full url)
+    host_disp = host
+    if len(host_disp) > max_host_chars:
+        host_disp = host_disp[: max_host_chars - 1] + "…"
+
+    return f"{host_disp} · {action}"
+
+#For Additional data (if any)
+
+def normalize_additional_data(val: Any) -> List[Dict[str, str]]:
+    """
+    Accept:
+      - list of urls: ["https://...", ...]
+      - list of dicts: [{label,url,note}, ...]
+      - single url string
+    Return: list of dicts with keys: label, url, note
+    """
+    if val is None:
+        return []
+
+    items = val if isinstance(val, list) else [val]
+    out: List[Dict[str, str]] = []
+
+    for it in items:
+        if isinstance(it, str):
+            u = it.strip()
+            if u:
+                out.append({"label": "", "url": u, "note": ""})
+        elif isinstance(it, dict):
+            u = str(it.get("url") or "").strip()
+            if not u:
+                continue
+            lbl = str(it.get("label") or "").strip()
+            note = str(it.get("note") or "").strip()
+            out.append({"label": lbl, "url": u, "note": note})
+
+    return out
+
 
 # -------------------------------------------------
 # SIDEBAR COUNT HELPERS (subtree totals, language-agnostic)
@@ -569,6 +729,10 @@ def format_resource_markdown(resource: Dict[str, Any], item_code: str) -> str:
     date_released = resource.get("date_released", "N/A")
     description_short = resource.get("description_short", "No description provided.")
     url = resource.get("url", "#")
+    url_clean = str(url or "").strip()
+    link_url = url_clean if (url_clean and url_clean != "#") else None
+    link_url = html_escape(link_url) if link_url else None
+
 
     keywords = as_list(resource.get("keywords"))
     fit_for = as_list(resource.get("fit_for"))
@@ -624,6 +788,10 @@ def format_resource_markdown(resource: Dict[str, Any], item_code: str) -> str:
                 caption_parts.append(f"({ftype})")
 
         caption_text = " ".join(caption_parts) if caption_parts else None
+        
+        link_url = url_clean if (url_clean and url_clean != "#") else None
+        link_url = html_escape(link_url) if link_url else None
+
 
         md += render_html_figure(
             img_url=cover_url,
@@ -631,7 +799,7 @@ def format_resource_markdown(resource: Dict[str, Any], item_code: str) -> str:
             figure_number=fig_counter,
             caption_text=caption_text,
             container_width_pct=70,
-            link_url=url,  # <-- ADD THIS
+            link_url=link_url,
         )
 
 
@@ -651,10 +819,57 @@ def format_resource_markdown(resource: Dict[str, Any], item_code: str) -> str:
 
     md += "| Detail | Value |\n"
     md += "| :--- | :--- |\n"
-    md += (
-        "| **URL** | "
-        f'<a href="{url}" target="_blank" rel="noopener noreferrer">{url}</a> |\n'
-    )
+    
+    
+    url_clean = str(url or "").strip()
+    if url_clean and url_clean != "#":
+        label = html_escape(pretty_url_label(url_clean))
+        url_esc = html_escape(url_clean)
+
+        md += (
+            "| **URL** | "
+            f'<a href="{url_esc}" target="_blank" rel="noopener noreferrer">{label}</a>'
+            " |\n"
+        )
+    else:
+        md += "| **URL** | — |\n"
+        
+    additional = normalize_additional_data(resource.get("additional_data"))
+    if additional:
+        links_html = []
+        for item in additional:
+            u = item["url"]
+            u_clean = str(u or "").strip()
+            if not u_clean or u_clean == "#":
+                continue
+
+            u_esc = html_escape(u_clean)
+            label = item.get("label") or pretty_url_label(u_clean)
+            label = html_escape(label)
+
+            line = f'<a href="{u_esc}" target="_blank" rel="noopener noreferrer">{label}</a>'
+
+            note = (item.get("note") or "").strip()
+            if note:
+                line += f'<br><span style="font-size:0.9em;">{html_escape(note)}</span>'
+
+            links_html.append(line)
+
+        if links_html:
+            # If many links, keep the cell compact
+            if len(links_html) > 3:
+                cell_html = (
+                    '<details style="margin-top:4px;">'
+                    '<summary>Show links</summary>'
+                    + "<br>".join(links_html) +
+                    "</details>"
+                )
+            else:
+                cell_html = "<br>".join(links_html)
+
+            md += f"| **Additional data** | {cell_html} |\n"
+
+
 
     md += f"| **Author(s)** | {authors_str} |\n"
     md += f"| **Keywords** | {', '.join(keywords) if keywords else '—'} |\n"

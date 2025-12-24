@@ -1,0 +1,74 @@
+catalog_category: 06 Experimental Techniques and Methods
+catalog_subcategory: 06-04 Aquifer Characterization Techniques
+catalog_subsubcategory: (Attach to subcategory)
+
+# --- RESOURCE IDENTIFICATION AND TOPIC MAPPING ---
+# item_id: A unique, simple slug for this item (e.g., aquifer_test_1). 
+
+item_id: TO_BE_FILLED_BY_COURSE_MANAGER
+topic_page_id: 060400_en  # Stable mapping key (preferred)
+topic: 06-04 Aquifer Characterization Techniques # Human-readable topic label (fallback mapping)
+title: Pumping test interpretation- Theis vs Hantush methods
+
+# --- TYPE AND ACCESS ---
+resource_type: Jupyter Notebook            # Required. Options: Streamlit app, Jupyter Notebook, Video, Dataset, Other.
+url: https://github.com/gw-inux/Jupyter-Notebooks/blob/7663b0c0e5f07a3d52fd7c17a7409f515f9a28e7/05_Applied_hydrogeology/leakyAq_example_TheisHantush.ipynb     # The direct link to launch the app, notebook on Binder, or video on YouTube.
+date_released: TO_BE_FILLED_BY_COURSE_MANAGER               # Release date in YYYY-MM-DD format.
+
+# --- CONTENT AND METADATA ---
+description_short: |
+  Pumping test interpretation: Theis vs Hantush methods, both manual and automatic calibration.
+keywords: [pumping test, Theis, Hantush]
+multipage_app: false
+num_pages: 0
+interactive_plots: false
+num_interactive_plots: 0
+assessments_included: false
+num_assessment_questions: 0
+videos_included: false
+num_videos: 0
+
+# --- EDUCATIONAL FIT ---
+time_required: "30\u201345 minutes"             # Estimated time for a student to complete the activity (e.g., 30 minutes, 1.5 hours).
+#prerequisites: ''       # Required prior knowledge (e.g., Darcy's Law, Python basics, basic calculus).
+fit_for:
+  - self learning
+  - online teaching
+  - classroom teaching
+
+# --- AUTHOR AND REFERENCE ---
+authors:
+  - name: Oriol Bertran
+    affiliation: UPC
+  - name: "Daniel Fern\xE0ndez-Garc\xEDa"
+    affiliation: UPC
+  - name: "Jes\xFAs Carrera"
+    affiliation: CSIC
+references:
+  - https://water.usgs.gov/ogw/pubs/Theis-1935.pdf
+  - https://biblat.unam.mx/hevila/Agrollania/2011/vol8/13.pdf
+  - https://docs.scipy.org/doc/scipy/reference/generated/scipy.optimize.minimize.html                            # List any published papers, DOIs, or source materials related to this resource.
+# image_url: Optional path to a screenshot for the catalog page (e.g., /assets/images/resources/flow_tool_screenshot.png)
+
+figures:
+  - id: 1
+    original_filename: CooperJacob_1.png
+    type: Screenshot
+    caption: Input observation data
+  - id: 2
+    original_filename: TheisHantush.png
+    type: Screenshot
+    caption: Estimation of parameters by manual calibration using the Theis method.
+  - id: 3
+    original_filename: TheisHantush_2.png
+    type: Screenshot
+    caption: Estimation of parameters by manual calibration using the Hantush method.
+  - id: 4
+    original_filename: TheisHantush_3.png
+    type: Screenshot
+    caption: Estimation of parameters by automatic calibration using the Theis method.
+  - id: 5
+    original_filename: TheisHantush_4.png
+    type: Screenshot
+    caption: Estimation of parameters by automatic calibration using the Hantush method.
+    is_cover: true

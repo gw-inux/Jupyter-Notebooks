@@ -1,0 +1,58 @@
+catalog_category: 08 Groundwater Modeling
+catalog_subcategory: 08-04 Transport Modeling
+catalog_subsubcategory: (Attach to subcategory)
+
+# --- RESOURCE IDENTIFICATION AND TOPIC MAPPING ---
+# item_id: A unique, simple slug for this item (e.g., aquifer_test_1). 
+
+item_id: TO_BE_FILLED_BY_COURSE_MANAGER
+
+topic_page_id: 080400_en  # Stable mapping key (preferred)
+topic: 04 Transport Modeling # Must match the title of the parent catalog page.
+title: Solute Transport Simulation with MT3DMS - 1D Transport in a Uniform Flow Field    # The full, descriptive name of the resource.
+
+# --- TYPE AND ACCESS ---
+resource_type: Jupyter Notebook            # Required. Options: Streamlit app, Jupyter Notebook, Video, Dataset, Other.
+url: https://github.com/gw-inux/iNUX-Interactive-Documents/blob/main/08_Groundwater_Modeling/04_Transport_Modeling/Transport_1D_MT3D.ipynb      # The direct link to launch the app, notebook on Binder, or video on YouTube.
+date_released: TO_BE_FILLED_BY_COURSE_MANAGER               # Release date in YYYY-MM-DD format.
+
+# --- CONTENT AND METADATA ---
+description_short: |
+  This application reproduces and extends the classical Example 1 from the MT3DMS documentation, illustrating one-dimensional solute transport in a uniform groundwater flow field. A coupled MODFLOW–MT3DMS model is used to simulate conservative and reactive transport processes under controlled conditions.
+  
+  The app allows users to explore the influence of advection, dispersion, sorption, and decay on solute migration by systematically activating or deactivating individual processes. Different numerical advection schemes (finite difference, MOC, TVD) can be compared to assess numerical behavior, stability, and solution accuracy.
+  
+  The model is implemented using FloPy for transparent pre- and post-processing, enabling users to focus on conceptual understanding rather than model setup. Concentration profiles, mass balance information, and method-dependent differences can be directly visualized and discussed. It is recommended to run the Jupyter Notebook on a local computer.
+  
+  Intended use:
+  Conceptual learning, numerical-method comparison, and advanced coursework in groundwater solute transport and numerical modeling.
+keywords: [Groundwater modeling, solute transport modeling, heat transport modeling, MODFLOW, MT3D]
+multipage_app: false
+num_pages: 0
+interactive_plots: false
+num_interactive_plots: 0
+assessments_included: false
+num_assessment_questions: 0
+videos_included: false
+num_videos: 0
+
+# --- EDUCATIONAL FIT ---
+time_required: "15\u201330 minutes"             # Estimated time for a student to complete the activity (e.g., 30 minutes, 1.5 hours).
+prerequisites: Groundwater flow, solute transport       # Required prior knowledge (e.g., Darcy's Law, Python basics, basic calculus).
+fit_for:
+  - online teaching
+  - classroom teaching
+
+# --- AUTHOR AND REFERENCE ---
+authors:
+  - name: Thomas Reimann
+    affiliation: TU Dresden
+references: []                            # List any published papers, DOIs, or source materials related to this resource.
+# image_url: Optional path to a screenshot for the catalog page (e.g., /assets/images/resources/flow_tool_screenshot.png)
+
+figures:
+  - id: 1
+    original_filename: 08_04_MT3D_Ex01.png
+    type: Screenshot
+    caption: Visualization of the concentration profile, computed with MT3D.
+    is_cover: true

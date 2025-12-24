@@ -1,0 +1,65 @@
+catalog_category: 05 Hydrogeochemistry and Contaminant Transport
+catalog_subcategory: 05-05 Conservative Solute Transport Processes
+catalog_subsubcategory: (Attach to subcategory)
+
+# --- RESOURCE IDENTIFICATION AND TOPIC MAPPING ---
+# item_id: A unique, simple slug for this item (e.g., aquifer_test_1). 
+
+item_id: 0505001
+topic_page_id: 050500_en  # Stable mapping key (preferred)
+topic: 05-05 Conservative Solute Transport Processes # Human-readable topic label (fallback mapping)
+title: Analytical solution for 1D continuous solute transport injection in porous media (without decay)
+
+# --- TYPE AND ACCESS ---
+resource_type: Jupyter Notebook            # Required. Options: Streamlit app, Jupyter Notebook, Video, Dataset, Other.
+url: https://github.com/gw-inux/Jupyter-Notebooks/blob/7663b0c0e5f07a3d52fd7c17a7409f515f9a28e7/05_Applied_hydrogeology/aSolutions_noDecay_continuous_1D.ipynb      # The direct link to launch the app, notebook on Binder, or video on YouTube.
+date_released: TO_BE_FILLED_BY_COURSE_MANAGER               # Release date in YYYY-MM-DD format.
+
+# --- CONTENT AND METADATA ---
+description_short: |
+  This notebook presents the analytical 1-D solution for continuous solute transport in porous media without decay, following the classical formulation of Ogata & Banks (1961).
+
+  Using the hydrodynamic dispersion coefficient and the dimensionless Péclet number, it evaluates solute concentrations as a function of space and time under purely advective–dispersive transport.
+  The core equation includes two terms, one representing forward transport and the other accounting for upstream dispersion.
+  
+  The notebook explores when the second term becomes negligible depending on dispersivity, providing insight into advection-dominated versus dispersion-dominated regimes.
+  
+  Interactive widgets allow users to dynamically adjust parameters such as dispersivity, initial concentration, time, and the groundwater velocity to visualize their impact on concentration profiles. The notebook generates breakthrough curves and spatial concentration distributions, compares full and simplified analytical solutions, and examines contaminant arrival at an observation point. It serves as an intuitive tool for understanding fundamental 1-D transport processes in groundwater systems while reinforcing key concepts from classic hydrogeology literature.
+  
+keywords: [analytical solutions, solute transport, continuous  injection, 1D, no decay]
+multipage_app: false
+num_pages: 0
+interactive_plots: false
+num_interactive_plots: 0
+assessments_included: false
+num_assessment_questions: 0
+videos_included: false
+num_videos: 0
+
+# --- EDUCATIONAL FIT ---
+time_required: "30\u201345 minutes"             # Estimated time for a student to complete the activity (e.g., 30 minutes, 1.5 hours).
+#prerequisites: ''       # Required prior knowledge (e.g., Darcy's Law, Python basics, basic calculus).
+fit_for:
+  - self learning
+  - online teaching
+  - classroom teaching
+
+# --- AUTHOR AND REFERENCE ---
+authors:
+  - name: Oriol Bertran
+    affiliation: UPC
+  - name: "Daniel Fern\xE0ndez-Garcia"
+    affiliation: UPC
+references: []                            # List any published papers, DOIs, or source materials related to this resource.
+# image_url: Optional path to a screenshot for the catalog page (e.g., /assets/images/resources/flow_tool_screenshot.png)
+
+figures:
+  - id: 1
+    original_filename: aSolutions_noDecay_continuous_1D_1.png
+    type: Screenshot
+    caption: Evolution of the concentration in space and time with selected dispersivity values.
+    is_cover: true
+  - id: 2
+    original_filename: aSolutions_noDecay_continuous_1D_2.png
+    type: Screenshot
+    caption: Evolution of the concentration in space with selected parameter values.
