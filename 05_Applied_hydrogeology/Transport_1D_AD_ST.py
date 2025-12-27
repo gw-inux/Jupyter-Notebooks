@@ -4,6 +4,27 @@ from scipy import special
 import numpy as np
 import streamlit as st
 
+# also Interactive Documents 05-05-001
+# ToDo:
+#    - number input
+
+# Authors, institutions, and year
+year = 2025 
+authors = {
+    "Thomas Reimann": [1],  # Author 1 belongs to Institution 1
+    "Rudolf Liedl": [1]  # Author 1 belongs to Institution 1
+}
+institutions = {
+    1: "TU Dresden, Institute for Groundwater Management"
+    
+}
+index_symbols = ["¹", "²", "³", "⁴", "⁵", "⁶", "⁷", "⁸", "⁹"]
+author_list = [f"{name}{''.join(index_symbols[i-1] for i in indices)}" for name, indices in authors.items()]
+institution_list = [f"{index_symbols[i-1]} {inst}" for i, inst in institutions.items()]
+institution_text = " | ".join(institution_list)
+
+#--- User Interface
+
 #FUNCTIONS FOR COMPUTATION; ADS = ADVECTION, DISPERSION AND SORPTION - EVENTUALLY SET RETARDATION TO 1 FOR NO SORPTION
 
 def IC(PE,r_time):
@@ -155,3 +176,12 @@ if not plot_A !=1 and plot_AD != 1 and plot_DATA != 1:
     plt.legend(frameon=False, loc='upper right', fontsize=14)
     
 st.pyplot(fig)
+
+st.markdown('---')
+
+# --- Render footer with authors, institutions, and license logo in a single line
+columns_lic = st.columns((5,1))
+with columns_lic[0]:
+    st.markdown(f'Developed by {", ".join(author_list)} ({year}). <br> {institution_text}', unsafe_allow_html=True)
+with columns_lic[1]:
+    st.image('FIGS/CC_BY-SA_icon.png')

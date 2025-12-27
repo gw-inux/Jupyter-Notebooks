@@ -1,5 +1,26 @@
 import streamlit as st
 
+# ToDo:
+#    - number input
+#    - log slider
+#    - revise UI
+
+# Authors, institutions, and year
+year = 2025 
+authors = {
+    "Ty Ferré": [1]  # Author 1 belongs to Institution 1
+}
+institutions = {
+    1: "University of Arizona, Hydrology and Atmospheric Sciences"
+    
+}
+index_symbols = ["¹", "²", "³", "⁴", "⁵", "⁶", "⁷", "⁸", "⁹"]
+author_list = [f"{name}{''.join(index_symbols[i-1] for i in indices)}" for name, indices in authors.items()]
+institution_list = [f"{index_symbols[i-1]} {inst}" for i, inst in institutions.items()]
+institution_text = " | ".join(institution_list)
+
+#--- User Interface
+
 # technical text moved here   
 st.markdown(
     """
@@ -42,3 +63,12 @@ st.markdown(
     This equations are not easy to solve. Historically, values for the well function were provided by tables or as so called type-curve. The type-curve matching with experimental data for pumping test analysis can be considered as one of the basic hydrogeological methods. However, modern computer provide an easier and more convinient way to solve the 1D radial flow equation based on the Theis approach. Subsequently, the Theis equation is solved with Python routines.
 """
 )
+
+st.markdown('---')
+
+# --- Render footer with authors, institutions, and license logo in a single line
+columns_lic = st.columns((5,1))
+with columns_lic[0]:
+    st.markdown(f'Developed by {", ".join(author_list)} ({year}). <br> {institution_text}', unsafe_allow_html=True)
+with columns_lic[1]:
+    st.image('FIGS/CC_BY-SA_icon.png')

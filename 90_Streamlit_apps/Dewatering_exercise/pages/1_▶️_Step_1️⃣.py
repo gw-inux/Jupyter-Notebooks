@@ -4,109 +4,75 @@ import streamlit as st
 import streamlit_book as stb
 from streamlit_extras.stodo import to_do
 
+# ToDo:
+#    - number input
+#    - log slider
+#    - revise UI
+
+# Authors, institutions, and year
+year = 2025 
+authors = {
+    "Ty Ferré": [1]  # Author 1 belongs to Institution 1
+}
+institutions = {
+    1: "University of Arizona, Hydrology and Atmospheric Sciences"
+    
+}
+index_symbols = ["¹", "²", "³", "⁴", "⁵", "⁶", "⁷", "⁸", "⁹"]
+author_list = [f"{name}{''.join(index_symbols[i-1] for i in indices)}" for name, indices in authors.items()]
+institution_list = [f"{index_symbols[i-1]} {inst}" for i, inst in institutions.items()]
+institution_text = " | ".join(institution_list)
+
+#--- User Interface
+
 st.title('Dewatering exercise 💦')
 st.subheader("Step 01 - Interactive discovery of :blue[Darcy's Law]", divider="blue")
 
-st.markdown(
-    """
-    <details>
-     <summary>Click here for additional Notes for instructors </summary>
-    
-    - Lead a discussion about how dewatering might affect nearby stakeholders.  Good examples include the water supply for a nearby town and a stream that is important to an environmental group.
-    
-    - Introduce Henry Darcy and show a simplified version of his experiment.  Have students reason their way to Darcys Law.
-    
-    - Turn the column on its side, explore why the gradient will be constant along the column.
-    
-    - Convert the column to a constant rectangular cross section.  Then reason through why the gradient would not change along the column.
-    
-    - Introduce transient flow.  First, show two constant gradient condtions, same inflow H, two different outflow H values.
-    
-    - Reason through how the gradient would change in time from higher to lower inflow H with step change at boundary.
-    
-    - Convert the column to a decreasing cross sectional area towards outflow.  Then reason through why the gradient would change along the column under steady state flow .
-    
-    - Show two steady state conditions for column with a decreasing cross sectional area towards outflow with same inflow H, two different outflow H values.
-    
-    - Reason through how the gradient would change in time from higher to lower inflow H with step change at boundary.
-    
-    - Show a cross section of a well in an aquifer - you decide if you want to show that it is confined for the sake of accuracy versus simplicity.
-    
-    - Draw analogy of radial flow towards a well and decreasing area 1D case shown previously.
-    
-    - Talk through the transient response of an aquifer to pumping.
-    
-    - Relate this to distant effects of pumping through time.
-    
-    - Show a supply well and discuss why a decreased water level could be detrimental.
-    
-    - Show a groundwater-connected stream and discuss why a decreased water level could be detrimental.
-    
-    </details>
-""", unsafe_allow_html=True
-) 
-    
-if st.toggle('Show additional **Notes for instructors**'):
-    to_do(
-    [(st.write, "Lead a discussion about how dewatering might affect nearby stakeholders.  Good examples include the water supply for a nearby town and a stream that is important to an environmental group.")],
-    "td01",)
-    to_do(
-    [(st.write, "Introduce Henry Darcy and show a simplified version of his experiment.  Have students reason their way to Darcys Law.")],
-    "td02",)
-    to_do(
-    [(st.write, "Turn the column on its side, explore why the gradient will be constant along the column.")],
-    "td03",)
-    to_do(
-    [(st.write, "Convert the column to a constant rectangular cross section.  Then reason through why the gradient would not change along the column.")],
-    "td04",)
-    to_do(
-    [(st.write, "Introduce transient flow.  First, show two constant gradient condtions, same inflow H, two different outflow H values.")],
-    "td05",)
-    to_do(
-    [(st.write, "Reason through how the gradient would change in time from higher to lower inflow H with step change at boundary.")],
-    "td06",)
-    to_do(
-    [(st.write, "Convert the column to a decreasing cross sectional area towards outflow.  Then reason through why the gradient would change along the column under steady state flow .")],
-    "td07",)
-    to_do(
-    [(st.write, "Show two steady state conditions for column with a decreasing cross sectional area towards outflow with same inflow H, two different outflow H values.")],
-    "td08",)
-    to_do(
-    [(st.write, "Reason through how the gradient would change in time from higher to lower inflow H with step change at boundary.")],
-    "td09",)
-    to_do(
-    [(st.write, "Show a cross section of a well in an aquifer - you decide if you want to show that it is confined for the sake of accuracy versus simplicity.")],
-    "td10",)
-    to_do(
-    [(st.write, "Draw analogy of radial flow towards a well and decreasing area 1D case shown previously.")],
-    "td11",)
-    to_do(
-    [(st.write, "Talk through the transient response of an aquifer to pumping.")],
-    "td12",)
-    to_do(
-    [(st.write, "Relate this to distant effects of pumping through time.")],
-    "td13",)
-    to_do(
-    [(st.write, "Show a supply well and discuss why a decreased water level could be detrimental.")],
-    "td14",)
-    to_do(
-    [(st.write, "Show a groundwater-connected stream and discuss why a decreased water level could be detrimental.")],
-    "td15",)
-    to_do(
-    [(st.write, "When using the slider bars below ....")],
-    "td16",)
-    to_do(
-    [(st.write, "Have the students examine A first, then increase L, then decrease L.")],
-    "td17",)
-    to_do(
-    [(st.write, "At some point the direction of flow will change - discuss why!")],
-    "td18",)
+st.markdown("""
+#### Notes for Instructors
+
+There are detailed notes for instructors that help you to implement the app in your own educational activities.
+
+""")
+with st.expander(':blue[**Click here**] to read the **Notes for Instructors**'):
+    st.markdown(
+        """       
+        - Lead a discussion about how dewatering might affect nearby stakeholders.  Good examples include the water supply for a nearby town and a stream that is important to an environmental group.
+        
+        - Introduce Henry Darcy and show a simplified version of his experiment.  Have students reason their way to Darcys Law.
+        
+        - Turn the column on its side, explore why the gradient will be constant along the column.
+        
+        - Convert the column to a constant rectangular cross section.  Then reason through why the gradient would not change along the column.
+        
+        - Introduce transient flow.  First, show two constant gradient condtions, same inflow H, two different outflow H values.
+        
+        - Reason through how the gradient would change in time from higher to lower inflow H with step change at boundary.
+        
+        - Convert the column to a decreasing cross sectional area towards outflow.  Then reason through why the gradient would change along the column under steady state flow .
+        
+        - Show two steady state conditions for column with a decreasing cross sectional area towards outflow with same inflow H, two different outflow H values.
+        
+        - Reason through how the gradient would change in time from higher to lower inflow H with step change at boundary.
+        
+        - Show a cross section of a well in an aquifer - you decide if you want to show that it is confined for the sake of accuracy versus simplicity.
+        
+        - Draw analogy of radial flow towards a well and decreasing area 1D case shown previously.
+        
+        - Talk through the transient response of an aquifer to pumping.
+        
+        - Relate this to distant effects of pumping through time.
+        
+        - Show a supply well and discuss why a decreased water level could be detrimental.
+        
+        - Show a groundwater-connected stream and discuss why a decreased water level could be detrimental.
+    """) 
 
 ##################################################################################
 # Interactive discovery of Darcy's Law
 ##################################################################################
 
-'---'
+st.header("Interactive discovery of Darcy's Law", divider = 'green')
 st.markdown(
     """
     Henry Darcy is perhaps the most famous hydrogeologist of all time!
@@ -245,4 +211,11 @@ options6 = "The noise of the pumps could affect wildlife.", "The pumping might c
 answer_index6 = 2
 stb.single_choice(question6, options6, answer_index6, success='Correct!  This lowering the water table decreases plant-available water and can cause streams to lose water to the subsurface.', error='Incorrect - pumps might be noisy, but this is not their main impact and water flowing toward the well is not a direct problem in most cases.', button='Check answer')
 
-                  
+st.markdown('---')
+
+# --- Render footer with authors, institutions, and license logo in a single line
+columns_lic = st.columns((5,1))
+with columns_lic[0]:
+    st.markdown(f'Developed by {", ".join(author_list)} ({year}). <br> {institution_text}', unsafe_allow_html=True)
+with columns_lic[1]:
+    st.image('FIGS/CC_BY-SA_icon.png')

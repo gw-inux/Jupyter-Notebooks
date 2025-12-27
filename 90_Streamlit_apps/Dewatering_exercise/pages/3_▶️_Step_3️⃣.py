@@ -4,7 +4,26 @@ Created on Sun Oct 13 15:28:58 2024
 
 @author: tyfer
 """
+# ToDo:
+#    - number input
+#    - log slider
+#    - revise UI
 
+# Authors, institutions, and year
+year = 2025 
+authors = {
+    "Ty Ferré": [1]  # Author 1 belongs to Institution 1
+}
+institutions = {
+    1: "University of Arizona, Hydrology and Atmospheric Sciences"
+    
+}
+index_symbols = ["¹", "²", "³", "⁴", "⁵", "⁶", "⁷", "⁸", "⁹"]
+author_list = [f"{name}{''.join(index_symbols[i-1] for i in indices)}" for name, indices in authors.items()]
+institution_list = [f"{index_symbols[i-1]} {inst}" for i, inst in institutions.items()]
+institution_text = " | ".join(institution_list)
+
+#--- User Interface
 # This is a copy of Thomas Reimann's code to guide students through a mine dewatering, multiple stakeholder negotiation
 
 
@@ -174,4 +193,11 @@ options3 = "Utility is unitless.", "Whatever the local currency is.", "Each stak
 answer_index3 = 0
 stb.single_choice(question3, options3, answer_index3, success='Correct!  It is useful to think of utilty as representing a level of satisfaction.  They are intentionally unitless to allow for comparison among stakeholders..', error='Incorrect - while it is true that some stakeholders use currency for value and each may have their own basis for value, it is important to think of utility as unitless.', button='Check answer')
 
+st.markdown('---')
 
+# --- Render footer with authors, institutions, and license logo in a single line
+columns_lic = st.columns((5,1))
+with columns_lic[0]:
+    st.markdown(f'Developed by {", ".join(author_list)} ({year}). <br> {institution_text}', unsafe_allow_html=True)
+with columns_lic[1]:
+    st.image('FIGS/CC_BY-SA_icon.png')

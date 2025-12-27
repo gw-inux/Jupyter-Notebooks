@@ -4,7 +4,30 @@ import matplotlib.pyplot as plt
 import scipy.special
 import streamlit as st
 
-st.title('Theis drawdown prediction - Fitting Formation parameter to measured data')
+# also Interactive Documents 06-04-006
+# ToDo:
+#    - K log slider
+#    - number input
+
+# Authors, institutions, and year
+year = 2025 
+authors = {
+    "Thomas Reimann": [1],  # Author 1 belongs to Institution 1
+    "Rudolf Liedl": [1]  # Author 1 belongs to Institution 1
+}
+institutions = {
+    1: "TU Dresden, Institute for Groundwater Management"
+    
+}
+index_symbols = ["¹", "²", "³", "⁴", "⁵", "⁶", "⁷", "⁸", "⁹"]
+author_list = [f"{name}{''.join(index_symbols[i-1] for i in indices)}" for name, indices in authors.items()]
+institution_list = [f"{index_symbols[i-1]} {inst}" for i, inst in institutions.items()]
+institution_text = " | ".join(institution_list)
+
+#--- User Interface
+
+st.title('Theis drawdown prediction')
+st.header('Fitting Formation parameter to measured data and predict the drawdown', divider = 'green')
 st.markdown("""
             This interactive document allows to apply the Theis principle for pumping test evaluation in confined, transient setups. The notebook is based on an Spreadsheet from Prof. Rudolf Liedl.
             
@@ -31,15 +54,19 @@ st.markdown("""
 st.latex(r'''u = \frac{Sr^2}{4Tt}''')
 st.markdown("""
             This equations are not easy to solve. Historically, values for the well function were provided by tables or as so called type-curve. The type-curve matching with experimental data for pumping test analysis can be considered as one of the basic hydrogeological methods. However, modern computer provide an easier and more convinient way to solve the 1D radial flow equation based on the Theis approach. Subsequently, the Theis equation is solved with Python routines. The results for the measured data are graphically presented in an interactive plot.
-            
+"""
+)            
+
+st.subheader('Interactive plot', divider = 'green')
+
+st.markdown("""           
             The red dots are the measured data.
             
             Modify the transmissivity _**T**_ and the storativity _**S**_ to fit the measured data to the well function.
             
             **Select the data below!**
 """
-)            
-
+) 
 # Computation
 
 # (Here the necessary functions like the well function $W(u)$ are defined. Later, those functions are used in the computation)
@@ -203,7 +230,7 @@ def inverse():
     else:
         plt.ylim(bottom=0, top=max_s)
     ax.invert_yaxis()
-    plt.plot(x_point,y_point, marker='o', color='b',linestyle ='None', label='drawdown output') 
+    #plt.plot(x_point,y_point, marker='o', color='b',linestyle ='None', label='drawdown output') 
     plt.ylabel(r'Drawdown in m', fontsize=14)
     plt.title('Drawdown prediction with Theis', fontsize=16)
     plt.legend()
@@ -236,3 +263,12 @@ def inverse():
             st.write("Time since pumping start (in months): %5.2f" %t_search_mo)
         st.write("Predicted drawdown at this distance and time (in m):  %5.2f" %y_point)
 inverse()
+
+st.markdown('---')
+
+# --- Render footer with authors, institutions, and license logo in a single line
+columns_lic = st.columns((5,1))
+with columns_lic[0]:
+    st.markdown(f'Developed by {", ".join(author_list)} ({year}). <br> {institution_text}', unsafe_allow_html=True)
+with columns_lic[1]:
+    st.image('FIGS/CC_BY-SA_icon.png')
