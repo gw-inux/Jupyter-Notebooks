@@ -1,0 +1,78 @@
+catalog_category: 08 Groundwater Modeling
+catalog_subcategory: 08-09 Model Evaluation & Verification
+catalog_subsubcategory: (Attach to subcategory)
+additional_data:
+  - label: "link for the data"
+    url: https://github.com/gw-inux/Jupyter-Notebooks/tree/1f17d9b36b4bfa7c24fc8c95d50d08e24ea4070b/06_Groundwater_modeling/DATA/obs_vs_simulation
+
+
+# --- RESOURCE IDENTIFICATION AND TOPIC MAPPING ---
+# item_id: A unique, simple slug for this item (e.g., aquifer_test_1). 
+
+item_id: TO_BE_FILLED_BY_COURSE_MANAGER
+topic_page_id: 080900_en  # Stable mapping key (preferred)
+topic: 08-09 Model Evaluation & Verification # Human-readable topic label (fallback mapping)
+title: OBSERVATION v. SIMULATION VALUES A PYTHON TOOL FOR MODFLOW 6
+
+# --- TYPE AND ACCESS ---
+resource_type: Jupyter Notebook            # Required. Options: Streamlit app, Jupyter Notebook, Video, Dataset, Other.
+url: https://github.com/gw-inux/Jupyter-Notebooks/blob/7663b0c0e5f07a3d52fd7c17a7409f515f9a28e7/06_Groundwater_modeling/OBSvSIM.ipynb     # The direct link to launch the app, notebook on Binder, or video on YouTube.
+date_released: TO_BE_FILLED_BY_COURSE_MANAGER               # Release date in YYYY-MM-DD format.
+
+# --- CONTENT AND METADATA ---
+description_short: |
+  This Jupyter Notebook provides a comprehensive Python tool for calibrating a MODFLOW 6 groundwater flow model by comparing observed groundwater levels with simulated outputs.
+
+  It allows the user to upload observation data files in CSV or XLSX format, select model output directories containing simulation results, and define the starting time of the model.
+
+  The notebook automatically handles data preprocessing, including extracting observation names, coordinates, and time series while ensuring consistent alignment with simulation data. It calculates key metrics such as root mean squared error (RMSE) and mean error (ME) for each observation, enabling the user to assess the accuracy of the model, identify underperforming areas, and diagnose potential adjustments needed in hydraulic conductivity or boundary conditions.
+
+  The Notebook also offers multiple interactive visualization tools. Users can generate scatter plots comparing all model simulations against observations, visualize each model individually, and explore results at specific observation points with line plots showing both simulation and observed values over time. Additionally, it supports mapping of observation points with RMSE-scaled markers in Folium, color-coded by mean error direction. The tool provides interactive dropdowns to select models or observation points and options to download individual plots, making it a user-friendly environment to evaluate model performance, identify calibration weaknesses, and guide future model improvements.
+  
+keywords: [groundwater modeling, modflow, folium, calibration]
+multipage_app: false
+num_pages: 0
+interactive_plots: false
+num_interactive_plots: 0
+assessments_included: false
+num_assessment_questions: 0
+videos_included: false
+num_videos: 0
+
+# --- EDUCATIONAL FIT ---
+time_required: 1 hour             # Estimated time for a student to complete the activity (e.g., 30 minutes, 1.5 hours).
+prerequisites: 06_Groundwater_modeling/DATA/obs_vs_simulation       # Required prior knowledge (e.g., Darcy's Law, Python basics, basic calculus).
+fit_for:
+  - self learning
+  - online teaching
+  - classroom teaching
+
+# --- AUTHOR AND REFERENCE ---
+authors:
+  - name: Oriol Bertran
+    affiliation: UPC
+references: []                            # List any published papers, DOIs, or source materials related to this resource.
+# image_url: Optional path to a screenshot for the catalog page (e.g., /assets/images/resources/flow_tool_screenshot.png)
+
+figures:
+  - id: 1
+    original_filename: obsvssim_1.png
+    type: Screenshot
+    caption: Observed vs Simulated values for all loaded models
+  - id: 2
+    original_filename: obsvssim_2.png
+    type: Screenshot
+    caption: Observed vs Simulated values for an individual model
+  - id: 3
+    original_filename: obsvssim_3.png
+    type: Screenshot
+    caption: Observed vs Simulated values for a specific observation point
+  - id: 4
+    original_filename: obsvssim_4.png
+    type: Screenshot
+    caption: Mapping the observation points with their RMSE for a specific model
+  - id: 5
+    original_filename: obsvssim_5.png
+    type: Screenshot
+    caption: Mapping observation points with RMSE for a specific model. Detailed view of the temporal
+    is_cover: true

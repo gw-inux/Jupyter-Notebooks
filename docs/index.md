@@ -50,8 +50,17 @@ A **compact and intuitive visualization tool** for exploring fundamental concept
 | **More details** | [**05-06 Hydrogeochemistry and Contaminant Transport/Reactive Solute Transport**](https://gw-inux.github.io/Jupyter-Notebooks/pages/050600_en.html) |
 
 <p align="center">
-<img src="./assets/images/05_06_radioactive_decay.png" alt="Screenshot of the Radioactive Decay Streamlit application" width="300"/>
+<a href="https://radioactive-decay.streamlit.app/" target="_blank" rel="noopener noreferrer">
+  <img src="./assets/images/05_06_radioactive_decay.png"
+       alt="Screenshot of the Radioactive Decay Streamlit application"
+       width="300"
+       style="cursor:pointer; transition: transform 120ms ease, box-shadow 120ms ease;"
+       onmouseover="this.style.transform='scale(1.02)'; this.style.boxShadow='0 6px 18px rgba(0,0,0,0.10)';"
+       onmouseout="this.style.transform='scale(1)'; this.style.boxShadow='none';"
+  />
+</a>
 </p>
+
 ---
 
 ### 🟢 Boundary Conditions – Intro App
@@ -65,8 +74,17 @@ An **educational self-learning application** introducing boundary conditions com
 
 
 <p align="center">
-<img src="./assets/images/BC_Intro_01.jpg" alt="Screenshot of the Boundary Conditions-Intro app" width="400"/>
+<a href="https://gwp-boundary-conditions-intro.streamlit.app/" target="_blank" rel="noopener noreferrer">
+  <img src="./assets/images/BC_Intro_01.jpg"
+       alt="Screenshot of the Boundary Conditions-Intro app"
+       width="400"
+       style="cursor:pointer; transition: transform 120ms ease, box-shadow 120ms ease;"
+       onmouseover="this.style.transform='scale(1.02)'; this.style.boxShadow='0 6px 18px rgba(0,0,0,0.10)';"
+       onmouseout="this.style.transform='scale(1)'; this.style.boxShadow='none';"
+  />
+</a>
 </p>
+
 ---
 
 ### 🟡 Pumping Test Module
@@ -75,12 +93,23 @@ A **comprehensive teaching and learning module** covering the analysis and inter
 
 | **Purpose** | Enable systematic analysis and interpretation of pumping test data to estimate aquifer parameters and assess aquifer behavior. |
 | **Characteristic** | Comprehensive teaching and learning module integrating theory, interactive plots, parameter estimation, exercises, and explanatory material. |
-| **Access** | <a href="LINK_TO_PUMPING_TEST_MODULE" target="_blank" rel="noopener noreferrer"><strong>Start the Pumping Test Module</strong></a><br>This app is also distributed through <a href="https://gw-project.org/interactive-education/pumping-test-analysis/" target="_blank" rel="noopener noreferrer"><strong>The Groundwater Project</strong></a> |
+| **Access** | <a href="https://gwp-pumping-test-analysis.streamlit.app/" target="_blank" rel="noopener noreferrer"><strong>Start the Pumping Test Module</strong></a><br>This app is also distributed through <a href="https://gw-project.org/interactive-education/pumping-test-analysis/" target="_blank" rel="noopener noreferrer"><strong>The Groundwater Project</strong></a> |
 | **More details** | [**06-04 Experimental Techniques and Methods/Aquifer Characterization**](https://gw-inux.github.io/Jupyter-Notebooks/pages/060400_en.html) |
 
 <p align="center">
-<img src="./assets/images/pumping_test_02.jpg" alt="Screenshot of the Pumping Test module" width="400"/>
+<a href="https://gwp-pumping-test-analysis.streamlit.app/"
+   target="_blank"
+   rel="noopener noreferrer">
+  <img src="./assets/images/pumping_test_02.jpg"
+       alt="Screenshot of the Pumping Test module"
+       width="400"
+       style="cursor:pointer; transition: transform 120ms ease, box-shadow 120ms ease;"
+       onmouseover="this.style.transform='scale(1.02)'; this.style.boxShadow='0 6px 18px rgba(0,0,0,0.10)';"
+       onmouseout="this.style.transform='scale(1)'; this.style.boxShadow='none';"
+  />
+</a>
 </p>
+
 ---
 
 ### 🔵 Slug Test Evaluation App
@@ -89,12 +118,21 @@ An **advanced interactive evaluation tool** for slug test analysis with extended
 
 | **Purpose** | Analyze slug test data interactively to estimate hydraulic parameters using established evaluation methods. |
 | **Characteristic** | Multilingual application featuring interactive plots, user-defined data upload, and embedded instructional video material. |
-| **Access** | <a href="LINK_TO_SLUG_TEST_APP" target="_blank" rel="noopener noreferrer"><strong>Start the Slug Test Evaluation App</strong></a> |
+| **Access** | <a href="https://slugtest-multilingual.streamlit.app/" target="_blank" rel="noopener noreferrer"><strong>Start the Slug Test Evaluation App</strong></a> |
 | **More details** | [**06-04 Experimental Techniques and Methods/Aquifer Characterization**](https://gw-inux.github.io/Jupyter-Notebooks/pages/060400_en.html) |
 
 <p align="center">
-<img src="./assets/images/Slugtest_01.jpg" alt="Screenshot of the Slug Test Evaluation App" width="300"/>
+<a href="https://slugtest-multilingual.streamlit.app/" target="_blank" rel="noopener noreferrer">
+  <img src="./assets/images/Slugtest_01.jpg"
+       alt="Screenshot of the Slug Test Evaluation App"
+       width="300"
+       style="cursor:pointer; transition: transform 120ms ease, box-shadow 120ms ease;"
+       onmouseover="this.style.transform='scale(1.02)'; this.style.boxShadow='0 6px 18px rgba(0,0,0,0.10)';"
+       onmouseout="this.style.transform='scale(1)'; this.style.boxShadow='none';"
+  />
+</a>
 </p>
+
 ---
 
 <table style="width:100%; border-collapse:collapse; border:none; margin-top:2rem;">

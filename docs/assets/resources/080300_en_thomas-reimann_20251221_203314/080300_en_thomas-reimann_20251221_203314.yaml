@@ -6,7 +6,7 @@ catalog_subsubcategory: "(Attach to subcategory)"
 # item_id: A unique, simple slug for this item (e.g., aquifer_test_1). 
 
 item_id: TO_BE_FILLED_BY_COURSE_MANAGER
-topic: 03 Flow modeling # Must match the title of the parent catalog page.
+topic: 03 Flow Modeling # Must match the title of the parent catalog page.
 title: Modflow-2005/MODELMUSE Tutorial - synthetic    # The full, descriptive name of the resource.
 
 # --- TYPE AND ACCESS ---
