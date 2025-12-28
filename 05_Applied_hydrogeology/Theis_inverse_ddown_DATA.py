@@ -5,6 +5,28 @@ import scipy.special
 import pandas as pd
 import streamlit as st
 
+# also Interactive Documents 06-04-007
+# ToDo:
+#    - number input
+#    - log slider
+
+# Authors, institutions, and year
+year = 2025 
+authors = {
+    "Thomas Reimann": [1],  # Author 1 belongs to Institution 1
+    "Rudolf Liedl": [1]  # Author 1 belongs to Institution 1
+}
+institutions = {
+    1: "TU Dresden, Institute for Groundwater Management"
+    
+}
+index_symbols = ["¹", "²", "³", "⁴", "⁵", "⁶", "⁷", "⁸", "⁹"]
+author_list = [f"{name}{''.join(index_symbols[i-1] for i in indices)}" for name, indices in authors.items()]
+institution_list = [f"{index_symbols[i-1]} {inst}" for i, inst in institutions.items()]
+institution_text = " | ".join(institution_list)
+
+#--- User Interface
+
 st.title('Theis parameter estimation and drawdown prediction')
 st.subheader('Fitting formation parameter to :rainbow[REAL measured] data', divider="rainbow")
 st.markdown("""
@@ -34,14 +56,19 @@ st.markdown("""
 st.latex(r'''u = \frac{Sr^2}{4Tt}''')
 st.markdown("""
             This equations are not easy to solve. Historically, values for the well function were provided by tables or as so called type-curve. The type-curve matching with experimental data for pumping test analysis can be considered as one of the basic hydrogeological methods. However, modern computer provide an easier and more convinient way to solve the 1D radial flow equation based on the Theis approach. Subsequently, the Theis equation is solved with Python routines. The results for the measured data are graphically presented in an interactive plot.
-            
+"""
+)            
+
+st.subheader('Interactive plot', divider = 'green')
+
+st.markdown("""           
             The red dots are the measured data.
             
             Modify the transmissivity _**T**_ and the storativity _**S**_ to fit the measured data to the well function.
             
             **Select the data below!**
 """
-)            
+)          
 # Computation
 # (Here the necessary functions like the well function $W(u)$ are defined. Later, those functions are used in the computation)
 # Define a function, class, and object for Theis Well analysis
@@ -197,34 +224,36 @@ def inverse():
    
     columns2 = st.columns((1,1), gap = 'large')
     with columns2[0]:
-        T_slider_value=st.slider('(log of) **Transmissivity** in m2/s', log_min1,log_max1,-3.0,0.01,format="%4.2f" )
-        # Convert the slider value to the logarithmic scale
-        T = 10 ** T_slider_value
-        # Display the logarithmic value
-        st.write("_Transmissivity_ in m2/s: %5.2e" %T)
-        S_slider_value=st.slider('(log of) **Storativity**', log_min2,log_max2,-4.0,0.01,format="%4.2f" )
-        # Convert the slider value to the logarithmic scale
-        S = 10 ** S_slider_value
-        # Display the logarithmic value
-        st.write("_Storativity_ (dimensionless):** %5.2e" %S)
+        with st.expander('Formation parameter'):
+            T_slider_value=st.slider('(log of) **Transmissivity** in m2/s', log_min1,log_max1,-3.0,0.01,format="%4.2f" )
+            # Convert the slider value to the logarithmic scale
+            T = 10 ** T_slider_value
+            # Display the logarithmic value
+            st.write("_Transmissivity_ in m²/s: %5.2e" %T)
+            S_slider_value=st.slider('(log of) **Storativity**', log_min2,log_max2,-4.0,0.01,format="%4.2f" )
+            # Convert the slider value to the logarithmic scale
+            S = 10 ** S_slider_value
+            # Display the logarithmic value
+            st.write("_Storativity_ (dimensionless):** %5.2e" %S)
         refine_theis = st.toggle("**Refine** the range of the **Theis matching plot**")
     with columns2[1]:
-        Q_pred = st.slider(f'**Pumping rate** (m^3/s) for the **prediction**', 0.001,0.100,Qs,0.001,format="%5.3f")
-        r_pred = st.slider(f'**Distance** (m) from the **well** for the **prediction**', 1,1000,r,1)
-        per_pred = st.slider(f'**Duration** of the **prediction period** (days)',1,3652,3,1) 
-        max_t = 86400*per_pred
-        if per_pred <= 3:
-            t_search = st.slider(f'**Select the value of time (s) for printout**', 1,max_t,1,1)
-        elif per_pred <= 7:
-            t_search_h = st.slider(f'**Select the value of time (hours) for printout**', 1.,24.*per_pred,1.)
-            t_search = t_search_h*3600
-        elif per_pred <= 366:
-            t_search_d = st.slider(f'**Select the value of time (days) for printout**', 1.,per_pred*1.0,1.)
-            t_search = t_search_d*86400
-        else:
-            t_search_mo = st.slider(f'**Select the value of time (months) for printout**', 1.,per_pred/30.4375,1.)
-            t_search = t_search_mo*2629800
-        auto_y = st.toggle("Adjust the range of drawdown plotting")
+        with st.expander('Prediction related parameter'):
+            Q_pred = st.slider(f'**Pumping rate** (m³/s) for the **prediction**', 0.001,0.100,Qs,0.001,format="%5.3f")
+            r_pred = st.slider(f'**Distance** (m) from the **well** for the **prediction**', 1,1000,r,1)
+            per_pred = st.slider(f'**Duration** of the **prediction period** (days)',1,3652,3,1) 
+            max_t = 86400*per_pred
+            if per_pred <= 3:
+                t_search = st.slider(f'**Select the value of time (s) for printout**', 1,max_t,1,1)
+            elif per_pred <= 7:
+                t_search_h = st.slider(f'**Select the value of time (hours) for printout**', 1.,24.*per_pred,1.)
+                t_search = t_search_h*3600
+            elif per_pred <= 366:
+                t_search_d = st.slider(f'**Select the value of time (days) for printout**', 1.,per_pred*1.0,1.)
+                t_search = t_search_d*86400
+            else:
+                t_search_mo = st.slider(f'**Select the value of time (months) for printout**', 1.,per_pred/30.4375,1.)
+                t_search = t_search_mo*2629800
+            auto_y = st.toggle("Adjust the range of drawdown plotting")
     
     # PLOT MEASURED DATA
     max_s = 20
@@ -294,7 +323,7 @@ def inverse():
     else:
         plt.ylim(bottom=0, top=max_s)
     ax.invert_yaxis()
-    plt.plot(x_point,y_point, marker='o', color='b',linestyle ='None', label='drawdown output') 
+    #plt.plot(x_point,y_point, marker='o', color='b',linestyle ='None', label='drawdown output') 
     plt.ylabel(r'Drawdown in m', fontsize=14)
     plt.title('Drawdown prediction with Theis', fontsize=16)
     plt.legend()
@@ -316,15 +345,26 @@ def inverse():
         st.write("**Prediction**")
         st.write("Distance of prediction from the well (in m): %3i" %r_pred)
         st.write("Pumping rate of prediction (in m^3/s): %5.3f" %Q_pred)
-        st.write("Time since pumping start (in s): %3i" %x_point)
         if per_pred <= 3:
             st.write("Time since pumping start (in s): %3i" %t_search)
         elif per_pred <= 7:
+            st.write("Time since pumping start (in s): %3i" %x_point)
             st.write("Time since pumping start (in hours): %5.2f" %t_search_h)
         elif per_pred <= 366:
+            st.write("Time since pumping start (in s): %3i" %x_point)
             st.write("Time since pumping start (in days): %5.2f" %t_search_d)
         else:
+            st.write("Time since pumping start (in s): %3i" %x_point)
             st.write("Time since pumping start (in months): %5.2f" %t_search_mo)
         st.write("Predicted drawdown at this distance and time (in m):  %5.2f" %y_point)
 
 inverse()
+
+st.markdown('---')
+
+# --- Render footer with authors, institutions, and license logo in a single line
+columns_lic = st.columns((5,1))
+with columns_lic[0]:
+    st.markdown(f'Developed by {", ".join(author_list)} ({year}). <br> {institution_text}', unsafe_allow_html=True)
+with columns_lic[1]:
+    st.image('FIGS/CC_BY-SA_icon.png')
