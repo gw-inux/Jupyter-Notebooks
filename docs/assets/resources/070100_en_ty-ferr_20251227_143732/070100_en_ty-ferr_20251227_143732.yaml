@@ -1,0 +1,67 @@
+catalog_category: 07 Applied Hydrogeology
+catalog_subcategory: 07-01 Groundwater Management
+catalog_subsubcategory: (Attach to subcategory)
+
+# --- RESOURCE IDENTIFICATION AND TOPIC MAPPING ---
+# item_id: A unique, simple slug for this item (e.g., aquifer_test_1). 
+
+item_id: 0701001
+topic: 01 Groundwater Management # Must match the title of the parent catalog page.
+title: The Dewatering Exercise - Finding A Compromise Solution for Mine Dewatering    # The full, descriptive name of the resource.
+
+# --- TYPE AND ACCESS ---
+resource_type: Streamlit app            # Required. Options: Streamlit app, Jupyter Notebook, Video, Dataset, Other.
+url: https://dewatering-exercise-app.streamlit.app/      # The direct link to launch the app, notebook on Binder, or video on YouTube.
+date_released: TO_BE_FILLED_BY_COURSE_MANAGER               # Release date in YYYY-MM-DD format.
+
+# --- CONTENT AND METADATA ---
+description_short: |
+  This app is designed to guide non-experts through the use of groundwater models to answer a water resources question. It is presented in eight steps, with an assignment given after every second step.
+  
+  * Step 1 General discussion of how surrounding stakeholders might be affected by mine dewatering - qualitative discussion of the response of an aquifer to pumping.
+  
+  * Step 2 Quantitative predictions of drawdown versus distance and time for different Q, T, and S.
+  
+  * Step 3 Convert drawdown to utility for three stakeholders.
+  
+  * Step 4 Introducing Pareto optimization of pumping among stakeholders.
+  
+  * Step 5 Putting Pareto optimization in practice.
+  
+  * Step 6 Perform a pumping test on data with error to infer T and S with uncertainty.
+  
+  * Step 7 Bayesian multimodel analysis.
+  
+  * Step 8 Reality: why these methods are almost never used!
+  
+  The app comes with several interactive plots, assignments, electronic questions for assessing knowledge, and educator notes.
+keywords: [Groundwater management, dewatering, mining, optimization, Theis, pumping]
+multipage_app: true
+num_pages: 10
+interactive_plots: true
+num_interactive_plots: 22
+assessments_included: true
+num_assessment_questions: 30
+videos_included: false
+num_videos: 0
+
+# --- EDUCATIONAL FIT ---
+time_required: "15\u201330 minutes"             # Estimated time for a student to complete the activity (e.g., 30 minutes, 1.5 hours).
+prerequisites: Basic hydrogeology, Aquifer parameters       # Required prior knowledge (e.g., Darcy's Law, Python basics, basic calculus).
+fit_for:
+  - self learning
+  - classroom teaching
+
+# --- AUTHOR AND REFERENCE ---
+authors:
+  - name: "Ty Ferr\xE9"
+    affiliation: University of Arizona
+references: []                            # List any published papers, DOIs, or source materials related to this resource.
+# image_url: Optional path to a screenshot for the catalog page (e.g., /assets/images/resources/flow_tool_screenshot.png)
+
+figures:
+  - id: 1
+    original_filename: 07_01_Dewatering_Exercise.png
+    type: Screenshot
+    caption: Interactive plot that demonstrate the effect of parameter uncertainty
+    is_cover: true
