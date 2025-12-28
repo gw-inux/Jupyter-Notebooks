@@ -1,0 +1,54 @@
+catalog_category: 05 Hydrogeochemistry and Contaminant Transport
+catalog_subcategory: 05-05 Conservative Solute Transport Processes
+catalog_subsubcategory: (Attach to subcategory)
+
+# --- RESOURCE IDENTIFICATION AND TOPIC MAPPING ---
+# item_id: A unique, simple slug for this item (e.g., aquifer_test_1). 
+
+item_id: 0505003
+topic: 05 Conservative Solute Transport Processes # Must match the title of the parent catalog page.
+title: 1D Transport with advection and dispersion    # The full, descriptive name of the resource.
+
+# --- TYPE AND ACCESS ---
+resource_type: Streamlit app            # Required. Options: Streamlit app, Jupyter Notebook, Video, Dataset, Other.
+url: https://transport-1d-ad.streamlit.app/      # The direct link to launch the app, notebook on Binder, or video on YouTube.
+date_released: TO_BE_FILLED_BY_COURSE_MANAGER               # Release date in YYYY-MM-DD format.
+
+# --- CONTENT AND METADATA ---
+description_short: |
+  This interactive app illustrates one-dimensional solute transport under steady groundwater flow, focusing on the combined effects of advection and longitudinal dispersion. A finite-duration pulse input is applied at the source, and the app computes and plots the resulting breakthrough curve (concentration versus time) at a user-defined observation distance.
+  
+  Users can vary key transport parameters such as porosity and longitudinal dispersivity, and compare alternative representations by toggling between advection-only transport and the advection–dispersion solution. An optional set of example measurements can be displayed for visual comparison with the simulated breakthrough curve. The app supports conceptual understanding of plume spreading, travel times, and parameter sensitivity in 1D transport problems and is suited for teaching and self-study in hydrogeology and contaminant transport.
+keywords: [solute transport, advection, dispersion, analytical solution]
+multipage_app: false
+num_pages: 0
+interactive_plots: true
+num_interactive_plots: 1
+assessments_included: false
+num_assessment_questions: 0
+videos_included: false
+num_videos: 0
+
+# --- EDUCATIONAL FIT ---
+time_required: "15\u201330 minutes"             # Estimated time for a student to complete the activity (e.g., 30 minutes, 1.5 hours).
+prerequisites: Basic hydrogeology, Aquifer parameters       # Required prior knowledge (e.g., Darcy's Law, Python basics, basic calculus).
+fit_for:
+  - self learning
+  - online teaching
+  - classroom teaching
+
+# --- AUTHOR AND REFERENCE ---
+authors:
+  - name: Thomas Reimann
+    affiliation: TU Dresden
+  - name: Rudolf Liedl
+    affiliation: TU Dresden
+references: []                            # List any published papers, DOIs, or source materials related to this resource.
+# image_url: Optional path to a screenshot for the catalog page (e.g., /assets/images/resources/flow_tool_screenshot.png)
+
+figures:
+  - id: 1
+    original_filename: 05_05_1D_AD_Transport.png
+    type: Screenshot
+    caption: The computed breakthrough curve for 1D advective-dispersive transport, together with
+    is_cover: true
