@@ -1,0 +1,56 @@
+catalog_category: 07 Applied Hydrogeology
+catalog_subcategory: 07-03 Groundwater in Water Supply
+catalog_subsubcategory: (Attach to subcategory)
+
+# --- RESOURCE IDENTIFICATION AND TOPIC MAPPING ---
+# item_id: A unique, simple slug for this item (e.g., aquifer_test_1). 
+
+item_id: 0703001
+topic: 03 Groundwater in Water Supply # Must match the title of the parent catalog page.
+title: Well Capture App    # The full, descriptive name of the resource.
+
+# --- TYPE AND ACCESS ---
+resource_type: Streamlit app            # Required. Options: Streamlit app, Jupyter Notebook, Video, Dataset, Other.
+url: https://gwp-wellcapture.streamlit.app/      # The direct link to launch the app, notebook on Binder, or video on YouTube.
+date_released: TO_BE_FILLED_BY_COURSE_MANAGER               # Release date in YYYY-MM-DD format.
+
+# --- CONTENT AND METADATA ---
+description_short: |
+  This interactive app visualizes the well capture zone (capture width and dividing streamlines) for a single pumping well in a confined aquifer subject to regional uniform groundwater flow.
+  
+  Users adjust the pumping rate, hydraulic conductivity, aquifer thickness, and regional hydraulic gradient (with log-scaled sliders) and immediately see how these parameters control the shape and extent of the capture zone in plan view. 
+  
+  In addition to plotting the separating streamlines, the app reports two key diagnostic quantities: the total capture-zone width 2y_max and the culmination point x_0, which together provide a compact characterization of the contributing area feeding the well under steady-state conditions.
+  
+  This tool supports conceptual understanding of wellhead protection and capture-zone sensitivity in confined aquifers and complements the theory section of the multipage well-capture module.
+keywords: [well capture, capture zone, water protection zone, well catchment]
+multipage_app: true
+num_pages: 4
+interactive_plots: true
+num_interactive_plots: 1
+assessments_included: false
+num_assessment_questions: 0
+videos_included: false
+num_videos: 0
+
+# --- EDUCATIONAL FIT ---
+time_required: "15\u201330 minutes"             # Estimated time for a student to complete the activity (e.g., 30 minutes, 1.5 hours).
+prerequisites: Basic hydrogeology, Aquifer parameters       # Required prior knowledge (e.g., Darcy's Law, Python basics, basic calculus).
+fit_for:
+  - self learning
+  - online teaching
+  - classroom teaching
+
+# --- AUTHOR AND REFERENCE ---
+authors:
+  - name: Thomas Reimann
+    affiliation: TU Dresden
+references: []                            # List any published papers, DOIs, or source materials related to this resource.
+# image_url: Optional path to a screenshot for the catalog page (e.g., /assets/images/resources/flow_tool_screenshot.png)
+
+figures:
+  - id: 1
+    original_filename: 07_03_WellCapture.png
+    type: Screenshot
+    caption: The computed well capture zone
+    is_cover: true

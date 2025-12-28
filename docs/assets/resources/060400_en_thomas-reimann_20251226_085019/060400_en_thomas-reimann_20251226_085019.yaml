@@ -1,0 +1,58 @@
+catalog_category: 06 Experimental Techniques and Methods
+catalog_subcategory: 06-04 Aquifer Characterization Techniques
+catalog_subsubcategory: (Attach to subcategory)
+
+# --- RESOURCE IDENTIFICATION AND TOPIC MAPPING ---
+# item_id: A unique, simple slug for this item (e.g., aquifer_test_1). 
+
+item_id: 0604006
+topic: 04 Aquifer Characterization Techniques # Must match the title of the parent catalog page.
+title: Theis drawdown prediction - Fitting Formation parameter to measured data    # The full, descriptive name of the resource.
+
+# --- TYPE AND ACCESS ---
+resource_type: Streamlit app            # Required. Options: Streamlit app, Jupyter Notebook, Video, Dataset, Other.
+url: https://theis-inverse-ddown.streamlit.app/      # The direct link to launch the app, notebook on Binder, or video on YouTube.
+date_released: TO_BE_FILLED_BY_COURSE_MANAGER               # Release date in YYYY-MM-DD format.
+
+# --- CONTENT AND METADATA ---
+description_short: |
+  This interactive app supports pumping-test evaluation in confined aquifers using the classical Theis solution. Measured drawdown data are compared to the analytical well function, allowing users to interactively fit transmissivity (T) and storativity (S) through type-curve matching and direct numerical evaluation of the Theis equation.
+  
+  The app combines two complementary views:
+  
+  * (1) a logarithmic Theis type-curve plot with measured data points, and
+  * (2) a time–drawdown plot showing both fitted results and forward predictions at user-defined distances, pumping rates, and time horizons.
+  
+  By adjusting aquifer parameters in real time, users can explore parameter sensitivity, understand the inverse problem of pumping-test interpretation, and immediately assess how estimated parameters influence drawdown predictions. The tool is intended for teaching and self-learning in hydrogeology and complements theoretical material on transient radial flow to wells.
+keywords: [Theis, prediction, curve fitting, prediction uncertainty]
+multipage_app: false
+num_pages: 0
+interactive_plots: true
+num_interactive_plots: 2
+assessments_included: false
+num_assessment_questions: 0
+videos_included: false
+num_videos: 0
+
+# --- EDUCATIONAL FIT ---
+time_required: "15\u201330 minutes"             # Estimated time for a student to complete the activity (e.g., 30 minutes, 1.5 hours).
+prerequisites: Basic hydrogeology, Aquifer parameters       # Required prior knowledge (e.g., Darcy's Law, Python basics, basic calculus).
+fit_for:
+  - self learning
+  - classroom teaching
+  - online teaching
+
+# --- AUTHOR AND REFERENCE ---
+authors:
+  - name: Thomas Reimann
+    affiliation: TU Dresden
+  - name: Rudolf Liedl
+    affiliation: TU Dresden
+references: []                            # List any published papers, DOIs, or source materials related to this resource.
+# image_url: Optional path to a screenshot for the catalog page (e.g., /assets/images/resources/flow_tool_screenshot.png)
+
+figures:
+  - id: 1
+    original_filename: 06_04_Theis_prediction.png
+    type: Screenshot
+    caption: The Theis type curve fitting (left side) and the resulting prediction (right side).

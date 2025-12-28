@@ -5,7 +5,7 @@ catalog_subsubcategory: "(Attach to subcategory)"
 # --- RESOURCE IDENTIFICATION AND TOPIC MAPPING ---
 # item_id: A unique, simple slug for this item (e.g., aquifer_test_1). 
 
-item_id: TO_BE_FILLED_BY_COURSE_MANAGER
+item_id: 0604005
 topic: 04 Aquifer Characterization Techniques # Must match the title of the parent catalog page.
 title: The Theis solution for pumping test evaluation    # The full, descriptive name of the resource.
 
