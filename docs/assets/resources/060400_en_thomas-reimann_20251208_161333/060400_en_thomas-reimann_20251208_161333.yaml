@@ -7,7 +7,7 @@ catalog_subsubcategory: "(Attach to subcategory)"
 
 item_id: 0604001
 topic: 04 Aquifer Characterization Techniques # Must match the title of the parent catalog page.
-title: The Pumping Test Module    # The full, descriptive name of the resource.
+title: The Pumping Test Analysis Module    # The full, descriptive name of the resource.
 
 # --- TYPE AND ACCESS ---
 resource_type: Streamlit app            # Required. Options: Streamlit app, Jupyter Notebook, Video, Dataset, Other.
