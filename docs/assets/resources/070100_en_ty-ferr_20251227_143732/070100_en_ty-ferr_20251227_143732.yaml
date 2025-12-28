@@ -46,7 +46,7 @@ videos_included: false
 num_videos: 0
 
 # --- EDUCATIONAL FIT ---
-time_required: "15\u201330 minutes"             # Estimated time for a student to complete the activity (e.g., 30 minutes, 1.5 hours).
+time_required: 2-4 hours             # Estimated time for a student to complete the activity (e.g., 30 minutes, 1.5 hours).
 prerequisites: Basic hydrogeology, Aquifer parameters       # Required prior knowledge (e.g., Darcy's Law, Python basics, basic calculus).
 fit_for:
   - self learning
