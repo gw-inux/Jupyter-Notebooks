@@ -1,0 +1,54 @@
+catalog_category: 07 Applied Hydrogeology
+catalog_subcategory: 07-10 Geothermal Energy
+catalog_subsubcategory: (Attach to subcategory)
+
+# --- RESOURCE IDENTIFICATION AND TOPIC MAPPING ---
+# item_id: A unique, simple slug for this item (e.g., aquifer_test_1). 
+
+item_id: 0710001
+topic: 10 Geothermal Energy # Must match the title of the parent catalog page.
+title: 3D Heat transport with convection, conduction, and dispersion    # The full, descriptive name of the resource.
+
+# --- TYPE AND ACCESS ---
+resource_type: Streamlit app            # Required. Options: Streamlit app, Jupyter Notebook, Video, Dataset, Other.
+url: https://3d-heat-transport.streamlit.app/      # The direct link to launch the app, notebook on Binder, or video on YouTube.
+date_released: TO_BE_FILLED_BY_COURSE_MANAGER               # Release date in YYYY-MM-DD format.
+
+# --- CONTENT AND METADATA ---
+description_short: |
+  This interactive application illustrates three-dimensional heat transport in a saturated porous medium under steady groundwater flow, combining convection (advection), conduction, and hydrodynamic dispersion. A continuous heat input is applied at a finite source, and the resulting temperature distribution is evaluated from an analytical solution.
+  
+  Users can explore how specific discharge and effective porosity control the average groundwater velocity, how longitudinal and transverse dispersivities shape heat transport, and how source geometry (width and thickness) influences the extent of warming.
+  
+  Results are visualized as plan-view (x–y) temperature fields for a selectable depth slice and as cross-sections (x–z) for a selectable lateral position, shown either as filled contours or isolines. Optional settings allow restricting spreading to downward directions to mimic density-driven tendencies or simplified conceptual assumptions.
+keywords: [Heat transport, Geothermal energy, transport, 3D]
+multipage_app: false
+num_pages: 0
+interactive_plots: true
+num_interactive_plots: 2
+assessments_included: false
+num_assessment_questions: 0
+videos_included: false
+num_videos: 0
+
+# --- EDUCATIONAL FIT ---
+time_required: "15\u201330 minutes"             # Estimated time for a student to complete the activity (e.g., 30 minutes, 1.5 hours).
+prerequisites: Basic hydrogeology, basic knowledge of transport, hydrogeological parameters       # Required prior knowledge (e.g., Darcy's Law, Python basics, basic calculus).
+fit_for:
+  - self learning
+  - online teaching
+  - classroom teaching
+
+# --- AUTHOR AND REFERENCE ---
+authors:
+  - name: Thomas Reimann
+    affiliation: TU Dresden
+references: []                            # List any published papers, DOIs, or source materials related to this resource.
+# image_url: Optional path to a screenshot for the catalog page (e.g., /assets/images/resources/flow_tool_screenshot.png)
+
+figures:
+  - id: 1
+    original_filename: 07_10_3D_Heat.png
+    type: Screenshot
+    caption: Visualization of the heat transport
+    is_cover: true
