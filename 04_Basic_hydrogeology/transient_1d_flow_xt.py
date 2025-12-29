@@ -37,7 +37,7 @@ with st.expander('See explanation'):
     st.write('$$h(x,t)=h_0 \\: \\mathrm{ erfc}\\left(\\sqrt{\\frac{S x^2}{4T (t)}}\\right)$$\n\n')
     st.write('This solution can also be applied to unconfined aquifers if the variation of the hydraulic head is small relative to the saturated thickness of the aquifer such that the transmissivity can be regarded as approximately constant. \n\n')
     st.write('Bakker & Post (2022) provide more details about the derivation of this solution and a Python code for its application. This Streamlit App makes use of their Python code and adds features such as sliders and textboxes that facilitate the variation of parameter values and the visualisation of their effects on the hydraulic heads.\n\n\n')
-    st.image("04_Basic_hydrogeology/FIGS/Fig1_transient_1d_flow_conf.jpg", caption="Figure 1: Aquifer headchange due to surface water level change.")
+    st.image("04_Basic_hydrogeology/FIGS/Fig1_transient_1d_flow_conf.png", caption="Figure 1: Aquifer headchange due to surface water level change.")
     st.write('References: Bakker, M., & Post, V. (2022). Analytical groundwater modeling: Theory and applications using Python. CRC Press.')
 
 # Parameters
