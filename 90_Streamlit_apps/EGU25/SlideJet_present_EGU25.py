@@ -27,7 +27,7 @@ st.set_page_config(page_title="SlideJet - Present", page_icon="🚀")
 
 # --- Default YAML path, use / ---
 #DEFAULT_YAML = "example.yaml"
-DEFAULT_YAML = "90_Streamlit_apps/EGU25/SlideJet_Presentations/2025_04_29_EGU_iNUX_Reimann_SPM_SJconfig.yaml"
+DEFAULT_YAML = "90_Streamlit_apps/EGU25/2025_04_29_EGU_iNUX_Reimann_SPM_SJconfig.yaml"
 
 # --- Proxy ID --- This should be
 # an unique ID if the app is used
