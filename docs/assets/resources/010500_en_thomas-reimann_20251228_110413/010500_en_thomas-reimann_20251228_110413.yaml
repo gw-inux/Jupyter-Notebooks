@@ -1,0 +1,50 @@
+catalog_category: 01 Water Cycle
+catalog_subcategory: 01-05 Groundwater Recharge (process-based)
+catalog_subsubcategory: (Attach to subcategory)
+
+# --- RESOURCE IDENTIFICATION AND TOPIC MAPPING ---
+# item_id: A unique, simple slug for this item (e.g., aquifer_test_1). 
+
+item_id: 0105001
+topic: 05 Groundwater Recharge (process-based) # Must match the title of the parent catalog page.
+title: Estimating Groundwater Recharge with the Water Table Fluctuation (WTF) Method    # The full, descriptive name of the resource.
+
+# --- TYPE AND ACCESS ---
+resource_type: Streamlit app            # Required. Options: Streamlit app, Jupyter Notebook, Video, Dataset, Other.
+url: https://wtf-recharge.streamlit.app/      # The direct link to launch the app, notebook on Binder, or video on YouTube.
+date_released: TO_BE_FILLED_BY_COURSE_MANAGER               # Release date in YYYY-MM-DD format.
+
+# --- CONTENT AND METADATA ---
+description_short: |
+  This interactive app estimates groundwater recharge from water-level time series using the Water Table Fluctuation (WTF) method with falling-limb (recession) extrapolation for multiple recharge events. Users can work with provided example series or upload their own CSV file (date, head).
+  
+  Recharge events are identified as distinct rises in the groundwater head record. For each detected peak, the app extrapolates a recession baseline using an exponential recession constant alpha and computes the event water-level surplus dh relative to this baseline. Recharge is then calculated as S_y x dh and reported in mm, where S_y is the user-defined specific yield. Results are shown as an annotated time-series plot with fitted recession curves, peak markers, and Δh indicators, along with an event table and the total recharge summed over all detected events.
+keywords: [Groundwater recharge, WTF, Water Table Fluctuation]
+multipage_app: false
+num_pages: 0
+interactive_plots: true
+num_interactive_plots: 1
+assessments_included: false
+num_assessment_questions: 0
+videos_included: false
+num_videos: 0
+
+# --- EDUCATIONAL FIT ---
+time_required: "15\u201330 minutes"             # Estimated time for a student to complete the activity (e.g., 30 minutes, 1.5 hours).
+prerequisites: Basic Hydrogeology       # Required prior knowledge (e.g., Darcy's Law, Python basics, basic calculus).
+fit_for:
+  - self learning
+
+# --- AUTHOR AND REFERENCE ---
+authors:
+  - name: Thomas Reimann
+    affiliation: TU Dresden
+references: []                            # List any published papers, DOIs, or source materials related to this resource.
+# image_url: Optional path to a screenshot for the catalog page (e.g., /assets/images/resources/flow_tool_screenshot.png)
+
+figures:
+  - id: 1
+    original_filename: 01_05_WTF.png
+    type: Screenshot
+    caption: The interactive plot to estimate recharge with the WTF method.
+    is_cover: true
