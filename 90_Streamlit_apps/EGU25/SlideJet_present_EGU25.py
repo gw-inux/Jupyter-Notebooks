@@ -223,7 +223,6 @@ def add_notes_with_overlay(slides, images, output_pdf, trans_lan=None, font_size
 
     doc.build(elements)
 
-
 # --- DICTIONARY ---
 
 protected_terms = {
@@ -254,10 +253,7 @@ protected_terms = {
     # Extend for other languages
 }
 
-# --- USER INTERFACW
-
-# --- Print Title
-#st.title("Presentation Slides")
+# --- USER INTERFACE
 
 # --- Define keys ---
 reset_key = f"{app_id}_reset_mode"
