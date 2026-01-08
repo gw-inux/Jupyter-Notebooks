@@ -2,7 +2,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 import streamlit as st
 
-st.set_page_config(page_title="1D Recharge + No-Flow/Head BC (2-zone K)")
+#st.set_page_config(page_title="1D Recharge + No-Flow/Head BC (2-zone K)")
 
 st.title("1D Flow with Recharge: No-Flow (left) + Fixed Head (right)")
 

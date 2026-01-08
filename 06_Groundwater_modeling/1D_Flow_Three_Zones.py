@@ -10,7 +10,7 @@ import streamlit as st
 # UI: no sidebar, widgets above plot, log10 sliders for transmissivity
 # -----------------------------------------------------------------------------
 
-st.set_page_config(page_title="1D Calibration: Three-Zone T")
+#st.set_page_config(page_title="1D Calibration: Three-Zone T")
 
 st.title("Groundwater Model Calibration (1D, three-zone aquifer)")
 st.write(
