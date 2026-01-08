@@ -1,0 +1,542 @@
+[
+    {
+        "image": "images/slide_1.png",
+        "notes": "Willkommen zur Grundwasserbewirtschaftung mit Computermodellen \u2013Thema 05: Kalibrierung von Grundwassermodellen\rIn den Folien und Kommentaren finden Sie die Grundlagen zur Modellkalibrierung\rNeben diesen Folien finden Sie im OPAL-Kurs weitere Materialien, u. a. elektronische Kontrollfragen,\rBei Fragen, Kommentaren und Hinweisen freuen wir uns von Ihnen zu h\u00f6ren."
+    },
+    {
+        "image": "images/slide_2.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_3.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_4.png",
+        "notes": "Vorw\u00e4rts und Inversmodellierung\rbisher: Vorw\u00e4rtsmodellierung (z. B. Beleg Teil 1)\rDas bedeutet:\rAlle Modelleingangsdaten (GWN, Leitf\u00e4higkeit, Speicherkoeffizient, \tPumpraten, Flusswasserst\u00e4nde, Porosit\u00e4ten, Dispersivit\u00e4ten, Zugabekonzentrationen usw.) sind bekannt bzw. k\u00f6nnen zuverl\u00e4ssig abgesch\u00e4tzt werden.\rMit diesen Informationen l\u00e4sst sich dann die Grundwasserstr\u00f6mungs- bzw. die Stofftransportgleichung numerisch l\u00f6sen.\rBei nahezu allen praktischen Problemstellungen ist allerdings ein Teil der Modelleingangsdaten (Werte und / oder Zonen) nicht bekannt oder kann nur grob abgesch\u00e4tzt werden.\rDaf\u00fcr stehen jedoch Messwerte oder Zeitreihen (zumeist f\u00fcr Potentialh\u00f6hen und Konzentrationen, manchmal auch f\u00fcr Durchfl\u00fcsse / Sch\u00fcttungen bzw. Stofffrachten) zur Verf\u00fcgung, die mit Modellergebnissen verglichen werden k\u00f6nnen.\rInversmodellierung bzw. Parametersch\u00e4tzung bzw. Modellkalibrierung bzw. Modelleichung bedeutet, die fehlenden oder nur ungenau bekannten Parameterwerte und Zonen so zu bestimmen, dass die Modellergebnisse m\u00f6glichst gut mit den zugeh\u00f6rigen Messinformationen \u00fcbereinstimmen. (z. B. Pumpversuchsauswertung)"
+    },
+    {
+        "image": "images/slide_5.png",
+        "notes": "Schema zur Inversmodellierung\rAuch: Parameteridentifikation\rAus Eingangsdaten (z. B. Randbedingungen) und Messwerten werden die Modellparameter ermittelt\rBeispiel: Auswertung eines Pumpversuches"
+    },
+    {
+        "image": "images/slide_6.png",
+        "notes": "Abweichung Berechnet \u2013 Gemessen\rDie Abbildung zeigt den zeitlichen Verlauf der Modellrechnung (blaue Linie)\rZu einigen Zeiten sind Beobachtungswerte (Messungen) vorhanden (rote Punkte)\rAls Residual wird die Abweichung zwischen gemessenen und berechneten Werten bezeichnet\rDas Ziel der Kalibrierung besteht darin, die Abweichung zwischen gemessenen und berechneten Werten zu minimieren"
+    },
+    {
+        "image": "images/slide_7.png",
+        "notes": "Schema zur Vorw\u00e4rtsmodellierung\rAuch: Prognose / Vorhersage / Systemanalyse etc.\rAusgangspunkt ist das Modell mit Eingangsdaten (z. B. Randbedingungen) und Parametern\rim Ergebnis berechnet das Modell die gew\u00fcnschte Zielgr\u00f6\u00dfe (z. B. Druckpotentiale / Wasserst\u00e4nde)"
+    },
+    {
+        "image": "images/slide_8.png",
+        "notes": "Beispiel\rstation\u00e4res Grundwassermodell\rRandbedingung 1. Art vorgegeben (Festpotential)\r8 Messstellen mit Potentialh\u00f6hen\rZonierung vorgegeben\rPer Modellkalibrierung zu bestimmen sind die Werte f\u00fcr GWN und Transmissivit\u00e4t.\rErh\u00e4lt man in diesem Beispiel eindeutige Parameterwerte?\rVereinfachte Variante (\u00dcbung in der LV: 1D Grabenanstr\u00f6mung \u2013 https://gwf-1d-unconf-calib.streamlit.app/\r)"
+    },
+    {
+        "image": "images/slide_9.png",
+        "notes": "Beispiel\rstation\u00e4res Grundwassermodell\rRandbedingung 1. Art vorgegeben (Festpotential)\r8 Messstellen mit Potentialh\u00f6hen\rZonierung vorgegeben\rPer Modellkalibrierung zu bestimmen sind die Werte f\u00fcr GWN und Transmissivit\u00e4t.\rErh\u00e4lt man in diesem Beispiel eindeutige Parameterwerte?\rVereinfachte Variante (\u00dcbung in der LV: 1D Grabenanstr\u00f6mung - https://gwf-1d-unconf-calib.streamlit.app/\r)"
+    },
+    {
+        "image": "images/slide_10.png",
+        "notes": "Beispiel\rhttps://gwf-1d-unconf-calib.streamlit.app/\rDaten f\u00fcr Kalibrierung einblenden und Modell kalibrieren\rWie gut stimmen die angepassten Parameter mit der \u2018Realit\u00e4t\u2019 (= bekannt) \u00fcberein?"
+    },
+    {
+        "image": "images/slide_11.png",
+        "notes": "Ablauf\rModellkalibrierung ist ein \u201eiteratives Verfahren\u201c.\rDas nebenstehende Ablaufschema ist mehrfach abzuarbeiten, bis eine zufriedenstellende Abweichung zwischen Modellergebnissen und Messwerten erreicht ist.  \rDie einzelnen Schritte erfolgen zumeist (noch) nicht vollautomatisch, sondern von Hand.\rExpertenwissen (Geohydraulik, Standorteigenschaften) ist insbesondere bei der Parameteranpassung gefordert."
+    },
+    {
+        "image": "images/slide_12.png",
+        "notes": "Fallbeispiel (bekannt aus T04 \u2013 Stofftransport)\rAnwendung des kalibrierten Modells f\u00fcr die Prognose der zuk\u00fcnftigen Entwicklung\rdie linke Seite zeigt das (regionale) Modell\rdie rechte Seite zeigt die Kalibrierung (keine perfekte \u00dcbereinstimmung\u2026 d. h. diese ist praktisch nicht immer m\u00f6glich)"
+    },
+    {
+        "image": "images/slide_13.png",
+        "notes": "Fallbeispiel (bekannt aus T04 \u2013 Stofftransport)\rAn dieser Stelle ist die Progose auf der Basis der kalibrierten Modells dargestellt"
+    },
+    {
+        "image": "images/slide_14.png",
+        "notes": "Schwerpunkte\rDie Schritte und das Vorgehen zur Kalibrierung werden anhand von Beispielen und \u00dcbungsaufgaben besprochen;\rEin kurzer \u00dcberblick zur automatischen Kalibrierung folgt zum Ende;\rDie folgenden Themen (ab Besonderheiten bei der Kalibrierung instation\u00e4rer Modelle) folgen in der LV am 13. Januar 2022 (T05 \u2013 Teil III)\rDas Ablaufschema zur Modellierung (Abbildung rechts) aus Anderson und Woessner 2003 zeigt nochmal, an welcher Stelle im Ablauf der Grundwassermodellierung die Kalibrierung eingeordnet wird"
+    },
+    {
+        "image": "images/slide_15.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_16.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_17.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_18.png",
+        "notes": "Ablauf der Kalibrierung\rDas Schema zeigt die nachfolgenden inhaltlichen Schwerpunkt im Ablauf einer Kalibrierung\r(1) Kalibrierparameter (welche?)\r(2) Beobachtungen / Zielfunktion (welche/wieviele/\u2026)\r(3) Kriterien / Erfolgskontrolle\r(4) Parameteranpassung (\u2018n\u00e4chster Schritt\u2019 \u2026)"
+    },
+    {
+        "image": "images/slide_19.png",
+        "notes": "Auswahl der Kalibrierparameter\rAls Kalibrierparameter grunds\u00e4tzlich geeignet sind Parameter, deren\rWerte und / oder Zonierung nicht genau bekannt sind,\r\u00c4nderungen sich merklich auf das Str\u00f6mungsverhalten auswirken w\u00fcrden.\rParameter, die diese beiden Kriterien erf\u00fcllen, lassen sich \u00fcblicherweise bereits w\u00e4hrend des Modelldesigns identifizieren.\rDabei erh\u00e4lt man auch Absch\u00e4tzungen f\u00fcr die Parameterwerte und die Zonenausdehnung, die dann f\u00fcr den ersten Eichschritt verwendet werden.\rDiese erste Modellvorstellung (Zonierung) ist zumeist \u201eeinfach\u201c und kann in sp\u00e4teren Eichschritten bei begr\u00fcndetem Bedarf und verf\u00fcgbarer Messinformation erweitert werden.\rBeispiele f\u00fcr Kalibrierparameter:\rGrundwasserneubildung\rhydraulische Leitf\u00e4higkeit bzw. Transmissivit\u00e4t\rSpeicherkoeffizient (nur bei instation\u00e4ren Problemstellungen)\rvertikale hydraulische Leitf\u00e4higkeit zwischen Aquiferstockwerken\rLeakage-Faktor bei Flie\u00dfgew\u00e4ssern oder Drainagerohren\rDispersivit\u00e4ten (longitudinal, transversal)"
+    },
+    {
+        "image": "images/slide_20.png",
+        "notes": "Vorw\u00e4rtsmodellierung\rEine numerische Berechnung der Potentialh\u00f6hen (als Ergebnis der vorhandenen Parameter und Randbedingungen)"
+    },
+    {
+        "image": "images/slide_21.png",
+        "notes": "Noch ein paar einf\u00fchrende Bemerkungn\rZus\u00e4tzlich zu den Parameterwerten ist oftmals auch die Zonierung nicht bekannt und muss mittels Modellkalibrierung ermittelt werden.\rF\u00fcr unterschiedliche Parameter (z. B. GWN, Transmissivit\u00e4t) sind i. d. R. auch die zugeh\u00f6rigen Zoneneinteilungen verschieden.\rParameter, die mittels Kalibrierung bestimmt werden sollen, werden als Kalibrierparameter oder Eichparameter bezeichnet (im Beispiel von der vorigen Seite: GWN und Transmissivit\u00e4t).\rZiel der Kalibrierung ist es, die Abweichungen der Modellergebnisse hmod von den Messwerten hgem (bzw. Cmod von Cgem) m\u00f6glichst stark zu verringern.\rDabei sind geologische und hydrogeologische Kenntnisse \u00fcber das Modellgebiet zu ber\u00fccksichtigen.\rInsbesondere sind unn\u00f6tig komplexe Zonierungen zu vermeiden, die nicht durch geologische / hydrogeologische Informationen gest\u00fctzt werden (\u201em\u00f6glichst einfache Modellstruktur\u201c).\rFaustregeln (f\u00fcr die klassische manuelle Kalibrierung): \rAnzahl Kalibrierparameter \uf0af: Abweichungen zwischen hmod und hgem bzw. zwischen Cmod und Cgem \uf0ad\rAnzahl Kalibrierparameter \uf0af: Belastbarkeit der Kalibrierparameter \uf0ad"
+    },
+    {
+        "image": "images/slide_22.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_23.png",
+        "notes": "Ablauf der Kalibrierung\rDas Schema zeigt die nachfolgenden inhaltlichen Schwerpunkt im Ablauf einer Kalibrierung\r(1) Kalibrierparameter (welche?)\r(2) Beobachtungen / Zielfunktion (welche/wieviele/\u2026)\r(3) Kriterien / Erfolgskontrolle\r(4) Parameteranpassung (\u2018n\u00e4chster Schritt\u2019 \u2026)"
+    },
+    {
+        "image": "images/slide_24.png",
+        "notes": "Messwerte\rMesswerte bilden die Vergleichsgrundlage f\u00fcr die Modellergebnisse.\rWie schon erw\u00e4hnt stehen zumeist Potentialh\u00f6hen und Stoffkonzentrationen, seltener Durchfl\u00fcsse / Sch\u00fcttungen bzw. Massenstr\u00f6me (Stofffrachten) zur Verf\u00fcgung. (siehe auch Beispiel 0-a vom Beginn!)\rVorab-Informationen (\u201cprior information\u201c) \u00fcber die Kalibrierparameter geh\u00f6ren nicht zu den Messwerten, die im Diagramm genannt sind!\rF\u00fcr eine station\u00e4re Modelleichung (h\u00e4ufig der Fall bei Str\u00f6mungsmodellen) ist es wichtig, dass die Messwerte unter station\u00e4ren oder zumindest nahezu station\u00e4ren Flie\u00dfverh\u00e4ltnissen ermittelt wurden.\rDies bedeutet u. a., dass kurz vor den Messungen keine \u00c4nderungen der Randbedingungen (GWN, Pumpraten, Flusswasserst\u00e4nde o. dgl.) erfolgt sein d\u00fcrfen.\rMessungen unterschiedlicher Gr\u00f6\u00dfen (z. B. Potentialh\u00f6hen und Quellsch\u00fcttungen) sollten unter den gleichen Bedingungen erfolgt sein."
+    },
+    {
+        "image": "images/slide_25.png",
+        "notes": "Beobachtungen / Zielfunktion\rAnzahl der Beobachtungen \u2013 u. a. Zeiten mit vielen Messungen vs. Zeitr\u00e4ume mit weniger Messungen\rArten der Beobachtungen (z. B. Wasserst\u00e4nde, Abfl\u00fcsse, Konzentrationen) \u2013 siehe Beispiel Freiheit spring aus LV07\rWichtung der Beobachtungen (Lage im Modellrand vs. Lage im zentralen Bereich des Modells)\rDie entsprechenden Aspekte k\u00f6nnen mit spezifischen Wichtungsfaktoren ber\u00fccksichtigt werden (z. B. Abweichung_rand x 0.1)"
+    },
+    {
+        "image": "images/slide_26.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_27.png",
+        "notes": "Beispiel \u2013 Bedeutung von Beobachtungswerten (nach Poeter 2003 - https://inside.mines.edu/~epoeter/583/)\rEinfache Ausgangssituation (dargestellt in Draufsicht)\rGegeben sind zwei Beobachtungswerte in Form von Druckpotentialen (Wasserst\u00e4nde)\rFrage 1) [Antwort: \u2026]\rFrage 2) [Antwort: \u2026]"
+    },
+    {
+        "image": "images/slide_28.png",
+        "notes": "Beispiel \u2013 Bedeutung von Beobachtungswerten (nach Poeter 2003 - https://inside.mines.edu/~epoeter/583/)\rBeispiel zum eigenen ausprobieren"
+    },
+    {
+        "image": "images/slide_29.png",
+        "notes": "Zonierung (Beispiel)\rTheoretisch k\u00f6nnen in einem distributive numerischen Modell f\u00fcr jede diskrete Zelle separate Parameter verwendet werden\rz. B. bei 10 x 10 Zellen w\u00e4ren 100 verschiedene K-Werte m\u00f6glich\rPraktisch ist f\u00fcr die Kalibrierung eine Zonierung notwendig\rIn den Zonen werden (\u00fcblicherweise) gleiche Parameter angenommen\rDas Beispiel zeigt ein Gebiet (Draufsicht), welches durch Pumpversuche hydrogeologisch erkundet ist"
+    },
+    {
+        "image": "images/slide_30.png",
+        "notes": "Zonierung (Beispiel)\rAuf der Basis der in den Pumpversuchen ermittelten hydraulischen Leitf\u00e4higkeiten werden Zonen definiert\r(dieses Vorgehen ist im Beispiel relevant; praktisch wird die Zonierung der geohydraulischen Parameter auch z. B. anhand von hydrogeologischen Strukturen definiert)"
+    },
+    {
+        "image": "images/slide_31.png",
+        "notes": "Zonierung (Beispiel)\rZonierung der Grundwasserneubildung, z. B. auf Basis der Landnutzung (siehe auch eine der nachfolgenden LV zur Grundwasserneubildung)"
+    },
+    {
+        "image": "images/slide_32.png",
+        "notes": "Beispiel \u2013 Bedeutung von Beobachtungswerten (nach Poeter und Hill 1997; https://ngwa.onlinelibrary.wiley.com/doi/10.1111/j.1745-6584.1997.tb00082.x)\rEinfache Ausgangssituation (dargestellt in Draufsicht)\rGegeben sind drei (oder mehr) Beobachtungswerte in Form von Druckpotentialen (Wasserst\u00e4nde)\rFrage 1) [Antwort: \u2026]\rFrage 2) [Antwort: \u2026]"
+    },
+    {
+        "image": "images/slide_33.png",
+        "notes": "\u00dcbungsbeispiel 0-b\rDie gemessenen Werte an Mst. 1 und Mst. 2 k\u00f6nnen kalibriert werden\rSituation ist vergleichbar mit 1D Grabenanstr\u00f6mung\rKalibrierparameter GWN und K (K durch Messungen ann\u00e4hernd bekannt)"
+    },
+    {
+        "image": "images/slide_34.png",
+        "notes": "\u00dcbungsbeispiel 0-b\rZur L\u00f6sung kann das XLS Sheet aus T03 verwendet werden\rAlternativ auch m\u00f6glich: einfachen 1D Str\u00f6mungsmodell mit MODELMUSE aufbauen (s. OPAL Kurs)"
+    },
+    {
+        "image": "images/slide_35.png",
+        "notes": "\u00dcbungsbeispiel 1\rgleiche Situation wie in \u00dcbungsbeispiel 0-b zuvor ABER\randere Potentialh\u00f6hen werden gemessen"
+    },
+    {
+        "image": "images/slide_36.png",
+        "notes": "\u00dcbungsbeispiel 1\rDas Beispiel l\u00e4sst sich nicht mit dem urspr\u00fcnglichen konzeptionellen Modell kalibrieren (homogeny)\rEs kann angenommen werden, dass sich (z. B.) zwischen den Messstellen eine andere geologische Struktur befindet (z. B. Schluff)\rMit dieser Annahme (geol. Struktur zwischen den Mst. kann kalibriert werden\rFazit:\rModell zeigt, dass der urspr\u00fcngliche konzeptionelle Ansatz nicht geeignet ist\rModell zeigt einen alternativen Ansatz (der durch weitere Erkundungsmassnahmen best\u00e4tigt werden kann / sollte)"
+    },
+    {
+        "image": "images/slide_37.png",
+        "notes": "Kalibrieren im Ablauf einer numerischen Simulation\r\u00dcbungsbeispiel 1 steht repr\u00e4sentativ f\u00fcr den roten Pfeil\rIn Folge der Kalibrierung wird auch das konzeptionelle Modell angepasst"
+    },
+    {
+        "image": "images/slide_38.png",
+        "notes": "Konzeptionelles Modell \u2013 Unsicherheiten\rAbbildungen zeigen verschiedene m\u00f6gliche konzeptionelle Modelle (Varianten)\rweitere Informationen https://agupubs.onlinelibrary.wiley.com/doi/full/10.1029/2020WR027578 (Open Access)"
+    },
+    {
+        "image": "images/slide_39.png",
+        "notes": "Konzeptionelle Unsicherheit \u2013 Im Ablauf der Modellierung ber\u00fccksichtigen\rdie Abbildung zeigt zwei M\u00f6glichkeiten, konzeptionelle Unsicherheit zu ber\u00fccksichtigen\rConsensus approach:\rDas konzeptionelle Modell wird schrittweise optimiert\rMulti-modell approach:\rEine Vielzahl von m\u00f6glichen konzeptionellen Modellen wird von Beginn an betrachtet\rDie Modelle, welche nicht kalibriert werden k\u00f6nnen (d. h. k\u00f6nnen das reale Systemverhalten nicht abbilden) werden verworfen"
+    },
+    {
+        "image": "images/slide_40.png",
+        "notes": "\u00dcbungsbeispiel 2\rEs liegen die K-Werte und die GWN als Zone vor\rDas (Einzugs)Gebiet wird an einer Seite durch eine definierte Potentialh\u00f6he begrenzt (RB 1.Art)"
+    },
+    {
+        "image": "images/slide_41.png",
+        "notes": "\u00dcbungsbeispiel 2\rhttps://gwf-1d-unconf-noflow-calib.streamlit.app/\rNochmal vereinfacht: keine Zonierung von K-Werten und GWN"
+    },
+    {
+        "image": "images/slide_42.png",
+        "notes": "\u00dcbung 2\rModellergebnisse an gegebene Messungen durch Variation von K1/K2?GWN1/GWN2 anpassen\rACHTUNG: Pro Kalibrierschritt nur einen Parameter \u00e4ndern"
+    },
+    {
+        "image": "images/slide_43.png",
+        "notes": "Beispielaufgabe\r\u00e4hnlich wie \u00dcbung2 aber hier nur homogene GWN\rL\u00f6sung z. B. mit XLS oder FloPy nachvollziehen\rTIP:\rausgehen vom defnierten Potential am Rand\rK-Wert \u00e4ndert den Gradient des WSP local\rGWN \u00e4ndert Gradient (da mehr / weniger Abfluss) im gesamten Modell"
+    },
+    {
+        "image": "images/slide_44.png",
+        "notes": "Zwischenfazit\rpraktische \u2018Stolperstellen\u2019 angesprochen (ungeeignete Beobachtungswerte usw.)"
+    },
+    {
+        "image": "images/slide_45.png",
+        "notes": "Vergleich zwischen Modellergebnissen und Messwerten\rDer Vergleich zwischen Modellergebnissen und Messwerten kann auf optischer oder auf quantitativer Grundlage erfolgen.\rEin Vergleich auf optischer Grundlage besteht z. B. darin, Grundwassergleichenpl\u00e4ne (modelliert vs. aus Messwerten interpoliert), \u00fcbereinander zu legen und Abweichungen zu identifizieren.\rBei einem Vergleich auf quantitativer Grundlage wird aus den Abweichungen zwischen Modellgr\u00f6\u00dfen und Messdaten eine Kenngr\u00f6\u00dfe errechnet, die ein Ma\u00df f\u00fcr die G\u00fcte der Modelleichung darstellt.       (Mehr dazu auf der n\u00e4chsten Seite.)\rKombinieren beider Vorgehensweisen ist m\u00f6glich und auch zu empfehlen."
+    },
+    {
+        "image": "images/slide_46.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_47.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_48.png",
+        "notes": "Quantitativer Vergleich\rGeringe Abweichungen zwischen hmod und hgem resultieren in kleinen Werten f\u00fcr das G\u00fctekriterium (ME, MAE bzw. RMS).\rBei instation\u00e4rer Modelleichung (fast immer der Fall bei Stofftransport!) sind die Summationen in den obigen Formeln \u00fcber alle Messstellen und Messzeitpunkte auszuf\u00fchren."
+    },
+    {
+        "image": "images/slide_49.png",
+        "notes": "G\u00fctekriterien\rAbh\u00e4ngig vom verwendeten G\u00fctekriterium erh\u00e4lt man unterschiedliche \u201eoptimale\u201c Parameterwerte. \rME ist nicht brauchbar, da sich immer eine Parameter-kombination finden l\u00e4sst, so dass ME = 0 wird. Dabei heben sich (u. U. gro\u00dfe!) negative und positive Abweichungen gegenseitig auf.\rRMS wird wegen der Analogie zur Berechnung der Standardabweichung einer Zufallsverteilung gegen\u00fcber MAE zumeist bevorzugt.\rEs gibt verallgemeinerte Formeln f\u00fcr ME, MAE und RMS mit Gewichtsfaktoren f\u00fcr einzelne Abweichungen."
+    },
+    {
+        "image": "images/slide_50.png",
+        "notes": "G\u00fctekriterien\rBeispiele f\u00fcr den qualitativen Vergleich (vermutlich haben Sie dieses Vorgehen (linke Seite der Abb.) auch in Beleg Teil 1 angewendet)"
+    },
+    {
+        "image": "images/slide_51.png",
+        "notes": "G\u00fctekriterien\rBeispiele f\u00fcr Scatter plots, welche gemessene und berechnete Modellergebnisse in einem Diagramm darstellen\rStimmen Mess- und Modellwerte \u00fcberein, liegt der Punkt auf der eingezeichneten 45\u00ba Linie"
+    },
+    {
+        "image": "images/slide_52.png",
+        "notes": "Beispiel Dover Airbase\rangesprochenes Beispiel aus LV01"
+    },
+    {
+        "image": "images/slide_53.png",
+        "notes": "Graphische Darstellung \u2013 komplexes Modell mit sehr vielen Beobachtungswerten\rScatterplot (links)\rResidual in Abh\u00e4ngigkeit von der Potentialh\u00f6he (rechts)\rbeide Grafiken geben einen guten Einblick in die Modellg\u00fcte"
+    },
+    {
+        "image": "images/slide_54.png",
+        "notes": "Graphische Darstellung \u2013 komplexes Modell mit sehr vielen Beobachtungswerten\rKartendarstellung der Residuen \rzeigt sehr sch\u00f6n, dass im Aussagegebiet (Zentrum des Modells) die Abweichungen gering sind (kleine Kreise) und an den Modellr\u00e4ndern h\u00f6here Abweichungen auftreten (gro\u00dfe Kreise)\rDie Farben markieren die Richtung der Abweichung (zu gro\u00df/zu Klein)"
+    },
+    {
+        "image": "images/slide_55.png",
+        "notes": "\u00dcbung Beispiel 2 \u2013 hier zur Darstellung der Kalibrierung\rAufgabe/Problem bereits behandelt\rAn dieser Stelle wird die Visualisierung an einem vertrautem Beispiel gezeigt"
+    },
+    {
+        "image": "images/slide_56.png",
+        "notes": "\u00dcbung Beispiel 2 \u2013 hier zur Darstellung der Kalibrierung\rgrafische Darstellung berechnet / gemessen"
+    },
+    {
+        "image": "images/slide_57.png",
+        "notes": "\u00dcbung Beispiel 2 \u2013 hier zur Darstellung der Kalibrierung\rBerechnung der statistischen Zahlen\rDas Beispiel zeigt, wie sich die einzelnen Gr\u00f6\u00dfen (f\u00fcr das selbe Resultat) unterscheiden"
+    },
+    {
+        "image": "images/slide_58.png",
+        "notes": "\u00dcbung Beispiel 2 \u2013 hier zur Darstellung der Kalibrierung\rScatterplot und Abweichung (Residual) der einzelnen Beobachtungen"
+    },
+    {
+        "image": "images/slide_59.png",
+        "notes": "\u00dcbungsaufgabe\rgegeben sind gemessene und numerisch berechnete Werte f\u00fcr ein Einzugsgebiet (folgende Folie)\rgesucht ist\rdie Berechnung der einzelnen stat. Gr\u00f6\u00dfen\rScatterdiagramm\roptimales Vorgehen\rmittels Tabellenkalkulation (XLS-Sheet) oder \rpassendes Jupyter-Notebook\rf\u00fcr die eigene Anwendung in Beleg Teil 2 steht ein Jupyter Notebook zur Verf\u00fcgung (Vorstellung in LV 12 am 13. Januar 2022)"
+    },
+    {
+        "image": "images/slide_60.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_61.png",
+        "notes": "Einzugsgebiet zu den gemessenen Daten"
+    },
+    {
+        "image": "images/slide_62.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_63.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_64.png",
+        "notes": "Zwischenfazit\rpraktische \u2018Stolperstellen\u2019 angesprochen (ungeeignete Beobachtungswerte usw.)"
+    },
+    {
+        "image": "images/slide_65.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_66.png",
+        "notes": "Parameteranpassung\rDie Parameteranpassung erfolgt zumeist noch von Hand (manuelle Kalibrierung).\rDie \u00c4nderung der Parameterwerte bzw. der Zonenbegrenzungen ist eine \u201eReaktion\u201c auf die festgestellten Abweichungen zwischen Modellergebnissen und Messdaten.\rZiel ist die Verringerung gro\u00dfer und die Beibehaltung kleiner Abweichungen.\rDie Parameteranpassung setzt standortspezifische und allgemeine (geohydraulische) Kenntnisse voraus.\rWichtige Grundregeln:\rIn jedem Kalibrierschritt sollte nur ein Parameterwert oder nur eine \tZonenbegrenzung ge\u00e4ndert werden.\rAuswirkungen der \u00c4nderung aufs Ergebnis (inkl. G\u00fctekriterium) sind nachvollziehbar zu dokumentieren. (Das gilt auch f\u00fcr Fehlschl\u00e4ge!)\rEffiziente Alternative zum manuellen Kalibrieren: automatische Kalibrierung!\rAusblick auf den folgenden Folien\rweitere Informationen in LV"
+    },
+    {
+        "image": "images/slide_67.png",
+        "notes": "Beispiel am Computer 1\rAufbau des Modells in OPAL dokumentiert\rVorhandenes Modell ebenfalls in OPAL zu finden\rbei der Anpassung k\u00f6nnen die einzelnen Parameter variiert werden\rK-Werte der Zonen\rweitere Parameter sind in dieser Aufgabe nicht vorgesehen (theoretisch denkbar w\u00e4ren u. a. GWN, Leitwert Fluss)"
+    },
+    {
+        "image": "images/slide_68.png",
+        "notes": "Beispiel am Computer 2 (aus Anderson et al. 2015)\rAufbau des Modells eigenst\u00e4ndig mit MODELMUSE m\u00f6glich\rauf Basis des Beispiels sind Jupyter Notebooks vorhanden (https://github.com/Applied-Groundwater-Modeling-2nd-Ed/Chapter_9_and_10_problems)\rangepasste / vereinfachte Notebooks stehen zur Verf\u00fcgung"
+    },
+    {
+        "image": "images/slide_69.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_70.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_71.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_72.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_73.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_74.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_75.png",
+        "notes": "Manuelle Kalibrierung\rmanuelle Kalibrierung (u. a. angewendet im Beleg Teil 2) ist das traditionelle \u2018Mittel der Wahl\u2019\rDie Folie f\u00fchrt einige Nachteile der manuellen Kalibrierung auf"
+    },
+    {
+        "image": "images/slide_76.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_77.png",
+        "notes": "Ausblick automatische Kalibrierung\rDie Folie zeigt Ausschnitte aus einem Report, der die automatische (Neu)Kalibrierung eines vorhandenen regionalen Str\u00f6mungsmodells dokumentiert\rDas Modell ist r\u00e4umlich sehr weit gefasst (siehe Abb. linke Seite)\rDas Modell umfasst eine Vielzahl von Parametern (siehe Abb. Mitte)\rDie Neukalibrierung ben\u00f6tigt hohe Rechenleistung (siehe Abb. rechte Seite \u2013 Cluster f\u00fcr die Berechnung)\rWeitere Informationen https://www.twdb.texas.gov/publications/reports/contracted_reports/doc/0804830820_Edwards-Trinity_PecosGAM.pdf\rVorl\u00e4ufiges Fazit an dieser Stelle: Die automatische Kalibrierung bringt viele Vorteile, bedingt aber auch einen hohen techn. Aufwand"
+    },
+    {
+        "image": "images/slide_78.png",
+        "notes": "Erl\u00e4uterung\rDie Zielfunktion ist hier als Summe der quadratischen Residuen (d. h. Abweichung gemessen \u2013 berechnet) dargestellt; die Zielfunktion k\u00f6nnte auch eine andere stat. Kenngr\u00f6\u00dfe wie RMS, ME, MAE sein\rEbenso ist hier ein Fall f\u00fcr ein Modell mit (nur) zwei Kalibrierparametern p1 und p2 dargestellt\res wird deutlich, dass mehrere Parameterkombinationen zu einer gleichen Modellg\u00fcte f\u00fchren\rWichtig: Dieses Verhalten der Zielfunktion als Funktion der Modellparameter ist \u00fcblicherweise nicht direkt bekannt"
+    },
+    {
+        "image": "images/slide_79.png",
+        "notes": "Interpretation des Verhalten\rdas hier dargestellte Verhalten zeigt eine sehr ausgepr\u00e4gte Korrelation zwischen p1 und p2\rd. h. das richtige Verh\u00e4ltnis von p1 / p2 f\u00fchrt zur Minimierung der Zielfunktion (z. B. kleines p1 und p2 oder gro\u00dfes p1 und p2)"
+    },
+    {
+        "image": "images/slide_80.png",
+        "notes": "Eigene Anwendung / Beispiel: Lumped Parameter Modell f\u00fcr ein Einzugsgebiet\r\u2018allgemeines\u2019 Modell f\u00fcr das Verhalten eines Einzugsgebietes\rdas Einzugsgebiet wird als ein Volumen betrachtet, dass mit der H\u00f6he h gef\u00fcllt ist\rAblauf geschieht \u00fcber einen Leitwert K als Funktion des F\u00fcllstandes h\rZustrom \u00fcber Recharge R\rSpeicher wird mittels S bescrieben\rL\u00f6sung des Modells mittels analytischer L\u00f6sung m\u00f6glich (siehe Storage.xls im OPAL-Kurs bzw. https://mybinder.org/v2/gh/ThoReimann/HydroTeaching/master"
+    },
+    {
+        "image": "images/slide_81.png",
+        "notes": "Ergebnisse (Studierende seit 2014)\rGrundannahme: alles Kalibrieren nach bestem Wissen und Gewissen:\rgro\u00dfes Spektrum an verschiedenen Werten"
+    },
+    {
+        "image": "images/slide_82.png",
+        "notes": "Auswertung der (stud.) Ergebnisse\robere Abbildung: direkte Korrelation nicht offensichtlich\runtere Abbildungen: hier sind die Parameter logarithmisch aufgetragen \u2013 hier wird die direkte Korrelation offensichtlich\rFazit: aufgrund der direkten Korrelation wird das Modell durch Parameterkombinationen (K / S etc.) kalibriert; die einzelnen Parameterwerte k\u00f6nnen nicht eindeutig bestimmt werden (das w\u00e4re m\u00f6glich, wenn z. B. ein Parameter bekannt / gemessen ist)\reine Automatische Kalibrierung kann diese (im Beispiel zu Beginn nicht offensichtliche) Korrelation ausweisen"
+    },
+    {
+        "image": "images/slide_83.png",
+        "notes": "Erl\u00e4uterung\rDie Zielfunktion ist hier als Summe der quadratischen Residuen (d. h. Abweichung gemessen \u2013 berechnet) dargestellt; die Zielfunktion k\u00f6nnte auch eine andere stat. Kenngr\u00f6\u00dfe wie RMS, ME, MAE sein\rEbenso ist hier ein Fall f\u00fcr ein Modell mit (nur) zwei Kalibrierparametern p1 und p2 dargestellt\res wird deutlich, dass mehrere Parameterkombinationen zu einer gleichen Modellg\u00fcte f\u00fchren\rWichtig: Dieses Verhalten der Zielfunktion als Funktion der Modellparameter ist \u00fcblicherweise nicht direkt bekannt"
+    },
+    {
+        "image": "images/slide_84.png",
+        "notes": "Hohe Korrelation\rweitere Darstellung: deutlich wird, dass ein Spektum des Parameterwertes die Zielfunktion minimiert"
+    },
+    {
+        "image": "images/slide_85.png",
+        "notes": "Parameterunsicherheit\raus dem beschriebenen Verhalten resultiert die Parameterunsicherheit, d. h. bei Parametern, die stark korrelieren, ergibt sich eine hohe Schwankungsbreite des Parameters (ein Bereich des Parameters, der das Modell \u00e4hnlich gut kalibriert)"
+    },
+    {
+        "image": "images/slide_86.png",
+        "notes": "praktische automatische Kalibrierung\rin der praktischen Anwendung haben die Modelle (viel) mehr als zwei Parameter\rim Beleg Teil 2 z. B. ca. 25+ (hydr. Leitf\u00e4higkeiten in den verschiedenen Zonen, Grundwasserneubildung in den verschiedenen Zonen etc.)\rDas Verhalten der Zielfunktion als Funktion der einzelnen Parameter ist \u00e4u\u00dferst komplex und steht im Fokus bei der automatischen Kalibrierung"
+    },
+    {
+        "image": "images/slide_87.png",
+        "notes": "Wege zur L\u00f6sung\rdie Algorithmen zur automatischen Kalibrierung berechnen \u00fcblicherweise die Jacobian-Matrix, welche die Abweichung der einzelnen Beobachtungspunkte (o \u2026observation) von der \u00c4nderung der Parameter (p \u2026 parameter) beschreibt\rjeder Modellparameter resultiert dabei in einer Spalte der Jacobian Matrix"
+    },
+    {
+        "image": "images/slide_88.png",
+        "notes": "Wege zur L\u00f6sung\rdamit resultiert jeder Kalibrierparameter in min. einem Modelllauf, um die Jacobian-Matrix zu berechnen (d. h.  wenn das Modell 100 Parameter aufweist, sind +100 Modelll\u00e4ufe n\u00f6tig, um die Jacobian-Matrrix zu berechnen)"
+    },
+    {
+        "image": "images/slide_89.png",
+        "notes": "Ausblick automatische Kalibrierung\rDie Folie zeigt Ausschnitte aus einem Report, der die automatische (Neu)Kalibrierung eines vorhandenen regionalen Str\u00f6mungsmodells dokumentiert\rDas Modell ist r\u00e4umlich sehr weit gefasst (siehe Abb. linke Seite)\rDas Modell umfasst eine Vielzahl von Parametern (siehe Abb. Mitte)\rDie Neukalibrierung ben\u00f6tigt hohe Rechenleistung (siehe Abb. rechte Seite \u2013 Cluster f\u00fcr die Berechnung)\rWeitere Informationen https://www.twdb.texas.gov/publications/reports/contracted_reports/doc/0804830820_Edwards-Trinity_PecosGAM.pdf\rVorl\u00e4ufiges Fazit an dieser Stelle: Die automatische Kalibrierung bringt viele Vorteile, bedingt aber auch einen hohen techn. Aufwand"
+    },
+    {
+        "image": "images/slide_90.png",
+        "notes": "In den nachfolgenden Folien weitere Anmerkungen zu den theoretischen Hintergr\u00fcnden der automatischen Kalibrierung\r\rGrundlagen\rAutomatische Modelleichung bedeutet, dass die Minimierung von MAE oder (meistens) RMS von einem Computerprogramm \u00fcbernommen wird.\rBeispiel: PEST (Parameter ESTimation)\rDie automatische Modelleichung ist auf die Bestimmung von Parameterwerten beschr\u00e4nkt, d. h. die Zonierung muss fest vorgegeben werden.\rComputerprogramme zur automatischen Modelleichung verwenden Grundlagen und Algorithmen der Nichtlinearen Optimierung."
+    },
+    {
+        "image": "images/slide_91.png",
+        "notes": "Wege zur L\u00f6sung\rDie Abbildung zeigt symbolisch das Vorgehen eines Algorithmus zur automatischen Kalibrierung\rjeder gr\u00fcne Pfeil repr\u00e4sentiert einen Optimierungsschritt\rf\u00fcr jeden Optimierungsschritt muss die Jacobian-Matrix berechnet werden\rd. h. bei einem Modell mit 100 Kalibrierparametern und 10 Otimierungsschritten sind +1000 Modell\u00e4ufe f\u00fcr einen automatische Kalibrierung n\u00f6tig (angenommen, ein Modelllauf = 1 Minute w\u00e4ren das ca. 17 Stunden Rechenzeit)"
+    },
+    {
+        "image": "images/slide_92.png",
+        "notes": "Beispiel mit zwei Kalibrierparametern\ranalog dem Vorgehen auf der vorherigen Folie\rEin Optimierungsschritt / Iterationsschritt entspricht einem gr\u00fcnen Pfeil auf der vorigen Folie"
+    },
+    {
+        "image": "images/slide_93.png",
+        "notes": "Vor- und Nachteil der automatischen Kalibrierung\rdie automatische Kalibrierung ben\u00f6tigt etwas mehr Aufwand beim Modelllaufbau und einiges Wissen, um die Ergebnisse zu interpretieren\r\u00fcblicherweise \u00fcberwiegt der Nutzen bei weitem den Aufwand (Hinweis: in MODELMUSE ist die Schnittstelle zu g\u00e4ngiger Software zur automatischen Kalibrierung vorhanden (UCODE / MODELMATE) bzw. folgt zeitnah (PEST \u2013 im Moment kurz vor Ver\u00f6ffentlichung in MODELMUSE)\rpraktische Anwendung im Rahmen des Moduls Fallstudien der Grundwasserbewirtschaftung im Sommersemester"
+    },
+    {
+        "image": "images/slide_94.png",
+        "notes": "Einstimmung automatische Kalibrierung\rBei der automatischen Kalibrierung variiert eine Software die Kalibrierparameter\rDer Erfolg der Parametervariation wird anhand einer Zielfunktion (mittlere quadratische Abweichung, gewichtet f\u00fcr die einzelnen Messungen) bewertet\rDie Abbildung zeigt, an welchen Stellen im Ablauf\rder Aufwand steigt (Setup Modell, u. a. um die Stabilit\u00e4t und die Effizienz zu optimieren)\rder Aufwand sinkt (Kalibrierprozess \u2013 hier kann die Zeiteinsparung sehr hoch werden)"
+    },
+    {
+        "image": "images/slide_95.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_96.png",
+        "notes": "Schwierigkeiten bei der automatischen Kalibrierung (Mehrdeutigkeit \u2013 mehrere Minima)\rSuchalgorithmen sind mit einem einzigen Suchlauf nicht in der Lage, die Mehrdeutigkeit festzustellen.\rVerwendung unterschiedlicher Startwerte bei der Suche nach der \u201eoptimalen\u201c Parameter-kombination wird empfohlen."
+    },
+    {
+        "image": "images/slide_97.png",
+        "notes": "Schwierigkeiten bei der automatischen Kalibrierung (lokale vs. globale Minima)\rSuchalgorithmus kann in einem einzigen Suchlauf nicht erkennen, ob ein lokales oder das globale Minimum gefunden wurde.\rWiederum ist die Verwendung unterschiedlicher Startwerte sinnvoll."
+    },
+    {
+        "image": "images/slide_98.png",
+        "notes": "Schwierigkeiten bei der automatischen Kalibrierung\rgeringe \u00c4nderungen von RMS \u00fcber einen gro\u00dfen Parameterbereich\rSuchalgorithmus hat Schwierigkeiten, die genaue Lage des Minimums zu lokalisieren.\rDurch die Versch\u00e4rfung der Abbruchbedingung (f\u00fcr die Modellkalibrierung!) ist bis zu einem gewissen Grad Abhilfe m\u00f6glich."
+    },
+    {
+        "image": "images/slide_99.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_100.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_101.png",
+        "notes": "\u00dcberblick und einf\u00fchrendes Beispiel\rIm Vergleich zur Kalibrierung eines station\u00e4ren Str\u00f6mungsmodells treten weitere (m\u00f6gliche) Kalibrierparameter auf: Speicherkoeffizient, Anfangswerte\rStatt einzelner Werte sind Zeitreihen bzw. Ganglinien zu vergleichen.\rDie Summation zur Berechnung von MAE oder RMS umfasst alle Messzeitpunkte und alle Messstellen.\rAbbildung in der Folie: Beispiel f\u00fcr ein instation\u00e4res Modell mit (u. a.) Grundwaserneubildung (Recharge R) als Kalbrierparameter."
+    },
+    {
+        "image": "images/slide_102.png",
+        "notes": "Grunds\u00e4tzliches Vorgehen\r1. Schritt: station\u00e4re Modelleichung\r2. Schritt: instation\u00e4re Modelleichung\rVoraussetzung f\u00fcr die Durchf\u00fchrbarkeit dieser Vorgehensweise ist die Verf\u00fcgbarkeit entsprechender Daten (Messwerte f\u00fcr station\u00e4re Bedingungen sowie Zeitreihen f\u00fcr instation\u00e4re Bedingungen). Ebenso muss das numerische Modell einen station\u00e4ren Zustand erlauben (stabile und konvergente L\u00f6sung; konzeptionelles Modell muss station\u00e4ren Zustand erlauben \u2013 dies ist z. B. bei der Wasserentahme durch Brunnen ohne Zufluss durch speisende Randbedingungen nicht der Fall)\rKalibrierparameter, die bei der station\u00e4ren Kalibrierung bestimmt worden und nicht zeitabh\u00e4ngig sind (z. B. hydraulische Leitf\u00e4higkeit), bleiben w\u00e4hrend der instation\u00e4ren Kalibrierung unver\u00e4ndert.\rDie Aufteilung in zwei Schritte (sofern m\u00f6glich!) reduziert die Anzahl an Kalibrierparametern f\u00fcr jeden Einzelschritt und erleichtert so das Vorgehen bei der Kalibrierung von Str\u00f6mungsmodellen.\rDa Stoffausbreitungsvorg\u00e4nge i. d. R. instation\u00e4r ablaufen, wird f\u00fcr Stofftransportmodelle eine instation\u00e4re Kalibrierung durchgef\u00fchrt. \rDie Kalibrierung eines Stofftransportmodells erfolgt \u00fcblicherweise, nachdem die Kalibrierung des zugeh\u00f6rigen Str\u00f6mungsmodells abgeschlossen ist. (Manchmal kann jedoch eine Neukalibrierung des Str\u00f6mungsmodells erforderlich werden!)"
+    },
+    {
+        "image": "images/slide_103.png",
+        "notes": "Anfangswerte bei instation\u00e4rer ModellKalibrierung\rDie Vorw\u00e4rtsmodellierung bei der instation\u00e4ren Modellkalibrierung erfordert die Vorgabe von Anfangswerten der Potentialh\u00f6he in jeder Modellzelle.\rAus den verf\u00fcgbaren Zeitreihen sind jedoch nur die Anfangswerte an einzelnen Messpunkten bekannt.\rAnfangswerte f\u00fcr die anderen Modellzellen m\u00fcssen anderweitig bestimmt werden.\rSchlechte Absch\u00e4tzungen f\u00fcr Anfangswerte wirken sich auf die Qualit\u00e4t der Modellanpassung negativ aus.\r2 M\u00f6glichkeiten:\rstation\u00e4ren Zustand als Anfangswerte w\u00e4hlen\r\u201cdynamic water balance\u201c (d. h. Einschwingen von einem stabilem Startzustand)\r\rStation\u00e4rer Anfangszustand\rIdentifikation eines station\u00e4ren Zustands in den verf\u00fcgbaren Ganglinien (im Beispiel: \u201e4/88\u201c) (aber typ. Frage bei der praktischen Anwendung: welche Daten repr\u00e4sentieren einen station\u00e4ren / mittleren Zustand?)\rstation\u00e4re Potentialh\u00f6hen f\u00fcr alle Modellzellen bestimmen \rDieser station\u00e4re Zustand bildet die Anfangsbedingung f\u00fcr s\u00e4mtliche Vorw\u00e4rtssimulationen bei der instation\u00e4ren Modellkalibrierung.\rNachteil: Methode ist nicht anwendbar, wenn der Messzeitraum keinen station\u00e4ren Zustand enth\u00e4lt."
+    },
+    {
+        "image": "images/slide_104.png",
+        "notes": "Station\u00e4re / Instation\u00e4re Kalibrierung\rAbbildung zeigt verschiedene Gr\u00f6\u00dfen an einer Grundwassermessstelle\rim Falle einer station\u00e4ren Modellierung muss entschieden werden, welcher Wert verwendet wird (repr\u00e4sentativ f\u00fcr den stat. Zustand)"
+    },
+    {
+        "image": "images/slide_105.png",
+        "notes": "Beispiel instation\u00e4re Kalibrierung (I)\rIn diesem Beispiel wurde der Mittelwert der Periode 1990-2000 als repr\u00e4sentativ f\u00fcr das station\u00e4re Modell gew\u00e4hlt"
+    },
+    {
+        "image": "images/slide_106.png",
+        "notes": "Beispiel instation\u00e4re Kalibrierung (II)\rDargestellt sind die Potentialh\u00f6hen einer Messstelle des Edwards-Trinity-Aquifersystems in den USA (https://www.twdb.texas.gov/groundwater/aquifer/majors/edwards-trinity-plateau.asp),\rVerkarsteter Grundwasserleiter,\rDer Aquifer ist durch ein \u2018Leerlaufverhalten\u2019 gekennzeichnet, d. h. Niederschl\u00e4ge \u2018f\u00fcllen\u2019 den Grundwasserleiter auf, der anschlie\u00dfend leerl\u00e4uft,\rDer Zustand bei Leerlaufen (\u00e4hnlich \u2018Basisabfluss\u2019) wird hier als repr\u00e4sentativ f\u00fcr den station\u00e4ren Zustand betrachtet."
+    },
+    {
+        "image": "images/slide_107.png",
+        "notes": "Dynamic water balance\rSimulationsbeginn liegt weit vor dem Vergleichszeitraum.\rAnfangsbedingung ist f\u00fcr die Modellzellen ohne Messstelle eine (grobe) Absch\u00e4tzung.\rRandbedingungen aus dem Vergleichszeitraum werden ab Simulationsbeginn periodisch wiederholt.\rW\u00e4hrend der Einschwingphase wird der Einfluss der Anfangswerte auf die Modellergebnisse immer unbedeutender.\rVergleich zwischen Modellergebnissen und Messreihen erfolgt nur im Vergleichszeitraum.  \r\rNachteil:\rManche Grundwasserleiter besitzen ein \u201egutes Ged\u00e4chtnis\u201c, d. h. der Einfluss der Anfangswerte wird nur langsam ged\u00e4mpft.\rDies bedeutet eine lange Einschwingphase und somit einen hohen Rechenzeitbedarf.\rIn Extremf\u00e4llen betr\u00e4gt der Vergleichszeitraum nur 1 % der gesamten Simulationsdauer."
+    },
+    {
+        "image": "images/slide_108.png",
+        "notes": "Beispiel (Demonstration / Quiz)\rEinfluss der verschiedenen Parameter und Randbedingungen auf die dynamische Reaktion des Druckpotentials"
+    },
+    {
+        "image": "images/slide_109.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_110.png",
+        "notes": "Grundlagen\rSensitivit\u00e4tsanalyse = Quantifizierung des Zusammenhangs zwischen Modelleingangsgr\u00f6\u00dfen (z. B. hydraulische Leitf\u00e4higkeit, GWN, Dispersivit\u00e4ten) und Modellergebnissen (z. B. Potentialh\u00f6hen, Konzentrationen).\rDas (bekannte) Beispiel der Grabenanstr\u00f6mung aus den Veranstaltungen V02/03 ist ein Beispiel f\u00fcr eine (intuitive) Sensitivit\u00e4tsanalyse, d. h. durch das \u2018drehen\u2019 an den Eingangsgr\u00f6\u00dfen GWN und K kann eine unterschiedlich ausgepr\u00e4gte Reaktion der Potentialh\u00f6hen beobachtet werden (https://mybinder.org/v2/gh/ThoReimann/HydroTeaching/master)\rDazu werden die Modelleingangsgr\u00f6\u00dfen einzeln innerhalb sinnvoller Bandbreiten variiert. Ausgangspunkt (Referenzwert) ist bei Kalibirierparametern \u00fcblicherweise das jeweilige Ergebnis der Modelleichung.\rVariationen der Modelleingangsgr\u00f6\u00dfen bewirken \u00c4nderungen der Modellergebnisse. Die Gr\u00f6\u00dfe dieser \u00c4nderung ist ein Ma\u00df f\u00fcr die Sensitivit\u00e4t von Modellergebnissen bezogen auf \u00c4nderungen eines Modellparameters.\rSensitivit\u00e4tsanalysen k\u00f6nnen sowohl in Verbindung mit der Modellkalibrierung als auch mit der Modellprognose durchgef\u00fchrt werden."
+    },
+    {
+        "image": "images/slide_111.png",
+        "notes": "Sensitivit\u00e4tskoeffizienten\rAnalog lassen sich prozentuale Sensitivit\u00e4tskoeffizienten definieren.\rBerechnungen von Sensitivit\u00e4tskoeffizienten erfolgen bei numerischer Modellierung n\u00e4herungsweise, da die exakte Auswertung der partiellen Ableitungen nicht m\u00f6glich ist."
+    },
+    {
+        "image": "images/slide_112.png",
+        "notes": "Beispiele\rDie Abbildungen zeigen M\u00f6glichkeiten, wie die Sensitivit\u00e4t visualisiert werden kann\rz. B. zeigt die linke Abbildung die prozentuale \u00c4nderung von Eingangsgr\u00f6\u00dfen (Grundwasserneubildung und hydraulische Leitf\u00e4higkeit) und deren Einfluss die berechneten Potentialh\u00f6hen"
+    },
+    {
+        "image": "images/slide_113.png",
+        "notes": "Beispiele\rDarstellung der r\u00e4umlichen Variation (Abweichung des Wasserspiegels entlang der Spalten / Columns eines Finite-Differenzen-Modells)\runterschiedliche Symbole repr\u00e4sentieren unterschiedliche \u00c4nderungen der Modellparameter / Randbedingungen (hier z. B. GWN x 1.5; K x 1.5 usw.)"
+    },
+    {
+        "image": "images/slide_114.png",
+        "notes": "Beispiele\rDarstellung der Wasserspiegel\u00e4nderung in Abh\u00e4ngigkeit von der prozentualen \u00c4nderung des Parameters / der Randbedingung"
+    },
+    {
+        "image": "images/slide_115.png",
+        "notes": "Beispiel\rdargestellt ist die Sensitivit\u00e4t f\u00fcr einen spezifischen Punkte (Node 16 / 25) und f\u00fcr verschiedene Zeitpunkte"
+    },
+    {
+        "image": "images/slide_116.png",
+        "notes": "Beispiel\rzunehmende Komplexit\u00e4t / Vielzahl von Parametern"
+    },
+    {
+        "image": "images/slide_117.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_118.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_119.png",
+        "notes": "Zum Begriff\rurspr\u00fcnglich war der Begriff Validierung gebr\u00e4uchlich\rder Begriff Validierung wird im Praxisumfeld auch noch h\u00e4ufig verwendet\rAllerdings kann der Begriff Validierung irref\u00fchrend sein, da er sprachlich eine \u2018G\u00fcltigkeit / Wahrheit\u2019 impliziert, die durch Modelle nicht realisiert werden kann\rdaher wird vorgeschlagen, den Begriff \u2018Evaluierung\u2019 zu verwenden"
+    },
+    {
+        "image": "images/slide_120.png",
+        "notes": "Dieser Schritt der Modellierung wird manchmal auch als Modellverifizierung bezeichnet.\rUnter Modellverifizierung wird allerdings i. a. der Vergleich einer numerischen L\u00f6sung mit einer exakten (analytischen) L\u00f6sung verstanden.\rDabei wird ausschlie\u00dflich das numerische L\u00f6sungsverfahren getestet. Ein Vergleich mit Messdaten findet nicht statt, d. h. es l\u00e4sst sich hieraus auch keine Aussage \u00fcber die Qualit\u00e4t eines standortspezifischen Modells ableiten."
+    },
+    {
+        "image": "images/slide_121.png",
+        "notes": "Modellevaluierung\rDie Modellevaluierung wird nach der (erfolgreichen) Kalibrierung durchgef\u00fchrt.\rVoraussetzung ist das Vorhandensein zus\u00e4tzlicher Messdaten, die nicht f\u00fcr die Eichung verwendet wurden.\rF\u00fcr die entsprechende hydraulische Situation (Anfangs-, Randbedingungen) wird eine Vorw\u00e4rtssimulation durchgef\u00fchrt. \r\rFalls der Vergleich zwischen Modellergebnissen und zus\u00e4tzlichen Messwerten nicht zufriedenstellend ausf\u00e4llt, dann ist davon auszugehen, dass die bei der Eichung erhaltenen Parameterwerte bzw. Zonierungen das Grundwasserstr\u00f6mungs- bzw. Stofftransportsystem nicht ad\u00e4quat repr\u00e4sentieren.\rIn diesem Fall ist die Modellkalibrierung erneut durchzuf\u00fchren, wobei die zus\u00e4tzlichen Messwerte ganz oder zumindest teilweise mit einbezogen werden. Damit wird die Eichung auf eine breitere Datenbasis gestellt.\rGleichzeitig stehen dann aber weniger (keine) zus\u00e4tzliche(n) Messwerte f\u00fcr die Modellevaluierung zur Verf\u00fcgung!\rVerbesserungen bei der Modelleichung reduzieren (eliminieren) die Datenbasis f\u00fcr die Modellevaluierung (= keine doppelte Verwendung der Messdaten!).  \r\rDas Modell ist evaluiert, wenn die Abweichungen der Modellergebnisse von den zus\u00e4tzlichen Messdaten akzeptabel sind.\rIn diesem Fall kann man annehmen, dass das Modell prognosef\u00e4hig ist und zuk\u00fcnftige Szenarien zuverl\u00e4ssig simuliert werden k\u00f6nnen.\rGrund f\u00fcr diese Annahme: Modell beinhaltet keine In-formationen \u00fcber die zus\u00e4tzlichen Messwerte."
+    },
+    {
+        "image": "images/slide_122.png",
+        "notes": "Grundlagen\rModellprognose = Simulation zuk\u00fcnftiger (geplanter) Szenarien\rDamit erfolgt eine \u201eExtrapolation\u201c der gegenw\u00e4rtigen Situation auf m\u00f6gliche zuk\u00fcnftige Konstellationen.\rModelle werden hierbei als Planungsinstrumente eingesetzt. Das ist der eigentliche Hauptzweck von Computermodellen (nicht nur) im Grundwasserbereich. Bestm\u00f6gliche Eichung und Evaluierung sind daher essenziell."
+    },
+    {
+        "image": "images/slide_123.png",
+        "notes": "Einf\u00fchrende Erl\u00e4uterungen zur Unsicherheit\rDas System ist aus den bisherigen LV vertraut (Grabenanstr\u00f6mung), s. LV 02 bzw. auch https://mybinder.org/v2/gh/ThoReimann/HydroTeaching/master -> MWW01/MWW01_T02...\rZufluss hier \u00fcber Grundwasserneubildung\rAbfluss \u00fcber definiertes Potential\rals Funktion von Zufluss und hydraulischen Eigenschaften (K-Wert) stellt sich Druckpotential ein\rMessung Druckpotential (= Wasserstand) mittels Messstelle\rSystem ist nicht eindeutig, da \u2026[n. Folie]"
+    },
+    {
+        "image": "images/slide_124.png",
+        "notes": "Mehrdeutigkeit\rSteigende Grundwasserneubildung kann durch einen reduzierten hydraulischen Widerstand K kompensiert werden (d. h. ein gr\u00f6\u00dferer K-Wert), wobei sich das Druckpotential nicht \u00e4ndern muss\rEs \u00e4ndert sich der Abfluss in die Randbedingung, dieser wird aber (typischerweise) nicht \u00fcberwacht\rdieses Verst\u00e4ndnis ist wichtig, da die GWN zusammen mit der hydraulischen LF Kalibrierparameter sind\rKonsequenz: GWN m\u00f6glichst gut bestimmen (\u2018messen\u2019) bzw. die Unsicherheiten im Bezug auf GWN-Daten kennen"
+    },
+    {
+        "image": "images/slide_125.png",
+        "notes": "Vorhersageunsicherheiten treten auf, wenn (z. B.)\rdie Werte von Kalbrierparametern f\u00fcr zuk\u00fcnftige Szenarien nicht ad\u00e4quat sind,\rsich Einflussgr\u00f6\u00dfen (z. B. Randbedingungen wie Pumpraten oder GWN) im Vorhersagezeitraum unerwartet \u00e4ndern. \rGrunds\u00e4tzlich steigt die Vorhersageunsicherheit (bzw. sinkt die Prognosequalit\u00e4t) mit wachsendem Prognosezeitraum.\r(Grobe) Faustregel aus Anderson & Woessner (1992): Der Prognosezeitraum soll h\u00f6chstens doppelt so gro\u00df sein wie der Kalibrierzeitraum.\rWegen m\u00f6glicher Prognoseunsicherheiten ist es empfehlenswert, Modellvorhersagen nicht nur f\u00fcr ein einziges Szenario durchzuf\u00fchren. Vielmehr sollten weitere, sinnvolle Alternativen gepr\u00fcft werden.\rDiese Vorgehensweise geh\u00f6rt in den Bereich der Sensitivit\u00e4tsanalysen."
+    },
+    {
+        "image": "images/slide_126.png",
+        "notes": "Allgemeine Hinweise - Pr\u00e4sentation\rh\u00e4ufige Auftraggeber: Beh\u00f6rden, Wasserversorger\rverst\u00e4ndliche und \u00fcberzeugende Darstellung der Ergebnisse\rHilfreich sind dabei \u00fcbersichtliche und aussagekr\u00e4ftige grafische Darstellungen und / oder Tabellen.\rVoraussetzung ist eine gute Dokumentation aller Modellierungsschritte (vgl. nebenstehendes Ablaufschema). \rDazu geh\u00f6rt auch die Dokumentation von Fehlschl\u00e4gen \u2013 nat\u00fcrlich nur f\u00fcr interne Zwecke!"
+    },
+    {
+        "image": "images/slide_127.png",
+        "notes": "Hinweis zu Literatur\rdas Manuskript finden Sie im OPAL Ordner\rsehr verst\u00e4ndlich und hilfreich (u. a. gute Vorlage f\u00fcr eine Gliederung)"
+    },
+    {
+        "image": "images/slide_128.png",
+        "notes": "Hinweis zur Literatur\rAustralian groundwater modelling guidelines\rfrei verf\u00fcgbares \u2018Buch\u2019 mit vielen Hilfreichen Beispielen"
+    },
+    {
+        "image": "images/slide_129.png",
+        "notes": "Grundlagen\rPostaudit = \u00dcberpr\u00fcfung von Modellprognosen w\u00e4hrend bzw. nach Ablauf des Prognosezeitraums\rBei einem Postaudit handelt es sich demnach um eine A-posteriori-Beurteilung des Prognosef\u00e4higkeit des Modells (im Gegensatz zur A-priori-Beurteilung durch die Modell-evaluierung).\rVoraussetzung ist die Verf\u00fcgbarkeit der Modellergebnisse ggf. auch noch nach Ablauf des Prognosezeitraums, also u. U. Jahrzehnte nach der Modellerstellung."
+    },
+    {
+        "image": "images/slide_130.png",
+        "notes": "Zusammenfassung Post-Audits\rIn der Grundwasserliteratur sind laut Anderson und Woessner (1992) nur wenige Postaudits bekannt.\rDies deutet darauf hin, dass Modelle oft nur im Planungsstadium eingesetzt werden. Seltener ist ein Begleiten von Ma\u00dfnahmen der Grundwasserbewirtschaftung durch Modelle (und noch seltener eine sp\u00e4tere \u00dcberpr\u00fcfung).\rDer Aufwand bei der Modellpflege (Ber\u00fccksichtigung neuer Daten, Simulation neuer Szenarien, Anpassung an neue Hard- oder Software) wird oft-mals nicht betrieben.\rAlle bekannten Postaudits ergaben erhebliche Schw\u00e4chen in den Modellprognosen.\rGr\u00fcnde waren entweder ein ungeeignetes konzeptionelles Modell oder unerwartete \u00c4nderungen von Modelleingangsparametern w\u00e4hrend des Prognosezeitraums.\rF\u00fcr die Qualit\u00e4t des konzeptionellen Modells ist die Modelliererin / der Modellierer verantwortlich.\rUnerwartete \u00c4nderungen von Modelleingangsparametern k\u00f6nnen ihr / ihm nicht angelastet werden.\rVorsichtshalber wird man jedoch nicht nur eine einzige Prognoserechnung durchf\u00fchren, sondern auch sinnvolle Alternativen simulieren."
+    },
+    {
+        "image": "images/slide_131.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_132.png",
+        "notes": "Beispiel f\u00fcr Postaudits\rKalibrierzeitraum: 1930 \u2013 1965\rPrognosezeitraum: 1966 \u2013 1975\rPostaudit 1986\rDie Modellprognose von 1965 lieferte zu kleine Grundwasserst\u00e4nde (gestrichelte Kurve in der oberen Abbildung).\rSie beruhte auf der Annahme hoher Entnahmeraten f\u00fcr Bew\u00e4sserungszwecke (gestrichelte Kurve in der unteren Abbildung).\rTats\u00e4chlich konnte die Entnahmemenge im Prognosezeitraum verringert werden, sodass die Grundwasserst\u00e4nde anstiegen."
+    },
+    {
+        "image": "images/slide_133.png",
+        "notes": "Beispiel Postaudits II\rDas diesem Beispiel zugrundeliegende Stofftransportmodell prognostizierte eine Zunahme der Salinit\u00e4t f\u00fcr den Zeitraum von 1973 bis 1982.\rDiese Prognose basierte nur auf Messwerten von 1971 und 1972!\r1966 \u2013 1971 war im Untersuchungsgebiet ein \u00fcberdurchschnittlich feuchter Zeitraum, d. h. die Salinit\u00e4t lag unter dem Durchschnitt.\rDies wurde bei der Modellkalibrierung nicht ber\u00fccksichtigt.\rDas Postaudit ergab, dass eine zuverl\u00e4ssige Prognose mit einer vierj\u00e4hrigen Datenbasis (1971 \u2013 1974) m\u00f6glich gewesen w\u00e4re."
+    },
+    {
+        "image": "images/slide_134.png",
+        "notes": "Beispiel Postaudit\rStofftransport in Kluftgestein (Basalt)\rModellerstellung 1974\rKalibrierzeitraum: 1958 \u2013 1969\rPrognose f\u00fcr 1980\rKalibrierergebnis: Querdispersivit\u00e4t > L\u00e4ngsdispersivit\u00e4t\rDamit wird offenbar irgendein Effekt f\u00e4lschlicherweise als Dispersion abgebildet.\rErgebnis des Postaudits: Das Modell prognostizierte eine zu schnelle Stoffausbreitung.\rHauptproblem: zu stark vereinfachtes konzeptionelles Modell\rSo wurde hier ein Kontinuummodell verwendet, d. h. die Kl\u00fcfte wurden im Modell nicht explizit ber\u00fccksichtigt."
+    },
+    {
+        "image": "images/slide_135.png",
+        "notes": "No notes"
+    }
+]

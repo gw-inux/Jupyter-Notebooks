@@ -99,12 +99,18 @@ pages = {
         "📑 LV 11.12.25: Folien zum Start": "90_Streamlit_apps/MWW01/SlideJet_Presentations/GWBmC_WS2526_V09_Start_SJpresent.py",
     },
     "🟨 Kalibrierung": {
+        "🧮 1D 2 Zonen": "06_Groundwater_modeling/1D_Flow_Two_Zones.py",
+        "🧮 1D 3 Zonen": "06_Groundwater_modeling/1D_Flow_Three_Zones.py",
+        "🧮 1D 2 Zonen RCH": "06_Groundwater_modeling/1D_Flow_Two_Zones_RCH.py",
+        "💧 1D Kalibrieren I": "04_Basic_hydrogeology/GWF_1D_unconf_analytic_calib.py",
+        "💧 1D Kalibrieren II": "04_Basic_hydrogeology/GWF_1D_unconf_analytic_noflow_calib.py",
         "--- Folien 🚀---": None,
+        "📝 T05: Kalibrierung": "90_Streamlit_apps/MWW01/SlideJet_Presentations/GWBmC_WS2526_T05_Calib_rev_SJpresent.py",
     },
     "🟫 Anwendungen": {
         "🧮 Thiem ungespannt  \nSuperposition": "04_Basic_hydrogeology/Flow2Well_Thiem_unconfined_superposition.py",
         "--- Folien 🚀---": None,
-        "📝 T10: Flächenhafte Wasserhaltung  \n& Baugrubenentwässerung": "90_Streamlit_apps/MWW01/SlideJet_Presentations/GWBmC_WS2425_T10_SJpresent.py",
+        "📝 T10: Flächenhafte Wasserhaltung  \n& Baugrubenentwässerung": "90_Streamlit_apps/MWW01/SlideJet_Presentations/GWBmC_WS2526_T10_SJpresent.py",
     },
     "ℹ️ General Info": {
         "About": "90_Streamlit_apps/MWW01/content/GROWi26_About.py",

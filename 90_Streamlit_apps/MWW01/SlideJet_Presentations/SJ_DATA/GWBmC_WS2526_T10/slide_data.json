@@ -1,0 +1,214 @@
+[
+    {
+        "image": "images/slide_1.png",
+        "notes": "Willkommen zur Grundwasserbewirtschaftung mit Computermodellen \u2013Thema 10: Fl\u00e4chenhafte Entw\u00e4sserung\rSchwerpunkt der Veranstaltung ist die fl\u00e4chenhafte Absenkung von Grundwasser im Zusammenhang mit Bergbau (Tagebau) und Tiefbau (Baugrube, Bauwerksgr\u00fcndung)\rdie Inhalte werden durch zwei Gastbeitr\u00e4ge unterst\u00fctzt (Dr. Leibenath und Prof. Mansel)"
+    },
+    {
+        "image": "images/slide_2.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_3.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_4.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_5.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_6.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_7.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_8.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_9.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_10.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_11.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_12.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_13.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_14.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_15.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_16.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_17.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_18.png",
+        "notes": "Abbildung\rIm Satellitenbild sind die Entw\u00e4sserungsbrunnen sichtbar (im Bereich der blauen Linie)\rIm Taggebau Nochten sind ca. 500 Brunnen aktiv"
+    },
+    {
+        "image": "images/slide_19.png",
+        "notes": "Abbildung\rhier ein Beispiel f\u00fcr die offene Wasserhaltung\rZiel: Oberfl\u00e4chenwasser / (Stark)Niederschl\u00e4ge fassen (Beckenf\u00f6rmige Vertiefungen ca. Bildmitte)"
+    },
+    {
+        "image": "images/slide_20.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_21.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_22.png",
+        "notes": "Umweltbericht\rBaugrubenentw\u00e4sserung ist im Stadtgebiet Dresden eine relevante Bilanzgr\u00f6\u00dfe (viele Bauvorhaben, Nutzungskonflikte in Bezug auf Grundwasser [Menge, Beschaffenheit/Temperatur])"
+    },
+    {
+        "image": "images/slide_23.png",
+        "notes": "Beispiel Baugrube Stadtgebiet Dresden\rn\u00e4he Elbe (Johannstadt)"
+    },
+    {
+        "image": "images/slide_24.png",
+        "notes": "Stadtgebiet Dresden\rAbbidung zeigt die Vielzahl von Wasserhaltungen im Stadtgebiet Dresden\rrechte untere Seite zeigt die Wasserbialnz"
+    },
+    {
+        "image": "images/slide_25.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_26.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_27.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_28.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_29.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_30.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_31.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_32.png",
+        "notes": "Reichweite\rDie obigen Formeln haben (semi-)empirischen Charakter.\rDie beiden letzten Formeln sind nicht dimensionstreu. Sie funktionieren nur, wenn K in m/s und alle anderen Gr\u00f6\u00dfen in m angegeben werden!\rR h\u00e4ngt in diesen beiden Formeln von der Absenkung s = H \u2013 h ab.  Die Absenkung ist aber ihrerseits eine Funktion der Reichweite (vgl. vorige Seiten). Daher sind Probier- oder Iterationsverfahren erforderlich, um R und s (bzw. h) zu bestimmen."
+    },
+    {
+        "image": "images/slide_33.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_34.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_35.png",
+        "notes": "Fassungsverm\u00f6gen QF \r= Wasserzufluss zum Brunnen aufgrund seines technischen Ausbaus\rDas Fassungsverm\u00f6gen ist somit der Abfluss, den ein Brunnen aus einem  Grundwasserleiter abf\u00fchren kann. \rDie Berechnung des Fassungsverm\u00f6gens QF eines Brunnens in einem Grundwasserleiter beruht auf der Beobachtung eines maximalen Gef\u00e4lles Imax bzw. einer maximalen Eintrittsgeschwindigkeit vmax am Brunnen."
+    },
+    {
+        "image": "images/slide_36.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_37.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_38.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_39.png",
+        "notes": "Baugrube im numerischen Modell\rmit einer Randbedingung erster Art (= Zielwasserstand) kann die Vordimensionierung realisiert werden, d. h. die Wasserbilanz (Zustrom Randbedingung Baugrube) zeigt die Wassermenge, die Entnommen werden muss (Andrang)\rim zweiten Schritt Verteilung der Wassermenge auf Brunne, anordnen um die Baugrube und pr\u00fcfen, welche Absenkung an den kritischen Punkten zu erwarten ist"
+    },
+    {
+        "image": "images/slide_40.png",
+        "notes": "Baugrube im numerischen Modell\rmit einer Randbedingung erster Art (= Zielwasserstand) kann die Vordimensionierung realisiert werden, d. h. die Wasserbilanz (Zustrom Randbedingung Baugrube) zeigt die Wassermenge, die Entnommen werden muss (Andrang)\rim zweiten Schritt Verteilung der Wassermenge auf Brunne, anordnen um die Baugrube und pr\u00fcfen, welche Absenkung an den kritischen Punkten zu erwarten ist"
+    },
+    {
+        "image": "images/slide_41.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_42.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_43.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_44.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_45.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_46.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_47.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_48.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_49.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_50.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_51.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_52.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_53.png",
+        "notes": "No notes"
+    }
+]
