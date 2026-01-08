@@ -6,7 +6,7 @@ import streamlit as st
 # 1D steady groundwater flow through TWO zones in series (no recharge)
 # -----------------------------------------------------------------------------
 
-st.set_page_config(page_title="1D Calibration: Two-Zone K")  # no wide layout
+#st.set_page_config(page_title="1D Calibration: Two-Zone K")  # no wide layout
 
 st.title("Groundwater Model Calibration (1D, two-zone aquifer)")
 st.write(
