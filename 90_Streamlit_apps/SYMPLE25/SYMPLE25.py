@@ -59,7 +59,7 @@ pages = {
         "1D GWF 💧": "90_Streamlit_apps/SYMPLE25/pages/00_OM/1D_GWF_Unconfined Recharge.py",
         "Well Capture 🌀": "90_Streamlit_apps/SYMPLE25/pages/00_OM/WellCapture.py",
         "--- Presentations 📖 ---": None,
-        "Presentation: 📝 M0": "90_Streamlit_apps/SYMPLE25/presentations/SlideJet_present_M0.py",
+        "Presentation: 📝 M0": "90_Streamlit_apps/SYMPLE25/SlideJet_Presentations/SYMPLE26_M0_INTRO_SJpresent.py",
     },
     "🔶 M1A - Basics": {
         "--- Parameters 📖---": None,
