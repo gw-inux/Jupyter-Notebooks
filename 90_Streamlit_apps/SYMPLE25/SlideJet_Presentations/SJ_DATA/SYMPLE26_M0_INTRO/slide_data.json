@@ -13,178 +13,166 @@
     },
     {
         "image": "images/slide_4.png",
-        "notes": "No notes"
+        "notes": "Cooperation with the iNUX Project\r- SYMPLE School is developed in close cooperation with the iNUX project.\r- iNUX is an Erasmus+ cooperation project between four European universities.\r- Partner universities:\r   - University of Graz (Austria)\r   - University of Gothenburg (Sweden)\r   - UPC BarcelonaTech (Spain)\r   - Technische Universit\u00e4t Dresden (Germany)\r- The iNUX project develops open-source educational materials.\r   - Materials are implemented and used within SYMPLE School.\r   - Designed for use, reuse, and further development.\r- Access and contribution:\r   - iNUX webpage: www.gw-inux.org\r   - GitHub repository: github.com/gw-inux"
     },
     {
         "image": "images/slide_5.png",
-        "notes": "No notes"
+        "notes": "Implementation Concept of iNUX in SYMPLE School\r\r- iNUX builds on a strong foundation of existing high-quality resources.\r   - Excellent textbooks, lecture notes, reports, and online documents.\r   - Example: The Groundwater Project with hundreds of freely available books.\r- These existing materials form the scientific and educational baseline.\r- Around this baseline, iNUX develops interactive educational components.\r   - Interactive Jupyter notebooks.\r   - Streamlit apps for hands-on exploration.\r   - Use of real-world data and realistic scenarios.\r- Additional learning aids complement the interactive materials.\r   - Integrated assessments.\r   - Digital questions for self-testing and classroom use.\r- Overall goal:\r   - Make learning more efficient and engaging.\r   - Strengthen applied and practice-oriented understanding.\r   - Support learning within international cooperation frameworks.\r- Close cooperation with partners such as the Groundwater Project."
     },
     {
         "image": "images/slide_6.png",
-        "notes": "No notes"
+        "notes": "Reminder: Groundwater Project\r\r- Reminder on the Groundwater Project\r- Interactive educational materials are available under the topic:\r   - Interactive education\r- Current examples include:\r   - Introduction to boundary conditions.\r   - Boundary condition module.\r   - Pumping test analysis module.\r- These materials demonstrate applied, interactive learning concepts.\r- More interactive modules and content will be released soon."
     },
     {
         "image": "images/slide_7.png",
-        "notes": "No notes"
+        "notes": "Motivation for the Course\r\r- Motivation is based on recent and widely reported news.\r- Example headline: water resources in Iran are running dry.\r- Such news appears frequently in the media.\r- Many reports highlight a strong decline in natural groundwater resources.\r- These examples underline the relevance and urgency of groundwater-related topics.\r- They provide real-world context for the course content."
     },
     {
         "image": "images/slide_8.png",
-        "notes": "No notes"
+        "notes": "Example: Drought Monitor Germany\r\r- The slide shows the German Drought Monitor.\r- It illustrates soil water content across Germany.\r- Germany is located in central Europe and is generally considered a humid region.\r- The right side shows plant-available water as percent of available field capacity.\r- Even in January, dry areas are already visible.\r- This indicates a lack of precipitation during winter months.\r- The drought monitor shows:\r   - Drought conditions in the topsoil.\r   - Drought signals in the total soil profile.\r- This is remarkable, as winter is typically expected to be a wet period.\r- The example highlights increasing drought risk even in traditionally humid regions."
     },
     {
         "image": "images/slide_9.png",
-        "notes": "No notes"
+        "notes": "Recommended Talk: John Cherry on Groundwater\r\r- Highly recommended talk by John Cherry.\r- John Cherry is a leading figure behind the Groundwater Project.\r- The talk was given at UPC Barcelona.\r- It provides a strong overview of the current state of groundwater resources.\r- Focuses on the relationship between groundwater and humanity.\r- Strongly recommended for deeper context and motivation beyond this course.\u000b\u000bhttps://www.youtube.com/watch?v=I3zqpXxtsHY"
     },
     {
         "image": "images/slide_10.png",
-        "notes": "No notes"
+        "notes": "Starting Point: Global Water Cycle\r\r- The course starts with the global water cycle.\r- The slide shows two representations:\r   - Left side: illustrative picture of the water cycle.\r   - Right side: schematic diagram.\r- Our focus is on the highlighted subsurface part.\r- The orange-colored area represents groundwater and aquifers.\r- The red rectangle marks the specific part addressed in this course.\r- This defines the system boundary for the topics covered."
     },
     {
         "image": "images/slide_11.png",
-        "notes": "No notes"
+        "notes": "Motivation Example: Edwards Aquifer (Texas, USA)\r\r- Example used as an initial motivation for the course.\r- The Edwards Aquifer is a highly productive and important aquifer system.\r- It supplies drinking water to more than 2 million people.\r- It is also essential for agriculture and industry.\r- The map shows the location of the Edwards Aquifer within Texas.\r- Additional images illustrate major springs connected to the aquifer.\r- The example highlights the societal relevance of groundwater systems."
     },
     {
         "image": "images/slide_12.png",
-        "notes": "No notes"
+        "notes": "Water Balance of the Aquifer System\r\r- The slide shows the water balance of the aquifer system.\r- Main input:\r   - Groundwater recharge.\r- Main outflows:\r   - Domestic and municipal water supply.\r   - Industrial use.\r   - Agricultural irrigation.\r   - Military use.\r   - Discharge to springs.\r- All components are reflected in changes of aquifer storage.\r- The time series shows storage variations over time.\r- Storage is not constant but fluctuates.\r- This illustrates the need for active groundwater management.\r- Highlights the balance between natural recharge and human use."
     },
     {
         "image": "images/slide_13.png",
-        "notes": "No notes"
+        "notes": "Role of Groundwater Models for Management\r\r- Groundwater models are key tools for groundwater management.\r- The figure shows input data used for a groundwater model.\r- Displayed are locations of pumping tests across the aquifer.\r- Pumping tests provide essential hydraulic parameters:\r   - Transmissivity.\r   - Storage properties.\r- These parameters are required to represent aquifer behavior realistically.\r- The example illustrates how field data feed directly into modeling and management."
     },
     {
         "image": "images/slide_14.png",
-        "notes": "No notes"
+        "notes": "Groundwater\u2013Surface Water Interaction\r\r- The map shows surface water features in the study area.\r- Surface water must be considered in groundwater modeling.\r- Groundwater and surface water are hydraulically connected.\r- Rivers, springs, and streams interact with the aquifer.\r- This interaction influences groundwater levels and fluxes.\r- Proper characterization is essential for realistic groundwater models."
     },
     {
         "image": "images/slide_15.png",
-        "notes": "No notes"
+        "notes": "Recharge Zones of the Aquifer System\r\r- The slide shows different groundwater recharge zones.\r- Recharge is the main input to the aquifer system.\r- Spatial variability of recharge is highlighted.\r- Different zones contribute differently to total recharge.\r- Quantifying recharge is essential for water balance and modeling.\r- Recharge zonation supports improved groundwater management decisions."
     },
     {
         "image": "images/slide_16.png",
-        "notes": "No notes"
+        "notes": "Pumping Rates as Major Outflows\r\r- The slide shows groundwater pumping rates.\r- Pumping represents a major outflow of the aquifer system.\r- Rates vary spatially and between different users.\r- Quantification of pumping is essential for the water balance.\r- Pumping data are a key input for groundwater models.\r- Critical for assessing sustainability and management options."
     },
     {
         "image": "images/slide_17.png",
-        "notes": "No notes"
+        "notes": "Model Results: Hydraulic Head Distribution\r\r- The figure shows isocontour lines of hydraulic head.\r- These contours represent a key result of the groundwater model.\r- They describe the spatial distribution of groundwater levels.\r- Head patterns indicate flow directions and gradients.\r- The calibrated model can be used for further analysis.\r- Supports evaluation of scenarios and management decisions."
     },
     {
         "image": "images/slide_18.png",
-        "notes": "No notes"
+        "notes": "Model Results: Water Budget\r\r- The figure shows the simulated water budget from the groundwater model.\r- Results are derived from the short-term GAM.\r   - GAM = Groundwater Availability Model.\r- The water budget summarizes inflows, outflows, and storage changes.\r- It provides a quantitative basis for interpretation.\r- These results form the basis for management and decision-making."
     },
     {
         "image": "images/slide_19.png",
-        "notes": "No notes"
+        "notes": "Importance of Model Calibration and Understanding\r\r- The slide shows the groundwater budget from the recalibrated model.\r- It is compared with the previous model water budget.\r- Differences highlight the impact of model calibration.\r- Calibration can significantly change simulated fluxes and storage.\r- These changes directly affect management conclusions and decisions.\r- Therefore, understanding groundwater models is essential:\r   - How models work.\r   - How calibration is performed.\r   - How results must be interpreted.\r- This provides key motivation for SYMPLE School."
     },
     {
         "image": "images/slide_20.png",
-        "notes": "No notes"
+        "notes": "Organization of the Lecture\r\r- The lecture format allows plenty of room for live discussion.\r- The audience is heterogeneous in background and experience.\r- For some, the course will be:\r   - A primer or introduction.\r   - A structured overview.\r- For others, it may be:\r   - Deeper learning of new concepts.\r   - A repetition or refresher of known topics.\r- Use the materials in the way that best fits your needs.\r- Additional resources are available:\r   - E-learning platform materials.\r   - Interactive documents.\r   - Embedded assessments and exercises."
     },
     {
         "image": "images/slide_21.png",
-        "notes": "No notes"
+        "notes": "Introductory Example: Lusatia Open Pit Mining Region\r\r- Another introductory example to set the context.\r- Example also reflects the professional background of the authors and presenters.\r- Focus on the Lusatia open pit mining region in eastern Germany.\r- The region is located between Dresden and Berlin.\r- It is a well-known area with large-scale mining and groundwater management challenges.\r- Serves as a practical, real-world reference throughout the course."
     },
     {
         "image": "images/slide_22.png",
-        "notes": "No notes"
+        "notes": "Open Pit Mining Region: Active and Recultivated Mines\r\r- Closer look at the open pit mining region shown in the illustration.\r- The slide highlights different mining states.\r- Active mines:\r   - Marked in one color.\r   - Currently still in operation.\r- Recultivated mines:\r   - Located in close spatial proximity to active mines.\r   - Mining operations have finished.\r   - Remaining pits are flooded and filled with water.\r- The example shows the coexistence of mining phases within one region.\r- Important context for groundwater and water management."
     },
     {
         "image": "images/slide_23.png",
-        "notes": "No notes"
+        "notes": "Inside the Open Pit Mine\r\r- The slide shows the inside of an open pit mine.\r- Illustrates the scale of mining operations.\r- Very large technical devices are in operation.\r- Provides an impression of industrial dimensions.\r- The figure also gives an overview of the geological setup.\r- Geological conditions are a key factor for groundwater behavior."
     },
     {
         "image": "images/slide_24.png",
-        "notes": "No notes"
+        "notes": "Groundwater Conditions in the Open Pit Mine\r\r- The photograph shows an open pit mine in operation.\r- The blue line at the top indicates the natural groundwater table.\r- The pit bottom is approximately 17 meters below the groundwater level.\r- This highlights the large vertical scale of mining activities.\r- The image provides insight into subsurface conditions.\r- The underground consists of porous media:\r   - Sands in the upper layers.\r   - Brownish soft coal layers below.\r- These geological conditions strongly control groundwater flow and dewatering."
     },
     {
         "image": "images/slide_25.png",
-        "notes": "No notes"
+        "notes": "Assessment Break\r\r- Short assessment break at this point.\r- Purpose is to gauge the background knowledge of the audience.\r- Helps adapt discussion and depth of the lecture.\r- If you are viewing the slides only:\r   - Please visit the interactive app.\r- The app provides:\r   - Assessment questions.\r   - Immediate feedback.\r- Use this as a self-check, not as an exam."
     },
     {
         "image": "images/slide_26.png",
-        "notes": "No notes"
+        "notes": "Open Pit Mining and Dewatering Concept\r\r- The scheme is provided by a mining authority or mining company.\r- It illustrates the general working principle of open pit mining.\r- Gives an overview of the large spatial dimensions involved.\r- The blue area represents groundwater.\r- Groundwater is dewatered before and during mining activities.\r- Dewatering starts at the top and continues as mining progresses.\r- This is a long-term and large-scale groundwater intervention.\r- Strong implications for regional groundwater systems."
     },
     {
         "image": "images/slide_27.png",
-        "notes": "No notes"
+        "notes": "Dewatering by Gravity Wells\r\r- Dewatering is achieved using gravity wells installed in different layers.\r- Left side of the slide:\r   - Shows existing wells around the open pit mine.\r- Right side of the slide:\r   - Aerial view of the mining area.\r   - Points indicate vertical dewatering wells.\r- A typical open pit mine uses around 500 wells.\r- Design and operation are complex and large-scale.\r- Management of dewatering requires numerical groundwater models."
     },
     {
         "image": "images/slide_28.png",
-        "notes": "No notes"
+        "notes": "Idealized Groundwater Model Illustration\r\r- The slide shows an idealized groundwater model.\r- It is not an operational or real model.\r- Used to illustrate the scale and complexity of the system.\r- Highlights the large spatial dimensions involved.\r- Shows many different boundary conditions.\r- Different colors indicate different types of boundaries.\r- Helps to understand the complexity of real-world groundwater management."
     },
     {
         "image": "images/slide_29.png",
-        "notes": "No notes"
+        "notes": "When Simple Models Are Sufficient\r\r- Not all questions require complex numerical groundwater models.\r- In some cases, simplified tools are fully adequate.\r- The slide shows an example with:\r   - Two lakes in plan view.\r   - Remaining aquifer material between the lakes.\r- The aquifer can be assumed homogeneous.\r- Lakes act as specified head boundary conditions.\r- The conceptual model illustrates groundwater flow between the lakes.\r- Example application:\r   - An accident at the marked arrow location.\r   - Leakage of contaminants such as fuel or gasoline into the subsurface.\r- Simple models can answer immediate questions:\r   - Flow direction.\r   - Travel paths.\r   - First-order risk assessment.\r- An interactive educational example is available in the SYMPLE25 app."
     },
     {
         "image": "images/slide_30.png",
-        "notes": "No notes"
+        "notes": "Access to Live Questions\r\r- At this point, live questions are available.\r- Questions are integrated into the interactive educational tool.\r- If you are only watching the slides:\r   - Please visit the SYMPLE25 app.\r- The app provides:\r   - The same questions.\r   - Interactive exploration and feedback.\r- Use this opportunity to actively engage with the content."
     },
     {
         "image": "images/slide_31.png",
-        "notes": "No notes"
+        "notes": "Access via QR Code\r\r- The QR code links to the interactive educational tool.\r- Feel free to explore and investigate on your own.\r- The activities are guided within the seminar.\r- Use the tool to deepen understanding at your own pace."
     },
     {
         "image": "images/slide_32.png",
-        "notes": "No notes"
+        "notes": "Groundwater Modeling Workflow\r\r- Concluding slide summarizing the groundwater modeling workflow.\r- Starting point:\r   - Definition of the question and purpose.\r- Development of a conceptual model.\r   - Highly simplified representation of the system.\r- Derivation of the mathematical model.\r   - Simplification of the general groundwater flow equation.\r   - One-dimensional flow case.\r   - Two specified boundary conditions.\r- From this setup, an analytical solution can be derived.\r- The analytical solution represents the mathematical model.\r- A suitable code is then selected to solve the model.\r- In this example:\r   - Simple analytical solution.\r   - Directly implemented in Python.\r   - Forms the basis of the interactive application shown before."
     },
     {
         "image": "images/slide_33.png",
-        "notes": "No notes"
+        "notes": "Next Example: Local Water Supply near Dresden\r\r- Introduction of another practical example.\r- Located south of the Lusatia open pit mining region.\r- Focus on a local water supply company.\r- Situated close to Dresden.\r- Example shifts from regional to more local-scale groundwater management."
     },
     {
         "image": "images/slide_34.png",
-        "notes": "Analytical solution\rthe analytical solution compute the hydraulic head along the flow direction x\ra Jupyter Notebook is available for own investigation \u2013 see electronic course material"
+        "notes": "Task: Groundwater Exploration for Water Supply\r\r- Main task is groundwater exploration.\r- Goal is to make groundwater accessible for local water supply.\r- The map shows locations of existing boreholes.\r- Boreholes provide key subsurface information.\r- Data include geological and hydrogeological insights.\r- These data form the basis for subsequent groundwater modeling.\r- Essential starting point for further analysis and planning."
     },
     {
         "image": "images/slide_35.png",
-        "notes": "No notes"
+        "notes": "Surface Water Features in the Study Area\r\r- Closer look at surface water conditions.\r- The slide shows different surface water features:\r   - Lakes.\r   - Small drainage channels.\r   - Larger fishing lakes.\r- These features are part of the local hydrological system.\r- Relevant for understanding groundwater\u2013surface water interaction."
     },
     {
         "image": "images/slide_36.png",
-        "notes": "No notes"
+        "notes": "Archived Data: Pumping Test Evaluation\r\r- Example of information retrieved from archives.\r- Shows a pumping test evaluation.\r- Analysis based on:\r   - Type curve matching.\r   - Analytical methods.\r- Provides estimates of aquifer hydraulic properties.\r- Represents classical groundwater investigation approaches.\r- Forms an important data source for further modeling."
     },
     {
         "image": "images/slide_37.png",
-        "notes": "No notes"
+        "notes": "Recent Hydraulic Test and Modeling Needs\r\r- The figure shows a recent hydraulic test.\r- It is a pumping test with extended monitoring.\r- Provides additional insights into:\r   - Well behavior.\r   - Interaction between groundwater and surface water.\r   - Influence of internal boundary conditions.\r- Such complexity is difficult to capture with analytical solutions.\r- Analytical methods are often not sufficient here.\r- Numerical groundwater models can represent these interactions.\r- This is a clear application case for numerical modeling."
     },
     {
         "image": "images/slide_38.png",
-        "notes": "No notes"
+        "notes": "Example Result: 3D Groundwater Flow Model\r\r- Idealized representation of a final modeling result.\r- Three-dimensional groundwater flow model.\r- Shows isocontour bodies of hydraulic head.\r- Illustrates spatial discretization.\r- Model grid is visible.\r- Demonstrates the level of detail achievable with numerical models."
     },
     {
         "image": "images/slide_39.png",
-        "notes": "No notes"
+        "notes": "Use of Model Results for Decision-Making\r\r- Numerical model results support practical decisions.\r- Example outputs include:\r   - Spatial distribution of drawdown.\r- Allows assessment of impacts on:\r   - Lakes.\r   - Forests.\r   - Drains and surface water bodies.\r- Model also provides pathlines.\r- Pathlines indicate well capture zones.\r- Capture zones form the basis for:\r   - Defining protection zones.\r   - Evaluating whether a well can be operated as planned."
     },
     {
         "image": "images/slide_40.png",
-        "notes": "No notes"
+        "notes": "Role of Analytical Solutions in Groundwater Modeling\r\r- For this application, simpler analytical solutions are also available.\r- Understanding analytical methods remains highly beneficial.\r- They support interpretation and validation of numerical models.\r- This is highlighted in a manuscript by Henk Haitjema.\r- Published in the journal Groundwater.\r- The work emphasizes analytical knowledge as a core component\r  of groundwater modeling education.\r- Reinforces the importance of combining analytical and numerical approaches."
     },
     {
         "image": "images/slide_41.png",
-        "notes": "No notes"
+        "notes": "Questions and Interactive Tool Access\r\r- The slide provides a link to guiding questions.\r- Questions support investigation of analytical solutions.\r- Linked to an interactive educational tool.\r- The tool is part of the SYMPLE25 app.\r- Includes:\r   - Interactive exploration.\r   - Embedded assessments.\r- Feel free to use the tool to deepen understanding."
     },
     {
         "image": "images/slide_42.png",
-        "notes": "No notes"
+        "notes": "Interactive Tool: Well Capture Zone Analysis\r\r- Link to the interactive tool for well capture zone analysis.\r- Allows exploration of capture zones around pumping wells.\r- Users can vary key parameters.\r- Shows the impact of parameter changes on the solution.\r- Supports intuitive understanding of flow and protection zones.\r- Tool is intended for guided and self-directed exploration."
     },
     {
         "image": "images/slide_43.png",
-        "notes": "No notes"
+        "notes": "Use of Analytical Tools\r\r- The slide illustrates how analytical tools are applied.\r- Left side:\r   - Analytical solutions are used to verify numerical models.\r   - Overall flow patterns from numerical and analytical models are comparable.\r- This increases confidence in numerical model results.\r- Right side:\r   - Analytical solutions allow very fast model applications.\r- Suitable for:\r   - Parameter variation.\r   - Sensitivity analysis.\r   - Quick scenario testing.\r- Simple tools enable efficient first-order assessments.\r- Additional web-based tools exist for:\r   - Stochastic approaches.\r   - Capture zone delineation.\r- These tools complement numerical groundwater models."
     },
     {
         "image": "images/slide_44.png",
-        "notes": "No notes"
-    },
-    {
-        "image": "images/slide_45.png",
-        "notes": "Beispiel zur Plausilibit\u00e4t (Trennstromlinie)\rVergleich der numerisch berechneten Varianten mit den Ergebnissen der \u2018h\u00e4ndisch\u2019 / analytisch berechneten Trennstromlinie (f\u00fcr verschiedene hydr. Leitf\u00e4higkeiten)\rd. h. numerische Berechnungen plausible\rDie Berechnung der Trennstromlinie folgt in dieser Lehrveranstaltung"
-    },
-    {
-        "image": "images/slide_46.png",
-        "notes": "No notes"
-    },
-    {
-        "image": "images/slide_47.png",
-        "notes": "No notes"
+        "notes": "Thank You and Feedback\r\r- This is the final slide.\r- Thank you for your attention and participation.\r- In the online class, short feedback questions are provided.\r- Your feedback is highly appreciated.\r- If you have comments after reviewing the slides:\r   - Feel free to reach out by email."
     }
 ]
