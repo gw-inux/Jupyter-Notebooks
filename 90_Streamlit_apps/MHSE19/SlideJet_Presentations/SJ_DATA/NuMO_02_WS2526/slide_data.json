@@ -1,0 +1,210 @@
+[
+    {
+        "image": "images/slide_1.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_2.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_3.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_4.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_5.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_6.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_7.png",
+        "notes": "Analytical solution\rthe analytical solution compute the hydraulic head along the flow direction x\ra Jupyter Notebook is available for own investigation \u2013 see electronic course material"
+    },
+    {
+        "image": "images/slide_8.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_9.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_10.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_11.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_12.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_13.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_14.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_15.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_16.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_17.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_18.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_19.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_20.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_21.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_22.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_23.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_24.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_25.png",
+        "notes": "Boundary condition types\rIn general, we consider three types of boundary conditions:\rFirst type BC with specified head\rSecond type BC with specified flow\rThird type BC with head-dependent flow\rThe behavior can be illustrated with Q-h plots\rAn extensive interactive educational module for this topic is available at https://gwp-boundary-conditions.streamlit.app/"
+    },
+    {
+        "image": "images/slide_26.png",
+        "notes": "Boundary condition types\rIn general, we consider three types of boundary conditions:\rFirst type BC with specified head\rSecond type BC with specified flow\rThird type BC with head-dependent flow\rThe behavior can be illustrated with Q-h plots\rAn extensive interactive educational module for this topic is available at https://gwp-boundary-conditions.streamlit.app/"
+    },
+    {
+        "image": "images/slide_27.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_28.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_29.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_30.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_31.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_32.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_33.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_34.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_35.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_36.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_37.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_38.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_39.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_40.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_41.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_42.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_43.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_44.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_45.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_46.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_47.png",
+        "notes": "\u00dcbungsaufgabe\r1) third type bc (due to possible colmation)\r2) second type bc (no flow)\r3) second type bc (no flow at groundwater divide)\r4) second type bc (recharge) \u2013 the number in the figure refers to the symbol W\r5) second type bc (groundwater divide)\r6) third type bc (see 1))"
+    },
+    {
+        "image": "images/slide_48.png",
+        "notes": "L\u00f6sung zu dieser \u00dcbungs- / Klausuraufgabe als Video im OPAL Kurs"
+    },
+    {
+        "image": "images/slide_49.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_50.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_51.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_52.png",
+        "notes": "No notes"
+    }
+]
