@@ -44,6 +44,12 @@ def head_profile_two_zone_recharge_noflow_head(x, L1, L, K1, K2, R, hR):
 
 def _log_uniform(rng, lo_log10, hi_log10):
     return 10 ** rng.uniform(lo_log10, hi_log10)
+    
+def clear_pick():
+    # Clear the radio widget's stored value
+    st.session_state.pop("pick_widget", None)
+    # Also clear the mirrored variable (optional)
+    st.session_state.user_pick = None
 
 def generate_exercise_scenario(seed=None):
     rng = np.random.default_rng(seed)
@@ -241,6 +247,8 @@ if exercise_mode:
             st.session_state.K2s_model = float(np.log10(sc["K2_init"]))
             st.session_state.R_mm_a_model = float(sc["R_init_mm_a"])
             st.session_state.user_pick = None
+            
+            clear_pick()
             st.rerun()
 
     with bcol[1]:
@@ -251,6 +259,8 @@ if exercise_mode:
             st.session_state.K2s_model = float(np.log10(sc["K2_init"]))
             st.session_state.R_mm_a_model = float(sc["R_init_mm_a"])
             st.session_state.user_pick = None
+            
+            clear_pick()
             st.rerun()
 
     with st.expander("Solution (true parameters)", expanded=False):
