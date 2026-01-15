@@ -1,5 +1,6 @@
 import numpy as np
 import matplotlib.pyplot as plt
+import math
 import streamlit as st
 
 #st.set_page_config(page_title="1D Recharge + No-Flow/Head BC (2-zone K)")
@@ -101,28 +102,9 @@ def generate_exercise_scenario(seed=None):
 # -------------------------
 # Exercise toggle + scenario storage
 # -------------------------
-exercise_mode = st.toggle("Exercise mode (generate synthetic observations)", value=False)
 
-if exercise_mode:
-    if "exercise_scenario" not in st.session_state:
-        st.session_state.exercise_scenario = generate_exercise_scenario()
 
-    sc = st.session_state.exercise_scenario
 
-    # IMPORTANT: use separate, non-widget state variables for slider values
-    if "K1s_model" not in st.session_state:
-        st.session_state.K1s_model = float(np.log10(sc["K1_init"]))
-    if "K2s_model" not in st.session_state:
-        st.session_state.K2s_model = float(np.log10(sc["K2_init"]))
-    if "R_mm_a_model" not in st.session_state:
-        st.session_state.R_mm_a_model = float(sc["R_init_mm_a"])
-    if "user_pick" not in st.session_state:
-        st.session_state.user_pick = None
-
-else:
-    # optional cleanup when leaving exercise mode
-    for k in ["exercise_scenario", "K1s_model", "K2s_model", "R_mm_a_model", "user_pick"]:
-        st.session_state.pop(k, None)
 
 # -------------------------
 # Controls above plot
@@ -131,41 +113,33 @@ cols = st.columns((1, 1, 1), gap="large")
 
 with cols[0]:
     with st.expander("Modify the plot", expanded=False):
-        #n_points = st.slider("Resolution (number of x points)", 50, 2000, 601, step=25)
         n_points = 100
         show_flux = st.checkbox("Show flux plot (q = R·x)", value=False)
 
-with cols[1]:
-    with st.expander("Hydraulic parameters", expanded=True):
-        if exercise_mode:
-            K1s = st.slider("_(log of) K1 [m/s]_", log_minK, log_maxK, st.session_state.K1s_model, 0.01,
-                            format="%4.2f", key="K1s_widget")
-            st.session_state.K1s_model = K1s
-
-            K2s = st.slider("_(log of) K2 [m/s]_", log_minK, log_maxK, st.session_state.K2s_model, 0.01,
-                            format="%4.2f", key="K2s_widget")
-            st.session_state.K2s_model = K2s
-
-            R_mm_a = st.slider("Recharge R [mm/a]", R_min_mm_a, R_max_mm_a, st.session_state.R_mm_a_model, 5.0,
-                               key="R_widget")
-            st.session_state.R_mm_a_model = R_mm_a
-        else:
-            K1s = st.slider("_(log of) K1 [m/s]_", log_minK, log_maxK, -5.0, 0.01, format="%4.2f", key="K1s_widget")
-            K2s = st.slider("_(log of) K2 [m/s]_", log_minK, log_maxK, -5.3, 0.01, format="%4.2f", key="K2s_widget")
-            R_mm_a = st.slider("Recharge R [mm/a]", R_min_mm_a, R_max_mm_a, 100.0, 5.0, key="R_widget")
-
-        K1 = 10 ** K1s
-        K2 = 10 ** K2s
-        R = mm_a_to_m_s(R_mm_a)
-
-        st.write("**K1 [m/s]:** %5.2e" % K1)
-        st.write("**K2 [m/s]:** %5.2e" % K2)
-        st.write("**Recharge R [m/s]:** %5.2e" % R)
-
 with cols[2]:
     with st.expander("Task / Exercise", expanded=True):
-        st.write(f"Right boundary: **h(L) = {h_right:.2f} m**, left boundary: **no-flow**")
-
+        exercise_mode = st.toggle("Exercise mode (generate synthetic observations)", value=False)
+        if exercise_mode:
+            if "exercise_scenario" not in st.session_state:
+                st.session_state.exercise_scenario = generate_exercise_scenario()
+        
+            sc = st.session_state.exercise_scenario
+        
+            # IMPORTANT: use separate, non-widget state variables for slider values
+            if "K1s_model" not in st.session_state:
+                st.session_state.K1s_model = float(np.log10(sc["K1_init"]))
+            if "K2s_model" not in st.session_state:
+                st.session_state.K2s_model = float(np.log10(sc["K2_init"]))
+            if "R_mm_a_model" not in st.session_state:
+                st.session_state.R_mm_a_model = float(sc["R_init_mm_a"])
+            if "user_pick" not in st.session_state:
+                st.session_state.user_pick = None
+        
+        else:
+            # optional cleanup when leaving exercise mode
+            for k in ["exercise_scenario", "K1s_model", "K2s_model", "R_mm_a_model", "user_pick"]:
+                st.session_state.pop(k, None)
+        
         if exercise_mode:
             st.write("Which parameter should be modified?")
             st.session_state.user_pick = st.radio(
@@ -175,6 +149,38 @@ with cols[2]:
                 key="pick_widget",
             )
 
+cols2 = st.columns((1,1,1))
+with cols2[1]:
+    if exercise_mode:
+        R_mm_a = st.slider("Recharge R [mm/a]", R_min_mm_a, R_max_mm_a, st.session_state.R_mm_a_model, 5.0,
+                            key="R_widget")
+        st.session_state.R_mm_a_model = R_mm_a
+    else:
+         R_mm_a = st.slider("Recharge R [mm/a]", R_min_mm_a, R_max_mm_a, 100.0, 5.0, key="R_widget")
+    R = mm_a_to_m_s(R_mm_a)
+    st.write("**Recharge R [m/s]:** %5.2e" % R)
+    
+cols3 = st.columns((1,1,1))
+with cols3[0]:
+    if exercise_mode:
+        K1s = st.slider("_(log of) K1 [m/s]_", log_minK, log_maxK, st.session_state.K1s_model, 0.01,
+                        format="%4.2f", key="K1s_widget")
+        st.session_state.K1s_model = K1s
+    else:
+        K1s = st.slider("_(log of) K1 [m/s]_", log_minK, log_maxK, -5.0, 0.01, format="%4.2f", key="K1s_widget")
+    K1 = 10 ** K1s
+    st.write("**K1 [m/s]:** %5.2e" % K1)
+    
+with cols3[2]:
+    if exercise_mode:
+        K2s = st.slider("_(log of) K2 [m/s]_", log_minK, log_maxK, st.session_state.K2s_model, 0.01,
+                        format="%4.2f", key="K2s_widget")
+        st.session_state.K2s_model = K2s
+    else:
+        K2s = st.slider("_(log of) K2 [m/s]_", log_minK, log_maxK, -5.3, 0.01, format="%4.2f", key="K2s_widget") 
+    K2 = 10 ** K2s
+    st.write("**K2 [m/s]:** %5.2e" % K2)
+    
 # -------------------------
 # Compute + plot
 # -------------------------
@@ -187,24 +193,99 @@ h_model = head_profile_two_zone_recharge_noflow_head(x, L1, L, K1, K2, R, h_righ
 q = R * x
 
 fig, ax = plt.subplots(figsize=(9, 4.8))
-ax.axvspan(0, L1, alpha=0.12, label="Zone 1 (K1)")
-ax.axvspan(L1, L, alpha=0.08, label="Zone 2 (K2)")
-ax.axvline(L1, linewidth=1)
+ax.axvspan(0, L1,color="aquamarine", alpha=0.12)
+ax.axvspan(L1, L,color="blue", alpha=0.08)
+ax.axvline(L1, color="teal", linewidth=0.5)
 
-ax.plot(x, h_model, linewidth=2, label="Model head h(x)")
-ax.scatter([L], [h_right], zorder=5, label="Defined head")
+ax.plot(x, h_model, color="royalblue", linewidth=3, label="Model head h(x)")
+#ax.scatter([L], [h_right], s=100, color = "darkorange", zorder=5, label="Defined head")
+
+# --- y-axis: max of plotted data, rounded up to next multiple of 2
+y_max = max(
+    float(np.max(h_model)),
+    float(h_right),
+    float(np.max(sc["h_obs"])) if exercise_mode else -np.inf
+)
+
+# Round up to the next integer that is a multiple of 2
+# Example: 9.0 -> 10, 9.01 -> 10, 10.0 -> 10, 10.01 -> 12
+y_top = int(math.ceil(y_max))           # next integer (or same if already integer)
+y_top = int(2 * math.ceil(y_top / 2))   # next multiple of 2 (or same)
 
 if exercise_mode:
     sc = st.session_state.exercise_scenario
-    ax.scatter(x_obs, sc["h_obs"], marker="x", s=80, zorder=6, label="Synthetic observations")
+    ax.scatter(x_obs, sc["h_obs"], marker="x", color = "firebrick", s=100, zorder=6, label="Synthetic observations")
 
 ax.set_xlabel("Distance x [m]")
 ax.set_ylabel("Hydraulic head h [m]")
 ax.set_title("Head profile (uniform recharge, no-flow + fixed head)")
 ax.grid(True, alpha=0.3)
 ax.set_xlim(0, L)
-ax.set_ylim(0.0, 15.0)
-ax.legend(loc="best")
+ax.set_ylim(0.0, y_top)
+
+# --- Defined head (water level) as a horizontal line extending beyond the axis + water triangle
+x_ext = 1.0  # extension length beyond x=L (in meters)
+
+# horizontal extension line (drawn outside axes)
+ax.hlines(
+    y=h_right,
+    xmin=L,
+    xmax=L + x_ext,
+    colors="royalblue",
+    linewidth=3,
+    zorder=6,
+    clip_on=False
+)
+
+# water triangle at the end of the extension (outside axes) and horizontal lines
+ax.plot(
+    [L + x_ext/2],
+    [h_right+0.1],
+    marker="v",          # downward triangle (water level symbol)
+    markersize=10,
+    color="royalblue",
+    zorder=7,
+    clip_on=False
+)
+
+ax.hlines(
+    y=h_right-0.08,
+    xmin=L+0.3,
+    xmax=L + x_ext-0.3,
+    colors="royalblue",
+    linewidth=1,
+    zorder=6,
+    clip_on=False
+)
+
+ax.hlines(
+    y=h_right-0.15,
+    xmin=L+0.4,
+    xmax=L + x_ext-0.4,
+    colors="royalblue",
+    linewidth=1,
+    zorder=6,
+    clip_on=False
+)
+
+# --- Label zones directly in the plot
+ymin, ymax = ax.get_ylim()
+y_text = ymin + 0.08 * (ymax - ymin)   # place text near the top of the plot
+
+box_style = dict(boxstyle="round,pad=0.25", fc="white", ec="none", alpha=0.7)
+
+ax.text(
+    L1 / 2, y_text, "Zone 1 (K1)",
+    ha="center", va="top", fontsize=12,
+    bbox=box_style
+)
+
+ax.text(
+    L1 + (L - L1) / 2, y_text, "Zone 2 (K2)",
+    ha="center", va="top", fontsize=12,
+    bbox=box_style
+)
+ax.legend(loc="best", fontsize=12, frameon=True)
 
 st.pyplot(fig, clear_figure=True)
 
@@ -217,7 +298,7 @@ if show_flux:
     ax_q.set_title("Recharge-induced flux profile: q(x) = R · x")
 
     ax_q.set_xlim(0, L)
-    ax_q.grid(True, alpha=0.3)
+    ax_q.grid(True, alpha=0.1)
 
     st.pyplot(fig_q, clear_figure=True)
 
