@@ -83,7 +83,7 @@ with mc1:
 if show_theory:
     st.write('Equations (groundwater flow and heat conduction in water)')
     
-    st.write('Subsequently, the parameters of groundwater flow and heat conduction are named.')
+    st.write('Subsequently, the parameters of groundwater flow (in unconfined aquifers) and heat conduction are named.')
 
     st.latex(r'''S = c\rho''')
     st.write('with S = Storativity, c = heat capacity, and $\\rho$ = density')
