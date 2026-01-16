@@ -71,7 +71,7 @@ st.markdown("""
 """
 )
 
-"---"
+st.markdown("---")
 
 st.subheader("Theoretical background", divider="blue")
 
@@ -91,8 +91,8 @@ if show_theory:
     st.latex(r'''K = \lambda''')
     st.write('with K = hydraulic conductivity, $\lambda$ = thermal conductivity')
 
-    st.latex(r'''D_f=\frac{K}{S}''')
-    st.write('with $D_f$ = hydraulic diffusivity')
+    st.latex(r'''D_f=\frac{Kb}{S}''')
+    st.write('with $D_f$ = hydraulic diffusivity, $b$ = aquifer thickness')
 
     st.latex(r'''D_h=\frac{\lambda_w}{c_w \rho_w}''')
     st.write('with $D_h$ = thermal diffusivity')
@@ -100,13 +100,14 @@ if show_theory:
     st.latex(r'''h = T''')
     st.write('with h = hydraulic head, T = temperature')
     
-    st.write(':blue[1-D Groundwater movement]')
+    st.write(':blue[1-D Groundwater movement] (simplified 1D diffusivity analogy)')
     st.latex(r'''h(x,t)=h_0 erfc (\frac{x}{\sqrt{4 D_f t}})''')
 
     st.write(':red[1-D Conduction without heat storage]')
     st.latex(r'''T(x,t)=T_0 erfc (\frac{x}{\sqrt{4 D_h t}})''')
 
-"---"
+st.markdown("---")
+
 # Definition of the function
 
 # Initial parameters
@@ -155,14 +156,18 @@ with columns[1]:
         container.write("**Hydraulic conductivity in m/s:** %5.2e" %K)
         SY = st.slider('**Specific Yield**', 0.01, 0.50, 0.25, 0.01)
         S = SY
+        b = st.slider('**Aquifer thickness**', 1, 50, 10, 1)
 
 #Computation
 T0 = TB - T_ini
 h0 = T0
-t = np.arange(0., tmax,tmax/80)
 
-t_r = np.arange(0., tmax,tmax/200)
-    
+#t = np.arange(0., tmax,tmax/80)
+#t_r = np.arange(0., tmax,tmax/200)
+ 
+t = np.linspace(1e-6, tmax, 81)       # days
+t_r = np.linspace(1e-6, tmax, 201)    # days
+ 
 D_H_w = lambda_w /(c_w * rho_w)
 D_H_r = lambda_r /(c_r * rho_r)
 D_H_s = (ne * lambda_w + (1-ne) * lambda_s) /(ne * c_w * rho_w)
@@ -179,7 +184,7 @@ if show_porous:
     T_s2 = T_ini+T0 * erfc(x/np.sqrt(4.*D_H_s*(t_r*86400.)/R_s))
 
 if show_flow:
-    D_F = K/S
+    D_F = K*b/S
     h = h_ini + h0 * erfc(x/np.sqrt(4.*D_F*(t*86400.)))
  
 # Plotting
