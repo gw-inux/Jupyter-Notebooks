@@ -1,0 +1,386 @@
+[
+    {
+        "image": "images/slide_1.png",
+        "notes": "These are the slides from the first session of module M1-A \u2018Review of Key Topics\u2019 from SYMPLE 26ed. The subsequent slides and notes were last updated Jan 16th 2026."
+    },
+    {
+        "image": "images/slide_2.png",
+        "notes": "The schedule for SYMPLE26"
+    },
+    {
+        "image": "images/slide_3.png",
+        "notes": "Key Topics \u2013 Recap and Outlook\r\r- Short recapitulation of the most important concepts\r- Reminder of key ideas in groundwater flow and modeling  \r- Focus on what you should keep in mind rather than detailed theory  \r- Help to refresh terminology and fundamental relationships  \r- Serve as a transition from conceptual understanding to numerical modeling  \r- Provide a first, very initial look at MODFLOW  \r- Prepare the ground for upcoming hands-on MODFLOW applications"
+    },
+    {
+        "image": "images/slide_4.png",
+        "notes": "Overview and Motivation\r\r- These slides give a general overview and motivation for the topic  \r- Slides with speaker notes form a core learning resource  \r- Live sessions complement the slides with explanations and discussion  \r- Recordings allow you to revisit the content at your own pace  \r- All materials together support different learning styles  \r- In addition, the SYMPLE25 app provides more active learning elements  \r- The app focuses on interactive exploration and self-guided learning"
+    },
+    {
+        "image": "images/slide_5.png",
+        "notes": "The live session on Jan12 2024 covered units 1-3 and partly unit 5. The notes will cover all units. Content of unit 4 and 5 will be presented at the next live session on Jan19 2024."
+    },
+    {
+        "image": "images/slide_6.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_7.png",
+        "notes": "Learning Objectives\r\r- Understand the subsurface characteristics that allow groundwater storage  \r- Identify key hydrogeological parameters controlling storage behavior  \r- Learn how these parameters influence groundwater analysis and interpretation  \r- Develop a feeling for parameter sensitivity and relevance  \r- Briefly see how these parameters are implemented in MODFLOW  \r- Prepare for later, more detailed numerical modeling applications"
+    },
+    {
+        "image": "images/slide_8.png",
+        "notes": "Conceptual Example Setup\r\r- Start with a simple conceptual model to introduce the problem  \r- Assume a homogeneous and isotropic aquifer (blue structure)  \r- An abstraction well (green) starts pumping at a defined time  \r- Focus on the response at an observation point / observation well  \r- Observation point is located 500 m away from the pumping well  \r- This setup will be used to discuss parameters and system response"
+    },
+    {
+        "image": "images/slide_9.png",
+        "notes": "Guiding Questions for the Example\r\r- Question 1: Can the fast (early) response at the observation point tell us something about the aquifer type?\r- Key idea: A faster response typically indicates \u2026\r\r- Question 2: Which parameters can explain the observed response behavior?\r- \u2026\r\r- Where to explore and verify this:\r- SYMPLE25 app \u2192 M1_A \u2192 Parameters \u2192 K and S"
+    },
+    {
+        "image": "images/slide_10.png",
+        "notes": "Types of Voids in Rocks\r\r- The figure illustrates different occurrences of voids in geological materials  \r- At the top: porous materials with intergranular pore space  \r- Porous media can be differentiated into well-sorted and poorly sorted materials  \r- Sorting controls pore connectivity and effective storage and flow properties  \r- At the bottom: fractured rock systems  \r- Examples include fractured bedrock and fracture networks in granite  \r- Also includes solution-enlarged features, typical for limestone and karst systems  \r- Void type strongly controls groundwater storage and flow behavior  \r- More detailed background is available in the free books provided by the Groundwater Project"
+    },
+    {
+        "image": "images/slide_11.png",
+        "notes": ""
+    },
+    {
+        "image": "images/slide_12.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_13.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_14.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_15.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_16.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_17.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_18.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_19.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_20.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_21.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_22.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_23.png",
+        "notes": "The following unit introduces general types of motion. It is important to be aware that different concepts are available to describe motion in the unerground. Later units will transfer these concepts to groundwater related applications like solute transport and groundwater flow."
+    },
+    {
+        "image": "images/slide_24.png",
+        "notes": "The terminology \u2018types\u2019 can also be considered as concepts. The terminology \u2018motion\u2019 comprise various processes like solute transport, groundwater flow, pressure transmission, and more. Focus of the unit is to provide an explanation about the general types of motion."
+    },
+    {
+        "image": "images/slide_25.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_26.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_27.png",
+        "notes": "According to the balance equations, the flow or movement laws essentially form the \"second pillar\" for quantifying many processes in water management.\rFlow or movement laws describe the spreading processes of matter or energy.\rThe spreading behavior depends on state variables such as pressure, temperature, or substance concentration. Flow or movement laws allow the determination of production and loss rates in a balance equation. \rProcess quantification is thus based on\rbalance equations and \rlow/movement laws.\rThere are two important basic types of flow or movement laws in water management:\r\"Convection type\u201c\r\"Diffusion type\u201c\rIn addition, there is a mixed form in the spread of dissolved substances in porous media. Frequently, both basic types act simultaneously on spreading processes (superposition). Initially, the above-mentioned basic types are treated separately.\r\rIn the example (blue box / green arrow) it is important to acknowledge that several motion respectively flow processes occur\rgroundwater flow is described by the concept of diffusion\rdriven by gradient\rwithin a stationary medium (here the aquifer)\rtracer transport is described by the concept of advection (dispersion also occurs but can be neglected for that example)\rflow (transport) with the bulk movement of the carrying medium\rthe carrying medium in that case is the groundwater (whereas groundwater flow \u2013 as mentioned \u2013 is described by the concept of diffusion)"
+    },
+    {
+        "image": "images/slide_28.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_29.png",
+        "notes": "Typical for advection (or bulk flow) is that the motion occurs with the moving carrier"
+    },
+    {
+        "image": "images/slide_30.png",
+        "notes": "Konvektion (oder Advektion) ist der Transport von Materie oder Energie mit der Bewegung eines str\u00f6menden Mediums. \rDas str\u00f6mende Medium kann als Tr\u00e4germedium bezeichnet werden und ist i. d. R. ein Fluid. \rBeispiele:                                                                                                                                   \u000b\u2013 Konvektion von W\u00e4rme bei der Warmwasserheizung, im Golfstrom oder bei der Luftbewegung (Thermik beim Segelfliegen)                                                 \u000b\u2013 Advektion von gel\u00f6sten (Schad-)Stoffen oder suspendierten Partikeln in Gew\u00e4ssern, im Grundwasser oder mit dem Wind\rTendenziell wird der Begriff \u201eKonvektion\u201c eher beim Energietransport (insbesondere W\u00e4rme), der Begriff \u201eAdvektion\u201c eher beim Massen- oder Volumentransport verwendet."
+    },
+    {
+        "image": "images/slide_31.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_32.png",
+        "notes": "The diffusion type of motion is movement of matter or energy based on the physical concept of diffusion."
+    },
+    {
+        "image": "images/slide_33.png",
+        "notes": "Fundamentals of the \"Diffusion Type\"\rThe \"Diffusion Type\" describes the transport of matter or energy within a stationary medium.\u000bIn contrast to convection, mass or energy transport in this case is not tied to the movement of a carrier medium.\rExamples:\rHeat conduction in solids (such as irons or stovetops)\rDiffusion of dissolved substances in stationary fluids\rElectric current in conductors or semiconductors (electrostatics)\rFlow of water in porous media (infiltration or groundwater flow)"
+    },
+    {
+        "image": "images/slide_34.png",
+        "notes": "Basic principles of diffusion (cause by Brown\u2019s molecule movement)\rImportant to note that Diffusion coefficients in free water are quite small\r\rThe negative sign indicates that the movement is from greater to lesser concentrations. Note the analogies to Darcy's law (hydraulic flow), Ohm's law (charge transport), and Fourier's Law (heat transport)\r\rDiffusion can lead to a spread of a contaminant in absence of a hydraulic gradient, i.e. if the groundwater is not moving, simply due to a concentration gradient (cf. there is no velocity / discharge term in the equation!)\rDiffusion is slow, yet can be significant over long periods of time\rDiffusion can also affect water in voids which are too small to be significant in flow processes \u201ceffective porosity\u201d (i.e. in immobile water trapped in small pore radii)"
+    },
+    {
+        "image": "images/slide_35.png",
+        "notes": "This example demonstrate the computation of diffusive mass flow for the already known setup.\r\rAccordingly, the calculation shows that diffusive mass flow is very minor in comparison to advective mass flow."
+    },
+    {
+        "image": "images/slide_36.png",
+        "notes": "More examples for diffusive movement: Heat conduction. The equation is comparable to well know equations from Hydrogeology like Darcy and Diffusive transport. Heat conduction is driven by the temperature difference. The thermal conductivity is comparable to hydraulic conductivity.\r\r\rTemperaturgradient und W\u00e4rmeleitf\u00e4higkeit\r\rDas Verh\u00e4ltnis \u0394T/L wird als Temperaturgradient bezeichnet.\rDer Temperaturgradient hat die Dimension \u03b8/L.\rDer Wert des W\u00e4rmeleitf\u00e4higkeitskoeffizienten entspricht dem konduktiven W\u00e4rme-strom durch einen Einheitsquerschnitt bei einem Temperaturgradienten von 1 [\u03b8/L].\r\rW\u00e4rmeleitf\u00e4higkeitskoeffizienten f\u00fcr einige Gesteine, Sand und Wasser (jeweils Normalbedingungen):\rGlimmer\t\t0.5 \u2013 0.7 W/m/K\t      Granit\t\t2.1 \u2013 2.9 W/m/K        Sand (trocken)\t0.35 W/m/K\t      Sandstein\t1.6 \u2013 2.1 W/m/K  Schiefer\t\t2.1 W/m/K\t      \t      Wasser\t\t0.598  W/m/K"
+    },
+    {
+        "image": "images/slide_37.png",
+        "notes": "More examples for diffusive movement: Electricity. The equation is comparable to well know equations from Hydrogeology like Darcy and Diffusive transport. Electricity is driven by the potential difference. The electrical conductivity is comparable to hydraulic conductivity.\r\r\rElektrische Leitf\u00e4higkeit, Spannung und Widerstand\r\rDie Potentialdifferenz \u0394\u03c6 entspricht der elektrischen Spannung U.\rF\u00fcr den elektrischen Widerstand R gilt: R = L/(A\u00b7\u03ba).\rSetzt man dies ins oben angegebene Ohm\u2018sche Gesetz ein, dann erh\u00e4lt man \u2013 bis aufs Vorzeichen \u2013 die bekannten Beziehungen I = U/R bzw. R = U/I."
+    },
+    {
+        "image": "images/slide_38.png",
+        "notes": "Attention: Now we apply / consider the concepts to describe solute transport!\r\rConcentration profiles of solutes (limited pulse injection) transported by advection and dispersion\rSuggestion: use the XLS sheet Advection_Dispersion_1D_MOD2020.xls; investigate the effects of varying ne and alpha"
+    },
+    {
+        "image": "images/slide_39.png",
+        "notes": "Flow and Motion Laws in Water Management\rAccording to balance equations, flow and motion laws form the \"second pillar\" for quantifying many processes in water management.\rFlow and motion laws describe the spread of matter or energy.\rThe behavior of spreading depends on state variables such as pressure, temperature, or substance concentration.\rFlow and motion laws allow the determination of production and loss rates within a balance equation.\rProcess quantification is therefore based on balance equations and flow/motion laws.\rTwo Fundamental Types of Flow and Motion Laws in Water Management:\r\"Convection Type\"\r\"Diffusion Type\"\rAdditionally, a hybrid form exists for the spread of dissolved substances in porous media.\rOften, both fundamental types act simultaneously in spreading processes (overlapping effects).\u000bInitially, these two types will be examined separately."
+    },
+    {
+        "image": "images/slide_40.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_41.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_42.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_43.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_44.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_45.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_46.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_47.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_48.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_49.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_50.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_51.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_52.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_53.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_54.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_55.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_56.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_57.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_58.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_59.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_60.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_61.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_62.png",
+        "notes": "Gaining stream (typical for humid climate) drains groundwater; groundwater enters the river\rLosing stream (typical for semiarid / dry climate) recharges groundwater; surface water enters the aquifer"
+    },
+    {
+        "image": "images/slide_63.png",
+        "notes": "Gaining stream (typical for humid climate) drains groundwater; groundwater enters the river\rLosing stream (typical for semiarid / dry climate) recharges groundwater; surface water enters the aquifer"
+    },
+    {
+        "image": "images/slide_64.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_65.png",
+        "notes": "This example shows the interaction of groundwater and surface water"
+    },
+    {
+        "image": "images/slide_66.png",
+        "notes": "Left side: decoupled stream (disconnected stream)\rRight side: flow reversal / a gaining stream becomes a loosing stream during high flow conditions; additional bank storage occurs"
+    },
+    {
+        "image": "images/slide_67.png",
+        "notes": "The Hyporheic zone is of special importance\rHighly active biological / chemical reactor"
+    },
+    {
+        "image": "images/slide_68.png",
+        "notes": "Heat is an cheap and simple tracer that helps to indicate the interaction between surface- and ground water"
+    },
+    {
+        "image": "images/slide_69.png",
+        "notes": "Figure illustrates the sediment layer at a lake bottom\rFine sediments result in additional hydraulic resistance (colmation)"
+    },
+    {
+        "image": "images/slide_70.png",
+        "notes": "Figure illustrates the sediment layer at a lake bottom\rFine sediments result in additional hydraulic resistance (colmation)"
+    },
+    {
+        "image": "images/slide_71.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_72.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_73.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_74.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_75.png",
+        "notes": "Example to demonstrate that recharge can significantly vary over a year (here recharge mainly from Feb to May)"
+    },
+    {
+        "image": "images/slide_76.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_77.png",
+        "notes": "The figure shows an areal view for a random region\rYou can differentiate between forest / agriculture / urban areas\rIf just some average number for recharge is available, you still can differentiate spatial distribution if the landuse is known (e.g. there is more recharge under acres in comparison to forest)"
+    },
+    {
+        "image": "images/slide_78.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_79.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_80.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_81.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_82.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_83.png",
+        "notes": "The total volume of water on Earth amounts to ca. 1 358 710 150 km\u00b3 (\u2248 1018 m\u00b3).\rThe total volume of fresh water on Earth amounts to ca. 38 000 000 km\u00b3 (\u2248 1016 m\u00b3)."
+    },
+    {
+        "image": "images/slide_84.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_85.png",
+        "notes": "The hydrological balance provides a relationship between various flow rates for a certain area. It is based on the conservation of water volume.\rexpressed in words:  inflow equals outflow plus change in storage\rexpressed by an equation:\rchange in storage \u0394S > 0:                                                                                                Water volume is increasing with time in the investigation area.\rchange in storage \u0394S < 0:                                                                                                 Water volume is decreasing with time in the investigation area.\rchange in storage \u0394S = 0:                                                                                                     Water volume does not change with time in the investigation area (steady-state or stationary situation, i.e. inflow equals outflow)."
+    },
+    {
+        "image": "images/slide_86.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_87.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_88.png",
+        "notes": "Inflow and outflow may each consist of several individual components.\r\u0394V = 0 (no change in  volume) is tantamount to steady-state or stationary (= time-independent) conditions.\rFor steady-state conditions we have: Qin = Qout"
+    },
+    {
+        "image": "images/slide_89.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_90.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_91.png",
+        "notes": "Inflow and outflow may each consist of several individual components.\r\u0394M = 0 (no change in mass) is tantamount to steady-state or stationary (= time-independent) conditions.\rFor steady-state conditions we have: Jin = Jout"
+    },
+    {
+        "image": "images/slide_92.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_93.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_94.png",
+        "notes": "Mass and volume budgets are equivalent if there is no change of density \uf072 [M/L\u00b3] with time. In this case the well known relationship \u0394M = \uf072\u00b7\u0394V holds and each equation given above can be directly transformed into the other one.\rIf density changes have to be considered (e.g. for gas flow), the mass budget equation remains valid but the volume budget equation must be modified because \u0394M = \uf072\u00b7\u0394V + \u0394\uf072\u00b7V with \u0394\uf072 = change in density.\rCases with changing density have proven to be more easily tractable if the mass budget equation is used."
+    },
+    {
+        "image": "images/slide_95.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_96.png",
+        "notes": "No notes"
+    }
+]

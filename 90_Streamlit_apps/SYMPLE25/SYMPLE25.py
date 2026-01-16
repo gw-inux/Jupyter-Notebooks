@@ -71,7 +71,7 @@ pages = {
         "--- Budgets and Balances 📊 ---": None,
         "Radioactive Decay": "90_Streamlit_apps/SYMPLE25/pages/M1A/Radioactive_Decay_basics.py",
         "--- Presentations 📖---": None,
-        "Presentation: 📝 M1A_1": "90_Streamlit_apps/SYMPLE25/presentations/SlideJet_present_M1A_1.py",
+        "Presentation: 📝 M1A_1": "90_Streamlit_apps/SYMPLE25/SlideJet_Presentations/SYMPLE26_M1A_1_SJpresent.py",
         "Presentation: 📝 M1A_2": "90_Streamlit_apps/SYMPLE25/presentations/SlideJet_present_M1A_2.py",
         "Presentation: 📝 M1A_3": "90_Streamlit_apps/SYMPLE25/presentations/SlideJet_present_M1A_3.py",
     },
