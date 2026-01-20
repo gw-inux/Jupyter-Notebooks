@@ -1,0 +1,222 @@
+[
+  {
+    "question": "How is the session structured according to the introduction?",
+    "options": {
+      "Presentation, discussion session, independent work session": true,
+      "Lecture, exam, field excursion": false,
+      "Tutorial, lab, peer review": false,
+      "Presentation, debate, final quiz": false
+    },
+    "success": "Correct. The session is split into a presentation, a discussion session, and an independent work session.",
+    "failure": "Incorrect. Revisit the introduction where the session segments are outlined."
+  },
+  {
+    "question": "What is described as the first key skill of a modeler (ahead of mathematics or linear algebra)?",
+    "options": {
+      "Programming": false,
+      "Patience": true,
+      "Creativity": false,
+      "Statistics": false
+    },
+    "success": "Correct. Patience is highlighted as the first key skill.",
+    "failure": "Incorrect. Recall the remark about what matters most when working through modeling challenges."
+  },
+  {
+    "question": "Which aspect is explicitly emphasized as a major focus in the course?",
+    "options": {
+      "Writing and communication": true,
+      "Advanced coding speed": false,
+      "Field drilling techniques": false,
+      "Remote sensing workflows": false
+    },
+    "success": "Correct. Writing and communication are explicitly stressed.",
+    "failure": "Incorrect. Review the early remarks about what will be emphasized throughout the course."
+  },
+  {
+    "question": "What is groundwater modeling described as in this session?",
+    "options": {
+      "Creating computer simulations of groundwater flow due to natural and man-made stresses": true,
+      "Building only physical sandbox models": false,
+      "Predicting rainfall and storms": false,
+      "Measuring groundwater levels without simulation": false
+    },
+    "success": "Correct. Groundwater modeling is described as computer simulation of groundwater flow under stresses.",
+    "failure": "Incorrect. Review the definition given during the introduction to groundwater modeling."
+  },
+  {
+    "question": "What approach is recommended to answer a client’s questions?",
+    "options": {
+      "Use the simplest approach that answers the client’s questions": true,
+      "Always use the most complex numerical model available": false,
+      "Avoid analytical solutions entirely": false,
+      "Use only physical models": false
+    },
+    "success": "Correct. The simplest adequate approach is recommended.",
+    "failure": "Incorrect. Recall the guidance on choosing methods that fit the question and purpose."
+  },
+  {
+    "question": "Why is the phrase 'All models are wrong, but some are useful' criticized in a consulting context?",
+    "options": {
+      "Because it frames results as 'wrong' and 'maybe useful' in a way clients would not accept": true,
+      "Because models are always perfectly correct": false,
+      "Because it applies only to surface-water models": false,
+      "Because uncertainty should never be discussed": false
+    },
+    "success": "Correct. The concern is how such wording would be received by clients paying for actionable analysis.",
+    "failure": "Incorrect. Revisit the discussion about credibility, usefulness, and client expectations."
+  },
+  {
+    "question": "Which is listed as a way modeling can help beyond simply producing a model?",
+    "options": {
+      "Understanding data gaps and the impact of those gaps on objectives": true,
+      "Eliminating all uncertainty completely": false,
+      "Replacing field work entirely": false,
+      "Avoiding interaction with stakeholders": false
+    },
+    "success": "Correct. Understanding data gaps and their implications for objectives is explicitly mentioned.",
+    "failure": "Incorrect. Review the section describing practical benefits of modeling."
+  },
+  {
+    "question": "Optimizing decisions using the information available is compared to avoiding which alternative?",
+    "options": {
+      "Throwing darts in the blind": true,
+      "Solving equations by hand": false,
+      "Reading a textbook definition": false,
+      "Running only one scenario": false
+    },
+    "success": "Correct. The comparison is to making decisions by 'throwing darts in the blind.'",
+    "failure": "Incorrect. Recall the analogy used to justify optimization with imperfect information."
+  },
+  {
+    "question": "Which set of purposes aligns with the reasons given for groundwater modeling?",
+    "options": {
+      "Sustainability, scenario evaluation, risk understanding, and management optimization": true,
+      "Only academic curiosity and theory building": false,
+      "Only mapping geology": false,
+      "Only selecting pump equipment": false
+    },
+    "success": "Correct. These purposes are listed as key motivations for modeling work.",
+    "failure": "Incorrect. Review the 'Why are we modeling?' section and the examples provided."
+  },
+  {
+    "question": "Water-quality topics such as contaminants, nitrates, and saltwater intrusion are referred to as what kind of issues?",
+    "options": {
+      "Downstream issues": true,
+      "Upstream issues": false,
+      "Boundary issues": false,
+      "Conceptual issues": false
+    },
+    "success": "Correct. These are described as downstream issues.",
+    "failure": "Incorrect. Recheck the part where water-quality topics are grouped and labeled."
+  },
+  {
+    "question": "Managed aquifer recharge (MAR) is described as important primarily for what goal?",
+    "options": {
+      "Supporting sustainability and keeping brackish water at bay (e.g., via hydraulic barriers)": true,
+      "Reducing seismic hazard": false,
+      "Improving river navigation": false,
+      "Mining dewatering operations": false
+    },
+    "success": "Correct. MAR is highlighted as a major sustainability topic, including managing brackish water.",
+    "failure": "Incorrect. Review the section listing issues addressed by groundwater modeling."
+  },
+  {
+    "question": "The shallow geothermal example (Nebraska building) is used to illustrate modeling related to what application?",
+    "options": {
+      "Heating and cooling buildings using shallow groundwater heat exchange": true,
+      "Deep geothermal power generation only": false,
+      "Tidal energy extraction": false,
+      "Hydropower dam design": false
+    },
+    "success": "Correct. The example describes a shallow borehole heat exchanger interacting with groundwater.",
+    "failure": "Incorrect. Revisit the example describing the building’s heating/cooling concept."
+  },
+  {
+    "question": "Which of the following is explicitly listed as a type of client for modeling work?",
+    "options": {
+      "Attorneys": true,
+      "Restaurants": false,
+      "Airlines": false,
+      "Astronomers": false
+    },
+    "success": "Correct. Attorneys are listed among typical clients, especially in disputes.",
+    "failure": "Incorrect. Review the list of client groups mentioned."
+  },
+  {
+    "question": "Which activity is included as part of what happens in a groundwater modeling shop?",
+    "options": {
+      "Calibration, scenario analysis, sensitivity/uncertainty work, compliance/risk assessment, and communication": true,
+      "Only running a numerical model with no reporting": false,
+      "Only collecting samples in the field": false,
+      "Only writing code without project context": false
+    },
+    "success": "Correct. A modeling shop is described as combining technical work with compliance and communication tasks.",
+    "failure": "Incorrect. Revisit the overview of tasks that occur in a modeling shop."
+  },
+  {
+    "question": "Which element is emphasized as the most important in professional modeling practice?",
+    "options": {
+      "Communication (presentations, outreach, reporting)": true,
+      "GIS": false,
+      "Geophysics": false,
+      "Thermodynamics": false
+    },
+    "success": "Correct. Communication is emphasized as most important.",
+    "failure": "Incorrect. Review the section describing why communication matters for different audiences."
+  },
+  {
+    "question": "What is the key message about presenting modeling work to different audiences?",
+    "options": {
+      "Present information in a way different audiences can understand (stakeholders, technical staff, managers, lay people)": true,
+      "Present only to technical experts": false,
+      "Use the same presentation style for everyone": false,
+      "Avoid progress updates until the final report": false
+    },
+    "success": "Correct. Tailoring communication to the audience is highlighted as essential.",
+    "failure": "Incorrect. Revisit the discussion on outreach and stakeholder communication."
+  },
+  {
+    "question": "What is identified as the first tool to use before software and advanced workflows?",
+    "options": {
+      "Pencil and paper": true,
+      "A cloud GPU cluster": false,
+      "MODFLOW": false,
+      "Machine learning": false
+    },
+    "success": "Correct. Pencil and paper are named as the first tool.",
+    "failure": "Incorrect. Review the section listing tools used in modeling work."
+  },
+  {
+    "question": "What common theme is highlighted across standards and guidelines for modeling?",
+    "options": {
+      "There are appropriate methods for modeling and appropriate methods for communicating modeling efforts and results": true,
+      "Standards remove the need for calibration": false,
+      "Guidelines focus only on equations": false,
+      "Standards exist mainly for invoicing": false
+    },
+    "success": "Correct. The theme is about both proper modeling practice and proper communication/reporting.",
+    "failure": "Incorrect. Revisit the summary of what standards and guidelines emphasize."
+  },
+  {
+    "question": "Which area is described as more challenging and less successful in practice due to heterogeneity and complexity?",
+    "options": {
+      "Solute transport and karst systems": true,
+      "Water-rights and water-banking evaluations": false,
+      "Basic flow budgeting in well-characterized systems": false,
+      "Simple recharge estimation only": false
+    },
+    "success": "Correct. Solute transport and karst systems are described as more difficult to model reliably.",
+    "failure": "Incorrect. Review the section on perceptions of models and where success has been more limited."
+  },
+  {
+    "question": "Which change in client expectations over the last decades is emphasized?",
+    "options": {
+      "Greater focus on uncertainty and more frequent progress reporting (community modeling)": true,
+      "Less interest in uncertainty than before": false,
+      "Preference for one-off modeling reports placed on a shelf": false,
+      "No interest in data collection to improve decisions": false
+    },
+    "success": "Correct. Clients are described as more concerned with uncertainty and want ongoing engagement and updates.",
+    "failure": "Incorrect. Revisit the discussion about how client attitudes and demands have changed."
+  }
+]
