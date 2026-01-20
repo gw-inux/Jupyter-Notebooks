@@ -3,6 +3,21 @@ import matplotlib.pyplot as plt
 import math
 import streamlit as st
 
+# Authors, institutions, and year
+year = 2025 
+authors = {
+    "Thomas Reimann": [1]  # Author 1 belongs to Institution 1
+}
+institutions = {
+    1: "TU Dresden, Institute for Groundwater Management"
+    
+}
+index_symbols = ["¹", "²", "³", "⁴", "⁵", "⁶", "⁷", "⁸", "⁹"]
+author_list = [f"{name}{''.join(index_symbols[i-1] for i in indices)}" for name, indices in authors.items()]
+institution_list = [f"{index_symbols[i-1]} {inst}" for i, inst in institutions.items()]
+institution_text = " | ".join(institution_list)
+
+#--- User Interface
 #st.set_page_config(page_title="1D Recharge + No-Flow/Head BC (2-zone K)")
 
 st.title("1D Flow with Recharge: No-Flow (left) + Fixed Head (right)")
@@ -109,45 +124,44 @@ def generate_exercise_scenario(seed=None):
 # -------------------------
 # Controls above plot
 # -------------------------
-cols = st.columns((1, 1, 1), gap="large")
+cols = st.columns((1, 1), gap="large")
 
 with cols[0]:
     with st.expander("Modify the plot", expanded=False):
         n_points = 100
         show_flux = st.checkbox("Show flux plot (q = R·x)", value=False)
 
-with cols[2]:
-    with st.expander("Task / Exercise", expanded=True):
-        exercise_mode = st.toggle("Exercise mode (generate synthetic observations)", value=False)
-        if exercise_mode:
-            if "exercise_scenario" not in st.session_state:
-                st.session_state.exercise_scenario = generate_exercise_scenario()
-        
-            sc = st.session_state.exercise_scenario
-        
-            # IMPORTANT: use separate, non-widget state variables for slider values
-            if "K1s_model" not in st.session_state:
-                st.session_state.K1s_model = float(np.log10(sc["K1_init"]))
-            if "K2s_model" not in st.session_state:
-                st.session_state.K2s_model = float(np.log10(sc["K2_init"]))
-            if "R_mm_a_model" not in st.session_state:
-                st.session_state.R_mm_a_model = float(sc["R_init_mm_a"])
-            if "user_pick" not in st.session_state:
-                st.session_state.user_pick = None
-        
-        else:
-            # optional cleanup when leaving exercise mode
-            for k in ["exercise_scenario", "K1s_model", "K2s_model", "R_mm_a_model", "user_pick"]:
-                st.session_state.pop(k, None)
-        
-        if exercise_mode:
-            st.write("Which parameter should be modified?")
-            st.session_state.user_pick = st.radio(
-                "Select one:",
-                ["K1", "K2", "RCH"],
-                index=None,
-                key="pick_widget",
-            )
+with cols[1]:
+    exercise_mode = st.toggle("Exercise mode (generate synthetic observations)", value=False)
+    if exercise_mode:
+        if "exercise_scenario" not in st.session_state:
+            st.session_state.exercise_scenario = generate_exercise_scenario()
+    
+        sc = st.session_state.exercise_scenario
+    
+        # IMPORTANT: use separate, non-widget state variables for slider values
+        if "K1s_model" not in st.session_state:
+            st.session_state.K1s_model = float(np.log10(sc["K1_init"]))
+        if "K2s_model" not in st.session_state:
+            st.session_state.K2s_model = float(np.log10(sc["K2_init"]))
+        if "R_mm_a_model" not in st.session_state:
+            st.session_state.R_mm_a_model = float(sc["R_init_mm_a"])
+        if "user_pick" not in st.session_state:
+            st.session_state.user_pick = None
+    
+    else:
+        # optional cleanup when leaving exercise mode
+        for k in ["exercise_scenario", "K1s_model", "K2s_model", "R_mm_a_model", "user_pick"]:
+            st.session_state.pop(k, None)
+    
+    if exercise_mode:
+        st.write("Which parameter should be modified?")
+        st.session_state.user_pick = st.radio(
+            "Select one:",
+            ["K1", "K2", "RCH"],
+            index=None,
+            key="pick_widget",
+        )
 
 cols2 = st.columns((1,1,1))
 with cols2[1]:
@@ -160,8 +174,7 @@ with cols2[1]:
     R = mm_a_to_m_s(R_mm_a)
     st.write("**Recharge R [m/s]:** %5.2e" % R)
     
-cols3 = st.columns((1,1,1))
-with cols3[0]:
+with cols2[0]:
     if exercise_mode:
         K1s = st.slider("_(log of) K1 [m/s]_", log_minK, log_maxK, st.session_state.K1s_model, 0.01,
                         format="%4.2f", key="K1s_widget")
@@ -171,7 +184,7 @@ with cols3[0]:
     K1 = 10 ** K1s
     st.write("**K1 [m/s]:** %5.2e" % K1)
     
-with cols3[2]:
+with cols2[2]:
     if exercise_mode:
         K2s = st.slider("_(log of) K2 [m/s]_", log_minK, log_maxK, st.session_state.K2s_model, 0.01,
                         format="%4.2f", key="K2s_widget")
@@ -349,3 +362,11 @@ if exercise_mode:
         st.write("**True K2 [m/s]:** %5.2e" % sc["K2_true"])
         st.write("**True R [mm/a]:** %.1f" % sc["R_true_mm_a"])
         st.write("**Wrong parameter in initial model:** %s" % sc["wrong_param"])
+
+st.markdown('---')
+
+columns_lic = st.columns((5,1))
+with columns_lic[0]:
+    st.markdown(f'Developed by {", ".join(author_list)} ({year}). <br> {institution_text}', unsafe_allow_html=True)
+with columns_lic[1]:
+    st.image('FIGS/CC_BY-SA_icon.png')
