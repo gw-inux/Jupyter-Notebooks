@@ -1,6 +1,7 @@
 # Necessary libraries
 import matplotlib.pyplot as plt
 import matplotlib.animation
+from matplotlib.ticker import MaxNLocator
 import numpy as np
 from numpy import nan as NaN
 from IPython.display import display
@@ -10,6 +11,25 @@ import math
 import streamlit as st
 from streamlit_extras.stateful_button import button
 
+# also Interactive Documents 08-02-001
+# ToDo:
+#    - number input
+
+# Authors, institutions, and year
+year = 2025 
+authors = {
+    "Thomas Reimann": [1]  # Author 1 belongs to Institution 1
+}
+institutions = {
+    1: "TU Dresden, Institute for Groundwater Management"
+    
+}
+index_symbols = ["¹", "²", "³", "⁴", "⁵", "⁶", "⁷", "⁸", "⁹"]
+author_list = [f"{name}{''.join(index_symbols[i-1] for i in indices)}" for name, indices in authors.items()]
+institution_list = [f"{index_symbols[i-1]} {inst}" for i, inst in institutions.items()]
+institution_text = " | ".join(institution_list)
+
+#--- User Interface
 st.title('Finite-Difference Numerical scheme')
 st.subheader('1D groundwater flow in a confined aquifer with uniform recharge', divider='blue')
 
@@ -82,6 +102,7 @@ RA = RCH_IN/1000/24/3600/365.25
 h[0]  = BC_L
 h[-1] = BC_R
 st.session_state.h_old = h.copy()
+st.session_state.h_ini = h.copy()
         
 # Maximaler / Minimaler Anfangswasserstand für Skalierung der Abbildung
 h_max = max(h)
@@ -105,6 +126,7 @@ out_txt = '\n'.join((
                          r'$eps = %.4f$' % (st.session_state.epsilon, )))   
 fig = plt.figure(figsize=(10,7))
 ax1 = fig.add_subplot(1, 1, 1)
+ax1.xaxis.set_major_locator(MaxNLocator(integer=True))
 ax2 = ax1.twiny() 
 ax1.plot(h, '--o')
 plt.ylim(h_min-h_range,ymax)
@@ -132,7 +154,11 @@ def computation():
     
     i = 0
     convergence = False
+    
     if run:
+        h = st.session_state.h_ini.copy()
+        st.session_state.h_old = h.copy()
+        
         while i < st.session_state.i_max:
             # Increase iteration count
             i = i + 1       
@@ -159,6 +185,7 @@ def computation():
                                      r'$dh_{max} = %.4f$' % (max_head_change, )))   
             fig = plt.figure(figsize=(10,7))
             ax1 = fig.add_subplot(1, 1, 1)
+            ax1.xaxis.set_major_locator(MaxNLocator(integer=True))
             ax2 = ax1.twiny()
             ax1.set_xlabel('Index cells (starting with 0)', fontsize=14)  
             ax2.set_xlabel('Distance in m', fontsize=14)             
@@ -185,3 +212,11 @@ def computation():
         st.write(':red[NO CONVERGENCE YET]')
 
 computation()
+
+st.markdown('---')
+
+columns_lic = st.columns((5,1))
+with columns_lic[0]:
+    st.markdown(f'Developed by {", ".join(author_list)} ({year}). <br> {institution_text}', unsafe_allow_html=True)
+with columns_lic[1]:
+    st.image('FIGS/CC_BY-SA_icon.png')
