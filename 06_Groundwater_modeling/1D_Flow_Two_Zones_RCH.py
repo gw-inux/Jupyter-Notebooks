@@ -17,36 +17,10 @@ author_list = [f"{name}{''.join(index_symbols[i-1] for i in indices)}" for name,
 institution_list = [f"{index_symbols[i-1]} {inst}" for i, inst in institutions.items()]
 institution_text = " | ".join(institution_list)
 
-#--- User Interface
-#st.set_page_config(page_title="1D Recharge + No-Flow/Head BC (2-zone K)")
-
-st.title("1D Flow with Recharge: No-Flow (left) + Fixed Head (right)")
-
-# --- Geometry
-L1 = 10.0
-L2 = 10.0
-L = L1 + L2
-h_right = 1.0
-
-# -----------------------------------------------------------------------------
-# Exercise: parameter ranges for random scenarios
-# -----------------------------------------------------------------------------
-
-EX_RANGE = {
-    "K1_log10": (-7.0, -5.0),     # log10(K1 [m/s])
-    "K2_log10": (-7.0, -5.0),     # log10(K2 [m/s])
-    "R_mm_a":   (120.0, 400.0),    # recharge [mm/a]
-}
-
-# --- Slider ranges
-log_minK, log_maxK = -8.0, -2.0
-R_min_mm_a, R_max_mm_a = 0.0, 500.0
-
-# --- Observation points for exercise
-x_obs = np.arange(0.0, 20.0 + 1e-9, 2.0)
+#--- Functions
 
 def mm_a_to_m_s(mm_a: float) -> float:
-    return mm_a / 1000.0 / (365.0 * 24.0 * 3600.0)
+    return mm_a / 1000.0 / (365.25 * 86400)
 
 def head_profile_two_zone_recharge_noflow_head(x, L1, L, K1, K2, R, hR):
     D2 = hR + (R / (2.0 * K2)) * (L ** 2)
@@ -113,26 +87,77 @@ def generate_exercise_scenario(seed=None):
         h_obs=h_obs, wrong_param=wrong_param,
         K1_init=K1_init, K2_init=K2_init, R_init_mm_a=R_init_mm_a,
     )
+    
+#--- User Interface
+#st.set_page_config(page_title="1D Recharge + No-Flow/Head BC (2-zone K)")
 
-# -------------------------
-# Exercise toggle + scenario storage
-# -------------------------
+st.title("1D Flow with Recharge: No-Flow (left) + Fixed Head (right)")
+st.subheader("1D Flow, Two Zones with Recharge", divider = 'green')
 
+st.markdown("""
+#### Conceptual and Mathematical Model
 
+The model concept account for a 1D flow model with two homogenous zones and uniform recharge. The outlet boundary is a specified head on the right side.""")
 
+with st.expander(":green[**Click here**] if you want to read more about the conceptual and mathematical model"):
+    st.markdown("""
+    #### Conceptual model
+    This app is an example and exercise for groundwater flow model calibration. The initial setup is 
+    * 1D flow from left to right
+    * The system is bounded by:
+        * left side: no-flow boundary,
+        * right side: specified head boundary,
+        * uniform recharge from the top.
+    * The aquifer is composed of two homogeneous and isotropic zones.
+    * The system is 20 m long.
+    * Hydraulic head measurements are available every two meters.
+    
+    #### Mathematical model
+    The system is simulated by an 1D groundwater flow model. The model has three parameters:
+    * hydraulic conductivity in Zone 1 $K_1$,
+    * hydraulic conductivity in Zone 2 $K_2$,
+    * Uniform recharge.
+    All three parameters can be modified in the interactive plot, and the effect on model results can be observed.
+    """)
+       
+st.subheader("Exercise", divider = 'green')
+st.markdown("""
+The app has an exercise mode that can be activated by a toggle.
+
+In the exercise mode, the model simulation is compared with the observations. Typically, the model deviate from the observations. This deviation is caused by a single parameter. Your task is to identify this parameter. Of course, you can modify the paramters in the interactive app to understand their effect on model results.""")
+
+st.subheader("Interactive Plot", divider = 'green')
+
+# --- Geometry
+L1 = 10.0
+L2 = 10.0
+L = L1 + L2
+h_right = 1.0
+
+# -----------------------------------------------------------------------------
+# Exercise: parameter ranges for random scenarios
+# -----------------------------------------------------------------------------
+
+EX_RANGE = {
+    "K1_log10": (-7.0, -5.0),     # log10(K1 [m/s])
+    "K2_log10": (-7.0, -5.0),     # log10(K2 [m/s])
+    "R_mm_a":   (120.0, 400.0),    # recharge [mm/a]
+}
+
+# --- Slider ranges
+log_minK, log_maxK = -8.0, -2.0
+R_min_mm_a, R_max_mm_a = 0.0, 500.0
+
+# --- Observation points for exercise
+x_obs = np.arange(0.0, 20.0 + 1e-9, 2.0)
 
 # -------------------------
 # Controls above plot
 # -------------------------
-cols = st.columns((1, 1), gap="large")
+cols = st.columns((1, 1, 1), gap="large")
 
 with cols[0]:
-    with st.expander("Modify the plot", expanded=False):
-        n_points = 100
-        show_flux = st.checkbox("Show flux plot (q = R·x)", value=False)
-
-with cols[1]:
-    exercise_mode = st.toggle("Exercise mode (generate synthetic observations)", value=False)
+    exercise_mode = st.toggle(":rainbow[**Exercise mode**] (generate synthetic observations)", value=False)
     if exercise_mode:
         if "exercise_scenario" not in st.session_state:
             st.session_state.exercise_scenario = generate_exercise_scenario()
@@ -148,6 +173,8 @@ with cols[1]:
             st.session_state.R_mm_a_model = float(sc["R_init_mm_a"])
         if "user_pick" not in st.session_state:
             st.session_state.user_pick = None
+        if "variant_id" not in st.session_state:
+            st.session_state.variant_id = 0
     
     else:
         # optional cleanup when leaving exercise mode
@@ -155,14 +182,20 @@ with cols[1]:
             st.session_state.pop(k, None)
     
     if exercise_mode:
-        st.write("Which parameter should be modified?")
-        st.session_state.user_pick = st.radio(
-            "Select one:",
-            ["K1", "K2", "RCH"],
-            index=None,
-            key="pick_widget",
-        )
-
+        with cols[1]:
+            st.write(":green[**Answer the Question:**] Which parameter should be modified next?")
+            radio_key = f"pick_widget_{st.session_state.variant_id}"
+            st.session_state.user_pick = st.radio(
+                "Select one:",
+                ["K1", "K2", "RCH"],
+                index=None,
+                key=radio_key,
+            )
+with cols[2]:
+    with st.expander("Modify the plot", expanded=False):
+        n_points = 100
+        show_flux = st.checkbox("Show flux plot (q = R·x)", value=False)
+        
 cols2 = st.columns((1,1,1))
 with cols2[1]:
     if exercise_mode:
@@ -172,7 +205,7 @@ with cols2[1]:
     else:
          R_mm_a = st.slider("Recharge R [mm/a]", R_min_mm_a, R_max_mm_a, 100.0, 5.0, key="R_widget")
     R = mm_a_to_m_s(R_mm_a)
-    st.write("**Recharge R [m/s]:** %5.2e" % R)
+    st.write("**Recharge $R$ (m/s):** %5.2e" % R)
     
 with cols2[0]:
     if exercise_mode:
@@ -182,7 +215,7 @@ with cols2[0]:
     else:
         K1s = st.slider("_(log of) K1 [m/s]_", log_minK, log_maxK, -5.0, 0.01, format="%4.2f", key="K1s_widget")
     K1 = 10 ** K1s
-    st.write("**K1 [m/s]:** %5.2e" % K1)
+    st.write("**$K_1$ (m/s):** %5.2e" % K1)
     
 with cols2[2]:
     if exercise_mode:
@@ -192,7 +225,7 @@ with cols2[2]:
     else:
         K2s = st.slider("_(log of) K2 [m/s]_", log_minK, log_maxK, -5.3, 0.01, format="%4.2f", key="K2s_widget") 
     K2 = 10 ** K2s
-    st.write("**K2 [m/s]:** %5.2e" % K2)
+    st.write("**$K_2$ (m/s):** %5.2e" % K2)
     
 # -------------------------
 # Compute + plot
@@ -205,12 +238,12 @@ h_model = head_profile_two_zone_recharge_noflow_head(x, L1, L, K1, K2, R, h_righ
 # q(x) = R · x
 q = R * x
 
-fig, ax = plt.subplots(figsize=(9, 4.8))
+fig, ax = plt.subplots(figsize=(9, 5))
 ax.axvspan(0, L1,color="aquamarine", alpha=0.12)
 ax.axvspan(L1, L,color="blue", alpha=0.08)
 ax.axvline(L1, color="teal", linewidth=0.5)
 
-ax.plot(x, h_model, color="royalblue", linewidth=3, label="Model head h(x)")
+ax.plot(x, h_model, color="royalblue", linewidth=2, label="Model head h(x)")
 #ax.scatter([L], [h_right], s=100, color = "darkorange", zorder=5, label="Defined head")
 
 # --- y-axis: max of plotted data, rounded up to next multiple of 2
@@ -245,7 +278,7 @@ ax.hlines(
     xmin=L,
     xmax=L + x_ext,
     colors="royalblue",
-    linewidth=3,
+    linewidth=2,
     zorder=6,
     clip_on=False
 )
@@ -333,19 +366,20 @@ if exercise_mode:
 # Exercise buttons (below plot) — now safe
 # -------------------------
 if exercise_mode:
-    bcol = st.columns((1, 1, 2))
-    with bcol[0]:
+    bcol = st.columns((1, 1, 1, 1))
+    with bcol[1]:
         if st.button("Reset to beginning", use_container_width=True):
             sc = st.session_state.exercise_scenario
             st.session_state.K1s_model = float(np.log10(sc["K1_init"]))
             st.session_state.K2s_model = float(np.log10(sc["K2_init"]))
             st.session_state.R_mm_a_model = float(sc["R_init_mm_a"])
             st.session_state.user_pick = None
+            st.session_state.variant_id += 1
             
             clear_pick()
             st.rerun()
 
-    with bcol[1]:
+    with bcol[2]:
         if st.button("New variant", use_container_width=True):
             st.session_state.exercise_scenario = generate_exercise_scenario()
             sc = st.session_state.exercise_scenario
@@ -353,6 +387,7 @@ if exercise_mode:
             st.session_state.K2s_model = float(np.log10(sc["K2_init"]))
             st.session_state.R_mm_a_model = float(sc["R_init_mm_a"])
             st.session_state.user_pick = None
+            st.session_state.variant_id += 1
             
             clear_pick()
             st.rerun()
