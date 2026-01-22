@@ -1,0 +1,370 @@
+[
+    {
+        "image": "images/slide_1.png",
+        "notes": "Willkommen zur Grundwasserbewirtschaftung mit Computermodellen \u2013 Thema [11]: Grundwasserneubildung\rSchwerpunkt der Veranstaltung ist die Grundwasserneubildung, als wichtige (Zufluss)-Randbedingung f\u00fcr Grundwassersysteme\rNachfolgend die wichtigsten Folien, zum Teil mit Kommentaren (Stand 2022 01 05 // 17:00 Uhr; Kommentare werden ggf. weiter erg\u00e4nzt),\rNeben diesen Folien finden Sie im OPAL-Kurs weitere Materialien, u. a. Videos zu den \u00dcbungen und elektronische Kontrollfragen,\rBei Fragen, Kommentaren und Hinweisen freuen wir uns von Ihnen zu h\u00f6ren."
+    },
+    {
+        "image": "images/slide_2.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_3.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_4.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_5.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_6.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_7.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_8.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_9.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_10.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_11.png",
+        "notes": "Schwerpunkte / Ziele\rGrundwasserneubildung als wichtige Randbedingung verstehen und anwenden\rEinfache Rechnungen nach den Verfahren von \rRenger & Strebel\rBagrov & Glugla"
+    },
+    {
+        "image": "images/slide_12.png",
+        "notes": "Schwerpunkte / Ziele\rGrundwasserneubildung als wichtige Randbedingung verstehen und anwenden\rEinfache Rechnungen nach den Verfahren von \rRenger & Strebel\rBagrov & Glugla"
+    },
+    {
+        "image": "images/slide_13.png",
+        "notes": "Einf\u00fchrende Erl\u00e4uterungen zur Unsicherheit\rDas System ist aus den bisherigen LV vertraut (Grabenanstr\u00f6mung), s. LV 02 bzw. auch https://mybinder.org/v2/gh/ThoReimann/HydroTeaching/master -> MWW01/MWW01_T02...\rZufluss hier \u00fcber Grundwasserneubildung\rAbfluss \u00fcber definiertes Potential\rals Funktion von Zufluss und hydraulischen Eigenschaften (K-Wert) stellt sich Druckpotential ein\rMessung Druckpotential (= Wasserstand) mittels Messstelle\rSystem ist nicht eindeutig, da \u2026[n. Folie]"
+    },
+    {
+        "image": "images/slide_14.png",
+        "notes": "Mehrdeutigkeit\rSteigende Grundwasserneubildung kann durch einen reduzierten hydraulischen Widerstand K kompensiert werden (d. h. ein gr\u00f6\u00dferer K-Wert), wobei sich das Druckpotential nicht \u00e4ndern muss\rEs \u00e4ndert sich der Abfluss in die Randbedingung, dieser wird aber (typischerweise) nicht \u00fcberwacht\rdieses Verst\u00e4ndnis ist wichtig, da die GWN zusammen mit der hydraulischen LF Kalibrierparameter sind\rKonsequenz: GWN m\u00f6glichst gut bestimmen (\u2018messen\u2019) bzw. die Unsicherheiten im Bezug auf GWN-Daten kennen"
+    },
+    {
+        "image": "images/slide_15.png",
+        "notes": "Beispiel Wasserversorger\rbekanntes Beispiel"
+    },
+    {
+        "image": "images/slide_16.png",
+        "notes": "Beispiel\rverf\u00fcgbare Daten zur Grundwasserneubildung Variante A (Quelle: LfULG \u2013 iDA)"
+    },
+    {
+        "image": "images/slide_17.png",
+        "notes": "Beispiel\rverf\u00fcgbare Daten zur Grundwasserneubildung Variante B (Quelle: LfULG \u2013 iDA)"
+    },
+    {
+        "image": "images/slide_18.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_19.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_20.png",
+        "notes": "Bedeutung der Grundwasserneubildung\rGrundwasserneubildung ist eine wesentliche Eingangsgr\u00f6\u00dfe f\u00fcr  Computermodelle \rzur Ausweisung von Einzugsgebieten bei Versorgungsbrunnen (Schutzzone III), vgl. zugeh\u00f6rige \u00dcbung\rzur Unterst\u00fctzung des Managements der Ressource Grundwasser\rzur Beurteilung der Schadstoffausbreitung im Grundwasser (Flie\u00dfwege und Eintragskonzentrationen) \rGanz allgemein beeinflusst die Grundwasserneubildung die Grundwasserdynamik hinsichtlich Wassermengen, Flie\u00dfwegen und Verweilzeiten.\rModelltechnisch kann sie als Randbedingung zweiter Art (Zufluss) oder als Quellterm implementiert werden."
+    },
+    {
+        "image": "images/slide_21.png",
+        "notes": "Erl\u00e4uterung [in Englisch]\rShown is the catchment / flow divide for a production well (blue line)\rThe questions is, how much area should be considered for the catchment? (i.e. to define a water protection zone)\rTo answer this question, the relationship between pumping rate (= outflow) and recharge x area (= inflow) can be used\r\rThis diagram illustrate the effect of uncertainty related to recharge on the catchment size\rThe smaller the recharge rate, the bigger the catchment"
+    },
+    {
+        "image": "images/slide_22.png",
+        "notes": "Erl\u00e4uterung [in Englisch]\rThe figure shows isolines of equal solute concentration (computed by some computer software)\rUpper part: without recharge, concentration is comparatively higher than in the lower part\rLower part: recharge results in dilution and overall lower concentrations"
+    },
+    {
+        "image": "images/slide_23.png",
+        "notes": "Komponenten der GWN:\rInfiltrationswasser: entsteht durch Wasser, welches an der Erdoberfl\u00e4che versickert, z. B. Niederschlagswasser oder Wasser aus Oberfl\u00e4chengew\u00e4ssern (\u00fcblicherweise Hauptkomponente der GWN)\rKondensationswasser: Wasser aus Taubildung durch Temperaturunterschiede zwischen Tag und Nacht (kann in ariden Gebieten eine Rolle spielen)\rjuveniles Wasser: Wasser, das erstmals am Wasserkreislauf teilnimmt, z. B. magmatisches Wasser"
+    },
+    {
+        "image": "images/slide_24.png",
+        "notes": "Verbingung Bodenwasserhaushalt \u2013 GWN\rAbbildung zeigt den Verlauf des Wassergehalts \u00fcber ein Jahr\rGWN findet statt, wenn die Feldkapazit\u00e4t \u00fcberschritten wird (in der Abbildung blau markiert); d. h. die Grundwasserneubildung findet in Abh\u00e4ngigkeit von u. a. den bodenphysikalischen Eigenschaften zu bestimmten Zeiten statt"
+    },
+    {
+        "image": "images/slide_25.png",
+        "notes": "Example for recent (2020) drought conditions in Germany resulting in less recharge\rRight side figure: plot of two groundwater observation well (yellow and green line) together with a river stage (the river is called Parthe)\rThe groundwater head demonstrate that due to reduced recharge water levels significantly drop"
+    },
+    {
+        "image": "images/slide_26.png",
+        "notes": "Szenarien f\u00fcr die Grundwasserneubildung\rin A (linke Seite der Abbildung) ist eine einfache Situation dargestellt. Das Gel\u00e4nde ist eben (damit kein Oberfl\u00e4chenabfluss) und in der Bodenzone findet kein Zwischenabfluss statt. In diesem Fall ist die Grundwasserneubildung aus Niederschlage n\u00e4herungsweise Niederschlag minus Evapotranspiration.\rin B wird die Sitatuion etwas komplexer aufgrund zus\u00e4tzlicher Gel\u00e4ndeneigung (Oberfl\u00e4chenabfluss) und Zwischenabfluss.\rin C weiterhin zus\u00e4tzlich infiltrierendes Oberfl\u00e4chengew\u00e4sser (auch m\u00f6glich z. B. undichte Kanalisation etc.)."
+    },
+    {
+        "image": "images/slide_27.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_28.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_29.png",
+        "notes": "Gr\u00f6\u00dfenordnung des Wasserdargebots f\u00fcr Deutschland\rAbbildung aus dem Hydrologischen Atlas Deutschland"
+    },
+    {
+        "image": "images/slide_30.png",
+        "notes": "Aufgabe / Frage:\rKompontenten im aktuellen Wasserhaushalt f\u00fcr ein definiertes Gebiet (hier Stadtgebiet Dresden)\rWenn Sie dar\u00fcber nachdenken: es sollten einige sein\u2026"
+    },
+    {
+        "image": "images/slide_31.png",
+        "notes": "Beispiel: Bodenwasserhaushalt\rEinfache Gleichung f\u00fcr den Bodenwasserhaushalt\rDer unterirdische Abfluss D ist nicht gleich die Grundwasserneubildung, da z. B. Zwischenabfluss stattfinden k\u00f6nnte (s. vorige Folien)"
+    },
+    {
+        "image": "images/slide_32.png",
+        "notes": "Beispiel Wasserbilanz f\u00fcr einen Grundwasserleiter\rAbbildung stellt einen \u2018beliebigen\u2019 Grundwasserleiter dar\r\rExplanation of variables:\rRrain is direct recharge from rainfall (m3); \rRF is irrigation return flow (m3); \rQon and Qoff are lateral groundwater flows into and out of the groundwater system (m3); \rQriver is river seepage recharge (m3); \rET is evapotranspiration (m3); \rPG is extraction of groundwater by pumping (m3); \rQbf is baseflow (groundwater discharge to streams or springs) (m3 ); and \r\u0394S is change in groundwater storage (m3). \rA positive \u0394S indicates an increase in groundwater storage, while a negative \u0394S represents a decrease in groundwater storage."
+    },
+    {
+        "image": "images/slide_33.png",
+        "notes": "Wasserbilanz \u2013 Schema aus Healy (2010)\rDie zugeh\u00f6rige Gleichung folgt auf der n\u00e4chsten Folie\rSie k\u00f6nnen das Schema / die Gleichung mit dem Gedankenspiel \u2018zur aktuellen Wasserbilanz von Dresden\u2019 vergleichen (3 Folien zuvor)\r\rBedeutung der Abk\u00fcrzungen:\rET = Evapotransp.\rP = Niederschlag\rR = Abfluss\rQ = Grundwasserabfluss\rD = Perkolation\rIndexe\rUZ = unsaturated zone\rgw = groundwater\rsw = surface water"
+    },
+    {
+        "image": "images/slide_34.png",
+        "notes": "Wasserbilanz\rDie Wasserbilanz kann viele Glieder umfassen und sehr umfangreich werden\rDamit l\u00e4sst sich das System sehr gut Beschreiben, ABER:\rman m\u00fcsste dazu auch die einzelnen Bilanzterme quantifizieren / messen k\u00f6nnen"
+    },
+    {
+        "image": "images/slide_35.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_36.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_37.png",
+        "notes": "Literaturempfehlung \u2013 Hydrogeology Journal 10 (01/2002)\rThemenheft zur Grundwasserneubildung\rUmfassende und bew\u00e4hrte Artikel\rZugang: https://link.springer.com/journal/10040/volumes-and-issues/10-1"
+    },
+    {
+        "image": "images/slide_38.png",
+        "notes": "Literaturempfehlung\rSehr gutes Buch / Buchbeitrag von R. Healy und J. Nimma (beide USGS)\rEmpfehlung, falls das Thema \u2018Grundwasserneubildung\u2019 im weiteren Verlauf des Studiums (noch starker) relevant werden sollte"
+    },
+    {
+        "image": "images/slide_39.png",
+        "notes": "Literaturempfehlung\rSehr gutes Buch / Buchbeitrag von R. Healy und J. Nimma (beide USGS)\rEmpfehlung, falls das Thema \u2018Grundwasserneubildung\u2019 im weiteren Verlauf des Studiums (noch starker) relevant werden sollte"
+    },
+    {
+        "image": "images/slide_40.png",
+        "notes": "Methoden \u2013 Ideensammlung\rGrundwasserneubildung ist ein Teil der (komplexen) Wasserbilanz\rmit welchen Methoden kann / k\u00f6nnte die Grundwasserneubildung ermittelt werden?"
+    },
+    {
+        "image": "images/slide_41.png",
+        "notes": "Methoden, um die Grundwasserneubildung zu bestimmen / zu messen:\res existiert eine Vielzahl von Methoden\rAusgangspunkt ist \u00fcberwiegend, die einzelnen Glieder der Wasserbilanz zu bestimmen (z. B. Evapotranspiration)\rdiese k\u00f6nnen nach verschiedenen Kriterien sortiert werden\rdie Struktur / Gliederung der Methoden stammt aus Scanlon et al. (2002) \u2013 Hydrogeology Journal 10 (01/2002): https://link.springer.com/article/10.1007/s10040-001-0176-2"
+    },
+    {
+        "image": "images/slide_42.png",
+        "notes": "Schema\raus der Litertur (Scanlon et al.2002)\rKategorien f\u00fcr die verschiedenen Methoden"
+    },
+    {
+        "image": "images/slide_43.png",
+        "notes": "Beispiel Abflussmodellierung\rEmpirisches Modell zur Bestimmung der Wasserhaushaltsgr\u00f6\u00dfen\rErgebnis ist die fl\u00e4chendifferenzierte Grundwasserneubildung\rweitere Informationen z. B. https://www.bad-wuennenberg.de/medien/bindata/2378b-Anhang9_2-Methodenbeschreibung-GWNB-Modelle.pdf"
+    },
+    {
+        "image": "images/slide_44.png",
+        "notes": "Zeitliche Variation\rDas Beispiel (langj\u00e4hrige Daten aus Botswana) zeigt die hohe zeitliche Variation der Grundwasserneubildung\rebenfalls deutlich wird, wie der Grundwasserspiegel auf die Neubildung reagiert\rim Beispiel ist die zeitliche Variation sehr ausgepr\u00e4gt"
+    },
+    {
+        "image": "images/slide_45.png",
+        "notes": "Beispiel \u2013 Direkte Messung der Wasserbilanzterme mit Lysimetern\rLysimeterstation Wagna (Steiermark)\rInformationen u. a. http://lysimeter.com"
+    },
+    {
+        "image": "images/slide_46.png",
+        "notes": "Direkte Berechnung der Wasserstr\u00f6mung in der Bodenzone / unges\u00e4ttigten Zone\rBasis sind Str\u00f6mungsgleichungen f\u00fcr die unges\u00e4ttigte Zone, z. B. Richards-Gleichung\rmit entsprechenden Modellen sowie mit den n\u00f6tigen Parametern und Randbedingungen (z. B. Niederschlag) kann die Grundwasserneubildung berechnet werden"
+    },
+    {
+        "image": "images/slide_47.png",
+        "notes": "Richards Gleichung \u2013 Grunds\u00e4tzliche Vorgehensweise und Probleme\rDie Anwendung der Richards-Gleichung setzt die Kenntnis der Funktionen K(\u03b8) und \u03b8(\u03c8) voraus.\rBei Vorgabe dieser beiden Funktionen ist die L\u00f6sung der Richards-Gleichung mit numerischen Verfahren m\u00f6glich. \rBeispiele f\u00fcr entsprechende Softwarepakete: Hydrus, Daisy, Wave, Richy\rProbleme:\r\t\u2013\tDie ben\u00f6tigten Funktionsparameter h\u00e4ngen vom Bodenmaterial ab.\r\t\u2013\tSie k\u00f6nnen sogar innerhalb eines Bodentyps starken Schwankungen unterliegen, sodass eine Parameterbestimmung f\u00fcr jeden Einzelfall erforderlich ist.\r\t\u2013\tDer Zusammenhang zwischen Wasserspannung \u03c8 und Bodenfeuchte \u03b8 ist zudem h\u00e4ufig durch Hysterese gekennzeichnet.\rDie Parametrisierung der Funktionsverl\u00e4ufe von K(\u03b8) und \u03b8(\u03c8) ist somit schwierig und aufw\u00e4ndig.\rBen\u00f6tigte Daten stehen i. d. R. nicht oder zumindest nicht in ausreichendem Umfang zur Verf\u00fcgung."
+    },
+    {
+        "image": "images/slide_48.png",
+        "notes": "Beispiel f\u00fcr die Berechnung im Zusammenhang mit MODFLOW\rUZF Package (simuliert Str\u00f6mung in der unges\u00e4ttigten Zone)\rstatt RCH (wie z. B. im Beleg) wird in UZF der Niederschlag in Kombination mit weiteren Parametern (Bodenhydraulik, Verdunstung) verwendet\rErgebnis der Berechnung ist die Grundwasserneubildung"
+    },
+    {
+        "image": "images/slide_49.png",
+        "notes": "Beispiel WTF Methoden\rAnnahme: Grundwasserneubildung f\u00fchrt zum Ansteigen der Druckpotentiale\rAnstieg Grundwasserspiegel (dh) \u00fcber einen Zeitraum (dt) wird mit dem effektiven Porenraum (SY = specific yield ~ effective Porosit\u00e4t)\rProblem: bis zu welcher Basis wird dh gemessen? Die Spitze ist klar, aber die Basis muss aus einer Projektion des Wasserspiegels abgesch\u00e4tzt werden\rVorgehen demonstriert ein Beispiel-Video in OPAL"
+    },
+    {
+        "image": "images/slide_50.png",
+        "notes": "Beispiel WTF\rSY ~ 0.1 (Annahme \u2013 z. T. schluffige / lehmige Sedimente im Untergrund)\rEbenfalls Annahme: kein Einfluss von \u2018Randbedingungen\u2019 (hier z. B. Elbe)"
+    },
+    {
+        "image": "images/slide_51.png",
+        "notes": "Beispiel Chlorid-Methode\rBasis ist die Chloridkonzentration in Niederschlag und Grundwasser\rMit einer Mischungsrechnung kann die Grundwasserneubildung berechnet werden\rgut geeignet, um auch geringe Grundwasserneubildung zu quantifizieren (z. B. sehr aride Gebiete wie W\u00fcsten)"
+    },
+    {
+        "image": "images/slide_52.png",
+        "notes": "Beispiel \u2013 Wasserbilanz f\u00fcr ein Einzugsgebiet\rBasis ist die Wasserbilanz f\u00fcr ein definiertes Gebiet (IN = OUT)"
+    },
+    {
+        "image": "images/slide_53.png",
+        "notes": "Wasserbilanz / Wasserwerksmethode\rWasserbilanz f\u00fcr das Einzugsgegbiet eines Brunnens\rBei bekannter Gr\u00f6\u00dfe des Einzugsgebietes und bekannter Entnahmerate kann die Grundwasserneubildung abgesch\u00e4tzt werden"
+    },
+    {
+        "image": "images/slide_54.png",
+        "notes": "\u00dcbungsaufgabe 1\rVideo zur L\u00f6sung im OPAL Kurs"
+    },
+    {
+        "image": "images/slide_55.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_56.png",
+        "notes": "\u00dcberblick zu den Methoden\rDie Abbildungen zeigen, f\u00fcr welche Gr\u00f6\u00dfenordnungen (Menge der GWN) die einzelnen Methoden geeignet sind"
+    },
+    {
+        "image": "images/slide_57.png",
+        "notes": "\u00dcberblick zu den Methoden\rDie Abbildungen zeigen, f\u00fcr welche Fl\u00e4chen die einzelnen Methoden aussagef\u00e4hig sind"
+    },
+    {
+        "image": "images/slide_58.png",
+        "notes": "\u00dcberblick zu den Methoden\rDie Abbildungen zeigen, f\u00fcr welche Zeitr\u00e4ume die einzelnen Methoden aussagef\u00e4hig sind"
+    },
+    {
+        "image": "images/slide_59.png",
+        "notes": "\u00dcberblick zu den Methoden\rDie Abbildungen zeigen, f\u00fcr welche Zeitr\u00e4ume die einzelnen Methoden aussagef\u00e4hig sind"
+    },
+    {
+        "image": "images/slide_60.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_61.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_62.png",
+        "notes": "Einflussgr\u00f6\u00dfe Landnutzung\rThe figure shows an areal view for a random region\rYou can differentiate between forest / agriculture / urban areas\rIf just some average number for recharge is available, you still can differentiate spatial distribution if the landuse is known (e.g. there is more recharge under acres in comparison to forest)"
+    },
+    {
+        "image": "images/slide_63.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_64.png",
+        "notes": "Einflussfaktor Niederschlag\rNiederschlag in Form von Regen, Schnee, Nebel, Tau, Reif\rDominante Einflu\u00dfgr\u00f6\u00dfe auf die GWN ist die Niederschlagsmenge.\rWinterniederschl\u00e4ge tragen st\u00e4rker zur GWN bei als Sommerniederschl\u00e4ge.\rZur Berechnung der GWN ist die r\u00e4umliche Verteilung des Niederschlags wichtig.\rVerfahren zur Auswertung von Daten vorhandener Messstationen (z. B. DWD): \r\t\u2013 Polygonmethode\r\t\u2013 Isohyetenmethode"
+    },
+    {
+        "image": "images/slide_65.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_66.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_67.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_68.png",
+        "notes": "Bei geringem Grundwasserflurabstand k\u00f6nnen Pflanzen Grundwasser nutzen.\rDieser Effekt wirkt sich bis ca. 2.5 m unter GOK aus."
+    },
+    {
+        "image": "images/slide_69.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_70.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_71.png",
+        "notes": "Schwerpunkte / Ziele\rGrundwasserneubildung als wichtige Randbedingung verstehen und anwenden\rEinfache Rechnungen nach den Verfahren von \rRenger & Strebel\rBagrov & Glugla"
+    },
+    {
+        "image": "images/slide_72.png",
+        "notes": "Berechnung der GWN mit dem Verfahren nach Bagrov-Glugla\rweit verbreitete Anwendung im Osten von Deutschland (ehem. DDR)\rDer Bagrov-Faktor h\u00e4ngt ab von der Bodenart, von Bodeneigenschaften und von der Ertragsklasse (Landwirtschaft).\rDer Bagrov-Faktor kann aus Lysimetermessungen ermittelt werden.\rDas Verfahren von Bagrov-Glugla bestimmt mit einem relative einfachen Ansatz die mittlere j\u00e4hrliche Grundwasserneubildung (Basis sind langj\u00e4hrige Datenreihen)\rVariation innerhalb eines Jahres / zwischen verschiedenen (z. B. trockenen / feuchten) Jahren wird nicht weiter differenziert"
+    },
+    {
+        "image": "images/slide_73.png",
+        "notes": "Bagrov-Faktor:\reinfache grafische Bestimmung mit Nomogrammen f\u00fcr landwirtschaftlich genutzte Fl\u00e4chen und W\u00e4lder\rim linken Diagramm auf der x-Achse ist die Bodenart verzeichnet (Delta 0.02 bezeichnet den abschl\u00e4mmbaren Bodenanteil, d. h. Sedimentdurchmesser < 0.02 mm\rdie Ertragsklasse ist ein Parameter aus der Landwirtschaft\rd. h. n = f (Boden, Landnutzung)"
+    },
+    {
+        "image": "images/slide_74.png",
+        "notes": "Das Nomogramm stellt auf der x-Achse das Verh\u00e4ltniss von Niederschlag und potentieller Verdunstung (Eingangsgr\u00f6\u00dfen) dar\rmit dem Bagrov-Faktor n (s. vorige Folie) kann das Verh\u00e4ltnis von realer zu potentieller Verdunstung abgelesen werden, d. h. es kann die reale Verdunstung ETR bestimmt werden\rdie Grundwasserneubildung ergibt sich dann als R = P - ETR\r\rBei den Ergebnissen des Bagrov-Verfahrens handelt es sich um langj\u00e4hrige Mittelwerte.\rF\u00fcr geringe Grundwasserflurabst\u00e4nde (< 1 m; bei Wald < 2 m) ist           ETR = ETP.\rF\u00fcr Wasserfl\u00e4chen ist ETR = 700 mm.\rDas Bagrov-Verfahren ist nicht anwendbar f\u00fcr kontinentales, arides Klima mit P < ETP/2."
+    },
+    {
+        "image": "images/slide_75.png",
+        "notes": "\u00dcbungsaufgabe\rL\u00f6sung als Video in OPAL"
+    },
+    {
+        "image": "images/slide_76.png",
+        "notes": "Beispiel rechnen:\rNiederschlag langj\u00e4hriges Mittel 825mm\rETP 535 mm\rP/ETP = 1.54\rAcker; abschl\u00e4mmbare Bodenteilchen 40% mit Ertragsklasse 33 -> Nomogramm ablesen n = ~2.2\rNomogramm ablesen ETR=0.93 ETP; ETR = 498mm\rGWN = 825 \u2013 498 = 327 mm"
+    },
+    {
+        "image": "images/slide_77.png",
+        "notes": "Anwendung\rf\u00fcr Darstellung in Rasterdaten (Karten, \u00e4hnlich das Eingangsbeispiel f\u00fcr den Wasserersorger der Lausitz)\rDie Festlegung des Bagrov-Faktors er-folgt nach Glugla durch Ber\u00fccksichtigung der Bodenart, von Bodeneigenschaften und der Ertragsklasse.\rDabei wurden Bodenkarten sowie In-formationen aus der Landwirtschaft verwendet."
+    },
+    {
+        "image": "images/slide_78.png",
+        "notes": "Aktuelle Anwendung\rBAGLUVA\rgreift auf div. Datenbanken / -quellen zur\u00fcck"
+    },
+    {
+        "image": "images/slide_79.png",
+        "notes": "Ergebnisse Bagluva\rKarte der Grundwasserneubildung\rVerifiziert mit Lysimterdaten f\u00fcr diverse Einzugsgebiete"
+    },
+    {
+        "image": "images/slide_80.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_81.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_82.png",
+        "notes": "Berechnung der Grundwasserneubildung nach Renger und Strebel - Grundlage:\rAuswertung von Feldversuchen zum Bodenwasserhaushalt f\u00fcr 20 Standorte\rZusammenhang zwischen Niederschlag (differenziert bzgl. Winter und Sommer), potenzieller Verdunstung (ETP nach Haude) und pflanzenverf\u00fcgbarer Bodenwassermenge\rAufstellen von Regressionsgleichungen und Bestimmung der Regressionsparameter"
+    },
+    {
+        "image": "images/slide_83.png",
+        "notes": "pflanzenverf\u00fcgbare Wassermenge f\u00fcr grundwassernahe Standorte:\u000bWPfl = nFK\u00b7We + KA mit KA = kapillarer Aufstieg (wenn relevant)\rBeispiel:\rnFK = 13 mm / dm \rWe = 7 dm\rWpfl = 13 mm / dm x 7 dm = 91 mm\rkapillarer Aufstieg: KA = Kr\u00b7ta mit Kr = Rate des kapillaren Aufstiegs, ta = Dauer des kapillaren Aufstiegs\rKr aus bodenkundl. Kartieranleitung\rta = Hauptwachstumszeit (Getreide: 60 d, Hackfr\u00fcchte und Mais: 90 d; Gr\u00fcnland: 120 d)"
+    },
+    {
+        "image": "images/slide_84.png",
+        "notes": "Nomogramm (als alternative zu den eingangs vorgestellten Regressionsgleichungen)\rstarten mit Wpfl\rSchnittpunkt mit Winter- und Sommerniederschlag suchen\rETP als n\u00e4chster Schnittpunkt\rGWN ablesen"
+    },
+    {
+        "image": "images/slide_85.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_86.png",
+        "notes": "Beispiel\rf\u00fcr die \u00dcbungsaufgabe gibt es ein VIDEO im Opal-Kurs"
+    },
+    {
+        "image": "images/slide_87.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_88.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_89.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_90.png",
+        "notes": "Die nachfolgenden Folien geben einen kurzen \u00dcberblick zu den M\u00f6glichkeiten, wie Grundwasserneubildung in MODFLOW implementiert werden kann\rRCH (Recharge)\rdirekte Eingabe der GWN als Randbedingung zweiter Art\rzeitliche Variation m\u00f6glich, indem im Modell verschiedene Perioden definiert werden (innerhalb der Periode ist die GWN konstant)\u000b\u000bVerdunstung mittels EVT\rAbbildung (links) aus dem Manual\r\rVerdunstung mittels EVT\rblauer Pfeil zeigt die Tiefe (z-Achse)\rGr\u00fcner Pfeil ziegt die Gr\u00f6\u00dfe der Verdunstung\rbis h_0 wirkt die maximale Verdungstung\r\u00fcber den Bereich d nimmt die Wirksamkeit der Verdunstung linear ab"
+    },
+    {
+        "image": "images/slide_91.png",
+        "notes": "MODFLOW-UZF\rUZF (unsaturated zone flow) bildet die Str\u00f6mung in der unges\u00e4ttigten Zone (vereinfacht) ab\rurspr\u00fcnglich entwickelt, um die Infiltration aus entkoppelten Oberfl\u00e4chengew\u00e4ssern besser zu beschreiben (rot markierter Bereich in der Abbildung)\rbei entkoppelten Oberfl\u00e4chengew\u00e4ssern kann dass infiltrierende Wasser eine l\u00e4ngere Zeit bis zum Grundwasserleiter ben\u00f6tigen (z. B. wenn sich dieser weit unterhalb des Oberfl\u00e4chengew\u00e4ssers befindet); ebenso werden Speicherprozesse wirksam (z. B. bei geringer Bodenfeuchte)\rEingangsparameter f\u00fcr UZF sind u. a.\rNiederschlag\rVerdunstung\rBrooks-Corey Exponent f\u00fcr die Beschreibung des Saugspannungs-S\u00e4ttigungsverhaltens des Untergrundes"
+    },
+    {
+        "image": "images/slide_92.png",
+        "notes": "Berechnung UZF\rdunkelblau Linie zeigt Benetzung (Befeuchtungsfront)\rdurchgezogene Linie = reale Verteilung der Feuchte\rgepunktete Linie = vereinfachte Abbildung in UZF als Blockstr\u00f6mung\rhellblaue Linie zeigt Abtrocknung (nach Ende der Infiltration)\rdurchgezogene Linie = reale Verteilung der Feuchte\rgepunktete Linie = vereinfachte Abbildung in UZF als stufenf\u00f6rmige Blockfunktion"
+    }
+]

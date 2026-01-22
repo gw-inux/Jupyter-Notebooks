@@ -1,20 +1,16 @@
 import streamlit as st
 
-st.title("GROWi26 App! 💦")
-st.header('Willkommen zur Sammlung von interaktiven Tools für MWW01 👋')
+st.title("iGROUNDWATER26 App! 💦")
+st.header('Welcome to the collection of interactive tools for *Groundwater* 👋')
 
 st.markdown(
     """
-    Diese Anwendung begleitet die Lehrveranstaltung MWW01 - Grundwasserbewirtschaftung mit Computermodellen, welche Teil der Masterausbildung der Fachrichtung Hydrowissenschaften der TU Dresden ist. 
-     
-    Die Anwendung besteht aus
-    - verschiedenen Tools, welche einzelne Zusammenhänge, Methoden, Anwendungen, und ähnliches erläutern und 
-    - den Folien zu den einzelnen Themenbereichen sowie.
-    
-    Die einzelnen Tools und Themen können über die Menüleiste an der Seite ausgewählt werden.
-    
-     Der Inhalt der App wird im Laufe des Semesters kontinuierlich erweitert.
-     
-     :red[**Umfrage:** ] **Bitte beteiligen Sie sich an der Umfrage zur GROWi26 App** [:red[**Link Hier**]](https://www.soscisurvey.de/iNUX_survey/?q=qnr5)
+This application accompanies the course Groundwater, which is part of the Master’s program in Hydrosciences and Engineering at TU Dresden.
+
+The application consists of
+* various tools that explain individual relationships, methods, applications, and related topics, and
+* the slides for the individual thematic sections.
+
+The individual tools and topics can be selected via the menu on the sidebar.
 """
 )
