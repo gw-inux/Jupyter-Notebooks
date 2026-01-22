@@ -1,0 +1,278 @@
+[
+    {
+        "image": "images/slide_1.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_2.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_3.png",
+        "notes": "Brief excursus: conceptual models\rOne criterion for model classification distinguishes the qualitative from the quantitative description of a real system.\rA conceptual model provides a qualitative representation of the relevant system components, processes and impacts in the area of investigation.\rThis representation is often shown graphically, e.g. as block model (see slide), horizontal or vertical cross sections."
+    },
+    {
+        "image": "images/slide_4.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_5.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_6.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_7.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_8.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_9.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_10.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_11.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_12.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_13.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_14.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_15.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_16.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_17.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_18.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_19.png",
+        "notes": "The conceptual model is of high relevance and is an focus in this lectures\rMistakes in the conceptual model will highly affect model outcomes"
+    },
+    {
+        "image": "images/slide_20.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_21.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_22.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_23.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_24.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_25.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_26.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_27.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_28.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_29.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_30.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_31.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_32.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_33.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_34.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_35.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_36.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_37.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_38.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_39.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_40.png",
+        "notes": "Basic principle of MODFLOW\rMODFLOW = MODular FLOW model\rDeveloped in the 1970/80s to provide a genera solution for US hydrogeologists\rMODULAR to allow demand driven development (i.e. it allows to modify / extent the model if necessary)\rEven many small/undocumented MODFLOWversions or state/project versions."
+    },
+    {
+        "image": "images/slide_41.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_42.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_43.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_44.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_45.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_46.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_47.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_48.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_49.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_50.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_51.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_52.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_53.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_54.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_55.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_56.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_57.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_58.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_59.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_60.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_61.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_62.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_63.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_64.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_65.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_66.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_67.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_68.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_69.png",
+        "notes": "No notes"
+    }
+]

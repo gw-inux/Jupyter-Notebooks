@@ -23,7 +23,7 @@ import re
 
 # PART OF A MULTIPAGE-APP?
 # THEN REMOVE THE FOLLOWING LINE
-st.set_page_config(page_title="SlideJet - Present", page_icon="🚀")
+#st.set_page_config(page_title="SlideJet - Present", page_icon="🚀")
 
 # --- Default YAML path, use / ---
 #DEFAULT_YAML = "example.yaml"

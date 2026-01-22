@@ -1,0 +1,137 @@
+import streamlit as st
+import os
+
+def _navigate_to(path: str):
+    """Change page and scroll to the top on next render."""
+    if path != st.session_state.selected_path:
+        st.session_state.selected_path = path
+        st.session_state.scroll_to_top = True    
+        st.session_state.prev_path = path
+    st.rerun()
+    
+
+# --- Application parameters ---
+DEFAULT_START_PAGE = "90_Streamlit_apps/MHSE19/content/iGW26_Start.py"
+
+# --- MUST be first: layout setup wide / centered ---
+if "layout_choice" not in st.session_state:
+    st.session_state.layout_choice = "centered"
+
+st.set_page_config(page_title="iGW26 App", page_icon="💦", layout=st.session_state.layout_choice)
+st.sidebar.markdown("## 💧 :blue[iGW26 Navigation]")
+
+# --- CSS Styling ---
+st.markdown("""
+    <style>
+    section[data-testid="stSidebar"] button {
+        background: none !important;
+        border: none !important;
+        padding: 0.3rem 0.6rem !important;
+        text-align: left !important;
+        font-size: 1.2rem !important;
+        font-weight: 700 !important;
+        cursor: pointer !important;
+        margin-top: -1rem;
+    }
+    section[data-testid="stSidebar"] button:focus,
+    section[data-testid="stSidebar"] button:active,
+    section[data-testid="stSidebar"] button:hover {
+        background-color: rgba(44, 123, 229, 0.1) !important;
+        border-radius: 5px !important;
+    }
+    .subheader-label {
+        font-style: italic;
+        color: black;
+        font-size: 1rem;
+        text-decoration: underline;
+        margin-left: 0.5rem;
+        margin-top: -0.5rem;
+        margin-bottom: 0.5rem;
+    }
+    section[data-testid="stSidebar"] .block-container .stButton {
+        margin-top: 0rem !important;
+        margin-bottom: 0rem !important;
+        padding-top: 0rem !important;
+        padding-bottom: 0rem !important;
+    }
+    section[data-testid="stSidebar"] button {
+        line-height: 1.1 !important;
+    }
+    </style>
+""", unsafe_allow_html=True)
+
+# --- Pages definition / The content of your application / Header are with the target 'None' ---
+pages = {
+    "🟩 Slides": {
+        "📝 NuMo01: Introduction, Workflow": "90_Streamlit_apps/MHSE19/SlideJet_Presentations/NuMO_01_WS2526_SJpresent.py",
+        "📝 NuMo02: Conceptual Model": "90_Streamlit_apps/MHSE19/SlideJet_Presentations/NuMO_02_WS2526_SJpresent.py",
+        "📝 NuMo03: Mathematical Model": "90_Streamlit_apps/MHSE19/SlideJet_Presentations/NuMO_03_WS2526_SJpresent.py",
+    },
+    "🟧 Apps": {
+        "🧮 1D 2 Zonen": "06_Groundwater_modeling/1D_Flow_Two_Zones.py",
+        "🧮 1D 3 Zonen": "06_Groundwater_modeling/1D_Flow_Three_Zones.py",
+        "🧮 1D 2 Zonen RCH": "06_Groundwater_modeling/1D_Flow_Two_Zones_RCH.py",
+        "💧 1D Calibration I": "04_Basic_hydrogeology/GWF_1D_unconf_analytic_calib.py",
+        "💧 1D Calibration II": "04_Basic_hydrogeology/GWF_1D_unconf_analytic_noflow_calib.py",
+    },
+    "ℹ️ General Info": {
+        "About": "90_Streamlit_apps/MHSE19/content/iGW26_About.py",
+    }
+}
+
+# --- State tracking ---
+if "active_section" not in st.session_state:
+    st.session_state.active_section = None
+if "selected_path" not in st.session_state:
+    st.session_state.selected_path = DEFAULT_START_PAGE
+    
+# Space before the first button
+st.sidebar.markdown("<div style='margin-top: 2.0rem;'></div>", unsafe_allow_html=True)
+
+# --- Overview and About buttons (at top)
+if st.sidebar.button("💦 Overview", key="btn_overview"):
+#    st.session_state.selected_path = DEFAULT_START_PAGE
+#    st.rerun()   
+    _navigate_to(DEFAULT_START_PAGE)
+
+# --- Section menu + subpage logic ---
+for section, subpages in pages.items():
+    if st.sidebar.button(section, key=f"btn_{section}"):
+        st.session_state.active_section = section
+        # Auto-select first real subpage
+        for label, path in subpages.items():
+            if path is not None:
+                st.session_state.selected_path = path
+                break
+        st.rerun()
+
+    if st.session_state.active_section == section:
+        for label, path in subpages.items():
+            if path is None:
+                st.sidebar.markdown(f"<div class='subheader-label'>{label.replace('---', '').strip()}</div>", unsafe_allow_html=True)
+            else:
+                is_selected = st.session_state.selected_path == path
+#                display_label = f"👉 {label}" if is_selected else label
+                display_label = f"{label} 👈" if is_selected else label
+                indent, content = st.sidebar.columns([0.1, 0.9])
+                with content:
+                    if st.button(display_label, key=f"{section}_{label}"):
+                        st.session_state.selected_path = path
+                        st.rerun()
+
+# --- Run selected page ---
+if st.session_state.selected_path:
+    path = st.session_state.selected_path
+    if os.path.exists(path):
+        with open(path, "r", encoding="utf-8") as f:
+            exec(f.read(), globals())
+    else:
+        st.error(f"❌ File not found: `{path}`")
+
+# --- Layout switcher at bottom of the sidebar ---
+st.sidebar.markdown('---')
+layout_options = ["centered", "wide"]
+selected_layout = st.sidebar.radio("Page layout", layout_options, index=layout_options.index(st.session_state.layout_choice))
+if selected_layout != st.session_state.layout_choice:
+    st.session_state.layout_choice = selected_layout
+    st.rerun()

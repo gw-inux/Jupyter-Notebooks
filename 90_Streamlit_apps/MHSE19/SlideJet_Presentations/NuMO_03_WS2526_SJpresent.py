@@ -23,16 +23,16 @@ import re
 
 # PART OF A MULTIPAGE-APP?
 # THEN REMOVE THE FOLLOWING LINE
-#st.set_page_config(page_title="SlideJet - Present", page_icon="🚀")
+# st.set_page_config(page_title="SlideJet - Present", page_icon="🚀")
 
 # --- Default YAML path, use / ---
 #DEFAULT_YAML = "example.yaml"
-DEFAULT_YAML = "90_Streamlit_apps/MHSE19/SlideJet_Presentations/NuMO_01_WS2526_SJconfig.yaml"
+DEFAULT_YAML = "90_Streamlit_apps/MHSE19/SlideJet_Presentations/NuMO_03_WS2526_SJconfig.yaml"
 
 # --- Proxy ID --- This should be
 # an unique ID if the app is used
 # multiple times in a multipage app (string required)
-app_id = "app_01"
+app_id = "pres_03"
 #
 ###########################
 
