@@ -1,0 +1,278 @@
+[
+    {
+        "image": "images/slide_1.png",
+        "notes": "Willkommen zur Grundwasserbewirtschaftung mit Computermodellen \u2013Thema [20]: W\u00e4rmetransport im Untergrund\rSchwerpunkt der Veranstaltung ist der Transport von W\u00e4rme im Untergrund, der mit den bekannten Transportprozessen beschrieben werden kann\rNeben den Grundlagen (Wiederholung der Transportprozesse, Erweiterung zu W\u00e4rmetransport) steht auch die Anwendung mit MODFLOW und MT3D im Fokus der Veranstaltung\rNachfolgend die wichtigsten Folien, zum Teil mit Kommentaren (Stand 2022 01 20 // 16:30 Uhr; Kommentare werden ggf. weiter erg\u00e4nzt),\rNeben diesen Folien finden Sie im OPAL-Kurs weitere Materialien, u. a. elektronische Kontrollfragen,\rBei Fragen, Kommentaren und Hinweisen freuen wir uns von Ihnen zu h\u00f6ren."
+    },
+    {
+        "image": "images/slide_2.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_3.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_4.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_5.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_6.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_7.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_8.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_9.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_10.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_11.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_12.png",
+        "notes": "Ablauf / Inhalte der Veranstaltung\rim ersten Teil Wiederholung und Vertiefung / \u00dcbung zu V07 (Berechnung stat. Zahlen und Scatterdiagramm); s. Arbeitsblatt / XLS Datei im OPAL Kurs\rIm weiteren Verlauf Fokus auf Kalibrierung / Anwendung MODELMUSE"
+    },
+    {
+        "image": "images/slide_13.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_14.png",
+        "notes": "Temperaturverteilung im Untergrund\rOberfl\u00e4chennahes Grundwasser weist einen Jahresgang der Temperatur auf.\rDieser Effekt nimmt mit der Tiefe ab und ist ab ca. 20 m nicht mehr feststellbar. \rBei ungest\u00f6rten Verh\u00e4ltnissen wird die Temperaturverteilung ausschlie\u00dflich vom Jahresgang und vom geothermischen Gradienten bestimmt.\rDer geothermische Gradient resultiert aus der W\u00e4rmeproduktion im Erdinnern (inkl. radioaktiver Zerfall).\rAnthropogene Einfl\u00fcsse infolge von Tiefbau (Tiefgaragen, Tunnel), Leitungen (Abwasser, Fernw\u00e4rme) f\u00fchren zu Abweichungen vom gezeigten Temperaturverhalten."
+    },
+    {
+        "image": "images/slide_15.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_16.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_17.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_18.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_19.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_20.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_21.png",
+        "notes": "Weiter zur Zielsetzung\rDabei sollen im Folgenden nur die Auswirkungen der Grundwasserstr\u00f6mung auf den W\u00e4rmetransport betrachtet werden.\rEs geht nicht um Einfl\u00fcsse, die vom W\u00e4rmetransport auf die Grundwasserstr\u00f6mung ausge\u00fcbt werden, d. h. keine \u201eR\u00fcckkopplung\u201c z. B. \u00fcber temperaturabh\u00e4ngige Dichte\u00e4nderungen und daraus resultierende Gradienten."
+    },
+    {
+        "image": "images/slide_22.png",
+        "notes": "Ablauf / Inhalte der Veranstaltung\rim ersten Teil Wiederholung und Vertiefung / \u00dcbung zu V07 (Berechnung stat. Zahlen und Scatterdiagramm); s. Arbeitsblatt / XLS Datei im OPAL Kurs\rIm weiteren Verlauf Fokus auf Kalibrierung / Anwendung MODELMUSE"
+    },
+    {
+        "image": "images/slide_23.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_24.png",
+        "notes": "Motivating Example: Heat in a Solid Material\r- Consider a solid material with a heat source  \r- The heat source increases the temperature locally  \r- Heat spreads through the solid over time  \r- The figure and color gradients illustrate heat distribution  \r- This example helps to build intuition before moving to groundwater flow"
+    },
+    {
+        "image": "images/slide_25.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_26.png",
+        "notes": "W\u00e4rmeleitung\rIm Gegensatz zu Wasserinhaltsstoffen breitet sich W\u00e4rme nicht nur durch Konvektion (Advektion) und Dispersion aus. \rVielmehr spielt auch die W\u00e4rmeleitung (Konduktion, W\u00e4rmediffusion) eine Rolle.\rW\u00e4rmeleitung findet sowohl im Grundwasser als auch im Aquifermaterial statt.\rBei der W\u00e4rmeleitung handelt es sich um die Ausbreitung von W\u00e4rme in einem Festk\u00f6rper oder einem Fluid ausschlie\u00dflich aufgrund von Temperaturunterschieden. (Bewegungen des Festk\u00f6rpers oder des Fluids tragen nicht zur W\u00e4rmeleitung bei, sondern zur W\u00e4rmekonvektion bzw. -dispersion!)\rAus dem zweiten Hauptsatz der Thermodynamik folgt, dass die W\u00e4rmeleitung stets von gr\u00f6\u00dferen zu geringeren Temperaturen abl\u00e4uft.\rDie zugrunde liegende Gesetzm\u00e4\u00dfigkeit hat die Form konduktiver W\u00e4rmestrom ~ Temperaturgradient \rIm Unterschied zur Dispersion tritt hier die Abstandsgeschwindigkeit nicht auf! (Dispersion ist geschwindigkeitsabh\u00e4ngig, Diffusion und W\u00e4rmeleitung sind es nicht.)"
+    },
+    {
+        "image": "images/slide_27.png",
+        "notes": "W\u00e4rmeleitf\u00e4higkeitskoeffizient\rDer W\u00e4rmeleitf\u00e4higkeitskoeffizient (h\u00e4ufiges Symbol: \u03bb) ist ein Ma\u00df f\u00fcr das Verm\u00f6gen eines Stoffes, W\u00e4rme per W\u00e4rmeleitung zu transportieren.\rDer Wert des W\u00e4rmeleitf\u00e4higkeitskoeffizienten entspricht dem konduktiven W\u00e4rmestrom durch einen Einheitsquerschnitt bei einem Temperaturgradienten von 1 [\u03b8/L]."
+    },
+    {
+        "image": "images/slide_28.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_29.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_30.png",
+        "notes": "Ablauf / Inhalte der Veranstaltung\rim ersten Teil Wiederholung und Vertiefung / \u00dcbung zu V07 (Berechnung stat. Zahlen und Scatterdiagramm); s. Arbeitsblatt / XLS Datei im OPAL Kurs\rIm weiteren Verlauf Fokus auf Kalibrierung / Anwendung MODELMUSE"
+    },
+    {
+        "image": "images/slide_31.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_32.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_33.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_34.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_35.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_36.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_37.png",
+        "notes": "Ablauf / Inhalte der Veranstaltung\rim ersten Teil Wiederholung und Vertiefung / \u00dcbung zu V07 (Berechnung stat. Zahlen und Scatterdiagramm); s. Arbeitsblatt / XLS Datei im OPAL Kurs\rIm weiteren Verlauf Fokus auf Kalibrierung / Anwendung MODELMUSE"
+    },
+    {
+        "image": "images/slide_38.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_39.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_40.png",
+        "notes": "Spezifische W\u00e4rmekapazit\u00e4t\rDie spezifische W\u00e4rmekapazit\u00e4t eines Stoffes ist gleich der W\u00e4rmemenge, die einer Einheitsmasse (1 kg) durch Erh\u00f6hung der Temperatur um 1 K zugef\u00fchrt wird. \rSpezifische W\u00e4rmekapazit\u00e4ten f\u00fcr einige Gesteine, Sand und Wasser (jeweils Normalbedingungen):                                                                 Glimmer\t0.21 kJ/kg/K\tGranit\t\t0.75 kJ/kg/K     Sand (trocken)\t0.84 kJ/kg/K \tSandstein\t0.71 kJ/kg/K Schiefer\t0.75 kJ/kg/K\tWasser\t\t4.182 kJ/kg/K\rDie spezifische W\u00e4rmekapazit\u00e4t eines Stoffgemischs erh\u00e4lt man als gewichtetes arithmetisches Mittel der spezifischen W\u00e4rmekapazit\u00e4ten der Einzelstoffe. Als Gewichtsfaktoren sind dabei die Massenanteile zu verwenden (nicht die Volumenanteile!)."
+    },
+    {
+        "image": "images/slide_41.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_42.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_43.png",
+        "notes": "Ablauf / Inhalte der Veranstaltung\rim ersten Teil Wiederholung und Vertiefung / \u00dcbung zu V07 (Berechnung stat. Zahlen und Scatterdiagramm); s. Arbeitsblatt / XLS Datei im OPAL Kurs\rIm weiteren Verlauf Fokus auf Kalibrierung / Anwendung MODELMUSE"
+    },
+    {
+        "image": "images/slide_44.png",
+        "notes": "W\u00e4rmeleitung \u2013 Analogie Porendiffusion\rW\u00e4rmeleitung kann analog zur Porendiffusion gel\u00f6ster Stoffe simuliert werden.\rDie Porendiffusion ist Bestandteil der hydrodynamischen Dispersion.\rDabei gilt: hydrodynamische Dispersion = mechanische Dispersion + Porendiffusion (vgl. Abschnitt \u00fcber Grundlagen des Stofftransports)\rWiederum haben die zugrundeliegenden Gesetzm\u00e4\u00dfigkeiten dieselbe Struktur: \rkonduktiver W\u00e4rmestrom\t~  Temperaturgradient (s. o.)                       \rdiffusiver Massenstrom\t\t~  Konzentrationsgradient \rBei der Diffusion im Porenraum ist nicht der aquatische oder molekulare Diffusionskoeffizient zu verwenden, sondern der sog. Porendiffusionskoeffizient."
+    },
+    {
+        "image": "images/slide_45.png",
+        "notes": "Diffusion im Porenraum\rDiffusion in einer Fluidphase eines por\u00f6sen Mediums erfolgt langsamer als in einem freien Fluid.\rGr\u00fcnde hierf\u00fcr sind die Windungen der zur Verf\u00fcgung stehenden Diffusionsstrecken und der verringerte Diffusionsquerschnitt. \rDies wird durch die Verwendung eines Porendiffusionskoeffizienten ber\u00fccksichtigt.\rDieser ist kleiner als der molekulare Diffusionskoeffizient D."
+    },
+    {
+        "image": "images/slide_46.png",
+        "notes": "Tortuosit\u00e4t\rDie Tortuosit\u00e4t oder der Tortuosit\u00e4tsfaktor \uf074f ist das Verh\u00e4ltnis aus den L\u00e4ngen der tats\u00e4chlichen Diffusionsstrecke und der direkten Verbindung."
+    },
+    {
+        "image": "images/slide_47.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_48.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_49.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_50.png",
+        "notes": "Adektion und Konvektion\rAdvektion und Konvektion bezeichnen (beide) den Transport von Materie oder Energie mit der Bewegung eines str\u00f6menden Mediums.\rDieses Tr\u00e4germedium ist i. d. R. ein Fluid (hier: Grundwasser).\rDer Begriff Advektion scheint eher bei Materie-, der Begriff Konvektion eher bei Energietransport verwendet zu werden.\rLiegt im Grundwasserleiter ein Volumenstrom Q [L\u00b3/T] vor und ist darin ein Wasserinhaltsstoff mit Konzentration C [M/L\u00b3] enthalten, so ergibt sich der advektive Massenstrom Jadv = Q\u00b7C.\rDie Dimension des advektiven Massenstroms ist M/T (\u201eMasse pro Zeit\u201c).\rBesitzt das Grundwasser die Temperatur T, so ergibt sich der konvektive W\u00e4rmestrom Pkonv = cw\u00b7\uf072w\u00b7Q\u00b7T.  \rDie Dimension des konvektiven W\u00e4rmestroms ist ML\u00b2/T\u00b3 (\u201eEnergie pro Zeit\u201c).\rDie beiden Ausbreitungsgesetze besitzen dieselbe Grundstruktur: advektiver Massenstrom\t~  Stoffkonzentration                                     konvektiver W\u00e4rmestrom\t~  Temperatur\rF\u00fcr den Volumenstrom gilt: Q = ne\u00b7A\u00b7v \r(v = Abstandsgeschwindigkeit, A = Querschnittsfl\u00e4che)"
+    },
+    {
+        "image": "images/slide_51.png",
+        "notes": "Dispersion\rStofftransport unterliegt der mechanischen Dispersion (vgl. fr\u00fchere Vorlesung).\rDabei werden steile Stoffkonzentrationsgradienten zusehends abgeflacht, weil die tats\u00e4chlichen Ausbreitungspfade vom \u201emittleren\u201c (= advektiven) Transportweg abweichen (Abb.). \rDerselbe Mechanismus beeinflusst die W\u00e4rmeausbreitung: Abweichungen vom mittleren (= konvektiven) Ausbreitungsverhalten f\u00fchren zu einer allm\u00e4hlichen Nivellierung von Temperaturunterschieden. \rvergleichbare Struktur der zugrunde liegenden Gesetzm\u00e4\u00dfigkeiten: \rdispersiver Massenstrom ~ Abstandsgeschwindigkeit\u00b7Konzentrationsgradient                              \rdispersiver W\u00e4rmestrom\t ~ Abstandsgeschwindigkeit\u00b7Temperaturgradient"
+    },
+    {
+        "image": "images/slide_52.png",
+        "notes": "Ablauf / Inhalte der Veranstaltung\rim ersten Teil Wiederholung und Vertiefung / \u00dcbung zu V07 (Berechnung stat. Zahlen und Scatterdiagramm); s. Arbeitsblatt / XLS Datei im OPAL Kurs\rIm weiteren Verlauf Fokus auf Kalibrierung / Anwendung MODELMUSE"
+    },
+    {
+        "image": "images/slide_53.png",
+        "notes": "Gegen\u00fcberstellung\rDie herausgearbeiteten Analogien zwischen Stoff- und W\u00e4rmetransport sind in obiger Tabelle zusammengefasst.\rDemzufolge kann eine Stofftransportsoftware zur Simulation der W\u00e4rmeausbreitung benutzt werden, wenn als Porendiffusions- bzw. Verteilungskoeffizient die Werte der jeweils rechts daneben stehenden Ausdr\u00fccke als Modelleingangsparameter verwendet werden."
+    },
+    {
+        "image": "images/slide_54.png",
+        "notes": "W\u00e4rmeleitung und No-Flow_R\u00e4nder\rNo-flow-R\u00e4nder sind f\u00fcr Wasser und Wasserinhaltsstoffe (praktisch) undurchl\u00e4ssig.\rDiese R\u00e4nder sind hingegen f\u00fcr W\u00e4rme durchl\u00e4ssig! \rGrund daf\u00fcr ist die W\u00e4rmeleitung im Gestein.\rBei Modellanwendungen wird daher oftmals eine m\u00f6glichst \u201etiefe\u201c Lage der unteren Randbedingung (bei Str\u00f6mungs- / Stofftransportmodellen zumeist an der Aquiferbasis) angestrebt, sodass dort der geothermische Gradient bzw. der zugeh\u00f6rige W\u00e4rmestrom vorgegeben werden kann."
+    },
+    {
+        "image": "images/slide_55.png",
+        "notes": "Ablauf / Inhalte der Veranstaltung\rim ersten Teil Wiederholung und Vertiefung / \u00dcbung zu V07 (Berechnung stat. Zahlen und Scatterdiagramm); s. Arbeitsblatt / XLS Datei im OPAL Kurs\rIm weiteren Verlauf Fokus auf Kalibrierung / Anwendung MODELMUSE"
+    },
+    {
+        "image": "images/slide_56.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_57.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_58.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_59.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_60.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_61.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_62.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_63.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_64.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_65.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_66.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_67.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_68.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_69.png",
+        "notes": "No notes"
+    }
+]

@@ -112,6 +112,7 @@ pages = {
         "--- Folien 🚀---": None,
         "📝 T10: Flächenhafte Wasserhaltung  \n& Baugrubenentwässerung": "90_Streamlit_apps/MWW01/SlideJet_Presentations/GWBmC_WS2526_T10_SJpresent.py",
         "📝 T11: Grundwasserneubildung": "90_Streamlit_apps/MWW01/SlideJet_Presentations/GWBmC_WS2526_T11_Notizen_SJpresent.py",
+        "📝 T12: Waermetransport": "90_Streamlit_apps/MWW01/SlideJet_Presentations/GWBmC_WS2526_Waermetransport_SJpresent.py",
     },
     "ℹ️ General Info": {
         "About": "90_Streamlit_apps/MWW01/content/GROWi26_About.py",
