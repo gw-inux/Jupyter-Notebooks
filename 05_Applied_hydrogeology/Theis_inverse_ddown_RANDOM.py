@@ -159,7 +159,7 @@ def inverse():
    
     columns2 = st.columns((1,1), gap = 'large')
     with columns2[0]:
-        st.expander("Controls for the fitting plot"):
+        with st.expander("Controls for the fitting plot"):
             T_slider_value=st.slider('(log of) **Transmissivity** in m²/s', log_min1,log_max1,-3.0,0.01,format="%4.2f" )
             # Convert the slider value to the logarithmic scale
             T = 10 ** T_slider_value
@@ -172,7 +172,7 @@ def inverse():
             st.write("_Storativity_ (dimensionless): %5.2e" %S)
             refine_theis = st.toggle("**Refine** the range of the **Theis matching plot**")
     with columns2[1]:
-        st.expander("Controls for the prediction plot"):
+        with st.expander("Controls for the prediction plot"):
             Q_pred = st.slider(f'**Pumping rate** (m³/s) for the **prediction**', 0.001,0.100,Qs,0.001,format="%5.3f")
             r_pred = st.slider(f'**Distance** (m) from the **well** for the **prediction**', 1,1000,r,1)
             per_pred = st.slider(f'**Duration** of the **prediction period** (days)',1,3652,3,1) 
