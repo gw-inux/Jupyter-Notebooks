@@ -70,7 +70,7 @@ pages = {
         "--- Budgets and Balances 📊 ---": None,
         "Radioactive Decay": "90_Streamlit_apps/SYMPLE25/pages/M1A/Radioactive_Decay_basics.py",
         "--- Flow equation and \nunderground properties 📖 ---": None,
-        "1D Flow": "90_Streamlit_apps/SYMPLE25/pages/M1A/GWF_1D_unconf_analytic_noflow_calib_basics.py",
+        "1D Flow (no flow, river)": "90_Streamlit_apps/SYMPLE25/pages/M1A/GWF_1D_unconf_analytic_noflow_calib_basics.py",
         "Theis drawdown": "05_Applied_hydrogeology/Theis_inverse_ddown_RANDOM.py",
         "--- Presentations 📖---": None,
         "Presentation: 📝 M1A_1": "90_Streamlit_apps/SYMPLE25/SlideJet_Presentations/SYMPLE26_M1A_1_SJpresent.py",
