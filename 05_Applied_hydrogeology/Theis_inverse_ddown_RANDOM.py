@@ -55,7 +55,6 @@ st.markdown("""
 st.latex(r'''u = \frac{Sr^2}{4Tt}''')
 st.markdown("""
             This equations are not easy to solve. Historically, values for the well function were provided by tables or as so called type-curve. The type-curve matching with experimental data for pumping test analysis can be considered as one of the basic hydrogeological methods. However, modern computer provide an easier and more convinient way to solve the 1D radial flow equation based on the Theis approach. Subsequently, the Theis equation is solved with Python routines. The results for the measured data are graphically presented in an interactive plot.
-            **Select the data below!**
 """)
 st.subheader("Interactive Plot", divider = 'blue')
 st.markdown("""
@@ -160,35 +159,36 @@ def inverse():
    
     columns2 = st.columns((1,1), gap = 'large')
     with columns2[0]:
-        T_slider_value=st.slider('(log of) **Transmissivity** in m²/s', log_min1,log_max1,-3.0,0.01,format="%4.2f" )
-        # Convert the slider value to the logarithmic scale
-        T = 10 ** T_slider_value
-        # Display the logarithmic value
-        st.write("_Transmissivity_ in m²/s: %5.2e" %T)
-        S_slider_value=st.slider('(log of) **Storativity**', log_min2,log_max2,-4.0,0.01,format="%4.2f" )
-        # Convert the slider value to the logarithmic scale
-        S = 10 ** S_slider_value
-        # Display the logarithmic value
-        st.write("_Storativity_ (dimensionless): %5.2e" %S)
-        refine_theis = st.toggle("**Refine** the range of the **Theis matching plot**")
+        st.expander("Controls for the fitting plot"):
+            T_slider_value=st.slider('(log of) **Transmissivity** in m²/s', log_min1,log_max1,-3.0,0.01,format="%4.2f" )
+            # Convert the slider value to the logarithmic scale
+            T = 10 ** T_slider_value
+            # Display the logarithmic value
+            st.write("_Transmissivity_ in m²/s: %5.2e" %T)
+            S_slider_value=st.slider('(log of) **Storativity**', log_min2,log_max2,-4.0,0.01,format="%4.2f" )
+            # Convert the slider value to the logarithmic scale
+            S = 10 ** S_slider_value
+            # Display the logarithmic value
+            st.write("_Storativity_ (dimensionless): %5.2e" %S)
+            refine_theis = st.toggle("**Refine** the range of the **Theis matching plot**")
     with columns2[1]:
-        Q_pred = st.slider(f'**Pumping rate** (m³/s) for the **prediction**', 0.001,0.100,Qs,0.001,format="%5.3f")
-        r_pred = st.slider(f'**Distance** (m) from the **well** for the **prediction**', 1,1000,r,1)
-        per_pred = st.slider(f'**Duration** of the **prediction period** (days)',1,3652,3,1) 
-        max_t = 86400*per_pred
-        if per_pred <= 3:
-            t_search = st.slider(f'**Select the value of time (s) for printout**', 1,max_t,1,1)
-        elif per_pred <= 7:
-            t_search_h = st.slider(f'**Select the value of time (hours) for printout**', 1.,24.*per_pred,1.)
-            t_search = t_search_h*3600
-        elif per_pred <= 366:
-            t_search_d = st.slider(f'**Select the value of time (days) for printout**', 1.,per_pred*1.0,1.)
-            t_search = t_search_d*86400
-        else:
-            t_search_mo = st.slider(f'**Select the value of time (months) for printout**', 1.,per_pred/30.4375,1.)
-            t_search = t_search_mo*2629800
-        auto_y = st.toggle("Adjust the range of drawdown plotting")
-        columns2 = st.columns((1,1), gap = 'large')
+        st.expander("Controls for the prediction plot"):
+            Q_pred = st.slider(f'**Pumping rate** (m³/s) for the **prediction**', 0.001,0.100,Qs,0.001,format="%5.3f")
+            r_pred = st.slider(f'**Distance** (m) from the **well** for the **prediction**', 1,1000,r,1)
+            per_pred = st.slider(f'**Duration** of the **prediction period** (days)',1,3652,3,1) 
+            max_t = 86400*per_pred
+            if per_pred <= 3:
+                t_search = st.slider(f'**Select the value of time (s) for printout**', 1,max_t,1,1)
+            elif per_pred <= 7:
+                t_search_h = st.slider(f'**Select the value of time (hours) for printout**', 1.,24.*per_pred,1.)
+                t_search = t_search_h*3600
+            elif per_pred <= 366:
+                t_search_d = st.slider(f'**Select the value of time (days) for printout**', 1.,per_pred*1.0,1.)
+                t_search = t_search_d*86400
+            else:
+                t_search_mo = st.slider(f'**Select the value of time (months) for printout**', 1.,per_pred/30.4375,1.)
+                t_search = t_search_mo*2629800
+            auto_y = st.toggle("Adjust the range of drawdown plotting")
 
     if (st.session_state.Data == "Random data with noise"):
         columns4 = st.columns((20,60,20), gap = 'large')
