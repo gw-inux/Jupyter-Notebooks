@@ -122,7 +122,7 @@ def computation():
     if riv:
         plt.text(x_pos2, y_pos1, 'River bc', horizontalalignment='right', bbox=dict(boxstyle="square", facecolor='lightgrey', alpha=0.4), fontsize=12)
     else:
-        plt.text(x_pos2, y_pos1, 'Specified head bc', horizontalalignment='right', bbox=dict(boxstyle="square", facecolor='lightgrey'), fontsize=12)
+        plt.text(x_pos2, y_pos1, 'Specified head bc', horizontalalignment='right', bbox=dict(boxstyle="square", facecolor='lightgrey', alpha=0.4), fontsize=12)
         plt.text(x_pos2, y_pos2, 'Q_BC: {:.2e} m³/s '.format(Q_out), horizontalalignment='right', bbox=dict(boxstyle="square", facecolor='lightgrey', alpha=0.4), fontsize=12)
    
     st.pyplot(fig)
