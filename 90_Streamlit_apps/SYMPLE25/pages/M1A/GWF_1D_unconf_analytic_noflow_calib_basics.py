@@ -5,7 +5,7 @@ import numpy as np
 import streamlit as st
 
 
-st.title('Analytical solution for 1D unconfined flow with one defined head boundary/river boundary')
+st.title('Analytical solution for 1D unconfined flow with one specified head boundary/river boundary')
 st.subheader('Understanding :green[Typical in- and outflows]', divider="green")
 
 lc1, cc1, rc1 = st.columns((1,1,1), gap = 'large')
@@ -15,7 +15,7 @@ if theory:
     st.markdown("""
             ### Conceptual model
             
-            The conceptual model considers the aquifer as a homogeneous and isotropic structure with a horizontal bottom. The aquifer is bounded by one defined-head boundary on the right side (left side is no flow). From the top, the aquifer receives uniform groundwater recharge.
+            The conceptual model considers the aquifer as a homogeneous and isotropic structure with a horizontal bottom. The aquifer is bounded by one specified-head boundary on the right side (left side is no flow). From the top, the aquifer receives uniform groundwater recharge.
             """, unsafe_allow_html=True)
             
     lc2, cc2, rc2 = st.columns((20,60,20))
@@ -119,7 +119,7 @@ def computation():
     if riv:
         plt.text(x_pos2, y_pos1, 'River bc', horizontalalignment='right', bbox=dict(boxstyle="square", facecolor='lightgrey'), fontsize=12)
     else:
-        plt.text(x_pos2, y_pos1, 'Defined head bc', horizontalalignment='right', bbox=dict(boxstyle="square", facecolor='lightgrey'), fontsize=12)
+        plt.text(x_pos2, y_pos1, 'Specified head bc', horizontalalignment='right', bbox=dict(boxstyle="square", facecolor='lightgrey'), fontsize=12)
    
     st.pyplot(fig)
     
