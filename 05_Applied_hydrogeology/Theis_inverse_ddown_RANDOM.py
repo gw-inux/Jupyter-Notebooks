@@ -55,14 +55,16 @@ st.markdown("""
 st.latex(r'''u = \frac{Sr^2}{4Tt}''')
 st.markdown("""
             This equations are not easy to solve. Historically, values for the well function were provided by tables or as so called type-curve. The type-curve matching with experimental data for pumping test analysis can be considered as one of the basic hydrogeological methods. However, modern computer provide an easier and more convinient way to solve the 1D radial flow equation based on the Theis approach. Subsequently, the Theis equation is solved with Python routines. The results for the measured data are graphically presented in an interactive plot.
-            
+            **Select the data below!**
+""")
+st.subheader("Interactive Plot", divider = 'blue')
+st.markdown("""
             The red dots are the measured data.
             
             Modify the transmissivity _**T**_ and the storativity _**S**_ to fit the measured data to the well function.
             
             **Select the data below!**
-"""
-)            
+""") 
 
 # Computation
 
