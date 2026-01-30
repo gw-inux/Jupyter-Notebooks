@@ -4,6 +4,28 @@ import matplotlib.pyplot as plt
 import scipy.special
 import streamlit as st
 
+# ToDo:
+#    - Copy to Interactive Documents
+#    - K log slider
+#    - account/warn for negative heads
+#    - option for specified head
+
+# Authors, institutions, and year
+year = 2025 
+authors = {
+    "Thomas Reimann": [1]  # Author 1 belongs to Institution 1
+}
+institutions = {
+    1: "TU Dresden, Institute for Groundwater Management"
+    
+}
+index_symbols = ["¹", "²", "³", "⁴", "⁵", "⁶", "⁷", "⁸", "⁹"]
+author_list = [f"{name}{''.join(index_symbols[i-1] for i in indices)}" for name, indices in authors.items()]
+institution_list = [f"{index_symbols[i-1]} {inst}" for i, inst in institutions.items()]
+institution_text = " | ".join(institution_list)
+
+#--- User Interface
+
 st.title('Theis parameter estimation and drawdown prediction')
 st.subheader('Fitting Formation parameter to :blue[randomly generated] data', divider="blue")
 st.markdown("""
@@ -136,19 +158,19 @@ def inverse():
    
     columns2 = st.columns((1,1), gap = 'large')
     with columns2[0]:
-        T_slider_value=st.slider('(log of) **Transmissivity** in m2/s', log_min1,log_max1,-3.0,0.01,format="%4.2f" )
+        T_slider_value=st.slider('(log of) **Transmissivity** in m²/s', log_min1,log_max1,-3.0,0.01,format="%4.2f" )
         # Convert the slider value to the logarithmic scale
         T = 10 ** T_slider_value
         # Display the logarithmic value
-        st.write("_Transmissivity_ in m2/s: %5.2e" %T)
+        st.write("_Transmissivity_ in m²/s: %5.2e" %T)
         S_slider_value=st.slider('(log of) **Storativity**', log_min2,log_max2,-4.0,0.01,format="%4.2f" )
         # Convert the slider value to the logarithmic scale
         S = 10 ** S_slider_value
         # Display the logarithmic value
-        st.write("_Storativity_ (dimensionless):** %5.2e" %S)
+        st.write("_Storativity_ (dimensionless): %5.2e" %S)
         refine_theis = st.toggle("**Refine** the range of the **Theis matching plot**")
     with columns2[1]:
-        Q_pred = st.slider(f'**Pumping rate** (m^3/s) for the **prediction**', 0.001,0.100,Qs,0.001,format="%5.3f")
+        Q_pred = st.slider(f'**Pumping rate** (m³/s) for the **prediction**', 0.001,0.100,Qs,0.001,format="%5.3f")
         r_pred = st.slider(f'**Distance** (m) from the **well** for the **prediction**', 1,1000,r,1)
         per_pred = st.slider(f'**Duration** of the **prediction period** (days)',1,3652,3,1) 
         max_t = 86400*per_pred
@@ -272,16 +294,16 @@ def inverse():
     with columns3[0]:
         st.write("**Parameter estimation**")
         st.write("Distance of measurement from the well (in m): %3i" %r)
-        st.write("Pumping rate of measurement (in m^3/s): %5.3f" %Qs)
+        st.write("Pumping rate of measurement (in m³/s): %5.3f" %Qs)
         st.write("Thickness of formation b = ","% 5.2f"% b, " m")
-        st.write("Transmissivity T = ","% 10.2E"% T, " m^2/s")
-        st.write("(Hydr. cond. K) = ","% 10.2E"% (T/b), " m^2/s")
+        st.write("Transmissivity T = ","% 10.2E"% T, " m²/s")
+        st.write("(Hydr. cond. K) = ","% 10.2E"% (T/b), " m²/s")
         st.write("Storativity    S = ","% 10.2E"% S, "[-]")
 
     with columns3[1]:
         st.write("**Prediction**")
         st.write("Distance of prediction from the well (in m): %3i" %r_pred)
-        st.write("Pumping rate of prediction (in m^3/s): %5.3f" %Q_pred)
+        st.write("Pumping rate of prediction (in m³/s): %5.3f" %Q_pred)
         st.write("Time since pumping start (in s): %3i" %x_point)
         if per_pred <= 3:
             st.write("Time since pumping start (in s): %3i" %t_search)
@@ -300,7 +322,16 @@ def inverse():
     
     if(st.session_state.Data == "Random data with noise"):
         if show_truth:
-            st.write("'True' Transmissivity T = ","% 10.2E"% st.session_state.T_random, " m^2/s. Your fitting success is:  %5.2f" %(T/T_random*100), " %")
+            st.write("'True' Transmissivity T = ","% 10.2E"% st.session_state.T_random, " m²/s. Your fitting success is:  %5.2f" %(T/T_random*100), " %")
             st.write("'True' Storativity    S = ","% 10.2E"% st.session_state.S_random, "[-].    Your fitting success is:  %5.2f" %(S/S_random*100), " %")
 
 inverse()
+
+st.markdown('---')
+
+# Render footer with authors, institutions, and license logo in a single line
+columns_lic = st.columns((4,1))
+with columns_lic[0]:
+    st.markdown(f'Developed by {", ".join(author_list)} ({year}). <br> {institution_text}', unsafe_allow_html=True)
+with columns_lic[1]:
+    st.image('FIGS/CC_BY-SA_icon.png')
