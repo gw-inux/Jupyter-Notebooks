@@ -1,0 +1,106 @@
+[
+    {
+        "image": "images/slide_1.png",
+        "notes": "Willkommen zur Grundwasserbewirtschaftung mit Computermodellen\rNachfolgend die wichtigsten Folien, zum Teil mit Kommentaren,\rNeben diesen Folien finden Sie im OPAL-Kurs weitere Materialien, u. a. elektronische Kontrollfragen,\rBei Fragen, Kommentaren und Hinweisen freuen wir uns von Ihnen zu h\u00f6ren."
+    },
+    {
+        "image": "images/slide_2.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_3.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_4.png",
+        "notes": "Ablauf / Inhalte der Veranstaltung\rim ersten Teil Wiederholung und Vertiefung / \u00dcbung zu V07 (Berechnung stat. Zahlen und Scatterdiagramm); s. Arbeitsblatt / XLS Datei im OPAL Kurs\rIm weiteren Verlauf Fokus auf Kalibrierung / Anwendung MODELMUSE"
+    },
+    {
+        "image": "images/slide_5.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_6.png",
+        "notes": "Gegen\u00fcberstellung\rDie herausgearbeiteten Analogien zwischen Stoff- und W\u00e4rmetransport sind in obiger Tabelle zusammengefasst.\rDemzufolge kann eine Stofftransportsoftware zur Simulation der W\u00e4rmeausbreitung benutzt werden, wenn als Porendiffusions- bzw. Verteilungskoeffizient die Werte der jeweils rechts daneben stehenden Ausdr\u00fccke als Modelleingangsparameter verwendet werden."
+    },
+    {
+        "image": "images/slide_7.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_8.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_9.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_10.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_11.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_12.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_13.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_14.png",
+        "notes": "Ablauf / Inhalte der Veranstaltung\rim ersten Teil Wiederholung und Vertiefung / \u00dcbung zu V07 (Berechnung stat. Zahlen und Scatterdiagramm); s. Arbeitsblatt / XLS Datei im OPAL Kurs\rIm weiteren Verlauf Fokus auf Kalibrierung / Anwendung MODELMUSE"
+    },
+    {
+        "image": "images/slide_15.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_16.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_17.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_18.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_19.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_20.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_21.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_22.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_23.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_24.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_25.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_26.png",
+        "notes": "Weiter zur Zielsetzung\rDabei sollen im Folgenden nur die Auswirkungen der Grundwasserstr\u00f6mung auf den W\u00e4rmetransport betrachtet werden.\rEs geht nicht um Einfl\u00fcsse, die vom W\u00e4rmetransport auf die Grundwasserstr\u00f6mung ausge\u00fcbt werden, d. h. keine \u201eR\u00fcckkopplung\u201c z. B. \u00fcber temperaturabh\u00e4ngige Dichte\u00e4nderungen und daraus resultierende Gradienten."
+    }
+]
