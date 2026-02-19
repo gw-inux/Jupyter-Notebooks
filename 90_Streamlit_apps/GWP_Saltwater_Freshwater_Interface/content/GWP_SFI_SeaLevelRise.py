@@ -218,9 +218,7 @@ The conceptual model rests on a number of simplifying assumptions. Flow is treat
 st.subheader('Interactive Plot and Exercise', divider="orange")
 st.markdown(""" #### :orange[INPUT CONTROLS]""")
 
-# 3.49 ersetzen mit irgendwas: xmax = z0/np.tan(np.radians(theta))
-
-st.session_state.z0=50
+st.session_state.z0=25
 st.session_state.W=0.0014
 st.session_state.K=50
 st.session_state.L0=1000
@@ -230,13 +228,16 @@ st.session_state.theta=2
 st.session_state.delta_z0=0.0
 st.session_state.n = 0.15
 
+if "enable_exp3" not in st.session_state:
+    st.session_state.enable_exp3 = False
+
 columns1 = st.columns((1,1,1), gap = 'small')
 with columns1[0]:
         with st.expander("Modify the **Plot Controls**"):
             st.session_state.number_input = st.toggle(r"Toggle to use Slider or Number for input of $K$, $n$, $z0$, $\theta$, $L0$, $\rho_f$, $\rho_s$, $W$, $h0_{x}$, and $\Delta_z0$.")
             reset = st.button(':red[Reset the plot to the initial values]')
             if reset:
-                st.session_state.z0=50
+                st.session_state.z0=25
                 st.session_state.W=0.0014
                 st.session_state.K=50
                 st.session_state.L0=1000
@@ -245,6 +246,8 @@ with columns1[0]:
                 st.session_state.theta=2
                 st.session_state.delta_z0=0.5
                 st.session_state.n = 0.15
+                
+exp3_enabled = st.session_state.enable_exp3
 
 with columns1[1]:
         with st.expander('Modify :orange[**Aquifer properties**]'):
@@ -268,25 +271,35 @@ with columns1[1]:
                 L0 = st.number_input(":orange[**Initial width of the aquifer** $L0$]", 1, 2000, st.session_state.L0, 1, key="L0_input", on_change=update_L0)
             else:
                 L0 = st.slider      (":orange[**Initial width of the aquifer** $L0$]", 1, 2000, st.session_state.L0, 1, key="L0_input", on_change=update_L0)
+            st.checkbox("Enable :blue[**Density and sea level rise**] controls", key="enable_exp3"
+            )
 
 with columns1[2]:
-        with st.expander('Modify :blue[**Density and freshwater head/sea level rise**]'):
-            if st.session_state.number_input:
-                rho_f = st.number_input(r":green[**Freshwater Density** $\rho_f$ (kg/m³)]", 950, 1050, st.session_state.rho_f, 1, key="rho_f_input", on_change=update_rho_f)
-            else:
-                rho_f = st.slider      (r":green[**Freshwater Density** $\rho_f$ (kg/m³)]", 950, 1050, st.session_state.rho_f, 1, key="rho_f_input", on_change=update_rho_f)
-            if st.session_state.number_input:
-                rho_s = st.number_input(r":blue[**Saltwater Density** $\rho_s$ (kg/m³)]", 950, 1050, st.session_state.rho_s, 1, key="rho_s_input", on_change=update_rho_s)
-            else:
-                rho_s = st.slider      (r":blue[**Saltwater Density** $\rho_s$ (kg/m³)]", 950, 1050, st.session_state.rho_s, 1, key="rho_s_input", on_change=update_rho_s)
-            if st.session_state.number_input:
-                W = st.number_input(":green[**Recharge** $W$ (m³/)]", 0.0, 0.002, st.session_state.W, 0.0001, key="W_input", on_change=update_W)
-            else:
-                W = st.slider      (":green[**Recharge** $W$ (m³/)]", 0.0, 0.002, st.session_state.W, 0.0001, key="W_input", on_change=update_W)
-            if st.session_state.number_input:
-                delta_z0 = st.number_input(r":blue[**Sea level rise** $\Delta_z0$ (m)]", 0.0, 3.5, st.session_state.delta_z0, 0.1, key="delta_z0_input", on_change=update_delta_z0)
-            else:
-                delta_z0 = st.slider      (r":blue[**Sea level rise** $\Delta_z0$ (m)]", 0.0, 3.5, st.session_state.delta_z0, 0.1, key="delta_z0_input", on_change=update_delta_z0)
+        exp3_enabled = st.session_state.enable_exp3
+        with st.expander('Modify :blue[**Density and freshwater head/sea level rise**]', expanded=exp3_enabled):
+            if not exp3_enabled:
+                st.info("First define the aquifer properties. Enable this section at the end of **Aquifer properties**.")
+                rho_f = st.session_state.rho_f
+                rho_s = st.session_state.rho_s
+                W = st.session_state.W
+                delta_z0 = st.session_state.delta_z0
+            else
+                if st.session_state.number_input:
+                    rho_f = st.number_input(r":green[**Freshwater Density** $\rho_f$ (kg/m³)]", 950, 1050, st.session_state.rho_f, 1, key="rho_f_input", on_change=update_rho_f)
+                else:
+                    rho_f = st.slider      (r":green[**Freshwater Density** $\rho_f$ (kg/m³)]", 950, 1050, st.session_state.rho_f, 1, key="rho_f_input", on_change=update_rho_f)
+                if st.session_state.number_input:
+                    rho_s = st.number_input(r":blue[**Saltwater Density** $\rho_s$ (kg/m³)]", 950, 1050, st.session_state.rho_s, 1, key="rho_s_input", on_change=update_rho_s)
+                else:
+                    rho_s = st.slider      (r":blue[**Saltwater Density** $\rho_s$ (kg/m³)]", 950, 1050, st.session_state.rho_s, 1, key="rho_s_input", on_change=update_rho_s)
+                if st.session_state.number_input:
+                    W = st.number_input(":green[**Recharge** $W$ (m³/)]", 0.0, 0.002, st.session_state.W, 0.0001, key="W_input", on_change=update_W)
+                else:
+                    W = st.slider      (":green[**Recharge** $W$ (m³/)]", 0.0, 0.002, st.session_state.W, 0.0001, key="W_input", on_change=update_W)
+                if st.session_state.number_input:
+                    delta_z0 = st.number_input(r":blue[**Sea level rise** $\Delta_z0$ (m)]", 0.0, 3.5, st.session_state.delta_z0, 0.1, key="delta_z0_input", on_change=update_delta_z0)
+                else:
+                    delta_z0 = st.slider      (r":blue[**Sea level rise** $\Delta_z0$ (m)]", 0.0, 3.5, st.session_state.delta_z0, 0.1, key="delta_z0_input", on_change=update_delta_z0)
 # Ensure physical consistency: rho_s > rho_f
 if rho_s <= rho_f:
     st.warning(
@@ -356,11 +369,19 @@ plt.xlim(0,L0 + xmax)
 
 st.pyplot(fig)
 
-st.write("Initial position of interface toe:", x_T, "m")
-st.write("Change of interface toe position:", delta_x_T, "m")
-st.write("Loss of width of aquifer:", delta_L, "m")
-st.write("Change of aquifer volume:", delta_V, "m**3")
-st.write("Change of freshwater volume:", delta_FWV, "m**3")
+if st.session_state.get("enable_exp3", False):
+    if not np.isfinite(x_T) or not np.isfinite(delta_x_T):
+        st.warning(
+            "For the selected parameters, the analytical toe position is not defined "
+            "(**the interface does not intersect the aquifer base within the model width**). "
+            r"Try increasing $W$, decreasing $K$, decreasing $z0$, or increasing $L0$."
+            )
+    else:
+        st.write("Initial position of interface toe:", x_T, "m")
+        st.write("Change of interface toe position:", delta_x_T, "m")
+        st.write("Loss of width of aquifer:", delta_L, "m")
+        st.write("Change of aquifer volume:", delta_V, "m**3")
+        st.write("Change of freshwater volume:", delta_FWV, "m**3")
 
 with st.expander('Show the :rainbow[**EXERCISE**]', icon ="🧩"):
     st.markdown(r"""
