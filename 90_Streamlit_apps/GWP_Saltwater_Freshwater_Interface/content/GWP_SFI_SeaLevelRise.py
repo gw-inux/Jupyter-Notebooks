@@ -246,6 +246,11 @@ with columns1[0]:
                 st.session_state.theta=2
                 st.session_state.delta_z0=0.5
                 st.session_state.n = 0.15
+                for k in ["K_input","n_input","z0_input","theta_input","L0_input",
+              "rho_f_input","rho_s_input","W_input","delta_z0_input"]:
+                  st.session_state.pop(k, None)
+                  st.session_state["enable_exp3"] = False
+                  st.rerun()
                 
 exp3_enabled = st.session_state.enable_exp3
 
