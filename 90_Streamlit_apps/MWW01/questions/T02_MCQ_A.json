@@ -1,0 +1,199 @@
+[
+  {
+    "question": "Was ist in der Grundwassermodellierung am treffendsten mit „konzeptionelles Modell“ gemeint?",
+    "options": {
+      "Eine idealisierte mathematische Beschreibung der Strömungsgleichung mit beispielhaften Randbedingungen als Referenz.": false,      "Eine qualitative, problembezogene Beschreibung von Systemkomponenten, Prozessen und Einflussfaktoren.": true,
+      "Ein quantitativ formuliertes Modell, das bereits diskretisiert und parametrisiert wurde.": false,
+      "Ein kalibriertes numerisches Modell, dessen Parameter aus Messdaten abgeleitet oder angepasst wurden.": false
+    },
+    "success": "Richtig. Das konzeptionelle Modell fasst das aktuelle Systemverständnis qualitativ und problembezogen zusammen.",
+    "failure": "Nicht ganz. Ein konzeptionelles Modell ist keine Diskretisierung/Code-Lösung, sondern die qualitative Systembeschreibung als Grundlage."
+  },
+  {
+    "question": "Welche Aussage beschreibt die Rolle des konzeptionellen Modells im Modellierungsworkflow am besten?",
+    "options": {
+      "Es kann den Kalibrieraufwand reduzieren, wenn Struktur und Prozesse bereits gut begründet sind.": false,
+      "Es ist die Grundlage für Modellaufbau, Parameterisierung und Randbedingungen des numerischen Modells.": true,
+      "Es wird primär nach ersten Modellläufen genutzt, um Abweichungen systematisch zu interpretieren und das Konzept zu verfeinern.": false,
+      "Es dient vor allem der Kommunikation (Skizzen/Karten) und beeinflusst die numerische Umsetzung nur indirekt.": false
+    },
+    "success": "Richtig. Ohne tragfähiges Konzept sind Modellaufbau und Randbedingungen kaum sinnvoll begründbar.",
+    "failure": "Nicht korrekt. Das konzeptionelle Modell steht vor der Numerik und strukturiert Modellaufbau, Ränder und Parameter."
+  },
+  {
+    "question": "Welche Randbedingung entspricht einem fest vorgegebenen Wasserstand (defined/specifed head)?",
+    "options": {
+      "Randbedingung 2. Art (Neumann: vorgegebener Fluss über den Rand).": false,
+      "Randbedingung 3. Art (Robin/Cauchy: head dependent flow über eine Conductance).": false,
+      "Randbedingung 1. Art (Dirichlet).": true,
+      "No-Flow-Rand (Q=0) als Sonderform der 3. Art.": false
+    },
+    "success": "Richtig. Dirichlet = festes Potential (Wasserstand).",
+    "failure": "Nicht korrekt. Festes Potential ist Dirichlet (1. Art), nicht Neumann/Robin."
+  },
+  {
+    "question": "Welche Randbedingung beschreibt am ehesten einen vorgegebenen Zu- oder Abfluss (specified flow)?",
+    "options": {
+      "Randbedingung 1. Art (Dirichlet: festes Potential am Rand).": false,
+      "Randbedingung 2. Art (Neumann).": true,
+      "Randbedingung 3. Art (Robin/Cauchy: Austausch über Conductance und Potentialdifferenz).": false,
+      "Randbedingung 3. Art (Robin), bei der der Fluss über eine Conductance begrenzt wird.": false
+    },
+    "success": "Richtig. Neumann = vorgegebener Fluss (inkl. No-Flow als Spezialfall).",
+    "failure": "Nicht korrekt. Ein fest vorgegebener Fluss entspricht Neumann (2. Art)."
+  },
+  {
+    "question": "Welche Aussage trifft eine Randbedingung 3. Art (Robin/Cauchy) am besten?",
+    "options": {
+      "Sie beschreibt einen festen Randwasserstand (defined head), bei dem der Austausch nicht rückgekoppelt wird.": false,
+      "Sie kann in Grenzfällen sehr kleine Austauschflüsse ergeben, wenn die Austauschfähigkeit sehr gering ist.": false,
+      "Sie wird häufig in instationären Modellen genutzt, ist aber nicht darauf beschränkt.": false,
+      "Sie koppelt Fluss an die Differenz zwischen Modellpotential und externem Potential über eine Leitfähigkeit/Conductance.": true
+    },
+    "success": "Richtig. Robin/Cauchy = head dependent flow (Fluss hängt von Potentialdifferenz und Conductance ab).",
+    "failure": "Nicht korrekt. Robin koppelt Fluss an Potentialdifferenzen (nicht „fest“ wie Dirichlet)."
+  },
+  {
+    "question": "Warum ist eine Wasserscheide als Modellrand in vielen Fällen attraktiv?",
+    "options": {
+      "Weil sie häufig mit einer Oberflächenwasserscheide zusammenfällt und deshalb als konstanter Pegelrand angesetzt werden kann.": false,
+      "Weil sie oft eine naheliegende seitliche Abgrenzung des Einzugsgebiets darstellt, unabhängig von tieferen Zufluss-/Abstromkomponenten.": false,
+      "Weil sie bei geringer anthropogener Beeinflussung in vielen Regionen relativ stabil bleibt und damit Randannahmen vereinfacht.": false,
+      "Weil sie häufig näherungsweise als Nullstromlinie (No-Flow) interpretiert werden kann.": true
+    },
+    "success": "Richtig. Wasserscheiden können (mit Vorsicht) als No-Flow-Ränder dienen – Stabilität muss geprüft werden.",
+    "failure": "Nicht korrekt. Wasserscheiden sind nicht immer stabil und nicht automatisch Dirichlet."
+  },
+  {
+    "question": "Welche Aussage charakterisiert ein stationäres (steady-state) Grundwassermodell korrekt?",
+    "options": {
+      "Es berücksichtigt keinen Speicherterm; zeitliche Änderungen werden nicht abgebildet.": true,
+      "In steady-state werden Randbedingungen häufig als zeitlich konstant idealisiert; die Randbedingungsarten bleiben jedoch prinzipiell verfügbar.": false,
+      "Es kann bei begrenzter Zeitreihendatenlage robuster erscheinen, weil weniger zeitabhängige Eingaben benötigt werden.": false,
+      "Es wird oft für großräumige Mittelzustände genutzt, wenn kurzfristige Dynamik nicht im Fokus steht.": false
+    },
+    "success": "Richtig. Stationär bedeutet: keine zeitliche Dynamik, kein Speicherterm.",
+    "failure": "Nicht korrekt. Stationär heißt nicht „ohne Randbedingungen“ oder „automatisch genauer“."
+  },
+  {
+    "question": "Welche Information ist für die Strukturierung des hydrogeologischen Modells besonders zentral?",
+    "options": {
+      "Die räumliche Verteilung der mittleren Grundwasserneubildung als zentraler Steuerparameter.": false,
+      "Abgrenzung in hydrostratigrafische Einheiten mit ähnlichen hydraulischen Eigenschaften.": true,
+      "Die Wahl eines geeigneten numerischen Lösungsverfahrens (z. B. PCG, GMG) zur Stabilisierung der Rechnung.": false,
+      "Eine geeignete räumliche Diskretisierung zur Abbildung der wichtigsten Heterogenitäten bereits vor der Konzeptentwicklung.": false
+    },
+    "success": "Richtig. Strukturierung bedeutet u. a. hydrostratigrafische Einheiten sinnvoll zu definieren.",
+    "failure": "Nicht korrekt. Solver/Diskretisierung kommen später; entscheidend ist die hydrogeologische Struktur."
+  },
+  {
+    "question": "Was ist ein typischer Zweck der Problemanalyse vor dem Modellaufbau?",
+    "options": {
+      "Die Fragestellung zu präzisieren und Modelltyp/Komplexität an Datenlage und Ziel anzupassen.": true,
+      "Parameterbereiche und prior information so festzulegen, dass die spätere Kalibrierung zielgerichteter erfolgen kann.": false,
+      "Die wesentlichen Unsicherheiten zu reduzieren, indem möglichst viele Prozesse berücksichtigt werden.": false,
+      "Den Modellraum so klein zu wählen, dass Randbedingungen im Ergebnisgebiet möglichst wenig berücksichtigt werden müssen.": false
+    },
+    "success": "Richtig. Problemanalyse steuert Auswahl von Modelltyp, Raum-/Zeitdimension und notwendiger Komplexität.",
+    "failure": "Nicht korrekt. Problemanalyse ersetzt weder Kalibrierung noch eliminiert sie Unsicherheit."
+  },
+  {
+    "question": "Welche Aussage beschreibt „conceptual model problem–surprise“ (Bredehoeft) am ehesten?",
+    "options": {
+      "Überraschungen können durch numerische Artefakte verstärkt werden, entstehen aber häufig durch konzeptionelle Fehlannahmen.": false,
+      "Surprise bedeutet, dass Prognosen trotz scheinbar plausibler Kalibrierung in bestimmten Szenarien versagen können.": false,
+      "Ein unvollständiges oder falsches Konzept kann zu überraschenden, nicht erklärbaren Modellabweichungen führen.": true,
+      "Surprise wird besonders sichtbar bei Transportfragen, kann aber auch in Strömungsmodellen auftreten.": false
+    },
+    "success": "Richtig. Das Risiko liegt oft in der Konzeptualisierung: falsche Annahmen → systematische Fehler.",
+    "failure": "Nicht korrekt. „Surprise“ ist meist konzeptionell/strukturell, nicht primär numerisch."
+  },
+  {
+    "question": "Welche Aussage beschreibt den Leakage-Faktor (Conductance) eines Flussbetts korrekt?",
+    "options": {
+      "Er ist eng mit der hydraulischen Leitfähigkeit der trennenden Schicht verknüpft, aber nicht damit identisch.": false,
+      "Er fasst Geometrie und hydraulische Eigenschaften der trennenden Schicht zu einer Austauschgröße zusammen.": true,
+      "Er hängt primär von Materialeigenschaften ab; Geometrie wirkt nur nachrangig über die Austauschfläche.": false,
+      "Er kann aus Ganglinien, Feldmessungen oder Literaturwerten abgeschätzt und ggf. kalibriert werden.": false
+    },
+    "success": "Richtig. Conductance bündelt K, Mächtigkeit und Geometrie für den Austausch Fluss–Aquifer.",
+    "failure": "Nicht korrekt. Conductance hängt von Geometrie und Eigenschaften der trennenden Schicht ab."
+  },
+  {
+    "question": "Warum sollte der Modellrand einen ausreichenden Abstand zum „relevanten Modellgeschehen“ haben (z. B. Brunnen, Schadensfall)?",
+    "options": {
+      "Damit Randannahmen die interessierende Lösung möglichst wenig beeinflussen.": true,
+      "Damit Diskretisierung und Randannahmen weniger sensitiv auf lokale Heterogenitäten reagieren.": false,
+      "Damit die Kalibrierung weniger stark von Randartefakten beeinflusst wird.": false,
+      "Damit angenommene hydraulische Ränder die Lösung im Fokusgebiet nicht dominieren.": false
+    },
+    "success": "Richtig. Modellränder sollen die untersuchte Dynamik möglichst nicht künstlich steuern.",
+    "failure": "Nicht korrekt. Abstand reduziert Randartefakte, ersetzt aber keine Kalibrierung oder Konzeptprüfung."
+  },
+  {
+    "question": "Welche Modellraumdimension ist für die Abbildung eines 1D-Säulenversuchs typischerweise am passendsten?",
+    "options": {
+      "0D (Batch), wenn Konzentrationen vollständig durchmischt sind und räumliche Gradienten vernachlässigt werden.": false,
+      "2D horizontal (x-y), wenn Rand- oder Bypass-Flüsse entlang der Säulenwand als dominant angenommen werden.": false,
+      "3D, wenn radiale Heterogenitäten oder nicht-axialsymmetrische Fließwege explizit untersucht werden sollen.": false,
+      "1D entlang der Fließrichtung.": true
+    },
+    "success": "Richtig. Im Säulenversuch ist die dominierende Variabilität meist entlang einer Achse (1D).",
+    "failure": "Nicht korrekt. 1D ist hier meist die sachgerechte Abstraktion; 3D wäre i. d. R. unverhältnismäßig."
+  },
+  {
+    "question": "Welche Aussage passt am besten zur Abgrenzung von Bilanzraum und Modellraum?",
+    "options": {
+      "Der Bilanzraum kann je nach Fragestellung und Tiefe größer sein als das lokal untersuchte Geschehen.": true,
+      "Bilanzraum und Modellraum können identisch gewählt werden, sind jedoch konzeptionell nicht zwingend deckungsgleich.": false,
+      "Der Bilanzraum wird häufig durch hydrologische Einheiten bestimmt und kann durch administrative Grenzen mitgeprägt sein.": false,
+      "Je tiefer die Schicht, desto stärker kann großräumiger Zufluss/Abstrom den Bilanzraum beeinflussen.": false
+    },
+    "success": "Richtig. Tiefe und Fragestellung beeinflussen die sinnvolle Abgrenzung; oft wächst der Bilanzraum mit Tiefe.",
+    "failure": "Nicht korrekt. Bilanzraum und Modellraum sind nicht automatisch identisch und werden fachlich begründet."
+  },
+  {
+    "question": "Welche Aussage ist bei der Wahl „Grundwasserstände als fester Rand (Dirichlet)“ besonders kritisch?",
+    "options": {
+      "Pegelränder werden häufig in regionalen Modellen verwendet; ihre Eignung hängt jedoch von Kopplung und Dynamik ab.": false,
+      "Zeitliche Variabilität und Rückkopplung können dazu führen, dass „feste“ Pegelränder falsch sind.": true,
+      "Dirichlet-Ränder sind nur geeignet, wenn das externe Potential unabhängig vom Modellgeschehen bleibt.": false,
+      "Messbare Pegel machen den Rand transparent, garantieren aber keine physikalisch korrekte Randannahme.": false
+    },
+    "success": "Richtig. Messwerte sind nicht automatisch geeignete feste Ränder – Stabilität und Rückkopplung prüfen!",
+    "failure": "Nicht korrekt. Dirichlet kann passen, aber Pegelränder sind oft rückgekoppelt und variabel."
+  },
+  {
+    "question": "Welche Aussage beschreibt am ehesten den Unterschied zwischen „physikalischen“ und „hydraulischen“ Randbedingungen?",
+    "options": {
+      "Physikalische Ränder werden häufig als No-Flow umgesetzt; hydraulische Ränder häufig über vorgegebene Potentiale oder Flüsse.": false,
+      "Physikalische Ränder ergeben sich aus Gebiets-/Untergrundeigenschaften; hydraulische aus Strömungs-/Wasserstandsbedingungen.": true,
+      "Hydraulische Ränder können zeitlich variieren und sollten bei transienten Fragestellungen entsprechend umgesetzt werden.": false,
+      "Die Unterscheidung ist sowohl für Strömung als auch Transport relevant, weil das Strömungsfeld die Prozesse steuert.": false
+    },
+    "success": "Richtig. Physikalisch: geologisch/geomorphologisch; hydraulisch: aus dem Strömungsfeld/Wasserständen abgeleitet.",
+    "failure": "Nicht korrekt. Beide Randtypen können variabel sein und können als 1./2./3. Art umgesetzt werden."
+  },
+  {
+    "question": "Warum ist „mehr Komplexität“ nicht automatisch „besseres Modell“?",
+    "options": {
+      "Weil Komplexität zusätzliche Parameter und Unsicherheiten einführt und Datenanforderungen steigen.": true,
+      "Weil komplexe Modelle häufig schwerer zu kalibrieren und stärker nicht-eindeutig werden können, wenn Daten begrenzt sind.": false,
+      "Weil komplexe Modelle einen Teil der Randwirkungen intern abbilden können und deshalb weniger Randannahmen benötigen.": false,
+      "Weil einfache Modelle in bestimmten Fragestellungen ausreichend sein können, aber nicht automatisch realitätsnäher sind.": false
+    },
+    "success": "Richtig. Angemessenheit (Fragestellung, Daten, Verhältnismäßigkeit) ist entscheidend.",
+    "failure": "Nicht korrekt. Komplexität kann helfen, erhöht aber oft Unsicherheit und Aufwand."
+  },
+  {
+    "question": "Welche Aussage beschreibt am treffendsten, warum Modelle „aktuellem Erkenntnisstand“ entsprechen müssen?",
+    "options": {
+      "Weil neue Daten/Interpretationen das konzeptionelle Modell und damit Modellaufbau und Ergebnisse verändern können.": true,
+      "Weil ein einmal kalibriertes Modell danach nur bei neuen Daten oder gut begründeten Änderungen angepasst werden sollte.": false,
+      "Weil das konzeptionelle Modell auf Literatur, Expert Judgment und Standortdaten basiert und standortspezifisch angepasst wird.": false,
+      "Weil ein Modell ohne Updates scheinbar konservativ wirken kann, aber systematisch verzerrt sein kann.": false
+    },
+    "success": "Richtig. Modelle werden aktualisiert, wenn sich Datenlage oder Systemverständnis ändern.",
+    "failure": "Nicht korrekt. Kalibrierung ist kein Endzustand; Updates können nötig und fachlich geboten sein."
+  }
+]

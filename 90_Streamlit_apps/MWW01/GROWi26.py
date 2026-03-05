@@ -75,6 +75,9 @@ pages = {
         "--- Folien 🚀---": None,
         "📝 T02: Konzeptionelles Modell": "90_Streamlit_apps/MWW01/SlideJet_Presentations/GWBmC_WS2526_V02_SJpresent.py",
         "📑 LV 6.11.25: Folien zum Start": "90_Streamlit_apps/MWW01/SlideJet_Presentations/GWBmC_WS2526_V04_Start_SJpresent.py",
+        "--- Quizzes 🎓---": None,
+        "📝 Quiz I (Basic)": "90_Streamlit_apps/MWW01/content/QUIZ_T02_KonzeptModell_Basic.py",
+        "📝 Quiz II (Advanced)": "90_Streamlit_apps/MWW01/content/QUIZ_T02_KonzeptModell_Advanced.py",
     },
     "🟦 Grundwasserströmung": {
         "🧮 1D FD Schema": "06_Groundwater_modeling/GWF_1D_conf_FD.py",

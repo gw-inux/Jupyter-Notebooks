@@ -13,7 +13,7 @@ st.markdown('''
 
 col1, col2= st.columns(2)
 with col1:
-    st.image('images\water_balance_crop.png', caption='Fig.1: Water balance of the root zone (modified after FAO Irrigation and Drainage Paper No. 56)')            
+    st.image('90_Streamlit_apps\gw_recharge\images\water_balance_crop.png', caption='Fig.1: Water balance of the root zone (modified after FAO Irrigation and Drainage Paper No. 56)')            
 with col2:
     st.markdown('''            
         The soil water storage is replenished if precipitation (if appropriate, reduced by runoff) exceeds potential evapotranspiration. 
