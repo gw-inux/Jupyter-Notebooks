@@ -8,7 +8,6 @@ import streamlit as st
 import json
 from streamlit_book import multiple_choice
 from streamlit_scroll_to_top import scroll_to_here
-from GWP_SFI_utils import read_md
 
 # ---------- Track the current page
 PAGE_ID = "Overview"
@@ -88,4 +87,4 @@ columns_lic = st.columns((5,1))
 with columns_lic[0]:
     st.markdown(f'Developed by {", ".join(author_list)} ({year}). <br> {institution_text}', unsafe_allow_html=True)
 with columns_lic[1]:
-    st.image(st.session_state.module_path + 'images/CC_BY-SA_icon.png')
+    st.image('90_Streamlit_apps\gw_recharge\images\CC_BY-SA_icon.png')
