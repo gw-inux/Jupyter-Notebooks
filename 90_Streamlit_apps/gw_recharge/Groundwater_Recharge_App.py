@@ -10,7 +10,7 @@ def _navigate_to(path: str):
     st.rerun()
   
 # --- Application parameters ---
-DEFAULT_START_PAGE = "90_Streamlit_apps/gw_recharge/Groundwater_Recharge_App.py"
+DEFAULT_START_PAGE = "90_Streamlit_apps/gw_recharge/content/00_Overview.py"
 
 # --- MUST be first: layout setup wide / centered ---
 if "layout_choice" not in st.session_state:
