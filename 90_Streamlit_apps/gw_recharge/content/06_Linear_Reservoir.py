@@ -85,9 +85,9 @@ st.pyplot(fig)
 columnsN1 = st.columns((1,1,1), gap = 'large')
 with columnsN1[0]:
     if st.button("Previous page"):
-        st.switch_page("'90_Streamlit_apps\\gw_recharge\\pages\\05_Groundwater_Recharge.py")
+        st.switch_page("90_Streamlit_apps/gw_recharge/content/05_Groundwater_Recharge.py")
 with columnsN1[1]:
     st.subheader(':blue[**Navigation**]')
 with columnsN1[2]:
     if st.button("Next page"):
-        st.switch_page("'90_Streamlit_apps\\gw_recharge\\pages\\07_About.py")
+        st.switch_page("90_Streamlit_apps/gw_recharge/content/07_About.py")

@@ -36,6 +36,6 @@ with columns_lic[1]:
 columnsN1 = st.columns((1,1,1), gap = 'large')
 with columnsN1[0]:
     if st.button("Previous page"):
-        st.switch_page("'90_Streamlit_apps\\gw_recharge\\pages\\07_About.py")
+        st.switch_page("90_Streamlit_apps/gw_recharge/content/07_About.py")
 with columnsN1[1]:
     st.subheader(':blue[**Navigation**]')

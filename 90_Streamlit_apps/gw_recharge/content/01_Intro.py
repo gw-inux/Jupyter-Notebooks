@@ -90,4 +90,4 @@ with columnsN1[1]:
     st.subheader(':blue[**Navigation**]')
 with columnsN1[2]:
     if st.button("Next page"):
-        st.switch_page("'90_Streamlit_apps\\gw_recharge\\pages\\02_ETP_Oudin.py")
+        st.switch_page("90_Streamlit_apps/gw_recharge/content/02_ETP_Oudin.py")
