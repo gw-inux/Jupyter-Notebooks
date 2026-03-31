@@ -1,0 +1,242 @@
+[
+    {
+        "image": "images/slide_1.png",
+        "notes": "Kontext und Rahmen des Workshops\rDie folgenden Folien geben die Inhalte eines Workshops zur Grundwassermodellierung wieder, der durch die Bundesanstalt f\u00fcr Geowissenschaften und Rohstoffe (BGR) organisiert wurde.\rThema des Vortrags ist die Hydrogeologie von Rinnen sowie praktische Erfahrungen bei deren Abbildung in gro\u00dfr\u00e4umigen Grundwassermodellen.\rDer Workshop wurde gemeinsam gestaltet von\rFriedemann Br\u00fcckner, \u00f6ffentlich bestellter und vereidigter Sachverst\u00e4ndiger f\u00fcr Montanhydrologie\rThomas Reimann, wissenschaftlicher Mitarbeiter am Institut f\u00fcr Grundwasserwirtschaft der TU Dresden.\rDie Veranstaltung fand online am 3. M\u00e4rz 2026 statt.\rDie folgenden Folien dokumentieren die zentralen Inhalte und Diskussionspunkte des Workshops."
+    },
+    {
+        "image": "images/slide_2.png",
+        "notes": "Einleitung und Motivation\rDie Folie zeigt typische hydrogeologische Rahmenbedingungen in Tagebaugebieten und dient als Motivation f\u00fcr den folgenden Vortrag.\rF\u00fcr den Abbau der Kohle werden gro\u00dfe Bereiche des Untergrundes entw\u00e4ssert, wodurch das nat\u00fcrliche Grundwassersystem erheblich beeinflusst wird.\rGleichzeitig besteht h\u00e4ufig eine r\u00e4umliche N\u00e4he zwischen aktivem Tagebau und bereits rekultivierten Bereichen, beispielsweise in Form von Restl\u00f6chern.\rZus\u00e4tzlich wirken zahlreiche anthropogene Elemente auf das System, etwa Dichtw\u00e4nde, die Tiefen von \u00fcber 100 m erreichen und den aktiven Tagebau umgeben.\rNeben diesen technischen Eingriffen liegt eine komplexe geologische Situation vor:\rtief eingeschnittene Rinnenstrukturen, die die sediment\u00e4ren Ablagerungen durchschneiden\r\u00dcberpr\u00e4gung der nat\u00fcrlichen geologischen Eigenschaften durch den Tagebaubetrieb, wodurch sich auch die hydrogeologischen Parameter ver\u00e4ndern.\rDiese Faktoren wirken zusammen mit einem stark dynamischen Grundwasserspiegel, der w\u00e4hrend des Tagebaubetriebs zeitweise bis unter die Tagebausohle abgesenkt wird."
+    },
+    {
+        "image": "images/slide_3.png",
+        "notes": "Regionale Grundwassermodelle im Tagebauumfeld\rDie Folie gibt einen \u00dcberblick \u00fcber die Grundwassermodellierung im Tagebauumfeld und verweist auf einige der damit verbundenen besonderen Herausforderungen und Rahmenbedingungen.\rDie Abbildung zeigt die vorhandenen regionalen Grundwassermodelle im Tagebaubereich.\rDiese Modelle besitzen teilweise \u00fcberlappende Modellgebiete.\rEs handelt sich um historisch gewachsene Modelle, die auf einer umfangreichen Datengrundlage basieren.\r\u00dcber die Jahre wurden sie kontinuierlich erweitert, gepflegt und aktualisiert."
+    },
+    {
+        "image": "images/slide_4.png",
+        "notes": "Gliederung und Zielstellung des Vortrags\rZiel des Vortrags ist es, einen Einblick in den aktuellen Stand der Anwendung und Technik der Grundwassermodellierung im Tagebauumfeld zu geben.\rDer Vortrag ist in drei inhaltliche Abschnitte gegliedert.\rErster Abschnitt:\r\u00dcberblick \u00fcber grundlegende Aspekte der Grundwassermodellierung.\rZweiter Abschnitt:\rDarstellung praktischer Erfahrungen bei der Abbildung von Rinnen in Grundwassermodellen.\rBeispiele auf Basis der Modellierungssoftware PC-GEOFIM.\rDritter Abschnitt:\rDiskussion ausgew\u00e4hlter Aspekte der Diskretisierung bei der Abbildung von Rinnen.\rBeispiele im Zusammenhang mit MODFLOW."
+    },
+    {
+        "image": "images/slide_5.png",
+        "notes": "Workflow der Grundwassermodellierung\rDie Folie zeigt den allgemeinen Ablauf einer Grundwassermodellierung in Form eines Workflows.\rAusgangspunkt jeder Modellierung ist der Anlass bzw. die konkrete Fragestellung.\rTypische Fragestellungen k\u00f6nnen beispielsweise sein:\rPlanung oder Dimensionierung von Ma\u00dfnahmen, z. B. einer Wasserentnahme\rBewirtschaftung von Wasserressourcen\rPrognose zuk\u00fcnftiger Potentialh\u00f6hen\rUntersuchung des Transports gel\u00f6ster Stoffe\rlokale Fragestellungen, etwa im Zusammenhang mit einer Kontamination\rDie nachfolgenden Schritte der Modellierung bauen unmittelbar auf dieser Fragestellung auf.\rDamit bildet der Anlass der Modellierung den zentralen Ausgangspunkt, von dem alle weiteren Schritte im Modellierungsprozess abgeleitet werden."
+    },
+    {
+        "image": "images/slide_6.png",
+        "notes": "Konzeptionelles Modell\rDas konzeptionelle Modell beschreibt qualitativ die wichtigsten Eigenschaften und Prozesse im Untersuchungsgebiet.\rDie Abbildung zeigt ein einfaches Beispiel eines konzeptionellen Modells.\rSichtbar werden dabei die grundlegenden qualitativen Zusammenh\u00e4nge innerhalb des Systems.\rDas konzeptionelle Modell l\u00e4sst sich im Wesentlichen durch vier zentrale Aspekte charakterisieren:\rStruktur des Systems\rRandbedingungen\rrelevante Prozesse\rvorhandene Unsicherheiten.\rEs bildet damit die fachliche Grundlage f\u00fcr die nachfolgende numerische Modellierung."
+    },
+    {
+        "image": "images/slide_7.png",
+        "notes": "Beispiel eines konzeptionellen Modells\rDie Folie zeigt ein weiteres Beispiel f\u00fcr ein konzeptionelles Modell.\rGut erkennbar sind die qualitativen Zusammenh\u00e4nge der Grundwasserstr\u00f6mung, dargestellt durch die Pfeile.\rZus\u00e4tzlich sind die verschiedenen Randbedingungen des Systems dargestellt.\r\u00dcber Fragezeichen werden Bereiche markiert, in denen Unsicherheiten bestehen.\rDie Darstellung verdeutlicht damit die zentralen Elemente eines konzeptionellen Modells:\rqualitative Beschreibung der Str\u00f6mungsverh\u00e4ltnisse\rDefinition der Randbedingungen\rKennzeichnung vorhandener Unsicherheiten im System."
+    },
+    {
+        "image": "images/slide_8.png",
+        "notes": "Mathematisches Modell und Auswahl des Rechencodes\rDer n\u00e4chste Schritt ist die Formulierung des mathematischen Modells sowie die Auswahl eines geeigneten Rechencodes zu dessen L\u00f6sung.\rDas mathematische Modell der Grundwasserstr\u00f6mung basiert auf der Kombination aus\rder Kontinuit\u00e4tsbedingung, also dem Massen- bzw. Volumenerhalt, und\rder Darcy-Gleichung zur Beschreibung der Str\u00f6mung.\rBeide Ans\u00e4tze werden in der allgemeinen dreidimensionalen Grundwasserstr\u00f6mungsgleichung zusammengef\u00fchrt.\rDiese Gleichung bildet die Grundlage f\u00fcr die nachfolgende numerische L\u00f6sung."
+    },
+    {
+        "image": "images/slide_9.png",
+        "notes": "Analytische L\u00f6sung der Grundwasserstr\u00f6mungsgleichung\rDie Folie zeigt ein Beispiel f\u00fcr die L\u00f6sung der allgemeinen Grundwasserstr\u00f6mungsgleichung.\rIn diesem Fall handelt es sich um eine analytische L\u00f6sung, die auf einem stark idealisierten konzeptionellen Modell basiert.\rDas zugrunde liegende konzeptionelle Modell weist mehrere vereinfachende Annahmen auf:\rder Grundwasserleiter wird als eindimensionales System betrachtet\rStr\u00f6mung erfolgt ausschlie\u00dflich entlang der x-Achse\rdas System ist homogen und isotrop\rDas Modellgebiet wird durch zwei Randbedingungen mit definierten Potentialh\u00f6hen begrenzt.\rAn der Oberkante des Systems erfolgt ein Zufluss durch Grundwasserneubildung.\rUnter diesen Annahmen vereinfacht sich die allgemeine Grundwasserstr\u00f6mungsgleichung, sodass sie unter Ber\u00fccksichtigung der Randbedingungen analytisch gel\u00f6st werden kann.\rDie dargestellte L\u00f6sung gilt daher f\u00fcr stark vereinfachte Systeme.\rEin Beispiel f\u00fcr die Anwendung dieser L\u00f6sung ist im nachfolgenden Beispiel dargestellt: https://gwf-1d-unconf-calib.streamlit.app/"
+    },
+    {
+        "image": "images/slide_10.png",
+        "notes": "Grenzen analytischer L\u00f6sungen bei komplexen Systemen\rF\u00fcr komplexere Systeme ist eine analytische L\u00f6sung der Grundwasserstr\u00f6mungsgleichung in der Regel nicht mehr m\u00f6glich.\rDie Abbildung zeigt in vereinfachter Form erneut die zuvor betrachtete Situation.\rIm Unterschied zum vorherigen Beispiel liegt hier jedoch eine deutlich komplexere geologische Situation vor.\rDie dargestellte Geologie entspricht vereinfacht einer Situation, wie sie im Lausitzer Tagebaurevier angenommen werden k\u00f6nnte.\rDamit wird deutlich, dass mit zunehmender geologischer Komplexit\u00e4t auch die Anforderungen an die Beschreibung und L\u00f6sung des Systems steigen."
+    },
+    {
+        "image": "images/slide_11.png",
+        "notes": "Numerische L\u00f6sung komplexer Grundwassersysteme\rF\u00fcr komplexe Systeme, in denen die Grundwasserstr\u00f6mung dreidimensional beschrieben werden muss und heterogene Parameter vorliegen, ist eine analytische L\u00f6sung nicht mehr m\u00f6glich.\rIn solchen F\u00e4llen m\u00fcssen die zugrunde liegenden Gleichungen numerisch gel\u00f6st werden.\rDazu werden numerische N\u00e4herungsverfahren eingesetzt, mit denen sich auch komplexe hydrogeologische Systeme berechnen lassen."
+    },
+    {
+        "image": "images/slide_12.png",
+        "notes": "Prinzip der numerischen L\u00f6sung der Grundwasserstr\u00f6mungsgleichung\rDie Folie zeigt das grunds\u00e4tzliche Vorgehen zur Ableitung einer numerischen L\u00f6sung am Beispiel des zuvor dargestellten eindimensionalen Systems.\rBetrachtet wird eine station\u00e4re Str\u00f6mungssituation.\rAuf Basis der grundlegenden physikalischen Prinzipien Kontinuit\u00e4t (Massen- bzw. Volumenerhalt) und Grundwasserstr\u00f6mung nach der Darcy-Gleichung\u000bwerden vereinfachte Gleichungen formuliert, die den Zu- und Abfluss einer einzelnen Modellzelle beschreiben.\rDaraus ergibt sich eine L\u00f6sungsgleichung f\u00fcr die Potentialh\u00f6he der betrachteten Zelle.\rIn dem dargestellten Beispiel gehen als Eingangsgr\u00f6\u00dfen ein:\rdie Potentialh\u00f6hen der benachbarten Zellen,\rdie Grundwasserneubildung,\rsowie die Transmissivit\u00e4t.\rDieses Vorgehen bildet die Grundlage, um die Grundwasserstr\u00f6mungsgleichung numerisch auch f\u00fcr komplexe Systeme zu l\u00f6sen."
+    },
+    {
+        "image": "images/slide_13.png",
+        "notes": "Einfluss der Diskretisierung bei Finite-Differenzen-Verfahren\rDie Folie zeigt typische Probleme im Zusammenhang mit der Anwendung von Finite-Differenzen-Verfahren.\rLinke Abbildung:\rDarstellung einer groben Diskretisierung des Modellgebiets.\rBeispiel: ein Entnahmebrunnen in einem homogenen und isotropen Grundwasserleiter.\rRealistisch w\u00e4re ein kreisf\u00f6rmiger Absenkungstrichter um den Brunnen.\rDurch die grobe Diskretisierung entstehen jedoch deutliche Abweichungen der numerischen L\u00f6sung von der real zu erwartenden L\u00f6sung.\rMittlere Abbildung:\rVerfeinerte Diskretisierung im Bereich des Brunnens.\rDadurch n\u00e4hert sich die numerische L\u00f6sung st\u00e4rker der realen Situation an.\rGleichzeitig treten jedoch Effekte der lokalen Netzverfeinerung auf, die sich durch das Modellgebiet fortsetzen (siehe auch rechte Abbildung).\rDurch diese Verfeinerung k\u00f6nnen numerische Effekte entstehen.\rBeispielsweise wird die Str\u00f6mung nicht mehr exakt an der Zellgrenze berechnet, sondern repr\u00e4sentiert einen Bereich, der leicht von der Zellgrenze abweicht.\rDies ist im unteren Teil der Abbildung durch rote Pfeile dargestellt."
+    },
+    {
+        "image": "images/slide_14.png",
+        "notes": "Control-Volume-Finite-Differenzen-Verfahren\rDie Folie zeigt ein erweitertes Finite-Differenzen-Verfahren, das sogenannte Control-Volume-Finite-Differenzen-Verfahren.\rBei diesem Ansatz wird die Grundwasserstr\u00f6mungsgleichung auf Basis der Kontaktfl\u00e4che zwischen zwei Zellen formuliert.\rDadurch lassen sich flexiblere Zellgr\u00f6\u00dfen und Zellformen verwenden, wie in der Abbildung dargestellt.\rDas Verfahren erm\u00f6glicht somit eine flexiblere Diskretisierung des Modellgebiets.\rMathematisch ist der Ansatz eng mit den klassischen Finite-Differenzen-Verfahren verwandt."
+    },
+    {
+        "image": "images/slide_15.png",
+        "notes": "\u00dcberblick \u00fcber numerische Verfahren der Grundwasserstr\u00f6mungsmodellierung\rDie Folie zeigt eine \u00dcbersicht gebr\u00e4uchlicher numerischer Verfahren in der Grundwasserstr\u00f6mungsmodellierung.\rFinite-Elemente-Verfahren wurden im bisherigen Teil nicht im Detail erl\u00e4utert, da sie eine andere mathematische Herangehensweise darstellen und nicht Gegenstand dieser Veranstaltung sind. Sie werden dennoch kurz im Verh\u00e4ltnis zu den vorgestellten Verfahren eingeordnet. Weitere Veranstaltungen werden diesen Ansatz ausf\u00fchrlicher behandeln.\rFinite-Differenzen-Verfahren:\rVorteil: in der Regel sehr gute Massen- bzw. Wasserbilanz\rNachteil: eingeschr\u00e4nkte Flexibilit\u00e4t bei der Diskretisierung\rControl-Volume-Finite-Differenzen-Verfahren:\rVorteil: flexiblere Diskretisierung m\u00f6glich\rNachteil: etwas h\u00f6herer Rechenaufwand\rFinite-Elemente-Verfahren:\rVorteil: ebenfalls sehr flexible Diskretisierung\rNachteile: h\u00f6herer Rechenaufwand sowie verfahrensbedingte Nachteile bei der Massenbilanz\rBeispiele f\u00fcr im Tagebaubereich verbreitete Software:\rFinite Differenzen: MODFLOW-2005, MODFLOW-NWT\rControl-Volume-Finite-Differenzen: PCGEOFIM, MODFLOW 6\rFinite Elemente: FEFLOW, OpenGeoSys."
+    },
+    {
+        "image": "images/slide_16.png",
+        "notes": "Anwendung der Grundwassermodellierung im Tagebaubereich\rDer n\u00e4chste Abschnitt widmet sich der praktischen Anwendung der Grundwassermodellierung im Tagebaubereich.\rThematischer Schwerpunkt ist die Abbildung von Rinnenstrukturen in gro\u00dfr\u00e4umigen Grundwassermodellen.\rAls Modellierungswerkzeug wird dabei PCGEOFIM verwendet.\rDieser Abschnitt des Vortrags wird von Friedemann Br\u00fcckner vorgestellt."
+    },
+    {
+        "image": "images/slide_17.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_18.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_19.png",
+        "notes": "dies ist ein theoretisches Beispiel zur Veranschaulichung der Verh\u00e4ltnisse (in Anlehnung an das D\u00fcbener-/Burgkemnitzer Rinnensystem)\rdie Grundwasserst\u00e4nde hier nur in Anlehnung an reale Messwerte dargestellt:\rim Hangenden wirklichkeitsnah\rim Liegenden zeigt das Beispiel vergleichsweise niedrige GW-St\u00e4nde, um einen m\u00f6glichst gro\u00dfen Unterschied zwischen Hangendem und Liegendem aufzuzeigen \rwichtig f\u00fcr die \u00dcberf\u00fchrung von Rinnen in numerische Modelle ist, dass Grundwasserstandsmesswerte vorliegen:\rim Anstrom, im Zentrum und im Abstrom der Rinne in mehreren Horizontlagen (Hangend/Liegend, bei tiefen Rinnen abh\u00e4ngig von den hydrogeologischen Verh\u00e4ltnissen auch in Zwischenhorizonten)\r\rob die Rinnenflanken im Modell nun durchl\u00e4ssig oder geringer durchl\u00e4ssig gestaltet werden, h\u00e4ngt von den Messwerten ab (\uf0e0 die Rinnenflanke muss nicht zwingend \u201etrennend\u201c gestaltet werden!!)\rgleiches gilt f\u00fcr die vertikalen Wasserstandsunterschiede innerhalb einer Rinne: nur wenn die Messwerte zeigen, dass ein bindiges Zwischenmittel innerhalb der Rinne vorliegen muss, ist dies bei der nummerischen Modellierung zu beachten\r\rwichtig ist auch der Punkt, dass ein und dieselbe Rinne an unterschiedlichen \u00d6rtlichkeiten gro\u00dfe Unterschiede der hydrogeologischen Verh\u00e4ltnisse aufweisen kann!!"
+    },
+    {
+        "image": "images/slide_20.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_21.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_22.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_23.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_24.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_25.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_26.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_27.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_28.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_29.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_30.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_31.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_32.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_33.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_34.png",
+        "notes": "Grundlage ist \u201eErstellungskonzept f\u00fcr ein Gro\u00dfraummodell der Lausitz \u2013 Abschlussbericht\u201c\rhier wird schon eine denkbare Modellabbildung vorgeschlagen, die je nach \u00f6rtlichen Verh\u00e4ltnissen modifiziert werden kann/muss"
+    },
+    {
+        "image": "images/slide_35.png",
+        "notes": "Grundlage ist \u201eErstellungskonzept f\u00fcr ein Gro\u00dfraummodell der Lausitz \u2013 Abschlussbericht\u201c\rder beispielhafte Abbildungsvorschlag wieder rausgenommen, um eine \u201efreie\u201c Grundlage f\u00fcr Herleitung der nachfolgenden M\u00f6glichkeiten zu schaffen"
+    },
+    {
+        "image": "images/slide_36.png",
+        "notes": "theoretische Modellabbildung, wenn die Rinne gar nicht da w\u00e4re bzw. wenn die Rinne im Modell ignoriert werden w\u00fcrde\r(\uf0e0 dann hier auch keine unterschiedliche Parametrisierung m\u00f6glich)"
+    },
+    {
+        "image": "images/slide_37.png",
+        "notes": "Grundlage ist \u201eErstellungskonzept f\u00fcr ein Gro\u00dfraummodell der Lausitz \u2013 Abschlussbericht\u201c"
+    },
+    {
+        "image": "images/slide_38.png",
+        "notes": "Grundlage ist \u201eErstellungskonzept f\u00fcr ein Gro\u00dfraummodell der Lausitz \u2013 Abschlussbericht\u201c\r\uf0e0 Beispiel, wie es im Finite-Volumen-Modell nicht funktionieren w\u00fcrde"
+    },
+    {
+        "image": "images/slide_39.png",
+        "notes": "Grundlage ist \u201eErstellungskonzept f\u00fcr ein Gro\u00dfraummodell der Lausitz \u2013 Abschlussbericht\u201c"
+    },
+    {
+        "image": "images/slide_40.png",
+        "notes": "Abbildung geologischer Strukturen im Finite-Volumen-Modell\rdenkbare Abbildung der geologischen Strukturen in einem Finiten-Volumen-Modell\rDie Abbildung zeigt, wie diese Strukturen im Modell in Form von Modellzellen und Modellschichten repr\u00e4sentiert werden.\rDabei wird im Modell ber\u00fccksichtigt:\rdie Str\u00f6mung zwischen benachbarten Zellen innerhalb einer Modellschicht sowie\rder Austausch mit den dar\u00fcber- und darunterliegenden Schichten.\rStr\u00f6mung erfolgt \u00fcber die gr\u00fcnen Kanten (\uf0e0 GWL, h\u00f6here Durchl\u00e4ssigkeit) bzw. die braunen Kanten (\uf0e0 Geringleiter mit entsprechend niedrigerer Durchl\u00e4ssigkeit) \rkeine Str\u00f6mung \u00fcber die roten Kanten"
+    },
+    {
+        "image": "images/slide_41.png",
+        "notes": "Grundlage sind die Volumenelemente laut Folie 40\rhier mit theoretisch denkbaren Parametrisierungen\rbspw. Rinne in allen Richtungen mit eher durchl\u00e4ssigerem Material gef\u00fcllt\rdies w\u00fcrde zu Str\u00f6mungen bzw. Druckausgleich in alle Richtungen (vertikal von MG1 bis MG8 sowie generell horizontal in den GWLs) f\u00fchren"
+    },
+    {
+        "image": "images/slide_42.png",
+        "notes": "ausgeblendet, theoretisches Beispiel nicht vorgestellt"
+    },
+    {
+        "image": "images/slide_43.png",
+        "notes": "ausgeblendet, theoretisches Beispiel nicht vorgestellt"
+    },
+    {
+        "image": "images/slide_44.png",
+        "notes": "Grundlage sind die Volumenelemente laut Folie 40\rhier mit theoretisch denkbaren Parametrisierungen\rbspw. Rinne in horizontaler Richtung mit eher durchl\u00e4ssigerem Material gef\u00fcllt, in vertikaler Richtung mit gering durchl\u00e4ssigem Material (zuf\u00e4llig (!) im Niveau der GW-Geringleiter au\u00dferhalb)\rdies w\u00fcrde zu Str\u00f6mungen in horizontaler Richtung f\u00fchren\rvertikal kein/kaum Druckausgleich"
+    },
+    {
+        "image": "images/slide_45.png",
+        "notes": "ausgeblendet, theoretisches Beispiel nicht vorgestellt"
+    },
+    {
+        "image": "images/slide_46.png",
+        "notes": "Grundlage sind die Volumenelemente laut Folie 40\rhier mit theoretisch denkbaren Parametrisierungen, hier sehr inhomogen\rbspw. Rinne in horizontaler/vertikaler Richtung zum Teil mit durchl\u00e4ssigerem Material gef\u00fcllt\rin diesem sehr theoretischen Beispiel k\u00f6nnte je nach Druckverh\u00e4ltnissen das Wasser vom GWL 4 ins Quart\u00e4r sowie in den GWL 5 str\u00f6men (bei Str\u00f6mungsrichtung von rechts nach links)\rvertikal kaum Druckausgleich, au\u00dfer anstromseitig vom GWL 4 zum Quart\u00e4r bzw. abstromseitig vom Quart\u00e4r zum GWL 5 (bei Str\u00f6mungsrichtung von rechts nach links)"
+    },
+    {
+        "image": "images/slide_47.png",
+        "notes": "wieder das theoretische Beispiel zur Veranschaulichung der Verh\u00e4ltnisse (in Anlehnung an das D\u00fcbener-/Burgkemnitzer Rinnensystem)\r\rwichtig f\u00fcr die \u00dcberf\u00fchrung von Rinnen in numerische Modelle ist, dass Grundwasserstandsmesswerte vorliegen (siehe vorne)\r\rob die Rinnenflanken im Modell nun durchl\u00e4ssig oder geringer durchl\u00e4ssig gestaltet werden, h\u00e4ngt von den Messwerten und den \u00f6rtlichen Verh\u00e4ltnissen ab (\uf0e0 die Rinnenflanke muss nicht zwingend \u201etrennend\u201c gestaltet werden!!)\rgleiches gilt f\u00fcr die vertikalen Wasserstandsunterschiede innerhalb einer Rinne: nur wenn die Messwerte zeigen, dass ein bindiges Zwischenmittel innerhalb der Rinne vorliegen muss, ist dies bei der nummerischen Modellierung zu beachten\r\rwichtig ist auch der Punkt, dass ein und dieselbe Rinne an unterschiedlichen \u00d6rtlichkeiten gro\u00dfe Unterschiede der hydrogeologischen Verh\u00e4ltnisse aufweisen kann!!"
+    },
+    {
+        "image": "images/slide_48.png",
+        "notes": "wieder das theoretische Beispiel zur Veranschaulichung der Verh\u00e4ltnisse (in Anlehnung an das D\u00fcbener-/Burgkemnitzer Rinnensystem)\rim Beispiel durch drei Modellschichten abgebildet (in der Realit\u00e4t werden dies je nach Anforderungen mehrere Schichten werden)\r\rwichtig f\u00fcr die \u00dcberf\u00fchrung von Rinnen in numerische Modelle ist, dass Grundwasserstandsmesswerte vorliegen (siehe vorne)\r\rob die Rinnenflanken im Modell nun durchl\u00e4ssig oder geringer durchl\u00e4ssig gestaltet werden, h\u00e4ngt von den Messwerten und den \u00f6rtlichen Verh\u00e4ltnissen ab (\uf0e0 die Rinnenflanke muss nicht zwingend \u201etrennend\u201c als St\u00f6rung gestaltet werden!!)\rgleiches gilt f\u00fcr die vertikalen Wasserstandsunterschiede innerhalb einer Rinne: nur wenn die Messwerte zeigen, dass ein bindiges Zwischenmittel innerhalb der Rinne vorliegen muss, ist dies bei der nummerischen Modellierung zu beachten\r\rwichtig ist auch der Punkt, dass ein und dieselbe Rinne an unterschiedlichen \u00d6rtlichkeiten gro\u00dfe Unterschiede der hydrogeologischen Verh\u00e4ltnisse aufweisen kann und damit auch \u00f6rtlich unterschiedlich im Modell abgebildet werden muss!!"
+    },
+    {
+        "image": "images/slide_49.png",
+        "notes": "No notes"
+    },
+    {
+        "image": "images/slide_50.png",
+        "notes": "R\u00e4umliche Diskretisierung in MODFLOW\rDer folgende Abschnitt behandelt M\u00f6glichkeiten der r\u00e4umlichen Diskretisierung in MODFLOW.\rZiel ist es, Ans\u00e4tze zur Abbildung komplexer geologischer Strukturen im numerischen Modell aufzuzeigen.\rDieser Teil des Vortrags wird von Thomas Reimann vorgestellt."
+    },
+    {
+        "image": "images/slide_51.png",
+        "notes": "Historische Entwicklung von MODFLOW\rMODFLOW ist eine Open-Source-Software des United States Geological Survey (USGS) zur numerischen Grundwasserstr\u00f6mungsmodellierung.\rDie Entwicklung begann in den 1970er Jahren, zeitlich vergleichbar mit der Entwicklung von PCGEOFIM.\rZiel war es, ein generalisiertes Grundwasserstr\u00f6mungsmodell zu entwickeln, das effizient f\u00fcr verschiedene Anwendungen eingesetzt werden kann.\rIn den 1980er Jahren wurde dieses Modell unter dem Namen MODFLOW ver\u00f6ffentlicht.\rMODFLOW ist in der Programmiersprache Fortran geschrieben, was eine sehr effiziente und schnelle Berechnung erm\u00f6glicht.\rDas Programm basiert auf einem modularen Konzept, bei dem zus\u00e4tzliche Pakete und Erweiterungen verschiedene Funktionen und Anwendungsbereiche abbilden k\u00f6nnen."
+    },
+    {
+        "image": "images/slide_52.png",
+        "notes": "Entwicklung der MODFLOW-Programmfamilie\rDie Folie zeigt die historische Entwicklung der MODFLOW-Programme.\rDer obere Entwicklungszweig umfasst die Versionen auf Basis des klassischen Finite-Differenzen-Ansatzes. Beginnend mit MODFLOW-88 in den 1980er-Jahren, anschlie\u00dfend Weiterentwicklungen \u00fcber MODFLOW-96, MODFLOW-2000 und MODFLOW-2005. Heute verbreitete Varianten sind MODFLOW-NWT und MODFLOW-OWHM, wobei OWHM weiterhin aktiv weiterentwickelt wird.\rParallel dazu entstand mit MODFLOW-USG (ca. 2012) eine Version auf Basis des Finite-Volumen-Ansatzes. Diese Version basiert auf MODFLOW-NWT. Sie erm\u00f6glicht erstmals strukturierte und unstrukturierte Gitter durch die Control-Volume-Finite-Differenzen-Methode.\rDie aktuellste Entwicklung ist MODFLOW 6.\rDieses Modell greift die Entwicklungen aus MODFLOW-USG auf und f\u00fchrt den Finite-Volumen-Ansatz weiter. \rMODFLOW 6 unterst\u00fctzt strukturierte und unstrukturierte Diskretisierungen.\rZus\u00e4tzlich bietet es ein erweitertes Modellkonzept, beispielsweise zur Kopplung mehrerer Modelle, eine API-Schnittstelle sowie Erweiterungen zur Ber\u00fccksichtigung von Transport- und Dichteeffekten.\rDie dargestellte Entwicklung zeigt, dass MODFLOW kein einzelner Code, sondern eine Programmfamilie (\u201eFamily of Codes\u201c) mit gemeinsamem Grundkonzept ist.\rGrunds\u00e4tzlich sind MODFLOW und PCGEOFIM \u00e4hnlich aufgebaut: Beide basieren auf demselben mathematischen Modell und l\u00f6sen die dreidimensionale Grundwasserstr\u00f6mungsgleichung unter Ber\u00fccksichtigung verschiedener Randbedingungen."
+    },
+    {
+        "image": "images/slide_53.png",
+        "notes": "Abbildung geologischer Strukturen mit klassischen Finite-Differenzen\rDie Folie zeigt, wie geologische Strukturen mit klassischen Finite-Differenzen-Gittern dargestellt werden k\u00f6nnen.\rAuf der linken Seite sind eine Draufsicht sowie eine Schnittdarstellung gezeigt.\rDabei wird deutlich, dass sich die H\u00f6henlage der Modellzellen variieren l\u00e4sst.\rGrunds\u00e4tzlich bestehen zwei M\u00f6glichkeiten zur Abbildung geologischer Schichten:\rVerwendung eines festen Gitters, bei dem die hydrogeologischen Parameter innerhalb der Zellen variieren, oder\rAbbildung der Schichten durch Modellschichten mit variierender H\u00f6henlage, die der Geometrie der geologischen Strukturen folgen.\rBeide Ans\u00e4tze sind auf der rechten Seite der Folie schematisch dargestellt."
+    },
+    {
+        "image": "images/slide_54.png",
+        "notes": "Abbildung geologischer Strukturen im Finite-Differenzen-Modell\r\u00dcbertragen auf das zuvor vorgestellte Beispiel von Friedemann Br\u00fcckner k\u00f6nnen die geologischen Strukturen auch mit der klassischen Finite-Differenzen-Diskretisierung dargestellt werden.\rDie Abbildung zeigt, wie diese Strukturen im Modell in Form von Modellzellen und Modellschichten repr\u00e4sentiert werden.\rDabei wird im Modell ber\u00fccksichtigt:\rdie Str\u00f6mung zwischen benachbarten Zellen innerhalb einer Modellschicht sowie\rder Austausch mit den dar\u00fcber- und darunterliegenden Schichten.\rDas grundlegende Vorgehen ist damit prinzipiell vergleichbar mit der Modellierung in PCGEOFIM."
+    },
+    {
+        "image": "images/slide_55.png",
+        "notes": "Abbildung geologischer Strukturen mit unstrukturierten Control-Volume-Finite-Differenzen\rDie Folie zeigt, wie geologische Strukturen mit unstrukturierten Control-Volume-Finite-Differenzen-Verfahren dargestellt werden k\u00f6nnen.\rIn der Draufsicht k\u00f6nnen dabei beliebige Zellformen verwendet werden. Die Zellen werden im Wesentlichen durch ihre Kontaktfl\u00e4chen zu benachbarten Zellen charakterisiert.\rIn der Schnittdarstellung wird deutlich, dass auch die H\u00f6henlage der Modellschichten variieren kann.\rZus\u00e4tzlich besteht die M\u00f6glichkeit, einzelne Modellschichten lokal zu deaktivieren.\rDadurch k\u00f6nnen Modellschichten nur dort dargestellt werden, wo sie tats\u00e4chlich ben\u00f6tigt werden.\rDieses Vorgehen ist gut geeignet, um komplexe geologische Strukturen flexibel abzubilden."
+    },
+    {
+        "image": "images/slide_56.png",
+        "notes": "Str\u00f6mungsdarstellung innerhalb einer Modellschicht \u2013 Option A\rF\u00fcr die Abbildung der Str\u00f6mung innerhalb einer Modellschicht bestehen verschiedene M\u00f6glichkeiten. Option A entspricht der klassischen Modellstruktur.\rIn diesem Ansatz wird die Str\u00f6mung innerhalb der Modellschicht berechnet.\rZwischen benachbarten Zellen besteht damit nur eine horizontale hydraulische Verbindung.\rDie Str\u00f6mung erfolgt folglich ausschlie\u00dflich innerhalb der jeweiligen Modellschicht zwischen den angrenzenden Zellen."
+    },
+    {
+        "image": "images/slide_57.png",
+        "notes": "Str\u00f6mungsdarstellung innerhalb der Modellschichten \u2013 Option B\rDie zweite Option basiert auf einem unstrukturierten Gitter.\rDieser Ansatz erlaubt es, mehrere hydraulische Verbindungen zwischen Zellen zu ber\u00fccksichtigen.\rDadurch kann aus einer Zelle Str\u00f6mung zu mehreren benachbarten Zellen und auch in unterschiedliche Schichten stattfinden. In der Abbildung wird dies durch die gr\u00fcnen Pfeile dargestellt.\rDamit wird eine flexiblere Abbildung der Str\u00f6mungswege im Modell erm\u00f6glicht."
+    },
+    {
+        "image": "images/slide_58.png",
+        "notes": "Konzeptionelle Abbildung einer Rinne im Modell\r\u00dcbertragen auf das Beispiel einer Rinne im Grundwassermodell kann die Rinne im Modell durch eine einzelne Zelle repr\u00e4sentiert werden. Diese Zelle stellt die geometrische Lage der Rinne innerhalb des Modellgitters dar.\rAus den umgebenden Modellschichten kann dabei Str\u00f6mung in diese Zelle erfolgen.\rDadurch wird der hydraulische Austausch zwischen den Schichten und der Rinnenstruktur im Modell ber\u00fccksichtigt."
+    },
+    {
+        "image": "images/slide_59.png",
+        "notes": "Fazit und kurze Empfehlung\rDer Control-Volume-Finite-Differenzen-Ansatz bietet eine hohe Flexibilit\u00e4t bei der r\u00e4umlichen Diskretisierung.\rGleichzeitig \u00fcbernimmt dieser Ansatz wichtige Eigenschaften der klassischen Finite-Differenzen-Verfahren, insbesondere Vorteile im Hinblick auf die Massenbilanz.\rF\u00fcr MODFLOW stehen zudem zahlreiche M\u00f6glichkeiten f\u00fcr Pre- und Post-Processing zur Verf\u00fcgung.\rAls kurzer Ausblick l\u00e4sst sich festhalten, dass MODFLOW die notwendigen Funktionalit\u00e4ten f\u00fcr Anwendungen im Tagebauumfeld grunds\u00e4tzlich abdeckt.\rDies wurde unter anderem in gemeinsamen Masterarbeiten in Zusammenarbeit mit LEAG gezeigt, in denen Benchmark-Beispiele mit typischen Tagebaufragestellungen untersucht wurden."
+    },
+    {
+        "image": "images/slide_60.png",
+        "notes": "Abschluss und Kontakt\rVielen Dank f\u00fcr Ihr Interesse an den Inhalten dieses Workshops.\rDie vorgestellten Beitr\u00e4ge wurden im Rahmen eines Online-Workshops der BGR pr\u00e4sentiert.\rBei R\u00fcckfragen, Anmerkungen oder weiterf\u00fchrenden Diskussionen freuen wir uns \u00fcber Ihre Kontaktaufnahme.\rSie erreichen uns \u00fcber die folgenden E-Mail-Adressen:\rFriedemann Br\u00fcckner \u2013 friedemann.brueckner@gw-modellierung.de\rThomas Reimann \u2013 Thomas.Reimann@tu-dresden.de"
+    }
+]
