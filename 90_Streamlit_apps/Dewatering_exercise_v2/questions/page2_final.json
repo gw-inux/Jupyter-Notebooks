@@ -2,9 +2,9 @@
   {
     "question": "If everything else is kept constant, what is the effect of increasing S on the drawdown at a given distance and time? (Mark ALL correct answers)",
     "options": {
-      "Drawdown increases.": false,
-      "Drawdown decreases.": true,
-      "It depends.": false
+      "Drawdown increases with increasing S.": false,
+      "Drawdown decreases with increasing S.": true,
+      "For increasing S, it depends.": false
     },
     "success": "✅ Correct! If S is higher, then less drawdown is needed everywhere to release the volume of water pumped by time t.",
     "error": "❌ Incorrect - if S is higher, then less drawdown is needed everywhere to release the volume of water pumped by time t."
@@ -12,9 +12,9 @@
   {
     "question": "If everything else is kept constant, what is the effect of increasing T on the drawdown at a given distance and time? (Mark ALL correct answers)",
     "options": {
-      "Drawdown increases.": false,
-      "Drawdown decreases.": false,
-      "It depends.": true
+      "Drawdown increases with increasing T.": false,
+      "Drawdown decreases with increasing T.": false,
+      "For increasing T, it depends.": true
     },
     "success": "✅ Correct! The effect of T depends on distance and time. Explore this behavior with simulations to see how the response varies.",
     "error": "❌ Incorrect - there is no simple general answer; the effect depends on both T and the spatial/temporal context."

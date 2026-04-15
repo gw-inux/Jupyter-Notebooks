@@ -272,7 +272,7 @@ def content_final():
     st.info("These questions test your understanding after working through this page.")
     
     # Render questions in a 2x3 grid (row-wise)
-    for row in [(0, 1), (2, 3)]:
+    for row in [(0, 1), (2, 3), (4, 5)]:
         col1, col2 = st.columns(2)
 
         with col1:
