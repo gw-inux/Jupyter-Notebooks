@@ -34,7 +34,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 import scipy.special
 import streamlit as st
-import streamlit_book as stb
+#import streamlit_book as stb
 from streamlit_extras.stodo import to_do
 
 st.title('Dewatering exercise 💦')
@@ -305,43 +305,43 @@ st.markdown(
     # discuss why collecting additional data might be useful
     # discuss when you know that you don't need any more data
 
-
-st.markdown(
-    """
-    ---
-    ### Self-check questions 💦
- 
-"""
-)
-st.write('')
-st.write('')
-question1 = "Thomas Bayes was a professor of hydrogeology at Harvard."
-options1 = "False - Bayes was alive before Harvard was founded.", "False - Bayes was alive before hydrogeology became a science.", "False - Bayes was a Presbyterian minister in England."
-answer_index1 = 2
-stb.single_choice(question1, options1, answer_index1, success='Correct!  Bayes had nothing to do with either Harvard (which existed when he was alive) or hydrogeology (which did not).', error='Incorrect - Bayes did predate modern hydrogeology, but not Harvard.  But we have no record of him being associated with either.', button='Check answer')
-
-st.write('')
-st.write('')
-question1 = "Bayes' Law is a method to find the best fitting model parameters given data."
-options2 = "False - Bayes Law is a way to balance your current belief or understanding with information contained in new data.", "False - Bayes Law has nothing to do with model likelihood weighting, which uses model fit to find the best model parameters.", "False - Bayes' Law has nothing to do with data or models."
-answer_index2 = 0
-stb.single_choice(question1, options2, answer_index2, success='Correct!  Bayes Law allows you to learn from new data in a rational way.', error='Incorrect - Bayes Law underlies the concept of likelihood weighting, even though it may not be clear to you how from this brief introduction!', button='Check answer')
-
-st.write('')
-st.write('')
-question3 = "Using likelihood weighting is the same as using the best fit model."
-options3 = "True - it is just a better way to figure out which model is best.", "False - likelihood weighting allows you to consider input from many models to form a single prediction.", "False - you don't need to use likelihood weighting if you have a best fit model."
-answer_index3 = 1
-stb.single_choice(question3, options3, answer_index3, success='Correct! - likelihood weighting produces a single prediction, but it is informed by many models and the available data.', error='Incorrect - likelihood weighting produces a single prediction, but it that prediction is not necessarily associated with any single model.', button='Check answer')
-
-st.write('')
-st.write('')
-question4 = "Using likelihood weighting is the same as quantifying prediction uncertainty."
-options4 = "False - likelihood weighting eliminates prediction uncertainty.", "True - likelihood weighting quantifies and reports prediction uncertainty as its first step.", "False - likelihood weighting produces a compromise prediction, but it does not quantify the uncertainty of that prediction."
-answer_index4 = 2
-stb.single_choice(question4, options4, answer_index4, success='Correct!  Likelihood weighting can be combined with uncertainty quantification, but they are separate analyses.', error='Incorrect - some of the steps used to develop the likelihood weighted prediction are also used for uncertainty quantification, but no form of averaging can remove that uncertainty.', button='Check answer')
-
-st.markdown('---')
+#
+#st.markdown(
+#    """
+#    ---
+#    ### Self-check questions 💦
+# 
+#"""
+#)
+#st.write('')
+#st.write('')
+#question1 = "Thomas Bayes was a professor of hydrogeology at Harvard."
+#options1 = "False - Bayes was alive before Harvard was founded.", "False - Bayes was alive before hydrogeology became a science.", "False - Bayes was a Presbyterian minister in England."
+#answer_index1 = 2
+#stb.single_choice(question1, options1, answer_index1, success='Correct!  Bayes had nothing to do with either Harvard (which existed when he was alive) or hydrogeology (which did not).', error='Incorrect - Bayes did predate modern hydrogeology, but not Harvard.  But we have no record of him being associated with either.', button='Check answer')
+#
+#st.write('')
+#st.write('')
+#question1 = "Bayes' Law is a method to find the best fitting model parameters given data."
+#options2 = "False - Bayes Law is a way to balance your current belief or understanding with information contained in new data.", "False - Bayes Law has nothing to do with model likelihood weighting, which uses model fit to find the best model parameters.", "False - Bayes' Law has nothing to do with data or models."
+#answer_index2 = 0
+#stb.single_choice(question1, options2, answer_index2, success='Correct!  Bayes Law allows you to learn from new data in a rational way.', error='Incorrect - Bayes Law underlies the concept of likelihood weighting, even though it may not be clear to you how from this brief introduction!', button='Check answer')
+#
+#st.write('')
+#st.write('')
+#question3 = "Using likelihood weighting is the same as using the best fit model."
+#options3 = "True - it is just a better way to figure out which model is best.", "False - likelihood weighting allows you to consider input from many models to form a single prediction.", "False - you don't need to use likelihood weighting if you have a best fit model."
+#answer_index3 = 1
+#stb.single_choice(question3, options3, answer_index3, success='Correct! - likelihood weighting produces a single prediction, but it is informed by many models and the available data.', error='Incorrect - likelihood weighting produces a single prediction, but it that prediction is not necessarily associated with any single model.', button='Check answer')
+#
+#st.write('')
+#st.write('')
+#question4 = "Using likelihood weighting is the same as quantifying prediction uncertainty."
+#options4 = "False - likelihood weighting eliminates prediction uncertainty.", "True - likelihood weighting quantifies and reports prediction uncertainty as its first step.", "False - likelihood weighting produces a compromise prediction, but it does not quantify the uncertainty of that prediction."
+#answer_index4 = 2
+#stb.single_choice(question4, options4, answer_index4, success='Correct!  Likelihood weighting can be combined with uncertainty quantification, but they are separate analyses.', error='Incorrect - some of the steps used to develop the likelihood weighted prediction are also used for uncertainty quantification, but no form of averaging can remove that uncertainty.', button='Check answer')
+#
+#st.markdown('---')
 
 # --- Render footer with authors, institutions, and license logo in a single line
 columns_lic = st.columns((5,1))
