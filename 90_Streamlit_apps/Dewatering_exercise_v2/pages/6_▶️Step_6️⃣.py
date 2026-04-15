@@ -1,3 +1,16 @@
+# Loading the required Python libraries
+import numpy as np
+import matplotlib.pyplot as plt
+import scipy.special
+import streamlit as st
+from streamlit_extras.stodo import to_do
+import json
+from streamlit_book import multiple_choice
+from Dewatering_app_utils import read_md
+from Dewatering_app_utils import flip_assessment
+from Dewatering_app_utils import render_toggle_container
+from Dewatering_app_utils import prep_log_slider
+
 # -*- coding: utf-8 -*-
 """
 Created on Sun Oct 13 15:28:58 2024
@@ -41,19 +54,6 @@ with open(path_quest_final, "r", encoding="utf-8") as f:
 
 # This is a copy of Thomas Reimann's code to guide students through a mine dewatering, multiple stakeholder negotiation
 
-
-# Loading the required Python libraries
-import numpy as np
-import matplotlib.pyplot as plt
-import scipy.special
-import streamlit as st
-from streamlit_extras.stodo import to_do
-import json
-from streamlit_book import multiple_choice
-from Dewatering_app_utils import read_md
-from Dewatering_app_utils import flip_assessment
-from Dewatering_app_utils import render_toggle_container
-from Dewatering_app_utils import prep_log_slider
 
 st.title('Dewatering exercise 💦')
 st.subheader("Step 06 - Pumping Tests and the Impacts of Hydrogeologic Uncertainty", divider="blue")
