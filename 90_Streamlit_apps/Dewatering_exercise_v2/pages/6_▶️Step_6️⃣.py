@@ -330,41 +330,6 @@ st.markdown(
 )
 
 
-#st.markdown(
-#    """
-#    ---
-#    ### Self-check questions 💦
-# 
-#"""
-#)
-#st.write('')
-#st.write('')
-#question1 = "What is parameter estimation?"
-#options1 = "Making an educated guess about parameter values.", "Rethinking the processes that describe a system given new data.", "Finding the values of parameters that make a model fit the data as well as possible."
-#answer_index1 = 2
-#stb.single_choice(question1, options1, answer_index1, success='Correct!  In parameter estimation, we typically assume that our model is correct, but that it has to be tuned to match the data.', error='Incorrect - while we often start with an educated guess, we then alter parameter values to fit our model to data.  If we cannot get a good fit, we may have to rethink our model!', button='Check answer')
-#
-#st.write('')
-#st.write('')
-#question1 = "If a model does not fit the data, then the parameters are wrong."
-#options2 = "True - this is the basis of parameter estimation.", "False - data typically include measurement error so we shouldn't expect the model to fit the data exactly.", "True - data cannot reveal mistakes in our understanding of the system."
-#answer_index2 = 1
-#stb.single_choice(question1, options2, answer_index2, success='Correct!  Collecting more (and better) data can reduce the impacts of measurement error, but it will always exist!', error='Incorrect - we might assume that our model is correct and that we only have to find the right parameters to fit the data, but we should always be on the lookout for structural errors built into our models.', button='Check answer')
-#
-#st.write('')
-#st.write('')
-#question3 = "Uncertain data leads to uncertain parameters which lead to uncertain predictions."
-#options3 = "True - you should quantify prediction errors and let a stakeholder decide how to consider them.", "True - but the best fitting model is usually good enough to rely on for decision making.", "False - it is our job as a scientist to provide the best possible prediction; adding uncertainty reduces our credibility."
-#answer_index3 = 0
-#stb.single_choice(question3, options3, answer_index3, success='True - we should included errors on our predictions because they always exist.  Sophisticated decision makers will know how to account for prediction error.', error='Incorrect - in some cases there may be very little data, so a single model is adquate; but the job of a scientist is to provide the best possible answer including the level of uncertainty.', button='Check answer')
-#
-#st.write('')
-#st.write('')
-#question4 = "A pumping test is designed to:"
-#options4 = "Choose the right pump to use in a well.", "Test how solidly a well was constructed.", "Determine the hydraulic properties of an aquifer."
-#answer_index4 = 2
-#stb.single_choice(question4, options4, answer_index4, success='Correct!  A pumping test is a classic hydrogeologic method to determine aquifer hydraulic properties, which can then be used in models to make predictions.', error='Incorrect - it is true that a pumping test may indicate that too small or large a pump was used or that the well was poorly installed, but these are not the main purposes of the test.', button='Check answer')
-#
 #st.markdown('---')
 # --- FINAL ASSESSMENT ---
 def content_final():
