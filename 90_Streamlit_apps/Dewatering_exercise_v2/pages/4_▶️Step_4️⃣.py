@@ -1,6 +1,11 @@
 import streamlit as st
-#import streamlit_book as stb
 from streamlit_extras.stodo import to_do
+import json
+from streamlit_book import multiple_choice
+from Dewatering_app_utils import read_md
+from Dewatering_app_utils import flip_assessment
+from Dewatering_app_utils import render_toggle_container
+from Dewatering_app_utils import prep_log_slider
 
 # ToDo:
 #    - number input
@@ -21,6 +26,13 @@ author_list = [f"{name}{''.join(index_symbols[i-1] for i in indices)}" for name,
 institution_list = [f"{index_symbols[i-1]} {inst}" for i, inst in institutions.items()]
 institution_text = " | ".join(institution_list)
 
+# ---------- path to questions for the assessments (direct path)
+path_quest_final = "90_Streamlit_apps/Dewatering_exercise_v2/questions/page4_final.json"
+
+# Load questions
+with open(path_quest_final, "r", encoding="utf-8") as f:
+    quest_final = json.load(f)
+    
 #--- User Interface
 
 st.title('Dewatering exercise 💦')
@@ -117,6 +129,43 @@ st.markdown(
 #options4 = "Pareto optimization finds the best solution.", "Pareto optimization finds the best set of trade-off solutions.", "Pareto optimization is too complicated to ever be used in practice."
 #answer_index4 = 1
 #stb.single_choice(question4, options4, answer_index4, success='Correct!  You still need to decide which Pareto-optimal solution is most acceptable among stakeholders, but you can eliminate all suboptimal trade-off solutions!', error='Incorrect - Pareto optimization is used all the time, even if you do not realize that you are doing it.  But it does not necessarily find a single best solution.', button='Check answer')
+
+# --- FINAL ASSESSMENT ---
+def content_final():
+    st.markdown("""#### 🧠 Final assessment""")
+    st.info("These questions test your understanding after working through this page.")
+    
+    # Render questions in a 2x3 grid (row-wise)
+    for row in [(0, 1), (2, 3), (4, 5)]:
+        col1, col2 = st.columns(2)
+
+        with col1:
+            i = row[0]
+            st.markdown(f"**Q{i+1}. {quest_final[i]['question']}**")
+            multiple_choice(
+                question=" ",
+                options_dict=quest_final[i]["options"],
+                success=quest_final[i].get("success", "✅ Correct."),
+                error=quest_final[i].get("error", "❌ Not quite.")
+            )
+
+        with col2:
+            i = row[1]
+            st.markdown(f"**Q{i+1}. {quest_final[i]['question']}**")
+            multiple_choice(
+                question=" ",
+                options_dict=quest_final[i]["options"],
+                success=quest_final[i].get("success", "✅ Correct."),
+                error=quest_final[i].get("error", "❌ Not quite.")
+            )
+
+# Render final assessment
+render_toggle_container(
+    section_id="page_04",
+    label="✅ **Show the final assessment** - to self-check your **understanding**",
+    content_fn=content_final,
+    default_open=False,
+)
 
 st.markdown('---')
 

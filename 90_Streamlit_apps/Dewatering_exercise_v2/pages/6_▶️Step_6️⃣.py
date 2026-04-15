@@ -30,6 +30,13 @@ institution_text = " | ".join(institution_list)
 #    - revise UI
 #    - generate random data in a proper way
 
+# ---------- path to questions for the assessments (direct path)
+path_quest_final = "90_Streamlit_apps/Dewatering_exercise_v2/questions/page6_final.json"
+
+# Load questions
+with open(path_quest_final, "r", encoding="utf-8") as f:
+    quest_final = json.load(f)
+    
 #--- User Interface
 
 # This is a copy of Thomas Reimann's code to guide students through a mine dewatering, multiple stakeholder negotiation
@@ -40,8 +47,13 @@ import numpy as np
 import matplotlib.pyplot as plt
 import scipy.special
 import streamlit as st
-#import streamlit_book as stb
 from streamlit_extras.stodo import to_do
+import json
+from streamlit_book import multiple_choice
+from Dewatering_app_utils import read_md
+from Dewatering_app_utils import flip_assessment
+from Dewatering_app_utils import render_toggle_container
+from Dewatering_app_utils import prep_log_slider
 
 st.title('Dewatering exercise 💦')
 st.subheader("Step 06 - Pumping Tests and the Impacts of Hydrogeologic Uncertainty", divider="blue")
@@ -354,8 +366,44 @@ st.markdown(
 #stb.single_choice(question4, options4, answer_index4, success='Correct!  A pumping test is a classic hydrogeologic method to determine aquifer hydraulic properties, which can then be used in models to make predictions.', error='Incorrect - it is true that a pumping test may indicate that too small or large a pump was used or that the well was poorly installed, but these are not the main purposes of the test.', button='Check answer')
 #
 #st.markdown('---')
-#
-# --- Render footer with authors, institutions, and license logo in a single line
+# --- FINAL ASSESSMENT ---
+def content_final():
+    st.markdown("""#### 🧠 Final assessment""")
+    st.info("These questions test your understanding after working through this page.")
+    
+    # Render questions in a 2x3 grid (row-wise)
+    for row in [(0, 1), (2, 3), (4, 5)]:
+        col1, col2 = st.columns(2)
+
+        with col1:
+            i = row[0]
+            st.markdown(f"**Q{i+1}. {quest_final[i]['question']}**")
+            multiple_choice(
+                question=" ",
+                options_dict=quest_final[i]["options"],
+                success=quest_final[i].get("success", "✅ Correct."),
+                error=quest_final[i].get("error", "❌ Not quite.")
+            )
+
+        with col2:
+            i = row[1]
+            st.markdown(f"**Q{i+1}. {quest_final[i]['question']}**")
+            multiple_choice(
+                question=" ",
+                options_dict=quest_final[i]["options"],
+                success=quest_final[i].get("success", "✅ Correct."),
+                error=quest_final[i].get("error", "❌ Not quite.")
+            )
+
+# Render final assessment
+render_toggle_container(
+    section_id="page_06",
+    label="✅ **Show the final assessment** - to self-check your **understanding**",
+    content_fn=content_final,
+    default_open=False,
+)
+
+ --- Render footer with authors, institutions, and license logo in a single line
 columns_lic = st.columns((5,1))
 with columns_lic[0]:
     st.markdown(f'Developed by {", ".join(author_list)} ({year}). <br> {institution_text}', unsafe_allow_html=True)

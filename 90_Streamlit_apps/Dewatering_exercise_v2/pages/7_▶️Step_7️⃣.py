@@ -24,6 +24,13 @@ author_list = [f"{name}{''.join(index_symbols[i-1] for i in indices)}" for name,
 institution_list = [f"{index_symbols[i-1]} {inst}" for i, inst in institutions.items()]
 institution_text = " | ".join(institution_list)
 
+# ---------- path to questions for the assessments (direct path)
+path_quest_final = "90_Streamlit_apps/Dewatering_exercise_v2/questions/page7_final.json"
+
+# Load questions
+with open(path_quest_final, "r", encoding="utf-8") as f:
+    quest_final = json.load(f)
+    
 #--- User Interface
 
 # This is a copy of Thomas Reimann's code to guide students through a mine dewatering, multiple stakeholder negotiation
@@ -34,8 +41,13 @@ import numpy as np
 import matplotlib.pyplot as plt
 import scipy.special
 import streamlit as st
-#import streamlit_book as stb
 from streamlit_extras.stodo import to_do
+import json
+from streamlit_book import multiple_choice
+from Dewatering_app_utils import read_md
+from Dewatering_app_utils import flip_assessment
+from Dewatering_app_utils import render_toggle_container
+from Dewatering_app_utils import prep_log_slider
 
 st.title('Dewatering exercise 💦')
 st.subheader("Step 07 - Addressing Prediction Uncertainty", divider="blue")
@@ -340,8 +352,44 @@ st.markdown(
 #options4 = "False - likelihood weighting eliminates prediction uncertainty.", "True - likelihood weighting quantifies and reports prediction uncertainty as its first step.", "False - likelihood weighting produces a compromise prediction, but it does not quantify the uncertainty of that prediction."
 #answer_index4 = 2
 #stb.single_choice(question4, options4, answer_index4, success='Correct!  Likelihood weighting can be combined with uncertainty quantification, but they are separate analyses.', error='Incorrect - some of the steps used to develop the likelihood weighted prediction are also used for uncertainty quantification, but no form of averaging can remove that uncertainty.', button='Check answer')
-#
-#st.markdown('---')
+# --- FINAL ASSESSMENT ---
+def content_final():
+    st.markdown("""#### 🧠 Final assessment""")
+    st.info("These questions test your understanding after working through this page.")
+    
+    # Render questions in a 2x3 grid (row-wise)
+    for row in [(0, 1), (2, 3), (4, 5)]:
+        col1, col2 = st.columns(2)
+
+        with col1:
+            i = row[0]
+            st.markdown(f"**Q{i+1}. {quest_final[i]['question']}**")
+            multiple_choice(
+                question=" ",
+                options_dict=quest_final[i]["options"],
+                success=quest_final[i].get("success", "✅ Correct."),
+                error=quest_final[i].get("error", "❌ Not quite.")
+            )
+
+        with col2:
+            i = row[1]
+            st.markdown(f"**Q{i+1}. {quest_final[i]['question']}**")
+            multiple_choice(
+                question=" ",
+                options_dict=quest_final[i]["options"],
+                success=quest_final[i].get("success", "✅ Correct."),
+                error=quest_final[i].get("error", "❌ Not quite.")
+            )
+
+# Render final assessment
+render_toggle_container(
+    section_id="page_07",
+    label="✅ **Show the final assessment** - to self-check your **understanding**",
+    content_fn=content_final,
+    default_open=False,
+)
+
+st.markdown('---')
 
 # --- Render footer with authors, institutions, and license logo in a single line
 columns_lic = st.columns((5,1))

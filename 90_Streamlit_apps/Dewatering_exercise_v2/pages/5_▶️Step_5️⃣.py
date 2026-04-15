@@ -3,8 +3,13 @@ import numpy as np
 import matplotlib.pyplot as plt
 import scipy.special
 import streamlit as st
-#import streamlit_book as stb
 from streamlit_extras.stodo import to_do
+import json
+from streamlit_book import multiple_choice
+from Dewatering_app_utils import read_md
+from Dewatering_app_utils import flip_assessment
+from Dewatering_app_utils import render_toggle_container
+from Dewatering_app_utils import prep_log_slider
 
 # -*- coding: utf-8 -*-
 """
@@ -32,6 +37,13 @@ author_list = [f"{name}{''.join(index_symbols[i-1] for i in indices)}" for name,
 institution_list = [f"{index_symbols[i-1]} {inst}" for i, inst in institutions.items()]
 institution_text = " | ".join(institution_list)
 
+# ---------- path to questions for the assessments (direct path)
+path_quest_final = "90_Streamlit_apps/Dewatering_exercise_v2/questions/page5_final.json"
+
+# Load questions
+with open(path_quest_final, "r", encoding="utf-8") as f:
+    quest_final = json.load(f)
+    
 #--- Functions
 # (Here the necessary functions like the well function $W(u)$ are defined. Later, those functions are used in the computation)
 # Define a function, class, and object for Theis Well analysis
@@ -640,8 +652,44 @@ page_plot6()
 #options4 = "the highest average utility for all stakeholders.", "the highest minimum utility across all stakeholders.", "It depends."
 #answer_index4 = 2
 #stb.single_choice(question4, options4, answer_index4, success='Correct!  Of course, this is the answer to most applied science questions!  You have to choose the method of combining utilities that achieves the goals of the group.', error='Incorrect - maximizing the average utility may leave some stakeholders unacceptably unhappy while maximizing the minimum utility may leave most stakeholders less happy.  Neither approach is always the best.', button='Check answer')
-#
-#st.markdown('---')
+# --- FINAL ASSESSMENT ---
+def content_final():
+    st.markdown("""#### 🧠 Final assessment""")
+    st.info("These questions test your understanding after working through this page.")
+    
+    # Render questions in a 2x3 grid (row-wise)
+    for row in [(0, 1), (2, 3), (4, 5)]:
+        col1, col2 = st.columns(2)
+
+        with col1:
+            i = row[0]
+            st.markdown(f"**Q{i+1}. {quest_final[i]['question']}**")
+            multiple_choice(
+                question=" ",
+                options_dict=quest_final[i]["options"],
+                success=quest_final[i].get("success", "✅ Correct."),
+                error=quest_final[i].get("error", "❌ Not quite.")
+            )
+
+        with col2:
+            i = row[1]
+            st.markdown(f"**Q{i+1}. {quest_final[i]['question']}**")
+            multiple_choice(
+                question=" ",
+                options_dict=quest_final[i]["options"],
+                success=quest_final[i].get("success", "✅ Correct."),
+                error=quest_final[i].get("error", "❌ Not quite.")
+            )
+
+# Render final assessment
+render_toggle_container(
+    section_id="page_05",
+    label="✅ **Show the final assessment** - to self-check your **understanding**",
+    content_fn=content_final,
+    default_open=False,
+)
+
+st.markdown('---')
 
 # --- Render footer with authors, institutions, and license logo in a single line
 columns_lic = st.columns((5,1))
