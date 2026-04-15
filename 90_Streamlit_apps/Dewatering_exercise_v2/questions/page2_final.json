@@ -1,53 +1,43 @@
 [
   {
-    "question": "Choose the most correct answer. (Mark ALL correct answers)",
+    "question": "If everything else is kept constant, what is the effect of increasing S on the drawdown at a given distance and time? (Mark ALL correct answers)",
     "options": {
-      "Flow occurs from high hydraulic head to low hydraulic head.": true,
-      "Flow occurs from high pressure to low pressure.": false,
-      "Flow occurs from low hydraulic head to high hydraulic head.": false
+      "Drawdown increases.": false,
+      "Drawdown decreases.": true,
+      "It depends.": false
     },
-    "success": "✅ Correct! Flow occurs from high total energy, or hydraulic head, to low total energy.",
-    "error": "❌ Incorrect - you need to consider the total energy, both elevation and pressure head, and flow occurs from high to low total energy."
+    "success": "✅ Correct! If S is higher, then less drawdown is needed everywhere to release the volume of water pumped by time t.",
+    "error": "❌ Incorrect - if S is higher, then less drawdown is needed everywhere to release the volume of water pumped by time t."
   },
   {
-    "question": "Considering a vertical soil column, identify the three things that would increase the steady state flow, with all else held constant. (Mark ALL correct answers)",
+    "question": "If everything else is kept constant, what is the effect of increasing T on the drawdown at a given distance and time? (Mark ALL correct answers)",
     "options": {
-      "Increased cross sectional area, length, and hydraulic head gradient.": false,
-      "Increased cross sectional area and hydraulic head gradient and decreased K.": false,
-      "Increased cross sectional area, K, and hydraulic head gradient.": true
+      "Drawdown increases.": false,
+      "Drawdown decreases.": false,
+      "It depends.": true
     },
-    "success": "✅ Correct! Darcy’s Law is Q = -KA dH/dL, an increase in K, A, and dH/dL increases Q.",
-    "error": "❌ Incorrect - Darcy’s Law is Q = -KA dH/dL; decreasing K or increasing length would reduce flow."
+    "success": "✅ Correct! The effect of T depends on distance and time. Explore this behavior with simulations to see how the response varies.",
+    "error": "❌ Incorrect - there is no simple general answer; the effect depends on both T and the spatial/temporal context."
   },
   {
-    "question": "Why does Darcy’s Law include a negative sign? (Mark ALL correct answers)",
+    "question": "Why does the drawdown get less steep with radial distance from the well? (Mark ALL correct answers)",
     "options": {
-      "Because Darcy saw increased flow as a bad thing.": false,
-      "Because uphill is defined as a positive gradient, but water flows downhill.": true,
-      "Because the derivative of a gradient is negative.": false
+      "Because flow is radially convergent, the cross section perpendicular to flow increases with distance, requiring a lower gradient.": true,
+      "Because the pumping decreases K near the well.": false,
+      "Because flow to a well is transient.": false
     },
-    "success": "✅ Correct! The negative sign reflects the sign convention: flow occurs opposite to the positive gradient definition.",
-    "error": "❌ Incorrect - Darcy had no issue with flow itself; the negative sign reflects the gradient convention."
+    "success": "✅ Correct! With increasing radial distance, the flow area increases, so a smaller gradient is sufficient to transmit the same flow.",
+    "error": "❌ Incorrect - while transient effects or changes in K may occur, they are not the primary reason for the observed gradient behavior."
   },
   {
-    "question": "Why does the gradient decrease with distance from a pumping well? (Mark ALL correct answers)",
+    "question": "What is the impact of the drawdown versus time curve if you increase the pumping rate? (Mark ALL correct answers)",
     "options": {
-      "Because you are farther from the well.": false,
-      "Because flow to the well is radially convergent, so the same flow has to pass through a smaller cross sectional area.": true,
-      "Because pumping decreases K near the well.": false
+      "It has no effect.": false,
+      "The curve becomes shallower near the well.": false,
+      "The shape stays the same, but the scale of the y-axis changes.": true
     },
-    "success": "✅ Correct! Radial convergence means the same flow passes through smaller areas, increasing gradients near the well.",
-    "error": "❌ Incorrect - distance alone is not explanatory, and changes in K are not the primary reason."
-  },
-  {
-    "question": "How can you get water out of something while it remains fully water-saturated? (Mark ALL correct answers)",
-    "options": {
-      "By decreasing the porosity, like squeezing a sponge.": true,
-      "Magic.": false,
-      "By causing the water to expand.": false
-    },
-    "success": "✅ Correct! Reduced pressure allows slight compaction of the medium, releasing water.",
-    "error": "❌ Incorrect - water is nearly incompressible, and ‘magic’ is not a hydrogeologic process."
+    "success": "✅ Correct! Drawdown scales with pumping rate, so the curve shape remains the same while magnitudes change.",
+    "error": "❌ Incorrect - increasing pumping increases drawdown magnitude, but does not fundamentally change the curve shape."
   },
   {
     "question": "Why might a nearby environmental group be concerned about dewatering operations at a mine? (Mark ALL correct answers)",
@@ -56,7 +46,7 @@
       "The pumping might cause water to flow towards the mine.": false,
       "Pumping might lower the water table, which could make it more difficult for plants to get water while also decreasing flow in streams.": true
     },
-    "success": "✅ Correct! Lowering the water table reduces plant-available water and can reduce streamflow.",
-    "error": "❌ Incorrect - while noise or flow direction may occur, the main concern is water table decline and ecosystem impact."
+    "success": "✅ Correct! Lowering the water table decreases plant-available water and can reduce streamflow.",
+    "error": "❌ Incorrect - the primary concern is the lowering of the water table and its environmental impacts."
   }
 ]
