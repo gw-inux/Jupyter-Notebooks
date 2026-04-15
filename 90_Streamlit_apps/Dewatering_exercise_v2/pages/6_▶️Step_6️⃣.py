@@ -403,7 +403,7 @@ render_toggle_container(
     default_open=False,
 )
 
- --- Render footer with authors, institutions, and license logo in a single line
+# --- Render footer with authors, institutions, and license logo in a single line
 columns_lic = st.columns((5,1))
 with columns_lic[0]:
     st.markdown(f'Developed by {", ".join(author_list)} ({year}). <br> {institution_text}', unsafe_allow_html=True)
