@@ -656,13 +656,11 @@ page_plot6()
 def content_final():
     st.markdown("""#### 🧠 Final assessment""")
     st.info("These questions test your understanding after working through this page.")
-    
-    # Render questions in a 2x3 grid (row-wise)
-    for row in [(0, 1), (2, 3), (4, 5)]:
+
+    for i in range(0, len(quest_final), 2):
         col1, col2 = st.columns(2)
 
         with col1:
-            i = row[0]
             st.markdown(f"**Q{i+1}. {quest_final[i]['question']}**")
             multiple_choice(
                 question=" ",
@@ -671,15 +669,15 @@ def content_final():
                 error=quest_final[i].get("error", "❌ Not quite.")
             )
 
-        with col2:
-            i = row[1]
-            st.markdown(f"**Q{i+1}. {quest_final[i]['question']}**")
-            multiple_choice(
-                question=" ",
-                options_dict=quest_final[i]["options"],
-                success=quest_final[i].get("success", "✅ Correct."),
-                error=quest_final[i].get("error", "❌ Not quite.")
-            )
+        if i + 1 < len(quest_final):
+            with col2:
+                st.markdown(f"**Q{i+2}. {quest_final[i+1]['question']}**")
+                multiple_choice(
+                    question=" ",
+                    options_dict=quest_final[i+1]["options"],
+                    success=quest_final[i+1].get("success", "✅ Correct."),
+                    error=quest_final[i+1].get("error", "❌ Not quite.")
+                )
 
 # Render final assessment
 render_toggle_container(

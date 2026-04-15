@@ -1,62 +1,32 @@
 [
   {
-    "question": "Choose the most correct answer. (Mark ALL correct answers)",
+    "question": "What is the meaning of a threshold drawdown below which the utility is zero? (Mark ALL correct answers)",
     "options": {
-      "Flow occurs from high hydraulic head to low hydraulic head.": true,
-      "Flow occurs from high pressure to low pressure.": false,
-      "Flow occurs from low hydraulic head to high hydraulic head.": false
+      "It is the minimum expected drawdown.": false,
+      "Any drawdown below this value is equally bad, having zero utility for the stakeholder.": true,
+      "The stakeholders haven't considered these drawdown levels.": false
     },
-    "success": "✅ Correct! Flow occurs from high total energy, or hydraulic head, to low total energy.",
-    "error": "❌ Incorrect - you need to consider the total energy, both elevation and pressure head, and flow occurs from high to low total energy."
+    "success": "✅ Correct! This indicates a stakeholder who values increased drawdown and assigns no utility to drawdown below a certain threshold.",
+    "error": "❌ Incorrect - very low or zero drawdown is usually considered and corresponds to the no-pumping case."
   },
   {
-    "question": "Considering a vertical soil column, identify the three things that would increase the steady state flow, with all else held constant. (Mark ALL correct answers)",
+    "question": "Why is it useful to consider a simple, linear-step utility function? (Mark ALL correct answers)",
     "options": {
-      "Increased cross sectional area, length, and hydraulic head gradient.": false,
-      "Increased cross sectional area and hydraulic head gradient and decreased K.": false,
-      "Increased cross sectional area, K, and hydraulic head gradient.": true
+      "It is the best representation of reality for most stakeholders.": false,
+      "It allows for the development of simple analytical solutions.": false,
+      "It is probably not correct, but it is easy to understand and probably not too far from true.": true
     },
-    "success": "✅ Correct! Darcy’s Law is Q = -KA dH/dL, an increase in K, A, and dH/dL increases Q.",
-    "error": "❌ Incorrect - Darcy’s Law is Q = -KA dH/dL; decreasing K or increasing length would reduce flow."
+    "success": "✅ Correct! Although simplified, this approach provides useful insight and is easy to interpret.",
+    "error": "❌ Incorrect - such utility functions are simplifications and generally do not allow for exact analytical solutions in complex systems."
   },
   {
-    "question": "Why does Darcy’s Law include a negative sign? (Mark ALL correct answers)",
+    "question": "What are the units of utility? (Mark ALL correct answers)",
     "options": {
-      "Because Darcy saw increased flow as a bad thing.": false,
-      "Because uphill is defined as a positive gradient, but water flows downhill.": true,
-      "Because the derivative of a gradient is negative.": false
+      "Utility is unitless.": true,
+      "Whatever the local currency is.": false,
+      "Each stakeholder has different units.": false
     },
-    "success": "✅ Correct! The negative sign reflects the sign convention: flow occurs opposite to the positive gradient definition.",
-    "error": "❌ Incorrect - Darcy had no issue with flow itself; the negative sign reflects the gradient convention."
-  },
-  {
-    "question": "Why does the gradient decrease with distance from a pumping well? (Mark ALL correct answers)",
-    "options": {
-      "Because you are farther from the well.": false,
-      "Because flow to the well is radially convergent, so the same flow has to pass through a smaller cross sectional area.": true,
-      "Because pumping decreases K near the well.": false
-    },
-    "success": "✅ Correct! Radial convergence means the same flow passes through smaller areas, increasing gradients near the well.",
-    "error": "❌ Incorrect - distance alone is not explanatory, and changes in K are not the primary reason."
-  },
-  {
-    "question": "How can you get water out of something while it remains fully water-saturated? (Mark ALL correct answers)",
-    "options": {
-      "By decreasing the porosity, like squeezing a sponge.": true,
-      "Magic.": false,
-      "By causing the water to expand.": false
-    },
-    "success": "✅ Correct! Reduced pressure allows slight compaction of the medium, releasing water.",
-    "error": "❌ Incorrect - water is nearly incompressible, and ‘magic’ is not a hydrogeologic process."
-  },
-  {
-    "question": "Why might a nearby environmental group be concerned about dewatering operations at a mine? (Mark ALL correct answers)",
-    "options": {
-      "The noise of the pumps could affect wildlife.": false,
-      "The pumping might cause water to flow towards the mine.": false,
-      "Pumping might lower the water table, which could make it more difficult for plants to get water while also decreasing flow in streams.": true
-    },
-    "success": "✅ Correct! Lowering the water table reduces plant-available water and can reduce streamflow.",
-    "error": "❌ Incorrect - while noise or flow direction may occur, the main concern is water table decline and ecosystem impact."
+    "success": "✅ Correct! Utility represents relative satisfaction and is intentionally unitless to allow comparison across stakeholders.",
+    "error": "❌ Incorrect - although stakeholders may think in monetary or other terms, utility itself is defined as unitless."
   }
 ]

@@ -1,62 +1,42 @@
 [
   {
-    "question": "Choose the most correct answer. (Mark ALL correct answers)",
+    "question": "What is meant by sensitivity as used in this exercise? (Mark ALL correct answers)",
     "options": {
-      "Flow occurs from high hydraulic head to low hydraulic head.": true,
-      "Flow occurs from high pressure to low pressure.": false,
-      "Flow occurs from low hydraulic head to high hydraulic head.": false
+      "How much a stakeholder cares about an outcome.": false,
+      "The change in something (e.g., drawdown) for a given change in one or more parameter values.": true,
+      "The accuracy of a given parameter value.": false
     },
-    "success": "✅ Correct! Flow occurs from high total energy, or hydraulic head, to low total energy.",
-    "error": "❌ Incorrect - you need to consider the total energy, both elevation and pressure head, and flow occurs from high to low total energy."
+    "success": "✅ Correct! Sensitivity describes how a change in one variable affects another.",
+    "error": "❌ Incorrect - while the term can be used in other contexts, here it refers to the response of one variable to changes in parameters."
   },
   {
-    "question": "Considering a vertical soil column, identify the three things that would increase the steady state flow, with all else held constant. (Mark ALL correct answers)",
+    "question": "Which parameter, S or T, has a larger impact on drawdown at a given distance? (Mark ALL correct answers)",
     "options": {
-      "Increased cross sectional area, length, and hydraulic head gradient.": false,
-      "Increased cross sectional area and hydraulic head gradient and decreased K.": false,
-      "Increased cross sectional area, K, and hydraulic head gradient.": true
+      "Both parameters affect drawdown and it is hard to say which is more important without modeling the process.": true,
+      "Only T is important, you can ignore S.": false,
+      "Only S is important, you can ignore T.": false
     },
-    "success": "✅ Correct! Darcy’s Law is Q = -KA dH/dL, an increase in K, A, and dH/dL increases Q.",
-    "error": "❌ Incorrect - Darcy’s Law is Q = -KA dH/dL; decreasing K or increasing length would reduce flow."
+    "success": "✅ Correct! The relative importance of S and T depends on the specific conditions — it must be evaluated case by case.",
+    "error": "❌ Incorrect - neither S nor T dominates in all situations; their influence depends on the system conditions."
   },
   {
-    "question": "Why does Darcy’s Law include a negative sign? (Mark ALL correct answers)",
+    "question": "Pareto optimization can only be applied if predictions are entirely accurate. (Mark ALL correct answers)",
     "options": {
-      "Because Darcy saw increased flow as a bad thing.": false,
-      "Because uphill is defined as a positive gradient, but water flows downhill.": true,
-      "Because the derivative of a gradient is negative.": false
+      "True - you cannot make a decision based on incomplete data and understanding of a system.": false,
+      "False - Pareto optimization depends only on utilities, not on predictions.": false,
+      "False - one option is for stakeholders to base their decisions on the worst-case version of uncertain predictions.": true
     },
-    "success": "✅ Correct! The negative sign reflects the sign convention: flow occurs opposite to the positive gradient definition.",
-    "error": "❌ Incorrect - Darcy had no issue with flow itself; the negative sign reflects the gradient convention."
+    "success": "✅ Correct! Decisions are often made under uncertainty, and approaches like worst-case evaluation can be used.",
+    "error": "❌ Incorrect - Pareto optimization relies on predictions, which are almost always uncertain."
   },
   {
-    "question": "Why does the gradient decrease with distance from a pumping well? (Mark ALL correct answers)",
+    "question": "The optimal solution is that which leads to ____ (Mark ALL correct answers)",
     "options": {
-      "Because you are farther from the well.": false,
-      "Because flow to the well is radially convergent, so the same flow has to pass through a smaller cross sectional area.": true,
-      "Because pumping decreases K near the well.": false
+      "the highest average utility for all stakeholders.": false,
+      "the highest minimum utility across all stakeholders.": false,
+      "It depends.": true
     },
-    "success": "✅ Correct! Radial convergence means the same flow passes through smaller areas, increasing gradients near the well.",
-    "error": "❌ Incorrect - distance alone is not explanatory, and changes in K are not the primary reason."
-  },
-  {
-    "question": "How can you get water out of something while it remains fully water-saturated? (Mark ALL correct answers)",
-    "options": {
-      "By decreasing the porosity, like squeezing a sponge.": true,
-      "Magic.": false,
-      "By causing the water to expand.": false
-    },
-    "success": "✅ Correct! Reduced pressure allows slight compaction of the medium, releasing water.",
-    "error": "❌ Incorrect - water is nearly incompressible, and ‘magic’ is not a hydrogeologic process."
-  },
-  {
-    "question": "Why might a nearby environmental group be concerned about dewatering operations at a mine? (Mark ALL correct answers)",
-    "options": {
-      "The noise of the pumps could affect wildlife.": false,
-      "The pumping might cause water to flow towards the mine.": false,
-      "Pumping might lower the water table, which could make it more difficult for plants to get water while also decreasing flow in streams.": true
-    },
-    "success": "✅ Correct! Lowering the water table reduces plant-available water and can reduce streamflow.",
-    "error": "❌ Incorrect - while noise or flow direction may occur, the main concern is water table decline and ecosystem impact."
+    "success": "✅ Correct! The definition of ‘optimal’ depends on how stakeholder utilities are combined and the goals of the decision process.",
+    "error": "❌ Incorrect - no single criterion is universally optimal; the choice depends on the decision context."
   }
 ]

@@ -267,7 +267,6 @@ drawdown_comparison_plot()
 #
       
 # --- FINAL ASSESSMENT ---
-# --- FINAL ASSESSMENT ---
 def content_final():
     st.markdown("""#### 🧠 Final assessment""")
     st.info("These questions test your understanding after working through this page.")

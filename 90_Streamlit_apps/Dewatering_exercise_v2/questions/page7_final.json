@@ -1,62 +1,42 @@
 [
   {
-    "question": "Choose the most correct answer. (Mark ALL correct answers)",
+    "question": "Thomas Bayes was a professor of hydrogeology at Harvard. (Mark ALL correct answers)",
     "options": {
-      "Flow occurs from high hydraulic head to low hydraulic head.": true,
-      "Flow occurs from high pressure to low pressure.": false,
-      "Flow occurs from low hydraulic head to high hydraulic head.": false
+      "False - Bayes was alive before Harvard was founded.": false,
+      "False - Bayes was alive before hydrogeology became a science.": false,
+      "False - Bayes was a Presbyterian minister in England.": true
     },
-    "success": "✅ Correct! Flow occurs from high total energy, or hydraulic head, to low total energy.",
-    "error": "❌ Incorrect - you need to consider the total energy, both elevation and pressure head, and flow occurs from high to low total energy."
+    "success": "✅ Correct! Thomas Bayes was a Presbyterian minister in England and not associated with hydrogeology or Harvard.",
+    "error": "❌ Incorrect - while Bayes lived before modern hydrogeology, he was not associated with Harvard and is known as a minister in England."
   },
   {
-    "question": "Considering a vertical soil column, identify the three things that would increase the steady state flow, with all else held constant. (Mark ALL correct answers)",
+    "question": "Bayes' Law is a method to find the best fitting model parameters given data. (Mark ALL correct answers)",
     "options": {
-      "Increased cross sectional area, length, and hydraulic head gradient.": false,
-      "Increased cross sectional area and hydraulic head gradient and decreased K.": false,
-      "Increased cross sectional area, K, and hydraulic head gradient.": true
+      "False - Bayes Law is a way to balance your current belief or understanding with information contained in new data.": true,
+      "False - Bayes Law has nothing to do with model likelihood weighting, which uses model fit to find the best model parameters.": false,
+      "False - Bayes' Law has nothing to do with data or models.": false
     },
-    "success": "✅ Correct! Darcy’s Law is Q = -KA dH/dL, an increase in K, A, and dH/dL increases Q.",
-    "error": "❌ Incorrect - Darcy’s Law is Q = -KA dH/dL; decreasing K or increasing length would reduce flow."
+    "success": "✅ Correct! Bayes’ Law updates prior knowledge using new data in a consistent probabilistic framework.",
+    "error": "❌ Incorrect - Bayes’ Law is fundamental to combining prior knowledge with data, including model-based inference."
   },
   {
-    "question": "Why does Darcy’s Law include a negative sign? (Mark ALL correct answers)",
+    "question": "Using likelihood weighting is the same as using the best fit model. (Mark ALL correct answers)",
     "options": {
-      "Because Darcy saw increased flow as a bad thing.": false,
-      "Because uphill is defined as a positive gradient, but water flows downhill.": true,
-      "Because the derivative of a gradient is negative.": false
+      "True - it is just a better way to figure out which model is best.": false,
+      "False - likelihood weighting allows you to consider input from many models to form a single prediction.": true,
+      "False - you don't need to use likelihood weighting if you have a best fit model.": false
     },
-    "success": "✅ Correct! The negative sign reflects the sign convention: flow occurs opposite to the positive gradient definition.",
-    "error": "❌ Incorrect - Darcy had no issue with flow itself; the negative sign reflects the gradient convention."
+    "success": "✅ Correct! Likelihood weighting combines information from multiple models to produce a single, data-informed prediction.",
+    "error": "❌ Incorrect - likelihood weighting is not about selecting a single best model, but about combining multiple models."
   },
   {
-    "question": "Why does the gradient decrease with distance from a pumping well? (Mark ALL correct answers)",
+    "question": "Using likelihood weighting is the same as quantifying prediction uncertainty. (Mark ALL correct answers)",
     "options": {
-      "Because you are farther from the well.": false,
-      "Because flow to the well is radially convergent, so the same flow has to pass through a smaller cross sectional area.": true,
-      "Because pumping decreases K near the well.": false
+      "False - likelihood weighting eliminates prediction uncertainty.": false,
+      "True - likelihood weighting quantifies and reports prediction uncertainty as its first step.": false,
+      "False - likelihood weighting produces a compromise prediction, but it does not quantify the uncertainty of that prediction.": true
     },
-    "success": "✅ Correct! Radial convergence means the same flow passes through smaller areas, increasing gradients near the well.",
-    "error": "❌ Incorrect - distance alone is not explanatory, and changes in K are not the primary reason."
-  },
-  {
-    "question": "How can you get water out of something while it remains fully water-saturated? (Mark ALL correct answers)",
-    "options": {
-      "By decreasing the porosity, like squeezing a sponge.": true,
-      "Magic.": false,
-      "By causing the water to expand.": false
-    },
-    "success": "✅ Correct! Reduced pressure allows slight compaction of the medium, releasing water.",
-    "error": "❌ Incorrect - water is nearly incompressible, and ‘magic’ is not a hydrogeologic process."
-  },
-  {
-    "question": "Why might a nearby environmental group be concerned about dewatering operations at a mine? (Mark ALL correct answers)",
-    "options": {
-      "The noise of the pumps could affect wildlife.": false,
-      "The pumping might cause water to flow towards the mine.": false,
-      "Pumping might lower the water table, which could make it more difficult for plants to get water while also decreasing flow in streams.": true
-    },
-    "success": "✅ Correct! Lowering the water table reduces plant-available water and can reduce streamflow.",
-    "error": "❌ Incorrect - while noise or flow direction may occur, the main concern is water table decline and ecosystem impact."
+    "success": "✅ Correct! Likelihood weighting provides a combined prediction, but uncertainty quantification requires additional analysis.",
+    "error": "❌ Incorrect - likelihood weighting alone does not quantify prediction uncertainty."
   }
 ]

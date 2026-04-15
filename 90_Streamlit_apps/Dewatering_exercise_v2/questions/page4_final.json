@@ -1,62 +1,42 @@
 [
   {
-    "question": "Choose the most correct answer. (Mark ALL correct answers)",
+    "question": "What is a trade-off plot? (Mark ALL correct answers)",
     "options": {
-      "Flow occurs from high hydraulic head to low hydraulic head.": true,
-      "Flow occurs from high pressure to low pressure.": false,
-      "Flow occurs from low hydraulic head to high hydraulic head.": false
+      "A tool to determine how much you may get for your used car.": false,
+      "A plot that compares the utilities of two or more stakeholders for different proposed actions, such as pumping rates.": true,
+      "A tool to predict the drawdown as a function of distance and time.": false
     },
-    "success": "✅ Correct! Flow occurs from high total energy, or hydraulic head, to low total energy.",
-    "error": "❌ Incorrect - you need to consider the total energy, both elevation and pressure head, and flow occurs from high to low total energy."
+    "success": "✅ Correct! Trade-off plots compare stakeholder utilities for different actions based on predicted system responses.",
+    "error": "❌ Incorrect - while the other options describe useful concepts, they do not represent trade-off plots."
   },
   {
-    "question": "Considering a vertical soil column, identify the three things that would increase the steady state flow, with all else held constant. (Mark ALL correct answers)",
+    "question": "What is the Pareto Front? (Mark ALL correct answers)",
     "options": {
-      "Increased cross sectional area, length, and hydraulic head gradient.": false,
-      "Increased cross sectional area and hydraulic head gradient and decreased K.": false,
-      "Increased cross sectional area, K, and hydraulic head gradient.": true
+      "Clouds that form before a winter storm.": false,
+      "The collection of possible solutions based on utility trade-off.": false,
+      "The collection of best solutions based on utility trade-off.": true
     },
-    "success": "✅ Correct! Darcy’s Law is Q = -KA dH/dL, an increase in K, A, and dH/dL increases Q.",
-    "error": "❌ Incorrect - Darcy’s Law is Q = -KA dH/dL; decreasing K or increasing length would reduce flow."
+    "success": "✅ Correct! Pareto-optimal solutions form the Pareto front, where improving one stakeholder’s outcome reduces another’s utility.",
+    "error": "❌ Incorrect - the Pareto front represents only the optimal trade-off solutions, not all possible ones."
   },
   {
-    "question": "Why does Darcy’s Law include a negative sign? (Mark ALL correct answers)",
+    "question": "Did Pareto have a beard? (Mark ALL correct answers)",
     "options": {
-      "Because Darcy saw increased flow as a bad thing.": false,
-      "Because uphill is defined as a positive gradient, but water flows downhill.": true,
-      "Because the derivative of a gradient is negative.": false
+      "Yes, he is pictured with a huge bushy beard.": true,
+      "No, Pareto is an acronym, he wasn't a real person.": false,
+      "Pareto lived before the development of cameras, so no one knows if he had a beard.": false
     },
-    "success": "✅ Correct! The negative sign reflects the sign convention: flow occurs opposite to the positive gradient definition.",
-    "error": "❌ Incorrect - Darcy had no issue with flow itself; the negative sign reflects the gradient convention."
+    "success": "✅ Correct! Vilfredo Pareto was a real person and is indeed often depicted with a beard.",
+    "error": "❌ Incorrect - Pareto was a real historical figure, and images of him exist."
   },
   {
-    "question": "Why does the gradient decrease with distance from a pumping well? (Mark ALL correct answers)",
+    "question": "Which is the most correct statement? (Mark ALL correct answers)",
     "options": {
-      "Because you are farther from the well.": false,
-      "Because flow to the well is radially convergent, so the same flow has to pass through a smaller cross sectional area.": true,
-      "Because pumping decreases K near the well.": false
+      "Pareto optimization finds the best solution.": false,
+      "Pareto optimization finds the best set of trade-off solutions.": true,
+      "Pareto optimization is too complicated to ever be used in practice.": false
     },
-    "success": "✅ Correct! Radial convergence means the same flow passes through smaller areas, increasing gradients near the well.",
-    "error": "❌ Incorrect - distance alone is not explanatory, and changes in K are not the primary reason."
-  },
-  {
-    "question": "How can you get water out of something while it remains fully water-saturated? (Mark ALL correct answers)",
-    "options": {
-      "By decreasing the porosity, like squeezing a sponge.": true,
-      "Magic.": false,
-      "By causing the water to expand.": false
-    },
-    "success": "✅ Correct! Reduced pressure allows slight compaction of the medium, releasing water.",
-    "error": "❌ Incorrect - water is nearly incompressible, and ‘magic’ is not a hydrogeologic process."
-  },
-  {
-    "question": "Why might a nearby environmental group be concerned about dewatering operations at a mine? (Mark ALL correct answers)",
-    "options": {
-      "The noise of the pumps could affect wildlife.": false,
-      "The pumping might cause water to flow towards the mine.": false,
-      "Pumping might lower the water table, which could make it more difficult for plants to get water while also decreasing flow in streams.": true
-    },
-    "success": "✅ Correct! Lowering the water table reduces plant-available water and can reduce streamflow.",
-    "error": "❌ Incorrect - while noise or flow direction may occur, the main concern is water table decline and ecosystem impact."
+    "success": "✅ Correct! Pareto optimization identifies the set of optimal trade-off solutions, from which a final choice must still be made.",
+    "error": "❌ Incorrect - Pareto optimization does not yield a single best solution and is widely used in practice."
   }
 ]

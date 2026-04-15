@@ -1,62 +1,42 @@
 [
   {
-    "question": "Choose the most correct answer. (Mark ALL correct answers)",
+    "question": "What is parameter estimation? (Mark ALL correct answers)",
     "options": {
-      "Flow occurs from high hydraulic head to low hydraulic head.": true,
-      "Flow occurs from high pressure to low pressure.": false,
-      "Flow occurs from low hydraulic head to high hydraulic head.": false
+      "Making an educated guess about parameter values.": false,
+      "Rethinking the processes that describe a system given new data.": false,
+      "Finding the values of parameters that make a model fit the data as well as possible.": true
     },
-    "success": "✅ Correct! Flow occurs from high total energy, or hydraulic head, to low total energy.",
-    "error": "❌ Incorrect - you need to consider the total energy, both elevation and pressure head, and flow occurs from high to low total energy."
+    "success": "✅ Correct! Parameter estimation involves adjusting parameter values so that the model reproduces observed data as closely as possible.",
+    "error": "❌ Incorrect - while initial guesses are important, parameter estimation systematically adjusts parameters to fit the model to data."
   },
   {
-    "question": "Considering a vertical soil column, identify the three things that would increase the steady state flow, with all else held constant. (Mark ALL correct answers)",
+    "question": "If a model does not fit the data, then the parameters are wrong. (Mark ALL correct answers)",
     "options": {
-      "Increased cross sectional area, length, and hydraulic head gradient.": false,
-      "Increased cross sectional area and hydraulic head gradient and decreased K.": false,
-      "Increased cross sectional area, K, and hydraulic head gradient.": true
+      "True - this is the basis of parameter estimation.": false,
+      "False - data typically include measurement error so we shouldn't expect the model to fit the data exactly.": true,
+      "True - data cannot reveal mistakes in our understanding of the system.": false
     },
-    "success": "✅ Correct! Darcy’s Law is Q = -KA dH/dL, an increase in K, A, and dH/dL increases Q.",
-    "error": "❌ Incorrect - Darcy’s Law is Q = -KA dH/dL; decreasing K or increasing length would reduce flow."
+    "success": "✅ Correct! Measurement errors and model simplifications mean that perfect fits are rarely expected.",
+    "error": "❌ Incorrect - mismatches can arise from data errors or model structure, not only from parameter values."
   },
   {
-    "question": "Why does Darcy’s Law include a negative sign? (Mark ALL correct answers)",
+    "question": "Uncertain data leads to uncertain parameters which lead to uncertain predictions. (Mark ALL correct answers)",
     "options": {
-      "Because Darcy saw increased flow as a bad thing.": false,
-      "Because uphill is defined as a positive gradient, but water flows downhill.": true,
-      "Because the derivative of a gradient is negative.": false
+      "True - you should quantify prediction errors and let a stakeholder decide how to consider them.": true,
+      "True - but the best fitting model is usually good enough to rely on for decision making.": false,
+      "False - it is our job as a scientist to provide the best possible prediction; adding uncertainty reduces our credibility.": false
     },
-    "success": "✅ Correct! The negative sign reflects the sign convention: flow occurs opposite to the positive gradient definition.",
-    "error": "❌ Incorrect - Darcy had no issue with flow itself; the negative sign reflects the gradient convention."
+    "success": "✅ Correct! Uncertainty propagates through models, and it is essential to communicate it transparently.",
+    "error": "❌ Incorrect - uncertainty is inherent and should be quantified and communicated, not ignored."
   },
   {
-    "question": "Why does the gradient decrease with distance from a pumping well? (Mark ALL correct answers)",
+    "question": "A pumping test is designed to: (Mark ALL correct answers)",
     "options": {
-      "Because you are farther from the well.": false,
-      "Because flow to the well is radially convergent, so the same flow has to pass through a smaller cross sectional area.": true,
-      "Because pumping decreases K near the well.": false
+      "Choose the right pump to use in a well.": false,
+      "Test how solidly a well was constructed.": false,
+      "Determine the hydraulic properties of an aquifer.": true
     },
-    "success": "✅ Correct! Radial convergence means the same flow passes through smaller areas, increasing gradients near the well.",
-    "error": "❌ Incorrect - distance alone is not explanatory, and changes in K are not the primary reason."
-  },
-  {
-    "question": "How can you get water out of something while it remains fully water-saturated? (Mark ALL correct answers)",
-    "options": {
-      "By decreasing the porosity, like squeezing a sponge.": true,
-      "Magic.": false,
-      "By causing the water to expand.": false
-    },
-    "success": "✅ Correct! Reduced pressure allows slight compaction of the medium, releasing water.",
-    "error": "❌ Incorrect - water is nearly incompressible, and ‘magic’ is not a hydrogeologic process."
-  },
-  {
-    "question": "Why might a nearby environmental group be concerned about dewatering operations at a mine? (Mark ALL correct answers)",
-    "options": {
-      "The noise of the pumps could affect wildlife.": false,
-      "The pumping might cause water to flow towards the mine.": false,
-      "Pumping might lower the water table, which could make it more difficult for plants to get water while also decreasing flow in streams.": true
-    },
-    "success": "✅ Correct! Lowering the water table reduces plant-available water and can reduce streamflow.",
-    "error": "❌ Incorrect - while noise or flow direction may occur, the main concern is water table decline and ecosystem impact."
+    "success": "✅ Correct! Pumping tests are used to estimate aquifer properties such as transmissivity and storativity.",
+    "error": "❌ Incorrect - while other effects may be observed, the primary goal is to determine aquifer hydraulic properties."
   }
 ]
