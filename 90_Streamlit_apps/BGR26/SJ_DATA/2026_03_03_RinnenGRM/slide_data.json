@@ -73,7 +73,7 @@
     },
     {
         "image": "images/slide_19.png",
-        "notes": "No notes"
+        "notes": "dies ist ein theoretisches Beispiel zur Veranschaulichung der Verh\u00e4ltnisse (in Anlehnung an das D\u00fcbener-/Burgkemnitzer Rinnensystem)\rdie Grundwasserst\u00e4nde hier nur in Anlehnung an reale Messwerte dargestellt:\rim Hangenden wirklichkeitsnah\rim Liegenden zeigt das Beispiel vergleichsweise niedrige GW-St\u00e4nde, um einen m\u00f6glichst gro\u00dfen Unterschied zwischen Hangendem und Liegendem aufzuzeigen \rwichtig f\u00fcr die \u00dcberf\u00fchrung von Rinnen in numerische Modelle ist, dass Grundwasserstandsmesswerte vorliegen:\rim Anstrom, im Zentrum und im Abstrom der Rinne in mehreren Horizontlagen (Hangend/Liegend, bei tiefen Rinnen abh\u00e4ngig von den hydrogeologischen Verh\u00e4ltnissen auch in Zwischenhorizonten)\r\rob die Rinnenflanken im Modell nun durchl\u00e4ssig oder geringer durchl\u00e4ssig gestaltet werden, h\u00e4ngt von den Messwerten ab (\uf0e0 die Rinnenflanke muss nicht zwingend \u201etrennend\u201c gestaltet werden!!)\rgleiches gilt f\u00fcr die vertikalen Wasserstandsunterschiede innerhalb einer Rinne: nur wenn die Messwerte zeigen, dass ein bindiges Zwischenmittel innerhalb der Rinne vorliegen muss, ist dies bei der nummerischen Modellierung zu beachten\r\rwichtig ist auch der Punkt, dass ein und dieselbe Rinne an unterschiedlichen \u00d6rtlichkeiten gro\u00dfe Unterschiede der hydrogeologischen Verh\u00e4ltnisse aufweisen kann!!"
     },
     {
         "image": "images/slide_20.png",
@@ -133,35 +133,35 @@
     },
     {
         "image": "images/slide_34.png",
-        "notes": "No notes"
+        "notes": "Grundlage ist \u201eErstellungskonzept f\u00fcr ein Gro\u00dfraummodell der Lausitz \u2013 Abschlussbericht\u201c\rhier wird schon eine denkbare Modellabbildung vorgeschlagen, die je nach \u00f6rtlichen Verh\u00e4ltnissen modifiziert werden kann/muss"
     },
     {
         "image": "images/slide_35.png",
-        "notes": "No notes"
+        "notes": "Grundlage ist \u201eErstellungskonzept f\u00fcr ein Gro\u00dfraummodell der Lausitz \u2013 Abschlussbericht\u201c\rder beispielhafte Abbildungsvorschlag wieder rausgenommen, um eine \u201efreie\u201c Grundlage f\u00fcr Herleitung der nachfolgenden M\u00f6glichkeiten zu schaffen"
     },
     {
         "image": "images/slide_36.png",
-        "notes": "No notes"
+        "notes": "theoretische Modellabbildung, wenn die Rinne gar nicht da w\u00e4re bzw. wenn die Rinne im Modell ignoriert werden w\u00fcrde\r(\uf0e0 dann hier auch keine unterschiedliche Parametrisierung m\u00f6glich)"
     },
     {
         "image": "images/slide_37.png",
-        "notes": "No notes"
+        "notes": "Grundlage ist \u201eErstellungskonzept f\u00fcr ein Gro\u00dfraummodell der Lausitz \u2013 Abschlussbericht\u201c"
     },
     {
         "image": "images/slide_38.png",
-        "notes": "No notes"
+        "notes": "Grundlage ist \u201eErstellungskonzept f\u00fcr ein Gro\u00dfraummodell der Lausitz \u2013 Abschlussbericht\u201c\r\uf0e0 Beispiel, wie es im Finite-Volumen-Modell nicht funktionieren w\u00fcrde"
     },
     {
         "image": "images/slide_39.png",
-        "notes": "No notes"
+        "notes": "Grundlage ist \u201eErstellungskonzept f\u00fcr ein Gro\u00dfraummodell der Lausitz \u2013 Abschlussbericht\u201c"
     },
     {
         "image": "images/slide_40.png",
-        "notes": "No notes"
+        "notes": "Abbildung geologischer Strukturen im Finite-Volumen-Modell\rdenkbare Abbildung der geologischen Strukturen in einem Finiten-Volumen-Modell\rDie Abbildung zeigt, wie diese Strukturen im Modell in Form von Modellzellen und Modellschichten repr\u00e4sentiert werden.\rDabei wird im Modell ber\u00fccksichtigt:\rdie Str\u00f6mung zwischen benachbarten Zellen innerhalb einer Modellschicht sowie\rder Austausch mit den dar\u00fcber- und darunterliegenden Schichten.\rStr\u00f6mung erfolgt \u00fcber die gr\u00fcnen Kanten (\uf0e0 GWL, h\u00f6here Durchl\u00e4ssigkeit) bzw. die braunen Kanten (\uf0e0 Geringleiter mit entsprechend niedrigerer Durchl\u00e4ssigkeit) \rkeine Str\u00f6mung \u00fcber die roten Kanten"
     },
     {
         "image": "images/slide_41.png",
-        "notes": "No notes"
+        "notes": "Grundlage sind die Volumenelemente laut Folie 40\rhier mit theoretisch denkbaren Parametrisierungen\rbspw. Rinne in allen Richtungen mit eher durchl\u00e4ssigerem Material gef\u00fcllt\rdies w\u00fcrde zu Str\u00f6mungen bzw. Druckausgleich in alle Richtungen (vertikal von MG1 bis MG8 sowie generell horizontal in den GWLs) f\u00fchren"
     },
     {
         "image": "images/slide_42.png",

@@ -97,27 +97,23 @@ cubic_params = {"a":  1.0,  "b": -1.5,  "c":  0.5,   "d":   0.1 }
 quad_params  = {"a":  2.0,  "root": 0.75}
 
 if func_key == "mehl":
-    with col_b:
-        st.markdown("**Aquifer parameters**")
-        c1, c2 = st.columns(2)
-        with c1:
-            mehl_params["hL"] = st.number_input("h_L", value=2.0,  step=0.1, format="%.3f")
-            mehl_params["KL"] = st.number_input("K_L", value=0.003, step=0.001, format="%.4f")
-        with c2:
-            mehl_params["hR"] = st.number_input("h_R", value=0.6,  step=0.1, format="%.3f")
-            mehl_params["KR"] = st.number_input("K_R", value=0.8,  step=0.1, format="%.3f")
-        # Show analytical root
-        h_star_mehl = (mehl_params["KL"]*mehl_params["hL"]
-                       + mehl_params["KR"]*mehl_params["hR"]) \
-                      / (mehl_params["KL"] + mehl_params["KR"])
-        st.info(f"Analytical root: h* = **{h_star_mehl:.4f}**")
+    mehl_params["hL"] = 2.0
+    mehl_params["KL"] = 0.002
+    mehl_params["hR"] = 0.8
+    mehl_params["KR"] = 0.9
+    
+    # Show analytical root
+    h_star_mehl = (mehl_params["KL"]*mehl_params["hL"]
+                   + mehl_params["KR"]*mehl_params["hR"]) \
+                  / (mehl_params["KL"] + mehl_params["KR"])
+#   st.info(f"Analytical root: h* = **{h_star_mehl:.4f}**")
 
 elif func_key == "cubic":
     with col_b:
-        cubic_params["a"] = st.slider("a (h³)", -3.0, 3.0,  1.0, 0.1)
-        cubic_params["b"] = st.slider("b (h²)", -3.0, 3.0, -1.5, 0.1)
-        cubic_params["c"] = st.slider("c (h)",  -2.0, 2.0,  0.5, 0.1)
-        cubic_params["d"] = st.slider("d",      -1.0, 1.0,  0.1, 0.05)
+        cubic_params["a"] = 0.7
+        cubic_params["b"] = -1.2
+        cubic_params["c"] = 0.3
+        cubic_params["d"] = -0.45
 
 elif func_key == "quad":
     with col_b:
@@ -181,7 +177,7 @@ stopped = st.session_state.stopped
 # ─────────────────────────────────────────────
 btn1, btn2 = st.columns(2)
 with btn1:
-    next_btn  = st.button("▶ Next Iteration", use_container_width=True)
+    next_btn  = st.button("▶ Proceed/Iterate", use_container_width=True)
 with btn2:
     reset_btn = st.button("🔄 Reset",          use_container_width=True)
 
@@ -298,8 +294,7 @@ try:
 except Exception:
     fn_plot = np.zeros_like(h_plot)
 
-# Collect all y-values that will appear in the plot
-# (curve values + all f_n(h_k) for current iterates)
+# Collect all y-values that will appear in the plot (curve values + all f_n(h_k) for current iterates)
 all_fn_vals = list(fn_plot)
 for h in h_vals:
     try:
@@ -349,26 +344,27 @@ for i in range(len(h_vals) - 1):
     # Tangent from curve point to x-axis intercept
     tangent_segs.append( ([h_k,  h_k1], [fn_k, 0.0 ]))
 
+
 # ─────────────────────────────────────────────
 # Plot
 # ─────────────────────────────────────────────
-fig, ax = plt.subplots(figsize=(8, 6.5))
+fig, ax = plt.subplots(figsize=(8, 7))
 
 # Clip curve for display only (don't clip tangent endpoints)
 fn_plot_clipped = np.clip(fn_plot, y_lo - 0.5, y_hi + 0.5)
-ax.plot(h_plot, fn_plot_clipped, color="gray", linewidth=2.0, label=r"$f_n(h)$")
+ax.plot(h_plot, fn_plot_clipped, color="dodgerblue", linewidth=1.5, label=r"$f_n(h)$")
 
 # Zero line
 ax.axhline(0, color="black", linewidth=1.0)
 
 # Vertical drops
 for xs, ys in vertical_segs:
-    ax.plot(xs, ys, color="black", linewidth=1.4)
+    ax.plot(xs, ys, "k--", color="black", linewidth=1.0)
 
 # Tangent lines
 for idx, (xs, ys) in enumerate(tangent_segs):
     label = "convergence pattern" if idx == 0 else None
-    ax.plot(xs, ys, color="black", linewidth=1.4, label=label)
+    ax.plot(xs, ys, color="magenta", linewidth=1.0, label=label)
 
 # Starting point: dot on curve + dashed vertical from x-axis
 h_start = h_vals[0]
@@ -377,17 +373,16 @@ try:
 except Exception:
     fn_start = 0.0
 
-ax.plot([h_start, h_start], [0.0, fn_start],
-        "k--", linewidth=0.9, alpha=0.5)
-ax.plot(h_start, fn_start, "ko", markersize=7, zorder=6)
+ax.plot([h_start, h_start], [fn_start, -1.5], "k--", color = "dodgerblue", linewidth=1.0, alpha=0.5)
+ax.plot(h_start, fn_start, "ko", markersize=8, zorder=6)
 ax.annotate(
-    f"h₀={h_start:.2f}",
+    f"$h_0$ = {h_start:.2f}",
     xy=(h_start, fn_start),
     xytext=(h_start + 0.04, fn_start + 0.02 * (y_hi - y_lo)),
-    fontsize=8, color="black"
+    fontsize=12, color="black"
 )
 
-# Current iterate marker (blue circle on curve)
+# Current iterate marker
 n_iter = len(h_vals) - 1
 if n_iter >= 1:
     h_last = h_vals[-1]
@@ -396,40 +391,40 @@ if n_iter >= 1:
             fn_last = float(get_fn(h_last))
         except Exception:
             fn_last = 0.0
-        ax.plot(h_last, fn_last, "bo", markersize=7, zorder=5,
-                label=f"Current h={h_last:.4f}")
+        ax.plot(h_last, fn_last, "ro", markersize=6, zorder=5,
+                label=f"current $h$ = {h_last:.4f}")
 
 # Root marker – analytical for Mehl, numerical otherwise
-try:
-    if func_key == "mehl":
-        h_root = (mehl_params["KL"] * mehl_params["hL"]
-                  + mehl_params["KR"] * mehl_params["hR"]) \
-                 / (mehl_params["KL"] + mehl_params["KR"])
-        ax.axvline(h_root, color="red", linestyle="--", linewidth=1.0, alpha=0.7)
-        ax.plot(h_root, 0, "r*", markersize=12, zorder=7,
-                label=f"Root h*={h_root:.4f}")
-    else:
-        h_scan  = np.linspace(0.01, 1.99, 5000)
-        fn_scan = get_fn(h_scan)
-        sc_idx  = np.where(np.diff(np.sign(fn_scan)))[0]
-        if len(sc_idx) > 0:
-            roots = []
-            for sc in sc_idx:
-                h_lo, h_hi = h_scan[sc], h_scan[sc+1]
-                for _ in range(50):
-                    h_mid = (h_lo + h_hi) / 2
-                    if get_fn(h_mid) * get_fn(h_lo) < 0:
-                        h_hi = h_mid
-                    else:
-                        h_lo = h_mid
-                roots.append((h_lo + h_hi) / 2)
-            h_root = min(roots, key=lambda r: abs(r - h0))
-            ax.axvline(h_root, color="red", linestyle="--",
-                       linewidth=1.0, alpha=0.7)
-            ax.plot(h_root, 0, "r*", markersize=12, zorder=7,
-                    label=f"Root h*≈{h_root:.4f}")
-except Exception:
-    pass
+#try:
+#    if func_key == "mehl":
+#        h_root = (mehl_params["KL"] * mehl_params["hL"]
+#                  + mehl_params["KR"] * mehl_params["hR"]) \
+#                 / (mehl_params["KL"] + mehl_params["KR"])
+#        ax.axvline(h_root, color="red", linestyle="--", linewidth=1.0, alpha=0.7)
+#        ax.plot(h_root, 0, "r*", markersize=12, zorder=7,
+#                label=f"Root h*={h_root:.4f}")
+#    else:
+#        h_scan  = np.linspace(0.01, 1.99, 5000)
+#        fn_scan = get_fn(h_scan)
+#        sc_idx  = np.where(np.diff(np.sign(fn_scan)))[0]
+#        if len(sc_idx) > 0:
+#            roots = []
+#            for sc in sc_idx:
+#                h_lo, h_hi = h_scan[sc], h_scan[sc+1]
+#                for _ in range(50):
+#                    h_mid = (h_lo + h_hi) / 2
+#                    if get_fn(h_mid) * get_fn(h_lo) < 0:
+#                        h_hi = h_mid
+#                    else:
+#                        h_lo = h_mid
+#                roots.append((h_lo + h_hi) / 2)
+#            h_root = min(roots, key=lambda r: abs(r - h0))
+#            ax.axvline(h_root, color="red", linestyle="--",
+#                       linewidth=1.0, alpha=0.7)
+#            ax.plot(h_root, 0, "r*", markersize=12, zorder=7,
+#                    label=f"Root h*≈{h_root:.4f}")
+#except Exception:
+#    pass
 
 # Status text box
 sty = STATUS_STYLE.get(status, STATUS_STYLE["start"])
@@ -440,22 +435,20 @@ status_text = (
 ax.text(
     0.03, 0.97, status_text,
     transform=ax.transAxes,
-    fontsize=10, fontweight="bold",
+    fontsize=12,
     verticalalignment="top",
     color=sty["color"],
     bbox=dict(boxstyle="round,pad=0.4", facecolor="white",
-              edgecolor=sty["color"], linewidth=1.5, alpha=0.9)
+              edgecolor=sty["color"], linewidth=1.5)
 )
 
 ax.set_xlim(0, 2)
-ax.set_ylim(y_lo, y_hi)
-ax.set_xlabel("h", fontsize=13)
-ax.set_ylabel(r"$f_n(h)$", fontsize=13)
+ax.set_ylim(-1.5, 1)
+ax.set_xlabel("h", fontsize=12)
+ax.set_ylabel(r"$f_n(h)$", fontsize=12)
 ax.set_title("Newton Iteration – Tangent Line Convergence Pattern\n(Mehl, 2006)",
-             fontsize=12)
-ax.legend(fontsize=9, loc="upper right")
-ax.grid(True, alpha=0.3)
-
+             fontsize=14)
+ax.legend(fontsize=12, loc="upper right")
 st.pyplot(fig)
 
 # ─────────────────────────────────────────────
