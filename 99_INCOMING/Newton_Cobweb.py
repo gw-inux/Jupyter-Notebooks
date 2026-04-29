@@ -2,6 +2,20 @@ import streamlit as st
 import numpy as np
 import matplotlib.pyplot as plt
 
+# Authors, institutions, and year
+year = 2025 
+authors = {
+    "Thomas Reimann": [1],  # Author 1 belongs to Institution 1
+}
+institutions = {
+    1: "TU Dresden, Institute for Groundwater Management"
+    
+}
+index_symbols = ["¹", "²", "³", "⁴", "⁵", "⁶", "⁷", "⁸", "⁹"]
+author_list = [f"{name}{''.join(index_symbols[i-1] for i in indices)}" for name, indices in authors.items()]
+institution_list = [f"{index_symbols[i-1]} {inst}" for i, inst in institutions.items()]
+institution_text = " | ".join(institution_list)
+
 # ─────────────────────────────────────────────
 # Page config
 # ─────────────────────────────────────────────
@@ -26,7 +40,7 @@ MAX_ITER      = 50
 # Residual functions  f_n(h)  and derivatives  f_n'(h)
 # ─────────────────────────────────────────────
 
-def fn_mehl(h, hL, hR, KL, KR):
+def f_mehl(h, hL, hR, KL, KR):
     """
     Mehl (2006) three-node unconfined aquifer residual.
     f_n(h) = KL*hL*h - KL*h^2 - KR*h^2 + KR*hR*h
@@ -35,32 +49,32 @@ def fn_mehl(h, hL, hR, KL, KR):
     """
     return KL * hL * h - KL * h**2 - KR * h**2 + KR * hR * h
 
-def dfn_mehl(h, hL, hR, KL, KR):
-    """Analytical derivative of fn_mehl."""
+def df_mehl(h, hL, hR, KL, KR):
+    """Analytical derivative of f_mehl."""
     return KL * hL - 2.0 * KL * h - 2.0 * KR * h + KR * hR
 
-def fn_cubic(h, a, b, c, d):
+def f_cubic(h, a, b, c, d):
     return a*h**3 + b*h**2 + c*h + d
 
-def dfn_cubic(h, a, b, c, d):
+def df_cubic(h, a, b, c, d):
     return 3*a*h**2 + 2*b*h + c
 
-def fn_sine(h):
+def f_sine(h):
     return np.sin(3*h) - 0.5*h + 0.3
 
-def dfn_sine(h):
+def df_sine(h):
     return 3*np.cos(3*h) - 0.5
 
-def fn_exp(h):
+def f_exp(h):
     return np.exp(-2*h) - h + 0.5
 
-def dfn_exp(h):
+def df_exp(h):
     return -2*np.exp(-2*h) - 1.0
 
-def fn_quad(h, a, root):
+def f_quad(h, a, root):
     return a*(h - root)**2 - 0.3
 
-def dfn_quad(h, a, root):
+def df_quad(h, a, root):
     return 2*a*(h - root)
 
 # ─────────────────────────────────────────────
@@ -68,21 +82,21 @@ def dfn_quad(h, a, root):
 # ─────────────────────────────────────────────
 FUNCTION_OPTIONS = {
     "MODEL 1 (Mehl 2006)": "mehl",
-    "MODEL 2 (Poly)":            "cubic",
-    "MODEL 3 (SIN)":                   "sine",
-    "MODEL 4 (EXP)":                     "exp",
-    "MODEL 5 (QUAD)":                     "quad",
+    "MODEL 2 (Poly)":      "cubic",
+    "MODEL 3 (SIN)":       "sine",
+    "MODEL 4 (EXP)":       "exp",
+    "MODEL 5 (QUAD)":      "quad",
 }
 
 # ─────────────────────────────────────────────
 # Controls – inline, no sidebar
 # ─────────────────────────────────────────────
-st.markdown("#### ⚙️ Settings")
+st.subheader("Choose :green[Example Model] and  :blue[Initial head]", divider = 'green')
 
 col_a, col_b = st.columns(2)
 with col_a:
     func_label = st.selectbox(
-        "Choose residual function f_n(h)",
+        "Choose :green[example model]",
         options=list(FUNCTION_OPTIONS.keys()),
         index=0,
     )
@@ -106,16 +120,14 @@ if func_key == "mehl":
 #   st.info(f"Analytical root: h* = **{h_star_mehl:.4f}**")
 
 elif func_key == "cubic":
-    with col_b:
-        cubic_params["a"] = 0.7
-        cubic_params["b"] = -1.2
-        cubic_params["c"] = 0.3
-        cubic_params["d"] = -0.45
+    cubic_params["a"] = 0.7
+    cubic_params["b"] = -1.2
+    cubic_params["c"] = 0.3
+    cubic_params["d"] = -0.45
 
 elif func_key == "quad":
-    with col_b:
-        quad_params["a"]    = st.slider("a",    0.5, 5.0, 2.0, 0.1)
-        quad_params["root"] = st.slider("root", 0.1, 1.8, 0.75, 0.05)
+    quad_params["a"]    = st.slider("a",    0.5, 5.0, 2.0, 0.1)
+    quad_params["root"] = st.slider("root", 0.1, 1.8, 0.75, 0.05)
 
 # ── Starting value ───────────────────────────────────────────────────
 DEFAULT_H0 = {
@@ -126,35 +138,32 @@ DEFAULT_H0 = {
     "quad":  1.40,
 }
 
-col_c, _ = st.columns(2)
-with col_c:
+with col_b:
     h0 = st.slider(
-        "Starting value h₀",
+        ":blue[Initial head $h_0$]",
         min_value=0.05, max_value=1.95,
         value=DEFAULT_H0.get(func_key, 1.70),
         step=0.05,
     )
-
-st.caption(f"**Fixed settings:** tolerance = {TOL} | max iterations = {MAX_ITER}")
 
 # ─────────────────────────────────────────────
 # Active function dispatchers
 # ─────────────────────────────────────────────
 def get_fn(h):
     h = np.asarray(h, dtype=float)
-    if   func_key == "mehl":  return fn_mehl(h, **mehl_params)
-    elif func_key == "cubic": return fn_cubic(h, **cubic_params)
-    elif func_key == "sine":  return fn_sine(h)
-    elif func_key == "exp":   return fn_exp(h)
-    elif func_key == "quad":  return fn_quad(h, **quad_params)
+    if   func_key == "mehl":  return f_mehl(h, **mehl_params)
+    elif func_key == "cubic": return f_cubic(h, **cubic_params)
+    elif func_key == "sine":  return f_sine(h)
+    elif func_key == "exp":   return f_exp(h)
+    elif func_key == "quad":  return f_quad(h, **quad_params)
 
 def get_dfn(h):
     h = np.asarray(h, dtype=float)
-    if   func_key == "mehl":  return dfn_mehl(h, **mehl_params)
-    elif func_key == "cubic": return dfn_cubic(h, **cubic_params)
-    elif func_key == "sine":  return dfn_sine(h)
-    elif func_key == "exp":   return dfn_exp(h)
-    elif func_key == "quad":  return dfn_quad(h, **quad_params)
+    if   func_key == "mehl":  return df_mehl(h, **mehl_params)
+    elif func_key == "cubic": return df_cubic(h, **cubic_params)
+    elif func_key == "sine":  return df_sine(h)
+    elif func_key == "exp":   return df_exp(h)
+    elif func_key == "quad":  return df_quad(h, **quad_params)
 
 # ─────────────────────────────────────────────
 # Session state – reset when settings change
@@ -168,6 +177,9 @@ if "h_vals" not in st.session_state or st.session_state.get("state_key") != stat
 
 h_vals  = st.session_state.h_vals
 stopped = st.session_state.stopped
+
+st.subheader("Interactive plot", divider = 'green')
+
 
 # ─────────────────────────────────────────────
 # Buttons
@@ -187,11 +199,11 @@ if reset_btn:
 if next_btn and not stopped:
     h_k = h_vals[-1]
     try:
-        fn_k  = float(get_fn(h_k))
-        dfn_k = float(get_dfn(h_k))
-        if abs(dfn_k) < 1e-12:
+        f_k  = float(get_fn(h_k))
+        df_k = float(get_dfn(h_k))
+        if abs(df_k) < 1e-12:
             raise ZeroDivisionError("Derivative ≈ 0 – Newton step undefined.")
-        h_new = h_k - fn_k / dfn_k          # Newton update
+        h_new = h_k - f_k / df_k          # Newton update
     except Exception as e:
         st.error(f"Newton step failed at h={h_k:.6f}: {e}")
         h_new = np.nan
@@ -287,15 +299,15 @@ STATUS_STYLE = {
 # ─────────────────────────────────────────────
 h_plot = np.linspace(0.01, 2.0, 800)
 try:
-    fn_plot = get_fn(h_plot).astype(float)
+    f_plot = get_fn(h_plot).astype(float)
 except Exception:
-    fn_plot = np.zeros_like(h_plot)
+    f_plot = np.zeros_like(h_plot)
 
 # Collect all y-values that will appear in the plot (curve values + all f_n(h_k) for current iterates)
-all_fn_vals = list(fn_plot)
+all_f_vals = list(f_plot)
 for h in h_vals:
     try:
-        all_fn_vals.append(float(get_fn(h)))
+        all_f_vals.append(float(get_fn(h)))
     except Exception:
         pass
 
@@ -304,12 +316,12 @@ tangent_y_vals = []
 for i in range(len(h_vals) - 1):
     h_k = h_vals[i]
     try:
-        fn_k  = float(get_fn(h_k))
-        tangent_y_vals += [fn_k, 0.0]
+        f_k  = float(get_fn(h_k))
+        tangent_y_vals += [f_k, 0.0]
     except Exception:
         pass
 
-all_y = [v for v in all_fn_vals + tangent_y_vals if np.isfinite(v)]
+all_y = [v for v in all_f_vals + tangent_y_vals if np.isfinite(v)]
 
 if all_y:
     y_min_data = min(all_y)
@@ -333,13 +345,13 @@ for i in range(len(h_vals) - 1):
     h_k  = h_vals[i]
     h_k1 = h_vals[i+1]
     try:
-        fn_k = float(get_fn(h_k))
+        f_k = float(get_fn(h_k))
     except Exception:
         break
     # Vertical drop from x-axis to curve at h_k
-    vertical_segs.append(([h_k,  h_k ], [0.0,  fn_k]))
+    vertical_segs.append(([h_k,  h_k ], [0.0,  f_k]))
     # Tangent from curve point to x-axis intercept
-    tangent_segs.append( ([h_k,  h_k1], [fn_k, 0.0 ]))
+    tangent_segs.append( ([h_k,  h_k1], [f_k, 0.0 ]))
 
 
 # ─────────────────────────────────────────────
@@ -348,11 +360,11 @@ for i in range(len(h_vals) - 1):
 fig, ax = plt.subplots(figsize=(8, 7))
 
 # Clip curve for display only (don't clip tangent endpoints)
-fn_plot_clipped = np.clip(fn_plot, y_lo - 0.5, y_hi + 0.5)
-ax.plot(h_plot, fn_plot_clipped, color="dodgerblue", linewidth=1.5, label=r"$f_n(h)$")
+f_plot_clipped = np.clip(f_plot, y_lo - 0.5, y_hi + 0.5)
+ax.plot(h_plot, f_plot_clipped, color="dodgerblue", linewidth=1.5, label=r"$f_n(h)$")
 
 # Zero line
-ax.axhline(0, color="black", linewidth=1.0)
+ax.axhline(0, color="lime", linewidth=1.0)
 
 # Vertical drops
 for xs, ys in vertical_segs:
@@ -366,16 +378,16 @@ for idx, (xs, ys) in enumerate(tangent_segs):
 # Starting point: dot on curve + dashed vertical from x-axis
 h_start = h_vals[0]
 try:
-    fn_start = float(get_fn(h_start))
+    f_start = float(get_fn(h_start))
 except Exception:
-    fn_start = 0.0
+    f_start = 0.0
 
-ax.plot([h_start, h_start], [fn_start, -1.5], "k--", color = "dodgerblue", linewidth=1.0, alpha=0.5)
-ax.plot(h_start, fn_start, "ko", markersize=8, zorder=6)
+ax.plot([h_start, h_start], [f_start, -1.5], "k--", color = "dodgerblue", linewidth=1.0, alpha=0.5)
+ax.plot(h_start, f_start, "ko", markersize=8, zorder=6)
 ax.annotate(
     f"$h_0$ = {h_start:.2f}",
-    xy=(h_start, fn_start),
-    xytext=(h_start + 0.04, fn_start + 0.02 * (y_hi - y_lo)),
+    xy=(h_start, f_start),
+    xytext=(h_start + 0.04, f_start + 0.02 * (y_hi - y_lo)),
     fontsize=12, color="black"
 )
 
@@ -385,10 +397,10 @@ if n_iter >= 1:
     h_last = h_vals[-1]
     if abs(h_last) < DIVERGE_LIMIT:
         try:
-            fn_last = float(get_fn(h_last))
+            f_last = float(get_fn(h_last))
         except Exception:
-            fn_last = 0.0
-        ax.plot(h_last, fn_last, "ro", markersize=6, zorder=5,
+            f_last = 0.0
+        ax.plot(h_last, f_last, "ro", markersize=6, zorder=5,
                 label=f"current $h$ = {h_last:.4f}")
 
 # Root marker – analytical for Mehl, numerical otherwise
@@ -402,8 +414,8 @@ if n_iter >= 1:
 #                label=f"Root h*={h_root:.4f}")
 #    else:
 #        h_scan  = np.linspace(0.01, 1.99, 5000)
-#        fn_scan = get_fn(h_scan)
-#        sc_idx  = np.where(np.diff(np.sign(fn_scan)))[0]
+#        f_scan = get_fn(h_scan)
+#        sc_idx  = np.where(np.diff(np.sign(f_scan)))[0]
 #        if len(sc_idx) > 0:
 #            roots = []
 #            for sc in sc_idx:
@@ -443,7 +455,7 @@ ax.set_xlim(0, 2)
 ax.set_ylim(-1.5, 1)
 ax.set_xlabel("h", fontsize=12)
 ax.set_ylabel(r"$f_n(h)$", fontsize=12)
-ax.set_title("Newton Iteration – Tangent Line Convergence Pattern\n(Mehl, 2006)",
+ax.set_title("Convergence Pattern - Newton Iteration",
              fontsize=14)
 ax.legend(fontsize=12, loc="upper right")
 st.pyplot(fig)
@@ -475,20 +487,29 @@ st.markdown("#### 📋 Iteration History")
 rows = []
 for i, h in enumerate(h_vals):
     try:
-        fn_val  = f"{float(get_fn(h)):.6f}"
-        dfn_val = f"{float(get_dfn(h)):.6f}"
+        f_val  = f"{float(get_fn(h)):.6f}"
+        df_val = f"{float(get_dfn(h)):.6f}"
         step    = (f"{-float(get_fn(h))/float(get_dfn(h)):.6f}"
                    if i < len(h_vals)-1 else "—")
     except Exception:
-        fn_val = dfn_val = step = "error"
+        f_val = df_val = step = "error"
     dh_val = f"{abs(h_vals[i] - h_vals[i-1]):.6f}" if i > 0 else "—"
     rows.append({
         "k":           i,
         "h_k":         f"{h:.6f}",
-        "f_n(h_k)":    fn_val,
-        "f_n'(h_k)":   dfn_val,
+        "f_n(h_k)":    f_val,
+        "f_n'(h_k)":   df_val,
         "Newton step": step,
         "|Δh|":        dh_val,
     })
 
 st.table(rows)
+
+st.markdown('---')
+
+# Render footer with authors, institutions, and license logo in a single line
+columns_lic = st.columns((4,1))
+with columns_lic[0]:
+    st.markdown(f'Developed by {", ".join(author_list)} ({year}). <br> {institution_text}', unsafe_allow_html=True)
+with columns_lic[1]:
+    st.image('FIGS/CC_BY-SA_icon.png')
