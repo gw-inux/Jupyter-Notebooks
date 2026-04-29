@@ -165,19 +165,19 @@
     },
     {
         "image": "images/slide_42.png",
-        "notes": "No notes"
+        "notes": "Grundlage sind die Volumenelemente laut Folie 40\rhier mit theoretisch denkbaren Parametrisierungen\rbspw. Rinne in horizontaler Richtung mit eher durchl\u00e4ssigerem Material gef\u00fcllt, in vertikaler Richtung mit gering durchl\u00e4ssigem Material (zuf\u00e4llig (!) im Niveau der GW-Geringleiter au\u00dferhalb)\rdies w\u00fcrde zu Str\u00f6mungen in horizontaler Richtung f\u00fchren\rvertikal kein/kaum Druckausgleich"
     },
     {
         "image": "images/slide_43.png",
-        "notes": "No notes"
+        "notes": "Grundlage sind die Volumenelemente laut Folie 40\rhier mit theoretisch denkbaren Parametrisierungen, hier sehr inhomogen\rbspw. Rinne in horizontaler/vertikaler Richtung zum Teil mit durchl\u00e4ssigerem Material gef\u00fcllt\rin diesem sehr theoretischen Beispiel k\u00f6nnte je nach Druckverh\u00e4ltnissen das Wasser vom GWL 4 ins Quart\u00e4r sowie in den GWL 5 str\u00f6men (bei Str\u00f6mungsrichtung von rechts nach links)\rvertikal kaum Druckausgleich, au\u00dfer anstromseitig vom GWL 4 zum Quart\u00e4r bzw. abstromseitig vom Quart\u00e4r zum GWL 5 (bei Str\u00f6mungsrichtung von rechts nach links)"
     },
     {
         "image": "images/slide_44.png",
-        "notes": "No notes"
+        "notes": "wieder das theoretische Beispiel zur Veranschaulichung der Verh\u00e4ltnisse (in Anlehnung an das D\u00fcbener-/Burgkemnitzer Rinnensystem)\r\rwichtig f\u00fcr die \u00dcberf\u00fchrung von Rinnen in numerische Modelle ist, dass Grundwasserstandsmesswerte vorliegen (siehe vorne)\r\rob die Rinnenflanken im Modell nun durchl\u00e4ssig oder geringer durchl\u00e4ssig gestaltet werden, h\u00e4ngt von den Messwerten und den \u00f6rtlichen Verh\u00e4ltnissen ab (\uf0e0 die Rinnenflanke muss nicht zwingend \u201etrennend\u201c gestaltet werden!!)\rgleiches gilt f\u00fcr die vertikalen Wasserstandsunterschiede innerhalb einer Rinne: nur wenn die Messwerte zeigen, dass ein bindiges Zwischenmittel innerhalb der Rinne vorliegen muss, ist dies bei der nummerischen Modellierung zu beachten\r\rwichtig ist auch der Punkt, dass ein und dieselbe Rinne an unterschiedlichen \u00d6rtlichkeiten gro\u00dfe Unterschiede der hydrogeologischen Verh\u00e4ltnisse aufweisen kann!!"
     },
     {
         "image": "images/slide_45.png",
-        "notes": "No notes"
+        "notes": "wieder das theoretische Beispiel zur Veranschaulichung der Verh\u00e4ltnisse (in Anlehnung an das D\u00fcbener-/Burgkemnitzer Rinnensystem)\rim Beispiel durch drei Modellschichten abgebildet (in der Realit\u00e4t werden dies je nach Anforderungen mehrere Schichten werden)\r\rwichtig f\u00fcr die \u00dcberf\u00fchrung von Rinnen in numerische Modelle ist, dass Grundwasserstandsmesswerte vorliegen (siehe vorne)\r\rob die Rinnenflanken im Modell nun durchl\u00e4ssig oder geringer durchl\u00e4ssig gestaltet werden, h\u00e4ngt von den Messwerten und den \u00f6rtlichen Verh\u00e4ltnissen ab (\uf0e0 die Rinnenflanke muss nicht zwingend \u201etrennend\u201c als St\u00f6rung gestaltet werden!!)\rgleiches gilt f\u00fcr die vertikalen Wasserstandsunterschiede innerhalb einer Rinne: nur wenn die Messwerte zeigen, dass ein bindiges Zwischenmittel innerhalb der Rinne vorliegen muss, ist dies bei der nummerischen Modellierung zu beachten\r\rwichtig ist auch der Punkt, dass ein und dieselbe Rinne an unterschiedlichen \u00d6rtlichkeiten gro\u00dfe Unterschiede der hydrogeologischen Verh\u00e4ltnisse aufweisen kann und damit auch \u00f6rtlich unterschiedlich im Modell abgebildet werden muss!!"
     },
     {
         "image": "images/slide_46.png",

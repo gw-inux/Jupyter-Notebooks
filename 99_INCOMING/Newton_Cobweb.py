@@ -7,14 +7,11 @@ import matplotlib.pyplot as plt
 # ─────────────────────────────────────────────
 st.set_page_config(page_title="Newton Iteration – Mehl (2006)", layout="centered")
 
-st.title("Newton Iteration – Convergence Pattern")
+st.title("Convergence Pattern")
+st.header("Newton Iteration Scheme", divider="blue")
 st.markdown(
     """
-    **Based on:** Mehl, S.W. (2006). *Use of Picard and Newton Iteration for Solving
-    Nonlinear Ground Water Flow Equations.* Groundwater, 44(4), 583–594.
-
-    Demonstrates **Newton's method** for solving `f_n(h) = 0`. Each iteration draws a
-    **tangent line** at the current point; its x-intercept becomes the next iterate.
+    This interactive application  demonstrates the Newton-Raphson iteration scheme (Newton solver). The :blue[line] in the plot below represents the model $f_n(h)$. Each iteration draws a **tangent line** at the current point and the resulting x-intercept becomes the head for the next iteration step. The scheme aims to find the point, where the model becomes zero, i.e., $f_n(h) = 0$.
     """
 )
 
@@ -70,11 +67,11 @@ def dfn_quad(h, a, root):
 # Function menu
 # ─────────────────────────────────────────────
 FUNCTION_OPTIONS = {
-    "Mehl (2006) – Three-node unconfined aquifer  (parametric)": "mehl",
-    "Cubic polynomial  f_n = a·h³ + b·h² + c·h + d":            "cubic",
-    "Sine-based  f_n = sin(3h) − 0.5h + 0.3":                   "sine",
-    "Exponential  f_n = e^(−2h) − h + 0.5":                     "exp",
-    "Quadratic  f_n = a·(h − root)² − 0.3":                     "quad",
+    "MODEL 1 (Mehl 2006)": "mehl",
+    "MODEL 2 (Poly)":            "cubic",
+    "MODEL 3 (SIN)":                   "sine",
+    "MODEL 4 (EXP)":                     "exp",
+    "MODEL 5 (QUAD)":                     "quad",
 }
 
 # ─────────────────────────────────────────────
@@ -124,7 +121,7 @@ elif func_key == "quad":
 DEFAULT_H0 = {
     "mehl":  1.70,
     "cubic": 1.50,
-    "sine":  1.20,
+    "sine":  1.42,
     "exp":   1.50,
     "quad":  1.40,
 }
