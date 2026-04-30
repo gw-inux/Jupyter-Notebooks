@@ -19,7 +19,8 @@ institution_text = " | ".join(institution_list)
 # ─────────────────────────────────────────────
 # Page config
 # ─────────────────────────────────────────────
-st.set_page_config(page_title="Newton Iteration – Mehl (2006)", layout="centered")
+# Deactive in multipage apps
+# st.set_page_config(page_title="Newton Iteration – Mehl (2006)", layout="centered")
 
 st.title("Convergence Pattern")
 st.header(":blue[Newton Iteration] Scheme", divider="blue")

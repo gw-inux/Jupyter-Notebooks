@@ -19,7 +19,8 @@ institution_text = " | ".join(institution_list)
 # ─────────────────────────────────────────────
 # Page config
 # ─────────────────────────────────────────────
-st.set_page_config(page_title="Picard Iteration – Mehl (2006)", layout="centered")
+# Deactive in multipage apps
+# st.set_page_config(page_title="Picard Iteration – Mehl (2006)", layout="centered")
 
 st.title("Convergence Pattern")
 st.header(":green[Picard Iteration] Scheme (Cobweb-Plot)", divider="green")
