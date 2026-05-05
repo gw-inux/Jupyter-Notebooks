@@ -1,0 +1,211 @@
+[
+  {
+    "question": "Welche Aussagen treffen auf das konzeptionelle Modell im Sinne von Anderson et al. (Workflow) zu?",
+    "options": {
+      "Es kann durch spätere Kalibrierung vollständig ersetzt werden.": false,
+      "Es stellt eine Brücke zwischen Fragestellung und mathematischer/numerischer Umsetzung dar.": true,
+      "Es ist identisch mit der Diskretisierung (Grid) des numerischen Modells.": false,
+      "Es kann Unsicherheiten explizit sichtbar machen (z. B. alternative Konzeptvarianten).": true
+    },
+    "success": "Richtig. Das Konzept verbindet Problem, Dateninterpretation, Ränder/Struktur und die spätere Umsetzung – inkl. Unsicherheiten.",
+    "failure": "Nicht korrekt. Diskretisierung/Kalibrierung ersetzen kein tragfähiges konzeptionelles Verständnis."
+  },
+  {
+    "question": "Welche der folgenden Beispiele repräsentieren Randbedingungen 2. Art (Neumann)?",
+    "options": {
+      "Fluss als fester Wasserspiegel ohne Kolmationsschicht.": false,
+      "No-Flow-Rand als Sonderfall (Q = 0).": true,
+      "Halbdurchlässiger Rand mit head dependent flow.": false,
+      "Randzufluss als definierter Volumenstrom über die Grenze.": true
+    },
+    "success": "Richtig. Neumann beschreibt definierte Flüsse; No-Flow ist der Spezialfall mit Q = 0.",
+    "failure": "Nicht korrekt. Fester Wasserspiegel ist Dirichlet; head dependent flow ist Robin (3. Art)."
+  },
+  {
+    "question": "Welche Aussagen treffen auf hydraulische Randbedingungen zu (z. B. Grundwasserscheiden, Stromlinien, Pegelränder)?",
+    "options": {
+      "Sie sind unabhängig von Entnahmen und Neubildung.": false,
+      "Sie leiten sich häufig aus dem (beobachteten oder angenommenen) Strömungsfeld ab.": true,
+      "Sie sind grundsätzlich im Raum fixiert und daher immer stabil.": false,
+      "Sie können zeitlich variabel sein und müssen daher hinsichtlich Stabilität geprüft werden.": true
+    },
+    "success": "Richtig. Hydraulische Ränder können sich mit hydrologischen Bedingungen ändern (Entnahmen, Neubildung, Vorflut).",
+    "failure": "Nicht korrekt. Gerade hydraulische Ränder sind häufig variabel und rückgekoppelt."
+  },
+  {
+    "question": "Welche Aussagen beschreiben typische Fehlerquellen bei der Anwendung einer „Specified Head“ (Dirichlet) Randbedingung für Oberflächengewässern korrekt?",
+    "options": {
+      "Der Fehler entsteht primär durch Rundungsfehler des Solvers, nicht durch Konzeptannahmen.": false,
+      "Ein fester Wasserspiegelrand kann die Rückkopplung des Modellgeschehens auf das Gewässer unterschlagen.": true,
+      "Dirichlet ist immer falsch, weil Gewässer grundsätzlich Robin-Ränder sein müssen.": false,
+      "Ein fester Wasserspiegelrand kann falsch sein, wenn das Gewässer bei Absenkung hydraulisch entkoppelt oder austrocknet.": true
+    },
+    "success": "Richtig. Der Kern ist konzeptionell: Kopplung/Entkopplung, Kolmation, Austrocknung und Rückkopplung.",
+    "failure": "Nicht korrekt. Das Problem ist selten „numerisch“, sondern meist eine falsche konzeptionelle Randannahme."
+  },
+  {
+    "question": "Welche Aussagen passen zur Wahl von Raumdimension und Modelltyp in der Problemanalyse (Bilanz–Strömung–Transport)?",
+    "options": {
+      "Ein 3D-Modell ist grundsätzlich vorzuziehen, weil es immer realistischer ist.": false,
+      "Die Wahl der Raumdimension hat keinen Einfluss auf Parameterbedarf und Rechenaufwand.": false,
+      "Ein 0D-Bilanzmodell kann für Wasserbilanzen sinnvoll sein, obwohl keine räumliche Verteilung dargestellt wird.": true,
+      "Die Raumdimension sollte der Fragestellung und Datenlage folgen, nicht umgekehrt.": true
+    },
+    "success": "Richtig. Verhältnismäßigkeit ist zentral: Zweck, Daten, Aufwand und Nutzen müssen zusammenpassen.",
+    "failure": "Nicht korrekt. Raumdimension beeinflusst Aufwand, Parameterbedarf und Interpretierbarkeit erheblich."
+  },
+  {
+    "question": "Welche Aussagen sind für die Abgrenzung von Modellgebiet und Bilanzraum fachlich begründet?",
+    "options": {
+      "Wasserscheiden sind stets zeitlich stabil und können ohne Prüfung als No-Flow gesetzt werden.": false,
+      "Je tiefer die betrachtete Schicht, desto größer kann der relevante Bilanzraum werden.": true,
+      "Modellränder sollten so gewählt werden, dass sie das interessierende Modellgeschehen möglichst wenig beeinflussen.": true,
+      "Der Modellrand sollte grundsätzlich direkt am Brunnen liegen, um Randbedingungen gut zu messen.": false
+    },
+    "success": "Richtig. Abstand, Tiefe und Stabilität von Rändern sind zentrale Kriterien.",
+    "failure": "Nicht korrekt. Zu nahe Ränder erzeugen Artefakte; Wasserscheiden müssen auf Stabilität geprüft werden."
+  },
+  {
+    "question": "Welche Aussagen sind typische Inhalte eines hydrogeologischen Strukturmodells (als Teil des konzeptionellen Modells)?",
+    "options": {
+      "Die endgültige Kalibrierparameterliste als zwingender Bestandteil des Strukturmodells.": false,
+      "Iterative Solver-Parameter (Abbruchkriterium, Relaxation) als Teil der Struktur.": false,
+      "Hydrostratigrafische Einheiten mit ähnlichen hydraulischen Eigenschaften.": true,
+      "Geologische Grenzen/Verwerfungen als mögliche Barrieren oder Leitstrukturen.": true
+    },
+    "success": "Richtig. Strukturmodell = Geometrie/Einheiten/Barrieren/Leitstrukturen – nicht Solver-Feintuning.",
+    "failure": "Nicht korrekt. Solverparameter sind Implementierungsdetails, nicht Bestandteil der hydrogeologischen Struktur."
+  },
+  {
+    "question": "Welche Aussagen zur Kopplung Oberflächenwasser–Grundwasser im Konzept sind korrekt (direkter Kontakt vs. Kolmationsschicht)?",
+    "options": {
+      "Conductance ist unabhängig von Geometrie (W, L) und Schichtmächtigkeit (M).": false,
+      "Eine Kolmationsschicht kann den Austausch begrenzen; dann ist ein head dependent flow (Robin) oft sachgerechter.": true,
+      "Die Existenz einer Kolmationsschicht beeinflusst nur den Transport, nicht die Strömung.": false,
+      "Bei direktem Kontakt kann ein fester Wasserspiegelrand (Dirichlet) in manchen Anwendungen eine plausible Näherung sein.": true
+    },
+    "success": "Richtig. Konzept entscheidet, ob „defined head“ oder „leaky/Robin“ plausibel ist.",
+    "failure": "Nicht korrekt. Kolmation/Conductance beeinflussen den Austausch direkt – inklusive Strömung."
+  },
+  {
+    "question": "Welche Aussagen treffen auf den Leakage-Faktor/Conductance C eines Flussbetts (Parametergruppe) zu?",
+    "options": {
+      "Er ist identisch mit der Transmissivität des Aquifers.": false,
+      "Ein größerer C bedeutet bei gleicher Potentialdifferenz typischerweise stärkeren Austausch.": true,
+      "Er hat die Dimension L²/T.": true,
+      "Er bündelt K und Geometrieparameter (z. B. Breite, Länge, Mächtigkeit) zu einer Austauschgröße.": true
+    },
+    "success": "Richtig. C steuert die Stärke des head dependent flow bei gegebenem Δh.",
+    "failure": "Nicht korrekt. C ist keine Transmissivität; er beschreibt die Austauschfähigkeit der Kopplung."
+  },
+  {
+    "question": "Welche Aussagen sind im Sinne „conceptual model – uncertainty“ korrekt?",
+    "options": {
+      "Konzeptunsicherheit ist nur ein Problem in Karstsystemen, nicht in Porengrundwasserleitern.": false,
+      "Unvollständige Daten führen oft zu nicht-eindeutigen Konzepten, die transparent dokumentiert werden sollten.": true,
+      "Unsicherheit kann durch feinere Diskretisierung vollständig eliminiert werden.": false,
+      "Konzeptunsicherheit kann in alternativen Modellvarianten (Szenarien) abgebildet werden.": true
+    },
+    "success": "Richtig. Unsicherheit gehört zum Konzept und sollte sichtbar gemacht und diskutiert werden.",
+    "failure": "Nicht korrekt. Diskretisierung löst keine Konzeptunsicherheit, und Unsicherheit ist systemübergreifend relevant."
+  },
+  {
+    "question": "Welche Aussagen passen zur Dichtwand-Fallstudie (Fehlstelle, 2D vs. 3D) als konzeptionelles Problem?",
+    "options": {
+      "Die Ergebnisunterschiede sind ausschließlich numerische Rundungsfehler und daher vernachlässigbar.": false,
+      "Ein 2D-Modell kann bestimmte Umströmungswege/Seiteneffekte nicht darstellen, die in 3D auftreten.": true,
+      "2D und 3D liefern in jeder Konfiguration zwangsläufig identische Durchflüsse.": false,
+      "Die Wahl der Raumdimension kann die berechnete Durchflussverteilung an einer Fehlstelle beeinflussen.": true
+    },
+    "success": "Richtig. Raumdimension ist Teil der Konzeptualisierung und beeinflusst mögliche Fließwege.",
+    "failure": "Nicht korrekt. Unterschiede sind meist konzeptionell (Fließwege), nicht „nur numerisch“."
+  },
+  {
+    "question": "Welche Aussagen beschreiben sinnvoll begründete Modellränder (aus den Folien) am besten?",
+    "options": {
+      "Ein Modellrand sollte möglichst dort liegen, wo die Messdaten am dichtesten sind, unabhängig von Fragestellung.": false,
+      "Randstromlinien oder Wasserscheiden können hydraulisch begründete Ränder sein (Stabilität prüfen).": true,
+      "Die Wahl der Randbedingungen ist unabhängig von der zu beantwortenden Frage.": false,
+      "Große Oberflächengewässer oder undurchlässige Schichten können physikalisch begründete Modellränder sein.": true
+    },
+    "success": "Richtig. Ränder werden problem- und systemadäquat festgelegt (Physik/Hydraulik/Stabilität/Abstand).",
+    "failure": "Nicht korrekt. Messdatendichte allein ist kein Randkriterium; entscheidend ist die Fragestellung und Systemlogik."
+  },
+  {
+    "question": "Welche Aussagen sind zur Beziehung „konzeptionelles Modell → numerisches Modell“ korrekt?",
+    "options": {
+      "Ein gutes numerisches Modell kann ein schwaches konzeptionelles Modell durch Kalibrierung kompensieren.": false,
+      "Die Wahl des Codes (z. B. MODFLOW) ist Teil der Umsetzung, nicht identisch mit dem Konzept.": true,
+      "Das numerische Modell ist eine formale, quantifizierte Umsetzung des konzeptionellen Modells.": true,
+      "Konzeptionelle Modellannahmen bestimmen, welche Prozesse und Strukturen überhaupt abgebildet werden.": true
+    },
+    "success": "Richtig. Numerik setzt das Konzept um; Kalibrierung kann Konzeptfehler nicht „wegoptimieren“.",
+    "failure": "Nicht korrekt. Ein falsches Konzept bleibt ein systematischer Fehler – auch bei guter Kalibrierung."
+  },
+  {
+    "question": "Welche Aussagen treffen zur Frage „steady-state vs. transient“ im Sinne der Verhältnismäßigkeit zu?",
+    "options": {
+      "Steady-state kann für langfristige Mittelzustände sinnvoll sein, auch wenn kurzfristige Dynamik ignoriert wird.": true,
+      "Transient ist immer vorzuziehen, weil es automatisch genauer ist.": false,
+      "Transient erfordert Zeitreihen und mehr Eingabedaten; Aufwand steigt meist deutlich.": true,
+      "Steady-state ist unzulässig, sobald ein Fließgewässer im Gebiet existiert.": false
+    },
+    "success": "Richtig. Die Wahl hängt von Fragestellung, Datenlage und erforderlicher Dynamik ab.",
+    "failure": "Nicht korrekt. „Immer transient“ ist nicht verhältnismäßig; steady-state kann fachlich passend sein."
+  },
+  {
+    "question": "Welche Aussagen passen zur Nutzung von Grundwasserganglinien für das konzeptionelle Modell?",
+    "options": {
+      "Sie ersetzen geologische Daten vollständig, weil Dynamik alle Strukturen offenlegt.": false,
+      "Sie erlauben Rückschlüsse auf die Zugehörigkeit zu hydrostratigrafischen Einheiten.": true,
+      "Sie liefern Hinweise auf Vorflut, Neubildung, Bewirtschaftung und Systemkopplungen.": true,
+      "Sie sind nur für Transportmodelle relevant, nicht für Strömungsmodelle.": false
+    },
+    "success": "Richtig. Ganglinien sind diagnostisch wertvoll für Konzeptbildung und Systemverständnis.",
+    "failure": "Nicht korrekt. Ganglinien ergänzen geologische Daten, ersetzen sie aber nicht."
+  },
+  {
+    "question": "Welche Aussagen sind zur „Abstraktion“ komplexer Systeme im konzeptionellen Modell korrekt?",
+    "options": {
+      "Abstraktion führt zwangsläufig zu falschen Ergebnissen und sollte vermieden werden.": false,
+      "Abstraktion ist gleichbedeutend mit willkürlicher Vereinfachung ohne fachliche Begründung.": false,
+      "Abstraktion bedeutet Vereinfachung bei Erhalt der relevanten Prozesse (problemadäquat).": true,
+      "Abstraktion kann Einteilung in Grundwasserleiter/Hemmer/Geringleiter umfassen.": true
+    },
+    "success": "Richtig. Abstraktion ist notwendig – entscheidend ist, dass sie fachlich und problembezogen begründet ist.",
+    "failure": "Nicht korrekt. Ohne Abstraktion sind Modelle meist nicht handhabbar; entscheidend ist die Angemessenheit."
+  },
+  {
+    "question": "Welche Aussagen treffen auf „Modell als Entscheidungshilfe“ im Kontext Nitrat/Wassergewinnung zu?",
+    "options": {
+      "Für Entscheidungsfragen ist die klare Definition der Fragestellung zentral (Was/Wo/Wie).": true,
+      "Modelle liefern exakte Vorhersagen und ersetzen damit Managemententscheidungen.": false,
+      "Ohne Transportmodell sind Qualitätsfragen grundsätzlich nicht untersuchbar.": false,
+      "Modelle können Szenarien und Handlungsoptionen strukturieren (z. B. Schutzmaßnahmen, Flächenkauf, Prognosen).": true
+    },
+    "success": "Richtig. Modelle unterstützen Entscheidungen, ersetzen sie aber nicht; Fragestellung steuert Modelltyp.",
+    "failure": "Nicht korrekt. Modelle sind Werkzeuge zur Strukturierung/Quantifizierung – nicht „Wahrheitsmaschinen“."
+  },
+  {
+    "question": "Welche Aussagen treffen auf „Surprise“-Beispiele wie Walkerton (Karst nicht berücksichtigt) grundsätzlich zu?",
+    "options": {
+      "Wenn ein Modell einmal läuft, ist das Konzept automatisch bestätigt.": false,
+      "Ein unpassendes Konzept (z. B. fehlende Karstkomponente) kann trotz rechnerisch plausibler Ergebnisse falsche Schlussfolgerungen erzeugen.": true,
+      "Solche Überraschungen treten nur bei sehr großen regionalen Modellen auf.": false,
+      "Zusätzliche Felduntersuchungen können Hinweise liefern, dass das Konzept angepasst werden muss.": true
+    },
+    "success": "Richtig. Konzeptvalidierung ist ein fachlicher Prozess – neue Evidenz kann Konzeptwechsel erfordern.",
+    "failure": "Nicht korrekt. Laufende Numerik bestätigt kein Konzept; Evidenz kann Konzeptanpassung erzwingen."
+  },
+  {
+    "question": "Welche Aussagen passen zu „Modellränder 1./2./3. Art“ als mathematische Umsetzung realer Ränder?",
+    "options": {
+      "No-Flow ist nie realistisch und sollte vermieden werden.": false,
+      "Dirichlet/Neumann/Robin sind ausschließlich numerische Tricks ohne physikalische Interpretation.": false,
+      "Die mathematische Randart ist unabhängig davon, ob der Rand physikalisch oder hydraulisch begründet ist.": true,
+      "Die gleiche reale Situation kann je nach Kenntnisstand und Ziel unterschiedlich idealisiert werden (z. B. Fluss als Dirichlet vs. Robin).": true
+    },
+    "success": "Richtig. Randarten sind Idealisationen realer Interaktionen; Auswahl muss begründet und konsistent sein.",
+    "failure": "Nicht korrekt. Randarten haben klare physikalische Interpretationen und werden problembezogen gewählt."
+  }
+]
