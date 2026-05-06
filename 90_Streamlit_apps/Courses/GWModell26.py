@@ -64,50 +64,46 @@ st.markdown("""
 pages = {
     "🟥 Überblick und Einführung": {
         "--- Folien 🚀 ---": None,
-        "📝 T01: Einführung": "90_Streamlit_apps/MWW01/SlideJet_Presentations/GWBmC_WS2526_V01_SJpresent.py",
+        "📝 T01: Organisation, Überblick und Einführung": "90_Streamlit_apps/Courses/SlideJet_Presentations/2026_05_05_NuMo_T1_Liedl_Reimann_publish_SJpresent.py",
     },
     "🟧 Workflow und Begriffe": {
         "--- Folien 🚀 ---": None,
-        "📝 T01: Einführung": "90_Streamlit_apps/MWW01/SlideJet_Presentations/GWBmC_WS2526_V01_SJpresent.py",
+        "📝 T02: Workflow und Begriffe": "90_Streamlit_apps/Courses/SlideJet_Presentations/2026_05_05_NuMo_T2_Liedl_Reimann_publish_SJpresent.py",
     },
     "🟨 Konzeptionelles Modell": {
-        "--- Modellbeispiele 📖---": None,
-        "💧 1D GWF": "90_Streamlit_apps/SYMPLE25/pages/00_OM/1D_GWF_Unconfined Recharge.py",
-        "🌀 Well Capture": "90_Streamlit_apps/SYMPLE25/pages/00_OM/WellCapture.py",
         "--- Folien 🚀 ---": None,
-        "📝 T01: Einführung": "90_Streamlit_apps/MWW01/SlideJet_Presentations/GWBmC_WS2526_V01_SJpresent.py",
+        "📝 T03: Konzeptionelles Modell": "90_Streamlit_apps/Courses/SlideJet_Presentations/2026_05_05_NuMo_T3_Liedl_Reimann_publish_SJpresent.py",
     },
     "🟩 Numerische Lösung": {
-        "--- Modellbeispiele 📖---": None,
-        "💧 1D GWF": "90_Streamlit_apps/SYMPLE25/pages/00_OM/1D_GWF_Unconfined Recharge.py",
-        "🌀 Well Capture": "90_Streamlit_apps/SYMPLE25/pages/00_OM/WellCapture.py",
+        "--- Interaktive Apps ---": None,
+        "💧 1D Finite Differenzen": "90_Streamlit_apps/Courses/pages/04_Numerik/GWF_1D_conf_FD_Solvers.py",
         "--- Folien 🚀 ---": None,
-        "📝 T01: Einführung": "90_Streamlit_apps/MWW01/SlideJet_Presentations/GWBmC_WS2526_V01_SJpresent.py",
+        "📝 T04: Numerische Lösung": "90_Streamlit_apps/Courses/SlideJet_Presentations/2026_05_05_NuMo_T4_Liedl_Reimann_publish_SJpresent.py",
     },
     "🟦 Angewandte GWModellierung": {
         "--- Folien 🚀 ---": None,
-        "📝 T01: Einführung": "90_Streamlit_apps/MWW01/SlideJet_Presentations/GWBmC_WS2526_V01_SJpresent.py",
+        "📝 T05: Ausblick": "90_Streamlit_apps/Courses/SlideJet_Presentations/2026_05_05_NuMo_T5_Liedl_Reimann_publish_SJpresent.py",
     },
     "🟪 General Info ℹ️": {
         "About": "90_Streamlit_apps/Courses/content/GWModell26/GWModell26_About.py",
-    },
-    "🟩 Einführung": {
-        "--- Modellbeispiele 📖---": None,
-        "💧 1D GWF": "90_Streamlit_apps/SYMPLE25/pages/00_OM/1D_GWF_Unconfined Recharge.py",
-        "🌀 Well Capture": "90_Streamlit_apps/SYMPLE25/pages/00_OM/WellCapture.py",
-        "--- Folien 🚀 ---": None,
-        "📝 T01: Einführung": "90_Streamlit_apps/MWW01/SlideJet_Presentations/GWBmC_WS2526_V01_SJpresent.py",
-    },
-    "🟧 Konzeptionelles Modell": {
-        "💡 Intro Randbedingungen": "06_Groundwater_modeling/BC_Intro.py",
-        "💧 1D GWF": "04_Basic_hydrogeology/GWF_1D_unconf_analytic_BC_EX_DE.py",
-        "--- Folien 🚀---": None,
-        "📝 T02: Konzeptionelles Modell": "90_Streamlit_apps/MWW01/SlideJet_Presentations/GWBmC_WS2526_V02_SJpresent.py",
-        "📑 LV 6.11.25: Folien zum Start": "90_Streamlit_apps/MWW01/SlideJet_Presentations/GWBmC_WS2526_V04_Start_SJpresent.py",
-        "--- Quizzes 🎓---": None,
-        "📝 Quiz I (Basic)": "90_Streamlit_apps/MWW01/content/QUIZ_T02_KonzeptModell_Basic.py",
-        "📝 Quiz II (Advanced)": "90_Streamlit_apps/MWW01/content/QUIZ_T02_KonzeptModell_Advanced.py",
     }
+#    "🟩 Einführung": {
+#        "--- Modellbeispiele 📖---": None,
+#        "💧 1D GWF": "90_Streamlit_apps/SYMPLE25/pages/00_OM/1D_GWF_Unconfined Recharge.py",
+#        "🌀 Well Capture": "90_Streamlit_apps/SYMPLE25/pages/00_OM/WellCapture.py",
+#        "--- Folien 🚀 ---": None,
+#        "📝 T01: Einführung": "90_Streamlit_apps/MWW01/SlideJet_Presentations/GWBmC_WS2526_V01_SJpresent.py",
+#    },
+#    "🟧 Konzeptionelles Modell": {
+#        "💡 Intro Randbedingungen": "06_Groundwater_modeling/BC_Intro.py",
+#        "💧 1D GWF": "04_Basic_hydrogeology/GWF_1D_unconf_analytic_BC_EX_DE.py",
+#        "--- Folien 🚀---": None,
+#        "📝 T02: Konzeptionelles Modell": "90_Streamlit_apps/MWW01/SlideJet_Presentations/GWBmC_WS2526_V02_SJpresent.py",
+#        "📑 LV 6.11.25: Folien zum Start": "90_Streamlit_apps/MWW01/SlideJet_Presentations/GWBmC_WS2526_V04_Start_SJpresent.py",
+#        "--- Quizzes 🎓---": None,
+#        "📝 Quiz I (Basic)": "90_Streamlit_apps/MWW01/content/QUIZ_T02_KonzeptModell_Basic.py",
+#        "📝 Quiz II (Advanced)": "90_Streamlit_apps/MWW01/content/QUIZ_T02_KonzeptModell_Advanced.py",
+#    }
 
 }
 

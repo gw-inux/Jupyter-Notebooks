@@ -107,7 +107,7 @@ def make_boundary_features(nrow, ncol, delr, delc, active_wel=False, well_row=No
     features.append(
         {
             "key": "CHD",
-            "label": "CHD",
+            "label": "h_specified",
             "cells": chd_cells,
             "marker": "s",
             "markersize": 5,
@@ -223,16 +223,16 @@ def plot_budget_bar_chart(budget, package_registry):
     ax.axhline(0, color="black", linewidth=0.8)
     ax.set_ylabel("Flow rate [m³/d]", fontsize=12)
     ax.set_title("Complete water budget from MODFLOW listing file", fontsize=12)
-    ax.tick_params(axis="x", rotation=30)
+    ax.tick_params(axis="x", rotation=90)
 
     for bar, value in zip(bars, values):
         x = bar.get_x() + bar.get_width() / 2
         y = bar.get_height()
 
         if value >= 0:
-            ax.text(x, y * 1.01, f"{value:.2f}", ha="center", va="bottom", fontsize=11)
+            ax.text(x, y * 1.01, f"{value:.0f}", ha="center", va="bottom", fontsize=11)
         else:
-            ax.text(x, y * 1.01, f"{value:.2f}", ha="center", va="top", fontsize=11)
+            ax.text(x, y * 1.01, f"{value:.0f}", ha="center", va="top", fontsize=11)
 
     return fig
 
@@ -451,7 +451,7 @@ with col1:
 
 with col2:
     with st.expander("Parameters and boundary conditions", expanded=True):
-        hk = st.number_input("Hydraulic conductivity [m/d]", value=10.0, min_value=0.0001, step=1.0)
+        hk = st.number_input("Hydraulic conductivity [m/d]", value=50.0, min_value=0.0001, step=1.0)
         recharge_mm_a = st.number_input("Recharge [mm/a]", value=200.0, min_value=0.0, step=10.0)
         chd_head = st.number_input("Specified head east [m]", value=16.0, step=0.5)
 
@@ -476,7 +476,7 @@ with col2:
 
             well_rate_abs = st.number_input(
                 "Abstraction rate [m³/d]",
-                value=100.0,
+                value=150.0,
                 min_value=0.0,
                 step=10.0,
             )
@@ -510,10 +510,10 @@ with col2:
         
             river_gradient = st.number_input(
                 "River head gradient [m/m]",
-                value=0.001,
+                value=0.0001,
                 min_value=0.0,
-                step=0.0001,
-                format="%.4f",
+                step=0.00001,
+                format="%.5f",
             )
         
             riverbed_offset = st.number_input(
@@ -525,7 +525,7 @@ with col2:
         
             river_conductance = st.number_input(
                 "River conductance per cell [m²/d]",
-                value=100.0,
+                value=5.0,
                 min_value=0.0,
                 step=10.0,
             )
