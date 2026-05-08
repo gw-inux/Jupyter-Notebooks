@@ -85,7 +85,7 @@ pages = {
     },
     "🔶 M1C - Flow modeling": {
         "--- General Numerics 🧮---": None,
-        "1D Confined FD": "90_Streamlit_apps/SYMPLE25/pages/M1C/GWF_1D_conf_FD.py",
+        "1D Confined FD": "90_Streamlit_apps/SYMPLE25/pages/M1C/GWF_1D_conf_FD_Solvers.py",
         "Iteration - Picard": "90_Streamlit_apps/SYMPLE25/pages/M1C/Iteration_Picard.py",
         "Iteration - Newton": "90_Streamlit_apps/SYMPLE25/pages/M1C/Iteration_Newton.py",
         "Modflow Time Step Multiplier": "06_Groundwater_modeling/Timestep_Multiplier.py",

@@ -71,6 +71,11 @@ pages = {
         "📝 T02: Workflow und Begriffe": "90_Streamlit_apps/Courses/SlideJet_Presentations/2026_05_05_NuMo_T2_Liedl_Reimann_publish_SJpresent.py",
     },
     "🟨 Konzeptionelles Modell": {
+        "--- Interaktive Apps ---": None,
+        "💧 1D Flow (zwei Potentialhöhen)": "04_Basic_hydrogeology/GWF_1D_unconf_analytic_calib.py",
+        "💧 1D Flow (zwei Potentialhöhen mit Übung Randbedingungen)": "04_Basic_hydrogeology/GWF_1D_unconf_analytic_BC_EX_DE.py",
+        "💧 1D Flow (mit No-Flow)": "04_Basic_hydrogeology/GWF_1D_unconf_analytic_noflow_riv.py",  
+        "💡 Intro Randbedingungen": "06_Groundwater_modeling/BC_Intro.py",        
         "--- Folien 🚀 ---": None,
         "📝 T03: Konzeptionelles Modell": "90_Streamlit_apps/Courses/SlideJet_Presentations/2026_05_05_NuMo_T3_Liedl_Reimann_publish_SJpresent.py",
     },
