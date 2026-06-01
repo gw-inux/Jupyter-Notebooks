@@ -6,7 +6,6 @@ from scipy.integrate import quad
 from functools import lru_cache
 import math
 import streamlit as st
-import streamlit_book as stb
 from pathlib import Path
 import pandas as pd
 from GWP_Pumping_Test_Derivatives_utils import load_css
@@ -533,61 +532,62 @@ with cent_co:
 st.markdown(load_md(MD_DIR, "hantush_deriv_03.md", st.session_state.language))
 
 with st.expander(":green[**Show/Hide the initial assessment**]"):
-    columnsQ = st.columns((1, 1))
-
-    with columnsQ[0]:
-        stb.single_choice(
-            ":green[**What aquifer condition is represented by the Hantush-Jacob solution used here?**]",
-            [
-                "Confined aquifer without leakage",
-                "Leaky aquifer with negligible aquitard storage",
-                "Unconfined aquifer with delayed yield",
-                "Steady-state flow to a well",
-            ],
-            1,
-            success="Correct. This version of the Hantush-Jacob solution represents a leaky aquifer with negligible aquitard storage.",
-            error="Not quite. The key addition compared with Theis is leakage through an aquitard.",
-        )
-
-        stb.single_choice(
-            ":green[**What does a larger value of r/B indicate?**]",
-            [
-                "A stronger leakage influence at the observation point",
-                "A lower pumping rate",
-                "A larger aquifer storage capacity only",
-                "No leakage",
-            ],
-            0,
-            success="Correct. Larger r/B indicates stronger leakage influence at the observation point.",
-            error="Not quite. The parameter r/B controls the leakage influence in the Hantush-Jacob well function.",
-        )
-
-    with columnsQ[1]:
-        stb.single_choice(
-            ":green[**How does the late-time Hantush-Jacob derivative differ from the Theis derivative?**]",
-            [
-                "It approaches the same constant plateau for all r/B values",
-                "It decreases when leakage becomes important",
-                "It is always zero",
-                "It increases without limit",
-            ],
-            1,
-            success="Correct. Leakage causes the derivative to decline at late time.",
-            error="Not quite. The derivative is useful because it reveals leakage-controlled late-time behavior.",
-        )
-
-        stb.single_choice(
-            ":green[**What happens when r/B approaches zero?**]",
-            [
-                "The solution approaches the Theis confined-aquifer solution",
-                "Drawdown becomes zero at all times",
-                "Leakage becomes infinite",
-                "The aquifer becomes unconfined",
-            ],
-            0,
-            success="Correct. For r/B near zero, the Hantush-Jacob response approaches the Theis response.",
-            error="Not quite. Small r/B means weak leakage influence.",
-        )
+    st.write('Show the initial assessment')
+#    columnsQ = st.columns((1, 1))
+#
+#    with columnsQ[0]:
+#        stb.single_choice(
+#            ":green[**What aquifer condition is represented by the Hantush-Jacob solution used here?**]",
+#            [
+#                "Confined aquifer without leakage",
+#                "Leaky aquifer with negligible aquitard storage",
+#                "Unconfined aquifer with delayed yield",
+#                "Steady-state flow to a well",
+#            ],
+#            1,
+#            success="Correct. This version of the Hantush-Jacob solution represents a leaky aquifer with negligible aquitard storage.",
+#            error="Not quite. The key addition compared with Theis is leakage through an aquitard.",
+#        )
+#
+#        stb.single_choice(
+#            ":green[**What does a larger value of r/B indicate?**]",
+#            [
+#                "A stronger leakage influence at the observation point",
+#                "A lower pumping rate",
+#                "A larger aquifer storage capacity only",
+#                "No leakage",
+#            ],
+#            0,
+#            success="Correct. Larger r/B indicates stronger leakage influence at the observation point.",
+#            error="Not quite. The parameter r/B controls the leakage influence in the Hantush-Jacob well function.",
+#        )
+#
+#    with columnsQ[1]:
+#        stb.single_choice(
+#            ":green[**How does the late-time Hantush-Jacob derivative differ from the Theis derivative?**]",
+#            [
+#                "It approaches the same constant plateau for all r/B values",
+#                "It decreases when leakage becomes important",
+#                "It is always zero",
+#                "It increases without limit",
+#            ],
+#            1,
+#            success="Correct. Leakage causes the derivative to decline at late time.",
+#            error="Not quite. The derivative is useful because it reveals leakage-controlled late-time behavior.",
+#        )
+#
+#        stb.single_choice(
+#            ":green[**What happens when r/B approaches zero?**]",
+#            [
+#                "The solution approaches the Theis confined-aquifer solution",
+#                "Drawdown becomes zero at all times",
+#                "Leakage becomes infinite",
+#                "The aquifer becomes unconfined",
+#            ],
+#            0,
+#            success="Correct. For r/B near zero, the Hantush-Jacob response approaches the Theis response.",
+#            error="Not quite. Small r/B means weak leakage influence.",
+#        )
 
 # --------------------------------------------------
 # Theory
