@@ -4,7 +4,6 @@ import matplotlib.pyplot as plt
 import scipy.special
 import math
 import streamlit as st
-import streamlit_book as stb
 
 # Authors, institutions, and year
 year = 2026 
