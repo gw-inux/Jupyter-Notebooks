@@ -8,7 +8,6 @@ import pandas as pd
 import streamlit as st
 from streamlit_extras.stateful_button import button
 import json
-from streamlit_book import multiple_choice
 from streamlit_scroll_to_top import scroll_to_here
 
 # Track the current page
