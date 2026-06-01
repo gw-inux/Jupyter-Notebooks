@@ -1,0 +1,70 @@
+[
+  {
+    "question": "What conditions are appropriate for use of the Theis Solution?",
+    "options": {
+      "Steady state flow, confined aquifer.": false,
+      "Transient flow, confined aquifer": true,
+      "Steady state flow, semiconfined aquifer": false,
+      "Transient flow, semiconfined aquifer": false,
+      "Steady state flow, unconfined aquifer": false,
+      "Transient flow, unconfined aquifer": false
+    },
+    "success": "CORRECT! Theis is designed for transient flow in a fully confined aquifer",
+    "error": "This is not correct. You can learn more about the Theis Solution [by downloading the book: An Introduction to Hydraulic Testing in Hydrogeology - Basic Pumping, Slug, and Packer Methods​​ and reading Section 8(https://gw-project.org/books/an-introduction-to-hydraulic-testing-in-hydrogeology-basic-pumping-slug-and-packer-methods/). Feel free to answer again."
+  },
+  {
+    "question": "What is the main goal of fitting pumping test data to curves describing drawdown in response to pumping?",
+    "options": {
+      "To determine unknown aquifer properties from observed data": true,
+      "To predict the future pumping rate of a well": false,
+      "To measure the depth of the groundwater table": false,
+      "To calculate the hydraulic gradient": false
+    },
+    "success": "CORRECT! to determine unknown aquifer properties from observed data",
+    "error": "This is not correct. You can learn more about the goal of fitting pumping test data to type curves by exploring the previous pages of this Pumping Test Analysis application. Feel free to answer again."
+  },
+  {
+    "question": "If the estimated transmissivity (T) is too low, how will the predicted drawdown compare to the true drawdown?",
+    "options": {
+      "The predicted drawdown will be too small": false,
+      "The predicted drawdown will remain unchanged": false,
+      "The predicted drawdown will be too large": false,
+      "The predicted drawdown will be too large or too small depending on the distance from the well": true
+    },
+    "success": "CORRECT! The predicted drawdown will be too large near the well, too small far from the well and may be correct at one point between the near and far field",
+    "error": "This is not completely correct. Feel free to answer again."
+  },
+  {
+    "question": "What role does curve fitting to pumping test data play in the process of estimating aquifer parameters?",
+    "options": {
+      "It predicts future rainfall effects on groundwater levels": false,
+      "It determines the total groundwater storage in the aquifer": false,
+      "It estimates the pumping rate required for full aquifer depletion": false,
+      "It helps visually compare theoretical and observed drawdown curves": true
+    },
+    "success": "CORRECT! It helps visually compare theoretical models and observed drawdown data",
+    "error": "This is not correct. It may help to consider how viewing the curves and data on the same graph was useful on previous pages of this application. Feel free to answer again."
+  },
+  {
+    "question": "Why is it important to compare predicted drawdown using estimated parameters with the true drawdown?",
+    "options": {
+      "To determine the maximum sustainable pumping rate": false,
+      "To evaluate the accuracy of the parameter estimation process": true,
+      "To find out if the aquifer is unconfined or confined": false,
+      "To measure the recharge rate of the aquifer": false
+    },
+    "success": "CORRECT! To evaluate the accuracy of the parameter estimation process",
+    "error": "This is not correct. It may help to think a bit more about the value of comparing predictions with true events. Feel free to answer again."
+  },
+  {
+    "question": "Which parameters are estimated using the Theis solution and pumping test data?",
+    "options": {
+      "Hydraulic Conductivity and Porosity": false,
+      "Transmissivity and Storativity": true,
+      "Specific Yield and Permeability": false,
+      "Pumping Rate and Aquifer Thickness": false
+    },
+    "success": "CORRECT! Transmissivity and Storativity",
+    "error": "This is not correct. It may help to visit the Theis Solution page of this application and rethink your answer. Feel free to answer again."
+  }
+]

@@ -1,0 +1,3 @@
+The Theis solution describes transient radial flow to a pumping well in an ideal confined aquifer. Because the system is controlled only by transmissivity and storativity, it provides an ideal starting point for understanding drawdown derivatives.
+
+In this section, we investigate how transmissivity and storativity influence drawdown and derivative responses and apply these concepts to the interpretation of synthetic pumping-test data.

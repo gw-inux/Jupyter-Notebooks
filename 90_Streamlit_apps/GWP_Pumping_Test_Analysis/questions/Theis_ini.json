@@ -1,0 +1,48 @@
+[  
+  {
+    "question": "What conditions are appropriate for use of the Theis Solution?",
+    "options": {
+      "Steady state flow, confined aquifer.": false,
+      "Transient flow, confined aquifer": true,
+      "Steady state flow, semiconfined aquifer": false,
+      "Transient flow, semiconfined aquifer": false,
+      "Steady state flow, unconfined aquifer": false,
+      "Transient flow, unconfined aquifer": false
+    },
+    "success": "CORRECT! Theis is designed for transient flow in a fully confined aquifer",
+    "error": "This is not correct ... You can learn more about the Theis Solution [by downloading the book: An Introduction to Hydraulic Testing in Hydrogeology - Basic Pumping, Slug, and Packer Methods​​ and reading Section 8(https://gw-project.org/books/an-introduction-to-hydraulic-testing-in-hydrogeology-basic-pumping-slug-and-packer-methods/). Feel free to answer again."
+  },
+  {
+    "question": "How does storativity $S$ influence the response of an aquifer to pumping?",
+    "options": {
+      "A higher storativity results in a slower drawdown response": true,
+      "A higher storativity leads to more rapid flow to the well": false,
+      "Storativity only affects steady-state conditions": false,
+      "Storativity is not relevant for confined aquifers": false
+    },
+    "success": "CORRECT! A higher storativity results in a slower drawdown response, because more water must be removed for an equivalent decline in head.",
+    "error": "This is not correct. Storativity does not influence the rate of groundwater flow. Storativity is not relevant to steady state flow which is defined by no change in storage. Storativity is relevant to all types of aquifers. Feel free to answer again."
+  },
+  {
+    "question": "How does the drawdown change at one specific place and time if the transmissivity is increased?",
+    "options": {
+      "The drawdown is less": false,
+      "The drawdown is more": false,
+      "The drawdown is not affected": false,
+      "All of the above depending on the parameter values": true
+    },
+    "success": "CORRECT! When all else is equal, a higher transmissivity will produce a broader cone of depression that is not as deep. So, near the well there will be less drawdown but far from the well there will be more drawdown. You can investigate this with the interactive plot and the option to plot a second set of $T$ and $S$ for comparison",
+    "error": "This is not completely correct ... You can use the application to investigate what happens when you increase transmissivity, e.g. with the option to plot a second set of $T$ and $S$ for comparison. However, you will need to experiment with different combinations of hydraulic parameters as well as distance and time, then holding all else constant, except $T$, observe the change in drawdown. When all else is equal, a higher transmissivity will produce a broader cone of depression that is not as deep. So, near the well there will be less drawdown but far from the well there will be more drawdown."
+  },
+  {
+    "question": "Which of the following assumptions was made in the development of the Theis solution for transient flow to a well?",
+    "options": {
+      "The aquifer has variable thickness": false,
+      "The aquifer is confined and infinite in lateral extent": true,
+      "The well fully penetrates an unconfined aquifer": false,
+      "The pumping rate varies with time": false
+    },
+    "success": "CORRECT! The aquifer is confined and infinite in lateral extent",
+    "error": "This is not correct. You can learn more about the Theis Solution [by downloading the book: An Introduction to Hydraulic Testing in Hydrogeology - Basic Pumping, Slug, and Packer Methods​​ and reading Section 8(https://gw-project.org/books/an-introduction-to-hydraulic-testing-in-hydrogeology-basic-pumping-slug-and-packer-methods/). Feel free to answer again."
+  }
+]

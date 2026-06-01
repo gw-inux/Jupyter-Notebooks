@@ -1,0 +1,46 @@
+[
+  {
+    "question": "What conditions are applicable for use of the Theis equaiton?",
+    "options": {
+      "Steady state flow, confined aquifer": false,
+      "Transient flow, confined aquifer": true,
+      "Steady state flow, unconfined aquifer": false,
+      "Transient flow, unconfined aquifer": false
+    },
+    "success": "CORRECT! The Theis Solution describes transient flow to a well in a confined aquifer.",
+    "error": "This is not correct ... You can learn more about the Theis Solution [by downloading the book: An Introduction to Hydraulic Testing in Hydrogeology - Basic Pumping, Slug, and Packer Methods​​ and reading Section 8(https://gw-project.org/books/an-introduction-to-hydraulic-testing-in-hydrogeology-basic-pumping-slug-and-packer-methods/). Feel free to answer again."
+  },
+  {
+    "question": "If there is no recharge to an aquifer how does the cone of depression behave with ongoing time?",
+    "options": {
+      "The cone of depression will reach a steady state": false,
+      "The cone of depression continue to increase": true,
+      "The cone of depression is not dependent on time": false,
+      "The cone of depression will decrease": false
+    },
+    "success": "CORRECT! Without recharge, the cone of depression will increase.",
+    "error": "This is not correct ... Without recharge, the cone of depression will increase with ongoing time. You can explore this by using the interactive tool to investigate this behavior. Feel free to answer again."
+  },
+  {
+    "question": "How does storativity ($S$) influence the response of an aquifer to pumping?",
+    "options": {
+      "A higher storativity results in a slower drawdown response": true,
+      "A higher storativity leads to more rapid flow to the well": false,
+      "Storativity only affects steady-state conditions": false,
+      "Storativity is not relevant for confined aquifers": false
+    },
+    "success": "CORRECT! A higher storativity results in a slower drawdown response",
+    "error": "This is not correct ... You can use the interactive tool to explore this and learn more about Storativity [by downloading the book: Basic Hydrogeology - An Introduction to the Fundamentals of Groundwater Science​ and reading Section 5.3(https://gw-project.org/books/basic-hydrogeology/). Feel free to answer again."
+  },
+  {
+    "question": "Which of the following statements describes the drawdown at a point due to pumping in a confined aquifer?",
+    "options": {
+      "It decreases with time": false,
+      "It increases with time": true,
+      "It remains constant over time": false,
+      "It is independent of the pumping rate": false
+    },
+    "success": "CORRECT! Drawdown continues to increase with time as pumping continues",
+    "error": "This is not correct ...  You can use the interactive tool to explore this. Feel free to answer again."
+  }
+]

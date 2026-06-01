@@ -1,0 +1,3 @@
+The Hantush-Jacob solution extends the Theis solution by accounting for leakage through a semi-confining layer into the pumped aquifer. As a result, groundwater can be supplied not only from aquifer storage but also through vertical leakage from adjacent formations.
+
+In this section, we investigate how leakage influences drawdown and derivative responses and apply these concepts to the interpretation of synthetic pumping-test data. Particular attention is given to the parameter $r/B$, which controls the strength of leakage effects and the resulting deviations from ideal Theis behavior.

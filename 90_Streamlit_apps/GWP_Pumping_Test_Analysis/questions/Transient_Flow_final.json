@@ -1,0 +1,23 @@
+[
+  {
+    "question": "How does the drawdown change at one specific distance from the well if storativity is decreased?",
+    "options": {
+      "Drawdown is less": false,
+      "Drawdown is more": true,
+      "Drawdown is not affected": false
+    },
+    "success": "CORRECT! When all else is equal, a lower value of storativity will result in more drawdown.",
+    "error": "This is not correct ...  You can use the interactive tool to explore this and learn more about Storativity [by downloading the book: Basic Hydrogeology - An Introduction to the Fundamentals of Groundwater Science​ and reading Section 5.3(https://gw-project.org/books/basic-hydrogeology/). Feel free to answer again."
+  },
+  {
+    "question": "If the estimated transmissivity $T$ is too low, how will the predicted drawdown compare to the true drawdown?",
+    "options": {
+      "The predicted drawdown will be too small": false,
+      "The predicted drawdown will remain unchanged": false,
+      "The predicted drawdown will be too large": false,
+      "The predicted drawdown will be too large close to the well and too small far from the well": true
+    },
+    "success": "CORRECT! ... the low transmissivity will require a higher gradient to accommodate flow through the aquifer surrounding the well screen, so predicted drawdown will be larger than true drawdown near the well. This results in more of the pumped volume being extracted from storage near the well bore, thus less of the volume will be drawn from storage further away resulting in less drawdown at larger distances from the well. It may not be possible to observe this on the application graph for every combination of parameter values entered in this application because the r distance on the graph is limited to 1000 m and the distance where drawdown transitions from overestimation to underestimation may be further than 1000 m from the well. If you are unable to see the transition, then decreasing the values input for time and/or distance might bring the transition zone into view.",
+    "error": "This is partially correct because the low transmissivity will require a higher gradient to accommodate flow through the aquifer surrounding the well screen, so predicted drawdown will be larger than true drawdown near the well. This results in more of the pumped volume being extracted from storage near the well bore, thus less of the volume will be drawn from storage further away resulting in less drawdown at larger distances from the well. At some location depending on the combination of parameter values the drawdown may be the same for both cases. It may not be possible to observe this on the application graph for every combination of parameter values entered in this application because the r distance is limited to 1000 m and the distance where drawdown transitions from overestimation to underestimation may be further away than 1000 m. If that is the case, decreasing the values input for time and/or distance might bring the transition zone into view. Feel free to answer again."
+  }
+]

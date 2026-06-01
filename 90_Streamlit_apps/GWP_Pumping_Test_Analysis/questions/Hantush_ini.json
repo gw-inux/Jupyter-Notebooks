@@ -1,0 +1,70 @@
+[
+  {
+    "question": "What conditions are appropriate for use of the Hantush-Jacob Solution?",
+    "options": {
+      "Steady state flow, confined aquifer.": false,
+      "Transient flow, confined aquifer": false,
+      "Steady state flow, semiconfined aquifer": false,
+      "Transient flow, semiconfined aquifer": true,
+      "Steady state flow, unconfined aquifer": false,
+      "Transient flow, unconfined aquifer": false
+    },
+    "success": "CORRECT! Hantush-Jacob is designed for transient flow in a semiconfined (i.e., leaky) aquifer",
+    "error": "This is not correct ... You can learn more about the Hantush-Jacob Solution [by downloading the book: An Introduction to Hydraulic Testing in Hydrogeology - Basic Pumping, Slug, and Packer Methods​​ and reading Section 9 through 9.2(https://gw-project.org/books/an-introduction-to-hydraulic-testing-in-hydrogeology-basic-pumping-slug-and-packer-methods/). Feel free to answer again."
+  },
+  {
+    "question": "What is the key difference between the Hantush-Jacob solution and the Theis solution?",
+    "options": {
+      "Theis solution applies to leaky aquifers, while Hantush-Jacob is for unconfined aquifers": false,
+      "Hantush-Jacob solution accounts for leakage through an aquitard, while Theis assumes a fully confined aquifer": true,
+      "Theis solution considers the presence of an impermeable boundary": false,
+      "Hantush-Jacob solution applies only to steady-state conditions": false
+    },
+    "success": "CORRECT! Hantush-Jacob solution accounts for leakage through an aquitard, while Theis assumes a fully confined aquifer",
+    "error": "This is not correct ... You can learn more about the Theis and Hantush-Jacob Solutions [by downloading the book: An Introduction to Hydraulic Testing in Hydrogeology - Basic Pumping, Slug, and Packer Methods​​ and reading Sections 8 and 9.2, respectively(https://gw-project.org/books/an-introduction-to-hydraulic-testing-in-hydrogeology-basic-pumping-slug-and-packer-methods/). Feel free to answer again."
+  },
+  {
+    "question": "What parameter is introduced in the Hantush-Jacob solution to account for leakage?",
+    "options": {
+      "Storage coefficient": false,
+      "Leakage factor (B)": true,
+      "Specific yield": false,
+      "Transmissivity": false
+    },
+    "success": "CORRECT! Leakage factor",
+    "error": "This is not correct ... You can learn more about the Theis and Hantush-Jacob Solutions [by downloading the book: An Introduction to Hydraulic Testing in Hydrogeology - Basic Pumping, Slug, and Packer Methods​​ and reading Sections 8 and 9 through 9.2, respectively(https://gw-project.org/books/an-introduction-to-hydraulic-testing-in-hydrogeology-basic-pumping-slug-and-packer-methods/). Feel free to answer again."
+  },
+  {
+    "question": "Which of the following best defines the leakage factor B in the Hantush-Jacob solution?",
+    "options": {
+      "A measure of the storage capacity of the aquifer": false,
+      "A parameter that describes the rate at which water moves through the aquifer": false,
+      "A term that quantifies how much water leaks through an aquitard into the aquifer": true,
+      "A constant value independent of aquifer properties": false
+    },
+    "success": "CORRECT! A term that quantifies how readily water leaks through an aquitard into an aquifer",
+    "error": "This is not correct ... You can learn more about the Hantush-Jacob Solution [by downloading the book: An Introduction to Hydraulic Testing in Hydrogeology - Basic Pumping, Slug, and Packer Methods​​ and reading Section 9.2(https://gw-project.org/books/an-introduction-to-hydraulic-testing-in-hydrogeology-basic-pumping-slug-and-packer-methods/). Feel free to answer again."
+  },
+  {
+    "question": "What happens to drawdown in a leaky confined aquifer compared to a fully confined aquifer?",
+    "options": {
+      "Drawdown decreases more rapidly in a leaky aquifer": false,
+      "Drawdown is less in a leaky aquifer due to the additional water source": true,
+      "Drawdown remains the same in both cases": false,
+      "Drawdown is greater in a leaky aquifer due to the additional water source": false,
+      "Drawdown occurs only in the aquitard, not in the aquifer": false
+    },
+    "success": "CORRECT! Drawdown is less in a leaky aquifer due to the additional water source",
+    "error": "This is not correct ... You can learn more about the Theis and Hantush-Jacob Solutions [by downloading the book: An Introduction to Hydraulic Testing in Hydrogeology - Basic Pumping, Slug, and Packer Methods​​ and reading Sections 8 and 9 through 9.2, respectively(https://gw-project.org/books/an-introduction-to-hydraulic-testing-in-hydrogeology-basic-pumping-slug-and-packer-methods/). Feel free to answer again."
+  },
+  {
+    "question": "How does the Hantush-Jacob solution represent storage in the aquitard?",
+    "options": {
+      "Aquitard storage is ignored": true,
+      "Aquitard storage controls the rate of leakage": false,
+      "Aquitard storage controls the timing of leakage": false
+    },
+    "success": "CORRECT! The Hantush-Jacob solution assumes there is no water stored in the aquitard. Water flows through the aquitard from another aquifer.",
+    "error": "This is not correct ... You can learn more about the Hantush-Jacob Solution by reviewing the Introduction to this section or [by downloading the book: An Introduction to Hydraulic Testing in Hydrogeology - Basic Pumping, Slug, and Packer Methods​​ and reading Section 9(https://gw-project.org/books/an-introduction-to-hydraulic-testing-in-hydrogeology-basic-pumping-slug-and-packer-methods/). Feel free to answer again."
+  }
+]

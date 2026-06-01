@@ -1,0 +1,70 @@
+[
+  {
+    "question": "What conditions are appropriate for use of the Neuman Solution?",
+    "options": {
+      "Steady state flow, confined aquifer.": false,
+      "Transient flow, confined aquifer": false,
+      "Steady state flow, semiconfined aquifer": false,
+      "Transient flow, semiconfined aquifer": false,
+      "Steady state flow, unconfined aquifer": false,
+      "Transient flow, unconfined aquifer": true
+    },
+    "success": "CORRECT! The Neuman Solution is designed for evaluating transient flow in an unconfined aquifer",
+    "error": "This is not correct ... You can learn more about the Neuman Solution [by downloading the book: An Introduction to Hydraulic Testing in Hydrogeology - Basic Pumping, Slug, and Packer Methods​​ and reading Section 10.3 and 10.4(https://gw-project.org/books/an-introduction-to-hydraulic-testing-in-hydrogeology-basic-pumping-slug-and-packer-methods/). Feel free to answer again."
+  },
+  {
+    "question": "In an unconfined aquifer, what additional factor must be considered when analyzing well drawdown?",
+    "options": {
+      "The presence of a confining layer": false,
+      "The effect of specific storage": false,
+      "The delayed response due to water table storage": true,
+      "The transmissivity remains constant": false
+    },
+    "success": "CORRECT! The delayed response due to water table storage",
+    "error": "This is not correct ... You can learn more about the Neuman Solution [by downloading the book: An Introduction to Hydraulic Testing in Hydrogeology - Basic Pumping, Slug, and Packer Methods​​ and reading Section 10.3 and 10.4(https://gw-project.org/books/an-introduction-to-hydraulic-testing-in-hydrogeology-basic-pumping-slug-and-packer-methods/). Feel free to answer again."
+  },
+  {
+    "question": "What is the key difference between the Neuman solution and the Theis solution?",
+    "options": {
+      "Theis solution applies to unconfined aquifers, while Neuman is for confined aquifers": false,
+      "Neuman solution accounts for delayed water table response, while Theis assumes an immediate response": true,
+      "Theis solution considers leaky conditions, while Neuman assumes a fully confined system": false,
+      "The Neuman solution is only valid for steady-state conditions": false
+    },
+    "success": "CORRECT! Neuman solution accounts for delayed water table response, while Theis assumes an immediate response",
+    "error": "This is not correct ... You can learn more about the Neuman Solution [by downloading the book: An Introduction to Hydraulic Testing in Hydrogeology - Basic Pumping, Slug, and Packer Methods​​ and reading Section 10.3 and 10.4(https://gw-project.org/books/an-introduction-to-hydraulic-testing-in-hydrogeology-basic-pumping-slug-and-packer-methods/). Feel free to answer again."
+  },
+  {
+    "question": "What additional parameter is introduced in the Neuman solution to account for water table effects?",
+    "options": {
+      "Leakage factor": false,
+      "Specific yield (Sy)": true,
+      "Hydraulic head": false,
+      "Transmissivity (T)": false
+    },
+    "success": "CORRECT! Specific yield (Sy) is used to reflect drainage of water from pores under unconfined conditions",
+    "error": "This is not correct ... You can learn more about the Neuman Solution [by downloading the book: An Introduction to Hydraulic Testing in Hydrogeology - Basic Pumping, Slug, and Packer Methods​​ and reading Section 10.3 and 10.4(https://gw-project.org/books/an-introduction-to-hydraulic-testing-in-hydrogeology-basic-pumping-slug-and-packer-methods/). Feel free to answer again."
+  },
+  {
+    "question": "How does the specific yield (Sy) affect the response of an unconfined aquifer in the Neuman solution?",
+    "options": {
+      "A higher specific yield results in a slower drawdown response": true,
+      "A lower specific yield leads to more rapid flow to the well": false,
+      "Specific yield does not influence drawdown in unconfined aquifers": false,
+      "A higher specific yield causes the drawdown to increase over time": false
+    },
+    "success": "CORRECT! A higher specific yield results in a slower drawdown response",
+    "error": "This is not correct ... You can learn more about the Neuman Solution [by downloading the book: An Introduction to Hydraulic Testing in Hydrogeology - Basic Pumping, Slug, and Packer Methods​​ and reading Section 10.3 and 10.4(https://gw-project.org/books/an-introduction-to-hydraulic-testing-in-hydrogeology-basic-pumping-slug-and-packer-methods/). Feel free to answer again."
+  },
+  {
+    "question": "Compared to a confined aquifer, what is a key effect of pumping in an unconfined aquifer?",
+    "options": {
+      "The drawdown is larger due to the lower storativity": false,
+      "The drawdown is delayed due to water table storage effects": true,
+      "The drawdown is smaller because of the lower transmissivity": false,
+      "The aquifer does not experience any delayed response": false
+    },
+    "success": "CORRECT! The drawdown is delayed due to water table storage effects",
+    "error": "This is not correct ... You can learn more about the Neuman Solution [by downloading the book: An Introduction to Hydraulic Testing in Hydrogeology - Basic Pumping, Slug, and Packer Methods​​ and reading Section 10.3 and 10.4(https://gw-project.org/books/an-introduction-to-hydraulic-testing-in-hydrogeology-basic-pumping-slug-and-packer-methods/). Feel free to answer again."
+  }
+]

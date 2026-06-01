@@ -1,0 +1,47 @@
+[
+  {
+    "question": "What is the value of hydraulic head within a confined aquifer?",
+    "options": {
+      "Lower than the elevation of the aquifer top": false,
+      "Equal to the elevation of the aquifer top": false,
+      "Higher than the elevation of the aquifer top": true,
+      "A confined aquifer doesn't show a hydraulic head": false
+    },
+    "success": "CORRECT! Confined aquifer heads are above the top of the aquifer. This understanding is important for the subsequent steps.",
+    "error": "This option is not suitable. Re-Think about how confined and unconfined aquifers differ and feel free to answer again."
+  },
+  {
+    "question": "What is considered as transient?",
+    "options": {
+      "A system with a constant long-term average": false,
+      "A system in which head changes over time.": true,
+      "A system in which head is different at different locations": false,
+      "A system experiencing water abstraction.": false
+    },
+    "success": "CORRECT! Head changes with time in a transient situation. This understanding is important for the subsequent steps.",
+    "error": "This option is not suitable. Re-Think about the meaning of transient and feel free to answer again."
+  },
+  {
+    "question": "What parameter is used to describe the ability of an aquifer to transmit water?",
+    "options": {
+      "Storativity": false,
+      "Hydraulic head": false,
+      "Transmissivity": true,
+      "Specific storage": false
+    },
+    "success": "CORRECT! Transmissivity describes the ability of an aquifer to transmit water.",
+    "error": "This is not correct. It may help to look up terms [by downloading the book: A Glossary of Hydrogeology(https://gw-project.org/books/a-glossary-of-hydrogeology/). Feel free to answer again."
+  },
+  {
+    "question": "What is the equivalent to 0.001 m³/s?",
+    "options": {
+      "0.1 Liter per second": false,
+      "1 Liter per second": true,
+      "10 Liters per second": false,
+      "100 Liters per second": false,
+      "1000 Liters per second": false
+    },
+    "success": "CORRECT! 1000 Liters are one m³",
+    "error": "This is not correct. Feel free to re-think this and/or look up the relationship between liters and cubic meters, and answer again."
+  }
+]

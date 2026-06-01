@@ -1,0 +1,32 @@
+/* Tab container */
+.stTabs [data-baseweb="tab-list"] {
+    gap: 8px;
+    border-bottom: 2px solid #e6e6e6;
+}
+
+/* All tabs */
+.stTabs [data-baseweb="tab"] {
+    height: 40px;
+    padding: 10px 14px;
+    border-radius: 7px 7px 0 0;
+    background-color: #e8f2ff;
+}
+
+/* Tab text */
+.stTabs [data-baseweb="tab"] p {
+    font-size: 14px;
+    font-weight: 600;
+}
+
+/* Active tab */
+.stTabs [aria-selected="true"] {
+    background-color: white;
+    border-bottom: 3px solid #ff4b4b;
+}
+
+/* Active tab text */
+.stTabs [aria-selected="true"] p {
+    font-size: 14px;
+    font-weight: 600;
+    color: #ff4b4b;
+}

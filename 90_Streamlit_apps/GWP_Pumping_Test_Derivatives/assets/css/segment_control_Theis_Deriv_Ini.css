@@ -1,0 +1,142 @@
+/* ============================================================
+   SEGMENTED CONTROL STYLING
+   ------------------------------------------------------------
+   This CSS customizes the Streamlit st.segmented_control()
+   widget to resemble the appearance of Streamlit tabs.
+
+   If a future Streamlit update changes these identifiers,
+   inspect the widget again with the browser developer tools.
+   ============================================================ */
+
+
+/* ============================================================
+   1. CONTAINER
+   ------------------------------------------------------------
+   Controls spacing around the segmented control.
+   ============================================================ */
+
+div[data-testid="stSegmentedControl"] {
+
+    /* Center the control */
+    display: flex !important;
+    justify-content: center !important;
+
+    /* Space above and below */
+    margin-top: 0.5rem !important;
+    margin-bottom: 1.5rem !important;
+}
+
+
+/* ============================================================
+   2. ALL SEGMENTS (ACTIVE + INACTIVE)
+   ------------------------------------------------------------
+   Controls overall button appearance.
+   ============================================================ */
+
+button[data-testid^="stBaseButton-segmented_control"] {
+
+    /* Internal spacing */
+    padding: 0.75rem 0.25rem !important;
+
+    /* Height of the tabs */
+    min-height: 44px !important;
+
+    /* Background color of inactive tabs */
+    background-color: #dcecff !important;
+
+    /* Border around tabs */
+    border: 4px solid #ffffff !important;
+
+    /* Shape of tabs
+       0px = rectangular
+       8px = rounded corners
+    */
+    border-radius: 4px !important;
+}
+
+
+/* ============================================================
+   3. TEXT OF ALL SEGMENTS
+   ------------------------------------------------------------
+   Controls font size, color and weight.
+   ============================================================ */
+
+button[data-testid^="stBaseButton-segmented_control"] p {
+
+    /* Font size */
+    font-size: 16px !important;
+
+    /* Vertical spacing */
+    line-height: 1.3 !important;
+
+    /* Text weight */
+    font-weight: 500 !important;
+
+    /* Text color */
+    color: #222222 !important;
+}
+
+
+/* ============================================================
+   4. ACTIVE SEGMENT
+   ------------------------------------------------------------
+   Styling for the currently selected tab.
+   ============================================================ */
+
+button[data-testid="stBaseButton-segmented_controlActive"] {
+
+    /* Active tab background */
+    background-color: #ffffff !important;
+
+    /* Blue line below active tab
+       Similar to Streamlit tabs
+    */
+    border-bottom: 4px solid #1f77b4 !important;
+}
+
+
+/* ============================================================
+   5. ACTIVE TEXT
+   ------------------------------------------------------------
+   Controls appearance of the selected tab label.
+   ============================================================ */
+
+button[data-testid="stBaseButton-segmented_controlActive"] p {
+
+    /* Active text color */
+    color: #1f77b4 !important;
+
+    /* Bold text */
+    font-weight: 800 !important;
+
+    /* Active text size */
+    font-size: 16px !important;
+}
+
+
+/* ============================================================
+   QUICK REFERENCE
+   ------------------------------------------------------------
+
+   Font size:
+       22px  -> large
+       20px  -> medium
+       18px  -> compact
+
+   Tab height:
+       min-height: 54px
+
+   Text color:
+       #222222 = dark gray
+
+   Active color:
+       #1f77b4 = Streamlit blue
+
+   Border thickness:
+       border-bottom: 4px
+
+   Tab shape:
+       border-radius: 0px  -> rectangular
+       border-radius: 8px  -> rounded
+
+   ============================================================ */

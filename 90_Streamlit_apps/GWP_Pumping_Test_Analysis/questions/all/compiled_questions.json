@@ -1,0 +1,206 @@
+[
+  {
+    "question": "What conditions are appropriate for use of the Hantush-Jacob Solution?",
+    "options": {
+      "Steady state flow, confined aquifer.": false,
+      "Transient flow, confined aquifer": false,
+      "Steady state flow, semiconfined aquifer": false,
+      "Transient flow, semiconfined aquifer": true,
+      "Steady state flow, unconfined aquifer": false,
+      "Transient flow, unconfined aquifer": false
+    },
+    "success": "CORRECT! Hantush-Jacob is designed for transient flow in a semiconfined (i.e., leaky) aquifer",
+    "error": "This is not correct ... You can learn more about the Hantush-Jacob Solution [by downloading the book: An Introduction to Hydraulic Testing in Hydrogeology - Basic Pumping, Slug, and Packer Methods​​ and reading Section 9 through 9.2(https://gw-project.org/books/an-introduction-to-hydraulic-testing-in-hydrogeology-basic-pumping-slug-and-packer-methods/). Feel free to answer again."
+  },
+  {
+    "question": "What is the key difference between the Hantush-Jacob solution and the Theis solution?",
+    "options": {
+      "Theis solution applies to leaky aquifers, while Hantush-Jacob is for unconfined aquifers": false,
+      "Hantush-Jacob solution accounts for leakage through an aquitard, while Theis assumes a fully confined aquifer": true,
+      "Theis solution considers the presence of an impermeable boundary": false,
+      "Hantush-Jacob solution applies only to steady-state conditions": false
+    },
+    "success": "CORRECT! Hantush-Jacob solution accounts for leakage through an aquitard, while Theis assumes a fully confined aquifer",
+    "error": "This is not correct ... You can learn more about the Theis and Hantush-Jacob Solutions [by downloading the book: An Introduction to Hydraulic Testing in Hydrogeology - Basic Pumping, Slug, and Packer Methods​​ and reading Sections 8 and 9.2, respectively(https://gw-project.org/books/an-introduction-to-hydraulic-testing-in-hydrogeology-basic-pumping-slug-and-packer-methods/). Feel free to answer again."
+  },
+  {
+    "question": "What parameter is introduced in the Hantush-Jacob solution to account for leakage?",
+    "options": {
+      "Storage coefficient": false,
+      "Leakage factor (B)": true,
+      "Specific yield": false,
+      "Transmissivity": false
+    },
+    "success": "CORRECT! Leakage factor",
+    "error": "This is not correct ... You can learn more about the Theis and Hantush-Jacob Solutions [by downloading the book: An Introduction to Hydraulic Testing in Hydrogeology - Basic Pumping, Slug, and Packer Methods​​ and reading Sections 8 and 9 through 9.2, respectively(https://gw-project.org/books/an-introduction-to-hydraulic-testing-in-hydrogeology-basic-pumping-slug-and-packer-methods/). Feel free to answer again."
+  },
+  {
+    "question": "Which of the following best defines the leakage factor B in the Hantush-Jacob solution?",
+    "options": {
+      "A measure of the storage capacity of the aquifer": false,
+      "A parameter that describes the rate at which water moves through the aquifer": false,
+      "A term that quantifies how much water leaks through an aquitard into the aquifer": true,
+      "A constant value independent of aquifer properties": false
+    },
+    "success": "CORRECT! A term that quantifies how readily water leaks through an aquitard into an aquifer",
+    "error": "This is not correct ... You can learn more about the Hantush-Jacob Solution [by downloading the book: An Introduction to Hydraulic Testing in Hydrogeology - Basic Pumping, Slug, and Packer Methods​​ and reading Section 9.2(https://gw-project.org/books/an-introduction-to-hydraulic-testing-in-hydrogeology-basic-pumping-slug-and-packer-methods/). Feel free to answer again."
+  },
+  {
+    "question": "What happens to drawdown in a leaky confined aquifer compared to a fully confined aquifer?",
+    "options": {
+      "Drawdown decreases more rapidly in a leaky aquifer": false,
+      "Drawdown is less in a leaky aquifer due to the additional water source": true,
+      "Drawdown remains the same in both cases": false,
+      "Drawdown is greater in a leaky aquifer due to the additional water source": false,
+      "Drawdown occurs only in the aquitard, not in the aquifer": false
+    },
+    "success": "CORRECT! Drawdown is less in a leaky aquifer due to the additional water source",
+    "error": "This is not correct ... You can learn more about the Theis and Hantush-Jacob Solutions [by downloading the book: An Introduction to Hydraulic Testing in Hydrogeology - Basic Pumping, Slug, and Packer Methods​​ and reading Sections 8 and 9 through 9.2, respectively(https://gw-project.org/books/an-introduction-to-hydraulic-testing-in-hydrogeology-basic-pumping-slug-and-packer-methods/). Feel free to answer again."
+  },
+  {
+    "question": "How does the Hantush-Jacob solution represent storage in the aquitard?",
+    "options": {
+      "Aquitard storage is ignored": true,
+      "Aquitard storage controls the rate of leakage": false,
+      "Aquitard storage controls the timing of leakage": false
+    },
+    "success": "CORRECT! The Hantush-Jacob solution assumes there is no water stored in the aquitard. Water flows through the aquitard from another aquifer.",
+    "error": "This is not correct ... You can learn more about the Hantush-Jacob Solution by reviewing the Introduction to this section or [by downloading the book: An Introduction to Hydraulic Testing in Hydrogeology - Basic Pumping, Slug, and Packer Methods​​ and reading Section 9(https://gw-project.org/books/an-introduction-to-hydraulic-testing-in-hydrogeology-basic-pumping-slug-and-packer-methods/). Feel free to answer again."
+  },
+  {
+    "question": "What conditions are appropriate for use of the Neuman Solution?",
+    "options": {
+      "Steady state flow, confined aquifer.": false,
+      "Transient flow, confined aquifer": false,
+      "Steady state flow, semiconfined aquifer": false,
+      "Transient flow, semiconfined aquifer": false,
+      "Steady state flow, unconfined aquifer": false,
+      "Transient flow, unconfined aquifer": true
+    },
+    "success": "CORRECT! The Neuman Solution is designed for evaluating transient flow in an unconfined aquifer",
+    "error": "This is not correct ... You can learn more about the Neuman Solution [by downloading the book: An Introduction to Hydraulic Testing in Hydrogeology - Basic Pumping, Slug, and Packer Methods​​ and reading Section 10.3 and 10.4(https://gw-project.org/books/an-introduction-to-hydraulic-testing-in-hydrogeology-basic-pumping-slug-and-packer-methods/). Feel free to answer again."
+  },
+  {
+    "question": "In an unconfined aquifer, what additional factor must be considered when analyzing well drawdown?",
+    "options": {
+      "The presence of a confining layer": false,
+      "The effect of specific storage": false,
+      "The delayed response due to water table storage": true,
+      "The transmissivity remains constant": false
+    },
+    "success": "CORRECT! The delayed response due to water table storage",
+    "error": "This is not correct ... You can learn more about the Neuman Solution [by downloading the book: An Introduction to Hydraulic Testing in Hydrogeology - Basic Pumping, Slug, and Packer Methods​​ and reading Section 10.3 and 10.4(https://gw-project.org/books/an-introduction-to-hydraulic-testing-in-hydrogeology-basic-pumping-slug-and-packer-methods/). Feel free to answer again."
+  },
+  {
+    "question": "What is the key difference between the Neuman solution and the Theis solution?",
+    "options": {
+      "Theis solution applies to unconfined aquifers, while Neuman is for confined aquifers": false,
+      "Neuman solution accounts for delayed water table response, while Theis assumes an immediate response": true,
+      "Theis solution considers leaky conditions, while Neuman assumes a fully confined system": false,
+      "The Neuman solution is only valid for steady-state conditions": false
+    },
+    "success": "CORRECT! Neuman solution accounts for delayed water table response, while Theis assumes an immediate response",
+    "error": "This is not correct ... You can learn more about the Neuman Solution [by downloading the book: An Introduction to Hydraulic Testing in Hydrogeology - Basic Pumping, Slug, and Packer Methods​​ and reading Section 10.3 and 10.4(https://gw-project.org/books/an-introduction-to-hydraulic-testing-in-hydrogeology-basic-pumping-slug-and-packer-methods/). Feel free to answer again."
+  },
+  {
+    "question": "What additional parameter is introduced in the Neuman solution to account for water table effects?",
+    "options": {
+      "Leakage factor": false,
+      "Specific yield (Sy)": true,
+      "Hydraulic head": false,
+      "Transmissivity (T)": false
+    },
+    "success": "CORRECT! Specific yield (Sy) is used to reflect drainage of water from pores under unconfined conditions",
+    "error": "This is not correct ... You can learn more about the Neuman Solution [by downloading the book: An Introduction to Hydraulic Testing in Hydrogeology - Basic Pumping, Slug, and Packer Methods​​ and reading Section 10.3 and 10.4(https://gw-project.org/books/an-introduction-to-hydraulic-testing-in-hydrogeology-basic-pumping-slug-and-packer-methods/). Feel free to answer again."
+  },
+  {
+    "question": "How does the specific yield (Sy) affect the response of an unconfined aquifer in the Neuman solution?",
+    "options": {
+      "A higher specific yield results in a slower drawdown response": true,
+      "A lower specific yield leads to more rapid flow to the well": false,
+      "Specific yield does not influence drawdown in unconfined aquifers": false,
+      "A higher specific yield causes the drawdown to increase over time": false
+    },
+    "success": "CORRECT! A higher specific yield results in a slower drawdown response",
+    "error": "This is not correct ... You can learn more about the Neuman Solution [by downloading the book: An Introduction to Hydraulic Testing in Hydrogeology - Basic Pumping, Slug, and Packer Methods​​ and reading Section 10.3 and 10.4(https://gw-project.org/books/an-introduction-to-hydraulic-testing-in-hydrogeology-basic-pumping-slug-and-packer-methods/). Feel free to answer again."
+  },
+  {
+    "question": "Compared to a confined aquifer, what is a key effect of pumping in an unconfined aquifer?",
+    "options": {
+      "The drawdown is larger due to the lower storativity": false,
+      "The drawdown is delayed due to water table storage effects": true,
+      "The drawdown is smaller because of the lower transmissivity": false,
+      "The aquifer does not experience any delayed response": false
+    },
+    "success": "CORRECT! The drawdown is delayed due to water table storage effects",
+    "error": "This is not correct ... You can learn more about the Neuman Solution [by downloading the book: An Introduction to Hydraulic Testing in Hydrogeology - Basic Pumping, Slug, and Packer Methods​​ and reading Section 10.3 and 10.4(https://gw-project.org/books/an-introduction-to-hydraulic-testing-in-hydrogeology-basic-pumping-slug-and-packer-methods/). Feel free to answer again."
+  },
+  {
+    "question": "What conditions are appropriate for use of the Theis Solution?",
+    "options": {
+      "Steady state flow, confined aquifer.": false,
+      "Transient flow, confined aquifer": true,
+      "Steady state flow, semiconfined aquifer": false,
+      "Transient flow, semiconfined aquifer": false,
+      "Steady state flow, unconfined aquifer": false,
+      "Transient flow, unconfined aquifer": false
+    },
+    "success": "CORRECT! Theis is designed for transient flow in a fully confined aquifer",
+    "error": "This is not correct. You can learn more about the Theis Solution [by downloading the book: An Introduction to Hydraulic Testing in Hydrogeology - Basic Pumping, Slug, and Packer Methods​​ and reading Section 8(https://gw-project.org/books/an-introduction-to-hydraulic-testing-in-hydrogeology-basic-pumping-slug-and-packer-methods/). Feel free to answer again."
+  },
+  {
+    "question": "What is the main goal of fitting pumping test data to curves describing drawdown in response to pumping?",
+    "options": {
+      "To determine unknown aquifer properties from observed data": true,
+      "To predict the future pumping rate of a well": false,
+      "To measure the depth of the groundwater table": false,
+      "To calculate the hydraulic gradient": false
+    },
+    "success": "CORRECT! to determine unknown aquifer properties from observed data",
+    "error": "This is not correct. You can learn more about the goal of fitting pumping test data to type curves by exploring the previous pages of this Pumping Test Analysis application. Feel free to answer again."
+  },
+  {
+    "question": "If the estimated transmissivity (T) is too low, how will the predicted drawdown compare to the true drawdown?",
+    "options": {
+      "The predicted drawdown will be too small": false,
+      "The predicted drawdown will remain unchanged": false,
+      "The predicted drawdown will be too large": false,
+      "The predicted drawdown will be too large or too small depending on the distance from the well": true
+    },
+    "success": "CORRECT! The predicted drawdown will be too large near the well, too small far from the well and may be correct at one point between the near and far field",
+    "error": "This is not completely correct. Feel free to answer again."
+  },
+  {
+    "question": "What role does curve fitting to pumping test data play in the process of estimating aquifer parameters?",
+    "options": {
+      "It predicts future rainfall effects on groundwater levels": false,
+      "It determines the total groundwater storage in the aquifer": false,
+      "It estimates the pumping rate required for full aquifer depletion": false,
+      "It helps visually compare theoretical and observed drawdown curves": true
+    },
+    "success": "CORRECT! It helps visually compare theoretical models and observed drawdown data",
+    "error": "This is not correct. It may help to consider how viewing the curves and data on the same graph was useful on previous pages of this application. Feel free to answer again."
+  },
+  {
+    "question": "Why is it important to compare predicted drawdown using estimated parameters with the true drawdown?",
+    "options": {
+      "To determine the maximum sustainable pumping rate": false,
+      "To evaluate the accuracy of the parameter estimation process": true,
+      "To find out if the aquifer is unconfined or confined": false,
+      "To measure the recharge rate of the aquifer": false
+    },
+    "success": "CORRECT! To evaluate the accuracy of the parameter estimation process",
+    "error": "This is not correct. It may help to think a bit more about the value of comparing predictions with true events. Feel free to answer again."
+  },
+  {
+    "question": "Which parameters are estimated using the Theis solution and pumping test data?",
+    "options": {
+      "Hydraulic Conductivity and Porosity": false,
+      "Transmissivity and Storativity": true,
+      "Specific Yield and Permeability": false,
+      "Pumping Rate and Aquifer Thickness": false
+    },
+    "success": "CORRECT! Transmissivity and Storativity",
+    "error": "This is not correct. It may help to visit the Theis Solution page of this application and rethink your answer. Feel free to answer again."
+  }
+]
