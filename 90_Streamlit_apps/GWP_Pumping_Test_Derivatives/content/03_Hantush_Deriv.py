@@ -1478,7 +1478,7 @@ def inverse(v):
         bbox=props,
     )
     
-    fig.tight_layout()
+    #fig.tight_layout()
     st.pyplot(fig)
     
     # --------------------------------------------------
