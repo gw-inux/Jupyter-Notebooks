@@ -10,4 +10,4 @@ Using logarithmic time emphasizes both early- and late-time behavior and allows 
 
 When drawdown and derivative curves are interpreted together, it becomes possible to distinguish different aquifer responses, identify the influence of hydraulic boundaries, and improve parameter estimation. For this reason, drawdown derivatives have become a standard tool in modern pumping-test evaluation.
 
-In the following sections, we will first explore derivatives under ideal confined-aquifer conditions and then investigate how more complex hydrogeological settings modify the derivative response.
+In the following sections, we first explore derivatives under ideal confined-aquifer conditions and then investigate how more complex hydrogeological settings modify the derivative response.
