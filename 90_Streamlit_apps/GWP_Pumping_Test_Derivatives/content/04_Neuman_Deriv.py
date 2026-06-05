@@ -4,6 +4,9 @@ import matplotlib.pyplot as plt
 import scipy.special
 import streamlit as st
 import scipy.interpolate
+from pathlib import Path
+from GWP_Pumping_Test_Derivatives_utils import load_css
+from GWP_Pumping_Test_Derivatives_utils import load_md
 
 # Authors, institutions, and year
 year = 2026 
@@ -35,100 +38,11 @@ for i, inst in institutions.items():
     institution_list.append(f"<sup>{i}</sup> {inst}")
 institution_text = ", ".join(institution_list)
 
-
-# --------------------------------------------------
-# Streamlit page
-# --------------------------------------------------
-#st.title("Pumping test evaluation with :blue[Drawdown Derivatives]")
-st.header("Understanding :violet[**Drawdown Derivatives**] with the :violet[**Neuman**] model for :violet[**unconfined aquifers**]", divider = 'violet')
-
-# --------------------------------------------------
-# Orientation/Explanation
-# --------------------------------------------------
-st.subheader("Basic introduction", divider="violet")
-
-st.markdown(
-    """
-    This section introduces drawdown derivatives as a diagnostic tool for pumping test evaluation. The starting point is the Neuman solution for transient radial flow to a pumping well in an unconfined aquifer. The solution accounts for delayed drainage from the water table and therefore produces diagnostic curve shapes that differ from the classical Theis response.
-    
-    In addition to the drawdown curve, the app shows the drawdown derivative with respect to the natural logarithm of time. The derivative highlights changes in curve slope and helps identify characteristic flow regimes more clearly than the drawdown curve alone.
-"""
-)
-
-left_co, cent_co, last_co = st.columns((20, 60, 20))
-with cent_co:
-    st.image(
-        "90_Streamlit_apps/GWP_Pumping_Test_Derivatives/assets/images/gw_logo_horiz-mini.png",
-        caption=(
-            "Caption"
-        ),
-    )
-
-
-# --------------------------------------------------
-# Initial assessment
-# --------------------------------------------------
-st.markdown(
-    """
-Before investigating the Neuman solution and its derivative, it is useful to think
-about the questions provided in this initial assessment.
-"""
-)
-
-with st.expander(":green[**Show/Hide the initial assessment**]"):
-    st.write('Show the initial assessment')
-
-
-# --------------------------------------------------
-# Theory
-# --------------------------------------------------
-st.subheader(
-    ":green-background[Underlying Theory] - Neuman Solution and Drawdown Derivatives",
-    divider="green",
-)
-
-st.markdown(
-    """
-The Neuman solution describes transient flow to a pumping well in an unconfined
-aquifer. In contrast to the Theis solution for confined aquifers, the Neuman
-solution accounts for delayed drainage from the water table.
-
-At early time, drawdown is mainly controlled by elastic storage, similar to the
-response of a confined aquifer. At later time, drainage from the water table
-becomes important and the response is increasingly controlled by specific yield.
-
-In this app, the Neuman drawdown curve is represented by an early-time and a
-late-time branch. The drawdown derivative is computed numerically with respect
-to the natural logarithm of time:
-
-$$
-\\frac{\\partial s}{\\partial \\ln(t)}
-$$
-
-The derivative emphasizes changes in the slope of the drawdown curve and helps
-identify the transition from elastic storage response to delayed water-table
-drainage.
-"""
-)
-
-
 # --------------------------------------------------
 # Functions
 # --------------------------------------------------
 
-def neuman_branch_curve(
-    T,
-    Ss,
-    Sy,
-    beta_index,
-    r,
-    b,
-    Qs,
-    u_inv_a,
-    u_inv_b,
-    w_u_a,
-    w_u_b,
-):
+def neuman_branch_curve(T, Ss, Sy, beta_index, r, b, Qs, u_inv_a, u_inv_b, w_u_a, w_u_b):
     """
     Compute early- and late-time Neuman drawdown branches.
 
@@ -140,37 +54,19 @@ def neuman_branch_curve(
 
     Parameters
     ----------
-    T : float
-        Transmissivity [m²/s]
-
-    Ss : float
-        Specific storage [1/m]
-
-    Sy : float
-        Specific yield [-]
-
-    beta_index : int
-        Column index of the selected Neuman beta curve.
-
-    r : float
-        Radial distance from pumping well [m]
-
-    b : float
-        Aquifer thickness [m]
-
-    Qs : float
-        Pumping rate [m³/s]
-
-    u_inv_a, u_inv_b : ndarray
-        Inverse dimensionless time arrays for Neuman early and late curves.
-
-    w_u_a, w_u_b : ndarray
-        Neuman well-function table values for early and late curves.
+    T : float Transmissivity [m²/s]
+    Ss : float Specific storage [1/m
+    Sy : float Specific yield [-]
+    beta_index : int Column index of the selected Neuman beta curve.
+    r : float Radial distance from pumping well [m]
+    b : float Aquifer thickness [m]
+    Qs : float Pumping rate [m³/s]
+    u_inv_a, u_inv_b : ndarray Inverse dimensionless time arrays for Neuman early and late curves.
+    w_u_a, w_u_b : ndarray Neuman well-function table values for early and late curves.
 
     Returns
     -------
-    t_a, s_a, t_b, s_b : ndarray
-        Early and late Neuman branch times and drawdowns.
+    t_a, s_a, t_b, s_b : ndarray Early and late Neuman branch times and drawdowns.
     """
 
     Sa = Ss * b
@@ -202,12 +98,7 @@ def neuman_branch_curve(
     return t_a, s_a, t_b, s_b
     
 
-def smooth_loglog_curve(
-    time,
-    drawdown,
-    n_dense=500,
-    smoothing_factor=1e-3,
-):
+def smooth_loglog_curve(time, drawdown, n_dense=500, smoothing_factor=1e-3):
     """
     Smooth a drawdown curve in log(time)-log(drawdown) space.
 
@@ -428,8 +319,6 @@ def prepare_synced_widget_keys(prefix, suffix, default, use_number_input):
     st.session_state[mode_key] = new_mode
 
     return slider_key, input_key
-
-
 
 def neuman_combined_curve(
     T,
@@ -674,6 +563,7 @@ u_inv_b = np.array([1.40E-02, 2.40E-02, 4.00E-02, 8.00E-02, 1.40E-01, 2.40E-01, 
 
 
 # Neuman type curve data from tables
+# ToDo: Save as CSV and then load the CSV from the DATA-folder
 
 w_u_a = [[2.48E-02, 2.41E-02, 2.30E-02, 2.14E-02, 1.88E-02, 1.70E-02, 1.38E-02, 1.00E-02, 1.00E-02],
          [1.45E-01, 1.40E-01, 1.31E-01, 1.19E-01, 9.88E-02, 8.49E-02, 6.03E-02, 3.17E-02, 1.74E-02],
@@ -720,6 +610,91 @@ w_u_b = [[5.62E+00, 3.46E+00, 1.94E+00, 1.09E+00, 5.12E-01, 3.23E-01, 1.45E-01, 
 
 w_u_b = np.array(w_u_b)
 
+# --------------------------------------------------
+# Streamlit page
+# --------------------------------------------------
+
+MD_DIR  = Path("90_Streamlit_apps/GWP_Pumping_Test_Derivatives/assets/md")
+CSS_DIR = Path("90_Streamlit_apps/GWP_Pumping_Test_Derivatives/assets/css")
+
+load_css(CSS_DIR, "segment_control_Theis_Deriv_Ini.css")
+
+#st.title("Pumping test evaluation with :blue[Drawdown Derivatives]")
+st.header("Understanding :violet[**Drawdown Derivatives**] with the :violet[**Neuman**] model for :violet[**unconfined aquifers**]", divider = 'violet')
+
+# --------------------------------------------------
+# Orientation/Explanation
+# --------------------------------------------------
+st.markdown(load_md(MD_DIR, "neuman_deriv_01.md", st.session_state.language))
+# --------------------------------------------------
+# Orientation/Explanation
+# --------------------------------------------------
+st.subheader("Introduction", divider="violet")
+
+st.markdown(load_md(MD_DIR, "neuman_deriv_02.md", st.session_state.language))
+
+#st.markdown(
+#    """
+#    This section introduces drawdown derivatives as a diagnostic tool for pumping test evaluation. The starting point is the Neuman solution for transient radial flow to a pumping well in an unconfined aquifer. The solution accounts for delayed drainage from the water table and therefore produces diagnostic curve shapes that differ from the classical Theis response.
+#    
+#    In addition to the drawdown curve, the app shows the drawdown derivative with respect to the natural logarithm of time. The derivative highlights changes in curve slope and helps identify characteristic flow regimes more clearly than the drawdown curve alone.
+#"""
+#)
+
+left_co, cent_co, last_co = st.columns((20, 60, 20))
+with cent_co:
+    st.image(
+        "90_Streamlit_apps/GWP_Pumping_Test_Derivatives/assets/images/Neuman_Deriv_01.png",
+        caption=(
+            "Drawdown and derivatives for the Neuman function."
+        ),
+    )
+
+
+# --------------------------------------------------
+# Initial assessment
+# --------------------------------------------------
+
+st.markdown(load_md(MD_DIR, "neuman_deriv_03.md", st.session_state.language))
+
+with st.expander(":green[**Show/Hide the initial assessment**]"):
+    st.write('Show the initial assessment')
+
+
+# --------------------------------------------------
+# Theory
+# --------------------------------------------------
+st.subheader(
+    "Underlying Theory - :violet[Neuman] Solution and :violet[Drawdown Derivatives]", divider="violet")
+
+st.markdown(load_md(MD_DIR, "neuman_deriv_04.md", st.session_state.language))
+
+# st.markdown(
+#     """
+# The Neuman solution describes transient flow to a pumping well in an unconfined
+# aquifer. In contrast to the Theis solution for confined aquifers, the Neuman
+# solution accounts for delayed drainage from the water table.
+# 
+# At early time, drawdown is mainly controlled by elastic storage, similar to the
+# response of a confined aquifer. At later time, drainage from the water table
+# becomes important and the response is increasingly controlled by specific yield.
+# 
+# In this app, the Neuman drawdown curve is represented by an early-time and a
+# late-time branch. The drawdown derivative is computed numerically with respect
+# to the natural logarithm of time:
+# 
+# $$
+# \\frac{\\partial s}{\\partial \\ln(t)}
+# $$
+# 
+# The derivative emphasizes changes in the slope of the drawdown curve and helps
+# identify the transition from elastic storage response to delayed water-table
+# drainage.
+# """
+# )
+
+
+
 
 # --------------------------------------------------
 # Interactive inverse function
@@ -764,75 +739,36 @@ def inverse_neuman(v):
     Sy_max = 0.50
 
     beta_labels = ["0.001", "0.01", "0.06", "0.2", "0.6", "1", "2", "4", "6"]
+    
+    number_input = st.toggle("Use number input instead of sliders", key=f"neu_number_input_{v}")
 
     # --------------------------------------------------
     # Input widgets in three columns
     # --------------------------------------------------
-    col_settings, col_T, col_storage = st.columns((1, 1, 1), gap="medium")
+    col_1, col_2, col_3 = st.columns((1, 1, 1), gap="medium")
 
     # --------------------------------------------------
     # General plot controls
     # --------------------------------------------------
-    with col_settings:
+    with col_1:
+        with st.expander(":red[**Plot settings**]"):
 
-        st.markdown("#### Plot settings")
-
-        show_drawdown = st.toggle(
-            "Show Neuman drawdown",
-            value=True,
-            key=f"neu_show_drawdown_{v}",
-        )
-
-        show_derivative = st.toggle(
-            "Show drawdown derivative",
-            value=False,
-            key=f"neu_show_derivative_{v}",
-        )
-
-        semilog = st.toggle(
-            "Toggle for **semi-log graph**",
-            key=f"neu_semilog_{v}",
-        )
-
-        number_input = st.toggle(
-            "Use number input instead of sliders",
-            key=f"neu_number_input_{v}",
-        )
-
-        beta_variant_indices = []
-
-        if v == 4:
-            st.markdown("#### Beta variants")
-
-            default_beta_indices = [1, 3, 5]
-
-            for i, default_idx in enumerate(default_beta_indices, start=1):
-                beta_i = st.selectbox(
-                    rf"Neuman $\beta$ variant {i}",
-                    beta_labels,
-                    index=default_idx,
-                    key=f"neu_beta_variant_{v}_{i}",
-                )
-                beta_variant_indices.append(beta_labels.index(beta_i))
-
-            beta_choice = "variable"
-            beta_index = None
-
-        else:
-            beta_choice = st.selectbox(
-                r"Neuman $\beta$",
-                beta_labels,
-                index=3,
-                key=f"neu_beta_{v}",
+            show_drawdown = st.toggle(
+                "Show Neuman drawdown",
+                value=True,
+                key=f"neu_show_drawdown_{v}",
             )
-
-            beta_index = beta_labels.index(beta_choice)
-
-        show_table_points = st.toggle(
-            "Show original tabular Neuman data",
-            value=False,
-            key=f"neu_show_table_points_{v}",
-        )
+    
+            show_derivative = st.toggle(
+                "Show drawdown derivative",
+                value=False,
+                key=f"neu_show_derivative_{v}",
+            )
+    
+            semilog = st.toggle(
+                "Toggle for **semi-log graph**",
+                key=f"neu_semilog_{v}",
+            )
 
         if show_derivative:
             log_smoothing_factor = st.slider(
@@ -950,48 +886,45 @@ def inverse_neuman(v):
     # One freely adjustable Neuman parameter set
     # --------------------------------------------------
     if v == 1:
+        with col_2:
+            with st.expander(":blue[**Transmissivity**]"):
 
-        with col_T:
+                log_T = log_widget(
+                    "_(log of) Transmissivity in m²/s_",
+                    log_min_T,
+                    log_max_T,
+                    -3.0,
+                    f"neu_T_{v}",
+                )
+    
+                T = 10 ** log_T
+                st.write("**T:** %5.2e m²/s" % T)
 
-            st.markdown("#### Transmissivity")
+        with col_3:
+            with st.expander(":green[**Storativity**]"):
 
-            log_T = log_widget(
-                "_(log of) Transmissivity in m²/s_",
-                log_min_T,
-                log_max_T,
-                -3.0,
-                f"neu_T_{v}",
-            )
-
-            T = 10 ** log_T
-            st.write("**T:** %5.2e m²/s" % T)
-
-        with col_storage:
-
-            st.markdown("#### Storage parameters")
-
-            log_Ss = log_widget(
-                "_(log of) Specific storage in 1/m_",
-                log_min_Ss,
-                log_max_Ss,
-                -5.0,
-                f"neu_Ss_{v}",
-                parameter="S",
-            )
-
-            Ss = 10 ** log_Ss
-            st.write("**Ss:** %5.2e 1/m" % Ss)
-
-            Sy = linear_widget(
-                "_Specific yield Sy_",
-                Sy_min,
-                Sy_max,
-                0.20,
-                0.01,
-                f"neu_Sy_{v}",
-            )
-
-            st.write("**Sy:** %4.2f" % Sy)
+                log_Ss = log_widget(
+                    "_(log of) Specific storage in 1/m_",
+                    log_min_Ss,
+                    log_max_Ss,
+                    -5.0,
+                    f"neu_Ss_{v}",
+                    parameter="S",
+                )
+    
+                Ss = 10 ** log_Ss
+                st.write("**Ss:** %5.2e 1/m" % Ss)
+    
+                Sy = linear_widget(
+                    "_Specific yield Sy_",
+                    Sy_min,
+                    Sy_max,
+                    0.20,
+                    0.01,
+                    f"neu_Sy_{v}",
+                )
+    
+                st.write("**Sy:** %4.2f" % Sy)
 
         parameter_sets.append(
             {
@@ -1007,61 +940,58 @@ def inverse_neuman(v):
     # Fixed storage parameters, three T variants
     # --------------------------------------------------
     elif v == 2:
+        with col_2:
+            with st.expander(":blue[**Transmissivity**]"):
 
-        with col_T:
+                default_log_T_values = [-2.5, -3.0, -3.5]
+    
+                for i, default_log_T in enumerate(default_log_T_values, start=1):
+    
+                    log_T_i = log_widget(
+                        f"_(log of) T variant {i} in m²/s_",
+                        log_min_T,
+                        log_max_T,
+                        default_log_T,
+                        f"neu_T_variant_{v}_{i}",
+                    )
+    
+                    T_i = 10 ** log_T_i
+                    st.write(f"**T{i}:** {T_i:5.2e} m²/s")
+    
+                    parameter_sets.append(
+                        {
+                            "label": f"$T_{i}$ = {T_i:.1e} m²/s",
+                            "T": T_i,
+                            "Ss": None,
+                            "Sy": None,
+                        }
+                    )
 
-            st.markdown("#### Variable transmissivity")
+        with col_3:
+            with st.expander(":green[**Storativity**]"):
 
-            default_log_T_values = [-3.0, -3.0, -3.0]
-
-            for i, default_log_T in enumerate(default_log_T_values, start=1):
-
-                log_T_i = log_widget(
-                    f"_(log of) T variant {i} in m²/s_",
-                    log_min_T,
-                    log_max_T,
-                    default_log_T,
-                    f"neu_T_variant_{v}_{i}",
+                log_Ss_fixed = log_widget(
+                    "_Fixed (log of) Specific storage in 1/m_",
+                    log_min_Ss,
+                    log_max_Ss,
+                    -5.0,
+                    f"neu_Ss_fixed_{v}",
+                    parameter="S",
                 )
-
-                T_i = 10 ** log_T_i
-                st.write(f"**T{i}:** {T_i:5.2e} m²/s")
-
-                parameter_sets.append(
-                    {
-                        "label": f"$T_{i}$ = {T_i:.1e} m²/s",
-                        "T": T_i,
-                        "Ss": None,
-                        "Sy": None,
-                    }
+    
+                Ss_fixed = 10 ** log_Ss_fixed
+                st.write("**Fixed Ss:** %5.2e 1/m" % Ss_fixed)
+    
+                Sy_fixed = linear_widget(
+                    "_Fixed specific yield Sy_",
+                    Sy_min,
+                    Sy_max,
+                    0.20,
+                    0.01,
+                    f"neu_Sy_fixed_{v}",
                 )
-
-        with col_storage:
-
-            st.markdown("#### Fixed storage parameters")
-
-            log_Ss_fixed = log_widget(
-                "_Fixed (log of) Specific storage in 1/m_",
-                log_min_Ss,
-                log_max_Ss,
-                -5.0,
-                f"neu_Ss_fixed_{v}",
-                parameter="S",
-            )
-
-            Ss_fixed = 10 ** log_Ss_fixed
-            st.write("**Fixed Ss:** %5.2e 1/m" % Ss_fixed)
-
-            Sy_fixed = linear_widget(
-                "_Fixed specific yield Sy_",
-                Sy_min,
-                Sy_max,
-                0.20,
-                0.01,
-                f"neu_Sy_fixed_{v}",
-            )
-
-            st.write("**Fixed Sy:** %4.2f" % Sy_fixed)
+    
+                st.write("**Fixed Sy:** %4.2f" % Sy_fixed)
 
         for par in parameter_sets:
             par["Ss"] = Ss_fixed
@@ -1073,127 +1003,154 @@ def inverse_neuman(v):
     # Fixed T and Ss, three Sy variants
     # --------------------------------------------------
     elif v == 3:
+        with col_2:
+            with st.expander(":blue[**Transmissivity**]"):
 
-        with col_T:
-
-            st.markdown("#### Fixed transmissivity")
-
-            log_T_fixed = log_widget(
-                "_Fixed (log of) Transmissivity in m²/s_",
-                log_min_T,
-                log_max_T,
-                -3.0,
-                f"neu_T_fixed_{v}",
-            )
-
-            T_fixed = 10 ** log_T_fixed
-            st.write("**Fixed T:** %5.2e m²/s" % T_fixed)
-
-        with col_storage:
-
-            st.markdown("#### Variable specific yield")
-
-            log_Ss_fixed = log_widget(
-                "_Fixed (log of) Specific storage in 1/m_",
-                log_min_Ss,
-                log_max_Ss,
-                -5.0,
-                f"neu_Ss_fixed_{v}",
-                parameter="S",
-            )
-
-            Ss_fixed = 10 ** log_Ss_fixed
-            st.write("**Fixed Ss:** %5.2e 1/m" % Ss_fixed)
-
-            default_Sy_values = [0.20, 0.20, 0.20]
-
-            for i, default_Sy in enumerate(default_Sy_values, start=1):
-
-                Sy_i = linear_widget(
-                    f"_Specific yield variant {i}_",
-                    Sy_min,
-                    Sy_max,
-                    default_Sy,
-                    0.01,
-                    f"neu_Sy_variant_{v}_{i}",
+                log_T_fixed = log_widget(
+                    "_Fixed (log of) Transmissivity in m²/s_",
+                    log_min_T,
+                    log_max_T,
+                    -3.0,
+                    f"neu_T_fixed_{v}",
                 )
+    
+                T_fixed = 10 ** log_T_fixed
+                st.write("**Fixed T:** %5.2e m²/s" % T_fixed)
 
-                st.write(f"**Sy{i}:** {Sy_i:4.2f}")
+        with col_3:
+            with st.expander(":green[**Storativity**]"):
 
-                parameter_sets.append(
-                    {
-                        "label": f"fixed $T$, $S_{{y,{i}}}$ = {Sy_i:.2f}",
-                        "T": T_fixed,
-                        "Ss": Ss_fixed,
-                        "Sy": Sy_i,
-                    }
+                log_Ss_fixed = log_widget(
+                    "_Fixed (log of) Specific storage in 1/m_",
+                    log_min_Ss,
+                    log_max_Ss,
+                    -5.0,
+                    f"neu_Ss_fixed_{v}",
+                    parameter="S",
                 )
+    
+                Ss_fixed = 10 ** log_Ss_fixed
+                st.write("**Fixed Ss:** %5.2e 1/m" % Ss_fixed)
+    
+                default_Sy_values = [0.20, 0.20, 0.20]
+    
+                for i, default_Sy in enumerate(default_Sy_values, start=1):
+    
+                    Sy_i = linear_widget(
+                        f"_Specific yield variant {i}_",
+                        Sy_min,
+                        Sy_max,
+                        default_Sy,
+                        0.01,
+                        f"neu_Sy_variant_{v}_{i}",
+                    )
+    
+                    st.write(f"**Sy{i}:** {Sy_i:4.2f}")
+    
+            parameter_sets.append(
+                {
+                    "label": f"fixed $T$, $S_{{y,{i}}}$ = {Sy_i:.2f}",
+                    "T": T_fixed,
+                    "Ss": Ss_fixed,
+                    "Sy": Sy_i,
+                }
+            )
 
     # --------------------------------------------------
     # Version 4:
     # Fixed T, Ss, and Sy; three beta variants
     # --------------------------------------------------
     elif v == 4:
+        with col_2:
+            with st.expander(":blue[**Transmissivity**]"):
 
-        with col_T:
+                log_T_fixed = log_widget(
+                    "_Fixed (log of) Transmissivity in m²/s_",
+                    log_min_T,
+                    log_max_T,
+                    -3.0,
+                    f"neu_T_fixed_{v}",
+                )
+    
+                T_fixed = 10 ** log_T_fixed
+                st.write("**Fixed T:** %5.2e m²/s" % T_fixed)
+    
+        with col_3:
+            with st.expander(":green[**Storativity**]"):
 
-            st.markdown("#### Fixed transmissivity")
-
-            log_T_fixed = log_widget(
-                "_Fixed (log of) Transmissivity in m²/s_",
-                log_min_T,
-                log_max_T,
-                -3.0,
-                f"neu_T_fixed_{v}",
-            )
-
-            T_fixed = 10 ** log_T_fixed
-            st.write("**Fixed T:** %5.2e m²/s" % T_fixed)
-
-        with col_storage:
-
-            st.markdown("#### Fixed storage parameters")
-
-            log_Ss_fixed = log_widget(
-                "_Fixed (log of) Specific storage in 1/m_",
-                log_min_Ss,
-                log_max_Ss,
-                -5.0,
-                f"neu_Ss_fixed_{v}",
-                parameter="S",
-            )
-
-            Ss_fixed = 10 ** log_Ss_fixed
-            st.write("**Fixed Ss:** %5.2e 1/m" % Ss_fixed)
-
-            Sy_fixed = linear_widget(
-                "_Fixed specific yield Sy_",
-                Sy_min,
-                Sy_max,
-                0.20,
-                0.01,
-                f"neu_Sy_fixed_{v}",
-            )
-
-            st.write("**Fixed Sy:** %4.2f" % Sy_fixed)
-
-        for i, beta_idx in enumerate(beta_variant_indices, start=1):
-            beta_label = beta_labels[beta_idx]
-
-            parameter_sets.append(
-                {
-                    "label": rf"fixed $T$, $S_s$, $S_y$; $\beta_{i}$ = {beta_label}",
-                    "T": T_fixed,
-                    "Ss": Ss_fixed,
-                    "Sy": Sy_fixed,
-                    "beta_index": beta_idx,
-                    "beta_label": beta_label,
-                }
-            )
+                log_Ss_fixed = log_widget(
+                    "_Fixed (log of) Specific storage in 1/m_",
+                    log_min_Ss,
+                    log_max_Ss,
+                    -5.0,
+                    f"neu_Ss_fixed_{v}",
+                    parameter="S",
+                )
+    
+                Ss_fixed = 10 ** log_Ss_fixed
+                st.write("**Fixed Ss:** %5.2e 1/m" % Ss_fixed)
+    
+                Sy_fixed = linear_widget(
+                    "_Fixed specific yield Sy_",
+                    Sy_min,
+                    Sy_max,
+                    0.20,
+                    0.01,
+                    f"neu_Sy_fixed_{v}",
+                )
+    
+                st.write("**Fixed Sy:** %4.2f" % Sy_fixed)
 
     else:
         st.error("Unknown version. Please use v = 1, 2, 3, or 4.")
         return
+
+    with col_2:
+        with st.expander("$\\beta$"):
+            beta_variant_indices = []
+    
+            if v == 4:
+                default_beta_indices = [1, 3, 5]
+            
+                for i, default_idx in enumerate(default_beta_indices, start=1):
+                    beta_i = st.selectbox(
+                        rf"Neuman $\beta$ variant {i}",
+                        beta_labels,
+                        index=default_idx,
+                        key=f"neu_beta_variant_{v}_{i}",
+                    )
+            
+                    beta_idx = beta_labels.index(beta_i)
+            
+                    parameter_sets.append(
+                        {
+                            "label": rf"fixed $T$, $S_s$, $S_y$; $\beta_{i}$ = {beta_i}",
+                            "T": T_fixed,
+                            "Ss": Ss_fixed,
+                            "Sy": Sy_fixed,
+                            "beta_index": beta_idx,
+                            "beta_label": beta_i,
+                        }
+                    )
+            
+                beta_choice = "variable"
+                beta_index = None
+    
+            else:
+                beta_choice = st.selectbox(
+                    r"Neuman $\beta$",
+                    beta_labels,
+                    index=3,
+                    key=f"neu_beta_{v}",
+                )
+    
+                beta_index = beta_labels.index(beta_choice)
+    
+            show_table_points = st.toggle(
+                "Show original tabular Neuman data",
+                value=False,
+                key=f"neu_show_table_points_{v}",
+            )
 
     # --------------------------------------------------
     # Stop if nothing should be shown
@@ -1548,8 +1505,8 @@ def inverse_neuman(v):
 # First interactive plot
 # --------------------------------------------------
 st.subheader(
-    ":green-background[Explore delayed water-table response with the Neuman solution]",
-    divider="green",
+    ":violet[Explore delayed water-table response with the Neuman solution]",
+    divider="violet",
 )
 
 active_tab = st.segmented_control(
@@ -1580,46 +1537,29 @@ elif active_tab.startswith("03"):
 elif active_tab.startswith("04"):
     inverse_neuman(4)
 
-st.markdown(
-    """
-Use the sliders to explore how transmissivity, specific storage, specific yield,
-and the Neuman beta parameter influence drawdown and drawdown derivatives in an
-unconfined aquifer.
-
-Compared with the Theis solution for confined aquifers, the Neuman solution can
-show a delayed water-table response. This delayed response is often visible as
-a flattening or transition zone in the drawdown curve and as a characteristic
-change in the derivative curve.
-
-The derivative plot is especially useful because it highlights changes in flow
-regime that may be difficult to recognize from drawdown alone. In this app,
-the derivative is computed from the smoothed combined Neuman curve using the
-Bourdet method with a user-defined log-cycle window L. In this app, L = 1 corresponds to one full logarithmic time cycle.
-"""
-)
+#st.markdown(
+#    """
+#Use the sliders to explore how transmissivity, specific storage, specific yield,
+#and the Neuman beta parameter influence drawdown and drawdown derivatives in an
+#unconfined aquifer.
+#
+#Compared with the Theis solution for confined aquifers, the Neuman solution can
+#show a delayed water-table response. This delayed response is often visible as
+#a flattening or transition zone in the drawdown curve and as a characteristic
+#change in the derivative curve.
+#
+#The derivative plot is especially useful because it highlights changes in flow
+#regime that may be difficult to recognize from drawdown alone. In this app,
+#the derivative is computed from the smoothed combined Neuman curve using the
+#Bourdet method with a user-defined log-cycle window L. In this app, L = 1 corresponds to one full logarithmic time cycle.
+#"""
+#)
 
 # --------------------------------------------------
 # References
 # --------------------------------------------------
 with st.expander("**Click here for references**"):
-    st.markdown(
-        """
-Neuman, S.P., 1972. Theory of flow in unconfined aquifers considering delayed
-gravity response of the water table. Water Resources Research, 8(4), 1031–1045.
-
-Neuman, S.P., 1973. Supplementary comments on “Theory of flow in unconfined
-aquifers considering delayed gravity response of the water table”.
-Water Resources Research, 9(4), 1102–1103.
-
-[Kruseman, G.P., de Ridder, N.A., & Verweij, J.M., 1991.](https://gw-project.org/books/analysis-and-evaluation-of-pumping-test-data/)
-Analysis and Evaluation of Pumping Test Data, International Institute for Land
-Reclamation and Improvement, Wageningen, The Netherlands, 377 pages.
-
-Theis, C.V., 1935. The relation between the lowering of the piezometric surface
-and the rate and duration of discharge of a well using groundwater storage.
-Transactions of the American Geophysical Union, 16, 519–524.
-"""
-    )
+    st.markdown(load_md(MD_DIR, "neuman_deriv_ref.md", st.session_state.language))
 
 # --------------------------------------------------
 # Footer

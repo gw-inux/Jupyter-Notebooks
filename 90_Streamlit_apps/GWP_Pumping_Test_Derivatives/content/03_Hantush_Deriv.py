@@ -517,13 +517,14 @@ st.markdown(load_md(MD_DIR, "hantush_deriv_01.md", st.session_state.language))
 
 
 st.subheader("Introduction", divider="green")
+
 st.markdown(load_md(MD_DIR, "hantush_deriv_02.md", st.session_state.language))
 
 left_co, cent_co, last_co = st.columns((20, 60, 20))
 with cent_co:
     st.image(
-        "90_Streamlit_apps/GWP_Pumping_Test_Derivatives/assets/images/gw_logo_horiz-mini.png",
-        caption="The Groundwater Project educational tools",
+        "90_Streamlit_apps/GWP_Pumping_Test_Derivatives/assets/images/Hantush_Deriv_01.png",
+        caption="Drawdown and derivatives for the Hantush-Jacob function.",
     )
 
 # --------------------------------------------------
@@ -963,7 +964,8 @@ def inverse(v):
     
         parameter_sets.append(
             {
-                "label": rf"$T$ = {T:.1e}, $S$ = {S:.1e}, $r/B$ = {r_div_B:.2f}",
+            #    "label": rf"$T$ = {T:.1e}, $S$ = {S:.1e}, $r/B$ = {r_div_B:.2f}",
+                "label": "",
                 "T": T,
                 "S": S,
                 "r_div_B": r_div_B,
@@ -1072,7 +1074,8 @@ def inverse(v):
     
                     parameter_sets.append(
                         {
-                            "label": rf"$r/B_{i}$ = {r_div_B_i:.2f}",
+                        #    "label": rf"$r/B_{i}$ = {r_div_B_i:.2f}",
+                            "label": "",
                             "T": T_fixed,
                             "S": S_fixed,
                             "r_div_B": r_div_B_i,

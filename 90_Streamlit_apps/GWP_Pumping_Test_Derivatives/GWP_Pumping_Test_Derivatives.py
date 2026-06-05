@@ -56,9 +56,13 @@ st.markdown("""
 # --- Flat page definitions ---
 pages = {
     "📕 Introduction ":         "90_Streamlit_apps/GWP_Pumping_Test_Derivatives/content/01_Theis_Deriv_Ini.py",
-    "🟠 Confined Aquifer":      "90_Streamlit_apps/GWP_Pumping_Test_Derivatives/content/02_Theis_Deriv.py",
-    "🟣 Semi-confined Aquifer": "90_Streamlit_apps/GWP_Pumping_Test_Derivatives/content/03_Hantush_Deriv.py",
-    "🟢 Unconfined Aquifer":    "90_Streamlit_apps/GWP_Pumping_Test_Derivatives/content/04_Neuman_Deriv.py",
+    "🔵 Confined Aquifer":      "90_Streamlit_apps/GWP_Pumping_Test_Derivatives/content/02_Theis_Deriv.py",
+    "🟢 Semi-confined Aquifer": "90_Streamlit_apps/GWP_Pumping_Test_Derivatives/content/03_Hantush_Deriv.py",
+    "🟣 Unconfined Aquifer":    "90_Streamlit_apps/GWP_Pumping_Test_Derivatives/content/04_Neuman_Deriv.py",
+    "🟠 Effect of Boundaries":
+    "90_Streamlit_apps/GWP_Pumping_Test_Derivatives/content/05_Boundary_Deriv.py",
+    "🟡 Derivatives with measured data":
+    "90_Streamlit_apps/GWP_Pumping_Test_Derivatives/content/06_Applied_Deriv.py",
     "📚 Learning More":         "90_Streamlit_apps/GWP_Pumping_Test_Derivatives/content/GWP_Pumping_Test_Derivatives_LearningMore.py",
     "📌 Abbreviations":         "90_Streamlit_apps/GWP_Pumping_Test_Derivatives/content/GWP_Pumping_Test_Derivatives_Abbreviations.py",
     "📖 References":            "90_Streamlit_apps/GWP_Pumping_Test_Derivatives/content/GWP_Pumping_Test_Derivatives_References.py",
@@ -97,9 +101,13 @@ for label, path in pages.items():
     # After rendering "Introduction 📖", insert a section label
     if "Introduction" in label:
         st.sidebar.markdown("**Aquifer Types**")
+     
+    # After rendering "🟢 Unconfined Aquifer", insert a section label
+    if "Unconfined" in label:
+        st.sidebar.markdown("**Applied Derivatives**")
         
     # After rendering "🟢 Unconfined Aquifer", insert a section label
-    if "EVT" in label:
+    if "measured" in label:
         st.sidebar.markdown("**Further Resources**")
 
     # After rendering "🟢 Unconfined Aquifer", insert a section label
