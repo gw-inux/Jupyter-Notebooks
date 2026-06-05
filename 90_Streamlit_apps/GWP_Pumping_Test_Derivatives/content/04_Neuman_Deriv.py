@@ -1032,7 +1032,7 @@ def inverse_neuman(v):
                 Ss_fixed = 10 ** log_Ss_fixed
                 st.write("**Fixed Ss:** %5.2e 1/m" % Ss_fixed)
     
-                default_Sy_values = [0.18, 0.20, 0.22]
+                default_Sy_values = [0.15, 0.20, 0.25]
     
                 for i, default_Sy in enumerate(default_Sy_values, start=1):
     
@@ -1509,6 +1509,8 @@ st.subheader(
     divider="violet",
 )
 
+st.markdown(load_md(MD_DIR, "neuman_deriv_05.md", st.session_state.language))
+
 active_tab = st.segmented_control(
     "Select topic",
     options=[
@@ -1527,15 +1529,19 @@ if active_tab is None:
 
 if active_tab.startswith("01"):
     inverse_neuman(1)
+    st.markdown(load_md(MD_DIR, "neuman_deriv_06.md", st.session_state.language))
 
 elif active_tab.startswith("02"):
     inverse_neuman(2)
+    st.markdown(load_md(MD_DIR, "neuman_deriv_07.md", st.session_state.language))
 
 elif active_tab.startswith("03"):
     inverse_neuman(3)
+    st.markdown(load_md(MD_DIR, "neuman_deriv_08.md", st.session_state.language))
 
 elif active_tab.startswith("04"):
     inverse_neuman(4)
+    st.markdown(load_md(MD_DIR, "neuman_deriv_09.md", st.session_state.language))
 
 #st.markdown(
 #    """
