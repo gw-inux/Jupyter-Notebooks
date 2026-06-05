@@ -968,7 +968,7 @@ def inverse_neuman(v):
                     )
 
         with col_3:
-            with st.expander(":green[**Storativity**]"):
+            with st.expander("fixed :green[**Storativity**]"):
 
                 log_Ss_fixed = log_widget(
                     "_Fixed (log of) Specific storage in 1/m_",
@@ -1004,7 +1004,7 @@ def inverse_neuman(v):
     # --------------------------------------------------
     elif v == 3:
         with col_2:
-            with st.expander(":blue[**Transmissivity**]"):
+            with st.expander("fixed :blue[**Transmissivity**]"):
 
                 log_T_fixed = log_widget(
                     "_Fixed (log of) Transmissivity in m²/s_",
@@ -1032,7 +1032,7 @@ def inverse_neuman(v):
                 Ss_fixed = 10 ** log_Ss_fixed
                 st.write("**Fixed Ss:** %5.2e 1/m" % Ss_fixed)
     
-                default_Sy_values = [0.20, 0.20, 0.20]
+                default_Sy_values = [0.18, 0.20, 0.22]
     
                 for i, default_Sy in enumerate(default_Sy_values, start=1):
     
@@ -1047,14 +1047,14 @@ def inverse_neuman(v):
     
                     st.write(f"**Sy{i}:** {Sy_i:4.2f}")
     
-            parameter_sets.append(
-                {
-                    "label": f"fixed $T$, $S_{{y,{i}}}$ = {Sy_i:.2f}",
-                    "T": T_fixed,
-                    "Ss": Ss_fixed,
-                    "Sy": Sy_i,
-                }
-            )
+                    parameter_sets.append(
+                        {
+                            "label": rf"fixed $T$; $S_y$ variant {i} = {Sy_i:.2f}",
+                            "T": T_fixed,
+                            "Ss": Ss_fixed,
+                            "Sy": Sy_i,
+                        }
+                    )
 
     # --------------------------------------------------
     # Version 4:
