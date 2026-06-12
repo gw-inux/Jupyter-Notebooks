@@ -1,0 +1,1075 @@
+﻿<!DOCTYPE html>
+<!--
+  app.html â€” Spherical Diffusion (Radial Diffusion)
+  Three models:
+    1) Diffusion into empty sphere from infinite bath
+    2) Diffusion out of uniformly contaminated sphere to infinite bath
+    3) Diffusion out of non-uniformly contaminated sphere to infinite bath
+  Top canvas: Concentration profile C(r,t)
+  Bottom canvas: Fractional Uptake/Release f(t)
+-->
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Spherical Diffusion</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Segoe UI', Arial, sans-serif; font-size: 12px;
+           background: #f0f0f0; color: #132a4c; overflow: hidden; }
+
+    /* â”€â”€ Status bar â”€â”€ */
+    #statusBar {
+      background: #132a4c; color: #fff;
+      padding: 3px 10px; font-size: 11px; height: 20px;
+      white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+    }
+
+    /* â”€â”€ Model selector row â”€â”€ */
+    #modelRow {
+      background: #dde3ed; border-bottom: 1px solid #b0b8c8;
+      padding: 4px 8px; display: flex; align-items: center; gap: 6px;
+      flex-shrink: 0;
+    }
+    #modelRow label { font-weight: 700; font-size: 11px; white-space: nowrap; }
+    #modelSelect {
+      flex: 1; font-size: 11px; padding: 2px 4px;
+      border: 1px solid #8899aa; border-radius: 2px; background: #fff;
+    }
+
+    /* â”€â”€ Main layout â”€â”€ */
+    #appLayout {
+      display: flex;
+      height: calc(100vh - 20px - 30px);
+      overflow: hidden;
+    }
+
+    /* â”€â”€ LEFT panel â”€â”€ */
+    #leftPanel {
+      width: 215px; min-width: 215px;
+      background: #e8ecf2; border-right: 1px solid #b0b8c8;
+      overflow-y: auto; overflow-x: hidden;
+      padding: 4px 6px;
+      display: flex; flex-direction: column; gap: 0;
+    }
+
+    /* â”€â”€ CENTER â”€â”€ */
+    #centerPanel {
+      flex: 1; display: flex; flex-direction: column;
+      background: #fff; overflow: hidden;
+    }
+    .canvas-wrap { flex: 1; position: relative; overflow: hidden; }
+    .canvas-divider { height: 1px; background: #b0b8c8; flex-shrink: 0; }
+    canvas { display: block; cursor: crosshair; }
+
+    /* â”€â”€ RIGHT panel â”€â”€ */
+    #rightPanel {
+      width: 180px; min-width: 180px;
+      background: #e8ecf2; border-left: 1px solid #b0b8c8;
+      overflow-y: auto; padding: 4px 6px;
+      display: flex; flex-direction: column; gap: 0;
+    }
+
+    /* â”€â”€ Section headings â”€â”€ */
+    .sh {
+      font-weight: 700; font-size: 11px; color: #fff;
+      background: #132a4c; padding: 2px 5px;
+      margin-top: 4px; border-radius: 2px; line-height: 1.3;
+    }
+    .sh:first-child { margin-top: 0; }
+
+    /* â”€â”€ Parameter rows â”€â”€ */
+    .pr {
+      display: flex; align-items: center;
+      justify-content: space-between; gap: 3px; margin: 2px 0;
+    }
+    .pr label { font-size: 11px; flex: 1; white-space: normal; line-height: 1.3; min-width: 0; }
+    .pr input[type="text"] {
+      width: 62px; min-width: 0; font-size: 11px; padding: 1px 3px;
+      border: 1px solid #8899aa; border-radius: 2px;
+      text-align: right; background: #fff; flex-shrink: 0;
+    }
+    .pr input[type="text"]:disabled { background: #dde; color: #777; }
+
+    /* â”€â”€ Radio inline with value â”€â”€ */
+    .ri { display: flex; align-items: center; gap: 3px; margin: 2px 0; }
+    .ri label {
+      font-size: 11px; flex: 1; white-space: nowrap; line-height: 1.3;
+      display: flex; align-items: center; gap: 3px;
+    }
+    .ri input[type="text"] {
+      width: 58px; font-size: 11px; padding: 1px 3px;
+      border: 1px solid #8899aa; border-radius: 2px;
+      text-align: right; background: #fff;
+    }
+    .ri input[type="text"]:disabled { background: #dde; color: #777; }
+
+    /* â”€â”€ Scale grid â”€â”€ */
+    .sg {
+      display: grid; grid-template-columns: auto 1fr; gap: 2px 4px;
+      padding: 1px 2px; align-items: center;
+    }
+    .sg label { font-size: 11px; white-space: nowrap; }
+    .sg input {
+      font-size: 11px; padding: 1px 3px;
+      border: 1px solid #8899aa; border-radius: 2px; text-align: right;
+    }
+    .sg input:disabled { background: #dde; color: #777; }
+
+    /* â”€â”€ Radio groups â”€â”€ */
+    .cg { display: flex; flex-direction: column; gap: 1px; padding: 1px 2px; }
+    .cg label { font-size: 11px; display: flex; align-items: center; gap: 4px; cursor: pointer; }
+
+    /* â”€â”€ Buttons â”€â”€ */
+    .btn {
+      width: 100%; padding: 3px 4px; font-size: 11px; font-weight: 600;
+      cursor: pointer; border: none; border-radius: 2px; margin-top: 2px;
+    }
+    #computeBtn { background: #e84a27; color: #fff; }
+    #computeBtn:hover { background: #c73d1f; }
+    #clearBtn   { background: #555; color: #fff; }
+    #clearBtn:hover { background: #333; }
+
+    /* â”€â”€ Error â”€â”€ */
+    #errMsg { font-size: 10px; color: #aa3322; min-height: 14px; padding: 1px 2px; word-break: break-word; }
+
+    /* â”€â”€ Right panel readouts â”€â”€ */
+    .rp-section { font-size: 11px; font-weight: 700; color: #132a4c; margin-top: 6px; margin-bottom: 2px; }
+    .rp-section:first-child { margin-top: 0; }
+    .rp-val { font-size: 12px; font-weight: 700; color: #132a4c; padding: 1px 2px; }
+    .rp-lbl { font-size: 10px; color: #667; padding: 0 2px; }
+
+    /* â”€â”€ Curve list â”€â”€ */
+    .curve-item {
+      display: flex; align-items: center; gap: 3px;
+      padding: 2px 2px; border-bottom: 1px solid #d0d8e8;
+    }
+    .curve-swatch { width: 10px; height: 10px; border-radius: 2px; flex-shrink: 0; }
+    .curve-lbl { flex: 1; font-size: 10px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+    .curve-del {
+      background: #aa3322; color: #fff; border: none; border-radius: 2px;
+      padding: 0 4px; cursor: pointer; font-size: 11px; line-height: 1.5; flex-shrink: 0;
+    }
+    .curve-del:hover { background: #882211; }
+
+    /* â”€â”€ Right-side action buttons â”€â”€ */
+    .rp-btn {
+      display: block; width: 100%; padding: 4px 6px; font-size: 11px; font-weight: 600;
+      cursor: pointer; border: none; border-radius: 2px; margin-top: 3px;
+      text-align: center; text-decoration: none;
+    }
+    #showDataBtn { background: #132a4c; color: #fff; }
+    #showDataBtn:hover { background: #0e1f38; }
+
+    /* â”€â”€ Data modal â”€â”€ */
+    .modal-overlay {
+      display: none; position: fixed; inset: 0;
+      background: rgba(0,0,0,0.55); z-index: 110;
+      align-items: center; justify-content: center;
+    }
+    .modal-box {
+      background: #fff; border-radius: 4px; padding: 14px;
+      width: 580px; max-height: 86vh;
+      display: flex; flex-direction: column; gap: 6px;
+    }
+    .modal-box h3 { font-size: 13px; color: #132a4c; }
+    .modal-box textarea {
+      flex: 1; font-family: monospace; font-size: 11px;
+      border: 1px solid #aaa; border-radius: 0 3px 3px 3px; padding: 6px;
+      resize: none; min-height: 300px; width: 100%;
+    }
+    .modal-footer { display: flex; gap: 8px; justify-content: flex-end; }
+    .modal-footer button {
+      border: none; border-radius: 3px; padding: 5px 14px;
+      cursor: pointer; font-size: 12px; font-weight: 600;
+    }
+    .btn-dl  { background: #1a7a3a; color: #fff; }
+    .btn-cls { background: #132a4c; color: #fff; }
+
+    /* â”€â”€ Modal tab rows â”€â”€ */
+    .modal-tab-row { display: flex; gap: 3px; flex-wrap: wrap; }
+    .modal-tab {
+      padding: 3px 10px; border: 1px solid #aaa; border-radius: 3px 3px 0 0;
+      cursor: pointer; font-size: 11px; font-weight: 600;
+      background: #e8ecf2; color: #132a4c;
+    }
+    .modal-tab.active { background: #fff; border-bottom: 1px solid #fff; }
+    .modal-tab:hover:not(.active) { background: #d0d8e8; }
+    .modal-tab-divider {
+      height: 1px; background: #aaa; margin: 0 0 4px 0;
+    }
+  </style>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-LVXEZHVGWJ"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-LVXEZHVGWJ');
+  </script>
+</head>
+<body>
+
+  <div id="statusBar">Spherical Diffusion â€” ready</div>
+
+  <div id="modelRow">
+    <label for="modelSelect">Select a spherical diffusion model:</label>
+    <select id="modelSelect">
+      <option value="1">1)  Diffusion into empty sphere from infinite bath</option>
+      <option value="2">2)  Diffusion out of uniformly contaminated sphere to infinite bath</option>
+      <option value="3">3)  Diffusion out of non-uniformly contaminated sphere to infinite bath</option>
+    </select>
+  </div>
+
+  <div id="appLayout">
+
+    <!-- â•â•â•â• LEFT â•â•â•â• -->
+    <div id="leftPanel">
+
+      <div class="sh">General Parameters</div>
+
+      <!-- Model 1 & 2 params (one D) -->
+      <div id="sec-d1">
+        <div class="pr">
+          <label for="dField">Diffusion Coefficient (D)</label>
+          <input type="text" id="dField" value="0.1000">
+        </div>
+      </div>
+      <!-- Model 3: two D values -->
+      <div id="sec-d1d2" style="display:none;">
+        <div class="pr">
+          <label for="d1Field">Diffusion Coeff. for Release (D1)</label>
+          <input type="text" id="d1Field" value="0.1000">
+        </div>
+        <div class="pr">
+          <label for="d2Field">Diffusion Coeff. for Uptake (D2)</label>
+          <input type="text" id="d2Field" value="0.1000">
+        </div>
+      </div>
+
+      <div class="sh">Characteristics of the Sphere and Solute</div>
+
+      <!-- Model 1: outside conc -->
+      <div id="sec-c-outside">
+        <div class="pr">
+          <label for="cOutField">Concentration outside Sphere (c)</label>
+          <input type="text" id="cOutField" value="1.0000">
+        </div>
+      </div>
+      <!-- Model 2: inside conc -->
+      <div id="sec-c-inside" style="display:none;">
+        <div class="pr">
+          <label for="cInField">Concentration inside Sphere (c)</label>
+          <input type="text" id="cInField" value="1.0000">
+        </div>
+      </div>
+      <!-- Model 3: both -->
+      <div id="sec-c-both" style="display:none;">
+        <div class="pr">
+          <label for="c3OutField">Concentration outside Sphere (c)</label>
+          <input type="text" id="c3OutField" value="1.0000">
+        </div>
+      </div>
+
+      <div class="pr">
+        <label for="aField">Sphere Radius (a)</label>
+        <input type="text" id="aField" value="1.0000">
+      </div>
+
+      <!-- Fixed time / fixed dist selector â€” models 1 & 2 -->
+      <div id="sec-radio-time">
+        <div class="ri">
+          <label><input type="radio" name="fixGroup" id="fixTimeRadio" checked>
+            <span id="fixTimeLbl">Fixed Time for Uptake (t)</span></label>
+          <input type="text" id="fixTimeField" value="1.0000">
+        </div>
+        <div class="ri">
+          <label><input type="radio" name="fixGroup" id="fixDistRadio">
+            <span id="fixDistLbl">Fixed Dist for Uptake (r)</span></label>
+          <input type="text" id="fixDistField" value="0.5000" disabled>
+        </div>
+      </div>
+
+      <!-- Model 3: fixed times (no radio) -->
+      <div id="sec-m3-times" style="display:none;">
+        <div class="pr">
+          <label for="tRelField">Fixed Time for Release (t)</label>
+          <input type="text" id="tRelField" value="1.0000">
+        </div>
+        <div class="pr">
+          <label for="t0Field">Fixed Time for Uptake (t0)</label>
+          <input type="text" id="t0Field" value="1.0000">
+        </div>
+      </div>
+
+      <div class="sh">Scaling and Plotting Control</div>
+      <div class="cg">
+        <label><input type="radio" name="scaleGroup" id="autoScaleRadio" checked> Automatic Time Scaling</label>
+        <label><input type="radio" name="scaleGroup" id="manualScaleRadio"> Manual Time Scaling</label>
+      </div>
+      <div class="sg">
+        <label>Min t:</label>
+        <input type="text" id="tminField" value="0" disabled>
+        <label>Max t:</label>
+        <input type="text" id="tmaxField" value="10" disabled>
+      </div>
+
+      <div class="pr" style="margin-top:4px;">
+        <label for="nptsField">Number of Data Points</label>
+        <input type="text" id="nptsField" value="101">
+      </div>
+
+      <div class="cg" style="margin-top:2px;">
+        <label><input type="checkbox" id="multiCheck" checked> Multiple Plots</label>
+      </div>
+
+      <div id="errMsg"></div>
+
+      <div style="display:flex;gap:4px;margin-top:4px;">
+        <button class="btn" id="computeBtn" style="flex:1;">Compute Curve</button>
+        <button class="btn" id="clearBtn"   style="flex:1;margin-top:0;">Clear Curves</button>
+      </div>
+
+    </div><!-- /leftPanel -->
+
+
+    <!-- â•â•â•â• CENTER â•â•â•â• -->
+    <div id="centerPanel">
+      <div class="canvas-wrap" id="topWrap">
+        <canvas id="topCanvas"></canvas>
+      </div>
+      <div class="canvas-divider"></div>
+      <div class="canvas-wrap" id="botWrap">
+        <canvas id="botCanvas"></canvas>
+      </div>
+      <div id="credits" style="background:#dde3ed;border-top:1px solid #b0b8c8;padding:3px 8px;font-size:10px;color:#445;text-align:center;flex-shrink:0;display:flex;align-items:center;justify-content:center;gap:8px;">
+        <img src="data:image/png;base64,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" alt="UIUC Block I" style="height:26px;width:auto;flex-shrink:0;">
+        <span>Developed by J. Decker, A. Valocchi, C. Werth &amp; D. Agarwal &mdash; Dept. of Civil &amp; Environmental Engineering, University of Illinois Urbana-Champaign &mdash; &copy; 2026</span>
+      </div>
+    </div><!-- /centerPanel -->
+
+
+    <!-- â•â•â•â• RIGHT â•â•â•â• -->
+    <div id="rightPanel">
+
+      <div class="rp-section">Concentration</div>
+      <div class="rp-lbl" id="rpConcLabel">Radius:</div>
+      <div class="rp-val" id="rpConcX">&mdash;</div>
+      <div class="rp-val" id="rpConcY">&mdash;</div>
+
+      <div style="height:8px;"></div>
+
+      <div class="rp-section" id="rpFracTitle">Fractional Uptake</div>
+      <div class="rp-lbl">Time:</div>
+      <div class="rp-val" id="rpFracX">&mdash;</div>
+      <div class="rp-val" id="rpFracY">&mdash;</div>
+
+      <div id="curveListSection" style="display:none;">
+        <div class="sh" style="margin-top:8px;">Active Curves</div>
+        <div id="curveList"></div>
+      </div>
+
+      <div style="margin-top:8px;">
+        <button class="rp-btn" id="showDataBtn">Show Data Table</button>
+        <a href="https://hydrolab.illinois.edu/gw_applets/new_website_files/applets/spherical/tutorial-interface.html" target="_blank"
+           class="rp-btn" style="background:#1a5c7a;color:#fff;display:block;">
+          UI Tutorial
+        </a>
+        <a href="https://hydrolab.illinois.edu/gw_applets/new_website_files/applets/spherical/tutorial-solution.html" target="_blank"
+           class="rp-btn" style="background:#2d6a2d;color:#fff;display:block;">
+          Solution Tutorial
+        </a>
+      </div>
+
+    </div><!-- /rightPanel -->
+
+  </div><!-- /appLayout -->
+
+
+  <!-- â”€â”€ Data modal â”€â”€ -->
+  <div id="dataModal" class="modal-overlay">
+    <div class="modal-box">
+      <h3>Curve Data</h3>
+      <!-- Graph tabs (Concentration / Fractional) -->
+      <div class="modal-tab-row" id="graphTabs"></div>
+      <!-- Curve tabs within selected graph -->
+      <div class="modal-tab-row" id="curveTabs" style="margin-top:4px;"></div>
+      <div class="modal-tab-divider"></div>
+      <textarea id="dataModalText" readonly></textarea>
+      <div class="modal-footer">
+        <button class="btn-dl"  id="dlCsvBtn">&#8595; CSV</button>
+        <button class="btn-cls" id="dataModalClose">Close</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+// sim.js — Spherical Diffusion
+'use strict';
+
+const N_TERMS = 200;
+const COLORS  = ['#1e40c8','#e05a00','#2d9e2d','#9b2dbf','#b5860a','#cc2244','#117777','#775511'];
+
+// ── state ──────────────────────────────────────────────────────────────────
+let model   = 1;
+let curves  = [];
+let sliderX_conc = null;
+let sliderX_frac = null;
+// data modal state
+let modalGraph = 0;  // 0 = Concentration, 1 = Fractional
+let modalCurve = 0;
+
+// ── DOM ────────────────────────────────────────────────────────────────────
+const statusBar    = document.getElementById('statusBar');
+const errMsg       = document.getElementById('errMsg');
+const modelSelect  = document.getElementById('modelSelect');
+const topCanvas    = document.getElementById('topCanvas');
+const botCanvas    = document.getElementById('botCanvas');
+const topWrap      = document.getElementById('topWrap');
+const botWrap      = document.getElementById('botWrap');
+
+const secD1        = document.getElementById('sec-d1');
+const secD1D2      = document.getElementById('sec-d1d2');
+const secCOutside  = document.getElementById('sec-c-outside');
+const secCInside   = document.getElementById('sec-c-inside');
+const secCBoth     = document.getElementById('sec-c-both');
+const secRadioTime = document.getElementById('sec-radio-time');
+const secM3Times   = document.getElementById('sec-m3-times');
+
+const dField       = document.getElementById('dField');
+const d1Field      = document.getElementById('d1Field');
+const d2Field      = document.getElementById('d2Field');
+const cOutField    = document.getElementById('cOutField');
+const cInField     = document.getElementById('cInField');
+const c3OutField   = document.getElementById('c3OutField');
+const aField       = document.getElementById('aField');
+const fixTimeRadio = document.getElementById('fixTimeRadio');
+const fixDistRadio = document.getElementById('fixDistRadio');
+const fixTimeField = document.getElementById('fixTimeField');
+const fixDistField = document.getElementById('fixDistField');
+const fixTimeLbl   = document.getElementById('fixTimeLbl');
+const fixDistLbl   = document.getElementById('fixDistLbl');
+const tRelField    = document.getElementById('tRelField');
+const t0Field      = document.getElementById('t0Field');
+const autoScaleRad = document.getElementById('autoScaleRadio');
+const manualScRad  = document.getElementById('manualScaleRadio');
+const tminField    = document.getElementById('tminField');
+const tmaxField    = document.getElementById('tmaxField');
+const nptsField    = document.getElementById('nptsField');
+const multiCheck   = document.getElementById('multiCheck');
+
+const rpConcLabel  = document.getElementById('rpConcLabel');
+const rpConcX      = document.getElementById('rpConcX');
+const rpConcY      = document.getElementById('rpConcY');
+const rpFracTitle  = document.getElementById('rpFracTitle');
+const rpFracX      = document.getElementById('rpFracX');
+const rpFracY      = document.getElementById('rpFracY');
+
+const dataModal    = document.getElementById('dataModal');
+const graphTabs    = document.getElementById('graphTabs');
+const curveTabs    = document.getElementById('curveTabs');
+const dataModalText= document.getElementById('dataModalText');
+
+// ── math helpers ───────────────────────────────────────────────────────────
+
+function profileM1(r, t, D, a, C0) {
+  if (t <= 0) return 0;
+  const pi = Math.PI, k = D * pi * pi / (a * a);
+  let sum = 0;
+  if (r < 1e-10 * a) {
+    for (let n = 1; n <= N_TERMS; n++) {
+      const ex = Math.exp(-k * n * n * t); if (ex < 1e-15) break;
+      sum += (n % 2 === 0 ? 1 : -1) * ex;
+    }
+    return C0 * (1 + 2 * sum);
+  }
+  const fac = (2 * a) / (pi * r);
+  for (let n = 1; n <= N_TERMS; n++) {
+    const ex = Math.exp(-k * n * n * t); if (ex < 1e-15) break;
+    sum += ((n % 2 === 0 ? 1 : -1) / n) * Math.sin(n * pi * r / a) * ex;
+  }
+  return C0 * (1 + fac * sum);
+}
+
+function profileM2(r, t, D, a, C0) {
+  if (t <= 0) return C0;
+  const pi = Math.PI, k = D * pi * pi / (a * a);
+  let sum = 0;
+  if (r < 1e-10 * a) {
+    for (let n = 1; n <= N_TERMS; n++) {
+      const ex = Math.exp(-k * n * n * t); if (ex < 1e-15) break;
+      sum += ((n + 1) % 2 === 0 ? 1 : -1) * ex;
+    }
+    return C0 * 2 * sum;
+  }
+  const fac = (2 * a) / (pi * r);
+  for (let n = 1; n <= N_TERMS; n++) {
+    const ex = Math.exp(-k * n * n * t); if (ex < 1e-15) break;
+    const sign = (n + 1) % 2 === 0 ? 1 : -1;
+    sum += (sign / n) * Math.sin(n * pi * r / a) * ex;
+  }
+  return C0 * fac * sum;
+}
+
+function fractional(t, D, a) {
+  if (t <= 0) return 0;
+  const pi = Math.PI, k = D * pi * pi / (a * a);
+  let sum = 0;
+  for (let n = 1; n <= N_TERMS; n++) {
+    const ex = Math.exp(-k * n * n * t); if (ex < 1e-15) break;
+    sum += ex / (n * n);
+  }
+  return 1 - (6 / (pi * pi)) * sum;
+}
+
+function profileM3(r, t, D1, D2, a, C0, t0) {
+  if (r < 1e-10 * a) {
+    const pi = Math.PI, k1 = D1*pi*pi/(a*a), k2 = D2*pi*pi/(a*a);
+    let sum = 0;
+    for (let n = 1; n <= N_TERMS; n++) {
+      const load_decay = Math.exp(-k2 * n * n * t0);
+      const rel_decay  = Math.exp(-k1 * n * n * t);
+      if (rel_decay < 1e-15) break;
+      const Bn_over_a = (2 * C0 / (pi * n)) * (n % 2 === 0 ? -1 : 1) * (1 - load_decay);
+      sum += Bn_over_a * (n * pi / a) * rel_decay;
+    }
+    return sum;
+  }
+  const pi = Math.PI, k1 = D1*pi*pi/(a*a), k2 = D2*pi*pi/(a*a);
+  let sum = 0;
+  for (let n = 1; n <= N_TERMS; n++) {
+    const load_decay = Math.exp(-k2 * n * n * t0);
+    const rel_decay  = Math.exp(-k1 * n * n * t);
+    if (rel_decay < 1e-15) break;
+    const sign = (n % 2 === 0) ? -1 : 1;
+    const Bn = (2 * C0 * a / (pi * n)) * sign * (1 - load_decay);
+    sum += (Bn / r) * Math.sin(n * pi * r / a) * rel_decay;
+  }
+  return sum;
+}
+
+function fractionalM3fill(t, D1, D2, a, C0, t0) {
+  const pi = Math.PI, k1 = D1*pi*pi/(a*a), k2 = D2*pi*pi/(a*a);
+  const Minf = C0 * (4/3) * pi * a * a * a;
+  let mass = 0;
+  for (let n = 1; n <= N_TERMS; n++) {
+    const load_decay = Math.exp(-k2 * n * n * t0);
+    const rel_decay  = Math.exp(-k1 * n * n * t);
+    if (rel_decay < 1e-15) break;
+    const sign = (n % 2 === 0) ? -1 : 1;
+    const Bn = (2 * C0 * a / (pi * n)) * sign * (1 - load_decay);
+    const integral = a * a * sign / (n * pi);
+    mass += 4 * pi * Bn * integral * rel_decay;
+  }
+  return mass / Minf;
+}
+
+// ── compute ────────────────────────────────────────────────────────────────
+
+function pn(el) { const v = parseFloat(el.value); return isNaN(v) ? null : v; }
+
+function buildCurve() {
+  errMsg.textContent = '';
+  const a = pn(aField);
+  if (!a || a <= 0) { errMsg.textContent = 'Sphere radius (a) must be > 0'; return null; }
+
+  const npts = Math.max(10, Math.round(pn(nptsField) || 101));
+  const useAutoScale = autoScaleRad.checked;
+
+  let tMin = 0, tMax;
+  if (!useAutoScale) {
+    tMin = pn(tminField) || 0;
+    tMax = pn(tmaxField);
+    if (!tMax || tMax <= tMin) { errMsg.textContent = 'Max t must be > Min t'; return null; }
+  }
+
+  if (model === 1) {
+    const D  = pn(dField);    if (!D || D <= 0)   { errMsg.textContent = 'D must be > 0'; return null; }
+    const C0 = pn(cOutField); if (C0 === null)     { errMsg.textContent = 'C0 required'; return null; }
+
+    let tFixed = null, rFixed = null;
+    if (fixTimeRadio.checked) {
+      tFixed = pn(fixTimeField);
+      if (!tFixed || tFixed <= 0) { errMsg.textContent = 'Fixed time must be > 0'; return null; }
+    } else {
+      rFixed = pn(fixDistField);
+      if (rFixed === null || rFixed < 0 || rFixed > a) { errMsg.textContent = `Fixed r must be in [0, ${a}]`; return null; }
+    }
+    if (useAutoScale) tMax = autoTmax(D, a);
+
+    const concXs = [], concYs = [], fracXs = [], fracYs = [];
+    const N = npts;
+    if (fixTimeRadio.checked) {
+      for (let i = 0; i <= N; i++) {
+        const r = i / N * a;
+        concXs.push(r); concYs.push(profileM1(r, tFixed, D, a, C0));
+      }
+    } else {
+      for (let i = 0; i <= N; i++) {
+        const t = tMin + i / N * (tMax - tMin);
+        concXs.push(t); concYs.push(profileM1(rFixed, t, D, a, C0));
+      }
+    }
+    for (let i = 0; i <= N; i++) {
+      const t = tMin + i / N * (tMax - tMin);
+      fracXs.push(t); fracYs.push(fractional(t, D, a));
+    }
+    return { concXs, concYs, fracXs, fracYs, isTimeFixed: fixTimeRadio.checked, tFixed, rFixed, D, a, C0 };
+
+  } else if (model === 2) {
+    const D  = pn(dField);   if (!D || D <= 0)  { errMsg.textContent = 'D must be > 0'; return null; }
+    const C0 = pn(cInField); if (C0 === null)   { errMsg.textContent = 'C0 required'; return null; }
+
+    let tFixed = null, rFixed = null;
+    if (fixTimeRadio.checked) {
+      tFixed = pn(fixTimeField);
+      if (!tFixed || tFixed <= 0) { errMsg.textContent = 'Fixed time must be > 0'; return null; }
+    } else {
+      rFixed = pn(fixDistField);
+      if (rFixed === null || rFixed < 0 || rFixed > a) { errMsg.textContent = `Fixed r must be in [0, ${a}]`; return null; }
+    }
+    if (useAutoScale) tMax = autoTmax(D, a);
+
+    const concXs = [], concYs = [], fracXs = [], fracYs = [];
+    const N = npts;
+    if (fixTimeRadio.checked) {
+      for (let i = 0; i <= N; i++) {
+        const r = i / N * a;
+        concXs.push(r); concYs.push(profileM2(r, tFixed, D, a, C0));
+      }
+    } else {
+      for (let i = 0; i <= N; i++) {
+        const t = tMin + i / N * (tMax - tMin);
+        concXs.push(t); concYs.push(profileM2(rFixed, t, D, a, C0));
+      }
+    }
+    for (let i = 0; i <= N; i++) {
+      const t = tMin + i / N * (tMax - tMin);
+      fracXs.push(t); fracYs.push(fractional(t, D, a));
+    }
+    return { concXs, concYs, fracXs, fracYs, isTimeFixed: fixTimeRadio.checked, tFixed, rFixed, D, a, C0 };
+
+  } else {
+    const D1 = pn(d1Field);   if (!D1 || D1 <= 0)  { errMsg.textContent = 'D1 must be > 0'; return null; }
+    const D2 = pn(d2Field);   if (!D2 || D2 <= 0)  { errMsg.textContent = 'D2 must be > 0'; return null; }
+    const C0 = pn(c3OutField); if (C0 === null)     { errMsg.textContent = 'C required'; return null; }
+    const tRel = pn(tRelField); if (!tRel || tRel <= 0) { errMsg.textContent = 'Release time must be > 0'; return null; }
+    const t0   = pn(t0Field);   if (!t0 || t0 <= 0)    { errMsg.textContent = 'Uptake time must be > 0'; return null; }
+    if (useAutoScale) tMax = autoTmax(D1, a);
+
+    const concXs = [], concYs = [], fracXs = [], fracYs = [];
+    const N = npts;
+    for (let i = 0; i <= N; i++) {
+      const r = i / N * a;
+      concXs.push(r); concYs.push(profileM3(r, tRel, D1, D2, a, C0, t0));
+    }
+    for (let i = 0; i <= N; i++) {
+      const t = tMin + i / N * (tMax - tMin);
+      fracXs.push(t); fracYs.push(fractionalM3fill(t, D1, D2, a, C0, t0));
+    }
+    return { concXs, concYs, fracXs, fracYs, isTimeFixed: true, tFixed: tRel, D1, D2, a, C0, t0 };
+  }
+}
+
+function autoTmax(D, a) {
+  return 3 * a * a / (D * Math.PI * Math.PI);
+}
+
+function computeAndPlot() {
+  if (!multiCheck.checked) curves = [];
+  const cv = buildCurve();
+  if (!cv) return;
+  const label = makeCurveLabel();
+  const color = COLORS[curves.length % COLORS.length];
+  curves.push({ label, color, ...cv });
+  updateCurveList();
+  renderAll();
+  statusBar.textContent = `Spherical Diffusion — ${curves.length} curve(s) — Model ${model}`;
+}
+
+function makeCurveLabel() {
+  if (model === 1) {
+    const D = pn(dField);
+    if (fixTimeRadio.checked) return `D=${fmtN(D)}, t=${fmtN(pn(fixTimeField))}`;
+    return `D=${fmtN(D)}, r=${fmtN(pn(fixDistField))}`;
+  } else if (model === 2) {
+    const D = pn(dField);
+    if (fixTimeRadio.checked) return `D=${fmtN(D)}, t=${fmtN(pn(fixTimeField))}`;
+    return `D=${fmtN(D)}, r=${fmtN(pn(fixDistField))}`;
+  } else {
+    return `D1=${fmtN(pn(d1Field))}, t0=${fmtN(pn(t0Field))}, t=${fmtN(pn(tRelField))}`;
+  }
+}
+
+// ── curve list (right panel) ───────────────────────────────────────────────
+
+function updateCurveList() {
+  const section = document.getElementById('curveListSection');
+  const list    = document.getElementById('curveList');
+  if (curves.length === 0) { section.style.display = 'none'; return; }
+  section.style.display = '';
+  list.innerHTML = curves.map((c, i) =>
+    `<div class="curve-item">
+       <div class="curve-swatch" style="background:${c.color};"></div>
+       <span class="curve-lbl" title="${c.label}">${c.label}</span>
+       <button class="curve-del" onclick="deleteCurve(${i})">&#215;</button>
+     </div>`
+  ).join('');
+}
+
+window.deleteCurve = function(i) {
+  curves.splice(i, 1);
+  updateCurveList();
+  sliderX_conc = null; sliderX_frac = null;
+  rpConcX.textContent = '—'; rpConcY.textContent = '—';
+  rpFracX.textContent = '—'; rpFracY.textContent = '—';
+  renderAll();
+  statusBar.textContent = `Spherical Diffusion — ${curves.length} curve(s)`;
+};
+
+// ── rendering ─────────────────────────────────────────────────────────────
+
+const PAD = { top: 30, right: 18, bottom: 42, left: 58 };
+
+function fmtN(v) {
+  if (v === null || v === undefined || isNaN(v)) return '?';
+  if (v === 0) return '0';
+  const a = Math.abs(v);
+  if (a >= 0.001 && a < 100000) return parseFloat(v.toPrecision(5)).toString();
+  return v.toExponential(3);
+}
+
+function fmtFull(v) {
+  if (v === null || isNaN(v)) return '—';
+  return v.toPrecision(7);
+}
+
+function niceTick(range, n) {
+  const r = range / n;
+  const m = Math.pow(10, Math.floor(Math.log10(r)));
+  const f = r / m;
+  return (f < 1.5 ? 1 : f < 3.5 ? 2 : f < 7.5 ? 5 : 10) * m;
+}
+
+function axisLimits(allXs, allYs, forceXmin0) {
+  let xmin = Infinity, xmax = -Infinity, ymin = Infinity, ymax = -Infinity;
+  allXs.forEach(xs => xs.forEach(v => { if(v<xmin)xmin=v; if(v>xmax)xmax=v; }));
+  allYs.forEach(ys => ys.forEach(v => { if(v<ymin)ymin=v; if(v>ymax)ymax=v; }));
+  if (!isFinite(xmin)) xmin = 0; if (!isFinite(xmax)) xmax = 1;
+  if (!isFinite(ymin)) ymin = 0; if (!isFinite(ymax)) ymax = 1;
+  if (forceXmin0) xmin = 0;
+  const xr = xmax - xmin || 1, yr = ymax - ymin || 1;
+  ymin -= yr * 0.04; ymax += yr * 0.06;
+  xmax += xr * 0.02;
+  return { xmin, xmax, ymin, ymax };
+}
+
+function drawCanvas(canvas, wrap, datasets, xLabel, yLabel, title, sliderXVal) {
+  const W = wrap.clientWidth, H = wrap.clientHeight;
+  canvas.width = W; canvas.height = H;
+  const ctx = canvas.getContext('2d');
+  ctx.clearRect(0, 0, W, H);
+  const pw = W - PAD.left - PAD.right;
+  const ph = H - PAD.top  - PAD.bottom;
+  if (pw < 30 || ph < 30) return;
+
+  const allXs = datasets.map(d => d.xs), allYs = datasets.map(d => d.ys);
+  const { xmin, xmax, ymin, ymax } = axisLimits(allXs, allYs, true);
+  const xr = xmax - xmin, yr = ymax - ymin;
+  const toX = x => PAD.left + (x - xmin) / xr * pw;
+  const toY = y => PAD.top  + (1 - (y - ymin) / yr) * ph;
+
+  // grid
+  ctx.strokeStyle = '#e0e4ec'; ctx.lineWidth = 1;
+  const xs = niceTick(xr, 6), ys = niceTick(yr, 5);
+  const x0 = Math.ceil(xmin / xs) * xs, y0 = Math.ceil(ymin / ys) * ys;
+  for (let x = x0; x <= xmax + xs*0.01; x += xs) {
+    const px = toX(x);
+    ctx.beginPath(); ctx.moveTo(px, PAD.top); ctx.lineTo(px, PAD.top+ph); ctx.stroke();
+  }
+  for (let y = y0; y <= ymax + ys*0.01; y += ys) {
+    const py = toY(y);
+    ctx.beginPath(); ctx.moveTo(PAD.left, py); ctx.lineTo(PAD.left+pw, py); ctx.stroke();
+  }
+
+  // border
+  ctx.strokeStyle = '#132a4c'; ctx.lineWidth = 1.5;
+  ctx.strokeRect(PAD.left, PAD.top, pw, ph);
+
+  // tick labels
+  ctx.fillStyle = '#132a4c'; ctx.font = '10px Arial'; ctx.textAlign = 'center';
+  for (let x = x0; x <= xmax + xs*0.01; x += xs)
+    ctx.fillText(fmtN(x), toX(x), PAD.top + ph + 13);
+  ctx.textAlign = 'right';
+  for (let y = y0; y <= ymax + ys*0.01; y += ys)
+    ctx.fillText(fmtN(y), PAD.left - 4, toY(y) + 4);
+
+  // axis labels
+  ctx.font = '11px Arial'; ctx.textAlign = 'center'; ctx.fillStyle = '#132a4c';
+  ctx.fillText(xLabel, PAD.left + pw/2, H - 4);
+  ctx.save(); ctx.translate(12, PAD.top + ph/2); ctx.rotate(-Math.PI/2);
+  ctx.fillText(yLabel, 0, 0); ctx.restore();
+
+  // title
+  ctx.font = 'bold 11px Arial'; ctx.textAlign = 'center';
+  ctx.fillText(title, PAD.left + pw/2, PAD.top - 10);
+
+  // legend
+  if (datasets.length > 0) {
+    ctx.font = '9px Arial'; ctx.textAlign = 'left';
+    let lx = PAD.left + 6, ly = PAD.top + 6;
+    datasets.forEach((d, i) => {
+      if (!d.label) return;
+      ctx.strokeStyle = d.color; ctx.lineWidth = 2;
+      ctx.beginPath(); ctx.moveTo(lx, ly + i*14 + 5); ctx.lineTo(lx+16, ly + i*14 + 5); ctx.stroke();
+      ctx.fillStyle = '#132a4c';
+      ctx.fillText(d.label, lx + 20, ly + i*14 + 9);
+    });
+  }
+
+  // curves
+  datasets.forEach(d => {
+    ctx.strokeStyle = d.color; ctx.lineWidth = 1.8;
+    ctx.beginPath(); let first = true;
+    d.xs.forEach((x, i) => {
+      const px = toX(x), py = toY(d.ys[i]);
+      if (first) { ctx.moveTo(px, py); first = false; } else ctx.lineTo(px, py);
+    });
+    ctx.stroke();
+  });
+
+  // slider line
+  if (sliderXVal !== null) {
+    const px = toX(sliderXVal);
+    if (px >= PAD.left && px <= PAD.left + pw) {
+      ctx.save();
+      ctx.strokeStyle = 'rgba(80,80,80,0.55)'; ctx.lineWidth = 1;
+      ctx.setLineDash([4,3]);
+      ctx.beginPath(); ctx.moveTo(px, PAD.top); ctx.lineTo(px, PAD.top+ph); ctx.stroke();
+      ctx.restore();
+    }
+  }
+}
+
+function renderAll() {
+  const isTimeFixed = curves.length > 0 ? curves[0].isTimeFixed : true;
+  const concXLabel = isTimeFixed ? 'Distance from Center' : 'Time';
+  const concYLabel = 'Concentration';
+  const concTitle  = 'Concentration Profile';
+
+  let fracYLabel;
+  if (model === 1)      fracYLabel = 'Fractional Uptake';
+  else if (model === 2) fracYLabel = 'Fractional Release';
+  else                  fracYLabel = 'Fraction of Sphere Filled';
+  rpFracTitle.textContent = fracYLabel;
+
+  const concDS = curves.map(c => ({ xs: c.concXs, ys: c.concYs, color: c.color, label: c.label }));
+  const fracDS = curves.map(c => ({ xs: c.fracXs, ys: c.fracYs, color: c.color, label: c.label }));
+
+  drawCanvas(topCanvas, topWrap, concDS, concXLabel, concYLabel, concTitle, sliderX_conc);
+  drawCanvas(botCanvas, botWrap, fracDS, 'Time', fracYLabel, fracYLabel, sliderX_frac);
+}
+
+// ── slider / cursor ────────────────────────────────────────────────────────
+
+function interp(xs, ys, xVal) {
+  if (xs.length === 0) return null;
+  let lo = 0, hi = xs.length - 1;
+  if (xVal <= xs[0]) return ys[0];
+  if (xVal >= xs[hi]) return ys[hi];
+  while (lo < hi - 1) {
+    const mid = (lo + hi) >> 1;
+    if (xs[mid] <= xVal) lo = mid; else hi = mid;
+  }
+  const t = (xVal - xs[lo]) / (xs[hi] - xs[lo] || 1);
+  return ys[lo] + t * (ys[hi] - ys[lo]);
+}
+
+function onTopMove(e) {
+  if (curves.length === 0) return;
+  const rect = topCanvas.getBoundingClientRect();
+  const mx = (e.clientX - rect.left) * (topCanvas.width / rect.width);
+  const pw = topCanvas.width - PAD.left - PAD.right;
+  if (mx < PAD.left || mx > PAD.left + pw) return;
+
+  const allXs = curves.map(c => c.concXs);
+  const allYs = curves.map(c => c.concYs);
+  const { xmin, xmax } = axisLimits(allXs, allYs, true);
+  const xVal = xmin + (mx - PAD.left) / pw * (xmax - xmin);
+  sliderX_conc = xVal;
+
+  const isTimeFixed = curves[0].isTimeFixed;
+  rpConcLabel.textContent = isTimeFixed ? 'Radius:' : 'Time:';
+  rpConcX.textContent = fmtFull(xVal);
+  // show all curves' Y values at this X
+  const yVals = curves.map(c => fmtFull(interp(c.concXs, c.concYs, xVal)));
+  rpConcY.textContent = yVals.join(' / ');
+  renderAll();
+}
+
+function onBotMove(e) {
+  if (curves.length === 0) return;
+  const rect = botCanvas.getBoundingClientRect();
+  const mx = (e.clientX - rect.left) * (botCanvas.width / rect.width);
+  const pw = botCanvas.width - PAD.left - PAD.right;
+  if (mx < PAD.left || mx > PAD.left + pw) return;
+
+  const allXs = curves.map(c => c.fracXs);
+  const allYs = curves.map(c => c.fracYs);
+  const { xmin, xmax } = axisLimits(allXs, allYs, true);
+  const xVal = xmin + (mx - PAD.left) / pw * (xmax - xmin);
+  sliderX_frac = xVal;
+
+  rpFracX.textContent = fmtFull(xVal);
+  const yVals = curves.map(c => fmtFull(interp(c.fracXs, c.fracYs, xVal)));
+  rpFracY.textContent = yVals.join(' / ');
+  renderAll();
+}
+
+function onTopLeave() {
+  sliderX_conc = null;
+  rpConcX.textContent = '—'; rpConcY.textContent = '—';
+  renderAll();
+}
+
+function onBotLeave() {
+  sliderX_frac = null;
+  rpFracX.textContent = '—'; rpFracY.textContent = '—';
+  renderAll();
+}
+
+// ── model selector UI ──────────────────────────────────────────────────────
+
+function applyModelUI() {
+  model = parseInt(modelSelect.value);
+  secD1.style.display       = (model <= 2) ? 'block' : 'none';
+  secD1D2.style.display     = (model === 3) ? 'block' : 'none';
+  secCOutside.style.display = (model === 1) ? 'block' : 'none';
+  secCInside.style.display  = (model === 2) ? 'block' : 'none';
+  secCBoth.style.display    = (model === 3) ? 'block' : 'none';
+  secRadioTime.style.display= (model <= 2) ? 'block' : 'none';
+  secM3Times.style.display  = (model === 3) ? 'block' : 'none';
+
+  if (model === 1) {
+    fixTimeLbl.textContent = 'Fixed Time for Uptake (t)';
+    fixDistLbl.textContent = 'Fixed Dist for Uptake (r)';
+    rpFracTitle.textContent = 'Fractional Uptake';
+  } else if (model === 2) {
+    fixTimeLbl.textContent = 'Fixed Time for Release (t)';
+    fixDistLbl.textContent = 'Fixed Dist for Release (r)';
+    rpFracTitle.textContent = 'Fractional Release';
+  } else {
+    rpFracTitle.textContent = 'Fraction of Sphere Filled';
+  }
+  curves = [];
+  updateCurveList();
+  sliderX_conc = null; sliderX_frac = null;
+  rpConcX.textContent = '—'; rpConcY.textContent = '—';
+  rpFracX.textContent = '—'; rpFracY.textContent = '—';
+  renderAll();
+  statusBar.textContent = `Spherical Diffusion — Model ${model} selected`;
+}
+
+// ── data modal ─────────────────────────────────────────────────────────────
+
+function buildModal() {
+  if (curves.length === 0) return;
+  if (modalCurve >= curves.length) modalCurve = 0;
+
+  // Graph tabs
+  const graphNames = ['Concentration', 'Fractional'];
+  graphTabs.innerHTML = '';
+  graphNames.forEach((name, gi) => {
+    const btn = document.createElement('div');
+    btn.className = 'modal-tab' + (gi === modalGraph ? ' active' : '');
+    btn.textContent = name;
+    btn.addEventListener('click', () => { modalGraph = gi; buildModal(); });
+    graphTabs.appendChild(btn);
+  });
+
+  // Curve tabs
+  curveTabs.innerHTML = '';
+  curves.forEach((cv, ci) => {
+    const btn = document.createElement('div');
+    btn.className = 'modal-tab' + (ci === modalCurve ? ' active' : '');
+    btn.textContent = cv.label;
+    btn.style.borderTop = `3px solid ${cv.color}`;
+    btn.addEventListener('click', () => { modalCurve = ci; buildModal(); });
+    curveTabs.appendChild(btn);
+  });
+
+  // Data content
+  const cv = curves[modalCurve];
+  let text = '';
+  if (modalGraph === 0) {
+    const xLabel = cv.isTimeFixed ? 'r' : 't';
+    text = `${xLabel}\tC\n` + cv.concXs.map((x, i) => `${x}\t${cv.concYs[i]}`).join('\n');
+  } else {
+    text = `t\tf\n` + cv.fracXs.map((x, i) => `${x}\t${cv.fracYs[i]}`).join('\n');
+  }
+  dataModalText.value = text;
+}
+
+function downloadCsv() {
+  if (!curves.length) return;
+  const cv = curves[modalCurve];
+  let text = '';
+  if (modalGraph === 0) {
+    const xLabel = cv.isTimeFixed ? 'r' : 't';
+    text = `${xLabel},C\n` + cv.concXs.map((x, i) => `${x},${cv.concYs[i]}`).join('\n');
+  } else {
+    text = `t,f\n` + cv.fracXs.map((x, i) => `${x},${cv.fracYs[i]}`).join('\n');
+  }
+  const blob = new Blob([text], { type: 'text/csv' });
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  const gname = modalGraph === 0 ? 'conc' : 'frac';
+  a.download = `spherical_m${model}_${gname}_${cv.label.replace(/[^a-z0-9]/gi,'_')}.csv`;
+  a.click();
+}
+
+// ── wiring ─────────────────────────────────────────────────────────────────
+
+window.addEventListener('resize', renderAll);
+modelSelect.addEventListener('change', applyModelUI);
+
+fixTimeRadio.addEventListener('change', () => { fixTimeField.disabled = false; fixDistField.disabled = true; });
+fixDistRadio.addEventListener('change', () => { fixTimeField.disabled = true;  fixDistField.disabled = false; });
+
+autoScaleRad.addEventListener('change', () => { tminField.disabled = true;  tmaxField.disabled = true;  });
+manualScRad.addEventListener('change',  () => { tminField.disabled = false; tmaxField.disabled = false; });
+
+document.getElementById('computeBtn').addEventListener('click', computeAndPlot);
+document.getElementById('clearBtn').addEventListener('click', () => {
+  curves = [];
+  updateCurveList();
+  sliderX_conc = null; sliderX_frac = null;
+  rpConcX.textContent = '—'; rpConcY.textContent = '—';
+  rpFracX.textContent = '—'; rpFracY.textContent = '—';
+  errMsg.textContent = '';
+  renderAll();
+  statusBar.textContent = 'Spherical Diffusion — cleared';
+});
+document.getElementById('showDataBtn').addEventListener('click', () => {
+  if (!curves.length) { errMsg.textContent = 'No curves to show'; return; }
+  modalGraph = 0; modalCurve = 0;
+  buildModal();
+  dataModal.style.display = 'flex';
+});
+document.getElementById('dataModalClose').addEventListener('click', () => { dataModal.style.display = 'none'; });
+document.getElementById('dlCsvBtn').addEventListener('click', downloadCsv);
+dataModal.addEventListener('click', e => { if (e.target === dataModal) dataModal.style.display = 'none'; });
+
+topCanvas.addEventListener('mousemove', onTopMove);
+botCanvas.addEventListener('mousemove', onBotMove);
+topCanvas.addEventListener('mouseleave', onTopLeave);
+botCanvas.addEventListener('mouseleave', onBotLeave);
+
+// ── init ───────────────────────────────────────────────────────────────────
+window.addEventListener('load', () => {
+  applyModelUI();
+  setTimeout(() => renderAll(), 60);
+});
+
+</script>
+</body>
+</html>
