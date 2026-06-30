@@ -13,7 +13,7 @@
 {
 "question": "Which soil does the measured dataset labeled 'Soil 2' most likely represent?",
 "options": {
-"A) Soil 2 = Sand": true,
+"A) Soil 2 = Sand": false,
 "B) Soil 2 = Loam": false,
 "C) Soil 2 = Silt": true,
 "D) Soil 2 = Clay": false
