@@ -350,17 +350,46 @@ st.markdown(
 
 columns_i1 = st.columns((1,1), gap = 'large')
 
+# with columns_i1[0]:
+#     tr_soil1 = st.slider(f':green-background[θr soil1]',0.0,0.5,0.2,0.001)
+#     ts_soil1 = st.slider(f':green-background[θs soil1]',0.0,0.5,0.2,0.001)
+#     alpha_soil1 = st.slider(f':green-background[α soil1]',0.0,0.1,0.05,0.0001)
+#     n_soil1 = st.slider(f':green-background[n soil1]',0.0,5.0,2.5,0.05)
+
+# with columns_i1[1]:
+#     tr_soil2 = st.slider(f':blue-background[θr soil2]',0.0,0.5,0.3,0.001)
+#     ts_soil2 = st.slider(f':blue-background[θs soil2]',0.0,0.5,0.3,0.001)
+#     alpha_soil2 = st.slider(f':blue-background[α soil2]',0.0,0.1,0.05,0.0001)
+#     n_soil2 = st.slider(f':blue-background[n soil2]',0.0,5.0,2.5,0.05)   
+
 with columns_i1[0]:
-    tr_soil1 = st.slider(f':green-background[θr soil1]',0.0,0.5,0.2,0.001)
-    ts_soil1 = st.slider(f':green-background[θs soil1]',0.0,0.5,0.2,0.001)
-    alpha_soil1 = st.slider(f':green-background[α soil1]',0.0,0.1,0.05,0.0001)
-    n_soil1 = st.slider(f':green-background[n soil1]',0.0,5.0,2.5,0.05)
+    tr_soil1 = st.slider(
+        ':green-background[θr soil1]', min_value=0.0, max_value=0.5, value=0.2, step=0.001, format="%.3f"
+    )
+    ts_soil1 = st.slider(
+        ':green-background[θs soil1]', min_value=0.0, max_value=0.5, value=0.2, step=0.001, format="%.3f"
+    )
+    alpha_soil1 = st.slider(
+        ':green-background[α soil1]', min_value=0.0, max_value=0.1, value=0.05, step=0.0001, format="%.4f"
+    )
+    n_soil1 = st.slider(
+        ':green-background[n soil1]', min_value=0.0, max_value=5.0, value=2.5, step=0.05, format="%.2f"
+    )
 
 with columns_i1[1]:
-    tr_soil2 = st.slider(f':blue-background[θr soil2]',0.0,0.5,0.3,0.001)
-    ts_soil2 = st.slider(f':blue-background[θs soil2]',0.0,0.5,0.3,0.001)
-    alpha_soil2 = st.slider(f':blue-background[α soil2]',0.0,0.1,0.05,0.0001)
-    n_soil2 = st.slider(f':blue-background[n soil2]',0.0,5.0,2.5,0.05)   
+    tr_soil2 = st.slider(
+        ':blue-background[θr soil2]', min_value=0.0, max_value=0.5, value=0.3, step=0.001, format="%.3f"
+    )
+    ts_soil2 = st.slider(
+        ':blue-background[θs soil2]', min_value=0.0, max_value=0.5, value=0.3, step=0.001, format="%.3f"
+    )
+    alpha_soil2 = st.slider(
+        ':blue-background[α soil2]', min_value=0.0, max_value=0.1, value=0.05, step=0.0001, format="%.4f"
+    )
+    n_soil2 = st.slider(
+        ':blue-background[n soil2]', min_value=0.0, max_value=5.0, value=2.5, step=0.05, format="%.2f"
+    )
+
 
 #-- Generating the range of head values
 h_values = np.logspace(0, 6, 100)
