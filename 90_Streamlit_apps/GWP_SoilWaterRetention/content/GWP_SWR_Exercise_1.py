@@ -224,11 +224,7 @@ def render_assessment(filename, title="📋 Assessment", max_questions=4):
             if i < len(questions):
                 with col:
                     q = questions[i]
-                    st.markdown(f"**Q{i+1}. {q['question']}**")
-                    
-                    # DEBUG LINE
-                    st.write(q["options"])
-                    
+                    st.markdown(f"**Q{i+1}. {q['question']}**")                   
                     multiple_choice(
                         question=" ",
                         options_dict=q["options"],
