@@ -3,7 +3,7 @@ import math
 import numpy as np
 import matplotlib.pyplot as plt
 import streamlit as st
-#import streamlit_book as stb
+import streamlit_book as stb
 import json
 from streamlit_book import multiple_choice
 from streamlit_scroll_to_top import scroll_to_here
