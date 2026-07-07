@@ -1,0 +1,3 @@
+Quanta água permanece no solo após a infiltração? Quando ela se torna indisponível para as plantas?
+    
+A curva de retenção de água no solo relaciona o teor de água à sucção capilar — revelando com que intensidade a água é retida, quanto está disponível e quando se torna inacessível. Compreender essa curva é fundamental para manejar a irrigação, estimar a recarga e prever o estresse hídrico das plantas.

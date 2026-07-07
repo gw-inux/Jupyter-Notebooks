@@ -1,0 +1,1 @@
+**Condutividade hidráulica relativa expressa em termos do teor de água adimensional**

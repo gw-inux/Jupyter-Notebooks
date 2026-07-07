@@ -1,0 +1,5 @@
+Aqui, $\\sigma_{SG}$ é a tensão superficial sólido–gás, $\\sigma_{SL}$ é a tensão superficial sólido–líquido, e $\\sigma_{GL}$ é a tensão superficial líquido–gás.
+Quando $\\theta < 90^{\\circ}$, o líquido molha a superfície e se espalha — é chamado de **fluido molhante** (as forças adesivas dominam e o líquido se espalha). Quando $\\theta > 90^{\\circ}$, o líquido não se espalha — é um **fluido não molhante** (as forças coesivas dominam, e o líquido se acumula formando gotículas).
+Em fluidos imiscíveis, a tensão superficial (**Figura 2**) desempenha um papel importante, introduzindo um parâmetro-chave: a pressão capilar (também chamada de sucção capilar, $\\psi$), que é influenciada pelo teor de água do solo.
+         
+:point_right: Para saber mais sobre tensão superficial, confira o vídeo a seguir [link direto](https://www.youtube.com/watch?v=zMzqiAuOSz0) :clapper:

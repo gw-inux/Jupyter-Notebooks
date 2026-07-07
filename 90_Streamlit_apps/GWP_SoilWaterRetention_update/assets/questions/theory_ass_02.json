@@ -1,0 +1,46 @@
+[
+{
+"question": "Which parameters influence capillary pressure according to the Young–Laplace equation? (Mark ALL correct answers)",
+"options": {
+"A) Surface tension of the liquid": true,
+"B) Radius of curvature of the meniscus": true,
+"C) Soil porosity": false,
+"D) Contact angle between liquid and solid": true
+},
+"success": "✅ Correct. Capillary pressure depends on surface tension, contact angle, and meniscus radius.",
+"error": "❌ Capillary pressure does not depend on porosity but is influenced by interfacial properties and geometry."
+},
+{
+"question": "What happens to capillary pressure when the pore radius decreases? (Mark ALL correct answers)",
+"options": {
+"A) Capillary pressure increases (becomes more negative)": true,
+"B) Capillary pressure decreases": false,
+"C) Water is retained more tightly in the smaller pores": true,
+"D) Gravity dominates and drains the water more easily": false
+},
+"success": "✅ Yes! Smaller pores amplify capillary forces, increasing suction and retaining water more tightly.",
+"error": "❌ Capillary pressure increases with decreasing pore size—this helps retain water in fine pores."
+},
+{
+"question": "Which conditions favor upward capillary movement of water in soil? (Mark ALL correct answers)",
+"options": {
+"A) Fine pores with small radius of curvature": true,
+"B) High capillary suction (negative pressure head)": true,
+"C) Fully saturated soil profile": false,
+"D) Contact angles greater than 90°": false
+},
+"success": "✅ Correct. Capillarity is strongest in fine pores with strong suction and good wetting conditions.",
+"error": "❌ Upward movement is driven by capillary suction in unsaturated soils, not in fully saturated or non-wetting conditions."
+},
+{
+"question": "Why can water remain suspended in soil after infiltration has stopped? (Mark ALL correct answers)",
+"options": {
+"A) Capillary suction holds water in small pores": true,
+"B) Pore-scale forces overcome gravity in unsaturated soils": true,
+"C) Hydrostatic pressure becomes positive": false,
+"D) Matric potential becomes constant": false
+},
+"success": "✅ Well done. Capillary and matric forces retain water even without flow.",
+"error": "❌ Capillary suction and pore-scale forces—not positive pressure—allow water to remain held in soil."
+}
+]

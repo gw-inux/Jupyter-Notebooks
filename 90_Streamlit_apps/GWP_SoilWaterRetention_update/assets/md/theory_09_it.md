@@ -1,0 +1,3 @@
+Perché l’acqua nel suolo rimane sospesa nei pori fini, anche dopo la cessazione della pioggia? Che cosa governa la resistenza al drenaggio e il movimento dell’umidità contro la gravità?
+    
+La pressione capillare deriva dalla curvatura delle interfacce fluide nei pori del suolo e svolge un ruolo centrale nel determinare come l’acqua viene trattenuta, ridistribuita e drenata nella zona insatura. La seguente figura interattiva visualizza la risalita capillare sulla base dell’equazione di Young–Laplace (la seguente sezione espandibile fornisce ulteriori informazioni su questo argomento).

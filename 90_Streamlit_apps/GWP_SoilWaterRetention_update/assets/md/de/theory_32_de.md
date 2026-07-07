@@ -1,0 +1,1 @@
+Die Diagramme veranschaulichen die Bodenwasser-Retentionskurve sowie die Beziehungen zwischen Wassergehalt, hydraulischer Leitfähigkeit und Diffusivität auf Grundlage von :blue-background[[van Genuchten (1980)](https://www.researchgate.net/publication/250125437_A_Closed-form_Equation_for_Predicting_the_Hydraulic_Conductivity_of_Unsaturated_Soils1)].

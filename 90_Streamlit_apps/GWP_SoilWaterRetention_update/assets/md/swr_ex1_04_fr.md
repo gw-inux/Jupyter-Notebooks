@@ -1,0 +1,5 @@
+Dans cet exercice, vous avez exploré la manière d’ajuster les paramètres du modèle de van Genuchten à des données mesurées de rétention d’eau du sol pour deux sols contrastés. En modifiant les paramètres $\theta_r$ θ<sub>r</sub>, $\theta_s$ θ<sub>s</sub>, $\alpha$ α et $n$, vous avez acquis une compréhension de la façon dont chacun influence la forme et la pente de la courbe de rétention d’eau du sol.
+
+Vous avez également développé des compétences pratiques en calibration et évalué visuellement l’ajustement du modèle — une tâche fondamentale en physique des sols et en hydrologie de la zone non saturée.
+
+Gardez à l’esprit que l’ajustement en contexte réel fait souvent appel à des techniques d’optimisation, mais cet exercice développe l’intuition essentielle nécessaire pour comprendre comment le comportement de rétention varie selon les types de sols.

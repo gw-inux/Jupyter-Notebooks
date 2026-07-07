@@ -1,0 +1,1 @@
+Les graphiques suivants montrent les relations entre les différentes mesures. Vous pouvez choisir de tracer les relations pour différents matériaux de sol.

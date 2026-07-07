@@ -1,0 +1,3 @@
+#### Diffusivité hydraulique $D$
+    
+La diffusivité hydraulique **$D(\\Theta)$** décrit la manière dont les gradients de teneur en eau se propagent dans le sol au cours du temps. Elle combine les variations de la teneur en eau et de la conductivité afin de rendre compte de la *rapidité avec laquelle l’humidité se redistribue* dans le sol. Elle régit la vitesse des fronts de dessèchement ou d’humectation.

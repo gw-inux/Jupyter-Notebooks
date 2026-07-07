@@ -1,0 +1,1 @@
+A continuación, la Retención de Agua en el Suelo se calcula con rutinas de Python. El gráfico interactivo demuestra la respuesta del comportamiento de retención de agua en el suelo ante cambios en los parámetros. Las instrucciones lo guían a través del proceso de investigación del gráfico interactivo.

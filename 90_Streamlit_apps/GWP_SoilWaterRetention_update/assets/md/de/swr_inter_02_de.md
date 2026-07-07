@@ -1,0 +1,1 @@
+Anschließend wird die Saugspannungs-Sättigungsbeziehung mit Python-Routinen berechnet. Die interaktive Grafik zeigt, wie das Wasserretentionsverhalten des Bodens auf Parameteränderungen reagiert. Die Anweisungen führen Sie durch die Untersuchung der interaktiven Grafik.

@@ -1,0 +1,68 @@
+[
+{
+"question": "A) In the app, what does a steep slope of the SWRC indicate in the \\u03b8–h space? (Mark ALL correct answers)",
+"options": {
+"A) Low air-entry pressure": true,
+"B) Gradual drainage behavior": false,
+"C) High pore-size uniformity": true,
+"D) Small changes in suction lead to large changes in water content": true
+},
+"success": "✅ Correct. Steeper SWRCs reflect abrupt desaturation typical of sandy soils.",
+"error": "❌ A steep slope suggests sharp drainage and uniform pore sizes, not gradual changes."
+},
+{
+"question": "A) When comparing two datasets in the app, what might cause one soil to have a higher effective field capacity than another? (Mark ALL correct answers)",
+"options": {
+"A) Lower PWP and higher FC values": true,
+"B) A higher saturated water content (\\u03b8_s)": true,
+"C) A lower residual water content (\\u03b8_r)": true,
+"D) An n value near 1.0": false
+},
+"success": "✅ Correct. eFC increases with lower PWP, higher FC, and greater pore volume.",
+"error": "❌ eFC is not improved by a very low n value; that typically flattens the curve."
+},
+{
+"question": "A) How does the \\u03b1 parameter affect the position of the retention curve? (Mark ALL correct answers)",
+"options": {
+"A) Higher \\u03b1 shifts desaturation to lower suction heads": true,
+"B) Lower \\u03b1 corresponds to tighter soils like clay": true,
+"C) \\u03b1 has no impact on the curve shape": false,
+"D) \\u03b1 primarily influences saturated conductivity": false
+},
+"success": "✅ Exactly. \\u03b1 controls how early drainage begins and reflects pore entry pressure.",
+"error": "❌ \\u03b1 has a key influence on suction behavior, not conductivity."
+},
+{
+"question": "A) Which conclusions can be drawn by comparing two contrasting SWRCs? (Mark ALL correct answers)",
+"options": {
+"A) Differences in plant-available water can be quantified": true,
+"B) The soil with lower FC always has higher PWP": false,
+"C) Coarse soils desaturate at lower suction": true,
+"D) Texture influences both retention and conductivity behavior": true
+},
+"success": "✅ Well done. These comparisons highlight how retention behavior varies with texture.",
+"error": "❌ Remember: FC and PWP are both texture-dependent and don't scale linearly."
+},
+{
+"question": "A) When comparing relative permeability curves derived from two soils, what trends typically appear? (Mark ALL correct answers)",
+"options": {
+"A) Sandy soils show faster decline in relative permeability with decreasing water content": false,
+"B) Fine-textured soils retain higher relative permeability over a wider water content range": false,
+"C) Coarse soils lose conductivity quickly as they desaturate": true,
+"D) Relative permeability decreases nonlinearly with water content": true
+},
+"success": "✅ Correct. Coarse soils desaturate and lose conductivity rapidly. The relationship is nonlinear in all cases.",
+"error": "❌ Fine-textured soils typically retain water longer but do not preserve high relative permeability."
+},
+{
+"question": "A) What conclusions can be drawn when both datasets have identical \\u03b8_r and \\u03b8_s values, but different n and \\u03b1? (Mark ALL correct answers)",
+"options": {
+"A) The plant-available water may still differ": true,
+"B) The shapes of the retention curves will be identical": false,
+"C) The steeper curve indicates faster desaturation": true,
+"D) FC and PWP may be different even if \\u03b8_r and \\u03b8_s match": true
+},
+"success": "✅ Correct. Even with equal saturation limits, α and n shape the curve and thus affect FC and PWP.",
+"error": "❌ θ_r and θ_s define the bounds, but α and n control how the water drains in between."
+}
+]

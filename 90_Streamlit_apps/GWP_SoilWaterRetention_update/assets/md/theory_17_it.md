@@ -1,0 +1,1 @@
+Comprendere la curva di ritenzione idrica del suolo è essenziale per un'efficace **pianificazione dell'irrigazione**, **gestione delle colture** e **valutazione del rischio di siccità**. I concetti agricoli chiave includono **capacità di campo, punto di appassimento permanente e altro ancora**.

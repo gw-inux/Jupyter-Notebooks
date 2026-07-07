@@ -1,0 +1,46 @@
+[
+{
+"question": "What causes the formation of curved menisci in soil pores? (Mark ALL correct answers)",
+"options": {
+"A) Gravity acting downward on the fluid": false,
+"B) Cohesive forces between water molecules": true,
+"C) Electrostatic repulsion between fluids": false,
+"D) Adhesive forces between water and solid surfaces": true
+},
+"success": "✅ Correct. Menisci result from both cohesive and adhesive molecular forces at the pore scale.",
+"error": "❌ Not quite. Curved menisci form due to intermolecular forces, not gravity or electrostatics."
+},
+{
+"question": "Which statements about surface tension are true? (Mark ALL correct answers)",
+"options": {
+"A) It arises at interfaces between immiscible fluids": true,
+"B) It resists the separation of two fluid phases": true,
+"C) It increases with increasing pore radius": false,
+"D) It only occurs in homogeneous porous media": false
+},
+"success": "✅ Well done. Surface tension exists at fluid interfaces and resists their separation.",
+"error": "❌ Surface tension does not require homogeneity and decreases with increasing pore radius."
+},
+{
+"question": "Which of the following statements about contact angle are correct? (Mark ALL correct answers)",
+"options": {
+"A) A contact angle less than 90° indicates a wetting fluid": true,
+"B) A contact angle greater than 90° leads to fluid spreading": false,
+"C) Contact angle depends on surface and interfacial tensions": true,
+"D) A zero contact angle means a non-wetting fluid": false
+},
+"success": "✅ Correct. The contact angle reflects wetting behavior and is defined by interfacial tensions.",
+"error": "❌ A contact angle < 90° means wetting. θ > 90° leads to beading, not spreading."
+},
+{
+"question": "How does wettability affect water behavior in soil? (Mark ALL correct answers)",
+"options": {
+"A) It determines if water beads or spreads on grain surfaces": true,
+"B) It influences capillary rise and retention": true,
+"C) It defines soil porosity": false,
+"D) It affects how air displaces water during drainage": true
+},
+"success": "✅ Yes! Wettability governs spreading, capillarity, and phase displacement in porous media.",
+"error": "❌ Porosity is unrelated to wettability. However, wettability strongly influences how fluids behave in soil."
+}
+]

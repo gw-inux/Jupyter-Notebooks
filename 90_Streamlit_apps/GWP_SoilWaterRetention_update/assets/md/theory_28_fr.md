@@ -1,0 +1,1 @@
+**Conductivité hydraulique relative exprimée en fonction de la teneur en eau adimensionnelle**

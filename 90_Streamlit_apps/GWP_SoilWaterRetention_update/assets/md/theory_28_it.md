@@ -1,0 +1,1 @@
+**Conducibilità idraulica relativa espressa in termini del contenuto d’acqua adimensionale**

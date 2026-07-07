@@ -1,0 +1,1 @@
+Compreender a curva de retenção de água no solo é essencial para um **planejamento eficaz da irrigação**, **manejo de culturas** e **avaliação do risco de seca**. Os principais conceitos agrícolas incluem **capacidade de campo, ponto de murcha permanente e outros**.

@@ -1,0 +1,3 @@
+Pourquoi l’eau dans le sol reste-t-elle suspendue dans les pores fins, même après l’arrêt de la pluie ? Qu’est-ce qui régit la résistance au drainage et le mouvement de l’humidité contre la gravité ?
+    
+La pression capillaire résulte de la courbure des interfaces fluides dans les pores du sol et joue un rôle central dans la détermination de la manière dont l’eau est retenue, redistribuée et drainée dans la zone non saturée. La figure interactive suivante visualise la remontée capillaire à partir de l’équation de Young–Laplace (la section extensible suivante fournit davantage d’informations sur ce sujet).

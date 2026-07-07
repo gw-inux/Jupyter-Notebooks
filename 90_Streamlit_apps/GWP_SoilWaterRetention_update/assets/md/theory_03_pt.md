@@ -1,0 +1,3 @@
+Por que a água pode subir em poros finos do solo, contrariando a gravidade? O que determina se a água se espalha sobre os grãos ou se retrai em gotículas?
+    
+Na escala dos poros, interfaces fluidas curvas se formam devido a forças coesivas e adesivas, criando meniscos que geram pressão capilar. A molhabilidade — governada pela tensão superficial e pelo ângulo de contato — controla como a água entra, move-se através do solo não saturado e é retida nele.

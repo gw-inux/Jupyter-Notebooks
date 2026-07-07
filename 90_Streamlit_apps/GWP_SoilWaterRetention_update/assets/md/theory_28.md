@@ -1,0 +1,1 @@
+**Relative Hydraulic Conductivity expressed in terms of the dimensionless water content**

@@ -1,0 +1,1 @@
+La **presión capilar** es la diferencia de presión entre el fluido no mojante y el fluido mojante. La ecuación de **Young–Laplace** relaciona la presión capilar con las propiedades del medio y de los fluidos, así como con el grado de saturación, de la siguiente manera,

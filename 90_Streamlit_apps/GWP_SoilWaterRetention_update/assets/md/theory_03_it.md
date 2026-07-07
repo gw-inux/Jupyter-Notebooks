@@ -1,0 +1,3 @@
+Perché l'acqua può risalire nei pori fini del suolo, sfidando la gravità? Che cosa determina se l'acqua si distribuisce sui granuli o si ritira formando gocce?
+    
+Alla scala dei pori, le interfacce fluide curve si formano a causa delle forze coesive e adesive, creando menischi che generano pressione capillare. La bagnabilità — governata dalla tensione superficiale e dall'angolo di contatto — controlla il modo in cui l'acqua entra, si muove e viene trattenuta nel suolo insaturo.

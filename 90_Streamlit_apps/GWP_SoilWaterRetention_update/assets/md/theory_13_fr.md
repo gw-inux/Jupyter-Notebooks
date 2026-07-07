@@ -1,0 +1,3 @@
+Quelle quantité d’eau reste dans le sol après l’infiltration ? Quand devient-elle indisponible pour les plantes ?
+    
+La courbe de rétention d’eau du sol relie la teneur en eau à la succion capillaire — révélant avec quelle force l’eau est retenue, quelle quantité est disponible et à quel moment elle devient inaccessible. Comprendre cette courbe est essentiel pour gérer l’irrigation, estimer la recharge et prédire le stress hydrique des plantes.

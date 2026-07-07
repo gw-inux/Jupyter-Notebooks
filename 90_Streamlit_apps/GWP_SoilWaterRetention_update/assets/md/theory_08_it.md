@@ -1,0 +1,5 @@
+Qui, $\\sigma_{SG}$ è la tensione superficiale solido–gas, $\\sigma_{SL}$ è la tensione superficiale solido–liquido e $\\sigma_{GL}$ è la tensione superficiale liquido–gas.
+Quando $\\theta < 90^{\\circ}$, il liquido bagna la superficie e si distribuisce su di essa: è detto **fluido bagnante** (le forze adesive dominano e il liquido si espande). Quando $\\theta > 90^{\\circ}$, il liquido non si distribuisce sulla superficie: è un **fluido non bagnante** (le forze coesive dominano e il liquido si raccoglie formando goccioline).
+Nei fluidi immiscibili, la tensione superficiale (**Figura 2**) svolge un ruolo importante, introducendo un parametro chiave: la pressione capillare (detta anche suzione capillare, $\\psi$), che è influenzata dal contenuto d’acqua del suolo.
+         
+:point_right: Per approfondire la tensione superficiale, guarda il seguente video [link diretto](https://www.youtube.com/watch?v=zMzqiAuOSz0) :clapper:

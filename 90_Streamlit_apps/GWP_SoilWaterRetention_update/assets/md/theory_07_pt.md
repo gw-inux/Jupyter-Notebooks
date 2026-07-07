@@ -1,0 +1,1 @@
+No equilíbrio, o **ângulo de contato** $\\theta$ entre um líquido e um sólido é definido pela **equação de Young**:

@@ -1,0 +1,1 @@
+Comprender la curva de retención de agua del suelo es esencial para una **planificación del riego**, una **gestión de cultivos** y una **evaluación del riesgo de sequía** eficaces. Los conceptos agrícolas clave incluyen la **capacidad de campo, el punto de marchitez permanente y otros**.

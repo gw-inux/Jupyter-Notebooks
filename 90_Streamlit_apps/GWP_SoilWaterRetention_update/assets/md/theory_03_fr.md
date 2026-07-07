@@ -1,0 +1,3 @@
+Pourquoi l’eau peut-elle remonter dans les pores fins du sol, défiant la gravité ? Qu’est-ce qui détermine si l’eau s’étale sur les grains ou se rétracte en gouttelettes ?
+    
+À l’échelle des pores, des interfaces fluides courbes se forment sous l’effet des forces cohésives et adhésives, créant des ménisques qui génèrent une pression capillaire. La mouillabilité — régie par la tension superficielle et l’angle de contact — contrôle la manière dont l’eau pénètre, se déplace et est retenue dans le sol non saturé.

@@ -1,0 +1,3 @@
+¿Cuánta agua permanece en el suelo después de la infiltración? ¿Cuándo deja de estar disponible para las plantas?
+    
+La curva de retención de agua del suelo relaciona el contenido de agua con la succión capilar, revelando con qué fuerza se retiene el agua, cuánta está disponible y cuándo se vuelve inaccesible. Comprender esta curva es fundamental para gestionar el riego, estimar la recarga y predecir el estrés hídrico de las plantas.

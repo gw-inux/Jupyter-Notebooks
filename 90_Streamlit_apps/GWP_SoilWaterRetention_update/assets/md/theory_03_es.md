@@ -1,0 +1,3 @@
+¿Por qué puede el agua ascender en poros finos del suelo, desafiando la gravedad? ¿Qué determina si el agua se extiende sobre los granos o se retrae formando gotículas?
+    
+A escala de poro, se forman interfaces fluidas curvas debido a fuerzas cohesivas y adhesivas, creando meniscos que generan presión capilar. La humectabilidad —gobernada por la tensión superficial y el ángulo de contacto— controla cómo el agua entra, se desplaza a través del suelo no saturado y queda retenida en él.

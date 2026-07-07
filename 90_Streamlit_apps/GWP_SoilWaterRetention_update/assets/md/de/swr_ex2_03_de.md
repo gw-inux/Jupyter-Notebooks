@@ -1,0 +1,1 @@
+Diese Übung führte Sie durch die Anpassung des van-Genuchten-Modells an Retentionsdaten verschiedener Böden. Durch die Analyse der resultierenden Kurven und Kenngrößen erhielten Sie ein besseres Verständnis dafür, wie hydraulische Bodeneigenschaften die pflanzenverfügbare Wassermenge und das Wasserbewegungsverhalten beeinflussen.

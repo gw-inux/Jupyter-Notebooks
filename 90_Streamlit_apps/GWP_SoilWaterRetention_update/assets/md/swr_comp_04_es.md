@@ -1,0 +1,1 @@
+El gráfico interactivo permite comparar diferentes conjuntos de datos. Hay varios conjuntos de datos disponibles.

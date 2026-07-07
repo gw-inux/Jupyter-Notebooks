@@ -1,0 +1,1 @@
+**Conductividad hidráulica relativa expresada en términos de la carga de presión**

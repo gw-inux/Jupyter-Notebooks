@@ -1,0 +1,1 @@
+**Your task**: Given the suction pressure and water content data for two soil types—sand and silt—determine the best-fitting parameters.

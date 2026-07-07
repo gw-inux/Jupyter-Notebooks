@@ -1,0 +1,1 @@
+À l’équilibre, l’**angle de contact** $\\theta$ entre un liquide et un solide est défini par **l’équation de Young** :

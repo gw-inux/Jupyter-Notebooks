@@ -1,0 +1,3 @@
+Why can water rise in fine soil pores, defying gravity? What determines whether water spreads over grains or retreats into droplets?
+    
+At the pore scale, curved fluid interfaces form due to cohesive and adhesive forces, creating menisci that generate capillary pressure. Wettability — governed by surface tension and contact angle — controls how water enters, moves through, and is retained in the unsaturated soil.

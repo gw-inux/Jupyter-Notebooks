@@ -1,0 +1,3 @@
+Warum bleibt Wasser im Boden in feinen Poren gehalten – selbst nachdem der Regen aufgehört hat? Wodurch werden der Widerstand gegen Perkolation und die Bewegung von Feuchtigkeit entgegen der Schwerkraft bestimmt?
+    
+Kapillardruck entsteht durch die Krümmung von Fluidgrenzflächen in Bodenporen und spielt eine zentrale Rolle dafür, wie Wasser in der ungesättigten Zone zurückgehalten, umverteilt und perkoliert wird. Die folgende interaktive Abbildung visualisiert den kapillaren Aufstieg auf Grundlage der Young–Laplace-Gleichung (der folgende aufklappbare Abschnitt enthält weitere Informationen zu diesem Thema).

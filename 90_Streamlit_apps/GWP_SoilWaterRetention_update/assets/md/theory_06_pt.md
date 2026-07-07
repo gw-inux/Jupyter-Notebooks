@@ -1,0 +1,1 @@
+As moléculas na interface formam uma fina camada *semelhante a uma membrana* (**Figura 4**), que ajusta sua geometria para minimizar a área superficial ocupada. A quantidade de trabalho necessária para separar duas substâncias, $W_{ik}$, é dada pela **fórmula de Dupré**:

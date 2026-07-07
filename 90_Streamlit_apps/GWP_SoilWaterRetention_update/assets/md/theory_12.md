@@ -1,0 +1,11 @@
+Where $\\P_{c}$ is the capillary pressure (also called capillary suction); $\sigma$ is surface tension of the liquid; $\theta$ is the contact angle between liquid and solid; and $r$ is the radius of the curvature of the meniscus (effectively, pore radius).
+
+A **decrease in meniscus radius** ($r$) corresponds to an **increase in capillary pressure** ($P_{c}$): when a water-saturated soil drains, the water retreats into **smaller pores**, where it is held more tightly. This happens because **smaller pores have a higher surface-area-to-volume ratio**, meaning a greater proportion of the water is in contact with the solid surface. This amplifies surface tension effects, resulting in **stronger capillary forces** that resist gravity-driven drainage. On the other hand, an **increase in meniscus radius** corresponds to a **decrease in capillary pressure**: during imbibition, the wetting fluid advances into larger pores and displaces a nonwetting fluid by capillary forces alone. 
+        
+The curvature of each meniscus reflects the local capillary pressure, which depends on the size and shape of the pore — the smallest radius of curvature occurs in the narrowest pores. As a result, draining smaller pores requires higher capillary pressures (more negative), while larger pores drain at lower capillary pressures. 
+     
+When no water is entering or leaving the system, **capillary forces continue to act**: they pull water into and retain it within smaller pores. In fact, the **capillary suction in these fine pores is strong enough to hold the water against gravity**, which is why water can remain suspended in the soil even after drainage has stopped. Capillary pressure stops moving water upward into smaller pores when the capillary potential is balanced by other forces, primarily gravitational potential and matric potential.
+            
+The relationship between the capillary pressure and saturations of two fluid phases that occupy the pores in the unsaturated zone, is known as the **retention curve**.
+        
+:point_right: To know more about suction in capillary tubes, check the following video [direct link](https://www.youtube.com/watch?v=9gm81GghMrk) :clapper:

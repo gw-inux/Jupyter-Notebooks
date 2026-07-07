@@ -1,0 +1,1 @@
+Subsequentemente, a retenção de água no solo é calculada com rotinas em Python. O gráfico interativo demonstra a resposta do comportamento de retenção de água no solo às mudanças nos parâmetros. As instruções orientam você no processo de investigação do gráfico interativo.

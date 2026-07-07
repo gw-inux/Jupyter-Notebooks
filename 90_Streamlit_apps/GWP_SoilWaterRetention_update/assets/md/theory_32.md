@@ -1,0 +1,1 @@
+The plots illustrate the soil water retention curve and the relationships between water content, hydraulic conductivity, and diffusivity based on :blue-background[[van Genuchten (1980)](https://www.researchgate.net/publication/250125437_A_Closed-form_Equation_for_Predicting_the_Hydraulic_Conductivity_of_Unsaturated_Soils1)].

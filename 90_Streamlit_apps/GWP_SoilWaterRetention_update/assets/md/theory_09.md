@@ -1,0 +1,3 @@
+Why does water in soil remain suspended in fine pores—even after rainfall stops? What governs the resistance to drainage and the movement of moisture against gravity?
+    
+Capillary pressure arises from the curvature of fluid interfaces in soil pores and plays a central role in determining how water is retained, redistributed, and drained in the unsaturated zone. The following interactive figure visualizes capillary rise based on the Young–Laplace equation (the following expander section provides more information about this topic).

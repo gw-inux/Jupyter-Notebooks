@@ -1,0 +1,1 @@
+Il grafico interattivo consente di confrontare diversi set di dati. Sono disponibili vari set di dati.

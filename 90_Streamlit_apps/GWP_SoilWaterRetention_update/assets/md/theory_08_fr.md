@@ -1,0 +1,5 @@
+Ici, $\\sigma_{SG}$ est la tension superficielle solide–gaz, $\\sigma_{SL}$ est la tension superficielle solide–liquide, et $\\sigma_{GL}$ est la tension superficielle liquide–gaz.
+Lorsque $\\theta < 90^{\\circ}$, le liquide mouille la surface et s’étale : on l’appelle un **fluide mouillant** (les forces adhésives dominent et le liquide s’étale). Lorsque $\\theta > 90^{\\circ}$, le liquide ne s’étale pas : c’est un **fluide non mouillant** (les forces cohésives dominent, et le liquide perle en formant des gouttelettes).
+Dans les fluides non miscibles, la tension superficielle (**Figure 2**) joue un rôle important, introduisant un paramètre clé : la pression capillaire (également appelée succion capillaire, $\\psi$), qui est influencée par la teneur en eau du sol.
+         
+:point_right: Pour en savoir plus sur la tension superficielle, consultez la vidéo suivante [lien direct](https://www.youtube.com/watch?v=zMzqiAuOSz0) :clapper:

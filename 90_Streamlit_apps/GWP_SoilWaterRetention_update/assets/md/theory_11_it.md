@@ -1,0 +1,1 @@
+**La pressione capillare** è la differenza di pressione tra il fluido non bagnante e il fluido bagnante. L’equazione di **Young–Laplace** mette in relazione la pressione capillare con le proprietà del mezzo e dei fluidi e con il grado di saturazione come segue,

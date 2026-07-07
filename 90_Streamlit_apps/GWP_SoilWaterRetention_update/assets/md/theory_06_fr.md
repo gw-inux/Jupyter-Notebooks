@@ -1,0 +1,1 @@
+Les molécules à l’interface forment une fine couche, *semblable à une membrane* (**Figure 4**), qui ajuste leur géométrie afin de minimiser la surface occupée. La quantité de travail nécessaire pour séparer deux substances, $W_{ik}$, est donnée par la **formule de Dupré** :

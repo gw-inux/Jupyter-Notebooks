@@ -1,0 +1,1 @@
+Understanding the soil water retention curve is essential for effective **irrigation planning**, **crop management**, and **drought risk assessment**. Key agricultural concepts includes **Field capacity, Permanent Wilting Point, and more.

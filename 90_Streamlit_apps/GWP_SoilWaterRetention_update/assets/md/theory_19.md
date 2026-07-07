@@ -1,0 +1,1 @@
+In this section, we introduce key parameters that describe how water behaves in unsaturated soils. We have a closer look on **Water content ($\\theta$)**, **Relative hydraulic conductivity ($K_r$)**, **Hydraulic diffusivity ($D$)**. Together, these functions define the **soil water retention behavior** and are central to solving flow and transport equations in the vadose zone.

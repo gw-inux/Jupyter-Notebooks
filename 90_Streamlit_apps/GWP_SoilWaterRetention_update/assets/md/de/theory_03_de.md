@@ -1,0 +1,3 @@
+Warum kann Wasser in feinen Bodenporen aufsteigen und der Schwerkraft entgegenwirken? Was bestimmt, ob sich Wasser über Körner ausbreitet oder sich zu Tröpfchen zurückzieht?
+    
+Auf der Porenskala bilden sich aufgrund kohäsiver und adhäsiver Kräfte gekrümmte Fluidgrenzflächen, die Menisken erzeugen, welche Kapillardruck hervorrufen. Die Benetzbarkeit — bestimmt durch Oberflächenspannung und Kontaktwinkel — steuert, wie Wasser in den ungesättigten Boden eindringt, sich darin bewegt und zurückgehalten wird.

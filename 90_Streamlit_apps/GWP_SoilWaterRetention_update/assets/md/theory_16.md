@@ -1,0 +1,3 @@
+Different behaviors in interfacial tension and wettability can occur during drainage or imbibition on a solid surface. These pore-scale processes can result in different retention curves for the same soil. A soil that starts fully saturated and undergoes drainage may exhibit a different retention curve than if that same soil starts completely dry and gradually becomes saturated during the imbibition process. As a result, we can observe different water contents for the same pressure value in the same soil, depending on the process the soil is undergoing. This phenomenon is known as **hysteresis**.
+          
+:point_right: To know more about hysteresis, check the following video [direct link](https://www.youtube.com/watch?v=aaGJS5pAmp4) :clapper:

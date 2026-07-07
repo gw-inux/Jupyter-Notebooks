@@ -1,0 +1,1 @@
+La **pression capillaire** est la différence de pression entre le fluide non mouillant et le fluide mouillant. L’équation de **Young–Laplace** relie la pression capillaire aux propriétés du milieu et des fluides, ainsi qu’au degré de saturation, comme suit :

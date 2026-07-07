@@ -1,0 +1,5 @@
+In questo esercizio, hai esplorato come adattare i parametri del modello di van Genuchten ai dati misurati di ritenzione idrica del suolo per due suoli contrastanti. Regolando i parametri $\theta_r$ θ<sub>r</sub>, $\theta_s$ θ<sub>s</sub>, $\alpha$ α e $n$, hai acquisito comprensione di come ciascuno influenzi la forma e la pendenza della curva di ritenzione idrica del suolo.
+
+Hai inoltre sviluppato competenze pratiche di calibrazione e valutato visivamente l’adattamento del modello: un’attività fondamentale nella fisica del suolo e nell’idrologia della zona insatura.
+
+Tieni presente che l’adattamento a dati reali spesso implica tecniche di ottimizzazione, ma questo esercizio costruisce l’intuizione essenziale necessaria per comprendere come il comportamento di ritenzione vari tra i diversi tipi di suolo.

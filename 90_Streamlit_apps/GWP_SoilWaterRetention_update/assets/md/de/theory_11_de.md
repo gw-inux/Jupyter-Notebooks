@@ -1,0 +1,1 @@
+**Kapillardruck** ist die Druckdifferenz zwischen dem nicht benetzenden Fluid und dem benetzenden Fluid. Die **Young–Laplace**-Gleichung setzt den Kapillardruck wie folgt mit den Eigenschaften des Mediums und der Fluide sowie mit dem Sättigungsgrad in Beziehung:

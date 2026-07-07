@@ -1,0 +1,68 @@
+[
+  {
+    "question": "A) Which parameter changes would increase effective field capacity (eFC)? (Mark ALL correct answers)",
+    "options": {
+      "A) Increase $\\theta_s$": true,
+      "B) Decrease $\\theta_r$": true,
+      "C) Slightly reduce $\\alpha$": true,
+      "D) Lower $n$ to nearly 1": false
+    },
+    "success": "✅ Correct. Widening the gap between FC and PWP increases eFC.",
+    "error": "❌ Not quite. Think in terms of shifting the limits of the retention curve."
+  },
+  {
+    "question": "A) What are the effects of a high $\\alpha$ value in the retention curve? (Mark ALL correct answers)",
+    "options": {
+      "A) The curve shifts left toward lower suctions": true,
+      "B) The air-entry point occurs earlier": true,
+      "C) Saturated water content increases": false,
+      "D) The PWP moves to higher water contents": false
+    },
+    "success": "✅ Yes. $\\alpha$ controls the air-entry suction and curve position.",
+    "error": "❌ Review the role of $\\alpha$ in van Genuchten’s formulation."
+  },
+  {
+    "question": "A) Which changes produce a steeper transition in the water retention curve? (Mark ALL correct answers)",
+    "options": {
+      "A) Increasing $n$": true,
+      "B) Decreasing $n$": false,
+      "C) Increasing $\\theta_r$": false,
+      "D) Reducing $\\alpha$": false
+    },
+    "success": "✅ Correct. A higher $n$ value makes the curve more abrupt in its transition.",
+    "error": "❌ Only $n$ controls the sharpness of the transition between wet and dry."
+  },
+  {
+    "question": "A) What does the relative hydraulic conductivity $k_r(\\theta)$ represent? (Mark ALL correct answers)",
+    "options": {
+      "A) The soil's ability to transmit water under unsaturated conditions": true,
+      "B) The slope of the retention curve near saturation": false,
+      "C) A dimensionless value between 0 and 1": true,
+      "D) The inverse of the air-entry pressure": false
+    },
+    "success": "✅ Correct. $k_r$ reflects water transmission efficiency as a function of saturation.",
+    "error": "❌ Not quite. $k_r$ is a saturation-dependent measure of conductivity."
+  },
+  {
+    "question": "A) Which soil characteristics typically apply to sandy soils? (Mark ALL correct answers)",
+    "options": {
+      "A) $\\theta_s \\approx 0.35$, $\\alpha > 0.1$, $n > 2$": true,
+      "B) $\\theta_r \\approx 0.01$, sharp retention curve": true,
+      "C) $\\theta_s \\approx 0.60$, flat retention curve": false,
+      "D) $\\alpha < 0.01$, $n \\approx 1.1$": false
+    },
+    "success": "✅ Yes. Sandy soils drain fast and have low water retention and sharp curves.",
+    "error": "❌ Consider typical sandy soil behavior and parameter ranges."
+  },
+  {
+    "question": "A) How does increasing $\\theta_r$ affect $k_r$ and soil water availability? (Mark ALL correct answers)",
+    "options": {
+      "A) It narrows the range of plant-available water": true,
+      "B) It shifts the $k_r(\\theta)$ curve to higher water contents": true,
+      "C) It raises saturated conductivity": false,
+      "D) It enhances pore connectivity at low saturation": false
+    },
+    "success": "✅ Correct. Higher $\\theta_r$ reduces eFC and delays conductivity onset.",
+    "error": "❌ Not quite. $\\theta_r$ reduces effective saturation and hydraulic transmission."
+  }
+]

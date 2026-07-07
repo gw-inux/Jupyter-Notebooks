@@ -1,0 +1,1 @@
+Comprendre la courbe de rétention en eau du sol est essentiel pour une **planification de l’irrigation**, une **gestion des cultures** et une **évaluation du risque de sécheresse** efficaces. Les concepts agricoles clés comprennent la **capacité au champ, le point de flétrissement permanent, et d’autres encore**.

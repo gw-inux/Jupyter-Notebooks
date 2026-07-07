@@ -1,0 +1,3 @@
+Por que a água no solo permanece suspensa em poros finos — mesmo depois que a chuva cessa? O que governa a resistência à drenagem e o movimento da umidade contra a gravidade?
+    
+A pressão capilar surge da curvatura das interfaces de fluidos nos poros do solo e desempenha um papel central na determinação de como a água é retida, redistribuída e drenada na zona não saturada. A figura interativa a seguir visualiza a ascensão capilar com base na equação de Young–Laplace (a seção expansível a seguir fornece mais informações sobre este tópico).

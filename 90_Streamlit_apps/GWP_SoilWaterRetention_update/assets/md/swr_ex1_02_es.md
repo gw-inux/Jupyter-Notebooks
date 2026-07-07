@@ -1,0 +1,1 @@
+**Su tarea**: Dados los datos de presión de succión y contenido de agua para dos tipos de suelo—arena y limo—determine los parámetros de mejor ajuste.

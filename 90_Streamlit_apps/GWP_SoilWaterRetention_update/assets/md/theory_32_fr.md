@@ -1,0 +1,1 @@
+Les graphiques illustrent la courbe de rétention en eau du sol ainsi que les relations entre la teneur en eau, la conductivité hydraulique et la diffusivité, d’après :blue-background[[van Genuchten (1980)](https://www.researchgate.net/publication/250125437_A_Closed-form_Equation_for_Predicting_the_Hydraulic_Conductivity_of_Unsaturated_Soils1)].

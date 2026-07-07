@@ -1,0 +1,1 @@
+Le graphique interactif permet de comparer différents jeux de données. Divers jeux de données sont disponibles.

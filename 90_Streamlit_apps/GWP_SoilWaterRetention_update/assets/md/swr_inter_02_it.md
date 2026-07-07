@@ -1,0 +1,1 @@
+Successivamente, la ritenzione idrica del suolo viene calcolata con routine Python. Il grafico interattivo mostra la risposta del comportamento di ritenzione idrica del suolo alle variazioni dei parametri. Le istruzioni guidano l’utente nel processo di analisi del grafico interattivo.

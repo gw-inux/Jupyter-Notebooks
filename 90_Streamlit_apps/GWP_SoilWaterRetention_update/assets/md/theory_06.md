@@ -1,0 +1,1 @@
+Molecules at the interface form a thin, *membrane-like* layer (**Figure 4**), that adjusts their geometry to minimize the occupied surface area. The amount of work needed to separate two substances, $W_{ik}$, is given by **Dupré's formula**:

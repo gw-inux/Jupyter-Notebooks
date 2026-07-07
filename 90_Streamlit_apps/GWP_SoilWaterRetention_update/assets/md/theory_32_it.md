@@ -1,0 +1,1 @@
+I grafici illustrano la curva di ritenzione idrica del suolo e le relazioni tra contenuto d’acqua, conducibilità idraulica e diffusività basate su :blue-background[[van Genuchten (1980)](https://www.researchgate.net/publication/250125437_A_Closed-form_Equation_for_Predicting_the_Hydraulic_Conductivity_of_Unsaturated_Soils1)].

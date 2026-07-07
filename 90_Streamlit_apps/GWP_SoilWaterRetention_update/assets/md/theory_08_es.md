@@ -1,0 +1,5 @@
+Aquí, $\sigma_{SG}$ es la tensión superficial sólido–gas, $\sigma_{SL}$ es la tensión superficial sólido–líquido, y $\sigma_{GL}$ es la tensión superficial líquido–gas.
+Cuando $\theta < 90^{\circ}$, el líquido moja la superficie y se extiende; se denomina **fluido humectante** (predominan las fuerzas adhesivas y el líquido se extiende). Cuando $\theta > 90^{\circ}$, el líquido no se extiende; es un **fluido no humectante** (predominan las fuerzas cohesivas, y el líquido se agrupa formando gotas).
+En fluidos inmiscibles, la tensión superficial (**Figura 2**) desempeña un papel importante, introduciendo un parámetro clave: la presión capilar (también llamada succión capilar, $\psi$), que está influenciada por el contenido de agua del suelo.
+         
+:point_right: Para aprender más sobre la tensión superficial, consulte el siguiente video [enlace directo](https://www.youtube.com/watch?v=zMzqiAuOSz0) :clapper:

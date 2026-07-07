@@ -1,0 +1,1 @@
+Par la suite, la rétention d’eau du sol est calculée à l’aide de routines Python. Le graphique interactif illustre la réponse du comportement de rétention d’eau du sol aux variations des paramètres. Les instructions vous guident tout au long du processus d’exploration du graphique interactif.

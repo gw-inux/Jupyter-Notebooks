@@ -1,0 +1,5 @@
+En este ejercicio, exploraste cómo ajustar los parámetros del modelo de van Genuchten a datos medidos de retención de agua en el suelo para dos suelos contrastantes. Al ajustar los parámetros $\theta_r$ θ<sub>r</sub>, $\theta_s$ θ<sub>s</sub>, $\alpha$ α y $n$, obtuviste una comprensión de cómo cada uno afecta la forma y la pendiente de la curva de retención de agua en el suelo.
+
+También desarrollaste habilidades prácticas de calibración y evaluaste visualmente el ajuste del modelo, una tarea fundamental en la física de suelos y la hidrología de la zona no saturada.
+
+Ten en cuenta que el ajuste en condiciones reales suele implicar técnicas de optimización, pero este ejercicio desarrolla la intuición esencial necesaria para comprender cómo varía el comportamiento de retención entre tipos de suelo.

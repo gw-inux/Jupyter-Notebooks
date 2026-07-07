@@ -1,0 +1,11 @@
+Onde $\\P_{c}$ é a pressão capilar (também chamada de sucção capilar); $\sigma$ é a tensão superficial do líquido; $\theta$ é o ângulo de contato entre o líquido e o sólido; e $r$ é o raio da curvatura do menisco (efetivamente, o raio do poro).
+
+Uma **diminuição no raio do menisco** ($r$) corresponde a um **aumento na pressão capilar** ($P_{c}$): quando um solo saturado com água drena, a água recua para **poros menores**, onde fica retida com maior intensidade. Isso ocorre porque **poros menores têm uma maior razão área superficial/volume**, o que significa que uma proporção maior da água está em contato com a superfície sólida. Isso amplifica os efeitos da tensão superficial, resultando em **forças capilares mais fortes** que resistem à drenagem impulsionada pela gravidade. Por outro lado, um **aumento no raio do menisco** corresponde a uma **diminuição na pressão capilar**: durante a embebição, o fluido molhante avança para poros maiores e desloca um fluido não molhante apenas por forças capilares. 
+        
+A curvatura de cada menisco reflete a pressão capilar local, que depende do tamanho e da forma do poro — o menor raio de curvatura ocorre nos poros mais estreitos. Como resultado, drenar poros menores requer pressões capilares mais altas (mais negativas), enquanto poros maiores drenam em pressões capilares mais baixas. 
+     
+Quando não há água entrando ou saindo do sistema, **as forças capilares continuam atuando**: elas puxam a água para dentro dos poros menores e a retêm neles. De fato, a **sucção capilar nesses poros finos é forte o suficiente para manter a água contra a gravidade**, razão pela qual a água pode permanecer suspensa no solo mesmo após a drenagem ter cessado. A pressão capilar deixa de mover a água para cima em direção aos poros menores quando o potencial capilar é equilibrado por outras forças, principalmente o potencial gravitacional e o potencial mátrico.
+            
+A relação entre a pressão capilar e as saturações de duas fases fluidas que ocupam os poros na zona não saturada é conhecida como **curva de retenção**.
+        
+:point_right: Para saber mais sobre sucção em tubos capilares, confira o vídeo a seguir [link direto](https://www.youtube.com/watch?v=9gm81GghMrk) :clapper:

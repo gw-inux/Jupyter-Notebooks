@@ -1,0 +1,1 @@
+**Votre tâche** : À partir des données de pression de succion et de teneur en eau pour deux types de sols — sable et limon — déterminer les paramètres les mieux ajustés.

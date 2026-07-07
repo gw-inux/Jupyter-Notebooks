@@ -1,0 +1,1 @@
+Le molecole all'interfaccia formano un sottile strato *simile a una membrana* (**Figura 4**), che adatta la propria geometria per minimizzare l'area superficiale occupata. La quantità di lavoro necessaria per separare due sostanze, $W_{ik}$, è data dalla **formula di Dupré**:

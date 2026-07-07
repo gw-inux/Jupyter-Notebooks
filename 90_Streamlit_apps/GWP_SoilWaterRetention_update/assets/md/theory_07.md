@@ -1,0 +1,1 @@
+At equilibrium, the **contact angle** $\\theta$ between a liquid and a solid is defined by **Young's equation**:

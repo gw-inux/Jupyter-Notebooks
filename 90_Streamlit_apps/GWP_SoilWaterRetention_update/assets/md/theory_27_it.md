@@ -1,0 +1,1 @@
+**Conducibilità idraulica relativa espressa in termini del carico di pressione**

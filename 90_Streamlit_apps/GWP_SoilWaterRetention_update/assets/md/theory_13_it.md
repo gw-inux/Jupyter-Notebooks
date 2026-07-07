@@ -1,0 +1,3 @@
+Quanta acqua rimane nel suolo dopo l’infiltrazione? Quando diventa non disponibile per le piante?
+    
+La curva di ritenzione idrica del suolo mette in relazione il contenuto d’acqua con la suzione capillare — rivelando quanto fortemente l’acqua è trattenuta, quanta è disponibile e quando diventa inaccessibile. Comprendere questa curva è fondamentale per gestire l’irrigazione, stimare la ricarica e prevedere lo stress idrico delle piante.

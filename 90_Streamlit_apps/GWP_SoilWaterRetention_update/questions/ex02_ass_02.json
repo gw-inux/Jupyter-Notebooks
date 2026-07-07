@@ -1,0 +1,57 @@
+[
+  {
+    "question": "A) Based on the shape of the retention curve, which soil type is most likely represented by Dataset 1? (Mark ALL correct answers)",
+    "options": {
+      "A) Sand": true,
+      "B) Silt": false,
+      "C) Loam": false,
+      "D) Silty Clay": false
+    },
+    "success": "✅ Correct. Dataset 1 shows rapid desaturation, typical of sandy soils.",
+    "error": "❌ Steep retention curves with low water retention at high suction are typical of sand."
+  },
+  {
+    "question": "A) Dataset 2 shows a gradual decline in water content with increasing suction. Which soil type is most likely? (Mark ALL correct answers)",
+    "options": {
+      "A) Silt": true,
+      "B) Clay": false,
+      "C) Sandy loam": false,
+      "D) Peat": false
+    },
+    "success": "✅ Right. Dataset 2 aligns well with a silt soil that retains water effectively.",
+    "error": "❌ Silts desaturate gradually and hold more plant-available water."
+  },
+  {
+    "question": "A) Dataset 3 shows high θ values even at high suction. Which soil type is it likely representing? (Mark ALL correct answers)",
+    "options": {
+      "A) Gravel": false,
+      "B) Sand": false,
+      "C) Silt": false,
+      "D) Clay": true
+    },
+    "success": "✅ Correct. High water retention at high suction is a typical feature of clay soils.",
+    "error": "❌ Only fine-textured soils like clays show that retention behavior."
+  },
+  {
+    "question": "A) Which dataset would you recommend for agricultural use in dry climates based on water retention? (Mark ALL correct answers)",
+    "options": {
+      "A) Dataset 1 – fast drainage but limited storage": false,
+      "B) Dataset 2 – wide plant-available water range": true,
+      "C) Dataset 3 – high water retention but low kr": true,
+      "D) All datasets are equally suitable": false
+    },
+    "success": "✅ Well done. Dataset 2 and 3 offer valuable storage, though clay may have limitations due to low kr.",
+    "error": "❌ Consider both field capacity and kr when recommending for agriculture."
+  },
+  {
+    "question": "A) How does the relative hydraulic conductivity (kr) curve support interpretation of soil suitability for infiltration? (Mark ALL correct answers)",
+    "options": {
+      "A) Steeper kr decline means poor infiltration under unsaturated conditions": true,
+      "B) High kr at low θ implies fast infiltration": true,
+      "C) All soils have similar kr profiles": false,
+      "D) kr is independent of texture": false
+    },
+    "success": "✅ Correct. kr provides important insight into unsaturated flow potential and varies with texture.",
+    "error": "❌ kr is a texture-dependent function and critical for flow behavior."
+  }
+]

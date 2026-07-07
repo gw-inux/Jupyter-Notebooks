@@ -1,0 +1,1 @@
+**Relative hydraulische Leitfähigkeit, ausgedrückt als Funktion des dimensionslosen Wassergehalts**

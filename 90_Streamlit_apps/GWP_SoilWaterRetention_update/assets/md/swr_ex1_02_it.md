@@ -1,0 +1,1 @@
+**Il tuo compito**: dati i valori di pressione di suzione e contenuto d'acqua per due tipi di suolo—sabbia e limo—determinare i parametri di migliore adattamento.

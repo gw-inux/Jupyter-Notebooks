@@ -1,0 +1,46 @@
+[
+{
+"question": "What does a higher α value imply in the fitted retention curve? (Mark ALL correct answers)",
+"options": {
+"A) The curve drops more steeply at low suction": true,
+"B) Air enters the soil pores at a lower pressure head": true,
+"C) The soil retains more water at high suction": false,
+"D) The residual water content increases": false
+},
+"success": "✅ Yes! Higher α shifts the curve left and reduces air-entry suction.",
+"error": "❌ Higher α means quicker drainage, not more retention."
+},
+{
+"question": "How do you recognize a good model fit to retention data? (Mark ALL correct answers)",
+"options": {
+"A) The curve passes through all data points exactly": false,
+"B) The model approximates the overall shape and trends of the data": true,
+"C) Deviations are random and not systematic": true,
+"D) The model slightly overestimates θr and underestimates θs": false
+},
+"success": "✅ Correct. A good fit reproduces shape and trend; exact data matching is not required.",
+"error": "❌ Fitting isn't about perfection; it’s about representing trends with minimal bias."
+},
+{
+"question": "Which parameter affects the steepness or curvature of the transition zone in the θ–h curve? (Mark ALL correct answers)",
+"options": {
+"A) n": true,
+"B) θs": false,
+"C) θr": false,
+"D) α": true
+},
+"success": "✅ Yes. α scales the horizontal axis; n controls the steepness of the transition.",
+"error": "❌ θr and θs define vertical bounds, not curvature."
+},
+{
+"question": "If the model underestimates water content at intermediate suction values, what should you consider adjusting? (Mark ALL correct answers)",
+"options": {
+"A) Increase α slightly": true,
+"B) Decrease n": true,
+"C) Reduce θr": false,
+"D) Increase Ks": false
+},
+"success": "✅ Good. Adjusting α and n can improve the shape of the transition zone.",
+"error": "❌ Ks doesn't affect θ–h; and θr only shifts the curve base."
+}
+]

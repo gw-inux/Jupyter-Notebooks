@@ -1,0 +1,1 @@
+**Sua tarefa**: Dados os valores de pressão de sucção e teor de água para dois tipos de solo—areia e silte—determine os parâmetros de melhor ajuste.

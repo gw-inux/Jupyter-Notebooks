@@ -1,0 +1,1 @@
+Os gráficos subsequentes mostram as relações entre as diferentes medidas. Você pode optar por representar graficamente as relações para diferentes materiais de solo.

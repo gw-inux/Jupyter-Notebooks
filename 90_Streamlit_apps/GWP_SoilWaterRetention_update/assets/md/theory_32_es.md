@@ -1,0 +1,1 @@
+Los gráficos ilustran la curva de retención de agua del suelo y las relaciones entre el contenido de agua, la conductividad hidráulica y la difusividad con base en :blue-background[[van Genuchten (1980)](https://www.researchgate.net/publication/250125437_A_Closed-form_Equation_for_Predicting_the_Hydraulic_Conductivity_of_Unsaturated_Soils1)].

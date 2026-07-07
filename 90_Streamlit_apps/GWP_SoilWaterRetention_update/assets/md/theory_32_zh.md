@@ -1,0 +1,1 @@
+这些图展示了基于 :blue-background[[van Genuchten (1980)](https://www.researchgate.net/publication/250125437_A_Closed-form_Equation_for_Predicting_the_Hydraulic_Conductivity_of_Unsaturated_Soils1)] 的土壤水分保持曲线，以及含水量、水力传导率和扩散率之间的关系。
