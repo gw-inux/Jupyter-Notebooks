@@ -1,1 +1,0 @@
-👉 :green[**Verwenden Sie die Seitenleiste, um zwischen den verschiedenen Abschnitten des Moduls zu navigieren.**] 👈

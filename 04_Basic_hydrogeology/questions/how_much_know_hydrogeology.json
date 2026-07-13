@@ -81,13 +81,13 @@
     "error": "The only wrong statement is the one referring to nitrate contamination. Nitrate affects water quality, but the hydraulic gradient is controlled by flow, aquifer geometry and hydraulic properties (thickness, K, pumping, recharge, leakage)."
   },
   {
-    "question": "Groundwater flow direction is always perpendicular to the equipotential lines (lines of equal hydraulic head).",
+    "question": "Assuming isotropic hydraulic conductivity, groundwater flow direction is always perpendicular to the equipotential lines (lines of equal hydraulic head).",
     "options": {
       "True": true,
       "False": false
     },
-    "success": "Correct in the standard assumption: for isotropic conditions the flow lines are perpendicular to equipotential lines in a flow net, which is the situation usually assumed in basic hydrogeology.",
-    "error": "In the standard Darcy flow framework with an isotropic medium, groundwater flow is perpendicular to equipotential lines. Deviations mainly occur in anisotropic cases, which are usually not considered in basic flow-net constructions."
+    "success": "Correct, for isotropic hydraulic conductivity, the flow lines are perpendicular to equipotential lines in a flow net, which is the situation usually assumed in basic hydrogeology.",
+    "error": "In the standard Darcy flow framework with isotropic hydraulic conductivity, groundwater flow is perpendicular to equipotential lines. Deviations mainly occur in anisotropic cases, which are usually not considered in basic flow-net constructions."
   },
   {
     "question": "Most freshwater is stored in:",

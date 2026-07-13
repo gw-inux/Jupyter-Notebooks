@@ -1,1 +1,0 @@
-Das Verständnis der Retentionskurve des Bodenwassers ist essenziell für eine wirksame **Bewässerungsplanung**, **Bestandsführung** und **Bewertung des Dürrerisikos**. Zu den zentralen agronomischen Konzepten gehören **Feldkapazität, permanenter Welkepunkt und weitere**.

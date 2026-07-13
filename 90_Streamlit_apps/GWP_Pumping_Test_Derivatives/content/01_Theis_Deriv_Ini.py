@@ -8,6 +8,7 @@ from pathlib import Path
 import pandas as pd
 from GWP_Pumping_Test_Derivatives_utils import load_css
 from GWP_Pumping_Test_Derivatives_utils import load_md
+from GWP_Pumping_Test_Derivatives_utils import ui_text
 
 # ------------------------------------------------------------
 # Authors, institutions, and year
@@ -271,7 +272,18 @@ load_css(CSS_DIR, "segment_control_Theis_Deriv_Ini.css")
 
 #st.title("Pumping Test Evaluation with :blue[Derivatives]")
 
-st.header("**Intro:** :blue[**Understanding**] Drawdown Derivatives :blue[**with**] the :blue[**Theis**] base model", divider = 'blue')
+st.header(
+    ui_text(
+        "**Intro:** :blue[**Understanding**] Drawdown Derivatives :blue[**with**] the :blue[**Theis**] Base Model",
+        de="**Einführung:** :blue[**Verständnis**] der Absenkungsderivate :blue[**mit dem**] :blue[**Theis**]-Basismodell",
+        it="**Introduzione:** :blue[**Comprendere**] le derivate dell'abbassamento :blue[**con il**] modello di base :blue[**Theis**]",
+        es="**Introducción:** :blue[**Comprender**] las derivadas del descenso :blue[**con el**] modelo base de :blue[**Theis**]",
+        pt="**Introdução:** :blue[**Compreender**] as derivadas do rebaixamento :blue[**com o**] modelo básico de :blue[**Theis**]",
+        fr="**Introduction :** :blue[**Comprendre**] les dérivées du rabattement :blue[**avec le**] modèle de base de :blue[**Theis**]",
+        zh="**简介：** :blue[**理解**] :blue[**Theis**] :blue[**基础模型**] :blue[**中的**] 降深导数",
+    ),
+    divider="blue",
+)
 
 # --------------------------------------------------
 # Orientation/Explanation

@@ -1,1 +1,0 @@
-Moleküle an der Grenzfläche bilden eine dünne, *membranartige* Schicht (**Abbildung 4**), die ihre Geometrie so anpasst, dass die eingenommene Oberfläche minimiert wird. Die Arbeit, die erforderlich ist, um zwei Stoffe zu trennen, $W_{ik}$, wird durch die **Dupré-Formel** beschrieben:

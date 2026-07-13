@@ -121,11 +121,35 @@ def get_step(val: float) -> float:
 #    return path.read_text(encoding="utf-8")
 
 @st.cache_data
-def load_md(MD_DIR, filename, language):
-    path = Path(MD_DIR) / language / filename
-    return path.read_text(encoding="utf-8")
+def load_md(MD_DIR, filename, language="en"):
+    """
+    Load a markdown file.
 
+    Search order:
+    1. filename_<language>.md
+    2. filename.md (default)
+    """
+
+    md_dir = Path(MD_DIR)
+
+    base = Path(filename)
+
+    if language.lower() != "en":
+        translated = md_dir / f"{base.stem}_{language}{base.suffix}"
+        if translated.exists():
+            return translated.read_text(encoding="utf-8")
+
+    default = md_dir / filename
+    return default.read_text(encoding="utf-8")
+    
 def load_css(CSS_DIR, filename):
     path = CSS_DIR / filename
     css = path.read_text(encoding="utf-8")
     st.markdown(f"<style>{css}</style>", unsafe_allow_html=True)
+    
+def ui_text(en, **translations):
+    """
+    Return the UI text in the selected language.
+    Falls back to English if no translation is available.
+    """
+    return translations.get(st.session_state.language, en)

@@ -1,1 +1,0 @@
-Im Gleichgewicht wird der **Kontaktwinkel** $\\theta$ zwischen einer Flüssigkeit und einem Festkörper durch die **Young-Gleichung** definiert:

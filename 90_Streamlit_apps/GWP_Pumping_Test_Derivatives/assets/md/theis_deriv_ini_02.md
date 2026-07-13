@@ -1,0 +1,3 @@
+Drawdown derivatives are among the most powerful tools in pumping-test interpretation. While the :blue[**drawdown curve**] describes the magnitude of hydraulic response, the :blue[**derivative**] emphasizes changes in flow behavior and often reveals information that is difficult to recognize in drawdown data alone.
+
+In this module, derivatives are introduced using the classical Theis solution. The examples gradually progress from ideal confined-aquifer conditions to situations where hydraulic boundaries influence the pumping response.

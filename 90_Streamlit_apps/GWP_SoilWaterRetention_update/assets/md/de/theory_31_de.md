@@ -1,1 +1,0 @@
-Die folgenden Diagramme zeigen die Beziehungen zwischen den verschiedenen Kenngrößen. Sie können die Beziehungen für unterschiedliche Bodenmaterialien darstellen.

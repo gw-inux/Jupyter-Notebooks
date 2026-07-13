@@ -1,5 +1,0 @@
-Hier ist $\\sigma_{SG}$ die Feststoff–Gas-Grenzflächenspannung, $\\sigma_{SL}$ die Feststoff–Flüssigkeit-Grenzflächenspannung und $\\sigma_{GL}$ die Flüssigkeit–Gas-Grenzflächenspannung.
-Wenn $\\theta < 90^{\\circ}$ ist, benetzt die Flüssigkeit die Oberfläche und breitet sich aus – sie wird als **benetzende Flüssigkeit** bezeichnet (Adhäsionskräfte dominieren und die Flüssigkeit breitet sich aus). Wenn $\\theta > 90^{\\circ}$ ist, breitet sich die Flüssigkeit nicht aus – sie ist eine **nicht benetzende Flüssigkeit** (Kohäsionskräfte dominieren, und die Flüssigkeit perlt ab und bildet Tropfen).
-Bei nicht mischbaren Fluiden spielt die Grenzflächenspannung (**Abbildung 2**) eine wichtige Rolle und führt einen zentralen Parameter ein: den Kapillardruck (auch kapillare Saugspannung, $\\psi$, genannt), der vom Bodenwassergehalt beeinflusst wird.
-         
-:point_right: Um mehr über Grenzflächenspannung zu erfahren, sehen Sie sich das folgende Video an [direkter Link](https://www.youtube.com/watch?v=zMzqiAuOSz0) :clapper:

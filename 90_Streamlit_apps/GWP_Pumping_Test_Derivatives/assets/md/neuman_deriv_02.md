@@ -1,0 +1,3 @@
+The Neuman solution describes transient radial flow to a pumping well in an unconfined aquifer. In contrast to the Theis solution, the Neuman solution accounts for delayed drainage from the water table and therefore produces characteristic drawdown and derivative responses that evolve over time.
+
+In this section, we investigate how transmissivity, specific yield, and the Neuman beta parameter influence drawdown and derivative responses and apply these concepts to the interpretation of synthetic pumping-test data.

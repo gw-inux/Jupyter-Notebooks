@@ -1,1 +1,0 @@
-**Relative hydraulische Leitfähigkeit ausgedrückt in Abhängigkeit vom Druckwasserspiegel**

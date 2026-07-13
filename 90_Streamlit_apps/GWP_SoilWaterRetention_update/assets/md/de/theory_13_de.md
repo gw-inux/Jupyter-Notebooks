@@ -1,3 +1,0 @@
-Wie viel Wasser verbleibt nach der Infiltration im Boden? Wann wird es für Pflanzen nicht mehr verfügbar?
-    
-Die Bodenwasser-Retentionskurve verknüpft den Wassergehalt mit der kapillaren Saugspannung — und zeigt damit, wie stark Wasser gehalten wird, wie viel verfügbar ist und wann es unzugänglich wird. Das Verständnis dieser Kurve ist entscheidend für die Bewässerungssteuerung, die Abschätzung der Grundwasserneubildung und die Vorhersage von Wasserstress bei Pflanzen.
