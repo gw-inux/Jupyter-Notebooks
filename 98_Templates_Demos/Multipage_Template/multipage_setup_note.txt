@@ -1,0 +1,5 @@
+Setting up a multipage app:
+
+1) Copy the template and rename the folder and files properly
+
+2) Copy all the required pieces in the content folder - this includes the Python files and all other assets like figures and logos (alternatively you can link the individual apps directly from the general repository)
