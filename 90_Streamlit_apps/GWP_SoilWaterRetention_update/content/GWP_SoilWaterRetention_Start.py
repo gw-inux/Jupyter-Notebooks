@@ -99,7 +99,7 @@ st.markdown(load_md(MD_DIR, "start_01.md", st.session_state.language))
 
 left_co, cent_co, last_co = st.columns((20,60,20))
 with cent_co:
-    st.image('90_Streamlit_apps/GWP_SoilWaterRetention_update/assets/images/SW_intro.png', caption="Sketch through the underground with the unsaturated and the saturated zone.")
+    st.image('90_Streamlit_apps/GWP_SoilWaterRetention_update/assets/images/SW_intro.png', caption="Sketch of the underground within the unsaturated and the saturated zone.")
 
 columns = st.columns((1,8,1))
 
@@ -120,7 +120,7 @@ left_co4, cent_co4, last_co4 = st.columns((1,8,1))
 with cent_co4:
     st.markdown(
     """
-        :green[The Groundwater Project is nonprofit with one full-time staff and over 1000 volunteers.]
+        :green[The Groundwater Project is nonprofit with one full-time employee and over 1000 volunteers.]
 
         :green[Please help us by using the following link when sharing this tool with others.]   
 

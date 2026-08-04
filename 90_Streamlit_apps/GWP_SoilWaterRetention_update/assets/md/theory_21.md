@@ -1,4 +1,4 @@
-It is required to derive a relationship between water content and pressure head. To interpret the retention and conductivity functions, it's important to understand the physical meaning of the involved parameters, accordingly, you will find some definition and explanation next to the used parameters.
+It is useful to derive a relationship between water content and pressure head in order to interpret the relationship of soil-water retention and the magnitude of hydraulic conductivity. The relationship involves a number of parameters and it helps to understand their physical meaning, accordingly, the parameters are defined and explained here.
 
 **Water content**
 

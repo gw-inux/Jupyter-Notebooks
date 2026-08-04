@@ -1,15 +1,1 @@
-- **Feldkapazität ($\\theta_{fc}$)**  
-  Der Wassergehalt, bei dem überschüssiges Gravitationswasser abgeflossen ist und der Boden Wasser gegen die Schwerkraft zurückhält. Typischerweise definiert bei einem Druckwasserspiegel von –100 bis –300 cm.
-
-- **Permanenter Welkepunkt ($\\theta_{wp}$)**  
-  Die Untergrenze des pflanzenverfügbaren Wassers. Unterhalb dieses Feuchteniveaus können Pflanzen keine ausreichende Saugspannung aufbringen, um Wasser aus dem Boden zu entziehen. Definiert bei etwa –15.000 cm Druckwasserspiegel.
-
-- **effektive Feldkapazität**
-  
-  Die Differenz zwischen Feldkapazität und Welkepunkt, manchmal auch als Available Water Capacity (AWC) bezeichnet.
-  $$
-  \\text{eFC} = \\theta_{fc} - \\theta_{wp}
-  $$  
-  Dies ist die Wassermenge, die für Pflanzen zugänglich ist.
-
-Diese Größen helfen Landwirten und Agronomen, Bewässerungspläne zu optimieren, Erträge zu verbessern und Wasserstress zu vermeiden. Sie unterstützen außerdem die Entwicklung von Rückhaltestrategien für eine dürrebeständige Landwirtschaft.
+Jeder Bodentyp weist eine eigene **Feldkapazität** ($\\theta_{fc}$), einen eigenen **Welkepunkt** ($\\theta_{wp}$) und einen eigenen **residualen Wassergehalt** ($\\theta_{r}$) auf. Die **Feldkapazität** ist der Wassergehalt des Bodens, bei dem die gravitative Perkolation deutlich verlangsamt ist, typischerweise 2 bis 3 Tage, nachdem Niederschlag oder Bewässerung aufgehört haben. Dieser Punkt wird durch Laborexperimente quantifiziert und typischerweise auf etwa –100 bis –300 cm Druckhöhe festgelegt—etwa -1/10 bis -1/3 bar (**Abbildung 6**). Der **Welkepunkt** ist der Wassergehalt, bei dem Pflanzen dem Boden kein Wasser mehr entziehen können, typischerweise bei etwa –15000 cm Druckhöhe—obwohl dieser Wert je nach Pflanzenart variieren kann. An diesem Punkt ist die von den Pflanzenwurzeln ausgeübte Saugspannung geringer als die Wasserretentionskräfte des Bodens. Wenn der Boden über den Welkepunkt hinaus austrocknet, nähert sich der Wassergehalt einer Asymptote—das bedeutet, dass kein weiteres Wasser perkoliert, selbst wenn die Druckhöhe weiter abnimmt. Dieser Zustand definiert den **residualen Wassergehalt**, der die minimale Wassermenge bezeichnet, die in den Bodenporen zurückgehalten wird. Die Differenz im Wassergehalt zwischen Feldkapazität und Welkepunkt stellt das für die Pflanzenaufnahme verfügbare Wasser dar.

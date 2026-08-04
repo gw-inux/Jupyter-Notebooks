@@ -1,1 +1,1 @@
-The subsequent plots show the relationships between the different measures. You can choose to plot the relationsships for different soil materials.
+The plots in this section show relationships between measures related to water occurrence and movement in the unsaturated zone. The menu can be used to choose a soil material to be represented in the plots. Comparing the plots for different types of soil facilitates comparison of the relationships in different types of material.

@@ -1,1 +1,1 @@
-**Relative Hydraulic Conductivity expressed in terms of the pressure head**
+**Relative Hydraulic Conductivity is expressed in terms of the pressure head as follows**

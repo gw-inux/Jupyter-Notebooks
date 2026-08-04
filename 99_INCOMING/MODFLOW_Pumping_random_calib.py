@@ -503,14 +503,15 @@ if theis_available or measured_available or st.session_state.model_results is no
     if theis_available:
         axes[0].plot(
             time_theis / 3600,
-            theis_head,
+            h_ini+theis_head,
+            #theis_drawdown,
             linestyle="--",
             label="Theis"
         )
 
         axes[1].plot(
             time_theis / 3600,
-            theis_drawdown,
+            (h_ini-theis_drawdown)*-1,
             linestyle="--",
             label="Theis"
         )

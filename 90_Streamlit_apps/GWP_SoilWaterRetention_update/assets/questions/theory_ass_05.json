@@ -55,15 +55,14 @@
     "success": "✅ Exactly. All except $K_s$ describe the retention curve itself.",
     "error": "❌ Not quite. Focus on the equation for the water retention curve."
   },
-  {
-    "question": "Which processes can lead to hysteresis in the soil water retention curve?",
-    "options": {
-      "Differences between drainage and imbibition paths": true,
-      "Pore structure changes during wetting and drying": true,
-      "Gravity acting on water in coarse soils": false,
-      "Entrapment of air bubbles during infiltration": true
-    },
-    "success": "✅ Correct. Hysteresis arises due to pore-scale effects and phase entrapment.",
-    "error": "❌ Try again. Not all of these directly relate to hysteresis mechanisms."
+  { "question": "How do the van Genuchten parameters $\\alpha$ and $n$ affect the soil water retention curve?", 
+  "options": {
+	  "A larger $\\alpha$ generally indicates a lower air-entry suction": true,
+      "The parameter $n$ influences the steepness of the retention curve": true,
+	  "A larger $n$ always increases the saturated water content": false,
+	  "The parameter $\\alpha$ represents the saturated hydraulic conductivity": false
+	},
+	"success": "✅ Correct. The parameter $\\alpha$ is related to the characteristic air-entry suction, while $n$ controls the shape and steepness of the retention curve.",
+	"error": "❌ Not quite. Consider which parameters control the position and shape of the van Genuchten retention curve."
   }
 ]

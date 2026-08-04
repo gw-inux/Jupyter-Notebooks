@@ -1,5 +1,3 @@
-Here, $\\sigma_{SG}$ is the solid–gas surface tension, $\\sigma_{SL}$ is the solid–liquid surface tension, and $\\sigma_{GL}$ is the liquid–gas surface tension.
-When $\\theta < 90^{\\circ}$, the liquid wets the surface and spreads out—it’s called a **wetting fluid** (adhesive forces dominate and the liquid spreads). When $\\theta > 90^{\\circ}$, the liquid does not spread—it’s a **non-wetting fluid** (cohesive forces dominate, and the liquid beads up forming droplets).
-In immiscible fluids, surface tension (**Figure 2**) plays an important role, introducing a key parameter: capillary pressure (also called capillary suction, $\\psi$), which is influenced by the soil-water content.
-         
-:point_right: To learn more about surface tension, check the following video [direct link](https://www.youtube.com/watch?v=zMzqiAuOSz0) :clapper:
+Here, $\sigma_{SG}$ is the solid–gas surface tension, $\sigma_{SL}$ is the solid–liquid surface tension, and $\sigma_{GL}$ is the liquid–gas surface tension. When $\theta < 90^{\circ}$, the liquid wets the surface and spreads out—it’s called a **wetting fluid** (adhesive forces dominate and the liquid spreads). When $\theta > 90^{\circ}$, the liquid does not spread—it’s a **non-wetting fluid** (cohesive forces dominate, and the liquid beads up forming droplets).
+
+When immiscible fluids occur together, surface tension (**Figure 2**) plays an important role. A key associated parameter is capillary pressure (also called capillary suction, $\psi$), which is influenced by the soil-water content.

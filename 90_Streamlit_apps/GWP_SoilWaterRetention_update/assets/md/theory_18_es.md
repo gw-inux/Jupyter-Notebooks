@@ -1,15 +1,1 @@
-- **Capacidad de campo ($\\theta_{fc}$)**  
-  El contenido de agua en el cual el exceso de agua gravitacional se ha drenado y el suelo retiene agua contra la gravedad. Normalmente se define a una carga de presión de –100 a –300 cm.
-
-- **Punto de marchitez permanente ($\\theta_{wp}$)**  
-  El límite inferior del agua disponible para las plantas. Por debajo de este nivel de humedad, las plantas no pueden ejercer suficiente succión para extraer agua del suelo. Se define alrededor de –15,000 cm de carga de presión.
-
-- **Capacidad de campo efectiva**
-  
-  La diferencia entre la capacidad de campo y el punto de marchitez, a veces también denominada Capacidad de Agua Disponible (AWC).
-  $$
-  \\text{eFC} = \\theta_{fc} - \\theta_{wp}
-  $$  
-  Esta es la cantidad de agua accesible para las plantas.
-
-Estas magnitudes ayudan a agricultores y agrónomos a optimizar los programas de riego, mejorar el rendimiento y prevenir el estrés hídrico. También contribuyen al diseño de estrategias de retención para una agricultura resiliente a la sequía.
+Cada tipo de suelo tiene su propia **capacidad de campo** ($\\theta_{fc}$), **punto de marchitez** ($\\theta_{wp}$) y **contenido de agua residual** ($\\theta_{r}$). La **capacidad de campo** es el contenido de agua del suelo en el que el drenaje gravitacional se ha ralentizado significativamente, por lo general 2 a 3 días después de que haya cesado la lluvia o el riego. Este punto se cuantifica mediante experimentos de laboratorio y suele establecerse alrededor de –100 a –300 cm de carga de presión, aproximadamente de -1/10 a -1/3 bar (**Figura 6**). El **punto de marchitez** es el contenido de agua en el que las plantas ya no pueden extraer agua del suelo, típicamente alrededor de –15000 cm de carga de presión, aunque este valor puede variar según la especie vegetal. En este punto, la fuerza de succión ejercida por las raíces de las plantas es más débil que las fuerzas de retención de agua del suelo. A medida que el suelo se seca más allá del punto de marchitez, el contenido de agua se aproxima a una asíntota, lo que significa que no drenará más agua, incluso si la carga de presión continúa disminuyendo. Esta condición define el **contenido de agua residual**, que se refiere a la cantidad mínima de agua retenida en los poros del suelo. La diferencia en el contenido de agua entre la capacidad de campo y el punto de marchitez representa el agua disponible para la absorción por las plantas.

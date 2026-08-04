@@ -1,15 +1,1 @@
-- **Capacidade de campo ($\\theta_{fc}$)**  
-  O teor de água no qual o excesso de água gravitacional foi drenado e o solo retém água contra a gravidade. Normalmente definida a uma carga de pressão de –100 a –300 cm.
-
-- **Ponto de murcha permanente ($\\theta_{wp}$)**  
-  O limite inferior da água disponível para as plantas. Abaixo desse nível de umidade, as plantas não conseguem exercer sucção suficiente para extrair água do solo. Definido em torno de –15.000 cm de carga de pressão.
-
-- **Capacidade de campo efetiva**
-  
-  A diferença entre a capacidade de campo e o ponto de murcha, às vezes também denominada Capacidade de Água Disponível (AWC)
-  $$
-  \\text{eFC} = \\theta_{fc} - \\theta_{wp}
-  $$  
-  Esta é a quantidade de água acessível às plantas.
-
-Essas grandezas ajudam agricultores e agrônomos a otimizar os cronogramas de irrigação, melhorar a produtividade e prevenir o estresse hídrico. Elas também auxiliam no desenho de estratégias de retenção para uma agricultura resiliente à seca.
+Cada tipo de solo tem sua própria **capacidade de campo** ($\\theta_{fc}$), **ponto de murcha** ($\\theta_{wp}$) e **teor de água residual** ($\\theta_{r}$). A **capacidade de campo** é o teor de água do solo no qual a drenagem gravitacional diminuiu significativamente, tipicamente 2 a 3 dias após a cessação da chuva ou da irrigação. Esse ponto é quantificado por meio de experimentos laboratoriais e é tipicamente definido em torno de –100 a –300 cm de carga de pressão—cerca de -1/10 a -1/3 bar (**Figura 6**). O **ponto de murcha** é o teor de água no qual as plantas já não conseguem extrair água do solo, tipicamente em torno de –15000 cm de carga de pressão—embora esse valor possa variar dependendo da espécie vegetal. Nesse ponto, a força de sucção exercida pelas raízes das plantas é mais fraca do que as forças de retenção de água do solo. À medida que o solo seca além do ponto de murcha, o teor de água se aproxima de uma assíntota—o que significa que nenhuma água adicional drenará, mesmo que a carga de pressão continue a diminuir. Essa condição define o **teor de água residual**, que se refere à quantidade mínima de água retida nos poros do solo. A diferença no teor de água entre a capacidade de campo e o ponto de murcha representa a água disponível para absorção pelas plantas.

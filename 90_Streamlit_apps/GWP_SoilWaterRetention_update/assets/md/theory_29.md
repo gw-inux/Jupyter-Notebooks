@@ -1,3 +1,3 @@
 #### Hydraulic Diffusivity $D$
     
-The hydraulic diffusivity **$D(\\Theta)$** describes how water content gradients propagate through soil over time. It combines changes in water content and conductivity to capture how *quickly moisture redistributes* in the soil. It governs the speed of drying or wetting fronts.
+The hydraulic diffusivity **$D(\Theta)$** is the ratio of unsaturated hydraulic conductivity and specific moisture capacity which is the slope of the soil-water-retention curve at a given value of moisture content. **$D(\Theta)$** describes the rate at which water content gradients propagate through soil because it combines changes in water content and conductivity to capture how *quickly moisture redistributes* in the soil. **$D(\Theta)$** governs the speed of drying or wetting fronts.

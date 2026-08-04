@@ -1,1 +1,1 @@
-**Capillary pressure** is the pressure difference between the non-wetting fluid and the wetting fluid. **Young–Laplace** equation relates capillary pressure to medium and fluid properties and to the degree of saturations as follows,
+**Capillary pressure** is the pressure difference between the non-wetting fluid and the wetting fluid. The **Young–Laplace** equation relates capillary pressure to medium and fluid properties and to the degree of saturations as follows,

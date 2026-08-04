@@ -1,16 +1,1 @@
-
-- **Field Capacity ($\\theta_{fc}$)**  
-  The water content at which excess gravitational water has drained and the soil holds water against gravity. Typically defined at a pressure head of –100 to –300 cm.
-
-- **Permanent Wilting Point ($\\theta_{wp}$)**  
-  The lower limit of plant-available water. Below this moisture level, plants cannot exert enough suction to extract water from the soil. Defined at around –15,000 cm of pressure head.
-
-- **effective Field capacity**
-  
-  The difference between field capacity and wilting point, sometimes also refered to as Available Water Capacity (AWC)
-  $$
-  \\text{eFC} = \\theta_{fc} - \\theta_{wp}
-  $$  
-  This is the amount of water accessible to plants.
-
-These quantities help farmers and agronomists optimize irrigation schedules, improve yield, and prevent water stress. They also aid in designing retention strategies for drought-resilient agriculture.
+Each soil type has its own **field capacity** ($\theta_{fc}$), **wilting point** ($\theta_{wp}$) and **residual water content** ($\theta_{r}$). **Field capacity** is the water content of soil at which gravitational drainage has significantly slowed down, typically 2 to 3 days after rain or irrigation has ceased. This point is quantified through laboratory experiments and is typically on the order of –100 to –300 cm of pressure head—about -1/10 to -1/3 bar (**Figure 6**). The **wilting point** is the water content at which plants can no longer extract water from the soil, typically around –15000 cm of pressure head—although this value can vary depending on the plant species. At this point, the suction force exerted by the plant roots is weaker than the soil’s water retention forces. As the soil dries beyond the wilting point, the water content approaches an asymptote—meaning that no further water will drain, even if the pressure head continues to decrease. This condition defines the **residual water content**, at which point the zones of water in the soil are no longer continuously connected, and is the minimum amount of water retained in the soil pores. The difference in water content between field capacity and the wilting point represents the available water for plant uptake.

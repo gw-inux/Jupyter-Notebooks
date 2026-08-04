@@ -1,15 +1,1 @@
-- **Capacité au champ ($\\theta_{fc}$)**  
-  La teneur en eau à laquelle l’excès d’eau gravitaire s’est drainé et le sol retient l’eau contre la gravité. Elle est généralement définie pour une hauteur de pression de –100 à –300 cm.
-
-- **Point de flétrissement permanent ($\\theta_{wp}$)**  
-  La limite inférieure de l’eau disponible pour les plantes. En dessous de ce niveau d’humidité, les plantes ne peuvent pas exercer une succion suffisante pour extraire l’eau du sol. Il est défini aux environs de –15 000 cm de hauteur de pression.
-
-- **Capacité au champ effective**
-  
-  La différence entre la capacité au champ et le point de flétrissement, parfois également appelée capacité en eau disponible (Available Water Capacity, AWC).
-  $$
-  \\text{eFC} = \\theta_{fc} - \\theta_{wp}
-  $$  
-  Il s’agit de la quantité d’eau accessible aux plantes.
-
-Ces grandeurs aident les agriculteurs et les agronomes à optimiser les calendriers d’irrigation, à améliorer les rendements et à prévenir le stress hydrique. Elles contribuent également à la conception de stratégies de rétention pour une agriculture résiliente à la sécheresse.
+Chaque type de sol possède sa propre **capacité au champ** ($\\theta_{fc}$), son propre **point de flétrissement** ($\\theta_{wp}$) et sa propre **teneur en eau résiduelle** ($\\theta_{r}$). La **capacité au champ** correspond à la teneur en eau du sol pour laquelle le drainage gravitaire a considérablement ralenti, généralement 2 à 3 jours après l’arrêt de la pluie ou de l’irrigation. Ce point est quantifié au moyen d’expériences en laboratoire et est généralement fixé autour de –100 à –300 cm de charge de pression, soit environ -1/10 à -1/3 bar (**Figure 6**). Le **point de flétrissement** est la teneur en eau à laquelle les plantes ne peuvent plus extraire l’eau du sol, généralement autour de –15000 cm de charge de pression, bien que cette valeur puisse varier selon l’espèce végétale. À ce point, la force de succion exercée par les racines de la plante est plus faible que les forces de rétention de l’eau du sol. Lorsque le sol s’assèche au-delà du point de flétrissement, la teneur en eau s’approche d’une asymptote, ce qui signifie qu’aucune eau supplémentaire ne s’écoulera, même si la charge de pression continue de diminuer. Cette condition définit la **teneur en eau résiduelle**, qui correspond à la quantité minimale d’eau retenue dans les pores du sol. La différence de teneur en eau entre la capacité au champ et le point de flétrissement représente l’eau disponible pour l’absorption par les plantes.

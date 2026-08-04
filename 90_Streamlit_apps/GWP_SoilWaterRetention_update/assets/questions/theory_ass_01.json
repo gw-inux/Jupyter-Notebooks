@@ -14,12 +14,12 @@
 "question": "Which statements about surface tension are true? (Mark ALL correct answers)",
 "options": {
 "A) It arises at interfaces between immiscible fluids": true,
-"B) It resists the separation of two fluid phases": true,
+"B) It tends to minimize the area of the interface between the phases": true,
 "C) It increases with increasing pore radius": false,
 "D) It only occurs in homogeneous porous media": false
 },
-"success": "✅ Well done. Surface tension exists at fluid interfaces and resists their separation.",
-"error": "❌ Surface tension does not require homogeneity and decreases with increasing pore radius."
+"success": "✅ Well done. Surface or interfacial tension occurs at interfaces between immiscible fluids and tends to minimize the interfacial area.",
+"error": "❌ Surface or interfacial tension does not require a homogeneous porous medium, and its magnitude is not determined by pore radius. Pore radius instead influences capillary pressure."
 },
 {
 "question": "Which of the following statements about contact angle are correct? (Mark ALL correct answers)",

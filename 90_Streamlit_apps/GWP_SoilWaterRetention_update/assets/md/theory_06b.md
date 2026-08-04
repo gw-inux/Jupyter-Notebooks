@@ -1,0 +1,1 @@
+Here, $W_{ik}$ is the work needed to separate two substances, $\theta_{i}$ is the surface tension of fluid $i$, $\theta_{k}$ is the surface tension of fluid $k$, and $\theta_{k}$ is the interfacial tension at the interface between the fluids.

@@ -255,9 +255,9 @@ st.markdown(load_md(MD_DIR, "theory_01.md", st.session_state.language))
 
 left_co, cent_co, last_co = st.columns((10, 80, 10))
 with cent_co:
-    st.image('90_Streamlit_apps/GWP_SoilWaterRetention/assets/images/freeze_cherry_2.png')
+    st.image('90_Streamlit_apps/GWP_SoilWaterRetention_update/assets/images/freeze_cherry_2.png')
     st.markdown(
-        r"Fig. 1- Groundwater conditions near the ground surface. (a) Saturated and unsaturated zone; (b) profile of moisture content versus depth; (c) pressure-head and. Adapted from Freeze and Cherry (1979)"
+        r"Fig. 1- Groundwater conditions near the ground surface. (a) Saturated and unsaturated zone; (b) profile of moisture content versus depth; and (c) pressure-head. Adapted from Freeze and Cherry (1979)"
     )
     
 st.markdown(load_md(MD_DIR, "theory_02.md", st.session_state.language))
@@ -283,30 +283,32 @@ st.markdown(load_md(MD_DIR, "theory_03.md", st.session_state.language))
 with st.expander(':rainbow[**Click here to read more about the theoretical aspects of surface tension and wettability**]'):
     st.markdown(load_md(MD_DIR, "theory_04.md", st.session_state.language))
 
-    left_co, cent_co, last_co = st.columns((10, 100, 10))
+    left_co, cent_co, last_co = st.columns((1, 1, 1))
     with cent_co:
-        st.image('90_Streamlit_apps/GWP_SoilWaterRetention/assets/images/surface_tension_schema.png')
+        st.image('90_Streamlit_apps/GWP_SoilWaterRetention_update/assets/images/theory_fig02.png')
         st.markdown(
-            r"**Fig. 2-** Surface tension schema."
+            r"**Fig. 2-** Surface tension schema illustrating how liquids minimize their surface area due to cohesive intermolecular forces.."
         )
     st.markdown(load_md(MD_DIR, "theory_05.md", st.session_state.language))
         
-    left_co, cent_co, last_co = st.columns((1, 2, 1))
+    left_co, cent_co, last_co = st.columns((12, 10, 10))
     with cent_co:
-        st.image('90_Streamlit_apps/GWP_SoilWaterRetention/assets/images/surface_tension_bear.png')   
+        st.image('90_Streamlit_apps/GWP_SoilWaterRetention_update/assets/images/theory_fig03.png')   
         st.markdown(
-            r"**Fig. 3-** Interfacial tension. From Bear, J. (2013)."
+            r"**Fig. 3 -** Interfacial tension. Here $i$ and $k$ are one of G, L, or S, depending on whether the surface is at an interface between gas, liquid or solid.."
         )
         
     st.markdown(load_md(MD_DIR, "theory_06.md", st.session_state.language))
     
     st.latex(r"W_{ik} = \sigma_{i} + \sigma_{k} - \sigma_{ik}")
     
+    st.markdown(load_md(MD_DIR, "theory_06b.md", st.session_state.language))
+    
     left_co, cent_co, last_co = st.columns((10, 30, 10))
     with cent_co:
-        st.image('90_Streamlit_apps/GWP_SoilWaterRetention/assets/images/water_strider.jpg')
+        st.image('90_Streamlit_apps/GWP_SoilWaterRetention_update/assets/images/water_strider.jpg')
         st.markdown(
-            r"**Fig. 4-** Water strider and the surface tension."
+            r"**Fig. 4 -** Water strider helps in visualizing surface tension."
             )
     st.markdown(load_md(MD_DIR, "theory_07.md", st.session_state.language))
     
@@ -316,8 +318,8 @@ with st.expander(':rainbow[**Click here to read more about the theoretical aspec
     
     st.video(videourl1) 
 
-with st.expander('🧠 **Show some questions for self-assessment** - to assess your understanding'):
-    render_assessment("90_Streamlit_apps/GWP_SoilWaterRetention/questions/theory_ass_01.json", title="Surface tension and wettability – self assessment")
+with st.expander('🧠 **Show some questions for self-assessment** - to assess your understanding - Surface tension and wettability'):
+    render_assessment("90_Streamlit_apps/GWP_SoilWaterRetention_update/questions/theory_ass_01.json", title="Surface tension and wettability – self assessment")
     
 #-----------------------------------------------#
 # CAPILLARY PRESSURE                            #
@@ -391,7 +393,7 @@ with st.expander(':rainbow[**Click here to read more about the theoretical aspec
     st.video(videourl2)
     
 with st.expander('🧠 **Show some questions for self-assessment** - to assess your understanding'):
-    render_assessment("90_Streamlit_apps/GWP_SoilWaterRetention/questions/theory_ass_02.json", title="Capillary pressure – self assessment")
+    render_assessment("90_Streamlit_apps/GWP_SoilWaterRetention_update/questions/theory_ass_02.json", title="Capillary pressure – self assessment")
     
 #-----------------------------------------------#
 # Retention curve                               #
@@ -411,31 +413,22 @@ st.subheader(
 
 st.markdown(load_md(MD_DIR, "theory_13.md", st.session_state.language))
 
-with st.expander(':rainbow[**Click here to read more about the theoretical aspects of the retention curve**]'):
+with st.expander(':rainbow[**Click here to read more about the theoretical aspects of the soil water retention curve**]'):
     st.markdown(load_md(MD_DIR, "theory_14.md", st.session_state.language))
     
     left_co, cent_co, last_co = st.columns((10, 50, 10))
     with cent_co:
-        st.image('90_Streamlit_apps/GWP_SoilWaterRetention/assets/images/retention_curve_mod.png')
+        st.image('90_Streamlit_apps/GWP_SoilWaterRetention_update/assets/images/theory_fig05.png')
         st.markdown(
-        r"**Fig. 5-** Example of a retention curve for two types of soil, modified from Bear and Cheng (2010)."
+        r"**Fig. 5** - Example of a retention curve for two types of soil, modified from Bear and Cheng (2010)."
         )
+        
     st.markdown(load_md(MD_DIR, "theory_15.md", st.session_state.language))
-    
-    left_co, cent_co, last_co = st.columns((10, 50, 10))  
-    with cent_co:
-        st.image('90_Streamlit_apps/GWP_SoilWaterRetention/assets/images/field_capacity.png')
-        st.markdown(
-            r"**Fig. 6** – Indices describing the retention curves, where (i) $\theta_{fc}$ is the field capacity; "
-            r"(ii) $\theta_{wp}$ represents the wilting point; (iii) $\theta_{r}$ is the residual water content; "
-            r"and (iv) $\psi_{a}$ is the entry pressure head. Adapted from Stephens, D. B. (2018)."
-        )
-    st.markdown(load_md(MD_DIR, "theory_16.md", st.session_state.language))
 
     st.video(videourl3)
     
 with st.expander('🧠 **Show some questions for self-assessment** - to assess your understanding'):
-    render_assessment("90_Streamlit_apps/GWP_SoilWaterRetention/questions/theory_ass_03.json", title="Capillary pressure – self assessment")
+    render_assessment("90_Streamlit_apps/GWP_SoilWaterRetention_update/questions/theory_ass_03.json", title="Capillary pressure – self assessment")
     
 st.subheader(
     ui_text(
@@ -450,10 +443,20 @@ st.subheader(
     divider="blue",
 )
 
-st.markdown(load_md(MD_DIR, "theory_17.md", st.session_state.language))
+st.markdown(load_md(MD_DIR, "theory_16.md", st.session_state.language))
 
 with st.expander(':rainbow[**Click here to read more about the applications in agriculture**]'):
+    st.markdown(load_md(MD_DIR, "theory_17.md", st.session_state.language))
+    
     st.markdown(load_md(MD_DIR, "theory_18.md", st.session_state.language))
+    
+    left_co, cent_co, last_co = st.columns((10, 50, 10))  
+    with cent_co:
+        st.image('90_Streamlit_apps/GWP_SoilWaterRetention_update/assets/images/field_capacity.png')
+        st.markdown(
+            r"**Fig. 6** – Indices describing the retention curves, where $\theta_{fc}$ is the field capacity; $\theta_{wp}$ represents the wilting point; $\theta_{r}$ is the residual water content; and $\psi_{a}$ is the entry pressure head. Adapted from Stephens, D. B. (2018)."
+        )
+    
 
 with st.expander('🧠 **Show some questions for self-assessment** - to assess your understanding'):
     render_assessment("90_Streamlit_apps/GWP_SoilWaterRetention/questions/theory_ass_04.json", title="Capillary pressure – self assessment")
@@ -523,7 +526,7 @@ with st.expander("**Click here to see further details**"):
 
 st.markdown(load_md(MD_DIR, "theory_29.md", st.session_state.language))
 
-with st.expander("**Click here to see further details**"):
+with st.expander("**Click here to see how the value of Hydraulic Diffusivity is determined**"):
     st.latex(r"D(\Theta) = \frac{(1 - m)K_s}{\alpha m (\theta_{s} - \theta_{r})} \Theta^{1/2 - 1/m} \left[\left( 1 - \Theta^{1/m} \right)^{-m} + \left( 1 - \Theta^{1/m} \right)^{m} - 2 \right]")
     
     st.markdown(load_md(MD_DIR, "theory_30.md", st.session_state.language))

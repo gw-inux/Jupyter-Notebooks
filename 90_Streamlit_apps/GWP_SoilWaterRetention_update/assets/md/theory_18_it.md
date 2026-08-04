@@ -1,15 +1,1 @@
-- **Capacità di campo ($\\theta_{fc}$)**  
-  Il contenuto d’acqua al quale l’acqua gravitazionale in eccesso è drenata e il suolo trattiene l’acqua contro la gravità. Tipicamente definita a un carico di pressione compreso tra –100 e –300 cm.
-
-- **Punto di appassimento permanente ($\\theta_{wp}$)**  
-  Il limite inferiore dell’acqua disponibile per le piante. Al di sotto di questo livello di umidità, le piante non possono esercitare una suzione sufficiente per estrarre acqua dal suolo. Definito intorno a –15,000 cm di carico di pressione.
-
-- **Capacità di campo effettiva**
-  
-  La differenza tra capacità di campo e punto di appassimento, talvolta indicata anche come capacità idrica disponibile (Available Water Capacity, AWC)
-  $$
-  \\text{eFC} = \\theta_{fc} - \\theta_{wp}
-  $$  
-  Questa è la quantità d’acqua accessibile alle piante.
-
-Queste grandezze aiutano agricoltori e agronomi a ottimizzare i programmi di irrigazione, migliorare la resa e prevenire lo stress idrico. Contribuiscono inoltre alla progettazione di strategie di ritenzione per un’agricoltura resiliente alla siccità.
+Ogni tipo di suolo ha una propria **capacità di campo** ($\\theta_{fc}$), **punto di appassimento** ($\\theta_{wp}$) e **contenuto idrico residuo** ($\\theta_{r}$). La **capacità di campo** è il contenuto idrico del suolo al quale il drenaggio gravitazionale è rallentato in modo significativo, tipicamente 2-3 giorni dopo la cessazione della pioggia o dell’irrigazione. Questo punto è quantificato mediante esperimenti di laboratorio ed è generalmente fissato intorno a –100-–300 cm di carico di pressione, cioè circa da -1/10 a -1/3 bar (**Figura 6**). Il **punto di appassimento** è il contenuto idrico al quale le piante non sono più in grado di estrarre acqua dal suolo, tipicamente intorno a –15000 cm di carico di pressione, sebbene questo valore possa variare a seconda della specie vegetale. A questo punto, la forza di suzione esercitata dalle radici delle piante è inferiore alle forze di ritenzione idrica del suolo. Man mano che il suolo si essicca oltre il punto di appassimento, il contenuto idrico si avvicina a un asintoto, il che significa che non avverrà ulteriore drenaggio d’acqua, anche se il carico di pressione continua a diminuire. Questa condizione definisce il **contenuto idrico residuo**, che si riferisce alla quantità minima di acqua trattenuta nei pori del suolo. La differenza di contenuto idrico tra la capacità di campo e il punto di appassimento rappresenta l’acqua disponibile per l’assorbimento da parte delle piante.
