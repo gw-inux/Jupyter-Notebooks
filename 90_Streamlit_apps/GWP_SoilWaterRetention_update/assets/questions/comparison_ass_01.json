@@ -1,6 +1,6 @@
 [
 {
-"question": "A) What is the primary reason to compare multiple soil water retention curves across soil types? (Mark ALL correct answers)",
+"question": "What is the primary reason to compare multiple soil water retention curves across soil types? (Mark ALL correct answers)",
 "options": {
 "A) To identify soils with the highest porosity": false,
 "B) To evaluate differences in plant-available water across soil textures": true,
@@ -11,18 +11,18 @@
 "error": "❌ The focus is on water retention behavior, not soil color or total porosity alone."
 },
 {
-"question": "A) Which parameter combination generally corresponds to sandy soils in the van Genuchten model? (Mark ALL correct answers)",
+"question": "Which parameter combination generally corresponds to sandy soils in the van Genuchten model? (Mark ALL correct answers)",
 "options": {
-"A) Low \\u03b8_s, high n, high \\u03b1": true,
-"B) High \\u03b8_r, low \\u03b1": false,
+"A) Low $\\theta_s$, high n, high $\\alpha$": true,
+"B) High $\\theta_r$, low $\\alpha$": false,
 "C) High K_s, high n": true,
-"D) Low n, low \\u03b1": false
+"D) Low n, low $\\alpha$": false
 },
 "success": "✅ Correct. Sandy soils typically drain quickly due to large pores (high n, high α) and have high K_s.",
 "error": "❌ Sandy soils typically have high α, high n, and low θ_r."
 },
 {
-"question": "A) Which soil texture generally shows the highest field capacity (FC) and permanent wilting point (PWP)? (Mark ALL correct answers)",
+"question": "Which soil texture generally show the highest field capacity (FC) and permanent wilting point (PWP)? (Mark ALL correct answers)",
 "options": {
 "A) Sand": false,
 "B) Loamy Sand": false,
@@ -33,7 +33,7 @@
 "error": "❌ Coarse soils retain less water. FC and PWP are typically highest in fine-textured soils."
 },
 {
-"question": "A) What factors can be evaluated using the dual-dataset comparison of SWRCs in the app? (Mark ALL correct answers)",
+"question": "What factors can be evaluated using the dual-dataset comparison of SWRCs in the app? (Mark ALL correct answers)",
 "options": {
 "A) Changes in PWP and FC across textures": true,
 "B) Differences in relative hydraulic conductivity": true,

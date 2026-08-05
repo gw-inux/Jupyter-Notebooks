@@ -43,7 +43,7 @@ with open(path_quest_ex1_03, "r", encoding="utf-8") as f:
     quest_ex1_03 = json.load(f)
 
 # Authors, institutions, and year
-year = 2025 
+year = 2026
 authors = {
     "Oriol Bertran": [1],
     "Daniel Fernàndez-Garcia": [1],
@@ -464,7 +464,7 @@ st.markdown(load_md(MD_DIR, "swr_ex1_04.md", st.session_state.language))
 # --- FINAL ASSESSMENT ---
 def content_ex1_03():
     st.markdown("""#### Final assessment""")
-    st.info("You can use the final questions to assess your learning success.")
+    st.info("You can use these final questions to assess your learning success.")
     
     # Render questions in a 2x2 grid (row-wise, aligned)
     for row in [(0, 1), (2, 3)]:

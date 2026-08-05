@@ -17,16 +17,16 @@ if st.session_state.scroll_to_top:
 #Empty space at the top
 st.markdown("<div style='height:1.25rem'></div>", unsafe_allow_html=True)
 
-st.header('👉 About The Soil Water Retention Module')
+st.header('👉 About The Soil-Water-Retention Module')
 st.markdown(
     """
     ### Description
-    The SoilWaterRetention interactive tool calculates the water distribution in the soil and unsaturated zone.
+    The Soil-Water-Retention interactive tool calculates the water distribution in the soil and unsaturated zone.
     
     ### Development
     Innovative and digital learning and teaching materials are currently enhanced and transferred to various partners across Europe by the EU cooperation project [iNUX](https://www.gw-inux.org/). The iNUX project is funded by the ERASMUS+ program of the European Union.
     
-    SoilWaterRetention was developed by Thomas Reimann, Oriol Bertran and Daniel Fernàndez-Garcia as Jupyter notebooks and adapted to the Groundwater Project interactive education format. The computations are partially based on earlier spreadsheet tools that were developed by Prof. Rudolf Liedl. The SoilWaterRetention tool was released in November of 2024. All Groundwater Project books are available for free download.
+    Soil-Water-Retention was developed by Thomas Reimann, Oriol Bertran and Daniel Fernàndez-Garcia as Jupyter notebooks and adapted to the Groundwater Project interactive education format. The computations are partially based on earlier spreadsheet tools that were developed by Prof. Rudolf Liedl. The Soil-Water-Retention tool was released in November of 2024. All Groundwater Project books are available for free download.
     """
 )
 

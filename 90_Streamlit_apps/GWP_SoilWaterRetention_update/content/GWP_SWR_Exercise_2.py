@@ -42,7 +42,7 @@ with open(path_quest_ex2_03, "r", encoding="utf-8") as f:
     quest_ex2_03 = json.load(f)
     
 # --- Authors, institutions, and year
-year = 2025 
+year = 2026
 authors = {
     "Thomas Reimann": [1],  # Author 1 belongs to Institution 1
     "Rudolf Liedl": [1],
@@ -113,7 +113,7 @@ st.header(
 st.subheader(
     ":rainbow-background[" +
     ui_text(
-        "SWRC Analysis for Agriculture and Flow",
+        "SWRC for Agricultural and Environmental Applications",
         de="SWRC-Analyse für Landwirtschaft und Wasserfluss",
         it="Analisi della SWRC per l'agricoltura e il flusso dell'acqua",
         es="Análisis de la SWRC para la agricultura y el flujo del agua",

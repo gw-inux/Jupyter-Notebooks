@@ -31,7 +31,7 @@ if st.session_state.scroll_to_top:
 st.markdown("<div style='height:1.25rem'></div>", unsafe_allow_html=True)
 
 # Authors, institutions, and year
-year = 2025 
+year = 2026
 authors = {
     "Thomas Reimann": [1],  # Author 1 belongs to Institution 1
     "Oriol Bertran": [2],
@@ -89,7 +89,7 @@ entries_abbrev = [
 # Parameters
 entries_para = [
     (r"$\alpha$", "van Genuchten parameter related to the inverse of the air-entry suction"),
-    (r"$D(\Theta)$", "hydraulic diffusivity as a function of effective saturation / dimensionless water content"),
+    (r"$D(\Theta)$", "describes how quickly moisture redistributes in soil (essentially, the ratio of effective hydraulic conductivity and dimensionless water content)"),
     (r"$h$", "pressure head or suction head, depending on the sign convention used in the plot"),
     (r"$h_c$", "capillary rise or capillary pressure head"),
     (r"$i$", "index for a fluid or material phase"),

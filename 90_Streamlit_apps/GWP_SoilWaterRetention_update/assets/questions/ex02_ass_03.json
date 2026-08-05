@@ -1,6 +1,6 @@
 [
   {
-    "question": "A) What does the van Genuchten α parameter primarily control? (Mark ALL correct answers)",
+    "question": "What does the van Genuchten α parameter primarily control? (Mark ALL correct answers)",
     "options": {
       "A) Onset of desaturation": true,
       "B) Slope of the retention curve": false,
@@ -11,7 +11,7 @@
     "error": "❌ α does not affect slope directly and is unrelated to conductivity."
   },
   {
-    "question": "A) How can you distinguish a silt soil from a sandy soil using the retention curve? (Mark ALL correct answers)",
+    "question": "How can you distinguish a silt soil from a sandy soil using the retention curve? (Mark ALL correct answers)",
     "options": {
       "A) Silt soils show a flatter SWRC and retain more water": true,
       "B) Sandy soils show abrupt drop in θ with suction": true,
@@ -22,7 +22,7 @@
     "error": "❌ Check how each soil type desaturates and retains water across pressure head."
   },
   {
-    "question": "A) What defines the effective field capacity (eFC)? (Mark ALL correct answers)",
+    "question": "What defines the effective field capacity (eFC)? (Mark ALL correct answers)",
     "options": {
       "A) Difference between FC and PWP": true,
       "B) Equal to saturated water content": false,
@@ -33,7 +33,7 @@
     "error": "❌ Recheck definitions: θs ≠ eFC and parameter impact matters."
   },
   {
-    "question": "A) Which soil shows the slowest drainage and highest field capacity? (Mark ALL correct answers)",
+    "question": "Which soil shows the slowest drainage and highest field capacity? (Mark ALL correct answers)",
     "options": {
       "A) Dataset 3": false,
       "B) Dataset 2": true,
@@ -44,7 +44,7 @@
     "error": "❌ Refer to how the datasets behave in the plotted suction vs θ curves."
   },
   {
-    "question": "A) How is the relative permeability (kr) curve typically related to the water content? (Mark ALL correct answers)",
+    "question": "How is the relative permeability (kr) curve typically related to the water content? (Mark ALL correct answers)",
     "options": {
       "A) kr decreases non-linearly with θ": true,
       "B) kr remains high throughout desaturation": false,
@@ -55,7 +55,7 @@
     "error": "❌ Think about how kr is linked to saturation and soil texture."
   },
   {
-    "question": "A) What is the practical relevance of plotting kr and PWP together? (Mark ALL correct answers)",
+    "question": "What is the practical relevance of plotting kr and PWP together? (Mark ALL correct answers)",
     "options": {
       "A) kr shows how water moves under unsaturated conditions": true,
       "B) PWP defines limits for plant water uptake": true,

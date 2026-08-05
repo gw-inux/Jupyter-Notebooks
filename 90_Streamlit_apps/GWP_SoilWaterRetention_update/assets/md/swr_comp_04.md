@@ -1,1 +1,1 @@
-The interactive plot allows to compare different data sets. Various data sets are available.
+The interactive plot allows for comparison of different data sets. Various data sets are available.

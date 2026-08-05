@@ -1,11 +1,11 @@
 #### 💡 Motivation
-- How do changes in **soil parameters** shape the water retention behavior?  
-- What causes certain soils to **drain faster** or **retain water longer**?  
-- How does **relative hydraulic conductivity** change as the soil dries up?
+- How do changes in **soil parameters** influence the water retention behavior?  
+- What causes some soils to **drain faster** or **retain water longer**?  
+- How does **relative hydraulic conductivity** change as the soil dries out?
             
-This interactive section of the module helps you explore the core mechanics of **soil water retention curves** by adjusting key parameters like residual water content, saturated content, and the shape factors $\\alpha$ and $n$. You will analyze how these parameters influence:
+This interactive section of the module helps you explore the core mechanics of **soil water retention curves** by adjusting key parameters such as residual water content, degree of saturation, and functional shape factors ($\\alpha$ and $n$). This section provides the opportunity to analyze how these parameters influence:
 - the **shape** of the retention curve,
-- the **position** of field capacity (FC) and permanent wilting point (PWP),
+- the **magnitude** of field capacity (FC) and permanent wilting point (PWP),
 - and the **relative hydraulic conductivity** $k_r(\theta)$.
             
 The goal is not only to observe—but to **understand** how soil-specific properties control water availability, movement, and management potential.

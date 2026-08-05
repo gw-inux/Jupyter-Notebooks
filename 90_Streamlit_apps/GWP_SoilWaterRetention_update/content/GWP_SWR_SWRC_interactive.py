@@ -31,7 +31,7 @@ if st.session_state.scroll_to_top:
 st.markdown("<div style='height:1.25rem'></div>", unsafe_allow_html=True)
 
 # --- Authors, institutions, and year
-year = 2025 
+year = 2026 
 authors = {
     "Thomas Reimann": [1],  # Author 1 belongs to Institution 1
     "Rudolf Liedl": [1],
@@ -78,7 +78,7 @@ MD_DIR  = Path("90_Streamlit_apps/GWP_SoilWaterRetention_update/assets/md")
 
 st.title(
     ui_text(
-        "📈 The SWRC Interactive",
+        "📈 SWRC Interactive Exploration",
         de="📈 Die SWRC interaktiv",
         it="📈 La SWRC interattiva",
         es="📈 La SWRC interactiva",
@@ -143,8 +143,8 @@ st.markdown(load_md(MD_DIR, "swr_inter_04.md", st.session_state.language))
 # --- Input data
 columns = st.columns((1,3))
 with columns[0]:
-    with st.expander('**SWRC parameter**'):
-        tr    = st.slider('residual water content (-)', 0.01, 0.4, 0.05, 0.01)
+    with st.expander('**SWRC parameters**'):
+        tr    = st.slider('residual water content (-)', 0.01, 0.14, 0.05, 0.01)
         ts    = st.slider('saturated water content (-)', 0.15, 0.7, 0.30, 0.01)   
         alpha = st.slider('alpha (1/cm)', 0.01, 1., 0.1, 0.01)
         n     = st.slider('n (-)', 1.01, 3., 1.2, 0.01)
@@ -201,7 +201,7 @@ with st.expander('**Click here to see the computed data**'):
     st.write('Van Genuchten             m:', '{:.5f}'.format(m) )
     st.write('Permanent Wilting Point PWP:', '{:.2f}'.format(PWP) )
     st.write('Field Capacity           FC:', '{:.2f}'.format(FC) )
-    st.write('Eff. Field Capacity     eFC:', '{:.2f}'.format(eFC) ) 
+    st.write('Effective Field Capacity     eFC:', '{:.2f}'.format(eFC) ) 
 
 if plot4:
     fig = plt.figure(figsize=(6,5))

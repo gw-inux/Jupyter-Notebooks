@@ -76,7 +76,7 @@ MD_DIR  = Path("90_Streamlit_apps/GWP_SoilWaterRetention_update/assets/md")
 
 st.title(
     ui_text(
-        "📊 The SWRC in Comparison",
+        "📊 SWRC Comparison of Soil Types",
         de="📊 Die SWRC im Vergleich",
         it="📊 La SWRC a confronto",
         es="📊 La SWRC en comparación",
@@ -116,7 +116,7 @@ st.subheader(
 st.markdown(load_md(MD_DIR, "swr_comp_01.md", st.session_state.language))
 
 with st.expander('🧠 **Show some questions for self-assessment** - to assess your initial understanding'):
-    render_assessment("90_Streamlit_apps/GWP_SoilWaterRetention/assets/questions/comparison_ass_01.json", title="Initial assessment")
+    render_assessment("90_Streamlit_apps/GWP_SoilWaterRetention_update/assets/questions/comparison_ass_01.json", title="Initial assessment")
 
 st.subheader(
     ui_text(
@@ -177,7 +177,7 @@ with columns[0]:
     st.write('**Dataset 1 - Input**')
     user1 = st.toggle('User defined data for plot 1?')
     if user1:
-        tr1    = st.slider('residual water content 1 (-)', 0.01, 0.4, 0.04, 0.01)
+        tr1    = st.slider('residual water content 1 (-)', 0.01, 0.14, 0.04, 0.01)
         ts1    = st.slider('saturated water content 1 (-)', 0.15, 0.7, 0.30, 0.01)
         alpha1 = st.slider('alpha 1 (1/cm)', 0.01, 1., 0.1, 0.01)
         n1     = st.slider('n 1 (-)', 1.01, 3., 1.2, 0.01)
@@ -289,7 +289,7 @@ ax.grid(which="both", color='grey',linewidth=0.5)
 plt.legend()
 st.pyplot(fig)
 
-with st.expander('**Click here to see the used data sets**'):
+with st.expander('**Click here to see the parameters values related to the displayed soil data sets**'):
     
     columns2 = st.columns((1,1), gap = 'large')
     with columns2[0]:
@@ -297,14 +297,14 @@ with st.expander('**Click here to see the used data sets**'):
         st.write('Van Genuchten             m:', '{:.5f}'.format(m1) )
         st.write('Permanent Wilting Point PWP:', '{:.2f}'.format(PWP1) )
         st.write('Field Capacity           FC:', '{:.2f}'.format(FC1) )
-        st.write('Eff. Field Capacity     eFC:', '{:.2f}'.format(eFC1) )
+        st.write('Effective Field Capacity     eFC:', '{:.2f}'.format(eFC1) )
  
     with columns2[1]:
         st.write('**Dataset 2**')
         st.write('Van Genuchten             m:', '{:.5f}'.format(m2) )
         st.write('Permanent Wilting Point PWP:', '{:.2f}'.format(PWP2) )
         st.write('Field Capacity           FC:', '{:.2f}'.format(FC2) )
-        st.write('Eff. Field Capacity     eFC:', '{:.2f}'.format(eFC2) )
+        st.write('Effective Field Capacity     eFC:', '{:.2f}'.format(eFC2) )
 
 if plot4:
     fig = plt.figure(figsize=(9,6))
@@ -332,7 +332,7 @@ st.subheader(
 st.markdown(load_md(MD_DIR, "swr_comp_06.md", st.session_state.language))
 
 with st.expander('🧠 **Show questions for the final assessment** - to assess your learning success'):
-    render_assessment("90_Streamlit_apps/GWP_SoilWaterRetention/assets/questions/comparison_ass_02.json", title="Final assessment", max_questions=6)
+    render_assessment("90_Streamlit_apps/GWP_SoilWaterRetention_update/assets/questions/comparison_ass_02.json", title="Final assessment", max_questions=6)
 
 # --------------------------------------------------
 # Footer
