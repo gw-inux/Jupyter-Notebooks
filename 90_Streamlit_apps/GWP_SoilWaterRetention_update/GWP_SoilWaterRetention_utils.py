@@ -2,6 +2,9 @@ from pathlib import Path
 import re
 import streamlit as st
 import numpy as np
+import json
+import streamlit as st
+from streamlit_book import multiple_choice
 
 # Make docs/ relative to THIS file, not the working directory
 DOCS_DIR = (Path(__file__).parent / "docs").resolve()
@@ -32,7 +35,7 @@ def flip_assessment(section_id: str):
 def render_toggle_container(
     section_id: str,
     label: str,
-    content_fn,                 # a function that renders the section contents when open
+    content_fn,
     *,
     default_open: bool = False,
     col_ratio=(25, 1),
@@ -41,33 +44,55 @@ def render_toggle_container(
     """
     Renders a toggleable container with two buttons:
     - Left: text button with your label
-    - Right: chevron button (▲/▼)
+    - Right: expander-style chevron button
+
     Each section manages its own state via section_id.
 
     Parameters
     ----------
     section_id : unique id string, e.g., "general_01"
-    label      : button label shown on the left
+    label : button label shown on the left
     content_fn : callable with no args that renders the open content
     default_open : initial open state (only used on first render)
-    col_ratio  : column width ratio for (label_button, chevron_button)
+    col_ratio : column width ratio for (label_button, chevron_button)
     container_border : show a border around the section container
     """
+
     state_key = f"exp_{section_id}"
+
     if state_key not in st.session_state:
         st.session_state[state_key] = default_open
 
     with st.container(border=container_border):
+
         ass_c1, ass_c2 = st.columns(col_ratio)
 
-        # Left button – same on_click toggler for consistency
+        # Left button
         with ass_c1:
-            st.button(label,key=f"btn_label_{section_id}",type="tertiary",on_click=flip_assessment,args=(section_id,))
+            st.button(
+                label,
+                key=f"btn_label_{section_id}",
+                type="tertiary",
+                on_click=flip_assessment,
+                args=(section_id,),
+            )
 
-        # Right chevron button – also toggles the same state
+        # Right button – same style of icon as Streamlit expanders
         with ass_c2:
-            chevron = "▲" if st.session_state[state_key] else "▼"
-            st.button(chevron,key=f"btn_chev_{section_id}",type="tertiary",on_click=flip_assessment,args=(section_id,))
+            chevron_icon = (
+                ":material/expand_less:"
+                if st.session_state[state_key]
+                else ":material/expand_more:"
+            )
+
+            st.button(
+                "",
+                key=f"btn_chev_{section_id}",
+                type="tertiary",
+                icon=chevron_icon,
+                on_click=flip_assessment,
+                args=(section_id,),
+            )
 
         # Conditional content
         if st.session_state[state_key]:
@@ -154,3 +179,97 @@ def ui_text(en, **translations):
     """
     return translations.get(st.session_state.language, en)
     
+def render_assessment(
+    question_file,
+    section_id,
+    label,
+    title=None,
+    info=None,
+    columns=2,
+    max_questions=None,
+    default_open=False,
+):
+    """
+    Render an assessment from a JSON question file inside a toggle container.
+
+    Parameters
+    ----------
+    question_file : str or Path
+        Path to the JSON file containing the assessment questions.
+
+    section_id : str
+        Unique identifier for the assessment. Used for session-state handling.
+
+    label : str
+        Text shown on the toggle container.
+
+    title : str, optional
+        Heading shown inside the assessment.
+
+    info : str, optional
+        Introductory information shown below the heading.
+
+    columns : int, default=2
+        Number of columns used to display the questions.
+
+    max_questions : int, optional
+        Maximum number of questions to show. If None, all questions are shown.
+
+    default_open : bool, default=False
+        Whether the assessment is initially open.
+    """
+
+    # Load assessment questions
+    with open(question_file, "r", encoding="utf-8") as f:
+        questions = json.load(f)
+
+    # Limit number of questions if requested
+    if max_questions is not None:
+        questions = questions[:max_questions]
+
+    def assessment_content():
+
+        if title:
+            st.markdown(f"#### {title}")
+
+        if info:
+            st.info(info)
+
+        # Render questions row-wise
+        for start in range(0, len(questions), columns):
+
+            cols = st.columns(columns)
+
+            for offset, col in enumerate(cols):
+
+                i = start + offset
+
+                if i >= len(questions):
+                    break
+
+                question = questions[i]
+
+                with col:
+                    st.markdown(
+                        f"**Q{i+1}. {question['question']}**"
+                    )
+
+                    multiple_choice(
+                        question=" ",
+                        options_dict=question["options"],
+                        success=question.get(
+                            "success",
+                            "✅ Correct."
+                        ),
+                        error=question.get(
+                            "error",
+                            "❌ Not quite."
+                        ),
+                    )
+
+    render_toggle_container(
+        section_id=section_id,
+        label=label,
+        content_fn=assessment_content,
+        default_open=default_open,
+    )

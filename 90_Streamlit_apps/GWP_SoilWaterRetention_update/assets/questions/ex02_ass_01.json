@@ -3,23 +3,23 @@
 "question": "What defines the permanent wilting point (PWP) in the soil water retention curve? (Mark ALL correct answers)",
 "options": {
 "A) Water content at which plants permanently recover after stress": false,
-"B) Water content at a suction of ~15000 cm (pF 4.2)": true,
-"C) It is influenced by both θ_r and curve shape (α, n)": true,
+"B) Water content at a suction of ~15,000 cm (pF 4.2, which is log10 of 15,000)": true,
+"C) It is influenced by both $\\theta_r$ and curve shape (α, n)": true,
 "D) It is always equal to the residual water content": false
 },
-"success": "✅ Correct. PWP is typically defined at a suction of 15000 cm and is shaped by both θ_r and the model curve.",
-"error": "❌ PWP is defined at pF 4.2, not by recovery or always equal to θ_r."
+"success": "✅ Correct. PWP is typically defined at a suction of 15,000 cm and is shaped by both $//theta_r$ and the model curve.",
+"error": "❌ PWP is defined at pF 4.2, not by recovery or always equal to $\\theta_r$."
 },
 {
 "question": "Which parameter most strongly controls the steepness of the retention curve? (Mark ALL correct answers)",
 "options": {
-"A) θ_s": false,
+"A) $\\theta_s$": false,
 "B) n": true,
-"C) α": true,
-"D) θ_r": false
+"C) α": false,
+"D) $\\theta_r$": false
 },
 "success": "✅ Exactly. Both α and n shape how fast the soil desaturates.",
-"error": "❌ θ_s and θ_r define the bounds, not the steepness."
+"error": "❌ $\\theta_s$ and $\\theta_r$ define the bounds, not the steepness."
 },
 {
 "question": "What characterizes field capacity (FC) in the model? (Mark ALL correct answers)",

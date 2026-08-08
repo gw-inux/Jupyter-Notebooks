@@ -13,6 +13,7 @@ from GWP_SoilWaterRetention_utils import flip_assessment
 from GWP_SoilWaterRetention_utils import render_toggle_container
 from GWP_SoilWaterRetention_utils import load_md
 from GWP_SoilWaterRetention_utils import ui_text
+from GWP_SoilWaterRetention_utils import render_assessment
 
 # --- Track the current page / Scroll to top
 PAGE_ID = "COM"
@@ -48,31 +49,12 @@ author_list = [f"{name}{''.join(index_symbols[i-1] for i in indices)}" for name,
 institution_list = [f"{index_symbols[i-1]} {inst}" for i, inst in institutions.items()]
 institution_text = " | ".join(institution_list)  # Institutions in one line
 
-def render_assessment(filename, title="📋 Assessment", max_questions=4):
-
-    with open(filename, "r", encoding="utf-8") as f:
-        questions = json.load(f)
-
-    st.markdown(f"#### {title}")
-    for idx in range(0, min(len(questions), max_questions), 2):
-        col1, col2 = st.columns(2)
-        for col, i in zip((col1, col2), (idx, idx+1)):
-            if i < len(questions):
-                with col:
-                    q = questions[i]
-                    st.markdown(f"**Q{i+1}. {q['question']}**")
-                    multiple_choice(
-                        question=" ",
-                        options_dict=q["options"],
-                        success=q.get("success", "✅ Correct."),
-                        error=q.get("error", "❌ Not quite.")
-                    )
-
 # --------------------------------------------------
 # Streamlit page
 # --------------------------------------------------
 
 MD_DIR  = Path("90_Streamlit_apps/GWP_SoilWaterRetention_update/assets/md")
+QUESTIONS_DIR = Path("90_Streamlit_apps/GWP_SoilWaterRetention_update/assets/questions")
 
 st.title(
     ui_text(
@@ -83,6 +65,8 @@ st.title(
         pt="📊 A SWRC em comparação",
         fr="📊 La SWRC en comparaison",
         zh="📊 SWRC 对比",
+        ar="📊 مقارنة منحنيات SWRC لأنواع التربة",
+        hi="📊 मृदा प्रकारों के SWRC की तुलना",
     )
 )
 
@@ -95,6 +79,8 @@ st.header(
         pt="Características da retenção de água no solo",
         fr="Caractéristiques de la rétention d'eau dans le sol",
         zh="土壤水分保持特性",
+        ar="خصائص احتفاظ التربة بالماء",
+        hi="मृदा जल धारण की विशेषताएँ",
     )
 )
 
@@ -108,15 +94,22 @@ st.subheader(
         pt="Comparação de conjuntos de dados",
         fr="Comparaison de jeux de données",
         zh="数据集比较",
+        ar="مقارنة مجموعات البيانات",
+        hi="डेटा सेट की तुलना",
     ) +
     "]",
     divider="green",
 )
 
 st.markdown(load_md(MD_DIR, "swr_comp_01.md", st.session_state.language))
-
-with st.expander('🧠 **Show some questions for self-assessment** - to assess your initial understanding'):
-    render_assessment("90_Streamlit_apps/GWP_SoilWaterRetention_update/assets/questions/comparison_ass_01.json", title="Initial assessment")
+    
+render_assessment(
+    question_file=QUESTIONS_DIR / "comparison_ass_01.json",
+    section_id="comp_01",
+    label="🧠 **Show some questions for self-assessment** - to assess your initial understanding",
+    title="Initial assessment",
+    info="You can use the initial questions to assess your existing knowledge.",
+)
 
 st.subheader(
     ui_text(
@@ -127,6 +120,8 @@ st.subheader(
         pt="Conjuntos de dados disponíveis",
         fr="Jeux de données disponibles",
         zh="可用数据集",
+        ar="مجموعات البيانات المتاحة",
+        hi="उपलब्ध डेटा सेट",
     ),
     divider="green",
 )
@@ -163,6 +158,8 @@ st.subheader(
         pt="📊 Gráfico interativo para comparar as curvas de retenção de água de diferentes tipos de solo",
         fr="📊 Graphique interactif comparant les courbes de rétention d'eau de différents types de sols",
         zh="📊 不同土壤类型土壤水分保持曲线的交互式比较图",
+        ar="📊 رسم تفاعلي لمقارنة منحنيات احتفاظ التربة بالماء لأنواع التربة المختلفة",
+        hi="📊 विभिन्न मृदा प्रकारों के मृदा जल धारण वक्रों की तुलना करने वाला इंटरैक्टिव ग्राफ",
     ),
     divider="green",
 )
@@ -325,14 +322,21 @@ st.subheader(
         pt="🧾 Conclusão e avaliação final",
         fr="🧾 Conclusion et évaluation finale",
         zh="🧾 总结与最终测评",
+        ar="🧾 الخلاصة والتقييم النهائي",
+        hi="🧾 निष्कर्ष और अंतिम आकलन",
     ),
     divider="green",
 )
 
 st.markdown(load_md(MD_DIR, "swr_comp_06.md", st.session_state.language))
 
-with st.expander('🧠 **Show questions for the final assessment** - to assess your learning success'):
-    render_assessment("90_Streamlit_apps/GWP_SoilWaterRetention_update/assets/questions/comparison_ass_02.json", title="Final assessment", max_questions=6)
+render_assessment(
+    question_file=QUESTIONS_DIR / "comparison_ass_02.json",
+    section_id="comp_02",
+    label="🧠 **Show questions for the final assessment** - to assess your learning success",
+    title="Final assessment",
+    info="You can use these final questions to assess your existing knowledge.",
+)
 
 # --------------------------------------------------
 # Footer

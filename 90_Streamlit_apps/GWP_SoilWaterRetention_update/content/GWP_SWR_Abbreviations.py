@@ -57,6 +57,8 @@ st.title(
         pt="📌 Abreviações e parâmetros",
         fr="📌 Abréviations et paramètres",
         zh="📌 缩略语与参数",
+        ar="📌 الاختصارات والمعلمات",
+        hi="📌 संक्षिप्ताक्षर और पैरामीटर",
     )
 )
 
@@ -70,6 +72,8 @@ st.subheader(
         pt="utilizados no módulo de retenção de água no solo",
         fr="utilisés dans le module sur la rétention d'eau dans le sol",
         zh="用于土壤水分保持模块",
+        ar="المستخدمة في وحدة احتفاظ التربة بالماء",
+        hi="मृदा जल धारण मॉड्यूल में प्रयुक्त",
     ) +
     "]"
 )
@@ -89,7 +93,7 @@ entries_abbrev = [
 # Parameters
 entries_para = [
     (r"$\alpha$", "van Genuchten parameter related to the inverse of the air-entry suction"),
-    (r"$D(\Theta)$", "describes how quickly moisture redistributes in soil (essentially, the ratio of effective hydraulic conductivity and dimensionless water content)"),
+    (r"$D(\Theta)$", "describes how quickly moisture redistributes in soil (essentially, the ratio of effective hydraulic conductivity and dimensionless water content = hydraulic diffusivity as a function of effective saturation / dimensionless water content)"),
     (r"$h$", "pressure head or suction head, depending on the sign convention used in the plot"),
     (r"$h_c$", "capillary rise or capillary pressure head"),
     (r"$i$", "index for a fluid or material phase"),
@@ -129,6 +133,8 @@ st.subheader(
         pt="Abreviações",
         fr="Abréviations",
         zh="缩略语",
+        ar="الاختصارات",
+        hi="संक्षिप्ताक्षर",
     ),
     divider="blue",
 )
@@ -150,6 +156,8 @@ st.subheader(
         pt="Parâmetros",
         fr="Paramètres",
         zh="参数",
+        ar="المعلمات",
+        hi="पैरामीटर",
     ),
     divider="blue",
 )

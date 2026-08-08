@@ -13,6 +13,7 @@ from GWP_SoilWaterRetention_utils import flip_assessment
 from GWP_SoilWaterRetention_utils import render_toggle_container
 from GWP_SoilWaterRetention_utils import load_md
 from GWP_SoilWaterRetention_utils import ui_text
+from GWP_SoilWaterRetention_utils import render_assessment
 
 # --- Track the current page / Scroll to top
 PAGE_ID = "INT"
@@ -49,32 +50,12 @@ author_list = [f"{name}{''.join(index_symbols[i-1] for i in indices)}" for name,
 institution_list = [f"{index_symbols[i-1]} {inst}" for i, inst in institutions.items()]
 institution_text = " | ".join(institution_list)  # Institutions in one line
 
-# --- Functions
-def render_assessment(filename, title="📋 Assessment", max_questions=4):
-
-    with open(filename, "r", encoding="utf-8") as f:
-        questions = json.load(f)
-
-    st.markdown(f"#### {title}")
-    for idx in range(0, min(len(questions), max_questions), 2):
-        col1, col2 = st.columns(2)
-        for col, i in zip((col1, col2), (idx, idx+1)):
-            if i < len(questions):
-                with col:
-                    q = questions[i]
-                    st.markdown(f"**Q{i+1}. {q['question']}**")
-                    multiple_choice(
-                        question=" ",
-                        options_dict=q["options"],
-                        success=q.get("success", "✅ Correct."),
-                        error=q.get("error", "❌ Not quite.")
-                    )
-
 # --------------------------------------------------
 # Streamlit page
 # --------------------------------------------------
 
 MD_DIR  = Path("90_Streamlit_apps/GWP_SoilWaterRetention_update/assets/md")
+QUESTIONS_DIR = Path("90_Streamlit_apps/GWP_SoilWaterRetention_update/assets/questions")
 
 st.title(
     ui_text(
@@ -85,6 +66,8 @@ st.title(
         pt="📈 A SWRC interativa",
         fr="📈 La SWRC interactive",
         zh="📈 交互式 SWRC",
+        ar="📈 استكشاف SWRC التفاعلي",
+        hi="📈 इंटरैक्टिव SWRC अन्वेषण",
     )
 )
 
@@ -97,6 +80,8 @@ st.header(
         pt="Características da retenção de água no solo",
         fr="Caractéristiques de la rétention d'eau dans le sol",
         zh="土壤水分保持特性",
+        ar="خصائص احتفاظ التربة بالماء",
+        hi="मृदा जल धारण की विशेषताएँ",
     )
 )
 
@@ -110,15 +95,22 @@ st.subheader(
         pt="Compreender a curva de retenção de água no solo (SWRC)",
         fr="Comprendre la courbe de rétention d'eau dans le sol (SWRC)",
         zh="理解土壤水分保持曲线 (SWRC)",
+        ar="فهم منحنى احتفاظ التربة بالماء (SWRC)",
+        hi="मृदा जल धारण वक्र (SWRC) को समझना",
     ) +
     "]",
     divider="red",
 )
 
 st.markdown(load_md(MD_DIR, "swr_inter_01.md", st.session_state.language))
-
-with st.expander('🧠 **Show some questions for self-assessment** - to assess your initial understanding'):
-    render_assessment("90_Streamlit_apps/GWP_SoilWaterRetention/assets/questions/interactive_ass_01.json", title="Initial assessment")
+    
+render_assessment(
+    question_file=QUESTIONS_DIR / "interactive_ass_01.json",
+    section_id="int_01",
+    label="🧠 **Show some questions for self-assessment** - to assess your initial understanding",
+    title="Initial assessment",
+    info="You can use the initial questions to assess your existing knowledge.",
+)
 
 st.subheader(
     ui_text(
@@ -129,6 +121,8 @@ st.subheader(
         pt="📈 Gráfico interativo da curva de retenção de água no solo",
         fr="📈 Graphique interactif de la courbe de rétention d'eau dans le sol",
         zh="📈 土壤水分保持曲线交互式图",
+        ar="📈 رسم تفاعلي لمنحنى احتفاظ التربة بالماء",
+        hi="📈 मृदा जल धारण वक्र का इंटरैक्टिव ग्राफ",
     ),
     divider="red",
 )
@@ -192,7 +186,6 @@ if FKplot:
 ax.set(xlabel='water content [-]', ylabel ='suction head [cm]', xlim = [0, 0.7], ylim = [1e-1,1e+5], yscale = 'log' )
 ax.grid(which="both", color='grey',linewidth=0.5)
 ax.legend(loc='lower center', bbox_to_anchor=(0.5, 1.1), borderaxespad=0, ncol=1, frameon=False, fontsize = 12)   
-
     
 with columns[1]:
     st.pyplot(fig)
@@ -221,15 +214,21 @@ st.subheader(
         pt="🧾 Conclusão e avaliação final",
         fr="🧾 Conclusion et évaluation finale",
         zh="🧾 总结与最终测评",
+        ar="🧾 الخلاصة والتقييم النهائي",
+        hi="🧾 निष्कर्ष और अंतिम आकलन",
     ),
     divider="blue",
 )
 
 st.markdown(load_md(MD_DIR, "swr_inter_05.md", st.session_state.language))
 
-with st.expander('🧠 **Show questions for the final assessment** - to assess your learning success'):
-    render_assessment("90_Streamlit_apps/GWP_SoilWaterRetention/assets/questions/interactive_ass_02.json", title="Final assessment", max_questions=6)
-
+render_assessment(
+    question_file=QUESTIONS_DIR / "interactive_ass_02.json",
+    section_id="int_02",
+    label="🧠 **Show questions for the final assessment** - to assess your learning success",
+    title="Final assessment",
+    info="You can use these final questions to assess your existing knowledge.",
+)
 # --------------------------------------------------
 # Footer
 # --------------------------------------------------

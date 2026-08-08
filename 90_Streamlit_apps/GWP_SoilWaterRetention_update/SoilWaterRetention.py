@@ -76,6 +76,8 @@ st.sidebar.markdown(
         pt="Navegação do módulo Soil Water Retention",
         fr="Navigation du module Soil Water Retention",
         zh="土壤水分保持模块导航",
+        ar="التنقل في وحدة احتفاظ التربة بالماء",
+        hi="मृदा जल धारण मॉड्यूल नेविगेशन",
     ) +
     "]"
 )
@@ -131,6 +133,8 @@ pages = [
             pt="📝 Teoria",
             fr="📝 Théorie",
             zh="📝 理论",
+            ar="📝 النظرية",
+            hi="📝 सिद्धांत",
         ),
         "path": "90_Streamlit_apps/GWP_SoilWaterRetention_update/content/GWP_SWR_Theory.py",
         "before": "topics",
@@ -145,6 +149,8 @@ pages = [
             pt="📈 A SWRC interativa",
             fr="📈 La SWRC interactive",
             zh="📈 交互式 SWRC",
+            ar="📈 منحنى SWRC التفاعلي",
+            hi="📈 इंटरैक्टिव SWRC",
         ),
         "path": "90_Streamlit_apps/GWP_SoilWaterRetention_update/content/GWP_SWR_SWRC_interactive.py",
     },
@@ -158,6 +164,8 @@ pages = [
             pt="📊 A SWRC em comparação",
             fr="📊 La SWRC en comparaison",
             zh="📊 SWRC 对比",
+            ar="📊 مقارنة SWRC",
+            hi="📊 SWRC की तुलना",
         ),
         "path": "90_Streamlit_apps/GWP_SoilWaterRetention_update/content/GWP_SWR_SWRC in comparison.py",
         "after": "exercises",
@@ -172,6 +180,8 @@ pages = [
             pt="🧪 Exercício SWRC 1",
             fr="🧪 Exercice SWRC 1",
             zh="🧪 SWRC 练习 1",
+            ar="🧪 تمرين SWRC 1",
+            hi="🧪 SWRC अभ्यास 1",
         ),
         "path": "90_Streamlit_apps/GWP_SoilWaterRetention_update/content/GWP_SWR_Exercise_1.py",
     },
@@ -185,6 +195,8 @@ pages = [
             pt="🧪 Exercício SWRC 2",
             fr="🧪 Exercice SWRC 2",
             zh="🧪 SWRC 练习 2",
+            ar="🧪 تمرين SWRC 2",
+            hi="🧪 SWRC अभ्यास 2",
         ),
         "path": "90_Streamlit_apps/GWP_SoilWaterRetention_update/content/GWP_SWR_Exercise_2.py",
         "after": "additional_information",
@@ -199,6 +211,8 @@ pages = [
             pt="📌 Abreviações",
             fr="📌 Abréviations",
             zh="📌 缩略语",
+            ar="📌 الاختصارات",
+            hi="📌 संक्षिप्ताक्षर",
         ),
         "path": "90_Streamlit_apps/GWP_SoilWaterRetention_update/content/GWP_SWR_Abbreviations.py",
     },
@@ -212,6 +226,8 @@ pages = [
             pt="📖 Referências",
             fr="📖 Références",
             zh="📖 参考文献",
+            ar="📖 المراجع",
+            hi="📖 संदर्भ",
         ),
         "path": "90_Streamlit_apps/GWP_SoilWaterRetention_update/content/GWP_SWR_References.py",
     },
@@ -225,6 +241,8 @@ pages = [
             pt="ℹ️ Sobre",
             fr="ℹ️ À propos",
             zh="ℹ️ 关于",
+            ar="ℹ️ حول الوحدة",
+            hi="ℹ️ परिचय",
         ),
         "path": "90_Streamlit_apps/GWP_SoilWaterRetention_update/content/GWP_SWR_About.py",
     },
@@ -246,6 +264,8 @@ if st.sidebar.button(
         pt="💦 Visão geral",
         fr="💦 Vue d'ensemble",
         zh="💦 概览",
+        ar="💦 نظرة عامة",
+        hi="💦 अवलोकन",
     ),
     key="btn_overview",
 ):
@@ -265,6 +285,8 @@ for page in pages:
                 pt="Escolha entre os tópicos abaixo",
                 fr="Choisissez parmi les sujets ci-dessous",
                 zh="从以下主题中选择",
+                ar="اختر من الموضوعات أدناه",
+                hi="नीचे दिए गए विषयों में से चुनें",
             ) +
             "]"
         )
@@ -289,6 +311,8 @@ for page in pages:
                 pt="Exercícios",
                 fr="Exercices",
                 zh="练习",
+                ar="التمارين",
+                hi="अभ्यास",
             ) +
             "**"
         )
@@ -304,6 +328,8 @@ for page in pages:
                 pt="Informações adicionais",
                 fr="Informations complémentaires",
                 zh="附加信息",
+                ar="معلومات إضافية",
+                hi="अतिरिक्त जानकारी",
             ) +
             "**"
         )
@@ -329,6 +355,8 @@ if st.session_state.selected_path:
                 pt=f"❌ Arquivo não encontrado: `{path}`",
                 fr=f"❌ Fichier introuvable : `{path}`",
                 zh=f"❌ 未找到文件：`{path}`",
+                ar=f"❌ لم يتم العثور على الملف: `{path}`",
+                hi=f"❌ फ़ाइल नहीं मिली: `{path}`",
             )
         )
 
@@ -349,6 +377,8 @@ st.sidebar.markdown(
         pt="Idioma",
         fr="Langue",
         zh="语言",
+        ar="اللغة",
+        hi="भाषा",
     )
 )
 
@@ -360,6 +390,8 @@ flags = {
     "🇵🇹": "pt",
     "🇫🇷": "fr",
     "🇨🇳": "zh",
+    "🇸🇦": "ar",
+    "🇮🇳": "hi",
 }
 
 cols = st.sidebar.columns(len(flags))
@@ -379,6 +411,8 @@ st.sidebar.caption(
         "pt": "Idioma do módulo: Português",
         "fr": "Langue du module : Français",
         "zh": "模块语言：中文",
+        "ar": "لغة الوحدة: العربية",
+        "hi": "मॉड्यूल की भाषा: हिन्दी",
     }[st.session_state.language]
 )
 
@@ -400,6 +434,8 @@ selected_layout = st.sidebar.radio(
         pt="Layout da página",
         fr="Mise en page",
         zh="页面布局",
+        ar="تخطيط الصفحة",
+        hi="पृष्ठ विन्यास",
     ),
     layout_options,
     index=layout_options.index(st.session_state.layout_choice),

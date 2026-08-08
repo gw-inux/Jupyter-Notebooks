@@ -79,6 +79,8 @@ st.title(
         es="Bienvenido al módulo Soil Water Retention 💦",
         pt="Bem-vindo ao módulo Soil Water Retention 💦",
         zh="欢迎学习土壤水分保持模块 - Soil Water Retention 💦",
+        ar="مرحبًا بكم في وحدة احتفاظ التربة بالماء 💦",
+        hi="मृदा जल धारण मॉड्यूल में आपका स्वागत है 💦",
     )
 )
 
@@ -91,6 +93,8 @@ st.subheader(
         es="Una aplicación para comprender la retención de agua en el suelo y la hidráulica de la zona no saturada 👋",
         pt="Uma aplicação para compreender a retenção de água no solo e a hidráulica da zona não saturada 👋",
         zh="一个帮助理解土壤水分保持与非饱和带水力学的应用程序 👋",
+        ar="تطبيق لتوضيح احتفاظ التربة بالماء وهيدروليكا المنطقة غير المشبعة 👋",
+        hi="मृदा जल धारण और असंतृप्त क्षेत्र की जलगतिकी को स्पष्ट करने वाला एक अनुप्रयोग 👋",
     ),
     divider="blue",
 )

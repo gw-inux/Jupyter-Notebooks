@@ -10,7 +10,7 @@ from GWP_SoilWaterRetention_utils import flip_assessment
 from GWP_SoilWaterRetention_utils import render_toggle_container
 from GWP_SoilWaterRetention_utils import load_md
 from GWP_SoilWaterRetention_utils import ui_text
-
+from GWP_SoilWaterRetention_utils import render_assessment
 
 # --- Track the current page / Scroll to top
 PAGE_ID = "THE"
@@ -177,32 +177,14 @@ def soil_water_diffusivity(Ks, n, ts, tr, T):
     D_T = I * L * P                                        
 
     return D_T
-    
-def render_assessment(filename, title="📋 Assessment", max_questions=4):
-
-    with open(filename, "r", encoding="utf-8") as f:
-        questions = json.load(f)
-
-    st.markdown(f"#### {title}")
-    for idx in range(0, min(len(questions), max_questions), 2):
-        col1, col2 = st.columns(2)
-        for col, i in zip((col1, col2), (idx, idx+1)):
-            if i < len(questions):
-                with col:
-                    q = questions[i]
-                    st.markdown(f"**Q{i+1}. {q['question']}**")
-                    multiple_choice(
-                        question=" ",
-                        options_dict=q["options"],
-                        success=q.get("success", "✅ Correct."),
-                        error=q.get("error", "❌ Not quite.")
-                    )
                     
 # --------------------------------------------------
 # Streamlit page
 # --------------------------------------------------
 
 MD_DIR  = Path("90_Streamlit_apps/GWP_SoilWaterRetention_update/assets/md")
+
+QUESTIONS_DIR = Path("90_Streamlit_apps/GWP_SoilWaterRetention_update/assets/questions")
 
 videourl1 = 'https://youtu.be/zMzqiAuOSz0'
 videourl2 = 'https://youtu.be/9gm81GghMrk'
@@ -219,6 +201,8 @@ st.title(
         es="📚 Teoría de la retención de agua en el suelo",
         pt="📚 Teoria da retenção de água no solo",
         zh="📚 土壤水分保持理论",
+        ar="📚 النظرية الأساسية لاحتفاظ التربة بالماء",
+        hi="📚 मृदा जल धारण का सिद्धांत",
     )
 )
 
@@ -231,6 +215,8 @@ st.header(
         es="Los conceptos 📖",
         pt="Os conceitos 📖",
         zh="基本概念 📖",
+        ar="المفاهيم 📖",
+        hi="अवधारणाएँ 📖",
     )
 )
 #-----------------------------------------------#
@@ -246,6 +232,8 @@ st.subheader(
         es="Una primera visión general de la zona no saturada",
         pt="Uma visão geral inicial da zona não saturada",
         zh="非饱和带概述",
+        ar="نظرة أولية على المنطقة غير المشبعة",
+        hi="असंतृप्त क्षेत्र का प्रारंभिक अवलोकन",
     ) +
     "]",
     divider="blue",
@@ -274,6 +262,8 @@ st.subheader(
         es="Tensión superficial y humectabilidad",
         pt="Tensão superficial e molhabilidade",
         zh="表面张力与润湿性",
+        ar="التوتر السطحي وقابلية البلل",
+        hi="पृष्ठ तनाव और आर्द्रणशीलता",
     ),
     divider="blue",
 )
@@ -317,10 +307,15 @@ with st.expander(':rainbow[**Click here to read more about the theoretical aspec
     st.markdown(load_md(MD_DIR, "theory_08.md", st.session_state.language))
     
     st.video(videourl1) 
-
-with st.expander('🧠 **Show some questions for self-assessment** - to assess your understanding - Surface tension and wettability'):
-    render_assessment("90_Streamlit_apps/GWP_SoilWaterRetention_update/questions/theory_ass_01.json", title="Surface tension and wettability – self assessment")
     
+render_assessment(
+    question_file=QUESTIONS_DIR / "theory_ass_01.json",
+    section_id="theo_01",
+    label="🧠 **Show some questions for self-assessment** - to assess your understanding - Surface tension and wettability",
+    title="Surface tension and wettability – self assessment",
+    info="You can use the initial questions to assess your existing knowledge.",
+)
+
 #-----------------------------------------------#
 # CAPILLARY PRESSURE                            #
 #-----------------------------------------------#
@@ -333,6 +328,8 @@ st.subheader(
         es="Presión capilar",
         pt="Pressão capilar",
         zh="毛细压力",
+        ar="الضغط الشعري",
+        hi="केशिका दाब",
     ),
     divider="blue",
 )
@@ -391,10 +388,14 @@ with st.expander(':rainbow[**Click here to read more about the theoretical aspec
     st.markdown(load_md(MD_DIR, "theory_12.md", st.session_state.language))
        
     st.video(videourl2)
-    
-with st.expander('🧠 **Show some questions for self-assessment** - to assess your understanding'):
-    render_assessment("90_Streamlit_apps/GWP_SoilWaterRetention_update/questions/theory_ass_02.json", title="Capillary pressure – self assessment")
-    
+       
+render_assessment(
+    question_file=QUESTIONS_DIR / "theory_ass_02.json",
+    section_id="theo_02",
+    label="🧠 **Show some questions for self-assessment** - to assess your understanding",
+    title="Capillary pressure – self assessment",
+    info="You can use the questions to assess your existing knowledge.",
+)
 #-----------------------------------------------#
 # Retention curve                               #
 #-----------------------------------------------#
@@ -407,6 +408,8 @@ st.subheader(
         es="Curva de retención de agua",
         pt="Curva de retenção de água",
         zh="持水曲线",
+        ar="منحنى احتفاظ التربة بالماء",
+        hi="जल धारण वक्र",
     ),
     divider="blue",
 )
@@ -427,8 +430,14 @@ with st.expander(':rainbow[**Click here to read more about the theoretical aspec
 
     st.video(videourl3)
     
-with st.expander('🧠 **Show some questions for self-assessment** - to assess your understanding'):
-    render_assessment("90_Streamlit_apps/GWP_SoilWaterRetention_update/questions/theory_ass_03.json", title="Capillary pressure – self assessment")
+   
+render_assessment(
+    question_file=QUESTIONS_DIR / "theory_ass_03.json",
+    section_id="theo_03",
+    label="🧠 **Show some questions for self-assessment** - to assess your understanding",
+    title="Retention curve – self assessment",
+    info="You can use the questions to assess your existing knowledge.",
+)
     
 st.subheader(
     ui_text(
@@ -439,6 +448,8 @@ st.subheader(
         es="Aplicaciones en la agricultura 🌱",
         pt="Aplicações na agricultura 🌱",
         zh="农业中的应用 🌱",
+        ar="التطبيقات في الزراعة 🌱",
+        hi="कृषि में अनुप्रयोग 🌱",
     ),
     divider="blue",
 )
@@ -457,10 +468,13 @@ with st.expander(':rainbow[**Click here to read more about the applications in a
             r"**Fig. 6** – Indices describing the retention curves, where $\theta_{fc}$ is the field capacity; $\theta_{wp}$ represents the wilting point; $\theta_{r}$ is the residual water content; and $\psi_{a}$ is the entry pressure head. Adapted from Stephens, D. B. (2018)."
         )
     
-
-with st.expander('🧠 **Show some questions for self-assessment** - to assess your understanding'):
-    render_assessment("90_Streamlit_apps/GWP_SoilWaterRetention/questions/theory_ass_04.json", title="Capillary pressure – self assessment")
-    
+render_assessment(
+    question_file=QUESTIONS_DIR / "theory_ass_04.json",
+    section_id="theo_04",
+    label="🧠 **Show some questions for self-assessment** - to assess your understanding",
+    title="Applications in agriculture – self assessment",
+    info="You can use the questions to assess your existing knowledge.",
+)
 #-----------------------------------------------#
 # The formulation                               #
 #-----------------------------------------------#
@@ -474,6 +488,8 @@ st.header(
         es="La formulación :abacus:",
         pt="A formulação :abacus:",
         zh="数学表达 :abacus:",
+        ar="الصياغة الرياضية :abacus:",
+        hi="गणितीय सूत्रीकरण :abacus:",
     )
 )
 
@@ -488,6 +504,8 @@ st.subheader(
         es="Parámetros y ecuaciones",
         pt="Parâmetros e equações",
         zh="参数与方程",
+        ar="المعلمات والمعادلات",
+        hi="पैरामीटर और समीकरण",
     ),
     divider="blue",
 )
@@ -540,6 +558,8 @@ st.subheader(
         es="Visualización de las relaciones para diferentes tipos de suelo",
         pt="Visualização das relações para diferentes tipos de solo",
         zh="不同土壤类型关系的可视化",
+        ar="تصور العلاقات لمواد تربة مختلفة",
+        hi="विभिन्न मृदा सामग्रियों के लिए संबंधों का दृश्यांकन",
     ),
     divider="blue",
 )
@@ -657,14 +677,20 @@ st.subheader(
         es="🧾 Conclusión y evaluación final",
         pt="🧾 Conclusão e avaliação final",
         zh="🧾 总结与最终测评",
+        ar="🧾 الخلاصة والتقييم النهائي",
+        hi="🧾 निष्कर्ष और अंतिम आकलन",
     ),
     divider="blue",
 )
 st.markdown(load_md(MD_DIR, "theory_33.md", st.session_state.language))
-
-with st.expander('🧠 **Show the final assessment** - to evaluate your understanding'):
-    render_assessment("90_Streamlit_apps/GWP_SoilWaterRetention/questions/theory_ass_05.json", title="Theory section - final assessment", max_questions=6)
-        
+   
+render_assessment(
+    question_file=QUESTIONS_DIR / "theory_ass_05.json",
+    section_id="theo_05",
+    label="🧠 **Show the final assessment** - to evaluate your understanding",
+    title="Theory section - final assessment",
+    info="You can use the questions to assess your existing knowledge.",
+)   
 # --------------------------------------------------
 # Footer
 # --------------------------------------------------

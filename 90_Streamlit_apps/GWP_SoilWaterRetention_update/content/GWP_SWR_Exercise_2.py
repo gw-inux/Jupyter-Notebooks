@@ -12,6 +12,7 @@ from GWP_SoilWaterRetention_utils import flip_assessment
 from GWP_SoilWaterRetention_utils import render_toggle_container
 from GWP_SoilWaterRetention_utils import load_md
 from GWP_SoilWaterRetention_utils import ui_text
+from GWP_SoilWaterRetention_utils import render_assessment
 
 # --- Track the current page / Scroll to top
 PAGE_ID = "EX2"
@@ -29,17 +30,11 @@ if st.session_state.scroll_to_top:
 #Empty space at the top
 st.markdown("<div style='height:1.25rem'></div>", unsafe_allow_html=True)
 
-# --- LOAD QUESTIONS
-path_quest_ex2_01   = "90_Streamlit_apps/GWP_SoilWaterRetention/assets/questions/ex02_ass_01.json"
-path_quest_ex2_02   = "90_Streamlit_apps/GWP_SoilWaterRetention/assets/questions/ex02_ass_02.json"
-path_quest_ex2_03   = "90_Streamlit_apps/GWP_SoilWaterRetention/assets/questions/ex02_ass_03.json"
-# Load questions
-with open(path_quest_ex2_01, "r", encoding="utf-8") as f:
-    quest_ex2_01 = json.load(f)
-with open(path_quest_ex2_02, "r", encoding="utf-8") as f:
-    quest_ex2_02 = json.load(f)
-with open(path_quest_ex2_03, "r", encoding="utf-8") as f:
-    quest_ex2_03 = json.load(f)
+# --- Path to questions
+
+QUESTIONS_DIR = Path(
+    "90_Streamlit_apps/GWP_SoilWaterRetention_update/assets/questions"
+)
     
 # --- Authors, institutions, and year
 year = 2026
@@ -60,26 +55,6 @@ author_list = [f"{name}{''.join(index_symbols[i-1] for i in indices)}" for name,
 institution_list = [f"{index_symbols[i-1]} {inst}" for i, inst in institutions.items()]
 institution_text = " | ".join(institution_list)  # Institutions in one line
 
-def render_assessment(filename, title="📋 Assessment", max_questions=4):
-
-    with open(filename, "r", encoding="utf-8") as f:
-        questions = json.load(f)
-
-    st.markdown(f"#### {title}")
-    for idx in range(0, min(len(questions), max_questions), 2):
-        col1, col2 = st.columns(2)
-        for col, i in zip((col1, col2), (idx, idx+1)):
-            if i < len(questions):
-                with col:
-                    q = questions[i]
-                    st.markdown(f"**Q{i+1}. {q['question']}**")
-                    multiple_choice(
-                        question=" ",
-                        options_dict=q["options"],
-                        success=q.get("success", "✅ Correct."),
-                        error=q.get("error", "❌ Not quite.")
-                    )
-
 # --------------------------------------------------
 # Streamlit page
 # --------------------------------------------------
@@ -95,6 +70,8 @@ st.title(
         pt="🧪 Exercício SWRC 2",
         fr="🧪 Exercice SWRC 2",
         zh="🧪 SWRC 练习 2",
+        ar="🧪 تمرين SWRC 2",
+        hi="🧪 SWRC अभ्यास 2",
     )
 )
 
@@ -107,6 +84,8 @@ st.header(
         pt="Curvas de retenção de água no solo (SWRC)",
         fr="Courbes de rétention d'eau dans le sol (SWRC)",
         zh="土壤水分保持曲线 (SWRC)",
+        ar="منحنيات احتفاظ التربة بالماء (SWRC)",
+        hi="मृदा जल धारण वक्र (SWRC)",
     )
 )
 
@@ -120,6 +99,8 @@ st.subheader(
         pt="Análise da SWRC para agricultura e fluxo da água",
         fr="Analyse de la SWRC pour l'agriculture et l'écoulement de l'eau",
         zh="农业与水流分析中的 SWRC",
+        ar="منحنى SWRC للتطبيقات الزراعية والبيئية",
+        hi="कृषि और पर्यावरणीय अनुप्रयोगों के लिए SWRC",
     ) +
     "]",
     divider="rainbow",
@@ -127,42 +108,14 @@ st.subheader(
 
 st.markdown(load_md(MD_DIR, "swr_ex2_01.md", st.session_state.language))
 
-# --- INITIAL ASSESSMENT ---
-def content_ex2_01():
-    st.markdown("""#### Initial assessment""")
-    st.info("You can use the initial questions to assess your existing knowledge.")
-    
-    # Render questions in a 2x2 grid (row-wise, aligned)
-    for row in [(0, 1), (2, 3)]:
-        col1, col2 = st.columns(2)
-    
-        with col1:
-            i = row[0]
-            st.markdown(f"**Q{i+1}. {quest_ex2_01[i]['question']}**")
-            multiple_choice(
-                question=" ",  # suppress repeated question display
-                options_dict=quest_ex2_01[i]["options"],
-                success=quest_ex2_01[i].get("success", "✅ Correct."),
-                error=quest_ex2_01[i].get("error", "❌ Not quite.")
-            )
-    
-        with col2:
-            i = row[1]
-            st.markdown(f"**Q{i+1}. {quest_ex2_01[i]['question']}**")
-            multiple_choice(
-                question=" ",
-                options_dict=quest_ex2_01[i]["options"],
-                success=quest_ex2_01[i].get("success", "✅ Correct."),
-                error=quest_ex2_01[i].get("error", "❌ Not quite.")
-            )
-
-# Render initial assessment
-render_toggle_container(
+render_assessment(
+    question_file=QUESTIONS_DIR / "ex02_ass_01.json",
     section_id="ex2_01",
     label="✅ **Show the initial assessment** - to assess wether you are ready for the exercise",
-    content_fn=content_ex2_01,
-    default_open=False,
+    title="Initial assessment",
+    info="You can use the initial questions to assess your existing knowledge.",
 )
+
 st.subheader(
     ui_text(
         "Exercise – Fitting the model to measured data",
@@ -172,6 +125,8 @@ st.subheader(
         pt="Exercício – Ajuste do modelo aos dados medidos",
         fr="Exercice – Ajustement du modèle aux données mesurées",
         zh="练习——将模型拟合到实测数据",
+        ar="تمرين – ملاءمة النموذج مع البيانات المقاسة",
+        hi="अभ्यास – मापे गए डेटा के लिए मॉडल का फिटिंग",
     ),
     divider="rainbow",
 )
@@ -265,8 +220,12 @@ st.write('Permanent Wilting Point PWP:', '{:.2f}'.format(PWP) )
 st.write('Field Capacity           FC:', '{:.2f}'.format(FC) )
 st.write('Eff. Field Capacity     eFC:', '{:.2f}'.format(eFC) )
 
-with st.expander(':rainbow[**Click here to submit and assess your analysis**]'):
-    render_assessment("90_Streamlit_apps/GWP_SoilWaterRetention/assets/questions/ex02_ass_02.json", title="Exercise 2 – Submit and assess your analysis", max_questions=5)
+render_assessment(
+question_file=QUESTIONS_DIR / "ex02_ass_02.json",
+section_id="ex2_02",
+label=":rainbow[**Click here to submit and assess your analysis**]",
+title="Exercise 2 – Submit and assess your analysis",
+)
     
 st.subheader(
     ui_text(
@@ -277,46 +236,20 @@ st.subheader(
         pt="🧾 Conclusão e avaliação final",
         fr="🧾 Conclusion et évaluation finale",
         zh="🧾 总结与最终测评",
+        ar="🧾 الخلاصة والتقييم النهائي",
+        hi="🧾 निष्कर्ष और अंतिम आकलन",
     ),
     divider="rainbow",
 )
 st.markdown(load_md(MD_DIR, "swr_ex2_03.md", st.session_state.language))
 
 # --- FINAL ASSESSMENT ---
-def content_ex2_03():
-    st.markdown("""#### Final assessment""")
-    st.info("You can use the final questions to assess your learning success.")
-    
-    # Render questions in a 2x2 grid (row-wise, aligned)
-    for row in [(0, 1), (2, 3)]:
-        col1, col2 = st.columns(2)
-    
-        with col1:
-            i = row[0]
-            st.markdown(f"**Q{i+1}. {quest_ex2_03[i]['question']}**")
-            multiple_choice(
-                question=" ",  # suppress repeated question display
-                options_dict=quest_ex2_03[i]["options"],
-                success=quest_ex2_03[i].get("success", "✅ Correct."),
-                error=quest_ex2_03[i].get("error", "❌ Not quite.")
-            )
-    
-        with col2:
-            i = row[1]
-            st.markdown(f"**Q{i+1}. {quest_ex2_03[i]['question']}**")
-            multiple_choice(
-                question=" ",
-                options_dict=quest_ex2_03[i]["options"],
-                success=quest_ex2_03[i].get("success", "✅ Correct."),
-                error=quest_ex2_03[i].get("error", "❌ Not quite.")
-            )
-
-# Render initial assessment
-render_toggle_container(
+render_assessment(
+    question_file=QUESTIONS_DIR / "ex02_ass_03.json",
     section_id="ex2_03",
     label="✅ **Show the final assessment** - to assess your learning success",
-    content_fn=content_ex2_03,
-    default_open=False,
+    title="Final assessment",
+    info="You can use the final questions to assess your learning success.",
 )
           
 '---'
