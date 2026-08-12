@@ -18,6 +18,8 @@ institutions = {
     2: "TU Dresden, Institute for Groundwater Management"
     
 }
+index_symbols = ["¹", "²", "³", "⁴", "⁵", "⁶", "⁷", "⁸", "⁹"]
+
 # ------------------------------------------------------------
 # Format authors
 # ------------------------------------------------------------
@@ -53,7 +55,7 @@ def neuman_branch_curve(T, Ss, Sy, beta_index, r, b, Qs, u_inv_a, u_inv_b, w_u_a
     Parameters
     ----------
     T : float Transmissivity [m²/s]
-    Ss : float Specific storage [1/m]
+    Ss : float Specific storage [1/m
     Sy : float Specific yield [-]
     beta_index : int Column index of the selected Neuman beta curve.
     r : float Radial distance from pumping well [m]
@@ -208,6 +210,7 @@ CSS_DIR = Path("90_Streamlit_apps/GWP_Pumping_Test_Derivatives/assets/css")
 
 load_css(CSS_DIR, "segment_control_Theis_Deriv_Ini.css")
 
+#st.title("Pumping test evaluation with :blue[Drawdown Derivatives]")
 st.header("Understanding :violet[**Drawdown Derivatives**] with the :violet[**Neuman**] model for :violet[**unconfined aquifers**]", divider = 'violet')
 
 # --------------------------------------------------
@@ -221,8 +224,15 @@ st.subheader("Introduction", divider="violet")
 
 st.markdown(load_md(MD_DIR, "neuman_deriv_02.md", st.session_state.language))
 
+#st.markdown(
+#    """
+#    This section introduces drawdown derivatives as a diagnostic tool for pumping test evaluation. The starting point is the Neuman solution for transient radial flow to a pumping well in an unconfined aquifer. The solution accounts for delayed drainage from the water table and therefore produces diagnostic curve shapes that differ from the classical Theis response.
+#    
+#    In addition to the drawdown curve, the app shows the drawdown derivative with respect to the natural logarithm of time. The derivative highlights changes in curve slope and helps identify characteristic flow regimes more clearly than the drawdown curve alone.
+#"""
+#)
 
-cent_co = st.columns((20, 60, 20))[1]
+left_co, cent_co, last_co = st.columns((20, 60, 20))
 with cent_co:
     st.image(
         "90_Streamlit_apps/GWP_Pumping_Test_Derivatives/assets/images/Neuman_Deriv_01.png",
@@ -254,7 +264,7 @@ st.markdown(load_md(MD_DIR, "neuman_deriv_04.md", st.session_state.language))
 # Interactive inverse function
 # --------------------------------------------------
 @st.fragment
-def inverse_neuman(v, r, b, Qs):
+def inverse_neuman(v):
     """
     Plot Neuman drawdown curves and, optionally, drawdown derivatives.
 
@@ -279,8 +289,12 @@ def inverse_neuman(v, r, b, Qs):
     # --------------------------------------------------
     # Basic hydraulic setup
     # --------------------------------------------------
-    # r, b, and Qs are defined once above the topic selector and passed into
-    # this fragment. beta is selected directly by the user below.
+    # Fixed observation distance used for the educational type-curve plots.
+    # r must be used consistently in u_A/u_y.  beta itself is selected directly
+    # by the user below, so no hidden conductivity-based beta reconstruction occurs.
+    r = 10.0
+    b = 10.0
+    Qs = 0.1 / 60.0
 
     log_min_T = -7.0
     log_max_T = 0.0
@@ -636,12 +650,12 @@ def inverse_neuman(v, r, b, Qs):
 
     with col_2:
         with st.expander("$\\beta$"):
-            geometry_factor = (r / b) ** 2
             st.caption(
-                rf"$\beta = (K_v/K_h)(r^2/b^2)$. "
-                rf"For the current geometry, $r^2/b^2 = {geometry_factor:.3g}$. "
-                r"The selected value below is used directly as Neuman's $\beta$."
+                r"$\beta = (K_v/K_h)(r^2/b^2)$. "
+                r"For the fixed educational geometry $r=b=10$ m, "
+                r"$\beta=K_v/K_h$."
             )
+            beta_variant_indices = []
     
             if v == 4:
                 default_beta_indices = [1, 3, 5]
@@ -655,10 +669,6 @@ def inverse_neuman(v, r, b, Qs):
                     )
             
                     beta_idx = beta_labels.index(beta_i)
-                    kvkh_i = float(beta_i) * (b / r) ** 2
-                    st.caption(
-                        rf"For the current $r$ and $b$: $K_v/K_h \approx {kvkh_i:.3g}$."
-                    )
             
                     parameter_sets.append(
                         {
@@ -683,10 +693,6 @@ def inverse_neuman(v, r, b, Qs):
                 )
     
                 beta_index = beta_labels.index(beta_choice)
-                kvkh_choice = float(beta_choice) * (b / r) ** 2
-                st.caption(
-                    rf"For the current $r$ and $b$: $K_v/K_h \approx {kvkh_choice:.3g}$."
-                )
     
             show_table_points = st.toggle(
                 "Show original tabular Neuman data",
@@ -716,21 +722,11 @@ def inverse_neuman(v, r, b, Qs):
 
     plateau_handle = None
     plateau_label = "late-time derivative plateau reference"
-    variant_plateau_handles = []
-    variant_plateau_labels = []
-
-    # Explicit colors keep each parameter variant visually stable.  In particular,
-    # plotting optional Neuman table markers must not advance Matplotlib's color cycle.
-    plot_colors = plt.rcParams["axes.prop_cycle"].by_key().get(
-        "color", [f"C{i}" for i in range(10)]
-    )
-    t_model = np.logspace(-1, 9, 320)
 
     # --------------------------------------------------
     # Calculation and plotting loop
     # --------------------------------------------------
-    for curve_index, par in enumerate(parameter_sets):
-        curve_color = plot_colors[curve_index % len(plot_colors)]
+    for par in parameter_sets:
 
         T = par["T"]
         Ss = par["Ss"]
@@ -740,32 +736,31 @@ def inverse_neuman(v, r, b, Qs):
         beta_choice_plot = par.get("beta_label", beta_choice)
 
         # --------------------------------------------------
-        # Optional original Neuman table branches
+        # Original Neuman table branches only
         # --------------------------------------------------
-        # These data are only needed when the reference-point toggle is active.
-        # Avoid computing and sorting them during the normal numerical plot.
-        if show_table_points and show_drawdown:
-            t_a, s_a, t_b, s_b = neuman_branch_curve(
-                T=T,
-                Ss=Ss,
-                Sy=Sy,
-                beta_index=beta_index_plot,
-                r=r,
-                b=b,
-                Qs=Qs,
-                u_inv_a=u_inv_a,
-                u_inv_b=u_inv_b,
-                w_u_a=w_u_a,
-                w_u_b=w_u_b,
-            )
-
-            sort_a = np.argsort(t_a)
-            sort_b = np.argsort(t_b)
-
-            t_a = np.asarray(t_a)[sort_a]
-            s_a = np.asarray(s_a)[sort_a]
-            t_b = np.asarray(t_b)[sort_b]
-            s_b = np.asarray(s_b)[sort_b]
+        t_a, s_a, t_b, s_b = neuman_branch_curve(
+            T=T,
+            Ss=Ss,
+            Sy=Sy,
+            beta_index=beta_index_plot,
+            r=r,
+            b=b,
+            Qs=Qs,
+            u_inv_a=u_inv_a,
+            u_inv_b=u_inv_b,
+            w_u_a=w_u_a,
+            w_u_b=w_u_b,
+        )
+        
+        # Sort branches
+        sort_a = np.argsort(t_a)
+        sort_b = np.argsort(t_b)
+        
+        t_a = np.asarray(t_a)[sort_a]
+        s_a = np.asarray(s_a)[sort_a]
+        
+        t_b = np.asarray(t_b)[sort_b]
+        s_b = np.asarray(s_b)[sort_b]
 
         # --------------------------------------------------
         # Full numerical Neuman solution
@@ -779,9 +774,11 @@ def inverse_neuman(v, r, b, Qs):
         # user's selected beta value.
         beta_value = float(beta_choice_plot)
 
-        # Use the complete Neuman (1975) solution on the shared logarithmic time grid.
+        # Use the complete Neuman (1975) solution on a logarithmic time grid.
         # The solver evaluates ds/dln(t) analytically under Neuman's integral and
         # obtains drawdown by integration in ln(time).
+        t_model = np.logspace(-1, 9, 320)
+
         response = neuman_response(
             t=t_model,
             Q=Qs,
@@ -797,14 +794,17 @@ def inverse_neuman(v, r, b, Qs):
         # --------------------------------------------------
         # Plot drawdown
         # --------------------------------------------------
+        line = None
+        color = None
+
         if show_drawdown:
             line, = ax.plot(
                 response.time,
                 response.drawdown,
                 linewidth=2,
-                color=curve_color,
                 label="_nolegend_",
             )
+            color = line.get_color()
 
             drawdown_handles.append(line)
             drawdown_labels.append(f"Drawdown: {label}")
@@ -818,8 +818,7 @@ def inverse_neuman(v, r, b, Qs):
                     linestyle="none",
                     markersize=5,
                     markerfacecolor="none",
-                    markeredgecolor=curve_color,
-                    color=curve_color,
+                    markeredgecolor=color,
                     alpha=0.85,
                     label="_nolegend_",
                 )
@@ -831,8 +830,7 @@ def inverse_neuman(v, r, b, Qs):
                     linestyle="none",
                     markersize=4.5,
                     markerfacecolor="none",
-                    markeredgecolor=curve_color,
-                    color=curve_color,
+                    markeredgecolor=color,
                     alpha=0.65,
                     label="_nolegend_",
                 )
@@ -841,33 +839,21 @@ def inverse_neuman(v, r, b, Qs):
         # Plot theoretical derivative
         # --------------------------------------------------
         if show_derivative:
+            derivative_color = color if color is not None else None
+
             derivative_line, = ax.plot(
                 response.time,
                 response.derivative_ln_time,
                 "--",
                 linewidth=2,
-                color=curve_color,
+                color=derivative_color,
                 label="_nolegend_",
             )
 
             derivative_handles.append(derivative_line)
             derivative_labels.append(rf"Derivative $ds/d\ln(t)$: {label}")
 
-            if v == 2:
-                # T varies in this topic, so Q/(4*pi*T) is different for each curve.
-                # Draw one plateau reference per T variant in the matching color.
-                plateau_line = ax.axhline(
-                    plateau_d,
-                    linestyle=":",
-                    linewidth=1.5,
-                    color=curve_color,
-                    alpha=0.65,
-                    label="_nolegend_",
-                )
-                variant_plateau_handles.append(plateau_line)
-                variant_plateau_labels.append(f"Plateau: {label}")
-
-            elif plateau_handle is None:
+            if plateau_handle is None:
                 plateau_handle = ax.axhline(
                     plateau_d,
                     linestyle=":",
@@ -921,10 +907,7 @@ def inverse_neuman(v, r, b, Qs):
         legend_handles.extend(derivative_handles)
         legend_labels.extend(derivative_labels)
 
-        if v == 2:
-            legend_handles.extend(variant_plateau_handles)
-            legend_labels.extend(variant_plateau_labels)
-        elif plateau_handle is not None:
+        if plateau_handle is not None:
             legend_handles.append(plateau_handle)
             legend_labels.append(plateau_label)
 
@@ -951,9 +934,8 @@ def inverse_neuman(v, r, b, Qs):
                 r"$S_a = S_s b$ (-) = %10.2E" % (Sa,),
                 r"$S_y$ (-) = %4.2f" % (Sy,),
                 rf"$\beta$ = {beta_choice}",
-                r"$r$ (m) = %6.2f" % (r,),
-                r"$b$ (m) = %6.2f" % (b,),
-                r"$Q$ (m³/s) = %10.2E" % (Qs,),
+                r"$r$ (m) = %4.1f" % (r,),
+                r"$b$ (m) = %4.1f" % (b,),
             )
         )
 
@@ -967,9 +949,8 @@ def inverse_neuman(v, r, b, Qs):
                 r"Fixed $S_s$ (1/m) = %10.2E" % (Ss_fixed,),
                 r"Fixed $S_y$ (-) = %4.2f" % (Sy_fixed,),
                 rf"$\beta$ = {beta_choice}",
-                r"$r$ (m) = %6.2f" % (r,),
-                r"$b$ (m) = %6.2f" % (b,),
-                r"$Q$ (m³/s) = %10.2E" % (Qs,),
+                r"$r$ (m) = %4.1f" % (r,),
+                r"$b$ (m) = %4.1f" % (b,),
                 r"$T$ controls vertical position",
                 r"and derivative level.",
             )
@@ -985,9 +966,8 @@ def inverse_neuman(v, r, b, Qs):
                 r"Fixed $T$ (m²/s) = %10.2E" % (T_fixed,),
                 r"Fixed $S_s$ (1/m) = %10.2E" % (Ss_fixed,),
                 rf"$\beta$ = {beta_choice}",
-                r"$r$ (m) = %6.2f" % (r,),
-                r"$b$ (m) = %6.2f" % (b,),
-                r"$Q$ (m³/s) = %10.2E" % (Qs,),
+                r"$r$ (m) = %4.1f" % (r,),
+                r"$b$ (m) = %4.1f" % (b,),
                 r"$S_y$ controls late-time response",
                 r"and delayed drainage.",
             )
@@ -1006,9 +986,8 @@ def inverse_neuman(v, r, b, Qs):
                 r"Fixed $S_y$ (-) = %4.2f" % (Sy_fixed,),
                 r"$\beta$ controls delayed drainage shape",
                 r"and transition behavior.",
-                r"$r$ (m) = %6.2f" % (r,),
-                r"$b$ (m) = %6.2f" % (b,),
-                r"$Q$ (m³/s) = %10.2E" % (Qs,),
+                r"$r$ (m) = %4.1f" % (r,),
+                r"$b$ (m) = %4.1f" % (b,),
             )
         )
 
@@ -1048,51 +1027,6 @@ st.subheader(
 
 st.markdown(load_md(MD_DIR, "neuman_deriv_05.md", st.session_state.language))
 
-# --------------------------------------------------
-# General model setup shared by all Neuman topics
-# --------------------------------------------------
-with st.expander(":orange[**General model setup — r, b, and Q**]", expanded=False):
-    setup_col_1, setup_col_2, setup_col_3 = st.columns(3, gap="medium")
-
-    with setup_col_1:
-        r_model = st.number_input(
-            "Radial distance r [m]",
-            min_value=0.01,
-            max_value=10000.0,
-            value=10.0,
-            step=1.0,
-            format="%.2f",
-            key="neu_global_r",
-        )
-
-    with setup_col_2:
-        b_model = st.number_input(
-            "Aquifer thickness b [m]",
-            min_value=0.01,
-            max_value=10000.0,
-            value=10.0,
-            step=1.0,
-            format="%.2f",
-            key="neu_global_b",
-        )
-
-    with setup_col_3:
-        Q_model = st.number_input(
-            "Pumping rate Q [m³/s]",
-            min_value=1.0e-6,
-            max_value=10.0,
-            value=0.1 / 60.0,
-            step=1.0e-4,
-            format="%.5f",
-            key="neu_global_Q",
-        )
-        st.caption(f"= {Q_model * 1000.0:.2f} L/s")
-
-    st.caption(
-        r"These values are shared by all four topics. "
-        r"The Neuman parameter is $\beta=(K_v/K_h)(r^2/b^2)$."
-    )
-
 active_tab = st.segmented_control(
     "Select topic",
     options=[
@@ -1110,21 +1044,38 @@ if active_tab is None:
     st.stop()
 
 if active_tab.startswith("01"):
-    inverse_neuman(1, r_model, b_model, Q_model)
+    inverse_neuman(1)
     st.markdown(load_md(MD_DIR, "neuman_deriv_06.md", st.session_state.language))
 
 elif active_tab.startswith("02"):
-    inverse_neuman(2, r_model, b_model, Q_model)
+    inverse_neuman(2)
     st.markdown(load_md(MD_DIR, "neuman_deriv_07.md", st.session_state.language))
 
 elif active_tab.startswith("03"):
-    inverse_neuman(3, r_model, b_model, Q_model)
+    inverse_neuman(3)
     st.markdown(load_md(MD_DIR, "neuman_deriv_08.md", st.session_state.language))
 
 elif active_tab.startswith("04"):
-    inverse_neuman(4, r_model, b_model, Q_model)
+    inverse_neuman(4)
     st.markdown(load_md(MD_DIR, "neuman_deriv_09.md", st.session_state.language))
 
+#st.markdown(
+#    """
+#Use the sliders to explore how transmissivity, specific storage, specific yield,
+#and the Neuman beta parameter influence drawdown and drawdown derivatives in an
+#unconfined aquifer.
+#
+#Compared with the Theis solution for confined aquifers, the Neuman solution can
+#show a delayed water-table response. This delayed response is often visible as
+#a flattening or transition zone in the drawdown curve and as a characteristic
+#change in the derivative curve.
+#
+#The derivative plot is especially useful because it highlights changes in flow
+#regime that may be difficult to recognize from drawdown alone. In this app,
+#the derivative is computed from the smoothed combined Neuman curve using the
+#Bourdet method with a user-defined log-cycle window L. In this app, L = 1 corresponds to one full logarithmic time cycle.
+#"""
+#)
 
 # --------------------------------------------------
 # References

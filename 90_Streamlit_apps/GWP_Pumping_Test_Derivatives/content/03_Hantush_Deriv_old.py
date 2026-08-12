@@ -4,6 +4,7 @@ import matplotlib.pyplot as plt
 import scipy.special
 from scipy.integrate import quad
 from functools import lru_cache
+import math
 import streamlit as st
 from pathlib import Path
 import pandas as pd
@@ -19,6 +20,7 @@ institutions = {
     1: "The Groundwater Project",
     2: "TU Dresden, Institute for Groundwater Management"
 }
+index_symbols = ["¹", "²", "³", "⁴", "⁵", "⁶", "⁷", "⁸", "⁹"]
 
 # ------------------------------------------------------------
 # Format authors
@@ -442,6 +444,18 @@ def compute_drawdown_derivative(
 
     return derivative_time, derivative
 
+def compute_statistics(measured, computed):
+    measured = np.asarray(measured)
+    computed = np.asarray(computed)
+
+    error = computed - measured
+
+    me = np.mean(error)
+    mae = np.mean(np.abs(error))
+    rmse = np.sqrt(np.mean(error**2))
+
+    return me, mae, rmse
+
 def update_T(v, source_key):
     st.session_state[f"T_slider_value_{v}"] = st.session_state[source_key]
 
@@ -468,7 +482,7 @@ def reset_inverse_state(v):
     # Reset fitting values
     st.session_state[f"T_slider_value_{v}"] = -3.0
     st.session_state[f"S_slider_value_{v}"] = -4.0
-    st.session_state[f"RB_slider_value_{v}"] = 0.40  # direct r/B value
+    st.session_state[f"RB_slider_value_{v}"] = 0.40  # log10(r/B), equivalent to r/B ≈ 0.40
 
     # Remove widget-specific T/S/rB input states
     widget_keys_to_delete = [
@@ -584,31 +598,35 @@ st.subheader("Underlying Theory - :green[Hantush-Jacob] Solution and :green[Draw
 st.markdown(load_md(MD_DIR, "hantush_deriv_04.md", st.session_state.language))
 
 # --------------------------------------------------
+# Type curve data
+# --------------------------------------------------
+u_min = -5
+u_max = 4
+
+u = np.logspace(u_min, u_max)
+u_inv = 1 / u
+w_u = well_function(u)
+
+# --------------------------------------------------
 # Interactive inverse function
 # --------------------------------------------------
 @st.fragment
-def inverse(v, r, Qs):
+def inverse(v):
     """
     Versions
     --------
     v = 1: T, S, r/B variable. Investigation of r/B
     v = 2: Fixed S, T, three user-defined r/B variants.
     v = 3: Fitting to 'measured' data
-
-    Parameters
-    ----------
-    r : float
-        Observation distance from the pumping well [m].
-    Qs : float
-        Pumping rate [m³/s].
     """
 
     # --------------------------------------------------
-    # Common hydraulic setup
+    # Basic hydraulic setup
     # --------------------------------------------------
-    # r and Qs are defined once above the topic selector and passed into
-    # every exploration mode. This keeps all tabs physically consistent.
-    b = 10.0               # aquifer thickness [m], informative in this page
+    r = 100.0              # distance from pumping well [m]
+    b = 10.0               # aquifer thickness [m]
+    b_aquitard = 10.0      # aquitard thickness [m]
+    Qs = 0.1 / 60.0        # pumping rate [m³/s]
     Qd = Qs * 60 * 60 * 24 # pumping rate [m³/d], informative only
 
     # --------------------------------------------------
@@ -620,21 +638,15 @@ def inverse(v, r, Qs):
     if f"S_slider_value_{v}" not in st.session_state:
         st.session_state[f"S_slider_value_{v}"] = -4.0
 
-    RB_min = 0.01
-    RB_max = 3.00
-    rb_state_key = f"RB_slider_value_{v}"
-    if (
-        rb_state_key not in st.session_state
-        or not RB_min <= float(st.session_state[rb_state_key]) <= RB_max
-    ):
-        # r/B is stored directly (not in log10 space). The validity check also
-        # migrates sessions that still contain the former invalid value -0.40.
-        st.session_state[rb_state_key] = 0.40
+    if f"RB_slider_value_{v}" not in st.session_state:
+        st.session_state[f"RB_slider_value_{v}"] = -0.40  # log10(r/B), equivalent to r/B ≈ 0.40
 
     log_min_T = -7.0
     log_max_T = 0.0
     log_min_S = -7.0
     log_max_S = 0.0
+    log_min_RB = -2.0  # r/B = 0.01
+    log_max_RB = 0.5   # r/B ≈ 3.16
     
     # --------------------------------------------------
     # Hidden true parameters for synthetic data generation
@@ -653,7 +665,7 @@ def inverse(v, r, Qs):
     number_input = st.toggle("Use number input instead of sliders", key=f"number_input_{v}")
 
     # --------------------------------------------------
-    # Generate synthetic measured data once and keep them stable for the current r/Q setup
+    # Generate synthetic measured data once and keep them stable
     # --------------------------------------------------
     generation_key = f"synthetic_generation_{v}"
 
@@ -662,8 +674,7 @@ def inverse(v, r, Qs):
 
     generation = st.session_state[generation_key]
 
-    geometry_key = f"r{r:.6g}_Q{Qs:.6g}"
-    data_key_Hantush = f"synthetic_data_Hantush{v}_{generation}_{geometry_key}"
+    data_key_Hantush = f"synthetic_data_Hantush{v}_{generation}"
 
     if data_key_Hantush not in st.session_state:
         rng = np.random.default_rng()
@@ -887,8 +898,8 @@ def inverse(v, r, Qs):
         col,
         label="Leakage parameter r/B",
         default=0.40,
-        min_RB=RB_min,
-        max_RB=RB_max,
+        min_RB=0.01,
+        max_RB=3.00,
     ):
         with col:
             with st.expander(f":green[**{label}**]"):
@@ -1034,24 +1045,24 @@ def inverse(v, r, Qs):
     
                 default_RB_values = [0.10, 0.40, 1.00]
     
-                for i, default_RB in enumerate(default_RB_values, start=1):
+                for i, default_log_RB in enumerate(default_RB_values, start=1):
     
                     if number_input:
                         RB_i = st.number_input(
-                            f"_r/B variant {i}_",
-                            min_value=RB_min,
-                            max_value=RB_max,
-                            value=default_RB,
+                            f"_(log of) r/B variant {i}_",
+                            min_value=log_min_RB,
+                            max_value=log_max_RB,
+                            value=default_log_RB,
                             step=0.01,
                             format="%4.2f",
                             key=f"RB_variant_{v}_{i}",
                         )
                     else:
                         RB_i = st.slider(
-                            f"_r/B variant {i}_",
-                            min_value=RB_min,
-                            max_value=RB_max,
-                            value=default_RB,
+                            f"_(log of) r/B variant {i}_",
+                            min_value=log_min_RB,
+                            max_value=log_max_RB,
+                            value=default_log_RB,
                             step=0.01,
                             format="%4.2f",
                             key=f"RB_variant_{v}_{i}",
@@ -1081,6 +1092,8 @@ def inverse(v, r, Qs):
     # T, S, and r/B are fitted to synthetic data
     # --------------------------------------------------
     elif v == 3:
+        min_RB = 0.01
+        max_RB = 3.00
         # --------------------------------------------------
         # Optional regeneration of synthetic data
         # --------------------------------------------------
@@ -1092,7 +1105,7 @@ def inverse(v, r, Qs):
             with st.expander(":red[**Synthetic dataset**]", expanded=False):
                 st.write("Synthetic pumping-test data generated with the Hantush-Jacob solution.")
                 st.write(f"**r:** {r:.2f} m")
-                st.write(f"**b:** {b:.2f} m (informative; T and S are used directly)")
+                st.write(f"**b:** {b:.2f} m")
                 st.write(f"**Q:** {Qs:.2e} m³/s")
                 st.write(f"**Q:** {Qd:.2f} m³/d")
                 st.write(f"**Number of observations:** {n_measured}")
@@ -1128,6 +1141,64 @@ def inverse(v, r, Qs):
             }
         )
     
+        # --------------------------------------------------
+        # Calculations for fitted Hantush-Jacob curve
+        # --------------------------------------------------
+        K = T / b
+        SS = S / b
+    
+        if r_div_B > 0:
+            B = r / r_div_B
+            K_aquitard = T * b_aquitard / B**2
+        else:
+            B = np.inf
+            K_aquitard = 0.0
+    
+        t_plot = np.logspace(-1, 7, 160)
+    
+        s_plot = compute_s(T, S, t_plot, Qs, r, r_div_B)
+    
+        s_plot_theis = compute_theis_s(T, S, t_plot, Qs, r)
+    
+        m_ddown_hantush = compute_s(T, S, m_time_s, Qs, r, r_div_B)
+    
+        # --------------------------------------------------
+        # Analytical derivative of fitted Hantush-Jacob curve
+        # --------------------------------------------------
+        derivative_time_hantush = t_plot
+    
+        derivative_hantush = compute_hantush_derivative_analytical(T, S, derivative_time_hantush, Qs, r, r_div_B)
+    
+        derivative_theis = compute_theis_derivative_analytical(T, S, derivative_time_hantush, Qs, r)
+    
+        # --------------------------------------------------
+        # Measured derivative using Renard method only
+        # --------------------------------------------------
+        derivative_time_meas, derivative_meas = compute_drawdown_derivative(
+            m_time_s,
+            m_ddown,
+            method="renard2009",
+            positive_only=False,
+        )
+    
+        theis_plateau_d = Qs / (4.0 * np.pi * T)
+    
+        max_s = math.ceil(max(np.max(m_ddown), np.max(m_ddown_hantush)) * 10) / 10
+    
+        # --------------------------------------------------
+        # Text box with fitted parameters
+        # --------------------------------------------------
+        props = dict(boxstyle="round", facecolor="wheat", alpha=0.5)
+    
+        out_txt = "\n".join(
+            (
+                r"fitted $T$ (m²/s) = %10.2E" % (T,),
+                r"fitted $S$ (-) = %10.2E" % (S,),
+                r"fitted $r/B$ (-) = %10.2E" % (r_div_B,),
+                r"Theis plateau $Q/(4\pi T)$ = %10.2E m" % (theis_plateau_d,),
+            )
+        )
+
     # --------------------------------------------------
     # Stop if nothing should be shown
     # --------------------------------------------------
@@ -1159,10 +1230,8 @@ def inverse(v, r, Qs):
     measured_derivative_handle = None
     
     max_s_values = []
-    plot_colors = plt.rcParams["axes.prop_cycle"].by_key()["color"]
     
-    for curve_index, par in enumerate(parameter_sets):
-        curve_color = plot_colors[curve_index % len(plot_colors)]
+    for par in parameter_sets:
     
         T = par["T"]
         S = par["S"]
@@ -1224,7 +1293,6 @@ def inverse(v, r, Qs):
                 t_plot,
                 s_plot,
                 linewidth=2,
-                color=curve_color,
                 label="_nolegend_",
             )
     
@@ -1265,7 +1333,7 @@ def inverse(v, r, Qs):
     
             valid_hantush = derivative_hantush > 0
     
-            derivative_color = curve_color
+            derivative_color = line.get_color() if line is not None else None
     
             ax.plot(
                 t_plot[valid_hantush],
@@ -1379,9 +1447,6 @@ def inverse(v, r, Qs):
                 r"$T$ (m²/s) = %10.2E" % par["T"],
                 r"$S$ (-) = %10.2E" % par["S"],
                 r"$r/B$ (-) = %10.2E" % par["r_div_B"],
-                r"$B$ (m) = %10.2E" % (par["r"] / par["r_div_B"]),
-                r"$r$ (m) = %10.2E" % par["r"],
-                r"$Q$ (m³/s) = %10.2E" % par["Qs"],
             )
         )
     
@@ -1390,8 +1455,6 @@ def inverse(v, r, Qs):
             (
                 r"Fixed $T$ (m²/s) = %10.2E" % parameter_sets[0]["T"],
                 r"Fixed $S$ (-) = %10.2E" % parameter_sets[0]["S"],
-                r"$r$ (m) = %10.2E" % parameter_sets[0]["r"],
-                r"$Q$ (m³/s) = %10.2E" % parameter_sets[0]["Qs"],
                 r"$r/B$ controls leakage influence.",
             )
         )
@@ -1403,9 +1466,6 @@ def inverse(v, r, Qs):
                 r"Fitted $T$ (m²/s) = %10.2E" % parameter_sets[0]["T"],
                 r"Fitted $S$ (-) = %10.2E" % parameter_sets[0]["S"],
                 r"Fitted $r/B$ (-) = %10.2E" % parameter_sets[0]["r_div_B"],
-                r"Fitted $B$ (m) = %10.2E" % (parameter_sets[0]["r"] / parameter_sets[0]["r_div_B"]),
-                r"$r$ (m) = %10.2E" % parameter_sets[0]["r"],
-                r"$Q$ (m³/s) = %10.2E" % parameter_sets[0]["Qs"],
                 rf"Number of points = {len(measured_df)}",
             )
         )
@@ -1438,7 +1498,6 @@ def inverse(v, r, Qs):
             st.write(f"**True T:** {T_true:.2e} m²/s")
             st.write(f"**True S:** {S_true:.2e}")
             st.write(f"**True r/B:** {r_div_B_true:.2e}")
-            st.write(f"**True B:** {r / r_div_B_true:.2f} m")
 
 # --------------------------------------------------
 # First interactive plot
@@ -1449,41 +1508,6 @@ st.subheader(
 )
 
 st.markdown(load_md(MD_DIR, "hantush_deriv_05.md", st.session_state.language))
-
-# --------------------------------------------------
-# General hydraulic setup shared by all topics
-# --------------------------------------------------
-with st.expander(":green[**General hydraulic setup**]", expanded=False):
-    setup_col_1, setup_col_2 = st.columns(2, gap="medium")
-
-    with setup_col_1:
-        r_general = st.number_input(
-            "Observation distance r [m]",
-            min_value=0.10,
-            max_value=10000.0,
-            value=10.0,
-            step=1.0,
-            format="%.2f",
-            key="hantush_general_r",
-        )
-
-    with setup_col_2:
-        Q_lps_general = st.number_input(
-            "Pumping rate Q [L/s]",
-            min_value=0.01,
-            max_value=1000.0,
-            value=2.0,
-            step=0.10,
-            format="%.2f",
-            key="hantush_general_Q_lps",
-        )
-
-    Qs_general = Q_lps_general / 1000.0
-    st.caption(
-        f"Calculation uses r = {r_general:.2f} m and "
-        f"Q = {Qs_general:.4g} m³/s ({Q_lps_general:.2f} L/s). "
-        "For a selected r/B, the leakage factor is B = r / (r/B)."
-    )
 
 active_tab = st.segmented_control(
     "Select topic",
@@ -1502,15 +1526,15 @@ if active_tab is None:
 
 if active_tab.startswith("01"):
     st.markdown(load_md(MD_DIR, "hantush_deriv_06.md", st.session_state.language))
-    inverse(1, r_general, Qs_general)
+    inverse(1)
 
 elif active_tab.startswith("02"):
     st.markdown(load_md(MD_DIR, "hantush_deriv_07.md", st.session_state.language))
-    inverse(2, r_general, Qs_general)
+    inverse(2)
 
 elif active_tab.startswith("03"):
     st.markdown(load_md(MD_DIR, "hantush_deriv_08.md", st.session_state.language))
-    inverse(3, r_general, Qs_general)
+    inverse(3)
 
 # --------------------------------------------------
 # References
