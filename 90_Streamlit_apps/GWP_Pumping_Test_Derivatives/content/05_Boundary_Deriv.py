@@ -6,6 +6,7 @@ import streamlit as st
 from pathlib import Path
 from GWP_Pumping_Test_Derivatives_utils import load_css
 from GWP_Pumping_Test_Derivatives_utils import load_md
+from applied_derivative_utils import combined_model_response, solution_response
 
 # Authors, institutions, and year
 year = 2026
@@ -448,6 +449,7 @@ active_tab = st.segmented_control(
         "01: Single boundary",
         "02: Distance to no-flow boundary",
         "03: Distance to specified-head boundary",
+        "04: Underlying aquifer solution",
     ],
     default="01: Single boundary",
     label_visibility="collapsed",
@@ -898,6 +900,295 @@ def boundary_interactive(v, Q_lps, Q, r_obs, observation_position):
             )
 
 
+@st.fragment
+def boundary_solution_interactive(Q_lps, Q, r_obs, observation_position):
+    """Explore one boundary while switching the underlying aquifer solution.
+
+    The first three boundary topics intentionally remain Theis-based.  This
+    fourth topic extends the method-of-images exercise to Hantush-Jacob and the
+    linearized Neuman delayed-yield solution without changing the established
+    behavior of the earlier tabs.
+    """
+    t_plot = np.logspace(0, 8, 220)
+    number_input = st.toggle(
+        "Use number input instead of sliders",
+        key="bc_number_input_4",
+    )
+
+    top1, top2, top3 = st.columns((1.05, 1.0, 1.15), gap="medium")
+
+    with top1:
+        with st.expander(":red[**Plot settings**]", expanded=False):
+            show_drawdown = st.toggle(
+                "Show boundary drawdown", value=True, key="bc4_show_drawdown"
+            )
+            show_derivative = st.toggle(
+                "Show drawdown derivative", value=True, key="bc4_show_derivative"
+            )
+            show_reference = st.toggle(
+                "Show infinite-aquifer reference", value=True, key="bc4_show_reference"
+            )
+            semilog = st.toggle(
+                "Toggle for **semi-log graph**", key="bc4_semilog"
+            )
+            show_geometry = st.toggle(
+                "Show image-well geometry", value=False, key="bc4_show_geometry"
+            )
+
+    with top2:
+        with st.expander(":blue[**Underlying solution**]", expanded=True):
+            solution = st.selectbox(
+                "Aquifer solution",
+                ["Theis", "Hantush-Jacob", "Neuman delayed yield"],
+                index=0,
+                key="bc4_solution",
+            )
+            log_T = log_widget(
+                "_(log of) Transmissivity in m²/s_",
+                -6.0,
+                -1.0,
+                -2.0,
+                "bc_T_4",
+                "bc_T",
+                number_input,
+            )
+            T = 10**log_T
+            st.write("**T:** %5.2e m²/s" % T)
+
+    with top3:
+        with st.expander(":orange[**Boundary condition**]", expanded=True):
+            boundary_type = st.selectbox(
+                "Boundary type",
+                ["No-flow boundary", "Specified-head boundary"],
+                index=0,
+                key="bc4_boundary_type",
+            )
+            boundary_distance = boundary_distance_widget(
+                "Distance a from pumping well to boundary [m]",
+                530.0,
+                "bc_solution_distance_4",
+                number_input,
+            )
+
+    # Solution-specific parameters are kept separate from the common T control.
+    params = {"T": T, "D": float(boundary_distance)}
+    pcol1, pcol2, pcol3 = st.columns(3, gap="medium")
+
+    if solution in {"Theis", "Hantush-Jacob"}:
+        with pcol1:
+            with st.expander(":green[**Storativity**]", expanded=True):
+                log_S = log_widget(
+                    "_(log of) Storativity S_",
+                    -7.0,
+                    -1.0,
+                    -3.0,
+                    "bc_S_4",
+                    "bc_S",
+                    number_input,
+                )
+                params["S"] = 10**log_S
+                st.write("**S:** %5.2e" % params["S"])
+
+    if solution == "Hantush-Jacob":
+        with pcol2:
+            with st.expander(":green[**Leakage parameter**]", expanded=True):
+                log_B = log_widget(
+                    "_(log of) Leakage factor B in m_",
+                    0.0,
+                    6.0,
+                    3.0,
+                    "bc_B_4",
+                    "bc_B",
+                    number_input,
+                )
+                params["B"] = 10**log_B
+                st.write("**B:** %5.2e m" % params["B"])
+                st.caption(rf"At the observation well, $r/B={r_obs / params['B']:.3g}$.")
+
+    if solution == "Neuman delayed yield":
+        with pcol1:
+            with st.expander(":green[**Elastic storage**]", expanded=True):
+                log_Sa = log_widget(
+                    "_(log of) Elastic storativity Sₐ_",
+                    -7.0,
+                    -2.0,
+                    -3.0,
+                    "bc_Sa_4",
+                    "bc_Sa",
+                    number_input,
+                )
+                params["S_a"] = 10**log_Sa
+                st.write("**Sₐ:** %5.2e" % params["S_a"])
+        with pcol2:
+            with st.expander(":green[**Specific yield**]", expanded=True):
+                log_Sy = log_widget(
+                    "_(log of) Specific yield Sᵧ_",
+                    -3.0,
+                    -0.2,
+                    -1.0,
+                    "bc_Sy_4",
+                    "bc_Sy",
+                    number_input,
+                )
+                params["S_y"] = 10**log_Sy
+                st.write("**Sᵧ:** %5.2e" % params["S_y"])
+        with pcol3:
+            with st.expander(":green[**Delayed-yield parameter**]", expanded=True):
+                log_beta = log_widget(
+                    "_(log of) Neuman β at the observation distance_",
+                    -4.0,
+                    1.0,
+                    -1.0,
+                    "bc_beta_4",
+                    "bc_beta",
+                    number_input,
+                )
+                params["beta"] = 10**log_beta
+                st.write("**β:** %5.2e" % params["beta"])
+                st.caption(
+                    "β is defined for the real observation distance r. For the image-well "
+                    "response the app scales β with (rᵢ/r)², preserving the same physical anisotropy."
+                )
+
+        if params["S_y"] <= 5.0 * params["S_a"]:
+            st.warning(
+                "For a clear delayed-yield response, Sᵧ should be substantially larger than the elastic storativity Sₐ. "
+                "Increase Sᵧ or reduce Sₐ before interpreting the curve."
+            )
+
+    if observation_position == "Between pumping well and boundary" and r_obs >= boundary_distance:
+        st.error(
+            "For an observation point between the pumping well and boundary, r must be smaller than a. "
+            "The boundary distance has not been changed automatically."
+        )
+        return
+
+    if not show_drawdown and not show_derivative:
+        st.info("Select drawdown and/or the drawdown derivative.")
+        return
+
+    if show_geometry:
+        st.pyplot(
+            plot_image_well_geometry(
+                boundary_distance, r_obs, boundary_type, observation_position
+            )
+        )
+
+    try:
+        response_s, response_d = combined_model_response(
+            solution,
+            boundary_type,
+            t_plot,
+            Q,
+            r_obs,
+            params,
+            observation_position=observation_position,
+        )
+        reference_s, reference_d = solution_response(
+            solution,
+            t_plot,
+            Q,
+            r_obs,
+            params,
+        )
+    except Exception as exc:
+        st.error(f"The selected solution could not be evaluated: {exc}")
+        return
+
+    fig, ax = plt.subplots(figsize=(8, 6))
+    plotted_positive_values = []
+
+    if show_drawdown:
+        valid = np.isfinite(response_s) & (response_s > 0)
+        ax.plot(t_plot[valid], response_s[valid], linewidth=2.2, label=f"{solution} + {boundary_type}")
+        plotted_positive_values.extend(response_s[valid].tolist())
+
+    if show_derivative:
+        valid = np.isfinite(response_d) & (response_d > 0)
+        ax.plot(t_plot[valid], response_d[valid], "--", linewidth=2.2, label=r"Derivative $ds/d\ln(t)$")
+        plotted_positive_values.extend(response_d[valid].tolist())
+
+    if show_reference:
+        if show_drawdown:
+            valid = np.isfinite(reference_s) & (reference_s > 0)
+            ax.plot(t_plot[valid], reference_s[valid], ":", linewidth=1.7, color="0.35", label=f"Infinite-aquifer {solution}")
+            plotted_positive_values.extend(reference_s[valid].tolist())
+        if show_derivative:
+            valid = np.isfinite(reference_d) & (reference_d > 0)
+            ax.plot(t_plot[valid], reference_d[valid], "-.", linewidth=1.5, color="0.35", label=f"Infinite-aquifer {solution} derivative")
+            plotted_positive_values.extend(reference_d[valid].tolist())
+
+    # d is a useful transmissivity reference for all three solutions, but it is
+    # not necessarily the final asymptote when leakage or delayed yield competes
+    # with a boundary effect.
+    if show_derivative:
+        d_ref = Q / (4.0 * np.pi * T)
+        ax.axhline(d_ref, linestyle=":", linewidth=1.1, color="0.55", alpha=0.9)
+        if solution in {"Theis", "Neuman delayed yield"} and boundary_type == "No-flow boundary":
+            ax.axhline(2.0 * d_ref, linestyle=":", linewidth=1.1, color="0.25", alpha=0.8)
+
+    ax.set_xscale("log")
+    if not semilog:
+        ax.set_yscale("log")
+    ax.set_xlim(1e0, 1e8)
+    if semilog:
+        ymax = max(plotted_positive_values) if plotted_positive_values else 1.0
+        ax.set_ylim(0.0, max(1.05 * ymax, 0.1))
+    else:
+        ax.set_ylim(1e-5, 1e2)
+    ax.grid(which="both", alpha=0.3)
+    ax.set_xlabel("time $t$ in s", fontsize=14)
+    ax.set_ylabel(r"drawdown $s$ and derivative $ds/d\ln(t)$ in m", fontsize=14)
+    ax.set_title(f"{solution} with one hydraulic boundary", fontsize=16)
+    ax.legend(fontsize=9, loc="best")
+
+    r_img = image_well_distance(boundary_distance, r_obs, observation_position)
+    parameter_lines = [
+        rf"$T$ = {T:.2e} m²/s",
+        rf"$Q$ = {Q_lps:.2f} L/s",
+        rf"$r$ = {r_obs:.1f} m",
+        rf"$a$ = {boundary_distance:.1f} m",
+        rf"$r_i$ = {r_img:.1f} m",
+        f"Boundary: {'no-flow' if boundary_type == 'No-flow boundary' else 'specified head'}",
+    ]
+    if "S" in params:
+        parameter_lines.insert(1, rf"$S$ = {params['S']:.2e}")
+    if "B" in params:
+        parameter_lines.insert(2, rf"$B$ = {params['B']:.2e} m")
+    if "S_a" in params:
+        parameter_lines.insert(1, rf"$S_a$ = {params['S_a']:.2e}")
+        parameter_lines.insert(2, rf"$S_y$ = {params['S_y']:.2e}")
+        parameter_lines.insert(3, rf"$\beta(r)$ = {params['beta']:.2e}")
+
+    ax.text(
+        0.03,
+        0.97,
+        "\n".join(parameter_lines),
+        transform=ax.transAxes,
+        fontsize=9.5,
+        va="top",
+        bbox=dict(boxstyle="round", facecolor="wheat", alpha=0.5),
+    )
+    fig.tight_layout()
+    st.pyplot(fig)
+    plt.close(fig)
+
+    if solution == "Hantush-Jacob":
+        st.caption(
+            "The leakage response and the lateral boundary are superposed. Because leakage itself drives the late-time derivative toward zero, "
+            "a no-flow boundary does not necessarily produce a clean final 2d plateau; the sequence and timing of the two effects must be interpreted."
+        )
+    elif solution == "Neuman delayed yield":
+        st.caption(
+            "The image-well method is applied to the same linearized Neuman delayed-yield solution used in the preceding section. "
+            "Delayed yield can overlap the boundary signature, so the late-time boundary interpretation should only be made after the characteristic unconfined response is understood."
+        )
+    elif boundary_type == "No-flow boundary":
+        st.caption(r"For Theis, the single same-sign image well causes the late derivative to approach $2d$.")
+    else:
+        st.caption("For Theis, the opposite-sign image well causes the derivative to approach zero at late time.")
+
+
 if active_tab.startswith("01"):
     render_boundary_markdown(
         "boundary_deriv_06.md",
@@ -918,6 +1209,13 @@ elif active_tab.startswith("03"):
         "Compare three specified-head-boundary distances. A closer boundary causes the derivative to bend downward earlier and drawdown to stabilize sooner.",
     )
     boundary_interactive(3, Q_lps, Q, r_obs, observation_position)
+
+elif active_tab.startswith("04"):
+    st.markdown(
+        "Keep the boundary geometry fixed and change the **underlying aquifer solution**. "
+        "This shows how a lateral no-flow or specified-head boundary can overlap with leakage or delayed-yield behavior."
+    )
+    boundary_solution_interactive(Q_lps, Q, r_obs, observation_position)
 
 # --------------------------------------------------
 # References
