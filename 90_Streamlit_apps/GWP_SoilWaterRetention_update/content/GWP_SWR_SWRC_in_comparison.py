@@ -32,7 +32,7 @@ if st.session_state.scroll_to_top:
 st.markdown("<div style='height:1.25rem'></div>", unsafe_allow_html=True)
 
 # Authors, institutions, and year
-year = 2025 
+year = 2026 
 authors = {
     "Oriol Bertran": [1],
     "Daniel Fernàndez-Garcia": [1],
