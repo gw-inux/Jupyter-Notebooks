@@ -167,7 +167,7 @@ pages = [
             ar="📊 مقارنة SWRC",
             hi="📊 SWRC की तुलना",
         ),
-        "path": "90_Streamlit_apps/GWP_SoilWaterRetention_update/content/GWP_SWR_SWRC in comparison.py",
+        "path": "90_Streamlit_apps/GWP_SoilWaterRetention_update/content/GWP_SWR_SWRC_in_comparison.py",
         "after": "exercises",
     },
     {
