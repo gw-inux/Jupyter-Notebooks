@@ -77,3 +77,7 @@
 06_Groundwater_modeling/.ipynb_checkpoints/ex_sgsim_uncond_modflow-checkpoint.ipynb
 06_Groundwater_modeling/.ipynb_checkpoints/ex_sgsim_uncond_modflow_rw-checkpoint.ipynb
 06_Groundwater_modeling/.ipynb_checkpoints/GWF_1D_analytic_multi_K_calib-checkpoint.ipynb
+90_Streamlit_apps/2026 08 08 GWP_SoilWaterRetention_update.zip
+90_Streamlit_apps/GWP_Pumping_Test_Derivatives.zip
+90_Streamlit_apps/GWP_Pumping_Test_Derivatives/__pycache__/applied_derivative_utils.cpython-311.pyc
+90_Streamlit_apps/GWP_Pumping_Test_Derivatives/__pycache__/inner_boundary_utils.cpython-311.pyc
