@@ -5,15 +5,11 @@ import img2pdf
 import yaml
 import markdown
 from PIL import Image
-from deep_translator import GoogleTranslator
 from reportlab.lib.pagesizes import A4
 from reportlab.platypus import Paragraph, SimpleDocTemplate, Spacer, PageBreak, Image as RLImage
 from reportlab.lib.styles import getSampleStyleSheet, ParagraphStyle
 from reportlab.lib import colors
 from reportlab.lib.units import cm
-import random
-import string
-import re
 
 # This is a generalized application to present PowerPoint slides and notes as slideshow through Streamlit.
 # You can adapt the script with defining another YAML file (The YAML contain the paths, headers, and other information).
@@ -45,66 +41,121 @@ def validate_config(config):
     if missing:
         raise ValueError(f"Missing required keys in YAML: {', '.join(missing)}")
 
-def generate_placeholder():
-    return ''.join(random.choices(string.ascii_lowercase + string.digits, k=10))
 
-def protect_terms(text: str, lang: str):
+def _translation_is_complete(slides, code):
+    """True if every non-empty source note has a stored translation for code."""
+    for slide in slides:
+        source = str(slide.get("notes", "") or "").strip()
+        translated = str(slide.get("translations", {}).get(code, "") or "").strip()
+        if source and not translated:
+            return False
+    return True
+
+
+def normalize_loaded_slidejet_json(raw_data):
+    """Read historical SlideJet JSON v1 and multilingual JSON v2.
+
+    Returns (slides, language_metadata, source_language, json_version).
+    Only complete translation languages are exposed in the presenter selector.
     """
-    Replace protected terms by random placeholders before translation.
-    Returns (protected_text, replacements_dict).
-    """
-    replacements = {}
-    terms = protected_terms.get(lang, {})
+    if isinstance(raw_data, list):
+        return raw_data, [], "auto", 1
 
-    # Longer terms first to avoid partial overlaps
-    for term in sorted(terms, key=len, reverse=True):
-        placeholder = generate_placeholder()
-        while placeholder in text or placeholder in replacements:
-            placeholder = generate_placeholder()
+    if not isinstance(raw_data, dict) or not isinstance(raw_data.get("slides"), list):
+        raise ValueError(
+            "Unsupported slide_data.json. Expected the historical slide list or a multilingual object with a 'slides' list."
+        )
 
-        # Word boundary match (good for single tokens like 'Python', 'SlideJet')
-        pattern = r'\b' + re.escape(term) + r'\b'
-        text, count = re.subn(pattern, placeholder, text)
-        if count > 0:
-            replacements[placeholder] = term
+    slides = raw_data["slides"]
+    source_language = raw_data.get("source_language", "auto")
+    json_version = raw_data.get("slidejet_version", 2)
 
-    return text, replacements
+    declared = raw_data.get("languages", [])
+    language_by_code = {}
+    if isinstance(declared, list):
+        for item in declared:
+            if isinstance(item, dict) and item.get("code"):
+                code = str(item["code"])
+                language_by_code[code] = {
+                    "code": code,
+                    "name": str(item.get("name", code)),
+                    "native_name": str(item.get("native_name", item.get("name", code))),
+                    "direction": "rtl" if str(item.get("direction", "ltr")).lower() == "rtl" else "ltr",
+                }
 
-def restore_terms(text: str, replacements: dict):
-    """
-    Replace placeholders back to original protected terms after translation.
-    """
-    for placeholder, original in replacements.items():
-        text = re.sub(re.escape(placeholder), original, text)
-    return text
+    # Be tolerant of manually edited v2 JSON where translations exist but
+    # top-level language metadata was not updated.
+    translation_codes = []
+    for slide in slides:
+        translations = slide.get("translations", {}) if isinstance(slide, dict) else {}
+        if isinstance(translations, dict):
+            for code in translations:
+                if code not in translation_codes:
+                    translation_codes.append(code)
 
-@st.cache_data(show_spinner=False)
-def translate_notes(text: str, target_lang: str | None):
-    if not target_lang:
-        return text
-    try:
-        protected_text, replacements = protect_terms(text, target_lang)
-        translated = GoogleTranslator(source="auto", target=target_lang).translate(protected_text)
-        return restore_terms(translated, replacements)
-    except Exception as e:
-        return f"[Translation failed: {e}]"
+    declared_order = [code for code in language_by_code if code in translation_codes]
+    remaining_codes = [code for code in translation_codes if code not in declared_order]
+    complete_codes = [
+        code for code in declared_order + remaining_codes
+        if _translation_is_complete(slides, code)
+    ]
+    languages = []
+    for code in complete_codes:
+        languages.append(
+            language_by_code.get(
+                code,
+                {"code": code, "name": code, "native_name": code, "direction": "rtl" if code in {"ar", "ur", "fa", "he"} else "ltr"},
+            )
+        )
+
+    return slides, languages, source_language, json_version
+
+
+def load_slidejet_json(path):
+    with open(path, "r", encoding="utf-8") as f:
+        raw_data = json.load(f)
+    return normalize_loaded_slidejet_json(raw_data)
+
+
+def language_display(language):
+    name = language.get("name", language.get("code", ""))
+    native = language.get("native_name", "")
+    return f"{name} — {native}" if native and native != name else name
+
+
+def language_direction(code, language_lookup=None):
+    if language_lookup and code in language_lookup:
+        return language_lookup[code].get("direction", "ltr")
+    return "rtl" if code in {"ar", "ur", "fa", "he"} else "ltr"
+
+
+def render_note(text, direction="ltr"):
+    """Render notes as Markdown; wrap right-to-left scripts in an RTL container."""
+    text = str(text or "")
+    if direction == "rtl":
+        html_note = markdown.markdown(text)
+        st.markdown(
+            f'<div dir="rtl" style="text-align: right;">{html_note}</div>',
+            unsafe_allow_html=True,
+        )
+    else:
+        st.markdown(text)
+
+
+def get_stored_translation(slide, language_code):
+    if not language_code:
+        return str(slide.get("notes", "") or "")
+    return str(slide.get("translations", {}).get(language_code, "") or "")
+
 
 def generate_pdf(slides, img_folder, pres_folder, trans_lan, with_notes=False, text='Download PDF'):
     imgs = [os.path.join(img_folder, os.path.basename(slide['image'])) for slide in slides]
-    
+
     if with_notes:
-        # Prepare notes (translated if selected)
-        for slide in slides:
-            note = slide['notes']
-            if trans_lan:
-                if "translated_notes" not in slide:
-                    slide["translated_notes"] = translate_notes(note, trans_lan)
-        
-        # Output file name with language and notes indicator
+        # Translations are read from slide_data.json; no runtime API call is made.
         pres_name = os.path.basename(pres_folder)
         lang_suffix = f"_{trans_lan}" if trans_lan else "_original"
         filename = f"{pres_name}_with_notes{lang_suffix}.pdf"
-        
         output_pdf = os.path.join(pres_folder, filename)
 
         add_notes_with_overlay(
@@ -117,7 +168,6 @@ def generate_pdf(slides, img_folder, pres_folder, trans_lan, with_notes=False, t
             text_color=colors.black,
             bg_color=colors.white
         )
-
     else:
         # Standard PDF without notes using img2pdf
         pres_name = os.path.basename(pres_folder)
@@ -126,8 +176,7 @@ def generate_pdf(slides, img_folder, pres_folder, trans_lan, with_notes=False, t
 
         with open(output_pdf, 'wb') as f:
             f.write(img2pdf.convert(imgs))
-    
-    # Provide download
+
     with open(output_pdf, 'rb') as pdf_file:
         PDFbyte = pdf_file.read()
 
@@ -135,31 +184,16 @@ def generate_pdf(slides, img_folder, pres_folder, trans_lan, with_notes=False, t
         label=text,
         data=PDFbyte,
         file_name=filename,
-        mime='application/octet-stream',
+        mime='application/pdf',
         icon=':material/download:',
         type='primary'
     )
 
-def add_notes_with_overlay(slides, images, output_pdf, trans_lan=None, font_size=12, line_spacing=16, 
-                           margin_left=2*cm, margin_top=2*cm, margin_bottom=2*cm, margin_right=2*cm, 
-                           notes_height_ratio=0.3, text_color=colors.black, bg_color=colors.whitesmoke):
-    """
-    Generates a PDF where each page has:
-    - The slide image in the upper part
-    - Both original and translated speaker notes in the bottom part (if translation is selected)
 
-    Parameters:
-    - slides: List of slide dicts (with 'notes' and optional 'translated_notes')
-    - images: List of slide image paths
-    - output_pdf: Output PDF path
-    - trans_lan: Translation language code (e.g., 'de', 'es') or None for original only
-    - font_size: Font size for notes
-    - line_spacing: Line spacing in notes
-    - margin_left, margin_top, margin_bottom, margin_right: Margins in cm
-    - notes_height_ratio: Fraction of page height for notes (e.g., 0.3 = 30% for notes)
-    - text_color: Text color for notes
-    - bg_color: Background color for notes section
-    """
+def add_notes_with_overlay(slides, images, output_pdf, trans_lan=None, font_size=12, line_spacing=16,
+                           margin_left=2*cm, margin_top=2*cm, margin_bottom=2*cm, margin_right=2*cm,
+                           notes_height_ratio=0.3, text_color=colors.black, bg_color=colors.whitesmoke):
+    """Generate a PDF with slide image plus stored speaker notes."""
     doc = SimpleDocTemplate(output_pdf, pagesize=A4,
                             leftMargin=margin_left, rightMargin=margin_right,
                             topMargin=margin_top, bottomMargin=margin_bottom)
@@ -177,7 +211,6 @@ def add_notes_with_overlay(slides, images, output_pdf, trans_lan=None, font_size
     )
 
     for slide, img_path in zip(slides, images):
-        # --- Image placement with aspect ratio preserved ---
         available_width = width - margin_left - margin_right
         available_height = (height - margin_top - margin_bottom) * (1 - notes_height_ratio)
 
@@ -185,73 +218,33 @@ def add_notes_with_overlay(slides, images, output_pdf, trans_lan=None, font_size
         scale_w = available_width / img.imageWidth
         scale_h = available_height / img.imageHeight
         scale_factor = min(scale_w, scale_h)
-
         img.drawWidth = img.imageWidth * scale_factor
         img.drawHeight = img.imageHeight * scale_factor
 
-        # Center image horizontally if there's remaining space
         img_h_space = (available_width - img.drawWidth) / 2 if available_width > img.drawWidth else 0
         if img_h_space > 0:
             elements.append(Spacer(img_h_space, 0))
         elements.append(img)
-
-        # Spacer between image and notes
         elements.append(Spacer(1, 0.5*cm))
 
-        # --- Prepare notes ---
-        original_note = slide['notes']
+        original_note = str(slide.get('notes', '') or '')
         original_md = f"**Original Notes:**\n\n{original_note}"
 
         if trans_lan:
-#            if "translated_notes" not in slide:
-#                slide["translated_notes"] = translate_notes(original_note, trans_lan)
-#            trans_note = slide["translated_notes"]
-            trans_note = translate_notes(original_note, trans_lan)
-
+            trans_note = get_stored_translation(slide, trans_lan)
             trans_md = f"**Translated Notes ({trans_lan})**\n\n{trans_note}"
             combined_md = trans_md + "<br/><br/>" + original_md
         else:
             combined_md = original_md
 
-        # Convert markdown to HTML then Paragraph
         html_note = markdown.markdown(combined_md).replace("\n", "<br/>")
         elements.append(Paragraph(html_note, notes_style))
-
-        # Page break after each slide
-        #elements.append(Spacer(1, 2*cm))
         elements.append(PageBreak())
 
     doc.build(elements)
 
-# --- DICTIONARY ---
 
-protected_terms = {
-    "de": {
-        "SlideJet": "SlideJet",
-        "PowerPoint": "PowerPoint",
-        "Streamlit": "Streamlit",
-        "Python": "Python"
-    },
-    "fr": {
-        "SlideJet": "SlideJet",
-        "PowerPoint": "PowerPoint",
-        "Streamlit": "Streamlit",
-        "Python": "Python"
-    },
-    "it": {
-        "SlideJet": "SlideJet",
-        "PowerPoint": "PowerPoint",
-        "Streamlit": "Streamlit",
-        "Python": "Python"
-    },
-    "hi": {
-        "SlideJet": "SlideJet",
-        "PowerPoint": "PowerPoint",
-        "Streamlit": "Streamlit",
-        "Python": "Python"
-    },
-    # Extend for other languages
-}
+PDF_COMPLEX_SCRIPT_LANGUAGES = {"zh-Hans", "hi", "ar", "fa", "bn", "ur", "ja", "ko", "th"}
 
 # --- USER INTERFACE
 
@@ -264,6 +257,9 @@ images_folder_key = f"{app_id}_images_folder"
 header_text_key = f"{app_id}_header_text"
 subheader_text_key = f"{app_id}_subheader_text"
 default_yaml_key = f"{app_id}_default_yaml"
+language_metadata_key = f"{app_id}_language_metadata"
+source_language_key = f"{app_id}_source_language"
+json_version_key = f"{app_id}_json_version"
 
 # --- Initialize reset mode ---
 if reset_key not in st.session_state:
@@ -347,6 +343,12 @@ st.session_state[subheader_text_key] = config["subheader_text"]
 # --- Initialize session state ---
 if slide_data_key not in st.session_state:
     st.session_state[slide_data_key] = None
+if language_metadata_key not in st.session_state:
+    st.session_state[language_metadata_key] = []
+if source_language_key not in st.session_state:
+    st.session_state[source_language_key] = "auto"
+if json_version_key not in st.session_state:
+    st.session_state[json_version_key] = 1
 if presentation_folder_key not in st.session_state or st.session_state[presentation_folder_key] is None:
     st.session_state[presentation_folder_key] = presentation_folder
 if images_folder_key not in st.session_state or st.session_state[images_folder_key] is None:
@@ -357,8 +359,15 @@ JSON_file = os.path.join(st.session_state[presentation_folder_key], "slide_data.
 
 if st.session_state[slide_data_key] is None:
     if os.path.exists(JSON_file):
-        with open(JSON_file, "r") as f:
-            st.session_state[slide_data_key] = json.load(f)
+        try:
+            slides, language_metadata, source_language, json_version = load_slidejet_json(JSON_file)
+            st.session_state[slide_data_key] = slides
+            st.session_state[language_metadata_key] = language_metadata
+            st.session_state[source_language_key] = source_language
+            st.session_state[json_version_key] = json_version
+        except Exception as e:
+            st.error(f"Error loading slide_data.json: {e}")
+            st.stop()
     else:
         config_file = st.file_uploader("**Default presentation not found.** This likely happens if the path to the files is corrupt or missing. Please upload your slidejet_config.yaml file.", type=["yaml", "yml"])
         
@@ -378,9 +387,12 @@ if st.session_state[slide_data_key] is None:
         
             JSON_file = os.path.join(st.session_state[presentation_folder_key], "slide_data.json")
             try:
-                with open(JSON_file, "r") as f:
-                    st.session_state[slide_data_key] = json.load(f)
-            
+                slides, language_metadata, source_language, json_version = load_slidejet_json(JSON_file)
+                st.session_state[slide_data_key] = slides
+                st.session_state[language_metadata_key] = language_metadata
+                st.session_state[source_language_key] = source_language
+                st.session_state[json_version_key] = json_version
+
                 # This belongs in the SUCCESS block
                 first_image = st.session_state[slide_data_key][0]["image"]
                 image_path = os.path.join(st.session_state[images_folder_key], os.path.basename(first_image))
@@ -396,33 +408,9 @@ st.header(f':blue[{st.session_state[header_text_key]}]')
 st.subheader(st.session_state[subheader_text_key], divider='blue')
 
 # --- Language selection ---
-languages = {
-    "🇬🇧 English": "en",
-    "🇪🇸 Spanish": "es",
-    "🇫🇷 French": "fr",
-    "🇩🇪 German": "de",
-    "🇮🇹 Italian": "it",
-    "🇸🇪 Swedish": "sv",
-    "🇩🇰 Danish": "da",
-    "🇳🇴 Norwegian": "no",
-    "🇷🇺 Russian": "ru",
-    "🇨🇳 Chinese (Simplified)": "zh-CN",
-    "🇮🇳 Hindi": "hi",
-    "🇧🇩 Bengali": "bn",
-    "🇺🇾 Urdu": "ur",    
-    "🇦🇪 Arabic": "ar",
-    "🇯🇵 Japanese": "ja",
-    "🇰🇷 Korean": "ko",
-    "🇻🇳 Vietnamese": "vi",
-    "🇹🇷 Turkish": "tr",
-    "🇵🇹 Portuguese": "pt",
-    "🇵🇱 Polish": "pl",
-    "🇳🇱 Dutch": "nl", 
-    "🇮🇩 Indonesian": "id",
-    "🇹🇭 Thai": "th",
-}
-
-language_names = ["🌐 Original Notes"] + list(languages.keys())
+language_metadata = st.session_state[language_metadata_key]
+language_lookup = {item["code"]: item for item in language_metadata if item.get("code")}
+available_language_codes = list(language_lookup.keys())
 
 st.markdown(""" 
     **About the SlideJet presentation:** _Navigate the slides using the +/- buttons or enter a slide number._
@@ -433,8 +421,11 @@ if st.session_state[slide_data_key]:
     if "slide_index" not in st.session_state:
         st.session_state["slide_index"] = 1
 
-    selected_lang_display = st.selectbox("**Speaker notes can be translated.** Please choose the language:", options=language_names)
-    target_lang = None if selected_lang_display == "🌐 Original Notes" else languages[selected_lang_display]
+    target_lang = st.selectbox(
+        "**Speaker-note language:**",
+        options=[None] + available_language_codes,
+        format_func=lambda code: "🌐 Original Notes" if code is None else language_display(language_lookup[code]),
+    )
 
     num_slides = len(st.session_state[slide_data_key])
     lc, cc, rc = st.columns((1,3,1))
@@ -445,14 +436,29 @@ if st.session_state[slide_data_key]:
     image_path = os.path.join(st.session_state[images_folder_key], os.path.basename(selected_slide["image"]))
     st.image(image_path)
 
-    note_text = selected_slide["notes"]
+    note_text = str(selected_slide.get("notes", "") or "")
     if target_lang:
-        translated = translate_notes(note_text, target_lang)
-        st.write(f"**Translated Notes** ({selected_lang_display})\n\n{translated}")
+        selected_meta = language_lookup[target_lang]
+        translated = get_stored_translation(selected_slide, target_lang)
+        st.markdown(f"**Translated Notes ({language_display(selected_meta)}):**")
+        render_note(translated, selected_meta.get("direction", "ltr"))
         with st.expander("Show original notes"):
-            st.write(note_text)
+            render_note(
+                note_text,
+                language_direction(st.session_state[source_language_key], language_lookup),
+            )
     else:
-        st.write(f"**Notes:**\n\n{note_text}")
+        st.markdown("**Notes:**")
+        render_note(
+            note_text,
+            language_direction(st.session_state[source_language_key], language_lookup),
+        )
+
+    if target_lang in PDF_COMPLEX_SCRIPT_LANGUAGES:
+        st.caption(
+            "The selected language is displayed in the web presentation. The current ReportLab PDF-with-notes renderer "
+            "may require a later Unicode font/shaping upgrade for this script."
+        )
 
     # --- Download buttons ---
     '---'
