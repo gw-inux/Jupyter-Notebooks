@@ -1,4 +1,5 @@
 import os
+import html
 import streamlit as st
 import json
 import img2pdf
@@ -47,7 +48,7 @@ def _note_to_text(value):
     if value is None:
         return ""
     if isinstance(value, str):
-        return value
+        return value.replace("\r\n", "\n").replace("\r", "\n").replace("\x0b", "\n")
     if isinstance(value, dict):
         for key in ("text", "translation", "value"):
             if key in value:
@@ -175,6 +176,51 @@ def get_stored_translation(slide, language_code):
     return _note_to_text(translations.get(language_code, ""))
 
 
+def _inline_markdown_to_reportlab(text):
+    """Convert SlideJet's conservative inline Markdown subset to ReportLab markup."""
+    escaped = html.escape(_note_to_text(text), quote=False)
+    # Bold first, then italic. SlideJet Convert emits paragraph-level markers,
+    # so these deliberately conservative expressions are sufficient and avoid
+    # feeding unsupported HTML tags to ReportLab Paragraph.
+    escaped = re.sub(r"\*\*(.+?)\*\*", r"<b>\1</b>", escaped)
+    escaped = re.sub(r"(?<!\*)\*(?!\*)(.+?)(?<!\*)\*(?!\*)", r"<i>\1</i>", escaped)
+    return escaped
+
+
+def _markdown_to_reportlab_html(text):
+    """Render SlideJet Markdown safely in the existing PDF-with-notes workflow.
+
+    Supported constructs match what SlideJet Convert generates: paragraphs,
+    bold/italic text, bulleted lists, numbered lists, and nested indentation.
+    Unknown Markdown remains escaped plain text rather than breaking PDF output.
+    """
+    lines = _note_to_text(text).split("\n")
+    output = []
+
+    for raw_line in lines:
+        if not raw_line.strip():
+            output.append("<br/>")
+            continue
+
+        bullet_match = re.match(r"^(\s*)[-+*]\s+(.*)$", raw_line)
+        numbered_match = re.match(r"^(\s*)(\d+)[.)]\s+(.*)$", raw_line)
+
+        if bullet_match:
+            indent_spaces = len(bullet_match.group(1).replace("\t", "    "))
+            level = max(0, indent_spaces // 4)
+            prefix = "&nbsp;" * (level * 4) + "&#8226;&nbsp;"
+            output.append(prefix + _inline_markdown_to_reportlab(bullet_match.group(2)) + "<br/>")
+        elif numbered_match:
+            indent_spaces = len(numbered_match.group(1).replace("\t", "    "))
+            level = max(0, indent_spaces // 4)
+            prefix = "&nbsp;" * (level * 4) + html.escape(numbered_match.group(2)) + ".&nbsp;"
+            output.append(prefix + _inline_markdown_to_reportlab(numbered_match.group(3)) + "<br/>")
+        else:
+            output.append(_inline_markdown_to_reportlab(raw_line) + "<br/>")
+
+    return "".join(output)
+
+
 def generate_pdf(slides, img_folder, pres_folder, trans_lan, with_notes=False, text='Download PDF'):
     imgs = [os.path.join(img_folder, os.path.basename(slide['image'])) for slide in slides]
 
@@ -264,7 +310,9 @@ def add_notes_with_overlay(slides, images, output_pdf, trans_lan=None, font_size
         else:
             combined_md = original_md
 
-        html_note = markdown.markdown(combined_md).replace("\n", "<br/>")
+        # Use the same conservative Markdown subset as the web presenter while
+        # avoiding unsupported <ul>/<li> HTML in ReportLab Paragraph.
+        html_note = _markdown_to_reportlab_html(combined_md)
         elements.append(Paragraph(html_note, notes_style))
         elements.append(PageBreak())
 
