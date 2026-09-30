@@ -42,11 +42,30 @@ def validate_config(config):
         raise ValueError(f"Missing required keys in YAML: {', '.join(missing)}")
 
 
+def _note_to_text(value):
+    """Return note/translation content as text, tolerating older/custom JSON variants."""
+    if value is None:
+        return ""
+    if isinstance(value, str):
+        return value
+    if isinstance(value, dict):
+        for key in ("text", "translation", "value"):
+            if key in value:
+                return _note_to_text(value.get(key))
+        return json.dumps(value, ensure_ascii=False, indent=2)
+    if isinstance(value, list):
+        return "\n".join(_note_to_text(item) for item in value)
+    return str(value)
+
+
 def _translation_is_complete(slides, code):
     """True if every non-empty source note has a stored translation for code."""
     for slide in slides:
-        source = str(slide.get("notes", "") or "").strip()
-        translated = str(slide.get("translations", {}).get(code, "") or "").strip()
+        source = _note_to_text(slide.get("notes", "")).strip()
+        translations = slide.get("translations", {}) if isinstance(slide, dict) else {}
+        if not isinstance(translations, dict):
+            return False
+        translated = _note_to_text(translations.get(code, "")).strip()
         if source and not translated:
             return False
     return True
@@ -130,22 +149,30 @@ def language_direction(code, language_lookup=None):
 
 
 def render_note(text, direction="ltr"):
-    """Render notes as Markdown; wrap right-to-left scripts in an RTL container."""
-    text = str(text or "")
-    if direction == "rtl":
-        html_note = markdown.markdown(text)
-        st.markdown(
-            f'<div dir="rtl" style="text-align: right;">{html_note}</div>',
-            unsafe_allow_html=True,
-        )
-    else:
-        st.markdown(text)
+    """Render notes as Markdown; use a plain-text fallback instead of crashing."""
+    text = _note_to_text(text)
+    direction = "rtl" if str(direction).lower() == "rtl" else "ltr"
+    try:
+        if direction == "rtl":
+            html_note = markdown.markdown(text)
+            st.markdown(
+                f'<div dir="rtl" style="text-align: right;">{html_note}</div>',
+                unsafe_allow_html=True,
+            )
+        else:
+            st.markdown(text)
+    except Exception:
+        # A malformed/custom note must never make the whole presentation fail.
+        st.text(text)
 
 
 def get_stored_translation(slide, language_code):
     if not language_code:
-        return str(slide.get("notes", "") or "")
-    return str(slide.get("translations", {}).get(language_code, "") or "")
+        return _note_to_text(slide.get("notes", ""))
+    translations = slide.get("translations", {}) if isinstance(slide, dict) else {}
+    if not isinstance(translations, dict):
+        return ""
+    return _note_to_text(translations.get(language_code, ""))
 
 
 def generate_pdf(slides, img_folder, pres_folder, trans_lan, with_notes=False, text='Download PDF'):
@@ -260,6 +287,7 @@ default_yaml_key = f"{app_id}_default_yaml"
 language_metadata_key = f"{app_id}_language_metadata"
 source_language_key = f"{app_id}_source_language"
 json_version_key = f"{app_id}_json_version"
+language_select_key = f"{app_id}_speaker_language"
 
 # --- Initialize reset mode ---
 if reset_key not in st.session_state:
@@ -357,51 +385,52 @@ if images_folder_key not in st.session_state or st.session_state[images_folder_k
 # --- Load slides ---
 JSON_file = os.path.join(st.session_state[presentation_folder_key], "slide_data.json")
 
-if st.session_state[slide_data_key] is None:
-    if os.path.exists(JSON_file):
-        try:
-            slides, language_metadata, source_language, json_version = load_slidejet_json(JSON_file)
-            st.session_state[slide_data_key] = slides
-            st.session_state[language_metadata_key] = language_metadata
-            st.session_state[source_language_key] = source_language
-            st.session_state[json_version_key] = json_version
-        except Exception as e:
-            st.error(f"Error loading slide_data.json: {e}")
-            st.stop()
-    else:
-        config_file = st.file_uploader("**Default presentation not found.** This likely happens if the path to the files is corrupt or missing. Please upload your slidejet_config.yaml file.", type=["yaml", "yml"])
-        
-        if config_file is not None:
-            try:
-                st.session_state[config_key] = yaml.safe_load(config_file)
-                validate_config(st.session_state[config_key])
-            except Exception as e:
-                st.error(f"Error loading config: {e}")
-                st.stop()
-            
-            config = st.session_state[config_key]
-            st.session_state[presentation_folder_key] = config["presentation_folder"]
-            st.session_state[images_folder_key] = os.path.join(config["presentation_folder"], "images")
-            st.session_state[header_text_key] = config.get("header_text", "Presentation Title")
-            st.session_state[subheader_text_key] = config.get("subheader_text", "Subtitle")
-        
-            JSON_file = os.path.join(st.session_state[presentation_folder_key], "slide_data.json")
-            try:
-                slides, language_metadata, source_language, json_version = load_slidejet_json(JSON_file)
-                st.session_state[slide_data_key] = slides
-                st.session_state[language_metadata_key] = language_metadata
-                st.session_state[source_language_key] = source_language
-                st.session_state[json_version_key] = json_version
+def _load_json_into_session(json_path):
+    slides, language_metadata, source_language, json_version = load_slidejet_json(json_path)
+    st.session_state[slide_data_key] = slides
+    st.session_state[language_metadata_key] = language_metadata
+    st.session_state[source_language_key] = source_language
+    st.session_state[json_version_key] = json_version
 
-                # This belongs in the SUCCESS block
+
+if os.path.exists(JSON_file):
+    try:
+        # slide_data.json is authoritative. Reload it on every Streamlit rerun so
+        # deployed updates are picked up without additional hash/signature state.
+        _load_json_into_session(JSON_file)
+    except Exception as e:
+        st.error(f"Error loading slide_data.json: {e}")
+        st.stop()
+else:
+    config_file = st.file_uploader("**Default presentation not found.** This likely happens if the path to the files is corrupt or missing. Please upload your slidejet_config.yaml file.", type=["yaml", "yml"])
+    
+    if config_file is not None:
+        try:
+            st.session_state[config_key] = yaml.safe_load(config_file)
+            validate_config(st.session_state[config_key])
+        except Exception as e:
+            st.error(f"Error loading config: {e}")
+            st.stop()
+        
+        config = st.session_state[config_key]
+        st.session_state[presentation_folder_key] = config["presentation_folder"]
+        st.session_state[images_folder_key] = os.path.join(config["presentation_folder"], "images")
+        st.session_state[header_text_key] = config.get("header_text", "Presentation Title")
+        st.session_state[subheader_text_key] = config.get("subheader_text", "Subtitle")
+    
+        JSON_file = os.path.join(st.session_state[presentation_folder_key], "slide_data.json")
+        try:
+            _load_json_into_session(JSON_file)
+
+            if st.session_state[slide_data_key]:
                 first_image = st.session_state[slide_data_key][0]["image"]
                 image_path = os.path.join(st.session_state[images_folder_key], os.path.basename(first_image))
                 if not os.path.exists(image_path):
                     st.warning(f"Image `{image_path}` not found. Please check your images folder.")
-            
-            except Exception as e:
-                st.error(f"Error loading slide_data.json: {e}")
-                st.stop()
+        
+        except Exception as e:
+            st.error(f"Error loading slide_data.json: {e}")
+            st.stop()
 
 # --- Print Title and Header 
 st.header(f':blue[{st.session_state[header_text_key]}]')
@@ -421,11 +450,22 @@ if st.session_state[slide_data_key]:
     if "slide_index" not in st.session_state:
         st.session_state["slide_index"] = 1
 
-    target_lang = st.selectbox(
+    original_option = "__slidejet_original__"
+    language_options = [original_option] + available_language_codes
+    if st.session_state.get(language_select_key) not in language_options:
+        st.session_state[language_select_key] = original_option
+
+    selected_language = st.selectbox(
         "**Speaker-note language:**",
-        options=[None] + available_language_codes,
-        format_func=lambda code: "🌐 Original Notes" if code is None else language_display(language_lookup[code]),
+        options=language_options,
+        key=language_select_key,
+        format_func=lambda code: (
+            "🌐 Original Notes"
+            if code == original_option
+            else language_display(language_lookup.get(code, {"code": code, "name": code}))
+        ),
     )
+    target_lang = None if selected_language == original_option else selected_language
 
     num_slides = len(st.session_state[slide_data_key])
     lc, cc, rc = st.columns((1,3,1))
@@ -436,7 +476,7 @@ if st.session_state[slide_data_key]:
     image_path = os.path.join(st.session_state[images_folder_key], os.path.basename(selected_slide["image"]))
     st.image(image_path)
 
-    note_text = str(selected_slide.get("notes", "") or "")
+    note_text = _note_to_text(selected_slide.get("notes", ""))
     if target_lang:
         selected_meta = language_lookup[target_lang]
         translated = get_stored_translation(selected_slide, target_lang)
