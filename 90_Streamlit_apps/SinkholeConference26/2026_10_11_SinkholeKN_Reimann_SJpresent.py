@@ -5,6 +5,7 @@ import json
 import img2pdf
 import yaml
 import markdown
+import re
 from PIL import Image
 from reportlab.lib.pagesizes import A4
 from reportlab.platypus import Paragraph, SimpleDocTemplate, Spacer, PageBreak, Image as RLImage
