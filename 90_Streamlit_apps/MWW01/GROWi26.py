@@ -67,7 +67,7 @@ pages = {
         "💧 1D GWF": "90_Streamlit_apps/SYMPLE25/pages/00_OM/1D_GWF_Unconfined Recharge.py",
         "🌀 Well Capture": "90_Streamlit_apps/SYMPLE25/pages/00_OM/WellCapture.py",
         "--- Folien 🚀 ---": None,
-        "📝 T01: Einführung": "90_Streamlit_apps/MWW01/SlideJet_Presentations/GWBmC_WS2526_V01_SJpresent.py",
+        "📝 T01: Einführung": "90_Streamlit_apps/MWW01/SlideJet_Presentations/GWBmC_WS2627_V01_NEW_SJ_SJpresent.py",
     },
     "🟧 Konzeptionelles Modell": {
         "💡 Intro Randbedingungen": "06_Groundwater_modeling/BC_Intro.py",

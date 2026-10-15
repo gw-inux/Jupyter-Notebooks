@@ -1,0 +1,523 @@
+{
+  "slidejet_version": 2,
+  "source_language": "auto",
+  "languages": [],
+  "translation_runs": [],
+  "slides": [
+    {
+      "image": "images/slide_1.png",
+      "notes": "**Willkommen zur Grundwasserbewirtschaftung mit Computermodellen**\n\n    - Nachfolgend die wichtigsten Folien, zum Teil mit Kommentaren,\n    - Neben diesen Folien finden Sie im OPAL-Kurs weitere Materialien, u. a. elektronische Kontrollfragen,\n    - Bei Fragen, Kommentaren und Hinweisen freuen wir uns von Ihnen zu hören.",
+      "translations": {}
+    },
+    {
+      "image": "images/slide_2.png",
+      "notes": "No notes",
+      "translations": {}
+    },
+    {
+      "image": "images/slide_3.png",
+      "notes": "**Globale Wasserressourcen und Verfügbarkeit**\n\n- Die Abbildung veranschaulicht die Verteilung der weltweiten Wasserressourcen.\n- Nur etwa 2,5 % des gesamten Wassers auf der Erde sind Süßwasser.\n- Von diesem Süßwasser entfallen rund zwei Drittel auf Eis- und Schneereserven in Polkappen und Gletschern.\n- Der verbleibende Anteil besteht überwiegend aus Grundwasser, während Oberflächenwasser und andere Süßwasserquellen nur einen sehr kleinen Bruchteil ausmachen.\n- Rechts zeigt eine Weltkarte die Bevölkerungsdichte – sie verdeutlicht, dass Wasserverfügbarkeit und Bevölkerungsverteilung räumlich stark voneinander abweichen (können).",
+      "translations": {}
+    },
+    {
+      "image": "images/slide_4.png",
+      "notes": "**Nachhaltigkeitsindex des Wasserverbrauchs**\n\n- Die Abbildung zeigt den Nachhaltigkeitsindex für den Wasserverbrauch.\n- Ein Indexwert über 100 % bedeutet, dass mehr Wasser verbraucht wird, als jährlich verfügbar ist.\n- In solchen Regionen werden die Wasserressourcen übernutzt, was zu einer nicht nachhaltigen Bewirtschaftung führt.\n- Der Index dient somit als Indikator für Wasserstress und zeigt, wo dringender Handlungsbedarf in der Wasserbewirtschaftung besteht.",
+      "translations": {}
+    },
+    {
+      "image": "images/slide_5.png",
+      "notes": "**Prognose des globalen Wasserverbrauchs**\n\n- Die Abbildung zeigt die zukünftige Entwicklung des Wasserverbrauchs.\n- Im Jahr 2025 liegt der weltweite Wasserverbrauch bereits auf hohem Niveau.\n- Prognosen deuten darauf hin, dass der Wasserbedarf bis zum Ende des Jahrhunderts weiter ansteigen wird.\n- Ursachen sind Bevölkerungswachstum, wirtschaftliche Entwicklung und steigender Bedarf in Landwirtschaft und Industrie.\n- Die Darstellung verdeutlicht die zunehmende Belastung der Wasserressourcen und die Notwendigkeit langfristiger Bewirtschaftungsstrategien.",
+      "translations": {}
+    },
+    {
+      "image": "images/slide_6.png",
+      "notes": "**Empfohlene Rede von Prof. John Cherry**\n\n- Die Folie zeigt Zitate und Ausschnitte aus einer Rede von Prof. John Cherry, einem führenden Hydrogeologen.\n- Die Rede behandelt zentrale Herausforderungen der Grundwasserbewirtschaftung im globalen Kontext.\n- Das YouTube-Video zur vollständigen Rede ist besonders empfehlenswert als weiterführende Ressource.\n- **https://www.youtube.com/watch?v=I3zqpXx**",
+      "translations": {}
+    },
+    {
+      "image": "images/slide_7.png",
+      "notes": "**Dringlichkeit des Handelns – Prof. John Cherry**\n\n- Weitere Zitate aus der Rede verdeutlichen den akuten Handlungsbedarf im Umgang mit Grundwasser.",
+      "translations": {}
+    },
+    {
+      "image": "images/slide_8.png",
+      "notes": "**Video von John Cherry @ UPC Barcelona**\n\n- sehenswerter Vortrag (Beginn bei Minute 15)\n- https://www.youtube.com/watch?v=I3zqpXxtsHY",
+      "translations": {}
+    },
+    {
+      "image": "images/slide_9.png",
+      "notes": "**Beispiel Nordseeinsels:**\n\n    - Für die Wasserversorgung muss eine ausreichende Menge an Süßwasser bereit gestellt werden,\n    - Süßwasser entsteht infolge der Grundwasserneubildung im Bereich der Landoberfläche,\n    - Bewirtschaftung nach Maßgaben in Hinblick auf Menge und Beschaffenheit,\n    - Bewirtschaftung muss auch die unterschiedlichen Anforderungen in Hinblick auf die Menge berücksichtigten (z. B. erhöhter Wasserbedarf im Sommer aufgrund von Tourismus).",
+      "translations": {}
+    },
+    {
+      "image": "images/slide_10.png",
+      "notes": "**Beispiel Nordseeinsels:**\n\n    - Die Abbildung zeigt das zugrunde liegende Konzept für eine Süßwasserlinse\n    - Grundwasser entsteht durch Grundwasserneubildung und ‘schwimmt’ auf dem Salzwasser, da daß Grundwasser eine geringere Dichte besitzt\n    - Wird der Grundwasserspiegel aufgrund einer Wasserentnahme durch Brunnen abgsenkt, so veringert sich auch die Mächtigkeit der Süßwasserlinse; unter Umständen kann es zu einem Salzwassereinbruch kommen\n    - Diese Zusammenhänge greift eines der möglichen Themen am Ende der Veranstaltungsreihe auf",
+      "translations": {}
+    },
+    {
+      "image": "images/slide_11.png",
+      "notes": "**Beispiel landwirtschaftliche Einzugsgebiete**\n\n    - Rechte Abbildung zeigt Förderbrunnen (rote Vierecke) und das zugehörige Einzugsgebiet,\n    - Im Einzugsgebiet findet Landwirtschaft statt, wodurch z. B. Nährstoffe wie Nitrat eingetragen werden,\n    - Die Bewirtschaftung breücksichtigt die unterschiedlichen Anforderungen an die notwendige Menge (z. B. Bewässerung in den Sommermonaten) und die notwendige Qualität (z. B. gundwasserschonende Landwirtschaft in den relevanten Gebieten).",
+      "translations": {}
+    },
+    {
+      "image": "images/slide_12.png",
+      "notes": "No notes",
+      "translations": {}
+    },
+    {
+      "image": "images/slide_13.png",
+      "notes": "**Beispiel Tagebauentwässerung**\n\n    - Fotos aus dem Umfeld des Tagebaus Welzow (u. a. Exkursionen mit Studierenden im Modul Fallstudien der Grundwasserbewirtschaftung),\n    - Im natürlichen Zustand ist das Grundwasser relative flurnah (siehe auch der benachbarte Spreewald),\n    - Im oberen Bild ist ein Einblick in den Tagebau zu sehen, wo ca. 50 m unter Geländeoberkante die Kohle abgebaut wird,\n    - Mit Hilfe von Tiefbrunnen wird das Grundwasser im Bereich des Tagebaus abgesenkt, wobei unter quantitativen Aspekten möglichst geringe Wassermengen und geringe Reichweite der Auswirkungen der Wasserentnahme angestrebt werden,\n    - Qualitative Aspekte spielen unter anderem bei der anschliessenden Flutung der Restlöcher eine Rolle.",
+      "translations": {}
+    },
+    {
+      "image": "images/slide_14.png",
+      "notes": "**Beispiel Grundwasserabsenkung für Baugruben / Baugrubenentwässerung**\n\n    - Die Abbildung zeigt einen schematischen Schnitt durch eine Baugrube mit einer Wasserabsenkung durch Vertikalfilterbrunnen",
+      "translations": {}
+    },
+    {
+      "image": "images/slide_15.png",
+      "notes": "**Beispiel Grundwasserabsenkung für Baugruben / Baugrubenentwässerung**\n\n    - Die Gründung von Bauwerken im Bereich des Grundwassers macht es notwendig, dieses vor Aushub der Baugrube abzusenken,\n    - Im Stadtgebiet Dresden ist in weiten Bereich ein sandig-kiesiger Talgrundwasserleiter vorhanden (ca. 10 m Mächtig mit flurnahen Grundwasserständen),\n    - Grundwasserabsenkung mit Vertikalfilterbrunnen so, dass die Baugrube im Bereich der Absenkung liegt,\n    - Im Stadtbild werden häufig die (blauen) Entwässerungsleitungen wahrgenommen.",
+      "translations": {}
+    },
+    {
+      "image": "images/slide_16.png",
+      "notes": "**Beispiel geothermische Nutzung**\n\n    - Geothermische Anlagen sind z. B. bei Neubauvorhaben verbreitet mit jährlich steigender Anzahl von Anlagen,\n    - Werden solche Anlagen neu errichtet, stellt sich z. B. die Frage, wie sich diese auf die Grundwasserbeschaffenheit auswirken bzw. ob und wie diese miteinander interagieren.",
+      "translations": {}
+    },
+    {
+      "image": "images/slide_17.png",
+      "notes": "**Beispiel geothermische Nutzung**\n\n    - Foto zeigt oberflächennahe Geothermie,\n    - Entnahme von Wärme (oder Kälte im Sommer) wirkt sich auf die Beschaffenheit des Grundwassers aus (u. a. Wärme- / Kältefahnen).",
+      "translations": {}
+    },
+    {
+      "image": "images/slide_18.png",
+      "notes": "**Beispiel Geothermische Nutzung**\n\n    - Das Beispiel zeigt die Ergebnisse einer numerischen Berechnung des Wärmetransports im Untergrund,\n    - Untersucht wurde ein Standort mit mehreren Erdwärmeanlagen (z. B. Neubaugebiet).",
+      "translations": {}
+    },
+    {
+      "image": "images/slide_19.png",
+      "notes": "No notes",
+      "translations": {}
+    },
+    {
+      "image": "images/slide_20.png",
+      "notes": "No notes",
+      "translations": {}
+    },
+    {
+      "image": "images/slide_21.png",
+      "notes": "**Zielsetzung und einige Fragestellungen**\n\n    - Das Modul soll die Fähigkeit vermitteln, Computermodelle zur Bearbeitung von typischen (vereinfachten) Fragestellungen aus der Grundwasserbewirtschaftung zu erstellen und anzuwenden.\n    - Damit sollen u. a. Voraussetzungen geschaffen werden, um komplexere Fragestellungen im Rahmen des Moduls „Studienprojekt Wasserwirtschaft“ (Themenschwerpunkt Grundwasser) selbstständig bearbeiten zu können.\n    - Ebenso werden Computermodelle im Wahlpflichtmodul „Fallstudien der Grundwasserbewirtschaftung“ (SS) verstärkt eingesetzt.",
+      "translations": {}
+    },
+    {
+      "image": "images/slide_22.png",
+      "notes": "No notes",
+      "translations": {}
+    },
+    {
+      "image": "images/slide_23.png",
+      "notes": "No notes",
+      "translations": {}
+    },
+    {
+      "image": "images/slide_24.png",
+      "notes": "**Einige Kommentare dazu**\n\n    - Wir haben die Lehrveranstaltung bereits in den vorhergehenden Jahrgängen kontinuierlich weiterentwickelt,\n    - Wir streben auch im laufenden Semester eine weitere Anpassung im Rahmen unserer vorhandenen Kapazitäten an,\n    - Soweit möglich, nutzen wir den OPAL-Kurs, um die entsprechenden Materialien für Vor- und Nachbereitung bereitzustellen.",
+      "translations": {}
+    },
+    {
+      "image": "images/slide_25.png",
+      "notes": "No notes",
+      "translations": {}
+    },
+    {
+      "image": "images/slide_26.png",
+      "notes": "No notes",
+      "translations": {}
+    },
+    {
+      "image": "images/slide_27.png",
+      "notes": "No notes",
+      "translations": {}
+    },
+    {
+      "image": "images/slide_28.png",
+      "notes": "No notes",
+      "translations": {}
+    },
+    {
+      "image": "images/slide_29.png",
+      "notes": "**Weitere Hinweise zu Beleg / Arbeitsmittel**\n\n    - Beleg ist keine Prüfungsleistung,\n    - zwei Teile; Abgabe des ersten Teils bis Weihnachten: Möglichkeit für ein Feedback und Hinweise für den zweiten Teil,\n    - Software MODELMUSE und MODFLOW werden durch umfangreiches Lehrmaterial eingeführt (Tutorial, Screencast-Videos etc.).",
+      "translations": {}
+    },
+    {
+      "image": "images/slide_30.png",
+      "notes": "No notes",
+      "translations": {}
+    },
+    {
+      "image": "images/slide_31.png",
+      "notes": "No notes",
+      "translations": {}
+    },
+    {
+      "image": "images/slide_32.png",
+      "notes": "**Hinweise zur Literatur**\n\n    - Die Titel mit schwarzer Schrift sind am relevantesten,\n    - Literatur in Form von Büchern als Zusatzmaterial und ggf. Ergänzung zu den von uns bereitgestellten Unterlagen.\n\n    - Anderson / Woessner / Hunt is one of the most comprehensive textbooks for groundwater modeling (very valuable)\n    - Australian Groundwater Modeling Guidlines: http://archive.nwc.gov.au/library/waterlines/82 (Short companion version https://consultation.dplh.wa.gov.au/policy/14d86ef9/supporting_documents/Companiontomodellingguidelines.pdf)\n    - http://inside.mines.edu/~epoeter/583/; Very good, not only for modelling but generally for groundwater flow, analytical solutions",
+      "translations": {}
+    },
+    {
+      "image": "images/slide_33.png",
+      "notes": "No notes",
+      "translations": {}
+    },
+    {
+      "image": "images/slide_34.png",
+      "notes": "No notes",
+      "translations": {}
+    },
+    {
+      "image": "images/slide_35.png",
+      "notes": "No notes",
+      "translations": {}
+    },
+    {
+      "image": "images/slide_36.png",
+      "notes": "No notes",
+      "translations": {}
+    },
+    {
+      "image": "images/slide_37.png",
+      "notes": "No notes",
+      "translations": {}
+    },
+    {
+      "image": "images/slide_38.png",
+      "notes": "**Beispielregion Lausitz – Blick auf den Tagebau**\n\n- Die Folie zeigt die Lausitz im Osten Deutschlands.\n- Im oberen Teil des Luftbilds ist der Tagebau deutlich zu erkennen.\n- Die Aufnahme verdeutlicht die landschaftlichen Veränderungen durch den Braunkohleabbau.\n- Dieses Beispiel führt in die Thematik der Grundwasserbewirtschaftung im Bergbaugebiet ein.",
+      "translations": {}
+    },
+    {
+      "image": "images/slide_39.png",
+      "notes": "No notes",
+      "translations": {}
+    },
+    {
+      "image": "images/slide_40.png",
+      "notes": "No notes",
+      "translations": {}
+    },
+    {
+      "image": "images/slide_41.png",
+      "notes": "No notes",
+      "translations": {}
+    },
+    {
+      "image": "images/slide_42.png",
+      "notes": "No notes",
+      "translations": {}
+    },
+    {
+      "image": "images/slide_43.png",
+      "notes": "No notes",
+      "translations": {}
+    },
+    {
+      "image": "images/slide_44.png",
+      "notes": "No notes",
+      "translations": {}
+    },
+    {
+      "image": "images/slide_45.png",
+      "notes": "No notes",
+      "translations": {}
+    },
+    {
+      "image": "images/slide_46.png",
+      "notes": "No notes",
+      "translations": {}
+    },
+    {
+      "image": "images/slide_47.png",
+      "notes": "No notes",
+      "translations": {}
+    },
+    {
+      "image": "images/slide_48.png",
+      "notes": "No notes",
+      "translations": {}
+    },
+    {
+      "image": "images/slide_49.png",
+      "notes": "No notes",
+      "translations": {}
+    },
+    {
+      "image": "images/slide_50.png",
+      "notes": "No notes",
+      "translations": {}
+    },
+    {
+      "image": "images/slide_51.png",
+      "notes": "No notes",
+      "translations": {}
+    },
+    {
+      "image": "images/slide_52.png",
+      "notes": "No notes",
+      "translations": {}
+    },
+    {
+      "image": "images/slide_53.png",
+      "notes": "No notes",
+      "translations": {}
+    },
+    {
+      "image": "images/slide_54.png",
+      "notes": "No notes",
+      "translations": {}
+    },
+    {
+      "image": "images/slide_55.png",
+      "notes": "No notes",
+      "translations": {}
+    },
+    {
+      "image": "images/slide_56.png",
+      "notes": "No notes",
+      "translations": {}
+    },
+    {
+      "image": "images/slide_57.png",
+      "notes": "No notes",
+      "translations": {}
+    },
+    {
+      "image": "images/slide_58.png",
+      "notes": "No notes",
+      "translations": {}
+    },
+    {
+      "image": "images/slide_59.png",
+      "notes": "**Brief excursus: What is a Model?**\n\n    - A model is a representation, an image or a de-scription of a real system.\n    - example for a real system: porous medium with water flowing through the pores (Darcy experiment)\n    - corresponding model: Darcy‘s Law (flow rate ~ hydraulic gradient)\n    - Each model is subject to simplifications (as it is “only an image“ of the real system).\n    - Darcy‘s Law, for instance, does not provide an exact representation of flow through individual pore channels. Rather, average flow behaviour through “many“ pore channels is represented.",
+      "translations": {}
+    },
+    {
+      "image": "images/slide_60.png",
+      "notes": "**Workflow Grundwassermodellierung**\n\n    - Der grundsätzliche Abflauf orientiert sich am Schema (rechte Abbildung) nach Anderson et al. 2015,\n    - Siehe Lehrbuch Anderson et al. (2015): Applied Groundwater Modeling, Kapitel 1.3 / S. 9 und Kapitel 1.6, Seite 16,\n    - Je nach Fragestellung und Anwendung müssen nicht zwingend alle Schritte abgearbeitet werden, z. B. weist ein generisches Modell für das Systemverständnis üblicherweise keine Kalibrierung auf.",
+      "translations": {}
+    },
+    {
+      "image": "images/slide_61.png",
+      "notes": "**Workflow Grundwassermodellierung**\n\n    - Der grundsätzliche Abflauf orientiert sich am Schema (rechte Abbildung) nach Anderson et al. 2015,\n    - Siehe Lehrbuch Anderson et al. (2015): Applied Groundwater Modeling, Kapitel 1.3 / S. 9 und Kapitel 1.6, Seite 16,\n    - Je nach Fragestellung und Anwendung müssen nicht zwingend alle Schritte abgearbeitet werden, z. B. weist ein generisches Modell für das Systemverständnis üblicherweise keine Kalibrierung auf.",
+      "translations": {}
+    },
+    {
+      "image": "images/slide_62.png",
+      "notes": "No notes",
+      "translations": {}
+    },
+    {
+      "image": "images/slide_63.png",
+      "notes": "**[Lernziel: Die Gesamtheit der einzelnen Schritte im Ablauf einer Modellierung wiedergeben und den Ablauf für konkrete Fragestellungen präzisieren]**\n\n**Beispiel für ein Grundwassermodell – Dover Airbase**\n\n    - Dover Airbase ist ein Militärflughafen im Nordosten der USA,\n    - Auf dem Flughafengelände liegen einige Verunreinigungen im Untergrund vor, so dass die hydrogeologischen Verhältnisse näher untersucht werden;\n    - Das Grundwassermodell ist durch einen Bericht des USGS dokumentiert;\n    - Auf der Basis des Berichts werden nachfolgend die einzelnen Schritte für eine Grundwassermodellierung dargestellt.",
+      "translations": {}
+    },
+    {
+      "image": "images/slide_64.png",
+      "notes": "**Anlass / Zweck für eine Grundwassermodellierung**\n\n    - Hier: Management von Umwelteinflüssen / Auswirkungen auf die Umwelt,\n    - Simulation der Fließpfade (Ausbreitung von Schadstoffen),\n    - Die rechte Abbildung zeigt beispielhaft eines der Ergebnisse in Form von Pathlines (Richtung und Zeit).",
+      "translations": {}
+    },
+    {
+      "image": "images/slide_65.png",
+      "notes": "**Verschiedene Typen / Arten von Grundwassermodellen**\n\n    - Bitte auch im Buch Anderson et al. (2015): Applied Groundwater Modeling auf Seite 9 / Kapitel 1.3 nachlesen (dieser Teil des Buches ist u. a. über Google Books zugänglich).",
+      "translations": {}
+    },
+    {
+      "image": "images/slide_66.png",
+      "notes": "**Verschiedene Typen / Arten von Grundwassermodellen**\n\n    - Bitte auch im Buch Anderson et al. (2015): Applied Groundwater Modeling auf Seite 9 / Kapitel 1.3 nachlesen (dieser Teil des Buches ist u. a. über Google Books zugänglich).",
+      "translations": {}
+    },
+    {
+      "image": "images/slide_67.png",
+      "notes": "**Verschiedene Typen / Arten von Grundwassermodellen**\n\n    - Bitte auch im Buch Anderson et al. (2015): Applied Groundwater Modeling auf Seite 9 / Kapitel 1.3 nachlesen (dieser Teil des Buches ist u. a. über Google Books zugänglich).",
+      "translations": {}
+    },
+    {
+      "image": "images/slide_68.png",
+      "notes": "**Verschiedene Typen / Arten von Grundwassermodellen**\n\n    - Bitte auch im Buch Anderson et al. (2015): Applied Groundwater Modeling auf Seite 9 / Kapitel 1.3 nachlesen (dieser Teil des Buches ist u. a. über Google Books zugänglich).",
+      "translations": {}
+    },
+    {
+      "image": "images/slide_69.png",
+      "notes": "**Workflow Grundwassermodellierung – Konzeptionelles Modell**\n\n    - Zeigt qualitatives Systemverständnis / Systemverhalten,\n    - Struktur und Randbedingungen,\n    - Auch Unsicherheiten (z. B.  in der linken Abbildung in Form von Fragezeichen an den Grenzen der unterschiedlichen geol. Strukturen.",
+      "translations": {}
+    },
+    {
+      "image": "images/slide_70.png",
+      "notes": "**Konzeptionelle Modell**\n\n- konzeptionelles Modell = qualitative Darstellung der wesentlichen Systemkomponenten, Prozesse und Einflussfaktoren im Untersuchungsgebiet\n- Die Darstellung erfolgt zumeist grafisch, z. B. als Blockbild (s. Folie) oder als horizontale bzw. vertikale Schnitte (vgl. z. B. vorherige Folie).\n    - Wird Schwerpunkt in der LV02 sein\n\n**Brief excursus: conceptual models**\n\n    - One criterion for model classification distinguishes the qualitative from the quantitative description of a real system.\n    - A conceptual model provides a qualitative representation of the relevant system components, processes and impacts in the area of investigation.\n    - This representation is often shown graphically, e.g. as block model (see slide), horizontal or vertical cross sections.",
+      "translations": {}
+    },
+    {
+      "image": "images/slide_71.png",
+      "notes": "No notes",
+      "translations": {}
+    },
+    {
+      "image": "images/slide_72.png",
+      "notes": "**Workflow Grundwassermodellierung – Mathematische Modell / Rechencode**\n\n    - Üblicherweise die 3D-Grundwasserströmungsgleichung bzw. eine Vereinfachung dieser (siehe WDH Hydrogeologie),\n    - Das Beispiel zeigt die 3D-Grundwasserströmungsgleichung sowie deren Umsetzung in MODFLOW / Finite-Differenzen-Schema.",
+      "translations": {}
+    },
+    {
+      "image": "images/slide_73.png",
+      "notes": "**Workflow Grundwassermodellierung – Mathematische Modell / Rechencode**\n\n    - Üblicherweise die 3D-Grundwasserströmungsgleichung bzw. eine Vereinfachung dieser (siehe WDH Hydrogeologie),\n    - Das Beispiel zeigt die 3D-Grundwasserströmungsgleichung sowie deren Umsetzung in MODFLOW / Finite-Differenzen-Schema.",
+      "translations": {}
+    },
+    {
+      "image": "images/slide_74.png",
+      "notes": "**Beispiel Anwendung der analytischen Lösung: Fiktive Situation:**\n\n    - Die Orte / Restlöcher in der Abbildung dienen nur zur Illustration – das Beispiel hat keinerlei direkten Bezug zu diesem konkreten Standort,\n    - Die Seen befinden sich u.U. in Flutung / weisen ein veränderliches Potential auf,\n    - Die Grundwasserneubildung variiert mit der Zeit (z. B. in den Jahren 2018 / 2019 sehr gering aufgrund der Trockenheit),\n    - **Fiktive Fragestellung hier:**\n        - In welche Richtung strömt das Grundwasser?\n    - Analyse des Problems mit der analytischen Lösung (Anwendung u. a. hier: https://mybinder.org/v2/gh/ThoReimann/HydroTeaching/master -> Basics -> Ditch; u. a. kann der Start des Jupyter Notebooks einige Minuten dauern).\n    - *Aufgabe: Einfluss K-Wert / Grundwasserneubildung untersuchen.*",
+      "translations": {}
+    },
+    {
+      "image": "images/slide_75.png",
+      "notes": "No notes",
+      "translations": {}
+    },
+    {
+      "image": "images/slide_76.png",
+      "notes": "**[Lernziel: Modellbegriffe bei der Grundwassermodellierung erklären und unterscheiden – hier am Beispiel Anwendung analytische Lösung]**\n\n**Der Weg zur Lösung der Grundwasserströmungsgleichung ist in den separaten Folien bechrieben, für die Lösung hier gilt:**\n\n    - Stark vereinfachte Situation:\n        - 1D (…entlang der Strömungsrichtung x),\n        - Homogener / isotroper Untergrund,\n        - Zwei definierte Potentiale (Wasserstand links/rechts),\n        - Homogene Grundwasserneubildung (Quellterm).",
+      "translations": {}
+    },
+    {
+      "image": "images/slide_77.png",
+      "notes": "No notes",
+      "translations": {}
+    },
+    {
+      "image": "images/slide_78.png",
+      "notes": "**Numerische Lösung**\n\n    - Wird Schwerpunkt in den LV03 / LV04 sein",
+      "translations": {}
+    },
+    {
+      "image": "images/slide_79.png",
+      "notes": "**Beispiel für analytische Lösungen für komplexe Fragestellungen:**\n\n    - Kombination analytischer Lösungen auf der Basis des Superpositionsprinzips,\n    - Schnelle (instantane) Lösung von Fragestellungen (allerdings mit notwendigen Einschränkungen z. B. homogener und isotroper Grundwasserleiter)",
+      "translations": {}
+    },
+    {
+      "image": "images/slide_80.png",
+      "notes": "**Software für analytische Elemente:**\n\n    - Hier nur als Beispiel, keine weitere Vertiefung im Laufe der LV,\n    - Vorteil: schnelle und effiziente Lösung (z. B. können sehr viele unterschiedliche Varianten durchgespielt werden).",
+      "translations": {}
+    },
+    {
+      "image": "images/slide_81.png",
+      "notes": "**Beispiel für ein numerisches Modell**\n\n    - Komplexere Situation (Heterogenität im Untergrund – siehe gelbe und blaue Zellen),\n    - Unregelmäßige Geomtrie (u. a. Variation der Mächtigkeit).",
+      "translations": {}
+    },
+    {
+      "image": "images/slide_82.png",
+      "notes": "**Beispiel für ein numerisches Modell**\n\n    - Komplexere Situation (Heterogenität im Untergrund – siehe gelbe und blaue Zellen),\n    - Unregelmäßige Geomtrie (u. a. Variation der Mächtigkeit).",
+      "translations": {}
+    },
+    {
+      "image": "images/slide_83.png",
+      "notes": "No notes",
+      "translations": {}
+    },
+    {
+      "image": "images/slide_84.png",
+      "notes": "**Beispiel zum Aufbau eines numerischen Modells**\n\n    - im WS 20/21 aus Zeitgründen nicht realisiert\n    - im OPAL-Kurs finden Sie 3 Beispiele mit steigender Komplexität, an denen mittels Tutorial / Video der Modellaufbau erläutert wird (1D Modell, 2D Modelle synthetisch und idealisiert)",
+      "translations": {}
+    },
+    {
+      "image": "images/slide_85.png",
+      "notes": "No notes",
+      "translations": {}
+    },
+    {
+      "image": "images/slide_86.png",
+      "notes": "**Allgemeine Anforderungen und Arbeitsschritte**\n\n    - siehe auch die Schritte in den Tutorial / Videos\n    - (1) Diskretisierung Raum & Zeit\n    - (2) Parameter & Struktur\n    - (3) Randbedingungen\n    - (4) Eigenschaften Simulation\n    - (5) Postprocessing",
+      "translations": {}
+    },
+    {
+      "image": "images/slide_87.png",
+      "notes": "No notes",
+      "translations": {}
+    },
+    {
+      "image": "images/slide_88.png",
+      "notes": "**Aublick – weitere Beispiele zum Modelldesign (werden in den nachfolgenden LV nochmals aufgegriffen und vertieft)**",
+      "translations": {}
+    },
+    {
+      "image": "images/slide_89.png",
+      "notes": "**Aublick – weitere Beispiele zum Modelldesign (werden in den nachfolgenden LV nochmals aufgegriffen und vertieft)**",
+      "translations": {}
+    },
+    {
+      "image": "images/slide_90.png",
+      "notes": "**Aublick – weitere Beispiele zum Modelldesign (werden in den nachfolgenden LV nochmals aufgegriffen und vertieft)**",
+      "translations": {}
+    },
+    {
+      "image": "images/slide_91.png",
+      "notes": "**Workflow Grundwassermodellierung – Modelldesign**\n\n    - Das konzeptionelle Modell wird in ein numerisches Modell überführt,\n    - Beispiel: räumliche Diskretisierung mit verfeinertem Gitter in den zentralen Bereichen des Modells.",
+      "translations": {}
+    },
+    {
+      "image": "images/slide_92.png",
+      "notes": "**Workflow Grundwassermodellierung – Modelldesign**\n\n    - Das konzeptionelle Modell wird in ein numerisches Modell überführt,\n    - Beispiel: räumliche Festlegung der Randbedingungen am äußeren Rand (Ozean).",
+      "translations": {}
+    },
+    {
+      "image": "images/slide_93.png",
+      "notes": "**Workflow Grundwassermodellierung – Modelldesign**\n\n    - Das konzeptionelle Modell wird in ein numerisches Modell überführt,\n    - Beispiel: räumliche Festlegung der Randbedingungen Flüss und Drains.",
+      "translations": {}
+    },
+    {
+      "image": "images/slide_94.png",
+      "notes": "No notes",
+      "translations": {}
+    },
+    {
+      "image": "images/slide_95.png",
+      "notes": "**Workflow Grundwassermodellierung – Kalibrieren**\n\n    - Die Parameter des Modells werden variiert, um die Abweichung zwischen berechneten Modellgrößen (z. B. Wasserstände) und realen (gemessenen) Größen zu minimieren.\n    - Beispiel: Vergleich zwischen berechneten und gemessenen Wasserständen in Form von Isohypsenplänen.",
+      "translations": {}
+    },
+    {
+      "image": "images/slide_96.png",
+      "notes": "**Workflow Grundwassermodellierung – Kalibrieren**\n\n    - Die Parameter des Modells werden variiert, um die Abweichung zwischen berechneten Modellgrößen (z. B. Wasserstände) und realen (gemessenen) Größen zu minimieren.\n    - Beispiel: Vergleich zwischen berechneten und gemessenen Wasserständen in Form eines sogenannten Scatter-Diagramms.",
+      "translations": {}
+    },
+    {
+      "image": "images/slide_97.png",
+      "notes": "**Workflow Grundwassermodellierung – Modellbasierte Vorhersage**\n\n    - Anwendung des Modells entsprechend der ursprünglichen Zielstellung.\n    - Beispiel: Richtung und Geschwindigkeit der Grundwasserströmung.",
+      "translations": {}
+    },
+    {
+      "image": "images/slide_98.png",
+      "notes": "**Workflow Grundwassermodellierung – Weitere Schritte**\n\n    - Weitere Schritte wie Unsicherheitsanalyse werden zunehmend gebräuchlicher, u. a. da die notwendigen Rechenleistungen mittlerweile einfacher verfügbar sind (z. B. für Monte-Carlo-Simulationen).\n    - Evaluieren und Darstellen der Ergebnisse in Form eines Berichtes (u. a. Nachvollziehbarkeit, Erneutes Aufgreifen des Modells zu späteren Zeitpunkten).\n    - Punkt 9 (Re-evaluation, häufig auch als Post-Audit bezeichnet) wird praktisch nicht so häufig angetroffen, ist aber äusserst sinnvoll, da sich im Laufe der Zeit z. B. die hydrogeologischen / konzeptionellen Modellvorstellungen ändern können.",
+      "translations": {}
+    },
+    {
+      "image": "images/slide_99.png",
+      "notes": "No notes",
+      "translations": {}
+    },
+    {
+      "image": "images/slide_100.png",
+      "notes": "No notes",
+      "translations": {}
+    },
+    {
+      "image": "images/slide_101.png",
+      "notes": "No notes",
+      "translations": {}
+    },
+    {
+      "image": "images/slide_102.png",
+      "notes": "No notes",
+      "translations": {}
+    },
+    {
+      "image": "images/slide_103.png",
+      "notes": "No notes",
+      "translations": {}
+    }
+  ]
+}
