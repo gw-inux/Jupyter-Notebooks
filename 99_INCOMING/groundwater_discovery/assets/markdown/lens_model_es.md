@@ -1,0 +1,3 @@
+El **principio de Ghyben–Herzberg** relaciona el nivel de agua dulce sobre el mar con la profundidad de la interfaz mediante el equilibrio de presiones. En el agua salada, más densa, la presión aumenta más con la profundidad.
+
+El dibujo supone densidades constantes, presión vertical hidrostática, agua salada inmóvil, interfaz nítida y ausencia de roca somera que limite la lente. Compara equilibrios ideales. En realidad hay mezcla en una zona de transición. El Báltico es salobre: este ejemplo con densidad oceánica **no predice las condiciones de Sopot**. Las matemáticas están en el libro enlazado. [S6, S8, S9]

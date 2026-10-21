@@ -1,0 +1,3 @@
+**Zasada Ghybena–Herzberga** wiąże poziom wody słodkiej nad morzem z głębokością granicy poniżej niego poprzez równowagę ciśnień. W wodzie słonej, o większej gęstości, ciśnienie wzrasta szybciej z głębokością.
+
+Rysunek zakłada stałe gęstości, pionowy rozkład hydrostatyczny, nieruchomą wodę słoną, ostrą granicę i brak płytkiego podłoża ograniczającego soczewkę. Porównuje idealne stany równowagi. W rzeczywistości wody mieszają się w strefie przejściowej. Bałtyk jest słonawy: przykład z gęstością wody oceanicznej **nie jest prognozą dla Sopotu**. Matematyka znajduje się w podlinkowanej książce. [S6, S8, S9]

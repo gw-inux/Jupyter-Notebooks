@@ -1,0 +1,350 @@
+{
+  "home": {
+    "en": {
+      "motivation": "A hidden world beneath your feet: begin with a question, try a cup experiment, then explore a beach.",
+      "objectives": [
+        "Discover which freshwater resource is most significant for life on Earth.",
+        "Explain where groundwater occurs and how it connects to surface water."
+      ]
+    },
+    "de": {
+      "motivation": "Eine verborgene Welt unter deinen Füßen: Beginne mit einer Frage, probiere ein Becherexperiment und erkunde einen Strand.",
+      "objectives": [
+        "Entdecke, welche Süßwasserressource für das Leben auf der Erde besonders wichtig ist.",
+        "Erkläre, wo Grundwasser vorkommt und wie es mit Oberflächenwasser verbunden ist."
+      ]
+    },
+    "pl": {
+      "motivation": "Ukryty świat pod stopami: zacznij od pytania, wykonaj doświadczenie z kubkiem, a potem zbadaj plażę.",
+      "objectives": [
+        "Odkryj, który zasób wody słodkiej jest najważniejszy dla życia na Ziemi.",
+        "Wyjaśnij, gdzie występują wody podziemne i jak łączą się z wodami powierzchniowymi."
+      ]
+    },
+    "fr": {
+      "motivation": "Un monde caché sous vos pieds : commencez par une question, essayez une expérience avec un gobelet, puis explorez une plage.",
+      "objectives": [
+        "Découvrez quelle ressource en eau douce est essentielle à la vie sur Terre.",
+        "Expliquez où se trouve l’eau souterraine et ses liens avec l’eau de surface."
+      ]
+    },
+    "es": {
+      "motivation": "Un mundo oculto bajo tus pies: empieza con una pregunta, prueba un experimento con un vaso y explora una playa.",
+      "objectives": [
+        "Descubre qué recurso de agua dulce es más importante para la vida en la Tierra.",
+        "Explica dónde está el agua subterránea y cómo se conecta con el agua superficial."
+      ]
+    },
+    "ar": {
+      "motivation": "عالم خفي تحت قدميك: ابدأ بسؤال، وجرّب تجربة بكوب، ثم استكشف شاطئاً.",
+      "objectives": [
+        "اكتشف أي موارد المياه العذبة هو الأهم للحياة على الأرض.",
+        "اشرح أين توجد المياه الجوفية وكيف ترتبط بالمياه السطحية."
+      ]
+    },
+    "cs": {
+      "motivation": "Skrytý svět pod nohama: začněte otázkou, vyzkoušejte pokus s kelímkem a prozkoumejte pláž.",
+      "objectives": [
+        "Objevte, který zdroj sladké vody je pro život na Zemi nejvýznamnější.",
+        "Vysvětlete, kde se podzemní voda nachází a jak souvisí s povrchovou vodou."
+      ]
+    },
+    "it": {
+      "motivation": "Un mondo nascosto sotto i piedi: inizia con una domanda, prova un esperimento con un bicchiere, poi esplora una spiaggia.",
+      "objectives": [
+        "Scopri quale risorsa di acqua dolce è più importante per la vita sulla Terra.",
+        "Spiega dove si trova l’acqua sotterranea e come si collega a quella superficiale."
+      ]
+    }
+  },
+  "importance": {
+    "en": {
+      "motivation": "Rivers and lakes are easy to see. Could the largest liquid freshwater store be hidden? Make your prediction.",
+      "objectives": [
+        "Identify Earth’s largest store of liquid freshwater.",
+        "Give one reason groundwater matters for people or ecosystems."
+      ]
+    },
+    "de": {
+      "motivation": "Flüsse und Seen sind leicht zu sehen. Könnte der größte flüssige Süßwasserspeicher verborgen sein? Gib eine Schätzung ab.",
+      "objectives": [
+        "Benenne den größten Speicher flüssigen Süßwassers der Erde.",
+        "Nenne einen Grund, warum Grundwasser für Menschen oder Ökosysteme wichtig ist."
+      ]
+    },
+    "pl": {
+      "motivation": "Rzeki i jeziora łatwo zobaczyć. Czy największy magazyn ciekłej wody słodkiej może być ukryty? Podaj swój szacunek.",
+      "objectives": [
+        "Wskaż największy magazyn ciekłej wody słodkiej na Ziemi.",
+        "Podaj jeden powód, dla którego wody podziemne są ważne dla ludzi lub ekosystemów."
+      ]
+    },
+    "fr": {
+      "motivation": "Les rivières et les lacs sont visibles. Le plus grand réservoir d’eau douce liquide serait-il caché ? Faites une estimation.",
+      "objectives": [
+        "Identifiez le plus grand réservoir d’eau douce liquide sur Terre.",
+        "Donnez une raison de l’importance des eaux souterraines pour les humains ou les écosystèmes."
+      ]
+    },
+    "es": {
+      "motivation": "Los ríos y lagos son visibles. ¿Podría estar oculta la mayor reserva de agua dulce líquida? Haz una predicción.",
+      "objectives": [
+        "Identifica la mayor reserva de agua dulce líquida de la Tierra.",
+        "Da una razón de la importancia del agua subterránea para las personas o los ecosistemas."
+      ]
+    },
+    "ar": {
+      "motivation": "نرى الأنهار والبحيرات بسهولة. فهل يمكن أن يكون أكبر مخزون للمياه العذبة السائلة خفياً؟ قدّم تقديرك.",
+      "objectives": [
+        "حدّد أكبر مخزون للمياه العذبة السائلة على الأرض.",
+        "اذكر سبباً لأهمية المياه الجوفية للناس أو للنظم البيئية."
+      ]
+    },
+    "cs": {
+      "motivation": "Řeky a jezera jsou dobře vidět. Může být největší zásoba kapalné sladké vody skrytá? Zkuste odhad.",
+      "objectives": [
+        "Určete největší zásobárnu kapalné sladké vody na Zemi.",
+        "Uveďte jeden důvod, proč je podzemní voda důležitá pro lidi nebo ekosystémy."
+      ]
+    },
+    "it": {
+      "motivation": "Fiumi e laghi sono visibili. La più grande riserva di acqua dolce liquida potrebbe essere nascosta? Fai una previsione.",
+      "objectives": [
+        "Identifica la più grande riserva di acqua dolce liquida sulla Terra.",
+        "Indica un motivo per cui l’acqua sotterranea è importante per le persone o gli ecosistemi."
+      ]
+    }
+  },
+  "pores": {
+    "en": {
+      "motivation": "The ground beneath us may look solid. How can it hold water and let that water move? Look closely at the materials below the surface.",
+      "objectives": [
+        "Distinguish solid grains from the pores between them.",
+        "Calculate porosity from total volume and solid volume."
+      ]
+    },
+    "de": {
+      "motivation": "Der Boden unter uns wirkt fest. Wie kann er Wasser speichern und durchlassen? Schau dir die Materialien unter der Oberfläche genauer an.",
+      "objectives": [
+        "Unterscheide feste Körner von den Poren dazwischen.",
+        "Berechne die Porosität aus Gesamtvolumen und Feststoffvolumen."
+      ]
+    },
+    "pl": {
+      "motivation": "Podłoże pod nami wydaje się zwarte. Jak może przechowywać wodę i pozwalać jej płynąć? Przyjrzyj się materiałom pod powierzchnią.",
+      "objectives": [
+        "Odróżnij ziarna od porów między nimi.",
+        "Oblicz porowatość z objętości całkowitej i objętości części stałej."
+      ]
+    },
+    "fr": {
+      "motivation": "Le sol sous nos pieds semble solide. Comment peut-il contenir de l’eau et la laisser circuler ? Regardons de près les matériaux du sous-sol.",
+      "objectives": [
+        "Distinguez les grains solides des pores qui les séparent.",
+        "Calculez la porosité à partir du volume total et du volume solide."
+      ]
+    },
+    "es": {
+      "motivation": "El suelo bajo nuestros pies parece sólido. ¿Cómo puede almacenar agua y dejarla circular? Observa los materiales bajo la superficie.",
+      "objectives": [
+        "Distingue los granos sólidos de los poros entre ellos.",
+        "Calcula la porosidad a partir del volumen total y del volumen sólido."
+      ]
+    },
+    "ar": {
+      "motivation": "تبدو الأرض تحت أقدامنا صلبة. كيف تخزن الماء وتسمح له بالحركة؟ لننظر عن قرب إلى المواد تحت السطح.",
+      "objectives": [
+        "ميّز الحبيبات الصلبة عن المسام الموجودة بينها.",
+        "احسب المسامية من الحجم الكلي وحجم المادة الصلبة."
+      ]
+    },
+    "cs": {
+      "motivation": "Země pod nohama vypadá pevně. Jak může zadržovat vodu a umožňovat její pohyb? Podívejme se blíže na materiály pod povrchem.",
+      "objectives": [
+        "Rozlište pevná zrna a póry mezi nimi.",
+        "Vypočítejte pórovitost z celkového objemu a objemu pevné hmoty."
+      ]
+    },
+    "it": {
+      "motivation": "Il terreno sotto i piedi sembra solido. Come può contenere acqua e lasciarla scorrere? Osserviamo i materiali sotto la superficie.",
+      "objectives": [
+        "Distingui i granuli solidi dai pori tra essi.",
+        "Calcola la porosità dal volume totale e dal volume solido."
+      ]
+    }
+  },
+  "beach": {
+    "en": {
+      "motivation": "Where would we find groundwater if we could look below the ground? A sandy beach makes it easier to observe. Then transfer the idea to a riverbank.",
+      "objectives": [
+        "Relate the groundwater table to water levels in nearby rivers, lakes and the sea.",
+        "Predict whether an observation hole reaches groundwater and explain the direction of exchange with surface water."
+      ]
+    },
+    "de": {
+      "motivation": "Wo würden wir Grundwasser finden, wenn wir unter die Oberfläche schauen könnten? Ein Sandstrand macht die Beobachtung leichter. Übertrage die Idee anschließend auf ein Flussufer.",
+      "objectives": [
+        "Den Grundwasserspiegel mit den Wasserständen benachbarter Flüsse, Seen und des Meeres in Beziehung setzen.",
+        "Vorhersagen, ob ein Beobachtungsloch Grundwasser erreicht, und die Austauschrichtung mit dem Gewässer erklären."
+      ]
+    },
+    "pl": {
+      "motivation": "Gdzie znaleźlibyśmy wodę podziemną, gdybyśmy mogli zajrzeć pod powierzchnię? Na piaszczystej plaży łatwiej ją zobaczyć. Potem przenieś tę ideę na brzeg rzeki.",
+      "objectives": [
+        "Powiązać zwierciadło wód podziemnych z poziomem wody w pobliskich rzekach, jeziorach i morzu.",
+        "Przewidzieć, czy otwór obserwacyjny dotrze do wód podziemnych, i wyjaśnić kierunek wymiany z wodami powierzchniowymi."
+      ]
+    },
+    "fr": {
+      "motivation": "Où trouverions-nous l’eau souterraine en regardant sous le sol ? Une plage de sable facilite l’observation. Transposons ensuite cette idée au bord d’une rivière.",
+      "objectives": [
+        "Relier la surface de la nappe aux niveaux des rivières, lacs et mers proches.",
+        "Prédire si un trou d’observation atteint l’eau souterraine et expliquer le sens des échanges avec l’eau de surface."
+      ]
+    },
+    "es": {
+      "motivation": "¿Dónde encontraríamos agua subterránea si pudiéramos mirar bajo tierra? Una playa de arena facilita observarla. Después aplica la idea a la orilla de un río.",
+      "objectives": [
+        "Relacionar el nivel freático con los niveles de ríos, lagos y el mar cercanos.",
+        "Predecir si un hoyo de observación alcanza agua subterránea y explicar el sentido del intercambio con las aguas superficiales."
+      ]
+    },
+    "ar": {
+      "motivation": "أين نجد المياه الجوفية لو استطعنا النظر تحت الأرض؟ يسهل الشاطئ الرملي ملاحظتها. ثم ننقل الفكرة إلى ضفة نهر.",
+      "objectives": [
+        "اربط منسوب المياه الجوفية بمناسيب الأنهار والبحيرات والبحر القريبة.",
+        "توقّع هل تصل حفرة الرصد إلى المياه الجوفية واشرح اتجاه التبادل مع المياه السطحية."
+      ]
+    },
+    "cs": {
+      "motivation": "Kde bychom našli podzemní vodu, kdybychom mohli nahlédnout pod zem? Písečná pláž pozorování usnadňuje. Potom přeneseme tuto představu na břeh řeky.",
+      "objectives": [
+        "Dát hladinu podzemní vody do souvislosti s hladinami blízkých řek, jezer a moře.",
+        "Předpovědět, zda pozorovací otvor dosáhne podzemní vody, a vysvětlit směr výměny s povrchovou vodou."
+      ]
+    },
+    "it": {
+      "motivation": "Dove troveremmo l’acqua sotterranea se potessimo guardare sotto terra? Una spiaggia sabbiosa ne facilita l’osservazione. Poi trasferiamo l’idea alla riva di un fiume.",
+      "objectives": [
+        "Collegare la superficie della falda ai livelli di fiumi, laghi e mare vicini.",
+        "Prevedere se una buca di osservazione raggiunge l’acqua sotterranea e spiegare il senso dello scambio con le acque superficiali."
+      ]
+    }
+  },
+  "resources": {
+    "en": {
+      "motivation": "What would you tell someone else about the water beneath their feet? Use a book to explore your next question.",
+      "objectives": [
+        "Discuss the significance of groundwater for people and ecosystems.",
+        "Give an overview of free educational resources for learning about groundwater management."
+      ]
+    },
+    "de": {
+      "motivation": "Was würdest du anderen über das Wasser unter ihren Füßen erzählen? Gehe deiner nächsten Frage mit einem Buch nach.",
+      "objectives": [
+        "Die Bedeutung des Grundwassers für Menschen und Ökosysteme diskutieren.",
+        "Einen Überblick über kostenlose Bildungsressourcen zur Grundwasserbewirtschaftung geben."
+      ]
+    },
+    "pl": {
+      "motivation": "Co opowiesz komuś o wodzie pod jego stopami? Poszukaj odpowiedzi na kolejne pytanie w książce.",
+      "objectives": [
+        "Omówić znaczenie wód podziemnych dla ludzi i ekosystemów.",
+        "Przedstawić przegląd bezpłatnych materiałów edukacyjnych dotyczących gospodarowania wodami podziemnymi."
+      ]
+    },
+    "fr": {
+      "motivation": "Que diriez-vous à quelqu’un de l’eau sous ses pieds ? Explorez votre prochaine question dans un livre.",
+      "objectives": [
+        "Discuter de l’importance des eaux souterraines pour les humains et les écosystèmes.",
+        "Présenter un aperçu des ressources éducatives gratuites sur la gestion des eaux souterraines."
+      ]
+    },
+    "es": {
+      "motivation": "¿Qué le contarías a alguien sobre el agua bajo sus pies? Explora tu próxima pregunta con un libro.",
+      "objectives": [
+        "Debatir la importancia del agua subterránea para las personas y los ecosistemas.",
+        "Presentar una visión general de recursos educativos gratuitos sobre gestión de aguas subterráneas."
+      ]
+    },
+    "ar": {
+      "motivation": "ماذا ستخبر شخصاً آخر عن الماء تحت قدميه؟ استعن بكتاب لاستكشاف سؤالك التالي.",
+      "objectives": [
+        "ناقش أهمية المياه الجوفية للناس والنظم البيئية.",
+        "قدّم نظرة عامة على الموارد التعليمية المجانية للتعلّم عن إدارة المياه الجوفية."
+      ]
+    },
+    "cs": {
+      "motivation": "Co byste druhým řekli o vodě pod jejich nohama? Další otázku prozkoumejte s pomocí knihy.",
+      "objectives": [
+        "Diskutovat o významu podzemní vody pro lidi a ekosystémy.",
+        "Představit přehled bezplatných vzdělávacích zdrojů o hospodaření s podzemní vodou."
+      ]
+    },
+    "it": {
+      "motivation": "Che cosa racconteresti a qualcuno dell’acqua sotto i suoi piedi? Esplora la prossima domanda con un libro.",
+      "objectives": [
+        "Discutere l’importanza dell’acqua sotterranea per le persone e gli ecosistemi.",
+        "Presentare una panoramica delle risorse educative gratuite sulla gestione delle acque sotterranee."
+      ]
+    }
+  },
+  "lab": {
+    "en": {
+      "motivation": "A small change in freshwater level can accompany a much larger movement of the saltwater interface. Explore four levels.",
+      "objectives": [
+        "Relate the freshwater level to the depth of the saltwater interface.",
+        "Explain why this ideal comparison is not a prediction of pumping impacts."
+      ]
+    },
+    "de": {
+      "motivation": "Eine kleine Änderung des Süßwasserspiegels kann mit einer viel größeren Verlagerung der Salzwassergrenze einhergehen. Vergleiche vier Stufen.",
+      "objectives": [
+        "Verknüpfe den Süßwasserspiegel mit der Tiefe der Salzwassergrenze.",
+        "Erkläre, warum dieser ideale Vergleich keine Vorhersage von Pumpfolgen ist."
+      ]
+    },
+    "pl": {
+      "motivation": "Małej zmianie poziomu wody słodkiej może towarzyszyć znacznie większe przesunięcie granicy z wodą słoną. Zbadaj cztery poziomy.",
+      "objectives": [
+        "Powiąż poziom wody słodkiej z głębokością granicy z wodą słoną.",
+        "Wyjaśnij, dlaczego ten idealny przykład nie jest prognozą skutków pompowania."
+      ]
+    },
+    "fr": {
+      "motivation": "Une petite variation du niveau d’eau douce peut accompagner un déplacement bien plus grand de l’interface salée. Explorez quatre niveaux.",
+      "objectives": [
+        "Reliez le niveau d’eau douce à la profondeur de l’interface salée.",
+        "Expliquez pourquoi cette comparaison idéale ne prédit pas les effets d’un pompage."
+      ]
+    },
+    "es": {
+      "motivation": "Un pequeño cambio del nivel de agua dulce puede acompañar un desplazamiento mucho mayor de la interfaz salina. Explora cuatro niveles.",
+      "objectives": [
+        "Relaciona el nivel de agua dulce con la profundidad de la interfaz salina.",
+        "Explica por qué esta comparación ideal no predice los efectos del bombeo."
+      ]
+    },
+    "ar": {
+      "motivation": "قد يصاحب تغير صغير في منسوب المياه العذبة تحرك أكبر بكثير للسطح الفاصل مع المياه المالحة. استكشف أربعة مستويات.",
+      "objectives": [
+        "اربط منسوب المياه العذبة بعمق السطح الفاصل مع المياه المالحة.",
+        "اشرح لماذا لا تمثل هذه المقارنة المثالية تنبؤاً بآثار الضخ."
+      ]
+    },
+    "cs": {
+      "motivation": "Malou změnu hladiny sladké vody může doprovázet mnohem větší posun rozhraní se slanou vodou. Prozkoumejte čtyři hladiny.",
+      "objectives": [
+        "Propojte hladinu sladké vody s hloubkou rozhraní se slanou vodou.",
+        "Vysvětlete, proč toto ideální srovnání nepředpovídá dopady čerpání."
+      ]
+    },
+    "it": {
+      "motivation": "Una piccola variazione del livello d’acqua dolce può accompagnare uno spostamento molto maggiore dell’interfaccia salina. Esplora quattro livelli.",
+      "objectives": [
+        "Collega il livello d’acqua dolce alla profondità dell’interfaccia salina.",
+        "Spiega perché questo confronto ideale non prevede gli effetti del pompaggio."
+      ]
+    }
+  }
+}

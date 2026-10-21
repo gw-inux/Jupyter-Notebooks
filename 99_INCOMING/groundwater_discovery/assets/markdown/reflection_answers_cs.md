@@ -1,0 +1,3 @@
+1. Většina vody je slaná a mnoho sladké vody je zmrzlé. Asi 99 % **kapalné sladké vody uložené na Zemi** tvoří podzemní voda. Nejde o množství bezpečně čerpatelné či pitné: záleží i na hloubce, kvalitě, ekosystémech a obnovování zásob. [S1]
+2. Voda vyplňuje již existující póry mezi zrny. Přidaný objem odhaduje objem pórů; po vydělení celkovým objemem vzorku odhaduje pórovitost, s omezeními pokusu. [S4, S10]
+3. Na propojené pláži se hladiny setkávají u břehu; ve vnitrozemí může být podzemní voda o něco výše. Drenující řeka přijímá vodu z vyšších hladin; infiltrující řeka zásobuje podzemní vodu s nižší hladinou. [S5, S16]

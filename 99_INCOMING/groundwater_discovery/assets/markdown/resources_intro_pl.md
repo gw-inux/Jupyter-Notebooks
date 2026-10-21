@@ -1,0 +1,1 @@
+Sięgnij po bezpłatne książki Groundwater Project. Zacznij od **Groundwater in Our Water Cycle**, aby poznać szerszy obraz. Następna książka wyjaśnia właściwości podłoża i przepływ wód podziemnych, a trzecia wymianę z rzekami i innymi wodami powierzchniowymi. Linki prowadzą do książek i dostępnych tłumaczeń.

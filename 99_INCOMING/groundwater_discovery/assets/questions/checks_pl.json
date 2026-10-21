@@ -1,0 +1,146 @@
+[
+  {
+    "id": "stores",
+    "source": "S1",
+    "question": "Czego dotyczy około 99%?",
+    "options": {
+      "Całej wody na Ziemi": false,
+      "Ciekłej wody słodkiej zmagazynowanej na Ziemi": true,
+      "Całej wody bezpiecznej do picia": false
+    },
+    "success": "Mianownik to zasób ciekłej wody słodkiej. Nie obejmuje wody słonej ani lodu; nie cała woda podziemna jest użyteczna.",
+    "error": "Mianownik to zasób ciekłej wody słodkiej. Nie obejmuje wody słonej ani lodu; nie cała woda podziemna jest użyteczna."
+  },
+  {
+    "id": "role",
+    "source": "S2",
+    "question": "Dlaczego wody podziemne są ważne między opadami?",
+    "options": {
+      "Zatrzymują parowanie": false,
+      "Mogą zasilać rzeki i mokradła": true,
+      "Sprawiają, że każda woda jest pitna": false
+    },
+    "success": "Zmagazynowana woda podziemna może powoli zasilać rzeki i mokradła w okresach suchych.",
+    "error": "Zmagazynowana woda podziemna może powoli zasilać rzeki i mokradła w okresach suchych."
+  },
+  {
+    "id": "limits",
+    "source": "S1",
+    "question": "Czy ogromny zasób oznacza nieograniczoną ilość dostępnej wody?",
+    "options": {
+      "Tak, zasób i roczne zaopatrzenie to samo": false,
+      "Tak, wszystkie wody podziemne są słodkie i czyste": false,
+      "Nie, dostęp, odnawianie i jakość ograniczają wykorzystanie": true
+    },
+    "success": "Objętość zasobu różni się od ilości, którą można trwale wykorzystywać każdego roku.",
+    "error": "Objętość zasobu różni się od ilości, którą można trwale wykorzystywać każdego roku."
+  },
+  {
+    "id": "grains",
+    "source": "S3",
+    "question": "Gdzie jest woda podziemna w tym piasku?",
+    "options": {
+      "Tylko wewnątrz litych ziaren": false,
+      "W wielkim pustym podziemnym jeziorze": false,
+      "W wypełnionych wodą porach między ziarnami": true
+    },
+    "success": "Ziarna pozostają na miejscu. Woda wypełnia istniejące pory; szczeliny i jaskinie to inne środowiska.",
+    "error": "Ziarna pozostają na miejscu. Woda wypełnia istniejące pory; szczeliny i jaskinie to inne środowiska."
+  },
+  {
+    "id": "porosity",
+    "source": "S4",
+    "question": "Próbka 400 mL wymaga 160 mL wody do wypełnienia porów. Jaka jest szacowana porowatość?",
+    "options": {
+      "40%": true,
+      "160%": false,
+      "60%": false
+    },
+    "success": "160 / 400 = 0,40 = 40%. Mianownik obejmuje ziarna i pory. Nie mierzymy ilości wody, która odpłynie.",
+    "error": "160 / 400 = 0,40 = 40%. Mianownik obejmuje ziarna i pory. Nie mierzymy ilości wody, która odpłynie."
+  },
+  {
+    "id": "connectivity",
+    "source": "S4",
+    "question": "Czy jednakowa porowatość zawsze oznacza równie łatwy przepływ?",
+    "options": {
+      "Nie, liczą się też połączenia i rozmiary porów": true,
+      "Tak, porowatość sama określa przepływ": false,
+      "Tak, układ ziaren nigdy nie ma znaczenia": false
+    },
+    "success": "Objętość porów nie jest tym samym co ich zdolność do przewodzenia wody.",
+    "error": "Objętość porów nie jest tym samym co ich zdolność do przewodzenia wody."
+  },
+  {
+    "id": "recharge",
+    "source": "S13",
+    "question": "Co oznacza zasilanie wód podziemnych?",
+    "options": {
+      "Cały deszcz natychmiast dociera do morza": false,
+      "Woda dociera do wód podziemnych i uzupełnia je": true,
+      "Chmury wypompowują wodę z gruntu": false
+    },
+    "success": "Tylko część opadu dociera do wód podziemnych; reszta paruje, jest pobierana przez rośliny lub odpływa powierzchniowo.",
+    "error": "Tylko część opadu dociera do wód podziemnych; reszta paruje, jest pobierana przez rośliny lub odpływa powierzchniowo."
+  },
+  {
+    "id": "beach",
+    "source": "S3",
+    "question": "Dołek zawiera wodę blisko poziomu morza. Co z tego wynika?",
+    "options": {
+      "Woda jest bezpieczna do picia": false,
+      "Dołek odsłonił wodę w osadzie; zasolenie jest nieznane": true,
+      "Wszystkie plaże mają identyczny poziom wód podziemnych": false
+    },
+    "success": "Widzisz wodę w porach, lecz sama wysokość nie określa zasolenia. Lokalne poziomy są różne.",
+    "error": "Widzisz wodę w porach, lecz sama wysokość nie określa zasolenia. Lokalne poziomy są różne."
+  },
+  {
+    "id": "exchange",
+    "source": "S5",
+    "question": "Poziom połączonej rzeki słodkowodnej wzrasta ponad sąsiedni potencjał wód podziemnych. Co może się zdarzyć?",
+    "options": {
+      "Wody podziemne zawsze płyną do rzeki": false,
+      "Wymiana jest niemożliwa": false,
+      "Woda rzeczna może zasilać warstwę wodonośną": true
+    },
+    "success": "W połączonym układzie słodkowodnym woda płynie od wyższego do niższego potencjału. Kierunek może się odwrócić przy zmianach poziomów.",
+    "error": "W połączonym układzie słodkowodnym woda płynie od wyższego do niższego potencjału. Kierunek może się odwrócić przy zmianach poziomów."
+  },
+  {
+    "id": "lens",
+    "source": "S6",
+    "question": "Co w tym idealnym porównaniu towarzyszy niższemu poziomowi wody słodkiej?",
+    "options": {
+      "Granica podnosi się, a soczewka staje się cieńsza": true,
+      "Granica opada, a soczewka grubieje": false,
+      "Granica nigdy się nie zmienia": false
+    },
+    "success": "Niższy poziom odpowiada płytszej granicy. To porównanie równowag, a nie natychmiastowej reakcji na pompowanie.",
+    "error": "Niższy poziom odpowiada płytszej granicy. To porównanie równowag, a nie natychmiastowej reakcji na pompowanie."
+  },
+  {
+    "id": "density",
+    "source": "S6",
+    "question": "Dlaczego woda słodka może leżeć nad słonymi wodami podziemnymi?",
+    "options": {
+      "Słodka woda jest zawsze cieplejsza": false,
+      "Piasek usuwa całą sól": false,
+      "Słodka woda ma mniejszą gęstość": true
+    },
+    "success": "Znaczenie ma różnica gęstości. W rzeczywistości wody także się mieszają; rysunek upraszcza przejście.",
+    "error": "Znaczenie ma różnica gęstości. W rzeczywistości wody także się mieszają; rysunek upraszcza przejście."
+  },
+  {
+    "id": "lens_scope",
+    "source": "S8",
+    "question": "Czy rysunek wyznacza bezpieczny wydatek pompowania dla Sopotu?",
+    "options": {
+      "Tak, można go odczytać z soczewki": false,
+      "Nie, potrzebne są lokalne dane i odpowiedni model": true,
+      "Tak, każde wybrzeże działa identycznie": false
+    },
+    "success": "Rysunek jest idealizowany, używa gęstości oceanicznych i pomija mieszanie, czas oraz lokalną geologię. Bałtyk jest słonawy.",
+    "error": "Rysunek jest idealizowany, używa gęstości oceanicznych i pomija mieszanie, czas oraz lokalną geologię. Bałtyk jest słonawy."
+  }
+]

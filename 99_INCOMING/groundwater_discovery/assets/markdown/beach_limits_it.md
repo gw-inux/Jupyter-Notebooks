@@ -1,0 +1,3 @@
+**La sabbia bagnata non identifica la falda.** Le forze capillari possono mantenerla umida anche sopra la falda. Onde, variazioni del mare, ricarica e strati locali modificano il quadro; il mare non è davvero costante. L’acqua nei pori può essere dolce, salmastra o salata. Il livello da solo non indica salinità o potabilità.
+
+Il collegamento funziona nei due sensi: l’acqua sotterranea può alimentare un fiume o il mare, e l’acqua superficiale può infiltrarsi nel terreno. Nei sistemi connessi di acqua dolce il flusso va da carico idraulico maggiore a minore. Sulla costa conta anche la densità dell’acqua. [S3, S5, S6]

@@ -1,0 +1,3 @@
+**Śledź nachylenie zwierciadła.** Rzeka drenująca otrzymuje wody podziemne z wyższych poziomów w głębi lądu; rzeka infiltrująca zasila warstwę o niższym poziomie wód podziemnych. Przy dobrym połączeniu poziomy blisko rzeki są często podobne, lecz dalej mogą się różnić. [S5, S16]
+
+Tutaj głębszy otwór sięgający wody pokazuje po ustaleniu ten sam lokalny poziom. Suchy płytki otwór nie wyklucza warstwy wodonośnej poniżej. To schemat, nie prognoza dla rzeczywistej rzeki: opór dna, warstwy podłoża i brak połączenia hydraulicznego mogą zmienić obraz. Otwór jest wirtualny; ćwiczenie nie zachęca do kopania.

@@ -1,0 +1,1 @@
+Continue with the free Groundwater Project books below. Start with **Groundwater in Our Water Cycle** for the wider story. The next book explains earth materials and groundwater flow; the third explores exchange with rivers and other surface waters. Follow each link for the book and available translations.

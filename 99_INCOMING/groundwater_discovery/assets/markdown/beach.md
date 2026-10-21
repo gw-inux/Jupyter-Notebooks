@@ -1,0 +1,3 @@
+Where would you find groundwater if you could look below the ground? A sandy beach offers a simple starting point: near the shore, the water table is often shallow enough to observe. Below that water table, the connected pores in this sandy aquifer are filled with water. [S3]
+
+**Will your hole collect water?** Choose a place and a shallow hole, then reveal the water table. In this imagined beach the sea level is held steady and the groundwater level is only slightly higher inland. Compare **elevation** with sea level, not just depth below the sand. The drawing shows an idea, not measured beach levels.

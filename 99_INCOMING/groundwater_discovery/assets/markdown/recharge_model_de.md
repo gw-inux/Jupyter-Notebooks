@@ -1,0 +1,3 @@
+Gleichmäßige Neubildung R und Leitfähigkeit K; horizontale undurchlässige Basis z_b = −10 m; Küste x = 0, landseitige Wasserscheide x = L = 200 m. h ist die Höhe über dem Meer. Die Dupuit-Näherung vernachlässigt vertikale Potenzialunterschiede. Die gesättigte Mächtigkeit beträgt h − z_b; die Transmissivität verändert sich daher mit h.
+
+Randbedingungen: h(0) = 0 und dh/dx(L) = 0. Der stationäre Abfluss je Meter Küste ist R × L. Umrechnung von mm/Jahr in m/Tag mit 365,25 Tagen/Jahr. Salzwasser, Pumpen, zeitliche Speicheränderung und eine Begrenzung durch die Geländeoberfläche fehlen. Es ist ein Lehrmodell mit einheitlicher Dichte, kein vollständiges Küstenmodell.

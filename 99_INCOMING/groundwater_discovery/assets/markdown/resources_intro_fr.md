@@ -1,0 +1,1 @@
+Poursuis avec les livres gratuits du Groundwater Project. **Groundwater in Our Water Cycle** offre une vue d’ensemble. Le livre suivant explique les matériaux du sous-sol et l’écoulement ; le troisième explore les échanges avec les eaux de surface. Les liens donnent accès aux livres et aux traductions disponibles.

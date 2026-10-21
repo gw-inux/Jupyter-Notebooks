@@ -1,0 +1,146 @@
+[
+  {
+    "id": "stores",
+    "source": "S1",
+    "question": "¿A qué se refiere aproximadamente el 99%?",
+    "options": {
+      "A toda el agua de la Tierra": false,
+      "Al agua dulce líquida almacenada en la Tierra": true,
+      "A toda el agua potable": false
+    },
+    "success": "El denominador es el agua dulce líquida almacenada. Se excluyen sal y hielo; no toda el agua subterránea es utilizable.",
+    "error": "El denominador es el agua dulce líquida almacenada. Se excluyen sal y hielo; no toda el agua subterránea es utilizable."
+  },
+  {
+    "id": "role",
+    "source": "S2",
+    "question": "¿Por qué importa el agua subterránea entre lluvias?",
+    "options": {
+      "Detiene la evaporación": false,
+      "Puede abastecer ríos y humedales": true,
+      "Hace potable toda el agua": false
+    },
+    "success": "El agua almacenada puede descargar lentamente a ríos y humedales durante periodos secos.",
+    "error": "El agua almacenada puede descargar lentamente a ríos y humedales durante periodos secos."
+  },
+  {
+    "id": "limits",
+    "source": "S1",
+    "question": "¿Una gran reserva significa agua utilizable ilimitada?",
+    "options": {
+      "Sí, reserva y suministro anual son lo mismo": false,
+      "Sí, toda agua subterránea es dulce y limpia": false,
+      "No, acceso, renovación y calidad limitan su uso": true
+    },
+    "success": "El volumen almacenado no equivale a la cantidad aprovechable de forma sostenible cada año.",
+    "error": "El volumen almacenado no equivale a la cantidad aprovechable de forma sostenible cada año."
+  },
+  {
+    "id": "grains",
+    "source": "S3",
+    "question": "¿Dónde está el agua subterránea en esta arena?",
+    "options": {
+      "Solo dentro de los granos sólidos": false,
+      "En un gran lago subterráneo vacío": false,
+      "En poros llenos de agua entre los granos": true
+    },
+    "success": "Los granos siguen presentes. El agua llena poros existentes; las fracturas y cuevas son otros medios.",
+    "error": "Los granos siguen presentes. El agua llena poros existentes; las fracturas y cuevas son otros medios."
+  },
+  {
+    "id": "porosity",
+    "source": "S4",
+    "question": "Una muestra de 400 mL necesita 160 mL de agua para llenar los poros. ¿Qué porosidad se estima?",
+    "options": {
+      "40%": true,
+      "160%": false,
+      "60%": false
+    },
+    "success": "160 / 400 = 0,40 = 40%. El denominador incluye sólidos y poros. No se mide cuánto drena.",
+    "error": "160 / 400 = 0,40 = 40%. El denominador incluye sólidos y poros. No se mide cuánto drena."
+  },
+  {
+    "id": "connectivity",
+    "source": "S4",
+    "question": "¿Igual porosidad implica siempre igual facilidad de flujo?",
+    "options": {
+      "No, importan también las conexiones y tamaños de los poros": true,
+      "Sí, solo la porosidad determina el flujo": false,
+      "Sí, la disposición de los granos nunca importa": false
+    },
+    "success": "El volumen de los espacios no es lo mismo que su capacidad para transmitir agua.",
+    "error": "El volumen de los espacios no es lo mismo que su capacidad para transmitir agua."
+  },
+  {
+    "id": "recharge",
+    "source": "S13",
+    "question": "¿Qué significa recarga del agua subterránea?",
+    "options": {
+      "Toda lluvia llega inmediatamente al mar": false,
+      "El agua alcanza y repone el agua subterránea": true,
+      "Las nubes bombean agua del suelo": false
+    },
+    "success": "Solo parte de la precipitación alcanza la zona saturada; otra parte se evapora, la usan plantas o escurre.",
+    "error": "Solo parte de la precipitación alcanza la zona saturada; otra parte se evapora, la usan plantas o escurre."
+  },
+  {
+    "id": "beach",
+    "source": "S3",
+    "question": "Un hoyo contiene agua cerca del nivel del mar. ¿Qué concluyes?",
+    "options": {
+      "Es potable": false,
+      "El hoyo expone agua del sedimento; la salinidad sigue siendo desconocida": true,
+      "Todas las playas tienen exactamente el mismo nivel freático": false
+    },
+    "success": "Se observa agua en los poros, pero su cota no establece su salinidad. Los niveles locales varían.",
+    "error": "Se observa agua en los poros, pero su cota no establece su salinidad. Los niveles locales varían."
+  },
+  {
+    "id": "exchange",
+    "source": "S5",
+    "question": "Un río de agua dulce conectado sube por encima de la carga subterránea vecina. ¿Qué puede ocurrir?",
+    "options": {
+      "El acuífero siempre alimenta el río": false,
+      "No puede haber intercambio": false,
+      "El río puede alimentar el acuífero": true
+    },
+    "success": "En un sistema conectado de agua dulce, el flujo va de mayor a menor carga. Puede invertirse al cambiar los niveles.",
+    "error": "En un sistema conectado de agua dulce, el flujo va de mayor a menor carga. Puede invertirse al cambiar los niveles."
+  },
+  {
+    "id": "lens",
+    "source": "S6",
+    "question": "En esta comparación ideal, ¿qué acompaña a un nivel dulce más bajo?",
+    "options": {
+      "La interfaz sube y la lente se adelgaza": true,
+      "La interfaz baja y la lente engrosa": false,
+      "La interfaz nunca cambia": false
+    },
+    "success": "Una carga menor corresponde a una interfaz menos profunda. Se comparan equilibrios, no la respuesta inmediata al bombeo.",
+    "error": "Una carga menor corresponde a una interfaz menos profunda. Se comparan equilibrios, no la respuesta inmediata al bombeo."
+  },
+  {
+    "id": "density",
+    "source": "S6",
+    "question": "¿Por qué puede situarse agua dulce sobre agua subterránea salina?",
+    "options": {
+      "Siempre está más caliente": false,
+      "La arena elimina toda la sal": false,
+      "Es menos densa": true
+    },
+    "success": "Importa el contraste de densidad. Las aguas también se mezclan; el esquema simplifica la transición.",
+    "error": "Importa el contraste de densidad. Las aguas también se mezclan; el esquema simplifica la transición."
+  },
+  {
+    "id": "lens_scope",
+    "source": "S8",
+    "question": "¿Podemos deducir un caudal seguro de bombeo para Sopot?",
+    "options": {
+      "Sí, se lee en la lente": false,
+      "No, hacen falta datos locales y un modelo adecuado": true,
+      "Sí, todas las costas se comportan igual": false
+    },
+    "success": "El dibujo es idealizado, usa densidades oceánicas y omite mezcla, tiempos y geología local. El Báltico es salobre.",
+    "error": "El dibujo es idealizado, usa densidades oceánicas y omite mezcla, tiempos y geología local. El Báltico es salobre."
+  }
+]

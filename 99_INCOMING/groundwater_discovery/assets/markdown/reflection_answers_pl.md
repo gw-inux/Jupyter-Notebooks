@@ -1,0 +1,3 @@
+1. Większość wody jest słona, a duża część słodkiej jest zamarznięta. Około 99% **ciekłej wody słodkiej zgromadzonej na Ziemi** to wody podziemne. Nie oznacza to ilości bezpiecznej do poboru lub picia: liczą się też głębokość, jakość, ekosystemy i odnawianie zasobów. [S1]
+2. Woda wypełnia istniejące pory między ziarnami. Dodana ilość szacuje objętość porów; podzielona przez całkowitą objętość próbki przybliża porowatość, z ograniczeniami doświadczenia. [S4, S10]
+3. Przy połączonej hydraulicznie plaży poziomy spotykają się blisko brzegu; w głębi lądu wody podziemne mogą być nieco wyżej. Rzeka drenująca przyjmuje je z wyższych poziomów, a infiltrująca zasila wody o niższym poziomie. [S5, S16]

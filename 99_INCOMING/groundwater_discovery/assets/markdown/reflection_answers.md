@@ -1,0 +1,3 @@
+1. Most water is salty, and much freshwater is frozen. Of the **liquid freshwater stored on Earth**, about 99% is groundwater. That is a storage estimate, not the share we can safely extract or drink: depth, quality, ecosystems and replenishment also matter. [S1]
+2. Water enters spaces already present between the grains. The volume added to fill those spaces estimates pore volume; dividing by total sample volume estimates porosity, with experimental limitations. [S4, S10]
+3. At a connected beach, groundwater and seawater levels meet near the shore. Inland levels may be slightly higher. A gaining river receives groundwater from higher levels; a losing river supplies groundwater at lower levels. [S5, S16]

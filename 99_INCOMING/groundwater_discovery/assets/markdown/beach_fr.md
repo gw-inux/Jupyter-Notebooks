@@ -1,0 +1,3 @@
+Où trouverais-tu l’eau souterraine en regardant sous le sol ? Une plage de sable est un point de départ simple : près du rivage, la nappe est souvent assez peu profonde pour être observée. En dessous, les pores connectés de cet aquifère sableux sont remplis d’eau. [S3]
+
+**Votre trou recueillera-t-il de l’eau ?** Choisissez un lieu et un trou peu profond, puis révélez la nappe. Sur cette plage imaginaire, la mer reste stable et la nappe est seulement un peu plus haute à l’intérieur des terres. Comparez l’**altitude** avec la mer, pas seulement la profondeur sous le sable. Ce dessin illustre une idée, pas des mesures.

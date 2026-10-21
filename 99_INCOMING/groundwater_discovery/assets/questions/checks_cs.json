@@ -1,0 +1,146 @@
+[
+  {
+    "id": "stores",
+    "source": "S1",
+    "question": "Čeho se týká přibližných 99 %?",
+    "options": {
+      "Veškeré vody na Zemi": false,
+      "Zásoby kapalné sladké vody na Zemi": true,
+      "Veškeré vody bezpečné k pití": false
+    },
+    "success": "Základem je zásoba kapalné sladké vody. Slaná voda a led jsou vyloučeny; ne všechna podzemní voda je využitelná.",
+    "error": "Základem je zásoba kapalné sladké vody. Slaná voda a led jsou vyloučeny; ne všechna podzemní voda je využitelná."
+  },
+  {
+    "id": "role",
+    "source": "S2",
+    "question": "Proč je podzemní voda důležitá mezi dešti?",
+    "options": {
+      "Zastavuje vypařování": false,
+      "Může zásobovat řeky a mokřady": true,
+      "Zajišťuje pitnost veškeré vody": false
+    },
+    "success": "Uložená podzemní voda může za sucha pomalu přitékat do řek a mokřadů.",
+    "error": "Uložená podzemní voda může za sucha pomalu přitékat do řek a mokřadů."
+  },
+  {
+    "id": "limits",
+    "source": "S1",
+    "question": "Znamená velká zásoba neomezené množství využitelné vody?",
+    "options": {
+      "Ano, zásoba a roční přísun jsou totéž": false,
+      "Ano, veškerá podzemní voda je sladká a čistá": false,
+      "Ne, využití omezuje dostupnost, obnova a kvalita": true
+    },
+    "success": "Uložený objem se liší od množství udržitelně využitelného za rok.",
+    "error": "Uložený objem se liší od množství udržitelně využitelného za rok."
+  },
+  {
+    "id": "grains",
+    "source": "S3",
+    "question": "Kde je podzemní voda v tomto písku?",
+    "options": {
+      "Pouze uvnitř pevných zrn": false,
+      "Ve velkém prázdném podzemním jezeře": false,
+      "Ve vodou vyplněných mezerách mezi zrny": true
+    },
+    "success": "Zrna zůstávají na místě. Voda vyplňuje existující póry; pukliny a jeskyně jsou jiná prostředí.",
+    "error": "Zrna zůstávají na místě. Voda vyplňuje existující póry; pukliny a jeskyně jsou jiná prostředí."
+  },
+  {
+    "id": "porosity",
+    "source": "S4",
+    "question": "Vzorek o objemu 400 mL potřebuje 160 mL vody k vyplnění pórů. Jaká je odhadnutá pórovitost?",
+    "options": {
+      "40 %": true,
+      "160 %": false,
+      "60 %": false
+    },
+    "success": "160 / 400 = 0,40 = 40 %. Jmenovatel zahrnuje zrna i póry. Nejde o množství odvodnitelné vody.",
+    "error": "160 / 400 = 0,40 = 40 %. Jmenovatel zahrnuje zrna i póry. Nejde o množství odvodnitelné vody."
+  },
+  {
+    "id": "connectivity",
+    "source": "S4",
+    "question": "Znamená stejná pórovitost vždy stejně snadné proudění?",
+    "options": {
+      "Ne, záleží i na propojení a velikosti pórů": true,
+      "Ano, proudění určuje pouze pórovitost": false,
+      "Ano, uspořádání zrn nikdy nehraje roli": false
+    },
+    "success": "Objem mezer není totéž co jejich schopnost převádět vodu.",
+    "error": "Objem mezer není totéž co jejich schopnost převádět vodu."
+  },
+  {
+    "id": "recharge",
+    "source": "S13",
+    "question": "Co znamená doplňování podzemní vody?",
+    "options": {
+      "Všechen déšť ihned dosáhne moře": false,
+      "Voda dosáhne podzemní vody a doplní ji": true,
+      "Oblaka čerpají vodu ze země": false
+    },
+    "success": "K podzemní vodě se dostane jen část srážek; zbytek se vypaří, využijí jej rostliny nebo odteče po povrchu.",
+    "error": "K podzemní vodě se dostane jen část srážek; zbytek se vypaří, využijí jej rostliny nebo odteče po povrchu."
+  },
+  {
+    "id": "beach",
+    "source": "S3",
+    "question": "V jamce na pláži je voda blízko hladiny moře. Co z toho vyplývá?",
+    "options": {
+      "Voda je pitná": false,
+      "Jamka odkryla vodu v sedimentu; slanost zatím neznáme": true,
+      "Všechny pláže mají přesně stejnou hladinu podzemní vody": false
+    },
+    "success": "Pozorování odhaluje vodu v pórech, ale samotná výška neurčuje slanost. Místní hladiny se liší.",
+    "error": "Pozorování odhaluje vodu v pórech, ale samotná výška neurčuje slanost. Místní hladiny se liší."
+  },
+  {
+    "id": "exchange",
+    "source": "S5",
+    "question": "Propojená sladkovodní řeka vystoupá nad okolní hydraulickou výšku podzemní vody. Jaké proudění je možné?",
+    "options": {
+      "Podzemní voda musí vždy téct do řeky": false,
+      "Žádná výměna není možná": false,
+      "Říční voda může vstupovat do kolektoru": true
+    },
+    "success": "V propojených sladkovodních systémech voda proudí od vyšší hydraulické výšky k nižší. Při změně hladin se směr může obrátit.",
+    "error": "V propojených sladkovodních systémech voda proudí od vyšší hydraulické výšky k nižší. Při změně hladin se směr může obrátit."
+  },
+  {
+    "id": "lens",
+    "source": "S6",
+    "question": "Co v tomto ideálním srovnání provází nižší hladinu sladké vody?",
+    "options": {
+      "Rozhraní stoupá a čočka se ztenčuje": true,
+      "Rozhraní klesá a čočka sílí": false,
+      "Rozhraní se nikdy nemění": false
+    },
+    "success": "Nižší hydraulická výška odpovídá mělčímu rozhraní. Jde o srovnání rovnováh, nikoli okamžitou odezvu na čerpání.",
+    "error": "Nižší hydraulická výška odpovídá mělčímu rozhraní. Jde o srovnání rovnováh, nikoli okamžitou odezvu na čerpání."
+  },
+  {
+    "id": "density",
+    "source": "S6",
+    "question": "Proč může sladká voda ležet nad slanou podzemní vodou?",
+    "options": {
+      "Je vždy teplejší": false,
+      "Písek odstraní všechnu sůl": false,
+      "Má menší hustotu": true
+    },
+    "success": "Rozdíl hustot je důležitý. Ve skutečnosti se vody také mísí; obrázek přechod zjednodušuje.",
+    "error": "Rozdíl hustot je důležitý. Ve skutečnosti se vody také mísí; obrázek přechod zjednodušuje."
+  },
+  {
+    "id": "lens_scope",
+    "source": "S8",
+    "question": "Určí obrázek bezpečné čerpané množství pro Sopoty?",
+    "options": {
+      "Ano, lze ho odečíst z čočky": false,
+      "Ne, jsou potřeba místní údaje a vhodný model": true,
+      "Ano, každé pobřeží se chová stejně": false
+    },
+    "success": "Obrázek je idealizovaný, používá oceánské hustoty a vynechává mísení, čas i místní geologii. Balt je brakický.",
+    "error": "Obrázek je idealizovaný, používá oceánské hustoty a vynechává mísení, čas i místní geologii. Balt je brakický."
+  }
+]

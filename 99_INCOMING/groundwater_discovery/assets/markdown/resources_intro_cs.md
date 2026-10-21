@@ -1,0 +1,1 @@
+Pokračujte s bezplatnými knihami Groundwater Project. **Groundwater in Our Water Cycle** nabízí širší přehled. Další kniha vysvětluje vlastnosti zemských materiálů a proudění; třetí výměnu s povrchovými vodami. Odkazy vedou ke knihám a dostupným překladům.

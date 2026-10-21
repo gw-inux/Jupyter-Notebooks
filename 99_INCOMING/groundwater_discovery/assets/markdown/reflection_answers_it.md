@@ -1,0 +1,3 @@
+1. La maggior parte dell’acqua è salata e molta acqua dolce è congelata. Circa il 99% dell’**acqua dolce liquida immagazzinata sulla Terra** è sotterranea. Non è la quantità potabile o estraibile in sicurezza: contano anche profondità, qualità, ecosistemi e rinnovamento. [S1]
+2. L’acqua riempie pori già presenti tra i granuli. Il volume aggiunto stima quello dei pori; diviso per il volume totale stima la porosità, entro i limiti dell’esperimento. [S4, S10]
+3. Su una spiaggia collegata i livelli si incontrano vicino alla riva; nell’entroterra la falda può essere leggermente più alta. Un fiume drenante riceve acqua da livelli più alti; uno infiltrante alimenta acqua sotterranea a livelli più bassi. [S5, S16]

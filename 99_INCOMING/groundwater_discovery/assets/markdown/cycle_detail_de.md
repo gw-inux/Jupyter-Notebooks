@@ -1,0 +1,3 @@
+Das Korngerüst zwingt Wasser durch enge, gewundene Wege. Wegen dieses **Fließwiderstands** kann eine kleine Aufhöhung des Grundwasserspiegels im Inland den Abfluss zum Meer aufrechterhalten, während Neubildung Wasser ergänzt.
+
+Wasser fließt von **höherem zu niedrigerem hydraulischem Potenzial**: anschaulich die Höhe, bis zu der Wasser in einem kleinen Beobachtungsrohr steigt. Hier fällt der Grundwasserspiegel leicht zum Meer ab. „Bergab“ bedeutet abnehmendes Potenzial, nicht immer abwärts im Untergrund: Beim Eintritt in einen Fluss kann Grundwasser aufsteigen. Das Meer nimmt hier Wasser auf; die Verbindung ist nicht überall eine Einbahnstraße. [S5, S13]

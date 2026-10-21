@@ -1,0 +1,3 @@
+Wo würdest du Grundwasser finden, wenn du unter die Erde schauen könntest? Ein Sandstrand bietet einen einfachen Einstieg: Ufernah liegt der Grundwasserspiegel oft flach genug, um ihn zu beobachten. Darunter sind die verbundenen Poren dieses sandigen Aquifers mit Wasser gefüllt. [S3]
+
+**Wird sich Wasser in deiner Mulde sammeln?** Wähle Ort und Tiefe, dann zeige den Grundwasserspiegel. An diesem gedachten Strand bleibt der Meeresspiegel konstant; im Inland liegt das Grundwasser nur wenig höher. Vergleiche die **Höhe** mit dem Meeresspiegel, nicht nur die Tiefe unter dem Sand. Die Zeichnung erklärt eine Idee, keine gemessenen Strandwasserstände.

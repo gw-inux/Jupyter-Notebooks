@@ -1,0 +1,3 @@
+Recharge R et conductivité K uniformes ; base horizontale imperméable z_b = −10 m ; côte x = 0, limite intérieure x = L = 200 m. h est mesuré au-dessus de la mer. L’approximation de Dupuit néglige les différences verticales de charge. L’épaisseur saturée vaut h − z_b ; la transmissivité varie donc avec h.
+
+Conditions : h(0) = 0 et dh/dx(L) = 0. Le débit stationnaire par mètre de côte vaut R × L. Conversion mm/an en m/j avec 365,25 jours/an. Le modèle exclut eau salée, pompage, stockage transitoire et contrainte topographique. C’est un analogue pédagogique à densité unique, pas un modèle côtier complet.

@@ -1,0 +1,1 @@
+**Dimostrazione breve (5–7 minuti):** prevedi la riserva d’acqua, riempi un bicchiere, rivela la falda in spiaggia e concludi con un’idea e un collegamento a The Groundwater Project. Per una lezione con discussione ed esperimento prevedi circa 20–30 minuti.

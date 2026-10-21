@@ -1,0 +1,146 @@
+[
+  {
+    "id": "stores",
+    "source": "S1",
+    "question": "À quoi correspondent les quelque 99 % ?",
+    "options": {
+      "À toute l’eau terrestre": false,
+      "Au stock d’eau douce liquide terrestre": true,
+      "À toute l’eau potable": false
+    },
+    "success": "Le dénominateur est le stock d’eau douce liquide. Eau salée et glace sont exclues ; toute l’eau souterraine n’est pas exploitable.",
+    "error": "Le dénominateur est le stock d’eau douce liquide. Eau salée et glace sont exclues ; toute l’eau souterraine n’est pas exploitable."
+  },
+  {
+    "id": "role",
+    "source": "S2",
+    "question": "Pourquoi les eaux souterraines comptent-elles entre les pluies ?",
+    "options": {
+      "Elles arrêtent l’évaporation": false,
+      "Elles peuvent alimenter rivières et zones humides": true,
+      "Elles rendent toute eau potable": false
+    },
+    "success": "L’eau souterraine stockée peut alimenter lentement rivières et zones humides en période sèche.",
+    "error": "L’eau souterraine stockée peut alimenter lentement rivières et zones humides en période sèche."
+  },
+  {
+    "id": "limits",
+    "source": "S1",
+    "question": "Un grand réservoir signifie-t-il une ressource utilisable illimitée ?",
+    "options": {
+      "Oui, stockage et apport annuel sont identiques": false,
+      "Oui, toute eau souterraine est douce et propre": false,
+      "Non, accès, renouvellement et qualité limitent son usage": true
+    },
+    "success": "Le volume stocké diffère de la quantité utilisable durablement chaque année.",
+    "error": "Le volume stocké diffère de la quantité utilisable durablement chaque année."
+  },
+  {
+    "id": "grains",
+    "source": "S3",
+    "question": "Où se trouve l’eau souterraine dans ce sable ?",
+    "options": {
+      "Seulement dans les grains solides": false,
+      "Dans un grand lac souterrain vide": false,
+      "Dans les pores remplis d’eau entre les grains": true
+    },
+    "success": "Les grains restent en place. L’eau remplit les pores existants ; fractures et cavités constituent d’autres milieux.",
+    "error": "Les grains restent en place. L’eau remplit les pores existants ; fractures et cavités constituent d’autres milieux."
+  },
+  {
+    "id": "porosity",
+    "source": "S4",
+    "question": "Un échantillon de 400 mL nécessite 160 mL d’eau pour remplir ses pores. Quelle porosité estime-t-on ?",
+    "options": {
+      "40 %": true,
+      "160 %": false,
+      "60 %": false
+    },
+    "success": "160 / 400 = 0,40 = 40 %. Le volume total inclut solides et pores. Ce n’est pas le volume drainable.",
+    "error": "160 / 400 = 0,40 = 40 %. Le volume total inclut solides et pores. Ce n’est pas le volume drainable."
+  },
+  {
+    "id": "connectivity",
+    "source": "S4",
+    "question": "Des porosités égales donnent-elles toujours la même facilité d’écoulement ?",
+    "options": {
+      "Non, connexions et dimensions des pores comptent aussi": true,
+      "Oui, seule la porosité détermine l’écoulement": false,
+      "Oui, la disposition des grains ne compte jamais": false
+    },
+    "success": "Le volume des pores ne décrit pas à lui seul leur capacité à transmettre l’eau.",
+    "error": "Le volume des pores ne décrit pas à lui seul leur capacité à transmettre l’eau."
+  },
+  {
+    "id": "recharge",
+    "source": "S13",
+    "question": "Que signifie la recharge des eaux souterraines ?",
+    "options": {
+      "Toute pluie atteint immédiatement la mer": false,
+      "L’eau atteint et renouvelle la nappe": true,
+      "Les nuages pompent l’eau du sol": false
+    },
+    "success": "Une partie seulement des précipitations atteint la nappe ; le reste s’évapore, est utilisé par les plantes ou ruisselle.",
+    "error": "Une partie seulement des précipitations atteint la nappe ; le reste s’évapore, est utilisé par les plantes ou ruisselle."
+  },
+  {
+    "id": "beach",
+    "source": "S3",
+    "question": "Un trou contient de l’eau près du niveau marin. Que conclure ?",
+    "options": {
+      "L’eau est potable": false,
+      "Le trou révèle de l’eau du sédiment ; la salinité reste inconnue": true,
+      "Toutes les plages ont exactement le même niveau de nappe": false
+    },
+    "success": "L’observation révèle l’eau interstitielle, mais son niveau ne détermine pas sa salinité. Les niveaux locaux varient.",
+    "error": "L’observation révèle l’eau interstitielle, mais son niveau ne détermine pas sa salinité. Les niveaux locaux varient."
+  },
+  {
+    "id": "exchange",
+    "source": "S5",
+    "question": "Une rivière d’eau douce connectée monte au-dessus de la charge souterraine voisine. Que peut-il se passer ?",
+    "options": {
+      "La nappe alimente toujours la rivière": false,
+      "Aucun échange n’est possible": false,
+      "La rivière peut alimenter l’aquifère": true
+    },
+    "success": "Dans un système connecté d’eau douce, l’eau va de la charge élevée vers la plus faible. Le sens peut s’inverser avec les niveaux.",
+    "error": "Dans un système connecté d’eau douce, l’eau va de la charge élevée vers la plus faible. Le sens peut s’inverser avec les niveaux."
+  },
+  {
+    "id": "lens",
+    "source": "S6",
+    "question": "Dans cette comparaison idéale, que produit un niveau d’eau douce plus bas ?",
+    "options": {
+      "L’interface remonte et la lentille s’amincit": true,
+      "L’interface descend et la lentille s’épaissit": false,
+      "L’interface ne change jamais": false
+    },
+    "success": "Une charge plus basse correspond à une interface moins profonde. On compare des équilibres, pas une réponse immédiate au pompage.",
+    "error": "Une charge plus basse correspond à une interface moins profonde. On compare des équilibres, pas une réponse immédiate au pompage."
+  },
+  {
+    "id": "density",
+    "source": "S6",
+    "question": "Pourquoi l’eau douce peut-elle se trouver au-dessus des eaux souterraines salées ?",
+    "options": {
+      "Elle est toujours plus chaude": false,
+      "Le sable retire tout le sel": false,
+      "Elle est moins dense": true
+    },
+    "success": "Le contraste de densité compte. Les eaux se mélangent aussi ; le schéma simplifie cette transition.",
+    "error": "Le contraste de densité compte. Les eaux se mélangent aussi ; le schéma simplifie cette transition."
+  },
+  {
+    "id": "lens_scope",
+    "source": "S8",
+    "question": "Peut-on en déduire un débit de pompage sûr pour Sopot ?",
+    "options": {
+      "Oui, il se lit sur la lentille": false,
+      "Non, il faut des données locales et un modèle adapté": true,
+      "Oui, toutes les côtes se comportent pareil": false
+    },
+    "success": "Le dessin est idéalisé, utilise des densités océaniques et omet mélange, délais et géologie locale. La Baltique est saumâtre.",
+    "error": "Le dessin est idéalisé, utilise des densités océaniques et omet mélange, délais et géologie locale. La Baltique est saumâtre."
+  }
+]

@@ -1,0 +1,3 @@
+**Folge dem Gefälle des Grundwasserspiegels.** Ein gewinnender Fluss erhält Grundwasser aus höher gelegenen Grundwasserständen im Inland. Ein verlierender Fluss speist einen Aquifer mit niedrigeren Ständen im Inland. Bei guter Verbindung sind die Wasserstände nahe am Fluss oft ähnlich, weiter entfernt können sie abweichen. [S5, S16]
+
+Ein tieferes Loch, das Wasser erreicht, zeigt hier nach dem Ausgleich denselben örtlichen Grundwasserstand. Ein trockenes flaches Loch schließt einen Aquifer darunter nicht aus. Das Bild erklärt ein Prinzip und sagt keine realen Flussverhältnisse voraus: Gewässersohle, Schichtung und fehlende hydraulische Verbindung können das Muster verändern. Das virtuelle Loch ist keine Anleitung zum Graben.

@@ -1,0 +1,3 @@
+Ten uproszczony obieg pokazuje drogę od chmury przez podłoże do wód powierzchniowych. Najpierw obejrzyj strzałki nad lądem, potem pod nim. Wnikanie do gleby to **infiltracja**; część docierająca do zwierciadła stanowi **zasilanie wód podziemnych**. Część wraca do atmosfery przez parowanie lub rośliny. [S13]
+
+Słońce dostarcza energii do **parowania**. Para wodna ochładza się i skrapla w krople chmur; opad przywraca wodę powierzchni. Część wsiąka dostatecznie głęboko, **zasilając wody podziemne**. Woda płynie przez połączone pory i może wrócić do rzeki lub morza. Tutaj woda powierzchniowa odbiera ten przepływ. [S5, S13]

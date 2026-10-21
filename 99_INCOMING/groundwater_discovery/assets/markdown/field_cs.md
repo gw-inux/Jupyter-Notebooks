@@ -1,0 +1,1 @@
+**Předpovězte → pozorujte → vysvětlete.** Na povoleném místě pod dohledem vytvořte jen malou mělkou prohlubeň mimo vlny, duny a vegetaci. Porovnejte výšku vody s mořem, ne jen hloubku pod pískem. Počkejte na ustálení, zaznamenejte místo, čas a možné vlivy. Pokud voda není vidět, diskutujte proč místo hlubšího kopání. Vodu neochutnávejte; jamku zasypte.

@@ -1,0 +1,3 @@
+Das **Ghyben-Herzberg-Prinzip** verbindet den Süßwasserstand über dem Meer mit der Tiefe der Grenzfläche darunter durch ein Druckgleichgewicht. Wegen seiner höheren Dichte erzeugt Salzwasser mit der Tiefe einen stärkeren Druckanstieg.
+
+Die Grafik setzt konstante Dichten, vertikal hydrostatischen Druck, ruhendes Salzwasser, eine scharfe Grenzfläche und kein begrenzendes flaches Festgestein voraus. Sie vergleicht ideale Gleichgewichtszustände. In Wirklichkeit mischen sich beide Wässer in einer Übergangszone. Die Ostsee ist brackig: Dieses Beispiel mit Ozeanwasserdichte ist **keine Vorhersage für Sopot**. Die Mathematik steht im verlinkten Buch. [S6, S8, S9]

@@ -1,0 +1,3 @@
+1. La plupart de l’eau est salée, et beaucoup d’eau douce est gelée. Environ 99 % de l’**eau douce liquide stockée sur Terre** est souterraine. Ce stock n’est pas la quantité potable ou exploitable sans risque : profondeur, qualité, écosystèmes et renouvellement comptent aussi. [S1]
+2. L’eau remplit des pores déjà présents entre les grains. Le volume ajouté estime leur volume ; divisé par le volume total, il estime la porosité, dans les limites de l’expérience. [S4, S10]
+3. Sur une plage connectée, les niveaux se rejoignent près du rivage ; la nappe peut être légèrement plus haute vers l’intérieur. Une rivière drainante reçoit l’eau de niveaux plus élevés ; une rivière infiltrante alimente des niveaux plus bas. [S5, S16]

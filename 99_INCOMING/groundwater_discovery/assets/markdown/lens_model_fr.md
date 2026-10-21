@@ -1,0 +1,3 @@
+Le **principe de Ghyben–Herzberg** relie le niveau d’eau douce au-dessus de la mer à la profondeur de l’interface par un équilibre des pressions. L’eau salée, plus dense, produit une augmentation de pression plus forte avec la profondeur.
+
+Le dessin suppose des densités constantes, une pression verticale hydrostatique, une eau salée immobile, une interface nette et l’absence de socle peu profond limitant la lentille. Il compare des équilibres idéaux. En réalité, les eaux se mélangent dans une zone de transition. La Baltique est saumâtre : cet exemple de densité océanique **ne prédit pas les conditions de Sopot**. Le livre lié présente les mathématiques. [S6, S8, S9]

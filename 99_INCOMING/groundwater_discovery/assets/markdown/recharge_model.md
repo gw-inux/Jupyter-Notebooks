@@ -1,0 +1,3 @@
+Uniform recharge R and hydraulic conductivity K; horizontal impermeable base at z_b = −10 m; coast x = 0, inland divide x = L = 200 m. Head h is measured above sea level. The Dupuit approximation neglects vertical head differences. Saturated thickness is h − z_b, so transmissivity varies with head.
+
+Boundary conditions: h(0) = 0 and dh/dx(L) = 0. Steady outflow per metre of coast equals R × L. Convert mm/year to m/day using 365.25 days/year. The model excludes saltwater, pumping, transient storage and a land-surface constraint. It is an educational single-density analogue of a coastal boundary, not a complete coastal model.

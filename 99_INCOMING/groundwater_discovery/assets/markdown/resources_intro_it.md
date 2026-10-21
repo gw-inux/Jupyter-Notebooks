@@ -1,0 +1,1 @@
+Continua con i libri gratuiti del Groundwater Project. **Groundwater in Our Water Cycle** offre una visione generale. Il libro successivo spiega i materiali terrestri e il flusso sotterraneo; il terzo gli scambi con le acque superficiali. I link portano ai libri e alle traduzioni disponibili.

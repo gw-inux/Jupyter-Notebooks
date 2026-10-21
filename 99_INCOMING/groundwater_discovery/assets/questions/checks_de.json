@@ -1,0 +1,146 @@
+[
+  {
+    "id": "stores",
+    "source": "S1",
+    "question": "Worauf beziehen sich die ungefähr 99 %?",
+    "options": {
+      "Auf alles Wasser der Erde": false,
+      "Auf das gespeicherte flüssige Süßwasser der Erde": true,
+      "Auf alles sicher trinkbare Wasser": false
+    },
+    "success": "Bezugsgröße ist gespeichertes flüssiges Süßwasser. Salzwasser und Eis sind ausgeschlossen; nicht alles Grundwasser ist nutzbar.",
+    "error": "Bezugsgröße ist gespeichertes flüssiges Süßwasser. Salzwasser und Eis sind ausgeschlossen; nicht alles Grundwasser ist nutzbar."
+  },
+  {
+    "id": "role",
+    "source": "S2",
+    "question": "Warum ist Grundwasser zwischen Regenereignissen wichtig?",
+    "options": {
+      "Es stoppt Verdunstung": false,
+      "Es kann Flüsse und Feuchtgebiete versorgen": true,
+      "Es macht jedes Wasser trinkbar": false
+    },
+    "success": "Gespeichertes Grundwasser kann in trockenen Zeiten langsam in Flüsse und Feuchtgebiete abfließen.",
+    "error": "Gespeichertes Grundwasser kann in trockenen Zeiten langsam in Flüsse und Feuchtgebiete abfließen."
+  },
+  {
+    "id": "limits",
+    "source": "S1",
+    "question": "Bedeutet ein großer Grundwasserspeicher unbegrenzt nutzbares Wasser?",
+    "options": {
+      "Ja, Vorrat und jährliche Versorgung sind gleich": false,
+      "Ja, jedes Grundwasser ist süß und sauber": false,
+      "Nein, Zugang, Neubildung und Qualität begrenzen die Nutzung": true
+    },
+    "success": "Speichervolumen und nachhaltig nutzbare Jahresmenge sind verschiedene Größen.",
+    "error": "Speichervolumen und nachhaltig nutzbare Jahresmenge sind verschiedene Größen."
+  },
+  {
+    "id": "grains",
+    "source": "S3",
+    "question": "Wo befindet sich das Grundwasser in diesem Sand?",
+    "options": {
+      "Nur im Inneren fester Körner": false,
+      "In einem großen leeren unterirdischen See": false,
+      "In wassergefüllten Zwischenräumen der Körner": true
+    },
+    "success": "Die Körner bleiben erhalten. Wasser füllt vorhandene Poren; Klüfte und Höhlen sind andere Erscheinungsformen.",
+    "error": "Die Körner bleiben erhalten. Wasser füllt vorhandene Poren; Klüfte und Höhlen sind andere Erscheinungsformen."
+  },
+  {
+    "id": "porosity",
+    "source": "S4",
+    "question": "Eine Probe von 400 mL braucht 160 mL Wasser zum Porenfüllen. Wie groß ist die geschätzte Porosität?",
+    "options": {
+      "40 %": true,
+      "160 %": false,
+      "60 %": false
+    },
+    "success": "160 / 400 = 0,40 = 40 %. Das Gesamtvolumen enthält Körner und Poren. Die entwässerbare Menge wird nicht gemessen.",
+    "error": "160 / 400 = 0,40 = 40 %. Das Gesamtvolumen enthält Körner und Poren. Die entwässerbare Menge wird nicht gemessen."
+  },
+  {
+    "id": "connectivity",
+    "source": "S4",
+    "question": "Bedeutet gleiche Porosität immer gleich leichte Durchströmung?",
+    "options": {
+      "Nein, Verbindungen und Größe der Poren sind ebenfalls wichtig": true,
+      "Ja, Porosität allein bestimmt den Durchfluss": false,
+      "Ja, die Kornanordnung ist immer unwichtig": false
+    },
+    "success": "Das Volumen der Poren ist nicht dasselbe wie ihre Fähigkeit, Wasser weiterzuleiten.",
+    "error": "Das Volumen der Poren ist nicht dasselbe wie ihre Fähigkeit, Wasser weiterzuleiten."
+  },
+  {
+    "id": "recharge",
+    "source": "S13",
+    "question": "Was bedeutet Grundwasserneubildung?",
+    "options": {
+      "Jeder Regen erreicht sofort das Meer": false,
+      "Wasser erreicht und ergänzt das Grundwasser": true,
+      "Wolken pumpen Wasser aus dem Boden": false
+    },
+    "success": "Nur ein Teil des Niederschlags erreicht das Grundwasser; anderes Wasser verdunstet, wird von Pflanzen genutzt oder fließt oberirdisch ab.",
+    "error": "Nur ein Teil des Niederschlags erreicht das Grundwasser; anderes Wasser verdunstet, wird von Pflanzen genutzt oder fließt oberirdisch ab."
+  },
+  {
+    "id": "beach",
+    "source": "S3",
+    "question": "Eine Strandmulde enthält Wasser nahe dem Meeresspiegel. Was folgt daraus?",
+    "options": {
+      "Das Wasser ist trinkbar": false,
+      "Die Mulde zeigt Wasser im Sediment; der Salzgehalt ist unbekannt": true,
+      "Alle Strände haben genau denselben Grundwasserstand": false
+    },
+    "success": "Die Beobachtung zeigt Porenwasser, aber der Wasserstand bestimmt nicht den Salzgehalt. Örtliche Stände unterscheiden sich.",
+    "error": "Die Beobachtung zeigt Porenwasser, aber der Wasserstand bestimmt nicht den Salzgehalt. Örtliche Stände unterscheiden sich."
+  },
+  {
+    "id": "exchange",
+    "source": "S5",
+    "question": "Ein verbundener Süßwasserfluss steigt über das benachbarte Grundwasserpotenzial. Was ist möglich?",
+    "options": {
+      "Grundwasser fließt immer zum Fluss": false,
+      "Es gibt keinen Austausch": false,
+      "Flusswasser kann in den Grundwasserleiter gelangen": true
+    },
+    "success": "In verbundenen Süßwassersystemen fließt Wasser vom höheren zum niedrigeren Potenzial. Bei veränderten Ständen kann sich die Richtung umkehren.",
+    "error": "In verbundenen Süßwassersystemen fließt Wasser vom höheren zum niedrigeren Potenzial. Bei veränderten Ständen kann sich die Richtung umkehren."
+  },
+  {
+    "id": "lens",
+    "source": "S6",
+    "question": "Was folgt in diesem idealen Vergleich aus einem niedrigeren Süßwasserstand?",
+    "options": {
+      "Die Grenzfläche steigt und die Süßwasserlinse wird dünner": true,
+      "Die Grenzfläche sinkt und die Linse wird dicker": false,
+      "Die Grenzfläche verändert sich nie": false
+    },
+    "success": "Ein niedrigerer Süßwasserstand gehört zu einer flacheren Grenzfläche. Verglichen werden Gleichgewichte, keine unmittelbare Pumpreaktion.",
+    "error": "Ein niedrigerer Süßwasserstand gehört zu einer flacheren Grenzfläche. Verglichen werden Gleichgewichte, keine unmittelbare Pumpreaktion."
+  },
+  {
+    "id": "density",
+    "source": "S6",
+    "question": "Warum kann Süßwasser über salzigem Grundwasser liegen?",
+    "options": {
+      "Süßwasser ist immer wärmer": false,
+      "Sand filtert sämtliches Salz heraus": false,
+      "Süßwasser hat eine geringere Dichte": true
+    },
+    "success": "Der Dichteunterschied ist entscheidend. Reale Wässer mischen sich auch; die Grafik vereinfacht den Übergang.",
+    "error": "Der Dichteunterschied ist entscheidend. Reale Wässer mischen sich auch; die Grafik vereinfacht den Übergang."
+  },
+  {
+    "id": "lens_scope",
+    "source": "S8",
+    "question": "Lässt sich hier eine sichere Förderrate für Sopot ablesen?",
+    "options": {
+      "Ja, direkt an der Linse": false,
+      "Nein, Ortsdaten und ein geeignetes Modell sind nötig": true,
+      "Ja, alle Küsten verhalten sich gleich": false
+    },
+    "success": "Die Grafik ist idealisiert, nutzt Ozeanwasserdichten und lässt Mischung, Zeitverlauf und lokale Geologie aus. Die Ostsee ist brackig.",
+    "error": "Die Grafik ist idealisiert, nutzt Ozeanwasserdichten und lässt Mischung, Zeitverlauf und lokale Geologie aus. Die Ostsee ist brackig."
+  }
+]

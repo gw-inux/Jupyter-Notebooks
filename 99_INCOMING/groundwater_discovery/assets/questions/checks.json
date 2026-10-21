@@ -1,0 +1,146 @@
+[
+  {
+    "id": "stores",
+    "source": "S1",
+    "question": "What does the approximate 99% refer to?",
+    "options": {
+      "All water on Earth": false,
+      "Liquid freshwater stored on Earth": true,
+      "All water we can safely drink": false
+    },
+    "success": "The denominator is liquid freshwater storage. Saltwater and ice are excluded; not all groundwater is usable.",
+    "error": "The denominator is liquid freshwater storage. Saltwater and ice are excluded; not all groundwater is usable."
+  },
+  {
+    "id": "role",
+    "source": "S2",
+    "question": "Why does groundwater matter between rainstorms?",
+    "options": {
+      "It stops evaporation": false,
+      "It can keep rivers and wetlands supplied": true,
+      "It makes all water drinkable": false
+    },
+    "success": "Stored groundwater can discharge slowly to rivers and wetlands during dry periods.",
+    "error": "Stored groundwater can discharge slowly to rivers and wetlands during dry periods."
+  },
+  {
+    "id": "limits",
+    "source": "S1",
+    "question": "Does a huge groundwater store mean unlimited usable water?",
+    "options": {
+      "Yes, storage and annual supply are the same": false,
+      "Yes, all groundwater is fresh and clean": false,
+      "No, access, renewal and quality limit its use": true
+    },
+    "success": "Stored volume is different from the amount that can be used sustainably each year.",
+    "error": "Stored volume is different from the amount that can be used sustainably each year."
+  },
+  {
+    "id": "grains",
+    "source": "S3",
+    "question": "Where is groundwater in this sand?",
+    "options": {
+      "Only inside the solid grains": false,
+      "In a large empty underground lake": false,
+      "In water-filled spaces between grains": true
+    },
+    "success": "The grains remain in place. Water occupies existing pores; fractures and caves are other settings.",
+    "error": "The grains remain in place. Water occupies existing pores; fractures and caves are other settings."
+  },
+  {
+    "id": "porosity",
+    "source": "S4",
+    "question": "A 400 mL sample needs 160 mL water to fill its pores. What is the estimated porosity?",
+    "options": {
+      "40%": true,
+      "160%": false,
+      "60%": false
+    },
+    "success": "160 / 400 = 0.40 = 40%. The denominator includes both solids and pores. This does not measure how much drains.",
+    "error": "160 / 400 = 0.40 = 40%. The denominator includes both solids and pores. This does not measure how much drains."
+  },
+  {
+    "id": "connectivity",
+    "source": "S4",
+    "question": "Do equal porosities always mean equally easy water flow?",
+    "options": {
+      "No, pore connections and sizes also matter": true,
+      "Yes, porosity alone determines flow": false,
+      "Yes, grain arrangement never matters": false
+    },
+    "success": "The volume of spaces is not the same as how well those spaces transmit water.",
+    "error": "The volume of spaces is not the same as how well those spaces transmit water."
+  },
+  {
+    "id": "recharge",
+    "source": "S13",
+    "question": "What does groundwater recharge mean?",
+    "options": {
+      "All rain immediately reaches the sea": false,
+      "Water reaches and replenishes groundwater": true,
+      "Clouds pump water out of the ground": false
+    },
+    "success": "Only part of precipitation reaches groundwater; other water evaporates, is used by plants or runs off.",
+    "error": "Only part of precipitation reaches groundwater; other water evaporates, is used by plants or runs off."
+  },
+  {
+    "id": "beach",
+    "source": "S3",
+    "question": "A beach hole contains water near sea level. What can you conclude?",
+    "options": {
+      "The water is safe to drink": false,
+      "The hole has exposed water in the sediment; salinity is still unknown": true,
+      "Every beach has exactly the same groundwater level": false
+    },
+    "success": "The observation reveals pore water, but water elevation alone does not establish salinity. Local levels vary.",
+    "error": "The observation reveals pore water, but water elevation alone does not establish salinity. Local levels vary."
+  },
+  {
+    "id": "exchange",
+    "source": "S5",
+    "question": "A connected freshwater river rises above the adjacent groundwater head. Which exchange can occur?",
+    "options": {
+      "Groundwater must always flow into the river": false,
+      "No exchange is possible": false,
+      "River water can enter the aquifer": true
+    },
+    "success": "In connected freshwater systems, water can move from higher to lower head. The direction can reverse when levels change.",
+    "error": "In connected freshwater systems, water can move from higher to lower head. The direction can reverse when levels change."
+  },
+  {
+    "id": "lens",
+    "source": "S6",
+    "question": "In this ideal comparison, what follows a lower freshwater level?",
+    "options": {
+      "The interface rises and the freshwater lens becomes thinner": true,
+      "The interface sinks and the lens thickens": false,
+      "The interface never changes": false
+    },
+    "success": "Lower freshwater head corresponds to a shallower interface. This compares equilibria, not the immediate response to pumping.",
+    "error": "Lower freshwater head corresponds to a shallower interface. This compares equilibria, not the immediate response to pumping."
+  },
+  {
+    "id": "density",
+    "source": "S6",
+    "question": "Why can freshwater lie above saline groundwater?",
+    "options": {
+      "Freshwater is always warmer": false,
+      "Sand filters out all the salt": false,
+      "Freshwater is less dense": true
+    },
+    "success": "The density contrast matters. Real waters also mix; the diagram simplifies that transition.",
+    "error": "The density contrast matters. Real waters also mix; the diagram simplifies that transition."
+  },
+  {
+    "id": "lens_scope",
+    "source": "S8",
+    "question": "Can this picture tell us a safe pumping rate for Sopot?",
+    "options": {
+      "Yes, read it directly from the lens": false,
+      "No, local data and an appropriate model are needed": true,
+      "Yes, every coastline behaves identically": false
+    },
+    "success": "The drawing is idealised, uses ocean densities and omits mixing, timing and local geology. The Baltic is brackish.",
+    "error": "The drawing is idealised, uses ocean densities and omits mixing, timing and local geology. The Baltic is brackish."
+  }
+]

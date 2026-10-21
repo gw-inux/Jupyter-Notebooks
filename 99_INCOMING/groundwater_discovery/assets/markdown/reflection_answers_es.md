@@ -1,0 +1,3 @@
+1. La mayoría del agua es salada y mucha agua dulce está congelada. Cerca del 99% del **agua dulce líquida almacenada en la Tierra** es subterránea. Es una estimación de almacenamiento, no de agua potable o extraíble sin riesgo: también importan profundidad, calidad, ecosistemas y renovación. [S1]
+2. El agua ocupa poros ya presentes entre los granos. El volumen añadido estima el volumen de poros; dividido por el total de la muestra estima la porosidad, con las limitaciones del experimento. [S4, S10]
+3. En una playa conectada, los niveles se encuentran cerca de la orilla; tierra adentro pueden ser algo mayores. Un río ganador recibe agua de niveles más altos; uno perdedor alimenta niveles subterráneos más bajos. [S5, S16]

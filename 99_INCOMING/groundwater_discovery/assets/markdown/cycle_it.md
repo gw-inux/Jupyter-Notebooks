@@ -1,0 +1,3 @@
+Questo schema segue un percorso dalla nube, attraverso il terreno, alle acque superficiali. Osserva prima le frecce sopra il suolo, poi quelle sotto. L’ingresso nel suolo è **infiltrazione**; la parte che raggiunge la falda è **ricarica**. Una parte torna nell’aria per evaporazione o attraverso le piante. [S13]
+
+Il sole fornisce energia per l’**evaporazione**. Il vapore si raffredda e condensa in goccioline nelle nubi; le precipitazioni riportano l’acqua al suolo. Una parte si infiltra abbastanza in profondità da **ricaricare la falda**. L’acqua sotterranea attraversa pori collegati e può tornare a un fiume o al mare, che qui riceve il flusso. [S5, S13]

@@ -1,0 +1,3 @@
+Szkielet ziarnowy zmusza wodę do pokonywania wąskich, krętych dróg. Ten **opór przepływu** sprawia, że niewielkie spiętrzenie zwierciadła w głębi lądu może podtrzymywać odpływ do morza, gdy zasilanie uzupełnia wodę.
+
+Woda płynie od **wyższej do niższej wysokości hydraulicznej**: to wysokość, do której woda podniosłaby się w małej rurce obserwacyjnej. Tutaj zwierciadło łagodnie opada ku morzu. „W dół” oznacza spadek wysokości hydraulicznej, nie zawsze ruch w dół w gruncie: woda podziemna może wznosić się do rzeki. Morze tutaj odbiera wodę; połączenie nie wszędzie jest jednokierunkowe. [S5, S13]

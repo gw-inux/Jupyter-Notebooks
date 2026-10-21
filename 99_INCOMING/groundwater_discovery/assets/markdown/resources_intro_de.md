@@ -1,0 +1,1 @@
+Vertiefe dein Wissen mit den kostenlosen Büchern des Groundwater Project. **Groundwater in Our Water Cycle** gibt einen Überblick. Das nächste Buch erläutert Erdmaterialien und Grundwasserströmung, das dritte den Austausch mit Flüssen und anderen Oberflächengewässern. Die Links führen zu den Büchern und verfügbaren Übersetzungen.

@@ -1,0 +1,3 @@
+**Mokry piasek nie oznacza zwierciadła wody.** Siły kapilarne mogą utrzymywać wilgoć powyżej niego. Fale, zmiany poziomu morza, zasilanie i lokalne warstwy zmieniają obraz; morze nie ma naprawdę stałego poziomu. Woda w piasku może być słodka, słonawa lub słona. Jej poziom nie określa zasolenia ani przydatności do picia.
+
+Połączenie działa w obie strony: wody podziemne mogą zasilać rzekę lub morze, a wody powierzchniowe przenikać do gruntu. W połączonych układach słodkowodnych przepływ zachodzi od wyższego do niższego potencjału hydraulicznego. Na wybrzeżu wpływa na niego także gęstość wody. [S3, S5, S6]

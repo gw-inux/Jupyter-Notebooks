@@ -1,0 +1,3 @@
+**La arena húmeda no indica necesariamente el nivel freático.** La capilaridad puede mantenerla húmeda por encima. Las olas, los cambios del mar, la recarga y las capas locales modifican el patrón; el mar no es realmente constante. El agua en los poros puede ser dulce, salobre o salada. Su nivel no indica su salinidad ni si es potable.
+
+La conexión funciona en ambos sentidos: el agua subterránea puede alimentar ríos o el mar, y el agua superficial puede infiltrarse. En sistemas conectados de agua dulce, el flujo va de mayor a menor carga hidráulica. En la costa también interviene la densidad. [S3, S5, S6]

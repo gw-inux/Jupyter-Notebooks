@@ -1,0 +1,3 @@
+**Segui la pendenza della falda.** Un fiume drenante riceve acqua sotterranea da livelli più alti nell’entroterra; un fiume infiltrante alimenta un acquifero con livelli più bassi. Vicino a un fiume ben collegato i livelli sono spesso simili; più lontano possono differire. [S5, S16]
+
+Qui una buca più profonda che raggiunge l’acqua mostra lo stesso livello locale dopo la stabilizzazione. Una buca poco profonda e asciutta non esclude un acquifero sotto di essa. Il disegno non prevede un fiume reale: resistenza del letto, strati del terreno o disconnessioni possono modificare il quadro. Esplora con la buca virtuale; non è un invito a scavare davvero.

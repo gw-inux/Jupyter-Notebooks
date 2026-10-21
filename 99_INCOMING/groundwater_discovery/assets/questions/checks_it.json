@@ -1,0 +1,146 @@
+[
+  {
+    "id": "stores",
+    "source": "S1",
+    "question": "A cosa si riferisce il 99% circa?",
+    "options": {
+      "A tutta l’acqua sulla Terra": false,
+      "Alla riserva di acqua dolce liquida sulla Terra": true,
+      "A tutta l’acqua sicura da bere": false
+    },
+    "success": "Il denominatore è la riserva di acqua dolce liquida. Sono esclusi acqua salata e ghiaccio; non tutta l’acqua sotterranea è utilizzabile.",
+    "error": "Il denominatore è la riserva di acqua dolce liquida. Sono esclusi acqua salata e ghiaccio; non tutta l’acqua sotterranea è utilizzabile."
+  },
+  {
+    "id": "role",
+    "source": "S2",
+    "question": "Perché l’acqua sotterranea conta tra le piogge?",
+    "options": {
+      "Ferma l’evaporazione": false,
+      "Può alimentare fiumi e zone umide": true,
+      "Rende potabile tutta l’acqua": false
+    },
+    "success": "L’acqua immagazzinata può alimentare lentamente fiumi e zone umide nei periodi asciutti.",
+    "error": "L’acqua immagazzinata può alimentare lentamente fiumi e zone umide nei periodi asciutti."
+  },
+  {
+    "id": "limits",
+    "source": "S1",
+    "question": "Una grande riserva significa acqua utilizzabile senza limiti?",
+    "options": {
+      "Sì, riserva e apporto annuale sono uguali": false,
+      "Sì, tutta l’acqua sotterranea è dolce e pulita": false,
+      "No, accessibilità, rinnovo e qualità ne limitano l’uso": true
+    },
+    "success": "Il volume immagazzinato è diverso dalla quantità utilizzabile in modo sostenibile ogni anno.",
+    "error": "Il volume immagazzinato è diverso dalla quantità utilizzabile in modo sostenibile ogni anno."
+  },
+  {
+    "id": "grains",
+    "source": "S3",
+    "question": "Dov’è l’acqua sotterranea in questa sabbia?",
+    "options": {
+      "Solo dentro i granuli solidi": false,
+      "In un grande lago sotterraneo vuoto": false,
+      "Negli spazi pieni d’acqua tra i granuli": true
+    },
+    "success": "I granuli restano al loro posto. L’acqua occupa pori esistenti; fratture e grotte sono altri ambienti.",
+    "error": "I granuli restano al loro posto. L’acqua occupa pori esistenti; fratture e grotte sono altri ambienti."
+  },
+  {
+    "id": "porosity",
+    "source": "S4",
+    "question": "Un campione di 400 mL richiede 160 mL d’acqua per riempire i pori. Qual è la porosità stimata?",
+    "options": {
+      "40%": true,
+      "160%": false,
+      "60%": false
+    },
+    "success": "160 / 400 = 0,40 = 40%. Il denominatore include solidi e pori. Non misura la quantità drenabile.",
+    "error": "160 / 400 = 0,40 = 40%. Il denominatore include solidi e pori. Non misura la quantità drenabile."
+  },
+  {
+    "id": "connectivity",
+    "source": "S4",
+    "question": "La stessa porosità implica sempre la stessa facilità di flusso?",
+    "options": {
+      "No, contano anche collegamenti e dimensioni dei pori": true,
+      "Sì, il flusso dipende solo dalla porosità": false,
+      "Sì, la disposizione dei granuli non conta mai": false
+    },
+    "success": "Il volume dei pori è diverso dalla loro capacità di trasmettere acqua.",
+    "error": "Il volume dei pori è diverso dalla loro capacità di trasmettere acqua."
+  },
+  {
+    "id": "recharge",
+    "source": "S13",
+    "question": "Che cosa significa ricarica della falda?",
+    "options": {
+      "Tutta la pioggia raggiunge subito il mare": false,
+      "L’acqua raggiunge e reintegra la falda": true,
+      "Le nubi pompano acqua dal terreno": false
+    },
+    "success": "Solo parte delle precipitazioni raggiunge la falda; altra acqua evapora, è usata dalle piante o scorre in superficie.",
+    "error": "Solo parte delle precipitazioni raggiunge la falda; altra acqua evapora, è usata dalle piante o scorre in superficie."
+  },
+  {
+    "id": "beach",
+    "source": "S3",
+    "question": "Una buca contiene acqua vicino al livello del mare. Cosa puoi concludere?",
+    "options": {
+      "L’acqua è sicura da bere": false,
+      "La buca ha esposto acqua nel sedimento; la salinità è ignota": true,
+      "Tutte le spiagge hanno esattamente la stessa falda": false
+    },
+    "success": "L’osservazione rivela acqua nei pori, ma la quota da sola non ne indica la salinità. I livelli locali variano.",
+    "error": "L’osservazione rivela acqua nei pori, ma la quota da sola non ne indica la salinità. I livelli locali variano."
+  },
+  {
+    "id": "exchange",
+    "source": "S5",
+    "question": "Un fiume connesso sale sopra il carico della falda vicina. Quale scambio può avvenire?",
+    "options": {
+      "La falda deve sempre alimentare il fiume": false,
+      "Nessuno scambio è possibile": false,
+      "L’acqua del fiume può entrare nell’acquifero": true
+    },
+    "success": "Nei sistemi connessi di acqua dolce il flusso va da carico maggiore a minore. Il verso può invertirsi quando cambiano i livelli.",
+    "error": "Nei sistemi connessi di acqua dolce il flusso va da carico maggiore a minore. Il verso può invertirsi quando cambiano i livelli."
+  },
+  {
+    "id": "lens",
+    "source": "S6",
+    "question": "In questo confronto ideale, cosa accompagna un livello dolce più basso?",
+    "options": {
+      "L’interfaccia sale e la lente si assottiglia": true,
+      "L’interfaccia scende e la lente si ispessisce": false,
+      "L’interfaccia non cambia mai": false
+    },
+    "success": "Un carico minore corrisponde a un’interfaccia meno profonda. Si confrontano equilibri, non la risposta immediata al pompaggio.",
+    "error": "Un carico minore corrisponde a un’interfaccia meno profonda. Si confrontano equilibri, non la risposta immediata al pompaggio."
+  },
+  {
+    "id": "density",
+    "source": "S6",
+    "question": "Perché l’acqua dolce può stare sopra acqua sotterranea salina?",
+    "options": {
+      "È sempre più calda": false,
+      "La sabbia elimina tutto il sale": false,
+      "È meno densa": true
+    },
+    "success": "Conta la differenza di densità. Le acque reali si mescolano anche; il disegno semplifica la transizione.",
+    "error": "Conta la differenza di densità. Le acque reali si mescolano anche; il disegno semplifica la transizione."
+  },
+  {
+    "id": "lens_scope",
+    "source": "S8",
+    "question": "L’immagine indica una portata di pompaggio sicura per Sopot?",
+    "options": {
+      "Sì, si legge direttamente dalla lente": false,
+      "No, servono dati locali e un modello adatto": true,
+      "Sì, tutte le coste si comportano allo stesso modo": false
+    },
+    "success": "Il disegno è ideale, usa densità oceaniche e omette mescolamento, tempi e geologia locale. Il Baltico è salmastro.",
+    "error": "Il disegno è ideale, usa densità oceaniche e omette mescolamento, tempi e geologia locale. Il Baltico è salmastro."
+  }
+]

@@ -1,0 +1,3 @@
+**Follow the slope of the water table.** A gaining river receives groundwater from higher inland levels; a losing river supplies an aquifer with lower levels inland. Close to a well-connected river, the two water levels are often similar. Farther inland they can differ. [S5, S16]
+
+Here, a deeper hole that reaches water shows the same local groundwater level after settling. A dry shallow hole does not mean there is no aquifer below it. This is a conceptual picture, not a prediction for a real river: riverbed resistance, layered ground and disconnected rivers can change the pattern. Use the virtual hole to explore; it is not an instruction to excavate.

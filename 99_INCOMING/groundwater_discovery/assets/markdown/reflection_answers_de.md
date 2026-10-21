@@ -1,0 +1,3 @@
+1. Das meiste Wasser ist salzig, und viel Süßwasser ist gefroren. Vom **gespeicherten flüssigen Süßwasser** sind etwa 99 % Grundwasser. Das ist ein Speichervorrat, nicht der sicher nutzbare oder trinkbare Anteil: Auch Tiefe, Qualität, Ökosysteme und Neubildung zählen. [S1]
+2. Wasser füllt vorhandene Poren zwischen den Körnern. Die zugegebene Menge schätzt das Porenvolumen; geteilt durch das gesamte Probenvolumen ergibt sie näherungsweise die Porosität. Versuchsgrenzen sind zu beachten. [S4, S10]
+3. Am verbundenen Strand treffen Grundwasser- und Meeresspiegel nahe der Küste zusammen. Im Inland kann Grundwasser etwas höher stehen. Ein gewinnender Fluss erhält Grundwasser aus höheren Ständen, ein verlierender speist Grundwasser mit niedrigeren Ständen. [S5, S16]
