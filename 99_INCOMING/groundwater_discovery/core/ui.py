@@ -2,6 +2,7 @@
 
 import json
 from contextlib import contextmanager
+from inspect import signature
 import streamlit as st
 from core.i18n import ROOT, tr
 from core.sources import SOURCES
@@ -86,14 +87,32 @@ def source_links(*ids):
             st.markdown(f"**[{id}]** [{title}]({url})")
 
 
+def _stretch_options(renderer):
+    """Use the container width with either the older or newer Streamlit API.
+
+    Newer renderers declare a string default for ``width``. Older images
+    require a numeric width, and older pyplot forwards unknown keywords to
+    Matplotlib. Check the declared parameter before passing ``"stretch"``.
+    """
+    width = signature(renderer).parameters.get("width")
+    if width is not None and isinstance(width.default, str):
+        return {"width": "stretch"}
+    return {"use_container_width": True}
+
+
+def responsive_image(image, **kwargs):
+    """Display an image at the available width across supported Streamlit versions."""
+    st.image(image, **_stretch_options(st.image), **kwargs)
+
+
 def show(fig):
     if needs_browser_text(fig):
         # Streamlit serves SVG as an image data URI. Browser text rendering
         # handles Arabic without any extra Python shaping/bidi packages.
-        st.image(browser_svg(fig), width="stretch")
+        responsive_image(browser_svg(fig))
         fig.clear()
     else:
-        st.pyplot(fig, clear_figure=True, width="stretch")
+        st.pyplot(fig, clear_figure=True, **_stretch_options(st.pyplot))
 
 
 def quiz(qid):

@@ -2,7 +2,7 @@
 
 import streamlit as st
 from core.i18n import ROOT, tr, md
-from core.ui import heading, show, next_page, source_links, expander
+from core.ui import heading, show, next_page, source_links, expander, responsive_image
 from core.figures import cycle
 from core.sources import REVIEW_URL
 
@@ -20,7 +20,7 @@ st.subheader(tr("water_cycle_heading"), divider="blue")
 md("home_cycle")
 poster = ROOT / "assets/images" / f"water_cycle_{st.session_state.language}.jpg"
 if poster.is_file():
-    st.image(str(poster), caption=tr("cycle_title") + " · USGS", width="stretch")
+    responsive_image(str(poster), caption=tr("cycle_title") + " · USGS")
 else:
     st.info(tr("figure_placeholder"))
     show(cycle(tr))

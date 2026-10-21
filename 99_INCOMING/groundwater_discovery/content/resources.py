@@ -2,7 +2,7 @@
 
 import streamlit as st
 from core.i18n import ROOT, tr, md
-from core.ui import heading, expander
+from core.ui import heading, expander, responsive_image
 from core.sources import (
     SOURCES,
     FLOW_MODULE_URL,
@@ -57,7 +57,7 @@ for col, (cover, title, authors, slug) in zip(st.columns(3), books):
         with st.container(border=True):
             path = ROOT / "assets/images" / cover
             if path.is_file():
-                st.image(str(path), width="stretch")
+                responsive_image(str(path))
             st.markdown("**" + title + "**")
             st.caption(authors)
             st.link_button(tr("book"), "https://gw-project.org/books/" + slug + "/")
