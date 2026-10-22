@@ -1,0 +1,768 @@
+{
+  "slidejet_version": 2,
+  "source_language": "auto",
+  "languages": [],
+  "translation_runs": [],
+  "slides": [
+    {
+      "image": "images/slide_1.png",
+      "notes": "**Willkommen zur Grundwasserbewirtschaftung mit Computermodellen – Thema 02: Konzeptionelle Modelle**\n\n    - Nachfolgend die wichtigsten Folien, zum Teil mit Kommentaren (Stand 2023 10 19),\n    - Neben diesen Folien finden Sie im OPAL-Kurs weitere Materialien, u. a. elektronische Kontrollfragen,\n    - Bei Fragen, Kommentaren und Hinweisen freuen wir uns, von Ihnen zu hören.",
+      "translations": {}
+    },
+    {
+      "image": "images/slide_2.png",
+      "notes": "**Landschaft / Untersuchungsgebiet**\n\n    - üblicher ‘erster’ Einblick\n    - Eigenschaften wie Oberflächengewässer, Landnutzung, Morphologie sind offensichtlich\n    - Der (hydro)geologische Aufbau des Untergrundes ist üblicherweise nicht offensichtlich",
+      "translations": {}
+    },
+    {
+      "image": "images/slide_3.png",
+      "notes": "**Landschaft / Untersuchungsgebiet**\n\n    - üblicher ‘erster’ Einblick\n    - Eigenschaften wie Oberflächengewässer, Landnutzung, Morphologie sind offensichtlich\n    - Der (hydro)geologische Aufbau des Untergrundes ist üblicherweise nicht offensichtlich",
+      "translations": {}
+    },
+    {
+      "image": "images/slide_4.png",
+      "notes": "**Hydrogeologisches / Konzeptionelles Modell**\n\n    - dargestellt ist (hydrogeologische) konzeptionelle Modell für das Untersuchungsgebiet der vorhergehenden Folie\n    - damit wird ein (erster) Einblick in das qualitative Systemverhalten möglich, z. B. Aufbau und Eigenschaften des Unterrundes; Zu- und Abflüsse",
+      "translations": {}
+    },
+    {
+      "image": "images/slide_5.png",
+      "notes": "**Übersicht zu den Inhalten**\n\n    - Im ersten Teil der Veranstaltung werden die Grundlagen zu konzeptionellen Modellen erläutert\n        - Einen Teil der Grundlagen können Sie sich bereits vorab mit den Folien anschauen\n        - In der Präsenzveranstaltung werden wir die Grundlagen nach Bedarf weiter erläutern und mit praktischen Beispielen vertiefen\n    - Im zweiten Teil der Veranstaltung werden die Grundlagen mit relevanten Fragestellungen angewandt (Übung)\n    - für einen Teil der Übungsaufgaben stehen erläuternde Videos parat",
+      "translations": {}
+    },
+    {
+      "image": "images/slide_6.png",
+      "notes": "**Konzeptionelles Modell (siehe auch erste LV)**\n\n    - qualitative Darstellung\n    - wesentliche Charakteristiken des untersuchten Gebietes werden im konzeptionellen Modell erfasst:\n        - Prozesse (z. B. Grundwasserströmung)\n        - Strukturen (z. B. Aquifere, Grundwasserstauer, Klüfte)\n        - Randbedingungen (z. B. Interkation mit Oberflächengewässern, Grundwasserneubildung)",
+      "translations": {}
+    },
+    {
+      "image": "images/slide_7.png",
+      "notes": "**Einordnung im Ablauf einer Grundwassermodellierung**\n\n    - das konzeptionelle Modell ist abhängig von der Fragestellung\n    - das konzeptionelle Modell ist die Basis für die nachfolgenden Schritte (numerisches Modell)",
+      "translations": {}
+    },
+    {
+      "image": "images/slide_8.png",
+      "notes": "**Übergeordnetes Lernziel (Schwerpunkt)**\n\n    - Sie können für ein idealisiertes/reales Gebiet ein konzeptionelles Modell entwickeln und begründen (der Schwerpunkt wird auf der Berandung/den Randbedingungen liegen)\n    - Relevant für die Aufgabenstellung in der Belegarbeit",
+      "translations": {}
+    },
+    {
+      "image": "images/slide_9.png",
+      "notes": "**Belegaufgabe**\n\n    - an diesem idealisiertem Beispiel wird ein (einfaches) konzeptionelles Modell selbstständig erarbeitet",
+      "translations": {}
+    },
+    {
+      "image": "images/slide_10.png",
+      "notes": "No notes",
+      "translations": {}
+    },
+    {
+      "image": "images/slide_11.png",
+      "notes": "No notes",
+      "translations": {}
+    },
+    {
+      "image": "images/slide_12.png",
+      "notes": "No notes",
+      "translations": {}
+    },
+    {
+      "image": "images/slide_13.png",
+      "notes": "**Beispiel zum Start – Lausitzer Kohlerevier**\n\n    - Ausgehend von der Fragestellung / dem Anlass wird ein adequates konzeptionelles Modell entwickelt\n    - typische Fragestellungen (Beispiele): Prognose Grundwasserstand nach Ende des Tagebaus; Beschaffenheit des Grund- und Oberflächenwassers; Grundwasserabsenkung während des Tagebaubetriebs u.v.m.",
+      "translations": {}
+    },
+    {
+      "image": "images/slide_14.png",
+      "notes": "**Einblick in den Untergrund**\n\n    - hier ist der Aufbau des Untergrundes zu sehen (im Normalfall verborgen!)\n    - deutlich sichtbar sind die lokalen Heterogenitäten, z. B. einzelne Schichten und Linsen (erkennbar an den diveresen Farben)",
+      "translations": {}
+    },
+    {
+      "image": "images/slide_15.png",
+      "notes": "**Anwendung**\n\n    - hier zu sehen sind die Entwässerungsbrunnen\n    - diese sind ein Beispiel für eine Randbedingung (konkret: eine Randbedingung zweiter Art mit vorgegebenen Volumenstrom – hier die definierte Entnahmerate)",
+      "translations": {}
+    },
+    {
+      "image": "images/slide_16.png",
+      "notes": "No notes",
+      "translations": {}
+    },
+    {
+      "image": "images/slide_17.png",
+      "notes": "No notes",
+      "translations": {}
+    },
+    {
+      "image": "images/slide_18.png",
+      "notes": "No notes",
+      "translations": {}
+    },
+    {
+      "image": "images/slide_19.png",
+      "notes": "No notes",
+      "translations": {}
+    },
+    {
+      "image": "images/slide_20.png",
+      "notes": "**Im folgenden Abschnitt**\n\n    - werden die Grundlagen erläutert\n    - In der Literatur (Lehrbücher u. a.) ist die Darstellung nicht besonders eindeutig, d. h. werden nachfolgend die grundlegenden Aspekte kurz erläutert und in der Präsenzveranstaltung mit einigen praktischen Beispielen/Anwendungen ergänzt",
+      "translations": {}
+    },
+    {
+      "image": "images/slide_21.png",
+      "notes": "No notes",
+      "translations": {}
+    },
+    {
+      "image": "images/slide_22.png",
+      "notes": "No notes",
+      "translations": {}
+    },
+    {
+      "image": "images/slide_23.png",
+      "notes": "No notes",
+      "translations": {}
+    },
+    {
+      "image": "images/slide_24.png",
+      "notes": "**Workflow Grundwassermodellierung – Konzeptionelles Modell**\n\n    - Zeigt qualitatives Systemverständnis / Systemverhalten,\n    - Struktur und Randbedingungen,\n    - Auch Unsicherheiten (z. B.  in der linken Abbildung in Form von Fragezeichen an den Grenzen der unterschiedlichen geol. Strukturen.\n    - Die Abbildung zeigt, dass die Unterteilung in hydrogeologisches Modell (farbige Strukturen) und hydrologisches System-Modell (z. B. graue Pfeile) sinnvoll ist",
+      "translations": {}
+    },
+    {
+      "image": "images/slide_25.png",
+      "notes": "**Konzeptionelle Modell (Wdh. Folie aus LV01)**\n\n- konzeptionelles Modell = qualitative Darstellung der wesentlichen Systemkomponenten, Prozesse und Einflussfaktoren im Untersuchungsgebiet\n- Die Darstellung erfolgt zumeist grafisch, z. B. als Blockbild (s. Folie) oder als horizontale bzw. vertikale Schnitte (z. B. das Beispiel zur 1D Grundwasserströmung, welches wir mit analytischen Gleichungen gelöst haben).",
+      "translations": {}
+    },
+    {
+      "image": "images/slide_26.png",
+      "notes": "No notes",
+      "translations": {}
+    },
+    {
+      "image": "images/slide_27.png",
+      "notes": "**Das bereits bekannte Beispiel**\n\n    - berücksichtigt ein sehr einfaches konzeptionelles Modell\n    - die Struktur ist ein homogener und isotroper Grundwasserleiter (in der Abb. braun eingefärbt)\n    - die Randbedingungen sind die beiden definierten Potentiale an der linken und rechten Seite sowie die Grundwasserneubildung (GWN)",
+      "translations": {}
+    },
+    {
+      "image": "images/slide_28.png",
+      "notes": "**Das nun bekannte Beispiel (vgl. erste LV)**\n\n    - berücksichtigt ein sehr einfaches konzeptionelles Modell\n    - die Struktur ist ein homogener und isotroper Grundwasserleiter (in der Abb. braun eingefärbt)\n    - die Randbedingungen sind die beiden definierten Potentiale an der linken und rechten Seite sowie die Grundwasserneubildung (GWN)",
+      "translations": {}
+    },
+    {
+      "image": "images/slide_29.png",
+      "notes": "No notes",
+      "translations": {}
+    },
+    {
+      "image": "images/slide_30.png",
+      "notes": "No notes",
+      "translations": {}
+    },
+    {
+      "image": "images/slide_31.png",
+      "notes": "No notes",
+      "translations": {}
+    },
+    {
+      "image": "images/slide_32.png",
+      "notes": "No notes",
+      "translations": {}
+    },
+    {
+      "image": "images/slide_33.png",
+      "notes": "**Bredehoeft 2005**\n\n    - Dieser Literaturauszug unterstreicht, dass das konzeptionelle / hydrogeologische Modell aus einer Interpretation vorhandener Daten und Informationen entsteht.\n    - In diesem Prozess treten z. B. Unsicherheiten auf – das konzeptionelle Modell stellt also immer eine aktuelle Interpretation dar, die entsprechend kritisch betrachtet werden muss.",
+      "translations": {}
+    },
+    {
+      "image": "images/slide_34.png",
+      "notes": "No notes",
+      "translations": {}
+    },
+    {
+      "image": "images/slide_35.png",
+      "notes": "No notes",
+      "translations": {}
+    },
+    {
+      "image": "images/slide_36.png",
+      "notes": "No notes",
+      "translations": {}
+    },
+    {
+      "image": "images/slide_37.png",
+      "notes": "**Nächster Schwerpunkt Strukturen**\n\n    - In der LV behandeln wir dieses Thema nur kurz,\n    - wird üblicherweise Schwerpunktmäßig von Geologen bearbeitet",
+      "translations": {}
+    },
+    {
+      "image": "images/slide_38.png",
+      "notes": "**Geologische Strukturmodelle**\n\n    - hier ein Beispiel aus dem Lehrbuch ‘Applied Groundwater Modeling’ (Anderson et al. 2015)",
+      "translations": {}
+    },
+    {
+      "image": "images/slide_39.png",
+      "notes": "**Geologische Strukturmodelle**\n\n    - häufig basierend auf Punktinformationen (z. B. Bohrprofile)\n    - mit zusätzlichem geol. Wissen (z. B. Verwerfungen)\n    - aktuelle Anwendungen: generieren mit 3D Interpolation entsprechende Strukturmodelle (aber: geologisches Wissen/Sachverstand nötig); steht in der praktischen Anwendung häufig zur Verfügung",
+      "translations": {}
+    },
+    {
+      "image": "images/slide_40.png",
+      "notes": "**Geologische Strukturmodelle**\n\n    - häufig basierend auf Punktinformationen (z. B. Bohrprofile)\n    - mit zusätzlichem geol. Wissen (z. B. Verwerfungen)\n    - aktuelle Anwendungen: generieren mit 3D Interpolation entsprechende Strukturmodelle (aber: geologisches Wissen/Sachverstand nötig); steht in der praktischen Anwendung häufig zur Verfügung",
+      "translations": {}
+    },
+    {
+      "image": "images/slide_41.png",
+      "notes": "**Geologische Strukturmodelle**\n\n    - häufig basierend auf Punktinformationen (z. B. Bohrprofile)\n    - mit zusätzlichem geol. Wissen (z. B. Verwerfungen)\n    - aktuelle Anwendungen: generieren mit 3D Interpolation entsprechende Strukturmodelle (aber: geologisches Wissen/Sachverstand nötig); steht in der praktischen Anwendung häufig zur Verfügung",
+      "translations": {}
+    },
+    {
+      "image": "images/slide_42.png",
+      "notes": "**Ein paar grundlegende Stichworte zum hydrogeologischen Modell.**\n\n    - Die Abbildung zeigt einen Aufschluss (Grabung / Schurf), der die geologischen Strukturen im Untergrund offen legt (und im Normalfall nicht zugänglich sind – d. h. durch andere geeignete Erkundungsmethoden ermittelt werden müssen).\n    - Die reale Situation wird für die Modellvorstellung entsprechend abstrahiert (Abbildung rechts unten).",
+      "translations": {}
+    },
+    {
+      "image": "images/slide_43.png",
+      "notes": "No notes",
+      "translations": {}
+    },
+    {
+      "image": "images/slide_44.png",
+      "notes": "No notes",
+      "translations": {}
+    },
+    {
+      "image": "images/slide_45.png",
+      "notes": "No notes",
+      "translations": {}
+    },
+    {
+      "image": "images/slide_46.png",
+      "notes": "**Strukturieren**\n\n    - weiterhin muss das zu untersuchende Gebiet strukturiert werden\n    - Beispiel zeigt ein 3D-Strukturmodell",
+      "translations": {}
+    },
+    {
+      "image": "images/slide_47.png",
+      "notes": "**Übersicht zu den Daten, welche in ein hydrogeologisches Modell eingehen (aus dem Lehrbuch von Anderson et al. (2015): Applied Groundwater Modeling; Kapitel 2)**",
+      "translations": {}
+    },
+    {
+      "image": "images/slide_48.png",
+      "notes": "**Beispiel Daten**\n\n    - Untergrundaufbau / Landesamt für Umwelt, Landwirtschaft und Geologie (LfULG)",
+      "translations": {}
+    },
+    {
+      "image": "images/slide_49.png",
+      "notes": "**Beispiel Daten**\n\n    - Kartendarstellung der Quartärbasis (Festgestein)\n\n**.**",
+      "translations": {}
+    },
+    {
+      "image": "images/slide_50.png",
+      "notes": "**Beispiel Daten**\n\n    - Klüftung (im Foto wird die mögliche Wasserführung deutlich)",
+      "translations": {}
+    },
+    {
+      "image": "images/slide_51.png",
+      "notes": "No notes",
+      "translations": {}
+    },
+    {
+      "image": "images/slide_52.png",
+      "notes": "**Beispiel für ein hydrogeologisches Strukturmodell, welches für Dresden entwickelt wurde.**",
+      "translations": {}
+    },
+    {
+      "image": "images/slide_53.png",
+      "notes": "**Das konzeptionelle Modell**\n\n    - wird aus dem hydrogeologischen Modell (geol. Strukturen im Untergrund) sowie dem hydrologischen Systemmodell (z. B. Interaktion mit Oberflächengewässern, Grundwasserneubildung) erarbeitet.\n    - Hier dargestellt die Informationen, welches das hydrologische System charakterisieren (aus dem Lehrbuch von Anderson et al. (2015): Applied Groundwater Modeling; Kapitel 2).",
+      "translations": {}
+    },
+    {
+      "image": "images/slide_54.png",
+      "notes": "**Grundlegende Begriffe (Wiederholung) und ein weiteres einfaches Beispiel:**\n\n    - Zu sehen ist ein hydrogeologisches Modell in einer 3D-Visualisierung.\n    - An den Schnitten / Kanten werden die einzelnen geol. Schichten sichtbar.",
+      "translations": {}
+    },
+    {
+      "image": "images/slide_55.png",
+      "notes": "**Konzeptionelles Modell und Einordnung im Ablaufschema zur Grundwassermodellierung.**",
+      "translations": {}
+    },
+    {
+      "image": "images/slide_56.png",
+      "notes": "**Beispiel**\n\n    - anschaulisches Beispiel (Video)",
+      "translations": {}
+    },
+    {
+      "image": "images/slide_57.png",
+      "notes": "No notes",
+      "translations": {}
+    },
+    {
+      "image": "images/slide_58.png",
+      "notes": "No notes",
+      "translations": {}
+    },
+    {
+      "image": "images/slide_59.png",
+      "notes": "No notes",
+      "translations": {}
+    },
+    {
+      "image": "images/slide_60.png",
+      "notes": "No notes",
+      "translations": {}
+    },
+    {
+      "image": "images/slide_61.png",
+      "notes": "No notes",
+      "translations": {}
+    },
+    {
+      "image": "images/slide_62.png",
+      "notes": "No notes",
+      "translations": {}
+    },
+    {
+      "image": "images/slide_63.png",
+      "notes": "No notes",
+      "translations": {}
+    },
+    {
+      "image": "images/slide_64.png",
+      "notes": "**Abgrenzung**\n\n    - es ist notwendig, das zu untersuchende Gebiet abzugrenzen\n    - hier im Beispiel gut zu sehen, dass der Grundwasserleiter offensichtlich von Festgestein (Bedrock) abgegrenzt wird\n\n**Bilanzraum vertikal und lateral abgrenzen:**\n\n- **geol. Strukturen, z. B. tektonische Elemente, Schichtausbisse**\n- **Nullstromränder / Grenze Einzugsgebiet (vorzugsweise, v.a. Strömung / Bilanzmodelle)**\n- **Vorfluter**\n- **Wasserscheiden (zeitlich stabil?)**\n- **GW Gleichen (als Festpotential problematisch / schwer quantifizierbar; zeitlich stabil?)**\n- **Randstromlinie (zeitlich stabil?)**\n\n- **je tiefer die betrachtete Schicht, umso größer der Bilanzraum**",
+      "translations": {}
+    },
+    {
+      "image": "images/slide_65.png",
+      "notes": "No notes",
+      "translations": {}
+    },
+    {
+      "image": "images/slide_66.png",
+      "notes": "**Das nun bekannte Beispiel (vgl. erster Block)**\n\n    - berücksichtigt ein sehr einfaches konzeptionelles Modell\n    - die Struktur ist ein homogener und isotroper Grundwasserleiter (in der Abb. braun eingefärbt)\n    - die Randbedingungen sind die beiden definierten Potentiale an der linken und rechten Seite sowie die Grundwasserneubildung (GWN)",
+      "translations": {}
+    },
+    {
+      "image": "images/slide_67.png",
+      "notes": "**Das nun bekannte Beispiel (vgl. erste LV)**\n\n    - berücksichtigt ein sehr einfaches konzeptionelles Modell\n    - die Struktur ist ein homogener und isotroper Grundwasserleiter (in der Abb. braun eingefärbt)\n    - die Randbedingungen sind die beiden definierten Potentiale an der linken und rechten Seite sowie die Grundwasserneubildung (GWN)",
+      "translations": {}
+    },
+    {
+      "image": "images/slide_68.png",
+      "notes": "No notes",
+      "translations": {}
+    },
+    {
+      "image": "images/slide_69.png",
+      "notes": "**Kolmation**\n\n    - die Abbildung zeigt sehr schön, dass am Übergang zwischen Oberflächenwasser und Grundwasser eine geringer leitfähige Schicht vorhanden ist / vorhanden sein kann (hier beim Abfischen)",
+      "translations": {}
+    },
+    {
+      "image": "images/slide_70.png",
+      "notes": "No notes",
+      "translations": {}
+    },
+    {
+      "image": "images/slide_71.png",
+      "notes": "No notes",
+      "translations": {}
+    },
+    {
+      "image": "images/slide_72.png",
+      "notes": "No notes",
+      "translations": {}
+    },
+    {
+      "image": "images/slide_73.png",
+      "notes": "No notes",
+      "translations": {}
+    },
+    {
+      "image": "images/slide_74.png",
+      "notes": "**Übersicht zu zwei Typen von Randbedingungen**",
+      "translations": {}
+    },
+    {
+      "image": "images/slide_75.png",
+      "notes": "**Übersicht zu zwei Typen von Randbedingungen**",
+      "translations": {}
+    },
+    {
+      "image": "images/slide_76.png",
+      "notes": "**Übersicht zu zwei Typen von Randbedingungen**",
+      "translations": {}
+    },
+    {
+      "image": "images/slide_77.png",
+      "notes": "**Übersicht zu zwei Typen von Randbedingungen**",
+      "translations": {}
+    },
+    {
+      "image": "images/slide_78.png",
+      "notes": "**Ausschnitt aus dem Lehrbuch Anderson & Woessner: Applied Groundwater Modeling (2015).**\n\n    - Dargestellt ist die Draufsicht auf ein Untersuchungsgebiet. Links im regionalen Maßstab (groß)\n    - hier kann das Gebiet mit physikalischen Randbedingungen begrenzt werden.\n    - In der rechten Abbildung soll nur ein lokaler Ausschnitt betrachtet werden – daher muss auch auf hydraulische Randbedingungen zurückgeriffen werden.",
+      "translations": {}
+    },
+    {
+      "image": "images/slide_79.png",
+      "notes": "**Dieses Beispiel unterstreicht, dass bei hydraulischen Randbedingungen mit der Zeit unterschiedliche Einflüsse möglich sind (hier verschiebt sich die Lage der Randbedingung).**",
+      "translations": {}
+    },
+    {
+      "image": "images/slide_80.png",
+      "notes": "No notes",
+      "translations": {}
+    },
+    {
+      "image": "images/slide_81.png",
+      "notes": "**Grundwasserströmungsgleichung (Details dazu in der folgenden LV03)**\n\n    - wird im numerischen Modell umgesetzt\n    - “Aufgabe” hier u. a. : den Quell- und Senkenterm W quantifizieren\n    - u. a. deshalb sind Randbedingungen nötig",
+      "translations": {}
+    },
+    {
+      "image": "images/slide_82.png",
+      "notes": "No notes",
+      "translations": {}
+    },
+    {
+      "image": "images/slide_83.png",
+      "notes": "No notes",
+      "translations": {}
+    },
+    {
+      "image": "images/slide_84.png",
+      "notes": "No notes",
+      "translations": {}
+    },
+    {
+      "image": "images/slide_85.png",
+      "notes": "No notes",
+      "translations": {}
+    },
+    {
+      "image": "images/slide_86.png",
+      "notes": "No notes",
+      "translations": {}
+    },
+    {
+      "image": "images/slide_87.png",
+      "notes": "**Zusätzlicher hydraulischer Widerstand (in der Abbildung symbolisiert durch das rote Viereck).**",
+      "translations": {}
+    },
+    {
+      "image": "images/slide_88.png",
+      "notes": "**Das Beispiel zeigt**\n\n    - für ein numerisches Modell (in der Abbildung ganz oben), wie mit Hilfe von Randbedingungen eine (idealisierte) Situation (Abbildung mittig / rechts) nachgebildet werden kann.\n    - Der See (linke Seite) wird mit Randbedingungen erster Art (constant head cell – [besser specified head]) dargestellt.\n    - Der Zustrom (rechte Seite, in der Abbildung mit Underflow bezeichnet) wird mit einer Randbedingung zweiter Art dargestellt.\n    - Auf der Abbildung ganz unten ist zu sehen, wie eine Randbedingung zweiter Art umgesetzt werden kann (Zugabebrunnen (d. h. Injection well) oder Grundwasserneubildung (d. h. Recharge)).",
+      "translations": {}
+    },
+    {
+      "image": "images/slide_89.png",
+      "notes": "**Dieses Beispiel zeigt die Verwendung von head-dependent flux Randbedingungen (wasserstandsabhängiger Durchfluss, Randbedinung dritter Art).**",
+      "translations": {}
+    },
+    {
+      "image": "images/slide_90.png",
+      "notes": "No notes",
+      "translations": {}
+    },
+    {
+      "image": "images/slide_91.png",
+      "notes": "**Boundary condition types**\n\n    - In general, we consider three types of boundary conditions:\n        - First type BC with specified head\n        - Second type BC with specified flow\n        - Third type BC with head-dependent flow\n    - The behavior can be illustrated with Q-h plots\n    - An extensive interactive educational module for this topic is available at https://gwp-boundary-conditions.streamlit.app/",
+      "translations": {}
+    },
+    {
+      "image": "images/slide_92.png",
+      "notes": "No notes",
+      "translations": {}
+    },
+    {
+      "image": "images/slide_93.png",
+      "notes": "No notes",
+      "translations": {}
+    },
+    {
+      "image": "images/slide_94.png",
+      "notes": "No notes",
+      "translations": {}
+    },
+    {
+      "image": "images/slide_95.png",
+      "notes": "**Interaktion Grundwasser-Oberflächenwasser**\n\n    - Grundsätzliche Typen der Interaktion von Grund- und Oberflächenwasser, aus Winter et al. 1998 (https://pubs.er.usgs.gov/publication/cir1139 – frei zugänglich)",
+      "translations": {}
+    },
+    {
+      "image": "images/slide_96.png",
+      "notes": "**Konzept zur hydraulischen Umsetzung der Interaktion von Grundwasser-Fluss mit Hilfe einer Randbedingung dritter Art.**\n\n    - In der oberen Skizze ist die idealisierte Situation dargestellt und in der unteren Skizze die Umsetzung in Modflow.\n    - Die Prinzipskizzen gelten für jede Modellzelle, die zu einem Flussabschnitt gehört.\n- Annahme zunächst: keine ungesättigte Zone zwischen Grundwasserleiter und Fließgewässer, d. h. direkter hydraulischer Kontakt",
+      "translations": {}
+    },
+    {
+      "image": "images/slide_97.png",
+      "notes": "**Übungsaufgabe, um den Leitwert / Conductance zu verstehen**",
+      "translations": {}
+    },
+    {
+      "image": "images/slide_98.png",
+      "notes": "**Boundary condition types**\n\n    - In general, we consider three types of boundary conditions:\n        - First type BC with specified head\n        - Second type BC with specified flow\n        - Third type BC with head-dependent flow\n    - The behavior can be illustrated with Q-h plots\n    - An extensive interactive educational module for this topic is available at https://gwp-boundary-conditions.streamlit.app/",
+      "translations": {}
+    },
+    {
+      "image": "images/slide_99.png",
+      "notes": "**Bei möglicher Berücksichtigung einer ungesättigten Zone (d. h. das Oberflächengewässer ist vom restlichen Grundwasserleiter entkoppelt) wird für die Differenz der Wasserstände die Fließgewässersohle statt des Grundwasserstandes berücksichtigt.**",
+      "translations": {}
+    },
+    {
+      "image": "images/slide_100.png",
+      "notes": "**Darstellung zwischen (Grund)Wasserstand in der Modellzelle und Fluss aus der Randbedingung dritter Art (QRIV)**\n\n    - **Softwarepakete zur Grundwasserströmungs-modellierung bestimmen in jeder Modellzelle mit Grundwasser-Oberflä-chenwasser-Wechselwir-kung einen Punkt auf der abknickenden Linie.**\n    - **Damit sind die Potential-höhe h und der Zu- / Ab-fluss QRiv festgelegt.**",
+      "translations": {}
+    },
+    {
+      "image": "images/slide_101.png",
+      "notes": "No notes",
+      "translations": {}
+    },
+    {
+      "image": "images/slide_102.png",
+      "notes": "**In MODFLOW, hydraulic interaction between groundwater and surface water is treated by employing the “river boundary condition“, which represents a boundary condition of the third kind (= relationship between hydraulic head and discharge at the boundary, see previous page).**\n\n- **The corresponding relationship needs values for river stage, river bottom ele-vation, and streambed conductance (to be explained later).**\n- **From this, the software is able to de-termine the hydraulic head and the specific discharge.**\n- **In a first step, rivers are subdivided in-to segments called “reaches“.**\n- **Each of them corresponds to a model cell.**\n- **Very short segments can be neglected (see figure).**",
+      "translations": {}
+    },
+    {
+      "image": "images/slide_103.png",
+      "notes": "**Dieses Beispiel zeigt die Verwendung von head-dependent flux Randbedingungen (wasserstandsabhängiger Durchfluss, Randbedinung dritter Art).**",
+      "translations": {}
+    },
+    {
+      "image": "images/slide_104.png",
+      "notes": "**Beispiel Anwendung Randbedinger dritter Art**\n\n    - Für den Fall, dass keine physikalische Randbedingung vorhanden ist (z. B. kein Oberflächengewässer in der Nähe) können entfernte Oberflächengewässer als Modellgrenze verwendet werden\n    - die Potentialhöhe des Oberflächengewässers entspricht der Potentialhöhe der Randbedingung\n    - die hydraulischen Eigenschaften des Untergrundes zwischen (entferntem) Oberflächengewässer und Modellrand wird über eine Conductance berücksichtigt (analog bei der River-Randbedingung)",
+      "translations": {}
+    },
+    {
+      "image": "images/slide_105.png",
+      "notes": "No notes",
+      "translations": {}
+    },
+    {
+      "image": "images/slide_106.png",
+      "notes": "No notes",
+      "translations": {}
+    },
+    {
+      "image": "images/slide_107.png",
+      "notes": "No notes",
+      "translations": {}
+    },
+    {
+      "image": "images/slide_108.png",
+      "notes": "No notes",
+      "translations": {}
+    },
+    {
+      "image": "images/slide_109.png",
+      "notes": "No notes",
+      "translations": {}
+    },
+    {
+      "image": "images/slide_110.png",
+      "notes": "No notes",
+      "translations": {}
+    },
+    {
+      "image": "images/slide_111.png",
+      "notes": "**Bredehoeft 2005**\n\n    - Dieser Literaturauszug unterstreicht, dass das konzeptionelle / hydrogeologische Modell aus einer Interpretation vorhandener Daten und Informationen entsteht.\n    - In diesem Prozess treten z. B. Unsicherheiten auf – das konzeptionelle Modell stellt also immer eine aktuelle Interpretation dar, die entsprechend kritisch betrachtet werden muss.\n    - Praktisch können diese Aspekte z. B. Berücksichtigt werden, indem mehrere mögliche konzeptionelle Modelle betrachtet werden (d. h. Ergebnisse als Bandbreite, oder einzelne konzeptionelle Modelle werden im Zuge der Grundwassermodellierung verworfen, da Sie die real gemessenen Daten nicht wiedergeben können)",
+      "translations": {}
+    },
+    {
+      "image": "images/slide_112.png",
+      "notes": "**Im zweiten Teil der LV werden die Grundlagen mit Übungsaufgaben und Anwendungen vertieft**",
+      "translations": {}
+    },
+    {
+      "image": "images/slide_113.png",
+      "notes": "No notes",
+      "translations": {}
+    },
+    {
+      "image": "images/slide_114.png",
+      "notes": "**Beispiel**\n\n    - typische Situation für einen (fiktiven) Wasserversorger,\n    - aufgrund von Landwirtschaft werden möglicherweise Stoffe in den Grundwasserleiter eingetragen, z. B. Nitrat\n    - Grundwassermessstellen im Vorfeld zeigen erhöhte Konzentrationen (z. B. von Nitrat) an",
+      "translations": {}
+    },
+    {
+      "image": "images/slide_115.png",
+      "notes": "**Diese Themen wurden bereits in der 1. LV angeschnitten. Nachfolgend dazu nochmal ein Auszug aus dem Lehrbuch von W. Kinzelbach: Grundwassermodellierung – Eine Einführung mit Übungen (1995).**",
+      "translations": {}
+    },
+    {
+      "image": "images/slide_116.png",
+      "notes": "**Definition der Aufgabenstellung / Festlegung des Arbeitsziels**",
+      "translations": {}
+    },
+    {
+      "image": "images/slide_117.png",
+      "notes": "No notes",
+      "translations": {}
+    },
+    {
+      "image": "images/slide_118.png",
+      "notes": "No notes",
+      "translations": {}
+    },
+    {
+      "image": "images/slide_119.png",
+      "notes": "No notes",
+      "translations": {}
+    },
+    {
+      "image": "images/slide_120.png",
+      "notes": "No notes",
+      "translations": {}
+    },
+    {
+      "image": "images/slide_121.png",
+      "notes": "No notes",
+      "translations": {}
+    },
+    {
+      "image": "images/slide_122.png",
+      "notes": "No notes",
+      "translations": {}
+    },
+    {
+      "image": "images/slide_123.png",
+      "notes": "No notes",
+      "translations": {}
+    },
+    {
+      "image": "images/slide_124.png",
+      "notes": "No notes",
+      "translations": {}
+    },
+    {
+      "image": "images/slide_125.png",
+      "notes": "No notes",
+      "translations": {}
+    },
+    {
+      "image": "images/slide_126.png",
+      "notes": "No notes",
+      "translations": {}
+    },
+    {
+      "image": "images/slide_127.png",
+      "notes": "No notes",
+      "translations": {}
+    },
+    {
+      "image": "images/slide_128.png",
+      "notes": "No notes",
+      "translations": {}
+    },
+    {
+      "image": "images/slide_129.png",
+      "notes": "No notes",
+      "translations": {}
+    },
+    {
+      "image": "images/slide_130.png",
+      "notes": "No notes",
+      "translations": {}
+    },
+    {
+      "image": "images/slide_131.png",
+      "notes": "No notes",
+      "translations": {}
+    },
+    {
+      "image": "images/slide_132.png",
+      "notes": "No notes",
+      "translations": {}
+    },
+    {
+      "image": "images/slide_133.png",
+      "notes": "No notes",
+      "translations": {}
+    },
+    {
+      "image": "images/slide_134.png",
+      "notes": "No notes",
+      "translations": {}
+    },
+    {
+      "image": "images/slide_135.png",
+      "notes": "No notes",
+      "translations": {}
+    },
+    {
+      "image": "images/slide_136.png",
+      "notes": "**Konzeptionelles Modell (siehe auch erste LV)**\n\n    - qualitative Darstellung\n    - wesentliche Charakteristiken des untersuchten Gebietes werden im konzeptionellen Modell erfasst:\n        - Prozesse (z. B. Grundwasserströmung)\n        - Strukturen (z. B. Aquifere, Grundwasserstauer, Klüfte)\n        - Randbedingungen (z. B. Interkation mit Oberflächengewässern, Grundwasserneubildung)",
+      "translations": {}
+    },
+    {
+      "image": "images/slide_137.png",
+      "notes": "**Einordnung im Ablauf einer Grundwassermodellierung**\n\n    - das konzeptionelle Modell ist abhängig von der Fragestellung\n    - das konzeptionelle Modell ist die Basis für die nachfolgenden Schritte (numerisches Modell)",
+      "translations": {}
+    },
+    {
+      "image": "images/slide_138.png",
+      "notes": "**Erläuterung zu dieser kleinen Übungsaufgabe:**\n\n    - Die schwarzen Linien stellen Isohypsen dar\n    - 1-2 Die Pfeile symbolisieren einen Randzufluss (z. B. Festgestein und Zufluss aufgrund von Grundwasserneubildung im Festgesteins-EZG)\n    - 2-3 Randstromlinie; Wasser strömt (im isotropen Grundwasserleiter) senkrecht zu den Isohypsen (Randstromlinie) d. h. keine Wasserströmung parallel zu den Isohypsen\n    - 3-4 Standgewässer – hier mit der Annahme, dass direkter Kontakt zwischen Gewässer und Grundwasserleiter vorhanden ist (d. h. keine Kolmationsschicht!); bitte immer begründen, wenn Oberflächengewässer als Randbedingung erster Art konzipiert werden\n    - 4-5 Fließgewässer – hier mit der Annahme, dass kein direkter Kontakt zwischen Gewässer und Grundwasserleiter vorhanden ist (d. h. Kolmationsschicht)\n    - 5-1: siehe 2-3",
+      "translations": {}
+    },
+    {
+      "image": "images/slide_139.png",
+      "notes": "No notes",
+      "translations": {}
+    },
+    {
+      "image": "images/slide_140.png",
+      "notes": "**Übungsaufgabe**\n\n**1) third type bc (due to possible colmation)**\n\n**2) second type bc (no flow)**\n\n**3) second type bc (no flow at groundwater divide)**\n\n**4) second type bc (recharge) – the number in the figure refers to the symbol W**\n\n**5) second type bc (groundwater divide)**\n\n**6) third type bc (see 1))**",
+      "translations": {}
+    },
+    {
+      "image": "images/slide_141.png",
+      "notes": "**Lösung zu dieser Übungs- / Klausuraufgabe als Video im OPAL Kurs**",
+      "translations": {}
+    },
+    {
+      "image": "images/slide_142.png",
+      "notes": "No notes",
+      "translations": {}
+    },
+    {
+      "image": "images/slide_143.png",
+      "notes": "No notes",
+      "translations": {}
+    },
+    {
+      "image": "images/slide_144.png",
+      "notes": "No notes",
+      "translations": {}
+    },
+    {
+      "image": "images/slide_145.png",
+      "notes": "No notes",
+      "translations": {}
+    },
+    {
+      "image": "images/slide_146.png",
+      "notes": "No notes",
+      "translations": {}
+    },
+    {
+      "image": "images/slide_147.png",
+      "notes": "No notes",
+      "translations": {}
+    },
+    {
+      "image": "images/slide_148.png",
+      "notes": "**Modellgeschehen reicht an Randbedingung**\n\n    - Gleiche Idee wie in der vorhergehenden Folie zu physikalischen / hydraulischen Randbedingungen\n    - Rote gestrichelte Linie in der rechten Abbildung symoblisiert das Modellgeschehen (Schwarz die Realität)",
+      "translations": {}
+    },
+    {
+      "image": "images/slide_149.png",
+      "notes": "**Lösung zu dieser Art Übungs- / Klausuraufgabe**\n\n    - siehe Test zur Vor- und Nachbereitung in OPAL",
+      "translations": {}
+    },
+    {
+      "image": "images/slide_150.png",
+      "notes": "**Lösung zu dieser Übungs- / Klausuraufgabe als Video im OPAL Kurs**",
+      "translations": {}
+    },
+    {
+      "image": "images/slide_151.png",
+      "notes": "**Lösung zu dieser Übungs- / Klausuraufgabe als Video im OPAL Kurs**",
+      "translations": {}
+    },
+    {
+      "image": "images/slide_152.png",
+      "notes": "No notes",
+      "translations": {}
+    }
+  ]
+}
