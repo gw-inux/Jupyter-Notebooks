@@ -16,7 +16,7 @@
   "soil": "Sol",
   "sandy_aquifer": "Aquifère sableux",
   "river_middle": "Entre la rivière et l’intérieur",
-  "beach_photo": "Observer l’eau souterraine à la plage",
+  "beach_photo": "Exploration du sable de plage. Photographie fournie par Thomas Reimann ; la surface de la nappe n’est pas visible.",
   "beach_photo_placeholder": "Emplacement pour une photo d’un trou peu profond sur une plage, à fournir par l’auteur.",
   "boundary_link": "Explorer l’introduction aux conditions aux limites",
   "books_start": "Quelques livres pour commencer",
@@ -35,5 +35,12 @@
   "pumping_change_note": "Variations par rapport à l’état sans pompage. Une variation de profondeur négative signifie que l’interface remonte. Le symbole ne précise pas la profondeur de la crépine.",
   "model_assumptions": "Fonctionnement du modèle d’île",
   "density_caption": "Coupe côtière idéalisée. Les colonnes d’eau reliées illustrent l’égalité des pressions à l’interface. h et z sont représentés à des échelles verticales différentes.",
-  "back_reflect": "Retour au Bilan et découverte"
+  "back_reflect": "Retour au Bilan et découverte",
+  "cycle_preview_caption": "Cycle de l’eau de l’USGS · [Ressource originale]({url}). Plus d’explications dans Commencer ici.",
+  "soilwater_link": "Explorer la rétention d’eau dans le sol et les forces capillaires",
+  "head_detail_caption": "Détail agrandi de l’état naturel : h est le niveau de l’eau douce au-dessus du niveau marin. Les couleurs correspondent à la coupe ci-dessous.",
+  "density_head": "Charge d’eau douce h au-dessus du niveau marin",
+  "legend_head": "h maximal",
+  "legend_depth": "Profondeur de l’interface z",
+  "legend_volume": "Eau douce dans les pores"
 }

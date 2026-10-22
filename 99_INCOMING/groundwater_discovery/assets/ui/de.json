@@ -16,7 +16,7 @@
   "soil": "Boden",
   "sandy_aquifer": "Sandiger Grundwasserleiter",
   "river_middle": "Zwischen Fluss und Binnenland",
-  "beach_photo": "Grundwasser am Strand beobachten",
+  "beach_photo": "Erkundung von Strandsand. Foto bereitgestellt von Thomas Reimann; der Grundwasserspiegel ist nicht sichtbar.",
   "beach_photo_placeholder": "Platz für ein Foto eines flachen Beobachtungslochs am Strand. Hier kann ein eigenes Foto ergänzt werden.",
   "boundary_link": "Einführung in Randbedingungen erkunden",
   "books_start": "Einige Bücher für den Einstieg",
@@ -35,5 +35,12 @@
   "pumping_change_note": "Änderungen beziehen sich auf den ungepumpten Zustand. Eine negative Tiefenänderung bedeutet, dass die Grenzfläche steigt. Das Brunnensymbol legt keine Filtertiefe fest.",
   "model_assumptions": "So funktioniert das Inselmodell",
   "density_caption": "Idealisierter Küstenquerschnitt. Die verbundenen Wassersäulen veranschaulichen den gleichen Druck an der Grenzfläche. h und z sind mit unterschiedlichen vertikalen Maßstäben dargestellt.",
-  "back_reflect": "Zurück zu Rückblick & Weiterlernen"
+  "back_reflect": "Zurück zu Rückblick & Weiterlernen",
+  "cycle_preview_caption": "USGS-Wasserkreislauf · [Originalquelle]({url}). Weitere Erläuterungen finden Sie unter Hier starten.",
+  "soilwater_link": "Bodenwasserretention und Kapillarkräfte erkunden",
+  "head_detail_caption": "Vergrößerter Ausschnitt des natürlichen Zustands: h ist der Süßwasserspiegel über dem Meeresspiegel. Die Farben entsprechen dem Querschnitt unten.",
+  "density_head": "Süßwasserspiegel h über dem Meeresspiegel",
+  "legend_head": "Maximales h",
+  "legend_depth": "Tiefe der Grenzfläche z",
+  "legend_volume": "Süßwasser im Porenraum"
 }

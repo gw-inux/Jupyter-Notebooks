@@ -158,7 +158,7 @@
   "soil": "Solo",
   "sandy_aquifer": "Aquífero arenoso",
   "river_middle": "Entre o rio e o interior",
-  "beach_photo": "Observar água subterrânea na praia",
+  "beach_photo": "Exploração da areia da praia. Fotografia fornecida por Thomas Reimann; o nível freático não é visível.",
   "beach_photo_placeholder": "Espaço para uma fotografia de uma cova pouco profunda na praia, a fornecer pelo autor.",
   "boundary_link": "Explorar a introdução às condições de fronteira",
   "books_start": "Alguns livros para começar",
@@ -177,5 +177,12 @@
   "pumping_change_note": "Variações face ao estado sem bombagem. Uma variação negativa da profundidade indica subida da interface. O símbolo não define a profundidade do ralo.",
   "model_assumptions": "Como funciona o modelo da ilha",
   "density_caption": "Secção costeira idealizada. As colunas de água ligadas ilustram a igualdade de pressões na interface. h e z são representados com escalas verticais diferentes.",
-  "back_reflect": "Voltar a Refletir e explorar"
+  "back_reflect": "Voltar a Refletir e explorar",
+  "cycle_preview_caption": "Ciclo da água do USGS · [Recurso original]({url}). Há mais explicações em Comece aqui.",
+  "soilwater_link": "Explorar a retenção de água no solo e as forças capilares",
+  "head_detail_caption": "Pormenor ampliado do estado natural: h é o nível da água doce acima do nível do mar. As cores correspondem à secção abaixo.",
+  "density_head": "Carga de água doce h acima do nível do mar",
+  "legend_head": "h máximo",
+  "legend_depth": "Profundidade da interface z",
+  "legend_volume": "Água doce nos poros"
 }

@@ -1,1 +1,3 @@
-帕尔米拉环礁航拍。USGS，公有领域。照片提供背景；1 km²圆形模型代表另一座假想岛屿。 [USGS](https://www.usgs.gov/media/images/aerial-view-palmyra-atoll).
+尼加拉瓜科恩岛的航拍照片。真实岛屿提供背景；下方的 1 km² 圆形模型代表另一座假想岛屿。
+
+[CornIsland.JPG](https://commons.wikimedia.org/wiki/File:CornIsland.JPG) — [Oliverhenriquez](https://en.wikipedia.org/wiki/User:Oliverhenriquez), [CC BY-SA 3.0](https://creativecommons.org/licenses/by-sa/3.0/). 图像未经修改。

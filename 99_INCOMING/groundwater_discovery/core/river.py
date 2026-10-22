@@ -14,7 +14,16 @@ import numpy as np
 RIVER_BANK = 80.0
 RIVER_LEVEL = 0.0
 RIVER_BEND = 0.06  # Small prescribed curvature; not a recharge parameter.
-RIVER_POSITIONS = {"river_near": 74.0, "river_middle": 49.0, "river_inland": 24.0}
+# Seven equally spaced stops; existing semantic keys keep saved choices valid.
+RIVER_POSITIONS = {
+    "river_near": 74.0,
+    "position_2": 197 / 3,
+    "position_3": 172 / 3,
+    "river_middle": 49.0,
+    "position_5": 122 / 3,
+    "position_6": 97 / 3,
+    "river_inland": 24.0,
+}
 RIVER_DEPTHS = ("river_shallow", "river_level_depth", "river_deep")
 RIVER_REGIMES = ("gaining", "losing")
 
@@ -39,7 +48,7 @@ def river_head(x, regime):
 
     The two profiles have opposite bends, steepening toward the water body.
     This near-bank shape is illustrative, not a calibrated flow solution or a
-    universal curvature rule. Both profiles remain monotonic; the eighteen
+    universal curvature rule. Both profiles remain monotonic; the original
     observation choices retain their wet/dry outcomes.
     """
     x = _land_coordinates(x)

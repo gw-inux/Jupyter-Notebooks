@@ -158,7 +158,7 @@
   "soil": "土壤",
   "sandy_aquifer": "砂质含水层",
   "river_middle": "河岸与内陆之间",
-  "beach_photo": "在海滩观察地下水",
+  "beach_photo": "探索海滩沙层。照片由 Thomas Reimann 提供；图中看不到地下水位。",
   "beach_photo_placeholder": "照片预留位置：海滩上的浅观察坑。可在此添加作者提供的照片。",
   "boundary_link": "探索边界条件入门模块",
   "books_start": "推荐的入门书籍",
@@ -177,5 +177,12 @@
   "pumping_change_note": "变化量相对于未抽水状态。深度变化为负表示界面向海平面上升。井的符号不表示筛管深度。",
   "model_assumptions": "岛屿模型如何工作",
   "density_caption": "理想化海岸剖面。相连的水柱表示淡水与咸水界面处的压力相等。h 和 z 采用不同的垂直比例尺。",
-  "back_reflect": "返回思考与探索"
+  "back_reflect": "返回思考与探索",
+  "cycle_preview_caption": "USGS 水循环 · [原始资源]({url})。更多说明见“从这里开始”。",
+  "soilwater_link": "探索土壤水分保持和毛细作用",
+  "head_detail_caption": "自然状态的局部放大图：h 表示淡水水位高出海平面的高度。颜色与下方剖面图一致。",
+  "density_head": "海平面以上的淡水水头 h",
+  "legend_head": "最大 h",
+  "legend_depth": "界面深度 z",
+  "legend_volume": "孔隙中的淡水"
 }

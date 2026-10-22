@@ -35,7 +35,7 @@ def volume_input(label, storage_key, use_slider, maximum=1000):
         label,
         min_value=0,
         max_value=max(10, maximum) if use_slider else maximum,
-        step=10 if use_slider else 1,
+        step=10,
         format="%d",
         key=widget_key,
         disabled=maximum == 0,

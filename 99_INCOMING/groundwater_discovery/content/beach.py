@@ -15,8 +15,18 @@ from core.ui import (
     centered_link,
 )
 from core.figures import beach, cycle, river
+from core.sources import SOURCES
 from core.models import beach_hole, POSITIONS, DEPTHS
 from core.river import RIVER_REGIMES, RIVER_POSITIONS, RIVER_DEPTHS, river_observation
+
+
+def position_labels(options):
+    """Name original landmarks; intermediate stops use their position out of 7."""
+    return {
+        key: f"{number}/{len(options)}" if key.startswith("position_") else tr(key)
+        for number, key in enumerate(options, start=1)
+    }
+
 
 heading("beach")
 st.subheader(tr("cycle_path_heading"), divider="green")
@@ -26,11 +36,18 @@ st.caption(tr("cycle_caption"))
 st.markdown(tr("cycle_boundary") + " [S11]")
 with expander(tr("more")):
     md("cycle_detail")
+    poster = ROOT / "assets/images" / f"water_cycle_{st.session_state.language}.jpg"
+    if not poster.is_file():
+        poster = ROOT / "assets/images/water_cycle_en.jpg"
+    _, preview, _ = st.columns([1, 2, 1])
+    with preview:
+        responsive_image(str(poster))
+        st.caption(tr("cycle_preview_caption").format(url=SOURCES["S2"][1]))
     next_page("home", tr("cycle_full_link"))
 st.subheader(tr("dig"), divider="green")
 md("beach")
 # Values stay language-independent; only their presentation is translated.
-labels = {key: tr(key) for key in list(POSITIONS) + list(DEPTHS)}
+labels = {**position_labels(POSITIONS), **{key: tr(key) for key in DEPTHS}}
 with expander(tr("controls"), "controls", expanded=True):
     position_col, depth_col, reveal_col = st.columns([1.1, 1.2, 1])
     location = position_col.select_slider(
@@ -68,9 +85,14 @@ if reveal:
     st.info(tr("water_found") if water > 1e-9 else tr("no_water"))
 with expander(tr("more") + " · " + tr("beach")):
     md("beach_limits")
+    st.markdown(
+        f"[{tr('soilwater_link')}](https://gwp-soilwaterretention-update.streamlit.app/)"
+    )
 with expander(tr("field"), "controls"):
     md("field")
-    photo = ROOT / "assets/images/beach_observation.jpg"
+    photo = ROOT / "assets/images/beach_observation.png"
+    if not photo.is_file():
+        photo = ROOT / "assets/images/beach_observation.jpg"
     if photo.is_file():
         responsive_image(str(photo), caption=tr("beach_photo"))
     else:
@@ -83,7 +105,10 @@ st.subheader(tr("river_heading"), divider="green")
 md("river_intro")
 # Capture labels during this run; callbacks must not read a later language state.
 regime_labels = {value: tr("river_" + value) for value in RIVER_REGIMES}
-river_labels = {value: tr(value) for value in (*RIVER_POSITIONS, *RIVER_DEPTHS)}
+river_labels = {
+    **position_labels(RIVER_POSITIONS),
+    **{key: tr(key) for key in RIVER_DEPTHS},
+}
 with expander(tr("controls"), "controls", expanded=True):
     regime = st.radio(
         tr("river_mode"),

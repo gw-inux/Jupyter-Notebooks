@@ -16,7 +16,7 @@
   "soil": "Půda",
   "sandy_aquifer": "Písčitý kolektor",
   "river_middle": "Mezi řekou a vnitrozemím",
-  "beach_photo": "Pozorování podzemní vody na pláži",
+  "beach_photo": "Průzkum plážového písku. Fotografii poskytl Thomas Reimann; hladina podzemní vody není viditelná.",
   "beach_photo_placeholder": "Místo pro fotografii mělké pozorovací jamky na pláži, kterou může dodat autor.",
   "boundary_link": "Prozkoumejte úvod do okrajových podmínek",
   "books_start": "Několik knih na začátek",
@@ -35,5 +35,12 @@
   "pumping_change_note": "Změny jsou vůči stavu bez čerpání. Záporná změna hloubky znamená vzestup rozhraní. Symbol neurčuje hloubku filtru.",
   "model_assumptions": "Jak funguje model ostrova",
   "density_caption": "Idealizovaný příčný řez pobřežím. Propojené vodní sloupce znázorňují stejný tlak na rozhraní sladké a slané vody. Pro h a z jsou použita různá svislá měřítka.",
-  "back_reflect": "Zpět na Ohlédnutí a další poznávání"
+  "back_reflect": "Zpět na Ohlédnutí a další poznávání",
+  "cycle_preview_caption": "Koloběh vody USGS · [Původní zdroj]({url}). Další vysvětlení najdete v části Začněte zde.",
+  "soilwater_link": "Prozkoumejte retenci vody v půdě a kapilární síly",
+  "head_detail_caption": "Zvětšený detail přirozeného stavu: h je výška hladiny sladké vody nad hladinou moře. Barvy odpovídají řezu níže.",
+  "density_head": "Hydraulická výška sladké vody h nad hladinou moře",
+  "legend_head": "Maximální h",
+  "legend_depth": "Hloubka rozhraní z",
+  "legend_volume": "Sladká voda v pórech"
 }

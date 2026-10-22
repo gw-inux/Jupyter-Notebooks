@@ -16,7 +16,7 @@
   "soil": "Suolo",
   "sandy_aquifer": "Acquifero sabbioso",
   "river_middle": "Tra il fiume e l’entroterra",
-  "beach_photo": "Osservare l’acqua sotterranea in spiaggia",
+  "beach_photo": "Esplorazione della sabbia della spiaggia. Foto fornita da Thomas Reimann; la superficie della falda non è visibile.",
   "beach_photo_placeholder": "Spazio per la foto di una buca poco profonda in spiaggia, da fornire dall’autore.",
   "boundary_link": "Esplora l’introduzione alle condizioni al contorno",
   "books_start": "Alcuni libri per iniziare",
@@ -35,5 +35,12 @@
   "pumping_change_note": "Le variazioni sono rispetto allo stato senza pompaggio. Una profondità minore indica la risalita dell’interfaccia. Il simbolo non definisce la profondità del filtro.",
   "model_assumptions": "Come funziona il modello dell’isola",
   "density_caption": "Sezione costiera idealizzata. Le colonne d’acqua collegate illustrano l’uguaglianza delle pressioni all’interfaccia. h e z sono rappresentati con scale verticali diverse.",
-  "back_reflect": "Torna a Rifletti ed esplora"
+  "back_reflect": "Torna a Rifletti ed esplora",
+  "cycle_preview_caption": "Ciclo dell’acqua USGS · [Fonte originale]({url}). Altre spiegazioni sono disponibili in Inizia qui.",
+  "soilwater_link": "Esplora la ritenzione idrica del suolo e le forze capillari",
+  "head_detail_caption": "Dettaglio ingrandito dello stato naturale: h è il livello dell’acqua dolce sopra il livello del mare. I colori corrispondono alla sezione sottostante.",
+  "density_head": "Carico dell’acqua dolce h sopra il livello del mare",
+  "legend_head": "h massimo",
+  "legend_depth": "Profondità interfaccia z",
+  "legend_volume": "Acqua dolce nei pori"
 }

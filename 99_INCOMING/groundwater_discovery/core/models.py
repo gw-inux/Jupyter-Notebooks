@@ -7,7 +7,16 @@ import numpy as np
 
 BEACH_GROUND_SLOPE = 0.020
 BEACH_WATER_SLOPE = 0.002
-POSITIONS = {"near": 3.0, "middle": 10.0, "inland": 18.0}
+# Seven stops, retaining the three original positions and their saved keys.
+POSITIONS = {
+    "near": 3.0,
+    "position_2": 16 / 3,
+    "position_3": 23 / 3,
+    "middle": 10.0,
+    "position_5": 38 / 3,
+    "position_6": 46 / 3,
+    "inland": 18.0,
+}
 DEPTHS = {"shallow": 0.08, "deeper": 0.26}
 LENS_LEVELS = {"lower": 0.2, "medium_low": 0.4, "medium_high": 0.6, "higher": 0.8}
 

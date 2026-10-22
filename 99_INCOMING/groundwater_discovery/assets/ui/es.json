@@ -16,7 +16,7 @@
   "soil": "Suelo",
   "sandy_aquifer": "Acuífero arenoso",
   "river_middle": "Entre el río y el interior",
-  "beach_photo": "Observar agua subterránea en la playa",
+  "beach_photo": "Exploración de la arena de playa. Fotografía facilitada por Thomas Reimann; el nivel freático no es visible.",
   "beach_photo_placeholder": "Espacio para una fotografía de un hoyo poco profundo en la playa, que puede aportar el autor.",
   "boundary_link": "Explora la introducción a las condiciones de contorno",
   "books_start": "Algunos libros para empezar",
@@ -35,5 +35,12 @@
   "pumping_change_note": "Los cambios se comparan con el estado sin bombeo. Un cambio negativo de profundidad indica que la interfaz asciende. El símbolo no define la profundidad del filtro.",
   "model_assumptions": "Cómo funciona el modelo de isla",
   "density_caption": "Sección costera idealizada. Las columnas de agua conectadas ilustran la igualdad de presiones en la interfaz. h y z se representan con escalas verticales diferentes.",
-  "back_reflect": "Volver a Reflexiona y explora"
+  "back_reflect": "Volver a Reflexiona y explora",
+  "cycle_preview_caption": "Ciclo del agua del USGS · [Recurso original]({url}). Hay más explicaciones en Empieza aquí.",
+  "soilwater_link": "Explora la retención de agua en el suelo y las fuerzas capilares",
+  "head_detail_caption": "Detalle ampliado del estado natural: h es el nivel del agua dulce sobre el nivel del mar. Los colores corresponden a la sección inferior.",
+  "density_head": "Carga de agua dulce h sobre el nivel del mar",
+  "legend_head": "h máximo",
+  "legend_depth": "Profundidad de interfaz z",
+  "legend_volume": "Agua dulce en los poros"
 }

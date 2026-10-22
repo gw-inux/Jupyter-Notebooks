@@ -16,7 +16,7 @@
   "soil": "Gleba",
   "sandy_aquifer": "Piaszczysta warstwa wodonośna",
   "river_middle": "Między rzeką a głębią lądu",
-  "beach_photo": "Obserwacja wód podziemnych na plaży",
+  "beach_photo": "Badanie piasku na plaży. Zdjęcie udostępnione przez Thomasa Reimanna; zwierciadło wód podziemnych nie jest widoczne.",
   "beach_photo_placeholder": "Miejsce na zdjęcie płytkiego otworu obserwacyjnego na plaży, do uzupełnienia przez autora.",
   "boundary_link": "Poznaj wprowadzenie do warunków brzegowych",
   "books_start": "Kilka książek na początek",
@@ -35,5 +35,12 @@
   "pumping_change_note": "Zmiany odnoszą się do stanu bez pompowania. Ujemna zmiana głębokości oznacza podniesienie granicy. Symbol studni nie określa głębokości filtra.",
   "model_assumptions": "Jak działa model wyspy",
   "density_caption": "Wyidealizowany przekrój wybrzeża. Połączone słupy wody ilustrują jednakowe ciśnienie na granicy wody słodkiej i słonej. Dla h i z zastosowano różne skale pionowe.",
-  "back_reflect": "Powrót do Podsumuj i odkrywaj"
+  "back_reflect": "Powrót do Podsumuj i odkrywaj",
+  "cycle_preview_caption": "Obieg wody USGS · [Oryginalne źródło]({url}). Więcej wyjaśnień znajduje się w sekcji Zacznij tutaj.",
+  "soilwater_link": "Poznaj retencję wody w glebie i siły kapilarne",
+  "head_detail_caption": "Powiększony fragment stanu naturalnego: h to poziom wody słodkiej ponad poziomem morza. Kolory odpowiadają przekrojowi poniżej.",
+  "density_head": "Wysokość hydrauliczna wody słodkiej h ponad poziomem morza",
+  "legend_head": "Maksymalne h",
+  "legend_depth": "Głębokość granicy z",
+  "legend_volume": "Woda słodka w porach"
 }

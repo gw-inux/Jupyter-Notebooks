@@ -16,7 +16,7 @@
   "soil": "Soil",
   "sandy_aquifer": "Sandy aquifer",
   "river_middle": "Between river and inland",
-  "beach_photo": "Observing groundwater at a beach",
+  "beach_photo": "Exploring beach sand. Photograph supplied by Thomas Reimann; the water table is not visible.",
   "beach_photo_placeholder": "Photograph space: a shallow observation hole at a beach. An author-supplied photograph can be placed here.",
   "boundary_link": "Explore the Boundary Conditions Introduction",
   "books_start": "A few books to start with",
@@ -35,5 +35,12 @@
   "pumping_change_note": "Changes are relative to the unpumped state. A negative depth change means that the interface has risen toward sea level. The well symbol does not specify a screen depth.",
   "model_assumptions": "How the island model works",
   "density_caption": "Idealised coastal section. The connected water columns illustrate equal pressure at the interface. h and z use different vertical scales.",
-  "back_reflect": "Back to Reflect & explore"
+  "back_reflect": "Back to Reflect & explore",
+  "cycle_preview_caption": "USGS water cycle · [Original resource]({url}). More explanation is in Start here.",
+  "soilwater_link": "Explore soil water retention and capillary forces",
+  "head_detail_caption": "Enlarged detail of the natural state: h is the freshwater level above sea level. The colours match the section below.",
+  "density_head": "Freshwater head h above sea level",
+  "legend_head": "Maximum h",
+  "legend_depth": "Interface depth z",
+  "legend_volume": "Freshwater in pore space"
 }

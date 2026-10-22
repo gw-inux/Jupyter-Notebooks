@@ -431,7 +431,16 @@ def beach(x_hole, depth, reveal, t):
         fontsize=13,
         color=INK,
     )
-    ax.text(15, 0.16, plot_text(t("sandy_beach")), ha="center", fontsize=13, color=INK)
+    # Keep the material label clear of the two new inland intermediate holes.
+    beach_label_x, beach_label_y = (9, 0.07) if 11 <= x_hole <= 16.5 else (15, 0.16)
+    ax.text(
+        beach_label_x,
+        beach_label_y,
+        plot_text(t("sandy_beach")),
+        ha="center",
+        fontsize=13,
+        color=INK,
+    )
     if reveal:
         ax.text(
             13, -0.39, plot_text(t("groundwater")), ha="center", fontsize=13, color=INK
@@ -608,7 +617,7 @@ def lens(peak_head, t, pumping=0.0, pumping_scenario=False):
     natural_h, natural_z = island_profile(x, peak_head)
     ground = island_surface(x, radius)
     fig, ax = axes((10, 5.6))
-    bottom = -46
+    bottom = -61
     ax.fill_between(
         x, bottom, -z, color="#689FC8", hatch="//", edgecolor="#5589B1", linewidth=0
     )
@@ -642,19 +651,37 @@ def lens(peak_head, t, pumping=0.0, pumping_scenario=False):
         ax.plot(x, -natural_z, color="#75818A", ls="--", lw=1.4)
     ax.plot(x, h, color="#16888F", lw=2.3, label=plot_text(t("water_table")))
     ax.plot(x, -z, color="#215780", lw=2.3, label=plot_text(t("interface")))
-    # Labels sit in a white callout above the section, so a thin lens never
-    # places a freshwater label inside the saltwater region.
-    volume = freshwater_volume(peak_head, pumping)
+    # Natural reference values move into a compact lower-right legend. The
+    # lower margin is reserved below the deepest interface (40 m), so this
+    # panel never hides the fresh/saltwater boundary. Pumping comparisons
+    # remain available as native Streamlit metrics below the figure.
+    values = (
+        plot_text(t("without_pumping"))
+        + "\n"
+        + plot_text(t("legend_head"))
+        + f": {peak_head:.1f} m\n"
+        + plot_text(t("legend_depth"))
+        + f": {peak_head * ISLAND.alpha:.1f} m\n"
+        + plot_text(t("legend_volume"))
+        + f": {freshwater_volume(peak_head):,.0f} m³"
+    )
     ax.text(
-        0.02,
-        0.97,
-        plot_text(t("freshwater_volume")) + f"\n{volume:,.0f} m³",
+        0.98,
+        0.025,
+        values,
         transform=ax.transAxes,
-        ha="left",
-        va="top",
-        fontsize=13,
+        ha="right",
+        va="bottom",
+        fontsize=11,
+        linespacing=1.2,
         color=INK,
-        bbox={"facecolor": "white", "edgecolor": "none", "alpha": 0.9},
+        bbox={
+            "facecolor": "white",
+            "edgecolor": "#9DB8C7",
+            "alpha": 0.96,
+            "boxstyle": "round,pad=0.45",
+        },
+        gid="lens_reference_values",
     )
     ax.text(
         0.98,
@@ -680,7 +707,12 @@ def lens(peak_head, t, pumping=0.0, pumping_scenario=False):
         arrowprops={"arrowstyle": "->", "color": INK},
     )
     ax.text(
-        0, -44, plot_text(t("saltwater")), ha="center", fontsize=13, color="#123753"
+        -0.75 * radius,
+        -53,
+        plot_text(t("saltwater")),
+        ha="center",
+        fontsize=13,
+        color="#123753",
     )
     if pumping_scenario:
         # A symbolic well, not a representation of screen depth or construction.
@@ -720,32 +752,99 @@ def lens(peak_head, t, pumping=0.0, pumping_scenario=False):
     return fig
 
 
-def density_principle(t):
+def head_detail(peak_head, t):
+    """Enlarged natural water-table detail, in metres, with the lens colours.
+
+    This shows the left half of the same circular island, from shore to centre.
+    The interface lies below the cropped view. Fixed limits keep slider changes
+    visually comparable; no change is made to the regional model.
+    """
+    from core.coastal import ISLAND, island_profile
+
+    fig, ax = axes((4.6, 2.9))
+    distance = np.linspace(0, 1, 180)
+    radius = (1 - distance) * ISLAND.radius_m
+    head, _ = island_profile(radius, peak_head)
+    ground = island_surface(radius, ISLAND.radius_m)
+    ax.fill_between(distance, -0.5, head, color="#B8E5EB")
+    ax.fill_between(distance, head, ground, color="#EBDDCA")
+    ax.fill_between([-0.3, 0], -0.5, 0, color="#8DC7E4")
+    ax.plot(distance, ground, color="#806B4A", lw=2)
+    ax.plot(distance, head, color="#16888F", lw=2.3, gid="detail_water_table")
+    ax.axhline(0, color=BLUE, ls=":", lw=1.2, gid="detail_sea_level")
+    ax.plot([1, 1.12], [peak_head, peak_head], color="#16888F", ls="--", lw=1)
+    ax.annotate(
+        "",
+        xy=(1.1, peak_head),
+        xytext=(1.1, 0),
+        arrowprops={
+            "arrowstyle": "<->",
+            "color": "#16888F",
+            "lw": 1.7,
+            "shrinkA": 0,
+            "shrinkB": 0,
+            "mutation_scale": min(10, max(3, 30 * peak_head)),
+        },
+    )
+    ax.text(
+        1.15,
+        max(0.22, peak_head / 2),
+        f"h = {peak_head:.1f} m",
+        fontsize=12,
+        ha="left",
+        va="center",
+        color="#16888F",
+        gid="detail_head_value",
+    )
+    ax.text(
+        0.65, 3.35, plot_text(t("land_surface")), fontsize=11, ha="center", color=INK
+    )
+    ax.annotate(
+        plot_text(fill(t("water_table"), 22)),
+        xy=(0.65, float(island_profile(0.35 * ISLAND.radius_m, peak_head)[0])),
+        xytext=(0.38, 1.65),
+        fontsize=11,
+        ha="center",
+        color="#16888F",
+        arrowprops={"arrowstyle": "->", "color": "#16888F", "lw": 1},
+    )
+    ax.text(-0.15, -0.32, plot_text(t("sea")), ha="center", fontsize=10, color=INK)
+    ax.set(xlim=(-0.45, 1.8), ylim=(-0.6, 3.8))
+    ax.axis("off")
+    return fig
+
+
+def density_principle(t, head_above_sea=0.8):
     """Coastal pressure-balance schematic with connected comparison columns.
 
+    The slider specifies h at the comparison column, not at the inland edge.
     The below-sea geometry uses z = 40 h for 1000/1025 kg/m³ water densities.
     Positive elevations are magnified eightfold so the small freshwater head
     is readable; the translated caption makes this unequal scaling explicit.
     The U-shaped columns are a conceptual pressure comparison, not pumping
     infrastructure. The separate island/pumping calculation is unchanged.
     """
+    if not np.isfinite(head_above_sea) or not 0.1 <= head_above_sea <= 1.0:
+        raise ValueError("Freshwater head must be between 0.1 and 1.0 m.")
     fig, ax = axes((10, 5.5))
-    coast, inland, bottom = 3.4, 10.0, -4.8
+    coast, inland, bottom = 3.4, 10.0, -60.0
+    salt_x, fresh_x = 1.2, 7.2
     head_scale = 8.0
     saline, fresh = "#689FC8", "#B8E5EB"
-    land_x = np.linspace(coast, inland, 301)
+    land_x = np.unique(np.r_[np.linspace(coast, inland, 301), fresh_x])
     sea_x = np.linspace(0, coast, 181)
 
     def freshwater_head(x):
         # Prescribed smooth coastal shape, not a recharge/flow solution.
         u = (np.asarray(x) - coast) / (inland - coast)
-        return 0.1 * (1 - np.exp(-u / 0.7)) / (1 - np.exp(-1 / 0.7))
+        column_u = (fresh_x - coast) / (inland - coast)
+        return head_above_sea * (1 - np.exp(-u / 0.7)) / (1 - np.exp(-column_u / 0.7))
 
     head = freshwater_head(land_x)
     water_table = head_scale * head
     interface = -40 * head
-    land = 1.45 * (1 - np.exp(-(land_x - coast))) + 0.03 * (land_x - coast)
-    seabed = -3.1 * ((coast - sea_x) / coast) ** 0.85
+    land = 14.5 * (1 - np.exp(-(land_x - coast))) + 0.3 * (land_x - coast)
+    seabed = -31 * ((coast - sea_x) / coast) ** 0.85
 
     # Continuous sea, seabed and shore; fresh water occupies connected pores
     # beneath the water table. The sharp interface is an idealisation.
@@ -792,10 +891,9 @@ def density_principle(t):
 
     # Two open columns share the same comparison depth. At the right-hand
     # interface point, salt water of depth z balances fresh water of depth z+h.
-    salt_x, fresh_x = 1.2, 7.2
     local_head = float(freshwater_head(fresh_x))
     top, foot = head_scale * local_head, -40 * local_head
-    tube_x, tube_y = [salt_x, salt_x, fresh_x, fresh_x], [0.18, foot, foot, top + 0.18]
+    tube_x, tube_y = [salt_x, salt_x, fresh_x, fresh_x], [1.8, foot, foot, top + 1.8]
     ax.plot(tube_x, tube_y, color=INK, lw=12, solid_joinstyle="round", zorder=5)
     ax.plot(tube_x, tube_y, color="white", lw=8.5, solid_joinstyle="round", zorder=6)
     ax.plot(
@@ -829,37 +927,63 @@ def density_principle(t):
             "",
             xy=(dimension_x, y1),
             xytext=(dimension_x, y0),
-            arrowprops={"arrowstyle": "<->", "color": INK, "lw": 1.5},
+            arrowprops={
+                "arrowstyle": "<->",
+                "color": INK,
+                "lw": 1.5,
+                "shrinkA": 0,
+                "shrinkB": 0,
+                "mutation_scale": min(10, max(2, 2 * (y1 - y0))),
+            },
         )
         ax.text(
             dimension_x + 0.15,
-            (y0 + y1) / 2,
+            max(2.4, (y0 + y1) / 2) if symbol == "h" else (y0 + y1) / 2,
             symbol,
             fontsize=16,
             ha="left",
             va="center",
             color=INK,
         )
-    ax.text(
-        8.35,
-        -1.15,
-        plot_text(fill(t("freshwater"), 17)) + "\nρf = 1000 kg/m³",
-        ha="center",
-        va="center",
-        fontsize=13,
-        color=INK,
-    )
+    fresh_label = plot_text(fill(t("freshwater"), 17)) + "\nρf = 1000 kg/m³"
+    label_x = 8.35
+    label_head = float(freshwater_head(label_x))
+    label_mid = (head_scale - 40) * label_head / 2
+    if head_above_sea >= 0.4:
+        ax.text(
+            label_x,
+            label_mid,
+            fresh_label,
+            ha="center",
+            va="center",
+            fontsize=13,
+            color=INK,
+        )
+    else:
+        # A thin freshwater wedge needs an explicit callout: the label must
+        # not appear to identify the saltwater underneath it as freshwater.
+        ax.annotate(
+            fresh_label,
+            xy=(label_x, label_mid),
+            xytext=(label_x, -19),
+            ha="center",
+            va="center",
+            fontsize=13,
+            color=INK,
+            bbox={"facecolor": "white", "edgecolor": "none", "alpha": 0.95},
+            arrowprops={"arrowstyle": "->", "color": INK, "lw": 1.3},
+        )
     ax.text(
         2.5,
-        -4.0,
+        -51,
         plot_text(fill(t("saltwater"), 23)) + "\nρs = 1025 kg/m³",
         ha="center",
         va="center",
         fontsize=13,
         color=INK,
     )
-    ax.text(1.7, 0.65, plot_text(t("sea_label")), ha="center", fontsize=14, color=INK)
-    ax.set(xlim=(-0.1, 10.3), ylim=(bottom, 2.05))
+    ax.text(1.7, 6.5, plot_text(t("sea_label")), ha="center", fontsize=14, color=INK)
+    ax.set(xlim=(-0.1, 10.3), ylim=(bottom, 20.5))
     ax.axis("off")
     ax.legend(
         loc="upper center",
@@ -952,6 +1076,9 @@ def river(x_hole, depth, regime, reveal, t):
     ax.fill_between(x, ground - 0.09, ground, color="#B6A080", alpha=0.8, zorder=3)
     ax.plot(x, ground, color="#718557", lw=2, label=plot_text(t("land_surface")))
     for tree_x, scale in [(10, 1.05), (39, 1.0), (61, 0.95)]:
+        # New intermediate stops must not put a decorative tree over the hole.
+        if abs(tree_x - x_hole) < 3.5:
+            tree_x -= 4
         _pine_tree(ax, tree_x, float(river_ground(tree_x)), scale)
     ax.plot(sx, riverbed, color="#93743F", lw=2)
     ax.plot([RIVER_BANK, 100], [0, 0], color=BLUE, lw=2.4, gid="surface_water_level")
@@ -1028,7 +1155,9 @@ def river(x_hole, depth, regime, reveal, t):
         arrowprops={"arrowstyle": "-", "color": INK},
         color=INK,
     )
-    ax.set(xlim=(0, 100), ylim=(base, 2.4))
+    # Mirror only the drawing: surface water left, inland right, as at the beach.
+    # The original coordinates and all observation/head calculations are retained.
+    ax.set(xlim=(100, 0), ylim=(base, 2.4))
     ax.axis("off")
     ax.legend(
         loc="upper center",
