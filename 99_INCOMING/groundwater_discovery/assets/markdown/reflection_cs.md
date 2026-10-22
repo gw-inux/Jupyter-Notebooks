@@ -1,7 +1,7 @@
-Vysvětlete někomu vlastními slovy:
+Vysvětlete druhému vlastními slovy:
 
-1. Na Zemi je mnoho vody. Proč je jen malá část snadno dostupná lidem jako sladká voda? Kde je uložena většina **kapalné sladké vody** na Zemi?
-2. Kam se dostala voda v kelímku? Co měření odhadlo?
-3. Proč může být voda v otvoru na pláži blízko hladiny moře? Jak se mohou hladiny podzemní vody lišit u drenující a infiltrující řeky?
+1. Na Zemi je mnoho vody. Proč je jen malá část snadno dostupná jako sladká voda pro lidi? Kde je většina **kapalné sladké vody**?
+2. Kam jde voda vsakující do podzemí? Která vlastnost porézního materiálu popisuje podíl objemu, který může obsahovat vodu?
+3. Proč může jamka na pláži obsahovat vodu poblíž hladiny moře? Jak se liší hladiny vedle řeky přijímající a ztrácející vodu?
 
-**Prozkoumejte doma:** Odkud pochází vaše pitná voda a s jakou řekou, mokřadem či pobřežím může být propojena? Použijte spolehlivý místní zdroj; univerzální odpověď neexistuje.
+**Otázky k dalšímu přemýšlení:** Odkud pochází vaše pitná voda? Která řeka, mokřad nebo pobřeží s ní může souviset? Použijte důvěryhodný místní zdroj. Univerzální odpověď neexistuje.

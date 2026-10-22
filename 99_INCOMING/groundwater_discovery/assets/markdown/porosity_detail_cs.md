@@ -1,4 +1,4 @@
-**Pórovitost udává, jakou část celého vzorku tvoří prostory.** Odečtěte objem pevné hmoty od celkového objemu a vzniklý objem pórů vydělte celkovým objemem. Lze tak porovnávat různě velké vzorky. [S10]
+**Pórovitost udává, jakou část celého vzorku tvoří prostory.** Odečtěte objem pevné hmoty od celkového objemu a vzniklý objem pórů vydělte celkovým objemem. Lze tak porovnávat různě velké vzorky. [S7]
 
 - $V_t$: celkový objem vzorku, pevná hmota a póry (mL).
 - $V_s$: objem pevné hmoty bez pórů (mL).

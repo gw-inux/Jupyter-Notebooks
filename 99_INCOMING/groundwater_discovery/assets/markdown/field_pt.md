@@ -1,0 +1,1 @@
+**Prever → observar → explicar.** Num local autorizado e supervisionado, faça apenas uma depressão pequena e rasa, longe de ondas, dunas e vegetação. Compare o nível da água com o mar, espere estabilizar e registe local, hora e possíveis influências. Se não aparecer água, discuta porquê em vez de aprofundar. Não prove a água e volte a tapar a depressão.

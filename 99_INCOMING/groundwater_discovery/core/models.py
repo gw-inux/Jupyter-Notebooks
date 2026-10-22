@@ -1,6 +1,6 @@
 """Pure teaching geometry. Beach coordinates are illustrative, not observations.
 
-There is no recharge or pumping solver in this introductory module.
+The separate optional coastal model is in core.coastal.
 """
 
 import numpy as np
@@ -19,8 +19,8 @@ def cup_dimensions(bulk_ml):
     volume. These are graphical dimensions, not physical cup measurements.
     At zero volume both dimensions are zero; no empty capacity outline exists.
     """
-    if not np.isfinite(bulk_ml) or not 0 <= bulk_ml <= 2000:
-        raise ValueError("Require a sample between 0 and 2000 mL.")
+    if not np.isfinite(bulk_ml) or not 0 <= bulk_ml <= 1000:
+        raise ValueError("Require a sample between 0 and 1000 mL.")
     scale = np.sqrt(bulk_ml / 250.0)
     return 1.15 * scale, 1.25 * scale
 

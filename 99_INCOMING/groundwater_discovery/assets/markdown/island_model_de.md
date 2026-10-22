@@ -1,0 +1,7 @@
+**Feste Annahmen:** Kreisfläche A = 1.000.000 m²; Radius R ≈ 564 m; Porosität n = 0,30; Durchlässigkeit K = 5 m/Tag; Brunnenradius rw = 0,30 m. Der natürliche Höchststand legt die gleichmäßige Neubildung N fest. Dies sind Lehrannahmen.
+
+Die radiale Potentiallösung aus [Analytical Groundwater Modeling, §6.1](https://interactive-education.gw-project.org/analytical-groundwater-modeling/chap6/6.1_radial_flow.html) wird mit der Grenzflächenbeziehung aus [§4.2](https://interactive-education.gw-project.org/analytical-groundwater-modeling/chap4/4.2_unconfined_interface_flow.html) kombiniert. Die Küste bleibt auf Meereshöhe. Förderung senkt den Wasserstand und hebt die modellierte Grenzfläche am Brunnen. [S15, S17]
+
+Die Süßwassermächtigkeit h + z wird mit der Porosität multipliziert und über die Kreisfläche integriert. Ohne Förderung gilt V = (2/3)nA(1 + α)h₀; h₀ ist der natürliche Höchststand. Mit Förderung wird numerisch integriert, ohne die winzige Brunnenfläche. Das Ergebnis ist gespeichertes Wasser, kein nachhaltiger Ertrag.
+
+Das Modell beschreibt ein stationäres, gleichförmiges System mit überwiegend horizontaler Strömung ohne flache undurchlässige Basis. Lokaler vertikaler Salzwasseraufstieg an einem unvollkommenen Brunnen, Mischung, Gezeiten und Zeitverlauf fehlen. Der Regler hält den Brunnenwasserstand über der Hälfte des Ausgangswerts; dies ist keine Sicherheits- oder Salzgrenze. [S18]

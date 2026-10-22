@@ -1,4 +1,4 @@
-**La porosité indique la part de l’échantillon occupée par les espaces.** Soustrayez le volume solide du volume total, puis divisez ce volume des pores par le total. Des échantillons de tailles différentes deviennent comparables. [S10]
+**La porosité indique la part de l’échantillon occupée par les espaces.** Soustrayez le volume solide du volume total, puis divisez ce volume des pores par le total. Des échantillons de tailles différentes deviennent comparables. [S7]
 
 - $V_t$ : volume total, solides et pores (mL).
 - $V_s$ : volume du matériau solide sans pores (mL).

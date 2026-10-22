@@ -1,3 +1,3 @@
-**Jde o první pracovní verzi.** Modul se právě vyvíjí a posuzuje. V příštích dnech bude upravován.
+**Toto je první návrh.** Modul se vyvíjí a posuzuje a v příštích dnech bude upravován.
 
-Tato demonstrační verze představuje přístup k výuce a slouží ke sběru zpětné vazby. Připomínky k vědeckým vysvětlením, jazyku, aktivitám a ovládání prosím sdílejte prostřednictvím níže uvedeného formuláře Groundwater Project.
+Ukázka představuje způsob výuky a sbírá připomínky. Uvítáme názory každého na vědu, jazyk, aktivity i ovládání. Vyplňte hodnoticí formulář a pošlete jej na **[mail@reimann-thomas.de](mailto:mail@reimann-thomas.de)**. Děkujeme — každé zpětné vazby si velmi vážíme!

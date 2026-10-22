@@ -1,0 +1,1 @@
+**h**: poziom wody słodkiej ponad morzem (m); **z**: głębokość granicy pod morzem (m); **ρf**: gęstość wody słodkiej (**1000 kg/m³**); **ρs**: morskiej (**1025 kg/m³**). Bezwymiarowy współczynnik **α = 40**: poziom 0,1 m odpowiada głębokości około 4 m. Inne zasolenie daje inny współczynnik.

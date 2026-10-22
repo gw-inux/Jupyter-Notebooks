@@ -1,3 +1,3 @@
-Dove troveresti acqua sotterranea guardando sotto terra? Una spiaggia sabbiosa è un punto di partenza semplice: vicino alla riva, la falda è spesso abbastanza superficiale da poterla osservare. Sotto di essa i pori collegati di questo acquifero sabbioso sono pieni d’acqua. [S3]
+Dove troveresti acqua sotterranea guardando sotto terra? Una spiaggia sabbiosa è un punto di partenza semplice: vicino alla riva, la falda è spesso abbastanza superficiale da poterla osservare. Sotto di essa i pori collegati di questo acquifero sabbioso sono pieni d’acqua. [S5]
 
 **La buca raccoglierà acqua?** Scegli un luogo e una buca poco profonda, poi mostra la falda. In questa spiaggia immaginaria il mare resta stabile e la falda è solo leggermente più alta nell’entroterra. Confronta la **quota** con il mare, non soltanto la profondità sotto la sabbia. Il disegno mostra un’idea, non livelli misurati.

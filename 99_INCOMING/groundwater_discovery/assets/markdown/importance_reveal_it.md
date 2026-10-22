@@ -1,3 +1,3 @@
 Circa il **99%** è acqua sotterranea, secondo la stima globale arrotondata usata da The Groundwater Project. Il dato riguarda la **riserva di acqua dolce liquida**, non la disponibilità annuale o l’acqua pronta da bere. Il ghiaccio contiene la maggior parte dell’acqua dolce totale della Terra.
 
-Perché conta questa riserva nascosta? Alimenta i pozzi e può sostenere fiumi e zone umide tra gli eventi di pioggia. Il grande volume non significa disponibilità illimitata: parte è inaccessibile, si rinnova lentamente o è contaminata. Proteggere l’acqua sotterranea protegge anche le acque superficiali collegate. [S1, S2]
+Perché conta questa riserva nascosta? Alimenta i pozzi e può sostenere fiumi e zone umide tra gli eventi di pioggia. Il grande volume non significa disponibilità illimitata: parte è inaccessibile, si rinnova lentamente o è contaminata. Proteggere l’acqua sotterranea protegge anche le acque superficiali collegate. [S1, S3]

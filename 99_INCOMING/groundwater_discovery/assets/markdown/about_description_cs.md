@@ -1,0 +1,1 @@
+**Objevte podzemní vodu** je úvodní interaktivní vzdělávací modul **The Groundwater Project**. Krátká vysvětlení, otázky a názorné pokusy přibližují podzemní vodu v koloběhu vody, její ukládání a propojení s povrchovými vodami. Modul je určen středoškolákům a dospělým zájemcům pro samostatné učení, výuku i diskusi.

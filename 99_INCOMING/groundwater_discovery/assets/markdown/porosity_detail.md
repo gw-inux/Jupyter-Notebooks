@@ -1,4 +1,4 @@
-**Porosity tells us how much of the whole sample is space.** Subtract the solids from the total to obtain pore volume, then divide by the total. This makes samples of different sizes comparable. [S10]
+**Porosity tells us how much of the whole sample is space.** Subtract the solids from the total to obtain pore volume, then divide by the total. This makes samples of different sizes comparable. [S7]
 
 - $V_t$: total sample volume, solids plus pores (mL).
 - $V_s$: solid material volume, excluding pores (mL).

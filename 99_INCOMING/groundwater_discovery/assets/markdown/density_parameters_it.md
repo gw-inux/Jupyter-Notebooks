@@ -1,0 +1,1 @@
+**h** è il livello dolce sopra il mare (m); **z** la profondità dell’interfaccia sotto il mare (m); **ρf** la densità dolce (**1000 kg/m³**); **ρs** quella marina (**1025 kg/m³**). Il fattore adimensionale **α = 40**: 0,1 m di livello corrisponde a circa 4 m di profondità. Salinità diverse danno fattori diversi.

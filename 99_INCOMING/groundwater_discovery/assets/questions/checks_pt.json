@@ -1,0 +1,146 @@
+[
+  {
+    "id": "stores",
+    "source": "S1",
+    "question": "A que se refere o valor aproximado de 99%?",
+    "options": {
+      "Toda a água da Terra": false,
+      "Água doce líquida armazenada na Terra": true,
+      "Toda a água segura para beber": false
+    },
+    "success": "O total é a reserva de água doce líquida. Excluem-se sal e gelo; nem toda a água subterrânea é utilizável.",
+    "error": "O total é a reserva de água doce líquida. Excluem-se sal e gelo; nem toda a água subterrânea é utilizável."
+  },
+  {
+    "id": "role",
+    "source": "S3",
+    "question": "Porque importa a água subterrânea entre chuvas?",
+    "options": {
+      "Impede a evaporação": false,
+      "Pode continuar a alimentar rios e zonas húmidas": true,
+      "Torna toda a água potável": false
+    },
+    "success": "A água armazenada pode descarregar lentamente para rios e zonas húmidas nos períodos secos.",
+    "error": "A água armazenada pode descarregar lentamente para rios e zonas húmidas nos períodos secos."
+  },
+  {
+    "id": "limits",
+    "source": "S1",
+    "question": "Uma reserva enorme significa água utilizável ilimitada?",
+    "options": {
+      "Sim, reserva e oferta anual são iguais": false,
+      "Sim, toda a água subterrânea é doce e limpa": false,
+      "Não, acesso, renovação e qualidade limitam o uso": true
+    },
+    "success": "O volume armazenado difere da quantidade que pode ser usada de forma sustentável em cada ano.",
+    "error": "O volume armazenado difere da quantidade que pode ser usada de forma sustentável em cada ano."
+  },
+  {
+    "id": "grains",
+    "source": "S5",
+    "question": "Onde está a água subterrânea nesta areia?",
+    "options": {
+      "Só dentro dos grãos sólidos": false,
+      "Num grande lago vazio subterrâneo": false,
+      "Nos espaços cheios de água entre grãos": true
+    },
+    "success": "Os grãos ficam no lugar. A água ocupa poros existentes; fraturas e cavernas são outros contextos.",
+    "error": "Os grãos ficam no lugar. A água ocupa poros existentes; fraturas e cavernas são outros contextos."
+  },
+  {
+    "id": "porosity",
+    "source": "S6",
+    "question": "Uma amostra de 400 mL precisa de 160 mL para encher os poros. Qual a porosidade estimada?",
+    "options": {
+      "40%": true,
+      "160%": false,
+      "60%": false
+    },
+    "success": "160 / 400 = 0,40 = 40%. O total inclui sólidos e poros. Isto não mede a água drenável.",
+    "error": "160 / 400 = 0,40 = 40%. O total inclui sólidos e poros. Isto não mede a água drenável."
+  },
+  {
+    "id": "connectivity",
+    "source": "S6",
+    "question": "Porosidades iguais significam sempre a mesma facilidade de fluxo?",
+    "options": {
+      "Não, conexões e dimensões dos poros também importam": true,
+      "Sim, só a porosidade determina o fluxo": false,
+      "Sim, a disposição dos grãos nunca importa": false
+    },
+    "success": "O volume dos espaços não é o mesmo que a sua capacidade de transmitir água.",
+    "error": "O volume dos espaços não é o mesmo que a sua capacidade de transmitir água."
+  },
+  {
+    "id": "recharge",
+    "source": "S9",
+    "question": "O que significa recarga de água subterrânea?",
+    "options": {
+      "Toda a chuva chega imediatamente ao mar": false,
+      "A água chega e repõe a água subterrânea": true,
+      "As nuvens bombeiam água do solo": false
+    },
+    "success": "Só parte da precipitação chega ao aquífero; outra evapora, é usada por plantas ou escoa à superfície.",
+    "error": "Só parte da precipitação chega ao aquífero; outra evapora, é usada por plantas ou escoa à superfície."
+  },
+  {
+    "id": "beach",
+    "source": "S5",
+    "question": "Uma cova na praia tem água perto do nível do mar. O que se conclui?",
+    "options": {
+      "É segura para beber": false,
+      "A cova expôs água no sedimento; a salinidade continua desconhecida": true,
+      "Todas as praias têm o mesmo nível freático": false
+    },
+    "success": "Observamos água nos poros, mas o nível não determina salinidade. Os níveis locais variam.",
+    "error": "Observamos água nos poros, mas o nível não determina salinidade. Os níveis locais variam."
+  },
+  {
+    "id": "exchange",
+    "source": "S10",
+    "question": "Um rio de água doce conectado sobe acima da carga subterrânea adjacente. O que pode acontecer?",
+    "options": {
+      "A água subterrânea tem sempre de entrar no rio": false,
+      "Não pode haver troca": false,
+      "Água do rio pode entrar no aquífero": true
+    },
+    "success": "Em sistemas doces conectados a água move-se de maior para menor carga. O sentido pode inverter-se.",
+    "error": "Em sistemas doces conectados a água move-se de maior para menor carga. O sentido pode inverter-se."
+  },
+  {
+    "id": "lens",
+    "source": "S12",
+    "question": "Nesta comparação ideal, o que acompanha um nível doce menor?",
+    "options": {
+      "A interface sobe e a lente fica mais fina": true,
+      "A interface desce e a lente engrossa": false,
+      "A interface nunca muda": false
+    },
+    "success": "Uma carga menor corresponde a uma interface menos profunda. Comparam-se equilíbrios, não a resposta imediata ao bombeamento.",
+    "error": "Uma carga menor corresponde a uma interface menos profunda. Comparam-se equilíbrios, não a resposta imediata ao bombeamento."
+  },
+  {
+    "id": "density",
+    "source": "S12",
+    "question": "Porque pode a água doce ficar acima da água salina?",
+    "options": {
+      "A água doce é sempre mais quente": false,
+      "A areia remove todo o sal": false,
+      "A água doce é menos densa": true
+    },
+    "success": "O contraste de densidades importa. As águas reais também se misturam; o esquema simplifica a transição.",
+    "error": "O contraste de densidades importa. As águas reais também se misturam; o esquema simplifica a transição."
+  },
+  {
+    "id": "lens_scope",
+    "source": "S15",
+    "question": "Este modelo dá um caudal seguro para uma ilha real?",
+    "options": {
+      "Sim, basta ler a lente": false,
+      "Não, é preciso dados locais e um modelo adequado": true,
+      "Sim, todas as costas são iguais": false
+    },
+    "success": "Faltam mistura, fluxo vertical local, tempo de resposta e geologia do local. É necessária uma avaliação apropriada.",
+    "error": "Faltam mistura, fluxo vertical local, tempo de resposta e geologia do local. É necessária uma avaliação apropriada."
+  }
+]

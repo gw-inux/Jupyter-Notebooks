@@ -2,10 +2,16 @@
 
 import streamlit as st
 from core.i18n import ROOT, tr, md
-from core.ui import heading, expander, responsive_image
+from core.ui import (
+    heading,
+    expander,
+    responsive_image,
+    centered_link,
+    next_page,
+    reset_button,
+)
 from core.sources import (
     SOURCES,
-    FLOW_MODULE_URL,
     CHERRY_VIDEO_URL,
     CHERRY_START_SECONDS,
 )
@@ -31,7 +37,8 @@ correct = sum(bool(results.get(q, {}).get("correct")) for q in core_ids)
 st.caption(tr("progress") + f": {correct} / {len(core_ids)}")
 st.subheader(tr("learn_more"), divider="violet")
 md("resources_intro")
-st.link_button("The Groundwater Project", "https://gw-project.org/", type="primary")
+centered_link("The Groundwater Project", "https://gw-project.org/", "gwp")
+st.subheader(tr("books_start"), divider="violet")
 books = [
     (
         "cover_water_cycle.png",
@@ -58,25 +65,24 @@ for col, (cover, title, authors, slug) in zip(st.columns(3), books):
             path = ROOT / "assets/images" / cover
             if path.is_file():
                 responsive_image(str(path))
-            st.markdown("**" + title + "**")
+            st.markdown(
+                "**[" + title + "](https://gw-project.org/books/" + slug + "/)**"
+            )
             st.caption(authors)
             st.link_button(tr("book"), "https://gw-project.org/books/" + slug + "/")
 st.caption(tr("cover_credit"))
+st.subheader(tr("cherry_talk"), divider="violet")
+st.markdown(tr("cherry_intro"))
+st.video(CHERRY_VIDEO_URL, start_time=CHERRY_START_SECONDS)
 with expander(tr("cherry_talk")):
     md("cherry_talk")
-    st.video(CHERRY_VIDEO_URL, start_time=CHERRY_START_SECONDS)
     st.link_button(tr("watch_youtube"), f"{CHERRY_VIDEO_URL}&t={CHERRY_START_SECONDS}s")
-st.link_button(tr("advanced_link"), FLOW_MODULE_URL)
 with expander(tr("all_sources"), "sources"):
     for id, (title, url) in SOURCES.items():
         st.markdown(f"**[{id}]** [{title}]({url})")
 with expander(tr("facilitator")):
     md("facilitator")
-if st.button(tr("reset"), key="reset_session"):
-    lang = st.session_state.language
-    layout = st.session_state.layout_choice
-    for key in list(st.session_state):
-        del st.session_state[key]
-    st.session_state.language = lang
-    st.session_state.layout_choice = layout
-    st.switch_page("content/home.py")
+st.subheader(tr("extra"), divider="violet")
+md("go_deeper_intro")
+next_page("lab")
+reset_button()

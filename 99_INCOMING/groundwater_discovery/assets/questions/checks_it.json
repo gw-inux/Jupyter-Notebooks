@@ -13,7 +13,7 @@
   },
   {
     "id": "role",
-    "source": "S2",
+    "source": "S3",
     "question": "Perché l’acqua sotterranea conta tra le piogge?",
     "options": {
       "Ferma l’evaporazione": false,
@@ -37,7 +37,7 @@
   },
   {
     "id": "grains",
-    "source": "S3",
+    "source": "S5",
     "question": "Dov’è l’acqua sotterranea in questa sabbia?",
     "options": {
       "Solo dentro i granuli solidi": false,
@@ -49,7 +49,7 @@
   },
   {
     "id": "porosity",
-    "source": "S4",
+    "source": "S6",
     "question": "Un campione di 400 mL richiede 160 mL d’acqua per riempire i pori. Qual è la porosità stimata?",
     "options": {
       "40%": true,
@@ -61,7 +61,7 @@
   },
   {
     "id": "connectivity",
-    "source": "S4",
+    "source": "S6",
     "question": "La stessa porosità implica sempre la stessa facilità di flusso?",
     "options": {
       "No, contano anche collegamenti e dimensioni dei pori": true,
@@ -73,7 +73,7 @@
   },
   {
     "id": "recharge",
-    "source": "S13",
+    "source": "S9",
     "question": "Che cosa significa ricarica della falda?",
     "options": {
       "Tutta la pioggia raggiunge subito il mare": false,
@@ -85,7 +85,7 @@
   },
   {
     "id": "beach",
-    "source": "S3",
+    "source": "S5",
     "question": "Una buca contiene acqua vicino al livello del mare. Cosa puoi concludere?",
     "options": {
       "L’acqua è sicura da bere": false,
@@ -97,7 +97,7 @@
   },
   {
     "id": "exchange",
-    "source": "S5",
+    "source": "S10",
     "question": "Un fiume connesso sale sopra il carico della falda vicina. Quale scambio può avvenire?",
     "options": {
       "La falda deve sempre alimentare il fiume": false,
@@ -109,7 +109,7 @@
   },
   {
     "id": "lens",
-    "source": "S6",
+    "source": "S12",
     "question": "In questo confronto ideale, cosa accompagna un livello dolce più basso?",
     "options": {
       "L’interfaccia sale e la lente si assottiglia": true,
@@ -121,7 +121,7 @@
   },
   {
     "id": "density",
-    "source": "S6",
+    "source": "S12",
     "question": "Perché l’acqua dolce può stare sopra acqua sotterranea salina?",
     "options": {
       "È sempre più calda": false,
@@ -133,14 +133,14 @@
   },
   {
     "id": "lens_scope",
-    "source": "S8",
-    "question": "L’immagine indica una portata di pompaggio sicura per Sopot?",
+    "source": "S15",
+    "question": "Questo modello indica una portata sicura per un’isola reale?",
     "options": {
       "Sì, si legge direttamente dalla lente": false,
       "No, servono dati locali e un modello adatto": true,
       "Sì, tutte le coste si comportano allo stesso modo": false
     },
-    "success": "Il disegno è ideale, usa densità oceaniche e omette mescolamento, tempi e geologia locale. Il Baltico è salmastro.",
-    "error": "Il disegno è ideale, usa densità oceaniche e omette mescolamento, tempi e geologia locale. Il Baltico è salmastro."
+    "success": "Il modello omette mescolamento, flusso verticale locale, tempi e geologia del sito. Servono dati locali e un modello adatto.",
+    "error": "Il modello omette mescolamento, flusso verticale locale, tempi e geologia del sito. Servono dati locali e un modello adatto."
   }
 ]

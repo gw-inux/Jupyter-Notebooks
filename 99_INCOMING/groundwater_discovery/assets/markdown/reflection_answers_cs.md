@@ -1,3 +1,3 @@
-1. Většina vody je slaná a mnoho sladké vody je zmrzlé. Asi 99 % **kapalné sladké vody uložené na Zemi** tvoří podzemní voda. Nejde o množství bezpečně čerpatelné či pitné: záleží i na hloubce, kvalitě, ekosystémech a obnovování zásob. [S1]
-2. Voda vyplňuje již existující póry mezi zrny. Přidaný objem odhaduje objem pórů; po vydělení celkovým objemem vzorku odhaduje pórovitost, s omezeními pokusu. [S4, S10]
-3. Na propojené pláži se hladiny setkávají u břehu; ve vnitrozemí může být podzemní voda o něco výše. Drenující řeka přijímá vodu z vyšších hladin; infiltrující řeka zásobuje podzemní vodu s nižší hladinou. [S5, S16]
+1. Většina vody je slaná a mnoho sladké vody je zmrzlé. Přibližně 99% **kapalné sladké vody** je podzemní. Je to zásoba, nikoli bezpečně využitelné či pitné množství; záleží na hloubce, kvalitě, ekosystémech a obnovování. [S1]
+2. Voda vstupuje do pórů. Část zůstane nad hladinou či se vrátí do atmosféry; část doplní nasycenou zónu. **Pórovitost** je objem pórů dělený celkovým objemem: dostupný prostor, ne vždy přítomná nebo odvodnitelná voda. [S6, S7]
+3. Na hydraulicky propojené pláži se hladiny setkávají u břehu; ve vnitrozemí mohou být vyšší. Drenující řeka přijímá vodu z vyšších hladin; infiltrující řeka dotuje nižší hladiny. [S10, S13]

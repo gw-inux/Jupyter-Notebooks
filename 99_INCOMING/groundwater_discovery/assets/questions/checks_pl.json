@@ -13,7 +13,7 @@
   },
   {
     "id": "role",
-    "source": "S2",
+    "source": "S3",
     "question": "Dlaczego wody podziemne są ważne między opadami?",
     "options": {
       "Zatrzymują parowanie": false,
@@ -37,7 +37,7 @@
   },
   {
     "id": "grains",
-    "source": "S3",
+    "source": "S5",
     "question": "Gdzie jest woda podziemna w tym piasku?",
     "options": {
       "Tylko wewnątrz litych ziaren": false,
@@ -49,7 +49,7 @@
   },
   {
     "id": "porosity",
-    "source": "S4",
+    "source": "S6",
     "question": "Próbka 400 mL wymaga 160 mL wody do wypełnienia porów. Jaka jest szacowana porowatość?",
     "options": {
       "40%": true,
@@ -61,7 +61,7 @@
   },
   {
     "id": "connectivity",
-    "source": "S4",
+    "source": "S6",
     "question": "Czy jednakowa porowatość zawsze oznacza równie łatwy przepływ?",
     "options": {
       "Nie, liczą się też połączenia i rozmiary porów": true,
@@ -73,7 +73,7 @@
   },
   {
     "id": "recharge",
-    "source": "S13",
+    "source": "S9",
     "question": "Co oznacza zasilanie wód podziemnych?",
     "options": {
       "Cały deszcz natychmiast dociera do morza": false,
@@ -85,7 +85,7 @@
   },
   {
     "id": "beach",
-    "source": "S3",
+    "source": "S5",
     "question": "Dołek zawiera wodę blisko poziomu morza. Co z tego wynika?",
     "options": {
       "Woda jest bezpieczna do picia": false,
@@ -97,7 +97,7 @@
   },
   {
     "id": "exchange",
-    "source": "S5",
+    "source": "S10",
     "question": "Poziom połączonej rzeki słodkowodnej wzrasta ponad sąsiedni potencjał wód podziemnych. Co może się zdarzyć?",
     "options": {
       "Wody podziemne zawsze płyną do rzeki": false,
@@ -109,7 +109,7 @@
   },
   {
     "id": "lens",
-    "source": "S6",
+    "source": "S12",
     "question": "Co w tym idealnym porównaniu towarzyszy niższemu poziomowi wody słodkiej?",
     "options": {
       "Granica podnosi się, a soczewka staje się cieńsza": true,
@@ -121,7 +121,7 @@
   },
   {
     "id": "density",
-    "source": "S6",
+    "source": "S12",
     "question": "Dlaczego woda słodka może leżeć nad słonymi wodami podziemnymi?",
     "options": {
       "Słodka woda jest zawsze cieplejsza": false,
@@ -133,14 +133,14 @@
   },
   {
     "id": "lens_scope",
-    "source": "S8",
-    "question": "Czy rysunek wyznacza bezpieczny wydatek pompowania dla Sopotu?",
+    "source": "S15",
+    "question": "Czy model wyznacza bezpieczne pompowanie dla rzeczywistej wyspy?",
     "options": {
       "Tak, można go odczytać z soczewki": false,
       "Nie, potrzebne są lokalne dane i odpowiedni model": true,
       "Tak, każde wybrzeże działa identycznie": false
     },
-    "success": "Rysunek jest idealizowany, używa gęstości oceanicznych i pomija mieszanie, czas oraz lokalną geologię. Bałtyk jest słonawy.",
-    "error": "Rysunek jest idealizowany, używa gęstości oceanicznych i pomija mieszanie, czas oraz lokalną geologię. Bałtyk jest słonawy."
+    "success": "Pomija mieszanie, lokalny przepływ pionowy, czas reakcji i geologię miejsca. Ocena wymaga lokalnych danych i odpowiedniego modelu.",
+    "error": "Pomija mieszanie, lokalny przepływ pionowy, czas reakcji i geologię miejsca. Ocena wymaga lokalnych danych i odpowiedniego modelu."
   }
 ]

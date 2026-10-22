@@ -1,0 +1,1 @@
+**h**: Süßwasserstand über Meeresspiegel (m); **z**: Grenzflächentiefe darunter (m); **ρf**: Süßwasserdichte (**1000 kg/m³**); **ρs**: Meerwasserdichte (**1025 kg/m³**). Damit beträgt der dimensionslose Faktor **α = 40**: 0,1 m Wasserstand entsprechen etwa 4 m Tiefe. Andere Salzgehalte ergeben andere Faktoren.

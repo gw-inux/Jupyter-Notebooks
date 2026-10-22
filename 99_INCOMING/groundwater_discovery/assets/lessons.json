@@ -1,59 +1,87 @@
 {
   "home": {
     "en": {
-      "motivation": "A hidden world beneath your feet: begin with a question, try a cup experiment, then explore a beach.",
+      "motivation": "Discover a hidden world beneath your feet. Explore groundwater’s place in the water cycle, how the ground stores water, and why this hidden resource matters to people and nature.",
       "objectives": [
         "Discover which freshwater resource is most significant for life on Earth.",
         "Explain where groundwater occurs and how it connects to surface water."
       ]
     },
     "de": {
-      "motivation": "Eine verborgene Welt unter deinen Füßen: Beginne mit einer Frage, probiere ein Becherexperiment und erkunde einen Strand.",
+      "motivation": "Entdecke eine verborgene Welt unter deinen Füßen. Erkunde die Rolle des Grundwassers im Wasserkreislauf, wie der Untergrund Wasser speichert und warum diese verborgene Ressource für Mensch und Natur wichtig ist.",
       "objectives": [
         "Entdecke, welche Süßwasserressource für das Leben auf der Erde besonders wichtig ist.",
         "Erkläre, wo Grundwasser vorkommt und wie es mit Oberflächenwasser verbunden ist."
       ]
     },
     "pl": {
-      "motivation": "Ukryty świat pod stopami: zacznij od pytania, wykonaj doświadczenie z kubkiem, a potem zbadaj plażę.",
+      "motivation": "Odkryj ukryty świat pod stopami. Poznaj rolę wód podziemnych w obiegu wody, sposób magazynowania wody w gruncie i znaczenie tego ukrytego zasobu dla ludzi i przyrody.",
       "objectives": [
         "Odkryj, który zasób wody słodkiej jest najważniejszy dla życia na Ziemi.",
         "Wyjaśnij, gdzie występują wody podziemne i jak łączą się z wodami powierzchniowymi."
       ]
     },
     "fr": {
-      "motivation": "Un monde caché sous vos pieds : commencez par une question, essayez une expérience avec un gobelet, puis explorez une plage.",
+      "motivation": "Découvrez un monde caché sous vos pieds. Explorez la place de l’eau souterraine dans le cycle de l’eau, son stockage dans le sous-sol et son importance pour les humains et la nature.",
       "objectives": [
         "Découvrez quelle ressource en eau douce est essentielle à la vie sur Terre.",
         "Expliquez où se trouve l’eau souterraine et ses liens avec l’eau de surface."
       ]
     },
     "es": {
-      "motivation": "Un mundo oculto bajo tus pies: empieza con una pregunta, prueba un experimento con un vaso y explora una playa.",
+      "motivation": "Descubre un mundo oculto bajo tus pies. Explora el papel del agua subterránea en el ciclo del agua, cómo se almacena en el terreno y por qué importa a las personas y a la naturaleza.",
       "objectives": [
         "Descubre qué recurso de agua dulce es más importante para la vida en la Tierra.",
         "Explica dónde está el agua subterránea y cómo se conecta con el agua superficial."
       ]
     },
     "ar": {
-      "motivation": "عالم خفي تحت قدميك: ابدأ بسؤال، وجرّب تجربة بكوب، ثم استكشف شاطئاً.",
+      "motivation": "اكتشف عالماً خفياً تحت قدميك. تعرّف إلى دور المياه الجوفية في دورة الماء، وكيف يخزّن باطن الأرض الماء، ولماذا يهمّ هذا المورد الخفي الإنسان والطبيعة.",
       "objectives": [
         "اكتشف أي موارد المياه العذبة هو الأهم للحياة على الأرض.",
         "اشرح أين توجد المياه الجوفية وكيف ترتبط بالمياه السطحية."
       ]
     },
     "cs": {
-      "motivation": "Skrytý svět pod nohama: začněte otázkou, vyzkoušejte pokus s kelímkem a prozkoumejte pláž.",
+      "motivation": "Objevte skrytý svět pod nohama. Prozkoumejte roli podzemní vody v koloběhu vody, její ukládání v podzemí a význam tohoto skrytého zdroje pro lidi a přírodu.",
       "objectives": [
         "Objevte, který zdroj sladké vody je pro život na Zemi nejvýznamnější.",
         "Vysvětlete, kde se podzemní voda nachází a jak souvisí s povrchovou vodou."
       ]
     },
     "it": {
-      "motivation": "Un mondo nascosto sotto i piedi: inizia con una domanda, prova un esperimento con un bicchiere, poi esplora una spiaggia.",
+      "motivation": "Scopri un mondo nascosto sotto i piedi. Esplora il ruolo delle acque sotterranee nel ciclo dell’acqua, come il sottosuolo le immagazzina e perché questa risorsa è importante per le persone e la natura.",
       "objectives": [
         "Scopri quale risorsa di acqua dolce è più importante per la vita sulla Terra.",
         "Spiega dove si trova l’acqua sotterranea e come si collega a quella superficiale."
+      ]
+    },
+    "hi": {
+      "motivation": "आपके पैरों के नीचे एक छिपी दुनिया है। जल चक्र में भूजल, भूमिगत भंडारण और प्रकृति तथा लोगों के लिए उसका महत्त्व जानें।",
+      "objectives": [
+        "जानें कि पृथ्वी के जीवन के लिए कौन सा मीठा जल संसाधन विशेष महत्त्व रखता है।",
+        "समझाएँ कि भूजल कहाँ होता और सतही जल से कैसे जुड़ता है।"
+      ]
+    },
+    "fa": {
+      "motivation": "دنیای پنهان زیر پای خود را بشناسید: جای آب زیرزمینی در چرخه آب، ذخیره در زمین و اهمیت آن برای انسان و طبیعت.",
+      "objectives": [
+        "بشناسید کدام منبع آب شیرین برای زندگی زمین اهمیت ویژه دارد.",
+        "توضیح دهید آب زیرزمینی کجاست و چگونه به آب سطحی وصل است."
+      ]
+    },
+    "zh": {
+      "motivation": "探索脚下隐藏的世界，认识地下水在水循环中的位置、地下储水方式及其对人与自然的重要性。",
+      "objectives": [
+        "了解哪种淡水资源对地球生命具有重要意义。",
+        "解释地下水在哪里以及它如何与地表水相连。"
+      ]
+    },
+    "pt": {
+      "motivation": "Descubra um mundo escondido sob os pés: a água subterrânea no ciclo, o armazenamento no terreno e a importância para pessoas e natureza.",
+      "objectives": [
+        "Descobrir que recurso de água doce tem especial importância para a vida na Terra.",
+        "Explicar onde ocorre a água subterrânea e como se liga à superficial."
       ]
     }
   },
@@ -113,6 +141,34 @@
         "Identifica la più grande riserva di acqua dolce liquida sulla Terra.",
         "Indica un motivo per cui l’acqua sotterranea è importante per le persone o gli ecosistemi."
       ]
+    },
+    "hi": {
+      "motivation": "अधिकांश पानी दिखता है, पर अधिकांश द्रव मीठा पानी छिपा है। पहले अनुमान लगाएँ, फिर भंडार का महत्त्व सोचें।",
+      "objectives": [
+        "कुल पानी, कुल मीठे पानी और द्रव मीठे पानी में अंतर करें।",
+        "भूजल की महत्ता और उपयोग की सीमाएँ समझाएँ।"
+      ]
+    },
+    "fa": {
+      "motivation": "بیشتر آب شیرین مایع دیده نمی‌شود. ابتدا حدس بزنید، سپس اهمیت این ذخیره را بررسی کنید.",
+      "objectives": [
+        "کل آب، کل آب شیرین و آب شیرین مایع را از هم جدا کنید.",
+        "اهمیت آب زیرزمینی و محدودیت استفاده را توضیح دهید."
+      ]
+    },
+    "zh": {
+      "motivation": "大部分液态淡水藏在地下。先作出预测，再思考这份储量的意义。",
+      "objectives": [
+        "区分全部水、全部淡水与液态淡水。",
+        "说明地下水的重要性及其利用限制。"
+      ]
+    },
+    "pt": {
+      "motivation": "Grande parte da água doce líquida está escondida. Faça uma estimativa e pense no significado desta reserva.",
+      "objectives": [
+        "Distinguir água total, água doce total e água doce líquida.",
+        "Explicar a importância da água subterrânea e os limites do seu uso."
+      ]
     }
   },
   "pores": {
@@ -170,6 +226,34 @@
       "objectives": [
         "Distingui i granuli solidi dai pori tra essi.",
         "Calcola la porosità dal volume totale e dal volume solido."
+      ]
+    },
+    "hi": {
+      "motivation": "पैरों के नीचे रेत और बजरी में पानी की जगह कहाँ है? छोटा नमूना भूमिगत भंडारण को दिखाता है।",
+      "objectives": [
+        "कणों, छिद्रों और जलभृत का वर्णन करें।",
+        "आयतनों से सरंध्रता का अनुमान लगाएँ और उसकी सीमाएँ बताएँ।"
+      ]
+    },
+    "fa": {
+      "motivation": "آب در ماسه و شن زیر پا کجا جا می‌گیرد؟ یک نمونه کوچک ذخیره زیرزمینی را آشکار می‌کند.",
+      "objectives": [
+        "دانه، منفذ و آبخوان را توصیف کنید.",
+        "تخلخل را با حجم‌ها برآورد و محدودیتش را بیان کنید."
+      ]
+    },
+    "zh": {
+      "motivation": "脚下的砂和砾石在哪里容纳水？小样品帮助我们认识地下储水。",
+      "objectives": [
+        "描述颗粒、孔隙与含水层。",
+        "根据体积估算孔隙度，并说明其含义与局限。"
+      ]
+    },
+    "pt": {
+      "motivation": "Onde cabe a água na areia e no cascalho debaixo dos pés? Uma pequena amostra revela o armazenamento subterrâneo.",
+      "objectives": [
+        "Descrever grãos, poros e aquíferos.",
+        "Estimar a porosidade a partir de volumes e reconhecer os seus limites."
       ]
     }
   },
@@ -229,6 +313,34 @@
         "Collegare la superficie della falda ai livelli di fiumi, laghi e mare vicini.",
         "Prevedere se una buca di osservazione raggiunge l’acqua sotterranea e spiegare il senso dello scambio con le acque superficiali."
       ]
+    },
+    "hi": {
+      "motivation": "नदी या समुद्र के पास भूजल कहाँ मिलेगा? आभासी गड्ढे से स्तरों के संबंध देखें।",
+      "objectives": [
+        "भूजल स्तर की तुलना नदी, झील या समुद्र के जलस्तर से करें।",
+        "समझाएँ कि पुनर्भरण और स्तरों का अंतर भूजल प्रवाह से कैसे जुड़ता है।"
+      ]
+    },
+    "fa": {
+      "motivation": "آب زیرزمینی کنار دریا یا رودخانه کجاست؟ با گودال مجازی رابطه ترازها را ببینید.",
+      "objectives": [
+        "سطح آب زیرزمینی را با تراز رودخانه، دریاچه یا دریا مقایسه کنید.",
+        "ارتباط تغذیه و اختلاف تراز با جریان را توضیح دهید."
+      ]
+    },
+    "zh": {
+      "motivation": "河边或海边的地下水在哪里？用虚拟观察坑探索水位联系。",
+      "objectives": [
+        "将地下水位与河流、湖泊或海洋的水面高程比较。",
+        "说明补给和水位差如何与地下水流动相关。"
+      ]
+    },
+    "pt": {
+      "motivation": "Onde está a água subterrânea junto ao mar ou rio? Use uma cova virtual para explorar a ligação dos níveis.",
+      "objectives": [
+        "Comparar o nível freático com os níveis de rios, lagos e mar.",
+        "Relacionar recarga e diferenças de nível com o fluxo subterrâneo."
+      ]
     }
   },
   "resources": {
@@ -287,63 +399,119 @@
         "Discutere l’importanza dell’acqua sotterranea per le persone e gli ecosistemi.",
         "Presentare una panoramica delle risorse educative gratuite sulla gestione delle acque sotterranee."
       ]
+    },
+    "hi": {
+      "motivation": "आप इस छिपे पानी को समझा सकते हैं। अपने विचार साझा करें और आगे सीखने की सामग्री चुनें।",
+      "objectives": [
+        "भूजल के महत्त्व पर विचार और चर्चा करें।",
+        "भूजल प्रबंधन के निःशुल्क शैक्षिक संसाधनों से परिचित हों।"
+      ]
+    },
+    "fa": {
+      "motivation": "اکنون می‌توانید آب پنهان را توضیح دهید. برداشت خود را به اشتراک بگذارید و راه بعدی یادگیری را بیابید.",
+      "objectives": [
+        "درباره اهمیت آب زیرزمینی بیندیشید و گفت‌وگو کنید.",
+        "با منابع آموزشی رایگان مدیریت آب زیرزمینی آشنا شوید."
+      ]
+    },
+    "zh": {
+      "motivation": "现在你可以解释隐藏的地下水了。分享理解，再选择继续学习的路径。",
+      "objectives": [
+        "思考并讨论地下水的重要性。",
+        "了解地下水管理的免费教育资源。"
+      ]
+    },
+    "pt": {
+      "motivation": "Já consegue explicar esta água escondida. Partilhe ideias e escolha como continuar a aprender.",
+      "objectives": [
+        "Refletir e discutir a importância da água subterrânea.",
+        "Conhecer recursos educativos gratuitos sobre gestão de águas subterrâneas."
+      ]
     }
   },
   "lab": {
     "en": {
-      "motivation": "A small change in freshwater level can accompany a much larger movement of the saltwater interface. Explore four levels.",
+      "motivation": "A small change in coastal freshwater level can accompany a much larger shift of the saltwater interface. Compare recharge and pumping scenarios.",
       "objectives": [
         "Relate the freshwater level to the depth of the saltwater interface.",
-        "Explain why this ideal comparison is not a prediction of pumping impacts."
+        "Compare natural and pumped states, and explain the limits of this ideal model."
       ]
     },
     "de": {
-      "motivation": "Eine kleine Änderung des Süßwasserspiegels kann mit einer viel größeren Verlagerung der Salzwassergrenze einhergehen. Vergleiche vier Stufen.",
+      "motivation": "Eine kleine Änderung des Süßwasserstands kann mit einer viel größeren Verlagerung der Salzwassergrenze einhergehen. Vergleiche Neubildung und Förderung.",
       "objectives": [
         "Verknüpfe den Süßwasserspiegel mit der Tiefe der Salzwassergrenze.",
-        "Erkläre, warum dieser ideale Vergleich keine Vorhersage von Pumpfolgen ist."
+        "Vergleiche natürliche und gepumpte Zustände und erläutere die Grenzen des idealisierten Modells."
       ]
     },
     "pl": {
-      "motivation": "Małej zmianie poziomu wody słodkiej może towarzyszyć znacznie większe przesunięcie granicy z wodą słoną. Zbadaj cztery poziomy.",
+      "motivation": "Małej zmianie poziomu słodkiej wody może towarzyszyć duże przesunięcie granicy słonej wody. Porównaj zasilanie i pompowanie.",
       "objectives": [
         "Powiąż poziom wody słodkiej z głębokością granicy z wodą słoną.",
-        "Wyjaśnij, dlaczego ten idealny przykład nie jest prognozą skutków pompowania."
+        "Porównaj stany naturalne i z pompowaniem oraz wyjaśnij ograniczenia modelu."
       ]
     },
     "fr": {
-      "motivation": "Une petite variation du niveau d’eau douce peut accompagner un déplacement bien plus grand de l’interface salée. Explorez quatre niveaux.",
+      "motivation": "Une petite variation du niveau d’eau douce peut accompagner un grand déplacement de l’interface salée. Comparez recharge et pompage.",
       "objectives": [
         "Reliez le niveau d’eau douce à la profondeur de l’interface salée.",
-        "Expliquez pourquoi cette comparaison idéale ne prédit pas les effets d’un pompage."
+        "Comparer états naturels et pompés et expliquer les limites de ce modèle."
       ]
     },
     "es": {
-      "motivation": "Un pequeño cambio del nivel de agua dulce puede acompañar un desplazamiento mucho mayor de la interfaz salina. Explora cuatro niveles.",
+      "motivation": "Un pequeño cambio del nivel dulce puede acompañar un gran movimiento de la interfaz salina. Compara recarga y bombeo.",
       "objectives": [
         "Relaciona el nivel de agua dulce con la profundidad de la interfaz salina.",
-        "Explica por qué esta comparación ideal no predice los efectos del bombeo."
+        "Compara estados naturales y con bombeo y explica los límites del modelo."
       ]
     },
     "ar": {
-      "motivation": "قد يصاحب تغير صغير في منسوب المياه العذبة تحرك أكبر بكثير للسطح الفاصل مع المياه المالحة. استكشف أربعة مستويات.",
+      "motivation": "قد يقابل تغير صغير في المنسوب العذب تحرك أكبر للحد الفاصل المالح. قارن التغذية والضخ.",
       "objectives": [
         "اربط منسوب المياه العذبة بعمق السطح الفاصل مع المياه المالحة.",
-        "اشرح لماذا لا تمثل هذه المقارنة المثالية تنبؤاً بآثار الضخ."
+        "قارن الحالة الطبيعية وحالة الضخ واشرح حدود النموذج المثالي."
       ]
     },
     "cs": {
-      "motivation": "Malou změnu hladiny sladké vody může doprovázet mnohem větší posun rozhraní se slanou vodou. Prozkoumejte čtyři hladiny.",
+      "motivation": "Malou změnu hladiny sladké vody může doprovázet velký posun slaného rozhraní. Porovnejte dotaci a čerpání.",
       "objectives": [
         "Propojte hladinu sladké vody s hloubkou rozhraní se slanou vodou.",
-        "Vysvětlete, proč toto ideální srovnání nepředpovídá dopady čerpání."
+        "Porovnejte přirozený a čerpaný stav a vysvětlete meze modelu."
       ]
     },
     "it": {
-      "motivation": "Una piccola variazione del livello d’acqua dolce può accompagnare uno spostamento molto maggiore dell’interfaccia salina. Esplora quattro livelli.",
+      "motivation": "Una piccola variazione del livello dolce può accompagnare un grande spostamento dell’interfaccia salina. Confronta ricarica e pompaggio.",
       "objectives": [
         "Collega il livello d’acqua dolce alla profondità dell’interfaccia salina.",
-        "Spiega perché questo confronto ideale non prevede gli effetti del pompaggio."
+        "Confronta stati naturali e con pompaggio e spiega i limiti del modello."
+      ]
+    },
+    "hi": {
+      "motivation": "तटीय मीठे पानी का छोटा ऊँचा स्तर गहरे भंडार से जुड़ा हो सकता है। पुनर्भरण और पंपिंग की तुलना करें।",
+      "objectives": [
+        "घनत्व से मीठे और खारे पानी का संबंध समझाएँ।",
+        "प्राकृतिक तथा पंपिंग अवस्थाओं की तुलना करके मॉडल की सीमाएँ पहचानें।"
+      ]
+    },
+    "fa": {
+      "motivation": "بالاآمدگی کوچک آب شیرین ساحلی می‌تواند به ذخیره عمیق مربوط باشد. تغذیه و پمپاژ را مقایسه کنید.",
+      "objectives": [
+        "نقش چگالی در ارتباط آب شیرین و شور را توضیح دهید.",
+        "حالت طبیعی و پمپاژ را مقایسه و محدودیت مدل را بشناسید."
+      ]
+    },
+    "zh": {
+      "motivation": "沿海淡水水位略高，可能对应很深的储水体。比较补给与抽水的影响。",
+      "objectives": [
+        "用密度解释淡水与咸水的关系。",
+        "比较自然与抽水状态，并识别模型局限。"
+      ]
+    },
+    "pt": {
+      "motivation": "Uma pequena elevação da água doce costeira pode corresponder a uma reserva profunda. Compare recarga e bombagem.",
+      "objectives": [
+        "Explicar a relação entre água doce e salgada através da densidade.",
+        "Comparar estados naturais e com bombagem, reconhecendo os limites do modelo."
       ]
     }
   }

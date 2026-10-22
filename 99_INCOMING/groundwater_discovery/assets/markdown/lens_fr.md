@@ -1,3 +1,5 @@
-L’eau douce est moins dense que l’eau salée. Dans un aquifère côtier adapté, elle peut former une **masse d’eau douce au-dessus des eaux souterraines salées**. Le dessin montre une lentille insulaire idéale, avec le terrain et le fond marin.
+La pluie sur une île peut s’infiltrer et recharger l’aquifère. Moins dense que l’eau salée, l’eau douce peut former une **lentille au-dessus des eaux souterraines salines**. La recharge l’alimente tandis que l’eau s’écoule vers la mer. [S12, S15, S16]
 
-Comparez les quatre niveaux. **Si le niveau d’eau douce baisse, que devient l’interface ?** Le pompage peut abaisser ce niveau et attirer l’eau salée vers les puits. Cette comparaison explique une tendance ; elle ne prédit ni débit de pompage ni délai de réponse. [S6, S8, S12]
+Imaginez une île circulaire de **1 km²**. Son niveau dépend de la recharge, de sa taille et de la facilité d’écoulement dans les matériaux. Ici, superficie et matériau restent fixes : un niveau naturel plus haut signifie davantage de recharge. Comparez **0,1 à 1,0 m au-dessus de la mer**, puis ajoutez un puits central.
+
+Le dessin et le volume décrivent des équilibres idéalisés, pas l’île photographiée.

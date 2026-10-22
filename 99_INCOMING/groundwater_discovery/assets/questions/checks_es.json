@@ -13,7 +13,7 @@
   },
   {
     "id": "role",
-    "source": "S2",
+    "source": "S3",
     "question": "¿Por qué importa el agua subterránea entre lluvias?",
     "options": {
       "Detiene la evaporación": false,
@@ -37,7 +37,7 @@
   },
   {
     "id": "grains",
-    "source": "S3",
+    "source": "S5",
     "question": "¿Dónde está el agua subterránea en esta arena?",
     "options": {
       "Solo dentro de los granos sólidos": false,
@@ -49,7 +49,7 @@
   },
   {
     "id": "porosity",
-    "source": "S4",
+    "source": "S6",
     "question": "Una muestra de 400 mL necesita 160 mL de agua para llenar los poros. ¿Qué porosidad se estima?",
     "options": {
       "40%": true,
@@ -61,7 +61,7 @@
   },
   {
     "id": "connectivity",
-    "source": "S4",
+    "source": "S6",
     "question": "¿Igual porosidad implica siempre igual facilidad de flujo?",
     "options": {
       "No, importan también las conexiones y tamaños de los poros": true,
@@ -73,7 +73,7 @@
   },
   {
     "id": "recharge",
-    "source": "S13",
+    "source": "S9",
     "question": "¿Qué significa recarga del agua subterránea?",
     "options": {
       "Toda lluvia llega inmediatamente al mar": false,
@@ -85,7 +85,7 @@
   },
   {
     "id": "beach",
-    "source": "S3",
+    "source": "S5",
     "question": "Un hoyo contiene agua cerca del nivel del mar. ¿Qué concluyes?",
     "options": {
       "Es potable": false,
@@ -97,7 +97,7 @@
   },
   {
     "id": "exchange",
-    "source": "S5",
+    "source": "S10",
     "question": "Un río de agua dulce conectado sube por encima de la carga subterránea vecina. ¿Qué puede ocurrir?",
     "options": {
       "El acuífero siempre alimenta el río": false,
@@ -109,7 +109,7 @@
   },
   {
     "id": "lens",
-    "source": "S6",
+    "source": "S12",
     "question": "En esta comparación ideal, ¿qué acompaña a un nivel dulce más bajo?",
     "options": {
       "La interfaz sube y la lente se adelgaza": true,
@@ -121,7 +121,7 @@
   },
   {
     "id": "density",
-    "source": "S6",
+    "source": "S12",
     "question": "¿Por qué puede situarse agua dulce sobre agua subterránea salina?",
     "options": {
       "Siempre está más caliente": false,
@@ -133,14 +133,14 @@
   },
   {
     "id": "lens_scope",
-    "source": "S8",
-    "question": "¿Podemos deducir un caudal seguro de bombeo para Sopot?",
+    "source": "S15",
+    "question": "¿Este modelo permite determinar un bombeo seguro para una isla real?",
     "options": {
       "Sí, se lee en la lente": false,
       "No, hacen falta datos locales y un modelo adecuado": true,
       "Sí, todas las costas se comportan igual": false
     },
-    "success": "El dibujo es idealizado, usa densidades oceánicas y omite mezcla, tiempos y geología local. El Báltico es salobre.",
-    "error": "El dibujo es idealizado, usa densidades oceánicas y omite mezcla, tiempos y geología local. El Báltico es salobre."
+    "success": "Se omiten mezcla, flujo vertical local, tiempos y geología del lugar. Se necesitan datos locales y un modelo apropiado.",
+    "error": "Se omiten mezcla, flujo vertical local, tiempos y geología del lugar. Se necesitan datos locales y un modelo apropiado."
   }
 ]

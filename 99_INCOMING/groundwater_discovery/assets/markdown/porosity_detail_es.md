@@ -1,4 +1,4 @@
-**La porosidad indica qué parte de toda la muestra es espacio.** Resta el volumen sólido del total y divide el volumen de poros resultante entre el total. Así puedes comparar muestras de distinto tamaño. [S10]
+**La porosidad indica qué parte de toda la muestra es espacio.** Resta el volumen sólido del total y divide el volumen de poros resultante entre el total. Así puedes comparar muestras de distinto tamaño. [S7]
 
 - $V_t$: volumen total, sólidos y poros (mL).
 - $V_s$: volumen del material sólido sin poros (mL).

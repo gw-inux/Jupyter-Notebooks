@@ -1,0 +1,1 @@
+**h**: hladina sladké vody nad mořem (m); **z**: hloubka rozhraní pod mořem (m); **ρf**: hustota sladké vody (**1000 kg/m³**); **ρs**: hustota mořské vody (**1025 kg/m³**). Bezrozměrný faktor **α = 40**: 0,1 m hladiny odpovídá asi 4 m hloubky. Jiná slanost dává jiný faktor.

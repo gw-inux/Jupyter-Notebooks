@@ -1,0 +1,1 @@
+Luftbild des Palmyra-Atolls. USGS, gemeinfrei. Das Foto dient der Einordnung; das kreisförmige 1-km²-Modell zeigt eine andere, gedachte Insel. [USGS](https://www.usgs.gov/media/images/aerial-view-palmyra-atoll).

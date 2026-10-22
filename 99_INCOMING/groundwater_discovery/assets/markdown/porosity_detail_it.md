@@ -1,4 +1,4 @@
-**La porosità indica quale parte dell’intero campione è spazio.** Sottrai il volume solido dal totale, poi dividi il volume dei pori per il totale. Questo permette di confrontare campioni di dimensioni diverse. [S10]
+**La porosità indica quale parte dell’intero campione è spazio.** Sottrai il volume solido dal totale, poi dividi il volume dei pori per il totale. Questo permette di confrontare campioni di dimensioni diverse. [S7]
 
 - $V_t$: volume totale, solidi e pori (mL).
 - $V_s$: volume del materiale solido senza pori (mL).

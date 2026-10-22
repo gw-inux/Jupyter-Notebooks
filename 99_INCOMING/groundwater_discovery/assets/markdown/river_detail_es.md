@@ -1,3 +1,3 @@
-**Sigue la pendiente del nivel freático.** Un río ganador recibe agua subterránea de niveles más altos tierra adentro; un río perdedor aporta agua a un acuífero con niveles más bajos. Cerca de un río bien conectado, los niveles suelen ser parecidos; más lejos pueden diferir. [S5, S16]
+**Sigue la pendiente del nivel freático.** Un río ganador recibe agua subterránea de niveles más altos tierra adentro; un río perdedor aporta agua a un acuífero con niveles más bajos. Cerca de un río bien conectado, los niveles suelen ser parecidos; más lejos pueden diferir. [S10, S13]
 
 Aquí un hoyo más profundo que alcanza agua muestra el mismo nivel local una vez estabilizado. Un hoyo somero seco no excluye un acuífero debajo. El esquema no predice un río real: la resistencia del lecho, las capas del terreno o una desconexión pueden cambiar el patrón. Explora con el hoyo virtual; no es una instrucción para excavar.

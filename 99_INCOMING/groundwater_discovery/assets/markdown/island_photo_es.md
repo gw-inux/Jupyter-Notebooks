@@ -1,0 +1,1 @@
+Vista aérea del atolón Palmyra. USGS, dominio público. La foto aporta contexto; el modelo circular de 1 km² es otra isla imaginaria. [USGS](https://www.usgs.gov/media/images/aerial-view-palmyra-atoll).

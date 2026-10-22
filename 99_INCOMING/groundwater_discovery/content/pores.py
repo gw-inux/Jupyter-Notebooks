@@ -12,30 +12,39 @@ from core.ui import (
     activity_value,
     remember_activity,
 )
-from core.figures import pores, sample_cup
+from core.figures import pores, sample_cup, cup_step
 from core.models import sample_volumes
 
 
-def volume_input(label, storage_key, use_slider):
-    """Share whole-mL values between number and slider widgets.
+def volume_input(label, storage_key, use_slider, maximum=1000):
+    """Keep solids inside the sample; sliders round to the nearest 10 mL.
 
-    Separate widget keys avoid type/identity conflicts when switching modes.
-    A one-mL slider step preserves integers typed into the number input.
+    Numbers retain whole-mL precision. Switching to sliders rounds both
+    values and reports that change. All corrections precede widget creation.
     """
     widget_key = storage_key + "_slider" if use_slider else storage_key
-    value = int(round(activity_value(storage_key, 0)))
+    values = st.session_state.setdefault("activity_values", {})
+    old = int(round(values.get(storage_key, 0)))
+    value = min(maximum, max(0, old))
+    if use_slider:
+        value = min(maximum, 10 * ((value + 5) // 10))
+    values[storage_key] = value
+    st.session_state[widget_key] = value
     widget = st.slider if use_slider else st.number_input
-    return widget(
+    result = widget(
         label,
         min_value=0,
-        max_value=2000,
-        value=value,
-        step=1 if use_slider else 10,
+        max_value=max(10, maximum) if use_slider else maximum,
+        step=10 if use_slider else 1,
         format="%d",
         key=widget_key,
+        disabled=maximum == 0,
         on_change=remember_activity,
         args=(widget_key, storage_key),
     )
+    if use_slider and old != value and 0 <= old <= maximum:
+        st.caption(tr("slider_rounding"))
+    return result
 
 
 heading("pores")
@@ -61,8 +70,11 @@ with expander(tr("controls"), "controls", expanded=True):
         on_change=remember_activity,
         args=("cup_slider_input",),
     )
-    bulk = volume_input(tr("bulk"), "bulk_ml", use_slider)
-    solid = volume_input(tr("solid_volume"), "solid_ml", use_slider)
+    left, right = st.columns(2)
+    with left:
+        bulk = volume_input(tr("bulk"), "bulk_ml", use_slider)
+    with right:
+        solid = volume_input(tr("solid_volume"), "solid_ml", use_slider, bulk)
 n = None
 try:
     pore, n = sample_volumes(bulk, solid)
@@ -74,19 +86,26 @@ else:
     else:
         show(sample_cup(bulk, solid, tr))
         st.caption(tr("cup_caption"))
-        col1, col2 = st.columns(2)
-        col1.metric(tr("pore_volume"), f"{pore:g} mL")
-        col2.metric(tr("porosity_value"), f"{n*100:.1f}%")
         if n in [0.0, 1.0]:
             st.info(tr("end_volume"))
 # The explanation remains available even before any measurements are entered.
 with expander(tr("more")):
+    if n is not None:
+        # Keep native text results accessible alongside the values in the figure.
+        col1, col2 = st.columns(2)
+        col1.metric(tr("pore_volume"), f"{pore:g} mL")
+        col2.metric(tr("porosity_value"), f"{n*100:.1f}%")
     md("porosity_detail")
     st.latex(r"n=\frac{V_p}{V_t}=\frac{V_t-V_s}{V_t}")
     if n is not None:
         st.latex(f"n=\\frac{{{bulk:g}-{solid:g}}}{{{bulk:g}}}={n:.3f}")
 with expander(tr("hands_on"), "controls"):
+    for step, column in enumerate(st.columns(3), start=1):
+        with column:
+            st.markdown(f"**{step} · {tr('cup_step_' + str(step))}**")
+            show(cup_step(step))
+            st.caption(tr("cup_step_note_" + str(step)))
     md("cup")
 quiz_group("grains", "porosity", "connectivity")
-source_links("S3", "S4", "S10", "S11")
+source_links("S5", "S6", "S7", "S8")
 next_page("beach")

@@ -3,10 +3,11 @@
 import json
 from contextlib import contextmanager
 from inspect import signature
+from html import escape
 import streamlit as st
 from core.i18n import ROOT, tr
 from core.sources import SOURCES
-from core.figures import needs_browser_text, browser_svg
+from core.figures import needs_browser_text, browser_svg, prepare_fonts
 
 COLORS = {
     "home": "blue",
@@ -15,18 +16,20 @@ COLORS = {
     "beach": "green",
     "resources": "violet",
     "lab": "violet",
+    "about": "blue",
 }
 ICONS = {
-    "home": "💧",
+    "home": "💦",
     "importance": "🌍",
     "pores": "🧪",
     "beach": "🌊",
     "resources": "📚",
     "lab": "🔎",
+    "about": "ℹ️",
 }
 
 
-def heading(page, introduction=None):
+def heading(page, introduction=None, learning=True):
     """Page title and learning frame, with an optional opening panel."""
     st.session_state["_section"] = page
     st.session_state["_panel_count"] = 0
@@ -39,6 +42,7 @@ def heading(page, introduction=None):
         "reflection": (123, 83, 165),
         "details": (25, 127, 158),
         "sources": (55, 139, 104),
+        "notice": (205, 96, 51),
     }
     rules = []
     for kind, rgb in palettes.items():
@@ -54,6 +58,8 @@ def heading(page, introduction=None):
     st.markdown("<style>" + "".join(rules) + "</style>", unsafe_allow_html=True)
     if introduction is not None:
         introduction()
+    if not learning:
+        return
     lessons = json.loads((ROOT / "assets/lessons.json").read_text(encoding="utf-8"))
     lesson = lessons[page].get(
         st.session_state.get("language", "en"), lessons[page]["en"]
@@ -61,7 +67,28 @@ def heading(page, introduction=None):
     st.info(lesson["motivation"], icon="💡")
     st.markdown("**🎯 " + tr("learning_objectives") + "**")
     st.markdown("\n".join("- " + objective for objective in lesson["objectives"]))
-    st.caption(tr("expander_hint"))
+
+
+def sidebar_hint():
+    """Show an opening-page cue only while Streamlit's sidebar is collapsed.
+
+    CSS follows the native sidebar's live aria-expanded state, including
+    mobile resizing and toggling; it does not add session state or JavaScript.
+    """
+    st.markdown(
+        """<style>
+.gw-sidebar-hint {display:none; padding:.65rem .8rem; margin-bottom:.5rem;
+ border:1px solid #397FA5; border-radius:.5rem;
+ background:#397FA5; color:#fff; font-size:1rem; font-weight:600;}
+body:has([data-testid="stSidebar"][aria-expanded="false"]) .gw-sidebar-hint {
+ display:block;
+}
+</style>"""
+        + '<div class="gw-sidebar-hint"><span aria-hidden="true">↖️ </span>'
+        + escape(tr("sidebar_hint"))
+        + "</div>",
+        unsafe_allow_html=True,
+    )
 
 
 @contextmanager
@@ -71,20 +98,24 @@ def expander(label, kind="details", expanded=False):
         "reflection": "violet",
         "details": "blue",
         "sources": "green",
+        "notice": "orange",
     }
     count = st.session_state.get("_panel_count", 0)
     st.session_state["_panel_count"] = count + 1
     key = f'panel_{st.session_state.get("_section","home")}_{kind}_{count}'
+    cue = tr("open_close")
     with st.container(key=key):
-        with st.expander(f":{colors[kind]}[**{label}**]", expanded=expanded):
+        with st.expander(f":{colors[kind]}[**{label}**] ({cue})", expanded=expanded):
             yield
 
 
 def source_links(*ids):
     with expander(tr("source"), "sources"):
-        for id in ids:
+        for id in sorted(set(ids), key=lambda value: int(value[1:])):
             title, url = SOURCES[id]
             st.markdown(f"**[{id}]** [{title}]({url})")
+            if id == "S2":  # USGS water-cycle illustration collection.
+                st.caption(tr("poster_versions"))
 
 
 def _stretch_options(renderer):
@@ -106,6 +137,7 @@ def responsive_image(image, **kwargs):
 
 
 def show(fig):
+    prepare_fonts(fig)
     if needs_browser_text(fig):
         # Streamlit serves SVG as an image data URI. Browser text rendering
         # handles Arabic without any extra Python shaping/bidi packages.
@@ -163,9 +195,55 @@ def quiz_group(*ids):
             quiz(qid)
 
 
-def next_page(page):
-    if st.button(tr("next") + " → " + tr(page), key="next_" + page, type="primary"):
-        st.switch_page(st.session_state["_pages"][page])
+@contextmanager
+def action_box(key):
+    """Centered outlined actions, scoped so quiz and sidebar buttons stay intact."""
+    with st.container(key="action_" + key):
+        st.markdown(
+            """<style>
+        div[class*="st-key-action_"] [data-testid="stButton"],
+        div[class*="st-key-action_"] [data-testid="stLinkButton"] {
+          display:flex; justify-content:center;
+        }
+        div[class*="st-key-action_"] button,
+        div[class*="st-key-action_"] [data-testid="stLinkButton"] a {
+          margin-inline:auto; border:2px solid #397FA5; background:transparent;
+          color:#397FA5; border-radius:.5rem; font-weight:650;
+        }
+        div[class*="st-key-action_"] button:hover,
+        div[class*="st-key-action_"] [data-testid="stLinkButton"] a:hover {
+          background:rgba(57,127,165,.10); border-color:#397FA5;
+        }
+        @media(prefers-color-scheme:dark) {
+          div[class*="st-key-action_"] button,
+          div[class*="st-key-action_"] [data-testid="stLinkButton"] a {color:#87C7EB;}
+        }
+        </style>""",
+            unsafe_allow_html=True,
+        )
+        yield
+
+
+def centered_link(label, url, key):
+    with action_box(key):
+        st.link_button(label, url)
+
+
+def next_page(page, label=None):
+    with action_box("next_" + page):
+        if st.button(label or (tr("next") + " → " + tr(page)), key="next_" + page):
+            st.switch_page(st.session_state["_pages"][page])
+
+
+def reset_button():
+    """Restart learning activities while retaining language and layout."""
+    with action_box("reset_session"):
+        if st.button(tr("reset"), key="reset_session"):
+            lang, layout = st.session_state.language, st.session_state.layout_choice
+            for key in list(st.session_state):
+                del st.session_state[key]
+            st.session_state.language, st.session_state.layout_choice = lang, layout
+            st.switch_page("content/home.py")
 
 
 def activity_value(key, default):

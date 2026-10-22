@@ -13,7 +13,7 @@
   },
   {
     "id": "role",
-    "source": "S2",
+    "source": "S3",
     "question": "Proč je podzemní voda důležitá mezi dešti?",
     "options": {
       "Zastavuje vypařování": false,
@@ -37,7 +37,7 @@
   },
   {
     "id": "grains",
-    "source": "S3",
+    "source": "S5",
     "question": "Kde je podzemní voda v tomto písku?",
     "options": {
       "Pouze uvnitř pevných zrn": false,
@@ -49,7 +49,7 @@
   },
   {
     "id": "porosity",
-    "source": "S4",
+    "source": "S6",
     "question": "Vzorek o objemu 400 mL potřebuje 160 mL vody k vyplnění pórů. Jaká je odhadnutá pórovitost?",
     "options": {
       "40 %": true,
@@ -61,7 +61,7 @@
   },
   {
     "id": "connectivity",
-    "source": "S4",
+    "source": "S6",
     "question": "Znamená stejná pórovitost vždy stejně snadné proudění?",
     "options": {
       "Ne, záleží i na propojení a velikosti pórů": true,
@@ -73,7 +73,7 @@
   },
   {
     "id": "recharge",
-    "source": "S13",
+    "source": "S9",
     "question": "Co znamená doplňování podzemní vody?",
     "options": {
       "Všechen déšť ihned dosáhne moře": false,
@@ -85,7 +85,7 @@
   },
   {
     "id": "beach",
-    "source": "S3",
+    "source": "S5",
     "question": "V jamce na pláži je voda blízko hladiny moře. Co z toho vyplývá?",
     "options": {
       "Voda je pitná": false,
@@ -97,7 +97,7 @@
   },
   {
     "id": "exchange",
-    "source": "S5",
+    "source": "S10",
     "question": "Propojená sladkovodní řeka vystoupá nad okolní hydraulickou výšku podzemní vody. Jaké proudění je možné?",
     "options": {
       "Podzemní voda musí vždy téct do řeky": false,
@@ -109,7 +109,7 @@
   },
   {
     "id": "lens",
-    "source": "S6",
+    "source": "S12",
     "question": "Co v tomto ideálním srovnání provází nižší hladinu sladké vody?",
     "options": {
       "Rozhraní stoupá a čočka se ztenčuje": true,
@@ -121,7 +121,7 @@
   },
   {
     "id": "density",
-    "source": "S6",
+    "source": "S12",
     "question": "Proč může sladká voda ležet nad slanou podzemní vodou?",
     "options": {
       "Je vždy teplejší": false,
@@ -133,14 +133,14 @@
   },
   {
     "id": "lens_scope",
-    "source": "S8",
-    "question": "Určí obrázek bezpečné čerpané množství pro Sopoty?",
+    "source": "S15",
+    "question": "Určí tento model bezpečné čerpání pro skutečný ostrov?",
     "options": {
       "Ano, lze ho odečíst z čočky": false,
       "Ne, jsou potřeba místní údaje a vhodný model": true,
       "Ano, každé pobřeží se chová stejně": false
     },
-    "success": "Obrázek je idealizovaný, používá oceánské hustoty a vynechává mísení, čas i místní geologii. Balt je brakický.",
-    "error": "Obrázek je idealizovaný, používá oceánské hustoty a vynechává mísení, čas i místní geologii. Balt je brakický."
+    "success": "Chybí mísení, místní svislé proudění, doba reakce a geologie místa. Je třeba místních dat a vhodného modelu.",
+    "error": "Chybí mísení, místní svislé proudění, doba reakce a geologie místa. Je třeba místních dat a vhodného modelu."
   }
 ]

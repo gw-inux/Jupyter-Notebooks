@@ -1,4 +1,4 @@
-**Krótki pokaz targowy (5–7 min):** poproś o szacunek zasobów; napełnij kubek; odkryj zwierciadło na plaży; zakończ jednym wnioskiem i linkiem do Groundwater Project.
+**Krótki pokaz (5–7 min):** poproś o szacunek zasobów; napełnij kubek; odkryj zwierciadło na plaży; zakończ jednym wnioskiem i linkiem do Groundwater Project.
 
 **Zajęcia (20–30 min z dyskusją):** 3 min przewidywania i rozmowy o zasobach; 7 min doświadczenia z kubkiem; 7 min badania plaży; 3–5 min wyjaśniania i sprawdzania. Na wyjście w teren przeznacz dodatkowy czas.
 

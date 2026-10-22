@@ -1,3 +1,3 @@
 In der gerundeten globalen Schätzung des Groundwater Project sind es **etwa 99 %**. Gemeint ist **gespeichertes flüssiges Süßwasser**, nicht die jährliche Versorgung oder direkt trinkbares Wasser. Der größte Teil des gesamten Süßwassers ist in Eis gebunden.
 
-Warum ist dieser verborgene Speicher wichtig? Er versorgt Brunnen und kann Flüsse und Feuchtgebiete zwischen Regenereignissen speisen. Ein großes Volumen bedeutet **keine** unbegrenzt nutzbare Menge: Ein Teil ist schwer zugänglich, erneuert sich nur langsam oder ist verunreinigt. Grundwasserschutz schützt auch verbundene Oberflächengewässer. [S1, S2]
+Warum ist dieser verborgene Speicher wichtig? Er versorgt Brunnen und kann Flüsse und Feuchtgebiete zwischen Regenereignissen speisen. Ein großes Volumen bedeutet **keine** unbegrenzt nutzbare Menge: Ein Teil ist schwer zugänglich, erneuert sich nur langsam oder ist verunreinigt. Grundwasserschutz schützt auch verbundene Oberflächengewässer. [S1, S3]

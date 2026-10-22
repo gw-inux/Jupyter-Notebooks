@@ -1,4 +1,4 @@
-**Kurzdemo auf der Messe (5–7 Min.):** Süßwassermenge schätzen lassen; einen Becher füllen; den Grundwasserspiegel am Strand aufdecken; mit einer Kernaussage und einem Groundwater-Project-Link enden.
+**Kurze Demonstration (5–7 min):** Süßwassermenge schätzen lassen; einen Becher füllen; den Grundwasserspiegel am Strand aufdecken; mit einer Kernaussage und einem Groundwater-Project-Link enden.
 
 **Unterricht (20–30 Min. mit Diskussion):** 3 Min. Wasserspeicher schätzen und besprechen; 7 Min. Becherexperiment; 7 Min. Strand; 3–5 Min. erklären und prüfen. Für eine echte Außenaktivität zusätzliche Zeit einplanen.
 

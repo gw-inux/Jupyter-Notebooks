@@ -1,0 +1,1 @@
+**h**: nivel dulce sobre el mar (m); **z**: profundidad de interfaz bajo el mar (m); **ρf**: densidad dulce (**1000 kg/m³**); **ρs**: densidad marina (**1025 kg/m³**). El factor sin unidades **α = 40**: 0,1 m de nivel corresponde a unos 4 m de profundidad. Otras salinidades dan otros factores.

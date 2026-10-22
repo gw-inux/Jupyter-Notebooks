@@ -1,0 +1,7 @@
+**What stays fixed?** Circular area A = 1,000,000 m²; radius R ≈ 564 m; uniform porosity n = 0.30; hydraulic conductivity K = 5 m/day; well radius rw = 0.30 m. The natural maximum head determines uniform recharge N. These are teaching assumptions, not measured properties.
+
+**What is calculated?** The radial potential solution in [Analytical Groundwater Modeling, §6.1](https://interactive-education.gw-project.org/analytical-groundwater-modeling/chap6/6.1_radial_flow.html) is combined with the sharp-interface relationship in [§4.2](https://interactive-education.gw-project.org/analytical-groundwater-modeling/chap4/4.2_unconfined_interface_flow.html). The coast stays at sea level. Pumping lowers freshwater head and raises the model interface beneath the well. [S15, S17]
+
+**How much water?** At each location, freshwater thickness is h + z. Multiplying by porosity and integrating over the circular island gives pore-water volume. Without pumping, V = (2/3)nA(1 + α)h₀, where h₀ is the natural maximum head. The pumped volume is integrated numerically, excluding the tiny well footprint. This is stored water, not a sustainable yield.
+
+**Limits.** This is an equilibrium model of regional, predominantly horizontal flow in a uniform aquifer, with no shallow impermeable base. It does not resolve vertical saltwater upconing near a partially penetrating well, mixing, tides or response time. The slider keeps well head above half its unpumped value to avoid pushing the demonstration toward a vanishing lens; this is not a salinity or safety criterion. [S18]

@@ -1,3 +1,3 @@
-The **Ghyben–Herzberg principle** links freshwater level above the sea to interface depth below it through pressure balance. The deeper saltwater pushes back more strongly because it is denser.
+The **Ghyben–Herzberg principle** relates freshwater level above sea level to the depth of the freshwater–saltwater interface below it. Pressure balances at the interface: denser saltwater can balance a taller column of freshwater. [S12]
 
-The drawing assumes constant densities, vertical hydrostatic pressure, still saltwater, a sharp interface and no shallow bedrock limit. It compares ideal equilibrium profiles. Real fresh and saline waters mix across a transition zone. The Baltic is brackish: this ocean-density example is **not a Sopot prediction**. See the linked book for the mathematics. [S6, S8, S9]
+This approximation assumes vertical hydrostatic pressure, essentially still saltwater, constant densities and a sharp interface. Real waters mix across a transition zone. It helps explain the direction of change; local vertical flow near a well and the salinity of pumped water require a more detailed model. [S15, S18]

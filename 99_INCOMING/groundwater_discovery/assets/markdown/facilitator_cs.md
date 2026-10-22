@@ -1,1 +1,1 @@
-**Krátká ukázka (5–7 minut):** odhadněte zásobu vody, naplňte kelímek, odhalte hladinu na pláži a zakončete jednou myšlenkou a odkazem na The Groundwater Project. Pro výuku s diskusí a pokusem počítejte asi 20–30 minut.
+**Krátká ukázka (5–7 min):** odhadněte zásobu vody, naplňte kelímek, odhalte hladinu na pláži a zakončete jednou myšlenkou a odkazem na The Groundwater Project. Pro výuku s diskusí a pokusem počítejte asi 20–30 minut.

@@ -13,7 +13,7 @@
   },
   {
     "id": "role",
-    "source": "S2",
+    "source": "S3",
     "question": "Why does groundwater matter between rainstorms?",
     "options": {
       "It stops evaporation": false,
@@ -37,7 +37,7 @@
   },
   {
     "id": "grains",
-    "source": "S3",
+    "source": "S5",
     "question": "Where is groundwater in this sand?",
     "options": {
       "Only inside the solid grains": false,
@@ -49,7 +49,7 @@
   },
   {
     "id": "porosity",
-    "source": "S4",
+    "source": "S6",
     "question": "A 400 mL sample needs 160 mL water to fill its pores. What is the estimated porosity?",
     "options": {
       "40%": true,
@@ -61,7 +61,7 @@
   },
   {
     "id": "connectivity",
-    "source": "S4",
+    "source": "S6",
     "question": "Do equal porosities always mean equally easy water flow?",
     "options": {
       "No, pore connections and sizes also matter": true,
@@ -73,7 +73,7 @@
   },
   {
     "id": "recharge",
-    "source": "S13",
+    "source": "S9",
     "question": "What does groundwater recharge mean?",
     "options": {
       "All rain immediately reaches the sea": false,
@@ -85,7 +85,7 @@
   },
   {
     "id": "beach",
-    "source": "S3",
+    "source": "S5",
     "question": "A beach hole contains water near sea level. What can you conclude?",
     "options": {
       "The water is safe to drink": false,
@@ -97,7 +97,7 @@
   },
   {
     "id": "exchange",
-    "source": "S5",
+    "source": "S10",
     "question": "A connected freshwater river rises above the adjacent groundwater head. Which exchange can occur?",
     "options": {
       "Groundwater must always flow into the river": false,
@@ -109,7 +109,7 @@
   },
   {
     "id": "lens",
-    "source": "S6",
+    "source": "S12",
     "question": "In this ideal comparison, what follows a lower freshwater level?",
     "options": {
       "The interface rises and the freshwater lens becomes thinner": true,
@@ -121,7 +121,7 @@
   },
   {
     "id": "density",
-    "source": "S6",
+    "source": "S12",
     "question": "Why can freshwater lie above saline groundwater?",
     "options": {
       "Freshwater is always warmer": false,
@@ -133,14 +133,14 @@
   },
   {
     "id": "lens_scope",
-    "source": "S8",
-    "question": "Can this picture tell us a safe pumping rate for Sopot?",
+    "source": "S15",
+    "question": "Can this model tell us a safe pumping rate for a real island?",
     "options": {
       "Yes, read it directly from the lens": false,
       "No, local data and an appropriate model are needed": true,
       "Yes, every coastline behaves identically": false
     },
-    "success": "The drawing is idealised, uses ocean densities and omits mixing, timing and local geology. The Baltic is brackish.",
-    "error": "The drawing is idealised, uses ocean densities and omits mixing, timing and local geology. The Baltic is brackish."
+    "success": "The model omits mixing, local vertical flow, response time and site geology. A real assessment needs local data and a suitable model.",
+    "error": "The model omits mixing, local vertical flow, response time and site geology. A real assessment needs local data and a suitable model."
   }
 ]

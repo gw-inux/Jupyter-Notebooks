@@ -13,7 +13,7 @@
   },
   {
     "id": "role",
-    "source": "S2",
+    "source": "S3",
     "question": "Warum ist Grundwasser zwischen Regenereignissen wichtig?",
     "options": {
       "Es stoppt Verdunstung": false,
@@ -37,7 +37,7 @@
   },
   {
     "id": "grains",
-    "source": "S3",
+    "source": "S5",
     "question": "Wo befindet sich das Grundwasser in diesem Sand?",
     "options": {
       "Nur im Inneren fester Körner": false,
@@ -49,7 +49,7 @@
   },
   {
     "id": "porosity",
-    "source": "S4",
+    "source": "S6",
     "question": "Eine Probe von 400 mL braucht 160 mL Wasser zum Porenfüllen. Wie groß ist die geschätzte Porosität?",
     "options": {
       "40 %": true,
@@ -61,7 +61,7 @@
   },
   {
     "id": "connectivity",
-    "source": "S4",
+    "source": "S6",
     "question": "Bedeutet gleiche Porosität immer gleich leichte Durchströmung?",
     "options": {
       "Nein, Verbindungen und Größe der Poren sind ebenfalls wichtig": true,
@@ -73,7 +73,7 @@
   },
   {
     "id": "recharge",
-    "source": "S13",
+    "source": "S9",
     "question": "Was bedeutet Grundwasserneubildung?",
     "options": {
       "Jeder Regen erreicht sofort das Meer": false,
@@ -85,7 +85,7 @@
   },
   {
     "id": "beach",
-    "source": "S3",
+    "source": "S5",
     "question": "Eine Strandmulde enthält Wasser nahe dem Meeresspiegel. Was folgt daraus?",
     "options": {
       "Das Wasser ist trinkbar": false,
@@ -97,7 +97,7 @@
   },
   {
     "id": "exchange",
-    "source": "S5",
+    "source": "S10",
     "question": "Ein verbundener Süßwasserfluss steigt über das benachbarte Grundwasserpotenzial. Was ist möglich?",
     "options": {
       "Grundwasser fließt immer zum Fluss": false,
@@ -109,7 +109,7 @@
   },
   {
     "id": "lens",
-    "source": "S6",
+    "source": "S12",
     "question": "Was folgt in diesem idealen Vergleich aus einem niedrigeren Süßwasserstand?",
     "options": {
       "Die Grenzfläche steigt und die Süßwasserlinse wird dünner": true,
@@ -121,7 +121,7 @@
   },
   {
     "id": "density",
-    "source": "S6",
+    "source": "S12",
     "question": "Warum kann Süßwasser über salzigem Grundwasser liegen?",
     "options": {
       "Süßwasser ist immer wärmer": false,
@@ -133,14 +133,14 @@
   },
   {
     "id": "lens_scope",
-    "source": "S8",
-    "question": "Lässt sich hier eine sichere Förderrate für Sopot ablesen?",
+    "source": "S15",
+    "question": "Kann dieses Modell eine sichere Förderrate für eine reale Insel angeben?",
     "options": {
       "Ja, direkt an der Linse": false,
       "Nein, Ortsdaten und ein geeignetes Modell sind nötig": true,
       "Ja, alle Küsten verhalten sich gleich": false
     },
-    "success": "Die Grafik ist idealisiert, nutzt Ozeanwasserdichten und lässt Mischung, Zeitverlauf und lokale Geologie aus. Die Ostsee ist brackig.",
-    "error": "Die Grafik ist idealisiert, nutzt Ozeanwasserdichten und lässt Mischung, Zeitverlauf und lokale Geologie aus. Die Ostsee ist brackig."
+    "success": "Mischung, lokale vertikale Strömung, Zeitverlauf und Standortgeologie fehlen. Eine reale Bewertung braucht lokale Daten und ein geeignetes Modell.",
+    "error": "Mischung, lokale vertikale Strömung, Zeitverlauf und Standortgeologie fehlen. Eine reale Bewertung braucht lokale Daten und ein geeignetes Modell."
   }
 ]

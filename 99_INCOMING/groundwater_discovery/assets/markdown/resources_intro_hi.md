@@ -1,0 +1,1 @@
+[Groundwater Project](https://gw-project.org/) बच्चों, आम जनता, विद्यार्थियों और विशेषज्ञों के लिए निःशुल्क [पुस्तकों](https://gw-project.org/books/), [वीडियो](https://gw-project.org/videos/) और [इंटरैक्टिव सामग्री](https://gw-project.org/interactive-education/) से भूजल समझाता है। नीचे कुछ शुरुआती पुस्तकें हैं; उनके पृष्ठों पर उपलब्ध अनुवाद मिलते हैं।

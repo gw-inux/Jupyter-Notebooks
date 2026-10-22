@@ -14,7 +14,7 @@ import numpy as np
 RIVER_BANK = 80.0
 RIVER_LEVEL = 0.0
 RIVER_BEND = 0.06  # Small prescribed curvature; not a recharge parameter.
-RIVER_POSITIONS = {"river_near": 74.0, "river_inland": 24.0}
+RIVER_POSITIONS = {"river_near": 74.0, "river_middle": 49.0, "river_inland": 24.0}
 RIVER_DEPTHS = ("river_shallow", "river_level_depth", "river_deep")
 RIVER_REGIMES = ("gaining", "losing")
 
@@ -29,14 +29,18 @@ def _land_coordinates(x):
 def river_ground(x):
     """Gently rising terrain inland, with a short cut bank beside the river."""
     x = _land_coordinates(x)
-    return 0.45 + 1.05 * (1 - x / RIVER_BANK) ** 0.7
+    return (0.45 + 1.05 * (1 - x / RIVER_BANK) ** 0.7) * np.minimum(
+        1, (RIVER_BANK - x) / 4
+    )
 
 
 def river_head(x, regime):
     """Gently curved head with unchanged end levels and exchange directions.
 
-    The small curvature is illustrative, not a calibrated recharge solution.
-    Both profiles remain monotonic; all twelve original wet/dry cases persist.
+    The two profiles have opposite bends, steepening toward the water body.
+    This near-bank shape is illustrative, not a calibrated flow solution or a
+    universal curvature rule. Both profiles remain monotonic; the eighteen
+    observation choices retain their wet/dry outcomes.
     """
     x = _land_coordinates(x)
     if regime not in RIVER_REGIMES:
@@ -44,7 +48,7 @@ def river_head(x, regime):
     sign = 1.0 if regime == "gaining" else -1.0
     fraction = x / RIVER_BANK
     bend = 4 * RIVER_BEND * fraction * (1 - fraction)
-    return RIVER_LEVEL + sign * 0.6 * (1 - fraction) + bend
+    return RIVER_LEVEL + sign * (0.6 * (1 - fraction) + bend)
 
 
 @dataclass(frozen=True)

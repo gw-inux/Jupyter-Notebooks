@@ -1,0 +1,1 @@
+Widok z powietrza na atol Palmyra. USGS, domena publiczna. Zdjęcie daje kontekst; okrągły model 1 km² przedstawia inną, wyobrażoną wyspę. [USGS](https://www.usgs.gov/media/images/aerial-view-palmyra-atoll).

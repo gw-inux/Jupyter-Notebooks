@@ -1,3 +1,3 @@
-**Ghybenův–Herzbergův princip** spojuje hladinu sladké vody nad mořem s hloubkou rozhraní pod ním pomocí rovnováhy tlaků. Slaná voda je hustší, a proto její tlak s hloubkou roste rychleji.
+**Ghybenův–Herzbergův princip** spojuje hladinu sladké vody nad mořem s hloubkou rozhraní pod mořem. Tlaky se vyrovnávají: hustší slaná voda vyvažuje vyšší sloupec sladké vody. [S12]
 
-Obrázek předpokládá stálé hustoty, svislé hydrostatické rozdělení tlaku, nehybnou slanou vodu, ostré rozhraní a žádné mělké skalní podloží omezující čočku. Porovnává ideální rovnováhy. Ve skutečnosti se vody mísí v přechodové zóně. Balt je brakický: tento příklad s hustotou oceánské vody **není předpovědí pro Sopoty**. Matematiku najdete v odkazované knize. [S6, S8, S9]
+Předpokládá se hydrostatický tlak ve svislém směru, téměř nehybná slaná voda, stálé hustoty a ostré rozhraní. Ve skutečnosti se vody v přechodové zóně mísí. Svislé proudění u studny a slanost čerpané vody vyžadují podrobnější model. [S15, S18]

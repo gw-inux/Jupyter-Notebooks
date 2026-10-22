@@ -1,0 +1,3 @@
+1. A maior parte da água é salgada e muita água doce está congelada. Cerca de 99% da **água doce líquida** é subterrânea. É um stock, não uma quantidade segura para beber ou extrair: profundidade, qualidade, ecossistemas e renovação importam. [S1]
+2. A água entra nos poros. Parte fica acima do nível freático ou volta à atmosfera; parte recarrega a zona saturada. **Porosidade** é volume de poros dividido pelo total: espaço disponível, não água sempre presente ou drenável. [S6, S7]
+3. Numa praia conectada, os níveis encontram-se junto à costa, podendo ser maiores no interior. Um rio efluente recebe água de níveis superiores; um influente alimenta níveis inferiores. [S10, S13]

@@ -1,3 +1,3 @@
 **Le sable humide n’indique pas forcément la nappe.** La capillarité peut humidifier le sable au-dessus. Vagues, variations du niveau marin, recharge et couches locales modifient la situation ; la mer n’est pas réellement constante. L’eau interstitielle peut être douce, saumâtre ou salée. Son niveau ne renseigne ni sur sa salinité ni sur sa potabilité.
 
-La connexion fonctionne dans les deux sens : la nappe peut alimenter une rivière ou la mer ; l’eau de surface peut aussi pénétrer dans le sol. Dans un système connecté d’eau douce, l’écoulement va d’une charge hydraulique élevée vers une charge plus faible. À la côte, la densité intervient aussi. [S3, S5, S6]
+La connexion fonctionne dans les deux sens : la nappe peut alimenter une rivière ou la mer ; l’eau de surface peut aussi pénétrer dans le sol. Dans un système connecté d’eau douce, l’écoulement va d’une charge hydraulique élevée vers une charge plus faible. À la côte, la densité intervient aussi. [S5, S10, S12]

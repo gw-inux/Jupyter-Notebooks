@@ -13,7 +13,7 @@
   },
   {
     "id": "role",
-    "source": "S2",
+    "source": "S3",
     "question": "Pourquoi les eaux souterraines comptent-elles entre les pluies ?",
     "options": {
       "Elles arrêtent l’évaporation": false,
@@ -37,7 +37,7 @@
   },
   {
     "id": "grains",
-    "source": "S3",
+    "source": "S5",
     "question": "Où se trouve l’eau souterraine dans ce sable ?",
     "options": {
       "Seulement dans les grains solides": false,
@@ -49,7 +49,7 @@
   },
   {
     "id": "porosity",
-    "source": "S4",
+    "source": "S6",
     "question": "Un échantillon de 400 mL nécessite 160 mL d’eau pour remplir ses pores. Quelle porosité estime-t-on ?",
     "options": {
       "40 %": true,
@@ -61,7 +61,7 @@
   },
   {
     "id": "connectivity",
-    "source": "S4",
+    "source": "S6",
     "question": "Des porosités égales donnent-elles toujours la même facilité d’écoulement ?",
     "options": {
       "Non, connexions et dimensions des pores comptent aussi": true,
@@ -73,7 +73,7 @@
   },
   {
     "id": "recharge",
-    "source": "S13",
+    "source": "S9",
     "question": "Que signifie la recharge des eaux souterraines ?",
     "options": {
       "Toute pluie atteint immédiatement la mer": false,
@@ -85,7 +85,7 @@
   },
   {
     "id": "beach",
-    "source": "S3",
+    "source": "S5",
     "question": "Un trou contient de l’eau près du niveau marin. Que conclure ?",
     "options": {
       "L’eau est potable": false,
@@ -97,7 +97,7 @@
   },
   {
     "id": "exchange",
-    "source": "S5",
+    "source": "S10",
     "question": "Une rivière d’eau douce connectée monte au-dessus de la charge souterraine voisine. Que peut-il se passer ?",
     "options": {
       "La nappe alimente toujours la rivière": false,
@@ -109,7 +109,7 @@
   },
   {
     "id": "lens",
-    "source": "S6",
+    "source": "S12",
     "question": "Dans cette comparaison idéale, que produit un niveau d’eau douce plus bas ?",
     "options": {
       "L’interface remonte et la lentille s’amincit": true,
@@ -121,7 +121,7 @@
   },
   {
     "id": "density",
-    "source": "S6",
+    "source": "S12",
     "question": "Pourquoi l’eau douce peut-elle se trouver au-dessus des eaux souterraines salées ?",
     "options": {
       "Elle est toujours plus chaude": false,
@@ -133,14 +133,14 @@
   },
   {
     "id": "lens_scope",
-    "source": "S8",
-    "question": "Peut-on en déduire un débit de pompage sûr pour Sopot ?",
+    "source": "S15",
+    "question": "Ce modèle donne-t-il un débit sûr pour une île réelle ?",
     "options": {
       "Oui, il se lit sur la lentille": false,
       "Non, il faut des données locales et un modèle adapté": true,
       "Oui, toutes les côtes se comportent pareil": false
     },
-    "success": "Le dessin est idéalisé, utilise des densités océaniques et omet mélange, délais et géologie locale. La Baltique est saumâtre.",
-    "error": "Le dessin est idéalisé, utilise des densités océaniques et omet mélange, délais et géologie locale. La Baltique est saumâtre."
+    "success": "Il omet mélange, écoulement vertical local, temps de réponse et géologie du site. Il faut des données locales et un modèle adapté.",
+    "error": "Il omet mélange, écoulement vertical local, temps de réponse et géologie du site. Il faut des données locales et un modèle adapté."
   }
 ]

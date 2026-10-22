@@ -1,0 +1,1 @@
+Aerial view of Palmyra Atoll. USGS, public domain. The photograph provides context; our circular 1 km² model is a separate imaginary island. [USGS](https://www.usgs.gov/media/images/aerial-view-palmyra-atoll).

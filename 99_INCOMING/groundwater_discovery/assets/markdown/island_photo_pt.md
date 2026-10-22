@@ -1,0 +1,1 @@
+Vista aérea do atol de Palmyra. USGS, domínio público. A foto dá contexto; o modelo circular de 1 km² é uma ilha imaginária diferente. [USGS](https://www.usgs.gov/media/images/aerial-view-palmyra-atoll).

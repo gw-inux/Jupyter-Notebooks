@@ -1,4 +1,4 @@
-**Demostración en la feria (5–7 min):** pide una estimación; llena un vaso; revela el nivel freático; termina con una idea y un enlace a Groundwater Project.
+**Demostración breve (5–7 min):** pide una estimación; llena un vaso; revela el nivel freático; termina con una idea y un enlace a Groundwater Project.
 
 **Clase (20–30 min con discusión):** 3 min para reservas; 7 min para el vaso; 7 min para la playa; 3–5 min para explicar y comprobar. Añade tiempo para salir al exterior.
 

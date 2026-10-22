@@ -1,4 +1,4 @@
-**Porosität beschreibt, welcher Anteil der gesamten Probe aus Zwischenräumen besteht.** Ziehe den Feststoff vom Gesamtvolumen ab und teile das Porenvolumen durch das Gesamtvolumen. So lassen sich unterschiedlich große Proben vergleichen. [S10]
+**Porosität beschreibt, welcher Anteil der gesamten Probe aus Zwischenräumen besteht.** Ziehe den Feststoff vom Gesamtvolumen ab und teile das Porenvolumen durch das Gesamtvolumen. So lassen sich unterschiedlich große Proben vergleichen. [S7]
 
 - $V_t$: Gesamtvolumen aus Feststoff und Poren (mL).
 - $V_s$: Feststoffvolumen ohne Poren (mL).

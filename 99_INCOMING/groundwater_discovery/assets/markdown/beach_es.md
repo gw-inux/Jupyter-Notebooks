@@ -1,3 +1,3 @@
-¿Dónde encontrarías agua subterránea si pudieras mirar bajo el suelo? Una playa de arena es un punto de partida sencillo: cerca de la orilla, el nivel freático suele ser poco profundo. Debajo, los poros conectados de este acuífero arenoso están llenos de agua. [S3]
+¿Dónde encontrarías agua subterránea si pudieras mirar bajo el suelo? Una playa de arena es un punto de partida sencillo: cerca de la orilla, el nivel freático suele ser poco profundo. Debajo, los poros conectados de este acuífero arenoso están llenos de agua. [S5]
 
 **¿Se llenará de agua tu hoyo?** Elige un lugar y un hoyo poco profundo; después muestra el nivel freático. En esta playa imaginaria, el mar se mantiene estable y el agua subterránea está solo un poco más alta tierra adentro. Compara la **cota** con el mar, no solo la profundidad bajo la arena. El dibujo ilustra una idea, no niveles medidos.

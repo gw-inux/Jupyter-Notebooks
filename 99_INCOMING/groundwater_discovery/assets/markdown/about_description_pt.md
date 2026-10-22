@@ -1,0 +1,1 @@
+**Descobrir a água subterrânea** é um módulo educativo interativo do **[Groundwater Project](https://gw-project.org/)**. Explicações curtas, perguntas e experiências visuais exploram ciclo da água, armazenamento e ligações à superfície. Destina-se a alunos do secundário e adultos interessados, individualmente ou em aula.

@@ -1,0 +1,1 @@
+**h** : niveau d’eau douce au-dessus de la mer (m) ; **z** : profondeur de l’interface sous la mer (m) ; **ρf** : masse volumique de l’eau douce (**1000 kg/m³**) ; **ρs** : celle de l’eau de mer (**1025 kg/m³**). Le facteur sans dimension **α = 40** : 0,1 m de niveau correspond à environ 4 m de profondeur. D’autres salinités donnent d’autres facteurs.

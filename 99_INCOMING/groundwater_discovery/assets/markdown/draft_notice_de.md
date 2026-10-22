@@ -1,3 +1,3 @@
-**Dies ist ein erster Entwurf.** Das Modul befindet sich in Entwicklung und Begutachtung. In den kommenden Tagen wird es weiter überarbeitet.
+**Dies ist ein erster Entwurf.** Das Modul wird derzeit entwickelt und geprüft und in den kommenden Tagen überarbeitet.
 
-Diese erste Version dient als Demonstrator: Sie zeigt den Lernansatz und soll Rückmeldungen sammeln. Bitte teile Hinweise zu den wissenschaftlichen Erklärungen, der Sprache, den Aktivitäten und der Bedienbarkeit über das unten verlinkte Formular des Groundwater Project.
+Diese Demonstration stellt den Lernansatz vor und sammelt Rückmeldungen. Hinweise zu Wissenschaft, Sprache, Übungen und Bedienbarkeit sind von allen willkommen. Bitte fülle das Bewertungsformular aus und sende es an **[mail@reimann-thomas.de](mailto:mail@reimann-thomas.de)**. Vielen Dank — wir freuen uns sehr über dein Feedback!

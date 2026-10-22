@@ -1,3 +1,5 @@
-Sladká voda má menší hustotu než slaná. Ve vhodném pobřežním kolektoru může vytvořit **těleso sladké vody nad slanou podzemní vodou**. Obrázek ukazuje ideální čočku pod ostrovem včetně povrchu terénu a mořského dna.
+Déšť na ostrově může vsakovat a doplňovat kolektor. Sladká voda s menší hustotou může vytvořit **čočku nad slanou podzemní vodou**. Dotace ji udržuje, zatímco voda proudí k moři. [S12, S15, S16]
 
-Porovnejte čtyři hladiny. **Co se stane s rozhraním při poklesu hladiny sladké vody?** Čerpání může hladinu snížit a přitáhnout slanou vodu ke studním. Srovnání vysvětluje tendenci; nepředpovídá čerpané množství ani dobu odezvy. [S6, S8, S12]
+Představte si kruhový ostrov o ploše **1 km²**. Hladina závisí na dotaci, velikosti a propustnosti materiálu. Zde se materiál a plocha nemění: vyšší přirozená hladina představuje větší dotaci. Porovnejte **0,1–1,0 m nad mořem**, pak přidejte centrální studnu.
+
+Graf i objem jsou idealizované ustálené stavy, nikoli odhady pro vyfotografovaný ostrov.

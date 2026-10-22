@@ -1,3 +1,3 @@
 **Environ 99 %**, selon l’estimation mondiale arrondie utilisée par The Groundwater Project. Il s’agit du **stock d’eau douce liquide**, pas de l’approvisionnement annuel ni d’eau directement potable. La glace contient la majorité de toute l’eau douce terrestre.
 
-Pourquoi ce réservoir compte-t-il ? Il alimente des puits et peut soutenir rivières et zones humides entre les pluies. Un grand volume ne signifie **pas** une ressource exploitable illimitée : une partie est inaccessible, peu renouvelée ou contaminée. Protéger les eaux souterraines protège aussi les eaux de surface connectées. [S1, S2]
+Pourquoi ce réservoir compte-t-il ? Il alimente des puits et peut soutenir rivières et zones humides entre les pluies. Un grand volume ne signifie **pas** une ressource exploitable illimitée : une partie est inaccessible, peu renouvelée ou contaminée. Protéger les eaux souterraines protège aussi les eaux de surface connectées. [S1, S3]

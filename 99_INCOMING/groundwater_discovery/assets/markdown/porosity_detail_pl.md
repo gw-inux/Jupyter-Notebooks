@@ -1,4 +1,4 @@
-**Porowatość określa, jaka część całej próbki jest przestrzenią porową.** Odejmij objętość części stałej od całkowitej, a wynik podziel przez objętość całkowitą. Dzięki temu można porównywać próbki różnej wielkości. [S10]
+**Porowatość określa, jaka część całej próbki jest przestrzenią porową.** Odejmij objętość części stałej od całkowitej, a wynik podziel przez objętość całkowitą. Dzięki temu można porównywać próbki różnej wielkości. [S7]
 
 - $V_t$: objętość całej próbki, części stałej i porów (mL).
 - $V_s$: objętość materiału stałego bez porów (mL).

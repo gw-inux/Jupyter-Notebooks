@@ -39,7 +39,7 @@ section[data-testid="stSidebar"] .stButton button p {text-align:left;}
 </style>""",
     unsafe_allow_html=True,
 )
-if st.session_state.language == "ar":
+if st.session_state.language in {"ar", "fa"}:
     st.markdown(
         """<style>
     [data-testid="stMarkdownContainer"], [data-testid="stWidgetLabel"],
@@ -50,7 +50,7 @@ if st.session_state.language == "ar":
     </style>""",
         unsafe_allow_html=True,
     )
-ids = ["home", "importance", "pores", "beach", "resources", "lab"]
+ids = ["home", "importance", "pores", "beach", "resources", "lab", "about"]
 pages = {
     id: st.Page(
         "content/" + id + ".py", title=tr(id), url_path=id, default=id == "home"
@@ -65,6 +65,8 @@ for id in ids:
         st.sidebar.markdown("**" + tr("core") + "**")
     if id == "lab":
         st.sidebar.markdown("**" + tr("extra") + "**")
+    if id == "about":
+        st.sidebar.markdown("---")
     marker = " 👈" if active.url_path == pages[id].url_path else ""
     if st.sidebar.button(ICONS[id] + " " + tr(id) + marker, key="nav_" + id):
         destination = pages[id]

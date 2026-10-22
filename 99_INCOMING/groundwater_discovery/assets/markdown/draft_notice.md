@@ -1,3 +1,3 @@
 **This is an initial draft.** The module is currently in development and under review. It will be modified over the coming days.
 
-This initial version is a demonstrator, intended both to illustrate the learning approach and to collect feedback. Please share comments on the scientific explanations, language, activities and usability through the Groundwater Project’s module review form below.
+This demonstrator presents the learning approach and helps collect feedback. Comments on the science, language, activities and usability are welcome from everyone. Please complete the module review form below and send it to **[mail@reimann-thomas.de](mailto:mail@reimann-thomas.de)**. Thank you — we highly appreciate your feedback.

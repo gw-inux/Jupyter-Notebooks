@@ -1,0 +1,1 @@
+**h**: nível doce acima do mar (m); **z**: profundidade da interface abaixo dele (m); **ρf**: densidade doce (**1000 kg/m³**); **ρs**: marinha (**1025 kg/m³**). O fator sem unidades **α = 40**: 0,1 m de nível corresponde a cerca de 4 m de profundidade. Outras salinidades dão outros fatores.

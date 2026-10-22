@@ -1,3 +1,3 @@
-**To pierwsza wersja robocza.** Moduł jest obecnie rozwijany i poddawany recenzji. W najbliższych dniach będzie modyfikowany.
+**To jest wstępny projekt.** Moduł jest rozwijany i recenzowany; w najbliższych dniach będzie zmieniany.
 
-Ta wersja demonstracyjna pokazuje podejście do nauki i służy zbieraniu opinii. Uwagi dotyczące wyjaśnień naukowych, języka, ćwiczeń i obsługi można przekazać przez poniższy formularz oceny modułów Groundwater Project.
+Wersja demonstracyjna przedstawia sposób nauki i służy zbieraniu opinii. Zapraszamy wszystkich do uwag o treści naukowej, języku, ćwiczeniach i obsłudze. Wypełnij formularz oceny i wyślij go na **[mail@reimann-thomas.de](mailto:mail@reimann-thomas.de)**. Dziękujemy — bardzo cenimy każdą opinię!
