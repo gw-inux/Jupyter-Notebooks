@@ -1,0 +1,9 @@
+{
+  "pinboard_population_and_navigation": true,
+  "natural_completion_retains_board_and_distributions": true,
+  "json_download": true,
+  "mobile_no_horizontal_overflow": true,
+  "parent_integration": true,
+  "javascript_errors": [],
+  "http_errors": []
+}

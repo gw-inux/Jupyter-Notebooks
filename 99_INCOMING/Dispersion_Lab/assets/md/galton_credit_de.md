@@ -1,0 +1,3 @@
+Ein physisches Galtonbrett: Kugeln treffen auf Stifte und sammeln sich in Auslasskanälen. Unser digitales Brett stellt Links-/Rechtsentscheidungen dar; Kollisionen und Schwerkraftbeschleunigung werden nicht berechnet. Bei idealen unabhängigen 50:50-Entscheidungen gilt eine Binomialverteilung; eine Glockenform ist deren Näherung bei vielen Reihen und Teilchen.
+
+**Foto:** Mark Hebner, *GaltonBoard.png* (2018), [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:GaltonBoard.png). [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/). Unverändert; verkleinert dargestellt. Die Lizenz gilt für dieses Foto. Physische Demonstration: [Yale Physics, Galton Board](https://yppsweb2.its.yale.edu/physics/demos/demomain.asp?id=4G10.10&task=viewdemo).

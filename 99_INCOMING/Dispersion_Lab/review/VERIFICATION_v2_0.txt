@@ -1,0 +1,79 @@
+DISPERSION LABORATORY 2.0.0 — VERIFICATION RECORD
+Date: 30 October 2026
+
+Automated suite (run from the delivered project root):
+    python -m pytest -q
+Result: 53 passed in 32.21 s.
+
+Scientific checks:
+- Exact binomial probabilities and moments against exhaustive coin-path enumeration.
+- Waiting + active + collected = N at all tested times; complete exported mass = 1.
+- Zero time CV reproduces the fixed-time board exactly.
+- A finite injection broadens arrival times without changing fixed transit times.
+- Monte Carlo moments agree with independent model population references.
+- Hydraulic conservation, outlet flux probabilities, and pore-volume / inlet-flow
+  mean transit-time identity; positive gaps and clearance of every plotted route.
+- Pressure and uniform-packing scaling; flow follows decreasing pressure.
+- Complete spatial mass sum and complete temporal histogram area equal 1.
+- All three modes: adding/removing background particles retains every highlighted
+  route, node time, release time, and arrival time, including H=1,3,10 and B=1000.
+- Maximum sample N=10,010; invalid cohort limits rejected.
+- Preview contains geometry/water flow only, with no solute trajectories.
+
+Original-version regression (additional check):
+Nine cases spanning all three modes, rows 2/12/20, seeds 0/42/93, and particle
+counts 1/1000/10 reproduced v1 bit for bit for paths, node times, release times,
+arrival times, outlet IDs, and every exact reference statistic. All used a 6 s
+injection. Numerical model changes are limited to the capacity bound and export
+version string.
+
+Streamlit integration:
+- No transport is generated before Run; edits expose only the current preview.
+- Fixed guided settings; guided and exploratory experiments have distinct states.
+- Language switching retains scientific inputs, run, and playback time.
+- Background addition, comparisons, new particle seed, play/pause/reset/step/end,
+  and selected-particle clamping after a smaller cohort.
+- Standalone and parent-integration launchers render successfully.
+- AppTest interactions use page callables because AppTest does not retain native
+  callable-page routing between successive run() calls. Browser checks cover the
+  actual sidebar and URL navigation.
+
+Real browser (Chromium 134.0.6998.35; Playwright 1.51.0):
+- Standalone sidebar navigation; guided ten-particle experiment and node stepping.
+- Grey-grain preview, ten highlighted plus 10,000 background particles, animation.
+- English/German switching and page navigation retain run and observed time.
+- JSON downloaded through the browser and parsed: N=10,010; highlighted=10.
+- Geometry edits hide previous transport and disable background application.
+- Mobile viewport 390 x 844: document width 390, no horizontal page overflow.
+- Parent integration navigation retains completed results.
+- No JavaScript exceptions or HTTP failures in the checked flows.
+- Plot images inspected: initial tray, numbered paths, grey grains, and mobile
+  stacked distributions. Inline PNG frames avoid expiring media URLs.
+
+Teaching content and document:
+- English/German Markdown; nine Soil Water Retention flag choices and identical
+  suffix-file / English-fallback convention. Other seven languages currently
+  have translated navigation and explicitly indicated English content fallback.
+- Four original illustrations in EN/DE, PNG and SVG, with generation script.
+- Theory_Review.docx rendered with LibreOffice; all 10 pages visually inspected.
+- Equations are native Word math. No source diagrams were reproduced.
+- Source details and limits of abstract-only access are recorded in the draft.
+
+Scope of verification:
+These checks verify this mathematical teaching model. They do not validate the
+network geometry, instantaneous junction mixing, or the travel-time distribution
+against a measured soil. No field calibration, molecular diffusion solver, or
+inferred soil dispersivity is claimed. Reproducibility is established for the
+recorded environment; identical seeds across different numerical-library
+versions are not guaranteed.
+
+Environment:
+Python 3.12.14
+{
+  "numpy": "2.3.5",
+  "scipy": "1.17.0",
+  "matplotlib": "3.10.8",
+  "pandas": "2.2.3",
+  "streamlit": "1.50.0",
+  "pytest": "9.2.0"
+}

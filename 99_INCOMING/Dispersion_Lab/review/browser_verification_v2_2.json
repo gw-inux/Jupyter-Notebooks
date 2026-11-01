@@ -1,0 +1,12 @@
+{
+  "guided_empty_board_pause_step_and_no_exports": true,
+  "pinboard_population_and_navigation": true,
+  "grain_end_observed_seconds": 9.844,
+  "natural_completion_retains_board_and_distributions": true,
+  "json_download": true,
+  "save_and_new_realization_preserve_comparison": true,
+  "mobile_no_horizontal_overflow": true,
+  "parent_integration": true,
+  "javascript_errors": [],
+  "http_errors": []
+}

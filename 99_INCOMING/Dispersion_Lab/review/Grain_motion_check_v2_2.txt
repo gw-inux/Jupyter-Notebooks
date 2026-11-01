@@ -1,0 +1,67 @@
+DISPERSION LABORATORY 2.2 — CHECK OF SLOW AND UPWARD MOTION
+30 October 2026
+
+Question
+Can the reported slow or locally upward particle motion arise from the existing
+pressure-driven grain-network model, or from incorrect trajectory interpolation?
+
+Configuration
+Config(mode='grains', rows=20 or 40, particles=10010), with the other defaults:
+a=1 mm, grain-size factor 0.75, grain variation 0.25, imposed pressure difference
+0.5 Pa, grain seed 7, particle seed 42, instantaneous point injection.
+There are 10 highlighted + 10,000 independently sampled background particles.
+All markers have mass 1/10010. Display stretching and screen duration do not
+enter any calculation below.
+
+Results                                    20 rows             40 rows
+Sampled particle transitions                200,550             402,388
+Transitions upward in plotted z             175                 994
+Particles with at least one upward leg      172                 854
+Median arrival time / s                     423.1753            2031.8052
+Latest sampled arrival / s                  5897.2218           10941.1106
+Median connection travel time / s           19.9428             46.0957
+Longest sampled connection time / s         5321.2870           5999.3150
+Max relative nodal balance residual         1.13e-15            1.72e-15
+Relative inlet/outlet flow imbalance        2.71e-15            2.75e-16
+Relative difference: V/Q vs exact mean      2.46e-15            1.58e-15
+
+These are reproducible model samples, not observations from a real soil.
+The companion grain_motion_v2_2.json retains the unrounded computed values.
+
+Checks and interpretation
+- Every sampled transition decreased calculated node pressure strictly and had
+  positive finite travel time. No particle revisited a node; every path ended at
+  an outlet. Waiting + active + collected particle counts conserve total mass.
+- Routing follows outgoing water flow Q_ij = g_ij (P_i - P_j), not the sign of
+  the plotted vertical increment. Heterogeneous conductances permit a neighbor
+  with lower pressure to lie locally above the current node. Strictly decreasing
+  pressure rules out a cycle in this steady network. Local upward motion is
+  therefore retained, with a visible explanation in the app.
+- Connection time is pi*r^2*L/abs(Q). Small nonzero flow yields long finite travel
+  times. With many markers, a rare slow path can set the animation's final time;
+  most particles then arrive early on that same linear display clock.
+- Regression checks evaluate positions at 25% and 75% of an actual upward leg
+  and of the slowest sampled leg. Both match linear interpolation of the computed
+  endpoints and show a nonzero displacement. The slow motion is not a numerical
+  interpolation freeze in these cases.
+- The grain display now uses the same vertical scale factor of two as the
+  pinboard. This stretches drawn grains; coordinates, hydraulic radii, flow,
+  routing probabilities, and all model times are unchanged.
+- The pathway table exposes node pressure and the time to the next node, so the
+  learner can inspect both effects with Pause and Previous/Next step.
+
+Reproduction
+python -m pytest -q tests/test_experiment.py -k grain_upward_and_slow
+The tests exercise both complete cohorts and the above physical invariants.
+The existing numerical model source is byte-for-byte identical to v2.1 after
+normalizing only the exported version string.
+
+Scientific scope
+The formulation is an idealized steady resistor/throat network. Plot z is a
+flowwise distance coordinate, not a separately included elevation-head term.
+No pore-body storage, trapping, sorption, molecular diffusion, or collision model
+has been introduced. Conservation and interpolation checks verify this model's
+implementation; they do not validate it for a measured porous medium.
+Primary formulation reference: OpenPNM, Simulating transport
+https://openpnm.org/examples/tutorials/08_simulating_transport.html
+The app has its own solver; it does not depend on OpenPNM.

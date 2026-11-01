@@ -1,0 +1,7 @@
+Explore how **grain geometry** changes flow paths and travel times. First inspect the stationary medium. Increase the grain-size factor to narrow gaps, or vary grain sizes to introduce heterogeneity. Change one setting at a time and predict the outcome before starting.
+
+Choose 1–10 highlighted particles and optionally add blue background particles. **Run highlighted particles** starts the animation of the entire planned cohort. Open **Progress through the experiment** for **Play** and **Pause**. While paused, use **Previous step**, **Next step**, or the slider. **Start** returns to the beginning; **Final result** shows the end. The default display duration is about 60 seconds; calculated travel times remain unchanged. Display settings remain in a collapsed expander. **Repeat, compare, and download** groups saving, a new particle realization, and exports. Save the current run before repeating to retain it for comparison.
+
+The surrounding grains are illustrative; the computed network remains triangular, with one point inlet and equal-pressure outlets. Grain-size factor is not measured porosity. Flow depends on the stated equivalent-throat assumptions (OpenPNM documentation; equations under References and model notes).
+
+The smaller framed board is a **preview**. Run brings Observe the transport into view, keeping the Run/Rerun button visible. After the first run, **Rerun highlighted particles** starts a new realization with the current settings; **Play** replays the current result. A new random sample may still reach the same outlets.

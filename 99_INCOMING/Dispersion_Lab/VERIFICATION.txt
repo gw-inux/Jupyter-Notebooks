@@ -1,0 +1,117 @@
+DISPERSION LABORATORY 2.4.0 — VERIFICATION RECORD
+Date: 30 October 2026
+
+Scope of this revision
+- Every new calculation focuses Observe the transport once, keeping the main
+  Run/Rerun button visible, including starts from the comparison expander.
+  Later animation frames do not override manual scrolling.
+- Grain-network playback initially uses 60 screen seconds; guided/pinboard
+  defaults remain eight. Only the display clock changed, not model travel times.
+- The reset control is now Start / Anfang, with a first-page icon and a wider
+  column. Its tooltip explains that it returns to the beginning and pauses.
+  Play, Pause, Previous/Next step and Final result retain their behavior.
+- The bilingual grain-motion text explains rare slow connections. Detailed
+  travel-time verification and movie feasibility reports are included in review/.
+- No new video engine, timing transformation or runtime dependency was added.
+
+Numerical preservation
+The executable AST of model.py matches v2.3 after normalizing only the exported
+version string. All 66 existing EN/DE display-equation bodies are unchanged.
+experiment.py, plots.py, i18n.py, pages.py and navigation.py match v2.3 byte for
+byte before code-map regeneration. No transport equation, random stream, path,
+arrival time, normalization or physical setting was modified.
+
+Automated checks
+Command: python -m pytest -q
+Result: 76 passed in 88.06 s.
+Existing checks cover scientific invariants, reference statistics, mass/flow
+balance, reproducible prefixes, upward/slow interpolation, maximum cohorts,
+parameter changes, exports, multilingual state and playback commands.
+Three added cases independently check a two-row network's exact intermediate
+pressures, inlet flow, throat radius and travel times against a closed form.
+The per-page duration defaults and shorter Start label are checked in AppTest.
+
+Independent hydraulic and travel-time audit
+Command: python scripts/audit_travel_times.py OUTPUT_JSON
+Result: exit code 0. Data: review/travel_time_audit_v2_4.json.
+Nine hydraulic configurations span 2–40 rows, grain factors 0.5–0.9, variability
+0–0.4, pressures 0.05–2 Pa and two grain seeds. An independent dense solve was
+compared to the implemented sparse solve; equivalent L/velocity transit times,
+branch flow fractions, total probability and flowing-volume/inlet-flow mean
+transit were checked. Worst relative discrepancies:
+- Pressure / inlet pressure: 3.00e-15.
+- Flow / inlet flow: 5.08e-15.
+- Equivalent connection-time formulas: 6.66e-16.
+- Internal nodal mass residual: 5.47e-15.
+- Inlet/outlet imbalance: 1.52e-14.
+Three complete cohorts of 10,010 particles each had positive finite connection
+times, strictly falling pressure, no revisited nodes, valid outlet termination
+and conserved mass. These are representative/boundary checks, not an exhaustive
+parameter sweep or field validation.
+
+In the default 20-row sample (grain seed 7, particle seed 42), median arrival
+was 423.18 s, the 95th percentile 771.87 s and latest arrival 5,897.22 s. The
+latest path had no upward steps: one downward, very-low-pressure-drop connection
+accounted for 90.23% of its transit time. Slow flow, rather than repeated cycling,
+explains this late arrival. The 60-second clock displays its 95th percentile at
+about 7.85 s. Exact values and other samples are in Travel_Time_Review_v2_4.md.
+
+Movie assessment
+Six frame pairs per 20-/40-row case with 10,010 particles measured current
+rendering cost. Mean times were 0.429/0.613 s per board-plus-distributions pair.
+A straightforward 60 s at 24 fps export extrapolates to 10.3/14.7 minutes of
+rendering before encoding. These small-sample, environment-specific estimates
+are not a lower bound for optimized code. Raw data and a reproduction script
+are included. Current official Streamlit media documentation, installed 1.50
+media source and MDN video/timing APIs were checked. A custom browser renderer
+could interpolate the existing trajectories smoothly; preserving exact node
+stepping and synchronized statistics requires a separate implementation and
+parity checks. The current player is retained. See Playback_Assessment_v2_4.md.
+
+Browser checks
+Command: python tests/browser_smoke.py
+Result: exit code 0. Report: review/browser_verification_v2_4.json.
+- Seven starts/reruns across all three stages focused Observe the transport and
+  kept the main Run/Rerun button in the viewport, including the lower Rerun button.
+- Manual scrolling during animation was not undone by subsequent frames.
+- Natural grain completion was observed with the new 60-second default (60.046 s
+  from the focus check to confirmation); the board and both arrival plots remain.
+- Start fits its wider column. Pause, exact previous/next node steps, Play and
+  Final result, guided-page restrictions and changed-realization seeds passed.
+- 10,010-marker pinboard, previews, section order/colours, EN/DE navigation and
+  French fallback passed. Save -> rerun preserved the saved comparison; JSON
+  exports recorded the correct version and new seed. Changed settings restore
+  the matching empty board before calculation.
+- Mobile width 390 px has no horizontal overflow. Parent multipage integration
+  works. No JavaScript exceptions or HTTP failures were recorded.
+The harness selects the visible tooltip button and retries only a screenshot
+whose element is detached by a navigation refresh; application assertions are
+not bypassed.
+
+Additional German mobile check: three consecutive grain runs at 390 x 844,
+including changing background count to 50. Observe remained at y=60.39 px and
+the Run button ended at y=171.98 px; all three images remained present. Seeds
+42, 43 and 44, the translated rerun label, fitting Anfang label, no overflow,
+no KaTeX/Streamlit exceptions and final collection of 51 particles were checked.
+Report: review/mobile_focus_v2_4.json. Desktop and mobile control screenshots
+were inspected visually.
+
+Content and packaging
+The current EN/DE review Markdown is compiled from the app's scientific text.
+The v2.0 Word review remains unchanged and clearly versioned. No new Word or PDF
+is claimed. Existing source/ZIP and the previous verification record are retained.
+All 25 Python sources compile. Exact code maps were regenerated and --check
+passed. The source index updater changes module docstrings only. The final ZIP
+was CRC-tested and each packaged file compared byte for byte to the source;
+cache files are excluded.
+
+Environment and limits
+Python 3.12; Streamlit 1.50.0. Playwright 1.51.0 / Chromium 134 for browser checks.
+The one-time scroll enhancement uses JavaScript and module-owned IDs; playback
+and numerical results remain independent of it. A 60-second display clock may
+have minor rendering/scheduling overhead and does not eliminate the relative
+compression caused by rare late arrivals. The model is advection-only, with
+idealized tubes and zero-volume mixed nodes; no diffusion, immobile exchange or
+trapping mechanism is present. Internal numerical verification is not validation
+against measured soil behavior. EN/DE scientific text is supplied; the other
+seven languages retain the established explicit English fallback.

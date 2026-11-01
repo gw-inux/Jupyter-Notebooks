@@ -1,0 +1,48 @@
+REVIEW NOTICE UPDATE — 1 November 2026
+Base: verified Dispersion laboratory v2.4.0.
+
+The overview now has a collapsed review expander immediately below its title,
+following the placement and interaction of Groundwater Discovery v0.7.2.
+The requested red heading, pale red tint and red border are scoped to this panel.
+English and German Markdown state that the material is a draft, is currently
+under review, is based on a discussion with Professor Albert Valocchi, and
+welcomes feedback. Other languages use the existing English fallback.
+
+Only these existing files changed:
+- dispersion_lab/pages.py: import existing presentation helpers and show the
+  review panel in overview(); refresh source line map.
+- assets/css/experiment.css: one scoped review-colour rule.
+- CODE_INDEX.md: refreshed source line numbers.
+New content: assets/md/review_notice.md and review_notice_de.md, and this record.
+All other existing files, including numerical model, experiment state/playback,
+plots, other page functions, requirements and launchers, remain unchanged.
+Numerical version metadata remains 2.4.0 because no numerical changes were made.
+
+Verification completed
+- Byte comparison against the original v2.4 ZIP: only the three existing files
+  listed above differ. AST comparison: only overview() changes in pages.py.
+- All 25 Python sources compile; generated code maps pass --check.
+- Four existing Streamlit tests pass: all three stages' run/autoplay/final result/
+  reset/step checks and standalone/parent launcher checks (10.13 s).
+- EN, DE and FR-fallback AppTest checks: first overview expander, correct notice,
+  attribution and collapsed default; notice absent from the principles page.
+- Chromium walkthrough: EN/DE notice content, computed red styling, 390 px mobile
+  layout without horizontal overflow, guided Run and scroll focus preserved;
+  no JavaScript errors. Desktop and mobile screenshots inspected.
+- Final ZIP CRC and file-by-file comparison against the working source passed.
+The prior detailed numerical verification remains in VERIFICATION.txt; it is
+historical evidence for the unchanged model, not a claim of rerunning all tests.
+
+GitHub and Streamlit Community Cloud
+1. Extract the archive and upload the CONTENTS of Dispersion_Lab/ to the root
+   of your GitHub repository. Preserve all folders and files, including assets/,
+   dispersion_lab/, requirements.txt and .streamlit/config.toml.
+2. In Streamlit Community Cloud, choose the repository and branch; set the main
+   file path to app.py and Python to 3.12 in Advanced settings.
+3. Deploy. No secrets, model executables or extra runtime dependencies are needed.
+   For local use: python -m pip install -r requirements.txt
+                  python -m streamlit run app.py
+No GitHub push or hosted deployment was performed as part of this code delivery.
+Official deployment guidance checked on 1 November 2026:
+https://docs.streamlit.io/deploy/streamlit-community-cloud/deploy-your-app/deploy
+https://docs.streamlit.io/deploy/streamlit-community-cloud/deploy-your-app/file-organization

@@ -1,0 +1,24 @@
+{
+  "new_run_focus": [
+    "disp_guided_run",
+    "disp_guided_run",
+    "disp_pinboard_run",
+    "disp_pinboard_run",
+    "disp_explore_run",
+    "disp_explore_new",
+    "disp_explore_run"
+  ],
+  "guided_empty_board_pause_step_and_no_exports": true,
+  "guided_rerun_changes_seed": true,
+  "pinboard_population_and_navigation": true,
+  "preview_scale_order_and_theme": true,
+  "animation_does_not_pull_scroll_back": true,
+  "natural_completion_retains_board_and_distributions": true,
+  "json_download": true,
+  "save_and_new_realization_preserve_comparison": true,
+  "mobile_no_horizontal_overflow": true,
+  "parent_integration": true,
+  "javascript_errors": [],
+  "http_errors": [],
+  "grain_completion_wait_after_focus_s": 6.637
+}

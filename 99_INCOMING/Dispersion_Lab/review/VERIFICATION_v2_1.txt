@@ -1,0 +1,65 @@
+DISPERSION LABORATORY 2.1.0 — VERIFICATION RECORD
+Date: 30 October 2026
+
+Scope
+Three progressive experiment pages: fixed guided (20 rows, one marker initially),
+regular/variable pinboard (2–40 rows), and grain network (2–20 rows).
+Sidebar language flags, shared language state, suffix Markdown and English
+fallback convention are retained. EN/DE scientific content is updated.
+
+Final automated suite
+Command: python -m pytest -q
+Result: 59 passed in 78.91 s.
+Includes existing conservation, hydraulic balance, binomial reference, temporal
+moments, pressure/packing scaling, mass-normalized histogram, preview isolation,
+and background-prefix tests. Extended 40-row pinboards with 10,010 markers pass.
+UI checks cover all three stages: immediate autoplay, Complete, Reset, Next step,
+pause/seek/resume, natural completion, selected-particle clamping, comparisons,
+new realization, pending settings, language changes and parent launchers.
+
+Numerical preservation
+The full model.py source was compared with v2.0: only the row validation limit
+(20 -> 40) and exported version string differ. No transport equation or random
+stream changed. All 42 EN/DE display-equation bodies match the previous source;
+display delimiters and rendering are now separated from surrounding prose.
+The 2:1 vertical pinboard scale is display-only. Extra surrounding grains use an
+independent decorative RNG and never enter the hydraulic or transport calculation.
+
+Real browser: Playwright / Chromium
+Final tests/browser_smoke.py run completed with exit code 0.
+- Guided Run starts animation; reset, next step, and completion checked.
+- Pinboard: 10 highlighted + 10,000 background markers; completed results retained.
+- EN/DE navigation retains run/results; French English fallback checked.
+- EN/DE pinboard math renders, with no KaTeX error elements.
+- Bundled Galton photo loads; original file checksum matches Wikimedia source.
+- Grain experiment reaches its natural end at the default screen duration;
+  transport board and both distributions remain visible.
+- JSON downloaded and parsed; parameter changes hide stale transport.
+- Mobile viewport 390 x 844: no horizontal document overflow.
+- Parent multipage integration launches the new pinboard page and animates.
+- No JavaScript exceptions or HTTP failures in the final checked flows.
+
+Playback issue corrected during browser verification
+A stale interactive-slider value could overwrite a later playback command during
+fragment refreshes. The live bar is now read-only during animation. Paused seeking
+uses a new widget identity after playback commands, and ignores obsolete events.
+Run is consumed once and completed before exposing animation controls. Commands
+use callbacks. A rapid Run -> Complete browser reproduction now retains the end.
+Refresh cadence is 1.2 s; simulated time and statistics are independent of it.
+
+Visual and content review
+Overview shows the entire possible network. Pinboard previews and paths show
+physical peg symbols below pale decision nodes; grain previews fill a rectangular
+surrounding medium. Board drawings, mobile controls and distributions inspected.
+Detailed theory is retained in contextual expanders and References; source links
+are included beside introductory claims. Mark Hebner's GaltonBoard.png is bundled
+unmodified under CC BY-SA 4.0, with attribution and source/licence links.
+The previous Word review is preserved as review/Theory_Review_v2_0.docx; it is not
+a revised UI guide. Current v2.1 review text and setting map are in EN/DE Markdown.
+
+Limits
+These checks verify the teaching model, not its validity for a measured soil.
+The computed grain network remains triangular with a point inlet; surrounding
+grains are illustrative. No area-source extension, diffusion solver, collision
+mechanics, or calibrated soil dispersivity has been added. Other seven languages
+retain the existing explicit English scientific-content fallback.

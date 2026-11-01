@@ -1,0 +1,44 @@
+[
+  {
+    "rows": 20,
+    "particles": 10010,
+    "upward_edges": 6,
+    "upward_particle_transitions": 175,
+    "total_particle_transitions": 200550,
+    "particles_with_upward_leg": 172,
+    "arrival_s_min_median_max": [
+      320.00961634563566,
+      423.17525559127,
+      5897.221790325048
+    ],
+    "step_time_s_min_median_max": [
+      2.0763009398393417,
+      19.94276990876,
+      5321.287028983445
+    ],
+    "max_relative_nodal_residual": 1.1297179220107332e-15,
+    "relative_balance_error": 2.7113230128257596e-15,
+    "volume_flow_reference_relative_difference": 2.456247980329556e-15
+  },
+  {
+    "rows": 40,
+    "particles": 10010,
+    "upward_edges": 29,
+    "upward_particle_transitions": 994,
+    "total_particle_transitions": 402388,
+    "particles_with_upward_leg": 854,
+    "arrival_s_min_median_max": [
+      1516.3172839562806,
+      2031.8052089461464,
+      10941.110570775607
+    ],
+    "step_time_s_min_median_max": [
+      2.527263466598294,
+      46.09565007143573,
+      5999.314997348196
+    ],
+    "max_relative_nodal_residual": 1.7188468688730198e-15,
+    "relative_balance_error": 2.7501549901968315e-16,
+    "volume_flow_reference_relative_difference": 1.5816227326073554e-15
+  }
+]

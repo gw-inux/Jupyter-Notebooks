@@ -1,0 +1,81 @@
+DISPERSION LABORATORY 2.2.0 — VERIFICATION RECORD
+Date: 30 October 2026
+
+Scope
+Interface revision of v2.1: an empty Observe the transport board before Run;
+Run outside expanders; collapsed playback steering with separate Play/Pause,
+Previous/Next step, Start of animation and Final result; eight-second default
+display clock. Guided results saving/downloads removed. Configurable experiments
+combine save, new realization, comparisons and exports. Background increments 50.
+Grain page starts at 20 rows and allows up to 40, with the pinboard's 2:1 vertical
+scale. Shared language state, language flags, Markdown suffix convention, existing
+numerical transport and all other supported functions retained.
+
+Automated suite
+Command: python -m pytest -q
+Result: 66 passed in 111.36 s.
+Final caption/inspection-label follow-up: 2 targeted UI tests passed in 10.62 s.
+Environment: Python 3.12, Streamlit 1.50.0.
+Existing binomial references, temporal moments, pressure/packing scaling,
+hydraulic balance, mass accounting, normalized histograms, independent random
+streams, background-prefix preservation and preview isolation checks retained.
+New checks cover pause-only manual stepping, both directions at/between node
+events, boundaries, independent page state, absence of guided exports, merged
+save/repeat behavior, row/count controls and inspectable grain pressures/times.
+20- and 40-row grain runs with 10,010 markers test pressure-monotone trajectories,
+no repeated nodes, outlet termination and continuous interpolation on actual
+upward and very slow legs. Details: review/Grain_motion_check_v2_2.txt.
+
+Numerical preservation
+model.py compared with v2.1: only exported version string differs. All 62 display
+math bodies across the existing bilingual Markdown files are unchanged. Four
+additional EN/DE display blocks explain the already-implemented grain flow and
+connection travel time in new grain_motion Markdown files.
+No physical equations, random streams, mixing assumptions or routing rules changed.
+Screen duration, seeking and the stretched display do not change computed times.
+
+Real browser verification: tests/browser_smoke.py
+Final walkthrough completed with exit code 0. Playwright 1.51 / Chromium 134.
+- Empty board visible before Run; Run outside an expander.
+- Guided: Run autoplays, Pause enables manual steps, Previous/Next step,
+  Start of animation and Final result work. No saving/download controls.
+- Pinboard: 10 highlighted + 10,000 background markers; final plots retained.
+- Language/page switching retains experiment results; EN/DE equations render
+  without KaTeX errors; French scientific-content English fallback works.
+- Grain: natural completion retains board and both arrival distributions.
+  Observed completion 9.844 s after the test detected playback controls, for the
+  eight-second display clock. Rendering, scheduling and hardware add overhead.
+- Save then New particle realization retains the previous comparison, increments
+  seed 42 -> 43 and initiates a new run. Downloaded JSON verifies both parameters.
+- JSON download, pending-setting empty preview, and parent multipage launcher pass.
+- 390 x 844 mobile view has no horizontal document overflow.
+- No JavaScript exceptions or HTTP errors in the final walkthrough.
+Machine-readable report: review/browser_verification_v2_2.json.
+
+Playback / browser test note
+Live progress remains read-only; paused seeking uses revisioned widget keys so
+late slider events cannot override a playback command. The first browser attempt
+exceeded a five-second assertion during a full Pause refresh while numerical tests
+were running. A focused browser trace confirmed Pause transitions correctly. The
+final walkthrough waits for the actual enabled control state and passed.
+Refresh cadence is 0.8 s; calculated transport is independent of display timing.
+
+Visual and content checks
+English/German 20-/40-row boards, empty view, transport, side-by-side and stacked
+arrival plots inspected. The 40-row staging labels were moved above the injection
+label to prevent overlap. Compact desktop controls and mobile layout inspected.
+Fixed figure margins replace repeated automatic layout during playback; checked
+axis labels remain visible. Existing Galton photograph and original figures kept.
+Updated EN/DE instructions, setting map and compiled review Markdown match v2.2.
+The earlier Word review is preserved byte-for-byte as Theory_Review_v2_0.docx;
+it describes the old UI and is not presented as a v2.2 review. No new PDF/Word
+layout verification is claimed. A transient executor disconnect affected only a
+preview-render command; it was retried successfully. No command remains running.
+
+Limits
+These checks verify the idealized teaching model, not its agreement with a measured
+soil. Local upward motion follows lower pressure; slow finite connections remain.
+The computed grain domain is triangular with a point inlet; surrounding grains
+are decorative. Eight seconds is a display-clock target, not a model transit time
+or a strict wall-clock rendering guarantee. Seven languages retain the existing
+explicit English fallback for scientific content; EN/DE text is fully supplied.

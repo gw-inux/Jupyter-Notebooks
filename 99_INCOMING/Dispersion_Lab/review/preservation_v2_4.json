@@ -1,0 +1,11 @@
+{
+  "model_executable_ast_unchanged_except_version": true,
+  "display_equations_unchanged": 66,
+  "byte_identical_modules": [
+    "experiment.py",
+    "plots.py",
+    "i18n.py",
+    "pages.py",
+    "navigation.py"
+  ]
+}

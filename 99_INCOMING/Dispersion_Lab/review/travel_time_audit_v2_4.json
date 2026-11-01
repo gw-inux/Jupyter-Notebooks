@@ -1,0 +1,339 @@
+{
+  "hydraulic_edge_cases": [
+    {
+      "config": {
+        "mode": "grains",
+        "rows": 2,
+        "particles": 1000,
+        "spacing_mm": 1.0,
+        "mean_step_s": 1.0,
+        "time_cv": 0.6,
+        "injection_s": 0.0,
+        "seed": 42,
+        "packing": 0.5,
+        "grain_variation": 0.0,
+        "pressure_pa": 0.05,
+        "medium_seed": 7
+      },
+      "dense_sparse_pressure_difference_over_inlet": 6.938893903907228e-17,
+      "dense_sparse_flow_difference_over_inlet_flow": 1.7873380845367673e-16,
+      "max_relative_L_over_velocity_time_error": 0.0,
+      "relative_nodal_residual": 1.7873380845367673e-16,
+      "relative_flow_imbalance": 3.5746761690735346e-16,
+      "exact_mean_transit_s": 11.519999999999996
+    },
+    {
+      "config": {
+        "mode": "grains",
+        "rows": 2,
+        "particles": 1000,
+        "spacing_mm": 1.0,
+        "mean_step_s": 1.0,
+        "time_cv": 0.6,
+        "injection_s": 0.0,
+        "seed": 42,
+        "packing": 0.9,
+        "grain_variation": 0.4,
+        "pressure_pa": 2.0,
+        "medium_seed": 7
+      },
+      "dense_sparse_pressure_difference_over_inlet": 1.1102230246251565e-16,
+      "dense_sparse_flow_difference_over_inlet_flow": 5.074068827248652e-17,
+      "max_relative_L_over_velocity_time_error": 2.220446049250313e-16,
+      "relative_nodal_residual": 1.0148137654497304e-16,
+      "relative_flow_imbalance": 0.0,
+      "exact_mean_transit_s": 0.8882853146989861
+    },
+    {
+      "config": {
+        "mode": "grains",
+        "rows": 20,
+        "particles": 1000,
+        "spacing_mm": 1.0,
+        "mean_step_s": 1.0,
+        "time_cv": 0.6,
+        "injection_s": 0.0,
+        "seed": 42,
+        "packing": 0.9,
+        "grain_variation": 0.4,
+        "pressure_pa": 0.05,
+        "medium_seed": 19
+      },
+      "dense_sparse_pressure_difference_over_inlet": 2.8449465006019636e-15,
+      "dense_sparse_flow_difference_over_inlet_flow": 2.9934403148135917e-15,
+      "max_relative_L_over_velocity_time_error": 4.440892098500626e-16,
+      "relative_nodal_residual": 2.962258644867617e-15,
+      "relative_flow_imbalance": 1.6214468371906957e-15,
+      "exact_mean_transit_s": 11871.994264277713
+    },
+    {
+      "config": {
+        "mode": "grains",
+        "rows": 40,
+        "particles": 1000,
+        "spacing_mm": 1.0,
+        "mean_step_s": 1.0,
+        "time_cv": 0.6,
+        "injection_s": 0.0,
+        "seed": 42,
+        "packing": 0.5,
+        "grain_variation": 0.0,
+        "pressure_pa": 2.0,
+        "medium_seed": 7
+      },
+      "dense_sparse_pressure_difference_over_inlet": 2.6645352591003757e-15,
+      "dense_sparse_flow_difference_over_inlet_flow": 1.6033712625715464e-15,
+      "max_relative_L_over_velocity_time_error": 4.440892098500626e-16,
+      "relative_nodal_residual": 1.2311600766174375e-15,
+      "relative_flow_imbalance": 5.840852456510634e-15,
+      "exact_mean_transit_s": 252.20543428242755
+    },
+    {
+      "config": {
+        "mode": "grains",
+        "rows": 40,
+        "particles": 1000,
+        "spacing_mm": 1.0,
+        "mean_step_s": 1.0,
+        "time_cv": 0.6,
+        "injection_s": 0.0,
+        "seed": 42,
+        "packing": 0.9,
+        "grain_variation": 0.0,
+        "pressure_pa": 0.05,
+        "medium_seed": 7
+      },
+      "dense_sparse_pressure_difference_over_inlet": 1.2836953722228372e-15,
+      "dense_sparse_flow_difference_over_inlet_flow": 1.0485215950480036e-15,
+      "max_relative_L_over_velocity_time_error": 4.440892098500626e-16,
+      "relative_nodal_residual": 1.4417171931910049e-15,
+      "relative_flow_imbalance": 6.990143966986691e-16,
+      "exact_mean_transit_s": 252205.43428242602
+    },
+    {
+      "config": {
+        "mode": "grains",
+        "rows": 40,
+        "particles": 1000,
+        "spacing_mm": 1.0,
+        "mean_step_s": 1.0,
+        "time_cv": 0.6,
+        "injection_s": 0.0,
+        "seed": 42,
+        "packing": 0.9,
+        "grain_variation": 0.4,
+        "pressure_pa": 2.0,
+        "medium_seed": 19
+      },
+      "dense_sparse_pressure_difference_over_inlet": 1.9984014443252818e-15,
+      "dense_sparse_flow_difference_over_inlet_flow": 5.080733028183878e-15,
+      "max_relative_L_over_velocity_time_error": 6.661338147750939e-16,
+      "relative_nodal_residual": 5.4671549768063136e-15,
+      "relative_flow_imbalance": 5.4957788248524204e-15,
+      "exact_mean_transit_s": 1375.5325001387328
+    }
+  ],
+  "complete_cohorts": [
+    {
+      "config": {
+        "mode": "grains",
+        "rows": 20,
+        "particles": 10010,
+        "spacing_mm": 1.0,
+        "mean_step_s": 1.0,
+        "time_cv": 0.6,
+        "injection_s": 0.0,
+        "seed": 42,
+        "packing": 0.75,
+        "grain_variation": 0.25,
+        "pressure_pa": 0.5,
+        "medium_seed": 7
+      },
+      "arrival_quantiles_s": {
+        "min": 320.00961634563566,
+        "median": 423.17525559127,
+        "p90": 681.5408745189854,
+        "p95": 771.8698798075028,
+        "p99": 1170.593000796431,
+        "max": 5897.221790325048
+      },
+      "p95_on_8_second_clock_s": 1.0470962866939528,
+      "p95_on_60_second_clock_s": 7.8532221502046475,
+      "upward_transitions_in_cohort": 175,
+      "repeated_nodes": 0,
+      "latest_particle": {
+        "index_zero_based": 1936,
+        "connections": 20,
+        "upward_connections": 0,
+        "arrival_s": 5897.221790325048,
+        "slowest_connection": {
+          "from_node": 105,
+          "to_node": 121,
+          "from_z_mm": 14.0,
+          "to_z_mm": 15.0,
+          "radius_mm": 0.24271435450810092,
+          "pressure_drop_Pa": 5.104020070128071e-05,
+          "flow_m3_per_s": 4.918572860494521e-14,
+          "transit_s": 5321.287028983445,
+          "fraction_of_particle_transit": 0.9023379513576244
+        }
+      },
+      "hydraulics": {
+        "config": {
+          "mode": "grains",
+          "rows": 20,
+          "particles": 10010,
+          "spacing_mm": 1.0,
+          "mean_step_s": 1.0,
+          "time_cv": 0.6,
+          "injection_s": 0.0,
+          "seed": 42,
+          "packing": 0.75,
+          "grain_variation": 0.25,
+          "pressure_pa": 0.5,
+          "medium_seed": 7
+        },
+        "dense_sparse_pressure_difference_over_inlet": 7.216449660063518e-16,
+        "dense_sparse_flow_difference_over_inlet_flow": 1.0732320259101965e-15,
+        "max_relative_L_over_velocity_time_error": 5.551115123125783e-16,
+        "relative_nodal_residual": 1.1297179220107332e-15,
+        "relative_flow_imbalance": 2.7113230128257596e-15,
+        "exact_mean_transit_s": 485.9899349074711
+      }
+    },
+    {
+      "config": {
+        "mode": "grains",
+        "rows": 40,
+        "particles": 10010,
+        "spacing_mm": 1.0,
+        "mean_step_s": 1.0,
+        "time_cv": 0.6,
+        "injection_s": 0.0,
+        "seed": 42,
+        "packing": 0.75,
+        "grain_variation": 0.25,
+        "pressure_pa": 0.5,
+        "medium_seed": 7
+      },
+      "arrival_quantiles_s": {
+        "min": 1516.3172839562806,
+        "median": 2031.8052089461464,
+        "p90": 3355.2534942884004,
+        "p95": 4069.032044456376,
+        "p99": 5424.797598488178,
+        "max": 10941.110570775607
+      },
+      "p95_on_8_second_clock_s": 2.9752241461301128,
+      "p95_on_60_second_clock_s": 22.314181095975847,
+      "upward_transitions_in_cohort": 994,
+      "repeated_nodes": 0,
+      "latest_particle": {
+        "index_zero_based": 9056,
+        "connections": 46,
+        "upward_connections": 3,
+        "arrival_s": 10941.110570775607,
+        "slowest_connection": {
+          "from_node": 666,
+          "to_node": 704,
+          "from_z_mm": 36.00000000000001,
+          "to_z_mm": 37.0,
+          "radius_mm": 0.29509807678369676,
+          "pressure_drop_Pa": 3.062566721019925e-05,
+          "flow_m3_per_s": 6.449053256334181e-14,
+          "transit_s": 5999.314997348196,
+          "fraction_of_particle_transit": 0.5483277916386974
+        }
+      },
+      "hydraulics": {
+        "config": {
+          "mode": "grains",
+          "rows": 40,
+          "particles": 10010,
+          "spacing_mm": 1.0,
+          "mean_step_s": 1.0,
+          "time_cv": 0.6,
+          "injection_s": 0.0,
+          "seed": 42,
+          "packing": 0.75,
+          "grain_variation": 0.25,
+          "pressure_pa": 0.5,
+          "medium_seed": 7
+        },
+        "dense_sparse_pressure_difference_over_inlet": 1.942890293094024e-15,
+        "dense_sparse_flow_difference_over_inlet_flow": 2.182935523468735e-15,
+        "max_relative_L_over_velocity_time_error": 6.661338147750939e-16,
+        "relative_nodal_residual": 1.7188468688730198e-15,
+        "relative_flow_imbalance": 2.7501549901968315e-16,
+        "exact_mean_transit_s": 2300.1558665601556
+      }
+    },
+    {
+      "config": {
+        "mode": "grains",
+        "rows": 40,
+        "particles": 10010,
+        "spacing_mm": 1.0,
+        "mean_step_s": 1.0,
+        "time_cv": 0.6,
+        "injection_s": 0.0,
+        "seed": 42,
+        "packing": 0.9,
+        "grain_variation": 0.4,
+        "pressure_pa": 0.5,
+        "medium_seed": 7
+      },
+      "arrival_quantiles_s": {
+        "min": 1987.1662182257658,
+        "median": 3750.612573518225,
+        "p90": 6513.778984299395,
+        "p95": 7862.210125486346,
+        "p99": 11841.453866465577,
+        "max": 89973.82965563025
+      },
+      "p95_on_8_second_clock_s": 0.6990663979140167,
+      "p95_on_60_second_clock_s": 5.242997984355124,
+      "upward_transitions_in_cohort": 8576,
+      "repeated_nodes": 0,
+      "latest_particle": {
+        "index_zero_based": 5037,
+        "connections": 42,
+        "upward_connections": 1,
+        "arrival_s": 89973.82965563025,
+        "slowest_connection": {
+          "from_node": 770,
+          "to_node": 732,
+          "from_z_mm": 38.0,
+          "to_z_mm": 37.0,
+          "radius_mm": 0.24246896613974317,
+          "pressure_drop_Pa": 3.156151696599111e-06,
+          "flow_m3_per_s": 3.0291961730220507e-15,
+          "transit_s": 86228.2937236896,
+          "fraction_of_particle_transit": 0.9583708290924541
+        }
+      },
+      "hydraulics": {
+        "config": {
+          "mode": "grains",
+          "rows": 40,
+          "particles": 10010,
+          "spacing_mm": 1.0,
+          "mean_step_s": 1.0,
+          "time_cv": 0.6,
+          "injection_s": 0.0,
+          "seed": 42,
+          "packing": 0.9,
+          "grain_variation": 0.4,
+          "pressure_pa": 0.5,
+          "medium_seed": 7
+        },
+        "dense_sparse_pressure_difference_over_inlet": 2.9976021664879227e-15,
+        "dense_sparse_flow_difference_over_inlet_flow": 3.0373772126234218e-15,
+        "max_relative_L_over_velocity_time_error": 5.551115123125783e-16,
+        "relative_nodal_residual": 3.153307640586148e-15,
+        "relative_flow_imbalance": 1.5210072148709654e-14,
+        "exact_mean_transit_s": 4296.039170997193
+      }
+    }
+  ]
+}

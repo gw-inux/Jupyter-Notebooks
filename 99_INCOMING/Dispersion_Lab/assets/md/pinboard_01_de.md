@@ -1,0 +1,9 @@
+1. Behalten Sie **Regelmäßiges Galtonbrett** bei und verfolgen Sie ein Teilchen. Erhöhen Sie auf zehn hervorgehobene Teilchen und vergleichen Sie die Wege.
+2. Ergänzen Sie **Hintergrundteilchen je hervorgehobenem Teilchen** und starten Sie erneut. Blaue Teilchen sind unabhängige Stichproben, keine Kopien hervorgehobener Wege. Erneut starten zieht eine neue Realisierung. Der Startwert unterstützt reproduzierbare Vergleiche; Abspielen wiederholt die aktuelle Stichprobe.
+3. Wählen Sie **Galtonbrett · variable Laufzeiten**. Sagen Sie die Änderung der Ankunftszeitverteilung voraus und prüfen Sie Ihre Vorhersage. Ändern Sie jeweils nur Reihenanzahl, Abstand, mittlere Schrittzeit oder Laufzeitvariabilität.
+
+Einstellungen und stationäre Vorschau stehen vor dem Transport. Öffnen Sie **Fortschritt des Experiments** und pausieren Sie, um mit Regler oder Schritttasten in beide Zeitrichtungen zu navigieren. Alle Teilchen tragen zusammen die Masse 1: Mehr Teilchen verbessern die Stichprobe und verstärken nicht die physikalische Dispersion. Grundlage ist das beschriebene unabhängige Zufallsschrittmodell, keine Bodenkalibrierung (Saffman, 1959; Modellannahmen unter Quellen).
+
+Das leere Transportbrett unter Start zeigt, wo die Animation erscheint. Die Wiedergabe zielt auf etwa acht Bildschirmsekunden. Hintergrundteilchen werden in 50er-Schritten geändert. Öffnen Sie **Wiederholen, vergleichen und herunterladen**, speichern Sie den aktuellen Lauf und starten Sie dann eine neue Realisierung.
+
+Das kleinere gerahmte Brett ist eine **Vorschau**. Start bringt Transport beobachten ins Blickfeld; die Schaltfläche zum Starten bleibt sichtbar. Nach dem ersten Lauf beginnt **Hervorgehobene Teilchen erneut starten** eine neue Realisierung mit den aktuellen Einstellungen; **Abspielen** wiederholt das aktuelle Ergebnis. Eine neue Zufallsstichprobe kann dennoch dieselben Auslässe erreichen.

@@ -1,0 +1,19 @@
+{
+  "1": {
+    "observe_heading_top_px": 60.390625,
+    "run_button_bottom_px": 171.984375,
+    "images": 3
+  },
+  "2": {
+    "observe_heading_top_px": 60.390625,
+    "run_button_bottom_px": 171.984375,
+    "images": 3
+  },
+  "3": {
+    "observe_heading_top_px": 60.390625,
+    "run_button_bottom_px": 171.984375,
+    "images": 3
+  },
+  "german_start_fits": true,
+  "german_final_result_preserved": true
+}

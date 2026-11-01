@@ -1,0 +1,48 @@
+/* TABLE OF CONTENTS
+ * 1. Expander colour roles  2. Preview frame  3. Playback buttons
+ * All rules are scoped to module-owned names. The sidebar is unchanged.
+ */
+
+/* 1. Expander colour roles: principal steps are tinted; optional tools are quiet. */
+[class*="st-key-disp_section_"] [data-testid="stExpander"] details {
+  border-color: var(--disp-border, #dce2e6);
+}
+[class*="st-key-disp_section_"] [data-testid="stExpander"] summary {
+  background: var(--disp-tint, #f8f9fa);
+  border-radius: .5rem;
+}
+[class*="st-key-disp_section_blue_"] { --disp-tint: #edf4f8; --disp-border: #b9cddc; }
+[class*="st-key-disp_section_teal_"] { --disp-tint: #edf5f1; --disp-border: #bed3c9; }
+[class*="st-key-disp_section_sand_"] { --disp-tint: #faf5ec; --disp-border: #e2d1b6; }
+[class*="st-key-disp_section_quiet_"] { --disp-tint: #f8f9fa; --disp-border: #dce2e6; }
+[class*="st-key-disp_section_review_"] { --disp-tint: rgba(181,51,51,.07); --disp-border: rgba(181,51,51,.35); }
+
+/* 2. Subtle raised frame, without skewing the scientific figure. */
+.dispersion-preview {
+  margin: .7rem auto 1.1rem;
+  padding: .5rem;
+  box-sizing: border-box;
+  background: #fff;
+  border: 1px solid #c9d0d3;
+  border-bottom: 4px solid #b5bec3;
+  border-radius: .4rem;
+  box-shadow: 0 7px 14px rgba(42,62,75,.13), inset 0 1px 0 #fff;
+}
+.dispersion-figure { margin: 0; width: 100%; scroll-margin-top: 5rem; }
+[id^="disp-observe-"] { scroll-margin-top: 5rem; }
+.dispersion-plot { display: block; width: 100%; height: auto; }
+
+/* 3. Play green, paused steps pale blue; run buttons keep the module primary. */
+.st-key-disp_guided_play button:not(:disabled),
+.st-key-disp_pinboard_play button:not(:disabled),
+.st-key-disp_explore_play button:not(:disabled) {
+  background: #276749; border-color: #276749; color: white;
+}
+.st-key-disp_guided_step button:not(:disabled),
+.st-key-disp_pinboard_step button:not(:disabled),
+.st-key-disp_explore_step button:not(:disabled),
+.st-key-disp_guided_previous button:not(:disabled),
+.st-key-disp_pinboard_previous button:not(:disabled),
+.st-key-disp_explore_previous button:not(:disabled) {
+  background: #e9f1f8; border-color: #8ba8bf; color: #244e6a;
+}

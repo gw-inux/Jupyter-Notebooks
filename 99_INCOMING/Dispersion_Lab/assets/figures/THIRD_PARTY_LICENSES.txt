@@ -1,0 +1,3 @@
+A physical Galton board: balls encounter pins and collect in outlet channels. Our digital board represents left/right decisions; it does not resolve collisions or gravitational acceleration. For ideal independent 50:50 decisions, outlet counts follow a binomial law; a bell shape is its large-sample, many-row approximation.
+
+**Photograph:** Mark Hebner, *GaltonBoard.png* (2018), [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:GaltonBoard.png). [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/). Unmodified; displayed at reduced size. The licence applies to this photograph. Physical demonstration: [Yale Physics, Galton Board](https://yppsweb2.its.yale.edu/physics/demos/demomain.asp?id=4G10.10&task=viewdemo).
