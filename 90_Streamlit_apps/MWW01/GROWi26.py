@@ -81,6 +81,8 @@ pages = {
     "🟦 Grundwasserströmung": {
         "🧮 1D FD Schema": "06_Groundwater_modeling/GWF_1D_conf_FD.py",
         "🧮 Brunnenströmung": "04_Basic_hydrogeology/Flow2Well_transient_confined.py",
+        "🧮 Iteration - Picard": "90_Streamlit_apps/SYMPLE25/pages/M1C/Iteration_Picard.py",
+        "🧮 Iteration - Newton": "90_Streamlit_apps/SYMPLE25/pages/M1C/Iteration_Newton.py",
         "--- MODFLOW tutorials 📋 ---": None,
         "💻 MODFLOW Pumping Test": "90_Streamlit_apps/SYMPLE25/pages/M1B/Theis_pumping_Tutorial.py",
         "💻 2D Synthetic Modell": "90_Streamlit_apps/SYMPLE25/pages/M1C/Tutorial_2D_Synth.py",
