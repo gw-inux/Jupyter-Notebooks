@@ -1,0 +1,46 @@
+[
+  {
+    "question": "Welche Größe zeigt die senkrechte Achse im Newton-Diagramm?",
+    "options": {
+      "Die vorhergesagte nächste Höhe in Metern.": false,
+      "Das Bilanzresiduum $f_N(h)=F(h)$ in m³/s.": true,
+      "Den verbleibenden Fehler der Wasserbilanz in der mittleren Zelle.": true,
+      "Nur den Volumenstrom, der die rechte Grenze verlässt.": false
+    },
+    "success": "Richtig. Die senkrechte Koordinate ist das Bilanzresiduum $F=Q_L-Q_R-Q_{\\mathrm{ET}}$. Newton sucht dessen Nullstelle. Im Picard-Diagramm steht auf der senkrechten Achse die nächste Höhe.",
+    "failure": "Die senkrechte Koordinate ist das Bilanzresiduum $F=Q_L-Q_R-Q_{\\mathrm{ET}}$. Newton sucht dessen Nullstelle. Im Picard-Diagramm steht auf der senkrechten Achse die nächste Höhe."
+  },
+  {
+    "question": "Die Newton-Tangente schneidet die Nulllinie an der vorgeschlagenen Höhe. Weshalb kann ein weiterer Schritt nötig sein?",
+    "options": {
+      "Die Tangente nähert die Residuenkurve nur lokal an.": true,
+      "Am Schnittpunkt der Tangente mit der Nulllinie ist das tatsächliche Residuum immer null.": false,
+      "Das tatsächliche Residuum und seine Steigung müssen an der neuen Höhe erneut berechnet werden.": true,
+      "Der Schnittpunkt der Tangente entspricht einem physikalischen Zeitschritt.": false
+    },
+    "success": "Richtig. Die Nullstelle der Tangente liefert eine Näherung für die Höhe. Über die gesamte Schrittlänge kann die nichtlineare Residuenkurve von der Tangente abweichen. Deshalb wird die ursprüngliche Bilanz an der neuen Höhe erneut ausgewertet.",
+    "failure": "Die Nullstelle der Tangente liefert eine Näherung für die Höhe. Über die gesamte Schrittlänge kann die nichtlineare Residuenkurve von der Tangente abweichen. Deshalb wird die ursprüngliche Bilanz an der neuen Höhe erneut ausgewertet."
+  },
+  {
+    "question": "Worin unterscheidet sich Newton vom hier beschriebenen Picard-Verfahren?",
+    "options": {
+      "Newton berücksichtigt, wie sich der Leitwert mit der Höhe ändert.": true,
+      "Newton löst eine andere Wasserbilanz.": false,
+      "Nur Newton berücksichtigt die Steigung des gerade geltenden linearen ET-Abschnitts.": false,
+      "Picard hält die aktuellen Leitwerte während eines linearen Lösungsschritts fest.": true
+    },
+    "success": "Richtig. Beide Verfahren lösen dieselbe Bilanz und berücksichtigen die Steigung des gewählten ET-Abschnitts. Newton berechnet für die Residuensteigung zusätzlich die Ableitungen der Leitwerte. Picard hält die Leitwerte innerhalb eines Lösungsschritts fest.",
+    "failure": "Beide Verfahren lösen dieselbe Bilanz und berücksichtigen die Steigung des gewählten ET-Abschnitts. Newton berechnet für die Residuensteigung zusätzlich die Ableitungen der Leitwerte. Picard hält die Leitwerte innerhalb eines Lösungsschritts fest."
+  },
+  {
+    "question": "Weshalb kann eine fast waagerechte Tangente an die Residuenkurve für Newton problematisch sein?",
+    "options": {
+      "Eine kleine, von null verschiedene Ableitung kann über $-F/F'$ zu einer großen Korrektur führen.": true,
+      "Eine fast waagerechte Tangente garantiert die beste Höhennäherung.": false,
+      "Die Korrektur kann aus dem Bereich herausführen, in dem die Tangente eine gute Näherung ist.": true,
+      "Dämpfung garantiert Konvergenz für jede Starthöhe.": false
+    },
+    "success": "Richtig. Die Division eines von null verschiedenen Residuums durch eine kleine Ableitung kann eine sehr große Höhenkorrektur ergeben. Der Schritt kann eine ET-Schwelle oder eine andere Modellgrenze überschreiten. Dämpfung verkürzt den Schritt, garantiert aber keine Konvergenz.",
+    "failure": "Die Division eines von null verschiedenen Residuums durch eine kleine Ableitung kann eine sehr große Höhenkorrektur ergeben. Der Schritt kann eine ET-Schwelle oder eine andere Modellgrenze überschreiten. Dämpfung verkürzt den Schritt, garantiert aber keine Konvergenz."
+  }
+]

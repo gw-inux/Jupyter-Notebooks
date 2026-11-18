@@ -1,0 +1,46 @@
+[
+  {
+    "question": "In a Picard update without ET, which quantities are held fixed while calculating the next head?",
+    "options": {
+      "The conductances evaluated at the current head.": true,
+      "The central head being solved for.": false,
+      "The specified boundary heads.": true,
+      "The conductances for every remaining iteration, even if the head changes.": false
+    },
+    "success": "Correct. Picard evaluates conductances at the current estimate and holds them fixed for one linear solve. Boundary heads remain specified; the new central head is the unknown. Conductances are recalculated before the next solve.",
+    "failure": "Picard evaluates conductances at the current estimate and holds them fixed for one linear solve. Boundary heads remain specified; the new central head is the unknown. Conductances are recalculated before the next solve."
+  },
+  {
+    "question": "Why must the original water balance be checked after a Picard update?",
+    "options": {
+      "The new unconfined head can change saturated thickness and conductance.": true,
+      "Solving the balance with fixed conductances guarantees a zero nonlinear residual.": false,
+      "A small head change alone always proves convergence.": false,
+      "The residual must use flows evaluated at the updated head.": true
+    },
+    "success": "Correct. The linear equation closes with the temporarily fixed conductances. The original nonlinear equation uses conductances and ET evaluated at the updated head, so its residual can still be nonzero. Both head change and residual must satisfy their criteria.",
+    "failure": "The linear equation closes with the temporarily fixed conductances. The original nonlinear equation uses conductances and ET evaluated at the updated head, so its residual can still be nonzero. Both head change and residual must satisfy their criteria."
+  },
+  {
+    "question": "Which statements correctly interpret the Picard diagram?",
+    "options": {
+      "$f_P(h)$ returns the next head in metres.": true,
+      "$F(h)$ returns the same quantity as $f_P(h)$.": false,
+      "At the solution, $f_P(h^*)=h^*$.": true,
+      "The line $y=h$ is an additional groundwater boundary condition.": false
+    },
+    "success": "Correct. $f_P$ is the head-update function; $F$ is the flow residual in m³/s. The diagonal transfers the output head to the next input. Its intersection with the update function is a fixed point, where the head no longer changes.",
+    "failure": "$f_P$ is the head-update function; $F$ is the flow residual in m³/s. The diagonal transfers the output head to the next input. Its intersection with the update function is a fixed point, where the head no longer changes."
+  },
+  {
+    "question": "A Picard update crosses an ET threshold. Which statements describe the method used here?",
+    "options": {
+      "In the middle ET range, the loss is allowed to depend on the new head during the linear solve.": true,
+      "ET is always frozen at the discharge evaluated at the previous head.": false,
+      "The actual ET loss is reevaluated after the update, and the next solve uses the newly applicable segment.": true,
+      "Crossing a threshold necessarily means that the steady groundwater problem has no solution.": false
+    },
+    "success": "Correct. The current head selects the ET segment for one solve. Its slope is retained, so middle-range ET changes with the new head. After an update, the complete relation determines the actual loss and the next segment. A threshold crossing can affect convergence without making the physical balance impossible.",
+    "failure": "The current head selects the ET segment for one solve. Its slope is retained, so middle-range ET changes with the new head. After an update, the complete relation determines the actual loss and the next segment. A threshold crossing can affect convergence without making the physical balance impossible."
+  }
+]

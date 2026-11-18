@@ -1,0 +1,46 @@
+[
+  {
+    "question": "Welche Größen werden bei einem Picard-Schritt ohne ET während der Berechnung der nächsten Höhe festgehalten?",
+    "options": {
+      "Die für die aktuelle Höhe berechneten Leitwerte.": true,
+      "Die gesuchte hydraulische Höhe in der mittleren Zelle.": false,
+      "Die vorgegebenen Randhöhen.": true,
+      "Die Leitwerte aller nachfolgenden Iterationen, auch wenn sich die Höhe ändert.": false
+    },
+    "success": "Richtig. Picard berechnet die Leitwerte aus der aktuellen Näherung und hält sie für genau einen linearen Lösungsschritt fest. Die Randhöhen sind vorgegeben. Gesucht ist die neue Höhe in der mittleren Zelle. Vor dem nächsten Schritt werden die Leitwerte erneut berechnet.",
+    "failure": "Picard berechnet die Leitwerte aus der aktuellen Näherung und hält sie für genau einen linearen Lösungsschritt fest. Die Randhöhen sind vorgegeben. Gesucht ist die neue Höhe in der mittleren Zelle. Vor dem nächsten Schritt werden die Leitwerte erneut berechnet."
+  },
+  {
+    "question": "Warum muss die ursprüngliche Wasserbilanz nach einem Picard-Schritt erneut geprüft werden?",
+    "options": {
+      "Die neue Höhe kann im ungespannten Grundwasserleiter die gesättigte Mächtigkeit und den Leitwert verändern.": true,
+      "Die Lösung der Bilanz mit festgehaltenen Leitwerten garantiert ein nichtlineares Residuum von null.": false,
+      "Eine kleine Höhenänderung allein beweist immer die Konvergenz.": false,
+      "Das Residuum muss mit den Volumenströmen an der aktualisierten Höhe berechnet werden.": true
+    },
+    "success": "Richtig. Die lineare Gleichung ist mit den vorläufig festgehaltenen Leitwerten erfüllt. Für die ursprüngliche Bilanz werden Leitwerte und ET an der neuen Höhe ausgewertet. Ihr Residuum kann daher noch von null verschieden sein. Sowohl Höhenänderung als auch Residuum müssen die jeweiligen Kriterien erfüllen.",
+    "failure": "Die lineare Gleichung ist mit den vorläufig festgehaltenen Leitwerten erfüllt. Für die ursprüngliche Bilanz werden Leitwerte und ET an der neuen Höhe ausgewertet. Ihr Residuum kann daher noch von null verschieden sein. Sowohl Höhenänderung als auch Residuum müssen die jeweiligen Kriterien erfüllen."
+  },
+  {
+    "question": "Welche Aussagen beschreiben das Picard-Diagramm richtig?",
+    "options": {
+      "$f_P(h)$ liefert die nächste Höhe in Metern.": true,
+      "$F(h)$ und $f_P(h)$ liefern dieselbe physikalische Größe.": false,
+      "Für die Lösung gilt $f_P(h^*)=h^*$.": true,
+      "Die Gerade $y=h$ ist eine zusätzliche Randbedingung für die Grundwasserströmung.": false
+    },
+    "success": "Richtig. $f_P$ berechnet eine Höhe, $F$ das Bilanzresiduum in m³/s. Die Diagonale überträgt die berechnete Höhe auf die Eingabeachse für den nächsten Schritt. Ihr Schnittpunkt mit $f_P$ ist ein Fixpunkt. Dort ändert sich die Höhe nicht mehr.",
+    "failure": "$f_P$ berechnet eine Höhe, $F$ das Bilanzresiduum in m³/s. Die Diagonale überträgt die berechnete Höhe auf die Eingabeachse für den nächsten Schritt. Ihr Schnittpunkt mit $f_P$ ist ein Fixpunkt. Dort ändert sich die Höhe nicht mehr."
+  },
+  {
+    "question": "Ein Picard-Schritt überschreitet eine ET-Schwelle. Was gilt für das hier verwendete Verfahren?",
+    "options": {
+      "Im mittleren ET-Bereich darf der Entzug während des linearen Lösungsschritts von der neu berechneten Höhe abhängen.": true,
+      "Der ET-Entzug wird immer auf dem Volumenstrom der vorangegangenen Höhe festgehalten.": false,
+      "Nach dem Schritt wird der tatsächliche ET-Entzug neu bestimmt. Der nächste Schritt verwendet den nun geltenden Abschnitt.": true,
+      "Das Überschreiten einer Schwelle bedeutet zwangsläufig, dass das stationäre Grundwasserproblem keine Lösung hat.": false
+    },
+    "success": "Richtig. Die aktuelle Höhe bestimmt den ET-Abschnitt für einen Lösungsschritt. Dessen Steigung bleibt erhalten. Im mittleren Bereich verändert sich der Entzug daher mit der neu berechneten Höhe. Danach bestimmt die vollständige Beziehung den tatsächlichen Entzug und den Abschnitt für den nächsten Schritt. Ein Schwellenübertritt kann die Konvergenz beeinflussen, auch wenn eine ausgeglichene Bilanz möglich ist.",
+    "failure": "Die aktuelle Höhe bestimmt den ET-Abschnitt für einen Lösungsschritt. Dessen Steigung bleibt erhalten. Im mittleren Bereich verändert sich der Entzug daher mit der neu berechneten Höhe. Danach bestimmt die vollständige Beziehung den tatsächlichen Entzug und den Abschnitt für den nächsten Schritt. Ein Schwellenübertritt kann die Konvergenz beeinflussen, auch wenn eine ausgeglichene Bilanz möglich ist."
+  }
+]

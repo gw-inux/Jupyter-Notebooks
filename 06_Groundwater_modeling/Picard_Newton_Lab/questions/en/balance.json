@@ -1,0 +1,35 @@
+[
+  {
+    "question": "Both connection arrows point right. The calculation gives a negative $Q_L$. Which statements are correct?",
+    "options": {
+      "Flow in the left connection is opposite to its arrow.": true,
+      "The negative sign proves that the calculation failed.": false,
+      "Water leaves the central cell through the left connection.": true,
+      "The central head must be negative.": false
+    },
+    "success": "Correct. With positive conductance, $Q_L=C_L(h_L-h)<0$ means $h>h_L$. Flow is then from the central cell to the left. The sign indicates direction; it does not imply an invalid or negative head.",
+    "failure": "With positive conductance, $Q_L=C_L(h_L-h)<0$ means $h>h_L$. Flow is then from the central cell to the left. The sign indicates direction; it does not imply an invalid or negative head."
+  },
+  {
+    "question": "What does $F(h)=Q_L-Q_R-Q_{\\mathrm{ET}}=0$ mean?",
+    "options": {
+      "The central-cell inflows and outflows balance.": true,
+      "Every individual discharge must be zero.": false,
+      "The central head must be zero metres.": false,
+      "The remaining water-balance error is zero in m³/s.": true
+    },
+    "success": "Correct. The residual is the net imbalance, not an additional flow. Zero residual permits substantial, balanced inflow and outflow. It verifies this equation, not the model’s agreement with field conditions.",
+    "failure": "The residual is the net imbalance, not an additional flow. Zero residual permits substantial, balanced inflow and outflow. It verifies this equation, not the model’s agreement with field conditions."
+  },
+  {
+    "question": "Which statements about nonlinearity are correct for the models discussed here?",
+    "options": {
+      "A steep hydraulic gradient alone necessarily makes Darcy flow nonlinear.": false,
+      "Unconfined saturated thickness can change with the unknown head.": true,
+      "A confined model with fixed conductances can remain linear despite strong conductivity contrasts.": true,
+      "Constant hydraulic conductivity guarantees a linear unconfined model.": false
+    },
+    "success": "Correct. Unknown heads can change saturated thickness and conductance even at constant hydraulic conductivity. Spatial variation in fixed conductances does not itself make a model nonlinear. A steep gradient alone does not change the linear Darcy relation assumed here.",
+    "failure": "Unknown heads can change saturated thickness and conductance even at constant hydraulic conductivity. Spatial variation in fixed conductances does not itself make a model nonlinear. A steep gradient alone does not change the linear Darcy relation assumed here."
+  }
+]

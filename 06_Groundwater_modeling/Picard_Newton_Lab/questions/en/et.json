@@ -1,0 +1,24 @@
+[
+  {
+    "question": "The ET surface SURF is 7 m and the extinction depth EXDP is 4 m. Which statements are correct?",
+    "options": {
+      "EXDP is a depth measured downward from SURF.": true,
+      "The extinction elevation is 4 m.": false,
+      "At a groundwater head of 5 m, RET is half of EVTR.": true,
+      "ET discharge is obtained by multiplying RET by the vertical saturated flow area.": false
+    },
+    "success": "Correct. The extinction elevation is SURF − EXDP = 3 m. Head 5 m is halfway between 3 and 7 m, so RET = EVTR/2. ET discharge uses the horizontal cell area: $Q_{\\mathrm{ET}}=\\mathrm{RET}\\,A$.",
+    "failure": "The extinction elevation is SURF − EXDP = 3 m. Head 5 m is halfway between 3 and 7 m, so RET = EVTR/2. ET discharge uses the horizontal cell area: $Q_{\\mathrm{ET}}=\\mathrm{RET}\\,A$."
+  },
+  {
+    "question": "What happens in the ET relation when groundwater head crosses SURF?",
+    "options": {
+      "The groundwater ET loss jumps abruptly.": false,
+      "The ET loss remains continuous.": true,
+      "The sensitivity of ET loss to head changes from a positive slope below SURF to zero above it.": true,
+      "The maximum ET rate must change.": false
+    },
+    "success": "Correct. The linear segment reaches the same loss as the constant maximum segment at SURF. The discharge remains continuous, but its slope changes. A single linear segment is linear; the full relation changes its form across thresholds.",
+    "failure": "The linear segment reaches the same loss as the constant maximum segment at SURF. The discharge remains continuous, but its slope changes. A single linear segment is linear; the full relation changes its form across thresholds."
+  }
+]

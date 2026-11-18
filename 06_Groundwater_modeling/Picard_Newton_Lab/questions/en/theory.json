@@ -1,0 +1,46 @@
+[
+  {
+    "question": "What do $f_P(h)$ and $f_N(h)$ represent?",
+    "options": {
+      "$f_P(h)$ returns a proposed head in m.": true,
+      "$f_N(h)$ is the next Newton head.": false,
+      "$f_N(h)=F(h)$ is a flow imbalance in m³/s.": true,
+      "$f_P$ and $f_N$ must have the same units.": false
+    },
+    "success": "Picard uses $h^{k+1}=f_P(h^k)$. Newton uses $h^{k+1}=h^k-F(h^k)/F'(h^k)$, so $f_N=F$ is a residual, not an updated head.",
+    "failure": "Picard uses $h^{k+1}=f_P(h^k)$. Newton uses $h^{k+1}=h^k-F(h^k)/F'(h^k)$, so $f_N=F$ is a residual, not an updated head."
+  },
+  {
+    "question": "What characterizes a solution $h^\\ast$?",
+    "options": {
+      "$f_P(h^\\ast)=h^\\ast$.": true,
+      "$f_N(h^\\ast)=0$.": true,
+      "$f_P(h^\\ast)=0$ in every model.": false,
+      "The inflows and outflows balance.": true
+    },
+    "success": "A fixed point of $f_P$ and a zero of $f_N$ describe the same balanced head. The head itself need not be zero.",
+    "failure": "A fixed point of $f_P$ and a zero of $f_N$ describe the same balanced head. The head itself need not be zero."
+  },
+  {
+    "question": "Which statements describe the two linearizations?",
+    "options": {
+      "Picard freezes head-dependent coefficients at $h^k$.": true,
+      "Newton uses the derivative of the complete residual.": true,
+      "Newton always converges from any starting head.": false,
+      "One numerical iteration advances one day of physical time.": false
+    },
+    "success": "Both methods improve a numerical estimate of a steady-state solution. Newton includes coefficient derivatives; its convergence depends on the function and initial estimate.",
+    "failure": "Both methods improve a numerical estimate of a steady-state solution. Newton includes coefficient derivatives; its convergence depends on the function and initial estimate."
+  },
+  {
+    "question": "How should convergence be checked?",
+    "options": {
+      "Check the maximum head change $\\max_i|\\Delta h_i|$.": true,
+      "Check the maximum flow residual $\\max_i|F_i|$.": true,
+      "A small head change alone proves that all balances close.": false,
+      "The residual has units of head.": false
+    },
+    "success": "Both criteria are required. Small changes can coexist with an unbalanced flow equation; $F_i$ is a flow imbalance in m³/s.",
+    "failure": "Both criteria are required. Small changes can coexist with an unbalanced flow equation; $F_i$ is a flow imbalance in m³/s."
+  }
+]

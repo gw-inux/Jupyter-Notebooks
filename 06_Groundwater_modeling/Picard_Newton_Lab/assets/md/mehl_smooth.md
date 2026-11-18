@@ -1,0 +1,3 @@
+**Mehl (2006), Figures 2 and 3 — smooth unconfined case.** The paper's three conductivity numbers are $K_L=0.005$, $K_C=0.25$ and $K_R=100$; $h_L=4$ m and $h_R=0.1$ m. For this lab’s SI representation, interpret those conductivity numbers as m/day and use 100 m centre spacing, 1 m width and bottom 0 m. Recharge and ET are zero. The true central head is approximately **0.547 m**.
+
+Picard starts at **0.10 m**; Newton starts at **1.70 m**. The graphs below show the computed iteration paths through convergence with the module’s default closure criteria. Here transmissivity is $T=Kh$, as in the paper, without an imposed aquifer-top cap.

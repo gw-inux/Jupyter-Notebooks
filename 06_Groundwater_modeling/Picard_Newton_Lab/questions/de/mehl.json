@@ -1,0 +1,24 @@
+[
+  {
+    "question": "In den dargestellten Beispielen aus Mehl starten Picard und Newton wie in der Veröffentlichung bei unterschiedlichen Höhen. Wie lassen sich die Iterationswege vergleichen?",
+    "options": {
+      "Sie veranschaulichen die grafischen Konstruktionen und den Einfluss der Modellkonfiguration.": true,
+      "Die Iterationszahlen allein zeigen, welches Verfahren grundsätzlich schneller ist.": false,
+      "Für einen Vergleich unter gleichen Ausgangsbedingungen müssen Starthöhe und Konvergenzkriterien übereinstimmen.": true,
+      "Beide Verfahren suchen für dasselbe Beispiel unterschiedliche Lösungen der Wasserbilanz.": false
+    },
+    "success": "Richtig. Mehls unterschiedliche Startwerte veranschaulichen die Verfahren. Verwenden Sie für einen Vergleich unter gleichen Bedingungen dieselben Startwerte und Kriterien. Berücksichtigen Sie auch den unterschiedlichen Rechenaufwand pro Schritt. Beide Verfahren suchen dieselbe Lösung.",
+    "failure": "Mehls unterschiedliche Startwerte veranschaulichen die Verfahren. Verwenden Sie für einen Vergleich unter gleichen Bedingungen dieselben Startwerte und Kriterien. Berücksichtigen Sie auch den unterschiedlichen Rechenaufwand pro Schritt. Beide Verfahren suchen dieselbe Lösung."
+  },
+  {
+    "question": "Welche Aussagen erklären die Kurven im Beispiel mit ET?",
+    "options": {
+      "Der ET-Entzug kann stetig sein und an den Schwellen trotzdem seine Steigung ändern.": true,
+      "Jede Unterbrechung der Picard-Funktion zeigt einen physikalischen Sprung des ET-Entzugs an.": false,
+      "Der Wechsel zum nächsten linearen ET-Abschnitt kann einen Sprung in der Picard-Funktion verursachen.": true,
+      "Jede pendelnde Iterationsfolge entspricht einer zeitlichen Schwankung des Grundwasserspiegels.": false
+    },
+    "success": "Richtig. ET-Entzug und Newton-Residuum verlaufen stetig und haben an den Schwellen Knicke. Picard löst eine lineare Gleichung mit dem jeweils geltenden ET-Abschnitt. Beim Wechsel kann der nächste berechnete Höhenwert springen. Pendelnde Näherungen im stationären Modell beschreiben keine zeitliche Grundwasserspiegelschwankung.",
+    "failure": "ET-Entzug und Newton-Residuum verlaufen stetig und haben an den Schwellen Knicke. Picard löst eine lineare Gleichung mit dem jeweils geltenden ET-Abschnitt. Beim Wechsel kann der nächste berechnete Höhenwert springen. Pendelnde Näherungen im stationären Modell beschreiben keine zeitliche Grundwasserspiegelschwankung."
+  }
+]

@@ -1,0 +1,46 @@
+[
+  {
+    "question": "Weshalb ist das gespannte Modell ohne ET linear?",
+    "options": {
+      "Die Transmissivität $T=Kb$ ist unabhängig von der hydraulischen Höhe.": true,
+      "Die Leitwerte zwischen den Zellen sind konstant.": true,
+      "Für Linearität muss das hydraulische Gefälle klein sein.": false,
+      "Alle drei hydraulischen Leitfähigkeiten müssen identisch sein.": false
+    },
+    "success": "Bei fester Mächtigkeit und festen Leitfähigkeiten bleiben die Leitwerte konstant. Räumliche Unterschiede in der Leitfähigkeit und ein großes Gefälle allein machen diese gespannte Bilanz nicht nichtlinear.",
+    "failure": "Bei fester Mächtigkeit und festen Leitfähigkeiten bleiben die Leitwerte konstant. Räumliche Unterschiede in der Leitfähigkeit und ein großes Gefälle allein machen diese gespannte Bilanz nicht nichtlinear."
+  },
+  {
+    "question": "Was kann die Bilanz des Drei-Zellen-Modells nichtlinear machen?",
+    "options": {
+      "Eine gesättigte Mächtigkeit, die sich mit der hydraulischen Höhe ändert.": true,
+      "Ein Randfluss, für den je nach Höhe unterschiedliche Beziehungen gelten.": true,
+      "Ein anderer Startwert für ein ansonsten lineares Modell.": false,
+      "Eine andere Diagrammfarbe oder Zoomstufe.": false
+    },
+    "success": "Die Nichtlinearität folgt aus den Gleichungen, hier über die Transmissivität oder die Randbedingung. Der Startwert beeinflusst den Iterationsweg. Die zugrunde liegende Bilanzfunktion bleibt dieselbe.",
+    "failure": "Die Nichtlinearität folgt aus den Gleichungen, hier über die Transmissivität oder die Randbedingung. Der Startwert beeinflusst den Iterationsweg. Die zugrunde liegende Bilanzfunktion bleibt dieselbe."
+  },
+  {
+    "question": "Wie lesen Sie einen Schritt in den Diagrammen für die mittlere Zelle ab?",
+    "options": {
+      "Bei Picard wird $f_P(h^k)$ auf die Diagonale $y=h$ übertragen.": true,
+      "Bei Newton folgt man der Tangente an $F$ bis zur Nulllinie.": true,
+      "Die orange Markierung muss bereits die Referenzhöhe anzeigen.": false,
+      "Beide Verfahren suchen dieselbe Lösung der Wasserbilanz.": true
+    },
+    "success": "Picard konstruiert den nächsten Schritt zum Fixpunkt. Newton nähert sich der Nullstelle des Residuums. Eine Zwischenmarkierung zeigt die jeweilige Näherung. Ob die Rechnung konvergiert ist, zeigen die beiden Kriterien.",
+    "failure": "Picard konstruiert den nächsten Schritt zum Fixpunkt. Newton nähert sich der Nullstelle des Residuums. Eine Zwischenmarkierung zeigt die jeweilige Näherung. Ob die Rechnung konvergiert ist, zeigen die beiden Kriterien."
+  },
+  {
+    "question": "Nach einem exakten Schritt für ein lineares Problem kann der Status noch „Iteration läuft“ lauten. Warum?",
+    "options": {
+      "Das Bilanzresiduum kann bereits null sein, während die letzte Höhenänderung noch groß ist.": true,
+      "Ein weiterer Schritt kann bestätigen, dass das Kriterium für die Höhenänderung erfüllt ist.": true,
+      "Das Verfahren muss eine falsche Gleichung verwendet haben.": false,
+      "Der Startwert legt die Referenzhöhe fest.": false
+    },
+    "success": "Das Modul verlangt die Erfüllung beider Konvergenzkriterien. Die unabhängig bestimmte Referenzhöhe löst die diskrete Bilanz. Sie hängt nicht vom gewählten Startwert ab.",
+    "failure": "Das Modul verlangt die Erfüllung beider Konvergenzkriterien. Die unabhängig bestimmte Referenzhöhe löst die diskrete Bilanz. Sie hängt nicht vom gewählten Startwert ab."
+  }
+]

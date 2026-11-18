@@ -1,0 +1,24 @@
+[
+  {
+    "question": "Pumping lowers the water table in an unconfined aquifer. Which statements can be correct?",
+    "options": {
+      "Saturated thickness and conductance can decrease even when hydraulic conductivity stays constant.": true,
+      "Every head-dependent flow equation must be nonlinear.": false,
+      "The unknown head can affect both the flow area and the hydraulic gradient.": true,
+      "A change in conductance always means the aquifer material has changed.": false
+    },
+    "success": "Correct. Conductance includes flow geometry as well as hydraulic conductivity. Head-dependent saturated thickness can make conductance depend on the unknown head. Head dependence alone does not imply nonlinearity: a fixed linear head–flow relation remains linear.",
+    "failure": "Conductance includes flow geometry as well as hydraulic conductivity. Head-dependent saturated thickness can make conductance depend on the unknown head. Head dependence alone does not imply nonlinearity: a fixed linear head–flow relation remains linear."
+  },
+  {
+    "question": "A steady-state model needs 30 numerical iterations. What does this tell you?",
+    "options": {
+      "The aquifer passed through 30 physical time steps.": false,
+      "The solver repeatedly revised its head estimates.": true,
+      "The final result should be checked against convergence criteria.": true,
+      "The result is necessarily more accurate than a model solved in three iterations.": false
+    },
+    "success": "Correct. Iterations improve a numerical estimate; they do not advance physical time. Their number alone establishes neither convergence nor agreement with the real aquifer.",
+    "failure": "Iterations improve a numerical estimate; they do not advance physical time. Their number alone establishes neither convergence nor agreement with the real aquifer."
+  }
+]

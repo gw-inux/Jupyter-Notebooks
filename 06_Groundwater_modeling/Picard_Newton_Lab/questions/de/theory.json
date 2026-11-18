@@ -1,0 +1,46 @@
+[
+  {
+    "question": "Wofür stehen $f_P(h)$ und $f_N(h)$?",
+    "options": {
+      "$f_P(h)$ liefert eine vorgeschlagene Höhe in m.": true,
+      "$f_N(h)$ ist die nächste Newton-Höhe.": false,
+      "$f_N(h)=F(h)$ ist das Bilanzresiduum in m³/s.": true,
+      "$f_P$ und $f_N$ müssen dieselbe Einheit haben.": false
+    },
+    "success": "Bei Picard gilt $h^{k+1}=f_P(h^k)$. Newton verwendet $h^{k+1}=h^k-F(h^k)/F'(h^k)$. Die Funktion $f_N=F$ beschreibt also das Bilanzresiduum.",
+    "failure": "Bei Picard gilt $h^{k+1}=f_P(h^k)$. Newton verwendet $h^{k+1}=h^k-F(h^k)/F'(h^k)$. Die Funktion $f_N=F$ beschreibt also das Bilanzresiduum."
+  },
+  {
+    "question": "Was kennzeichnet die Lösung $h^\\ast$?",
+    "options": {
+      "$f_P(h^\\ast)=h^\\ast$.": true,
+      "$f_N(h^\\ast)=0$.": true,
+      "In jedem Modell gilt $f_P(h^\\ast)=0$.": false,
+      "Zu- und Abflüsse gleichen sich aus.": true
+    },
+    "success": "Der Fixpunkt von $f_P$ und die Nullstelle von $f_N$ bezeichnen dieselbe Höhe, bei der die Bilanz erfüllt ist. Die Höhe selbst kann von null verschieden sein.",
+    "failure": "Der Fixpunkt von $f_P$ und die Nullstelle von $f_N$ bezeichnen dieselbe Höhe, bei der die Bilanz erfüllt ist. Die Höhe selbst kann von null verschieden sein."
+  },
+  {
+    "question": "Welche Aussagen beschreiben die beiden Linearisierungen?",
+    "options": {
+      "Picard hält die bei $h^k$ bestimmten höhenabhängigen Leitwerte während des Lösungsschritts fest.": true,
+      "Newton verwendet die Ableitung des vollständigen Residuums.": true,
+      "Newton konvergiert von jedem beliebigen Startwert aus.": false,
+      "Eine numerische Iteration entspricht einem Tag Modellzeit.": false
+    },
+    "success": "Beide Verfahren verbessern die Näherung für eine stationäre Lösung. Newton berücksichtigt zusätzlich die Ableitungen der Leitwerte. Ob das Verfahren konvergiert, hängt von der Funktion und dem Startwert ab.",
+    "failure": "Beide Verfahren verbessern die Näherung für eine stationäre Lösung. Newton berücksichtigt zusätzlich die Ableitungen der Leitwerte. Ob das Verfahren konvergiert, hängt von der Funktion und dem Startwert ab."
+  },
+  {
+    "question": "Wie sollte die Konvergenz geprüft werden?",
+    "options": {
+      "Prüfen Sie die maximale Höhenänderung $\\max_i|\\Delta h_i|$.": true,
+      "Prüfen Sie das maximale Bilanzresiduum $\\max_i|F_i|$.": true,
+      "Eine kleine Höhenänderung allein beweist, dass alle Wasserbilanzen erfüllt sind.": false,
+      "Das Residuum hat die Einheit einer hydraulischen Höhe.": false
+    },
+    "success": "Beide Kriterien müssen erfüllt sein. Auch bei kleinen Höhenänderungen kann die Wasserbilanz noch einen Fehler aufweisen. $F_i$ ist ein Bilanzresiduum in m³/s.",
+    "failure": "Beide Kriterien müssen erfüllt sein. Auch bei kleinen Höhenänderungen kann die Wasserbilanz noch einen Fehler aufweisen. $F_i$ ist ein Bilanzresiduum in m³/s."
+  }
+]

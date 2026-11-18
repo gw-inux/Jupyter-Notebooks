@@ -1,0 +1,35 @@
+[
+  {
+    "question": "Beide Verbindungspfeile zeigen nach rechts. Die Rechnung ergibt einen negativen Wert für $Q_L$. Welche Aussagen treffen zu?",
+    "options": {
+      "Die Strömung in der linken Verbindung verläuft entgegen der Pfeilrichtung.": true,
+      "Das negative Vorzeichen beweist, dass die Rechnung fehlgeschlagen ist.": false,
+      "Wasser verlässt die mittlere Zelle über die linke Verbindung.": true,
+      "Die hydraulische Höhe in der Mitte muss negativ sein.": false
+    },
+    "success": "Richtig. Bei positivem Leitwert bedeutet $Q_L=C_L(h_L-h)<0$, dass $h>h_L$ ist. Wasser strömt aus der mittleren Zelle nach links. Das Vorzeichen beschreibt die Richtung des Volumenstroms. Die Höhe selbst kann positiv sein.",
+    "failure": "Bei positivem Leitwert bedeutet $Q_L=C_L(h_L-h)<0$, dass $h>h_L$ ist. Wasser strömt aus der mittleren Zelle nach links. Das Vorzeichen beschreibt die Richtung des Volumenstroms. Die Höhe selbst kann positiv sein."
+  },
+  {
+    "question": "Was bedeutet $F(h)=Q_L-Q_R-Q_{\\mathrm{ET}}=0$?",
+    "options": {
+      "In der mittleren Zelle gleichen sich Zu- und Abflüsse aus.": true,
+      "Jeder einzelne Volumenstrom muss null sein.": false,
+      "Die hydraulische Höhe in der mittleren Zelle muss null Meter betragen.": false,
+      "Der verbleibende Bilanzfehler beträgt null m³/s.": true
+    },
+    "success": "Richtig. Das Residuum ist die Differenz zwischen Zu- und Abflüssen. Auch große Volumenströme können sich ausgleichen. Ein Residuum von null bestätigt die Erfüllung der Modellgleichung. Ob das Modell die Verhältnisse im Gelände zutreffend abbildet, ist eine eigene Frage.",
+    "failure": "Das Residuum ist die Differenz zwischen Zu- und Abflüssen. Auch große Volumenströme können sich ausgleichen. Ein Residuum von null bestätigt die Erfüllung der Modellgleichung. Ob das Modell die Verhältnisse im Gelände zutreffend abbildet, ist eine eigene Frage."
+  },
+  {
+    "question": "Welche Aussagen zur Nichtlinearität gelten für die hier betrachteten Modelle?",
+    "options": {
+      "Ein großes hydraulisches Gefälle allein macht die Darcy-Strömung zwangsläufig nichtlinear.": false,
+      "Im ungespannten Grundwasserleiter kann die gesättigte Mächtigkeit von der gesuchten Höhe abhängen.": true,
+      "Ein gespanntes Modell mit festen Leitwerten kann auch bei großen räumlichen Unterschieden der Leitfähigkeit linear bleiben.": true,
+      "Bei konstanter hydraulischer Leitfähigkeit ist ein ungespanntes Modell immer linear.": false
+    },
+    "success": "Richtig. Auch bei konstantem $K$ kann die gesuchte Höhe die gesättigte Mächtigkeit und damit den Leitwert verändern. Räumlich unterschiedliche, aber feste Leitwerte machen die Gleichungen für sich genommen nicht nichtlinear. Dasselbe gilt hier für ein großes Gefälle.",
+    "failure": "Auch bei konstantem $K$ kann die gesuchte Höhe die gesättigte Mächtigkeit und damit den Leitwert verändern. Räumlich unterschiedliche, aber feste Leitwerte machen die Gleichungen für sich genommen nicht nichtlinear. Dasselbe gilt hier für ein großes Gefälle."
+  }
+]

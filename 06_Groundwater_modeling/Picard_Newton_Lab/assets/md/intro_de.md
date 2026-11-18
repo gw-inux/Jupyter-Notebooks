@@ -1,0 +1,1 @@
+**Entwurf zur fachlichen und didaktischen Begutachtung.** Stellen Sie die Wasserbilanz auf, führen Sie einen einzelnen Iterationsschritt aus und vergleichen Sie Picard und Newton. Mit den Iterationen suchen Sie eine Näherung für die stationäre Lösung. Dabei vergeht keine Modellzeit. [Rückmeldung geben](mailto:mail@reimann-thomas.de)

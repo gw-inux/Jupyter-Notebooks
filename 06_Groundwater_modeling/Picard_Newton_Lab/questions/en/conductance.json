@@ -1,0 +1,35 @@
+[
+  {
+    "question": "Which statements correctly describe conductance?",
+    "options": {
+      "Conductance combines hydraulic conductivity with the geometry of a flow connection.": true,
+      "Conductance is the discharge through the connection.": false,
+      "Conductance has units of m²/s when heads are in metres and discharge is in m³/s.": true,
+      "Hydraulic conductivity and conductance are interchangeable quantities.": false
+    },
+    "success": "Correct. For a uniform connection, $C=Kwb/L$. Conductance has units of m²/s; multiplying it by a head difference gives discharge. Hydraulic conductivity $K$ describes the material, whereas conductance also includes geometry.",
+    "failure": "For a uniform connection, $C=Kwb/L$. Conductance has units of m²/s; multiplying it by a head difference gives discharge. Hydraulic conductivity $K$ describes the material, whereas conductance also includes geometry."
+  },
+  {
+    "question": "The width of a uniform connection doubles. Conductivity, saturated thickness, length, and head difference stay unchanged. What follows?",
+    "options": {
+      "The flow area doubles.": true,
+      "The hydraulic conductivity doubles.": false,
+      "The conductance and discharge both double.": true,
+      "The discharge stays unchanged because the gradient is unchanged.": false
+    },
+    "success": "Correct. The vertical flow area is $A_\\perp=wb$. Doubling width doubles area, conductance, and discharge at the same gradient; it leaves hydraulic conductivity unchanged.",
+    "failure": "The vertical flow area is $A_\\perp=wb$. Doubling width doubles area, conductance, and discharge at the same gradient; it leaves hydraulic conductivity unchanged."
+  },
+  {
+    "question": "Why does the three-cell model combine the resistances of two half-cells?",
+    "options": {
+      "Flow between the cell centers passes through both half-cells in sequence.": true,
+      "The more conductive half-cell always determines the entire connection conductance.": false,
+      "A poorly transmitting half-cell can restrict the whole connection.": true,
+      "The cell with lower conductivity can be omitted from the connection calculation.": false
+    },
+    "success": "Correct. The two half-cells are connected in series, so their resistances add. Both contribute; a large resistance can dominate. This gives harmonic transmissivity averaging for the three-cell discretization.",
+    "failure": "The two half-cells are connected in series, so their resistances add. Both contribute; a large resistance can dominate. This gives harmonic transmissivity averaging for the three-cell discretization."
+  }
+]

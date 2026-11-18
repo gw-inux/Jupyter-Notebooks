@@ -1,0 +1,18 @@
+Eine kleine Höhenkorrektur allein genügt nicht. Die Wasserbilanz kann trotzdem noch einen erheblichen Fehler aufweisen. Prüfen Sie **sowohl den größten Betrag der Höhenänderung als auch den größten Betrag des Bilanzresiduums**. Die Grenzwerte lassen sich in den Experimenten einstellen. Voreingestellt sind $10^{-4}$ m für die Höhenänderung und $10^{-6}$ m³/s für das Bilanzresiduum.
+
+**Warum wird noch ein Schritt ausgeführt, obwohl das Residuum bereits klein genug ist?** Die letzte Höhenänderung kann ihren Grenzwert noch überschreiten. Bei einem linearen Problem kann der erste Schritt unmittelbar die Lösung mit einem Residuum von null erreichen. Die Änderung gegenüber dem Startwert kann dabei groß sein. Erst der nächste Schritt bestätigt, dass sich die Höhe nicht mehr ändert. Bei den kleinen Volumenströmen in Mehls Beispielen kann sogar der Startwert das Kriterium von $10^{-6}$ m³/s erfüllen, obwohl er noch weit von der Lösung entfernt ist.
+
+Im Konvergenzdiagramm lesen Sie links die maximale Höhenänderung und rechts das maximale Bilanzresiduum ab. Beide Achsen sind logarithmisch und reichen in ihrer jeweiligen Einheit von $10^{-12}$ bis $100$. Achse und Grenzlinie sind für das Bilanzresiduum violett, für die Höhenänderung ockerfarben. Quadrate kennzeichnen Bilanzresiduen, Kreise Höhenänderungen. Grün steht für Picard, Blau für Newton. Dreiecke am Rand kennzeichnen Werte außerhalb der Darstellung. Ein Dreieck nach unten steht für einen Wert unterhalb der Untergrenze einschließlich null, ein Dreieck nach oben für einen Wert oberhalb der Obergrenze. Auch ein außerhalb der Darstellung gewählter Grenzwert ist wirksam und wird in der Legende genannt.
+
+Die Höhenänderung ist die Differenz zwischen zwei angenommenen Näherungen. Für den Startwert gibt es daher noch keine Höhenänderung. Ein eigenes Diagramm zeigt darunter die tatsächlichen Näherungswerte der gewählten Zelle zusammen mit ihrer unabhängig berechneten Referenzhöhe. Die Abweichung von dieser Referenz geht nicht in die Abbruchkriterien ein.
+
+Für eine glatte skalare Picard-Funktion ist $|f'_P(h^*)|<1$ eine hinreichende Bedingung für lokale Konvergenz. Startet die Iteration nahe genug an der Lösung, nimmt der Fehler ab. $f'_P$ ist die dimensionslose Ableitung der neuen Höhe nach der eingesetzten Höhe. Bei negativer Steigung wechselt das Vorzeichen des Fehlers von Schritt zu Schritt. Newton kann in der Nähe einer glatten Nullstelle mit von null verschiedener Ableitung quadratisch konvergieren. Der verbleibende Höhenfehler kann dann in wenigen Schritten sehr klein werden. Ein ungünstiger Startwert oder der Wechsel zwischen ET-Abschnitten kann die Konvergenz verhindern.
+
+Bei mehreren unbekannten Höhen ist in jeder äußeren Iteration ein gekoppeltes lineares Gleichungssystem zu lösen. Links steht das Picard-System, rechts das Newton-System:
+
+$$\mathbf A(\mathbf h^k)\widehat{\mathbf h}_P^{k+1}=\mathbf b(\mathbf h^k),\qquad
+\mathbf J(\mathbf h^k)\Delta\mathbf h=-\mathbf F(\mathbf h^k).$$
+
+$\mathbf h^k$ ist der Vektor der aktuellen inneren Zellhöhen (m). $\widehat{\mathbf h}_P^{k+1}$ enthält die für Picard vorgeschlagenen Höhen (m), $\Delta\mathbf h$ die für Newton vorgeschlagenen Höhenkorrekturen (m). Die Matrix $\mathbf A$ enthält die vorläufig festgehaltenen Leitwerte und die Steigungen der jeweils geltenden Randbedingungen (m²/s). $\mathbf b$ enthält die zugehörigen Rand- und Quellterme (m³/s). $\mathbf F$ enthält die Bilanzresiduen der Zellen (m³/s). Die Jacobi-Matrix $\mathbf J$ enthält deren partielle Ableitungen nach den unbekannten hydraulischen Höhen (m²/s).
+
+Das Labor löst diese linearen Gleichungssysteme direkt. Die angezeigten Iterationen zählen die äußeren Schritte zur Lösung des nichtlinearen Problems.

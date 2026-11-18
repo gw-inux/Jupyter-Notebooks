@@ -1,0 +1,46 @@
+[
+  {
+    "question": "Was ändert sich, wenn Sie Zelle 6 zur Betrachtung auswählen?",
+    "options": {
+      "Die dargestellten Funktionskurven und die angezeigte aktuelle Höhe.": true,
+      "Die Anzahl der unbekannten Höhen, die in jeder Iteration berechnet werden.": false,
+      "Der gespeicherte Iterationsverlauf des gesamten Modells.": false,
+      "Die im Querschnitt hervorgehobene Zelle.": true
+    },
+    "success": "Die Auswahl bestimmt, welche Zelle im Diagramm und im Querschnitt dargestellt wird. Die Rechnung umfasst weiterhin alle neun unbekannten Höhen. Bereits berechnete Schritte bleiben erhalten.",
+    "failure": "Die Auswahl bestimmt, welche Zelle im Diagramm und im Querschnitt dargestellt wird. Die Rechnung umfasst weiterhin alle neun unbekannten Höhen. Bereits berechnete Schritte bleiben erhalten."
+  },
+  {
+    "question": "Was zeigen die Iterationsdiagramme des Elf-Zellen-Modells?",
+    "options": {
+      "Angenommene Schritte der gemeinsamen Iteration aller neun Höhen.": true,
+      "Bei Picard eine Funktion für die Höhe, bei Newton das dazugehörige reduzierte Bilanzresiduum.": true,
+      "Die blaue Newton-Kurve muss sich immer verschieben, wenn sich die geschätzten Nachbarhöhen ändern.": false,
+      "Eine Newton-Tangente, die ausschließlich aus dem Diagonaleintrag der Jacobi-Matrix für die gewählte Zelle berechnet wird.": false
+    },
+    "success": "Die grüne Picard-Kurve hängt vom aktuellen Schritt des Gesamtsystems ab. Für jeden Punkt der blauen Newton-Kurve erfüllen die acht übrigen inneren Zellen ihre Bilanzen. Für die gewählte Zelle und Einstellung ergibt das eine feste Kurve. Ihre Tangente liefert den ungedämpften Newton-Vorschlag des Gesamtsystems für diese Zelle. Dämpfung kann den angenommenen Schritt verkürzen.",
+    "failure": "Die grüne Picard-Kurve hängt vom aktuellen Schritt des Gesamtsystems ab. Für jeden Punkt der blauen Newton-Kurve erfüllen die acht übrigen inneren Zellen ihre Bilanzen. Für die gewählte Zelle und Einstellung ergibt das eine feste Kurve. Ihre Tangente liefert den ungedämpften Newton-Vorschlag des Gesamtsystems für diese Zelle. Dämpfung kann den angenommenen Schritt verkürzen."
+  },
+  {
+    "question": "Welche Änderung führt im hier betrachteten gespannten Modell mit konstanter Grundwasserneubildung zu Nichtlinearität?",
+    "options": {
+      "Allein eine größere Differenz zwischen den Randhöhen.": false,
+      "Allein die Einführung räumlicher Zonen mit unterschiedlichen festen Leitfähigkeiten.": false,
+      "Eine höhenabhängige gesättigte Mächtigkeit anstelle der konstanten Mächtigkeit.": true,
+      "Allein eine andere Starthöhe.": false
+    },
+    "success": "Bei der hier verwendeten Strömungsgleichung führt die höhenabhängige Mächtigkeit zu höhenabhängigen Leitwerten. Auch eine nichtlineare Randbedingung kann Nichtlinearität bewirken. Unterschiedliche räumlich vorgegebene Leitfähigkeiten allein lassen die Gleichungen des gespannten Modells linear.",
+    "failure": "Bei der hier verwendeten Strömungsgleichung führt die höhenabhängige Mächtigkeit zu höhenabhängigen Leitwerten. Auch eine nichtlineare Randbedingung kann Nichtlinearität bewirken. Unterschiedliche räumlich vorgegebene Leitfähigkeiten allein lassen die Gleichungen des gespannten Modells linear."
+  },
+  {
+    "question": "Was sagt $\\max_i|F_i|$ im Elf-Zellen-Experiment aus?",
+    "options": {
+      "Es ist der größte Betrag des Bilanzfehlers unter den neun berechneten Zellen.": true,
+      "Es ist der Fehler der hydraulischen Höhe in der ausgewählten Zelle.": false,
+      "Durch Vergleich mit der Toleranz lässt sich feststellen, ob das Kriterium für das Bilanzresiduum erfüllt ist.": true,
+      "Es zeigt, ob das Rechengitter den realen Grundwasserleiter ausreichend fein auflöst.": false
+    },
+    "success": "Das Bilanzresiduum in m³/s prüft die diskreten Gleichungen. Die Eignung der Gitterweite und die Genauigkeit des konzeptionellen Modells müssen gesondert beurteilt werden.",
+    "failure": "Das Bilanzresiduum in m³/s prüft die diskreten Gleichungen. Die Eignung der Gitterweite und die Genauigkeit des konzeptionellen Modells müssen gesondert beurteilt werden."
+  }
+]

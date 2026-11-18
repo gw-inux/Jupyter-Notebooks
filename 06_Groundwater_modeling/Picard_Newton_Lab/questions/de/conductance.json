@@ -1,0 +1,35 @@
+[
+  {
+    "question": "Welche Aussagen beschreiben den hydraulischen Leitwert richtig?",
+    "options": {
+      "Der Leitwert verbindet die hydraulische Leitfähigkeit mit der Geometrie einer Strömungsverbindung.": true,
+      "Der Leitwert ist der Volumenstrom durch die Verbindung.": false,
+      "Bei Höhen in Metern und Volumenströmen in m³/s hat der Leitwert die Einheit m²/s.": true,
+      "Hydraulische Leitfähigkeit und hydraulischer Leitwert sind austauschbare Größen.": false
+    },
+    "success": "Richtig. Für eine gleichförmige Verbindung gilt $C=Kwb/L$. Multipliziert man den Leitwert in m²/s mit der Höhendifferenz in m, erhält man den Volumenstrom. $K$ kennzeichnet das Material. In $C$ geht zusätzlich die Geometrie ein.",
+    "failure": "Für eine gleichförmige Verbindung gilt $C=Kwb/L$. Multipliziert man den Leitwert in m²/s mit der Höhendifferenz in m, erhält man den Volumenstrom. $K$ kennzeichnet das Material. In $C$ geht zusätzlich die Geometrie ein."
+  },
+  {
+    "question": "Die Breite einer gleichförmigen Verbindung verdoppelt sich. Leitfähigkeit, gesättigte Mächtigkeit, Länge und Höhendifferenz bleiben gleich. Was folgt daraus?",
+    "options": {
+      "Der Durchströmungsquerschnitt verdoppelt sich.": true,
+      "Die hydraulische Leitfähigkeit verdoppelt sich.": false,
+      "Sowohl der Leitwert als auch der Volumenstrom verdoppeln sich.": true,
+      "Der Volumenstrom bleibt gleich, weil sich der hydraulische Gradient nicht ändert.": false
+    },
+    "success": "Richtig. Der senkrechte Durchströmungsquerschnitt ist $A_\\perp=wb$. Die doppelte Breite verdoppelt bei gleichem Gradienten den Querschnitt, den Leitwert und den Volumenstrom. Die Materialeigenschaft $K$ bleibt gleich.",
+    "failure": "Der senkrechte Durchströmungsquerschnitt ist $A_\\perp=wb$. Die doppelte Breite verdoppelt bei gleichem Gradienten den Querschnitt, den Leitwert und den Volumenstrom. Die Materialeigenschaft $K$ bleibt gleich."
+  },
+  {
+    "question": "Warum werden im Drei-Zellen-Modell die Strömungswiderstände zweier halber Zellen zusammengefasst?",
+    "options": {
+      "Zwischen den Zellzentren durchströmt das Wasser beide Zellhälften nacheinander.": true,
+      "Die besser leitende Zellhälfte bestimmt immer den gesamten Leitwert.": false,
+      "Eine schlecht leitende Zellhälfte kann den Durchfluss durch die gesamte Verbindung begrenzen.": true,
+      "Die Zellhälfte mit der geringeren Leitfähigkeit kann bei der Rechnung weggelassen werden.": false
+    },
+    "success": "Richtig. Die Zellhälften sind in Reihe geschaltet. Ihre Widerstände addieren sich, wobei ein großer Einzelwiderstand überwiegen kann. Für Zellen gleicher Länge ergibt sich daraus die harmonische Mittelung der Transmissivitäten.",
+    "failure": "Die Zellhälften sind in Reihe geschaltet. Ihre Widerstände addieren sich, wobei ein großer Einzelwiderstand überwiegen kann. Für Zellen gleicher Länge ergibt sich daraus die harmonische Mittelung der Transmissivitäten."
+  }
+]

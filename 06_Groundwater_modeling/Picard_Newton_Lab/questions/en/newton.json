@@ -1,0 +1,46 @@
+[
+  {
+    "question": "What does the vertical axis in the Newton diagram represent?",
+    "options": {
+      "The predicted next head in metres.": false,
+      "The flow residual $f_N(h)=F(h)$ in m³/s.": true,
+      "The remaining central-cell water-balance error.": true,
+      "Only the flow leaving through the right boundary.": false
+    },
+    "success": "Correct. The vertical coordinate is the net flow imbalance $F=Q_L-Q_R-Q_{\\mathrm{ET}}$. Newton seeks its zero. This differs from the Picard diagram, whose vertical coordinate is a head.",
+    "failure": "The vertical coordinate is the net flow imbalance $F=Q_L-Q_R-Q_{\\mathrm{ET}}$. Newton seeks its zero. This differs from the Picard diagram, whose vertical coordinate is a head."
+  },
+  {
+    "question": "The Newton tangent reaches the zero-residual line at a proposed head. Why may another iteration be needed?",
+    "options": {
+      "The tangent is a local approximation to the residual curve.": true,
+      "The actual residual is always zero at the tangent intercept.": false,
+      "The actual residual and its slope must be evaluated at the new head.": true,
+      "The tangent intercept is a physical time step.": false
+    },
+    "success": "Correct. The tangent’s zero gives a head estimate. Unless the local approximation is exact over the correction, the nonlinear residual at that head is not zero. Newton therefore reevaluates the equation before the next update.",
+    "failure": "The tangent’s zero gives a head estimate. Unless the local approximation is exact over the correction, the nonlinear residual at that head is not zero. Newton therefore reevaluates the equation before the next update."
+  },
+  {
+    "question": "What information distinguishes Newton from the Picard update described here?",
+    "options": {
+      "Newton includes the sensitivity of conductance to head.": true,
+      "Newton solves a different groundwater water balance.": false,
+      "Only Newton retains the slope of the active linear ET segment.": false,
+      "Picard fixes the current conductances for its linear solve.": true
+    },
+    "success": "Correct. Both methods seek the same balance and retain the active ET slope. Newton additionally includes conductance derivatives when forming the residual slope; Picard holds conductances fixed during each solve.",
+    "failure": "Both methods seek the same balance and retain the active ET slope. Newton additionally includes conductance derivatives when forming the residual slope; Picard holds conductances fixed during each solve."
+  },
+  {
+    "question": "Why can a nearly horizontal residual tangent cause difficulty for Newton?",
+    "options": {
+      "A small nonzero derivative can give a large correction through $-F/F'$.": true,
+      "A nearly horizontal tangent guarantees the best head estimate.": false,
+      "The correction can leave the range where that tangent is a good approximation.": true,
+      "Damping guarantees convergence from every starting head.": false
+    },
+    "success": "Correct. Dividing a finite residual by a small derivative can predict a very large head correction. A new head may cross ET thresholds or other model limits. Damping can reduce the step, but it does not guarantee convergence.",
+    "failure": "Dividing a finite residual by a small derivative can predict a very large head correction. A new head may cross ET thresholds or other model limits. Damping can reduce the step, but it does not guarantee convergence."
+  }
+]

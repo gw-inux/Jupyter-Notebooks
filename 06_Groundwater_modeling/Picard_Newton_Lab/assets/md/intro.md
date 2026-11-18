@@ -1,0 +1,1 @@
+**Draft for scientific and teaching review.** Explore the balance, try one numerical step, and compare Picard with Newton. These iterations improve a steady-state solution; they do not advance physical time. [Feedback](mailto:mail@reimann-thomas.de).

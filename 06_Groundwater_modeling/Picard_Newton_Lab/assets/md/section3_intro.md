@@ -1,0 +1,1 @@
+Picard and Newton each update all nine interior heads together. Select a cell to follow its iterations. Its blue Newton curve stays fixed because each trial head is evaluated with the other eight cells in flow balance. Follow the orange dot and tangents to see the selected head change.

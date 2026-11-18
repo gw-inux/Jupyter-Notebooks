@@ -1,0 +1,24 @@
+[
+  {
+    "question": "Durch Förderung sinkt der Grundwasserspiegel in einem ungespannten Grundwasserleiter. Welche Aussagen können zutreffen?",
+    "options": {
+      "Die gesättigte Mächtigkeit und der Leitwert können abnehmen, obwohl die hydraulische Leitfähigkeit konstant bleibt.": true,
+      "Jede höhenabhängige Strömungsgleichung muss nichtlinear sein.": false,
+      "Die gesuchte Höhe kann sowohl den Durchströmungsquerschnitt als auch den hydraulischen Gradienten beeinflussen.": true,
+      "Eine Änderung des Leitwerts bedeutet immer, dass sich das Material des Grundwasserleiters verändert hat.": false
+    },
+    "success": "Richtig. Der Leitwert hängt neben der Leitfähigkeit von der Geometrie ab. Ändert sich die gesättigte Mächtigkeit mit der gesuchten Höhe, kann sich auch der Leitwert ändern. Eine Höhenabhängigkeit allein genügt jedoch nicht für Nichtlinearität. Eine feste lineare Beziehung zwischen Höhe und Volumenstrom bleibt linear.",
+    "failure": "Der Leitwert hängt neben der Leitfähigkeit von der Geometrie ab. Ändert sich die gesättigte Mächtigkeit mit der gesuchten Höhe, kann sich auch der Leitwert ändern. Eine Höhenabhängigkeit allein genügt jedoch nicht für Nichtlinearität. Eine feste lineare Beziehung zwischen Höhe und Volumenstrom bleibt linear."
+  },
+  {
+    "question": "Ein stationäres Modell benötigt 30 Iterationen. Was können Sie daraus schließen?",
+    "options": {
+      "Der Grundwasserleiter hat 30 physikalische Zeitschritte durchlaufen.": false,
+      "Das Lösungsverfahren hat die geschätzten Höhen wiederholt aktualisiert.": true,
+      "Das Endergebnis sollte anhand der Konvergenzkriterien geprüft werden.": true,
+      "Das Ergebnis ist zwangsläufig genauer als das eines Modells, das in drei Iterationen gelöst wurde.": false
+    },
+    "success": "Richtig. Iterationen verbessern eine numerische Näherung. Dabei vergeht keine Modellzeit. Ihre Anzahl allein zeigt weder, dass die Rechnung konvergiert ist, noch dass das Modell den realen Grundwasserleiter angemessen beschreibt.",
+    "failure": "Iterationen verbessern eine numerische Näherung. Dabei vergeht keine Modellzeit. Ihre Anzahl allein zeigt weder, dass die Rechnung konvergiert ist, noch dass das Modell den realen Grundwasserleiter angemessen beschreibt."
+  }
+]

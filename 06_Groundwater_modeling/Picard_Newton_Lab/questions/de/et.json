@@ -1,0 +1,24 @@
+[
+  {
+    "question": "Die ET-Oberfläche SURF liegt bei 7 m, die Extinktionstiefe EXDP beträgt 4 m. Welche Aussagen treffen zu?",
+    "options": {
+      "EXDP ist eine Tiefe, die von SURF aus nach unten gemessen wird.": true,
+      "Die untere Schwellenhöhe für ET liegt bei 4 m.": false,
+      "Bei einer hydraulischen Höhe von 5 m beträgt RET die Hälfte von EVTR.": true,
+      "Der ET-Volumenstrom ergibt sich aus RET multipliziert mit dem senkrechten gesättigten Durchströmungsquerschnitt.": false
+    },
+    "success": "Richtig. Die untere Schwellenhöhe liegt bei SURF − EXDP = 3 m. Die Höhe 5 m liegt mittig zwischen 3 und 7 m, somit ist RET = EVTR/2. Für den Volumenstrom ist die horizontale Zellfläche ausschlaggebend: $Q_{\\mathrm{ET}}=\\mathrm{RET}\\,A$.",
+    "failure": "Die untere Schwellenhöhe liegt bei SURF − EXDP = 3 m. Die Höhe 5 m liegt mittig zwischen 3 und 7 m, somit ist RET = EVTR/2. Für den Volumenstrom ist die horizontale Zellfläche ausschlaggebend: $Q_{\\mathrm{ET}}=\\mathrm{RET}\\,A$."
+  },
+  {
+    "question": "Was geschieht mit dem ET-Entzug, wenn die hydraulische Höhe die Schwelle SURF von unten überschreitet?",
+    "options": {
+      "Der ET-Entzug aus dem Grundwasser springt abrupt.": false,
+      "Der ET-Entzug verläuft stetig.": true,
+      "Die Steigung des ET-Entzugs als Funktion der Höhe ist unmittelbar unter SURF positiv und oberhalb von SURF null.": true,
+      "Die maximale ET-Rate muss sich ändern.": false
+    },
+    "success": "Richtig. Bei SURF erreicht der linear ansteigende Entzug denselben Wert wie der anschließende konstante Abschnitt. Der Volumenstrom ist dort stetig, seine Steigung ändert sich. Jeder Abschnitt für sich ist linear. Über die Schwellen hinweg gilt eine abschnittsweise definierte Beziehung.",
+    "failure": "Bei SURF erreicht der linear ansteigende Entzug denselben Wert wie der anschließende konstante Abschnitt. Der Volumenstrom ist dort stetig, seine Steigung ändert sich. Jeder Abschnitt für sich ist linear. Über die Schwellen hinweg gilt eine abschnittsweise definierte Beziehung."
+  }
+]

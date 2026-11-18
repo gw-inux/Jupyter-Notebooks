@@ -1,0 +1,46 @@
+[
+  {
+    "question": "What does selecting cell 6 change?",
+    "options": {
+      "The diagnostic curves and the displayed current head.": true,
+      "The number of unknown heads solved in each iteration.": false,
+      "The saved full-system iteration history.": false,
+      "The highlighted cell in the profile.": true
+    },
+    "success": "Cell selection changes the view. Every iteration still solves the nine interior heads, and the existing history is retained.",
+    "failure": "Cell selection changes the view. Every iteration still solves the nine interior heads, and the existing history is retained."
+  },
+  {
+    "question": "What do the eleven-cell iteration plots show?",
+    "options": {
+      "Accepted steps of the full nine-head iteration, rather than a separate one-cell solve.": true,
+      "A head function for Picard and an equivalent reduced flow residual for Newton.": true,
+      "The blue Newton curve must shift whenever the neighboring head estimates change.": false,
+      "A Newton tangent computed from only the selected cell’s diagonal Jacobian entry.": false
+    },
+    "success": "Picard’s green curve depends on the current full-system update. Newton’s blue curve gives the selected cell’s imbalance after balancing the other eight cells at each trial head. This leaves one fixed curve for that setup. Its tangent gives the selected head from the full undamped Newton step. Damping can shorten the accepted update.",
+    "failure": "Picard’s green curve depends on the current full-system update. Newton’s blue curve gives the selected cell’s imbalance after balancing the other eight cells at each trial head. This leaves one fixed curve for that setup. Its tangent gives the selected head from the full undamped Newton step. Damping can shorten the accepted update."
+  },
+  {
+    "question": "Which changes necessarily make a confined model with constant recharge nonlinear?",
+    "options": {
+      "Increasing the boundary-head difference alone.": false,
+      "Introducing fixed conductivity zones alone.": false,
+      "Using head-dependent saturated thickness instead of fixed thickness.": true,
+      "Changing the initial head alone.": false
+    },
+    "success": "Nonlinearity requires head-dependent coefficients or nonlinear boundary behavior. Fixed heterogeneity changes coefficients, but the confined equations remain linear.",
+    "failure": "Nonlinearity requires head-dependent coefficients or nonlinear boundary behavior. Fixed heterogeneity changes coefficients, but the confined equations remain linear."
+  },
+  {
+    "question": "What does $\\max_i|F_i|$ tell us in the 11-cell experiment?",
+    "options": {
+      "The largest absolute flow imbalance over the nine solved cells.": true,
+      "The head error in the selected cell.": false,
+      "Whether the discrete flow-balance closure is met.": true,
+      "Whether the grid is fine enough to represent the real aquifer.": false
+    },
+    "success": "Residual closure checks the discrete equations. It is measured in m³/s and does not demonstrate grid adequacy or accuracy of the conceptual model.",
+    "failure": "Residual closure checks the discrete equations. It is measured in m³/s and does not demonstrate grid adequacy or accuracy of the conceptual model."
+  }
+]

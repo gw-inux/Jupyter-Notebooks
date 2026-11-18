@@ -1,0 +1,24 @@
+[
+  {
+    "question": "The displayed Mehl examples use the paper’s different starting heads for Picard and Newton. How should their paths be compared?",
+    "options": {
+      "They illustrate the graphical constructions and effects of the setup.": true,
+      "Their iteration counts alone establish which method is always faster.": false,
+      "A comparison under matching starting conditions requires the same initial head and stopping criteria.": true,
+      "The two methods seek different balanced heads in the same example.": false
+    },
+    "success": "Correct. The historical starting heads differ, so the paths are demonstrations rather than a controlled speed comparison. For a fair comparison, match starting heads and stopping criteria; also remember that work per iteration can differ. Both methods seek the same solution.",
+    "failure": "The historical starting heads differ, so the paths are demonstrations rather than a controlled speed comparison. For a fair comparison, match starting heads and stopping criteria; also remember that work per iteration can differ. Both methods seek the same solution."
+  },
+  {
+    "question": "Which statements explain the ET example’s curves?",
+    "options": {
+      "A continuous ET loss can still have changes in slope at the thresholds.": true,
+      "Every disconnected part of the Picard function represents a physical jump in groundwater ET.": false,
+      "Selecting a different linear ET relation can make the Picard head-update function jump.": true,
+      "Every oscillating iteration sequence represents physical water-table oscillations.": false
+    },
+    "success": "Correct. The ET loss and Newton residual remain continuous, with corners where slopes change. Picard solves a linear equation using the selected ET segment, and that change can make its update function discontinuous. Numerical oscillations are not physical time-dependent water-table motion.",
+    "failure": "The ET loss and Newton residual remain continuous, with corners where slopes change. Picard solves a linear equation using the selected ET segment, and that change can make its update function discontinuous. Numerical oscillations are not physical time-dependent water-table motion."
+  }
+]

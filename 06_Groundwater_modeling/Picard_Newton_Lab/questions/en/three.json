@@ -1,0 +1,46 @@
+[
+  {
+    "question": "Why is the confined model without ET linear?",
+    "options": {
+      "Transmissivity $T=Kb$ is independent of head.": true,
+      "The face conductances are fixed.": true,
+      "The gradient must be small for linearity.": false,
+      "All three conductivities must be identical.": false
+    },
+    "success": "Fixed thickness and conductivity give constant conductance. Different conductivities and a large gradient do not by themselves make this confined balance nonlinear.",
+    "failure": "Fixed thickness and conductivity give constant conductance. Different conductivities and a large gradient do not by themselves make this confined balance nonlinear."
+  },
+  {
+    "question": "What can make the three-cell balance nonlinear?",
+    "options": {
+      "Saturated thickness changing with head.": true,
+      "A boundary flux switching between head-dependent branches.": true,
+      "Choosing a different initial guess for an otherwise linear model.": false,
+      "Changing the color or zoom of a plot.": false
+    },
+    "success": "Nonlinearity belongs to the equations, through transmissivity or boundary behavior. Initial guesses affect the iteration path, not the underlying scalar model function.",
+    "failure": "Nonlinearity belongs to the equations, through transmissivity or boundary behavior. Initial guesses affect the iteration path, not the underlying scalar model function."
+  },
+  {
+    "question": "How do you read one update in the scalar figures?",
+    "options": {
+      "Picard transfers $f_P(h^k)$ to the diagonal $y=h$.": true,
+      "Newton follows the tangent of $F$ to the zero-residual line.": true,
+      "The orange marker itself must already be the true head.": false,
+      "The two methods seek the same balanced solution.": true
+    },
+    "success": "Picard constructs a fixed-point update; Newton constructs a root-finding update. An intermediate marker is an estimate, not a guarantee of convergence.",
+    "failure": "Picard constructs a fixed-point update; Newton constructs a root-finding update. An intermediate marker is an estimate, not a guarantee of convergence."
+  },
+  {
+    "question": "After one exact update of a linear problem, why might the status still be iterating?",
+    "options": {
+      "The flow residual may already be zero while the last head change is large.": true,
+      "A further update can confirm the head-change criterion.": true,
+      "The method necessarily used the wrong equation.": false,
+      "The true head is defined by the starting guess.": false
+    },
+    "success": "This module requires both closure tests. The independent true head solves the discrete balance; its value does not depend on the learner’s initial guess.",
+    "failure": "This module requires both closure tests. The independent true head solves the discrete balance; its value does not depend on the learner’s initial guess."
+  }
+]
