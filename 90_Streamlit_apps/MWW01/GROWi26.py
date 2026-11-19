@@ -12,6 +12,7 @@ def _navigate_to(path: str):
 
 # --- Application parameters ---
 DEFAULT_START_PAGE = "90_Streamlit_apps/MWW01/content/GROWi26_Start.py"
+PICARD_NEWTON_PAGE = "06_Groundwater_modeling/Picard_Newton_Lab/app.py"
 
 # --- MUST be first: layout setup wide / centered ---
 if "layout_choice" not in st.session_state:
@@ -83,6 +84,7 @@ pages = {
         "🧮 Brunnenströmung": "04_Basic_hydrogeology/Flow2Well_transient_confined.py",
         "🧮 Iteration - Picard": "90_Streamlit_apps/SYMPLE25/pages/M1C/Iteration_Picard.py",
         "🧮 Iteration - Newton": "90_Streamlit_apps/SYMPLE25/pages/M1C/Iteration_Newton.py",
+        "🧮 Picard–Newton Lab": PICARD_NEWTON_PAGE,
         "--- MODFLOW tutorials 📋 ---": None,
         "💻 MODFLOW Pumping Test": "90_Streamlit_apps/SYMPLE25/pages/M1B/Theis_pumping_Tutorial.py",
         "💻 2D Synthetic Modell": "90_Streamlit_apps/SYMPLE25/pages/M1C/Tutorial_2D_Synth.py",
@@ -171,8 +173,18 @@ for section, subpages in pages.items():
 if st.session_state.selected_path:
     path = st.session_state.selected_path
     if os.path.exists(path):
-        with open(path, "r", encoding="utf-8") as f:
-            exec(f.read(), globals())
+        if path == PICARD_NEWTON_PAGE:
+            # Give the lab its own __file__ and globals for package/asset lookup.
+            # Legacy course pages retain their existing shared execution context.
+            lab_path = os.path.abspath(path)
+            with open(lab_path, "r", encoding="utf-8") as f:
+                exec(
+                    compile(f.read(), lab_path, "exec"),
+                    {"__name__": "__main__", "__file__": lab_path},
+                )
+        else:
+            with open(path, "r", encoding="utf-8") as f:
+                exec(f.read(), globals())
     else:
         st.error(f"❌ File not found: `{path}`")
 

@@ -23,3 +23,5 @@ Pillow
 reportlab
 streamlit-scroll-to-top
 pyet
+
+-r 06_Groundwater_modeling/Picard_Newton_Lab/requirements.txt
