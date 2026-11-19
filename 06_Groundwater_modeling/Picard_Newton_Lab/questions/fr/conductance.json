@@ -1,0 +1,35 @@
+[
+  {
+    "question": "Quelles propositions décrivent correctement la conductance ?",
+    "options": {
+      "Elle combine la conductivité hydraulique et la géométrie d'une connexion d'écoulement.": true,
+      "C'est le débit qui traverse la connexion.": false,
+      "Elle s'exprime en m²/s lorsque les charges sont en mètres et les débits en m³/s.": true,
+      "La conductivité hydraulique et la conductance sont des grandeurs interchangeables.": false
+    },
+    "success": "Pour une connexion uniforme, $C=Kwb/L$. La conductance s'exprime en m²/s ; multipliée par une différence de charge, elle donne un débit. $K$ caractérise le matériau, tandis que la conductance inclut aussi la géométrie.",
+    "failure": "Pour une connexion uniforme, $C=Kwb/L$. La conductance s'exprime en m²/s ; multipliée par une différence de charge, elle donne un débit. $K$ caractérise le matériau, tandis que la conductance inclut aussi la géométrie."
+  },
+  {
+    "question": "La largeur d'une connexion uniforme double. La conductivité, l'épaisseur saturée, la longueur et la différence de charge restent identiques. Qu'en résulte-t-il ?",
+    "options": {
+      "La section d'écoulement double.": true,
+      "La conductivité hydraulique double.": false,
+      "La conductance et le débit doublent tous les deux.": true,
+      "Le débit reste identique puisque le gradient ne change pas.": false
+    },
+    "success": "La section verticale est $A_\\perp=wb$. Doubler la largeur double cette section, la conductance et le débit à gradient identique, sans modifier la conductivité hydraulique.",
+    "failure": "La section verticale est $A_\\perp=wb$. Doubler la largeur double cette section, la conductance et le débit à gradient identique, sans modifier la conductivité hydraulique."
+  },
+  {
+    "question": "Pourquoi le modèle à trois mailles combine-t-il les résistances de deux demi-mailles ?",
+    "options": {
+      "Entre les centres, l'eau traverse successivement les deux demi-mailles.": true,
+      "La demi-maille la plus conductrice détermine toujours à elle seule la conductance de toute la connexion.": false,
+      "Une demi-maille peu transmissive peut limiter toute la connexion.": true,
+      "La maille de plus faible conductivité peut être exclue du calcul.": false
+    },
+    "success": "Les demi-mailles sont en série : leurs résistances s'ajoutent. Chacune contribue, et une résistance élevée peut dominer. Cela conduit à la moyenne harmonique des transmissivités dans la discrétisation à trois mailles.",
+    "failure": "Les demi-mailles sont en série : leurs résistances s'ajoutent. Chacune contribue, et une résistance élevée peut dominer. Cela conduit à la moyenne harmonique des transmissivités dans la discrétisation à trois mailles."
+  }
+]

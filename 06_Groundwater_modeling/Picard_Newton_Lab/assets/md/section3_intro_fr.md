@@ -1,0 +1,1 @@
+Picard et Newton mettent chacun à jour les neuf charges intérieures simultanément. Choisissez une maille pour suivre ses itérations. Sa courbe bleue de Newton reste fixe, car chaque charge d'essai est évaluée en équilibrant les huit autres mailles. Suivez le point orange et les tangentes pour voir évoluer la charge choisie.

@@ -1,0 +1,24 @@
+[
+  {
+    "question": "Un pompage abaisse la surface d'une nappe libre. Quelles propositions peuvent être exactes ?",
+    "options": {
+      "L'épaisseur saturée et la conductance peuvent diminuer même si la conductivité hydraulique reste constante.": true,
+      "Toute équation d'écoulement dépendant de la charge est nécessairement non linéaire.": false,
+      "La charge inconnue peut influencer à la fois la section d'écoulement et le gradient hydraulique.": true,
+      "Une variation de conductance signifie toujours que le matériau de l'aquifère a changé.": false
+    },
+    "success": "La conductance combine la géométrie et la conductivité hydraulique. Une épaisseur saturée dépendant de la charge peut rendre la conductance dépendante de l'inconnue. La dépendance à la charge ne suffit pas à créer une non-linéarité : une relation linéaire fixe entre charge et débit reste linéaire.",
+    "failure": "La conductance combine la géométrie et la conductivité hydraulique. Une épaisseur saturée dépendant de la charge peut rendre la conductance dépendante de l'inconnue. La dépendance à la charge ne suffit pas à créer une non-linéarité : une relation linéaire fixe entre charge et débit reste linéaire."
+  },
+  {
+    "question": "Un modèle en régime permanent exige 30 itérations numériques. Que peut-on en conclure ?",
+    "options": {
+      "L'aquifère a traversé 30 pas de temps physique.": false,
+      "Le solveur a révisé plusieurs fois ses estimations des charges.": true,
+      "Le résultat final doit être contrôlé à l'aide des critères de convergence.": true,
+      "Le résultat est nécessairement plus précis que celui obtenu en trois itérations.": false
+    },
+    "success": "Les itérations améliorent une estimation numérique sans faire avancer le temps physique. Leur nombre seul ne prouve ni la convergence ni la fidélité à l'aquifère réel.",
+    "failure": "Les itérations améliorent une estimation numérique sans faire avancer le temps physique. Leur nombre seul ne prouve ni la convergence ni la fidélité à l'aquifère réel."
+  }
+]

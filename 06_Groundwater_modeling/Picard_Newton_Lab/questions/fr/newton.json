@@ -1,0 +1,46 @@
+[
+  {
+    "question": "Que représente l'axe vertical du diagramme de Newton ?",
+    "options": {
+      "La charge suivante proposée, en mètres.": false,
+      "Le résidu de débit $f_N(h)=F(h)$, en m³/s.": true,
+      "Le déséquilibre restant du bilan en eau de la maille centrale.": true,
+      "Uniquement le débit sortant par la limite droite.": false
+    },
+    "success": "L'ordonnée est le déséquilibre net $F=Q_L-Q_R-Q_{\\mathrm{ET}}$. Newton en recherche le zéro. Elle diffère de celle du diagramme de Picard, qui représente une charge.",
+    "failure": "L'ordonnée est le déséquilibre net $F=Q_L-Q_R-Q_{\\mathrm{ET}}$. Newton en recherche le zéro. Elle diffère de celle du diagramme de Picard, qui représente une charge."
+  },
+  {
+    "question": "La tangente de Newton coupe la ligne de résidu nul à la charge proposée. Pourquoi une autre itération peut-elle être nécessaire ?",
+    "options": {
+      "La tangente est une approximation locale de la courbe du résidu.": true,
+      "Le résidu réel est toujours nul à l'intersection de la tangente avec l'axe.": false,
+      "Le résidu réel et sa pente doivent être évalués à la nouvelle charge.": true,
+      "L'intersection représente un pas de temps physique.": false
+    },
+    "success": "Le zéro de la tangente fournit une estimation. Si l'approximation n'est pas exacte sur toute la correction, le résidu non linéaire à cette charge n'est pas nul. Newton réévalue donc l'équation avant le pas suivant.",
+    "failure": "Le zéro de la tangente fournit une estimation. Si l'approximation n'est pas exacte sur toute la correction, le résidu non linéaire à cette charge n'est pas nul. Newton réévalue donc l'équation avant le pas suivant."
+  },
+  {
+    "question": "Quelle information distingue Newton de la mise à jour de Picard décrite ici ?",
+    "options": {
+      "Newton inclut la sensibilité de la conductance à la charge.": true,
+      "Newton résout un autre bilan en eau.": false,
+      "Seul Newton conserve la pente du segment linéaire d'ET actif.": false,
+      "Picard maintient les conductances actuelles fixes pendant la résolution linéaire.": true
+    },
+    "success": "Les deux méthodes recherchent le même bilan et conservent la pente d'ET active. Newton inclut en plus les dérivées des conductances dans la pente du résidu ; Picard fixe les conductances pendant chaque résolution.",
+    "failure": "Les deux méthodes recherchent le même bilan et conservent la pente d'ET active. Newton inclut en plus les dérivées des conductances dans la pente du résidu ; Picard fixe les conductances pendant chaque résolution."
+  },
+  {
+    "question": "Pourquoi une tangente au résidu presque horizontale peut-elle poser problème à Newton ?",
+    "options": {
+      "Une dérivée faible mais non nulle peut produire une grande correction par $-F/F'$.": true,
+      "Une tangente presque horizontale garantit la meilleure estimation.": false,
+      "La correction peut sortir de l'intervalle où la tangente fournit une bonne approximation.": true,
+      "L'amortissement garantit la convergence depuis toute charge initiale.": false
+    },
+    "success": "Diviser un résidu fini par une petite dérivée peut prédire une correction très grande. La nouvelle charge peut franchir des seuils d'ET ou d'autres limites du modèle. L'amortissement réduit le pas sans garantir la convergence.",
+    "failure": "Diviser un résidu fini par une petite dérivée peut prédire une correction très grande. La nouvelle charge peut franchir des seuils d'ET ou d'autres limites du modèle. L'amortissement réduit le pas sans garantir la convergence."
+  }
+]

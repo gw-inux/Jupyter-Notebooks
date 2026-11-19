@@ -1,0 +1,5 @@
+Le figure riproducono le **scelte dei parametri e i carichi iniziali** delle dimostrazioni scalari di Mehl (2006). Il contrasto di conducibilità ne determina la forma: un acquifero omogeneo produce una curva di Picard diversa. Picard cerca un'intersezione con la diagonale; Newton cerca uno zero dello stesso bilancio tramite una tangente.
+
+L'articolo usa carichi iniziali diversi per i due metodi. Le figure illustrano quindi la costruzione geometrica, non un confronto controllato del numero di iterazioni. I percorsi arancioni sono calcolati dalle equazioni, non ricalcati dalla pubblicazione. Per questi gruppi di figure il lavoro fornisce parametri numerici senza specificare completamente unità fisiche e distanze. Applichiamo una scala SI comune a conduttanze e portata di ET, ottenendo qui m³/s. Il riscalamento conserva radici e aggiornamenti numerici; non implica che l'articolo avesse specificato queste dimensioni SI.
+
+Esaminate entrambi gli esempi con il selettore prima di rispondere alle domande.

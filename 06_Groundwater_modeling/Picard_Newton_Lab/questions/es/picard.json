@@ -1,0 +1,46 @@
+[
+  {
+    "question": "En una actualización de Picard sin ET, ¿qué se mantiene fijo al calcular la carga siguiente?",
+    "options": {
+      "Las conductancias evaluadas con la carga actual.": true,
+      "La carga central que se intenta resolver.": false,
+      "Las cargas de contorno prescritas.": true,
+      "Las conductancias para todas las iteraciones restantes, aunque cambie la carga.": false
+    },
+    "success": "Picard evalúa las conductancias con la estimación actual y las fija durante una resolución lineal. Las cargas de contorno siguen prescritas; la nueva carga central es la incógnita. Antes de la siguiente resolución se recalculan las conductancias.",
+    "failure": "Picard evalúa las conductancias con la estimación actual y las fija durante una resolución lineal. Las cargas de contorno siguen prescritas; la nueva carga central es la incógnita. Antes de la siguiente resolución se recalculan las conductancias."
+  },
+  {
+    "question": "¿Por qué debe comprobarse el balance original después de una actualización de Picard?",
+    "options": {
+      "La nueva carga libre puede modificar el espesor saturado y la conductancia.": true,
+      "Resolver el balance con conductancias fijas garantiza un residuo no lineal nulo.": false,
+      "Una variación pequeña de carga siempre demuestra convergencia.": false,
+      "El residuo debe utilizar caudales evaluados con la carga actualizada.": true
+    },
+    "success": "La ecuación lineal se satisface con las conductancias temporalmente fijas. La ecuación no lineal original utiliza conductancias y ET evaluadas con la nueva carga, por lo que puede quedar residuo. Ambos criterios, carga y residuo, deben cumplirse.",
+    "failure": "La ecuación lineal se satisface con las conductancias temporalmente fijas. La ecuación no lineal original utiliza conductancias y ET evaluadas con la nueva carga, por lo que puede quedar residuo. Ambos criterios, carga y residuo, deben cumplirse."
+  },
+  {
+    "question": "¿Qué afirmaciones interpretan correctamente el diagrama de Picard?",
+    "options": {
+      "$f_P(h)$ devuelve la carga siguiente en metros.": true,
+      "$F(h)$ devuelve la misma magnitud que $f_P(h)$.": false,
+      "En la solución, $f_P(h^*)=h^*$.": true,
+      "La recta $y=h$ es una condición de contorno adicional.": false
+    },
+    "success": "$f_P$ actualiza la carga; $F$ es el residuo de caudal en m³/s. La diagonal transfiere la salida a la entrada siguiente. Su intersección con la función es un punto fijo donde la carga ya no cambia.",
+    "failure": "$f_P$ actualiza la carga; $F$ es el residuo de caudal en m³/s. La diagonal transfiere la salida a la entrada siguiente. Su intersección con la función es un punto fijo donde la carga ya no cambia."
+  },
+  {
+    "question": "Una actualización de Picard cruza un umbral de ET. ¿Qué describe el método aquí utilizado?",
+    "options": {
+      "En el intervalo intermedio, la pérdida puede depender de la nueva carga durante la resolución lineal.": true,
+      "La ET siempre queda fija en el caudal evaluado con la carga anterior.": false,
+      "La pérdida real se reevalúa tras la actualización y el siguiente cálculo utiliza el nuevo tramo aplicable.": true,
+      "Cruzar un umbral significa necesariamente que el problema estacionario no tiene solución.": false
+    },
+    "success": "La carga actual selecciona el tramo de ET para una resolución. Se conserva su pendiente, de modo que en el intervalo intermedio la ET cambia con la carga nueva. Después, la relación completa determina la pérdida real y el siguiente tramo. Cruzar un umbral puede afectar a la convergencia sin hacer imposible el balance físico.",
+    "failure": "La carga actual selecciona el tramo de ET para una resolución. Se conserva su pendiente, de modo que en el intervalo intermedio la ET cambia con la carga nueva. Después, la relación completa determina la pérdida real y el siguiente tramo. Cruzar un umbral puede afectar a la convergencia sin hacer imposible el balance físico."
+  }
+]

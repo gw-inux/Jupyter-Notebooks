@@ -1,0 +1,46 @@
+[
+  {
+    "question": "Che cosa rappresenta l'asse verticale del diagramma di Newton?",
+    "options": {
+      "Il carico successivo previsto in metri.": false,
+      "Il residuo di portata $f_N(h)=F(h)$ in m³/s.": true,
+      "Lo squilibrio idrico rimanente della cella centrale.": true,
+      "Soltanto la portata uscente dal contorno destro.": false
+    },
+    "success": "La coordinata verticale è lo squilibrio netto $F=Q_L-Q_R-Q_{\\mathrm{ET}}$. Newton ne cerca lo zero. È diversa dal diagramma di Picard, dove l'ordinata è un carico.",
+    "failure": "La coordinata verticale è lo squilibrio netto $F=Q_L-Q_R-Q_{\\mathrm{ET}}$. Newton ne cerca lo zero. È diversa dal diagramma di Picard, dove l'ordinata è un carico."
+  },
+  {
+    "question": "La tangente di Newton incontra la retta di residuo zero al carico proposto. Perché può servire un'altra iterazione?",
+    "options": {
+      "La tangente è un'approssimazione locale della curva del residuo.": true,
+      "Il residuo effettivo è sempre nullo all'intercetta della tangente.": false,
+      "Residuo effettivo e pendenza vanno valutati al nuovo carico.": true,
+      "L'intercetta rappresenta un passo di tempo fisico.": false
+    },
+    "success": "Lo zero della tangente fornisce una stima. Se l'approssimazione non è esatta sull'intera correzione, il residuo non lineare a quel carico non è nullo. Newton rivaluta quindi l'equazione prima del passo successivo.",
+    "failure": "Lo zero della tangente fornisce una stima. Se l'approssimazione non è esatta sull'intera correzione, il residuo non lineare a quel carico non è nullo. Newton rivaluta quindi l'equazione prima del passo successivo."
+  },
+  {
+    "question": "Quale informazione distingue Newton dall'aggiornamento di Picard descritto?",
+    "options": {
+      "Newton include la sensibilità della conduttanza al carico.": true,
+      "Newton risolve un bilancio idrico diverso.": false,
+      "Solo Newton mantiene la pendenza del tratto lineare attivo di ET.": false,
+      "Picard fissa le conduttanze attuali durante la soluzione lineare.": true
+    },
+    "success": "Entrambi cercano lo stesso bilancio e mantengono la pendenza attiva di ET. Newton include inoltre le derivate delle conduttanze nella pendenza del residuo; Picard tiene le conduttanze fisse durante ogni soluzione.",
+    "failure": "Entrambi cercano lo stesso bilancio e mantengono la pendenza attiva di ET. Newton include inoltre le derivate delle conduttanze nella pendenza del residuo; Picard tiene le conduttanze fisse durante ogni soluzione."
+  },
+  {
+    "question": "Perché una tangente del residuo quasi orizzontale può creare difficoltà a Newton?",
+    "options": {
+      "Una derivata piccola ma non nulla può produrre una grande correzione tramite $-F/F'$.": true,
+      "Una tangente quasi orizzontale garantisce la stima migliore.": false,
+      "La correzione può uscire dall'intervallo in cui la tangente è una buona approssimazione.": true,
+      "Lo smorzamento garantisce convergenza da ogni carico iniziale.": false
+    },
+    "success": "Dividere un residuo finito per una derivata piccola può prevedere una correzione enorme. Il nuovo carico può attraversare soglie di ET o altri limiti del modello. Lo smorzamento riduce il passo, ma non garantisce convergenza.",
+    "failure": "Dividere un residuo finito per una derivata piccola può prevedere una correzione enorme. Il nuovo carico può attraversare soglie di ET o altri limiti del modello. Lo smorzamento riduce il passo, ma non garantisce convergenza."
+  }
+]

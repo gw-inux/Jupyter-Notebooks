@@ -1,0 +1,24 @@
+[
+  {
+    "question": "La superficie di ET SURF è a 7 m e la profondità EXDP è 4 m. Quali affermazioni sono corrette?",
+    "options": {
+      "EXDP è misurata verso il basso a partire da SURF.": true,
+      "La quota di estinzione è 4 m.": false,
+      "Con carico di falda di 5 m, RET vale metà di EVTR.": true,
+      "La portata di ET si ottiene moltiplicando RET per la sezione verticale satura.": false
+    },
+    "success": "La quota di estinzione è SURF − EXDP = 3 m. Il carico di 5 m è a metà fra 3 e 7 m, quindi RET = EVTR/2. La portata di ET usa l'area orizzontale: $Q_{\\mathrm{ET}}=\\mathrm{RET}\\,A$.",
+    "failure": "La quota di estinzione è SURF − EXDP = 3 m. Il carico di 5 m è a metà fra 3 e 7 m, quindi RET = EVTR/2. La portata di ET usa l'area orizzontale: $Q_{\\mathrm{ET}}=\\mathrm{RET}\\,A$."
+  },
+  {
+    "question": "Che cosa accade alla relazione di ET quando il carico attraversa SURF?",
+    "options": {
+      "La perdita di falda per ET presenta un salto improvviso.": false,
+      "La perdita per ET rimane continua.": true,
+      "La sensibilità della perdita al carico passa dalla pendenza positiva sotto SURF a zero sopra SURF.": true,
+      "Il tasso massimo di ET deve cambiare.": false
+    },
+    "success": "Il tratto lineare raggiunge a SURF la stessa perdita del tratto a massimo costante. La portata rimane continua, ma cambia pendenza. Ogni singolo tratto è lineare; la relazione completa cambia forma alle soglie.",
+    "failure": "Il tratto lineare raggiunge a SURF la stessa perdita del tratto a massimo costante. La portata rimane continua, ma cambia pendenza. Ogni singolo tratto è lineare; la relazione completa cambia forma alle soglie."
+  }
+]

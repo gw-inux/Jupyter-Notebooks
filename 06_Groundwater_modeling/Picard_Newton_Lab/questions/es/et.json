@@ -1,0 +1,24 @@
+[
+  {
+    "question": "SURF es 7 m y EXDP es 4 m. ¿Qué afirmaciones son correctas?",
+    "options": {
+      "EXDP es una profundidad medida hacia abajo desde SURF.": true,
+      "La cota de extinción es 4 m.": false,
+      "Con una carga de 5 m, RET es la mitad de EVTR.": true,
+      "El caudal de ET se obtiene multiplicando RET por el área vertical saturada de flujo.": false
+    },
+    "success": "La cota de extinción es SURF − EXDP = 3 m. La carga de 5 m está a mitad entre 3 y 7 m, por lo que RET = EVTR/2. El caudal de ET utiliza el área horizontal: $Q_{\\mathrm{ET}}=\\mathrm{RET}\\,A$.",
+    "failure": "La cota de extinción es SURF − EXDP = 3 m. La carga de 5 m está a mitad entre 3 y 7 m, por lo que RET = EVTR/2. El caudal de ET utiliza el área horizontal: $Q_{\\mathrm{ET}}=\\mathrm{RET}\\,A$."
+  },
+  {
+    "question": "¿Qué ocurre en la relación de ET cuando la carga cruza SURF?",
+    "options": {
+      "La pérdida de agua subterránea por ET presenta un salto.": false,
+      "La pérdida por ET sigue siendo continua.": true,
+      "La sensibilidad de la ET a la carga pasa de una pendiente positiva bajo SURF a cero por encima.": true,
+      "La tasa máxima de ET debe cambiar.": false
+    },
+    "success": "En SURF, el tramo lineal alcanza la misma pérdida que el tramo de máximo constante. El caudal es continuo, pero cambia la pendiente. Cada tramo es lineal; la relación completa cambia de forma al cruzar umbrales.",
+    "failure": "En SURF, el tramo lineal alcanza la misma pérdida que el tramo de máximo constante. El caudal es continuo, pero cambia la pendiente. Cada tramo es lineal; la relación completa cambia de forma al cruzar umbrales."
+  }
+]

@@ -1,6 +1,6 @@
 [
   {
-    "question": "The displayed Mehl examples use the paper’s different starting heads for Picard and Newton. How should their paths be compared?",
+    "question": "The displayed Mehl (2006) examples use the paper’s different starting heads for Picard and Newton. How should their paths be compared?",
     "options": {
       "They illustrate the graphical constructions and effects of the setup.": true,
       "Their iteration counts alone establish which method is always faster.": false,

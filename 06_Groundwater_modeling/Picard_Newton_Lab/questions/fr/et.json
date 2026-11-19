@@ -1,0 +1,24 @@
+[
+  {
+    "question": "La surface d'ET SURF est à 7 m et la profondeur EXDP vaut 4 m. Quelles propositions sont exactes ?",
+    "options": {
+      "EXDP se mesure vers le bas à partir de SURF.": true,
+      "La cote d'extinction est de 4 m.": false,
+      "Pour une charge de nappe de 5 m, RET vaut la moitié d'EVTR.": true,
+      "Le débit d'ET s'obtient en multipliant RET par la section verticale saturée.": false
+    },
+    "success": "La cote d'extinction est SURF − EXDP = 3 m. La charge de 5 m est à mi-distance entre 3 et 7 m, donc RET = EVTR/2. Le débit d'ET utilise la surface horizontale : $Q_{\\mathrm{ET}}=\\mathrm{RET}\\,A$.",
+    "failure": "La cote d'extinction est SURF − EXDP = 3 m. La charge de 5 m est à mi-distance entre 3 et 7 m, donc RET = EVTR/2. Le débit d'ET utilise la surface horizontale : $Q_{\\mathrm{ET}}=\\mathrm{RET}\\,A$."
+  },
+  {
+    "question": "Que devient la relation d'ET lorsque la charge franchit SURF ?",
+    "options": {
+      "La perte d'eau souterraine par ET présente un saut.": false,
+      "La perte par ET reste continue.": true,
+      "Sa sensibilité à la charge passe d'une pente positive sous SURF à une pente nulle au-dessus.": true,
+      "Le taux maximal d'ET doit changer.": false
+    },
+    "success": "À SURF, le segment linéaire atteint la même perte que le segment au maximum constant. Le débit reste continu, mais sa pente change. Chaque segment est linéaire ; la relation complète change de forme aux seuils.",
+    "failure": "À SURF, le segment linéaire atteint la même perte que le segment au maximum constant. Le débit reste continu, mais sa pente change. Chaque segment est linéaire ; la relation complète change de forme aux seuils."
+  }
+]

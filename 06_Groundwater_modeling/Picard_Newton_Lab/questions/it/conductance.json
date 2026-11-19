@@ -1,0 +1,35 @@
+[
+  {
+    "question": "Quali affermazioni descrivono correttamente la conduttanza?",
+    "options": {
+      "Combina la conducibilità idraulica con la geometria di un collegamento di flusso.": true,
+      "È la portata che attraversa il collegamento.": false,
+      "Ha unità di m²/s quando i carichi sono in metri e le portate in m³/s.": true,
+      "Conducibilità idraulica e conduttanza sono grandezze intercambiabili.": false
+    },
+    "success": "Per un collegamento uniforme, $C=Kwb/L$. La conduttanza si misura in m²/s; moltiplicata per una differenza di carico dà una portata. $K$ descrive il materiale, mentre la conduttanza include anche la geometria.",
+    "failure": "Per un collegamento uniforme, $C=Kwb/L$. La conduttanza si misura in m²/s; moltiplicata per una differenza di carico dà una portata. $K$ descrive il materiale, mentre la conduttanza include anche la geometria."
+  },
+  {
+    "question": "Raddoppia la larghezza di un collegamento uniforme; conducibilità, spessore saturo, lunghezza e differenza di carico restano invariati. Che cosa segue?",
+    "options": {
+      "La sezione di flusso raddoppia.": true,
+      "La conducibilità idraulica raddoppia.": false,
+      "Conduttanza e portata raddoppiano entrambe.": true,
+      "La portata rimane invariata perché il gradiente non cambia.": false
+    },
+    "success": "La sezione verticale è $A_\\perp=wb$. Raddoppiare la larghezza raddoppia area, conduttanza e portata allo stesso gradiente, lasciando invariata la conducibilità.",
+    "failure": "La sezione verticale è $A_\\perp=wb$. Raddoppiare la larghezza raddoppia area, conduttanza e portata allo stesso gradiente, lasciando invariata la conducibilità."
+  },
+  {
+    "question": "Perché il modello a tre celle combina le resistenze di due semicelle?",
+    "options": {
+      "Il flusso fra i centri attraversa entrambe le semicelle in successione.": true,
+      "La semicella più conduttiva determina sempre l'intera conduttanza del collegamento.": false,
+      "Una semicella poco trasmissiva può limitare l'intero collegamento.": true,
+      "La cella a conducibilità minore può essere esclusa dal calcolo.": false
+    },
+    "success": "Le semicelle sono collegate in serie e le loro resistenze si sommano. Entrambe contribuiscono; una resistenza elevata può dominare. Ne deriva la media armonica della trasmissività nella discretizzazione a tre celle.",
+    "failure": "Le semicelle sono collegate in serie e le loro resistenze si sommano. Entrambe contribuiscono; una resistenza elevata può dominare. Ne deriva la media armonica della trasmissività nella discretizzazione a tre celle."
+  }
+]

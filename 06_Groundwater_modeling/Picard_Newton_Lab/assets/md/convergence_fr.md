@@ -1,0 +1,18 @@
+Une petite correction ne suffit pas : le bilan peut rester mal satisfait. Contrôlez **à la fois** la variation maximale absolue de charge et le résidu maximal absolu de débit. Les expériences permettent de choisir ces tolérances de convergence. Les valeurs par défaut sont $10^{-4}$ m pour la variation de charge et $10^{-6}$ m³/s pour le résidu de débit.
+
+**Pourquoi une nouvelle mise à jour après satisfaction du critère de résidu ?** La dernière variation de charge peut encore dépasser son propre seuil. Dans un problème linéaire, la première mise à jour peut atteindre la solution avec un résidu nul, tout en produisant une grande variation depuis l'estimation initiale. Une deuxième mise à jour, sans changement, confirme le critère sur la charge. Dans les exemples à faibles débits de Mehl (2006), même l'estimation initiale peut respecter un seuil de 1E-6 m³/s tout en présentant une erreur de charge importante. Le contrôle du résidu seul est donc insuffisant.
+
+Le diagramme de convergence montre la variation maximale de charge sur l'axe logarithmique gauche et le résidu maximal de débit sur celui de droite. Les deux échelles restent fixes entre $10^{-12}$ et $100$, dans leurs unités respectives. Le violet identifie l'axe du résidu et son seuil ; l'ocre identifie l'axe de variation de charge et son seuil. Les carrés représentent les résidus et les cercles les variations de charge. Picard est en vert et Newton en bleu. Les triangles aux bords signalent des valeurs hors de la vue : vers le bas pour les valeurs sous la limite inférieure, zéro compris, et vers le haut pour les valeurs au-dessus de la limite supérieure. Une tolérance hors de la vue reste applicable et figure dans la légende.
+
+La variation de charge est calculée entre deux itérations acceptées ; aucune valeur n'est attribuée artificiellement à l'estimation initiale. Un graphique distinct montre ensuite la charge calculée dans la maille choisie et la charge de référence. Cette dernière sert de repère visuel ; l'itération n'utilise pas l'écart à cette solution connue comme critère d'arrêt.
+
+Pour une fonction scalaire de Picard régulière, $|f'_P(h^*)|<1$ est une condition suffisante de convergence locale : les estimations suffisamment proches se rapprochent de la solution. $f'_P$ est la dérivée de la fonction de mise à jour par rapport à la charge d'entrée ; elle est sans dimension. Une pente locale négative fait alterner le signe de l'erreur. Newton peut converger quadratiquement près d'une racine régulière à dérivée non nulle, ce qui signifie que l'erreur de charge restante peut décroître très rapidement. Une charge initiale inadaptée ou un changement de segment d'ET peut empêcher la convergence. Aucune méthode n'est universellement supérieure.
+
+Avec plusieurs charges inconnues, chaque itération externe résout un système matriciel couplé :
+
+$$\mathbf A(\mathbf h^k)\widehat{\mathbf h}_P^{k+1}=\mathbf b(\mathbf h^k),\qquad
+\mathbf J(\mathbf h^k)\Delta\mathbf h=-\mathbf F(\mathbf h^k).$$
+
+$\mathbf h^k$ est le vecteur des charges intérieures actuelles (m) ; $\widehat{\mathbf h}_P^{k+1}$ contient les charges proposées par Picard (m) et $\Delta\mathbf h$ les corrections de Newton (m). La matrice $\mathbf A$ contient les conductances fixes et les pentes actives des conditions aux limites (m²/s) ; $\mathbf b$ contient les termes correspondants de limites et de sources (m³/s). Le vecteur $\mathbf F$ contient les résidus de débit des mailles (m³/s) et $\mathbf J$ leur matrice jacobienne, c'est-à-dire leurs dérivées par rapport aux charges inconnues (m²/s).
+
+Ces systèmes linéaires sont résolus directement ici. Aucun historique d'itérations internes d'un solveur linéaire n'est affiché.

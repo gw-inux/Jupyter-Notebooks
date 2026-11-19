@@ -80,7 +80,7 @@ $$
 
 Werden dort Eingabe und Ausgabe verglichen, ergeben beide dieselbe Höhe. Ein solcher Wert heißt **Fixpunkt**.
 
-Für das dargestellte Beispiel von Mehl ohne ET ergibt sich ausgehend von $1{,}000$ m näherungsweise die Folge
+Für das dargestellte Beispiel von Mehl (2006) ohne ET ergibt sich ausgehend von $1{,}000$ m näherungsweise die Folge
 
 $$
 1{,}000
@@ -97,7 +97,7 @@ Die Näherungswerte liegen abwechselnd oberhalb und unterhalb der Lösung von ru
 
 ![Grafische Konstruktion zweier Picard-Schritte und Schnittpunkt mit der Diagonalen.](../../assets/theory/04_picard_de.png)
 
-*Die Abbildung zeigt Mehls Drei-Zellen-Beispiel ohne ET. Für den Vergleich mit Newton verwenden wir hier einen gemeinsamen Startwert von 1,0 m. In den durchgerechneten Originalbeispielen folgen anschließend Mehls unterschiedliche Startwerte. In der Skalierung des Labors gelten $h_L=4$ m, $h_R=0{,}1$ m und $(K_L,K_C,K_R)=(0{,}005;\,0{,}25;\,100)$ m/d. Die Zellzentren liegen 100 m auseinander, die Breite beträgt 1 m und die Sohle liegt bei 0 m. ET und Grundwasserneubildung sind null.*
+*Die Abbildung zeigt das Drei-Zellen-Beispiel von Mehl (2006) ohne ET. Für den Vergleich mit Newton verwenden wir hier einen gemeinsamen Startwert von 1,0 m. In den durchgerechneten Originalbeispielen folgen anschließend die unterschiedlichen Startwerte von Mehl (2006). In der Skalierung des Labors gelten $h_L=4$ m, $h_R=0{,}1$ m und $(K_L,K_C,K_R)=(0{,}005;\,0{,}25;\,100)$ m/d. Die Zellzentren liegen 100 m auseinander, die Breite beträgt 1 m und die Sohle liegt bei 0 m. ET und Grundwasserneubildung sind null.*
 
 #### Evapotranspiration berücksichtigen
 

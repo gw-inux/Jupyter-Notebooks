@@ -1,0 +1,3 @@
+**Mehl (2006), figuras 2 y 3: caso suave de acuífero libre.** Los valores de conductividad del artículo son $K_L=0.005$, $K_C=0.25$ y $K_R=100$; $h_L=4$ m y $h_R=0.1$ m. Para la representación SI del laboratorio se interpretan las conductividades en m/día, con 100 m entre centros, anchura de 1 m y base en 0 m. La recarga y la ET son nulas. La carga central de referencia es aproximadamente **0.547 m**.
+
+Picard parte de **0.10 m** y Newton de **1.70 m**. Los gráficos muestran los recorridos calculados hasta la convergencia con los criterios predeterminados del módulo. Como en el artículo, la transmisividad es $T=Kh$, sin límite impuesto por un techo del acuífero.

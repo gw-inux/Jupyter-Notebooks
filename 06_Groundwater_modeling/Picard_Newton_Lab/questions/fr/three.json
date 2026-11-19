@@ -1,0 +1,46 @@
+[
+  {
+    "question": "Pourquoi le modèle captif sans ET est-il linéaire ?",
+    "options": {
+      "La transmissivité $T=Kb$ ne dépend pas de la charge.": true,
+      "Les conductances aux faces sont fixes.": true,
+      "Le gradient doit être faible pour que le modèle soit linéaire.": false,
+      "Les trois conductivités doivent être identiques.": false
+    },
+    "success": "Une épaisseur et une conductivité fixes donnent une conductance constante. Des conductivités différentes et un gradient élevé ne suffisent pas à rendre ce bilan captif non linéaire.",
+    "failure": "Une épaisseur et une conductivité fixes donnent une conductance constante. Des conductivités différentes et un gradient élevé ne suffisent pas à rendre ce bilan captif non linéaire."
+  },
+  {
+    "question": "Qu'est-ce qui peut rendre le bilan à trois mailles non linéaire ?",
+    "options": {
+      "Une épaisseur saturée qui varie avec la charge.": true,
+      "Un débit à la limite qui passe d'un segment à un autre selon la charge.": true,
+      "Choisir une autre estimation initiale pour un modèle qui est par ailleurs linéaire.": false,
+      "Changer la couleur ou le zoom d'un graphique.": false
+    },
+    "success": "La non-linéarité appartient aux équations, par l'intermédiaire de la transmissivité ou du comportement aux limites. Les estimations initiales modifient le parcours itératif, pas la fonction scalaire du modèle.",
+    "failure": "La non-linéarité appartient aux équations, par l'intermédiaire de la transmissivité ou du comportement aux limites. Les estimations initiales modifient le parcours itératif, pas la fonction scalaire du modèle."
+  },
+  {
+    "question": "Comment lit-on une mise à jour dans les diagrammes scalaires ?",
+    "options": {
+      "Picard reporte $f_P(h^k)$ sur la diagonale $y=h$.": true,
+      "Newton suit la tangente à $F$ jusqu'à la ligne de résidu nul.": true,
+      "Le symbole orange doit déjà coïncider avec la charge de référence.": false,
+      "Les méthodes recherchent la même solution équilibrée.": true
+    },
+    "success": "Picard construit une itération de point fixe et Newton une mise à jour pour rechercher une racine. Un symbole intermédiaire est une estimation, pas une garantie de convergence.",
+    "failure": "Picard construit une itération de point fixe et Newton une mise à jour pour rechercher une racine. Un symbole intermédiaire est une estimation, pas une garantie de convergence."
+  },
+  {
+    "question": "Après une mise à jour exacte d'un problème linéaire, pourquoi le statut peut-il encore être « Itération en cours » ?",
+    "options": {
+      "Le résidu peut être nul alors que la dernière variation de charge est grande.": true,
+      "Une mise à jour supplémentaire peut confirmer le critère sur la charge.": true,
+      "La méthode a nécessairement utilisé une équation incorrecte.": false,
+      "La charge de référence est définie par l'estimation initiale.": false
+    },
+    "success": "Le module exige les deux contrôles. La charge de référence indépendante résout le bilan discret et ne dépend pas de l'estimation initiale choisie par l'apprenant.",
+    "failure": "Le module exige les deux contrôles. La charge de référence indépendante résout le bilan discret et ne dépend pas de l'estimation initiale choisie par l'apprenant."
+  }
+]

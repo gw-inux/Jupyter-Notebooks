@@ -1,0 +1,46 @@
+[
+  {
+    "question": "¿Qué representa el eje vertical del diagrama de Newton?",
+    "options": {
+      "La carga siguiente prevista en metros.": false,
+      "El residuo de caudal $f_N(h)=F(h)$ en m³/s.": true,
+      "El desequilibrio restante de agua en la celda central.": true,
+      "Solo el caudal que sale por el contorno derecho.": false
+    },
+    "success": "La coordenada vertical es el desequilibrio neto $F=Q_L-Q_R-Q_{\\mathrm{ET}}$. Newton busca su cero. Se distingue del diagrama de Picard, cuya coordenada vertical es una carga.",
+    "failure": "La coordenada vertical es el desequilibrio neto $F=Q_L-Q_R-Q_{\\mathrm{ET}}$. Newton busca su cero. Se distingue del diagrama de Picard, cuya coordenada vertical es una carga."
+  },
+  {
+    "question": "La tangente de Newton llega al eje de residuo cero en una carga propuesta. ¿Por qué puede hacer falta otra iteración?",
+    "options": {
+      "La tangente es una aproximación local de la curva de residuo.": true,
+      "El residuo real siempre es cero en la intersección de la tangente.": false,
+      "El residuo real y su pendiente deben evaluarse con la nueva carga.": true,
+      "La intersección representa un paso de tiempo físico.": false
+    },
+    "success": "El cero de la tangente proporciona una estimación. Salvo que la aproximación sea exacta en todo el intervalo de corrección, el residuo no lineal de esa carga no es cero. Newton reevalúa la ecuación antes del paso siguiente.",
+    "failure": "El cero de la tangente proporciona una estimación. Salvo que la aproximación sea exacta en todo el intervalo de corrección, el residuo no lineal de esa carga no es cero. Newton reevalúa la ecuación antes del paso siguiente."
+  },
+  {
+    "question": "¿Qué información distingue Newton de la actualización de Picard descrita?",
+    "options": {
+      "Newton incluye la sensibilidad de la conductancia a la carga.": true,
+      "Newton resuelve un balance de agua distinto.": false,
+      "Solo Newton conserva la pendiente del tramo lineal activo de ET.": false,
+      "Picard fija las conductancias actuales durante su resolución lineal.": true
+    },
+    "success": "Ambos buscan el mismo balance y conservan la pendiente activa de ET. Newton incorpora además las derivadas de conductancia al formar la pendiente del residuo; Picard fija las conductancias en cada resolución.",
+    "failure": "Ambos buscan el mismo balance y conservan la pendiente activa de ET. Newton incorpora además las derivadas de conductancia al formar la pendiente del residuo; Picard fija las conductancias en cada resolución."
+  },
+  {
+    "question": "¿Por qué una tangente del residuo casi horizontal puede dificultar Newton?",
+    "options": {
+      "Una derivada pequeña no nula puede generar una gran corrección mediante $-F/F'$.": true,
+      "Una tangente casi horizontal garantiza la mejor estimación.": false,
+      "La corrección puede salir del intervalo donde la tangente es una buena aproximación.": true,
+      "La amortiguación garantiza convergencia desde cualquier carga inicial.": false
+    },
+    "success": "Dividir un residuo finito por una derivada pequeña puede producir una corrección enorme. La nueva carga puede cruzar umbrales de ET u otros límites del modelo. La amortiguación reduce el paso, pero no garantiza convergencia.",
+    "failure": "Dividir un residuo finito por una derivada pequeña puede producir una corrección enorme. La nueva carga puede cruzar umbrales de ET u otros límites del modelo. La amortiguación reduce el paso, pero no garantiza convergencia."
+  }
+]

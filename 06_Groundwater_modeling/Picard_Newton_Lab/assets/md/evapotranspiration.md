@@ -30,5 +30,5 @@ For iteration, the key point is that **crossing either threshold changes the app
 
 ![ET h-Q diagram using the Boundary Condition module's symbols and positive-loss convention.](../../assets/theory/03_et.png)
 
-*Illustration: SURF = 7 m, EXDP = 4 m, EVTR = $10^{-8}$ m/s and horizontal area $A=10{,}000$ m². At $h_{\mathrm{gw}}=5$ m, ET loss is half its maximum. These are illustrative values, separate from Mehl's numerical ET example.*
+*Illustration: SURF = 7 m, EXDP = 4 m, EVTR = $10^{-8}$ m/s and horizontal area $A=10{,}000$ m². At $h_{\mathrm{gw}}=5$ m, ET loss is half its maximum. These are illustrative values, separate from the numerical ET example in Mehl (2006).*
 

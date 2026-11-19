@@ -1,14 +1,14 @@
 [
   {
-    "question": "In den dargestellten Beispielen aus Mehl starten Picard und Newton wie in der Veröffentlichung bei unterschiedlichen Höhen. Wie lassen sich die Iterationswege vergleichen?",
+    "question": "In den dargestellten Beispielen aus Mehl (2006) starten Picard und Newton wie in der Veröffentlichung bei unterschiedlichen Höhen. Wie lassen sich die Iterationswege vergleichen?",
     "options": {
       "Sie veranschaulichen die grafischen Konstruktionen und den Einfluss der Modellkonfiguration.": true,
       "Die Iterationszahlen allein zeigen, welches Verfahren grundsätzlich schneller ist.": false,
       "Für einen Vergleich unter gleichen Ausgangsbedingungen müssen Starthöhe und Konvergenzkriterien übereinstimmen.": true,
       "Beide Verfahren suchen für dasselbe Beispiel unterschiedliche Lösungen der Wasserbilanz.": false
     },
-    "success": "Richtig. Mehls unterschiedliche Startwerte veranschaulichen die Verfahren. Verwenden Sie für einen Vergleich unter gleichen Bedingungen dieselben Startwerte und Kriterien. Berücksichtigen Sie auch den unterschiedlichen Rechenaufwand pro Schritt. Beide Verfahren suchen dieselbe Lösung.",
-    "failure": "Mehls unterschiedliche Startwerte veranschaulichen die Verfahren. Verwenden Sie für einen Vergleich unter gleichen Bedingungen dieselben Startwerte und Kriterien. Berücksichtigen Sie auch den unterschiedlichen Rechenaufwand pro Schritt. Beide Verfahren suchen dieselbe Lösung."
+    "success": "Richtig. Die unterschiedlichen Startwerte von Mehl (2006) veranschaulichen die Verfahren. Verwenden Sie für einen Vergleich unter gleichen Bedingungen dieselben Startwerte und Kriterien. Berücksichtigen Sie auch den unterschiedlichen Rechenaufwand pro Schritt. Beide Verfahren suchen dieselbe Lösung.",
+    "failure": "Die unterschiedlichen Startwerte von Mehl (2006) veranschaulichen die Verfahren. Verwenden Sie für einen Vergleich unter gleichen Bedingungen dieselben Startwerte und Kriterien. Berücksichtigen Sie auch den unterschiedlichen Rechenaufwand pro Schritt. Beide Verfahren suchen dieselbe Lösung."
   },
   {
     "question": "Welche Aussagen erklären die Kurven im Beispiel mit ET?",

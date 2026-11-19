@@ -1,0 +1,46 @@
+[
+  {
+    "question": "In un aggiornamento di Picard senza ET, che cosa rimane fisso durante il calcolo del carico successivo?",
+    "options": {
+      "Le conduttanze valutate al carico attuale.": true,
+      "Il carico centrale che si sta cercando.": false,
+      "I carichi assegnati al contorno.": true,
+      "Le conduttanze per tutte le iterazioni successive, anche se il carico cambia.": false
+    },
+    "success": "Picard valuta le conduttanze alla stima attuale e le fissa per una soluzione lineare. I carichi al contorno restano assegnati; il nuovo carico centrale è l'incognita. Le conduttanze si ricalcolano prima della soluzione successiva.",
+    "failure": "Picard valuta le conduttanze alla stima attuale e le fissa per una soluzione lineare. I carichi al contorno restano assegnati; il nuovo carico centrale è l'incognita. Le conduttanze si ricalcolano prima della soluzione successiva."
+  },
+  {
+    "question": "Perché occorre verificare il bilancio originale dopo un aggiornamento di Picard?",
+    "options": {
+      "Il nuovo carico libero può modificare spessore saturo e conduttanza.": true,
+      "Risolvere il bilancio a conduttanze fisse garantisce residuo non lineare nullo.": false,
+      "Una piccola variazione di carico dimostra sempre la convergenza.": false,
+      "Il residuo deve usare portate valutate al carico aggiornato.": true
+    },
+    "success": "Il bilancio lineare si chiude con le conduttanze temporaneamente fisse. Quello non lineare originale usa conduttanze ed ET al nuovo carico, perciò può restare uno squilibrio. Sia la variazione di carico sia il residuo devono rispettare i criteri.",
+    "failure": "Il bilancio lineare si chiude con le conduttanze temporaneamente fisse. Quello non lineare originale usa conduttanze ed ET al nuovo carico, perciò può restare uno squilibrio. Sia la variazione di carico sia il residuo devono rispettare i criteri."
+  },
+  {
+    "question": "Quali affermazioni interpretano correttamente il diagramma di Picard?",
+    "options": {
+      "$f_P(h)$ restituisce il carico successivo in metri.": true,
+      "$F(h)$ restituisce la stessa grandezza di $f_P(h)$.": false,
+      "Alla soluzione, $f_P(h^*)=h^*$.": true,
+      "La retta $y=h$ è una condizione al contorno aggiuntiva.": false
+    },
+    "success": "$f_P$ aggiorna il carico; $F$ è il residuo di portata in m³/s. La diagonale trasferisce il carico in uscita al prossimo ingresso. L'intersezione è un punto fisso in cui il carico non cambia più.",
+    "failure": "$f_P$ aggiorna il carico; $F$ è il residuo di portata in m³/s. La diagonale trasferisce il carico in uscita al prossimo ingresso. L'intersezione è un punto fisso in cui il carico non cambia più."
+  },
+  {
+    "question": "Un aggiornamento di Picard attraversa una soglia di ET. Quali affermazioni descrivono il metodo qui usato?",
+    "options": {
+      "Nell'intervallo intermedio, la perdita può dipendere dal nuovo carico durante la soluzione lineare.": true,
+      "L'ET è sempre fissata alla portata valutata al carico precedente.": false,
+      "La perdita effettiva viene rivalutata dopo l'aggiornamento e il calcolo successivo usa il nuovo tratto applicabile.": true,
+      "Attraversare una soglia significa necessariamente che il problema stazionario non ha soluzione.": false
+    },
+    "success": "Il carico attuale sceglie il tratto per una soluzione. La pendenza è mantenuta, quindi l'ET intermedia cambia con il nuovo carico. Dopo l'aggiornamento, la relazione completa determina perdita effettiva e tratto successivo. Attraversare una soglia può influenzare la convergenza senza rendere impossibile il bilancio fisico.",
+    "failure": "Il carico attuale sceglie il tratto per una soluzione. La pendenza è mantenuta, quindi l'ET intermedia cambia con il nuovo carico. Dopo l'aggiornamento, la relazione completa determina perdita effettiva e tratto successivo. Attraversare una soglia può influenzare la convergenza senza rendere impossibile il bilancio fisico."
+  }
+]

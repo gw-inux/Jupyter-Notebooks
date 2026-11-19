@@ -1,0 +1,46 @@
+[
+  {
+    "question": "Che cosa rappresentano $f_P(h)$ e $f_N(h)$?",
+    "options": {
+      "$f_P(h)$ restituisce un carico proposto in m.": true,
+      "$f_N(h)$ è il carico successivo di Newton.": false,
+      "$f_N(h)=F(h)$ è uno squilibrio di portata in m³/s.": true,
+      "$f_P$ e $f_N$ devono avere le stesse unità.": false
+    },
+    "success": "Picard usa $h^{k+1}=f_P(h^k)$. Newton usa $h^{k+1}=h^k-F(h^k)/F'(h^k)$, quindi $f_N=F$ è un residuo, non un carico aggiornato.",
+    "failure": "Picard usa $h^{k+1}=f_P(h^k)$. Newton usa $h^{k+1}=h^k-F(h^k)/F'(h^k)$, quindi $f_N=F$ è un residuo, non un carico aggiornato."
+  },
+  {
+    "question": "Che cosa caratterizza una soluzione $h^\\ast$?",
+    "options": {
+      "$f_P(h^\\ast)=h^\\ast$.": true,
+      "$f_N(h^\\ast)=0$.": true,
+      "$f_P(h^\\ast)=0$ in ogni modello.": false,
+      "Entrate e uscite si bilanciano.": true
+    },
+    "success": "Un punto fisso di $f_P$ e uno zero di $f_N$ descrivono lo stesso carico di equilibrio. Il carico non deve necessariamente essere nullo.",
+    "failure": "Un punto fisso di $f_P$ e uno zero di $f_N$ descrivono lo stesso carico di equilibrio. Il carico non deve necessariamente essere nullo."
+  },
+  {
+    "question": "Quali affermazioni descrivono le due linearizzazioni?",
+    "options": {
+      "Picard fissa i coefficienti dipendenti dal carico a $h^k$.": true,
+      "Newton usa la derivata del residuo completo.": true,
+      "Newton converge sempre da qualsiasi carico iniziale.": false,
+      "Un'iterazione numerica fa avanzare un giorno di tempo fisico.": false
+    },
+    "success": "Entrambi migliorano una stima numerica di una soluzione stazionaria. Newton include le derivate dei coefficienti; la convergenza dipende dalla funzione e dalla stima iniziale.",
+    "failure": "Entrambi migliorano una stima numerica di una soluzione stazionaria. Newton include le derivate dei coefficienti; la convergenza dipende dalla funzione e dalla stima iniziale."
+  },
+  {
+    "question": "Come si verifica la convergenza?",
+    "options": {
+      "Si controlla la massima variazione di carico $\\max_i|\\Delta h_i|$.": true,
+      "Si controlla il massimo residuo di portata $\\max_i|F_i|$.": true,
+      "Una piccola variazione di carico dimostra da sola che tutti i bilanci si chiudono.": false,
+      "Il residuo ha unità di carico.": false
+    },
+    "success": "Servono entrambi i criteri. Variazioni piccole possono coesistere con un bilancio non soddisfatto; $F_i$ è uno squilibrio di portata in m³/s.",
+    "failure": "Servono entrambi i criteri. Variazioni piccole possono coesistere con un bilancio non soddisfatto; $F_i$ è uno squilibrio di portata in m³/s."
+  }
+]

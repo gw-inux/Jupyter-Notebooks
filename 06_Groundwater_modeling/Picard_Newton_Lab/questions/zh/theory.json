@@ -1,0 +1,46 @@
+[
+  {
+    "question": "$f_P(h)$ 和 $f_N(h)$ 分别表示什么？",
+    "options": {
+      "$f_P(h)$ 返回以 m 计的建议水头。": true,
+      "$f_N(h)$ 是 Newton 的下一水头。": false,
+      "$f_N(h)=F(h)$ 是以 m³/s 计的流量不平衡。": true,
+      "$f_P$ 和 $f_N$ 必须具有相同单位。": false
+    },
+    "success": "Picard 使用 $h^{k+1}=f_P(h^k)$。Newton 使用 $h^{k+1}=h^k-F(h^k)/F'(h^k)$，因此 $f_N=F$ 是残差，不是更新水头。",
+    "failure": "Picard 使用 $h^{k+1}=f_P(h^k)$。Newton 使用 $h^{k+1}=h^k-F(h^k)/F'(h^k)$，因此 $f_N=F$ 是残差，不是更新水头。"
+  },
+  {
+    "question": "解 $h^\\ast$ 有哪些特征？",
+    "options": {
+      "$f_P(h^\\ast)=h^\\ast$。": true,
+      "$f_N(h^\\ast)=0$。": true,
+      "所有模型中都有 $f_P(h^\\ast)=0$。": false,
+      "流入与流出平衡。": true
+    },
+    "success": "$f_P$ 的不动点和 $f_N$ 的零点表示同一平衡水头。水头本身不必为零。",
+    "failure": "$f_P$ 的不动点和 $f_N$ 的零点表示同一平衡水头。水头本身不必为零。"
+  },
+  {
+    "question": "哪些陈述描述了这两种线性化？",
+    "options": {
+      "Picard 将水头依赖的系数固定在 $h^k$。": true,
+      "Newton 使用完整残差的导数。": true,
+      "Newton 从任意初始水头总能收敛。": false,
+      "每次数值迭代将物理时间推进一天。": false
+    },
+    "success": "两者都改进稳态解的数值估计。Newton 包括系数导数；收敛取决于函数及初始估计。",
+    "failure": "两者都改进稳态解的数值估计。Newton 包括系数导数；收敛取决于函数及初始估计。"
+  },
+  {
+    "question": "如何检查收敛？",
+    "options": {
+      "检查最大水头变化 $\\max_i|\\Delta h_i|$。": true,
+      "检查最大流量残差 $\\max_i|F_i|$。": true,
+      "仅水头变化小就能证明所有平衡都满足。": false,
+      "残差的单位与水头相同。": false
+    },
+    "success": "两个标准都需要。小变化可以与未满足的平衡同时存在；$F_i$ 是以 m³/s 计的流量不平衡。",
+    "failure": "两个标准都需要。小变化可以与未满足的平衡同时存在；$F_i$ 是以 m³/s 计的流量不平衡。"
+  }
+]

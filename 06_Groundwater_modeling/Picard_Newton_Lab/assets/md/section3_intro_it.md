@@ -1,0 +1,1 @@
+Picard e Newton aggiornano insieme tutti i nove carichi interni. Selezionate una cella per seguirne le iterazioni. La curva blu di Newton resta fissa perché ciascun carico di tentativo viene valutato equilibrando le altre otto celle. Seguite il punto arancione e le tangenti per osservare come cambia il carico selezionato.

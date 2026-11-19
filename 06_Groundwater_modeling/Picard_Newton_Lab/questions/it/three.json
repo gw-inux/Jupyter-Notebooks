@@ -1,0 +1,46 @@
+[
+  {
+    "question": "Perché il modello confinato senza ET è lineare?",
+    "options": {
+      "La trasmissività $T=Kb$ non dipende dal carico.": true,
+      "Le conduttanze alle facce sono fisse.": true,
+      "Per la linearità il gradiente deve essere piccolo.": false,
+      "Le tre conducibilità devono essere identiche.": false
+    },
+    "success": "Spessore e conducibilità fissi producono conduttanza costante. Conducibilità differenti e gradiente elevato non rendono da soli non lineare questo bilancio confinato.",
+    "failure": "Spessore e conducibilità fissi producono conduttanza costante. Conducibilità differenti e gradiente elevato non rendono da soli non lineare questo bilancio confinato."
+  },
+  {
+    "question": "Che cosa può rendere non lineare il bilancio a tre celle?",
+    "options": {
+      "Lo spessore saturo che varia con il carico.": true,
+      "Una portata al contorno che passa fra rami dipendenti dal carico.": true,
+      "Scegliere una diversa stima iniziale per un modello altrimenti lineare.": false,
+      "Cambiare colore o zoom di un grafico.": false
+    },
+    "success": "La non linearità appartiene alle equazioni, tramite trasmissività o comportamento al contorno. Le stime iniziali modificano il percorso iterativo, non la funzione scalare del modello.",
+    "failure": "La non linearità appartiene alle equazioni, tramite trasmissività o comportamento al contorno. Le stime iniziali modificano il percorso iterativo, non la funzione scalare del modello."
+  },
+  {
+    "question": "Come si legge un aggiornamento nelle figure scalari?",
+    "options": {
+      "Picard trasferisce $f_P(h^k)$ sulla diagonale $y=h$.": true,
+      "Newton segue la tangente di $F$ fino alla retta di residuo nullo.": true,
+      "Il simbolo arancione deve già coincidere con il carico di riferimento.": false,
+      "I metodi cercano la stessa soluzione equilibrata.": true
+    },
+    "success": "Picard costruisce un aggiornamento di punto fisso, Newton un aggiornamento per trovare una radice. Un simbolo intermedio è una stima, non una garanzia di convergenza.",
+    "failure": "Picard costruisce un aggiornamento di punto fisso, Newton un aggiornamento per trovare una radice. Un simbolo intermedio è una stima, non una garanzia di convergenza."
+  },
+  {
+    "question": "Dopo un aggiornamento esatto di un problema lineare, perché lo stato può essere ancora «Iterazione in corso»?",
+    "options": {
+      "Il residuo può essere nullo mentre l'ultima variazione di carico è grande.": true,
+      "Un ulteriore aggiornamento può confermare il criterio sul carico.": true,
+      "Il metodo ha necessariamente usato un'equazione errata.": false,
+      "Il carico di riferimento è definito dalla stima iniziale.": false
+    },
+    "success": "Il modulo richiede entrambi i controlli. Il carico di riferimento indipendente risolve il bilancio discreto e non dipende dalla stima iniziale dello studente.",
+    "failure": "Il modulo richiede entrambi i controlli. Il carico di riferimento indipendente risolve il bilancio discreto e non dipende dalla stima iniziale dello studente."
+  }
+]

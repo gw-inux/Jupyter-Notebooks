@@ -1,0 +1,24 @@
+[
+  {
+    "question": "El bombeo hace descender el nivel freático de un acuífero libre. ¿Qué afirmaciones pueden ser correctas?",
+    "options": {
+      "El espesor saturado y la conductancia pueden disminuir aunque la conductividad hidráulica siga constante.": true,
+      "Toda ecuación de flujo dependiente de la carga debe ser no lineal.": false,
+      "La carga desconocida puede afectar tanto al área de flujo como al gradiente hidráulico.": true,
+      "Un cambio de conductancia implica siempre que ha cambiado el material del acuífero.": false
+    },
+    "success": "La conductancia incluye la geometría del flujo y la conductividad hidráulica. La dependencia del espesor saturado respecto a la carga puede hacer que la conductancia dependa de la incógnita. Depender de la carga no basta para ser no lineal: una relación lineal fija entre carga y caudal sigue siendo lineal.",
+    "failure": "La conductancia incluye la geometría del flujo y la conductividad hidráulica. La dependencia del espesor saturado respecto a la carga puede hacer que la conductancia dependa de la incógnita. Depender de la carga no basta para ser no lineal: una relación lineal fija entre carga y caudal sigue siendo lineal."
+  },
+  {
+    "question": "Un modelo estacionario necesita 30 iteraciones numéricas. ¿Qué indica esto?",
+    "options": {
+      "El acuífero ha pasado por 30 pasos de tiempo físico.": false,
+      "El solver ha revisado repetidamente sus estimaciones de carga.": true,
+      "El resultado final debe comprobarse con los criterios de convergencia.": true,
+      "El resultado es necesariamente más preciso que el de un modelo resuelto en tres iteraciones.": false
+    },
+    "success": "Las iteraciones mejoran una estimación numérica; no hacen avanzar el tiempo físico. Su número por sí solo no demuestra convergencia ni concordancia con el acuífero real.",
+    "failure": "Las iteraciones mejoran una estimación numérica; no hacen avanzar el tiempo físico. Su número por sí solo no demuestra convergencia ni concordancia con el acuífero real."
+  }
+]

@@ -1,0 +1,35 @@
+[
+  {
+    "question": "Les flèches des deux connexions pointent vers la droite. Le calcul donne un $Q_L$ négatif. Quelles propositions sont exactes ?",
+    "options": {
+      "L'écoulement dans la connexion gauche est opposé à la flèche.": true,
+      "Le signe négatif prouve que le calcul a échoué.": false,
+      "L'eau quitte la maille centrale par la connexion gauche.": true,
+      "La charge centrale est nécessairement négative.": false
+    },
+    "success": "Avec une conductance positive, $Q_L=C_L(h_L-h)<0$ implique $h>h_L$. L'eau s'écoule de la maille centrale vers la gauche. Le signe indique un sens, et non une charge invalide ou négative.",
+    "failure": "Avec une conductance positive, $Q_L=C_L(h_L-h)<0$ implique $h>h_L$. L'eau s'écoule de la maille centrale vers la gauche. Le signe indique un sens, et non une charge invalide ou négative."
+  },
+  {
+    "question": "Que signifie $F(h)=Q_L-Q_R-Q_{\\mathrm{ET}}=0$ ?",
+    "options": {
+      "Les entrées et les sorties de la maille centrale s'équilibrent.": true,
+      "Chaque débit pris individuellement doit être nul.": false,
+      "La charge centrale doit être égale à zéro mètre.": false,
+      "Le déséquilibre restant du bilan en eau est nul en m³/s.": true
+    },
+    "success": "Le résidu est le déséquilibre net, et non un débit supplémentaire. Un résidu nul est compatible avec des entrées et des sorties importantes qui se compensent. Il vérifie cette équation, pas la fidélité du modèle aux conditions réelles.",
+    "failure": "Le résidu est le déséquilibre net, et non un débit supplémentaire. Un résidu nul est compatible avec des entrées et des sorties importantes qui se compensent. Il vérifie cette équation, pas la fidélité du modèle aux conditions réelles."
+  },
+  {
+    "question": "Quelles propositions sur la non-linéarité sont exactes pour les modèles décrits ?",
+    "options": {
+      "Un gradient élevé suffit nécessairement à rendre l'écoulement de Darcy non linéaire.": false,
+      "L'épaisseur saturée d'un aquifère à nappe libre peut varier avec la charge inconnue.": true,
+      "Un modèle captif à conductances fixes peut rester linéaire même avec de forts contrastes de conductivité.": true,
+      "Une conductivité constante garantit la linéarité d'un modèle à nappe libre.": false
+    },
+    "success": "Les charges inconnues peuvent modifier l'épaisseur saturée et la conductance même à conductivité constante. Une variation spatiale de conductances fixes ne crée pas à elle seule de non-linéarité. Un gradient élevé ne modifie pas à lui seul la relation linéaire de Darcy supposée ici.",
+    "failure": "Les charges inconnues peuvent modifier l'épaisseur saturée et la conductance même à conductivité constante. Une variation spatiale de conductances fixes ne crée pas à elle seule de non-linéarité. Un gradient élevé ne modifie pas à lui seul la relation linéaire de Darcy supposée ici."
+  }
+]

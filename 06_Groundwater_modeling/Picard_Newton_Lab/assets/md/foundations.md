@@ -18,4 +18,4 @@ Consider three adjacent cells. The heads in the left and right cells, $h_L$ and 
 
 *The highlighted vertical face is the area perpendicular to horizontal flow. Each cell has length $\Delta x$ and width $w$. The saturated thickness is $b$; $z_b$ is the bottom elevation. These dimensions and all heads are in metres, with elevations measured from a common datum. The stepped levels represent cell values, not physical jumps in the water table. The dimensions are illustrative.*
 
-Mehl uses this simple arrangement to examine two sources of difficulty: a smooth unconfined-flow problem, and a problem in which groundwater evapotranspiration follows different relations in different head ranges. We first develop the equations and the two iteration methods, then examine these examples.
+Mehl (2006) uses this simple arrangement to examine two sources of difficulty: a smooth unconfined-flow problem, and a problem in which groundwater evapotranspiration follows different relations in different head ranges. We first develop the equations and the two iteration methods, then examine these examples.

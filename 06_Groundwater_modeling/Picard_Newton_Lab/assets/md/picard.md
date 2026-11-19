@@ -80,7 +80,7 @@ $$
 
 At this point, the update returns the same head. This is called a **fixed point**.
 
-For the illustrated smooth case from Mehl, a starting head of $1.000$ m gives approximately
+For the illustrated smooth case from Mehl (2006), a starting head of $1.000$ m gives approximately
 
 $$
 1.000
@@ -97,7 +97,7 @@ The estimates alternate around the solution, approximately $0.547$ m. Their alte
 
 ![Picard update and the fixed-point intersection.](../../assets/theory/04_picard.png)
 
-*The diagram illustrates Mehl's smooth three-cell case, with an illustrative starting head of 1.0 m for comparison with Newton. The paper's original starting heads will be used in the worked examples. In the lab's scaling, $h_L=4$ m, $h_R=0.1$ m, and $K_L,K_C,K_R=(0.005,0.25,100)$ m/day, with 100 m centre spacing, 1 m width, bottom elevation 0 m, and no ET or recharge.*
+*The diagram illustrates the smooth three-cell case from Mehl (2006), with an illustrative starting head of 1.0 m for comparison with Newton. The paper's original starting heads will be used in the worked examples. In the lab's scaling, $h_L=4$ m, $h_R=0.1$ m, and $K_L,K_C,K_R=(0.005,0.25,100)$ m/day, with 100 m centre spacing, 1 m width, bottom elevation 0 m, and no ET or recharge.*
 
 #### Including groundwater evapotranspiration
 

@@ -1,0 +1,46 @@
+[
+  {
+    "question": "Che cosa cambia selezionando la cella 6?",
+    "options": {
+      "Le curve diagnostiche e il carico attuale visualizzato.": true,
+      "Il numero di carichi incogniti risolti a ogni iterazione.": false,
+      "Lo storico salvato dell'intero sistema.": false,
+      "La cella evidenziata nel profilo.": true
+    },
+    "success": "La selezione cambia la vista. Ogni iterazione risolve ancora i nove carichi interni e conserva lo storico esistente.",
+    "failure": "La selezione cambia la vista. Ogni iterazione risolve ancora i nove carichi interni e conserva lo storico esistente."
+  },
+  {
+    "question": "Che cosa mostrano i grafici iterativi a undici celle?",
+    "options": {
+      "Passi accettati dell'iterazione completa a nove carichi, non una soluzione separata di una sola cella.": true,
+      "Una funzione di carico per Picard e un residuo ridotto equivalente di portata per Newton.": true,
+      "La curva blu di Newton deve spostarsi ogni volta che cambiano le stime dei carichi vicini.": false,
+      "Una tangente di Newton calcolata soltanto dall'elemento diagonale del jacobiano della cella selezionata.": false
+    },
+    "success": "La curva verde dipende dall'aggiornamento attuale dell'intero sistema. La curva blu esprime lo squilibrio selezionato dopo avere equilibrato le altre otto celle a ogni carico di tentativo, risultando fissa per quella configurazione. La tangente fornisce il carico del passo completo di Newton non smorzato; lo smorzamento può accorciare il passo accettato.",
+    "failure": "La curva verde dipende dall'aggiornamento attuale dell'intero sistema. La curva blu esprime lo squilibrio selezionato dopo avere equilibrato le altre otto celle a ogni carico di tentativo, risultando fissa per quella configurazione. La tangente fornisce il carico del passo completo di Newton non smorzato; lo smorzamento può accorciare il passo accettato."
+  },
+  {
+    "question": "Quali modifiche rendono necessariamente non lineare un modello confinato a ricarica costante?",
+    "options": {
+      "Aumentare soltanto la differenza di carico al contorno.": false,
+      "Introdurre soltanto zone a conducibilità fissa.": false,
+      "Usare uno spessore saturo dipendente dal carico al posto di uno fisso.": true,
+      "Cambiare soltanto il carico iniziale.": false
+    },
+    "success": "La non linearità richiede coefficienti dipendenti dal carico o comportamento non lineare del contorno. L'eterogeneità fissa modifica i coefficienti, ma le equazioni confinate restano lineari.",
+    "failure": "La non linearità richiede coefficienti dipendenti dal carico o comportamento non lineare del contorno. L'eterogeneità fissa modifica i coefficienti, ma le equazioni confinate restano lineari."
+  },
+  {
+    "question": "Che cosa indica $\\max_i|F_i|$ nell'esperimento a undici celle?",
+    "options": {
+      "Il massimo squilibrio assoluto di portata nelle nove celle risolte.": true,
+      "L'errore di carico nella cella selezionata.": false,
+      "Se è rispettato il criterio del bilancio discreto di portata.": true,
+      "Se la griglia è abbastanza fine da rappresentare l'acquifero reale.": false
+    },
+    "success": "Il criterio sul residuo verifica le equazioni discrete. Si misura in m³/s e non dimostra l'adeguatezza della griglia né l'accuratezza del modello concettuale.",
+    "failure": "Il criterio sul residuo verifica le equazioni discrete. Si misura in m³/s e non dimostra l'adeguatezza della griglia né l'accuratezza del modello concettuale."
+  }
+]

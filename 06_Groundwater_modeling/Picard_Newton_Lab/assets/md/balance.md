@@ -48,4 +48,4 @@ where $b$ is saturated thickness and $z_b$ is bottom elevation, both in metres. 
 
 A steep gradient alone does not make Darcy's law nonlinear. Here, the changing saturated thickness is the cause. Head-dependent boundary conditions can introduce another source of nonlinearity when their applicable relationship changes with head.
 
-The thickness relation above applies while the cell is wet and the water table is below the top. The interactive teaching models with a finite aquifer top limit saturated thickness to the physical aquifer thickness. Mehl's historical examples use the uncapped relation; these different assumptions are identified in the example settings.
+The thickness relation above applies while the cell is wet and the water table is below the top. The interactive teaching models with a finite aquifer top limit saturated thickness to the physical aquifer thickness. The historical examples in Mehl (2006) use the uncapped relation; these different assumptions are identified in the example settings.

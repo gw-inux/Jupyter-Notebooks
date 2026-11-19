@@ -1,0 +1,46 @@
+[
+  {
+    "question": "Que modifie la sélection de la maille 6 ?",
+    "options": {
+      "Les courbes de diagnostic et la charge actuelle affichée.": true,
+      "Le nombre de charges inconnues résolues à chaque itération.": false,
+      "L'historique sauvegardé du système complet.": false,
+      "La maille mise en évidence dans le profil.": true
+    },
+    "success": "La sélection change la vue. Chaque itération résout toujours les neuf charges intérieures et conserve l'historique existant.",
+    "failure": "La sélection change la vue. Chaque itération résout toujours les neuf charges intérieures et conserve l'historique existant."
+  },
+  {
+    "question": "Que montrent les diagrammes d'itération à onze mailles ?",
+    "options": {
+      "Les pas acceptés de l'itération complète sur neuf charges, et non une résolution séparée pour une seule maille.": true,
+      "Une fonction de charge pour Picard et un résidu réduit de débit équivalent pour Newton.": true,
+      "La courbe bleue de Newton doit se déplacer chaque fois que les estimations des charges voisines changent.": false,
+      "Une tangente de Newton calculée uniquement à partir du terme diagonal du jacobien de la maille choisie.": false
+    },
+    "success": "La courbe verte dépend de la mise à jour actuelle du système complet. La courbe bleue exprime le déséquilibre de la maille choisie après équilibrage des huit autres pour chaque charge d'essai ; elle reste donc fixe pour cette configuration. Sa tangente donne la charge proposée par le pas complet de Newton sans amortissement ; l'amortissement peut raccourcir le pas accepté.",
+    "failure": "La courbe verte dépend de la mise à jour actuelle du système complet. La courbe bleue exprime le déséquilibre de la maille choisie après équilibrage des huit autres pour chaque charge d'essai ; elle reste donc fixe pour cette configuration. Sa tangente donne la charge proposée par le pas complet de Newton sans amortissement ; l'amortissement peut raccourcir le pas accepté."
+  },
+  {
+    "question": "Quelles modifications rendent nécessairement non linéaire un modèle captif à recharge constante ?",
+    "options": {
+      "Augmenter uniquement la différence de charge aux limites.": false,
+      "Introduire uniquement des zones à conductivité fixe.": false,
+      "Remplacer une épaisseur saturée fixe par une épaisseur dépendant de la charge.": true,
+      "Changer uniquement la charge initiale.": false
+    },
+    "success": "La non-linéarité nécessite des coefficients dépendant de la charge ou un comportement non linéaire aux limites. Une hétérogénéité fixe modifie les coefficients, mais les équations du modèle captif restent linéaires.",
+    "failure": "La non-linéarité nécessite des coefficients dépendant de la charge ou un comportement non linéaire aux limites. Une hétérogénéité fixe modifie les coefficients, mais les équations du modèle captif restent linéaires."
+  },
+  {
+    "question": "Que représente $\\max_i|F_i|$ dans l'expérience à onze mailles ?",
+    "options": {
+      "Le plus grand déséquilibre absolu de débit dans les neuf mailles résolues.": true,
+      "L'erreur de charge dans la maille choisie.": false,
+      "Un indicateur permettant de vérifier le critère sur les bilans discrets de débit.": true,
+      "Un indicateur prouvant que le maillage est assez fin pour représenter l'aquifère réel.": false
+    },
+    "success": "Le critère de résidu vérifie les équations discrètes. Il s'exprime en m³/s et ne démontre ni l'adéquation du maillage ni l'exactitude du modèle conceptuel.",
+    "failure": "Le critère de résidu vérifie les équations discrètes. Il s'exprime en m³/s et ne démontre ni l'adéquation du maillage ni l'exactitude du modèle conceptuel."
+  }
+]

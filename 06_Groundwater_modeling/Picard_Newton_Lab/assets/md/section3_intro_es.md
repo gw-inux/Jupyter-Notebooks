@@ -1,0 +1,1 @@
+Picard y Newton actualizan conjuntamente las nueve cargas interiores. Seleccione una celda para seguir sus iteraciones. La curva azul de Newton permanece fija porque cada carga de prueba se evalúa equilibrando las otras ocho celdas. Siga el punto naranja y las tangentes para ver cómo cambia la carga seleccionada.

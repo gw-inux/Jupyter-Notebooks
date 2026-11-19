@@ -30,4 +30,4 @@ Für die Iteration ist wichtig, was mit der **Steigung beim Überschreiten einer
 
 ![h–Q-Diagramm der Evapotranspiration mit den Symbolen des Randbedingungenmoduls und positiv gezähltem Entzug.](../../assets/theory/03_et_de.png)
 
-*Beispiel: SURF = 7 m, EXDP = 4 m, EVTR = $10^{-8}$ m/s und horizontale Zellfläche $A=10\,000$ m². Bei $h_{\mathrm{gw}}=5$ m erreicht der ET-Entzug die Hälfte seines Maximalwerts. Für Mehls numerisches ET-Beispiel gelten andere Parameter.*
+*Beispiel: SURF = 7 m, EXDP = 4 m, EVTR = $10^{-8}$ m/s und horizontale Zellfläche $A=10\,000$ m². Bei $h_{\mathrm{gw}}=5$ m erreicht der ET-Entzug die Hälfte seines Maximalwerts. Für das numerische ET-Beispiel von Mehl (2006) gelten andere Parameter.*

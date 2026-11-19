@@ -1,0 +1,46 @@
+[
+  {
+    "question": "¿Qué representan $f_P(h)$ y $f_N(h)$?",
+    "options": {
+      "$f_P(h)$ devuelve una carga propuesta en m.": true,
+      "$f_N(h)$ es la siguiente carga de Newton.": false,
+      "$f_N(h)=F(h)$ es un desequilibrio de caudal en m³/s.": true,
+      "$f_P$ y $f_N$ deben tener las mismas unidades.": false
+    },
+    "success": "Picard utiliza $h^{k+1}=f_P(h^k)$. Newton utiliza $h^{k+1}=h^k-F(h^k)/F'(h^k)$; por ello $f_N=F$ es un residuo, no una carga actualizada.",
+    "failure": "Picard utiliza $h^{k+1}=f_P(h^k)$. Newton utiliza $h^{k+1}=h^k-F(h^k)/F'(h^k)$; por ello $f_N=F$ es un residuo, no una carga actualizada."
+  },
+  {
+    "question": "¿Qué caracteriza a una solución $h^\\ast$?",
+    "options": {
+      "$f_P(h^\\ast)=h^\\ast$.": true,
+      "$f_N(h^\\ast)=0$.": true,
+      "$f_P(h^\\ast)=0$ en cualquier modelo.": false,
+      "Las entradas y salidas se equilibran.": true
+    },
+    "success": "Un punto fijo de $f_P$ y un cero de $f_N$ describen la misma carga de equilibrio. La propia carga no tiene por qué ser cero.",
+    "failure": "Un punto fijo de $f_P$ y un cero de $f_N$ describen la misma carga de equilibrio. La propia carga no tiene por qué ser cero."
+  },
+  {
+    "question": "¿Qué afirmaciones describen las dos linealizaciones?",
+    "options": {
+      "Picard fija en $h^k$ los coeficientes dependientes de la carga.": true,
+      "Newton utiliza la derivada del residuo completo.": true,
+      "Newton siempre converge desde cualquier carga inicial.": false,
+      "Una iteración numérica hace avanzar un día de tiempo físico.": false
+    },
+    "success": "Ambos mejoran una estimación numérica de una solución estacionaria. Newton incluye derivadas de los coeficientes; su convergencia depende de la función y de la estimación inicial.",
+    "failure": "Ambos mejoran una estimación numérica de una solución estacionaria. Newton incluye derivadas de los coeficientes; su convergencia depende de la función y de la estimación inicial."
+  },
+  {
+    "question": "¿Cómo debe comprobarse la convergencia?",
+    "options": {
+      "Comprobar la máxima variación de carga $\\max_i|\\Delta h_i|$.": true,
+      "Comprobar el máximo residuo de caudal $\\max_i|F_i|$.": true,
+      "Una variación pequeña de carga demuestra por sí sola que todos los balances cierran.": false,
+      "El residuo tiene unidades de carga.": false
+    },
+    "success": "Se requieren ambos criterios. Puede haber cambios pequeños con una ecuación todavía desequilibrada; $F_i$ es un desequilibrio de caudal en m³/s.",
+    "failure": "Se requieren ambos criterios. Puede haber cambios pequeños con una ecuación todavía desequilibrada; $F_i$ es un desequilibrio de caudal en m³/s."
+  }
+]

@@ -7,7 +7,7 @@ TABLE OF CONTENTS — search for the numbered section comments below.
   4. Persistent iNUX assessment state, answer controls and feedback
 
 Maintenance: edit assets/md/*.md and questions/<language>/*.json for learner text.
-English and German content is bundled. Missing translations use English.
+Eight complete languages are bundled. Missing translations use English.
 """
 
 from pathlib import Path
@@ -19,6 +19,12 @@ ROOT = Path(__file__).resolve().parent
 LANGUAGES = {
     "en": "🇬🇧 English",
     "de": "🇩🇪 Deutsch",
+    "fr": "🇫🇷 Français",
+    "es": "🇪🇸 Español",
+    "it": "🇮🇹 Italiano",
+    "hi": "🇮🇳 हिन्दी",
+    "ar": "🌐 العربية",
+    "zh": "🇨🇳 简体中文",
     "pt": "🇵🇹 Português",
     "bn": "🇧🇩 বাংলা (Bengali)",
 }
@@ -170,6 +176,18 @@ def settings_style():
             {selector} summary {{background-color: {background}; border-radius: 7px;}}
             {selector} details[open] > summary {{border-radius: 7px 7px 0 0;}}
             """)
+    if st.session_state.get("picard_newton_language") == "ar":
+        # The course sidebar and all numerical/math displays keep their direction.
+        rules.append("""
+            .stMain [data-testid="stMarkdownContainer"],
+            .stMain [data-testid="stWidgetLabel"] {
+                direction: rtl; text-align: right;
+            }
+            .stMain .katex, .stMain .katex-display,
+            .stMain [data-testid="stDataFrame"] {
+                direction: ltr; text-align: initial;
+            }
+        """)
     st.html("<style>" + "".join(rules) + "</style>")
 
 
@@ -197,6 +215,33 @@ def remember_answer(qid, index, key):
     records = st.session_state.setdefault("picard_newton_answers", {})
     record = records.setdefault(qid, {"choices": {}, "submitted": None})
     record["choices"][index] = bool(st.session_state[key])
+
+
+def grade_choices(choices, truth):
+    """Award points only for selected correct options; judge the entire answer.
+
+    Unselected options and selected distractors earn no points. A full score
+    does not imply a fully correct answer if a distractor was also selected.
+    """
+    if len(choices) != len(truth):
+        raise ValueError(
+            "Each assessment option needs one selection and one truth value"
+        )
+    score = sum(selected and correct for selected, correct in zip(choices, truth))
+    incorrect = sum(
+        selected and not correct for selected, correct in zip(choices, truth)
+    )
+    missing = sum(not selected and correct for selected, correct in zip(choices, truth))
+    status = (
+        "full" if not incorrect and not missing else "partial" if score else "wrong"
+    )
+    return dict(
+        score=score,
+        total=sum(truth),
+        incorrect=incorrect,
+        missing=missing,
+        status=status,
+    )
 
 
 def assessment(bank, lang, t):
@@ -256,13 +301,25 @@ def assessment(bank, lang, t):
                     record["submitted"] = choices.copy()
                 if record["submitted"] == choices:
                     truth = list(q["options"].values())
-                    score = sum(a == b for a, b in zip(choices, truth))
+                    result = grade_choices(choices, truth)
                     feedback = (
                         q["success"]
-                        if score == len(truth)
+                        if result["status"] == "full"
                         else q.get("failure", q.get("error", ""))
                     )
                     message = (
-                        t("score", score=score, total=len(truth)) + " — " + feedback
+                        "**"
+                        + t("answer_" + result["status"])
+                        + "** · "
+                        + t("score", score=result["score"], total=result["total"])
                     )
-                    (st.success if score == len(truth) else st.info)(message)
+                    if result["status"] != "full":
+                        message += "\n\n" + t(
+                            "assessment_details",
+                            incorrect=result["incorrect"],
+                            missing=result["missing"],
+                        )
+                    message += "\n\n" + feedback
+                    {"full": st.success, "partial": st.warning, "wrong": st.error}[
+                        result["status"]
+                    ](message)

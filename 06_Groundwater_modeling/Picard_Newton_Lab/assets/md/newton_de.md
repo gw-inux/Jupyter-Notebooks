@@ -125,4 +125,4 @@ Vom Startwert hängt ab, ob Newton in diesen Bereich gelangt. Eine fast waagerec
 
 Eine Möglichkeit, große Schritte zu begrenzen, ist die **Dämpfung**. Dabei wird nur ein Teil der vorgeschlagenen Korrektur übernommen. Das kann die Konvergenz erleichtern, garantiert sie jedoch nicht.
 
-Bei Mehl lässt sich das an einem glatten Strömungsproblem ohne ET und an einem Problem mit Übergängen zwischen den ET-Abschnitten untersuchen. Bedenken Sie beim Vergleich auch den Aufwand pro Schritt: Für einen Newton-Schritt müssen zusätzliche Ableitungen berechnet werden. Weniger Iterationen bedeuten deshalb nicht automatisch weniger Rechenaufwand.
+Bei Mehl (2006) lässt sich das an einem glatten Strömungsproblem ohne ET und an einem Problem mit Übergängen zwischen den ET-Abschnitten untersuchen. Bedenken Sie beim Vergleich auch den Aufwand pro Schritt: Für einen Newton-Schritt müssen zusätzliche Ableitungen berechnet werden. Weniger Iterationen bedeuten deshalb nicht automatisch weniger Rechenaufwand.

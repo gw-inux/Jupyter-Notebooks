@@ -65,7 +65,7 @@ Dämpfungsfaktor ω
 Bei ω = 1 wird der volle Schritt übernommen. Ein kleinerer Wert verkürzt die Korrektur. Das kann die Konvergenz erleichtern, garantiert sie jedoch nicht.
 
 ## reset
-Zurücksetzen
+Reset
 
 ## reset_notice
 Die Modelleinstellungen wurden geändert. Die Iterationen beginnen erneut.
@@ -164,22 +164,34 @@ Einheitliche Starthöhe im Modellinneren
 Einheitliche Starthöhe im Modellinneren (m)
 
 ## assess
-Verständnis prüfen
+Wissenscheck
 
 ## assessment_info
-Wählen Sie alle zutreffenden Aussagen aus. Eine oder mehrere können richtig sein. Für jede korrekt ausgewählte oder korrekt nicht ausgewählte Aussage erhalten Sie einen Punkt. Für die volle Punktzahl müssen alle Entscheidungen richtig sein.
+Wählen Sie alle zutreffenden Aussagen aus (eine oder mehrere). In diesem Labor erhalten Sie nur für ausgewählte richtige Aussagen jeweils einen Punkt. Nicht ausgewählte und falsche Aussagen geben keine Punkte; es gibt keinen Punktabzug. Vollständig richtig ist die Antwort nur, wenn alle richtigen und keine falschen Aussagen ausgewählt sind. Beim in diesem Kurs verwendeten OPAL/ONYX-Bewertungsschema gibt es zusätzlich einen Punkt für jede falsche Aussage, die korrekt nicht ausgewählt wurde.
 
 ## check
-Antwort prüfen
+Prüfen
 
 ## score
-Richtige Entscheidungen: {score}/{total}
+Punkte für richtig ausgewählte Aussagen: {score}/{total}
+
+## answer_full
+Vollständig richtig
+
+## answer_partial
+Teilweise richtig
+
+## answer_wrong
+Falsch
+
+## assessment_details
+Falsche Aussagen ausgewählt: {incorrect}. Richtige Aussagen noch nicht ausgewählt: {missing}. Die Punktzahl allein bedeutet nicht, dass die Antwort vollständig richtig ist.
 
 ## theory_quiz
 Grundlagen
 
 ## three_quiz
-Bilanz und Iteration im Drei-Zellen-Modell
+Drei-Zellen-Modell
 
 ## references
 Quellen und Gültigkeitsbereich des Modells
@@ -206,7 +218,7 @@ Erkunden · Drei-Zellen-Modell und Evapotranspiration
 Erkunden · elf Zellen und ihre Kopplung
 
 ## language_proxy
-Die Inhalte sind auf Deutsch und Englisch verfügbar. Fehlt eine Übersetzung, wird der englische Text angezeigt.
+Die Inhalte sind auf Deutsch, Englisch, Französisch, Spanisch, Italienisch, Hindi, Arabisch und vereinfachtem Chinesisch verfügbar. Fehlende Übersetzungen werden durch Englisch ersetzt.
 
 ## closure
 Konvergenzkriterien
@@ -218,19 +230,19 @@ Toleranz für die maximale Höhenänderung (m)
 Toleranz für das maximale Bilanzresiduum (m³/s)
 
 ## closure_help
-Beide Kriterien müssen erfüllt sein. Voreingestellt sind 1E-4 m für die Höhenänderung und 1E-6 m³/s für das Bilanzresiduum. Bei den kleinen Volumenströmen in Mehls Beispielen kann das Residuum die Toleranz schon früh unterschreiten. Nach einer Änderung der Toleranzen wird der gespeicherte Zustand erneut geprüft. Gegebenenfalls können Sie die Iteration fortsetzen.
+Beide Kriterien müssen erfüllt sein. Voreingestellt sind 1E-4 m für die Höhenänderung und 1E-6 m³/s für das Bilanzresiduum. Bei den kleinen Volumenströmen in den Beispielen von Mehl (2006) kann das Residuum die Toleranz schon früh unterschreiten. Nach einer Änderung der Toleranzen wird der gespeicherte Zustand erneut geprüft. Gegebenenfalls können Sie die Iteration fortsetzen.
 
 ## sync
-Synchron
+Sync
 
 ## sync_help
-Anfangs führt jede Startschaltfläche nur das zugehörige Verfahren aus. Bei „Synchron“ erhalten beide Schaltflächen einen gemeinsamen Rahmen. Jede verfügbare Schaltfläche startet dann beide verfügbaren Verfahren. Konvergierte oder abgebrochene Verfahren behalten ihren letzten Zustand.
+Anfangs führt jede Startschaltfläche nur das zugehörige Verfahren aus. Bei „Sync“ erhalten beide Schaltflächen einen gemeinsamen Rahmen. Jede verfügbare Schaltfläche startet dann beide verfügbaren Verfahren. Konvergierte oder abgebrochene Verfahren behalten ihren letzten Zustand.
 
 ## to_closure
-Bis zur Konvergenz
+Bis Konvergenz
 
 ## to_closure_help
-Aktivieren Sie diese Option und starten Sie anschließend ein Verfahren, um bis zur Konvergenz oder zu einem erkannten Abbruchgrund zu rechnen. Das Umschalten allein löst keine Berechnung aus. Bei „Synchron“ gilt die Auswahl für beide verfügbaren Verfahren.
+Aktivieren Sie diese Option und starten Sie anschließend ein Verfahren, um bis zur Konvergenz oder zu einem erkannten Abbruchgrund zu rechnen. Das Umschalten allein löst keine Berechnung aus. Bei „Sync“ gilt die Auswahl für beide verfügbaren Verfahren.
 
 ## play_method
 ▶ {method}
@@ -314,7 +326,7 @@ Auto-Zoom
 Auto-Zoom
 
 ## zoom_manual
-Manueller Zoom
+Manuell
 
 ## zoom_help
 Zentriert den Schnittpunkt mit der Diagonalen (Picard) bzw. der Nulllinie (Newton). Nach dem Anpassen liegt die aktuelle Höhe etwa zwei Drittel des Wegs von der Mitte zum Rand auf ihrer Seite. Die Breite bleibt bestehen, bis der Abstand zur Mitte unter 25 % der halben Breite fällt oder die Höhe den Ausschnitt verlässt. Die kleinste automatische Gesamtbreite ist 0,001 m. Ausschalten stellt die Gesamtansicht wieder her. Mit − Zoom / + Zoom wählen Sie die Breite manuell. Änderungen an Modellparametern oder Startwerten stellen die Gesamtansicht wieder her. Der Zoom beeinflusst die berechneten Höhen nicht.
@@ -344,7 +356,7 @@ Grundwasserleiter und ET
 Einheitliche Leitfähigkeit K (m/s)
 
 ## grid_quiz
-Gekoppelte Iteration und Nichtlinearität
+Gekoppelte Iteration
 
 ## paper_case
 Abbildungspaar aus Mehl (2006)
@@ -368,7 +380,7 @@ Mehl (2006) · ungespannt ohne ET · Abbildungen 2 und 3
 Mehl (2006) · ungespannt mit ET · Abbildungen 5 und 6
 
 ## use_paper_case
-Dieses Beispiel aus Mehl (2006) in Abschnitt 2 übernehmen
+In Abschnitt 2 laden
 
 ## initial_picard
 Starthöhe in der mittleren Zelle · Picard (m)
@@ -429,7 +441,7 @@ Höhentoleranz ({value:.0e} m)
 Hydraulische Höhe in Zelle {cell} (m)
 
 ## slider_input
-Schieberegler für die Starthöhe verwenden
+Slider
 
 ## iteration_summary
 **h = {head:.3f} m** · k = {steps} · {status}
@@ -461,7 +473,7 @@ Nahe der Referenz · < 1 cm
 Darstellungsoptionen
 
 ## side_by_side
-Diagramme nebeneinander anzeigen
+Nebeneinander
 
 ## fig_zoom_range
 {mode} · Höhenbereich {width:.3g} m
@@ -470,13 +482,13 @@ Diagramme nebeneinander anzeigen
 Warum iterieren?
 
 ## conductance_quiz
-Hydraulischer Leitwert und Darcy-Gesetz
+Leitwert und Darcy
 
 ## balance_quiz
-Wasserbilanz und Nichtlinearität
+Wasserbilanz
 
 ## et_quiz
-Evapotranspiration aus dem Grundwasser
+Evapotranspiration
 
 ## picard_quiz
 Picard-Iteration
@@ -485,7 +497,7 @@ Picard-Iteration
 Newton-Iteration
 
 ## mehl_quiz
-Mehls Beispiele interpretieren
+Mehl (2006)
 
 ## author_credit
-Entwickelt von **Thomas Reimann** (2026) · Technische Universität Dresden · The Groundwater Project
+Entwickelt von **Thomas Reimann** (2026) · Technische Universität Dresden · The Groundwater Project · basierend auf [Mehl (2006)](https://doi.org/10.1111/j.1745-6584.2006.00207.x)

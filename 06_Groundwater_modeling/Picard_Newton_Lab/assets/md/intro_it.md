@@ -1,0 +1,1 @@
+**Bozza per la revisione scientifica e didattica.** Esaminate il bilancio, eseguite un passo numerico e confrontate Picard e Newton. Queste iterazioni migliorano una soluzione stazionaria; non fanno avanzare il tempo fisico. [Commenti](mailto:mail@reimann-thomas.de).

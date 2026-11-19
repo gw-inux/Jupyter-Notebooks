@@ -1,0 +1,24 @@
+[
+  {
+    "question": "Gli esempi mostrati usano i diversi carichi iniziali di Mehl (2006) per Picard e Newton. Come vanno confrontati i percorsi?",
+    "options": {
+      "Illustrano le costruzioni grafiche e gli effetti della configurazione.": true,
+      "Il solo numero di iterazioni stabilisce quale metodo sia sempre più veloce.": false,
+      "Un confronto a parità di condizioni richiede lo stesso carico iniziale e gli stessi criteri di arresto.": true,
+      "I metodi cercano carichi di equilibrio diversi nello stesso esempio.": false
+    },
+    "success": "Le partenze storiche sono diverse: i percorsi sono dimostrazioni, non un confronto controllato di velocità. Per confrontarli, uniformate partenze e criteri e ricordate che il lavoro per iterazione può differire. Entrambi cercano la stessa soluzione.",
+    "failure": "Le partenze storiche sono diverse: i percorsi sono dimostrazioni, non un confronto controllato di velocità. Per confrontarli, uniformate partenze e criteri e ricordate che il lavoro per iterazione può differire. Entrambi cercano la stessa soluzione."
+  },
+  {
+    "question": "Quali affermazioni spiegano le curve dell'esempio con ET?",
+    "options": {
+      "Una perdita per ET continua può cambiare pendenza alle soglie.": true,
+      "Ogni discontinuità della funzione di Picard rappresenta un salto fisico dell'ET.": false,
+      "Scegliere una diversa relazione lineare di ET può far saltare la funzione di aggiornamento di Picard.": true,
+      "Ogni sequenza numerica oscillante rappresenta oscillazioni fisiche della superficie freatica.": false
+    },
+    "success": "Perdita per ET e residuo di Newton rimangono continui, con punti angolosi ai cambi di pendenza. Picard risolve un'equazione lineare con il tratto selezionato; cambiarlo può rendere discontinua la funzione di aggiornamento. Le oscillazioni numeriche non rappresentano un moto fisico della falda nel tempo.",
+    "failure": "Perdita per ET e residuo di Newton rimangono continui, con punti angolosi ai cambi di pendenza. Picard risolve un'equazione lineare con il tratto selezionato; cambiarlo può rendere discontinua la funzione di aggiornamento. Le oscillazioni numeriche non rappresentano un moto fisico della falda nel tempo."
+  }
+]

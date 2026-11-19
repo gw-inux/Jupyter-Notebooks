@@ -1,0 +1,46 @@
+[
+  {
+    "question": "¿Qué cambia al seleccionar la celda 6?",
+    "options": {
+      "Las curvas de diagnóstico y la carga actual mostrada.": true,
+      "El número de cargas desconocidas resueltas en cada iteración.": false,
+      "El historial guardado del sistema completo.": false,
+      "La celda resaltada en el perfil.": true
+    },
+    "success": "La selección modifica la vista. Cada iteración sigue resolviendo las nueve cargas interiores y conserva el historial existente.",
+    "failure": "La selección modifica la vista. Cada iteración sigue resolviendo las nueve cargas interiores y conserva el historial existente."
+  },
+  {
+    "question": "¿Qué muestran los diagramas de iteración de once celdas?",
+    "options": {
+      "Pasos aceptados de la iteración completa de nueve cargas, no una resolución independiente de una celda.": true,
+      "Una función de carga para Picard y un residuo reducido equivalente de caudal para Newton.": true,
+      "La curva azul de Newton debe desplazarse cada vez que cambian las estimaciones vecinas.": false,
+      "Una tangente de Newton calculada solo con el elemento diagonal del jacobiano de la celda seleccionada.": false
+    },
+    "success": "La curva verde de Picard depende de la actualización actual del sistema completo. La azul de Newton expresa el desequilibrio seleccionado tras equilibrar las otras ocho celdas en cada carga de prueba. Así queda una curva fija por configuración. Su tangente da la carga del paso completo de Newton sin amortiguar; la amortiguación puede acortar la actualización aceptada.",
+    "failure": "La curva verde de Picard depende de la actualización actual del sistema completo. La azul de Newton expresa el desequilibrio seleccionado tras equilibrar las otras ocho celdas en cada carga de prueba. Así queda una curva fija por configuración. Su tangente da la carga del paso completo de Newton sin amortiguar; la amortiguación puede acortar la actualización aceptada."
+  },
+  {
+    "question": "¿Qué cambios hacen necesariamente no lineal un modelo confinado con recarga constante?",
+    "options": {
+      "Aumentar solo la diferencia de carga de contorno.": false,
+      "Introducir solo zonas de conductividad fija.": false,
+      "Utilizar espesor saturado dependiente de la carga en vez de espesor fijo.": true,
+      "Cambiar únicamente la carga inicial.": false
+    },
+    "success": "La no linealidad requiere coeficientes dependientes de la carga o comportamiento no lineal del contorno. La heterogeneidad fija cambia los coeficientes, pero las ecuaciones confinadas permanecen lineales.",
+    "failure": "La no linealidad requiere coeficientes dependientes de la carga o comportamiento no lineal del contorno. La heterogeneidad fija cambia los coeficientes, pero las ecuaciones confinadas permanecen lineales."
+  },
+  {
+    "question": "¿Qué indica $\\max_i|F_i|$ en el experimento de once celdas?",
+    "options": {
+      "El mayor desequilibrio absoluto de caudal entre las nueve celdas resueltas.": true,
+      "El error de carga en la celda seleccionada.": false,
+      "Si se cumple el criterio del balance discreto de caudal.": true,
+      "Si la malla es suficientemente fina para representar el acuífero real.": false
+    },
+    "success": "El criterio de residuo comprueba las ecuaciones discretas. Se expresa en m³/s y no demuestra adecuación de la malla ni exactitud del modelo conceptual.",
+    "failure": "El criterio de residuo comprueba las ecuaciones discretas. Se expresa en m³/s y no demuestra adecuación de la malla ni exactitud del modelo conceptual."
+  }
+]

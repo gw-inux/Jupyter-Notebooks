@@ -1,0 +1,3 @@
+**Mehl (2006), figure 2 e 3: caso regolare di acquifero libero.** I valori di conducibilità dell'articolo sono $K_L=0.005$, $K_C=0.25$ e $K_R=100$; $h_L=4$ m e $h_R=0.1$ m. Nella rappresentazione SI del laboratorio sono interpretati in m/giorno, con 100 m fra i centri, larghezza di 1 m e fondo a 0 m. Ricarica ed ET sono nulle. Il carico centrale di riferimento è circa **0.547 m**.
+
+Picard parte da **0.10 m** e Newton da **1.70 m**. I grafici mostrano i percorsi calcolati fino alla convergenza con i criteri predefiniti del modulo. La trasmissività è $T=Kh$, come nell'articolo, senza un limite imposto dal tetto dell'acquifero.

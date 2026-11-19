@@ -125,5 +125,5 @@ However, Newton is not guaranteed to converge from every starting head. A nearly
 
 One common safeguard is **damping**: taking only a fraction of the proposed correction. It can help control large updates, although it does not guarantee convergence.
 
-Mehl's examples allow us to examine these differences directly: a smooth unconfined-flow problem and a problem with changes between ET head ranges. They also remind us that fewer iterations do not automatically mean less computation, because a Newton iteration requires additional derivative information.
+The examples in Mehl (2006) allow us to examine these differences directly: a smooth unconfined-flow problem and a problem with changes between ET head ranges. They also remind us that fewer iterations do not automatically mean less computation, because a Newton iteration requires additional derivative information.
 

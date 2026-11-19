@@ -167,13 +167,25 @@ Uniform initial interior head (m)
 Check your understanding
 
 ## assessment_info
-Select all correct statements (one or more). Each correctly selected or correctly unselected option earns one point. Full correctness requires every decision to be right.
+Select all correct statements (one or more). In this lab, only selected correct options earn points: one point each. Unselected and incorrect options earn no points; there are no deductions. Fully correct means all correct options selected and no incorrect options selected. In the OPAL/ONYX scoring scheme used in this course, correctly leaving an incorrect option unselected also earns one point.
 
 ## check
 Check answer
 
 ## score
-Correct decisions: {score}/{total}
+Points for correct selections: {score}/{total}
+
+## answer_full
+Fully correct
+
+## answer_partial
+Partially correct
+
+## answer_wrong
+Incorrect
+
+## assessment_details
+Incorrect options selected: {incorrect}. Correct options still missing: {missing}. Points alone do not establish full correctness.
 
 ## theory_quiz
 Foundations
@@ -206,7 +218,7 @@ Explore · the three-cell model and evapotranspiration
 Explore · eleven cells and increasing complexity
 
 ## language_proxy
-Content is available in English and German. Missing translations use English.
+Content is available in English, German, French, Spanish, Italian, Hindi, Arabic and Simplified Chinese. Missing translations use English.
 
 ## closure
 Closure criteria
@@ -218,7 +230,7 @@ Maximum head-change closure (m)
 Maximum flow-residual closure (m³/s)
 
 ## closure_help
-Both checks must pass. Defaults are 1E-4 m for head change and 1E-6 m³/s for flow residual. In Mehl’s small-flow cases, the flow check can pass before the head settles. Changing closure reassesses the saved iterate and can resume a run.
+Both checks must pass. Defaults are 1E-4 m for head change and 1E-6 m³/s for flow residual. In the small-flow cases in Mehl (2006), the flow check can pass before the head settles. Changing closure reassesses the saved iterate and can resume a run.
 
 ## sync
 Sync
@@ -486,7 +498,7 @@ Picard iteration
 Newton iteration
 
 ## mehl_quiz
-Interpreting Mehl’s examples
+Interpreting Mehl (2006)
 
 ## author_credit
-Developed by **Thomas Reimann** (2026) · TUD Dresden University of Technology · The Groundwater Project
+Developed by **Thomas Reimann** (2026) · TUD Dresden University of Technology · The Groundwater Project · based on [Mehl (2006)](https://doi.org/10.1111/j.1745-6584.2006.00207.x)

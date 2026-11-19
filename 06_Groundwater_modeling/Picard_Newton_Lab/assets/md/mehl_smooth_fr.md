@@ -1,0 +1,3 @@
+**Mehl (2006), figures 2 et 3 — cas régulier en nappe libre.** Les valeurs de conductivité de l'article sont $K_L=0.005$, $K_C=0.25$ et $K_R=100$ ; les charges aux limites sont $h_L=4$ m et $h_R=0.1$ m. Pour la représentation SI du laboratoire, nous interprétons les conductivités en m/jour, avec un espacement des centres de 100 m, une largeur de 1 m et un fond à 0 m. La recharge et l'ET sont nulles. La charge centrale de référence vaut environ **0,547 m**.
+
+Picard démarre à **0,10 m** et Newton à **1,70 m**. Les graphiques montrent les parcours calculés jusqu'à convergence avec les tolérances par défaut du module. La transmissivité est ici $T=Kh$, comme dans l'article, sans plafonnement imposé par un toit d'aquifère.

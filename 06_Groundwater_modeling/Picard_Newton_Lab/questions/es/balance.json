@@ -1,0 +1,35 @@
+[
+  {
+    "question": "Las flechas de ambas conexiones apuntan a la derecha. El cálculo da $Q_L$ negativo. ¿Qué afirmaciones son correctas?",
+    "options": {
+      "El flujo de la conexión izquierda va en sentido contrario a su flecha.": true,
+      "El signo negativo demuestra que el cálculo ha fallado.": false,
+      "El agua sale de la celda central por la conexión izquierda.": true,
+      "La carga central debe ser negativa.": false
+    },
+    "success": "Con conductancia positiva, $Q_L=C_L(h_L-h)<0$ implica $h>h_L$. El agua fluye de la celda central hacia la izquierda. El signo indica sentido; no implica una carga inválida ni negativa.",
+    "failure": "Con conductancia positiva, $Q_L=C_L(h_L-h)<0$ implica $h>h_L$. El agua fluye de la celda central hacia la izquierda. El signo indica sentido; no implica una carga inválida ni negativa."
+  },
+  {
+    "question": "¿Qué significa $F(h)=Q_L-Q_R-Q_{\\mathrm{ET}}=0$?",
+    "options": {
+      "Las entradas y salidas de la celda central se equilibran.": true,
+      "Cada caudal individual debe ser nulo.": false,
+      "La carga central debe ser cero metros.": false,
+      "El desequilibrio restante del balance es cero m³/s.": true
+    },
+    "success": "El residuo es el desequilibrio neto, no un flujo adicional. Un residuo nulo permite entradas y salidas importantes que se compensan. Verifica esta ecuación, no la concordancia del modelo con el campo.",
+    "failure": "El residuo es el desequilibrio neto, no un flujo adicional. Un residuo nulo permite entradas y salidas importantes que se compensan. Verifica esta ecuación, no la concordancia del modelo con el campo."
+  },
+  {
+    "question": "¿Qué afirmaciones sobre no linealidad son correctas para estos modelos?",
+    "options": {
+      "Un gradiente elevado basta necesariamente para hacer no lineal el flujo de Darcy.": false,
+      "El espesor saturado libre puede cambiar con la carga desconocida.": true,
+      "Un modelo confinado con conductancias fijas puede seguir siendo lineal pese a fuertes contrastes de conductividad.": true,
+      "Una conductividad constante garantiza un modelo libre lineal.": false
+    },
+    "success": "Las cargas desconocidas pueden modificar espesor saturado y conductancia aun con conductividad constante. La variación espacial de conductancias fijas no produce por sí sola no linealidad. Tampoco un gradiente elevado cambia la relación lineal de Darcy aquí supuesta.",
+    "failure": "Las cargas desconocidas pueden modificar espesor saturado y conductancia aun con conductividad constante. La variación espacial de conductancias fijas no produce por sí sola no linealidad. Tampoco un gradiente elevado cambia la relación lineal de Darcy aquí supuesta."
+  }
+]

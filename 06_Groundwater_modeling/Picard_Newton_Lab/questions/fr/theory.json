@@ -1,0 +1,46 @@
+[
+  {
+    "question": "Que représentent $f_P(h)$ et $f_N(h)$ ?",
+    "options": {
+      "$f_P(h)$ renvoie une charge proposée en m.": true,
+      "$f_N(h)$ est la charge suivante de Newton.": false,
+      "$f_N(h)=F(h)$ est un déséquilibre de débit en m³/s.": true,
+      "$f_P$ et $f_N$ doivent avoir les mêmes unités.": false
+    },
+    "success": "Picard utilise $h^{k+1}=f_P(h^k)$. Newton utilise $h^{k+1}=h^k-F(h^k)/F'(h^k)$ : $f_N=F$ est donc un résidu, et non une charge mise à jour.",
+    "failure": "Picard utilise $h^{k+1}=f_P(h^k)$. Newton utilise $h^{k+1}=h^k-F(h^k)/F'(h^k)$ : $f_N=F$ est donc un résidu, et non une charge mise à jour."
+  },
+  {
+    "question": "Qu'est-ce qui caractérise une solution $h^\\ast$ ?",
+    "options": {
+      "$f_P(h^\\ast)=h^\\ast$.": true,
+      "$f_N(h^\\ast)=0$.": true,
+      "$f_P(h^\\ast)=0$ dans tous les modèles.": false,
+      "Les entrées et les sorties s'équilibrent.": true
+    },
+    "success": "Un point fixe de $f_P$ et un zéro de $f_N$ décrivent la même charge d'équilibre. La charge elle-même n'est pas nécessairement nulle.",
+    "failure": "Un point fixe de $f_P$ et un zéro de $f_N$ décrivent la même charge d'équilibre. La charge elle-même n'est pas nécessairement nulle."
+  },
+  {
+    "question": "Quelles propositions décrivent les deux linéarisations ?",
+    "options": {
+      "Picard fixe les coefficients dépendant de la charge à leurs valeurs en $h^k$.": true,
+      "Newton utilise la dérivée du résidu complet.": true,
+      "Newton converge toujours, quelle que soit la charge initiale.": false,
+      "Une itération numérique fait avancer le temps physique d'un jour.": false
+    },
+    "success": "Les deux méthodes améliorent une estimation numérique d'une solution permanente. Newton inclut les dérivées des coefficients ; sa convergence dépend de la fonction et de l'estimation initiale.",
+    "failure": "Les deux méthodes améliorent une estimation numérique d'une solution permanente. Newton inclut les dérivées des coefficients ; sa convergence dépend de la fonction et de l'estimation initiale."
+  },
+  {
+    "question": "Comment faut-il contrôler la convergence ?",
+    "options": {
+      "Vérifier la variation maximale de charge $\\max_i|\\Delta h_i|$.": true,
+      "Vérifier le résidu maximal de débit $\\max_i|F_i|$.": true,
+      "Une petite variation de charge prouve à elle seule que tous les bilans sont satisfaits.": false,
+      "Le résidu a l'unité d'une charge.": false
+    },
+    "success": "Les deux critères sont nécessaires. De petites variations peuvent coexister avec une équation d'écoulement déséquilibrée ; $F_i$ est un déséquilibre de débit en m³/s.",
+    "failure": "Les deux critères sont nécessaires. De petites variations peuvent coexister avec une équation d'écoulement déséquilibrée ; $F_i$ est un déséquilibre de débit en m³/s."
+  }
+]

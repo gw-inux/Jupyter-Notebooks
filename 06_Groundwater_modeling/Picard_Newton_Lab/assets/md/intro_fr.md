@@ -1,0 +1,1 @@
+**Version provisoire pour relecture scientifique et pédagogique.** Explorez le bilan, effectuez un pas numérique et comparez Picard et Newton. Ces itérations améliorent une solution en régime permanent ; elles ne font pas avancer le temps physique. [Envoyer un avis](mailto:mail@reimann-thomas.de).

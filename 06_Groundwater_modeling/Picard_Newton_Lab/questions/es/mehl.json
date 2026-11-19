@@ -1,0 +1,24 @@
+[
+  {
+    "question": "Los ejemplos de Mehl (2006) muestran las distintas cargas iniciales del artículo para Picard y Newton. ¿Cómo deben compararse los recorridos?",
+    "options": {
+      "Ilustran las construcciones gráficas y los efectos de la configuración.": true,
+      "Sus números de iteraciones por sí solos establecen qué método siempre es más rápido.": false,
+      "Una comparación con condiciones iniciales equivalentes requiere la misma carga inicial y los mismos criterios de parada.": true,
+      "Ambos métodos buscan cargas de equilibrio distintas en el mismo ejemplo.": false
+    },
+    "success": "Los valores iniciales históricos son diferentes: los recorridos son demostraciones, no una comparación controlada de velocidad. Para compararlos, iguale cargas iniciales y criterios; recuerde también que el trabajo por iteración puede diferir. Ambos buscan la misma solución.",
+    "failure": "Los valores iniciales históricos son diferentes: los recorridos son demostraciones, no una comparación controlada de velocidad. Para compararlos, iguale cargas iniciales y criterios; recuerde también que el trabajo por iteración puede diferir. Ambos buscan la misma solución."
+  },
+  {
+    "question": "¿Qué afirmaciones explican las curvas del ejemplo con ET?",
+    "options": {
+      "Una pérdida continua por ET puede cambiar de pendiente en los umbrales.": true,
+      "Cada discontinuidad de la función de Picard representa un salto físico de la ET.": false,
+      "Seleccionar otra relación lineal de ET puede hacer saltar la función de actualización de Picard.": true,
+      "Toda secuencia iterativa oscilante representa oscilaciones físicas del nivel freático.": false
+    },
+    "success": "La pérdida por ET y el residuo de Newton son continuos, con puntos angulosos donde cambia la pendiente. Picard resuelve una ecuación lineal con el tramo seleccionado; al cambiarlo, su función de actualización puede ser discontinua. Las oscilaciones numéricas no representan movimiento físico del nivel freático en el tiempo.",
+    "failure": "La pérdida por ET y el residuo de Newton son continuos, con puntos angulosos donde cambia la pendiente. Picard resuelve una ecuación lineal con el tramo seleccionado; al cambiarlo, su función de actualización puede ser discontinua. Las oscilaciones numéricas no representan movimiento físico del nivel freático en el tiempo."
+  }
+]

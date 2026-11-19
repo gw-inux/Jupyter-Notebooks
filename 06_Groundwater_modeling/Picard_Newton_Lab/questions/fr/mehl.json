@@ -1,0 +1,24 @@
+[
+  {
+    "question": "Les exemples affichés utilisent les charges initiales différentes de Mehl (2006) pour Picard et Newton. Comment comparer leurs parcours ?",
+    "options": {
+      "Ils illustrent les constructions graphiques et les effets de la configuration.": true,
+      "Le seul nombre d'itérations permet d'établir quelle méthode est toujours la plus rapide.": false,
+      "Une comparaison à conditions identiques exige la même charge initiale et les mêmes critères d'arrêt.": true,
+      "Les méthodes recherchent des charges d'équilibre différentes dans le même exemple.": false
+    },
+    "success": "Les charges initiales de la publication diffèrent : ces parcours sont des démonstrations, pas une comparaison de vitesse à conditions identiques. Pour comparer, harmonisez les départs et les critères et rappelez-vous que le travail par itération peut différer. Les deux méthodes recherchent la même solution.",
+    "failure": "Les charges initiales de la publication diffèrent : ces parcours sont des démonstrations, pas une comparaison de vitesse à conditions identiques. Pour comparer, harmonisez les départs et les critères et rappelez-vous que le travail par itération peut différer. Les deux méthodes recherchent la même solution."
+  },
+  {
+    "question": "Quelles propositions expliquent les courbes de l'exemple avec ET ?",
+    "options": {
+      "Une perte par ET continue peut changer de pente aux seuils.": true,
+      "Toute discontinuité de la fonction de Picard représente un saut physique de l'ET.": false,
+      "Choisir une autre relation linéaire d'ET peut provoquer un saut de la fonction de mise à jour de Picard.": true,
+      "Toute suite numérique oscillante représente une oscillation physique de la surface de la nappe.": false
+    },
+    "success": "La perte par ET et le résidu de Newton restent continus, avec des points anguleux aux changements de pente. Picard résout une équation linéaire avec le segment choisi ; changer ce segment peut rendre discontinue sa fonction de mise à jour. Les oscillations numériques ne représentent pas un mouvement physique de la nappe dans le temps.",
+    "failure": "La perte par ET et le résidu de Newton restent continus, avec des points anguleux aux changements de pente. Picard résout une équation linéaire avec le segment choisi ; changer ce segment peut rendre discontinue sa fonction de mise à jour. Les oscillations numériques ne représentent pas un mouvement physique de la nappe dans le temps."
+  }
+]

@@ -1,0 +1,24 @@
+[
+  {
+    "question": "Il pompaggio abbassa la superficie freatica in un acquifero libero. Quali affermazioni possono essere corrette?",
+    "options": {
+      "Spessore saturo e conduttanza possono diminuire anche con conducibilità idraulica costante.": true,
+      "Ogni equazione di flusso dipendente dal carico deve essere non lineare.": false,
+      "Il carico incognito può influenzare sia la sezione di flusso sia il gradiente idraulico.": true,
+      "Una variazione di conduttanza indica sempre una variazione del materiale acquifero.": false
+    },
+    "success": "La conduttanza comprende geometria e conducibilità. Lo spessore saturo dipendente dal carico può rendere la conduttanza dipendente dall'incognita. La dipendenza dal carico, da sola, non implica non linearità: una relazione lineare fissa carico–portata rimane lineare.",
+    "failure": "La conduttanza comprende geometria e conducibilità. Lo spessore saturo dipendente dal carico può rendere la conduttanza dipendente dall'incognita. La dipendenza dal carico, da sola, non implica non linearità: una relazione lineare fissa carico–portata rimane lineare."
+  },
+  {
+    "question": "Un modello stazionario richiede 30 iterazioni numeriche. Che cosa indica?",
+    "options": {
+      "L'acquifero ha attraversato 30 passi di tempo fisico.": false,
+      "Il risolutore ha rivisto ripetutamente le stime dei carichi.": true,
+      "Il risultato finale deve essere verificato rispetto ai criteri di convergenza.": true,
+      "Il risultato è necessariamente più accurato di uno ottenuto in tre iterazioni.": false
+    },
+    "success": "Le iterazioni migliorano una stima numerica senza far avanzare il tempo fisico. Il loro numero da solo non dimostra convergenza né corrispondenza con l'acquifero reale.",
+    "failure": "Le iterazioni migliorano una stima numerica senza far avanzare il tempo fisico. Il loro numero da solo non dimostra convergenza né corrispondenza con l'acquifero reale."
+  }
+]

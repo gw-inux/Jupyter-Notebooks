@@ -1,0 +1,1 @@
+**Borrador para revisión científica y docente.** Examine el balance, realice un paso numérico y compare Picard con Newton. Estas iteraciones mejoran una solución en régimen estacionario; no hacen avanzar el tiempo físico. [Comentarios](mailto:mail@reimann-thomas.de).

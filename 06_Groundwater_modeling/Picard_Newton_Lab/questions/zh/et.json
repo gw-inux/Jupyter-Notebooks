@@ -1,0 +1,24 @@
+[
+  {
+    "question": "ET 表面 SURF = 7 m，极限深度 EXDP = 4 m。哪些陈述正确？",
+    "options": {
+      "EXDP 从 SURF 向下量取。": true,
+      "ET 极限高程为 4 m。": false,
+      "地下水水头为 5 m 时，RET 等于 EVTR 的一半。": true,
+      "将 RET 乘以竖直饱和断面积即可得到 ET 流量。": false
+    },
+    "success": "极限高程为 SURF − EXDP = 3 m。5 m 位于 3 与 7 m 的中点，所以 RET = EVTR/2。ET 流量采用水平面积：$Q_{\\mathrm{ET}}=\\mathrm{RET}\\,A$。",
+    "failure": "极限高程为 SURF − EXDP = 3 m。5 m 位于 3 与 7 m 的中点，所以 RET = EVTR/2。ET 流量采用水平面积：$Q_{\\mathrm{ET}}=\\mathrm{RET}\\,A$。"
+  },
+  {
+    "question": "水头跨过 SURF 时，ET 关系怎样变化？",
+    "options": {
+      "地下水 ET 损失量突然跳变。": false,
+      "ET 损失量保持连续。": true,
+      "损失量对水头的敏感性从 SURF 以下的正斜率变为以上的零斜率。": true,
+      "最大 ET 速率必须改变。": false
+    },
+    "success": "线性分段在 SURF 达到的损失量与恒定最大值分段相同。因此流量连续，但斜率改变。各分段单独看是线性的，完整关系在阈值处切换。",
+    "failure": "线性分段在 SURF 达到的损失量与恒定最大值分段相同。因此流量连续，但斜率改变。各分段单独看是线性的，完整关系在阈值处切换。"
+  }
+]

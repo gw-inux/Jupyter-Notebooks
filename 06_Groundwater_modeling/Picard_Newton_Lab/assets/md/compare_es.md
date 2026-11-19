@@ -1,0 +1,5 @@
+Las figuras reproducen las **elecciones de parámetros y las cargas iniciales** de las demostraciones escalares de Mehl (2006). El contraste de conductividad es esencial para su forma: un acuífero homogéneo genera otra curva de Picard. Picard busca una intersección con la diagonal; Newton busca un cero del mismo balance mediante una tangente.
+
+El artículo utiliza cargas iniciales distintas para ilustrar ambos métodos. Estas figuras muestran, por tanto, su geometría, no una comparación controlada del número de iteraciones. Los recorridos naranjas se calculan con las ecuaciones; no se copian de la publicación. Para estos pares de figuras, el artículo proporciona parámetros numéricos sin especificar completamente las unidades físicas y las distancias. Aplicamos una escala SI común a las conductancias y al caudal de ET, de modo que los caudales se expresan aquí en m³/s. Este reescalado conserva las raíces y las actualizaciones; no implica que el artículo especificara estas dimensiones SI.
+
+Examine ambos ejemplos con el selector antes de responder a las preguntas.

@@ -1,0 +1,35 @@
+[
+  {
+    "question": "Le frecce dei due collegamenti puntano a destra. Il calcolo restituisce $Q_L$ negativa. Quali affermazioni sono corrette?",
+    "options": {
+      "Il flusso nel collegamento sinistro è opposto alla freccia.": true,
+      "Il segno negativo dimostra il fallimento del calcolo.": false,
+      "L'acqua esce dalla cella centrale attraverso il collegamento sinistro.": true,
+      "Il carico centrale deve essere negativo.": false
+    },
+    "success": "Con conduttanza positiva, $Q_L=C_L(h_L-h)<0$ implica $h>h_L$. Il flusso va dalla cella centrale a sinistra. Il segno indica direzione, non un carico invalido o negativo.",
+    "failure": "Con conduttanza positiva, $Q_L=C_L(h_L-h)<0$ implica $h>h_L$. Il flusso va dalla cella centrale a sinistra. Il segno indica direzione, non un carico invalido o negativo."
+  },
+  {
+    "question": "Che cosa significa $F(h)=Q_L-Q_R-Q_{\\mathrm{ET}}=0$?",
+    "options": {
+      "Entrate e uscite della cella centrale si bilanciano.": true,
+      "Ogni singola portata deve essere nulla.": false,
+      "Il carico centrale deve essere zero metri.": false,
+      "Lo squilibrio idrico residuo è zero m³/s.": true
+    },
+    "success": "Il residuo è lo squilibrio netto, non una portata aggiuntiva. Residuo nullo consente entrate e uscite anche grandi ma equilibrate. Verifica questa equazione, non la corrispondenza del modello alle condizioni reali.",
+    "failure": "Il residuo è lo squilibrio netto, non una portata aggiuntiva. Residuo nullo consente entrate e uscite anche grandi ma equilibrate. Verifica questa equazione, non la corrispondenza del modello alle condizioni reali."
+  },
+  {
+    "question": "Quali affermazioni sulla non linearità sono corrette nei modelli descritti?",
+    "options": {
+      "Un gradiente elevato da solo rende necessariamente non lineare il flusso di Darcy.": false,
+      "Lo spessore saturo libero può variare con il carico incognito.": true,
+      "Un modello confinato a conduttanze fisse può restare lineare anche con forti contrasti di conducibilità.": true,
+      "Una conducibilità costante garantisce un modello libero lineare.": false
+    },
+    "success": "I carichi incogniti possono modificare spessore saturo e conduttanza anche a conducibilità costante. Una variazione spaziale di conduttanze fisse non produce di per sé non linearità. Un gradiente elevato non cambia da solo la relazione lineare di Darcy qui assunta.",
+    "failure": "I carichi incogniti possono modificare spessore saturo e conduttanza anche a conducibilità costante. Una variazione spaziale di conduttanze fisse non produce di per sé non linearità. Un gradiente elevato non cambia da solo la relazione lineare di Darcy qui assunta."
+  }
+]

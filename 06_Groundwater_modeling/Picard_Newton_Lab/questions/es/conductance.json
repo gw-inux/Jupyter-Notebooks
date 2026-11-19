@@ -1,0 +1,35 @@
+[
+  {
+    "question": "¿Qué afirmaciones describen correctamente la conductancia?",
+    "options": {
+      "Combina la conductividad hidráulica con la geometría de una conexión de flujo.": true,
+      "Es el caudal que atraviesa la conexión.": false,
+      "Se expresa en m²/s cuando las cargas están en metros y el caudal en m³/s.": true,
+      "Conductividad hidráulica y conductancia son magnitudes intercambiables.": false
+    },
+    "success": "En una conexión uniforme, $C=Kwb/L$. La conductancia tiene unidades de m²/s y, multiplicada por la diferencia de carga, da el caudal. $K$ describe el material, mientras que la conductancia también incorpora la geometría.",
+    "failure": "En una conexión uniforme, $C=Kwb/L$. La conductancia tiene unidades de m²/s y, multiplicada por la diferencia de carga, da el caudal. $K$ describe el material, mientras que la conductancia también incorpora la geometría."
+  },
+  {
+    "question": "La anchura de una conexión uniforme se duplica. Conductividad, espesor saturado, longitud y diferencia de carga no cambian. ¿Qué ocurre?",
+    "options": {
+      "El área de flujo se duplica.": true,
+      "La conductividad hidráulica se duplica.": false,
+      "La conductancia y el caudal se duplican.": true,
+      "El caudal no cambia porque el gradiente no cambia.": false
+    },
+    "success": "El área vertical de flujo es $A_\\perp=wb$. Duplicar la anchura duplica el área, la conductancia y el caudal para el mismo gradiente, sin cambiar la conductividad hidráulica.",
+    "failure": "El área vertical de flujo es $A_\\perp=wb$. Duplicar la anchura duplica el área, la conductancia y el caudal para el mismo gradiente, sin cambiar la conductividad hidráulica."
+  },
+  {
+    "question": "¿Por qué se combinan las resistencias de dos semiceldas en el modelo de tres celdas?",
+    "options": {
+      "El flujo entre centros atraviesa ambas semiceldas consecutivamente.": true,
+      "La semicelda más conductora determina siempre toda la conductancia de la conexión.": false,
+      "Una semicelda poco transmisiva puede limitar toda la conexión.": true,
+      "La celda menos conductora puede omitirse del cálculo de la conexión.": false
+    },
+    "success": "Las semiceldas están conectadas en serie y sus resistencias se suman. Ambas contribuyen; una resistencia grande puede dominar. Así se obtiene la media armónica de transmisividad de esta discretización.",
+    "failure": "Las semiceldas están conectadas en serie y sus resistencias se suman. Ambas contribuyen; una resistencia grande puede dominar. Así se obtiene la media armónica de transmisividad de esta discretización."
+  }
+]

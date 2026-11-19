@@ -1,0 +1,46 @@
+[
+  {
+    "question": "Pendant une mise à jour de Picard sans ET, quelles grandeurs restent fixes lors du calcul de la charge suivante ?",
+    "options": {
+      "Les conductances évaluées à la charge actuelle.": true,
+      "La charge centrale recherchée.": false,
+      "Les charges imposées aux limites.": true,
+      "Les conductances pendant toutes les itérations suivantes, même si la charge change.": false
+    },
+    "success": "Picard évalue les conductances à l'estimation actuelle et les fixe pour une résolution linéaire. Les charges aux limites restent imposées ; la nouvelle charge centrale est l'inconnue. Les conductances sont recalculées avant la résolution suivante.",
+    "failure": "Picard évalue les conductances à l'estimation actuelle et les fixe pour une résolution linéaire. Les charges aux limites restent imposées ; la nouvelle charge centrale est l'inconnue. Les conductances sont recalculées avant la résolution suivante."
+  },
+  {
+    "question": "Pourquoi vérifier le bilan original après une mise à jour de Picard ?",
+    "options": {
+      "La nouvelle charge en nappe libre peut modifier l'épaisseur saturée et la conductance.": true,
+      "Résoudre le bilan à conductances fixes garantit un résidu non linéaire nul.": false,
+      "Une petite variation de charge prouve toujours la convergence.": false,
+      "Le résidu doit utiliser les débits évalués à la charge mise à jour.": true
+    },
+    "success": "Le bilan linéaire est satisfait avec les conductances temporairement fixes. Le bilan non linéaire original utilise les conductances et l'ET à la nouvelle charge ; un déséquilibre peut donc subsister. La variation de charge et le résidu doivent tous deux satisfaire leurs critères.",
+    "failure": "Le bilan linéaire est satisfait avec les conductances temporairement fixes. Le bilan non linéaire original utilise les conductances et l'ET à la nouvelle charge ; un déséquilibre peut donc subsister. La variation de charge et le résidu doivent tous deux satisfaire leurs critères."
+  },
+  {
+    "question": "Quelles propositions interprètent correctement le diagramme de Picard ?",
+    "options": {
+      "$f_P(h)$ renvoie la charge suivante en mètres.": true,
+      "$F(h)$ renvoie la même grandeur que $f_P(h)$.": false,
+      "À la solution, $f_P(h^*)=h^*$.": true,
+      "La droite $y=h$ est une condition aux limites supplémentaire.": false
+    },
+    "success": "$f_P$ met à jour la charge ; $F$ est le résidu de débit en m³/s. La diagonale reporte la charge obtenue en entrée de l'itération suivante. L'intersection est un point fixe où la charge ne change plus.",
+    "failure": "$f_P$ met à jour la charge ; $F$ est le résidu de débit en m³/s. La diagonale reporte la charge obtenue en entrée de l'itération suivante. L'intersection est un point fixe où la charge ne change plus."
+  },
+  {
+    "question": "Une mise à jour de Picard franchit un seuil d'ET. Quelles propositions décrivent la méthode utilisée ici ?",
+    "options": {
+      "Dans l'intervalle intermédiaire, la perte peut dépendre de la nouvelle charge pendant la résolution linéaire.": true,
+      "L'ET est toujours figée au débit évalué à la charge précédente.": false,
+      "La perte effective est réévaluée après la mise à jour et l'itération suivante utilise le nouveau segment applicable.": true,
+      "Franchir un seuil signifie nécessairement que le problème permanent n'a pas de solution.": false
+    },
+    "success": "La charge actuelle choisit le segment utilisé pour une résolution. Sa pente est conservée : dans l'intervalle intermédiaire, l'ET varie donc avec la nouvelle charge. Après la mise à jour, la relation complète détermine la perte effective et le segment suivant. Franchir un seuil peut affecter la convergence sans rendre impossible le bilan physique.",
+    "failure": "La charge actuelle choisit le segment utilisé pour une résolution. Sa pente est conservée : dans l'intervalle intermédiaire, l'ET varie donc avec la nouvelle charge. Après la mise à jour, la relation complète détermine la perte effective et le segment suivant. Franchir un seuil peut affecter la convergence sans rendre impossible le bilan physique."
+  }
+]

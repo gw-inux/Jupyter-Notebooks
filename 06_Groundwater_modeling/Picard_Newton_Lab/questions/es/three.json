@@ -1,0 +1,46 @@
+[
+  {
+    "question": "¿Por qué es lineal el modelo confinado sin ET?",
+    "options": {
+      "La transmisividad $T=Kb$ no depende de la carga.": true,
+      "Las conductancias de las caras son fijas.": true,
+      "El gradiente debe ser pequeño para que haya linealidad.": false,
+      "Las tres conductividades deben ser idénticas.": false
+    },
+    "success": "Un espesor y una conductividad fijos dan conductancia constante. Conductividades diferentes y un gradiente elevado no hacen por sí solos no lineal este balance confinado.",
+    "failure": "Un espesor y una conductividad fijos dan conductancia constante. Conductividades diferentes y un gradiente elevado no hacen por sí solos no lineal este balance confinado."
+  },
+  {
+    "question": "¿Qué puede hacer no lineal el balance de tres celdas?",
+    "options": {
+      "Un espesor saturado que cambia con la carga.": true,
+      "Un flujo de contorno que cambia entre tramos dependientes de la carga.": true,
+      "Elegir otra estimación inicial en un modelo que, por lo demás, es lineal.": false,
+      "Cambiar el color o la ampliación de un gráfico.": false
+    },
+    "success": "La no linealidad pertenece a las ecuaciones, a través de la transmisividad o del comportamiento del contorno. Las estimaciones iniciales modifican el recorrido iterativo, no la función escalar subyacente.",
+    "failure": "La no linealidad pertenece a las ecuaciones, a través de la transmisividad o del comportamiento del contorno. Las estimaciones iniciales modifican el recorrido iterativo, no la función escalar subyacente."
+  },
+  {
+    "question": "¿Cómo se interpreta una actualización en las figuras escalares?",
+    "options": {
+      "Picard transfiere $f_P(h^k)$ a la diagonal $y=h$.": true,
+      "Newton sigue la tangente de $F$ hasta el eje de residuo cero.": true,
+      "El marcador naranja debe ser ya la carga de referencia.": false,
+      "Ambos métodos buscan la misma solución equilibrada.": true
+    },
+    "success": "Picard construye una actualización de punto fijo; Newton busca una raíz. Un marcador intermedio es una estimación, no una garantía de convergencia.",
+    "failure": "Picard construye una actualización de punto fijo; Newton busca una raíz. Un marcador intermedio es una estimación, no una garantía de convergencia."
+  },
+  {
+    "question": "Tras un paso exacto de un problema lineal, ¿por qué puede seguir apareciendo «Iterando»?",
+    "options": {
+      "El residuo puede ser ya nulo mientras la última variación de carga es grande.": true,
+      "Otro paso puede confirmar el criterio de variación de carga.": true,
+      "El método necesariamente ha utilizado una ecuación incorrecta.": false,
+      "La carga de referencia queda definida por la estimación inicial.": false
+    },
+    "success": "El módulo exige ambos criterios. La carga de referencia independiente resuelve el balance discreto y no depende de la estimación inicial del estudiante.",
+    "failure": "El módulo exige ambos criterios. La carga de referencia independiente resuelve el balance discreto y no depende de la estimación inicial del estudiante."
+  }
+]
