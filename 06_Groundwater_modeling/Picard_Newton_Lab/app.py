@@ -70,12 +70,15 @@ from Picard_Newton_Lab import plots
 INITIAL_HEAD_STEP = 0.1  # m; retains the paper's exact starting values.
 INITIAL_HEAD_CLOSURE = 1e-4  # m; flow closure uses FLOW_TOL (m³/s).
 
-lang = st.selectbox(
-    "🌐", list(LANGUAGES), format_func=LANGUAGES.get, key="picard_newton_language"
-)
+# Widget state is updated before each rerun, so the translated page title is
+# available before drawing the selector. Configure the page before any UI.
+lang = st.session_state.get("picard_newton_language", "en")
 t = translator(lang)
 # A course can set its own layout and sidebar. Standalone Streamlit defaults to centered.
 st.set_page_config(page_title=t("page_title"), page_icon="💧")
+st.selectbox(
+    "🌐", list(LANGUAGES), format_func=LANGUAGES.get, key="picard_newton_language"
+)
 labels = load_ui(lang)
 settings_style()
 st.caption(t("language_proxy"))
