@@ -1,0 +1,1 @@
+In this **confined aquifer**, the two face conductances are constant and equal. The middle-cell head follows directly from $h=(h_L+h_R)/2=2.5$ m. A second computation returns the same head and confirms zero head change.

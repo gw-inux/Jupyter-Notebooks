@@ -1,0 +1,3 @@
+Beide Verfahren suchen das Potenzial, das dieselbe Wasserbilanz erfüllt. Das Durchflussresiduum beschreibt die Einhaltung der Wasserbilanz. Die Potenzialänderung beschreibt die Änderung im Iterationsschritt. Ein Solver kann beide Kriterien prüfen. Eine Änderung des homogenen $K$-Werts skaliert die Durchflüsse, während Lösungspotenzial und Iterationsverlauf gleich bleiben.
+
+Das Dreizellenbeispiel folgt dem didaktischen Ansatz von [Mehl (2006)](https://doi.org/10.1111/j.1745-6584.2006.00207.x). Die Newton-Formulierung erläutern [Niswonger, Panday und Ibaraki (2011)](https://doi.org/10.3133/tm6A37).

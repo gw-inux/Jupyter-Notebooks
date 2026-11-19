@@ -1,0 +1,3 @@
+**Unconfined flow.** With the base at 0 m, the local saturated thickness is $h$. Each face uses the arithmetic mean of the saturated thicknesses at its adjacent cell centres. Integrating the horizontal Darcy discharge between the two heads gives the same expression. For example, left inflow is $K W(h_L^2-h^2)/(2\Delta x)$.
+
+At balance $h_L^2-h^2=h^2-h_R^2$. Halfway between the boundaries the head is therefore $\sqrt{(4^2+1^2)/2}=\sqrt{8.5}\approx 2.915476$ m. At four decimal places, **2.9155 m** meets the budget tolerance. The larger saturated thickness on the left allows the same discharge to pass with a smaller head drop.

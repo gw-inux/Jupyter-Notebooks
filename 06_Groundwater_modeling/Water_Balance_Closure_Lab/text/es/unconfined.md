@@ -1,0 +1,1 @@
+En un **acuífero libre**, el espesor saturado y la transmisividad dependen de la carga, $T(h)=K(h-z_b)$. La conductancia de cada cara, $C=KW\bar b/\Delta x$, utiliza el espesor saturado medio de las dos celdas adyacentes. Una nueva carga en la celda central modifica ambas conductancias y los caudales de Darcy.

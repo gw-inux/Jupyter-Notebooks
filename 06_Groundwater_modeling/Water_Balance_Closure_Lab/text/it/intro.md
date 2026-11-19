@@ -1,0 +1,1 @@
+Come trova un modello numerico un carico idraulico che bilanci le portate in entrata e in uscita? Modifica il carico della cella centrale oppure calcola un’iterazione alla volta per esplorare i criteri di chiusura basati sul bilancio idrico e sulla variazione di carico.

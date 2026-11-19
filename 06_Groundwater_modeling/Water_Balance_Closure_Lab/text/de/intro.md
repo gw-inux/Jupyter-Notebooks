@@ -1,0 +1,1 @@
+Wie findet ein numerisches Modell ein hydraulisches Potenzial, bei dem Zu- und Abstrom ausgeglichen sind? Verändern Sie das Potenzial der mittleren Zelle oder berechnen Sie jeweils einen Iterationsschritt, um die Konvergenz anhand der Wasserbilanz und der Potenzialänderung zu untersuchen.

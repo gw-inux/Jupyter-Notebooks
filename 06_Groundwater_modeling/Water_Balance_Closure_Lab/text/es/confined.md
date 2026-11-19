@@ -1,0 +1,1 @@
+En este **acuífero confinado**, las dos conductancias son constantes e iguales. La carga de la celda central se obtiene directamente de $h=(h_L+h_R)/2=2.5$ m. Un segundo cálculo devuelve la misma carga y confirma un cambio de carga nulo.

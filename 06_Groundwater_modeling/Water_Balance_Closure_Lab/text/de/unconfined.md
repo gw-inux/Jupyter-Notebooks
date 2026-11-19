@@ -1,0 +1,1 @@
+In einem **ungespannten Grundwasserleiter** hängen gesättigte Mächtigkeit und Transmissivität vom Potenzial ab, $T(h)=K(h-z_b)$. Für jede Zellfläche wird der Leitwert $C=KW\bar b/\Delta x$ mit der mittleren gesättigten Mächtigkeit der beiden angrenzenden Zellen berechnet. Ein neues Potenzial in der mittleren Zelle verändert beide Leitwerte und die Durchflüsse nach Darcy.

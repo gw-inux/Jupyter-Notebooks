@@ -1,0 +1,1 @@
+¿Cómo encuentra un modelo numérico una carga hidráulica que equilibre la entrada y la salida de agua? Ajuste la carga de la celda central o calcule una iteración cada vez para explorar los criterios de cierre basados en el balance hídrico y en el cambio de carga.

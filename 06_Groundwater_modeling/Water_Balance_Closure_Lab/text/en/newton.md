@@ -1,0 +1,1 @@
+**Newton iteration.** The flow residual is $R(h)=Q_L(h)-Q_R(h)$. Newton uses its slope $R'(h_k)$ to find the zero of the local tangent and obtain a head correction. In the unconfined case the slope includes the change of conductance with head. A full step uses $\alpha=1$. The app halves the correction when needed to keep the head between 1 and 4 m and reduce $|R|$.

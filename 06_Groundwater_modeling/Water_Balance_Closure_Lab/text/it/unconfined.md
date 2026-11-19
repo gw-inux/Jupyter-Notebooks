@@ -1,0 +1,1 @@
+In un **acquifero libero**, lo spessore saturo e la trasmissività dipendono dal carico, $T(h)=K(h-z_b)$. La conduttanza di ogni faccia, $C=KW\bar b/\Delta x$, usa lo spessore saturo medio delle due celle adiacenti. Un nuovo carico nella cella centrale modifica entrambe le conduttanze e le portate di Darcy.

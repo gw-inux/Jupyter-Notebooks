@@ -1,0 +1,1 @@
+**Iterazione di Picard.** Usa il carico attuale $h_k$ per calcolare le due conduttanze. Mantienile costanti e risolvi il bilancio idrico per ottenere $h_{k+1}$. Ricalcola poi le conduttanze con il nuovo carico per l’iterazione successiva. Il criterio sulla variazione di carico confronta $|h_{k+1}-h_k|$ con la tolleranza scelta.

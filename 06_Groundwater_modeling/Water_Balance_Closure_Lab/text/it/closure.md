@@ -1,0 +1,3 @@
+Entrambi i metodi cercano il carico che soddisfa lo stesso bilancio idrico. Il residuo di portata misura il rispetto della conservazione dell’acqua, mentre la variazione di carico misura quanto è cambiata la stima in un’iterazione. Un solutore può verificare entrambi i criteri. Cambiare la $K$ omogenea scala le portate e conserva il carico di equilibrio e la sequenza delle iterazioni.
+
+L’esercizio a tre celle segue l’approccio didattico di [Mehl (2006)](https://doi.org/10.1111/j.1745-6584.2006.00207.x). La formulazione di Newton è descritta da [Niswonger, Panday e Ibaraki (2011)](https://doi.org/10.3133/tm6A37).

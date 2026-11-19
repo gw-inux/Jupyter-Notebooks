@@ -1,0 +1,1 @@
+In an **unconfined aquifer**, saturated thickness and transmissivity depend on the head, $T(h)=K(h-z_b)$. Each face conductance $C=KW\bar b/\Delta x$ uses the mean saturated thickness of its two adjacent cells. A new middle-cell head changes both conductances and the Darcy discharges.

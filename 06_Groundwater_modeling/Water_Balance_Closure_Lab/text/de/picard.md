@@ -1,0 +1,1 @@
+**Picard-Iteration.** Berechnen Sie die beiden Leitwerte mit dem aktuellen Potenzial $h_k$. Halten Sie die Leitwerte fest und lösen Sie die Wasserbilanz nach $h_{k+1}$ auf. Berechnen Sie anschließend die Leitwerte für die folgende Iteration aus dem neuen Potenzial. Das Abbruchkriterium vergleicht $|h_{k+1}-h_k|$ mit Ihrer Toleranz.

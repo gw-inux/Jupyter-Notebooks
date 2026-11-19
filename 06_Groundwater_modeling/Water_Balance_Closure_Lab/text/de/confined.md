@@ -1,0 +1,1 @@
+In diesem **gespannten Grundwasserleiter** sind die beiden Leitwerte konstant und gleich groß. Das Potenzial der mittleren Zelle ergibt sich direkt aus $h=(h_L+h_R)/2=2.5$ m. Eine zweite Berechnung liefert dasselbe Potenzial und bestätigt eine Potenzialänderung von null.

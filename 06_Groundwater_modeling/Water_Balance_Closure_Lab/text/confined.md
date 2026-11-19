@@ -1,0 +1,1 @@
+**Confined flow.** Both faces have a constant saturated thickness of 2 m. Their conductances are equal. Balancing the two discharges therefore requires equal head drops over the two equal distances. The middle head is $(4+1)/2=2.5000$ m. The narrow tubes in the section indicate piezometric heads above the aquifer roof.

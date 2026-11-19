@@ -1,0 +1,3 @@
+Ambos métodos buscan la carga que satisface el mismo balance hídrico. El residuo de caudal mide el cumplimiento de la conservación del agua, y el cambio de carga mide cuánto ha variado la estimación en una iteración. Un algoritmo de resolución puede comprobar ambos criterios. Cambiar la $K$ homogénea escala los caudales y conserva la carga de equilibrio y la secuencia de iteración.
+
+El ejercicio de tres celdas sigue el enfoque didáctico de [Mehl (2006)](https://doi.org/10.1111/j.1745-6584.2006.00207.x). La formulación de Newton se describe en [Niswonger, Panday e Ibaraki (2011)](https://doi.org/10.3133/tm6A37).

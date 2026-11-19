@@ -1,0 +1,1 @@
+In questo **acquifero confinato**, le due conduttanze sono costanti e uguali. Il carico della cella centrale si ricava direttamente da $h=(h_L+h_R)/2=2.5$ m. Un secondo calcolo restituisce lo stesso carico e conferma una variazione nulla.

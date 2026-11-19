@@ -1,0 +1,1 @@
+**Iteración de Picard.** Utilice la carga actual $h_k$ para calcular las dos conductancias. Manténgalas constantes y resuelva el balance hídrico para obtener $h_{k+1}$. Después, recalcule las conductancias con la nueva carga para la siguiente iteración. El criterio de cambio de carga compara $|h_{k+1}-h_k|$ con la tolerancia seleccionada.

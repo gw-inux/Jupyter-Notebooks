@@ -1,0 +1,1 @@
+**Picard iteration.** Use the current head $h_k$ to calculate the two face conductances. Hold them fixed and solve the water balance for $h_{k+1}$. Then recalculate the conductances from that new head for the following iteration. The head-change test compares $|h_{k+1}-h_k|$ with your tolerance.
